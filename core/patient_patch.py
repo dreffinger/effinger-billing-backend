@@ -107,7 +107,7 @@ if __name__ == "__main__":
         print(k, "before:", before.get(k), "after:", after.get(k))
 
 def family_address(pid, address1, address2="", zipcode="32308-4486", city="TALLAHASSEE", state="FL", homephone=""):
-    """The 'Edit address' button (captured from William's PATCH on MacDonald 9/7/2026): the same PATCH as patch(), but
+    """The 'Edit address' button (captured from William's PATCH on MacAllister 9/7/2026): the same PATCH as patch(), but
     familyupdate carries the new address for the responsible party (patientids [0] = this patient), which is what the
     plain PATCH with familyupdate=null was missing ('Address is required')."""
     web, tok = amd.login_cached()

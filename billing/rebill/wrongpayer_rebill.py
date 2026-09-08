@@ -12,7 +12,7 @@ pids = {}
 for line in open("batch_refresh.log"):
     m = re.match(r"== (\S+) pid (\d+)", line)
     if m: pids[m.group(1)] = int(m.group(2))
-pids["ENFINGER,MICHAEL"] = 17471174; pids["PEARSON,PEGGY"] = 17473065; pids["BRINSON,ETTA"] = 17477128
+pids["EASTMAN,MALCOLM"] = 17471174; pids["PEMBERTON,PERPETUA"] = 17473065; pids["BARRINGTON,ELSPETH"] = 17477128
 unp = json.load(open("unpaid_20260903.json")); log = open("wrongpayer_rebill.log", "a")
 def L(m): print(m, flush=True); log.write(m + "\n"); log.flush()
 done = {m.group(1) for l in open("wrongpayer_rebill.log") for m in [re.search(r"OK visit (\d+)", l)] if m}

@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (Coles MBI typo + Pearson to Humana)
-# Decides: Fixes Coles' MBI (4F76 to <id>, per CMS) and re-sends Pearson's UHC denials to her Humana MA plan.
+# PLAIN ENGLISH (Calloway MBI typo + Pemberton to Humana)
+# Decides: Fixes Calloway' MBI (4F76 to <id>, per CMS) and re-sends Pemberton's UHC denials to her Humana MA plan.
 # Rules it uses: Stedi/CMS result beats the chart when they disagree.
 # Never touches: Anyone else.
 # ---

@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (9/5 refresh batch 4)
-# Decides: Savage, Tully, Williams Rickey, Zaykowski, Schlaf, Watts chart fixes and rebills from the 9/5 facesheets.
+# Decides: Sedgwick, Trammell, Wingate Rodney, Zellweger, Stroud, Wexford chart fixes and rebills from the 9/5 facesheets.
 # Rules it uses: Hard-coded per patient: which plan to end, which to add, the order by date of service.
 # Never touches: Anyone not named in the file.
 # ---

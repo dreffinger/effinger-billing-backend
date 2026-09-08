@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (9/6 denial cascade - actions)
-# Decides: Applies tonight's Stedi findings to the Medicare $0-denial patients: bills the Advantage plan Medicare named (LaFleur, Sampson, Jackson Linda, Labrosse, Gaines, O'Brien), and corrects Edwards' MBI to the one CMS holds, then re-sends.
+# Decides: Applies tonight's Stedi findings to the Medicare $0-denial patients: bills the Advantage plan Medicare named (LaRosa, Sinclair, Jarvis Lorna, Lansing, Galloway, O'Donnell), and corrects Ellsworth' MBI to the one CMS holds, then re-sends.
 # Rules it uses: CO24/CO22/CO16 $0 postings are reversed with co24_restore (void $0 pay + write-off, move balance, rebill) to the plan sequence Stedi confirmed active on the date of service. Chart plans are added only when missing; no group numbers.
 # Never touches: Paid visits; hospice patients (already rebilled 9/5); anyone not listed here.
 # ---

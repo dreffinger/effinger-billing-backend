@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (9/6 board work (Springer, Martin, Lipscomb))
-# Decides: Springer to Medicare + Sunshine (Aetna ended, two untimely lines written off); Martin Alma's patient balances back to Humana; Lipscomb to CHP + Simply (BCBS ended).
+# PLAIN ENGLISH (9/6 board work (Sterling, Maddox, Ludlow))
+# Decides: Sterling to Medicare + Sunshine (Aetna ended, two untimely lines written off); Maddox Adele's patient balances back to Humana; Ludlow to CHP + Simply (BCBS ended).
 # Rules it uses: Timely filing 12 months; wrong-payer denials never stay on the patient.
 # Never touches: Anyone else.
 # ---

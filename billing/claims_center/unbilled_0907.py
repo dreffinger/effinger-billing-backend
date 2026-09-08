@@ -1,7 +1,7 @@
 # PLAIN ENGLISH (9/7 Unbilled column pass - 160 visits)
-# Decides: (1) 135 "payment from the prior payor is required" rows: these appeared because the 9/6 ERA clearing posted the old payer's $0 denials / re-posted 2023-24 payments, and AMD then tried to bill the NEXT plan. The 2023-2024 ones (primary paid years ago, coinsurance left for a secondary that is now 2+ years past filing) are written off as untimely secondary balances (William 9/7 rule: over 12 months = write off). The 2025-2026 ones are Medicare claims sent 9/4-9/5 that Medicare has not answered yet - nothing to bill until the Medicare remit posts, so they are released from the column (they come back on their own if the secondary still needs work). (2) "charges have errors" / "unresolved Claim Inspector" rows: the inspector was cleared earlier today - released. Pope Katharine (2024, Medicare paid twice on two ICNs; AARP secondary 2 years old) - remaining balance written off, released. (3) "Insurance order is missing": Felix -> Medicare only; Jackson -> Medicare then FCC; Tillman and Busby (Pam 9/1) -> FL Medicaid fee-for-service (Stedi 9/7: Full Medicaid active, Sunshine inactive, FCC is LTC-custodial only); Johnson David D (new, no plan on file, nothing on Stedi) -> Insurance Refresh Board.
+# Decides: (1) 135 "payment from the prior payor is required" rows: these appeared because the 9/6 ERA clearing posted the old payer's $0 denials / re-posted 2023-24 payments, and AMD then tried to bill the NEXT plan. The 2023-2024 ones (primary paid years ago, coinsurance left for a secondary that is now 2+ years past filing) are written off as untimely secondary balances (William 9/7 rule: over 12 months = write off). The 2025-2026 ones are Medicare claims sent 9/4-9/5 that Medicare has not answered yet - nothing to bill until the Medicare remit posts, so they are released from the column (they come back on their own if the secondary still needs work). (2) "charges have errors" / "unresolved Claim Inspector" rows: the inspector was cleared earlier today - released. Prentice Kathleen (2024, Medicare paid twice on two ICNs; AARP secondary 2 years old) - remaining balance written off, released. (3) "Insurance order is missing": Fenwick -> Medicare only; Jarvis -> Medicare then FCC; Thackeray and Bramwell (Pam 9/1) -> FL Medicaid fee-for-service (Stedi 9/7: Full Medicaid active, Sunshine inactive, FCC is LTC-custodial only); Jessup Dalton D (new, no plan on file, nothing on Stedi) -> Insurance Refresh Board.
 # Rules it uses: manual_post WOINS with a dated note; full-visit echo for insorder; hideunbillablevisits only after the data is fixed or the row is truly waiting on a payer. Resumable via unbilled_0907.log.
-# Never touches: Paid charges, Johnson's visit, anything not on today's list.
+# Never touches: Paid charges, Jessup's visit, anything not on today's list.
 # ---
 """Usage: python3 unbilled_0907.py [--dry]"""
 import amd, resave, txh, manual_post, json, sys, re, time, os, datetime, collections
@@ -38,7 +38,7 @@ def old(s): return (today - datetime.datetime.strptime(s["dos"], "%m/%d/%Y").dat
 def first_carrier(s):
     fc = (s["insorder"] or "").split(",")[0]; return {p[0]: p[1] for p in s["plans"]}.get(fc, "")
 CAR = {"car6085": "FLO02", "car6113": "MCAD", "car6404": "UNI20", "car302853": "UHCMA", "car6872": "TRI00", "car6194": "SUN01", "car42008": "FCC01"}
-ORDER = {"20379": "1", "24039": "1,3", "22858": "3", "23161": "3"}   # Felix, Jackson, Tillman, Busby
+ORDER = {"20379": "1", "24039": "1,3", "22858": "3", "23161": "3"}   # Fenwick, Jarvis, Thackeray, Bramwell
 rel = []; held = []; wo = 0.0; cat = collections.Counter()
 for s in S:
     vid = s["vid"]; err = s["err"]; pid = s["pid"]
@@ -47,8 +47,8 @@ for s in S:
         if old(s):
             wo += writeoff(s, "untimely - secondary balance over 12 months after the primary paid (9/7 William)", CAR.get(first_carrier(s), "UNI20")); rel.append(vid); cat["old secondary written off"] += 1
         else: rel.append(vid); cat["waiting on Medicare remit (sent 9/4-9/5) - released"] += 1
-    elif s["pt"].startswith("POPE"):
-        wo += writeoff(s, "untimely - AARP secondary balance over 12 months after Medicare paid (9/7 William)", "FLO02"); rel.append(vid); cat["Pope written off"] += 1
+    elif s["pt"].startswith("PRENTICE"):
+        wo += writeoff(s, "untimely - AARP secondary balance over 12 months after Medicare paid (9/7 William)", "FLO02"); rel.append(vid); cat["Prentice written off"] += 1
     elif err.startswith(("One or more charges", "Unresolved Claim Inspector")): rel.append(vid); cat["inspector cleared - released"] += 1
     elif err.startswith("Insurance order"):
         if pid not in ORDER: held.append((s["pt"], vid, "no plan on file; nothing on Stedi - board")); cat["held"] += 1; continue

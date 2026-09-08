@@ -12,7 +12,7 @@ Usage: python3 fix_freq7_exclusions.py [--dry] [--limit N]"""
 import amd, resave, json, re, sys, time, collections
 import xml.etree.ElementTree as ET
 
-SKIP_PATIENTS_UNI = {"BLACK,GEORGE", "ENFINGER,MICHAEL", "CATE,DOLLIE"}   # PR27 list: wait for new insurance
+SKIP_PATIENTS_UNI = {"BRISTOW,GERALD", "EASTMAN,MALCOLM", "CARDIFF,DELPHINE"}   # PR27 list: wait for new insurance
 LOG = open("fix_freq7.log", "a")
 def L(m): print(m); LOG.write(m + "\n"); LOG.flush()
 

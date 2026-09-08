@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Hospice GV rebill)
 # Decides: For a patient's visits Medicare denied as hospice (COB9): undo the $0 posting, add GV, re-send to Medicare.
-# Rules it uses: Hospice = straight Medicare + GV, except when hospice was revoked. Only the last 364 days (the Fanguy lesson).
+# Rules it uses: Hospice = straight Medicare + GV, except when hospice was revoked. Only the last 364 days (the Fairbank lesson).
 # Never touches: Visits before the window.
 # ---
 """Hospice fix (William's rule: hospice -> straight Medicare + GV).  For each of a patient's visits that Medicare denied

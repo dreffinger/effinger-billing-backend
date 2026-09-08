@@ -1,7 +1,7 @@
 # PLAIN ENGLISH (UHC 'coverage terminated' group to Medicare)
 # Decides: For the patients UHC dropped (PR27), end UHC on the chart and re-send every open UHC-billed visit Medicare-first with the chart's Medicaid/LTC plan second.
 # Rules it uses: Only visits on or after 5/1/2026 (the denial window) - older UHC lines are the unposted-ERA backlog, not a payer change. Skips any chart without an MBI.
-# Never touches: Visits with a payment, visits on other carriers. (The 9/6 first run lacked the date filter - that is the Blanco lesson.)
+# Never touches: Visits with a payment, visits on other carriers. (The 9/6 first run lacked the date filter - that is the Brentwood lesson.)
 # ---
 """PR27 group (UHC 'coverage terminated'): Stedi 9/6 confirms UHC inactive + stand-alone Part D active = original Medicare.
 Rebill every open UNI20-billed visit Medicare-first with the chart's Medicaid/LTC plan second.  Usage: python3 pr27_medicare.py [pid ...]"""

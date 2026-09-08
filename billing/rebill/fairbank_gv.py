@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (Fanguy GV pass)
-# Decides: Fanguy's hospice rebill done separately after the date filter was added.
+# PLAIN ENGLISH (Fairbank GV pass)
+# Decides: Fairbank's hospice rebill done separately after the date filter was added.
 # Rules it uses: Same as gv_rebill.
 # Never touches: 2023 lines (written off as untimely).
 # ---

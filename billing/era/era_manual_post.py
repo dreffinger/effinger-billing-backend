@@ -1,10 +1,10 @@
 # PLAIN ENGLISH (Manual post of an ERA line)
-# Decides: Posts an ERA line ERA Center refuses (procedure codes don't match), replicating your 9/3 Proctor entry.
+# Decides: Posts an ERA line ERA Center refuses (procedure codes don't match), replicating your 9/3 Pinckney entry.
 # Rules it uses: Payment = allowed, write-off = the adjustment, remainder to patient per the remit.
 # Never touches: Lines with no matched charge.
 # ---
 """Post an ERA line the way Payment Entry does when ERA Center can't auto-post it (e.g. 'Procedure codes do not
-match'): replica of William's 9/3/2026 Proctor 03/20 addpayments capture.
+match'): replica of William's 9/3/2026 Pinckney 03/20 addpayments capture.
 Per visit: for each ERA service line matched to a charge (chargedetailid != -1):
    payment = allowedamount, write-off = charge balance - allowed (the CARC amounts), reasons echoed;
  any remainder of the visit's paid amount goes to an unapplied credit (exactly what the UI did).
