@@ -1,0 +1,38 @@
+{
+ "code": "ehpa",
+ "name": "Effinger Health PA",
+ "dba": "North Florida Senior Care",
+ "group_npi": "1629515325",
+ "tin": "81-4723941",
+ "providers": {
+  "1225327380": "William L. Effinger DO",
+  "1235128869": "Pamela Garcia ARNP"
+ },
+ "address": "1891 Capital Circle NE Suite 9, Tallahassee FL 32308-4486",
+ "phone_fax": "888-698-2714",
+ "amd": {
+  "office_key": "152563",
+  "api_user": "POI0712",
+  "xml_gateway": "processrequest.aspx",
+  "rest": "https://pm-api-103.advancedmd.com/api"
+ },
+ "stedi": {
+  "enrolled_npi": "1629515325",
+  "key": "secrets/stedi.key (never in git)"
+ },
+ "drive": {
+  "project_files": "1-AsLUHMaeqvHq-fqWKUVKKUU4Xkw6XTt",
+  "credentialing_files": "1kTkoNaetZVq6JLv5rNiEvN6r3eSAdkVA",
+  "chat_history": "1VCZfjSmok1fNNnYwf2yBTXlZ-zMUnAWU",
+  "hca_facesheets": "1itL6N-3Xdu0QAtOA8BqtK9NeM3gb417W",
+  "tmh_facesheets": "1uj5Sa9tmJHnV8VbMS42AjPAJtcpi-G2x",
+  "pcc_facesheets": "1hEf4XJ6ppTH_UWva21JPW25g3uebKPAh",
+  "claimocity_drop": "1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI"
+ },
+ "boards": {
+  "insurance_refresh": "ae4bc5c4-1d6c-4ffc-bc78-3fc284ad262d",
+  "credentialing": "5f3f4986-3553-4b70-b472-5f5757225d3a",
+  "money_ledger": "2d2c85c6-903b-451a-ab53-bdc074703797",
+  "billing_back_end_doc": "3dd11acd-e1b3-4298-9cb2-6b5601504630"
+ }
+}
