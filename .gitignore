@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# Secrets — NEVER commit
+# ---------------------------------------------------------------------------
+.session.json
+.amd_cred.json
+secrets/
+*.key
+*.pem
+*.token
+.env
+.env.*
+
+# ---------------------------------------------------------------------------
+# PHI — patient data never enters this repo
+# ---------------------------------------------------------------------------
+patient_db/
+chat_history/
+facesheets/
+uploads/
+needs_facesheet_list.md
+laterality_flag_log.md
+*_register_*.xlsx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
+
+# ---------------------------------------------------------------------------
+# Runtime data / logs
+# ---------------------------------------------------------------------------
+*.log
+*.csv
+*.xlsx
+logs/
+
+# Data JSON. Documentation JSON under docs/ is force-added; see README.
+*.json
+!docs/postman_effinger_amd.json
+
+# ---------------------------------------------------------------------------
+# Python / tooling
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.DS_Store
