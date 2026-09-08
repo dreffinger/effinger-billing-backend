@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (Blank insurance effective-date scan)
-# Decides: Which active insurance plans on recently-seen patients have NO effective (begin) date - the Denholm oversight William spotted 9/6. Plans without a begin date can be sent as primary when they should not be, and eligibility checks cannot date them.
+# Decides: Which active insurance plans on recently-seen patients have NO effective (begin) date - the Southwick oversight William spotted 9/6. Plans without a begin date can be sent as primary when they should not be, and eligibility checks cannot date them.
 # Rules it uses: Reads the unpaid list for patients seen in the last 90 days, pulls each chart once, lists open plans with begindate="". Report only; fixing is a separate decision (date = first DOS billed to that plan is the usual answer).
 # Never touches: Any chart.
 # ---

@@ -1,7 +1,7 @@
 # PLAIN ENGLISH (9/6 commercial/Medicaid denial cascade - actions)
 # Decides: Applies the clear-cut verdicts from denial_cascade2: (A) Medicaid says the patient has Medicare -> add Medicare, bill Medicare first then Medicaid; (B) Medicaid says the patient is in an SMMC plan -> add that plan (with the Medicaid id) and bill it (Medicare first if the chart has Medicare); (C) the billed plan was inactive and CMS shows straight Medicare -> bill Medicare for dates after the plan ended; (D) date of death -> write off lines after it; (E) in A-C, denied claims older than 12 months are written off as untimely (no payer will take them now).
 # Rules it uses: add_ins.add for missing plans (no group numbers), rebill_patient_year.run with a date-aware order (freq-1 first, keeps admission dates), manual_post.post WOINS with a dated note for write-offs. Never rebills a visit with a payment posted (rebill_patient_year skips them). --dry prints only.
-# Never touches: 'billed plan ACTIVE' (claim-content) denials, 'inactive + no Medicare' patients, Advantage-plan hits that need a member id, or Vickers-type rows where the only MCO is dental/transport - all of those go to the board instead.
+# Never touches: 'billed plan ACTIVE' (claim-content) denials, 'inactive + no Medicare' patients, Advantage-plan hits that need a member id, or Vandermeer-type rows where the only MCO is dental/transport - all of those go to the board instead.
 # ---
 """Usage: python3 denial_act2.py [--dry] [--only A,B,C,D]"""
 import amd, add_ins, rebill_patient_year, manual_post, txh, resave, json, re, sys, datetime, time, glob, collections

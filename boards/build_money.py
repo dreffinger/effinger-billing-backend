@@ -40,7 +40,7 @@ try:
 except Exception as e: print('writeoff registers:', e)
 wo += [('AET07', 513.0), ('FLO02', 630.0), ('MCAD', 232.11)]          # 9/6 manual write-offs not yet in a register
 for c, a in wo: payer[c.split()[0]]['writeoff'] += a
-cred = {'TRI00': 'TRICARE East - Pam not credentialed (CO185); re-credentialing in progress', 'TRI05': 'TRICARE - carrier file problem (Olson hold)', 'VACCN': 'VA CCN - myVACCN portal registration pending; claims need VA auth numbers', 'RET01': 'Railroad Medicare - not credentialed; written off for now', 'FLO99': 'Florida Community Care - no electronic eligibility; portal only', 'OPT08': 'Optum Network - subscriber not found (Denholm)'}
+cred = {'TRI00': 'TRICARE East - Pam not credentialed (CO185); re-credentialing in progress', 'TRI05': 'TRICARE - carrier file problem (Olson hold)', 'VACCN': 'VA CCN - myVACCN portal registration pending; claims need VA auth numbers', 'RET01': 'Railroad Medicare - not credentialed; written off for now', 'FLO99': 'Florida Community Care - no electronic eligibility; portal only', 'OPT08': 'Optum Network - subscriber not found (Southwick)'}
 prev = json.load(open('money_data.json')) if glob.glob('money_data.json') else {}
 PAY = json.load(open('payments_by_carrier.json'))['carriers'] if glob.glob('payments_by_carrier.json') else {}   # pay_scan.py: posted payments per carrier
 for k, v in PAY.items():

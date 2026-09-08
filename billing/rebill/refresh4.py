@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (9/5 refresh batch 4)
-# Decides: Selwyn, Tully, Rowantree Bastable, Farrant, Schlaf, Wotton chart fixes and rebills from the 9/5 facesheets.
+# Decides: Sedgwick, Ivens, Jessop Patient850, Kendal, Ambleside, Wexford chart fixes and rebills from the 9/5 facesheets.
 # Rules it uses: Hard-coded per patient: which plan to end, which to add, the order by date of service.
 # Never touches: Anyone not named in the file.
 # ---

@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (9/6 board work (Sprigg, Nettleford, Linwood))
-# Decides: Sprigg to Medicare + Sunshine (Aetna ended, two untimely lines written off); Nettleford Patient722's patient balances back to Humana; Linwood to CHP + Simply (BCBS ended).
+# PLAIN ENGLISH (9/6 board work (Sterling, Lydgate, Ludlow))
+# Decides: Sterling to Medicare + Sunshine (Aetna ended, two untimely lines written off); Lydgate Patient960's patient balances back to Humana; Ludlow to CHP + Simply (BCBS ended).
 # Rules it uses: Timely filing 12 months; wrong-payer denials never stay on the patient.
 # Never touches: Anyone else.
 # ---

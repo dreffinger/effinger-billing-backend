@@ -65,15 +65,15 @@ The daily Claims Center columns - Charge Review, Claim Inspector, Unbilled, Excl
 | `apply_inspector_fix.py` | Claim Inspector hospitalization fix | Clears inspector errors about hospitalization dates by setting the admission date and flipping the Box 18 flag. |
 | `clean_1900.py` | Clear 01/01/1900 dates | Finds claim fields set to 01/01/1900 on visits touched today and clears them. |
 | `complete_admit_exclusions.py` | Complete fixed admission exclusions | Marks 'missing admission date' exclusions completed once fix_admit_dates has repaired the visit. |
-| `excl_act_0907.py` *(local only)* | 9/7 Exclusions column pass - 197 rejected claims on 10 claim runs | (1) Rejections over 12 months old with an open balance are written off as untimely (William 9/7: "write those off if no chance of being paid") - UHC "member not valid at DOS" remnants after Medicare paid, Littell Ray's A… |
+| `excl_act_0907.py` *(local only)* | 9/7 Exclusions column pass - 197 rejected claims on 10 claim runs | (1) Rejections over 12 months old with an open balance are written off as untimely (William 9/7: "write those off if no chance of being paid") - UHC "member not valid at DOS" remnants after Medicare paid, Oswin Patient216's A… |
 | `fix_admit_dates.py` | Restore hospital admission dates | For hospital (POS 21) visits whose admission date was lost in the frequency reset, puts it back and rebills. |
 | `fix_freq7_exclusions.py` | Clear frequency-7 exclusions | Which excluded claims are failing only because of the corrected-claim flag, fixes the flag, rebills, completes the exclusion. |
 | `fix_tricare_exclusions.py` | TRICARE referral numbers | Puts the TRICARE referral/auth from the facesheet on each excluded visit, resaves, rebills, completes the exclusion. |
-| `inspector_0906.py` | 9/6 Claim Inspector pass | Clears tonight's 37 inspector holds by rule: hospital admission date = most recent 99223 on/before the visit; Gresham F02.818 -> F03.90; Lowry 99497 gets modifier 25 next to 99223; Enderby second new-patient 99344 -> 99349… |
+| `inspector_0906.py` | 9/6 Claim Inspector pass | Clears tonight's 37 inspector holds by rule: hospital admission date = most recent 99223 on/before the visit; Garrity F02.818 -> F03.90; Alderton 99497 gets modifier 25 next to 99223; Eastman second new-patient 99344 -> 99349… |
 | `inspector_0907.py` | 9/7 Claim Inspector pass | Clears the 50 inspector holds by William's standing rules: hospital admission date = the most recent 99223 within 45 days on/before the visit (written to Extra Info, claim forced to CMS-1500); CCM pairs get modifier 25 o… |
 | `resolve_admits.py` | Work out admission dates | Nothing - builds the mapping of subsequent-care visits to their admitting 99223 date. |
 | `scan_alf_codes.py` | ALF visits using SNF codes | Nothing - lists unpaid 2025+ charges with 9930x codes at place of service 13 (ALF). |
-| `unbilled_0906.py` *(local only)* | 9/6 Unbilled column pass | Which of tonight's 47 unbilled visits can be released: adds the plan Stedi found (Turner UHC, Mahler + Horne Medicare, Prescot UMR), points visits with plans already on file at the right sequence (Reeve, Thistlewood, Jackso… |
+| `unbilled_0906.py` *(local only)* | 9/6 Unbilled column pass | Which of tonight's 47 unbilled visits can be released: adds the plan Stedi found (Tolliver UHC, Marchetti + Hendricks Medicare, Purcell UMR), points visits with plans already on file at the right sequence (Rothwell, Whitfield, Jackso… |
 | `unbilled_0907.py` | 9/7 Unbilled column pass - 160 visits | (1) 135 "payment from the prior payor is required" rows: these appeared because the 9/6 ERA clearing posted the old payer's $0 denials / re-posted 2023-24 payments, and AMD then tried to bill the NEXT plan. The 2023-2024… |
 | `unbilled_0907_scan.py` |  | PLAIN ENGLISH (9/7 Unbilled scan) - reads only. For each unbilled visit: DOS, fee, balance, insorder, last claim sent (carrier/date), payments on the visit. Writes unbilled_0907_scan.json. |
 
@@ -85,8 +85,8 @@ ERA Center: posting checks the way the Post button does, $0 process-accepted lin
 |---|---|---|
 | `era_alloc_post.py` | ERA payment-only post | For secondary/supplement remits whose 'allowed' doesn't match AMD, allocates the paid amount across the charges with no write-offs. |
 | `era_clear.py` | Clear the ERA Center unposted list the way William does by hand | For every check still on the ERA Center list: (1) post any line that still carries real money onto a visit with an open balance (era_post.post_check - the Post button); (2) post the leftover $0-payment / $0-adjustment li… |
-| `era_fix_0907.py` | Fix the 21 checks left in ERA Center, 9/7/2026 late | On 9/6 the manual-post pass took the $0 DENIAL line of several 2024 UHC checks instead of the PAYMENT line, so McHome, Ferrand, Nesbit and Whitby Judeth show a $0 payment and a full write-off where UHC actually paid ($1,850… |
-| `era_manual_post.py` | Manual post of an ERA line | Posts an ERA line ERA Center refuses (procedure codes don't match), replicating your 9/3 Proctor entry. |
+| `era_fix_0907.py` | Fix the 21 checks left in ERA Center, 9/7/2026 late | On 9/6 the manual-post pass took the $0 DENIAL line of several 2024 UHC checks instead of the PAYMENT line, so McKenna, Farraday, Norwood and Winslow Justine show a $0 payment and a full write-off where UHC actually paid ($1,850… |
+| `era_manual_post.py` | Manual post of an ERA line | Posts an ERA line ERA Center refuses (procedure codes don't match), replicating your 9/3 Pinckney entry. |
 | `era_post.py` | Post ERA payments | Which ERA checks and visits in ERA Center can be posted automatically, and posts them the way the Post button does. |
 | `era_upload.py` | Upload 835 files to ERA Center | Which downloaded 835 files are not already in ERA Center, and uploads those. |
 | `era_zero.py` | Clear the ERA Center list - post the $0 lines the way the 'Process Accepted' button does | For every check still on the ERA Center unposted list, posts the remaining validated lines that carry $0 payment AND $0 adjustment (denial / duplicate / info-only lines) - exactly what William's 'Process Accepted ($0.00)… |
@@ -102,14 +102,14 @@ Re-pointing claims at the right payer and re-sending them as original claims: pa
 | Script | What it is | What it decides |
 |---|---|---|
 | `add_modifier_rebill.py` | Add a modifier and rebill | Adds one modifier (e.g. GV) to every charge on a visit and rebills. |
-| `aet12_rebill_0907.py` | Aetna Senior Supplemental (AET12) secondaries - rebill after William fixed the carrier payer id to 62118, 9/7/2026 | (1) Voids today's four "untimely" write-offs on Littell Ray - wrong call: a Medigap secondary's clock runs from Medicare's remit (posted 9/6/2026), not the date of service. (2) Every charge with an open AET12 insurance b… |
+| `aet12_rebill_0907.py` | Aetna Senior Supplemental (AET12) secondaries - rebill after William fixed the carrier payer id to 62118, 9/7/2026 | (1) Voids today's four "untimely" write-offs on Oswin Patient216 - wrong call: a Medigap secondary's clock runs from Medicare's remit (posted 9/6/2026), not the date of service. (2) Every charge with an open AET12 insurance b… |
 | `audit_pr_transfer.py` | Patient-balance audit | Nothing - finds charges pushed to patient balance by denials that really mean 'wrong payer'. |
 | `batch_refresh.py` *(local only)* | 9/4 PCC facesheet refresh | For each patient on the 9/4 list: add Medicare if missing, add the Medicaid/MMA plan if missing, end the denying plan, move balances to insurance and rebill. |
 | `build_pr_audit_wb.py` *(local only)* | Audit workbook | Builds the PR-transfer audit Excel: patients, facilities, live balances, refresh status. |
-| `varley_rebill.py` | Varley hospice-period rebill | Varley's 5/31-8/4/26 visits to FCC with GV. |
+| `bramwell_rebill.py` | Bramwell hospice-period rebill | Bramwell's 5/31-8/4/26 visits to FCC with GV. |
 | `co24_restore.py` | Undo a CO24 posting and rebill the MA plan | For Medicare $0 CO24 postings: void the $0 payment and its write-off, then bill the visit to the Advantage plan. |
 | `elig_fix.py` | Hospital eligibility refresh | From a pasted TMH 'Active Insurance' block: make Medicare primary with the MBI, the listed plan secondary, end the old denying plan, re-point and rebill the audit visits. |
-| `patient411_gv.py` | Patient411 GV pass | Patient411's hospice rebill done separately after the date filter was added. |
+| `fairbank_gv.py` | Fairbank GV pass | Fairbank's hospice rebill done separately after the date filter was added. |
 | `fcc_rebill_0907.py` | Florida Community Care re-point + rebill, William 9/7/2026: "yes FCC is FLO99 - rebill them all there and anything else that is Florida Community Care going back a year" | (1) Every open visit inside 12 months already on FLO99 (car42008, Florida Community Care) is re-sent as an original claim. (2) Every patient on the unpaid list with a Medicaid-side balance inside 12 months (MCAD, SUN01, … |
 | `gv_rebill.py` | Hospice GV rebill | For a patient's visits Medicare denied as hospice (COB9): undo the $0 posting, add GV, re-send to Medicare. |
 | `i63_apply.py` | Apply I63.9 to I69.30 | For every outpatient charge carrying acute stroke I63.9, swaps to sequela I69.30 and rebills the denied ones. |
@@ -117,22 +117,22 @@ Re-pointing claims at the right payer and re-sending them as original claims: pa
 | `i63_scan_par.py` | I63.9 scanner (parallel) | Nothing - same scan, five workers. |
 | `i63_sweep.py` | I63.9 sweep (scan + apply) | Same rule as i63_apply, run as one off-peak sweep over open claims. |
 | `move_audit_to_ins.py` | 9/3 balances back to insurance | Every audit charge sitting on a patient balance after a wrong-payer denial goes back to insurance; flags it for rebill once the new plan is on file. |
-| `pr27_b.py` *(local only)* | Colby MBI typo + Pearce to Humana | Fixes Colby' MBI (4F76 to <id>, per CMS) and re-sends Pearce's UHC denials to her Humana MA plan. |
+| `pr27_b.py` *(local only)* | Calloway MBI typo + Haverthwaite to Humana | Fixes Calloway' MBI (4F76 to <id>, per CMS) and re-sends Haverthwaite's UHC denials to her Humana MA plan. |
 | `pr27_medicare.py` | UHC 'coverage terminated' group to Medicare | For the patients UHC dropped (PR27), end UHC on the chart and re-send every open UHC-billed visit Medicare-first with the chart's Medicaid/LTC plan second. |
 | `rebill_driver.py` | Fix order, rebill, complete | For rejected claims: set the correct insurance order, rebill, then mark the rejection completed - verifying each step. |
 | `rebill_patient_year.py` | Rebill a patient's last 12 months | Which of a patient's visits in the last N days are unpaid with a balance, and re-sends each under a given plan order. |
 | `rebill_to_seq.py` | Bill a visit to another plan | Nothing on its own: re-points one visit at plan sequence N (optionally with a pre-auth) and rebills. |
 | `rebill_under_effinger.py` | Rebill Garland-G denials under Dr. Effinger | Which Garland-G-rendered denials (N290/N767) to re-send with you as rendering provider, and does it without voiding the originals. |
 | `refresh3.py` *(local only)* | 9/5 refresh batch 3 | The chart fixes and rebills for a specific set of names from the 9/5 TMH pastes (per-patient lines you approved in chat). |
-| `refresh4.py` *(local only)* | 9/5 refresh batch 4 | Selwyn, Tully, Rowantree Bastable, Farrant, Schlaf, Wotton chart fixes and rebills from the 9/5 facesheets. |
+| `refresh4.py` *(local only)* | 9/5 refresh batch 4 | Sedgwick, Ivens, Jessop Patient850, Kendal, Ambleside, Wexford chart fixes and rebills from the 9/5 facesheets. |
 | `resend_notonfile.py` | Resend claims the payer never received | Which visits from the full status sweep the payer says are NOT ON FILE and are still inside the 12-month window, and re-sends each one as an ORIGINAL claim (frequency 1) to the plan it is already assigned to. |
 | `reset_freq_rebill.py` | 9/3 frequency-1 sweep | Every unpaid visit still carrying the 6/9 'corrected claim' flag with no payer ICN gets reset to frequency 1 and rebilled. |
 | `restore_rest.py` | Restore batch (9/3) | Runs restore_charge over the list of charges the 9/3 bug voided. |
-| `kettering_fix.py` | Kettering to UHC Advantage | End Humana 6/30/25, add UHC MA <id> from 7/1/25, undo the two Medicare CO24 postings, re-send the three visits. |
+| `ridgeway_fix.py` | Ridgeway to UHC Advantage | End Humana 6/30/25, add UHC MA <id> from 7/1/25, undo the two Medicare CO24 postings, re-send the three visits. |
 | `run_gv.py` | GV run list | Which patients gv_rebill runs for on a given night. |
-| `smith_sprigg.py` *(local only)* | Smythe Marisa to Medicare; Sprigg post-death write-off | Adds Smythe's MBI and re-sends her two visits; writes off Sprigg's CCM lines dated after his 11/8/25 date of death. |
-| `wotton_fix.py` | Wotton Feb-May 2026 to Medicare | UHC was inactive Feb-May 2026 (Stedi), so those visits go Medicare first, FCC second; UHC start set to 6/1/26. |
-| `work_0906.py` *(local only)* | 9/6 board work (Sprigg, Nettleford, Linwood) | Sprigg to Medicare + Sunshine (Aetna ended, two untimely lines written off); Nettleford Patient722's patient balances back to Humana; Linwood to CHP + Simply (BCBS ended). |
+| `stanhope_sterling.py` *(local only)* | Stanhope Patient864 to Medicare; Sterling post-death write-off | Adds Stanhope's MBI and re-sends her two visits; writes off Sterling's CCM lines dated after his 11/8/25 date of death. |
+| `wexford_fix.py` | Wexford Feb-May 2026 to Medicare | UHC was inactive Feb-May 2026 (Stedi), so those visits go Medicare first, FCC second; UHC start set to 6/1/26. |
+| `work_0906.py` *(local only)* | 9/6 board work (Sterling, Lydgate, Ludlow) | Sterling to Medicare + Sunshine (Aetna ended, two untimely lines written off); Lydgate Patient960's patient balances back to Humana; Ludlow to CHP + Simply (BCBS ended). |
 | `wrongpayer_rebill.py` | Rebill after a refresh | After a chart's insurance is corrected, which other unpaid visits are still pointed at the ended plan, and re-sends them under the new order. |
 
 ### `billing/writeoff/`
@@ -141,7 +141,7 @@ Write-off passes: not-on-file remnants, cascade untimely, and the over-365-day r
 
 | Script | What it is | What it decides |
 |---|---|---|
-| `writeoff_0905.py` | 9/5 approved write-offs | Capps, Colvin, Corwin, Bailey (2024) lines older than 12 months, plus Lawhorn 8/22 CCM (no Railroad credentialing). |
+| `writeoff_0905.py` | 9/5 approved write-offs | Carrow, Chadwick, Cormack, Barlowe (2024) lines older than 12 months, plus Lockridge 8/22 CCM (no Railroad credentialing). |
 | `writeoff_old.py` | 9/4 pre-2025 write-offs | Every pre-2025 audit line, past all timely-filing windows. |
 | `writeoff_old_notonfile.py` | Write off the 'never received' claims that are past every payer's filing limit | Every claim the full status sweep marked NOT ON FILE whose date of service is more than 12 months old gets its open insurance balance written off as untimely (William, 9/7/2026: "we could probably just write those off if… |
 | `writeoff_over365_0907.py` | Write off every open claim more than a year old - all carriers, William 9/7/2026 | William's call tonight: "write off every claim past one year with any carrier - no chance of it being resubmitted for actual payment." Every visit on the unpaid list with a date of service more than 365 days old gets its… |
@@ -153,7 +153,7 @@ Read-only scans: payments by carrier, CO24, voids, blank begin dates, full claim
 | Script | What it is | What it decides |
 |---|---|---|
 | `awv_due.py` | Annual wellness visit due list | For every active patient, when the next AWV is billable. |
-| `blank_begindate_scan.py` | Blank insurance effective-date scan | Which active insurance plans on recently-seen patients have NO effective (begin) date - the Denholm oversight William spotted 9/6. Plans without a begin date can be sent as primary when they should not be, and eligibili… |
+| `blank_begindate_scan.py` | Blank insurance effective-date scan | Which active insurance plans on recently-seen patients have NO effective (begin) date - the Southwick oversight William spotted 9/6. Plans without a begin date can be sent as primary when they should not be, and eligibili… |
 | `claim_status_sweep.py` | Weekly claim-status sweep | For unpaid claims older than N days, what the payer says happened to them (paid / denied / pending / never received) via a Stedi 276/277 check, and sorts them into actions. |
 | `mcad_pay_scan.py` | Medicaid payment scan | Nothing - lists what Medicaid paid vs denied. |
 | `pay_scan.py` | Posted-payment scan for the Money Ledger | Nothing. Reads every known patient's transaction history and totals what each carrier has actually PAID (posted payments, by month) and what was written off, so the ledger can show "paid last 12 months / paid all time" p… |
@@ -169,7 +169,7 @@ The insurance cascade: patient database -> AMD eligibility (free 271) -> Stedi e
 |---|---|---|
 | `denial_act2.py` | 9/6 commercial/Medicaid denial cascade - actions | Applies the clear-cut verdicts from denial_cascade2: (A) Medicaid says the patient has Medicare -> add Medicare, bill Medicare first then Medicaid; (B) Medicaid says the patient is in an SMMC plan -> add that plan (with … |
 | `denial_act3.py` *(local only)* | 9/7 second-pass actions from stedi_pass2 - the clear-cut ones | Applies the second Stedi pass verdicts that need no human judgment: add the Advantage plan / Medicare the payers confirmed, fix a member number the payer corrected, and point the denied (or never-received Medicaid) in-wi… |
-| `denial_act_0906.py` *(local only)* | 9/6 denial cascade - actions | Applies tonight's Stedi findings to the Medicare $0-denial patients: bills the Advantage plan Medicare named (LaFleur, Samson, Jacobsen Norcott, Lacroix, Gaines, Orwell), and corrects Edgerton' MBI to the one CMS holds, t… |
+| `denial_act_0906.py` *(local only)* | 9/6 denial cascade - actions | Applies tonight's Stedi findings to the Medicare $0-denial patients: bills the Advantage plan Medicare named (LaRosa, Sinclair, Jarvis Lorna, Lansing, Galloway, O'Donnell), and corrects Ellsworth' MBI to the one CMS holds, t… |
 | `denial_cascade.py` | Medicare $0-denial cascade | For every patient in the Medicare $0-denial scan (CO24 / COB9 / CO16 / CO22 / CO109), what Medicare's own record says for the denied date of service - Advantage plan, hospice, MBI mismatch, other payer, death - and what … |
 | `denial_cascade2.py` | Commercial / Medicaid denial cascade - from the claim-status sweep | For every patient whose non-Medicare claims came back DENIED or FINALIZED-$0 in the full status sweep, what the coverage actually was on those dates - asked of the payers themselves (Stedi eligibility on the billed plan,… |
 | `disc_run.py` | Stedi Insurance Discovery over the held board cards | Nothing on its own. First checks whether the DISCOVERY enrollment is LIVE (one cheap test call). If it is, runs discovery (name + DOB + state, $1.50 each) for every Insurance Refresh Board card that is holding for it and… |

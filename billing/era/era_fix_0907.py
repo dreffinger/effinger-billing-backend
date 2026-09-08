@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (Fix the 21 checks left in ERA Center, 9/7/2026 late)
-# Decides: On 9/6 the manual-post pass took the $0 DENIAL line of several 2024 UHC checks instead of the PAYMENT line, so McHome, Ferrand, Nesbit and Whitby Judeth show a $0 payment and a full write-off where UHC actually paid ($1,850). Thorney Pearl's 2024 repayment ($231.84) was never posted (bulk-written-off 5/30). Wallace Delphine's Humana payment ($114.76, 8/2026) never posted ('procedure codes do not match'). This script voids the wrong write-offs, posts the real payments with the remainder written off, fixes two reversal mistakes (Posey: $88.84 over-posted on the 99239 the payer did not repay; Docter: a $97.39 takeback recorded as a payment), then dismisses every check that is now fully accounted for (denial-only checks belong to the cascade / tonight's over-12-month write-off).
+# Decides: On 9/6 the manual-post pass took the $0 DENIAL line of several 2024 UHC checks instead of the PAYMENT line, so McKenna, Farraday, Norwood and Winslow Justine show a $0 payment and a full write-off where UHC actually paid ($1,850). Judson Priscilla's 2024 repayment ($231.84) was never posted (bulk-written-off 5/30). Westbrook Delia's Humana payment ($114.76, 8/2026) never posted ('procedure codes do not match'). This script voids the wrong write-offs, posts the real payments with the remainder written off, fixes two reversal mistakes (Padgett: $88.84 over-posted on the 99239 the payer did not repay; Deveraux: a $97.39 takeback recorded as a payment), then dismisses every check that is now fully accounted for (denial-only checks belong to the cascade / tonight's over-12-month write-off).
 # Rules it uses: void_tx.void_writeoff / void_payment, manual_post.post (pay + WOINS, check number and deposit date from the ERA), era_post dismiss endpoint. Resumable via era_fix_0907.log.
 # Never touches: Visits not listed here.
 # ---
@@ -52,8 +52,8 @@ for chk, pid, vid, pays, wodates in FIX:
         if dry: L("DRY POST %s %s %s pay %.2f wo %.2f (bal %.2f) check %s" % (cid, c.get("patient"), code, pay, wo, bal, CHECKS[chk]["paymentnumber"])); tot += pay; continue
         ok, msg = manual_post.post(cid, carrier(chk), pay, wo, "WOINS", CHECKS[chk]["paymentnumber"], dd(chk), note="ERA line re-posted 9/7 (9/6 pass posted the $0 denial line instead of the payment)")
         L("%s %s %s %s pay %.2f wo %.2f %s" % ("POST" if ok else "POSTFAIL", cid, c.get("patient"), code, pay, wo, "" if ok else msg[:100])); tot += pay if ok else 0; time.sleep(0.3)
-# Posey: the 99239 (9/5/2024) got $88.84 posted on 9/5 but the payer's repayment left it out -> void that payment, write the 88.84 off (untimely).
-# Docter: the -97.39 line was a takeback of a never-posted payment; it was recorded as a payment -> void it, write 97.39 off (untimely).
+# Padgett: the 99239 (9/5/2024) got $88.84 posted on 9/5 but the payer's repayment left it out -> void that payment, write the 88.84 off (untimely).
+# Deveraux: the -97.39 line was a takeback of a never-posted payment; it was recorded as a payment -> void it, write 97.39 off (untimely).
 for pid, vid, code, amt, note in [("17472047", "19389121", "99239", 88.84, "payer reversal 9/5/2024 - repayment excluded this line; untimely"), ("12232591", "19380365", "99349", 97.39, "takeback of a payment that was never posted; untimely")]:
     root = txh.fetch(pid)
     for c in root.iter("charge"):

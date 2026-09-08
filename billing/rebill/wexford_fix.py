@@ -1,4 +1,4 @@
-# PLAIN ENGLISH (Wotton Feb-May 2026 to Medicare)
+# PLAIN ENGLISH (Wexford Feb-May 2026 to Medicare)
 # Decides: UHC was inactive Feb-May 2026 (Stedi), so those visits go Medicare first, FCC second; UHC start set to 6/1/26.
 # Rules it uses: Medicare before Medicaid/LTC.
 # Never touches: June 2026 onward, which is UHC's.

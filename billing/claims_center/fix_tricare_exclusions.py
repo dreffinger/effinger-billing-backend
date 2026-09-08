@@ -14,8 +14,8 @@ import xml.etree.ElementTree as ET
 AUTHS = {
     # "[name]": "0000-25239000235",   # done 9/2
     "[name]": "NR27447",       # HCA facesheet auth field "Auth NR/27447" — William 9/2: submit as-is
-    "PARKER [name]": "NR27447",
-    "ROWANTREE,RUSTIN": "0000-25324017793/R",   # HCA 11/21/25-12/18/25 stroke admission facesheet (William 9/2: use prior-admit auth)    # same value on her HCA facesheet — William 9/2: submit as-is
+    "PRYCE VALE,PATIENT864": "NR27447",
+    "JESSOP,RUPERT": "0000-25324017793/R",   # HCA 11/21/25-12/18/25 stroke admission facesheet (William 9/2: use prior-admit auth)    # same value on her HCA facesheet — William 9/2: submit as-is
 }
 CLAIMRUNID = "1700088"
 LOG = open("tricare_fix.log", "a")
