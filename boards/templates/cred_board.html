@@ -1,0 +1,321 @@
+<title>Credentialing Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F7F5F0; --surface:#FFFFFF; --line:#D9D5CC; --ink:#1F2A33; --muted:#667079;
+  --accent:#3B4A8C; --accent-soft:#E2E6F4; --accent-ink:#FFFFFF;
+  --william:#A9711B; --william-soft:#F8EBD3; --claude:#3B4A8C; --claude-soft:#E2E6F4;
+  --good:#2F7A4E; --good-soft:#DDF0E3; --warn:#B7791F; --warn-soft:#F7ECD6; --bad:#A33A3A; --bad-soft:#F6DEDE; --unk:#667079; --unk-soft:#E9E7E1;
+  --send:#A8C8EC; --send-ink:#10294A; --send-hover:#8FB6E3; --api:#2F6DB5; --api-soft:#E9F1FB; --api-line:#BFD5EF;
+  --serif:'Fraunces',Georgia,serif; --sans:'Public Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A1E; --surface:#1E252B; --line:#333C45; --ink:#E8E6E0; --muted:#9AA4AD;
+    --accent:#9AA8E6; --accent-soft:#232B4A; --accent-ink:#0D1226;
+    --william:#E2B25C; --william-soft:#3A2E12; --claude:#9AA8E6; --claude-soft:#232B4A;
+    --good:#6FC791; --good-soft:#17321F; --warn:#E0B25C; --warn-soft:#3A2E12; --bad:#E38A8A; --bad-soft:#3A1E1E; --unk:#9AA4AD; --unk-soft:#2A323A;
+    --send:#6E9FD6; --send-ink:#0B1A2E; --send-hover:#84AEDF; --api:#8DB8EA; --api-soft:#182636; --api-line:#2B4160;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A1E; --surface:#1E252B; --line:#333C45; --ink:#E8E6E0; --muted:#9AA4AD;
+  --accent:#9AA8E6; --accent-soft:#232B4A; --accent-ink:#0D1226;
+  --william:#E2B25C; --william-soft:#3A2E12; --claude:#9AA8E6; --claude-soft:#232B4A;
+  --good:#6FC791; --good-soft:#17321F; --warn:#E0B25C; --warn-soft:#3A2E12; --bad:#E38A8A; --bad-soft:#3A1E1E; --unk:#9AA4AD; --unk-soft:#2A323A;
+  --send:#6E9FD6; --send-ink:#0B1A2E; --send-hover:#84AEDF; --api:#8DB8EA; --api-soft:#182636; --api-line:#2B4160;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
+.pal{margin-top:2px}
+.eyebrow{font:600 12px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:600 34px/1.1 var(--serif);margin:6px 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:64ch}
+.legend{font-size:13px;color:var(--muted);margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:10px;margin:14px 0 16px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer;text-align:left}
+.stat b{display:block;font:600 24px var(--serif);font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stat.good b{color:var(--good)} .stat.warn b{color:var(--warn)} .stat.bad b{color:var(--bad)} .stat.unk b{color:var(--unk)} .stat.w b{color:var(--william)}
+.stat[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;font:600 13px var(--sans);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chip:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status{font-size:13px;color:var(--muted);min-height:1.2em}
+h2.sec{font:600 24px/1.15 var(--serif);margin:34px 0 4px;text-wrap:balance}
+p.secsub{color:var(--muted);margin:0 0 12px;max-width:70ch;font-size:14px}
+h2.sec:first-of-type{margin-top:18px}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(210px,1.1fr) minmax(260px,2fr) 150px;gap:12px 18px;align-items:start;border-left:5px solid var(--line)}
+.item.good{border-left-color:var(--good)} .item.warn{border-left-color:var(--warn)} .item.bad{border-left-color:var(--bad)} .item.unk{border-left-color:var(--unk)}
+.item.done{opacity:.72}
+.who{font-weight:700;font-size:16px}
+.holder{font-size:13px;color:var(--muted);margin-top:2px}
+.ids{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;word-break:break-all;user-select:all}
+.need{font-size:14.5px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:13.5px;margin-top:6px}
+.kv .k{color:var(--muted)} .kv .v{font-variant-numeric:tabular-nums}
+.due{font:600 15px var(--mono);font-variant-numeric:tabular-nums}
+.trail{margin-top:8px;border-left:2px solid var(--line);padding-left:10px;display:flex;flex-direction:column;gap:3px}
+.trail .th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+.trail .tr{display:grid;grid-template-columns:16px 150px 1fr;gap:6px;font-size:12.5px;line-height:1.35;align-items:baseline}
+.trail .tr .src{font-weight:600} .trail .tr .res{color:var(--muted)} .trail .tr .ic{font-weight:700;text-align:center}
+.trail .tr.ok .ic{color:var(--good)} .trail .tr.no .ic{color:var(--bad)} .trail .tr.na .ic{color:var(--muted)} .trail .tr.human .ic,.trail .tr.human .src{color:var(--william)}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+.pill.william{background:var(--william-soft);color:var(--william)} .pill.claude{background:var(--claude-soft);color:var(--claude)} .pill.done{background:var(--unk-soft);color:var(--unk)}
+.pill.good{background:var(--good-soft);color:var(--good)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad{background:var(--bad-soft);color:var(--bad)} .pill.unk{background:var(--unk-soft);color:var(--unk)}
+.right{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.api{grid-column:1 / -1;display:flex;flex-direction:column;gap:6px}
+.api .ab{background:var(--api-soft);border:1px solid var(--api-line);border-left:4px solid var(--api);border-radius:8px;padding:8px 12px;font-size:13px;line-height:1.45}
+.api .ab .ah{font-weight:700;color:var(--api);font-size:12px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:3px;display:flex;justify-content:space-between;gap:10px}
+.api .ab .ah .at{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400}
+.api .ab .ax{font-family:var(--mono);font-size:12.5px;white-space:pre-wrap;word-break:break-word;user-select:all}
+.thread{grid-column:1 / -1;border-top:1px dashed var(--line);padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.note{display:grid;grid-template-columns:78px 1fr auto;gap:10px;font-size:13.5px;align-items:baseline}
+.note .by{font-weight:700} .note .by.w{color:var(--william)} .note .by.c{color:var(--claude)}
+.note .at{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.compose{grid-column:1 / -1;display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:start}
+.dates{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.dates input[type=date]{font:13px var(--mono);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+textarea{width:100%;font:14px var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;resize:vertical;min-height:38px}
+button.btn{font:600 13px var(--sans);border-radius:6px;padding:8px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+button.btn.primary{background:var(--send);color:var(--send-ink);border-color:var(--send)}
+button.btn.primary:hover{background:var(--send-hover);border-color:var(--send-hover)}
+button.btn:disabled{opacity:.5;cursor:default}
+.empty{color:var(--muted);padding:16px;text-align:center;border:1px dashed var(--line);border-radius:10px}
+details.ref{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 18px 8px}
+details.ref summary{cursor:pointer;font:600 20px var(--serif);padding:12px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.ref summary::-webkit-details-marker{display:none}
+details.ref summary::after{content:"Show";font:600 12px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+details.ref[open] summary::after{content:"Hide"}
+details.ref h3{font:700 14px var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+details.ref p{max-width:72ch;margin:0 0 10px;font-size:14.5px}
+details.ref a{color:var(--accent)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th{font:600 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:8px 11px;border-bottom:1px solid var(--line);vertical-align:top} tr:last-child td{border-bottom:0}
+td.m{font-family:var(--mono);font-size:12.5px;white-space:nowrap}
+dl.gl{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;max-width:80ch;margin:0}
+dl.gl dt{font-weight:700;font-family:var(--mono);font-size:13px} dl.gl dd{margin:0;color:var(--ink)}
+ol.steps{padding-left:18px;max-width:72ch} ol.steps li{margin:6px 0}
+@media (max-width:760px){ .item{grid-template-columns:1fr} .compose{grid-template-columns:1fr} .stats{grid-template-columns:repeat(2,1fr)} dl.gl{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:no-preference){ .item{transition:opacity .2s} }
+/* Palette: Forest & Clay - forced via data-palette */
+:root[data-palette="forest"]{
+  --bg:#F4F5F1; --surface:#FFFFFF; --line:#D5D9D0; --ink:#1E2A22; --muted:#63706A;
+  --accent:#2E5E3E; --accent-soft:#DDEBE1; --accent-ink:#FFFFFF;
+  --william:#A3492B; --william-soft:#F7E1D8; --claude:#2E5E3E; --claude-soft:#DDEBE1;
+}
+@media (prefers-color-scheme: dark){
+  :root[data-palette="forest"]:not([data-theme="light"]){
+    --bg:#141A16; --surface:#1D2620; --line:#303C34; --ink:#E6E9E3; --muted:#98A69C;
+    --accent:#7DBF95; --accent-soft:#1B3325; --accent-ink:#0C1A11;
+    --william:#E38F6F; --william-soft:#3F2218; --claude:#7DBF95; --claude-soft:#1B3325;
+  }
+}
+:root[data-palette="forest"][data-theme="dark"]{
+  --bg:#141A16; --surface:#1D2620; --line:#303C34; --ink:#E6E9E3; --muted:#98A69C;
+  --accent:#7DBF95; --accent-soft:#1B3325; --accent-ink:#0C1A11;
+  --william:#E38F6F; --william-soft:#3F2218; --claude:#7DBF95; --claude-soft:#1B3325;
+}
+.pal{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.pal .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pal .row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pal button{font:600 12px var(--sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.pal button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.pal .sw{display:inline-flex;gap:2px} .pal .sw i{width:9px;height:9px;border-radius:50%;display:inline-block}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Effinger Health PA</div>
+      <h1>Credentialing Board</h1>
+      <p class="sub">Every license, registration, enrollment and payer contract the practice has to keep current. Claude posts what it verified; William posts dates, numbers and decisions. Renewal dates drive the colors.</p>
+      <div class="legend">Turn: <span class="pill william">William</span> needs something from you &nbsp; <span class="pill claude">Claude</span> is working it &nbsp; <span class="pill done">Done</span> &nbsp;·&nbsp; Status from the due date: <span class="pill good">current</span> <span class="pill warn">due within 90 days</span> <span class="pill bad">expired / overdue</span> <span class="pill unk">date unknown</span></div>
+    </div>
+    <div>
+      <div class="pal" aria-label="Color palette">
+        <span class="lbl">Colors</span>
+        <div class="row">
+          <button data-pal="indigo" aria-pressed="true"><span class="sw"><i style="background:#1F2A33"></i><i style="background:#A9711B"></i><i style="background:#3B4A8C"></i></span>Indigo &amp; Marigold</button>
+          <button data-pal="forest" aria-pressed="false"><span class="sw"><i style="background:#1E2A22"></i><i style="background:#A3492B"></i><i style="background:#2E5E3E"></i></span>Forest &amp; Clay</button>
+        </div>
+        <div class="row">
+          <button data-theme="auto" aria-pressed="true">Match device</button>
+          <button data-theme="light" aria-pressed="false">Light</button>
+          <button data-theme="dark" aria-pressed="false">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats" role="group" aria-label="Show">
+    <button class="stat good" data-f="good" aria-pressed="false"><b id="n-good">–</b><span>Current</span></button>
+    <button class="stat warn" data-f="warn" aria-pressed="false"><b id="n-warn">–</b><span>Due soon</span></button>
+    <button class="stat bad" data-f="bad" aria-pressed="false"><b id="n-bad">–</b><span>Expired</span></button>
+    <button class="stat unk" data-f="unk" aria-pressed="false"><b id="n-unk">–</b><span>Unknown</span></button>
+    <button class="stat w" data-f="william" aria-pressed="false"><b id="n-william">–</b><span>Your turn</span></button>
+  </div>
+  <div class="toolbar">
+    <button class="chip" data-f="all" aria-pressed="true">Everything</button>
+    <button class="chip" data-f="open" aria-pressed="false">Open only</button>
+    <button class="chip" data-f="claude" aria-pressed="false">Claude's turn</button>
+    <span class="status" id="conn" style="margin-left:auto"></span>
+  </div>
+
+  <div id="board"><div class="empty">Loading the board…</div></div>
+
+  <details class="ref" id="research">
+    <summary>Research &amp; sources</summary>
+    <h3>Vendors (looked at 9/6/2026)</h3>
+    <p><b>Verdict: build on primary sources; no vendor for now.</b> Verifiable, Medallion and Assured are enterprise, sales-led products — no self-serve signup, no published pricing, no trial. Their APIs are real but open only to contracted customers (buyer data: Verifiable median ~$220K/yr, Medallion ~$67K/yr). Verifiable's CredAgent (Feb 2026) automates primary-source verification, not payer enrollment. Only Medallion and Assured actually file payer applications for you. Assured says it is heading for independent physicians — re-check March 2027, or sooner if the practice adds providers.</p>
+    <p><a href="https://docs.discovery.verifiable.com/">Verifiable API docs</a> · <a href="https://verifiable.com/blog/introducing-credagent-the-future-of-credentialing-has-arrived">CredAgent</a> · <a href="https://www.vendr.com/marketplace/verifiable">Vendr (Verifiable)</a> · <a href="https://docs.medallion.co/docs/getting-started-with-your-api">Medallion API</a> · <a href="https://medallion.co/products/payer-enrollments">Medallion enrollment</a> · <a href="https://www.vendr.com/marketplace/medallion">Vendr (Medallion)</a> · <a href="https://www.withassured.com/products/payor-enrollment">Assured enrollment</a> · <a href="https://www.fiercehealthcare.com/health-tech/startup-assured-picks-6m-slash-time-it-takes-credential-providers-using-ai">Assured &amp; small practices</a></p>
+
+    <h3>Free primary sources the nightly check will use</h3>
+    <div class="tbl"><table>
+      <tr><th>Source</th><th>Tells us</th><th>How</th><th>Cadence</th><th>Host to allow</th></tr>
+      <tr><td>NPPES NPI Registry</td><td>Name, practice address, taxonomy, license on file, Medicaid IDs, last update — for all three NPIs</td><td>JSON API v2.1, no key</td><td>Weekly diff</td><td class="m">npiregistry.cms.hhs.gov</td></tr>
+      <tr><td>CMS Revalidation Due Date List</td><td>Medicare revalidation due date per enrollment, posted 6–7 months ahead</td><td>data.cms.gov data API, no key</td><td>Weekly</td><td class="m">data.cms.gov</td></tr>
+      <tr><td>OIG LEIE</td><td>Federal exclusion list — payers expect a monthly check</td><td>CSV download, monthly supplement</td><td>Monthly</td><td class="m">oig.hhs.gov</td></tr>
+      <tr><td>Florida MQA license data</td><td>Status, expiration, discipline for the DO and APRN licenses, refreshed daily</td><td>Bulk files (free registration)</td><td>Monthly + 90 days before expiry</td><td class="m">data-download.mqa.flhealthsource.gov</td></tr>
+    </table></div>
+    <p style="margin-top:10px">Manual or paid per lookup: DEA (registrant-only, MFA token to your email), NPDB self-query ($3/yr), CAQH (portal only; attest every 120 days), board certification (AOA/ABMS lookups; AANP/ANCC $40–50). These are dated cards above with reminders, not scripts.</p>
+    <p><a href="https://npiregistry.cms.hhs.gov/api-page">NPPES API</a> · <a href="https://data.cms.gov/provider-characteristics/medicare-provider-supplier-enrollment/revalidation-due-date-list">CMS revalidation list</a> · <a href="https://oig.hhs.gov/exclusions/leie-database-supplement-downloads/">LEIE downloads</a> · <a href="https://flhealthsource.gov/data-portal/">FL MQA data portal</a> · <a href="https://floridasosteopathicmedicine.gov/osteopathic-physician-renewal/">FL DO renewal</a> · <a href="https://floridasnursing.gov/advanced-practice-registered-nurse-renewal/">FL APRN renewal</a> · <a href="https://www.deadiversion.usdoj.gov/drugreg/registration.html">DEA registration</a> · <a href="https://npdb.hrsa.gov/pract/selfQueryBasics.jsp">NPDB self-query</a> · <a href="https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/revalidations">Medicare revalidation</a></p>
+
+    <h3>Network entries to allow (one-time, Claude admin)</h3>
+    <ol class="steps">
+      <li>Open <b>claude.ai → Admin settings → Capabilities</b> (the same place you allowed healthcare.us.stedi.com).</li>
+      <li>Under network / allowed domains, add these four exactly: <span class="m">npiregistry.cms.hhs.gov</span>, <span class="m">data.cms.gov</span>, <span class="m">oig.hhs.gov</span>, <span class="m">data-download.mqa.flhealthsource.gov</span>.</li>
+      <li>Save. Tell Claude "the four are in" — the first nightly credentialing check runs that night and fills the Medicare revalidation dates and NPPES address rows above.</li>
+    </ol>
+
+    <h3>How reminders work</h3>
+    <p>Every card with a due date gets reminders at set lead times: 120-day items (CAQH) at 14 and 3 days; licenses, DEA, board and malpractice at 90, 30 and 7 days; Medicare and Medicaid revalidation the week a due date appears on the CMS list; payer recredentialing 36 months from last approval once known. Each reminder lands in chat and flips the card to your turn with what to do and where to log in. Post the renewal confirmation on the card (or set the new date below the card) and the reminders clear themselves.</p>
+
+    <h3>Glossary</h3>
+    <dl class="gl">
+      <dt>NPI</dt><dd>National Provider Identifier — 10 digits, one per provider (type 1) and one for the group (type 2). Lives in NPPES; must be updated within 30 days of any change.</dd>
+      <dt>NPPES</dt><dd>The federal NPI registry. Payers pull address and taxonomy from it, so a stale record causes rejections.</dd>
+      <dt>PECOS</dt><dd>Medicare's enrollment system. Revalidation every 5 years; missing it deactivates billing with no retroactive pay.</dd>
+      <dt>PTAN</dt><dd>Medicare's provider transaction number — one per provider per group enrollment. Ours: group IZ039A, Effinger FV002T, Garland-G KE642.</dd>
+      <dt>Revalidation</dt><dd>Medicare's and Medicaid's periodic re-enrollment (5-year cycle). Different from payer recredentialing.</dd>
+      <dt>Recredentialing</dt><dd>Commercial and Medicaid managed-care plans re-verify credentials every 36 months (NCQA standard), counted from the last approval.</dd>
+      <dt>CAQH</dt><dd>The shared credentialing profile most commercial payers read (now "CAQH Provider Data Portal"). Must be re-attested every 120 days or payers treat it as stale.</dd>
+      <dt>LEIE</dt><dd>OIG's List of Excluded Individuals/Entities. Billing with an excluded person on staff is a false-claims problem, so payers expect monthly checks.</dd>
+      <dt>MQA</dt><dd>Florida Department of Health's Medical Quality Assurance — the licensing authority for the DO and APRN licenses.</dd>
+      <dt>HETS / HEET</dt><dd>Medicare's eligibility system and First Coast's attestation tool for it; done 9/5/2026 via AdvancedMD's submitter VQAS.</dd>
+      <dt>ERA / EFT</dt><dd>Electronic remittance and payment. Each payer needs its own enrollment; the payer cards say which are actually posting into AdvancedMD.</dd>
+      <dt>Primary-source verification</dt><dd>Checking a credential with the body that issued it (state board, DEA, NPDB, board of certification) rather than the provider's copy.</dd>
+    </dl>
+  </details>
+</div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  // ---- palette / theme picker (top right). Saved per browser.
+  const root=document.documentElement;
+  function applyPal(p, t){
+    if(p==='forest') root.setAttribute('data-palette','forest'); else root.removeAttribute('data-palette');
+    if(t==='light'||t==='dark') root.setAttribute('data-theme',t); else root.removeAttribute('data-theme');
+    document.querySelectorAll('.pal [data-pal]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.pal===(p||'indigo')?'true':'false'));
+    document.querySelectorAll('.pal [data-theme]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.theme===(t||'auto')?'true':'false'));
+    try{ localStorage.setItem('crb-pal', p||'indigo'); localStorage.setItem('crb-theme', t||'auto'); }catch(e){}
+  }
+  let savedPal='indigo', savedTheme='auto';
+  try{ savedPal=localStorage.getItem('crb-pal')||'indigo'; savedTheme=localStorage.getItem('crb-theme')||'auto'; }catch(e){}
+  applyPal(savedPal, savedTheme);
+  document.querySelectorAll('.pal [data-pal]').forEach(b=>b.addEventListener('click',()=>{ savedPal=b.dataset.pal; applyPal(savedPal, savedTheme); }));
+  document.querySelectorAll('.pal [data-theme]').forEach(b=>b.addEventListener('click',()=>{ savedTheme=b.dataset.theme; applyPal(savedPal, savedTheme); }));
+  let items=[]; let filter='all'; let db=null;
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?'':d.toLocaleString([], {month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
+  const fmtDate=s=>{ if(!s) return ''; const d=new Date(s+'T00:00:00'); return isNaN(d)?s:d.toLocaleDateString([], {month:'short',day:'numeric',year:'numeric'}); };
+  const turnOf=it=> it.turn==='done'?'done':(it.turn==='william'?'william':'claude');
+  function health(it){
+    if(it.due){ const d=new Date(it.due+'T00:00:00'); const days=Math.round((d-new Date())/86400000); if(days<0) return ['bad',days]; if(days<=90) return ['warn',days]; return ['good',days]; }
+    return [it.manual==='current'?'good':'unk',null];
+  }
+  const SECTIONS=[
+    ['practice','Practice','Group-level records: the practice NPI, Medicare and Medicaid group enrollments, and the systems that sit on top of them.'],
+    ['effinger','Licenses &amp; credentials — Dr. Effinger','Personal licenses, registrations and profiles that payers verify against.'],
+    ['pam','Licenses &amp; credentials — Pam Garland-G, ARNP','Same set for Pam.'],
+    ['payer','Payer provider enrollment','One card per payer we bill. Commercial and Medicaid plans recredential every 36 months from the last approval; Medicare and Medicaid revalidate on a 5-year cycle.']
+  ];
+  const TIC={ok:'✓',no:'✗',na:'○',human:'→'};
+  function trail(it){ const cs=Array.isArray(it.checks)?it.checks:[]; if(!cs.length) return ''; return `<div class="trail"><div class="th">Verified so far</div>${cs.map(c=>{const k=TIC[c.ok]?c.ok:'na';return `<div class="tr ${k}"><span class="ic">${TIC[k]}</span><span class="src">${esc(c.src||'')}</span><span class="res">${esc(c.result||'')}${c.when?` <span class="at">(${esc(c.when)})</span>`:''}</span></div>`;}).join('')}</div>`; }
+  function apiBlocks(it){ const a=Array.isArray(it.api)?it.api:[]; if(!a.length) return ''; return `<div class="api">${a.map(x=>`<div class="ab"><div class="ah"><span>${esc(x.src||'Result')}</span><span class="at">${esc(x.at||'')}</span></div><div class="ax">${esc(x.text||'')}</div></div>`).join('')}</div>`; }
+  function card(it){
+    const t=turnOf(it); const [h,days]=health(it);
+    const label=t==='william'?'William':(t==='claude'?'Claude':'Done');
+    const hl=h==='good'?'current':h==='warn'?`due in ${days} d`:h==='bad'?(days===null?'expired':`${-days} d overdue`):'date unknown';
+    const notes=(it.notes||[]).slice(-6).map(n=>`<div class="note"><span class="by ${n.who==='William'?'w':'c'}">${esc(n.who)}</span><span>${esc(n.text)}</span><span class="at">${when(n.at)}</span></div>`).join('');
+    const kv=[['Cycle',it.cycle],['Next due',it.due?fmtDate(it.due):(it.dueNote||'—')],['Verify via',it.verify],['Details',it.info],['Who to email',it.contacts]].filter(x=>x[1]).map(x=>`<span class="k">${esc(x[0])}</span><span class="v">${esc(x[1])}</span>`).join('');
+    const controls = db ? `
+      <div class="dates"><label>Set next due date <input type="date" data-due="${esc(it.id)}" value="${esc(it.due||'')}"></label><button class="btn" data-act="due" data-id="${esc(it.id)}">Save date</button><span>— use this when you renew; it recolors the card and resets the reminders.</span></div>
+      <div class="compose">
+        <textarea data-id="${esc(it.id)}" placeholder="Post a number, a date, a decision, or paste the confirmation" aria-label="Note for ${esc(it.name)}"></textarea>
+        <button class="btn" data-act="post" data-id="${esc(it.id)}" title="Saves the note here; the card stays where it is">Post</button>
+        <button class="btn primary" data-act="note" data-id="${esc(it.id)}" title="Saves the note and hands the card to Claude">Post → Claude</button>
+        ${t!=='done'?`<button class="btn" data-act="done" data-id="${esc(it.id)}">Mark done</button>`:`<button class="btn" data-act="reopen" data-id="${esc(it.id)}">Reopen</button>`}
+      </div>` : '';
+    return `<article class="item ${h} ${t==='done'?'done':''}" id="it-${esc(it.id)}">
+      <div><div class="who">${esc(it.name)}</div>${it.holder?`<div class="holder">${esc(it.holder)}</div>`:''}${it.identifier?`<div class="ids">${esc(it.identifier)}</div>`:''}</div>
+      <div class="need">${esc(it.need||'')}<div class="kv">${kv}</div>${trail(it)}</div>
+      <div class="right"><span class="pill ${h}">${hl}</span><span class="pill ${t}">${label}</span><div class="ids" style="margin-top:2px">${it.updated?'updated '+when(it.updated):''}</div></div>
+      ${notes?`<div class="thread">${notes}</div>`:''}
+      ${apiBlocks(it)}
+      ${controls}
+    </article>`;
+  }
+  function render(){
+    const open=items.filter(it=>turnOf(it)!=='done');
+    const cnt={good:0,warn:0,bad:0,unk:0};
+    open.forEach(it=>{ cnt[health(it)[0]]++; });
+    $('#n-good').textContent=cnt.good; $('#n-warn').textContent=cnt.warn; $('#n-bad').textContent=cnt.bad; $('#n-unk').textContent=cnt.unk;
+    $('#n-william').textContent=open.filter(it=>turnOf(it)==='william').length;
+    const show=items.filter(it=>{ const t=turnOf(it); const h=health(it)[0];
+      if(filter==='all') return true; if(filter==='open') return t!=='done'; if(filter==='william'||filter==='claude') return t===filter; return h===filter && t!=='done'; });
+    const rank={bad:0,warn:1,unk:2,good:3};
+    let html='';
+    for(const [key,title,sub] of SECTIONS){
+      const rows=show.filter(it=>it.section===key).sort((a,b)=>(a.order||0)-(b.order||0) || rank[health(a)[0]]-rank[health(b)[0]]);
+      if(!rows.length && filter!=='all') continue;
+      html+=`<h2 class="sec">${title}</h2><p class="secsub">${esc(sub)}</p><div class="list">${rows.length?rows.map(card).join(''):'<div class="empty">Nothing here.</div>'}</div>`;
+    }
+    $('#board').innerHTML=html||'<div class="empty">Nothing matches.</div>';
+  }
+  function setFilter(f,btn){ filter=f; document.querySelectorAll('.chip,.stat').forEach(x=>x.setAttribute('aria-pressed', x===btn?'true':'false')); render(); }
+  document.querySelectorAll('.chip,.stat').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.f,b)));
+  async function withRetry(fn){ try{ return await fn(); }catch(e){ if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,400+Math.random()*600)); return await fn(); } throw e; } }
+  document.addEventListener('click', async ev=>{
+    const b=ev.target.closest('button[data-act]'); if(!b||!db) return;
+    const id=b.dataset.id; const it=items.find(x=>x.id===id); if(!it) return;
+    const ta=document.querySelector(`textarea[data-id="${CSS.escape(id)}"]`); const text=(ta&&ta.value.trim())||'';
+    const now=new Date().toISOString(); const notes=(it.notes||[]).slice(); let turn=it.turn; const upd={};
+    if(b.dataset.act==='due'){ const inp=document.querySelector(`input[data-due="${CSS.escape(id)}"]`); const v=inp&&inp.value; if(!v){ inp.focus(); return; } upd.due=v; notes.push({who:'William',text:'Next due date set to '+fmtDate(v),at:now}); }
+    if(b.dataset.act==='post'){ if(!text){ ta.focus(); return; } notes.push({who:'William',text,at:now}); }
+    if(b.dataset.act==='note'){ if(!text){ ta.focus(); return; } notes.push({who:'William',text,at:now}); turn= it.turn==='done'?'done':'claude'; }
+    if(b.dataset.act==='done'){ if(text) notes.push({who:'William',text,at:now}); notes.push({who:'William',text:'Marked done',at:now}); turn='done'; }
+    if(b.dataset.act==='reopen'){ notes.push({who:'William',text:text||'Reopened',at:now}); turn='claude'; }
+    b.disabled=true;
+    try{ await withRetry(()=>db.doc('cred/'+id).update(Object.assign({notes,turn,updated:now},upd))); if(ta) ta.value=''; }
+    catch(e){ $('#conn').textContent='Could not save ('+(e.code||'error')+'). Try again.'; }
+    b.disabled=false;
+  });
+  render();
+  (async ()=>{
+    const use = window.claude && window.claude.use ? window.claude.use('db') : Promise.resolve(null);
+    db = await use;
+    if(!db){ $('#conn').textContent='Read-only view (board storage not available here).'; render(); return; }
+    $('#conn').textContent='Live';
+    db.collection('cred').onSnapshot(snap=>{ items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data())); $('#conn').textContent = snap.metadata && snap.metadata.fromCache ? 'Live (cached)' : 'Live'; render(); },
+      err=>{ $('#conn').textContent='Connection lost ('+(err&&err.code||'error')+') — reload to reconnect.'; });
+  })();
+})();
+</script>

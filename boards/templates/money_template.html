@@ -1,0 +1,135 @@
+<title>Effinger Money Ledger</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F7F3EC; --surface:#FFFDF9; --line:#DDD5C7; --ink:#1F2621; --muted:#66705F;
+  --in:#1F6F4A; --in-soft:#DDEFE4; --out:#8B2E2E; --out-soft:#F3DEDE; --wait:#A9741A; --wait-soft:#F6EBD3; --hold:#4A5F7A; --hold-soft:#E0E7EF; --bar:#C9BFAE;
+  --disp:'Newsreader',Georgia,'Times New Roman',serif; --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151917; --surface:#1D2320; --line:#323B36; --ink:#EAE6DD; --muted:#A3AB9C;
+    --in:#6BC29A; --in-soft:#173026; --out:#E07A7A; --out-soft:#3A1F1F; --wait:#E0B25E; --wait-soft:#3A2E14; --hold:#8FA9C8; --hold-soft:#1E2A38; --bar:#3D4740;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151917; --surface:#1D2320; --line:#323B36; --ink:#EAE6DD; --muted:#A3AB9C;
+  --in:#6BC29A; --in-soft:#173026; --out:#E07A7A; --out-soft:#3A1F1F; --wait:#E0B25E; --wait-soft:#3A2E14; --hold:#8FA9C8; --hold-soft:#1E2A38; --bar:#3D4740;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
+.wrap{max-width:1180px;margin:0 auto;padding:30px 22px 80px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px}
+h1{font-family:var(--disp);font-weight:700;font-size:36px;letter-spacing:-.01em;margin:0;line-height:1.05}
+.asof{font:500 12.5px var(--mono);color:var(--muted)}
+.tabs{display:flex;gap:6px;margin:6px 0 18px}
+.tab{font:600 14px var(--sans);padding:8px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi .l{font:500 11.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font:600 26px var(--mono);font-variant-numeric:tabular-nums;line-height:1.15;margin-top:4px}
+.kpi .s{font-size:12.5px;color:var(--muted);margin-top:3px}
+.kpi.in .v{color:var(--in)} .kpi.out .v{color:var(--out)} .kpi.wait .v{color:var(--wait)} .kpi.hold .v{color:var(--hold)}
+h2{font-family:var(--disp);font-size:22px;font-weight:600;margin:26px 0 8px}
+.note{color:var(--muted);font-size:13.5px;max-width:78ch;margin:0 0 12px}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+.stage summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:34px 1fr auto auto;gap:14px;align-items:center;padding:12px 16px}
+.stage summary::-webkit-details-marker{display:none}
+.stage .idx{font:600 13px var(--mono);color:var(--muted)}
+.stage .t{font:600 16px var(--sans)} .stage .d{font-size:13px;color:var(--muted);margin-top:2px}
+.stage .amt{font:600 20px var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.stage .cnt{font:500 12.5px var(--mono);color:var(--muted);text-align:right;min-width:90px}
+.stage.in .amt{color:var(--in)} .stage.out .amt{color:var(--out)} .stage.wait .amt{color:var(--wait)} .stage.hold .amt{color:var(--hold)}
+.stage .body{border-top:1px solid var(--line);padding:10px 16px 14px}
+.bars{display:grid;grid-template-columns:150px 1fr 110px 70px;gap:6px 12px;align-items:center;font-size:13.5px}
+.bars .n{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bars .b{height:12px;background:var(--bar);border-radius:3px;position:relative}
+.bars .b i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--hold)}
+.in .bars .b i{background:var(--in)} .out .bars .b i{background:var(--out)} .wait .bars .b i{background:var(--wait)}
+.bars .v{font:500 13px var(--mono);font-variant-numeric:tabular-nums;text-align:right} .bars .c{font:12px var(--mono);color:var(--muted);text-align:right}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+th{font:600 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);cursor:pointer;position:sticky;top:0;background:var(--surface)}
+th:first-child,td:first-child{text-align:left}
+td.name{font-weight:600} td.code{font:500 12px var(--mono);color:var(--muted);text-align:left}
+td.num{font:500 13px var(--mono)}
+td.in{color:var(--in)} td.out{color:var(--out)} td.wait{color:var(--wait)}
+tr:last-child td{border-bottom:0}
+tr.tot td{font-weight:600;border-top:2px solid var(--line)}
+.flag{display:inline-block;font:600 10.5px var(--sans);letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--out-soft);color:var(--out);white-space:normal;text-align:left}
+details.p{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+details.p summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr 130px 130px 130px;gap:12px;align-items:center;padding:11px 16px}
+details.p summary::-webkit-details-marker{display:none}
+details.p .pn{font-weight:600} details.p .pc{font:500 12px var(--mono);color:var(--muted)}
+details.p .pv{font:600 15px var(--mono);font-variant-numeric:tabular-nums;text-align:right} details.p .pl{font:11px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;text-align:right}
+details.p .body{border-top:1px solid var(--line);padding:10px 16px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;font-size:13.5px}
+details.p .body div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:3px 0}
+details.p .body b{font:500 13px var(--mono)}
+.legend{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+.legend span{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px;vertical-align:middle}
+@media (max-width:760px){ .stage summary{grid-template-columns:28px 1fr auto} .stage .cnt{display:none} .bars{grid-template-columns:110px 1fr 90px} .bars .c{display:none} details.p summary{grid-template-columns:1fr 1fr} }
+button:focus-visible{outline:2px solid var(--hold);outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header><div><h1>Effinger Money Ledger</h1><div class="asof" id="asof"></div></div>
+<div class="tabs"><button class="tab" data-v="stage" aria-pressed="true">By process stage</button><button class="tab" data-v="payer" aria-pressed="false">By payer</button></div></header>
+<div class="kpis" id="kpis"></div>
+<div id="view"></div>
+<p class="legend"><span style="background:var(--in)"></span>money in / posted <span style="background:var(--wait)"></span>waiting on a payer <span style="background:var(--out)"></span>rejected, denied or written off <span style="background:var(--hold)"></span>held or blocked</p>
+<p class="note" style="margin-top:14px">Sources, pulled live at the time shown above: AMD claim runs (billed out), the AMD unpaid-claims list (outstanding, aged by date of service), AMD ERA Center (remits received and what is posted), tonight's exclusion list, the Stedi claim-status sweep of the 150 oldest UHC/BCBS claims, and the write-off registers (9/4–9/7, including the 9/7 untimely write-offs of $59K). The 9/6–9/7 ERA clearing restored $70.8K of earlier bulk write-offs and posted those remits — that shows up as posted money, not as a write-off. FFVA is Florida Blue's remit name; it is folded into BCBS in the payer view. Refresh = re-run build_money.py and republish.</p>
+</div>
+
+<script>
+const D=/*__DATA__*/null;
+(function(){
+  const $=s=>document.querySelector(s); const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const money=n=>'$'+Math.round(n).toLocaleString('en-US'); const m2=n=>'$'+(Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  // fold FFVA into BCBS
+  const P=[]; const byCode={};
+  D.payers.forEach(p=>{ const code=p.code==='FFVA'?'BCBS':p.code; if(!byCode[code]){ byCode[code]=Object.assign({},p,{code, name: code==='BCBS'?'FLORIDA BLUE / BCBS':p.name, buckets:Object.assign({},p.buckets)}); P.push(byCode[code]); } else { const t=byCode[code]; ['unpaid_n','unpaid','era_checks','era_paid','era_unposted','excl_n','excl','writeoff','paid_12','paid_dos12','paid_all','n_paid_12','wo_12'].forEach(k=>t[k]=(t[k]||0)+(p[k]||0)); if((p.last_paid||'')>(t.last_paid||'')) t.last_paid=p.last_paid; Object.keys(p.buckets).forEach(k=>t.buckets[k]=(t.buckets[k]||0)+p.buckets[k]); if(p.note&&!t.note) t.note=p.note; } });
+  P.sort((a,b)=>b.unpaid-a.unpaid);
+  const posted=D.era.paid-D.era.unposted;
+  $('#asof').textContent='As of '+D.asof+' · live snapshots, not an accounting report';
+  $('#kpis').innerHTML=[
+    ['','Billed out since '+D.runs.since, money(D.runs.amount), D.runs.claims.toLocaleString()+' claims in '+D.runs.n_runs+' runs (includes re-sends)'],
+    ['wait','Outstanding at payers', money(D.unpaid_total), D.unpaid_n.toLocaleString()+' open claims'],
+    ['in','Remits still open in ERA Center', money(D.era.paid), D.era.checks+' checks left to work (771 on 9/6 → '+D.era.checks+' after the 9/6–9/7 clearing)'],
+    ['in','Posted from remits (ERA Center)', money(posted), money(D.era.unposted)+' shows unposted — mostly 2024 remit history re-uploaded 9/4 whose visits were already settled, plus $0 denial lines'],
+    ['in','Paid & posted, last 12 months', money((D.paid||{}).posted_12||0), 'posted payments across '+((D.paid||{}).patients||0)+' patients (all carriers) — '+money((D.paid||{}).dos_12||0)+' of it for dates of service in the last 12 months'],
+    ['out','Rejected right now', money(D.excl.after), D.excl.after_n+' claims — was '+money(D.excl.before)+' / '+D.excl.before_n+' at the previous build'],
+    ['out','Written off (registers)', money(D.writeoff_total), 'untimely, non-covered, no credentialing'],
+  ].map(k=>`<div class="kpi ${k[0]}"><div class="l">${esc(k[1])}</div><div class="v">${esc(k[2])}</div><div class="s">${esc(k[3])}</div></div>`).join('');
+  function bars(rows, cls){ const mx=Math.max(...rows.map(r=>r[1]),1); return `<div class="bars">${rows.map(r=>`<div class="n" title="${esc(r[0])}">${esc(r[0])}</div><div class="b"><i style="width:${(100*r[1]/mx).toFixed(1)}%"></i></div><div class="v">${money(r[1])}</div><div class="c">${r[2]!=null?esc(r[2]):''}</div>`).join('')}</div>`; }
+  function stageView(){
+    const top=(f,g)=>P.map(p=>[p.name.slice(0,26), f(p), g?g(p):null]).filter(r=>r[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,12);
+    const stages=[
+      {c:'',t:'Billed out to insurers',d:'Every claim that left AMD since June 12 (claim runs, including the 9/3 frequency-1 re-send).',amt:D.runs.amount,cnt:D.runs.claims+' claims',body:`<p class="note">Claim runs do not split by payer in the run summary; the payer split below is the outstanding side of the ledger.</p>`+bars(top(p=>p.unpaid,p=>p.unpaid_n+' open'))},
+      {c:'out',t:'Rejected at the clearinghouse or payer',d:'Bounced before adjudication: bad IDs, missing auths, 1900 dates, duplicates. Worked every night.',amt:D.excl.after,cnt:D.excl.after_n+' claims now',body:`<p class="note">9/7 evening pass: 197 rejections on 10 claim runs worked to zero — 61 duplicate bounces completed, 99 UHC “member not valid” remnants (all over 12 months, Medicare had paid) written off, one patient's 12 UHC claims re-sent after a blank address line was fixed, Aetna Senior Supplemental (AET12) re-pointed to payer 62118 and 58 Medigap secondaries re-sent, three patients moved to Florida Medicaid, two sent to the Insurance Refresh Board.</p>`+bars(top(p=>p.excl,p=>p.excl_n+' claims'))},
+      {c:'wait',t:'Pending a payer response (0–90 days)',d:'Normal in-flight claims by date of service.',amt:D.buckets['0-30']+D.buckets['31-60']+D.buckets['61-90'],cnt:'',body:bars([['0–30 days',D.buckets['0-30']],['31–60 days',D.buckets['31-60']],['61–90 days',D.buckets['61-90']]])},
+      {c:'hold',t:'Outstanding with no remit (over 90 days)',d:'Claims the payer has had for three months or more with nothing posted. The Stedi claim-status sweep says most of the oldest UHC/BCBS ones were actually paid.',amt:D.buckets['91-180']+D.buckets['181-365']+D.buckets['over 365'],cnt:'',body:bars([['91–180 days',D.buckets['91-180']],['181–365 days',D.buckets['181-365']],['over 365 days (past most filing limits)',D.buckets['over 365']]])+`<p class="note" style="margin-top:10px">Stedi sample of the 150 oldest UHC/BCBS claims ($34.5K on the books): ${D.claimstatus.paid_unposted_n} paid by the payer (${m2(D.claimstatus.paid_unposted_amt)}) but never posted, ${D.claimstatus.denied_n} finalized at $0 (denials), ${D.claimstatus.pending_n} pending, ${D.claimstatus.notfound_n} never received.</p>`},
+      {c:'in',t:'Remits still open in ERA Center',d:'What is left on the ERA Center list after the 9/6–9/7 clearing (posted $70.8K of restored write-offs, $5.7K manual, dismissed the rest); the 16 left are unmatched lines and reversals for William.',amt:D.era.paid,cnt:D.era.checks+' checks',body:bars(top(p=>p.era_paid,p=>p.era_checks+' checks'))},
+      {c:'in',t:'Paid and posted, last 12 months',d:'Every payment posted to a patient ledger in the last 12 months, by payer (1,102 patients scanned). This is the real money-in number; the old ERA-only view missed anything posted by hand or from the portals (CHP, VA).',amt:(D.paid||{}).posted_12||0,cnt:money((D.paid||{}).dos_12||0)+' for DOS in last 12 mo',body:bars(top(p=>p.paid_12||0,p=>(p.n_paid_12||0)+' payments'))+`<p class="note" style="margin-top:10px">All-time posted: ${money((D.paid||{}).all||0)}. A payer that shows outstanding money but no payments here (Florida Community Care, Aetna Senior Supplemental) has never paid — those balances belong to a different payer.</p>`},
+      {c:'out',t:'Written off',d:'From the write-off registers: past timely filing, non-covered CCM/AWV lines, no Railroad credentialing, post-death charges.',amt:D.writeoff_total,cnt:'',body:bars(top(p=>p.writeoff||0))},
+    ];
+    return stages.map((s,i)=>`<details class="stage ${s.c}" ${i<2?'open':''}><summary><span class="idx">${i+1}</span><span><div class="t">${esc(s.t)}</div><div class="d">${esc(s.d)}</div></span><span class="cnt">${esc(s.cnt)}</span><span class="amt">${money(s.amt)}</span></summary><div class="body">${s.body}</div></details>`).join('');
+  }
+  function payerView(){
+    return `<div class="note">Each payer, with the whole picture inside: what is outstanding and how old, what they have actually paid (posted payments from every patient's ledger — 1,102 patients scanned 9/7), what is rejected, what was written off. Payers with a credentialing or access gap carry a flag — for those, everything is outstanding until the gap closes.</div>`+
+      P.filter(p=>p.unpaid>0||p.era_paid>0||(p.paid_all||0)>0).map(p=>`<details class="p"><summary><span><div class="pn">${esc(p.name)}</div><div class="pc">${esc(p.code)}${p.note?` · <span class="flag">${esc(p.note.split(' - ')[0])}</span>`:''}</div></span><span><span class="pl">Outstanding</span><span class="pv" style="color:var(--wait)">${money(p.unpaid)}</span></span><span><span class="pl">Paid, last 12 mo</span><span class="pv" style="color:var(--in)">${money(p.paid_12||0)}</span></span><span><span class="pl">Paid, all time</span><span class="pv" style="color:var(--in)">${money(p.paid_all||0)}</span></span></summary>
+        <div class="body">
+          <div>Open claims<b>${p.unpaid_n.toLocaleString()}</b></div><div>Outstanding 0–90 days<b>${money(p.buckets['0-30']+p.buckets['31-60']+p.buckets['61-90'])}</b></div><div>Outstanding 91–365 days<b>${money(p.buckets['91-180']+p.buckets['181-365'])}</b></div><div>Over a year (past filing limits)<b>${money(p.buckets['over 365'])}</b></div>
+          <div>Paid &amp; posted, last 12 months<b>${money(p.paid_12||0)}</b></div><div>…of which for dates of service in the last 12 months<b>${money(p.paid_dos12||0)}</b></div><div>Paid, all time<b>${money(p.paid_all||0)}</b></div><div>Last payment posted<b>${esc(p.last_paid||'never')}</b></div><div>Payments posted, last 12 months<b>${(p.n_paid_12||0).toLocaleString()}</b></div><div>Written off, last 12 months<b>${money(p.wo_12||0)}</b></div><div>Paid by year of service<b>${esc(Object.entries(p.dos_year||{}).map(([y,a])=>y+' '+money(a)).join(' · ')||'—')}</b></div><div>ERA checks still open<b>${p.era_checks} / ${money(p.era_unposted)}</b></div>
+          <div>Rejected right now<b>${p.excl_n} / ${money(p.excl)}</b></div><div>Written off (registers)<b>${money(p.writeoff||0)}</b></div>
+          ${p.note?`<div style="grid-column:1/-1;border-bottom:0;color:var(--out)">${esc(p.note)}</div>`:''}
+        </div></details>`).join('')+
+      `<h2>All payers at a glance</h2><div class="tw"><table><thead><tr><th>Payer</th><th>Open claims</th><th>Outstanding</th><th>0–90 d</th><th>91–365 d</th><th>Over 365 d</th><th>Paid 12 mo</th><th>Paid all time</th><th>Last paid</th><th>Rejected</th><th>Written off</th></tr></thead><tbody>${P.map(p=>`<tr><td class="name">${esc(p.name.slice(0,34))} <span class="code">${esc(p.code)}</span></td><td class="num">${p.unpaid_n}</td><td class="num wait">${money(p.unpaid)}</td><td class="num">${money(p.buckets['0-30']+p.buckets['31-60']+p.buckets['61-90'])}</td><td class="num">${money(p.buckets['91-180']+p.buckets['181-365'])}</td><td class="num">${money(p.buckets['over 365'])}</td><td class="num in">${money(p.paid_12||0)}</td><td class="num in">${money(p.paid_all||0)}</td><td class="num">${esc(p.last_paid||'—')}</td><td class="num out">${money(p.excl)}</td><td class="num out">${money(p.writeoff||0)}</td></tr>`).join('')}<tr class="tot"><td>Total</td><td class="num">${D.unpaid_n}</td><td class="num wait">${money(D.unpaid_total)}</td><td class="num">${money(D.buckets['0-30']+D.buckets['31-60']+D.buckets['61-90'])}</td><td class="num">${money(D.buckets['91-180']+D.buckets['181-365'])}</td><td class="num">${money(D.buckets['over 365'])}</td><td class="num in">${money((D.paid||{}).posted_12||0)}</td><td class="num in">${money((D.paid||{}).all||0)}</td><td class="num"></td><td class="num out">${money(D.excl.after)}</td><td class="num out">${money(D.writeoff_total)}</td></tr></tbody></table></div>`;
+  }
+  let view='stage'; try{ view=localStorage.getItem('ledger-view')||'stage'; }catch(e){}
+  function render(){ document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===view?'true':'false')); $('#view').innerHTML=view==='stage'?stageView():payerView(); try{ localStorage.setItem('ledger-view',view);}catch(e){} }
+  document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{ view=b.dataset.v; render(); }));
+  render();
+})();
+</script>

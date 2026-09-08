@@ -1,0 +1,12 @@
+# source env.sh from the repo root, then run any script from any folder
+R="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export PYTHONPATH="$R/core:$PYTHONPATH"
+export PYTHONPATH="$R/billing/claims_center:$PYTHONPATH"
+export PYTHONPATH="$R/billing/era:$PYTHONPATH"
+export PYTHONPATH="$R/billing/rebill:$PYTHONPATH"
+export PYTHONPATH="$R/billing/writeoff:$PYTHONPATH"
+export PYTHONPATH="$R/billing/scans:$PYTHONPATH"
+export PYTHONPATH="$R/eligibility:$PYTHONPATH"
+export PYTHONPATH="$R/credentialing:$PYTHONPATH"
+export PYTHONPATH="$R/claimocity:$PYTHONPATH"
+export PYTHONPATH="$R/boards:$PYTHONPATH"
