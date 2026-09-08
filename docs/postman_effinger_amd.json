@@ -1,0 +1,314 @@
+{
+  "info": {
+    "_postman_id": "b3f1c8a0-7d24-4e19-9c3a-0a1e5f6d2c88",
+    "name": "Effinger AMD backend",
+    "description": "REST calls captured from AdvancedMD, regenerated from docs/captured_calls.md.\n\nSet the collection variables before use. `token` is a session bearer token — it expires, and it must never be committed. Fill it in Postman at run time.\n\nXML/ppmdmsg gateway calls are not represented here; they post an XML envelope to the wfe gateway and are documented in docs/captured_calls.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "pmApi", "value": "https://pm-api-103.advancedmd.com", "type": "string" },
+    { "key": "stediApi", "value": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork", "type": "string" },
+    { "key": "token", "value": "", "type": "string", "description": "Session bearer token. Leave empty in source control." },
+    { "key": "licensekey", "value": "", "type": "string", "description": "AMD office/license key. Leave empty in source control." },
+    { "key": "username", "value": "", "type": "string", "description": "AMD username. Leave empty in source control." },
+    { "key": "stediKey", "value": "", "type": "string", "description": "Stedi API key. Leave empty in source control." },
+    { "key": "npi", "value": "", "type": "string" },
+    { "key": "orgName", "value": "", "type": "string" },
+    { "key": "patientId", "value": "", "type": "string" },
+    { "key": "insplanId", "value": "", "type": "string", "description": "Numeric insurance plan id, no 'ins' prefix." },
+    { "key": "chargeDetailId", "value": "", "type": "string" },
+    { "key": "carrierId", "value": "", "type": "string", "description": "Numeric carrier id, no 'car' prefix." },
+    { "key": "checkId", "value": "", "type": "string" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Eligibility",
+      "item": [
+        {
+          "name": "checkEligibility (free 271)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/eligibility/EligibilityDetailsLegacy/checkEligibility",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "eligibility", "EligibilityDetailsLegacy", "checkEligibility"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"licensekey\": \"{{licensekey}}\",\n  \"username\": \"{{username}}\",\n  \"patientinsurancecoverageid\": \"{{insplanId}}\",\n  \"servicetypecode\": \"30\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Synchronous, ~0.2s. Returns the full 271 in <Edi271> and stamps the eligibility date on the AMD plan. Answers for TODAY only.\n\nNot to be confused with the XML gateway's `checkeligibility` (fails) or the REST /api/eligibility root (RBAC)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Demographics",
+      "item": [
+        {
+          "name": "Get patient",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/vnd.advancedmd.api.v2+json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/demographic/patients/{{patientId}}",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "demographic", "patients", "{{patientId}}"]
+            },
+            "description": "Returns currentaddress, contact, responsibleparty, family."
+          }
+        },
+        {
+          "name": "Patch address (with familyupdate)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Accept", "value": "application/vnd.advancedmd.api.v2+json" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": {
+              "raw": "{{pmApi}}/api/demographic/patients/{{patientId}}",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "demographic", "patients", "{{patientId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"updatedpatient\": {},\n  \"originalpatient\": {},\n  \"familyupdate\": {\n    \"capturepreviousaddress\": false,\n    \"responsiblepartyid\": \"\",\n    \"patientids\": [0],\n    \"homephone\": \"\",\n    \"newaddress\": {\n      \"address1\": \"\",\n      \"address2\": \"\",\n      \"zipcode\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"countrycode\": \"USA\"\n    }\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "updatedpatient and originalpatient take the flat patient shape from the GET.\n\nThe familyupdate block is what the UI's 'Edit address' button adds. WITHOUT IT, AMD answers 'Address is required' — that was the bug in the earlier familyupdate:null attempts.\n\nVerify with the GET afterwards."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Claims",
+      "item": [
+        {
+          "name": "Mass write-off search (open balances by carrier)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/masswriteoff/masswriteoffsearch",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "masswriteoff", "masswriteoffsearch"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrierids\": [{{carrierId}}],\n  \"isinsbalance\": true,\n  \"billstartdate\": \"\",\n  \"billenddate\": \"\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Every open INSURANCE balance on that carrier, secondaries included. isinsbalance:false returns patient balances instead.\n\nThe fastest way to scope any payer.\n\nReturns chargedetails[] (patientid, visitid, chargedetailid, dateofservice, insbalance, carriercode, carriername, lastpaymentdate) and totalchargecount.\n\nEvery key not set should be sent null."
+          }
+        },
+        {
+          "name": "Mass rebill search (visits by last-billed carrier)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/claim/massrebillsearch",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "claim", "massrebillsearch"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrierids\": [{{carrierId}}],\n  \"begindateofservicestartdate\": null,\n  \"begindateofserviceenddate\": null\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Visits by the carrier they were LAST BILLED to — empty for secondaries billed to Medicare.\n\nAn empty body {} returns the whole unpaid list."
+          }
+        },
+        {
+          "name": "Charge rebill",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/claim/chargerebill",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "claim", "chargerebill"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"chargedetailfid\": \"{{chargeDetailId}}\",\n  \"sequencenumber\": 1,\n  \"rebillentireclaim\": true\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Expect 204.\n\nALWAYS reset the corrected-claim flag first (updextrainsinfo resubmissioncode=1, origrefnum='') so the claim goes out as an ORIGINAL. Never frequency 7 without the payer ICN.\n\nsequencenumber = the first digit of the visit's insorder.\n\nVerify insbilled=0 and a rebill record afterwards."
+          }
+        }
+      ]
+    },
+    {
+      "name": "ERA",
+      "item": [
+        {
+          "name": "List unposted checks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{pmApi}}/api/era/checks",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "checks"]
+            },
+            "description": "Unposted only."
+          }
+        },
+        {
+          "name": "Check details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{pmApi}}/api/era/checkdetails",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "checkdetails"]
+            },
+            "description": "On an unvalidated ERA line, post the PAYMENT line — never the $0 denial line."
+          }
+        },
+        {
+          "name": "Dismiss check",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/era/checks/dismiss",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "checks", "dismiss"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "\"{{checkId}}\"",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Body is a JSON string of the check id — not an object."
+          }
+        },
+        {
+          "name": "List dismissed checks",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{pmApi}}/api/era/checks/dismiss?DismissedDateBegin=",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "checks", "dismiss"],
+              "query": [{ "key": "DismissedDateBegin", "value": "", "description": "YYYY-MM-DD" }]
+            }
+          }
+        },
+        {
+          "name": "Reverse dismiss",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{pmApi}}/api/era/checks/reversedismiss",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "checks", "reversedismiss"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"{{checkId}}\",\n    \"dismissedat\": \"\"\n  }\n]",
+              "options": { "raw": { "language": "json" } }
+            }
+          }
+        },
+        {
+          "name": "Release expired locks",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{pmApi}}/api/era/locks/release-expired",
+              "host": ["{{pmApi}}"],
+              "path": ["api", "era", "locks", "release-expired"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stedi",
+      "item": [
+        {
+          "name": "Eligibility v3",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                { "key": "key", "value": "Authorization", "type": "string" },
+                { "key": "value", "value": "{{stediKey}}", "type": "string" },
+                { "key": "in", "value": "header", "type": "string" }
+              ]
+            },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{stediApi}}/eligibility/v3",
+              "host": ["{{stediApi}}"],
+              "path": ["eligibility", "v3"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tradingPartnerServiceId\": \"\",\n  \"provider\": {\n    \"organizationName\": \"{{orgName}}\",\n    \"npi\": \"{{npi}}\"\n  },\n  \"subscriber\": {\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"dateOfBirth\": \"\",\n    \"memberId\": \"\"\n  },\n  \"encounter\": {\n    \"dateOfService\": \"\",\n    \"serviceTypeCodes\": [\"30\"]\n  }\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "dateOfBirth is yyyymmdd. subscriber takes memberId, or ssn, or address.state depending on the payer.\n\nMedicare MBI lookup: tradingPartnerServiceId MBILU (with SSN) or MBILUNOSSN (with state). Returns the whole Medicare picture for the DOS.\n\nError 72 = not a Medicare beneficiary.\n\nNote: this host is blocked by container egress (403) — run from the browser bridge until allowlisted."
+          }
+        },
+        {
+          "name": "Insurance discovery",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                { "key": "key", "value": "Authorization", "type": "string" },
+                { "key": "value", "value": "{{stediKey}}", "type": "string" },
+                { "key": "in", "value": "header", "type": "string" }
+              ]
+            },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{stediApi}}/insurance-discovery/check/v1",
+              "host": ["{{stediApi}}"],
+              "path": ["insurance-discovery", "check", "v1"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider\": {\n    \"organizationName\": \"{{orgName}}\",\n    \"npi\": \"{{npi}}\"\n  },\n  \"subscriber\": {\n    \"firstName\": \"\",\n    \"lastName\": \"\",\n    \"dateOfBirth\": \"\",\n    \"address\": { \"state\": \"\" }\n  },\n  \"encounter\": { \"dateOfService\": \"\" }\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Billable per check. Use only when nothing else names a payer.\n\n'Not enrolled with DISCOVERY' means the enrollment is still provisioning — retry later."
+          }
+        },
+        {
+          "name": "Payer search",
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                { "key": "key", "value": "Authorization", "type": "string" },
+                { "key": "value", "value": "{{stediKey}}", "type": "string" },
+                { "key": "in", "value": "header", "type": "string" }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{stediApi}}/payers/search?query=",
+              "host": ["{{stediApi}}"],
+              "path": ["payers", "search"],
+              "query": [{ "key": "query", "value": "" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
