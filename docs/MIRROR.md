@@ -1,0 +1,51 @@
+# The triple mirror — GitHub · Postman · Drive
+
+The project's memory lives in three places that are kept identical at the end of **every billing run** (the every-2-hours Claims Center task) and whenever William says "mirror" or "remember". Each copy has a different job:
+
+| Copy | What it holds | Why it exists | PHI? |
+|---|---|---|---|
+| **GitHub** `dreffinger/effinger-billing-backend` — branch `main` (the record) and `claude/effinger-billing-backend-mirror-w74pqv` (what the Claude project syncs from; pushed identical) | every script with its PLAIN ENGLISH header, `docs/captured_calls.md` (the registry, pseudonymized), `docs/api_vocabulary.json` (the growing vocabulary of every AMD/Stedi call), the generated Postman collection, this runbook, the practice config | the toolkit-of-record; a fresh container restores from it in one clone | **never** — `tools/mirror/phi_gate.py` swaps names for pseudonyms and refuses identifiers |
+| **Postman** — collection "Effinger AMD — captured calls" | one runnable request per vocabulary entry, secrets as `{{variables}}` | William can run any call himself if Claude is down | never |
+| **Google Drive** → `billing agent project files` (`1-AsLUHMaeqvHq-fqWKUVKKUU4Xkw6XTt`) | `captured_calls.md` with real names, `postman_effinger_amd.json`, `workspace mirror/` (helpers + `pseudonyms.json`), `github mirror/` (bundles when push is blocked), `aa claude folders → chat history` digests | the PHI-OK working copy the chat sessions and the scheduled runs both read first | yes — Drive only |
+
+## The vocabulary is the source
+
+`docs/api_vocabulary.json` is the machine-readable list of every captured call — folder, name, method, URL, headers, body template, the helper that wraps it, the date it was captured, and notes. **Add a call there** (one entry, `id` = `folder/slug`) and `tools/mirror/postman_build.py` regenerates the Postman collection; never hand-edit the collection. `docs/captured_calls.md` stays the narrative registry (dated sections, what was learned, what failed). A call is captured when it is in both.
+
+## Order of operations at the end of a run
+
+```
+# 0. the PAT (Gmail thread "github claude token") -> secrets/github_pat.key, chmod 600, never anywhere else
+# 1. pull first: download Drive captured_calls.md + captured_calls_additions_*.md into /home/claude/unbilled/
+#    and Drive 'workspace mirror'/pseudonyms.json into secrets/  (another session may have added to both)
+python3 tools/mirror/mirror.py sync "run <date> <time>: <what changed>"
+#    -> merges additions into the workspace registry, PHI-gates it into docs/, refreshes scripts/helpers/,
+#       regenerates the Postman collection, commits, pushes main + the synced branch (or writes a bundle)
+# 2. Drive: rename old captured_calls.md -> captured_calls_<date>_pre-merge.md, upload the WORKSPACE copy as
+#    captured_calls.md; upload docs/postman_effinger_amd.json and trash the previous copy (no duplicates);
+#    upload changed helpers + secrets/pseudonyms.json to 'workspace mirror'
+# 3. Postman connector: updateCollection with docs/postman_effinger_amd.json (createCollection once)
+# 4. chat history: one dated digest
+python3 tools/mirror/mirror.py status      # what would be pushed, is the collection current
+```
+
+`phi_gate.py` exits 2 and the sync stops if an MBI, SSN, ICN, DOB, member number, token or key would leave the workspace. A "possible patient name" warning means add the name to `secrets/pseudonyms.json` (then upload that file to `workspace mirror`) and rerun. **New registry entries should not carry patient names at all** — write the AMD chart id (`patNNN`) instead; the gate is the backstop, not the plan.
+
+## When GitHub push is blocked
+
+The session's git proxy only injects credentials for repositories in that session's authorized sources. A push that answers `403 … not in this session's authorized repository set` is policy, not a fault: `mirror.py` writes `outbox/effinger-billing-backend_<date>.bundle`, the run uploads it to Drive `github mirror`, and William pushes from his machine:
+
+```
+git clone https://github.com/dreffinger/effinger-billing-backend && cd effinger-billing-backend
+git pull ~/Downloads/effinger-billing-backend_<date>.bundle main && git push origin main
+```
+
+The permanent fix is to add the repo to the scheduled task's sources so runs push directly. Reading (clone with `https://x-access-token:<PAT>@github.com/...`) works from every session; **clone `main` explicitly** — the repo's default branch is the synced branch, not `main`.
+
+## Restore a fresh container
+
+```
+bash scripts/helpers/github_restore.sh          # clones main -> /home/claude/effinger-billing-backend, scrubs the token
+cp -n scripts/helpers/* /home/claude/unbilled/  # the working helpers
+# then Drive 'workspace mirror' -> secrets/pseudonyms.json, and the registry from Drive
+```
