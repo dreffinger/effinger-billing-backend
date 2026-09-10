@@ -148,7 +148,7 @@ def main():
         build_postman()
         ok = commit_and_push(msg)
         print("\nNEXT (connector legs, in this order):")
-        print(" Drive 'billing agent project files' (%s): upload docs-side captured_calls.md is NOT needed - upload the WORKSPACE copy %s/captured_calls.md as captured_calls.md after renaming the old one captured_calls_%s_pre-merge.md; upload docs/postman_effinger_amd.json (trash the previous copy)" % (DRIVE["project files"], WS, TODAY))
+        print(" Drive 'billing agent project files' (%s): rename the old captured_calls.md -> captured_calls_%s_pre-merge.md, upload the WORKSPACE copy %s/captured_calls.md (real names) as captured_calls.md; upload docs/postman_effinger_amd.json and trash the previous copy" % (DRIVE["project files"], TODAY, WS))
         print(" Drive 'workspace mirror' (%s): upload every helper changed this run + secrets/pseudonyms.json (PHI: Drive only)" % DRIVE["workspace mirror"])
         print(" Postman connector: updateCollection with docs/postman_effinger_amd.json (createCollection the first time)")
         print(" Drive 'chat history' (%s): the dated digest" % DRIVE["chat history"])
