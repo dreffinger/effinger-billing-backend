@@ -55,3 +55,13 @@ Hosts: XML gateway `https://providerapi.advancedmd.com/processrequest/api-103/TE
 
 ## Master files (none work from the API)
 No carrier read/write call exists (`getcarrierlist`, `getcarrier`, `lookupcarrier` → invalid action); no patient list/search call; carrier payer ids only visible as `payerinfo` on gettxhistory charges. Carrier setup = William in Master Files.
+
+# captured_calls additions — 2026-09-10 3 PM ET columns run
+
+No new API calls captured (registry unchanged; all four columns worked with registered calls only).
+
+API-behavior lessons (rule refinements, not new endpoints):
+- **Stedi payer eligibility refuses old dates of service**: Centene 68069 and UHC 87726 both answer AAA 62 "Date of Service Not Within Allowable Inquiry Period" for a DOS ~22 months back (pat17472230, DOS 11/2024). The **MBI lookup (MBILUNOSSN) still answers for those same DOS** — including the U/PR Medicare-Advantage COB window and QMB — so for aged claims the MBI lookup is the only backend window into who covered the patient then; the 271 may name no MA entity (U-code row with empty entity list).
+- **UHC 87726 for a terminated/unknown supplement policy** returns only bare U/X benefit codes (no planStatus, no membership echo) rather than an explicit Inactive — treat "no membership data" as policy-not-recognized (pat17473020, pat17473232).
+- Confirmed the 9am lesson end-to-end: the 52 BCBS Medigap secondaries re-sent freq-1 at 9am ET re-rejected on the next run (1700181) with PREF0283 MISSING PAYER DOC CONTROL NUM — freq-1 does not supply the Medicare DCN; 27 of them also carried PDTP0303 (admission dates stripped by the earlier freq-1 resets), repaired this run via updextrainsinfo full-echo with hospitalizationfrom.
+- Unbilled "payment from prior payor" release rule re-proven at scale: 92 rows, every sampled charge primary FLO02 billdate 09/05/2026 paid 0 -> hideunbillablevisits hide=-1 in batches of 40, column 104 -> 12.
