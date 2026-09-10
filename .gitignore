@@ -4,6 +4,7 @@
 *.xml
 *.json
 !docs/postman_effinger_amd.json
+!docs/api_vocabulary.json
 !practices/**/*.json
 patient_db/
 secrets/
