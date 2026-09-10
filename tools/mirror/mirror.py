@@ -135,7 +135,7 @@ def status():
     subprocess.run([sys.executable, PMB, "--check"])
     v = json.load(open(os.path.join(ROOT, "docs", "api_vocabulary.json")))
     print("vocabulary: %d calls in %d folders" % (len(v["calls"]), len({c["folder"] for c in v["calls"]})))
-    print("pseudonym map: %s" % ("present" if token() is not None or os.path.exists(os.path.join(ROOT, "secrets", "pseudonyms.json")) else "MISSING"))
+    print("pseudonym map: %s   PAT: %s" % ("present" if os.path.exists(os.path.join(ROOT, "secrets", "pseudonyms.json")) else "MISSING", "present" if token() else "missing"))
 
 def main():
     cmd = sys.argv[1] if len(sys.argv) > 1 else "status"
