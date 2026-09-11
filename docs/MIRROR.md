@@ -42,6 +42,10 @@ git pull ~/Downloads/effinger-billing-backend_<date>.bundle main && git push ori
 
 The permanent fix is to add the repo to the scheduled task's sources so runs push directly. Reading (clone with `https://x-access-token:<PAT>@github.com/...`) works from every session; **clone `main` explicitly** — the repo's default branch is the synced branch, not `main`.
 
+### When GitHub is blocked for READ too (proven 9/10/2026 nightly)
+
+The Claude project attached to the billing sessions keeps a copy of the latest complete bundle as the doc `mirror/outbox/effinger-billing-backend_<date>.bundle.b64` (plus `mirror/tools/*.py` and `mirror/MIRROR.md`). `project_read` that doc, base64-decode it, then `git clone --branch main <bundle> /home/claude/effinger-billing-backend` — the whole toolkit comes back without touching github.com. Overlay the newer helpers from Drive `workspace mirror` (amd.py with the compat shims, void_rules.json, payments_by_carrier.json, pseudonyms.json → secrets/) and pull the registry + additions from Drive as usual. Every run that ends with a blocked push should refresh that project doc with its new bundle (`project_write` with `local_path`, which never truncates) and keep Drive `github mirror` copies as `.b64` TEXT (binary bundles download corrupt through the Drive connector; small incremental bundles are fine there).
+
 ## Restore a fresh container
 
 ```
