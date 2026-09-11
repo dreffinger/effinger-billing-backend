@@ -258,7 +258,7 @@ RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environ
 
 RUN BLOCKED AT THE NETWORK LAYER — no egress to AdvancedMD / Stedi / CMS / OIG / GitHub from this run's container.
 - Egress proxy answered CONNECT 403 (organization policy, "no rule allows host") for partnerlogin / pm-api-103 / pm-wfe-103 .advancedmd.com, healthcare.us.stedi.com, enrollments.us.stedi.com, npiregistry.cms.hhs.gov, data.cms.gov, oig.hhs.gov and github.com. Same wall as the 7 PM ET run and the two parallel firings at 8:25 / 8:45 PM ET. Policy 403s are report-only (proxy runbook) — not retried.
-- SAFETY: no login attempt reached AdvancedMD (curl probes, no credentials); POI0712 lockout counter untouched. AMD password and Stedi key fetched from their Gmail threads into the workspace only (`.amd_cred.json`, `secrets/stedi_live.key`) — never copied anywhere durable.
+- SAFETY: no login attempt reached AdvancedMD (curl probes, no credentials); POI0712 lockout counter untouched. AMD password and Stedi key were located in their Gmail threads but NOT written anywhere this run (no `.amd_cred.json`, no `secrets/stedi_live.key` — nothing to log in to); the only secret on disk is the GitHub PAT in `secrets/github_pat.key` (chmod 600).
 - Steps 1 / 2b / 3 / 3b / 5 skipped (each needs AMD and/or Stedi); Step 2 N/A (Thursday). 0 visits checked, 0 Stedi lookups ($0.00), $0 re-sent, $0 ERA posted, no write-offs (no Writeoff register written).
 
 No new API calls captured. Vocabulary unchanged.
