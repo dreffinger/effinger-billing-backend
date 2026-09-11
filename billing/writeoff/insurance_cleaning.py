@@ -27,12 +27,26 @@ MEDICAID_TYPE = {"MCAD", "SUN01", "WEL04", "WEL07", "SIM01", "STA03", "FLO99", "
 MEDICARE = {"FLO02"}
 BACKLOG_CARRIERS = {"UNI20", "BCBS", "BCBS1"}      # possible unposted ERA: never write off a never-adjudicated balance here
 CCM = {"99487", "99489", "99490", "99491", "pcode492676", "pcode492677", "pcode492674", "pcode492675"}
+# Practice write-off codes (AdvancedMD master list William supplied 9/11/2026):
+CODES = {"qmb_secondary": "WOCAID2ND",   # WRITE OFF-MEDICAID [member id] AFTER MEDICARE: dual, Medicare/MA paid, Medicaid crossover $0
+         "qmb_primary":   "WOMCAD",      # WRITE OFF- MEDICAID: residual on a Medicaid-primary charge
+         "untimely":      "WOLATE",      # WRITE OFF - LATE FILING DEDUCTION: never adjudicated, >12 months
+         "noncovered":    "WONCS",       # WRITE OFF - NON COVERED SERVICES: CCM billed to Medicaid-primary
+         "small":         "WOSMBAL"}     # WRITE OFF - SMALL BALANCE
+def qmb_code(r):
+    """Dual patient: Medicaid was the SECONDARY (charge carrier is Medicare/MA) -> WOCAID2ND; Medicaid itself -> WOMCAD."""
+    return CODES["qmb_primary"] if (r.get("carriercode") or "") in MEDICAID_TYPE else CODES["qmb_secondary"]
 
 LOGF = open(f"{W}/insurance_cleaning_{STAMP}.log", "a")
 def L(m): print(m, flush=True); LOGF.write(m + "\n"); LOGF.flush()
 def f(x):
     try: return float(x or 0)
     except: return 0.0
+def adjudicated(r):
+    """A payer ACTED on the charge: the open balance is below the charge (a payment/adjustment landed) or a remit stamped
+    a last-payment date. allowedamount alone is NOT proof — a freq-1 rebill leaves allowed == fee with nothing paid (9/11/2026)."""
+    fee = f(r.get("totalchargeamount")); openbal = f(r.get("insbalance")) + f(r.get("patbalance"))
+    return bool(r.get("lastpaymentdate")) or (fee > 0.005 and openbal < fee - 0.005)
 def age_days(d):
     try: return (datetime.date.today() - datetime.date.fromisoformat(str(d)[:10])).days
     except: return 9999
@@ -82,22 +96,22 @@ def classify(rows, verify_dual=False):
     out = []
     for r in rows:
         bal = f(r.get("patbalance")); pid = str(r["patientid"]); car = r.get("carriercode") or "?"
-        adjudicated = f(r.get("allowedamount")) > 0          # a payer ALLOWED money = the correct payer acted
+        adjudicated_ = adjudicated(r)                        # balance reduced or remit-stamped = the correct payer acted
         touched = bool(r.get("lastpaymentdate"))
         old = age_days(r.get("dateofservice")) >= 365
         isdual = pid in dual
-        if isdual and (adjudicated or touched):
+        if isdual and (adjudicated_ or touched):
             b = "1_QMB_WRITEOFF"                                  # Medicaid on file: cannot balance-bill; verify crossover billed first
         elif isdual:
             b = "1_QMB_NEVER_ADJ" if old else "3_CASCADE_TIMELY"   # dual + never adjudicated: bill Medicaid if timely, else untimely
-        elif not adjudicated and not touched:
+        elif not adjudicated_ and not touched:
             b = ("2_UNTIMELY_WRITEOFF" if old else "3_CASCADE_TIMELY")
             if car in BACKLOG_CARRIERS: b = "2b_BACKLOG_HOLD"      # UNI20/BCBS never-adjudicated: possible unposted ERA -> never blind write-off
-        elif not adjudicated and touched:
+        elif not adjudicated_ and touched:
             b = "B_ZERO_DENIAL_TRANSFER"                          # $0 posting only: PR-transfer bug -> move back to insurance
         else:
             b = "4_COSTSHARE_MEDICARE" if car in MEDICARE else "4_COSTSHARE_MA_COMMERCIAL"   # NOT a write-off
-        out.append(dict(r, bucket=b, dual=isdual, adjudicated=adjudicated, age_days=age_days(r.get("dateofservice"))))
+        out.append(dict(r, bucket=b, dual=isdual, adjudicated=adjudicated_, age_days=age_days(r.get("dateofservice"))))
     return out, dual
 
 def workbook(cls):
@@ -135,7 +149,7 @@ def workbook(cls):
         bp.append([a["name"], pid, a["dual"], ", ".join(sorted(a["b"])), a["n"], round(a["bal"], 2)])
     path = f"{W}/Patient_AR_split_{STAMP}.xlsx"; wb.save(path); return path, tot
 
-def post_writeoffs(cls, qmb_code, untimely_code, small_balance=None, maxn=10**9):
+def post_writeoffs(cls, qmb_code_override=None, untimely_code=None, small_balance=None, maxn=10**9):
     """Post write-offs for buckets 1 and 2 (and the small-balance tail of bucket 4 if a threshold is given).
     Path: move_to_ins.move(cid) (balance back to the insurance side, captured) -> manual_post.post(..., wocode) (captured).
     A native PATIENT-side adjustment call is NOT captured yet — if William prefers that classification, ask for the paste."""
@@ -149,10 +163,10 @@ def post_writeoffs(cls, qmb_code, untimely_code, small_balance=None, maxn=10**9)
         if n >= maxn: break
         b = r["bucket"]; bal = f(r["patbalance"]); cid = str(r["chargedetailid"])
         if bal <= 0.005: continue
-        if b in ("1_QMB_WRITEOFF", "1_QMB_NEVER_ADJ"): code, note = qmb_code, "QMB/dual — Medicaid on file, not balance-billable (insurances cleaning %s)" % STAMP
-        elif b == "2_UNTIMELY_WRITEOFF": code, note = untimely_code, "primary >12 months from DOS, never paid — untimely (insurances cleaning %s)" % STAMP
+        if b in ("1_QMB_WRITEOFF", "1_QMB_NEVER_ADJ"): code, note = (qmb_code_override or qmb_code(r)), "QMB/dual — Medicaid on file, not balance-billable (insurances cleaning %s)" % STAMP
+        elif b == "2_UNTIMELY_WRITEOFF": code, note = (untimely_code or CODES["untimely"]), "primary >12 months from DOS, never paid — untimely (insurances cleaning %s)" % STAMP
         elif small_balance and b.startswith("4_") and bypat[r["patientid"]] < small_balance:
-            code, note = untimely_code, "small-balance policy < $%s (insurances cleaning %s)" % (small_balance, STAMP)
+            code, note = CODES["small"], "small-balance policy < $%s (insurances cleaning %s)" % (small_balance, STAMP)
         else: continue
         try:
             move_to_ins.move(cid)                                   # patient -> insurance side (captured 9/3)
@@ -167,13 +181,88 @@ def post_writeoffs(cls, qmb_code, untimely_code, small_balance=None, maxn=10**9)
     L(f"=== write-offs posted: {n} charges ${total:,.2f} -> Writeoff_register_{STAMP}.xlsx ===")
     return n, total
 
+MEDICAID_CARRIER_IDS = [6113, 6194, 6174, 42019, 41991, 41992, 42008]   # MCAD, SUN01, WEL04, SIM01, STA03, WEL07, FLO99
+
+def medicaid_residual(post=False, maxn=10**9, verify_dual=False):
+    """MODE D — open INSURANCE balances on Medicaid-type carriers (masswriteoffsearch isinsbalance:true).
+    allowed>0 (adjudicated) -> the remaining insbalance is an un-written-off contractual stub -> WOMCAD (Medicaid primary)
+    or WOCAID2ND (dual: Medicaid secondary after Medicare/MA).  CCM never adjudicated -> WONCS (Medicaid primary) or
+    WOCAID2ND (dual).  Non-CCM never adjudicated -> NOT a write-off (that is the rebill set)."""
+    import manual_post
+    from openpyxl import Workbook
+    web, tok = amd.login_cached()
+    end = datetime.date.today(); start = end - datetime.timedelta(days=3 * 365)
+    body = {"carrierids": MEDICAID_CARRIER_IDS, "isinsbalance": True, "billstartdate": start.isoformat(), "billenddate": end.isoformat(),
+            "patientids": None, "providerids": None, "facilityids": None, "financialclassids": None, "dateofservicestartdate": None, "dateofserviceenddate": None}
+    r = requests.post("https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch", json=body,
+                      headers={"Authorization": "Bearer " + tok, "Accept": "application/json"}, timeout=180)
+    r.raise_for_status(); d = r.json(); rows = d.get("chargedetails", []) if isinstance(d, dict) else d
+    json.dump(rows, open(f"{W}/medicaid_insbal_{STAMP}.json", "w"))
+    # dual = patient also has a Medicare/MA charge on the PATIENT-balance list or a non-Medicaid carrier anywhere in this list
+    pb = f"{W}/patbal_open_{STAMP}.json"
+    nonmed = set()
+    if os.path.exists(pb):
+        for x in json.load(open(pb)):
+            if (x.get("carriercode") or "") not in MEDICAID_TYPE: nonmed.add(str(x["patientid"]))
+    if verify_dual:   # a Medicare (car6085) or MA plan on file makes the patient dual for the WOCAID2ND/WOMCAD split
+        for pid in sorted(set(str(x["patientid"]) for x in rows) - nonmed):
+            try:
+                if any(p["carrier"] in ("car6085","car6404","car6285","car41826","car302853","car6047","car42014","car6062") for p in plans(pid)): nonmed.add(pid)
+            except Exception as e: L(f"  plans err pat{pid}: {str(e)[:60]}")
+            time.sleep(0.4)
+    out = []
+    for x in rows:
+        ib = f(x.get("insbalance")); code_ = (x.get("chargecode") or "").strip(); pid = str(x["patientid"])
+        adjud = adjudicated(x); dual = pid in nonmed; isccm = code_ in CCM
+        if adjud:            b, code = "D1_PAID_STUB", (CODES["qmb_secondary"] if dual else CODES["qmb_primary"])
+        elif isccm:          b, code = "D2_CCM_NONCOVERED", (CODES["qmb_secondary"] if dual else CODES["noncovered"])
+        elif age_days(x.get("dateofservice")) >= 365:
+                             b, code = "D3b_UNPAID_EM_UNTIMELY", CODES["untimely"]   # never adjudicated, >12 months -> WOLATE
+        else:                b, code = "D3_UNPAID_EM_REBILL", ""
+        out.append(dict(x, bucket=b, code=code, dual=dual))
+    wb = Workbook(); ws = wb.active; ws.title = "Summary"; ws.append(["bucket", "code", "charges", "insurance balance", "action"])
+    agg = defaultdict(lambda: [0, 0.0])
+    for x in out: agg[(x["bucket"], x["code"])][0] += 1; agg[(x["bucket"], x["code"])][1] += f(x["insbalance"])
+    ACT = {"D1_PAID_STUB": "payer adjudicated; residual = un-written-off contractual -> write off to zero",
+           "D2_CCM_NONCOVERED": "CCM: Florida Medicaid never pays it -> write off (never rebill)",
+           "D3_UNPAID_EM_REBILL": "E/M never adjudicated, timely -> rebill (freq-1, Medicaid own sequence) — NOT a write-off",
+           "D3b_UNPAID_EM_UNTIMELY": "E/M never adjudicated, DOS >12 months -> WOLATE (William's 9/7 untimely rule)"}
+    for (b, c), (n, amt) in sorted(agg.items()): ws.append([b, c, n, round(amt, 2), ACT[b]])
+    det = wb.create_sheet("Charges"); cols = ["bucket", "code", "patientname", "patientid", "dateofservice", "chargecode", "carriercode", "totalchargeamount", "allowedamount", "insbalance", "lastpaymentdate", "dual", "visitid", "chargedetailid"]
+    det.append(cols)
+    for x in sorted(out, key=lambda z: (z["bucket"], z.get("patientname") or "")): det.append([x.get(k, "") for k in cols])
+    wb.save(f"{W}/Medicaid_residual_{STAMP}.xlsx")
+    for (b, c), (n, amt) in sorted(agg.items()): L(f"  {b:22} {c:10} {n:5} chg  ${amt:>11,.2f}")
+    L(f"workbook: {W}/Medicaid_residual_{STAMP}.xlsx")
+    if post:
+        reg = Workbook(); ws2 = reg.active; ws2.append(["date", "patient", "carrier", "dos", "amount", "code", "note"]); n = 0; tot = 0.0
+        for x in out:
+            if n >= maxn: break
+            if x["bucket"] == "D3_UNPAID_EM_REBILL": continue
+            if x["bucket"] == "D3b_UNPAID_EM_UNTIMELY": pass
+            ib = f(x["insbalance"]); cid = str(x["chargedetailid"])
+            if ib <= 0.005: continue
+            note = {"D1_PAID_STUB": "Medicaid contractual residual after adjudication", "D2_CCM_NONCOVERED": "CCM not a Florida Medicaid benefit",
+                    "D3b_UNPAID_EM_UNTIMELY": "never adjudicated, >12 months from DOS - untimely"}[x["bucket"]] + " (insurances cleaning %s)" % STAMP
+            try:
+                ok, msg = manual_post.post(cid, x.get("carriercode") or "", 0.0, ib, x["code"], note=note)
+                if ok: n += 1; tot += ib; ws2.append([STAMP, x.get("patientname"), x.get("carriercode"), x.get("dateofservice"), ib, x["code"], note])
+                else: L(f"WO FAIL c{cid}: {str(msg)[:100]}")
+            except Exception as e: L(f"WO EXC c{cid}: {str(e)[:100]}")
+            time.sleep(0.5)
+        reg.save(f"{W}/Writeoff_register_medicaid_{STAMP}.xlsx"); L(f"=== Medicaid residual write-offs posted: {n} charges ${tot:,.2f} ===")
+    return out
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--verify-dual", action="store_true"); ap.add_argument("--post", action="store_true")
     ap.add_argument("--qmb-code"); ap.add_argument("--untimely-code"); ap.add_argument("--small-balance", type=float)
     ap.add_argument("--max", type=int, default=10**9)
+    ap.add_argument("--medicaid-residual", action="store_true", help="MODE D: insurance-side Medicaid stubs + CCM")
     a = ap.parse_args()
     amd.login_cached()
+    if a.medicaid_residual:
+        medicaid_residual(post=a.post, maxn=a.max, verify_dual=a.verify_dual); sys.exit(0)
     rows = patient_balances()
     L(f"patient-balance charges: {len(rows)}  ${sum(f(r['patbalance']) for r in rows):,.2f}  patients {len(set(r['patientid'] for r in rows))}")
     cls, dual = classify(rows, verify_dual=a.verify_dual)
@@ -182,5 +271,4 @@ if __name__ == "__main__":
     for b in sorted(tot): L(f"  {b:28} {tot[b][0]:5} chg  {len(tot[b][2]):4} pts  ${tot[b][1]:>11,.2f}")
     L(f"workbook: {path}")
     if a.post:
-        if not (a.qmb_code and a.untimely_code): sys.exit("--post needs --qmb-code and --untimely-code")
-        post_writeoffs(cls, a.qmb_code, a.untimely_code, a.small_balance, a.max)
+        post_writeoffs(cls, a.qmb_code, a.untimely_code, a.small_balance, a.max)   # codes default to the practice table
