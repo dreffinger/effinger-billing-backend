@@ -16,6 +16,15 @@ A charge is ADJUDICATED only when the correct payer set an `allowedamount` > 0 (
 B. $0-denial transfer (touched, allowed=0) -> the PR-transfer bug: `move_to_ins.move(cid)` and find the real payer. Was EMPTY 9/11 (the two-week cleanup cleared it).
 4. Adjudicated cost-sharing on non-Medicaid patients — NOT a write-off ($199.6K): 4-Medicare = Medicare 20% coinsurance ($55.8K / 169 pts) -> bill the supplement if on file, else Stedi discovery (~$1.50/pt, MODE C), else patient statement; 4-MA/commercial = MA copays/coins (UNI20 $58.8K, CAP07 $42.9K, HUM01 $19.3K, BCBS $13.3K) -> patient statements + small-balance policy (median patient balance $159; 177 pts < $100 = $8.8K; 37 pts >= $1,000 = $83K). Dual flag only sees Medicaid plans ENTERED in AMD — always run `--verify-dual`; a custodial-LTC patient whose Medicaid was never added looks non-dual.
 
+## Write-off codes (practice master list, William 9/11/2026) — never substitute WOINS
+WOCAID2ND = dual, Medicaid secondary after Medicare/MA paid · WOMCAD = residual on a Medicaid-primary charge · WOLATE = never adjudicated, DOS >12 months (late filing) · WONCS = CCM (or any service) Florida Medicaid does not cover, billed Medicaid-primary · WOSMBAL = small balance (needs William's threshold). Also on the list for later collections decisions: WOCOLL, WOENDCOLLA, WOBAD, WOCOUR, WOAPPEAL. WOPD90+PB / WOPD90+AR ("PD transfer" patient/insurance balance) — meaning to confirm with William before use.
+
+## Adjudication test (corrected 9/11/2026)
+A payer ACTED on a charge when the open balance (ins + pat) is below the charge amount, or a remit stamped lastpaymentdate. `allowedamount` alone is NOT proof: a freq-1 rebill leaves allowed == fee with nothing paid. This moved $92K on the patient side out of "adjudicated cost-sharing": $45.4K of UNI20/BCBS full-charge patient balances are the unposted-ERA pattern (HOLD, check ERA Center / claim status), $24.3K is timely never-adjudicated (still cascade), $35.3K untimely (WOLATE).
+
+## MODE D — the Medicaid INSURANCE side (masswriteoffsearch isinsbalance:true by Medicaid carrier ids)
+9/11/2026: $97.5K held by Medicaid-type carriers (SUN01 $ largest, FLO99, WEL04, SIM01, MCAD only $7.6K): D1 paid stub $41.1K (WOMCAD/WOCAID2ND), D2 CCM never payable $16.8K (WONCS), D3 timely unpaid E/M $39.6K -> rebill on Medicaid's own sequence (the SMMC tail never scanned), D3b untimely -> WOLATE. The earlier $129K "open Medicaid list" was massrebillsearch (visits by LAST-BILLED carrier, settling included) — a different question; masswriteoffsearch is the write-off source because it reflects who currently holds the balance.
+
 ## Write-off posting path
 move_to_ins.move(cid) (patient -> insurance side) then manual_post.post(cid, carrier, 0, balance, <code>, note=dated) — both captured calls. A native PATIENT-side adjustment call is NOT captured; if William wants that classification, ask for the DevTools paste. Every pass writes Writeoff_register_<date>.xlsx for the Money Ledger.
 
