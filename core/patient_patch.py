@@ -9,7 +9,7 @@ body = {"updatedpatient": {...flat...}, "originalpatient": {...flat...},
         "updateaccounttype": false, "familyupdate": null, "deleteappointments": false}
 Flat address fields: address1, address2, zipcode, city, state, countrycode (NOT nested).
 Usage: python3 patient_patch.py <patientid> key=value [key=value ...]
-  e.g. python3 patient_patch.py 17477607 dob=[DOB]"""
+  e.g. python3 patient_patch.py <patientid> dob=YYYY-MM-DD"""
 import amd, requests, json, sys, copy
 
 H = "https://pm-api-103.advancedmd.com/api/demographic/patients/%s"
