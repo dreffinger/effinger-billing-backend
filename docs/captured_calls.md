@@ -277,3 +277,14 @@ Board: Insurance Refresh Board `drops` — `dice-rename-approved-2026-09-10` (pa
 FIX FOR WILLIAM (unchanged from the 7 PM run): allow *.advancedmd.com, healthcare.us.stedi.com, enrollments.us.stedi.com — and ideally github.com, data.cms.gov, oig.hhs.gov, npiregistry.cms.hhs.gov — for the scheduled task's runs (Claude admin → Capabilities / the task's authorized sources). Until then every firing restores the workspace and stops at the same wall; the ~110 unposted ERA checks from the 9/10 1:30 AM run and the DICE drop are waiting.
 
 Mirror legs this run: GitHub push BLOCKED (bundle written); Postman SKIPPED (vocabulary unchanged); Drive DONE (this file, registry re-upload, bundle .b64, digest); project doc bundle refreshed.
+
+# captured_calls additions — 2026-09-11 00:25 UTC (8:25 PM ET) columns run
+
+RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environment.
+- The session egress proxy answered CONNECT 403 (policy denial) for EVERY AdvancedMD host (partnerlogin, pm-api-103, pm-wfe-103, providerapi, api-100), BOTH Stedi hosts (healthcare.us.stedi.com, enrollments.us.stedi.com), AND github.com / api.github.com. Confirmed via $HTTPS_PROXY/__agentproxy/status recentRelayFailures (connect_rejected).
+- Same per-run network-permission regression the 9/10 7 PM ET run recorded — not an AMD outage. Google connectors (Gmail, Drive, board) were reachable and worked normally.
+- SAFETY: no login reached AdvancedMD — connections rejected at OUR proxy before any credential was sent, so POI0712 lockout counter untouched and Claimocity feed unaffected. One-attempt login protocol honored. Did NOT retry the 403s (proxy README: report policy denials, never retry).
+- Work done with reachable connectors: board drops 0 new; Pam attachment sweep 0 new; GitHub PAT restored to secrets/; Drive workspace-mirror helpers + registry restored. Report CSV + needs_facesheet_list.md rebuilt locally; this additions doc + digest uploaded to Drive.
+- Columns before -> after: NOT READ -> unchanged (no list calls possible). No calls captured. Vocabulary / Postman unchanged.
+- Mirror legs this run: GitHub BLOCKED (no clone, so no bundle possible); Postman SKIPPED (collection unchanged); Drive DONE (this file + run report + digest).
+- WILLIAM: add *.advancedmd.com, healthcare.us.stedi.com, enrollments.us.stedi.com, and the GitHub repo to this scheduled task's authorized sources / org egress allowlist (Claude admin -> Capabilities). Every 2-hour run no-ops on the columns until then.
