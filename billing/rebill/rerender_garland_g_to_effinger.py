@@ -122,7 +122,7 @@ for t in targets:
     newvid_num=re.sub(r"\D","",newvid)
     # freq-1 + rebill ONLY new charges that carry an open insurance balance.
     # (Echo above preserved every active charge — void-trap safe — but a $0-balance
-    #  sibling that was already resolved must NOT be rebilled: Morrow v19394091.)
+    #  sibling that was already resolved must NOT be rebilled: pat44976 v19394091.)
     rebilled=0; skipped_zero=0
     for c in live:
         ncid=c.get("id"); ncid_num=re.sub(r"\D","",ncid); pc=c.get("proccode")
