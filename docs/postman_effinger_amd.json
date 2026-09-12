@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-12, 48 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-12, 49 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -353,6 +353,47 @@
       "body": {
        "mode": "raw",
        "raw": "{\n \"updatedpatient\": \"<flat patient with the changed field>\",\n \"originalpatient\": \"<the GET result, unchanged>\",\n \"updateaccounttype\": false,\n \"familyupdate\": null,\n \"deleteappointments\": false\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Edit address when original line 1 is blank (Claimocity-fed chart)",
+     "request": {
+      "method": "PATCH",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{token}}"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Accept",
+        "value": "application/vnd.advancedmd.api.v2+json,application/json"
+       },
+       {
+        "key": "origin",
+        "value": "https://static-100.advancedmd.com"
+       },
+       {
+        "key": "referer",
+        "value": "https://static-100.advancedmd.com/"
+       }
+      ],
+      "url": {
+       "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
+      },
+      "description": "Captured by probing 9/12/2026 (5am ET run) on the four new HCA charts + Lowry: the 9/7 'Edit address' shape answers 500 'Address is required.' when the chart's ORIGINAL address1 is blank. This shape saves: capturepreviousaddress=true, line 2 echoed unchanged (any PATCH that blanks address2 fails 'Address is required.'), and the chart's email blanked when it holds a phone number (500 'Email is not a valid format.'). Afterwards line 2 still repeats the street - AMD refuses to clear it; clear it in the UI.\n\nHelper: addr_line1_fix.fix(pid, street, city, state, zip)\nCaptured: 9/12/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n \"updatedpatient\": {\n  \"...\": \"flat patient as read by GET, then\",\n  \"address1\": \"{{street}}\",\n  \"address2\": \"{{line2_unchanged}}\",\n  \"zipcode\": \"{{zip}}\",\n  \"city\": \"{{city}}\",\n  \"state\": \"{{state}}\",\n  \"countrycode\": \"USA\",\n  \"email\": \"\",\n  \"updateaccounttype\": false\n },\n \"originalpatient\": {\n  \"...\": \"flat patient exactly as read\"\n },\n \"updateaccounttype\": false,\n \"familyupdate\": {\n  \"capturepreviousaddress\": true,\n  \"responsiblepartyid\": \"{{responsiblepartyid}}\",\n  \"patientids\": [\n   0\n  ],\n  \"homephone\": \"{{homephone}}\",\n  \"newaddress\": {\n   \"address1\": \"{{street}}\",\n   \"address2\": \"{{line2_unchanged}}\",\n   \"zipcode\": \"{{zip}}\",\n   \"city\": \"{{city}}\",\n   \"state\": \"{{state}}\",\n   \"countrycode\": \"USA\"\n  }\n },\n \"deleteappointments\": false\n}",
        "options": {
         "raw": {
          "language": "json"
