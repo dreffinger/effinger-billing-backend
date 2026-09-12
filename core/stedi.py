@@ -1,10 +1,12 @@
 # PLAIN ENGLISH (Stedi client)
 # Decides: Nothing. Asks Stedi questions: payer eligibility, MBI lookup, insurance discovery, payer search, enrollment status.
-# Rules it uses: Uses the live key in secrets/. Provider is always Effinger Health PA 1629515325. MBI lookups need a date of service to get the right Advantage plan for that date.
+# Rules it uses: Uses secrets/stedi_live.key when present; otherwise sends NO Authorization header and the ehpa cloud environment's API credential (agent proxy) attaches the key. Provider is always Effinger Health PA 1629515325. MBI lookups need a date of service to get the right Advantage plan for that date.
 # Never touches: AMD. Results are read by a person or another script before anything changes on a chart.
 # ---
 """Stedi client (headless, from the container - allowed 9/6 after William allowlisted the domains).
-Key: secrets/stedi_live.key.  Usage examples (placeholders - real patient data stays out of git, rules.md):
+Key: secrets/stedi_live.key when present (Gmail fallback); when absent the request goes out without an Authorization header and
+the environment API credential for healthcare.us.stedi.com / enrollments.us.stedi.com supplies it at the proxy (bootstrap_workspace.sh net
+prints STEDI_CRED_OK / STEDI_CRED_MISSING).  Usage examples (placeholders - real patient data stays out of git, rules.md):
   python3 stedi.py mbi FIRST LAST YYYYMMDD ST YYYYMMDD              # MBI lookup without SSN (payer MBILUNOSSN)
   python3 stedi.py mbi FIRST LAST YYYYMMDD - YYYYMMDD <ssn>          # with SSN (MBILU)
   python3 stedi.py elig 87726 FIRST LAST YYYYMMDD <member> YYYYMMDD
@@ -14,8 +16,10 @@ Argument order: name, date of birth, then state or member number, then the date 
 """
 import requests, json, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
-KEY = open(os.path.join(HERE, "secrets", "stedi_live.key")).read().strip()
-H = {"Authorization": KEY, "Content-Type": "application/json"}
+_KEYFILE = os.path.join(HERE, "secrets", "stedi_live.key")
+KEY = open(_KEYFILE).read().strip() if os.path.isfile(_KEYFILE) else ""
+H = {"Content-Type": "application/json"}
+if KEY: H["Authorization"] = KEY   # no key file -> the environment API credential adds the header at the proxy
 API = "https://healthcare.us.stedi.com/2024-04-01"
 ENR = "https://enrollments.us.stedi.com/2024-09-01"
 PROV = {"organizationName": "EFFINGER HEALTH PA", "npi": "1629515325"}

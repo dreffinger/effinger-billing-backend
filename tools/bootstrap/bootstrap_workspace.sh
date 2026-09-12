@@ -39,6 +39,10 @@ case "$mode" in
       exit 3
     fi
     [ "$c" = "000" ] && echo "WARN: Stedi unreachable - cascade lookups will skip to William/board."
+    # Stedi credential mode (free call, no key sent): 200 = the environment API credential is attached by the proxy -> write no key file
+    sc=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "https://healthcare.us.stedi.com/2024-04-01/payers/search?query=medicare" 2>/dev/null || true)
+    [ -z "$sc" ] && sc="000"
+    if [ "$sc" = "200" ]; then echo "STEDI_CRED_OK: environment API credential attached - do NOT write secrets/stedi_live.key."; else echo "STEDI_CRED_MISSING (HTTP $sc): no environment credential for healthcare.us.stedi.com - fall back to the Gmail key (thread 1a083035f566f9fb) -> secrets/stedi_live.key."; fi
     if [ "$g" = "200" ]; then echo "GitHub: repository attached (API reachable)."; else echo "GitHub: repo NOT attached to this session (HTTP $g) - mirror.py will fall back to a bundle on Drive."; fi
     echo "RESULT: AMD_OK"
     exit 0
@@ -105,7 +109,7 @@ PY
     for f in $OPT; do if [ -f "$WS/$f" ]; then printf '  ok       %s\n' "$f"; else printf '  absent   %s   (optional)\n' "$f"; fi; done
     hdr "credentials (presence only)"
     [ -s "$WS/.amd_cred.json" ] && echo "  ok       .amd_cred.json (AMD password, Gmail thread 1866ce7e2233e4c0)" || echo "  MISSING  .amd_cred.json  -> write {\"psw\": \"<from Gmail thread 1866ce7e2233e4c0>\"} (chmod 600)"
-    [ -s "$WS/secrets/stedi_live.key" ] && echo "  ok       secrets/stedi_live.key (Gmail thread 1a083035f566f9fb)" || echo "  MISSING  secrets/stedi_live.key -> Gmail thread 1a083035f566f9fb 'stedi claude key'"
+    [ -s "$WS/secrets/stedi_live.key" ] && echo "  ok       secrets/stedi_live.key (Gmail fallback, thread 1a083035f566f9fb)" || echo "  proxy    secrets/stedi_live.key absent - relying on the environment API credential (bootstrap net must have printed STEDI_CRED_OK)"
     [ -s "$WS/secrets/github_pat.key" ] && echo "  ok       secrets/github_pat.key (Gmail thread 'github claude token')" || echo "  absent   secrets/github_pat.key (only needed when the repo is not attached to the routine)"
     [ -s "$WS/secrets/pseudonyms.json" ] && echo "  ok       secrets/pseudonyms.json (Drive 'workspace mirror'; copy to <repo>/secrets/ before mirror.py)" || echo "  MISSING  secrets/pseudonyms.json -> Drive 'workspace mirror' pseudonyms.json"
     [ -e "$WS/.amd_login_lock" ] && echo "  LOCK     .amd_login_lock present - a prior login FAILED. Do NOT log in; report it and stop."
