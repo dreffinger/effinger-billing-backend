@@ -142,7 +142,7 @@
       "url": {
        "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
       },
-      "description": "Captured from William's Edit-address click 9/7/2026. William's placeholder rule: HCA / SNF / ALF on line 1, zip 32308-4486.\n\nHelper: patient_patch.family_address(pid, address1, address2, zip, city, state)\nCaptured: 9/7/2026 (William's paste)\nStatus: proven",
+      "description": "Captured from William's Edit-address click 9/7/2026. William's placeholder rule: HCA / SNF / ALF on line 1, zip 32308-4486. GOTCHA (9/11): returns HTTP 500 'Email is not a valid format' and saves NOTHING when the chart's contact email holds junk (phone numbers seen in email on old charts) — send email:\"\" (or a valid address) inside the same updatedpatient.\n\nHelper: patient_patch.family_address(pid, address1, address2, zip, city, state)\nCaptured: 9/7/2026 (William's paste); email gotcha 9/11/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "{\n \"updatedpatient\": \"<flat patient with new address1/address2/zipcode/city/state>\",\n \"originalpatient\": \"<flat patient as read>\",\n \"updateaccounttype\": false,\n \"familyupdate\": {\n  \"capturepreviousaddress\": false,\n  \"responsiblepartyid\": \"<respparty id>\",\n  \"patientids\": [\n   0\n  ],\n  \"homephone\": \"\",\n  \"newaddress\": {\n   \"address1\": \"SNF\",\n   \"address2\": \"\",\n   \"zipcode\": \"32308-4486\",\n   \"city\": \"TALLAHASSEE\",\n   \"state\": \"FL\",\n   \"countrycode\": \"USA\"\n  }\n },\n \"deleteappointments\": false\n}",
@@ -412,7 +412,7 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Run BEFORE every rebill: resubmissioncode=1 origrefnum='' (William 9/3 — never frequency 7 unless he hands you the payer ICN). Same call sets the hospitalization (admit) dates the Inspector wants.\n\nHelper: freq1_visit.run(vid, cid, seq); inspector_0907.set_date\nCaptured: 9/2/2026\nStatus: proven",
+      "description": "Run BEFORE every rebill: resubmissioncode=1 origrefnum='' (William 9/3 — never frequency 7 unless he hands you the payer ICN). Same call sets the hospitalization (admit) dates the Inspector wants. NEVER send hospitalizationto (standing flag).\n\nHelper: freq1_visit.run(vid, cid, seq); inspector_0907.set_date\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"updextrainsinfo\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" visitid=\"vst{{visitid}}\"><usercontext>{{token}}</usercontext><extins txtChargeCode=\"\" resubmissioncode=\"1\" origrefnum=\"\" hospitalizationfrom=\"{{admitdate}}\" hospitalizationto=\"{{dischargedate}}\"/></ppmdmsg>",
@@ -645,7 +645,7 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Helper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
+      "description": "Attribute order in the response is not fixed — parse <visit ...> by attribute name, never positionally (claimrunid can precede id).\n\nHelper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"getclaimexclusioncharges\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" claimrunid=\"{{claimrunid}}\" clearinghouse=\"1\" payer=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
@@ -761,7 +761,7 @@
       "url": {
        "raw": "https://pm-api-103.advancedmd.com/api/claim/massrebillsearch"
       },
-      "description": "Captured 9/7/2026. Empty body {} = the whole unpaid list.\n\nHelper: build_money.py, claim_status_sweep.py, precheck.py\nCaptured: 8/30/2026; filters 9/7; DOS filter 9/9\nStatus: proven",
+      "description": "Captured 9/7/2026. Empty body {} = the whole unpaid list. chargedetailids in the response is a COMMA-SEPARATED STRING, not a list — split it (9/10).\n\nHelper: build_money.py, claim_status_sweep.py, precheck.py\nCaptured: 8/30/2026; filters 9/7; DOS filter 9/9\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "{\n \"begindateofservicestartdate\": \"2025-05-10\",\n \"begindateofserviceenddate\": \"2026-09-07\",\n \"billstartdate\": null,\n \"billenddate\": null,\n \"visitids\": null,\n \"minimumvisitbalance\": null,\n \"chargecodeids\": null,\n \"paperformids\": null,\n \"claimrunid\": null,\n \"agingdayrange\": null,\n \"waystarpayerid\": null,\n \"cpid\": null,\n \"npid\": null,\n \"providerids\": null,\n \"facilityids\": null,\n \"carriercategoryids\": null,\n \"chargecodecategoryids\": null,\n \"denialcategoryids\": null,\n \"financialclassids\": null,\n \"paymentreasonid\": null,\n \"patientid\": null,\n \"carrierids\": [\n  42009\n ],\n \"submitterids\": null\n}",
@@ -819,7 +819,7 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Bypasses the Claim Inspector edit on the charge (after the underlying fix, or when the edit is a false positive by William's rules).\n\nHelper: inspector_0907.bypass\nCaptured: 9/2/2026\nStatus: proven",
+      "description": "Bypasses the Claim Inspector edit on the charge (after the underlying fix, or when the edit is a false positive by William's rules). Error ids change on every re-inspection — re-list and bypass with FRESH ids.\n\nHelper: inspector_0907.bypass\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"bypassclaimedits\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" batchid=\"{{batchid}}\"><usercontext>{{token}}</usercontext><chargelist><charge id=\"charge{{chargeid}}\"/></chargelist></ppmdmsg>",
@@ -877,10 +877,10 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Completes the exclusion run after its charges are fixed.\n\nHelper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
+      "description": "Completes the exclusion rows after their charges are fixed (or straight off for duplicate-claim rejections).\n\nHelper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
-       "raw": "<ppmdmsg action=\"hideexclusions\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" claimrunid=\"{{claimrunid}}\" hide=\"-1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
+       "raw": "<ppmdmsg action=\"hideexclusions\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" claimrunid=\"{{claimrunid}}\" hide=\"-1\"><usercontext>{{token}}</usercontext><visitlist><visit id=\"{{visitid}}\" claimid=\"{{claimid}}\"/></visitlist></ppmdmsg>",
        "options": {
         "raw": {
          "language": "xml"
@@ -1349,7 +1349,7 @@
       "url": {
        "raw": "https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
       },
-      "description": "NO /change prefix. → {coveragesFound, items[{payer, subscriber.memberId, planDateInformation incl dateOfDeath, benefitsInformation}]}. $1.50 per check — last resort after AMD 271 and Stedi eligibility.\n\nHelper: stedi.disc, disc_run.py --check\nCaptured: 9/6/2026; live 9/8\nStatus: proven",
+      "description": "NO /change prefix. → {coveragesFound, items[{payer, subscriber.memberId, planDateInformation incl dateOfDeath, benefitsInformation}]}. $1.50 per check — last resort after AMD 271 and Stedi eligibility. subscriber/dateOfBirth (or ssn) is REQUIRED (400 without it).\n\nHelper: stedi.disc, disc_run.py --check\nCaptured: 9/6/2026; live 9/8\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "{\n \"provider\": {\"organizationName\": \"EFFINGER HEALTH PA\", \"npi\": \"{{npi}}\"},\n \"subscriber\": {\"firstName\": \"\", \"lastName\": \"\", \"dateOfBirth\": \"YYYYMMDD\", \"address\": {\"state\": \"FL\"}},\n \"encounter\": {\"dateOfService\": \"YYYYMMDD\"}\n}",
