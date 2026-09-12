@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-12, 49 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-12, 50 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1152,7 +1152,7 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Posts a payment and/or write-off to one charge with a note. era_manual_post.py wraps it for an unvalidated ERA line (post the PAYMENT line, never the $0 denial line).\n\nHelper: manual_post.post(cid, carrier, pay, wo, wocode, checknumber, depositdate, note)\nCaptured: 9/3/2026\nStatus: proven",
+      "description": "Posts a payment and/or write-off to one charge with a note. era_manual_post.py wraps it for an unvalidated ERA line (post the PAYMENT line, never the $0 denial line). | 9/12/2026 probe: a <payreasonlist> child inside <payment> is accepted (success=1) but NOT stored - addpayments cannot carry CARC reason codes; <reasonlist> faults. A $0 payment without reason codes blocks the next-payer claim ('Payment reason codes are missing or do not balance') - fix = void it (void class=void) and release.\n\nHelper: manual_post.post(cid, carrier, pay, wo, wocode, checknumber, depositdate, note)\nCaptured: 9/3/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><payment carrier=\"car{{carrierid}}\" checknumber=\"{{checknumber}}\" depositdate=\"{{depositdate}}\" note=\"{{note}}\"><chargelist><charge id=\"charge{{chargeid}}\" paid=\"{{pay}}\" writeoff=\"{{wo}}\" writeoffcode=\"{{wocode}}\"/></chargelist></payment></ppmdmsg>",
@@ -1188,6 +1188,31 @@
        "options": {
         "raw": {
          "language": "json"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Write-off codes (reference for addpayments wocode)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       }
+      ],
+      "url": {
+       "raw": "{{xmlgw}}"
+      },
+      "description": "Not a call: the complete write-off code list from AMD Master Files (William 9/12/2026) plus the rule for picking one. Every run posting a write-off picks from here and writes a dated note; new codes or rules go here and in practices/ehpa/rules.md.\n\nHelper: manual_post.post(cid, carrier, 0.0, amount, wocode, note=...)\nCaptured: 9/12/2026\nStatus: reference",
+      "body": {
+       "mode": "raw",
+       "raw": "<!-- addpayments class=paymententry writeoff code=\"{{wocode}}\" (manual_post.post(cid, carrier, 0, amount, wocode, note=...)).\nAMD MASTER FILE - every write-off code (William pasted the list 9/12/2026):\n #WORU       WRITE OFF - SAME DAY ROLLUP\n ADJCAP      WRITE OFF - CAP\n ADJRISK     WRITE OFF - RISK/RETENTION\n PROMPT      PROMPT\n WOAPPEAL    WRITE OFF - AFTER APPEAL DENIED\n WOAREXH     WRITE OFF - AR EXHAUSTED\n WOBAD       WRITE OFF - BAD DEBT\n WOBANK      WRITE OFF - BANKRUPTCY\n WOCAID2ND   WRITE OFF - MEDICAID 2NDARY AFTER MEDICARE\n WOCLTREQ    CLIENT REQUEST, AUTHORIZATION SUBMITTED\n WOCLTREQ1X  WRITE OFF - CLIENT REQUEST AUTH 1X\n WOCOLL      WRITE OFF - COLLECTIONS\n WOCOUR      WRITE OFF - COURTESY\n WOENDCOLLA  WRITE OFF - END OF PATIENT COLLECTIONS\n WOFILE      WRITE OFF - RECEIVED CHARGE AFTER FILING\n WOFIN       WRITE OFF - FINANCIAL DIFFICULTY\n WOGLOB      WRITE OFF - GLOBAL DURING POST OP PERIOD\n WOINCL      WRITE OFF - INCLUSIVE\n WOINFO      WRITE OFF - REQD INFO NOT RECD FROM CLIENT\n WOINS       WRITE OFF - INSURANCE\n WOINSBANK   WRITE OFF - INS BANKRUPTCY\n WOLATE      WRITE OFF - LATE FILING DEDUCTION\n WOMCAD      WRITE OFF - MEDICAID\n WOMISC      WRITE OFF - MISC\n WONCS       WRITE OFF - NON COVERED SERVICES\n WOPD90+AR   WRITE OFF - PD TRANSFER INSURANCE BALANCE\n WOPD90+PB   WRITE OFF - PD TRANSFER PATIENT BALANCE\n WOPDEOB     WRITE OFF - CL PD EOB NOT FWRD TO MBS\n WORTNADD    WRITE OFF - RETURNED PATIENT ADDRESS\n WOSMBAL     WRITE OFF - SMALL BALANCE\n WOSTATE     WRITE OFF - STATE SUPPLIED VACCINE\n\nHOW THE RUNS PICK (William 9/7, 9/11, 9/12):\n WOINS      untimely / never-adjudicated PRIMARY over 12 months from DOS (dated note)\n WOLATE     payer denied untimely (CO29/PI29), no proof of timely filing\n WONCS      non-covered service (CO96/PR96; CCM billed Medicaid-primary)\n WOCAID2ND  dual: Medicaid secondary residual after Medicare/MA paid (crossover $0)\n WOMCAD     residual on a Medicaid-PRIMARY charge\n WOSMBAL    small balance under $25 per patient\n WOBAD      patient no-pay / bad debt after one statement cycle; WOFIN financial difficulty; WORTNADD statement returned, no address\n WOAPPEAL   after an appeal is denied; WOAREXH every payer and the patient exhausted\n WOINSBANK  parking write-off later voided when the balance goes back to insurance\n WOCLTREQ   a write-off William directs in chat / on the board with no better-fitting code ('client request'); prefer the more descriptive code when one fits (William 9/12)\n WOCOUR     courtesy - NEVER across the board on Medicare/MA cost-sharing\n WOMISC / WOINCL / WOGLOB / WOFILE / WOINFO / WOPDEOB / WOPD90+AR / WOPD90+PB / WOENDCOLLA / WOSTATE / WOBANK / ADJCAP / ADJRISK / #WORU / PROMPT: in the master file, not yet used by a run - ask before using. -->",
+       "options": {
+        "raw": {
+         "language": "xml"
         }
        }
       }
