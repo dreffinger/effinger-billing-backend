@@ -57,8 +57,40 @@ def merge_registry():
     if merged:
         open(base, "w").write(text)
         print("registry: merged %d additions file(s) into workspace captured_calls.md" % merged)
-    gate(base, os.path.join(ROOT, "docs", "captured_calls.md"))
+    dst = os.path.join(ROOT, "docs", "captured_calls.md")
+    prior = open(dst).read() if os.path.exists(dst) else ""
+    gate(base, dst)
+    union_prior_record(dst, prior)
     return True
+
+def _sections(text):
+    """Split a registry into (header_line, body) blocks; header = any line starting with '#'."""
+    out, cur, buf = [], None, []
+    for line in text.splitlines():
+        if line.startswith("#"):
+            if cur is not None or buf:
+                out.append((cur, "\n".join(buf)))
+            cur, buf = line.strip(), [line]
+        else:
+            buf.append(line)
+    if cur is not None or buf:
+        out.append((cur, "\n".join(buf)))
+    return out
+
+def union_prior_record(dst, prior):
+    """The gate re-derives docs/captured_calls.md from the workspace base, which may be an OLDER Drive copy
+    than the repo record. Keep every prior-record section whose header is missing from the new copy
+    (appended in their original order) so the record only ever grows. Lesson from the 9/12 runs."""
+    if not prior.strip():
+        return
+    new = open(dst).read()
+    have = {h for h, _ in _sections(new) if h}
+    missing = [(h, b) for h, b in _sections(prior) if h and h not in have and b.strip()]
+    if not missing:
+        return
+    text = new.rstrip() + "\n\n" + "\n\n".join(b.rstrip() for _, b in missing) + "\n"
+    open(dst, "w").write(text)
+    print("registry: union kept %d prior-record section(s) the Drive base did not carry" % len(missing))
 
 # ---- 2. helpers ---------------------------------------------------------------------------------
 HELPER_GLOBS = ["*.py", "*.sh", "carriers.json", "facilities.json"]

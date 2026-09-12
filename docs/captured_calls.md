@@ -168,7 +168,7 @@ STANDING RULE (William 9/10/2026): at the END of every nightly run or chat sessi
 - Claim Inspector 117065068 "Hospitalization From Date in the Extra Info": set `hospitalizationfrom` = most-recent 99223 admission (≤45 days) via `updextrainsinfo`, then full-echo resave `onhcfa=1`; the referral-plan `preauth` survives the resave if echoed. Re-inspect → clears.
 
 ### Coding / payer
-- D-SNP fix (Calder): UHC Dual Complete member id (on the chart; not repeated here) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
+- D-SNP fix (Calder): UHC Dual Complete member id (on the chart) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
 - VA auth NPV087: must be VA/UC + exactly 12 bytes; a facesheet value like VA90108366827 (13 bytes) is invalid even though the hospital printed it — needs Optum VA CCN 877-881-7618, never invent.
 
 
@@ -213,15 +213,32 @@ This file now carries the 9/10 additions (learnings, 11 PM ET run, 1:30 AM night
 - WOINSBANK reversal (5/31/26 bulk write-off undone, wo_reversal_post force-post fix): 5,166 write-offs reversed, $393,894 ERA posted, 0 errors.
 - Unpaid audit, 12 cohorts, 1,001 patients / $528K: 1,895 visits rebilled = $286,166; 18 wrong-payer patients moved to their real plan; 9 wrong MBIs corrected; $0 written off; 163 patients / $145K parked (62 AAA, 60 inactive → discovery pass next, 28 DOD confirm, 13 wrong-payer no-id).
 
+## 2026-09-12 3 PM ET columns run (ehpa cloud Code Routine, 19:08-20:10 UTC) - run entry, NO new calls captured
+Bootstrap: repo ATTACHED (origin/main 3525dcd), AMD_OK, STEDI_CRED_OK (proxy credential), GitHub API 200, ONE login_cached success, no login lock. State bundle 2026-09-12_1736UTC did NOT survive the connector transfer (the base64 text arrived with a different length; no split point decoded) -> needs_facesheet_list.md and laterality_flag_log.md reseeded from the Drive plain-text snapshots (1205UTC / 1200UTC) plus the later digests; precheck_cache.json, patient_db/, era_details/ empty. Missing required helpers (unchanged): columns_inspector2_0908.py, era_details_pull.py.
+Columns (list calls, before -> after): Charge Review 0 -> 0 | Claim Inspector 1 batch / 2 visits -> 0 | Unbilled 0 -> 0 | Exclusions 15 -> 15 (BCBS PREF0283 on run 1700186: pat17477267 x14 $1,084.59, pat48449 x1 $206.00; balances re-verified via gettxhistory, none at $0, nothing re-sent, nothing written off).
+Inspector fix (proven shapes, insp_0912e_fix.py): batch 127700 = two 99232 hospital visits dated 9/10/2026 with Pattern 117065068 (Hospitalization From Date empty). Anchors via gettxhistory: pat17473658 -> its 99223 on 09/08/2026; pat17477710 -> its 99223 on 09/09/2026. updextrainsinfo hospitalizationfrom only (never hospitalizationto) -> extins ids 2792905 / 2792906; full-visit resave updvisitwithnewcharges onhcfa=1 -> both PENDING errorcount 0, batch gone from getclaiminspectorbatches on the re-list. pat17477710's visit bills CAP07 (the CHP plan added by the 7am run); pat17473658 bills FLO02 seq 1.
+Boards: 0 new drops, 0 William replies newer than the 1pm run; no board update file written (nothing new for his turn; the inbox re-apply bug would only duplicate checks[]). Facesheet folders: nothing newer than 09:04 UTC. Pam sweep newer_than:2d: 0.
+AMD writes: 2 updextrainsinfo + 2 updvisitwithnewcharges. Insurance entered: none. Dollars re-sent: $0. Write-offs: none. Not an ERA run. Vocabulary unchanged (50 calls).
+
+## 2026-09-12 5 PM ET columns run (ehpa cloud Code Routine, 21:09-21:45 UTC) - run entry, NO new calls captured
+Bootstrap: repo ATTACHED (origin/main d1cd9f3), AMD_OK, STEDI_CRED_OK (proxy credential), GitHub API 200, ONE login_cached success, no login lock. State bundle 2026-09-12_1945UTC restored clean (sha verified, 7 files) - the first bundle today to survive the Drive connector; the plain-text snapshots stay the fallback. Missing required helpers (unchanged): columns_inspector2_0908.py, era_details_pull.py.
+Columns (list calls, before -> after): Charge Review 0 -> 0 | Claim Inspector 0 -> 0 | Unbilled 0 -> 0 | Exclusions 15 -> 15 (BCBS PREF0283 on run 1700186: pat17477267 x14 $1,084.59, pat48449 x1 $206.00; balances re-verified via gettxhistory with excl_verify_0912f, none at $0, nothing re-sent, nothing written off). No new claim run since the 3pm run (85 runs on getclaimrunstatus, latest 1700186).
+Boards: 0 new drops, 0 William replies newer than the 1pm run; no board update file written. Facesheet folders: nothing newer than 09:04 UTC. Pam sweep newer_than:2d: 0.
+AMD writes: none. Insurance entered: none. Dollars re-sent: $0. Write-offs: none. Not an ERA run. Vocabulary unchanged (50 calls).
+Mirror mechanics this run: tools/mirror/mirror.py now unions the prior docs/captured_calls.md sections into the freshly gated copy (merge_registry -> union_prior_record), so a Drive base older than the repo record no longer drops sections; the manual section-union step after sync is retired.
+
 ## 2026-09-12 5 AM ET columns run, SECOND copy (09:35-12:10 UTC, ehpa cloud Code Routine) - address line-1 shape captured; boards + command queue + CMS Coverage folded into the standing prompt
+
 ### Calls / mechanics learned
 | What | Call | Helper | Date |
 |---|---|---|---|
 | Edit address on a chart whose ORIGINAL address1 is BLANK (Claimocity HCA feed puts the street in address2, phone in email) | `PATCH /api/demographic/patients/{id}` (accept v2 json) body `{updatedpatient:{...flat, address1:<street>, address2:<unchanged line 2>, zipcode, city, state, countrycode:"USA", email:""}, originalpatient:{...flat as read}, updateaccounttype:false, familyupdate:{capturepreviousaddress:TRUE, responsiblepartyid, patientids:[0], homephone, newaddress:{same as updated}}, deleteappointments:false}` -> 200. Three things matter: (1) `capturepreviousaddress` must be true, (2) line 2 must be echoed unchanged in the same PATCH (any shape that blanks address2 - the 9/7 family_address, the plain patch(), a space - answers 500 'Address is required.'), (3) an invalid email on the chart (the feed writes the phone number there) answers 500 'Email is not a valid format.' first - blank it in updatedpatient and keep the phone on the board row. Result: line 1 filled, line 2 still repeats the street (AMD refuses to clear it afterwards) - PN3-0107 no longer bounces. Proven 9/12 on pat17477706/08/09/10 and pat17475970. | `addr_line1_fix.fix(pid, street, city, state, zip)` | 9/12 |
 | CMS Coverage connector (mcp__CMS_Coverage__*) | `search_local_coverage(document_type='article'|'lcd', keyword, contractor_id=370 First Coast FL Part B)`, `search_national_coverage(document_type='ncd', keyword)`, `get_contractors()` -> LCD/NCD/billing-article ids + urls (e.g. A58664 'Billing and Coding: Advance Care Planning'). Holds NO beneficiary/eligibility data - it is the coverage-denial (CO50/CO96/PR96/CO4/CO197/N386) companion to the Stedi cascade, never a replacement. 'chronic care management' returns 0 articles; ACP returns 2 (Palmetto). | connector | 9/12 |
 | Working Denials board command queue | Artifact db `commands` on 8354e098-53df-414a-8359-cc276c541ef6: docs {command: writeoff|appeal|rebill|find|records|note|work-timely|writeoff-aged|rerun, status queued->working->done, visitid, pid, carrier, cpt, dos, carc, amt}; read at the start of every run, `update` never `set`. Empty this run. | Artifact read_db/write_db | 9/12 |
+
 ### Results
 Boards: Insurance Refresh drops 0 new; William's pasted facesheet text on 5 rows (08:55-09:25 UTC) was executed by the parallel 7am ET copy (ins9519388-91 added begin 9/1/2026, auths on rplan18461996 / rplan18461941, 9 Unbilled rows released, 3 VACCN rows re-sent) - this copy verified and did not repeat. Columns this copy: CR 0->0, Inspector 0->2 (pat17476115 HIG06 SOP advisory 117070083, William adding HIG07), Unbilled 4->4 (payment-reason-code rows), Exclusions 19->19 (BCBS DCN x15, HUM01 x3, VACCN x1). Cleared: address line 1 on 5 charts. State bundles 0751/0754 failed sha on restore -> reseeded from the plain-text needs_facesheet snapshot (keep uploading that snapshot every run).
+
 ### Standing-prompt changes (repo nightly/columns_task_prompt_ehpa_cloud_v2.txt, also Drive workspace mirror)
 William 9/12 5am ET: boards + command queue checked at the start of EVERY run and every command acted on; CMS Coverage used on coverage denials next to Stedi; everything learned mirrored to GitHub / Postman / Drive the same run.
 
@@ -261,6 +278,7 @@ Calls captured: none new (endpoints unchanged). Vocabulary unchanged (48).
 - BCBS DCN harvest (William: "run now"): Drive 'bht Optum era downloads' = 45 zips + .dat = Optum/UHC-family 835s ONLY (UnitedHealthcare, AARP, Optum VA CCN, UMR, Golden Rule, UHC Community Plan) - 378 remits indexed by TRN02, zero FLORIDA MEDICARE remits. The Medicare payments on the 25 open Florida Blue residuals (Waldron x14 check 819766146 9/11, Rowley x7, Cadwell x4 check 817231370 6/2) were ERA-posted inside AMD, whose checkdetails API carries no ICN. Harvest parser ready (era_raw_index.json recipe); needs Medicare 835s from Change Healthcare ConnectCenter / First Coast SPOT dropped in the folder, or the Stedi CMS 276 enrollment. Optum zips deleted from the workspace after indexing (no PHI kept).
 - Lowry 8/10 stay: the 8/18/26 HCA sheet William pasted prints Auth VA90108366827 (13 bytes) - the number VA CCN rejects; his other stays' auths are VA90 + 8 digits. Still needs HSRM / Optum VA CCN for the real 12-byte value.
 - 12:28 UTC: William gave VA9010836682 for the 8/10 stay -> written on rplan18461940 (plan readback ok), visit 19451315 freq-1 -> 204, exclusion 1700156 completed. Exclusions now 15 (all BCBS PREF0283 DCN hold); Inspector 0; Unbilled 4 (Garland-G payment-reason rows).
+
 ## 2026-09-12 9 AM ET columns run (ehpa cloud Code Routine, 13:08-13:45 UTC) - run entry, NO new calls captured
 Bootstrap: repo ATTACHED (origin/main e9f8f98), AMD_OK, STEDI_CRED_OK (proxy credential), ONE login_cached success, no login lock. State bundle 2026-09-12_1221UTC: sha256 mismatched in transit but the gzip/tar was intact (7 members = manifest) - extracted directly with tarfile instead of failing the run; lesson: when ws_bundle refuses on sha, open the tar and compare the member list to the manifest before reseeding. Missing required helpers (unchanged): columns_inspector2_0908.py, era_details_pull.py.
 Columns (list calls, before -> after): Charge Review 0 -> 0 | Claim Inspector 0 batches -> 0 | Unbilled 0 -> 0 | Exclusions 15 -> 15 (overview 0/0/0/15, $2,295). The 15 = BCBS PREF0283 MISSING PAYER DOC CONTROL NUM on run 1700186 (pat17477267 x14 $1,084.59, pat48449 x1 $206.00); balances re-verified via gettxhistory, none at $0, nothing re-sent, nothing written off. Boards: 0 new drops, 0 queued denial commands, no new William replies; Pam sweep 0; no new facesheets.
@@ -280,7 +298,6 @@ AMD writes: none. Vocabulary unchanged.
 
 ## 2026-09-11 00:25 UTC (8:25 PM ET) columns run — RUN BLOCKED, no egress
 The session egress proxy answered CONNECT 403 (policy denial) for EVERY AdvancedMD host (partnerlogin, pm-api-103, pm-wfe-103, providerapi, api-100), BOTH Stedi hosts and github.com / api.github.com — confirmed via $HTTPS_PROXY/__agentproxy/status recentRelayFailures (connect_rejected). Same per-run network-permission regression the 9/10 7 PM ET run recorded — not an AMD outage. Google connectors worked. SAFETY: no login reached AdvancedMD (rejected at OUR proxy before any credential was sent) — POI0712 lockout counter untouched, Claimocity feed unaffected; the 403s were NOT retried. Board drops 0 new; Pam attachment sweep 0 new; PAT restored to secrets/; helpers + registry restored. Columns NOT READ. No calls captured. Mirror legs: GitHub BLOCKED, Postman SKIPPED, Drive DONE. WILLIAM: add *.advancedmd.com, healthcare.us.stedi.com, enrollments.us.stedi.com and the GitHub repo to this scheduled task's authorized sources / org egress allowlist (Claude admin -> Capabilities); every 2-hour run no-ops until then.
-
 
 ## 2026-09-11 chat session (00:50–05:00 UTC) — Medicaid rebill under Effinger NPI + INSURANCES CLEANING TASK
 Egress from CHAT sessions is open (AMD, Stedi hosts, github.com all reachable; `git push` to main WORKED — commits 91b38e3, 42d9774). The Drive connector `create_file` returned "Error occurred during tool execution" on every attempt all session (small and large payloads, text and base64) — Drive leg deferred; GitHub main is the record.
@@ -312,10 +329,8 @@ SIM01 = car42019 (Simply), STA03 = car41991 (Staywell), WEL07 = car41992 (WellCa
 ### Mirror note
 tools/mirror/ was absent from main; restored from the project bundle `effinger-billing-backend_2026-09-11.bundle` (merged as 42d9774). Commit 91b38e3 briefly carried a patient surname in a code comment (rerender helper) — scrubbed to the chart id in the next commit; history still contains it unless William wants it rewritten.
 
-
 ## 2026-09-11 — PARALLEL SESSION in the same workspace: MCAD residual WOINS executed (01:57–03:21 UTC)
 While the chat session above was running, ANOTHER session in the SAME /home/claude/unbilled container wrote `mcad_scan.py` / `mcad_scan_batch.py` / `mcad_woins_exec.py` / `scan_txh.py` + `scan_loop.sh` and RAN the contractual write-off of the residual on confirmed-paid straight-MCAD charges: **2,541 charges / $56,583.33 / 99 patients, code WOINS**, note "Contractual FL Medicaid residual (dual crossover coinsurance) WOINS", register `Writeoff_register_2026-09-10_MCAD_residual.csv`, log `mcad_woins.log` (2,541 DONE, 12 transient "Server Error" FAILs all retried OK). 669 of the lines were CCM ($12,774.51) — correct as contractual, but all under ONE code (William had asked for CCM to be distinguishable). Verified live 9/11: write-offs positive, dated 09/10/2026, balances $0. Overlap with the chat session's 37 prof13 freq-1 rebills: 3 charges (22472036 99497, 23337201 + 23337207 99489) were rebilled AND then zeroed — harmless (the queued claims deny at $0); the chat session had mis-attributed those 3 write-offs to the nightly ERA poster. LESSON (adds to the 9/10 concurrent-sessions rule): chat sessions are NOT always separate containers — before any write-off or rebill pass, `ls -lt /home/claude/unbilled | head` and `pgrep -f "woins|rebill|scan"` and read the newest `Writeoff_register_*` / `*.log`; a helper named `*_exec.py` you did not write means another session is acting on the same ledger. Remaining MCAD residual after this run ≈ $123K estimate − $56.6K = ~$66K (the SMMC tail + un-scanned MCAD rows), still to classify.
-
 
 ## 2026-09-11 — 5 PM ET columns run (21:02–21:50 UTC): quiet board, one date-window fix
 Fourteenth firing. Fresh container (workspace loss #9): restore per protocol (clone main, Drive workspace-mirror overlays, Gmail creds, ONE login_cached, success). The 9/11 thin bundle in Drive github mirror could NOT be applied here — one character was lost moving the 3-part b64 through the connector (pack inflate error); pending commit 97bf642 stays on Drive. Lesson: multi-part b64 bundle transfers through the Drive connector are fragile — prefer re-pushing from a session with repo access, or single-part files.
@@ -323,7 +338,6 @@ Columns 0/0/12/99 → 0/0/12/98 (list calls; overview lags). Charge Review and I
 Cleared: pat17472396 HUM01 'policy canceled' DOS 11/5/2025 $107 — the Humana MA 271 dates (DTP 346/290/292 = 20260501) show the plan began 5/1/2026, so the claim belonged to Medicare: FLO02 enddate 11/04/2025→04/30/2026, HUM01 begindate 11/05/2025→05/01/2026 (ins_update wrapped shape), visit insorder→1 full-echo resave, freq1 seq 1 → 204, hideexclusions. RULE REINFORCED: a payer-switch end-date must come from the new plan's 271 begin date, not from the first denied DOS.
 Cascade run headless: pat17471681 (Medicare active, NO MA; HUM01 secondary INACTIVE/'entity not found'; discovery = Medicare + WellCare PDP only, NO Medigap) → new board row penhale-rupert, William's disposition on $172.90 coinsurance across 4 visits. pat17475099 re-checked (271s inactive, MBI err 72, discovery 0 — unchanged, William's turn). Secondary-timely holds (pat17472230 ×19, pat17473020 ×7, pat17473232 ×3, pat17471681 ×3 old) left for the 7 PM cascade; note pat17473020 Medicare 271 carries DTP 442 date-of-death [DOB] and pat17473232 carries 20260602 — the 7 PM run should write off any post-death DOS and rebill pre-death per the standing rule.
 No NEW calls captured (all calls used were already registered). Mirror this run: GitHub commit 5aa9bb3 on local main (base 2526634), push blocked → thin bundle effinger-billing-backend_2026-09-11_5pmET_thin.bundle.b64 on Drive github mirror (single file this time). NOTE for William: 97bf642 (chat session) and 5aa9bb3 (this run) are divergent on top of 2526634 — apply the 3-part bundle first, then this one, merge, push. Postman collection unchanged (no vocabulary change) — connector update skipped as a no-op. Drive registry restored as base + additions files (mirror.py merges them).
-
 
 ## 2026-09-11 — 7 PM ET columns run (23:02–23:59 UTC): Stedi Claim Status captured; ERA $10,863 posted; exclusions 98→78
 Fifteenth firing, fresh container (workspace loss #10); restored per protocol (clone main 2526634, Drive overlays, Gmail creds, ONE login_cached, success). Columns 0/0/12/98 → 0/0/12/78 (list calls; unbilled = the standing 12 #INT penny rows).
@@ -334,15 +348,12 @@ MIRROR NOTE — GitHub commit 47974e0 on local main (base 2526634); push proxy-b
 
 # captured_calls additions — 2026-09-12 03:30 UTC (11 PM ET 9/11) columns run
 
-
 ## 2026-09-11 — 11 PM ET columns run (03:03–03:30 UTC 9/12): quiet board, zero movement
 Sixteenth firing, fresh container (workspace loss #11); restored per protocol (PAT clone of main 2526634 OK — credentialed git CLONE works from this task, Drive registry base + 3pm/5pm/7pm 9/11 additions merged locally, workspace-mirror overlays incl. elig271.py + pseudonyms.json, Gmail creds, ONE login_cached, success). Columns 0/0/0/78 → 0/0/0/78 (list calls; overview agrees, $16,132). Charge Review / Inspector / Unbilled arrived empty; the Claimocity evening feed had landed nothing new in any column by 03:10 UTC.
 Exclusions: the standing 78 across runs 1700146/1700156/1700158/1700166 — balances re-verified by gettxhistory across all 21 patients, ZERO $0-balance completions, nothing re-sent, everything stays on William (AET12 ×50 waiting on the Master Files CPID-6870 confirmation — NOT rebilled per the board row's standing hold; SIM01 ×7 NPI enrollment ATN 1127554; VACCN ×4 12-byte auths; HUM01 ×4 disposition + ×3 facesheet; UNI20 ×10 deceased pair). Note: getclaimexclusioncharges rows now display carriercpid="6870" on every AET12 row, but per the 9/9 root-cause (Box 33 'use group' sends the TIN as submitter/payer id on TRANSMITTED claims while the CPID box always read 6870) the display value is NOT evidence the fix landed — only William's Master Files confirmation or a clean next transmission is.
 Board: corbey-william-e status corrected claude→william with an 03:20 check (DOB on the board row + facility HCA Florida Capital Hospital have been on the row since the 3pm 9/11 run per William's 9/10 ask; cascade exhausted twice; needs facesheet/card/SPOT). Drops 0 new; Pam sweep (newer_than:2d) 0; no new Drive facesheets since 18:00 UTC.
 No NEW calls; api_vocabulary stays 48 calls — but 7 entries on the Drive copy (21:48 9/11) were RICHER than repo main's: merged Drive→repo this run (commit aa1765a) so the enrichments finally reach GitHub; postman JSON regenerated from the merged vocabulary (identical call set, Postman connector update skipped as a no-op).
 MIRROR: local main = 050184f (run registry+report) + aa1765a (vocabulary merge) on base 2526634; push proxy-blocked (repo not in this task's authorized sources — unchanged ask). Single-part thin bundle effinger-billing-backend_2026-09-12_11pmET_thin.bundle.b64 uploaded to Drive github mirror (18,408 bytes verified by size+head readback; sha256 of the .b64 file 0c0d94791298c021a39cd5d23965a2ee260e2a2d63a07b34c91cb6cdfeff2168, of the decoded bundle 53cc8051b225d3b91b49174c1d850027973c68f543b1344a9dbc7b7c58de869a; base = origin/main 2526634, applies independently of the 9/11 chat/5pm/7pm/9pm divergent bundles — apply each, merge, push). Older bundles pruned to newest two (3-part corrupt set + 9/10 b64 trashed). Drive registry stays base + additions files (this file is the 11pm addition; the FULL merged registry incl. the chat-session sections is docs/captured_calls.md in commit 050184f, pseudonymized).
-
-
 
 ## 2026-09-11 - 11 PM ET columns run, EHPA CLOUD copy (03:03-04:10 UTC 9/12): first firing of the rebuilt routine, quiet board
 First run of "Backend billing run - Claims Center columns every 2 hours + triple mirror (ehpa cloud)" (trig_01Uc4cxV8aX4EkuLzUBNii8C). Fresh container. STEP 0 bootstrap as designed: network self-check AMD_OK (partnerlogin 200, pm-api-103 reachable, Stedi 403 = server-side "Missing Authentication Token" i.e. reachable headless, GitHub 403 "not enabled for this session" = repo not attached); PAT clone of main 2526634 WORKS (credentialed git clone passes the proxy, push does not); Drive workspace-mirror overlays (bootstrap_workspace.sh, ws_bundle.py, elig271.py, amd shims, 0910/0911 worked examples, pseudonyms.json); Gmail creds; bootstrap check; ONE login_cached, success.
@@ -358,7 +369,6 @@ Mirror this run: see the digest (GitHub push blocked -> thin bundle on the chat 
 
 # captured_calls additions - 2026-09-12 1 AM ET columns run (ehpa cloud scheduled copy)
 
-
 ## 2026-09-12 1 AM ET columns run (04:41-05:18 UTC, ehpa cloud scheduled copy)
 Bootstrap: repo ATTACHED (origin/main 2526634 checked out; GitHub API reachable), AMD_OK, ONE login_cached success, no login lock. State bundle 2026-09-12_0400UTC FAILED restore (base64 retyped through the connector lost 3 chars; sha refused) -> state reseeded from needs_facesheet_list_2026-09-12_0357UTC.md + void_rules.json; laterality log restarted empty. Missing required helpers (not in repo main, not on Drive): columns_inspector2_0908.py, era_details_pull.py.
 PARALLEL RUN: a second copy ("12:22 AM ET manual fire", START 04:50 UTC, digest 05:12 UTC) worked the same board while this one bootstrapped: released 103 prior-payor rows, WOINS $468.80, fixed 7 insurance-order rows, ran the cascade on the 4 new HCA charts. This run did NOT repeat any of it.
@@ -367,7 +377,6 @@ UNBILLED 13, all on William: 9 'Insurance order is missing' = 4 new HCA admits w
 EXCLUSIONS 93 (excl_verify: zero at $0, nothing re-sent, $0 written off): 78 standing holds unchanged (AET12 x50, SIM01 x7, VACCN x4, HUM01 x7, UNI20 x10) + 15 NEW on run 1700186: BCBS PREF0283 MISSING PAYER DOC CONTROL NUM - pat17477267 x14 (DOS 7/28-8/17/2026, insbal $1,084.59) + pat48449 x1 (8/23/2026, $206). Same family as board bcbs-secondary-dcn-0910 (freq-1 cannot supply the Medicare DCN) - row updated, no rebill, William's pick still open.
 Facesheet sources: Drive hca/tmh/PCC/Claimocity drop - no new files since 9/11 18:00 UTC; Pam Gmail sweep (newer_than:3d) 0; board drops 0 new.
 Calls captured: none new (error string 'Payment reason codes are missing or do not balance.' on getclaimunbillablecharges recorded). Vocabulary unchanged (48).
-
 
 ## 2026-09-12 12:22 AM ET manual-fire columns run (04:23-05:45 UTC, ehpa cloud) — run entry, NO new calls captured
 Egress restored; login_cached ONE attempt ok. Board 0/0/132($23,748)/78 -> 0/0/15($2,607)/78 by list calls.
@@ -381,18 +390,15 @@ Egress restored; login_cached ONE attempt ok. Board 0/0/132($23,748)/78 -> 0/0/1
 
 # captured_calls additions — 2026-09-12 12:50 AM ET columns run (ehpa cloud copy, off-schedule fire, 04:20-05:30 UTC)
 
-
 ## Bootstrap (fresh container)
 - Repo NOT attached (github.com 403 "GitHub access to this repository is not enabled for this session") -> PAT clone of main 2526634 works (credentialed clone passes the proxy). Push still proxy-gated.
 - State bundle `workspace_state_2026-09-12_0400UTC.part01.b64` (8,484 chars, size-verified by the previous run) arrived with a SHA256 mismatch: the connector transfer re-types base64 in BOTH directions, so a size match proves nothing. RECOVERY RECIPE: base64-decode, then `zlib.decompressobj(16+MAX_WBITS)` in 64-byte chunks until it raises - everything decoded before the bad byte is a valid tar prefix; walk the 512-byte headers (verify each header checksum) and extract every member before the first bad header. 4 of 5 members came back (needs_facesheet_list.md, laterality_flag_log.md, void_rules.json, most of registers/columns_snapshot); registers/excl_balances lost and rebuilt. RULE: keep bundle parts small, and ALSO upload the key state files as plain text (a typo in markdown is harmless, a typo in gzip is fatal).
 - Drive overlay verification that works: exact size match + `python3 -m py_compile` (py) / `json.load` (json). elig271.py, columns_scan_0912.py, pseudonyms.json all transferred clean this run.
 - Missing required helpers (never rewritten from memory): columns_inspector2_0908.py, era_details_pull.py (not in repo main 2526634, not in any Drive folder).
 
-
 ## Parallel-run detection (new lesson)
 - A second copy of this routine ran in another container at the same time ("12:30am ET 9/12 backend run (manual fire after egress restore)") and wrote NO `run START.md` to chat history, so the 40-minute guard saw nothing. Its trace was the Insurance Refresh Board: rows for pat17477706 / pat17477708 / pat17477709 / pat17477710 with `updatedAt` 04:44:58Z. RULE: before any AMD write, query the board `items` by `amdid in [...]` for the run's patients and look at `updatedAt`; if another run touched them in the last hour, append checks with `update` (batch, if_version pinned) and keep AMD writes to the minimum. Also `manual_post.post` refuses over-apply beyond insbalance, so a duplicate write-off attempt by the other copy fails safely once the first one posted.
 - Board timestamps: write `at` from `date -u` (the parallel run stamped 05:05/05:10Z on writes made at 04:44Z).
-
 
 ## Unbilled — NEW error class: "Payment reason codes are missing or do not balance."
 - Anatomy (6 rows this run, all Pam-Garland-G SNF E/M visits 2024-2026): the claim to the NEXT payer in the visit insorder cannot be built because a posted payment on the charge has no `payreasonlist` (a $0 "Process Accepted" post from `era_clear.zero_post`, or a manually posted secondary payment) or its reason amounts do not sum to the charge. `gettxhistory` shows every payment with its `payreason` children (code/amount) - that is the diagnostic: for each non-void payment, paid + sum(payreason amounts) must equal the charge fee.
@@ -400,17 +406,14 @@ Egress restored; login_cached ONE attempt ok. Board 0/0/132($23,748)/78 -> 0/0/1
 - Case B (pat17469446, pat45049, pat44955, pat17470743): balance = Medicare PR2 coinsurance heading to a Medicaid-type crossover (WEL04 / HUM01 tertiary); blocked by $0 postings with no reasons (check numbers 072350607 / 072528333 / 152855566 / 176345603260114). pat45049 + pat44955 also carry MCAD $0 CO185 (rendering provider not enrolled = the Pam Garland-G FL Medicaid enrollment item). These belong to the Medicaid-residual Mode D worklist (D3 = timely E/M never adjudicated -> rebill on the plan's own sequence, not a write-off); NOT released (data still broken). Candidate fix for the cleaning task: `void_tx.void_payment(pid, cid, payid)` on the reason-code-less $0 line, then release; unknown yet whether voiding the $0 line moves AMD's next-payer pointer back one plan.
 - manual_post.py expects carriers.json in the rich form (carN -> [code, name]); the bootstrap keeps the simple form (code -> carN) for precheck.py. Patched manual_post.py to accept either shape (CAR = code -> carN). Same trap likely in other helpers that build `CAR = {v[0]: k ...}` - grep for it before running one from a fresh container.
 
-
 ## Stedi (headless, live key)
 - FL Medicaid `77027` and Capital Health Plan `95112` with name+DOB but no memberId: 77027 -> AAA 72 (member id required); 95112 -> AAA 79 "Invalid Participant Identification" (member id required); 95112 with the Medicare MBI as memberId -> AAA 72. So neither can be used as a name-based finder; discovery (`insurance-discovery/check/v1`) is the only name-based path and it did NOT list the CHP MA plan that the MBI lookup showed (code U HMO Medicare Risk, entity CAPITAL HEALTH PLAN, coordinationOfBenefits date). For a CHP member the member number must come from the facesheet/card.
 - MBI lookup (MBILUNOSSN) is sensitive to the surname string: tried the compound surname with and without the space and the two-word first name -> all AAA 72 for pat17477709 (75 y/o); AAA 72 for pat17477706 (75 y/o) too. Not proof of non-enrollment - a hyphen/maiden-name variant on the Medicare record defeats the no-SSN lookup.
 - `lookuppatient class="api" name="LAST, FIRST%"` used as the duplicate-chart check for brand-new Claimocity charts (found two unrelated same-name charts by DOB for pat17477710; no duplicates for the other three).
 
-
 ## Exclusions — claim run 1700186 (04:10 UTC 9/12, 148 claims $26,140, 2 dropped to paper, 15 exclusions)
 - 14 BCBS Medicare-secondary claims (pat17477267, Medicare paid 9/11/2026) + 1 BCBS CCM (pat48449) rejected PREF0283 MISSING PAYER DOC CONTROL NUM; extins already resubmissioncode=1/origrefnum blank - confirms the 9/11 lesson (freq-1 does not supply the Medicare DCN). Held, no rebill. The Medicare payments were posted 9/11 without the crossover DCN; a secondary claim built from a manual/ERA post that lacks the payer claim control number will keep rejecting - William/carrier item.
 - Exclusion balance re-verification (`gettxhistory` x21 charts, `registers/excl_balances_<stamp>.json`): 78 legacy rows, insurance balance $4,358.05, zero $0-balance completions.
-
 
 ## 2026-09-12 2:30 AM ET columns run (ehpa cloud scheduled copy, 06:16 UTC) - run entry, NO new calls captured
 Bootstrap: repo ATTACHED (origin/main dc2be54 checked out via the session clone; symlinked to /home/claude/effinger-billing-backend), AMD_OK (Stedi 403 headless = reachable), ONE login_cached success, no login lock. State bundle 2026-09-12_0523UTC restored CLEAN (sha ok, 4 members: needs_facesheet_list.md, laterality_flag_log.md, void_rules.json, registers/excl_balances_0520UTC). Missing required helpers (unchanged, never rewritten): columns_inspector2_0908.py, era_details_pull.py. Cross-container guard: newest START 0458 UTC (>40 min old, digest 0525 RUN COMPLETE) -> proceeded.
@@ -422,7 +425,6 @@ Facesheet sources: Drive hca/tmh/PCC/Claimocity drop/project root - no new patie
 Insurance entered: none. Dollars re-sent: $0. ERA: not a 7pm run. Write-offs: none. Calls captured: none new (one negative result recorded: address PATCH 'Address is required.' when original address1 is blank). Vocabulary unchanged (48).
 
 # captured_calls additions - 2026-09-12 1 AM ET columns run (ehpa cloud scheduled copy, 04:41-05:35 UTC)
-
 
 ## 2026-09-12 1 AM ET columns run (ehpa cloud scheduled copy)
 Bootstrap: repo ATTACHED (origin/main 2526634 checked out; GitHub API reachable through the session proxy), AMD_OK, ONE login_cached success, no login lock. State bundle 2026-09-12_0400UTC FAILED restore (base64 retyped through the connector lost 3 chars; sha refused) -> state reseeded from needs_facesheet_list_2026-09-12_0357UTC.md + void_rules.json; laterality log restarted empty. Missing required helpers (not in repo main, not on Drive): columns_inspector2_0908.py, era_details_pull.py.
@@ -437,7 +439,6 @@ TOOLKIT LESSON (repeat): the Drive connector returns base64 that must be retyped
 
 # captured_calls additions - 2026-09-12 3 AM ET columns run (ehpa cloud Code Routine, 07:07-07:50 UTC)
 
-
 ## 2026-09-12 3 AM ET columns run (ehpa cloud Code Routine, first firing of the enabled trigger)
 Bootstrap: repo ATTACHED (origin/main dc2be54 checked out as main; GitHub API 200 through the session proxy), AMD_OK (partnerlogin 200, pm-api-103 reachable, Stedi 403 = reachable headless), ONE login_cached success, no login lock. State bundle 2026-09-12_0523UTC RESTORED CLEAN (single 6.9 KB part, sha256 verified by ws_bundle unpack: needs_facesheet_list.md, laterality_flag_log.md, void_rules.json, registers/excl_balances) - first bundle restore that passed the sha check; the Drive overlays newer than the bundle (denials_scan.py, excl_verify_0912b.py, amd_shims, pseudonyms.json, 7 additions files) all size-matched and py_compile/json-loaded. working_denials.py (21 KB, chat session 06:41 UTC) deliberately NOT transcribed (over the ~20 KB transfer-safety line; it lives on Drive workspace mirror). Missing required helpers (not in repo main, not on Drive): columns_inspector2_0908.py, era_details_pull.py.
 LOSSLESS TRANSFER TRICK (new): a Drive download_file_content result larger than the tool-result limit is saved verbatim to the session's tool-results file on disk - base64-decode THAT file instead of retyping (captured_calls.md 38,237 bytes and api_vocabulary.json 42,545 bytes came across byte-exact this run). Small files still need the size + py_compile/json.load check.
@@ -447,14 +448,12 @@ UNBILLED 13 unchanged, all on William: 9 'Insurance order is missing' = the 4 ne
 EXCLUSIONS 93 (excl_verify_0912 re-run: 23 charts via gettxhistory, zero rows at $0, nothing re-sent, $0 written off): AET12 x50 (PREF0288 CPID x44 + PDTP0303 x6) waiting on the carrier-master confirmation; BCBS PREF0283 x15 (pat17477267 x14 $1,084.59, pat48449 x1 $206) waiting on William's DCN pick; SIM01 x7 pat17474046 $953 (rendering NPI); VACCN x4 pat17475970 $1,206 (12-byte auths); HUM01 x4 pat17471681 $172.90 + x3 pat17475099 $630; UNI20 x7 pat17473020 $180.45 + x3 pat17473232 $97.03 (deceased).
 Calls captured: none new. Vocabulary unchanged (48 calls). AMD writes this run: none.
 
-
 # captured_calls additions — 2026-09-10 1 PM ET columns run
 
 No new API calls captured (all four columns were steady standing holds).
 
 Observation (rule refinement, not a new call):
 - AET12 (Aetna Senior Supplemental Medigap secondaries), exclusion run 1700166: the rejection signature CHANGED between the 9am/11am reads (PREF0288 "invalid payer id/CPID = TIN") and the 1pm read (**PREF0264 MISS/INVD PAYER DOC CONTRL NUM**). Reading each run's getclaimexclusioncharges error text is the only window into whether a carrier-master CPID fix landed. PREF0264 on a Medigap secondary = missing Medicare crossover document-control number; freq-1 does not fix it, freq-7 only with William's payer ICN. So: after a carrier-master CPID fix, re-read the exclusion error before assuming the claim is now billable — the block can move from carrier-setup to missing-crossover-DCN.
-
 
 # captured_calls additions — 2026-09-10 3 PM ET columns run
 
@@ -468,7 +467,6 @@ API-behavior lessons (rule refinements, not new endpoints):
 
 Mirror note (3pm run, fresh container): GitHub push still proxy-blocked (403, repo not in this task's sources) — this run's commit is in Drive github mirror as 2026-09-10_1945UTC.bundle.b64 (BASE64 TEXT this time). The two earlier binary .bundle files in that folder download 121 bytes short via the Drive connector (pack corrupt on fetch: "bad object at offset 10723"), so the pending 0500/1104 commits could not be restored into this run's clone; both files were left in place (NOT pruned to two) because their commits exist nowhere else. Store future bundles as .b64 text.
 
-
 # captured_calls additions — 2026-09-10 5 PM ET columns run
 
 No new API calls captured (all four columns handled with registered calls; registry/vocabulary unchanged).
@@ -480,7 +478,6 @@ State confirmations (no rule changes):
 
 Mirror note (5pm): GitHub push proxy-gated (403, repo not in this task's sources). The .b64 bundle upload via the Drive connector truncated on the large inline blob this run, so commit 15906ec is preserved as this readable additions doc + the chat-history digest rather than a binary bundle; prior 1945 bundle still holds through the 3pm commit.
 
-
 # captured_calls additions — 2026-09-10 7 PM ET columns run (23:00 UTC)
 
 RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environment.
@@ -491,7 +488,6 @@ RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environ
 - Work done with the reachable connectors: board drops 0 new; Pam attachment sweep 0 new; standing 7 PM "current face sheets needed" email SENT to dreffinger@gmail.com (carried-forward list, caveated); run-report CSV delivered in-chat + copied to Drive bht hca facesheets; needs_facesheet_list.md rebuilt locally with this run's section.
 - Columns before -> after: NOT READ -> unchanged (no list calls possible). No calls captured (none reachable). Vocabulary/Postman unchanged.
 - Mirror legs this run: GitHub BLOCKED (no clone, so no bundle possible); Postman SKIPPED (collection unchanged); Drive DONE (this file + run report + digest).
-
 
 # captured_calls additions — 2026-09-10 nightly insurance cascade (fired 7:52 PM ET / 23:52 UTC, finished ~9 PM ET)
 
@@ -517,7 +513,6 @@ FIX FOR WILLIAM (unchanged from the 7 PM run): allow *.advancedmd.com, healthcar
 
 Mirror legs this run: GitHub push BLOCKED (bundle written); Postman SKIPPED (vocabulary unchanged); Drive DONE (this file, registry re-upload, bundle .b64, digest); project doc bundle refreshed.
 
-
 # captured_calls additions — 2026-09-11 00:25 UTC (8:25 PM ET) columns run
 
 RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environment.
@@ -528,11 +523,3 @@ RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environ
 - Columns before -> after: NOT READ -> unchanged (no list calls possible). No calls captured. Vocabulary / Postman unchanged.
 - Mirror legs this run: GitHub BLOCKED (no clone, so no bundle possible); Postman SKIPPED (collection unchanged); Drive DONE (this file + run report + digest).
 - WILLIAM: add *.advancedmd.com, healthcare.us.stedi.com, enrollments.us.stedi.com, and the GitHub repo to this scheduled task's authorized sources / org egress allowlist (Claude admin -> Capabilities). Every 2-hour run no-ops on the columns until then.
-
-## 2026-09-12 3 PM ET columns run (ehpa cloud Code Routine, 19:08-20:10 UTC) - run entry, NO new calls captured
-Bootstrap: repo ATTACHED (origin/main 3525dcd), AMD_OK, STEDI_CRED_OK (proxy credential), GitHub API 200, ONE login_cached success, no login lock. State bundle 2026-09-12_1736UTC did NOT survive the connector transfer (the base64 text arrived with a different length; no split point decoded) -> needs_facesheet_list.md and laterality_flag_log.md reseeded from the Drive plain-text snapshots (1205UTC / 1200UTC) plus the later digests; precheck_cache.json, patient_db/, era_details/ empty. Missing required helpers (unchanged): columns_inspector2_0908.py, era_details_pull.py.
-Columns (list calls, before -> after): Charge Review 0 -> 0 | Claim Inspector 1 batch / 2 visits -> 0 | Unbilled 0 -> 0 | Exclusions 15 -> 15 (BCBS PREF0283 on run 1700186: pat17477267 x14 $1,084.59, pat48449 x1 $206.00; balances re-verified via gettxhistory, none at $0, nothing re-sent, nothing written off).
-Inspector fix (proven shapes, insp_0912e_fix.py): batch 127700 = two 99232 hospital visits dated 9/10/2026 with Pattern 117065068 (Hospitalization From Date empty). Anchors via gettxhistory: pat17473658 -> its 99223 on 09/08/2026; pat17477710 -> its 99223 on 09/09/2026. updextrainsinfo hospitalizationfrom only (never hospitalizationto) -> extins ids 2792905 / 2792906; full-visit resave updvisitwithnewcharges onhcfa=1 -> both PENDING errorcount 0, batch gone from getclaiminspectorbatches on the re-list. pat17477710's visit bills CAP07 (the CHP plan added by the 7am run); pat17473658 bills FLO02 seq 1.
-Boards: 0 new drops, 0 William replies newer than the 1pm run; no board update file written (nothing new for his turn; the inbox re-apply bug would only duplicate checks[]). Facesheet folders: nothing newer than 09:04 UTC. Pam sweep newer_than:2d: 0.
-AMD writes: 2 updextrainsinfo + 2 updvisitwithnewcharges. Insurance entered: none. Dollars re-sent: $0. Write-offs: none. Not an ERA run. Vocabulary unchanged (50 calls).
-
