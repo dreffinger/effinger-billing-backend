@@ -925,6 +925,26 @@
     "address",
     "claimocity"
    ]
+  },
+  {
+   "id": "payments/write-off-codes",
+   "folder": "Payments & ERA",
+   "name": "Write-off codes (reference for addpayments wocode)",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml"
+   },
+   "body": "<!-- addpayments class=paymententry, writeoff code=\"{{wocode}}\" (manual_post.post(cid, carrier, 0, amount, wocode, note=...)). Codes William has taught, pick by situation:\nWOINS      untimely / never-adjudicated PRIMARY over 12 months from DOS (dated note)\nWOLATE     denied untimely by the payer (CO29/PI29) with no proof of timely filing\nWONCS      non-covered service (CO96/PR96; CCM billed Medicaid-primary)\nWOCAID2ND  dual: Medicaid secondary residual after Medicare / MA paid (crossover $0)\nWOMCAD     residual on a Medicaid-PRIMARY charge\nWOSMBAL    small balance, under $25 per patient\nWOBAD      patient no-pay / bad debt after one statement cycle (self-pay, no insurance)\nWOCOLL     only when the account is actually placed with a collection agency\nWOINSBANK  parking write-off later voided when the balance goes back to insurance\nWOCOUR     courtesy - NEVER across the board on Medicare/MA cost-sharing\nSTILL TO TEACH: the QMB/dual cost-sharing code name; any code for 'wrong payer, uncollectable'. -->",
+   "body_language": "xml",
+   "description": "Not a call: the write-off code vocabulary the runs pick from when posting addpayments write-offs. Source: William 9/7, 9/11 (insurances cleaning task), 9/12 (Cooks: no insurance -> patient -> patient no-pay). Add every code William teaches here and in practices/ehpa/rules.md; the run picks the best match and writes a dated note.",
+   "helper": "manual_post.post(cid, carrier, 0.0, amount, wocode, note=...)",
+   "captured": "9/12/2026",
+   "status": "reference",
+   "tags": [
+    "write-off",
+    "payments"
+   ]
   }
  ]
 }
