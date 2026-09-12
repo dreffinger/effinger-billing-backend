@@ -8,7 +8,7 @@ run STATE - needs_facesheet_list.md, laterality_flag_log.md, precheck_cache.json
 turns that state into text parts small enough for the Google Drive connector, and back.
 
   python3 tools/ws_bundle.py pack   [--out DIR] [--max-mb 40] [--state-only]   # writes DIR/workspace_state_<UTC>.partNN.b64 (+ .manifest.json)
-                                                                  #   --state-only skips *.py/*.sh (the attached repo restores helpers; keeps the bundle small enough to survive the connector)
+                                                                  #   --state-only skips *.py/*.sh and the registry/vocabulary/carrier files the repo + Drive restore (keeps the bundle small enough to survive the connector)
   python3 tools/ws_bundle.py unpack DIR [--force]                  # reassembles the newest set in DIR and extracts into the workspace
                                                                   #   (existing files that are NEWER than the archived copy are kept unless --force)
 Includes: *.py *.sh *.md *.json *.jsonl *.csv *.txt at the top level, tools/, patient_db/, era_details/, registers/.
@@ -23,6 +23,8 @@ TOP_EXT = ('.py', '.sh', '.md', '.json', '.jsonl', '.csv', '.txt')
 DIRS = ('tools', 'patient_db', 'era_details', 'registers')
 EXCLUDE_NAMES = {'.amd_cred.json', '.session.json', '.amd_login_lock', '.columns_run.lock', '.unpaid_audit.lock'}
 EXCLUDE_DIRS = {'secrets', '__pycache__', 'outbox', 'chat_history', '.git'}
+# --state-only also skips what the attached repo / Drive 'billing agent project files' already hold verbatim
+REPO_RESTORED = {'captured_calls.md', 'api_vocabulary.json', 'carriers.json', 'carriers_rich.json', 'facilities.json', 'MIRROR.md', 'rules.md'}
 
 
 def _want(path, rel):
@@ -50,7 +52,7 @@ def pack(out_dir, max_mb, state_only=False):
     with tarfile.open(fileobj=buf, mode='w:gz') as tar:
         for entry in sorted(os.listdir(WS)):
             p = os.path.join(WS, entry)
-            if state_only and entry.endswith(('.py', '.sh')):
+            if state_only and (entry.endswith(('.py', '.sh')) or entry in REPO_RESTORED):
                 continue
             if os.path.isfile(p) and entry.endswith(TOP_EXT) and _want(p, entry):
                 tar.add(p, arcname=entry); names.append(entry); total += os.path.getsize(p)
