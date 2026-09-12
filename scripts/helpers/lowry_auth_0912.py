@@ -11,7 +11,8 @@
 import amd, resave, freq1_visit, json, re, sys, time, datetime
 import xml.etree.ElementTree as ET
 amd.login_cached()
-PID = "17475970"; AUTH = open("lowry_auth_0912.txt").read().strip()   # the 12-byte VA auth from the board note (PHI-adjacent: kept out of the mirrored script); STAY = ["19453860", "19453861", "19453862"]; OLD = "19451315"
+PID = "17475970"; STAY = ["19453860", "19453861", "19453862"]; OLD = "19451315"
+AUTH = open("lowry_auth_0912.txt").read().strip()   # the 12-byte VA auth from the board note (kept out of the mirrored script)
 DRY = "--dry" in sys.argv
 LOG = open("lowry_auth_0912.log", "a")
 def L(m): print(m, flush=True); LOG.write("%s %s\n" % (datetime.datetime.utcnow().strftime("%H:%M:%S"), m)); LOG.flush()
