@@ -18,7 +18,7 @@ Excludes: secrets/, .amd_cred.json, .session.json, *.lock, .amd_login_lock, __py
 import os, sys, io, tarfile, base64, json, time, glob, hashlib
 
 WS = os.environ.get("WS", "/home/claude/unbilled")
-PART = 150_000          # chars per part - comfortably inside the connector's inline limits
+PART = 8000             # chars per part (80 lines x 100) - the size the Drive connector has round-tripped cleanly; 150k parts did not survive
 TOP_EXT = ('.py', '.sh', '.md', '.json', '.jsonl', '.csv', '.txt')
 DIRS = ('tools', 'patient_db', 'era_details', 'registers')
 EXCLUDE_NAMES = {'.amd_cred.json', '.session.json', '.amd_login_lock', '.columns_run.lock', '.unpaid_audit.lock'}
@@ -73,12 +73,15 @@ def pack(out_dir, max_mb, state_only=False):
     raw = buf.getvalue()
     b64 = base64.b64encode(raw).decode()
     os.makedirs(out_dir, exist_ok=True)
-    parts = []
+    parts = []; part_sha = {}
     for i in range(0, len(b64), PART):
         fn = os.path.join(out_dir, f'workspace_state_{stamp}.part{len(parts)+1:02d}.b64')
-        open(fn, 'w').write(b64[i:i + PART]); parts.append(os.path.basename(fn))
+        chunk = b64[i:i + PART]
+        # 100-char lines: the Drive connector round-trips wrapped text reliably (9/13/2026)
+        open(fn, 'w').write('\n'.join(chunk[j:j + 100] for j in range(0, len(chunk), 100)))
+        parts.append(os.path.basename(fn)); part_sha[parts[-1]] = hashlib.sha256(chunk.encode()).hexdigest()
     manifest = {'stamp': stamp, 'files': len(names), 'raw_bytes': total, 'tar_gz_bytes': len(raw),
-                'sha256': hashlib.sha256(raw).hexdigest(), 'parts': parts, 'members': names[:400]}
+                'sha256': hashlib.sha256(raw).hexdigest(), 'parts': parts, 'part_sha256': part_sha, 'members': names[:400]}
     mf = os.path.join(out_dir, f'workspace_state_{stamp}.manifest.json')
     json.dump(manifest, open(mf, 'w'), indent=1)
     print(f'packed {len(names)} files ({total/1024:.0f} KB raw -> {len(raw)/1024:.0f} KB gz) into {len(parts)} part(s): {parts[0]} .. {parts[-1]}')
@@ -95,14 +98,18 @@ def unpack(src_dir, force=False):
         print('unpack: no workspace_state_*.partNN.b64 files in', src_dir); return 1
     stamp = sorted(sets)[-1]
     parts = sorted(sets[stamp])
-    b64 = ''.join(open(p).read().strip() for p in parts)
+    chunks = {os.path.basename(p): open(p).read().replace('\n', '').strip() for p in parts}
+    b64 = ''.join(chunks[os.path.basename(p)] for p in parts)
     raw = base64.b64decode(b64)
     mf = os.path.join(src_dir, stamp + '.manifest.json')
     if os.path.exists(mf):
-        want = json.load(open(mf)).get('sha256')
+        man = json.load(open(mf)); want = man.get('sha256')
         got = hashlib.sha256(raw).hexdigest()
         if want and want != got:
-            print('unpack: SHA256 MISMATCH - a part is missing or truncated; refusing to extract'); return 2
+            bad = [n for n, h in (man.get('part_sha256') or {}).items() if hashlib.sha256(chunks.get(n, '').encode()).hexdigest() != h]
+            print('unpack: SHA256 MISMATCH - a part is missing, truncated or altered; refusing to extract. bad parts:', bad or 'unknown (manifest has no per-part sha)')
+            print('        recovery: zlib-decompress up to the CRC error and take the intact tar members (see 9/13/2026 7pm ET run), then overlay the previous sha-clean set')
+            return 2
     kept = restored = 0
     with tarfile.open(fileobj=io.BytesIO(raw), mode='r:gz') as tar:
         for m in tar.getmembers():
