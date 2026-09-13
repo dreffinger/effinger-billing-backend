@@ -1,0 +1,291 @@
+[
+ {
+  "pid": 17472008,
+  "vid": 19387998,
+  "cid": "22458504",
+  "cpt": "99223",
+  "dos": "08/14/2024",
+  "carrier": "WEL04",
+  "planned_wo": 68.95,
+  "move": "moved 68.95 -> {'patbalance': '0.00', 'insbalance': '68.95', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:02\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472138,
+  "vid": 19389779,
+  "cid": "22460724",
+  "cpt": "99223",
+  "dos": "09/10/2024",
+  "carrier": "CAP07",
+  "planned_wo": 3.45,
+  "move": "moved 3.45 -> {'patbalance': '0.00', 'insbalance': '3.45', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:57:10\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472144,
+  "vid": 19390058,
+  "cid": "22461248",
+  "cpt": "99223",
+  "dos": "09/13/2024",
+  "carrier": "CAP07",
+  "planned_wo": 3.45,
+  "move": "moved 3.45 -> {'patbalance': '0.00', 'insbalance': '3.45', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:18\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472099,
+  "vid": 19389228,
+  "cid": "22459886",
+  "cpt": "99223",
+  "dos": "09/06/2024",
+  "carrier": "CAP07",
+  "planned_wo": 3.45,
+  "move": "moved 4.95 -> {'patbalance': '0.00', 'insbalance': '3.45', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:26\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472099,
+  "vid": 19389228,
+  "cid": "22459887",
+  "cpt": "99497",
+  "dos": "09/06/2024",
+  "carrier": "CAP07",
+  "planned_wo": 1.5,
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:29\"><Resu"
+  ]
+ },
+ {
+  "pid": 20393,
+  "vid": 19390629,
+  "cid": "22461790",
+  "cpt": "99223",
+  "dos": "09/18/2024",
+  "carrier": "CAP07",
+  "planned_wo": 141.07,
+  "move": "moved 200.73 -> {'patbalance': '0.00', 'insbalance': '141.07', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:38\"><Resu"
+  ]
+ },
+ {
+  "pid": 20393,
+  "vid": 19390629,
+  "cid": "22461791",
+  "cpt": "99497",
+  "dos": "09/18/2024",
+  "carrier": "CAP07",
+  "planned_wo": 59.66,
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:40\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472182,
+  "vid": 19390687,
+  "cid": "22461859",
+  "cpt": "99223",
+  "dos": "09/21/2024",
+  "carrier": "CAP07",
+  "planned_wo": 141.07,
+  "move": "moved 141.07 -> {'patbalance': '0.00', 'insbalance': '141.07', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:57:47\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472089,
+  "vid": 19389109,
+  "cid": "22459716",
+  "cpt": "99223",
+  "dos": "09/03/2024",
+  "carrier": "CAP07",
+  "planned_wo": 3.45,
+  "move": "moved 3.45 -> {'patbalance': '0.00', 'insbalance': '3.45', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:57:56\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472179,
+  "vid": 19390638,
+  "cid": "22461800",
+  "cpt": "99223",
+  "dos": "09/24/2024",
+  "carrier": "CAP07",
+  "planned_wo": 141.07,
+  "move": "moved 141.07 -> {'patbalance': '0.00', 'insbalance': '141.07', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:58:03\"><Resu"
+  ]
+ },
+ {
+  "pid": 22194,
+  "vid": 19389380,
+  "cid": "22460028",
+  "cpt": "99223",
+  "dos": "09/08/2024",
+  "carrier": "CAP07",
+  "planned_wo": 141.07,
+  "move": "moved 200.73 -> {'patbalance': '0.00', 'insbalance': '141.07', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:12\"><Resu"
+  ]
+ },
+ {
+  "pid": 22194,
+  "vid": 19389380,
+  "cid": "22460029",
+  "cpt": "99497",
+  "dos": "09/08/2024",
+  "carrier": "CAP07",
+  "planned_wo": 59.66,
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:14\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472180,
+  "vid": 19390640,
+  "cid": "22461802",
+  "cpt": "99223",
+  "dos": "09/24/2024",
+  "carrier": "CAP07",
+  "planned_wo": 94.52,
+  "move": "moved 94.52 -> {'patbalance': '0.00', 'insbalance': '94.52', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:22\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472185,
+  "vid": 19390962,
+  "cid": "22462482",
+  "cpt": "99223",
+  "dos": "09/26/2024",
+  "carrier": "CAP07",
+  "planned_wo": 94.52,
+  "move": "moved 133.97 -> {'patbalance': '0.00', 'insbalance': '94.52', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:58:31\"><Resu"
+  ]
+ },
+ {
+  "pid": 17472185,
+  "vid": 19390962,
+  "cid": "22462483",
+  "cpt": "99497",
+  "dos": "09/26/2024",
+  "carrier": "CAP07",
+  "planned_wo": 39.45,
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:58:32\"><Resu"
+  ]
+ },
+ {
+  "pid": 17469423,
+  "vid": 19364603,
+  "cid": "22430638",
+  "cpt": "99223",
+  "dos": "09/06/2023",
+  "carrier": "UNI20",
+  "planned_wo": 172.78,
+  "move": "moved 172.78 -> {'patbalance': '0.00', 'insbalance': '172.78', 'insorder': '2'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:40\"><Resu"
+  ]
+ },
+ {
+  "pid": 17469639,
+  "vid": 19367533,
+  "cid": "22434240",
+  "cpt": "99223",
+  "dos": "10/17/2023",
+  "carrier": "UHCMA",
+  "planned_wo": 172.78,
+  "move": "moved 172.78 -> {'patbalance': '0.00', 'insbalance': '172.78', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:47\"><Resu"
+  ]
+ },
+ {
+  "pid": 20670,
+  "vid": 19374073,
+  "cid": "22442055",
+  "cpt": "99308",
+  "dos": "01/11/2024",
+  "carrier": "FLO02",
+  "planned_wo": 66.7,
+  "move": "moved 66.70 -> {'patbalance': '0.00', 'insbalance': '66.70', 'insorder': '1'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:58:57\"><Resu"
+  ]
+ },
+ {
+  "pid": 24611,
+  "vid": 19376555,
+  "cid": "22444737",
+  "cpt": "99308",
+  "dos": "02/14/2024",
+  "carrier": "SUN01",
+  "planned_wo": 66.7,
+  "move": "moved 66.70 -> {'patbalance': '0.00', 'insbalance': '66.70', 'insorder': '1,2'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:59:04\"><Resu"
+  ]
+ },
+ {
+  "pid": 12182947,
+  "vid": 19380241,
+  "cid": "22448653",
+  "cpt": "99308",
+  "dos": "04/02/2024",
+  "carrier": "SUN01",
+  "planned_wo": 66.7,
+  "move": "moved 66.70 -> {'patbalance': '0.00', 'insbalance': '66.70', 'insorder': '1,2,3'}",
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5xbnb\" lst=\"09/13/2026 00:59:11\"><Resu"
+  ]
+ },
+ {
+  "pid": 23493,
+  "vid": 19400562,
+  "cid": "22474633",
+  "cpt": "99309",
+  "dos": "02/11/2025",
+  "carrier": "HUM01",
+  "planned_wo": 141.0,
+  "post": [
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-wsrgx\" lst=\"09/13/2026 00:59:13\"><Resu"
+  ]
+ }
+]
