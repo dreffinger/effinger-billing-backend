@@ -168,7 +168,7 @@ STANDING RULE (William 9/10/2026): at the END of every nightly run or chat sessi
 - Claim Inspector 117065068 "Hospitalization From Date in the Extra Info": set `hospitalizationfrom` = most-recent 99223 admission (≤45 days) via `updextrainsinfo`, then full-echo resave `onhcfa=1`; the referral-plan `preauth` survives the resave if echoed. Re-inspect → clears.
 
 ### Coding / payer
-- D-SNP fix (Calder): UHC Dual Complete member id (on the chart) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
+- D-SNP fix (Calder): UHC Dual Complete member id ((member id on the chart)) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
 - VA auth NPV087: must be VA/UC + exactly 12 bytes; a facesheet value like VA90108366827 (13 bytes) is invalid even though the hospital printed it — needs Optum VA CCN 877-881-7618, never invent.
 
 
@@ -212,6 +212,18 @@ This file now carries the 9/10 additions (learnings, 11 PM ET run, 1:30 AM night
 ### Results 9/10 overnight
 - WOINSBANK reversal (5/31/26 bulk write-off undone, wo_reversal_post force-post fix): 5,166 write-offs reversed, $393,894 ERA posted, 0 errors.
 - Unpaid audit, 12 cohorts, 1,001 patients / $528K: 1,895 visits rebilled = $286,166; 18 wrong-payer patients moved to their real plan; 9 wrong MBIs corrected; $0 written off; 163 patients / $145K parked (62 AAA, 60 inactive → discovery pass next, 28 DOD confirm, 13 wrong-payer no-id).
+
+## captured_calls additions - 2026-09-13 19:35 UTC (3 PM ET slot, ehpa cloud Code Routine, prompt v5)
+No new call shapes this run (vocabulary 50 unchanged). Lessons:
+- `getclaiminspectorcharges` truncates each `<error name="...">` after ~40 chars with "..." - parse `Pattern NNNN` from the head and the code list from `code\(s\) X`; the tail ("defines an unspecified...") is not there. insp_0913_fix.py is the batch-generic Claim Inspector worked example (arg = batch id, --dry): admission anchor (own 99223 or most recent 99223 within 45 days), updextrainsinfo hospitalizationfrom only, full-visit resave onhcfa=1, Pattern 20389 reorder (external-cause/sequela/Z16 behind the condition; pat17472546's S81.801S-only same-stay visits get M86.9 in front), Pattern 11256 bypass + laterality log, then a second pass that re-lists and bypasses advisories with the fresh ids (34 admission dates + 3 dx edits + 6 bypasses cleared 39 -> 0 in one pass, 0 held).
+- Claimocity-fed hospital visits land on the patient's MAIN referral plan; for a VA CCN stay the visit must be resaved with `refplan="<that stay's rplan>"` (updvisitwithcharges full echo) so the claim prints that plan's auth - the visit attr `preauth` reads back empty, the auth lives on the plan (getdemographic refplanlist). Writing refplan without preauth left the main plan's own preauth untouched this time.
+- A resave re-inspects and can briefly re-list the batch with 0 error rows; re-listing a few seconds later shows it gone.
+
+## captured_calls additions - 2026-09-13 21:40 UTC (5 PM ET slot, ehpa cloud Code Routine, prompt v5)
+No new call shapes this run (vocabulary 50 unchanged). Lessons:
+- Fresh-container restore: the Drive connector's download results are recoverable verbatim from the session transcript JSONL (tools/bootstrap/restore_from_transcript.py <outdir> <title-regex>) - the 9 bundle files plus the loose helpers were restored that way with no retyping; ws_bundle unpack sha-clean. The state bundle does NOT carry era_details/ - era_step_b_0913.py re-pulls every unposted check's details in ~1 minute, so no run depends on the cache surviving.
+- Board reads: `read_db` query with where [["updated", ">", "<iso>"]] on the items collection answers in one call which rows changed since the last run - cheaper than paging 273 rows against the size cap.
+- Columns 0/0/0/59 and ERA 40 / $9,748.45 unchanged for the 6th consecutive pass; no claim run has fired since 1700188 (9/12 21:09 UTC).
 
 # captured_calls additions - 2026-09-13 03:35 UTC (11 PM ET 9/12 slot) ehpa cloud columns run
 
@@ -612,9 +624,3 @@ No new AMD or Stedi call captured. Calls exercised (all already in the registry)
 Columns 0/0/0/15 before and after; the 15 exclusions are the BCBS PREF0283 (missing payer document control number) secondaries held for William's DCN decision; balances re-verified, nothing re-sent.
 Bootstrap note: the Drive state bundle (13 KB base64) again could not be transcribed through the connector; the plain-text needs_facesheet_list snapshot (4.7 KB) and pseudonyms.json (3.3 KB) transcribed byte-exact. Small plain-text snapshots are the reliable restore path; bundle parts should stay under ~5 KB each if they must pass through the model.
 Board note: the Insurance Refresh Board re-applied board_updates_2026-09-12T2330Z.json on every open without recording it in meta/drive_sync.applied (era-manual-post-0912 now carries 7 identical checks) - append de-duplication and the applied registry need a look in a chat session.
-
-## captured_calls additions - 2026-09-13 19:35 UTC (3 PM ET slot, ehpa cloud Code Routine, prompt v5)
-No new call shapes this run (vocabulary 50 unchanged). Lessons:
-- `getclaiminspectorcharges` truncates each `<error name="...">` after ~40 chars with "..." - parse `Pattern NNNN` from the head and the code list from `code\(s\) X`; the tail ("defines an unspecified...") is not there. insp_0913_fix.py is the batch-generic Claim Inspector worked example (arg = batch id, --dry): admission anchor (own 99223 or most recent 99223 within 45 days), updextrainsinfo hospitalizationfrom only, full-visit resave onhcfa=1, Pattern 20389 reorder (external-cause/sequela/Z16 behind the condition; pat17472546's S81.801S-only same-stay visits get M86.9 in front), Pattern 11256 bypass + laterality log, then a second pass that re-lists and bypasses advisories with the fresh ids (34 admission dates + 3 dx edits + 6 bypasses cleared 39 -> 0 in one pass, 0 held).
-- Claimocity-fed hospital visits land on the patient's MAIN referral plan; for a VA CCN stay the visit must be resaved with `refplan="<that stay's rplan>"` (updvisitwithcharges full echo) so the claim prints that plan's auth - the visit attr `preauth` reads back empty, the auth lives on the plan (getdemographic refplanlist). Writing refplan without preauth left the main plan's own preauth untouched this time.
-- A resave re-inspects and can briefly re-list the batch with 0 error rows; re-listing a few seconds later shows it gone.
