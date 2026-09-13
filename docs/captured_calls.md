@@ -224,6 +224,13 @@ No new call shapes this run (vocabulary 50 unchanged). Lessons:
 - Fresh-container restore: the Drive connector's download results are recoverable verbatim from the session transcript JSONL (tools/bootstrap/restore_from_transcript.py <outdir> <title-regex>) - the 9 bundle files plus the loose helpers were restored that way with no retyping; ws_bundle unpack sha-clean. The state bundle does NOT carry era_details/ - era_step_b_0913.py re-pulls every unposted check's details in ~1 minute, so no run depends on the cache surviving.
 - Board reads: `read_db` query with where [["updated", ">", "<iso>"]] on the items collection answers in one call which rows changed since the last run - cheaper than paging 273 rows against the size cap.
 - Columns 0/0/0/59 and ERA 40 / $9,748.45 unchanged for the 6th consecutive pass; no claim run has fired since 1700188 (9/12 21:09 UTC).
+- PHI gate: the 9/10 D-SNP line above carried a raw UHC member id, which BLOCKED the mirror every run; it now reads "(member id on the chart)" - the block is gone for good.
+
+## captured_calls additions - 2026-09-13 23:15 UTC (7 PM ET slot, ehpa cloud Code Routine, prompt v5)
+No new call shapes this run (vocabulary unchanged). Lessons:
+- State bundle integrity: Drive part files can arrive with a duplicated base64 quantum (workspace_state_2026-09-13_2121UTC.part06 line 50 = 104 chars); ws_bundle unpack refuses on SHA mismatch. Recovery = decompress the gzip stream up to the CRC error and take every tar member that is intact (15 of 32), then overlay the previous sha-clean set (1932UTC) for the rest. ws_bundle.py now records a sha256 per part in the manifest and names the bad part on unpack.
+- Columns 0/0/0/59 and ERA 40 / $9,748.45 unchanged for the 7th consecutive pass; no claim run has fired since 1700188 (9/12 21:09 UTC).
+- precheck 'not found on Medicare: 72' on a chart whose last name carries a suffix (JR) is a Stedi name-match miss - AMD's own 271 on the plan answers ACTIVE; check it before flagging.
 
 # captured_calls additions - 2026-09-13 03:35 UTC (11 PM ET 9/12 slot) ehpa cloud columns run
 
