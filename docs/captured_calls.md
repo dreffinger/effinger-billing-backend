@@ -530,3 +530,11 @@ No new AMD or Stedi call captured. Calls exercised (all already in the registry)
 Columns 0/0/0/15 before and after; the 15 exclusions are the BCBS PREF0283 (missing payer document control number) secondaries held for William's DCN decision; balances re-verified, nothing re-sent.
 Bootstrap note: the Drive state bundle (13 KB base64) again could not be transcribed through the connector; the plain-text needs_facesheet_list snapshot (4.7 KB) and pseudonyms.json (3.3 KB) transcribed byte-exact. Small plain-text snapshots are the reliable restore path; bundle parts should stay under ~5 KB each if they must pass through the model.
 Board note: the Insurance Refresh Board re-applied board_updates_2026-09-12T2330Z.json on every open without recording it in meta/drive_sync.applied (era-manual-post-0912 now carries 7 identical checks) - append de-duplication and the applied registry need a look in a chat session.
+
+# captured_calls additions - 2026-09-13 03:35 UTC (11 PM ET 9/12 slot) ehpa cloud columns run
+
+## 2026-09-12 11 PM ET run (ehpa cloud Code Routine, 03:08-03:50 UTC 9/13) - run entry
+No new AMD or Stedi call captured. Calls exercised (all already in the registry): login (one attempt, no lock), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges (run 1700186), gettxhistory (pat17477267, pat48449).
+Columns 0/0/0/15 before and after; the 15 exclusions are the BCBS PREF0283 (missing payer document control number) secondaries held for William's DCN decision; balances re-verified (excl_verify_0913b, register excl_balances_2026-09-13_0330UTC.json), nothing re-sent.
+Claim-run note: the newest claim run on getclaimrunstatus is still 1700186 (2026-09-11 21:10 UTC) - no claim run fired on 9/12, so every freq-1 rebill queued on 9/12 (AET12 x50, Orme x7, Abernathy x2, Marlowe x9, Lowry x4) is still waiting for the next run.
+Bootstrap note: the 9/13 0119UTC state bundle (6.3 KB single part) transcribed byte-exact this run (sha256 verified by ws_bundle unpack) - a one-part bundle under ~7 KB passes through the connector; the repo (main f3dad62) supplied all helpers except columns_inspector2_0908.py and era_details_pull.py (still missing from repo and Drive, not rewritten).
