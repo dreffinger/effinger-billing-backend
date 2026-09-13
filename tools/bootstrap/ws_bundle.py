@@ -7,7 +7,8 @@ run STATE - needs_facesheet_list.md, laterality_flag_log.md, precheck_cache.json
 271 archive), era_details/ (the ERA cache), audit/checkpoint json - was lost between runs. This tool
 turns that state into text parts small enough for the Google Drive connector, and back.
 
-  python3 tools/ws_bundle.py pack   [--out DIR] [--max-mb 40]      # writes DIR/workspace_state_<UTC>.partNN.b64 (+ .manifest.json)
+  python3 tools/ws_bundle.py pack   [--out DIR] [--max-mb 40] [--state-only]   # writes DIR/workspace_state_<UTC>.partNN.b64 (+ .manifest.json)
+                                                                  #   --state-only skips *.py/*.sh and the registry/vocabulary/carrier files the repo + Drive restore (keeps the bundle small enough to survive the connector)
   python3 tools/ws_bundle.py unpack DIR [--force]                  # reassembles the newest set in DIR and extracts into the workspace
                                                                   #   (existing files that are NEWER than the archived copy are kept unless --force)
 Includes: *.py *.sh *.md *.json *.jsonl *.csv *.txt at the top level, tools/, patient_db/, era_details/, registers/.
@@ -22,6 +23,8 @@ TOP_EXT = ('.py', '.sh', '.md', '.json', '.jsonl', '.csv', '.txt')
 DIRS = ('tools', 'patient_db', 'era_details', 'registers')
 EXCLUDE_NAMES = {'.amd_cred.json', '.session.json', '.amd_login_lock', '.columns_run.lock', '.unpaid_audit.lock'}
 EXCLUDE_DIRS = {'secrets', '__pycache__', 'outbox', 'chat_history', '.git'}
+# --state-only also skips what the attached repo / Drive 'billing agent project files' already hold verbatim
+REPO_RESTORED = {'captured_calls.md', 'api_vocabulary.json', 'carriers.json', 'carriers_rich.json', 'facilities.json', 'MIRROR.md', 'rules.md'}
 
 
 def _want(path, rel):
@@ -41,7 +44,7 @@ def _want(path, rel):
     return True
 
 
-def pack(out_dir, max_mb):
+def pack(out_dir, max_mb, state_only=False):
     stamp = time.strftime('%Y-%m-%d_%H%MUTC', time.gmtime())
     buf = io.BytesIO()
     total = 0
@@ -49,6 +52,8 @@ def pack(out_dir, max_mb):
     with tarfile.open(fileobj=buf, mode='w:gz') as tar:
         for entry in sorted(os.listdir(WS)):
             p = os.path.join(WS, entry)
+            if state_only and (entry.endswith(('.py', '.sh')) or entry in REPO_RESTORED):
+                continue
             if os.path.isfile(p) and entry.endswith(TOP_EXT) and _want(p, entry):
                 tar.add(p, arcname=entry); names.append(entry); total += os.path.getsize(p)
         for d in DIRS:
@@ -59,6 +64,8 @@ def pack(out_dir, max_mb):
                 dirs[:] = [x for x in dirs if x not in EXCLUDE_DIRS]
                 for f in files:
                     fp = os.path.join(root, f); rel = os.path.relpath(fp, WS)
+                    if state_only and (rel.startswith('tools' + os.sep) or f.endswith(('.py', '.sh'))):
+                        continue
                     if _want(fp, rel):
                         if total + os.path.getsize(fp) > max_mb * 1024 * 1024:
                             continue
@@ -121,7 +128,7 @@ if __name__ == '__main__':
     if args[0] == 'pack':
         out = args[args.index('--out') + 1] if '--out' in args else os.path.join(WS, 'outbox')
         mb = int(args[args.index('--max-mb') + 1]) if '--max-mb' in args else 40
-        pack(out, mb)
+        pack(out, mb, state_only='--state-only' in args)
     else:
         if len(args) < 2:
             print('unpack needs a directory'); sys.exit(2)
