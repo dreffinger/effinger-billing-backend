@@ -222,6 +222,15 @@ Lessons:
 - ERA Center 40 checks / $9,748.45: three new $0 checks appeared (1051642 AMB03, 1051643 AMB03, 1051644 SUN01 X319570945, deposit date 2026-09-14) - all denial-only (CO29/CO45/CO96/OA23/CO22/CO26/CO16). era_clear classifies them 'denial with write-off (cascade handles)' and holds them; they belong to the Working Denials rebuild ('rerun'), never to a manual post.
 - era_fallback_0913b register de-dup: 13 lines skipped as already settled in registers/era_manual_register.json (restored from the repo's practices/ehpa/registers copy) - the register must be copied back into registers/ on every fresh container or the fallback would re-examine settled lines.
 
+# captured_calls additions - 2026-09-13 13:55 UTC (9am ET slot, ehpa cloud Code Routine)
+
+No new call shapes this run (vocabulary unchanged, 50 calls). Calls exercised: login (one attempt), getclaimcenteroverview x2, getreviewcharges x2, getclaiminspectorbatches x2, getclaimunbillablecharges x2, getclaimrunstatus x2, getclaimexclusioncharges (69 runs x2), gettxhistory x15 (excl_verify_0913c), POST /api/era/locks/release-expired, GET /api/era/checks x2 (40), GET /api/era/checkdetails x40, posterapayments (era_post --all-unposted, 0 postable).
+
+Lessons:
+- Fresh-container restore, third confirmation: the hand-typed copy of the three 9 KB bundle parts failed the sha256 again; the regex over this session's transcript JSONL (/root/.claude/projects/<cwd-slug>/*.jsonl, matching {"content":"<b64>",...,"title":"workspace_state_<stamp>.partNN.b64"}) recovered the exact strings and ws_bundle.py unpack passed (12 files). The pseudonyms.json and captured_calls.md connector results were recovered the same way (captured_calls.md from the oversized-result file the tool saved under tool-results/). This is the standing restore method; do not retype base64.
+- ERA Center steady state since the 3am run: 40 checks / $9,748.45, all held by era_clear for unvalidated money lines (reversal / orphan / residual-zero) or $0 denial-only lines. Nothing changes until the reversal pipeline runs, AMD identifies the orphan visits, or 'rerun' loads the 3 $0 ERAs onto the Working Denials board.
+- Working Denials commands stay 'queued' on the board until William opens it and it applies the pending denials_updates_2026-09-13T0835Z.json - a run must not re-execute commands whose result file is already in board inbox.
+
 # captured_calls additions - 2026-09-13 03:35 UTC (11 PM ET 9/12 slot) ehpa cloud columns run
 
 ## 2026-09-12 11 PM ET run (ehpa cloud Code Routine, 03:08-03:50 UTC 9/13) - run entry
