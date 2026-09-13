@@ -168,7 +168,7 @@ STANDING RULE (William 9/10/2026): at the END of every nightly run or chat sessi
 - Claim Inspector 117065068 "Hospitalization From Date in the Extra Info": set `hospitalizationfrom` = most-recent 99223 admission (≤45 days) via `updextrainsinfo`, then full-echo resave `onhcfa=1`; the referral-plan `preauth` survives the resave if echoed. Re-inspect → clears.
 
 ### Coding / payer
-- D-SNP fix (Calder): UHC Dual Complete member id (redacted, 9 digits) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
+- D-SNP fix (Calder): UHC Dual Complete member id (on the chart) stays the SAME across plan years (2025-02-01→ and 2026); Stedi MBI lookup shows the MA plan history (other/U entity + coordinationOfBenefits date). Bill the D-SNP primary + Medicaid secondary (insorder "primaryseq,medicaidseq"); end-date straight-Medicare + stale plans the day before the D-SNP begin. Straight Medicare on a D-SNP member denies CO24.
 - VA auth NPV087: must be VA/UC + exactly 12 bytes; a facesheet value like VA90108366827 (13 bytes) is invalid even though the hospital printed it — needs Optum VA CCN 877-881-7618, never invent.
 
 
@@ -212,6 +212,15 @@ This file now carries the 9/10 additions (learnings, 11 PM ET run, 1:30 AM night
 ### Results 9/10 overnight
 - WOINSBANK reversal (5/31/26 bulk write-off undone, wo_reversal_post force-post fix): 5,166 write-offs reversed, $393,894 ERA posted, 0 errors.
 - Unpaid audit, 12 cohorts, 1,001 patients / $528K: 1,895 visits rebilled = $286,166; 18 wrong-payer patients moved to their real plan; 9 wrong MBIs corrected; $0 written off; 163 patients / $145K parked (62 AAA, 60 inactive → discovery pass next, 28 DOD confirm, 13 wrong-payer no-id).
+
+# captured_calls additions - 2026-09-13 11:50 UTC (7am ET slot, ehpa cloud Code Routine)
+
+No new call shapes this run (vocabulary unchanged, 50 calls). Calls exercised: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges (69 runs), gettxhistory x15 (excl_verify_0913c), POST /api/era/locks/release-expired, GET /api/era/checks (40), GET /api/era/checkdetails x40, posterapayments (era_post --all-unposted, 0 postable).
+
+Lessons:
+- STATE BUNDLE RESTORE THAT WORKS in a fresh container: do NOT retype the connector's base64. The Google Drive download_file_content result is stored verbatim in this session's transcript JSONL under /root/.claude/projects/<cwd-slug>/*.jsonl; a regex over that file for {"content":"<b64>","id":..,"title":"workspace_state_<stamp>.partNN.b64"} yields the exact string; base64-decode once -> the .b64 part file; ws_bundle.py unpack then passes its sha256 (0959UTC set: 8 files restored). The same trick recovers any text file the connector returned inline. Hand retyping the same two 11 KB parts failed the SHA on this run and on 4 of the 5 prior runs.
+- ERA Center 40 checks / $9,748.45: three new $0 checks appeared (1051642 AMB03, 1051643 AMB03, 1051644 SUN01 X319570945, deposit date 2026-09-14) - all denial-only (CO29/CO45/CO96/OA23/CO22/CO26/CO16). era_clear classifies them 'denial with write-off (cascade handles)' and holds them; they belong to the Working Denials rebuild ('rerun'), never to a manual post.
+- era_fallback_0913b register de-dup: 13 lines skipped as already settled in registers/era_manual_register.json (restored from the repo's practices/ehpa/registers copy) - the register must be copied back into registers/ on every fresh container or the fallback would re-examine settled lines.
 
 # captured_calls additions - 2026-09-13 03:35 UTC (11 PM ET 9/12 slot) ehpa cloud columns run
 
