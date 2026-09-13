@@ -213,6 +213,16 @@ This file now carries the 9/10 additions (learnings, 11 PM ET run, 1:30 AM night
 - WOINSBANK reversal (5/31/26 bulk write-off undone, wo_reversal_post force-post fix): 5,166 write-offs reversed, $393,894 ERA posted, 0 errors.
 - Unpaid audit, 12 cohorts, 1,001 patients / $528K: 1,895 visits rebilled = $286,166; 18 wrong-payer patients moved to their real plan; 9 wrong MBIs corrected; $0 written off; 163 patients / $145K parked (62 AAA, 60 inactive → discovery pass next, 28 DOD confirm, 13 wrong-payer no-id).
 
+# captured_calls additions - 2026-09-13 15:15 UTC (11am ET slot, ehpa cloud Code Routine)
+
+No new call shapes this run (vocabulary unchanged, 50 calls). Calls exercised: login (ONE attempt - FAILED, see below); nothing else reached AMD.
+
+Lessons:
+- LOGIN FAILURE 15:10:55 UTC, fault -2147220480 "The system could not log you on. Make sure that your login name, office key, and password are correct." Cause: the run extracted the POI0712 password from the session transcript JSONL with a plain regex ("reset the password to (\S+?) and let me know"); the transcript ALSO contains the Bash command that carried that regex, so the last match was the regex's own source text "(\S+?)" (7 bytes, escaped) and that junk string was written to .amd_cred.json and sent to AMD. The real password (12 alphanumeric chars, Gmail thread 1866ce7e2233e4c0) is unchanged - the 9am run logged in with it 90 minutes earlier. Per the one-attempt rule nothing was retried; the columns, board AMD actions and ERA posting were skipped for this run; William was pushed a notification.
+- STANDING FIX: write .amd_cred.json ONLY with tools/amd_cred_from_transcript.py (repo tools/bootstrap/). It accepts only 8-32 alphanumeric candidates, takes the most common match across the whole transcript (the thread quotes the line ~18 times), prints only length + sha8, and exits 2 (do not log in) when nothing unambiguous is found. Verified this run: len 12, seen 18. A credential check before login is cheap; a failed login costs the whole run.
+- The same self-match hazard applies to ANY regex run over the transcript JSONL (bundle parts, pseudonyms, captured_calls.md): tools/restore_from_transcript.py is safe because it anchors on the connector's full JSON result shape ({"content":"<b64>","id":..,"mimeType":..,"title":"<title>"}), which a typed command never reproduces.
+- .amd_login_lock is container-local and excluded from the state bundle (ws_bundle EXCLUDE_NAMES), so a fresh container after a failed attempt logs in once more with whatever it extracts - which is why the extraction must be validated, not the login retried.
+
 # captured_calls additions - 2026-09-13 11:50 UTC (7am ET slot, ehpa cloud Code Routine)
 
 No new call shapes this run (vocabulary unchanged, 50 calls). Calls exercised: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges (69 runs), gettxhistory x15 (excl_verify_0913c), POST /api/era/locks/release-expired, GET /api/era/checks (40), GET /api/era/checkdetails x40, posterapayments (era_post --all-unposted, 0 postable).
