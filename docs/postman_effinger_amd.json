@@ -287,7 +287,7 @@
       "url": {
        "raw": "{{xmlgw}}"
       },
-      "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8).\n\nHelper: ins_update.update(pid, insid, **fields)\nCaptured: 9/3/2026; wrapped shape 9/8/2026\nStatus: proven",
+      "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8). The `sequence` attribute is NOT the plan's number here - AMD reads it as the PATIENT's insurance ORDER (insorder): sequence=\"2,1\" sets Medicare-first; echoing a plan's own sequence on any other edit resets the patient order to that one plan (9/14/2026, pat17472393: a begin-date edit turned insorder 4,3 into 4). ins_update.update() drops it unless passed.\n\nHelper: ins_update.update(pid, insid, **fields)\nCaptured: 9/3/2026; wrapped shape 9/8/2026; sequence = patient insorder 9/14/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"updateinsurance\" class=\"demographics\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><patient id=\"pat{{patientid}}\" changed=\"1\"><insplanlist><insplan id=\"ins{{insid}}\" enddate=\"{{new}}\" o_enddate=\"{{old}}\"/></insplanlist></patient></ppmdmsg>",
