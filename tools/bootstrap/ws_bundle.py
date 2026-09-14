@@ -60,11 +60,13 @@ def pack(out_dir, max_mb, state_only=False):
             dp = os.path.join(WS, d)
             if not os.path.isdir(dp):
                 continue
+            if state_only and d in ('era_details', 'patient_db'):   # 9/14: era_details (6+ MB) is re-pulled by era_step_b_0913.py in a minute; patient_db lookups (0.7 MB of Stedi answers) are already on the board rows
+                continue
             for root, dirs, files in os.walk(dp):
                 dirs[:] = [x for x in dirs if x not in EXCLUDE_DIRS]
                 for f in files:
                     fp = os.path.join(root, f); rel = os.path.relpath(fp, WS)
-                    if state_only and (rel.startswith('tools' + os.sep) or f.endswith(('.py', '.sh'))):
+                    if state_only and (rel.startswith('tools' + os.sep) or f.endswith(('.py', '.sh', '.xml'))):   # .xml = raw 271s under patient_db (the .json summaries carry the answer)
                         continue
                     if _want(fp, rel):
                         if total + os.path.getsize(fp) > max_mb * 1024 * 1024:
