@@ -47,7 +47,14 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
 .item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(200px,1.1fr) minmax(260px,2fr) 110px 150px;gap:14px 18px;align-items:start}
 .item.done{opacity:.72}
 .who{font-weight:700;font-size:16px}
-.who .dob{font-family:var(--mono);font-weight:500;font-size:14px;color:var(--ink);margin-left:8px;user-select:all}
+/* identity block under the name: AMD chart number, then DOB, insurance ID (+ carrier), last facility (+ last DOS) */
+.idb{margin-top:5px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink);word-break:break-word}
+.idb .r{display:grid;grid-template-columns:54px 1fr;gap:6px;align-items:baseline}
+.idb .k{color:var(--muted);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--sans);font-weight:700}
+.idb .v{user-select:all}
+.idb .r.amd .v{font-weight:600;font-size:13.5px}
+.idb .car{color:var(--muted);font-family:var(--sans);font-size:12px;user-select:text}
+.idb .more{color:var(--muted);font-family:var(--sans);font-size:12px;line-height:1.4;margin-top:3px}
 .fac{font-size:13px;color:var(--muted);margin-top:2px}
 .ids{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5;word-break:break-all}
 .need{font-size:14.5px}
@@ -92,12 +99,25 @@ button.btn.primary:hover{background:var(--send-hover);border-color:var(--send-ho
 button.btn:disabled{opacity:.5;cursor:default}
 .add{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
 .add h2{font-size:15px;margin:0 0 10px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
-.add .grid{display:grid;grid-template-columns:1.2fr .7fr 1fr .7fr 2fr auto;gap:8px;align-items:start}
+.add .grid{display:grid;grid-template-columns:1.2fr .7fr 1fr .7fr .9fr 2fr auto;gap:8px;align-items:start}
 .status{font-size:13px;color:var(--muted);margin-top:8px;min-height:1.2em}
 .legend{font-size:13px;color:var(--muted);margin:14px 0 0}
 .empty{color:var(--muted);padding:20px;text-align:center;border:1px dashed var(--line);border-radius:10px}
+/* Run updates from Drive: the billing routine's board_updates files, applied by this page */
+.sync{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--api);border-radius:8px;padding:8px 12px;margin:-4px 0 14px;font-size:13px}
+.sync .sl{font-weight:700;color:var(--api);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.sync .st{color:var(--muted);flex:1 1 260px;min-width:0}
+.sync .st.ok{color:var(--claude)} .sync .st.err{color:var(--open)} .sync .st.busy{color:var(--ink)}
+.sync details{flex:1 1 100%;margin:0}
+.sync summary{cursor:pointer;color:var(--muted);font-size:12.5px}
+.sync .slog{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px;font:12px var(--mono);color:var(--muted)}
+.sync .slog li b{font-weight:500;color:var(--ink)}
+.sync .slog li .e{color:var(--open)}
 @media (max-width:760px){
   .item{grid-template-columns:1fr}
+  .item>*,.note>*,.trail .tr>*,.compose>*{min-width:0}
+  .who,.need,.note,.idb,.api .ab .ax,.fdrop{overflow-wrap:anywhere}
+  .fdrop{flex-wrap:wrap} .fdrop .fst{margin-left:0;flex:1 1 100%}
   .amt{text-align:left}
   .compose{grid-template-columns:1fr}
   .add .grid{grid-template-columns:1fr}
@@ -141,7 +161,7 @@ button.btn:disabled{opacity:.5;cursor:default}
   <header>
     <div>
       <h1>Insurance Refresh Board</h1>
-      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. William posts what he finds; Claude posts what was billed. Both sides see the same list.</p>
+      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. William posts what he finds; Claude posts what was billed. Both sides see the same list, A→Z by last name.</p>
     </div>
     <div>
       <div class="pal" aria-label="Color palette">
@@ -177,6 +197,13 @@ button.btn:disabled{opacity:.5;cursor:default}
     <span class="status" id="conn"></span>
   </div>
 
+  <div class="sync" id="sync" aria-live="polite">
+    <span class="sl">Run updates from Drive</span>
+    <span class="st" id="sync-st">Waiting for the board to connect…</span>
+    <button class="btn" id="sync-go" title="Looks in the Drive folder 'board inbox' for new board_updates files from the billing run and applies them here">Check Drive now</button>
+    <details id="sync-det"><summary>Applied files</summary><ul class="slog" id="sync-log"><li>Nothing applied yet.</li></ul></details>
+  </div>
+
   <div class="list" id="list"><div class="empty">Loading the board…</div></div>
 
   <section class="add">
@@ -186,6 +213,7 @@ button.btn:disabled{opacity:.5;cursor:default}
       <input type="text" id="a-dob" placeholder="DOB mm/dd/yyyy" aria-label="Date of birth">
       <input type="text" id="a-fac" placeholder="Facility" aria-label="Facility">
       <input type="text" id="a-amd" placeholder="AMD ID (optional)" aria-label="AMD ID">
+      <input type="text" id="a-ins" placeholder="Insurance ID / MBI" aria-label="Insurance ID">
       <input type="text" id="a-need" placeholder="What's needed — e.g. new facesheet, MBI, which plan since 3/2026" aria-label="What is needed">
       <button class="btn primary" id="a-go">Add for Claude</button>
     </div>
@@ -217,13 +245,31 @@ button.btn:disabled{opacity:.5;cursor:default}
   const turnOf=it=> it.status==='done'?'done':(it.status==='william'?'william':'claude');
 
   const TIC={ok:'✓',no:'✗',na:'○',human:'→'};
+  // checks[] entries come in two shapes: the board's {ok, src, result, when} and the billing run's {result, step, text, at}
+  function normCheck(c){
+    if(!c||typeof c!=='object') return {k:'na',src:'',res:'',when:''};
+    const stepStyle = !c.src && (c.step!==undefined || TIC[c.result]!==undefined);
+    const k = stepStyle ? (TIC[c.result]?c.result:'na') : (TIC[c.ok]?c.ok:'na');
+    return {k, src:String(c.src||c.step||''), res: stepStyle?String(c.text||''):String(c.result||''), when: c.when||(c.at?when(c.at):'')};
+  }
   function trail(it){
     const cs=Array.isArray(it.checks)?it.checks:[]; if(!cs.length) return '';
-    return `<div class="trail"><div class="th">Lookup trail — checks already run <span style="font-weight:400">(blue = Stedi lookups)</span></div>${cs.map(c=>{const k=TIC[c.ok]?c.ok:'na';const st=/stedi|eligib|mbi lookup|discovery|277|271/i.test(c.src||'')?' stedi':'';return `<div class="tr ${k}${st}"><span class="ic">${TIC[k]}</span><span class="src">${esc(c.src||'')}</span><span class="res">${esc(c.result||'')}${c.when?` <span class="at">(${esc(c.when)})</span>`:''}</span></div>`;}).join('')}</div>`;
+    return `<div class="trail"><div class="th">Lookup trail — checks already run <span style="font-weight:400">(blue = Stedi lookups)</span></div>${cs.map(c0=>{const c=normCheck(c0);const st=/stedi|eligib|mbi lookup|discovery|277|271/i.test(c.src)?' stedi':'';return `<div class="tr ${c.k}${st}"><span class="ic">${TIC[c.k]}</span><span class="src">${esc(c.src)}</span><span class="res">${esc(c.res)}${c.when?` <span class="at">(${esc(c.when)})</span>`:''}</span></div>`;}).join('')}</div>`;
   }
   function apiBlocks(it){
     const a=Array.isArray(it.api)?it.api:[]; if(!a.length) return '';
     return `<div class="api">${a.map(x=>`<div class="ab"><div class="ah"><span>${esc(x.src||'API result')}</span><span class="at">${esc(x.at||'')}</span></div><div class="ax">${esc(x.text||'')}</div></div>`).join('')}</div>`;
+  }
+  // Insurance ID: the run/identity script writes insid (+ inscarrier = the plan that bills first); older rows only have mbi.
+  function insIdOf(it){ if(it.insid) return {id:String(it.insid), car:String(it.inscarrier||'')}; if(it.mbi) return {id:String(it.mbi), car:''}; return {id:'', car:''}; }
+  // Last facility: lastfac/lastdos when the identity script wrote them; otherwise the NEWEST entry of the facilities line
+  // ("Name m/yy–m/yy · Name m/yy", newest first, from board_facilities.py); otherwise the row's facility text.
+  function lastFacOf(it){
+    if(it.lastfac) return {fac:String(it.lastfac), dos:String(it.lastdos||'')};
+    const first=String(it.facilities||'').split(' · ')[0].trim();
+    const m=first.match(/^(.*?)\s+(\d{1,2}\/\d{2}(?:[–-]\d{1,2}\/\d{2})?)(\s*\(Pam\))?$/);
+    if(m) return {fac:m[1], dos:'thru '+m[2].split(/[–-]/).pop()};
+    return {fac:first||String(it.facility||''), dos:''};
   }
   function render(){
     const show=items.filter(it=>{
@@ -231,10 +277,7 @@ button.btn:disabled{opacity:.5;cursor:default}
       if(filter==='all') return true;
       if(filter==='open') return t!=='done';
       return t===filter;
-    }).sort((a,b)=>{
-      const o={william:0,claude:1,done:2}; const d=o[turnOf(a)]-o[turnOf(b)];
-      return d||(Number(b.amount||0)-Number(a.amount||0));
-    });
+    }).sort((a,b)=>String(a.patient||'').localeCompare(String(b.patient||''), undefined, {sensitivity:'base'}) || (Number(b.amount||0)-Number(a.amount||0)));   // A→Z by last name (William 9/14)
     const open=items.filter(it=>turnOf(it)!=='done');
     $('#n-william').textContent=open.filter(it=>turnOf(it)==='william').length;
     $('#n-claude').textContent=open.filter(it=>turnOf(it)==='claude').length;
@@ -246,7 +289,17 @@ button.btn:disabled{opacity:.5;cursor:default}
       const t=turnOf(it);
       const label=t==='william'?'William':(t==='claude'?'Claude':'Done');
       const notes=(it.notes||[]).slice(-8).map(n=>`<div class="note"><span class="by ${n.who==='William'?'w':'c'}">${esc(n.who)}</span><span>${esc(n.text)}</span><span class="at">${when(n.at)}</span></div>`).join('');
-      const ids2=[it.amdid?'AMD '+esc(it.amdid):'', it.mbi?'MBI '+esc(it.mbi):''].filter(Boolean).join(' · ');
+      const ins=insIdOf(it), lf=lastFacOf(it), chartNo=it.amdid||it.pid||'';
+      const morePlans=String(it.insplans||'').includes(' · ')?String(it.insplans||'').split(' · ').slice(1).join(' · '):'';
+      const moreFacs=String(it.facilities||'').includes(' · ')?String(it.facilities||''):'';
+      const idb=(!chartNo&&!it.dob&&!ins.id&&!lf.fac)?'':`<div class="idb" title="From the AMD chart: chart number, date of birth, the insurance ID of the plan that bills first, and the last facility the patient was seen at">
+          ${chartNo?`<div class="r amd"><span class="k">AMD</span><span class="v">${esc(chartNo)}</span></div>`:``}
+          ${it.dob?`<div class="r"><span class="k">DOB</span><span class="v">${esc(it.dob)}</span></div>`:``}
+          ${ins.id?`<div class="r"><span class="k">Ins ID</span><span><span class="v">${esc(ins.id)}</span>${ins.car?` <span class="car">· ${esc(ins.car)}</span>`:``}</span></div>`:(chartNo?`<div class="r"><span class="k">Ins ID</span><span class="car">no active plan on the chart</span></div>`:``)}
+          ${lf.fac?`<div class="r"><span class="k">Last at</span><span><span class="v">${esc(lf.fac)}</span>${lf.dos?` <span class="car">· ${esc(lf.dos)}</span>`:``}</span></div>`:``}
+          ${morePlans?`<div class="more" title="Other plans on the chart, in billing order">also ${esc(morePlans)}</div>`:``}
+          ${moreFacs?`<div class="more" title="Every facility where the patient was seen (from AMD visits), newest first">${esc(moreFacs)}</div>`:``}
+        </div>`;
       const controls = db ? `
         <div class="compose">
           <textarea data-id="${esc(it.id)}" placeholder="Post what you found — plan name + dates, member #, MBI, or a decision" aria-label="Note for ${esc(it.patient)}"></textarea>
@@ -257,7 +310,7 @@ button.btn:disabled{opacity:.5;cursor:default}
         <label class="fdrop" data-drop="${esc(it.id)}" title="Saves the sheet on this card like a Post - the patient stays on your list until you Post → Claude"><span class="plus">+</span> Facesheet drop <span class="fst" id="fst-${esc(it.id)}">${esc((dropState[it.id]||{}).st||'PDF — drag here or click')}</span><input type="file" accept="application/pdf,.pdf" multiple data-dropfile="${esc(it.id)}"></label>
         <div class="send2"><button class="btn" data-act="post" data-id="${esc(it.id)}" title="Saves the note here but keeps this patient on your list">Post</button><button class="btn primary" data-act="note" data-id="${esc(it.id)}" title="Saves the note and hands the patient to Claude">Post → Claude</button></div>` : '';
       return `<article class="item ${t}" id="it-${esc(it.id)}">
-        <div><div class="who">${esc(it.patient)}${it.dob?` <span class="dob">${esc(it.dob)}</span>`:``}</div><div class="ids">${ids2}</div>${it.facilities?`<div class="facs" title="Facilities where the patient was seen (from AMD visits)">${esc(it.facilities)}</div>`:it.facility?`<div class="fac">${esc(it.facility)}</div>`:``}</div>
+        <div><div class="who">${esc(it.patient)}</div>${idb}${!lf.fac&&it.facility?`<div class="fac">${esc(it.facility)}</div>`:``}</div>
         <div class="need">${esc(it.need)}${it.why?`<div class="why">${esc(it.why)}</div>`:''}${trail(it)}</div>
         <div class="amt">${Number(it.amount)>0?money(it.amount):''}</div>
         <div><span class="pill ${t}">${label}</span><div class="ids" style="margin-top:6px">${it.updated?'updated '+when(it.updated):''}</div></div>
@@ -294,13 +347,13 @@ button.btn:disabled{opacity:.5;cursor:default}
 
   $('#a-go').addEventListener('click', async ()=>{
     if(!db){ $('#a-status').textContent='Not connected — the board is read-only right now.'; return; }
-    const name=$('#a-name').value.trim().toUpperCase(), dob=$('#a-dob').value.trim(), fac=$('#a-fac').value.trim(), amd=$('#a-amd').value.trim(), need=$('#a-need').value.trim();
+    const name=$('#a-name').value.trim().toUpperCase(), dob=$('#a-dob').value.trim(), fac=$('#a-fac').value.trim(), amd=$('#a-amd').value.trim(), insid=$('#a-ins').value.trim(), need=$('#a-need').value.trim();
     if(!name||!need){ $('#a-status').textContent='Name and what’s needed are required.'; return; }
     const id=(name.replace(/[^A-Z0-9]+/g,'-').replace(/^-|-$/g,'').toLowerCase()||'pt')+'-'+Date.now().toString(36);
     const now=new Date().toISOString();
     try{
-      await withRetry(()=>db.doc('items/'+id).set({patient:name,dob,facility:fac,amdid:amd,mbi:'',need,why:'Added by William on the board',amount:0,status:'claude',notes:[{who:'William',text:need,at:now}],updated:now,created:now}));
-      ['#a-name','#a-dob','#a-fac','#a-amd','#a-need'].forEach(s=>$(s).value=''); $('#a-status').textContent='Added — Claude will pick it up.';
+      await withRetry(()=>db.doc('items/'+id).set({patient:name,dob,facility:fac,amdid:amd,mbi:insid,insid,inscarrier:'',lastfac:fac,lastdos:'',need,why:'Added by William on the board',amount:0,status:'claude',notes:[{who:'William',text:need,at:now}],updated:now,created:now}));
+      ['#a-name','#a-dob','#a-fac','#a-amd','#a-ins','#a-need'].forEach(s=>$(s).value=''); $('#a-status').textContent='Added — Claude will pick it up.';
     }catch(e){ $('#a-status').textContent='Could not add ('+(e.code||'error')+').'; }
   });
 
@@ -309,13 +362,14 @@ button.btn:disabled{opacity:.5;cursor:default}
     const rows=items.filter(it=>turnOf(it)==='william');
     if(!rows.length){ $('#conn').textContent='Nothing is your turn right now.'; return; }
     const esc2=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
-    const head=['Patient','DOB','Facility','AMD ID','MBI','What is needed','Why','$ waiting','Checks already run','Last note','PASTE what you find here','Done'];
+    const head=['Patient','DOB','AMD ID','Insurance ID','Carrier','All plans on chart','Last facility','Last DOS','Facility','MBI','What is needed','Why','$ waiting','Checks already run','Last note','PASTE what you find here','Done'];
     const lines=[head.map(esc2).join(',')].concat(rows.map(it=>{
       const last=(it.notes||[]).slice(-1)[0];
-      const trailTxt=(Array.isArray(it.checks)?it.checks:[]).map(c=>(TIC[c.ok]||'○')+' '+(c.src||'')+': '+(c.result||'')).join(' | ');
-      return [it.patient,it.dob,it.facility||'',it.amdid,it.mbi,it.need,it.why,it.amount,trailTxt,last?last.who+': '+last.text:'','',''].map(esc2).join(',');
+      const trailTxt=(Array.isArray(it.checks)?it.checks:[]).map(c0=>{const c=normCheck(c0);return TIC[c.k]+' '+c.src+': '+c.res;}).join(' | ');
+      const ins=insIdOf(it), lf=lastFacOf(it);
+      return [it.patient,it.dob,it.amdid||it.pid||'',ins.id,ins.car,it.insplans||'',lf.fac,lf.dos,it.facility||'',it.mbi,it.need,it.why,it.amount,trailTxt,last?last.who+': '+last.text:'','',''].map(esc2).join(',');
     }));
-    const csv='\ufeff'+lines.join('\r\n');
+    const csv='﻿'+lines.join('\r\n');
     const d=new Date(); const name='Insurance_worksheet_'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.csv';
     if(!downloads){ $('#conn').textContent='Download not available in this view — copy from the rows instead.'; return; }
     try{ await downloads.save({filename:name, data:csv}); $('#conn').textContent='Worksheet saved ('+rows.length+' rows).'; }
@@ -354,13 +408,159 @@ button.btn:disabled{opacity:.5;cursor:default}
   document.addEventListener('dragleave', e=>{ const z=e.target.closest('.fdrop'); if(z) z.classList.remove('over'); });
   document.addEventListener('drop', e=>{ const z=e.target.closest('.fdrop'); if(!z) return; e.preventDefault(); z.classList.remove('over'); handleRowFiles(z.dataset.drop,[...e.dataTransfer.files].filter(f=>/pdf$/i.test(f.name)||f.type==='application/pdf')); });
   document.addEventListener('change', e=>{ const i=e.target.closest('input[data-dropfile]'); if(!i) return; handleRowFiles(i.dataset.dropfile,[...i.files]); i.value=''; });
+
+  // ---- Run updates from Drive.
+  // The backend billing routine cannot write to this board without a human approval (every write_db call prompts),
+  // so it drops board_updates_<stamp>.json files into the Drive folder "board inbox" (billing agent project files →
+  // board inbox) instead. This page reads those files through William's Google Drive connector and applies the ops
+  // into the board store itself — no approval anywhere. Applied file ids are remembered in meta/drive_sync so each
+  // file is applied once; the routine trashes the files listed there on its next run.
+  // File shape: {"schema":"irb-board-updates/1","source":"...","created":"<iso>","ops":[
+  //   {"op":"upsert","collection":"items","id":"<row id>","set":{...fields...},"append":{"notes":[...],"checks":[...],"api":[...]}},
+  //   {"op":"update", ...same, but the row must already exist},  {"op":"replace","collection":"items","id":"...","data":{...whole row...}},
+  //   {"op":"delete","collection":"drops","id":"..."} ]}
+  const INBOX_ID='1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8', DRIVE='Google Drive', REG_PATH='meta/drive_sync', LEASE_PATH='meta/drive_sync_lease';
+  const COLL_OK=/^(items|drops|commands)$/, ID_OK=/^[A-Za-z0-9_\-.~:@+]{1,200}$/;
+  const TAB='tab-'+Math.random().toString(36).slice(2,10);
+  let mcp=null, syncing=false, lastSyncAt=0;
+  const stEl=()=>$('#sync-st'), goEl=()=>$('#sync-go');
+  function setSync(msg, cls){ const el=stEl(); if(!el) return; el.textContent=msg; el.className='st '+(cls||''); }
+  function renderSyncLog(reg){
+    const ul=$('#sync-log'); if(!ul) return;
+    const rows=Object.entries((reg&&reg.applied)||{}).map(([id,v])=>Object.assign({id},v||{})).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,10);
+    ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
+  }
+  function b64utf8(b64){ const bin=atob(String(b64).replace(/\s/g,'')); const bytes=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(bytes); }
+  const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
+  const canon=v=>{ if(Array.isArray(v)) return '['+v.map(canon).join(',')+']'; if(isObj(v)) return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+canon(v[k])).join(',')+'}'; return JSON.stringify(v===undefined?null:v); };
+  const same=(a,b)=>{ try{ return canon(a)===canon(b); }catch(e){ return false; } };   // key order must not matter (9/14 fix)
+  function mcpMsg(e){
+    const c=e&&e.code; const m=e&&e.message?(' — '+String(e.message).slice(0,160)):'';
+    if(c==='invalid_argument'||c==='resource_exhausted'||c==='quota_exceeded'||c==='revoked'||c==='unavailable') return 'Board store problem while applying updates ('+c+')'+m+' — try Check Drive now in a moment.';
+    switch(c){
+      case 'not_granted': case 'capability_disabled': case 'capability_removed': return 'Drive sync is not available in this view.';
+      case 'server_not_connected': return 'Google Drive is not connected — add it under claude.ai Settings → Connectors, then reload.';
+      case 'needs_reauth': return 'Google Drive needs to be reconnected — claude.ai Settings → Connectors, then reload.';
+      case 'selection_required': return 'More than one Google Drive connector — pick one when claude.ai asks, then Check Drive now.';
+      case 'not_in_manifest': case 'consent_required': return 'Drive access was not allowed for this page — reload and click Allow when asked, so run updates can be applied.';
+      case 'blocked_by_policy': case 'approval_required': return 'Your organization blocks or requires approval for this Drive tool, so the board cannot pull run updates here.';
+      case 'tool_error': return 'Google Drive returned an error'+m;
+      case 'server_unavailable': case 'upstream_error': return 'Google Drive did not answer'+m+' — will try again later.';
+      case 'cancelled': return 'The Drive call was cancelled.';
+      default: return 'Could not reach Google Drive ('+(c||(e&&e.message)||'error')+').';
+    }
+  }
+  async function drive(tool, input){
+    const opts={cache:false}; try{ if(typeof AbortSignal!=='undefined'&&AbortSignal.timeout) opts.signal=AbortSignal.timeout(90000); }catch(e){}
+    try{ return await mcp.callTool(DRIVE, tool, input, opts); }
+    catch(e){
+      if(e&&e.retryable&&(e.code==='server_unavailable'||e.code==='upstream_error'||e.code==='rate_limited')){
+        await new Promise(r=>setTimeout(r, Math.min(Number(e.retryAfterMs)||0, 60000) + 800 + Math.random()*1200));
+        return await mcp.callTool(DRIVE, tool, input, opts);
+      }
+      throw e;
+    }
+  }
+  async function listInbox(){
+    const r=await drive('search_files',{query:"parentId = '"+INBOX_ID+"' and title contains 'board_updates_'", excludeContentSnippets:true, pageSize:100});
+    const p=r&&r.payload; const files=(p&&Array.isArray(p.files))?p.files:[];
+    return files.filter(f=>f&&f.id&&/^board_updates_.*\.json$/i.test(String(f.title||''))).sort((a,b)=>String(a.createdTime||'').localeCompare(String(b.createdTime||''))||String(a.title||'').localeCompare(String(b.title||'')));
+  }
+  async function readUpdate(fileId){
+    const r=await drive('download_file_content',{fileId});
+    const p=r&&r.payload; if(!p||typeof p.content!=='string') throw new Error('empty download');
+    return JSON.parse(b64utf8(p.content));
+  }
+  async function loadReg(){ const s=await withRetry(()=>db.doc(REG_PATH).get()); return s.exists?Object.assign({},s.data()):null; }
+  async function saveReg(reg, existed){
+    const applied=isObj(reg.applied)?reg.applied:{}; const ids=Object.keys(applied); let full=!existed;
+    for(const k of ids){ const e=applied[k]; if(isObj(e)&&typeof e.error==='string'&&e.error.length>80) e.error=e.error.slice(0,80); }
+    if(ids.length>120){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-120).forEach(k=>delete applied[k]); full=true; }   // 9/14: 300 entries with long error text outgrew the doc and the save failed silently, so files were re-applied on every open
+    reg.applied=applied;
+    if(full) await withRetry(()=>db.doc(REG_PATH).set(reg)); else await withRetry(()=>db.doc(REG_PATH).update(reg));
+  }
+  async function applyOp(op, now){
+    if(!isObj(op)) throw new Error('op is not an object');
+    const col=String(op.collection||'items'), id=String(op.id||''), kind=String(op.op||'upsert').toLowerCase();
+    if(!COLL_OK.test(col)) throw new Error('collection not allowed: '+col);
+    if(!ID_OK.test(id)||id==='.'||id==='..') throw new Error('bad id: '+id);
+    const ref=db.doc(col+'/'+id);
+    if(kind==='delete'){ await withRetry(()=>ref.delete()); return; }
+    if(kind==='replace'){ if(!isObj(op.data)) throw new Error('replace needs data'); await withRetry(()=>ref.set(Object.assign({},op.data,{updated:op.data.updated||now}))); return; }
+    if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
+    const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
+    const snap=await withRetry(()=>ref.get()); const cur=snap.exists?snap.data():null;
+    if(!cur && kind==='update') throw new Error('no such row: '+col+'/'+id);
+    const patch=Object.assign({}, set);
+    for(const k of Object.keys(app)){
+      const add=Array.isArray(app[k])?app[k]:[app[k]];
+      const base=Array.isArray(patch[k])?patch[k].slice():(cur&&Array.isArray(cur[k])?cur[k].slice():[]);
+      for(const e of add){ if(!base.some(x=>same(x,e))) base.push(e); }
+      patch[k]=base;
+    }
+    if(!('updated' in patch)) patch.updated=now;
+    if(cur){ await withRetry(()=>ref.update(patch)); }
+    else{
+      const doc=Object.assign(col==='items'?{patient:id.toUpperCase(),dob:'',facility:'',amdid:'',mbi:'',insid:'',inscarrier:'',insplans:'',lastfac:'',lastdos:'',need:'',why:'',amount:0,status:'claude',notes:[],created:now}:{created:now}, patch);
+      await withRetry(()=>ref.set(doc));
+    }
+  }
+  async function runSync(reason){
+    if(!db||!mcp||syncing) return; syncing=true; const go=goEl(); if(go) go.disabled=true;
+    setSync('Checking the Drive inbox…','busy');
+    try{
+      let lease=null; try{ lease=await db.doc(LEASE_PATH).acquire({holder:TAB, ttlMs:120000}); }catch(e){ lease=null; }
+      if(lease && lease.acquired===false){ setSync('Another window is applying run updates right now — this one checks again later.'); return; }
+      let reg=await loadReg(); let existed=!!reg; reg=reg||{}; reg.applied=isObj(reg.applied)?reg.applied:{};
+      const files=await listInbox();
+      const todo=files.filter(f=>!reg.applied[f.id]);
+      lastSyncAt=Date.now();
+      if(!todo.length){
+        reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); }catch(e){}
+        renderSyncLog(reg);
+        setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+').','ok'); return;
+      }
+      let nFiles=0, nOps=0, nFail=0, regErr='';
+      for(const f of todo){
+        setSync('Applying '+f.title+' ('+(nFiles+1)+' of '+todo.length+')…','busy');
+        let body=null; const entry={title:f.title, at:new Date().toISOString(), ops:0, failed:0};
+        try{ body=await readUpdate(f.id); }
+        catch(e){ if(e&&e.code) throw e; entry.error='unreadable: '+String(e&&e.message||e).slice(0,120); }
+        if(body){
+          if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
+          else{
+            const now=new Date().toISOString(); const errs=[];
+            for(const op of body.ops){ try{ await applyOp(op, now); entry.ops++; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            if(errs.length) entry.error=errs.join('; ');
+          }
+        }
+        reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed;
+        try{ await saveReg(reg, existed); existed=true; regErr=''; }catch(e){ regErr=String(e&&e.code||e&&e.message||'error'); }
+      }
+      reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); regErr=''; }catch(e){ regErr=regErr||String(e&&e.code||e&&e.message||'error'); }
+      renderSyncLog(reg);
+      setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.'+(regErr?' The applied-files registry could not be saved ('+regErr+') — these files may be re-applied next time (harmless: identical entries are skipped).':''), (nFail||regErr)?'err':'ok');
+    }catch(e){
+      setSync(mcpMsg(e),'err');
+    }finally{ syncing=false; const g=goEl(); if(g) g.disabled=false; }
+  }
+  async function initSync(){
+    try{ mcp = window.claude && window.claude.use ? await window.claude.use('mcp') : null; }catch(e){ mcp=null; }
+    if(!mcp){ setSync('Drive sync is not available in this view — run updates apply when the board is opened in claude.ai.'); const g=goEl(); if(g) g.disabled=true; return; }
+    try{ renderSyncLog(await loadReg()); }catch(e){}
+    goEl().addEventListener('click', ()=>runSync('manual'));
+    runSync('load');
+    setInterval(()=>{ if(document.visibilityState==='visible') runSync('timer'); }, 10*60*1000);
+    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible' && Date.now()-lastSyncAt>5*60*1000) runSync('visible'); });
+  }
   render();
   (async ()=>{
     try{ downloads = window.claude && window.claude.use ? await window.claude.use('downloads') : null; }catch(e){ downloads=null; }
     const use = window.claude && window.claude.use ? window.claude.use('db') : Promise.resolve(null);
     db = await use;
-    if(!db){ $('#conn').textContent='Read-only view (board storage not available here).'; render(); return; }
+    if(!db){ $('#conn').textContent='Read-only view (board storage not available here).'; setSync('Drive sync needs the board store — not available in this view.'); const g=goEl(); if(g) g.disabled=true; render(); return; }
     $('#conn').textContent='Live';
+    initSync();
     unsub = db.collection('items').onSnapshot(snap=>{
       items = snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id}, d.data()));
       $('#conn').textContent = snap.metadata && snap.metadata.fromCache ? 'Live (cached)' : 'Live';

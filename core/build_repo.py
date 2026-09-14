@@ -69,7 +69,7 @@ CAT = {
  "eligibility":     "denial_cascade denial_cascade2 denial_act_0906 denial_act2 denial_act3 stedi_pass2 disc_run held_elig_0908".split(),
  "credentialing":   "cred_check".split(),
  "claimocity":      "claimocity_in1".split(),
- "boards":          "build_money build_learning_app board_facilities".split(),
+ "boards":          "build_money build_learning_app board_facilities board_identity".split(),
 }
 DESC = {"core": "Shared library: the AMD client (one login, XML + REST), Stedi client, transaction history, the full-echo resave that protects charges, plan add/update, address PATCH, balance moves, frequency-1 rebill, manual posting, voids, 835 and facesheet parsers, AMD eligibility.",
  "billing/claims_center": "The daily Claims Center columns - Charge Review, Claim Inspector, Unbilled, Exclusions - and the fixes each one needs (admission dates, modifiers, dx edits, releases, completions).",
