@@ -199,6 +199,7 @@ Builders for the Money Ledger, Programming Lab and the board facility lines, plu
 | Script | What it is | What it decides |
 |---|---|---|
 | `board_facilities.py` | Facilities line for the Insurance Refresh Board | Nothing. For every board card with an AMD patient id, reads the chart's transaction history and writes a one-line list of the facilities the patient was seen at (name + month range, newest first; '(Pam)' when only Pam sa… |
+| `board_identity.py` | Identity block for the Insurance Refresh Board - DOB, insurance ID, last facility | Nothing. For every board card with an AMD patient id, reads the chart and the transaction history and writes the DOB, the insurance ID of the plan that bills first (with carrier), every plan in billing order, the last facility + last DOS and the facilities line into board_identity.json and ONE board_updates_<stamp>.json for the Drive 'board inbox' (the board applies it itself). |
 | `build_learning_app.py` |  |  |
 | `build_money.py` | Money Ledger builder | Nothing. Pulls the unpaid list, ERA Center checks, claim runs, tonight's exclusions and the write-off registers into money_data.json and renders money_ledger.html for the Effinger Money Ledger artifact. |
 
