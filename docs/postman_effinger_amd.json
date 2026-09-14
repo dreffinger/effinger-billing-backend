@@ -18,9 +18,7 @@
         "value": "text/xml"
        }
       ],
-      "url": {
-       "raw": "https://partnerlogin.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx"
-      },
+      "url": "https://partnerlogin.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx",
       "description": "ONE ATTEMPT ONLY — a second failed login locks POI0712 and kills the Claimocity feed. Response carries webserver=\"...\"; repeat the same body against <webserver>/xmlrpc/processrequest.aspx to get <usercontext>TOKEN</usercontext>. Token = {{token}} everywhere else.\n\nHelper: amd.login(psw) / amd.login_cached()\nCaptured: 8/30/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -43,9 +41,7 @@
         "value": "text/xml"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Same body as step 1, posted to the webserver returned by step 1. success=\"1\" + <usercontext> = token.\n\nHelper: amd.login(psw)\nCaptured: 8/30/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -77,9 +73,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/eligibility/EligibilityDetailsLegacy/checkEligibility"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/eligibility/EligibilityDetailsLegacy/checkEligibility",
       "description": "Synchronous; returns PPMDResults/Results + Edi271. No AAA = active. Medicare needs the HEET attestation (UID VQAS).\n\nHelper: amd.check_eligibility(insplan_id) / elig_amd.py <patientid> [--all]\nCaptured: 9/7/2026 (William's paste)\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -115,9 +109,7 @@
         "value": "application/vnd.advancedmd.api.v2+json,application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
       "description": "Helper: patient_patch.get(pid)\nCaptured: 9/2/2026\nStatus: proven"
      }
     },
@@ -139,9 +131,7 @@
         "value": "application/vnd.advancedmd.api.v2+json,application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
       "description": "Captured from William's Edit-address click 9/7/2026. William's placeholder rule: HCA / SNF / ALF on line 1, zip 32308-4486. GOTCHA (9/11): returns HTTP 500 'Email is not a valid format' and saves NOTHING when the chart's contact email holds junk (phone numbers seen in email on old charts) — send email:\"\" (or a valid address) inside the same updatedpatient.\n\nHelper: patient_patch.family_address(pid, address1, address2, zip, city, state)\nCaptured: 9/7/2026 (William's paste); email gotcha 9/11/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -168,9 +158,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: denial_act3.plans(pid)\nCaptured: 8/29/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -197,9 +185,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: txh.fetch(pid)\nCaptured: 8/30/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -226,9 +212,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "By CHARGE id only; visitid= returns nothing for new visits. Returns ONLY the one charge asked for — see the void trap.\n\nHelper: resave.detail(cid), resave.visit_charges(cid)\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -255,9 +239,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Returns new ins id + sequence. William's rule (8/31): grpnum and grpname ALWAYS empty. VA member id = ICN, never SSN. Carrier ids in practices/ehpa/carriers.json.\n\nHelper: add_ins.add(pid, car, num, begindate, finclass)\nCaptured: 9/3/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -284,10 +266,8 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
-      "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8).\n\nHelper: ins_update.update(pid, insid, **fields)\nCaptured: 9/3/2026; wrapped shape 9/8/2026\nStatus: proven",
+      "url": "{{xmlgw}}",
+      "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8). The `sequence` attribute is NOT the plan's number here - AMD reads it as the PATIENT's insurance ORDER (insorder): sequence=\"2,1\" sets Medicare-first; echoing a plan's own sequence on any other edit resets the patient order to that one plan (9/14/2026, pat17472393: a begin-date edit turned insorder 4,3 into 4). ins_update.update() drops it unless passed.\n\nHelper: ins_update.update(pid, insid, **fields)\nCaptured: 9/3/2026; wrapped shape 9/8/2026; sequence = patient insorder 9/14/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"updateinsurance\" class=\"demographics\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><patient id=\"pat{{patientid}}\" changed=\"1\"><insplanlist><insplan id=\"ins{{insid}}\" enddate=\"{{new}}\" o_enddate=\"{{old}}\"/></insplanlist></patient></ppmdmsg>",
@@ -313,9 +293,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "The only patient search that works from the API. %wildcard% lookups.\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -346,9 +324,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
       "description": "Same PATCH as Edit address but without the familyupdate block.\n\nHelper: patient_patch.patch(pid, {dob:...})\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -387,9 +363,7 @@
         "value": "https://static-100.advancedmd.com/"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
       "description": "Captured by probing 9/12/2026 (5am ET run) on the four new HCA charts + Lowry: the 9/7 'Edit address' shape answers 500 'Address is required.' when the chart's ORIGINAL address1 is blank. This shape saves: capturepreviousaddress=true, line 2 echoed unchanged (any PATCH that blanks address2 fails 'Address is required.'), and the chart's email blanked when it holds a phone number (500 'Email is not a valid format.'). Afterwards line 2 still repeats the street - AMD refuses to clear it; clear it in the UI.\n\nHelper: addr_line1_fix.fix(pid, street, city, state, zip)\nCaptured: 9/12/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -421,9 +395,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "REPLACES the visit's charge list with what you send — any charge omitted is VOIDED (30 charges lost 9/2–9/3). Build from resave.visit_charges(chargeid); never echo a single-charge detail on a multi-charge visit. diagcodes= attr is silently IGNORED for edits — dx saves only via the nested <diagcodelist> child with NUMERIC ids (9/8). modcodes = mcode ids (25 = mcode7). insorder = comma list of plan SEQUENCE numbers. refplan/preauth repoint the visit to a referral plan and write the auth onto it (and onto the previous plan — process the stay keeping the original plan LAST).\n\nHelper: resave.py, recode._save(cid, fn), move_to_ins.move(cid, seq), amdw.resave_visit\nCaptured: 9/2/2026; mcode 9/7; dx child 9/8; refplan 9/8\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -450,9 +422,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Run BEFORE every rebill: resubmissioncode=1 origrefnum='' (William 9/3 — never frequency 7 unless he hands you the payer ICN). Same call sets the hospitalization (admit) dates the Inspector wants. NEVER send hospitalizationto (standing flag).\n\nHelper: freq1_visit.run(vid, cid, seq); inspector_0907.set_date\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -479,9 +449,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Creates a BLANK plan and returns its rplan id (attribute values largely ignored). Without ismain/status it get-or-returns the existing main plan. Then resave each visit with refplan=\"rplanX\" preauth=\"VAxxxx\" to link + write the auth. VA auths live on referral plans, not the encounter.\n\nHelper: inline (9/8 Lowry-Fenwick stays)\nCaptured: 9/8/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -508,9 +476,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Lists charges waiting in Charge Review.\n\nHelper: inline\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -537,9 +503,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Approves the listed charges out of Charge Review.\n\nHelper: inline\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -562,9 +526,7 @@
         "value": "text/xml"
        }
       ],
-      "url": {
-       "raw": "{{webserver}}/xmlrpc/processrequest.aspx"
-      },
+      "url": "{{webserver}}/xmlrpc/processrequest.aspx",
       "description": "Changing profile= makes AMD VOID the old charges and RECREATE them on a NEW visit id; it posts negative reversal lines and NEGATIVE write-off reversals for any adjustments the old charges carried (void-flagged, net 0). Recreated charges are fresh full-fee. Find them in gettxhistory by createtime == today. Then updextrainsinfo resubmissioncode=1 + chargerebill on the target plan's OWN sequence (getdemographic insplanlist, never insorder[0]). prof13 = Effinger (rendering NPI 1225327380, billing = group NPI 1629515325).\n\nHelper: rerender_garland_g_to_effinger.py (build the chargelist from resave.visit_charges — every ACTIVE charge, full CHG_FIELDS echo)\nCaptured: 9/11/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -596,9 +558,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Cached counts; lags the list calls.\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -625,9 +585,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: unbilled_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -654,9 +612,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -683,9 +639,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Attribute order in the response is not fixed — parse <visit ...> by attribute name, never positionally (claimrunid can precede id).\n\nHelper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -712,9 +666,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: inspector_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -741,9 +693,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Helper: inspector_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -770,9 +720,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch",
       "description": "Captured from William's Mass Write-off screen 9/7/2026. carrierids = the car number (42009 = AET12).\n\nHelper: inline (aet12_rebill_0907.py)\nCaptured: 9/7/2026 (William's paste)\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -799,9 +747,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/claim/massrebillsearch"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/claim/massrebillsearch",
       "description": "Captured 9/7/2026. Empty body {} = the whole unpaid list. chargedetailids in the response is a COMMA-SEPARATED STRING, not a list — split it (9/10).\n\nHelper: build_money.py, claim_status_sweep.py, precheck.py\nCaptured: 8/30/2026; filters 9/7; DOS filter 9/9\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -828,9 +774,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/claim/chargerebill"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/claim/chargerebill",
       "description": "HTTP 204 = queued. ALWAYS set resubmissioncode=1 origrefnum='' via updextrainsinfo first (William 9/3: every rebill is an original claim). sequencenumber = first number of the visit's insorder. Verify insbilled flips to 0.\n\nHelper: amd.rebill_charge(cid, seq) / freq1_visit.run(vid, cid, seq)\nCaptured: 9/3/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -857,9 +801,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Bypasses the Claim Inspector edit on the charge (after the underlying fix, or when the edit is a false positive by William's rules). Error ids change on every re-inspection — re-list and bypass with FRESH ids.\n\nHelper: inspector_0907.bypass\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -886,9 +828,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Releases (completes) Unbilled rows. 'Payment from the prior payor is required' with a days-old primary bill = release everything (9/8, 82 rows).\n\nHelper: unbilled_0907.release\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -915,9 +855,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Completes the exclusion rows after their charges are fixed (or straight off for duplicate-claim rejections).\n\nHelper: excl_act_0907.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -944,9 +882,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Every claim run with status — source of the run-alert taxonomy and the aged-run watch.\n\nHelper: build_money.py\nCaptured: 8/31/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -977,9 +913,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/masswriteoff/masswriteoffsearch",
       "description": "Every charge carrying a PATIENT balance: patientid, visitid, chargedetailid, chargecode, carriercode, totalchargeamount, allowedamount, patpayment, patbalance, insbalance, lastpaymentdate, providerprofilecode. allowedamount>0 = the payer adjudicated (ERA posted); a $0 denial line also stamps lastpaymentdate. Feeds the INSURANCES CLEANING TASK buckets.\n\nHelper: insurance_cleaning.patient_balances()\nCaptured: 9/11/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1011,9 +945,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/checks"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/checks",
       "description": "Helper: era_post.checks\nCaptured: 9/4/2026\nStatus: proven"
      }
     },
@@ -1031,9 +963,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/checkdetails?checkid={{checkid}}"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/checkdetails?checkid={{checkid}}",
       "description": "Helper: era_post.details\nCaptured: 9/4/2026\nStatus: proven"
      }
     },
@@ -1051,9 +981,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/checks/dismiss"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/checks/dismiss",
       "description": "Body is the check id as a JSON string, e.g. \"1050132\". Captured from William's click 9/7/2026.\n\nHelper: era_clear.dismiss\nCaptured: 9/7/2026 (William)\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1080,9 +1008,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/checks/dismiss?DismissedDateBegin=2026-09-01"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/checks/dismiss?DismissedDateBegin=2026-09-01",
       "description": "Captured: 9/7/2026 (William)\nStatus: proven"
      }
     },
@@ -1100,9 +1026,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/checks/reversedismiss"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/checks/reversedismiss",
       "description": "dismissedat value comes from the dismissed list.\nCaptured: 9/7/2026 (William)\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1129,9 +1053,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://pm-api-103.advancedmd.com/api/era/locks/release-expired"
-      },
+      "url": "https://pm-api-103.advancedmd.com/api/era/locks/release-expired",
       "description": "Helper: era_post.locks\nCaptured: 9/4/2026\nStatus: proven"
      }
     },
@@ -1149,9 +1071,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Posts a payment and/or write-off to one charge with a note. era_manual_post.py wraps it for an unvalidated ERA line (post the PAYMENT line, never the $0 denial line). | 9/12/2026 probe: a <payreasonlist> child inside <payment> is accepted (success=1) but NOT stored - addpayments cannot carry CARC reason codes; <reasonlist> faults. A $0 payment without reason codes blocks the next-payer claim ('Payment reason codes are missing or do not balance') - fix = void it (void class=void) and release.\n\nHelper: manual_post.post(cid, carrier, pay, wo, wocode, checknumber, depositdate, note)\nCaptured: 9/3/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1178,9 +1098,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "https://pm-wfe-103.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx?long=1"
-      },
+      "url": "https://pm-wfe-103.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx?long=1",
       "description": "Same message with every amount \"0\" = Process Accepted ($0.00). Post the payment line of an unvalidated ERA, never the $0 denial line (9/6 error, fixed 9/7).\n\nHelper: era_post.post_check / era_clear.zero_post\nCaptured: 9/4/2026; $0 shape 9/7\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1203,9 +1121,7 @@
         "value": "text/xml"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Not a call: the complete write-off code list from AMD Master Files (William 9/12/2026) plus the rule for picking one. Every run posting a write-off picks from here and writes a dated note; new codes or rules go here and in practices/ehpa/rules.md.\n\nHelper: manual_post.post(cid, carrier, 0.0, amount, wocode, note=...)\nCaptured: 9/12/2026\nStatus: reference",
       "body": {
        "mode": "raw",
@@ -1237,9 +1153,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "Anchor the code at the start (M86.9%); a %-prefix returns nothing. Result <diagcode id=\"dcodeNNN\" code=...> — strip 'dcode' for the diagcodelist child.\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1266,9 +1180,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "The ONLY carrier read that works (getcarrierlist/getcarrier are invalid actions). No carrier write exists — Master Files is William's. After any carrier master edit verify the CPID stuck.\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1295,9 +1207,7 @@
         "value": "token={{token}}"
        }
       ],
-      "url": {
-       "raw": "{{xmlgw}}"
-      },
+      "url": "{{xmlgw}}",
       "description": "uid/facilityname map → practices/ehpa/facilities.json. Visit attr facility=\"facNN\" routes facesheet lookups (PCC for SNFs).\n\nHelper: board_facilities.py\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1329,9 +1239,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://api-100.advancedmd.com/api/locator/urls"
-      },
+      "url": "https://api-100.advancedmd.com/api/locator/urls",
       "description": "Captured: 9/7/2026\nStatus: proven"
      }
     }
@@ -1354,9 +1262,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/eligibility/v3"
-      },
+      "url": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/eligibility/v3",
       "description": "Payer ids: 77027 Medicaid, 68069 Sunshine, 87726 UHC, 60054 Aetna, 61101 Humana, 95112 CHP, MBILUNOSSN = Medicare MBI lookup by name/DOB. Errors: 72 not Medicare; 62 DOS too old (Centene); 79 needs member id (CHP); 43 provider not on file (Aetna, still echoes memberId); 50 out of network. Key lives in secrets/stedi_live.key (Gmail 'stedi claude key').\n\nHelper: stedi.elig, stedi.mbi, stedi.summarize_elig\nCaptured: 9/5/2026; headless 9/8\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1383,9 +1289,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/claimstatus/v2"
-      },
+      "url": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/claimstatus/v2",
       "description": "Full claim-status sweep source.\n\nHelper: claim_status_sweep.status\nCaptured: 9/5/2026\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1412,9 +1316,7 @@
         "value": "application/json"
        }
       ],
-      "url": {
-       "raw": "https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
-      },
+      "url": "https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1",
       "description": "NO /change prefix. → {coveragesFound, items[{payer, subscriber.memberId, planDateInformation incl dateOfDeath, benefitsInformation}]}. $1.50 per check — last resort after AMD 271 and Stedi eligibility. subscriber/dateOfBirth (or ssn) is REQUIRED (400 without it).\n\nHelper: stedi.disc, disc_run.py --check\nCaptured: 9/6/2026; live 9/8\nStatus: proven",
       "body": {
        "mode": "raw",
@@ -1437,9 +1339,7 @@
         "value": "{{stedi_key}}"
        }
       ],
-      "url": {
-       "raw": "https://healthcare.us.stedi.com/2024-04-01/payers/search?query={{payername}}"
-      },
+      "url": "https://healthcare.us.stedi.com/2024-04-01/payers/search?query={{payername}}",
       "description": "items[].payer{displayName, stediId, aliases[]}; aliases = the Change CPID list (used to fix the AET12 / Highmark payer ids).\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven"
      }
     }

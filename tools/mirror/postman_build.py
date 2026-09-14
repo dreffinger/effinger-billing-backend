@@ -16,13 +16,19 @@ OUT = os.path.join(ROOT, "docs", "postman_effinger_amd.json")
 
 SECRET_RE = re.compile(r"(github_pat_[A-Za-z0-9_]{20,}|Bearer\s+[A-Za-z0-9\-_\.]{40,}|usercontext>[A-Za-z0-9\-_\.=]{40,}<|psw=\"(?!\{\{)[^\"]{4,}\")")
 
+def url_obj(raw):
+    """9/14/2026: the Postman API stored a bare {"raw": ...} URL object as an EMPTY url on every request (all 50 calls in
+    the connector's copy had no URL, so the collection William is meant to run by hand could not be run). A plain
+    string URL is what the API persists (proven with updateCollectionRequest), and the Collection v2.1 schema allows it."""
+    return raw
+
 def build(vocab):
     folders = {}
     for c in vocab["calls"]:
         req = {
             "method": c["method"],
             "header": [{"key": k, "value": v} for k, v in c.get("headers", {}).items()],
-            "url": {"raw": c["url"]},
+            "url": url_obj(c["url"]),
             "description": (c.get("description", "") +
                             ("\n\nHelper: " + c["helper"] if c.get("helper") else "") +
                             ("\nCaptured: " + c["captured"] if c.get("captured") else "") +
