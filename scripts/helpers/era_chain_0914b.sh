@@ -1,5 +1,5 @@
 #!/bin/bash
-# ERA step 5 chain for the 2026-09-14T0420Z run (c-f): post, fallback dry+live, clear dry+live, after-snapshot
+# ERA step 5 chain for the 2026-09-14T0520Z run (c-f): post, fallback dry+live, clear dry+live, after-snapshot
 cd /home/claude/unbilled
 S=2026-09-14T0520Z
 echo "### era_post --all-unposted $(date -u +%H:%M:%S)"; timeout 900 python3 era_post.py --all-unposted
