@@ -329,6 +329,57 @@ Board rows updated (status -> claude, his paste as a `William` note, findings + 
 - Whitby's row reverted status claude -> william with a stale 04:21Z `updated` between two chat writes (v12 -> v13) while William worked the board - the same re-apply pattern as the AET12 row at 03:52Z. Every chat-side write tonight was re-read and re-applied on the new version; runs should key on the `William`/`Claude` notes rather than `status` alone when a row shows a fresh facesheet note.
 - William pastes facesheet text straight into the row as a `William` note and clicks "Marked done" - his part; the reader sets `claude` and acts.
 
+# captured_calls additions - 2026-09-14 10:00 UTC (weekly practice metrics, billing step 11, first run = BASELINE)
+
+Run entry, cloud scheduled task (Monday 6 AM ET). Bootstrap: repo main cloned with the Gmail PAT (6943793), `tools/bootstrap/bootstrap_workspace.sh layout` (186 helpers; still missing from main: columns_inspector2_0908.py, era_details_pull.py), `net` = AMD_OK (GitHub API 403 via proxy, clone itself fine), ONE `amd.login_cached()` success, no login lock. No Chrome / desktop bridge in this container -> Report Center skipped, nothing to capture for the replay project (no XHR interceptor run).
+
+## Calls exercised (no NEW shapes; one new USAGE variant registered)
+| Call | Shape | Used for | Note |
+|---|---|---|---|
+| `POST /api/claim/massrebillsearch` `{}` | standing | whole unpaid list: 4,001 open insurance-balance visits, $493,828.86 (aged by DOS into 0-30/31-60/61-90/91-120/120+) | fields carry no bill date - age by `dateofservice` |
+| `POST /api/masswriteoff/masswriteoffsearch` `{"carrierids":null,"isinsbalance":false,"billstartdate":null,"billenddate":null}` | **new variant**: no carrier filter | whole PATIENT-balance list (`chargedetails[]` + `totalchargecount`); answer is capped at 5,000 rows, 793 patients, $321,090.64 patient balance | rows carry `lastpaymentdate`, `allowedamount`, `expectedamount`, `patpayment` |
+| `gettxhistory` (class demographics, `txh.fetch` shape) | standing | 1,256-patient scan (603 unpaid-list + 653 patient-balance-only patients), ~1.4 s/call off-peak, 0 errors | payments carry `createtime` (posting time), `checknumber`, `carrier` and a `<payreasonlist>` of CARC codes with amounts -> denial reasons come from here, no Report Center needed |
+| `GET /api/era/checks` | standing | ERA Center unposted list: 38 checks, $69,842.51 paid / $9,748.45 unposted | |
+| `getclaimrunstatus` (class claimsreports) | standing | claim runs: 12 runs / 1,298 claims / $260,847 / 636 exclusions in the last 7 days | clean-claim rate = 1 - exclusions/claims |
+
+## Method (helpers in the workspace, copied to the repo under billing/reporting/)
+- `metrics_txh_scan.py` - caches every scanned patient's charges / payments (+CARC reasons) / write-offs (`metrics_txh_cache_<date>.json`, PHI - stays in the workspace, never in the repo).
+- `metrics_compute.py` - A/R buckets by carrier, charges 90d, payments 7d/30d + last-paid per carrier, denial lines and rates by carrier + top CARC reasons, write-offs 7d by wocode, ERA Center totals, nightly auto-post series (Gmail), claim-run clean-claim rate, charge lag, payer mix -> `metrics_<date>.json` + the "Weekly metrics <date> - *.csv" files.
+- `metrics_history.py` - the row for the Google Sheet "Practice metrics - weekly" (create as CSV -> Sheet on the first run; later runs re-create + trash the old copy), deltas vs last week / 4 weeks ago, threshold flags, the summary CSV.
+- Nightly ERA auto-post e-mails (`from:noreply@advancedmd.com subject:"for ERA"`): one table per payment code (ACH/BOP/CHK/NON), rows Date | Check Number | OK | Failed; the same unposted checks repeat every night until posted/dismissed, so "failed lines (latest night)" is the backlog size, not new failures.
+
+## Baseline numbers (2026-09-14)
+Days in A/R 84.5 (backend method: open insurance A/R $493,828.86 / (charges with DOS in the last 90 days on the 1,256 scanned patients $525,962 / 90) - NOT comparable to the 250 read from Report Center on 9/1); A/R 120+ days $269.0K (54%); top carriers FLO02 $272.7K, UNI20 $70.4K, BCBS $50.2K, FLO99 $27.2K; payments posted 7d $290,588 on 4,297 lines / 446 checks (the 9/4-9/6 gap-period ERA batch posting 9/9-9/10) with $407,933 write-offs (WOINS contractual $321K); denial lines 7d 850 of 8,507 adjudicated (10.0%: PR200 x238 all CAP07, OA18 x144, CO16 x57 - historical checks); ERA auto-post failed lines 847 on the latest night (841 of them the two 9/5 Medicare checks 24312B1000157627 and 24313B1000171140(1)), down from 1,304 four nights earlier; clean-claim rate 7d 51% (636 exclusions on 1,298 claims - the 9/10 unpaid-audit rebill runs); charge lag median 2 days.
+Verification: massrebillsearch $493,828.86 vs gettxhistory insbal sum on the same 603 patients $538,911.30 (+9.1% = balances on visits without a sent claim; SIM01/UHCMA exact).
+Silent carriers (>30 days without a posted payment, corroborated by the 9/7 full pay_scan): FLO99 (last paid 8/2023), SIM01, AET07, TRI00, TRI05 (last paid 5/30/2026), PHI01, CIG09, CHA03.
+Observation for the PR-transfer audit: 344 PR-group wrong-payer lines posted this week (PR200 x238 CAP07, PR26 x44, PR27 x31, PR22 x31).
+Drive: "Practice metrics - weekly" Sheet CREATED (id 1HAxWX0firElY22Synxw9DBxvjKkNGB21T2g93RGzikc) in billing agent project files; 5 "Weekly metrics 2026-09-14 - *.csv" files beside it.
+
+## Lessons
+- The Regular Reporting Plan tab does not exist in either Billing_Agent_Project_Master copy (1DR060... and 1bIQj1...); the skill's KEEP list was used.
+- `carriers_rich.json` (practices/ehpa/carriers.json) is `carN -> [code, name]`; derive `code -> name` from it for reports.
+- Off-peak pacing: 1,256 gettxhistory calls between 10:09 and 10:45 UTC (4-5 AM MT) at 0.4 s spacing drew no 429.
+
+# captured_calls additions - 2026-09-14 11:15 UTC (7 AM ET 9/14 slot, ehpa cloud Code Routine, prompt v5)
+
+No new call shapes (vocabulary 50 unchanged). Calls exercised: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusionclaimruns, getclaimrunstatus, getdemographic (pat17477723), GET /api/era/checks x2, GET /api/era/checkdetails x38, POST /api/era/locks/release-expired, posterapayments x32 (0 accepted), POST /api/era/checks/dismiss x1.
+
+## Lessons
+- State bundle corruption, third instance: workspace_state_2026-09-14_0727UTC part09 arrived with one base64 character changed ('u'->'s' at offset 4197 of the newline-stripped chunk; the Drive listing size was unchanged at 8080 bytes). Same fix as 9/14 03:00: brute-force the 64-character alphabet against the manifest part sha computed on the NEWLINE-STRIPPED text; restore every Drive download byte-exact from the session transcript with tools/restore_from_transcript.py first (the connector result and the transcript copy were identical, so the corruption is in the stored Drive copy). Consider having ws_bundle.pack emit a per-part CRC repair hint or smaller parts.
+- amd_cred_from_transcript.py works as designed in a fresh container: the Gmail thread result in the transcript yields the password with 18 identical sightings and it never passes through a typed command.
+- ERA: a payer 'NO-PAY-...' 835 (HUM01 check 1051652, $0 paymentamount) carries only OA23 'prior payer adjudication' $0 lines with RARC #AM on a visit Medicare already paid - it is denial-only; era_clear dismisses it (no money) and the CARCs stay cached in era_details/ for the Working Denials rebuild. Nothing to post.
+- ERA Center steady state since 9/13: 37 checks / $9,748.45 all reversal (118 lines $11,196.56) or orphan (27 lines $1,808.67) or already adjudicated (66 residual-zero lines $4,484.25) - every run re-confirms 0 postable; the list only moves when William reconciles those in ERA Center or a new 835 arrives.
+
+# captured_calls additions - 2026-09-14 13:15 UTC (9 AM ET 9/14 slot, ehpa cloud Code Routine, prompt v5)
+
+No new call shapes (vocabulary 50 unchanged). Calls exercised: getclaimcenteroverview x2, getreviewcharges x2, getclaiminspectorbatches x2, getclaimunbillablecharges x2, getclaimexclusionclaimruns x2, getdemographic (pat17477723), PATCH /api/demographic/patients/{id} (addr_line1_fix shape, pat17477723), GET /api/era/checks x2, GET /api/era/checkdetails x38, POST /api/era/locks/release-expired, posterapayments x32 (0 accepted), POST /api/era/checks/dismiss x1 (1051653).
+
+## Lessons
+- State bundle workspace_state_2026-09-14_1125UTC (7 parts) unpacked sha-clean on the first try - the single-character Drive corruption of 9/13-9/14 did not recur when every part was restored from the session transcript with tools/bootstrap/restore_from_transcript.py before ws_bundle unpack. Keep that as the standard bootstrap path.
+- addr_line1_fix.py on a Claimocity-fed chart (pat17477723): same behaviour as 9/12 - the first PATCH answers 500 'Email is not a valid format.' when the email field holds a phone number, the retry with email blanked saves line 1 (200), and the clear-line-2 PATCH answers 500 (cosmetic duplicate). The displaced phone number goes on the board row so it is not lost.
+- ERA: a WEL04 (WellCare) $0 835 (check 1051653, paymentnumber 1003557050) carries one claim line with CO23 + OA23 'prior payer adjudication' adjustments on a visit Medicare already paid (insurancebalance 0, WOINS write-off already on the charge) - denial-only, no money; era_clear dismisses it (23 denial-with-write-off lines, no postable money). Same pattern as the HUM01 no-pay check 1051652 of the 7 AM run: secondary $0 remits after a Medicare primary payment arrive as their own checks and only need dismissing.
+- ERA Center steady state holds: 37 checks / $9,748.45, all reversal (118 lines $11,196.56) / orphan (27 lines $1,808.67) / already-adjudicated (66 residual-zero lines $4,484.25); posterapayments accepts 0 on every one of the 32 money-bearing checks.
+
 ## captured_calls additions - 2026-09-14 07:15 UTC (3 AM ET 9/14 slot, ehpa cloud Code Routine, prompt v5)
 No new call shapes this run (vocabulary unchanged); every read used registered calls (getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus/getclaimexclusioncharges, GET /api/era/checks + checkdetails, posterapayments, addpayments fallback, era_clear). Lessons:
 - **Drive single-character corruption, second confirmed instance on the same file**: the 0508UTC state bundle's part03 downloaded twice (07:10 and 07:12 UTC) with the identical substitution ('5'->'1' at offset 2338 of the newline-stripped chunk) - the corruption is in the stored Drive copy, not in transit per download. The brute-force must run on the NEWLINE-STRIPPED chunk (ws_bundle's part_sha256 is computed on the chunk before the 100-char wrapping); hashing the raw file with its newlines finds nothing. 3 s, then `ws_bundle.py unpack` restored all 31 members. The transcript-JSONL route (restore_from_transcript.py) plus this brute force replaced ~100 KB of retyping.
@@ -735,46 +786,3 @@ No new AMD or Stedi call captured. Calls exercised (all already in the registry)
 Columns 0/0/0/15 before and after; the 15 exclusions are the BCBS PREF0283 (missing payer document control number) secondaries held for William's DCN decision; balances re-verified, nothing re-sent.
 Bootstrap note: the Drive state bundle (13 KB base64) again could not be transcribed through the connector; the plain-text needs_facesheet_list snapshot (4.7 KB) and pseudonyms.json (3.3 KB) transcribed byte-exact. Small plain-text snapshots are the reliable restore path; bundle parts should stay under ~5 KB each if they must pass through the model.
 Board note: the Insurance Refresh Board re-applied board_updates_2026-09-12T2330Z.json on every open without recording it in meta/drive_sync.applied (era-manual-post-0912 now carries 7 identical checks) - append de-duplication and the applied registry need a look in a chat session.
-
-
-# captured_calls additions - 2026-09-14 10:00 UTC (weekly practice metrics, billing step 11, first run = BASELINE)
-
-Run entry, cloud scheduled task (Monday 6 AM ET). Bootstrap: repo main cloned with the Gmail PAT (6943793), `tools/bootstrap/bootstrap_workspace.sh layout` (186 helpers; still missing from main: columns_inspector2_0908.py, era_details_pull.py), `net` = AMD_OK (GitHub API 403 via proxy, clone itself fine), ONE `amd.login_cached()` success, no login lock. No Chrome / desktop bridge in this container -> Report Center skipped, nothing to capture for the replay project (no XHR interceptor run).
-
-## Calls exercised (no NEW shapes; one new USAGE variant registered)
-| Call | Shape | Used for | Note |
-|---|---|---|---|
-| `POST /api/claim/massrebillsearch` `{}` | standing | whole unpaid list: 4,001 open insurance-balance visits, $493,828.86 (aged by DOS into 0-30/31-60/61-90/91-120/120+) | fields carry no bill date - age by `dateofservice` |
-| `POST /api/masswriteoff/masswriteoffsearch` `{"carrierids":null,"isinsbalance":false,"billstartdate":null,"billenddate":null}` | **new variant**: no carrier filter | whole PATIENT-balance list (`chargedetails[]` + `totalchargecount`); answer is capped at 5,000 rows, 793 patients, $321,090.64 patient balance | rows carry `lastpaymentdate`, `allowedamount`, `expectedamount`, `patpayment` |
-| `gettxhistory` (class demographics, `txh.fetch` shape) | standing | 1,256-patient scan (603 unpaid-list + 653 patient-balance-only patients), ~1.4 s/call off-peak, 0 errors | payments carry `createtime` (posting time), `checknumber`, `carrier` and a `<payreasonlist>` of CARC codes with amounts -> denial reasons come from here, no Report Center needed |
-| `GET /api/era/checks` | standing | ERA Center unposted list: 38 checks, $69,842.51 paid / $9,748.45 unposted | |
-| `getclaimrunstatus` (class claimsreports) | standing | claim runs: 12 runs / 1,298 claims / $260,847 / 636 exclusions in the last 7 days | clean-claim rate = 1 - exclusions/claims |
-
-## Method (helpers in the workspace, copied to the repo under billing/reporting/)
-- `metrics_txh_scan.py` - caches every scanned patient's charges / payments (+CARC reasons) / write-offs (`metrics_txh_cache_<date>.json`, PHI - stays in the workspace, never in the repo).
-- `metrics_compute.py` - A/R buckets by carrier, charges 90d, payments 7d/30d + last-paid per carrier, denial lines and rates by carrier + top CARC reasons, write-offs 7d by wocode, ERA Center totals, nightly auto-post series (Gmail), claim-run clean-claim rate, charge lag, payer mix -> `metrics_<date>.json` + the "Weekly metrics <date> - *.csv" files.
-- `metrics_history.py` - the row for the Google Sheet "Practice metrics - weekly" (create as CSV -> Sheet on the first run; later runs re-create + trash the old copy), deltas vs last week / 4 weeks ago, threshold flags, the summary CSV.
-- Nightly ERA auto-post e-mails (`from:noreply@advancedmd.com subject:"for ERA"`): one table per payment code (ACH/BOP/CHK/NON), rows Date | Check Number | OK | Failed; the same unposted checks repeat every night until posted/dismissed, so "failed lines (latest night)" is the backlog size, not new failures.
-
-## Baseline numbers (2026-09-14)
-Days in A/R 84.5 (backend method: open insurance A/R $493,828.86 / (charges with DOS in the last 90 days on the 1,256 scanned patients $525,962 / 90) - NOT comparable to the 250 read from Report Center on 9/1); A/R 120+ days $269.0K (54%); top carriers FLO02 $272.7K, UNI20 $70.4K, BCBS $50.2K, FLO99 $27.2K; payments posted 7d $290,588 on 4,297 lines / 446 checks (the 9/4-9/6 gap-period ERA batch posting 9/9-9/10) with $407,933 write-offs (WOINS contractual $321K); denial lines 7d 850 of 8,507 adjudicated (10.0%: PR200 x238 all CAP07, OA18 x144, CO16 x57 - historical checks); ERA auto-post failed lines 847 on the latest night (841 of them the two 9/5 Medicare checks 24312B1000157627 and 24313B1000171140(1)), down from 1,304 four nights earlier; clean-claim rate 7d 51% (636 exclusions on 1,298 claims - the 9/10 unpaid-audit rebill runs); charge lag median 2 days.
-Verification: massrebillsearch $493,828.86 vs gettxhistory insbal sum on the same 603 patients $538,911.30 (+9.1% = balances on visits without a sent claim; SIM01/UHCMA exact).
-Silent carriers (>30 days without a posted payment, corroborated by the 9/7 full pay_scan): FLO99 (last paid 8/2023), SIM01, AET07, TRI00, TRI05 (last paid 5/30/2026), PHI01, CIG09, CHA03.
-Observation for the PR-transfer audit: 344 PR-group wrong-payer lines posted this week (PR200 x238 CAP07, PR26 x44, PR27 x31, PR22 x31).
-Drive: "Practice metrics - weekly" Sheet CREATED (id 1HAxWX0firElY22Synxw9DBxvjKkNGB21T2g93RGzikc) in billing agent project files; 5 "Weekly metrics 2026-09-14 - *.csv" files beside it.
-
-## Lessons
-- The Regular Reporting Plan tab does not exist in either Billing_Agent_Project_Master copy (1DR060... and 1bIQj1...); the skill's KEEP list was used.
-- `carriers_rich.json` (practices/ehpa/carriers.json) is `carN -> [code, name]`; derive `code -> name` from it for reports.
-- Off-peak pacing: 1,256 gettxhistory calls between 10:09 and 10:45 UTC (4-5 AM MT) at 0.4 s spacing drew no 429.
-
-
-# captured_calls additions - 2026-09-14 11:15 UTC (7 AM ET 9/14 slot, ehpa cloud Code Routine, prompt v5)
-
-No new call shapes (vocabulary 50 unchanged). Calls exercised: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusionclaimruns, getclaimrunstatus, getdemographic (pat17477723), GET /api/era/checks x2, GET /api/era/checkdetails x38, POST /api/era/locks/release-expired, posterapayments x32 (0 accepted), POST /api/era/checks/dismiss x1.
-
-## Lessons
-- State bundle corruption, third instance: workspace_state_2026-09-14_0727UTC part09 arrived with one base64 character changed ('u'->'s' at offset 4197 of the newline-stripped chunk; the Drive listing size was unchanged at 8080 bytes). Same fix as 9/14 03:00: brute-force the 64-character alphabet against the manifest part sha computed on the NEWLINE-STRIPPED text; restore every Drive download byte-exact from the session transcript with tools/restore_from_transcript.py first (the connector result and the transcript copy were identical, so the corruption is in the stored Drive copy). Consider having ws_bundle.pack emit a per-part CRC repair hint or smaller parts.
-- amd_cred_from_transcript.py works as designed in a fresh container: the Gmail thread result in the transcript yields the password with 18 identical sightings and it never passes through a typed command.
-- ERA: a payer 'NO-PAY-...' 835 (HUM01 check 1051652, $0 paymentamount) carries only OA23 'prior payer adjudication' $0 lines with RARC #AM on a visit Medicare already paid - it is denial-only; era_clear dismisses it (no money) and the CARCs stay cached in era_details/ for the Working Denials rebuild. Nothing to post.
-- ERA Center steady state since 9/13: 37 checks / $9,748.45 all reversal (118 lines $11,196.56) or orphan (27 lines $1,808.67) or already adjudicated (66 residual-zero lines $4,484.25) - every run re-confirms 0 postable; the list only moves when William reconciles those in ERA Center or a new 835 arrives.
