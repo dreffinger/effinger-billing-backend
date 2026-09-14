@@ -1,5 +1,5 @@
 #!/bin/bash
-# ERA step 5 chain for the 2026-09-14T2110Z run (d-e): fallback dry+live, clear dry+live, after-snapshot (era_post --all-unposted already ran at 19:20 UTC: 0 postable)
+# ERA step 5 chain for the 2026-09-14T2110Z run (d-e): fallback dry+live, clear dry+live, after-snapshot (era_post --all-unposted already ran at 21:14 UTC: 0 postable)
 cd /home/claude/unbilled
 S=2026-09-14T2110Z
 echo "### fallback DRY $(date -u +%H:%M:%S)"; timeout 600 python3 era_fallback_0913b.py --dry --stamp $S --checks era_checks_before_$S.json
