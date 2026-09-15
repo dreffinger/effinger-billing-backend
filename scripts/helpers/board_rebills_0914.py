@@ -5,7 +5,7 @@
 #     rebill the 5 July visits on the BCBS seq; INACTIVE -> reported for William's patient-responsibility rule (no write-off here).
 #   WHITE RONALD pat17474496: Dec 2025 visits (12/2-12/5) resaved with preauth 251203513351 (full charge echo) + freq-1 rebill
 #     on the AET07 seq; Oct/Nov 2025 visits -> Stedi 60054 eligibility at 10/27/2025; ACTIVE -> freq-1 rebill, else reported.
-#   BAXLEY pat17475817: facesheet says SUNSHINE AMBETTER HIX (AMB03) U9896931601 eff 3/14/2026, auth IP5065597859 -> add AMB03
+#   BEXLEY pat17475817: facesheet says SUNSHINE AMBETTER HIX (AMB03) U9896931601 eff 3/14/2026, auth IP5065597859 -> add AMB03
 #     (no group number), end-date SUN01 3/13/2026, set the two open visits' insorder to the AMB03 seq with the preauth, freq-1 rebill.
 # Never touches: paid lines, UNI20/BCBS balances older than 5/1/2026 rule (Collins is July 2026), group numbers.
 """Usage: python3 board_rebills_0914.py [--dry] [--only dieter,collins,white,baxley]"""
@@ -106,7 +106,7 @@ if "white" in only:
     else: L("  Oct/Nov visits NOT rebilled (%s) -> report" % st)
 
 if "baxley" in only:
-    pid = "17475817"; L("--- BAXLEY pat%s ---" % pid)
+    pid = "17475817"; L("--- BEXLEY pat%s ---" % pid)
     pa, pl = demo(pid); L("  plans %s" % [(p["id"], p["carrier"], p["subscribernum"], p["sequence"], p["begindate"], p["enddate"]) for p in pl])
     amb = [p for p in pl if p.get("carrier") == "car6802" and not p.get("enddate")]
     if not amb and not dry:

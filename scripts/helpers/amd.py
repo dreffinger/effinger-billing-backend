@@ -125,7 +125,7 @@ def msg(action, cls, attrs=None, children=""):
 def rebill_charge(chargeid, sequencenumber):
     """REST rebill — the dialog's Submit. HTTP 204 = success."""
     web, tok = login_cached()
-    host = re.sub(r'providerapi', "pm-api-103", web)  # not reliable; use fixed host
+    host = re.sub(r"providerapi", "pm-api-103", web)  # not reliable; use fixed host
     url = "https://pm-api-103.advancedmd.com/api/claim/chargerebill"
     cid = int(re.sub(r"\D", "", str(chargeid)))  # strip 'charge' prefix -> numeric fid
     r = requests.post(url, json={"licensekey": OFFICE, "username": USER,
@@ -154,25 +154,32 @@ def check_eligibility(insplan_id, stc="30", timeout=120):
     try: return r.status_code, r.json()
     except Exception: return r.status_code, r.text
 
-# --- compat shims (mirror interface), appended by 9/10 05:00 UTC run ---
+
+# --- full shim block merged 2026-09-15 ---
+# RESTORE RECIPE (9/10/2026 nightly): the workspace amd.py = repo core/amd.py (GitHub main) with this
+# block APPENDED. It reconciles the two helper generations (repo scripts use amd.post/amd.msg; the
+# 9/8-9/9 mirror scripts amdw/precheck use amd.call/amd.rest_post). Also patch precheck.py:
+#   1) CARIDS = {v[0]: k for k, v in json.load(open(...'carriers.json')).items()}   # rich carN->[code,name] format
+#   2) its AMD eligibility call -> amd.check_eligibility_xml(...)                    # raw 271 text
+# carriers.json in the workspace = the RICH practices/ehpa/carriers.json from the repo.
+
+# --- compat shims for the 9/8-9/10 mirror-generation helpers (amdw, precheck, wo_reversal_post) ---
 def esc(s):
-    return str(s or '').replace('&','&amp;').replace('"','&quot;').replace('<','&lt;')
+    return str(s or '').replace('&', '&amp;').replace('"', '&quot;').replace('<', '&lt;')
 
 def call(attrs, children=''):
-    """Mirror-style call: attrs string + children; wraps in ppmdmsg and posts."""
-    body = '<ppmdmsg %s msgtime="%s">%s</ppmdmsg>' % (attrs, _msgtime(), children)
-    return post(body)
+    """Mirror-style call: attrs string + children; token injected by post()."""
+    t = post('<ppmdmsg %s msgtime="%s">%s</ppmdmsg>' % (attrs, _msgtime(), children))
+    time.sleep(0.3)
+    return t
 
-def check_eligibility_xml(insid, stc="30"):
-    """AMD free eligibility returning the raw PPMDResults XML (mirror interface)."""
+def wfe_call(attrs, children=''):
+    """Collections-module calls on the pm-wfe gateway. Same token."""
     web, tok = login_cached()
-    r = requests.post("https://pm-api-103.advancedmd.com/api/eligibility/EligibilityDetailsLegacy/checkEligibility",
-                      headers={"Authorization": "Bearer " + tok, "Content-Type": "application/json",
-                               "Accept": "application/xml"},
-                      json={"licensekey": "152563", "username": "POI0712",
-                            "patientinsurancecoverageid": str(insid).replace("ins",""),
-                            "servicetypecode": stc}, timeout=120)
-    time.sleep(0.4)
+    body = _inject('<ppmdmsg %s msgtime="%s">%s</ppmdmsg>' % (attrs, _msgtime(), children), tok)
+    r = requests.post('https://pm-wfe-103.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx',
+                      data=body, headers={'Content-Type': 'text/xml'}, cookies={'token': tok}, timeout=90)
+    time.sleep(0.3)
     return r.text
 
 def rest_get(path, accept='application/json'):
@@ -188,3 +195,16 @@ def rest_post(path, payload, accept='application/json'):
                       headers={'Accept': accept, 'Authorization': 'Bearer ' + tok}, timeout=90)
     time.sleep(0.3)
     return r.status_code, r.text
+
+def check_eligibility_xml(insplan_id, stc="30", timeout=120):
+    """Raw-text variant of check_eligibility (the mirror precheck expects XML text)."""
+    web, tok = login_cached()
+    body = {"licensekey": "152563", "username": "POI0712",
+            "patientinsurancecoverageid": str(insplan_id).replace("ins", ""), "servicetypecode": stc}
+    r = requests.post("https://pm-api-103.advancedmd.com/api/eligibility/EligibilityDetailsLegacy/checkEligibility",
+                      headers={"Authorization": "Bearer " + tok, "Content-Type": "application/json",
+                               "Accept": "application/xml",
+                               "origin": "https://static-100.advancedmd.com", "referer": "https://static-100.advancedmd.com/"},
+                      json=body, timeout=timeout)
+    time.sleep(0.4)
+    return r.text
