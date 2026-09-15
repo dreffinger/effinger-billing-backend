@@ -5,9 +5,10 @@
 # ---
 """Manual (non-ERA) insurance payment + write-off on one charge via Payment Entry addpayments.
 Usage: python3 manual_post.py <chargeid> <carriercode> <payamount> <woamount> <wocode> <checknumber> [depositdate mm/dd/yyyy] [note] [--dry]"""
-import os, amd, resave, json, re, sys, time
+import amd, resave, json, re, sys, time
 import xml.etree.ElementTree as ET
-CAR = {(v[0] if isinstance(v, (list, tuple)) else k): (k if isinstance(v, (list, tuple)) else v) for k, v in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "carriers.json"))).items()}  # accepts rich (carN -> [code,name]) or simple (code -> carN) shapes
+_cj = json.load(open("carriers.json"))
+CAR = {(v[0] if isinstance(v, (list, tuple)) else k): (k if isinstance(v, (list, tuple)) else v) for k, v in _cj.items()}  # accepts rich carN->[code,name] or simple code->carN
 def post(cid, carrier, pay, wo, wocode="WOINS", checknumber="", depositdate=None, note="", dry=False):
     rt = ET.fromstring(resave.detail(cid)); vis = rt.find(".//visit"); pat = rt.find(".//patient")
     c = [x for x in rt.iter("charge") if x.get("id") == "charge" + cid][0]

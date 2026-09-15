@@ -15,7 +15,7 @@ def update(pid, insid, **changes):
     if not m: return False, "insplan not found"
     attrs = dict(re.findall(r'(\w+)="([^"]*)"', m.group(0)))
     a = {k: attrs.get(k, "") for k in KEYS}; o = {"o_" + k: v for k, v in a.items()}
-    # 9/14/2026 (Thornbury): AMD reads the echoed `sequence` attr as the PATIENT's insurance ORDER - echoing a plan's own
+    # 9/14/2026 (Tillotson): AMD reads the echoed `sequence` attr as the PATIENT's insurance ORDER - echoing a plan's own
     # sequence ("4") on a begin-date edit silently reset insorder "4,3" -> "4". So `sequence` goes out ONLY when the
     # caller passes it on purpose (sequence="2,1" = set the patient order Medicare-first); plain field edits never send it.
     if "sequence" not in changes:
