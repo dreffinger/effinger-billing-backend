@@ -25,3 +25,9 @@
 
 ## Addendum 06:00 UTC — Baxley write-off (William instruction)
 - No-coverage-at-DOS charges: transfer to patient responsibility then bad-debt no-pay = a single `manual_post.post(cid, carrier, pay=0, wo=balance, "WOBAD", note=...)` that zeros the insurance balance; WOINS fallback if WOBAD is refused (precedent: Alcorn 9/1 99308 on the 0310Z slot). Baxley 99239 chg 23342620 $163 + 99223 chg 23342783 $310 = $473, both -> $0, WOBAD accepted. Then `hideexclusions claimrunid hide="-1"` with both visit/claimid pairs to clear the dead exclusion rows. Register registers/wo_baxley_2026-09-15.json. Reverse + rebill if valid coverage is later found.
+
+## Addendum 06:20 UTC — AET12 rebill #3 (William matched settings to AAR01)
+- William changed the AET12 (car42009) carrier-master to match AAR01 (car6600, a working AARP payer). Per instruction, rebilled all 59 AET12 exclusion claims on run 1700192: freq-1 (`freq1_visit.run(vid,cid,seq)`) on AET12 **seq 2** (Medigap secondary), 15 patients, all `chargerebill -> 204`. Register registers/aet12_rebill_2026-09-15.json.
+- Charge-id lookup that WORKS for exclusion visits: `gettxhistory` per patient, keep non-void charges whose `visit` is in the exclusion set (`getchargedetaildataicd10 visitid=` returns nothing for these). AET12 seq from getdemographic car42009.
+- Watch: verdict on the NEXT nightly 21:07 ET run's CH report (rebill timing rule). If PREF0288/PREF0264 recurs, next lever per William = **suppress the provider loop** (another carrier-master setting) then rebill again.
+- Log gotcha: a `--dry` run and the live run share aet12_rebill_0915.log; the "=== done: N ===" summary line is not authoritative — count `^REBILL ... -> 204` lines by distinct visit instead. Live run initially left 6 visits unsent (Thomson x2, Poppell x4); resent to 204.
