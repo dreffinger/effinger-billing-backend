@@ -9,7 +9,7 @@
   "era_paid": 75.68,
   "carrier": "CAP07",
   "checkno": "4015323",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22443545,
   "chargeid": "22443545",
   "outcome": "already-posted"
@@ -21,7 +21,7 @@
   "outcome": "reversal-skipped",
   "amt": 75.68,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "892675",
@@ -30,7 +30,7 @@
   "outcome": "reversal-skipped",
   "amt": 238.33,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "892675",
@@ -42,7 +42,7 @@
   "era_paid": 75.68,
   "carrier": "CAP07",
   "checkno": "4015323",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22443633,
   "chargeid": "22443633",
   "outcome": "already-posted"
@@ -57,7 +57,7 @@
   "era_paid": 75.68,
   "carrier": "CAP07",
   "checkno": "4015323",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22443583,
   "chargeid": "22443583",
   "outcome": "already-posted"
@@ -72,7 +72,7 @@
   "era_paid": 75.68,
   "carrier": "CAP07",
   "checkno": "4015323",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22443676,
   "chargeid": "22443676",
   "outcome": "already-posted"
@@ -87,7 +87,7 @@
   "era_paid": 75.68,
   "carrier": "CAP07",
   "checkno": "4015323",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22443530,
   "chargeid": "22443530",
   "outcome": "already-posted"
@@ -99,7 +99,7 @@
   "outcome": "reversal-skipped",
   "amt": 40.3,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "892737",
@@ -108,7 +108,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.96,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "892783",
@@ -120,7 +120,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815112044",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 06/08/2024 (live: [])"
@@ -135,170 +135,10 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815130520",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 06/10/2024 (live: [])"
- },
- {
-  "checkid": "892988",
-  "checkclaimid": 8904937,
-  "visitid": 19385956,
-  "pid": 25542,
-  "cpt": "99233",
-  "dos": "07/10/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815257710",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22456204,
-  "chargeid": "22456204",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893080",
-  "checkclaimid": 8905603,
-  "visitid": 19381099,
-  "pid": 17471496,
-  "cpt": "99344",
-  "dos": "04/17/2024",
-  "era_paid": 93.9,
-  "carrier": "FLO02",
-  "checkno": "815328590",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22449645,
-  "chargeid": "22449645",
-  "outcome": "residual 93.90",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-23.95', '11123573196')])"
- },
- {
-  "checkid": "893080",
-  "checkclaimid": 8905603,
-  "visitid": 19381099,
-  "pid": 17471496,
-  "cpt": "99497",
-  "dos": "04/17/2024",
-  "era_paid": 54.46,
-  "carrier": "FLO02",
-  "checkno": "815328590",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22449646,
-  "chargeid": "22449646",
-  "outcome": "residual 54.46",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-13.89', '11123573196')])"
- },
- {
-  "checkid": "893080",
-  "checkclaimid": 8905610,
-  "visitid": 19386697,
-  "pid": 17471795,
-  "cpt": "99233",
-  "dos": "07/24/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815328590",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22456871,
-  "chargeid": "22456871",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893399",
-  "checkclaimid": 8909444,
-  "visitid": 19388047,
-  "pid": 17472008,
-  "cpt": "99232",
-  "dos": "08/16/2024",
-  "era_paid": 46.16,
-  "carrier": "WEL04",
-  "checkno": "1000598010",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22458586,
-  "chargeid": "22458586",
-  "outcome": "residual 46.16",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('WEL04', '-10.27', '1000072697')])"
- },
- {
-  "checkid": "893399",
-  "checkclaimid": 8909453,
-  "visitid": 19387997,
-  "pid": 17472008,
-  "cpt": "99232",
-  "dos": "08/15/2024",
-  "era_paid": 46.16,
-  "carrier": "WEL04",
-  "checkno": "1000598010",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22458503,
-  "chargeid": "22458503",
-  "outcome": "residual 46.16",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('WEL04', '-10.27', '1000072697')])"
- },
- {
-  "checkid": "893526",
-  "checkclaimid": 8912776,
-  "visitid": 19389445,
-  "pid": 25776,
-  "cpt": "99232",
-  "dos": "09/10/2024",
-  "era_paid": 61.54,
-  "carrier": "FLO02",
-  "checkno": "815613467",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22460152,
-  "chargeid": "22460152",
-  "outcome": "residual 61.54",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893526",
-  "checkclaimid": 8912791,
-  "visitid": 19389388,
-  "pid": 21577,
-  "cpt": "99223",
-  "dos": "09/09/2024",
-  "era_paid": 135.14,
-  "carrier": "FLO02",
-  "checkno": "815613467",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": -1,
-  "chargeid": "22460605",
-  "pay": 135.14,
-  "wo": 140.38,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 310.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893526",
-  "checkclaimid": 8912791,
-  "visitid": 19389388,
-  "pid": 21577,
-  "cpt": "99497",
-  "dos": "09/09/2024",
-  "era_paid": 58.67,
-  "carrier": "FLO02",
-  "checkno": "815613467",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22460604,
-  "chargeid": "22460604",
-  "pay": 58.67,
-  "wo": 59.36,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 133.0,
-  "outcome": "posted"
  },
  {
   "checkid": "893527",
@@ -310,7 +150,7 @@
   "era_paid": 168.93,
   "carrier": "CAP07",
   "checkno": "4032855",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99223 on 09/18/2024 (live: [])"
@@ -325,7 +165,7 @@
   "era_paid": 73.34,
   "carrier": "CAP07",
   "checkno": "4032855",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99497 on 09/18/2024 (live: [])"
@@ -340,7 +180,7 @@
   "era_paid": 76.93,
   "carrier": "CAP07",
   "checkno": "4032855",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/19/2024 (live: [])"
@@ -355,7 +195,7 @@
   "era_paid": 76.93,
   "carrier": "CAP07",
   "checkno": "4032855",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/20/2024 (live: [])"
@@ -367,7 +207,7 @@
   "outcome": "reversal-skipped",
   "amt": 24.42,
   "carrier": "MCAD",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893547",
@@ -376,7 +216,7 @@
   "outcome": "reversal-skipped",
   "amt": 40.3,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893547",
@@ -385,7 +225,7 @@
   "outcome": "reversal-skipped",
   "amt": 4.17,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893547",
@@ -394,7 +234,7 @@
   "outcome": "reversal-skipped",
   "amt": 53.06,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893590",
@@ -406,7 +246,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22461634,
   "chargeid": "22461634",
   "outcome": "residual 61.54",
@@ -422,7 +262,7 @@
   "era_paid": 135.14,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99223 on 09/12/2024 (live: [])"
@@ -437,7 +277,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/13/2024 (live: [])"
@@ -452,7 +292,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/14/2024 (live: [])"
@@ -467,7 +307,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/15/2024 (live: [])"
@@ -482,7 +322,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/16/2024 (live: [])"
@@ -497,138 +337,10 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "815665328",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 09/17/2024 (live: [('99223', '09/12/2024'), ('99232', '09/13/2024'), ('99232', '09/14/2024'), ('99232', '09/15/2024'), ('99232', '09/16/2024')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913276,
-  "visitid": 19390396,
-  "pid": 12182730,
-  "cpt": "99223",
-  "dos": "09/20/2024",
-  "era_paid": 135.14,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461721,
-  "chargeid": "22461721",
-  "outcome": "residual 135.14",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-34.48', '11154741409')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913287,
-  "visitid": 19390412,
-  "pid": 24392,
-  "cpt": "99232",
-  "dos": "09/20/2024",
-  "era_paid": 61.54,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461738,
-  "chargeid": "22461738",
-  "outcome": "residual 61.54",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('VACCN', '-78.50', '3005767130')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913292,
-  "visitid": 19390375,
-  "pid": 46938,
-  "cpt": "99349",
-  "dos": "09/18/2024",
-  "era_paid": 84.14,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461690,
-  "chargeid": "22461690",
-  "outcome": "residual 84.14",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-21.47', '11154741409')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913292,
-  "visitid": 19390375,
-  "pid": 46938,
-  "cpt": "99497",
-  "dos": "09/18/2024",
-  "era_paid": 54.46,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461691,
-  "chargeid": "22461691",
-  "outcome": "residual 54.46",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-13.89', '11154741409')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913299,
-  "visitid": 19390376,
-  "pid": 22260,
-  "cpt": "99310",
-  "dos": "09/18/2024",
-  "era_paid": 101.57,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461692,
-  "chargeid": "22461692",
-  "outcome": "residual 101.57",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-25.91', '11154741409')])"
- },
- {
-  "checkid": "893599",
-  "checkclaimid": 8913309,
-  "visitid": 19390393,
-  "pid": 22047,
-  "cpt": "99497",
-  "dos": "09/18/2024",
-  "era_paid": 54.46,
-  "carrier": "FLO02",
-  "checkno": "815675051",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22461716,
-  "chargeid": "22461716",
-  "outcome": "residual 54.46",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-13.89', '11154741409')])"
- },
- {
-  "checkid": "893638",
-  "checkclaimid": 8913482,
-  "visitid": 19383754,
-  "pid": 12183000,
-  "cpt": "99349",
-  "dos": "05/22/2024",
-  "era_paid": 84.14,
-  "carrier": "FLO02",
-  "checkno": "815701402",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22453429,
-  "chargeid": "22453429",
-  "outcome": "residual 84.14",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-21.47', '11156897447')])"
- },
- {
-  "checkid": "893638",
-  "checkclaimid": 8913485,
-  "visitid": 19378518,
-  "pid": 17468923,
-  "cpt": "99497",
-  "dos": "03/21/2024",
-  "era_paid": 54.46,
-  "carrier": "FLO02",
-  "checkno": "815701402",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22446881,
-  "chargeid": "22446881",
-  "outcome": "residual 54.46",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
  },
  {
   "checkid": "893741",
@@ -637,7 +349,7 @@
   "outcome": "reversal-skipped",
   "amt": 90.58,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -646,7 +358,7 @@
   "outcome": "reversal-skipped",
   "amt": 148.17,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -655,7 +367,7 @@
   "outcome": "reversal-skipped",
   "amt": 62.59,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -664,7 +376,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -673,7 +385,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -682,7 +394,7 @@
   "outcome": "reversal-skipped",
   "amt": 202.46,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -691,7 +403,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -700,7 +412,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -709,7 +421,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -718,7 +430,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893741",
@@ -727,355 +439,7 @@
   "outcome": "reversal-skipped",
   "amt": 78.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915833,
-  "visitid": 19392517,
-  "pid": 25968,
-  "cpt": "99308",
-  "dos": "10/11/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464503,
-  "chargeid": "22464503",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915834,
-  "visitid": 19392518,
-  "pid": 25968,
-  "cpt": "99308",
-  "dos": "10/07/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464504,
-  "chargeid": "22464504",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915834,
-  "visitid": 19392518,
-  "pid": 25968,
-  "cpt": "99497",
-  "dos": "10/07/2024",
-  "era_paid": 62.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464505,
-  "chargeid": "22464505",
-  "outcome": "residual 62.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915868,
-  "visitid": 19392497,
-  "pid": 44935,
-  "cpt": "99308",
-  "dos": "10/14/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464481,
-  "chargeid": "22464481",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915951,
-  "visitid": 19392505,
-  "pid": 47264,
-  "cpt": "99308",
-  "dos": "10/24/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464490,
-  "chargeid": "22464490",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915951,
-  "visitid": 19392505,
-  "pid": 47264,
-  "cpt": "99497",
-  "dos": "10/24/2024",
-  "era_paid": 62.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464491,
-  "chargeid": "22464491",
-  "outcome": "residual 62.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915980,
-  "visitid": 19392561,
-  "pid": 23853,
-  "cpt": "99305",
-  "dos": "10/17/2024",
-  "era_paid": 110.12,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464555,
-  "chargeid": "22464555",
-  "outcome": "residual 110.12",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8915980,
-  "visitid": 19392561,
-  "pid": 23853,
-  "cpt": "99497",
-  "dos": "10/17/2024",
-  "era_paid": 62.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464556,
-  "chargeid": "22464556",
-  "outcome": "residual 62.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8916008,
-  "visitid": 19392501,
-  "pid": 45003,
-  "cpt": "99308",
-  "dos": "10/14/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464485,
-  "chargeid": "22464485",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893814",
-  "checkclaimid": 8916013,
-  "visitid": 19392516,
-  "pid": 25968,
-  "cpt": "99308",
-  "dos": "10/14/2024",
-  "era_paid": 61.34,
-  "carrier": "CAP07",
-  "checkno": "4037389(0)",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464502,
-  "chargeid": "22464502",
-  "outcome": "residual 61.34",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "893862",
-  "checkclaimid": 8920432,
-  "visitid": 19392209,
-  "pid": 17472267,
-  "cpt": "99223",
-  "dos": "10/22/2024",
-  "era_paid": 135.14,
-  "carrier": "FLO02",
-  "checkno": "815876983",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464004,
-  "chargeid": "22464004",
-  "outcome": "residual 135.14",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-34.48', '11171793797')])"
- },
- {
-  "checkid": "893862",
-  "checkclaimid": 8920436,
-  "visitid": 19392367,
-  "pid": 17472246,
-  "cpt": "99233",
-  "dos": "10/25/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815876983",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464364,
-  "chargeid": "22464364",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893862",
-  "checkclaimid": 8920440,
-  "visitid": 19392360,
-  "pid": 17470697,
-  "cpt": "99233",
-  "dos": "10/24/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815876983",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464355,
-  "chargeid": "22464355",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893862",
-  "checkclaimid": 8920457,
-  "visitid": 19392347,
-  "pid": 23391,
-  "cpt": "99233",
-  "dos": "10/24/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815876983",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464291,
-  "chargeid": "22464291",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920909,
-  "visitid": 19392441,
-  "pid": 17472246,
-  "cpt": "99233",
-  "dos": "10/27/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464403,
-  "chargeid": "22464403",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920910,
-  "visitid": 19392374,
-  "pid": 17472246,
-  "cpt": "99233",
-  "dos": "10/26/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464380,
-  "chargeid": "22464380",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920916,
-  "visitid": 19392439,
-  "pid": 17470697,
-  "cpt": "99233",
-  "dos": "10/27/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464400,
-  "chargeid": "22464400",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920918,
-  "visitid": 19392574,
-  "pid": 17470697,
-  "cpt": "99233",
-  "dos": "10/29/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464571,
-  "chargeid": "22464571",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920921,
-  "visitid": 19392504,
-  "pid": 22880,
-  "cpt": "99309",
-  "dos": "10/24/2024",
-  "era_paid": 71.01,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464489,
-  "chargeid": "22464489",
-  "outcome": "residual 71.01",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-18.12', '11173109257')])"
- },
- {
-  "checkid": "893899",
-  "checkclaimid": 8920922,
-  "visitid": 19392494,
-  "pid": 24646,
-  "cpt": "99308",
-  "dos": "10/14/2024",
-  "era_paid": 49.07,
-  "carrier": "FLO02",
-  "checkno": "815906990",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464478,
-  "chargeid": "22464478",
-  "outcome": "residual 49.07",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-12.52', '11173109257')])"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1084,7 +448,7 @@
   "outcome": "reversal-skipped",
   "amt": 22.26,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1093,7 +457,7 @@
   "outcome": "reversal-skipped",
   "amt": 4.86,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1102,7 +466,7 @@
   "outcome": "reversal-skipped",
   "amt": 25.52,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1111,7 +475,7 @@
   "outcome": "reversal-skipped",
   "amt": 22.26,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1120,7 +484,7 @@
   "outcome": "reversal-skipped",
   "amt": 22.26,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1129,7 +493,7 @@
   "outcome": "reversal-skipped",
   "amt": 4.86,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893905",
@@ -1138,143 +502,7 @@
   "outcome": "reversal-skipped",
   "amt": 13.5,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921333,
-  "visitid": 19387821,
-  "pid": 22880,
-  "cpt": "99308",
-  "dos": "07/11/2024",
-  "era_paid": 49.07,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22458294,
-  "chargeid": "22458294",
-  "outcome": "residual 49.07",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-49.07', '815449426')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921334,
-  "visitid": 19391980,
-  "pid": 22880,
-  "cpt": "99309",
-  "dos": "09/19/2024",
-  "era_paid": 71.01,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463831,
-  "chargeid": "22463831",
-  "outcome": "residual 71.01",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-18.12', '11167171373'), ('FLO02', '-18.12', '11175454099')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921335,
-  "visitid": 19388544,
-  "pid": 22880,
-  "cpt": "99309",
-  "dos": "08/21/2024",
-  "era_paid": 71.01,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22458979,
-  "chargeid": "22458979",
-  "outcome": "residual 71.01",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-18.12', '11140872905'), ('FLO02', '-18.12', '11175454099')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921335,
-  "visitid": 19388544,
-  "pid": 22880,
-  "cpt": "99497",
-  "dos": "08/21/2024",
-  "era_paid": 49.87,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22458980,
-  "chargeid": "22458980",
-  "outcome": "residual 49.87",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-12.72', '11140872905'), ('FLO02', '-12.72', '11175454099')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921338,
-  "visitid": 19392671,
-  "pid": 17470697,
-  "cpt": "99233",
-  "dos": "10/30/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464733,
-  "chargeid": "22464733",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921341,
-  "visitid": 19392607,
-  "pid": 21614,
-  "cpt": "99308",
-  "dos": "10/28/2024",
-  "era_paid": 49.07,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464651,
-  "chargeid": "22464651",
-  "outcome": "residual 49.07",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-12.52', 'W305508096')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921341,
-  "visitid": 19392607,
-  "pid": 21614,
-  "cpt": "99497",
-  "dos": "10/28/2024",
-  "era_paid": 49.87,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464652,
-  "chargeid": "22464652",
-  "outcome": "residual 49.87",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-12.72', 'W305508096')])"
- },
- {
-  "checkid": "893939",
-  "checkclaimid": 8921362,
-  "visitid": 19392675,
-  "pid": 17472302,
-  "cpt": "99233",
-  "dos": "10/30/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "815915909",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464739,
-  "chargeid": "22464739",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "893960",
@@ -1283,7 +511,7 @@
   "outcome": "orphan",
   "amt": 89.03,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "why": "no visit AMD can identify"
  },
  {
@@ -1293,7 +521,7 @@
   "outcome": "reversal-skipped",
   "amt": 24.42,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894006",
@@ -1302,7 +530,7 @@
   "outcome": "reversal-skipped",
   "amt": 120.5,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894006",
@@ -1311,7 +539,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894006",
@@ -1320,7 +548,7 @@
   "outcome": "reversal-skipped",
   "amt": 6.79,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894006",
@@ -1332,7 +560,7 @@
   "era_paid": 78.17,
   "carrier": "SUN01",
   "checkno": "0912286519(1)",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 20978477,
   "outcome": "orphan",
   "why": "no live charge with CPT 99310 on 04/04/2023 (live: [])"
@@ -1344,7 +572,7 @@
   "outcome": "reversal-skipped",
   "amt": 96.4,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894006",
@@ -1353,7 +581,7 @@
   "outcome": "reversal-skipped",
   "amt": 6.79,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1362,7 +590,7 @@
   "outcome": "reversal-skipped",
   "amt": 25.52,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1371,7 +599,7 @@
   "outcome": "reversal-skipped",
   "amt": 130.55,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1380,7 +608,7 @@
   "outcome": "reversal-skipped",
   "amt": 120.5,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1389,7 +617,7 @@
   "outcome": "reversal-skipped",
   "amt": 0.62,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1398,7 +626,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1407,7 +635,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1416,7 +644,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1425,7 +653,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1434,7 +662,7 @@
   "outcome": "reversal-skipped",
   "amt": 24.42,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1443,7 +671,7 @@
   "outcome": "reversal-skipped",
   "amt": 145.05,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1452,7 +680,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1461,7 +689,7 @@
   "outcome": "reversal-skipped",
   "amt": 40.3,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1470,7 +698,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1479,7 +707,7 @@
   "outcome": "reversal-skipped",
   "amt": 74.93,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1488,7 +716,7 @@
   "outcome": "reversal-skipped",
   "amt": 58.36,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1497,7 +725,7 @@
   "outcome": "reversal-skipped",
   "amt": 44.34,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1506,7 +734,7 @@
   "outcome": "reversal-skipped",
   "amt": 74.93,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1515,7 +743,7 @@
   "outcome": "reversal-skipped",
   "amt": 74.93,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1524,7 +752,7 @@
   "outcome": "reversal-skipped",
   "amt": 74.93,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894007",
@@ -1536,7 +764,7 @@
   "era_paid": 96.4,
   "carrier": "WEL04",
   "checkno": "0912286519(0)",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22424468,
   "chargeid": "22424468",
   "outcome": "residual 96.40",
@@ -1549,7 +777,7 @@
   "outcome": "reversal-skipped",
   "amt": 120.5,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894057",
@@ -1558,79 +786,7 @@
   "outcome": "reversal-skipped",
   "amt": 24.42,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "894075",
-  "checkclaimid": 8924460,
-  "visitid": 19393730,
-  "pid": 17472390,
-  "cpt": "99232",
-  "dos": "11/21/2024",
-  "era_paid": 61.54,
-  "carrier": "FLO02",
-  "checkno": "816043208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22466079,
-  "chargeid": "22466079",
-  "outcome": "residual 61.54",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-15.70', 'W307670085')])"
- },
- {
-  "checkid": "894075",
-  "checkclaimid": 8924461,
-  "visitid": 19393731,
-  "pid": 17472390,
-  "cpt": "99223",
-  "dos": "11/20/2024",
-  "era_paid": 135.14,
-  "carrier": "FLO02",
-  "checkno": "816043208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22466080,
-  "chargeid": "22466080",
-  "outcome": "residual 135.14",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-34.48', 'W307670085')])"
- },
- {
-  "checkid": "894075",
-  "checkclaimid": 8924468,
-  "visitid": 19393655,
-  "pid": 17471642,
-  "cpt": "99233",
-  "dos": "11/20/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "816043208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22466045,
-  "chargeid": "22466045",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "894075",
-  "checkclaimid": 8924469,
-  "visitid": 19393661,
-  "pid": 17471642,
-  "cpt": "99233",
-  "dos": "11/19/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "816043208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22466052,
-  "chargeid": "22466052",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894153",
@@ -1642,7 +798,7 @@
   "era_paid": 86.65,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467374,
   "chargeid": "22467374",
   "outcome": "residual 86.65",
@@ -1658,7 +814,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467375,
   "chargeid": "22467375",
   "outcome": "residual 49.06",
@@ -1674,7 +830,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22466676,
   "outcome": "orphan",
   "why": "no live charge with CPT 99308 on 02/26/2024 (live: [])"
@@ -1689,7 +845,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22466677,
   "outcome": "orphan",
   "why": "no live charge with CPT 99497 on 02/26/2024 (live: [])"
@@ -1704,7 +860,7 @@
   "era_paid": 71.01,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467882,
   "chargeid": "22467882",
   "outcome": "residual 71.01",
@@ -1720,7 +876,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467986,
   "chargeid": "22467986",
   "outcome": "residual 49.07",
@@ -1736,7 +892,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468007,
   "chargeid": "22468007",
   "outcome": "residual 49.07",
@@ -1752,7 +908,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468035,
   "chargeid": "22468035",
   "outcome": "residual 49.07",
@@ -1768,7 +924,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468056,
   "chargeid": "22468056",
   "outcome": "residual 49.07",
@@ -1784,7 +940,7 @@
   "era_paid": 57.73,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468206,
   "chargeid": "22468206",
   "outcome": "residual 57.73",
@@ -1800,7 +956,7 @@
   "era_paid": 119.49,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468207,
   "chargeid": "22468207",
   "outcome": "residual 119.49",
@@ -1816,7 +972,7 @@
   "era_paid": 117.54,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468208,
   "chargeid": "22468208",
   "outcome": "residual 117.54",
@@ -1832,7 +988,7 @@
   "era_paid": 139.3,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467215,
   "chargeid": "22467215",
   "outcome": "residual 139.30",
@@ -1848,7 +1004,7 @@
   "era_paid": 57.72,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467216,
   "chargeid": "22467216",
   "outcome": "residual 57.72",
@@ -1864,7 +1020,7 @@
   "era_paid": 69.85,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467380,
   "chargeid": "22467380",
   "outcome": "residual 69.85",
@@ -1880,7 +1036,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467404,
   "chargeid": "22467404",
   "outcome": "residual 48.27",
@@ -1896,7 +1052,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467432,
   "chargeid": "22467432",
   "outcome": "residual 48.27",
@@ -1912,7 +1068,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467433,
   "chargeid": "22467433",
   "outcome": "residual 49.06",
@@ -1928,7 +1084,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467448,
   "chargeid": "22467448",
   "outcome": "residual 48.27",
@@ -1944,7 +1100,7 @@
   "era_paid": 69.85,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467546,
   "chargeid": "22467546",
   "outcome": "residual 69.85",
@@ -1960,7 +1116,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467547,
   "chargeid": "22467547",
   "outcome": "residual 49.06",
@@ -1976,7 +1132,7 @@
   "era_paid": 69.85,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467584,
   "chargeid": "22467584",
   "outcome": "residual 69.85",
@@ -1992,7 +1148,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467754,
   "chargeid": "22467754",
   "outcome": "residual 49.07",
@@ -2008,7 +1164,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467775,
   "chargeid": "22467775",
   "outcome": "residual 49.07",
@@ -2024,7 +1180,7 @@
   "era_paid": 120.36,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467854,
   "chargeid": "22467854",
   "outcome": "residual 120.36",
@@ -2040,7 +1196,7 @@
   "era_paid": 49.87,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467855,
   "chargeid": "22467855",
   "outcome": "residual 49.87",
@@ -2056,7 +1212,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467880,
   "chargeid": "22467880",
   "outcome": "residual 49.07",
@@ -2072,7 +1228,7 @@
   "era_paid": 26.54,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467985,
   "chargeid": "22467985",
   "outcome": "residual 26.54",
@@ -2088,7 +1244,7 @@
   "era_paid": 101.57,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468272,
   "chargeid": "22468272",
   "outcome": "residual 101.57",
@@ -2104,7 +1260,7 @@
   "era_paid": 49.87,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468273,
   "chargeid": "22468273",
   "outcome": "residual 49.87",
@@ -2120,7 +1276,7 @@
   "era_paid": 71.01,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468357,
   "chargeid": "22468357",
   "outcome": "residual 71.01",
@@ -2136,7 +1292,7 @@
   "era_paid": 49.87,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468358,
   "chargeid": "22468358",
   "outcome": "residual 49.87",
@@ -2152,7 +1308,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468401,
   "chargeid": "22468401",
   "outcome": "residual 49.07",
@@ -2168,7 +1324,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468415,
   "chargeid": "22468415",
   "outcome": "residual 49.07",
@@ -2184,7 +1340,7 @@
   "era_paid": 71.01,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468447,
   "chargeid": "22468447",
   "outcome": "residual 71.01",
@@ -2200,7 +1356,7 @@
   "era_paid": 119.49,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468758,
   "chargeid": "22468758",
   "outcome": "residual 119.49",
@@ -2216,7 +1372,7 @@
   "era_paid": 141.61,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468557,
   "chargeid": "22468557",
   "outcome": "residual 141.61",
@@ -2232,7 +1388,7 @@
   "era_paid": 58.67,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468558,
   "chargeid": "22468558",
   "outcome": "residual 58.67",
@@ -2248,7 +1404,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468010,
   "chargeid": "22468010",
   "outcome": "residual 49.07",
@@ -2264,7 +1420,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468040,
   "chargeid": "22468040",
   "outcome": "residual 49.07",
@@ -2280,7 +1436,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468092,
   "chargeid": "22468092",
   "outcome": "residual 49.07",
@@ -2296,7 +1452,7 @@
   "era_paid": 86.64,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22468192,
   "chargeid": "22468192",
   "outcome": "residual 86.64",
@@ -2312,7 +1468,7 @@
   "era_paid": 101.57,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467828,
   "chargeid": "22467828",
   "outcome": "residual 101.57",
@@ -2328,7 +1484,7 @@
   "era_paid": 49.87,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467829,
   "chargeid": "22467829",
   "outcome": "residual 49.87",
@@ -2344,7 +1500,7 @@
   "era_paid": 71.01,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467892,
   "chargeid": "22467892",
   "outcome": "residual 71.01",
@@ -2360,7 +1516,7 @@
   "era_paid": 49.87,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467893,
   "chargeid": "22467893",
   "outcome": "residual 49.87",
@@ -2376,7 +1532,7 @@
   "era_paid": 49.07,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467991,
   "chargeid": "22467991",
   "outcome": "residual 49.07",
@@ -2392,7 +1548,7 @@
   "era_paid": 99.9,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467153,
   "chargeid": "22467153",
   "outcome": "residual 99.90",
@@ -2408,7 +1564,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467154,
   "chargeid": "22467154",
   "outcome": "residual 49.06",
@@ -2424,7 +1580,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467395,
   "chargeid": "22467395",
   "outcome": "residual 48.27",
@@ -2440,7 +1596,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467416,
   "chargeid": "22467416",
   "outcome": "residual 48.27",
@@ -2456,7 +1612,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467474,
   "chargeid": "22467474",
   "outcome": "residual 48.27",
@@ -2472,7 +1628,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467484,
   "chargeid": "22467484",
   "outcome": "residual 48.27",
@@ -2488,7 +1644,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467512,
   "chargeid": "22467512",
   "outcome": "residual 48.27",
@@ -2504,7 +1660,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467571,
   "chargeid": "22467571",
   "outcome": "residual 48.27",
@@ -2520,7 +1676,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467582,
   "chargeid": "22467582",
   "outcome": "residual 48.27",
@@ -2536,7 +1692,7 @@
   "era_paid": 86.64,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467726,
   "chargeid": "22467726",
   "outcome": "residual 86.64",
@@ -2552,7 +1708,7 @@
   "era_paid": 117.54,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467738,
   "chargeid": "22467738",
   "outcome": "residual 117.54",
@@ -2568,7 +1724,7 @@
   "era_paid": 117.54,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467877,
   "chargeid": "22467877",
   "outcome": "residual 117.54",
@@ -2584,7 +1740,7 @@
   "era_paid": 61.54,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22466652,
   "chargeid": "22466652",
   "outcome": "residual 61.54",
@@ -2600,7 +1756,7 @@
   "era_paid": 102.92,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467114,
   "chargeid": "22467114",
   "outcome": "residual 102.92",
@@ -2616,7 +1772,7 @@
   "era_paid": 50.91,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467115,
   "chargeid": "22467115",
   "outcome": "residual 50.91",
@@ -2632,7 +1788,7 @@
   "era_paid": 48.27,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467087,
   "chargeid": "22467087",
   "outcome": "residual 48.27",
@@ -2648,7 +1804,7 @@
   "era_paid": 49.06,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467088,
   "chargeid": "22467088",
   "outcome": "residual 49.06",
@@ -2664,111 +1820,11 @@
   "era_paid": 85.23,
   "carrier": "FLO02",
   "checkno": "816075123",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22467124,
   "chargeid": "22467124",
   "outcome": "residual 85.23",
   "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-21.74', '11188814760')])"
- },
- {
-  "checkid": "894470",
-  "checkclaimid": 8927512,
-  "visitid": 19398518,
-  "pid": 17472634,
-  "cpt": "99232",
-  "dos": "01/09/2025",
-  "era_paid": 77.06,
-  "carrier": "HUM01",
-  "checkno": "151222855250125",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472355,
-  "chargeid": "22472355",
-  "pay": 77.06,
-  "wo": 33.94,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "894579",
-  "checkclaimid": 8928081,
-  "visitid": 19398764,
-  "pid": 17472754,
-  "cpt": "99232",
-  "dos": "01/14/2025",
-  "era_paid": 15.41,
-  "carrier": "HUM01",
-  "checkno": "152096809250208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472580,
-  "chargeid": "22472580",
-  "outcome": "residual 15.41",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-60.42', '816323757'), ('HUM01', '-15.41', '152036314250207')])"
- },
- {
-  "checkid": "894579",
-  "checkclaimid": 8928082,
-  "visitid": 19398873,
-  "pid": 17472754,
-  "cpt": "99232",
-  "dos": "01/16/2025",
-  "era_paid": 15.41,
-  "carrier": "HUM01",
-  "checkno": "152096809250208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472780,
-  "chargeid": "22472780",
-  "outcome": "residual 15.41",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-60.42', '816323757'), ('HUM01', '-15.41', '152036314250207')])"
- },
- {
-  "checkid": "894579",
-  "checkclaimid": 8928083,
-  "visitid": 19398949,
-  "pid": 17472754,
-  "cpt": "99232",
-  "dos": "01/17/2025",
-  "era_paid": 15.41,
-  "carrier": "HUM01",
-  "checkno": "152096809250208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472855,
-  "chargeid": "22472855",
-  "outcome": "residual 15.41",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-60.42', '816323757'), ('HUM01', '-15.41', '152036314250207')])"
- },
- {
-  "checkid": "894579",
-  "checkclaimid": 8928084,
-  "visitid": 19398774,
-  "pid": 17472754,
-  "cpt": "99223",
-  "dos": "01/13/2025",
-  "era_paid": 33.75,
-  "carrier": "HUM01",
-  "checkno": "152096809250208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472591,
-  "chargeid": "22472591",
-  "outcome": "residual 33.75",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-132.31', '816323757'), ('HUM01', '-33.75', '152036314250207')])"
- },
- {
-  "checkid": "894579",
-  "checkclaimid": 8928085,
-  "visitid": 19398821,
-  "pid": 17472754,
-  "cpt": "99232",
-  "dos": "01/15/2025",
-  "era_paid": 15.41,
-  "carrier": "HUM01",
-  "checkno": "152096809250208",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22472716,
-  "chargeid": "22472716",
-  "outcome": "residual 15.41",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-60.42', '816323757'), ('HUM01', '-15.41', '152036314250207')])"
  },
  {
   "checkid": "894671",
@@ -2777,7 +1833,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2786,7 +1842,7 @@
   "outcome": "reversal-skipped",
   "amt": 242.27,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2795,7 +1851,7 @@
   "outcome": "reversal-skipped",
   "amt": 168.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2804,7 +1860,7 @@
   "outcome": "reversal-skipped",
   "amt": 168.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2813,7 +1869,7 @@
   "outcome": "reversal-skipped",
   "amt": 168.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2822,7 +1878,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2831,7 +1887,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2840,7 +1896,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2849,7 +1905,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2858,7 +1914,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2867,7 +1923,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2876,7 +1932,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2885,7 +1941,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2894,7 +1950,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2903,7 +1959,7 @@
   "outcome": "reversal-skipped",
   "amt": 242.27,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2912,7 +1968,7 @@
   "outcome": "reversal-skipped",
   "amt": 242.27,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2921,7 +1977,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2930,7 +1986,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2939,7 +1995,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2948,7 +2004,7 @@
   "outcome": "reversal-skipped",
   "amt": 242.27,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2957,7 +2013,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2966,7 +2022,7 @@
   "outcome": "reversal-skipped",
   "amt": 307.72,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2975,7 +2031,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2984,7 +2040,7 @@
   "outcome": "reversal-skipped",
   "amt": 168.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -2993,7 +2049,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3002,7 +2058,7 @@
   "outcome": "reversal-skipped",
   "amt": 168.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3011,7 +2067,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3020,7 +2076,7 @@
   "outcome": "reversal-skipped",
   "amt": 212.8,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3029,7 +2085,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3038,7 +2094,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3047,7 +2103,7 @@
   "outcome": "reversal-skipped",
   "amt": 88.77,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3056,7 +2112,7 @@
   "outcome": "reversal-skipped",
   "amt": 88.77,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3065,7 +2121,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3074,7 +2130,7 @@
   "outcome": "reversal-skipped",
   "amt": 61.34,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3083,7 +2139,7 @@
   "outcome": "reversal-skipped",
   "amt": 61.34,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3092,7 +2148,7 @@
   "outcome": "reversal-skipped",
   "amt": 88.77,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3101,7 +2157,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3110,7 +2166,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3119,7 +2175,7 @@
   "outcome": "reversal-skipped",
   "amt": 61.34,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3128,7 +2184,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3137,7 +2193,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3146,7 +2202,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3155,7 +2211,7 @@
   "outcome": "reversal-skipped",
   "amt": 88.77,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3164,7 +2220,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3173,7 +2229,7 @@
   "outcome": "reversal-skipped",
   "amt": 151.11,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3182,7 +2238,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3191,7 +2247,7 @@
   "outcome": "reversal-skipped",
   "amt": 307.72,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3200,7 +2256,7 @@
   "outcome": "reversal-skipped",
   "amt": 307.72,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3209,7 +2265,7 @@
   "outcome": "reversal-skipped",
   "amt": 212.8,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "894671",
@@ -3218,154 +2274,7 @@
   "outcome": "reversal-skipped",
   "amt": 76.93,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "894750",
-  "checkclaimid": 8929428,
-  "visitid": 19400562,
-  "pid": 23493,
-  "cpt": "99309",
-  "dos": "02/11/2025",
-  "era_paid": 88.27,
-  "carrier": "HUM01",
-  "checkno": "153601243250301",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22474633,
-  "chargeid": "22474633",
-  "outcome": "residual 88.27",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "894912",
-  "checkclaimid": 8930158,
-  "visitid": 19401309,
-  "pid": 22575,
-  "cpt": "99223",
-  "dos": "02/26/2025",
-  "era_paid": 132.0,
-  "carrier": "HUM01",
-  "checkno": "155131976250322",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22475485,
-  "chargeid": "22475485",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "895008",
-  "checkclaimid": 8931156,
-  "visitid": 19402659,
-  "pid": 17473063,
-  "cpt": "99497",
-  "dos": "03/20/2025",
-  "era_paid": 25.06,
-  "carrier": "FLO02",
-  "checkno": "816740529",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22476822,
-  "chargeid": "22476822",
-  "outcome": "residual 25.06",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-41.93', '11250511854')])"
- },
- {
-  "checkid": "895008",
-  "checkclaimid": 8931187,
-  "visitid": 19402888,
-  "pid": 17472698,
-  "cpt": "99308",
-  "dos": "03/19/2025",
-  "era_paid": 47.57,
-  "carrier": "FLO02",
-  "checkno": "816740529",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22477080,
-  "chargeid": "22477080",
-  "outcome": "residual 47.57",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-12.14', '11250511854')])"
- },
- {
-  "checkid": "895008",
-  "checkclaimid": 8931206,
-  "visitid": 19392338,
-  "pid": 20903,
-  "cpt": "99233",
-  "dos": "10/24/2024",
-  "era_paid": 92.58,
-  "carrier": "FLO02",
-  "checkno": "816740529",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464275,
-  "chargeid": "22464275",
-  "pay": 92.58,
-  "wo": 43.8,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "895082",
-  "checkclaimid": 8936248,
-  "visitid": 19404178,
-  "pid": 17473129,
-  "cpt": "99309",
-  "dos": "04/09/2025",
-  "era_paid": 86.5,
-  "carrier": "WEL04",
-  "checkno": "1008248016",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22478390,
-  "chargeid": "22478390",
-  "outcome": "residual 86.50",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895082",
-  "checkclaimid": 8936248,
-  "visitid": 19404178,
-  "pid": 17473129,
-  "cpt": "99497",
-  "dos": "04/09/2025",
-  "era_paid": 60.57,
-  "carrier": "WEL04",
-  "checkno": "1008248016",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22478391,
-  "chargeid": "22478391",
-  "outcome": "residual 60.57",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895082",
-  "checkclaimid": 8936487,
-  "visitid": 19404127,
-  "pid": 17472834,
-  "cpt": "99232",
-  "dos": "04/15/2025",
-  "era_paid": 75.52,
-  "carrier": "WEL04",
-  "checkno": "1008248016",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22478307,
-  "chargeid": "22478307",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895082",
-  "checkclaimid": 8936505,
-  "visitid": 19404206,
-  "pid": 17472834,
-  "cpt": "99232",
-  "dos": "04/16/2025",
-  "era_paid": 75.52,
-  "carrier": "WEL04",
-  "checkno": "1008248016",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22478423,
-  "chargeid": "22478423",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "895325",
@@ -3374,7 +2283,7 @@
   "outcome": "reversal-skipped",
   "amt": 147.07,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "895325",
@@ -3383,7 +2292,7 @@
   "outcome": "reversal-skipped",
   "amt": 86.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "895325",
@@ -3392,91 +2301,7 @@
   "outcome": "reversal-skipped",
   "amt": 86.5,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "895373",
-  "checkclaimid": 8941414,
-  "visitid": 19407788,
-  "pid": 12179706,
-  "cpt": "99497",
-  "dos": "10/18/2024",
-  "era_paid": 58.67,
-  "carrier": "FLO02",
-  "checkno": "817231370",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22483111,
-  "chargeid": "22483111",
-  "pay": 58.67,
-  "wo": 59.36,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 133.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "895409",
-  "checkclaimid": 8941721,
-  "visitid": 19408563,
-  "pid": 17473466,
-  "cpt": "99232",
-  "dos": "06/27/2025",
-  "era_paid": 75.52,
-  "carrier": "CAP07",
-  "checkno": "4068652",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22483895,
-  "chargeid": "22483895",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895409",
-  "checkclaimid": 8941726,
-  "visitid": 19408560,
-  "pid": 17473466,
-  "cpt": "99232",
-  "dos": "06/30/2025",
-  "era_paid": 75.52,
-  "carrier": "CAP07",
-  "checkno": "4068652",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22483892,
-  "chargeid": "22483892",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895409",
-  "checkclaimid": 8941727,
-  "visitid": 19408561,
-  "pid": 17473466,
-  "cpt": "99232",
-  "dos": "06/29/2025",
-  "era_paid": 75.52,
-  "carrier": "CAP07",
-  "checkno": "4068652",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22483893,
-  "chargeid": "22483893",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
- },
- {
-  "checkid": "895409",
-  "checkclaimid": 8941729,
-  "visitid": 19408562,
-  "pid": 17473466,
-  "cpt": "99232",
-  "dos": "06/28/2025",
-  "era_paid": 75.52,
-  "carrier": "CAP07",
-  "checkno": "4068652",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22483894,
-  "chargeid": "22483894",
-  "outcome": "residual 75.52",
-  "why": "open insurance balance $0 - already adjudicated (paid by [])"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "895428",
@@ -3488,7 +2313,7 @@
   "era_paid": 60.42,
   "carrier": "FLO02",
   "checkno": "817303837",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 06/29/2025 (live: [])"
@@ -3503,7 +2328,7 @@
   "era_paid": 60.42,
   "carrier": "FLO02",
   "checkno": "817340606",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99232 on 07/07/2025 (live: [])"
@@ -3518,7 +2343,7 @@
   "era_paid": 68.62,
   "carrier": "FLO02",
   "checkno": "817368244",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99487 on 07/08/2025 (live: [])"
@@ -3533,7 +2358,7 @@
   "era_paid": 37.13,
   "carrier": "FLO02",
   "checkno": "817368244",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99489 on 07/08/2025 (live: [])"
@@ -3545,7 +2370,7 @@
   "outcome": "reversal-skipped",
   "amt": 130.55,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1046898",
@@ -3554,7 +2379,7 @@
   "outcome": "reversal-skipped",
   "amt": 57.37,
   "carrier": "SUN01",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1047829",
@@ -3563,43 +2388,7 @@
   "outcome": "reversal-skipped",
   "amt": 184.2,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "1048041",
-  "checkclaimid": 15404852,
-  "visitid": 19428630,
-  "pid": 17473372,
-  "cpt": "99223",
-  "dos": "01/06/2026",
-  "era_paid": 92.41,
-  "carrier": "FLO02",
-  "checkno": "818440264",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23335127,
-  "chargeid": "23335127",
-  "outcome": "residual 92.41",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-39.59', '178277094260206')])"
- },
- {
-  "checkid": "1048041",
-  "checkclaimid": 15404852,
-  "visitid": 19428630,
-  "pid": 17473372,
-  "cpt": "99497",
-  "dos": "01/06/2026",
-  "era_paid": 52.33,
-  "carrier": "FLO02",
-  "checkno": "818440264",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23335128,
-  "chargeid": "23335128",
-  "pay": 52.33,
-  "wo": 67.32,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 133.0,
-  "outcome": "posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1048512",
@@ -3608,7 +2397,7 @@
   "outcome": "reversal-skipped",
   "amt": 59.47,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1048512",
@@ -3617,23 +2406,7 @@
   "outcome": "reversal-skipped",
   "amt": 59.47,
   "carrier": "WEL04",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "1048840",
-  "checkclaimid": 15409858,
-  "visitid": 19428630,
-  "pid": 17473372,
-  "cpt": "99223",
-  "dos": "01/06/2026",
-  "era_paid": 81.98,
-  "carrier": "HUM01",
-  "checkno": "186401430260502",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23335127,
-  "chargeid": "23335127",
-  "outcome": "residual 81.98",
-  "why": "open insurance balance $0 - already adjudicated (paid by [('FLO02', '-39.59', '178277094260206')])"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1049142",
@@ -3645,25 +2418,10 @@
   "era_paid": 66.36,
   "carrier": "FLO02",
   "checkno": "819181081",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99309 on 03/12/2026 (live: [])"
- },
- {
-  "checkid": "1049199",
-  "checkclaimid": 15413108,
-  "visitid": 19441645,
-  "pid": 17476458,
-  "cpt": "99344",
-  "dos": "05/04/2026",
-  "era_paid": 115.5,
-  "carrier": "FLO02",
-  "checkno": "819216047",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23351989,
-  "chargeid": "23351989",
-  "outcome": "already-posted"
  },
  {
   "checkid": "1049277",
@@ -3672,7 +2430,7 @@
   "outcome": "reversal-skipped",
   "amt": 236.65,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1049277",
@@ -3681,7 +2439,7 @@
   "outcome": "reversal-skipped",
   "amt": 112.29,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1049277",
@@ -3690,7 +2448,7 @@
   "outcome": "reversal-skipped",
   "amt": 112.29,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1049308",
@@ -3699,7 +2457,7 @@
   "outcome": "reversal-skipped",
   "amt": 20.41,
   "carrier": "MCAD",
-  "when": "2026-09-13T0800Z"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1049504",
@@ -3708,7 +2466,7 @@
   "outcome": "orphan",
   "amt": 118.33,
   "carrier": "CAP07",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "why": "no visit AMD can identify"
  },
  {
@@ -3718,127 +2476,7 @@
   "outcome": "reversal-skipped",
   "amt": 246.2,
   "carrier": "UNI20",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425149,
-  "visitid": 19391623,
-  "pid": 12231743,
-  "cpt": "99223",
-  "dos": "10/11/2024",
-  "era_paid": 135.14,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463443,
-  "chargeid": "22463443",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425149,
-  "visitid": 19391623,
-  "pid": 12231743,
-  "cpt": "99497",
-  "dos": "10/11/2024",
-  "era_paid": 58.67,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463444,
-  "chargeid": "22463444",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425150,
-  "visitid": 19391567,
-  "pid": 12231743,
-  "cpt": "99306",
-  "dos": "10/08/2024",
-  "era_paid": 177.01,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463375,
-  "chargeid": "22463375",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425150,
-  "visitid": 19391567,
-  "pid": 12231743,
-  "cpt": "99497",
-  "dos": "10/08/2024",
-  "era_paid": 58.67,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463376,
-  "chargeid": "22463376",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425151,
-  "visitid": 19391710,
-  "pid": 12231743,
-  "cpt": "99232",
-  "dos": "10/12/2024",
-  "era_paid": 61.54,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463529,
-  "chargeid": "22463529",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425152,
-  "visitid": 19391862,
-  "pid": 12231743,
-  "cpt": "99232",
-  "dos": "10/15/2024",
-  "era_paid": 61.54,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463628,
-  "chargeid": "22463628",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425153,
-  "visitid": 19391724,
-  "pid": 12231743,
-  "cpt": "99232",
-  "dos": "10/13/2024",
-  "era_paid": 61.54,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463546,
-  "chargeid": "22463546",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050814",
-  "checkclaimid": 15425154,
-  "visitid": 19391790,
-  "pid": 12231743,
-  "cpt": "99232",
-  "dos": "10/14/2024",
-  "era_paid": 61.54,
-  "carrier": "UNI20",
-  "checkno": "24298B1000158488",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22463577,
-  "chargeid": "22463577",
-  "outcome": "already-posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1050820",
@@ -3850,7 +2488,7 @@
   "era_paid": 92.58,
   "carrier": "UNI20",
   "checkno": "24311B1000244403",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22464359,
   "chargeid": "22464359",
   "outcome": "already-posted"
@@ -3865,7 +2503,7 @@
   "era_paid": 23.58,
   "carrier": "UNI20",
   "checkno": "24311B1000244403",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT G0316 on 10/25/2024 (live: [('99233', '10/25/2024')])"
@@ -3880,7 +2518,7 @@
   "era_paid": 92.58,
   "carrier": "UNI20",
   "checkno": "24311B1000244403",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22464393,
   "chargeid": "22464393",
   "outcome": "already-posted"
@@ -3895,7 +2533,7 @@
   "era_paid": 23.58,
   "carrier": "UNI20",
   "checkno": "24311B1000244403",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT G0316 on 10/26/2024 (live: [('99233', '10/26/2024')])"
@@ -3910,7 +2548,7 @@
   "era_paid": 92.58,
   "carrier": "UNI20",
   "checkno": "24312B1000157627",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22464567,
   "chargeid": "22464567",
   "outcome": "already-posted"
@@ -3925,7 +2563,7 @@
   "era_paid": 23.58,
   "carrier": "UNI20",
   "checkno": "24312B1000157627",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT G0316 on 10/29/2024 (live: [('99233', '10/29/2024')])"
@@ -3940,7 +2578,7 @@
   "era_paid": 61.54,
   "carrier": "UNI20",
   "checkno": "24312B1000157627",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 22464510,
   "chargeid": "22464510",
   "outcome": "already-posted"
@@ -3955,7 +2593,7 @@
   "era_paid": 92.58,
   "carrier": "UNI20",
   "checkno": "24313B1000171140(1)",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "chargeid": "22464406",
   "outcome": "already-posted"
@@ -3970,7 +2608,7 @@
   "era_paid": 23.58,
   "carrier": "UNI20",
   "checkno": "24313B1000171140(1)",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT G0316 on 10/27/2024 (live: [('99233', '10/27/2024')])"
@@ -3982,52 +2620,7 @@
   "outcome": "reversal-skipped",
   "amt": 97.39,
   "carrier": "FFVA",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "1050875",
-  "checkclaimid": 15427090,
-  "visitid": 19392531,
-  "pid": 17471793,
-  "cpt": "99223",
-  "dos": "10/28/2024",
-  "era_paid": 168.93,
-  "carrier": "UNI20",
-  "checkno": "24312B1000398301",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464518,
-  "chargeid": "22464518",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050875",
-  "checkclaimid": 15427090,
-  "visitid": 19392531,
-  "pid": 17471793,
-  "cpt": "99497",
-  "dos": "10/28/2024",
-  "era_paid": 73.34,
-  "carrier": "UNI20",
-  "checkno": "24312B1000398301",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464519,
-  "chargeid": "22464519",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1050875",
-  "checkclaimid": 15427091,
-  "visitid": 19392576,
-  "pid": 17471793,
-  "cpt": "99232",
-  "dos": "10/29/2024",
-  "era_paid": 76.93,
-  "carrier": "UNI20",
-  "checkno": "24312B1000398301",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22464575,
-  "chargeid": "22464575",
-  "outcome": "already-posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1051025",
@@ -4039,7 +2632,7 @@
   "era_paid": 72.19,
   "carrier": "HUM01",
   "checkno": "199107297260905",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "chargeid": "23360733",
   "outcome": "already-posted"
@@ -4054,130 +2647,10 @@
   "era_paid": 42.57,
   "carrier": "HUM01",
   "checkno": "199107297260905",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99497 on 08/05/2026 (live: [('99344', '08/05/2026')])"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430859,
-  "visitid": 19363173,
-  "pid": 17469071,
-  "cpt": "99233",
-  "dos": "08/16/2023",
-  "era_paid": 94.18,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22429078,
-  "chargeid": "22429078",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430860,
-  "visitid": 19363201,
-  "pid": 17469071,
-  "cpt": "99233",
-  "dos": "08/15/2023",
-  "era_paid": 94.18,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22429107,
-  "chargeid": "22429107",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430861,
-  "visitid": 19363216,
-  "pid": 17469071,
-  "cpt": "99223",
-  "dos": "08/14/2023",
-  "era_paid": 137.22,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22429128,
-  "chargeid": "22429128",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430862,
-  "visitid": 19362820,
-  "pid": 17469033,
-  "cpt": "99233",
-  "dos": "08/13/2023",
-  "era_paid": 94.18,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22428643,
-  "chargeid": "22428643",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430863,
-  "visitid": 19362837,
-  "pid": 17469033,
-  "cpt": "99233",
-  "dos": "08/12/2023",
-  "era_paid": 94.18,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22428660,
-  "chargeid": "22428660",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430864,
-  "visitid": 19362850,
-  "pid": 17469033,
-  "cpt": "99223",
-  "dos": "08/11/2023",
-  "era_paid": 137.22,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22428673,
-  "chargeid": "22428673",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430864,
-  "visitid": 19362850,
-  "pid": 17469033,
-  "cpt": "99497",
-  "dos": "08/11/2023",
-  "era_paid": 59.45,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22428674,
-  "chargeid": "22428674",
-  "outcome": "already-posted"
- },
- {
-  "checkid": "1051131",
-  "checkclaimid": 15430865,
-  "visitid": 19363204,
-  "pid": 17469072,
-  "cpt": "99223",
-  "dos": "08/15/2023",
-  "era_paid": 137.22,
-  "carrier": "UNI20",
-  "checkno": "1960189307",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22429110,
-  "chargeid": "22429110",
-  "outcome": "already-posted"
  },
  {
   "checkid": "1051243",
@@ -4186,22 +2659,7 @@
   "outcome": "reversal-skipped",
   "amt": 231.84,
   "carrier": "FFVA",
-  "when": "2026-09-13T0800Z"
- },
- {
-  "checkid": "1051329",
-  "checkclaimid": 15432855,
-  "visitid": 19377613,
-  "pid": 17471292,
-  "cpt": "99232",
-  "dos": "03/09/2024",
-  "era_paid": 78.5,
-  "carrier": "FFVA",
-  "checkno": "3005588619",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 22445954,
-  "chargeid": "22445954",
-  "outcome": "already-posted"
+  "when": "2026-09-15T1910Z"
  },
  {
   "checkid": "1051390",
@@ -4210,23 +2668,8 @@
   "outcome": "orphan",
   "amt": 39.33,
   "carrier": "FFVA",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "why": "no visit AMD can identify"
- },
- {
-  "checkid": "1051464",
-  "checkclaimid": 15433794,
-  "visitid": 14013956,
-  "pid": 46250,
-  "cpt": "99497",
-  "dos": "05/15/2023",
-  "era_paid": 64.94,
-  "carrier": "UNI20",
-  "checkno": "Q5028141",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 21336538,
-  "chargeid": "21336538",
-  "outcome": "already-posted"
  },
  {
   "checkid": "1051584",
@@ -4238,7 +2681,7 @@
   "era_paid": 112.09,
   "carrier": "FLO02",
   "checkno": "819747724",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23362936,
   "chargeid": "23362936",
   "outcome": "residual 112.09",
@@ -4254,130 +2697,10 @@
   "era_paid": 60.74,
   "carrier": "FLO02",
   "checkno": "819747724",
-  "when": "2026-09-13T0800Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": -1,
   "outcome": "orphan",
   "why": "no live charge with CPT 99489 on 08/23/2026 (live: [('99487', '08/23/2026')])"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435513,
-  "visitid": 19442142,
-  "pid": 17476337,
-  "cpt": "99223",
-  "dos": "05/13/2026",
-  "era_paid": 190.46,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23350125,
-  "chargeid": "23350125",
-  "pay": 190.46,
-  "wo": 119.54,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 310.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435515,
-  "visitid": 19442130,
-  "pid": 17476337,
-  "cpt": "99232",
-  "dos": "05/17/2026",
-  "era_paid": 68.0,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23350112,
-  "chargeid": "23350112",
-  "pay": 68.0,
-  "wo": 43.0,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435519,
-  "visitid": 19442093,
-  "pid": 17476337,
-  "cpt": "99232",
-  "dos": "05/16/2026",
-  "era_paid": 68.0,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23350073,
-  "chargeid": "23350073",
-  "pay": 68.0,
-  "wo": 43.0,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435551,
-  "visitid": 19440513,
-  "pid": 17476337,
-  "cpt": "99232",
-  "dos": "04/30/2026",
-  "era_paid": 68.0,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23348203,
-  "chargeid": "23348203",
-  "pay": 68.0,
-  "wo": 43.0,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435559,
-  "visitid": 19440601,
-  "pid": 17476337,
-  "cpt": "99232",
-  "dos": "05/01/2026",
-  "era_paid": 68.0,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23348329,
-  "chargeid": "23348329",
-  "pay": 68.0,
-  "wo": 43.0,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051604",
-  "checkclaimid": 15435643,
-  "visitid": 19442746,
-  "pid": 17476337,
-  "cpt": "99232",
-  "dos": "05/18/2026",
-  "era_paid": 68.0,
-  "carrier": "BCBS",
-  "checkno": "213403769",
-  "when": "2026-09-13T0800Z",
-  "chargedetailid": 23350990,
-  "chargeid": "23350990",
-  "pay": 68.0,
-  "wo": 43.0,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
  },
  {
   "checkid": "1051656",
@@ -4389,7 +2712,7 @@
   "era_paid": 66.36,
   "carrier": "FLO02",
   "checkno": "819785160",
-  "when": "2026-09-15T1110Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23363901,
   "chargeid": "23363901",
   "outcome": "residual 66.36",
@@ -4405,7 +2728,7 @@
   "era_paid": 85.46,
   "carrier": "FLO02",
   "checkno": "819785160",
-  "when": "2026-09-15T1110Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23363932,
   "chargeid": "23363932",
   "outcome": "residual 85.46",
@@ -4421,7 +2744,7 @@
   "era_paid": 85.46,
   "carrier": "FLO02",
   "checkno": "819785160",
-  "when": "2026-09-15T1110Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23363924,
   "chargeid": "23363924",
   "outcome": "residual 85.46",
@@ -4437,7 +2760,7 @@
   "era_paid": 66.36,
   "carrier": "FLO02",
   "checkno": "819785160",
-  "when": "2026-09-15T1110Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23363902,
   "chargeid": "23363902",
   "outcome": "residual 66.36",
@@ -4453,29 +2776,9 @@
   "era_paid": 136.25,
   "carrier": "CAP07",
   "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23365051,
   "chargeid": "23365051",
-  "pay": 136.25,
-  "wo": 23.75,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 160.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051661",
-  "checkclaimid": 15438158,
-  "visitid": 19454295,
-  "pid": 17476658,
-  "cpt": "99239",
-  "dos": "09/09/2026",
-  "era_paid": 105.78,
-  "carrier": "CAP07",
-  "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
-  "chargedetailid": 23365368,
-  "chargeid": "23365368",
   "outcome": "already-posted"
  },
  {
@@ -4488,7 +2791,7 @@
   "era_paid": 106.82,
   "carrier": "CAP07",
   "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23364874,
   "chargeid": "23364874",
   "outcome": "residual 106.82",
@@ -4504,29 +2807,9 @@
   "era_paid": 70.46,
   "carrier": "CAP07",
   "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23362167,
   "chargeid": "23362167",
-  "pay": 70.46,
-  "wo": 40.54,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 111.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051661",
-  "checkclaimid": 15438169,
-  "visitid": 19454088,
-  "pid": 12234026,
-  "cpt": "99233",
-  "dos": "09/08/2026",
-  "era_paid": 106.82,
-  "carrier": "CAP07",
-  "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
-  "chargedetailid": 23365058,
-  "chargeid": "23365058",
   "outcome": "already-posted"
  },
  {
@@ -4539,15 +2822,10 @@
   "era_paid": 105.78,
   "carrier": "CAP07",
   "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23365054,
   "chargeid": "23365054",
-  "pay": 105.78,
-  "wo": 57.22,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 163.0,
-  "outcome": "posted"
+  "outcome": "already-posted"
  },
  {
   "checkid": "1051661",
@@ -4559,29 +2837,9 @@
   "era_paid": 97.59,
   "carrier": "CAP07",
   "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
+  "when": "2026-09-15T1910Z",
   "chargedetailid": 23365071,
   "chargeid": "23365071",
-  "pay": 97.59,
-  "wo": 43.41,
-  "wocode": "WOINS",
-  "residual": 0.0,
-  "insbal": 141.0,
-  "outcome": "posted"
- },
- {
-  "checkid": "1051661",
-  "checkclaimid": 15438178,
-  "visitid": 19454298,
-  "pid": 17477647,
-  "cpt": "99239",
-  "dos": "09/09/2026",
-  "era_paid": 134.93,
-  "carrier": "CAP07",
-  "checkno": "4122475",
-  "when": "2026-09-15T1510Z",
-  "chargedetailid": 23365371,
-  "chargeid": "23365371",
   "outcome": "already-posted"
  }
 ]
