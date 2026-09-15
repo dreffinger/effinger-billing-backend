@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-15, 50 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-15, 51 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1129,6 +1129,24 @@
        "options": {
         "raw": {
          "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Availity Remittance Viewer PDF exports -> check register -> manual posts (data source, no HTTP call)",
+     "request": {
+      "method": "GET",
+      "header": [],
+      "url": "{{drive}}/bht Optum era downloads/CheckDetails-*.pdf",
+      "description": "Florida Blue remits never reach AMD's ERA Center; William's Availity exports are the source. 9/15/2026 first pass: 179 checks $41,537.56, 709 lines $36,915.42 not in AMD.\n\nHelper: billing/era/avail_checks_parse.py, avail_vs_amd.py, avail_post.py\nCaptured: 2026-09-15",
+      "body": {
+       "mode": "raw",
+       "raw": "<!-- NOT an API call: a remit SOURCE captured 9/15/2026. William exports Florida Blue / Health Options checks from Availity Remittance Viewer (Print -> PDF) into Drive 'bht Optum era downloads' as CheckDetails-<ts>.pdf (one check), CheckMultipleDetails-<ts>.pdf (several) and ClaimDetails-<ts>.pdf (one claim). They are print views, not 835s: era_upload.py cannot load them.\nParse: pypdf text; Check Summary page = payer (line before 'Payee Tax ID'), Check/EFT Trace Number, Payment Amount, Check/EFT Date; each Claim Summary page = Claim Number, Patient ID (member), Claim Date, Patient Control Number = AMD visit id + claim letter, Claim Charge/Payment, Patient Responsibility, Claim Status Code (1 primary processed, 22 reversal); line block after 'Charge Adj (Qty) Adj Amount Payment' = Line Ctrl Nmbr (= AMD charge id), DOS, HC:<CPT>//<units>, remark codes, charge (B6 = allowed), adjustments CO-xx/PR-xx $, payment last.\nScripts (billing/era): avail_checks_parse.py -> registers/availity_checks_<stamp>.json (dedupe by trace); avail_vs_amd.py -> GET /api/era/checks text search + gettxhistory payment checknumber per charge -> registers/availity_vs_amd_<stamp>.json (missing = money not in AMD); avail_post.py -> manual_post.post(cid, 'BCBS', pay=min(paid, live insbalance), wo=CO adjustments capped, 'WOINS', checknumber=trace, depositdate=check date) per missing line, register key <trace>|<chargeid> in registers/era_manual_register.json, stop after 3 addpayments faults. -->",
+       "options": {
+        "raw": {
+         "language": "text"
         }
        }
       }
