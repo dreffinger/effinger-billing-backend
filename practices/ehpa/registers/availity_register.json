@@ -1,0 +1,1959 @@
+{
+ "1J0YlvWbHcunj_LNGvRL5PK4yo0skfuJv": {
+  "trace": "2608191506",
+  "check_date": "08/19/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001331559877",
+  "visit": "19446222",
+  "status": 22,
+  "lines": [
+   {
+    "cid": "23355215",
+    "dos": "06/25/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "reversal-cob-rebilled-medicare-first"
+   },
+   {
+    "cid": "23355216",
+    "dos": "06/25/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "reversal-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1C4fKLcf21kbzUEQLDPLjHYJhm37wBfWe": {
+  "trace": "2608191506",
+  "check_date": "08/19/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001330469019",
+  "visit": "19445474",
+  "status": 22,
+  "lines": [
+   {
+    "cid": "23354349",
+    "dos": "06/19/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "reversal-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1wnp5HyPW5775VG-QlW43hkJgVdL5-1jp": {
+  "trace": "213354956",
+  "check_date": "08/19/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001342298067",
+  "visit": "19451019",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23361030",
+    "dos": "08/07/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "12cCU-kaqJBkHMfD1t0J0AChHrbwsns0a": {
+  "trace": "213354956",
+  "check_date": "08/19/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001342298235",
+  "visit": "19450838",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23360840",
+    "dos": "08/08/2026",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1aDYJHPom3nVilSMQjFoBGOL_tEX_sAAJ": {
+  "trace": "423762044",
+  "check_date": "08/12/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001339570267",
+  "visit": "19448916",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23358436",
+    "dos": "07/17/2026",
+    "cpt": "99487",
+    "paid": 16.79,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   },
+   {
+    "cid": "23358437",
+    "dos": "07/17/2026",
+    "cpt": "99489",
+    "paid": 8.27,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "11wrRgXs4at622NJ8Zmszg28m9xXbtla7": {
+  "trace": "2608121126",
+  "check_date": "08/12/2026",
+  "payer": "Florida Blue",
+  "icn": "F100001336094589",
+  "visit": "19448781",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23358167",
+    "dos": "07/17/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-cob-other-primary"
+   },
+   {
+    "cid": "23358168",
+    "dos": "07/17/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "16KUdtOPcVdSYVoOjLIKMuy82T3rghvqa": {
+  "trace": "213322524",
+  "check_date": "08/05/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001339073474",
+  "visit": "19450220",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23360106",
+    "dos": "07/22/2026",
+    "cpt": "99349",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1vzjKMm468iTP0qt9Ig845Uoq2XDMyomv": {
+  "trace": "190524424",
+  "check_date": "07/29/2026",
+  "payer": "Florida Blue",
+  "icn": "F100001336094082",
+  "visit": "19448810",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23358225",
+    "dos": "07/17/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-noncovered-rebilled-medicare-first"
+   },
+   {
+    "cid": "23358226",
+    "dos": "07/17/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-noncovered-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Nx81deVdA9upfeDhBQVCy8F4MfoXsJEL": {
+  "trace": "213289913",
+  "check_date": "07/22/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001335925181",
+  "visit": "19448251",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23357509",
+    "dos": "07/14/2026",
+    "cpt": "99232",
+    "paid": 0.0,
+    "live_insbal": 111.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1YcACVUdhsDyW18GQmTZkG0CbGcG75QPT": {
+  "trace": "423742135",
+  "check_date": "07/22/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001334823684",
+  "visit": "19446325",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23355416",
+    "dos": "06/26/2026",
+    "cpt": "99232",
+    "paid": 14.38,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1bH7d_tR0VJt4xS3XI3QrvlRCZ8bEnGk5": {
+  "trace": "213273866",
+  "check_date": "07/15/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001334578312",
+  "visit": "19447500",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23356689",
+    "dos": "07/07/2026",
+    "cpt": "99223",
+    "paid": 0.0,
+    "live_insbal": 310.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   },
+   {
+    "cid": "23356690",
+    "dos": "07/07/2026",
+    "cpt": "99497",
+    "paid": 0.0,
+    "live_insbal": 133.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1hwQlpu6-7mxQ1nZ2KhJemtWfh2zgNjLO": {
+  "trace": "423735661",
+  "check_date": "07/15/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001334445683",
+  "visit": "19445703",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23354571",
+    "dos": "06/21/2026",
+    "cpt": "99232",
+    "paid": 14.38,
+    "live_insbal": 14.38,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1xy-BQajn5sQI3VO4EgQuHNo-coGLwRDM": {
+  "trace": "130465971",
+  "check_date": "07/08/2026",
+  "payer": "Florida Blue",
+  "icn": "F100001332953550",
+  "visit": "19445387",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23354207",
+    "dos": "06/18/2026",
+    "cpt": "99232",
+    "paid": 14.38,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1B3xlZESyiDeZY9_GQrOk3GeF_R4AfXmC": {
+  "trace": "620227150",
+  "check_date": "07/08/2026",
+  "payer": "Florida Blue",
+  "icn": "F100001332953631",
+  "visit": "19444525",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23353212",
+    "dos": "06/09/2026",
+    "cpt": "99232",
+    "paid": 14.38,
+    "live_insbal": 14.38,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Uot_lQvZE6BugYlC0TLZO073yxFJvzAR": {
+  "trace": "2607080200",
+  "check_date": "07/08/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001331561127",
+  "visit": "19446287",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23355335",
+    "dos": "06/25/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-not-eligible-on-dos"
+   },
+   {
+    "cid": "23355336",
+    "dos": "06/25/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1SBxmYswWELX67Iok4xG5afZ7hIfn3C5p": {
+  "trace": "213241752",
+  "check_date": "07/01/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001331561369",
+  "visit": "19446185",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23355141",
+    "dos": "06/25/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-not-eligible-on-dos"
+   },
+   {
+    "cid": "23355142",
+    "dos": "06/25/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Esq6HanlYUvullBU58QcLslBuXNYSHFu": {
+  "trace": "213241752",
+  "check_date": "07/01/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001319726515",
+  "visit": "19436843",
+  "status": 22,
+  "lines": [
+   {
+    "cid": "23343891",
+    "dos": "03/29/2026",
+    "cpt": "99232",
+    "paid": 0.0,
+    "live_insbal": 111.0,
+    "outcome": "reversal"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1JaR9p-c7glflTG4NLs9DpKf4Mpa5eXfO": {
+  "trace": "423722736",
+  "check_date": "07/01/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001331559877",
+  "visit": "19446222",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23355215",
+    "dos": "06/25/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   },
+   {
+    "cid": "23355216",
+    "dos": "06/25/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1bQHmWG0PUwGDBIxzm4IAKKLQUzOAUsNR": {
+  "trace": "423722736",
+  "check_date": "07/01/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001331558733",
+  "visit": "19446145",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23355063",
+    "dos": "06/25/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   },
+   {
+    "cid": "23355064",
+    "dos": "06/25/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1sBlSiS8gQ1xHTqetOZawMb8J_SHfQwDC": {
+  "trace": "213225362",
+  "check_date": "06/24/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001329158611",
+  "visit": "19445134",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23353940",
+    "dos": "06/15/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1K3Xt7ZQr8d77Gel44cc7qcWfGMKlWP86": {
+  "trace": "213225362",
+  "check_date": "06/24/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001329158776",
+  "visit": "19444314",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23353019",
+    "dos": "06/07/2026",
+    "cpt": "99232",
+    "paid": 0.0,
+    "live_insbal": 111.0,
+    "outcome": "patient-resp"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1vsD_R5iMyH6f1SdYYbKp1DlZiVpd0IAV": {
+  "trace": "213192918",
+  "check_date": "06/10/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001326247354",
+  "visit": "19444038",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23352630",
+    "dos": "06/02/2026",
+    "cpt": "99232",
+    "paid": 47.6,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "11fcD9pz9V5HCatRdUOguN-Oo92_-fljv": {
+  "trace": "213192918",
+  "check_date": "06/10/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001325614699",
+  "visit": "19443846",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23352365",
+    "dos": "05/27/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1XKuMOAOG6uxST5MkPXgJ2oZhUCzy_KCD": {
+  "trace": "213192918",
+  "check_date": "06/10/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001325614744",
+  "visit": "19443831",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23352350",
+    "dos": "05/31/2026",
+    "cpt": "99232",
+    "paid": 70.46,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1RmUsTDNvsktEN_7z7K0H3Gxeo1pZX1Gd": {
+  "trace": "423696373",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001323759084",
+  "visit": "19441267",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23349112",
+    "dos": "05/06/2026",
+    "cpt": "99223",
+    "paid": 31.94,
+    "live_insbal": 31.94,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "12bF64Fw4G6_AvDYMzKvaXwIqO_wCkJhr": {
+  "trace": "423696373",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001311949807",
+  "visit": "19436827",
+  "status": 22,
+  "lines": [
+   {
+    "cid": "23343875",
+    "dos": "03/28/2026",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "reversal-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1z3taYKCJV2L5yuxDKrGfpWBoMf1whqZ7": {
+  "trace": "423696373",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "M0001R2223313095",
+  "visit": "19436591",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23343643",
+    "dos": "03/24/2026",
+    "cpt": "99223",
+    "paid": 0.0,
+    "live_insbal": 310.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1qzC-mKIQogC8NLAHB9JCQHS9AG7R05II": {
+  "trace": "213176770",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001324834907",
+  "visit": "19443552",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23351978",
+    "dos": "05/27/2026",
+    "cpt": "99223",
+    "paid": 0.0,
+    "live_insbal": 310.0,
+    "outcome": "denial-auth"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1s9fkNIcsrbgV3jyQOxK--dxfHPszq1eu": {
+  "trace": "213176770",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001323797086",
+  "visit": "19442968",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23351235",
+    "dos": "05/21/2026",
+    "cpt": "99232",
+    "paid": 50.17,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "16GmF0koDsefy2zjNceXvLdMdaXQHWuKJ": {
+  "trace": "213176770",
+  "check_date": "06/03/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001323759082",
+  "visit": "19438369",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23345454",
+    "dos": "04/10/2026",
+    "cpt": "99223",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1r7TUOj5ISPGaeKuU0-c8XT-X4LKq8XDa": {
+  "trace": "705907493",
+  "check_date": "05/13/2026",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001319708292",
+  "visit": "19438045",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23345136",
+    "dos": "04/10/2026",
+    "cpt": "99232",
+    "paid": 79.09,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "15xnZRjHquw88LEEcOJpKRXk9UNvSiJ1E": {
+  "trace": "423676596",
+  "check_date": "05/13/2026",
+  "payer": "Florida Blue",
+  "icn": "M0001R2211297271",
+  "visit": "19432731",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23339379",
+    "dos": "02/13/2026",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "denial-cob-rebilled-medicare-first"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1eWjLOjlhlsxWfk0p9T9b2V4JpdIxiHc1": {
+  "trace": "423663497",
+  "check_date": "04/29/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001315429755",
+  "visit": "19433542",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23340259",
+    "dos": "02/23/2026",
+    "cpt": "99233",
+    "paid": 21.8,
+    "live_insbal": 21.8,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1qfh0Vmt2VADFOIez5Slk1CUOoUWxK2qq": {
+  "trace": "213079631",
+  "check_date": "04/22/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001313753630",
+  "visit": "19437680",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23344783",
+    "dos": "04/05/2026",
+    "cpt": "99233",
+    "paid": 53.63,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1IdZ9ASEqCTMfv5R4rKiESWa-N8DaJiPM": {
+  "trace": "213047694",
+  "check_date": "04/08/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001311949064",
+  "visit": "19437117",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23344192",
+    "dos": "04/01/2026",
+    "cpt": "99232",
+    "paid": 35.37,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1wt_U_IVnCGcstB7aT6ANfv2nusBTUPJt": {
+  "trace": "2604010756",
+  "check_date": "04/01/2026",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001308679273",
+  "visit": "19434709",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23341730",
+    "dos": "03/05/2026",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "12vuqx5W__nDJgfVwu9bzxJ-94WXBZ8B2": {
+  "trace": "423631358",
+  "check_date": "03/25/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001307117508",
+  "visit": "19433853",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23340607",
+    "dos": "02/26/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 16.14,
+    "outcome": "patient-resp"
+   },
+   {
+    "cid": "23340608",
+    "dos": "02/26/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 8.92,
+    "outcome": "patient-resp"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1sg0XW8XqOJ1mBESa4-mPMkJKQUEp4O9t": {
+  "trace": "423631358",
+  "check_date": "03/25/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001307117502",
+  "visit": "19432996",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23339615",
+    "dos": "02/04/2026",
+    "cpt": "99308",
+    "paid": 11.59,
+    "live_insbal": 11.59,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Hy7vM8HgJyP_3fUnC8jvF1ztdBZfPH-U": {
+  "trace": "423618677",
+  "check_date": "03/11/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001304115100",
+  "visit": "19432361",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23338956",
+    "dos": "02/10/2026",
+    "cpt": "99232",
+    "paid": 14.38,
+    "live_insbal": 14.38,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1OkTFeCGwwlLVuIlCvFqC6BzG7bGCQaB_": {
+  "trace": "2603040276",
+  "check_date": "03/04/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001300143762",
+  "visit": "19432341",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23338935",
+    "dos": "02/11/2026",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1MMY6amLsXwAygPV05HIPUIKLZCZexQJ5": {
+  "trace": "190385492",
+  "check_date": "03/04/2026",
+  "payer": "Florida Blue",
+  "icn": "F100001302043928",
+  "visit": "19431525",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23338143",
+    "dos": "02/03/2026",
+    "cpt": "99223",
+    "paid": 31.94,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1_yIBZUPAEBQ3Ayo25AaWDHfpVmF0L6Ft": {
+  "trace": "423605926",
+  "check_date": "02/25/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001300249644",
+  "visit": "19430976",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23337535",
+    "dos": "01/26/2026",
+    "cpt": "99306",
+    "paid": 31.12,
+    "live_insbal": 24.45,
+    "outcome": "posted"
+   },
+   {
+    "cid": "23337536",
+    "dos": "01/26/2026",
+    "cpt": "99497",
+    "paid": 15.33,
+    "live_insbal": 13.35,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1V_AOONhzeTm0bB2TDux2ggp4WbKK0xiT": {
+  "trace": "423605926",
+  "check_date": "02/25/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001300249480",
+  "visit": "19430656",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23337049",
+    "dos": "01/27/2026",
+    "cpt": "99487",
+    "paid": 28.6,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   },
+   {
+    "cid": "23337050",
+    "dos": "01/27/2026",
+    "cpt": "99489",
+    "paid": 15.49,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1L_ep1JdfWo1xsdz0FjMxwZILBwig5e7m": {
+  "trace": "423605926",
+  "check_date": "02/25/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001300249630",
+  "visit": "19430597",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23336932",
+    "dos": "01/27/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 142.98,
+    "outcome": "patient-resp"
+   },
+   {
+    "cid": "23336933",
+    "dos": "01/27/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 37.09,
+    "outcome": "patient-resp"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "15cCp97A3DDvbG--yfVFXNlCZuNauFV47": {
+  "trace": "2602181748",
+  "check_date": "02/18/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001298716959",
+  "visit": "19430539",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23336859",
+    "dos": "01/20/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 84.64,
+    "outcome": "patient-resp"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1NJSQuIE74lhRNWKJpmcV5XZO8-tFXYgE": {
+  "trace": "212919365",
+  "check_date": "02/11/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001297310587",
+  "visit": "19427062",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23333260",
+    "dos": "12/23/2025",
+    "cpt": "99232",
+    "paid": 68.0,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1thE0z1hzJ-PwTJg9lUo-34tvQ7Floek0": {
+  "trace": "212919365",
+  "check_date": "02/11/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001296958364",
+  "visit": "19426627",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23332735",
+    "dos": "12/17/2025",
+    "cpt": "99232",
+    "paid": 71.66,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1xbqI2uhf6qvlsjKxdMdX88UtWDm1Ijxh": {
+  "trace": "423587868",
+  "check_date": "02/04/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001296693513",
+  "visit": "19425196",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23331161",
+    "dos": "12/03/2025",
+    "cpt": "99223",
+    "paid": 190.46,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "16YiXnIYXzlfCiYgLeed0SPJLrGTLdhbo": {
+  "trace": "423587868",
+  "check_date": "02/04/2026",
+  "payer": "Florida Blue",
+  "icn": "M0001R2175263270",
+  "visit": "19423637",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23329274",
+    "dos": "11/15/2025",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-other"
+   },
+   {
+    "cid": "23329275",
+    "dos": "11/15/2025",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-other"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Ft7jwUWXgJtnNVzqBJCiZKN_2A74LJeI": {
+  "trace": "2602040301",
+  "check_date": "02/04/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001296693507",
+  "visit": "19430653",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23337043",
+    "dos": "01/27/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   },
+   {
+    "cid": "23337044",
+    "dos": "01/27/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1FBdY4Etj_cy1dUnecQWgIhvP4Dy9nw20": {
+  "trace": "2602040301",
+  "check_date": "02/04/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001295218826",
+  "visit": "19430007",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23336423",
+    "dos": "01/13/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1eRjW5BPlcZxHAkgLWnu-eZkIeZjMZoj2": {
+  "trace": "2602040863",
+  "check_date": "02/04/2026",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001296694865",
+  "visit": "19430725",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23337188",
+    "dos": "01/27/2026",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   },
+   {
+    "cid": "23337189",
+    "dos": "01/27/2026",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1OXxes3q9ogvkXvVSvqZfBRvmlXaiQJOa": {
+  "trace": "423575421",
+  "check_date": "01/21/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001293265974",
+  "visit": "19427529",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23334019",
+    "dos": "12/20/2025",
+    "cpt": "99349",
+    "paid": 20.86,
+    "live_insbal": 20.86,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1WnlRKWWdEkP74tbkU9jLGmVqv6smm4Pg": {
+  "trace": "423575421",
+  "check_date": "01/21/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001293265969",
+  "visit": "19427123",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23333379",
+    "dos": "12/19/2025",
+    "cpt": "99487",
+    "paid": 18.07,
+    "live_insbal": 17.5,
+    "outcome": "posted"
+   },
+   {
+    "cid": "23333380",
+    "dos": "12/19/2025",
+    "cpt": "99489",
+    "paid": 8.9,
+    "live_insbal": 9.47,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1AaynlOtqbQSe7BOUgnhmf2dcAt3T9krv": {
+  "trace": "2601211066",
+  "check_date": "01/21/2026",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001292325443",
+  "visit": "19428137",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23334601",
+    "dos": "01/02/2026",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1DMZH6hOc6EyKGI-odaAbdBAILnDI-uBE": {
+  "trace": "212841719",
+  "check_date": "01/07/2026",
+  "payer": "Florida Blue",
+  "icn": "Q100001289803378",
+  "visit": "19427214",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23333556",
+    "dos": "12/21/2025",
+    "cpt": "99487",
+    "paid": 73.9,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   },
+   {
+    "cid": "23333557",
+    "dos": "12/21/2025",
+    "cpt": "99489",
+    "paid": 39.52,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1u88LmCQYGzaD-5SjoBiBCCg8Fns2N9rz": {
+  "trace": "212841719",
+  "check_date": "01/07/2026",
+  "payer": "Florida Blue",
+  "icn": "H100001289802673",
+  "visit": "19427178",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23333484",
+    "dos": "12/21/2025",
+    "cpt": "99487",
+    "paid": 126.89,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   },
+   {
+    "cid": "23333485",
+    "dos": "12/21/2025",
+    "cpt": "99489",
+    "paid": 67.86,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1XbY4k9Ae9wmI04VFOpcA7feMQFAvVCvU": {
+  "trace": "212809714",
+  "check_date": "12/24/2025",
+  "payer": "Florida Blue",
+  "icn": "H100001285949048",
+  "visit": "19425639",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23331666",
+    "dos": "12/01/2025",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "denial-other"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1MuUsNeSzZSfppuHZ8tuPLKmQyrBodq3o": {
+  "trace": "212793316",
+  "check_date": "12/17/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001285948503",
+  "visit": "19425386",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23331381",
+    "dos": "12/04/2025",
+    "cpt": "99233",
+    "paid": 112.75,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "15AOtMO6CBVcFPrILpQbCG5VhMtwkMxeg": {
+  "trace": "423545397",
+  "check_date": "12/17/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001284908200",
+  "visit": "19424023",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23329787",
+    "dos": "11/17/2025",
+    "cpt": "99309",
+    "paid": 17.65,
+    "live_insbal": 17.65,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1DoQ-s6Qhx7hTGVgjKcTi5r1fZ1pJrbYw": {
+  "trace": "130286121",
+  "check_date": "12/10/2025",
+  "payer": "Florida Blue",
+  "icn": "F100001283174300",
+  "visit": "19423471",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23329015",
+    "dos": "11/15/2025",
+    "cpt": "99233",
+    "paid": 22.92,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "14AJXA06pNMQDfFXQQv5yKsSOR1ih5UTm": {
+  "trace": "2511260935",
+  "check_date": "11/26/2025",
+  "payer": "Florida Blue",
+  "icn": "F100001279666311",
+  "visit": "19423587",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23329194",
+    "dos": "11/15/2025",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 206.0,
+    "outcome": "denial-cob-other-primary"
+   },
+   {
+    "cid": "23329195",
+    "dos": "11/15/2025",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 109.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1fXBuBj-gcv4OXotVLzUh2oVc5qxRP9Ok": {
+  "trace": "212744234",
+  "check_date": "11/26/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001279666152",
+  "visit": "19423592",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23329204",
+    "dos": "11/15/2025",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "patient-resp"
+   },
+   {
+    "cid": "23329205",
+    "dos": "11/15/2025",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "patient-resp"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Yl8yu6FZk-GS0rBgMoac-P4ttDMGAPY2": {
+  "trace": "212744234",
+  "check_date": "11/26/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001279732077",
+  "visit": "19406812",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "22482024",
+    "dos": "05/31/2025",
+    "cpt": "99232",
+    "paid": 15.41,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1rexrZnInbapEdlPm7MiGdxDHgs67yHgB": {
+  "trace": "212727446",
+  "check_date": "11/19/2025",
+  "payer": "Florida Blue",
+  "icn": "H100001278491087",
+  "visit": "19422895",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23328245",
+    "dos": "11/09/2025",
+    "cpt": "99232",
+    "paid": 71.66,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1GqWd1gBnOiwBAUMNMvwcCdY6fDxNQ0z8": {
+  "trace": "212727446",
+  "check_date": "11/19/2025",
+  "payer": "Florida Blue",
+  "icn": "H100001278492718",
+  "visit": "19422869",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23328219",
+    "dos": "11/06/2025",
+    "cpt": "99309",
+    "paid": 0.0,
+    "live_insbal": 141.0,
+    "outcome": "denial-other"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1A4oG23vXUtclQXHcoZEpxMucEPNuWfNb": {
+  "trace": "190287963",
+  "check_date": "11/19/2025",
+  "payer": "Florida Blue",
+  "icn": "F100001277920893",
+  "visit": "19419566",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23324513",
+    "dos": "10/07/2025",
+    "cpt": "99309",
+    "paid": 17.65,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "198jziGjq0E33RapcF2dK1oCtemMK3F_f": {
+  "trace": "2511124753",
+  "check_date": "11/12/2025",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001277189897",
+  "visit": "19422498",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23327831",
+    "dos": "11/05/2025",
+    "cpt": "99232",
+    "paid": 0.0,
+    "live_insbal": 111.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1ehYzuKwR7KudlmhRHUpgBV-3t8zT3B7F": {
+  "trace": "212710463",
+  "check_date": "11/12/2025",
+  "payer": "Florida Blue",
+  "icn": "H100001275491334",
+  "visit": "19421697",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23327026",
+    "dos": "10/29/2025",
+    "cpt": "99233",
+    "paid": 0.0,
+    "live_insbal": 160.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1YQqkWRTiEAPFuba-qoZap3WaA1gq8qYe": {
+  "trace": "2511125611",
+  "check_date": "11/12/2025",
+  "payer": "Florida Blue",
+  "icn": "M0001R2146477485",
+  "visit": "19416182",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23319757",
+    "dos": "09/08/2025",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-other"
+   },
+   {
+    "cid": "23319758",
+    "dos": "09/08/2025",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-other"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "19N9NyEME0sPYTfU47LXx6H67u25O02Lh": {
+  "trace": "212693721",
+  "check_date": "11/05/2025",
+  "payer": "Florida Blue",
+  "icn": "H100001273971491",
+  "visit": "19420716",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23325804",
+    "dos": "10/22/2025",
+    "cpt": "99232",
+    "paid": 57.33,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1U-rapHfmSrhx7APOz0uVeBA6QdM6v9tM": {
+  "trace": "190273973",
+  "check_date": "11/05/2025",
+  "payer": "Florida Blue",
+  "icn": "F100001273947168",
+  "visit": "19420521",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23325498",
+    "dos": "10/15/2025",
+    "cpt": "99344",
+    "paid": 0.0,
+    "live_insbal": 300.0,
+    "outcome": "denial-cob-other-primary"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1UCjLX8OI1j6cVyhBVIoxEtp7TspsvL2o": {
+  "trace": "212677548",
+  "check_date": "10/29/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001274007496",
+  "visit": "19421062",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23326324",
+    "dos": "10/25/2025",
+    "cpt": "99487",
+    "paid": 73.9,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   },
+   {
+    "cid": "23326325",
+    "dos": "10/25/2025",
+    "cpt": "99489",
+    "paid": 39.52,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1xueEYFNgwdTkBtefo1qSmRA-DSpx-HI8": {
+  "trace": "212677548",
+  "check_date": "10/29/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001273946952",
+  "visit": "19420520",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23325497",
+    "dos": "10/15/2025",
+    "cpt": "99349",
+    "paid": 59.53,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1ee1yoC2-nGwS1RWxa1FJVVoMgirdE0t4": {
+  "trace": "212677548",
+  "check_date": "10/29/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001273025791",
+  "visit": "19417006",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23320654",
+    "dos": "09/17/2025",
+    "cpt": "99232",
+    "paid": 15.41,
+    "live_insbal": 15.41,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1k_5qQ1fkzi5JQV_lfDiy-TYPDW69gUvj": {
+  "trace": "212661269",
+  "check_date": "10/22/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001272610220",
+  "visit": "19420024",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23324990",
+    "dos": "10/17/2025",
+    "cpt": "99232",
+    "paid": 68.0,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1dkklOdidjJZ08Oj0JZEKW6gM0JTRbncr": {
+  "trace": "212661269",
+  "check_date": "10/22/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001272611480",
+  "visit": "19419941",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23324864",
+    "dos": "10/15/2025",
+    "cpt": "99232",
+    "paid": 68.0,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1DNQ-MAEvT-YCOgqDWLr9FfQuJdM9g7TS": {
+  "trace": "212661269",
+  "check_date": "10/22/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001271678666",
+  "visit": "19419646",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23324599",
+    "dos": "10/13/2025",
+    "cpt": "99232",
+    "paid": 68.0,
+    "live_insbal": 0.0,
+    "outcome": "residual-zero-balance"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "16Kk5lbivCzLineE2b6dHg6qSC_101scA": {
+  "trace": "130243743",
+  "check_date": "10/22/2025",
+  "payer": "Florida Blue",
+  "icn": "F100001272263323",
+  "visit": "19417023",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23320671",
+    "dos": "09/16/2025",
+    "cpt": "99223",
+    "paid": 33.75,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1lUPE1NAY5GWs7g90A4KVFKxvF6iZkx2B": {
+  "trace": "423493442",
+  "check_date": "10/22/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001271114691",
+  "visit": "19418053",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23321906",
+    "dos": "09/22/2025",
+    "cpt": "99309",
+    "paid": 17.65,
+    "live_insbal": 17.65,
+    "outcome": "posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "10zsl0e6VdLphY-Vxh6E8QNpRLyxIcjN1": {
+  "trace": "705651283",
+  "check_date": "10/08/2025",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001268569124",
+  "visit": "19416426",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23320092",
+    "dos": "09/11/2025",
+    "cpt": "99232",
+    "paid": 84.77,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1jvsObHhNjr3PbFH1RthjZxqB-N7ly6pN": {
+  "trace": "705651283",
+  "check_date": "10/08/2025",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001268568953",
+  "visit": "19416230",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23319830",
+    "dos": "09/09/2025",
+    "cpt": "99232",
+    "paid": 84.77,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1-uP1vbWwmNw9WFdjPb-fuEvWZ3YJGLrU": {
+  "trace": "2510010563",
+  "check_date": "10/01/2025",
+  "payer": "Health Options, Inc.",
+  "icn": "Q100001266073064",
+  "visit": "19417389",
+  "status": 1,
+  "lines": [
+   {
+    "cid": "23321125",
+    "dos": "08/21/2025",
+    "cpt": "99487",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   },
+   {
+    "cid": "23321126",
+    "dos": "08/21/2025",
+    "cpt": "99489",
+    "paid": 0.0,
+    "live_insbal": 0.0,
+    "outcome": "denial-not-eligible-on-dos"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1Ccsxjmg10Y3uQBQnmn48qdAPq7e0Jxpc": {
+  "trace": "212578276",
+  "check_date": "09/17/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001263165182",
+  "visit": "19413309",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23316239",
+    "dos": "08/13/2025",
+    "cpt": "99223",
+    "paid": 33.75,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1XrkrdN3KnKibFILSV9xBqFLOinNWQZfI": {
+  "trace": "423460354",
+  "check_date": "09/17/2025",
+  "payer": "Florida Blue",
+  "icn": "Q100001263165181",
+  "visit": "19414410",
+  "status": 2,
+  "lines": [
+   {
+    "cid": "23317578",
+    "dos": "08/24/2025",
+    "cpt": "99232",
+    "paid": 15.41,
+    "live_insbal": 0.0,
+    "outcome": "already-posted"
+   }
+  ],
+  "run": "2026-09-15T1110Z",
+  "src": "ClaimDetails via Drive connector text"
+ },
+ "1vgUAO_0GDI72Esp5Rh9O8v9kx1zHOYq0": {
+  "outcome": "duplicate-download",
+  "of": "1J0YlvWbHcunj_LNGvRL5PK4yo0skfuJv",
+  "run": "2026-09-15T1110Z"
+ },
+ "1o3EZBpbuvdrF1vDxUgrp99yadZiy23ke": {
+  "outcome": "duplicate-download",
+  "of": "1C4fKLcf21kbzUEQLDPLjHYJhm37wBfWe",
+  "run": "2026-09-15T1110Z"
+ },
+ "1HZ_GJMw1TIjOHyPeEYoohW6oreZyWyWy": {
+  "outcome": "duplicate-download",
+  "of": "1Nx81deVdA9upfeDhBQVCy8F4MfoXsJEL",
+  "run": "2026-09-15T1110Z"
+ },
+ "1dTxHo0vemYEMuk63ZaCFHeaUi9rYQW23": {
+  "outcome": "duplicate-download",
+  "of": "1hwQlpu6-7mxQ1nZ2KhJemtWfh2zgNjLO",
+  "run": "2026-09-15T1110Z"
+ },
+ "1kAltTMKL7QvTYffTyHDJMqpvPr_X9VxA": {
+  "outcome": "duplicate-download",
+  "of": "1JaR9p-c7glflTG4NLs9DpKf4Mpa5eXfO",
+  "run": "2026-09-15T1110Z"
+ },
+ "1gJTiSAZtIsF0A-6LIqyp4v7m2ah6Fd6v": {
+  "outcome": "duplicate-download",
+  "of": "1RmUsTDNvsktEN_7z7K0H3Gxeo1pZX1Gd",
+  "run": "2026-09-15T1110Z"
+ },
+ "1xPqE2FO3i7SLe7WDgHw4rpBD22mOhe8S": {
+  "outcome": "duplicate-download",
+  "of": "1wt_U_IVnCGcstB7aT6ANfv2nusBTUPJt",
+  "run": "2026-09-15T1110Z"
+ },
+ "1vWlR-s_htsvYat_SAUDyG9x9Ikm2lAWn": {
+  "outcome": "duplicate-download",
+  "of": "1DMZH6hOc6EyKGI-odaAbdBAILnDI-uBE",
+  "run": "2026-09-15T1110Z"
+ },
+ "1lmD_mBr7vr05iQjc-1U8jQhe5_g8g4tJ": {
+  "outcome": "duplicate-download",
+  "of": "19N9NyEME0sPYTfU47LXx6H67u25O02Lh",
+  "run": "2026-09-15T1110Z"
+ },
+ "1oeM-vhT9Jj7znhIxz27_3GKaxZd9ui_F": {
+  "outcome": "duplicate-download",
+  "of": "1DNQ-MAEvT-YCOgqDWLr9FfQuJdM9g7TS",
+  "run": "2026-09-15T1110Z"
+ },
+ "1U0nK43TZfGtu4lOZPf9LU-v_TMINW0zM": {
+  "outcome": "duplicate-download",
+  "of": "15cCp97A3DDvbG--yfVFXNlCZuNauFV47",
+  "run": "2026-09-15T1110Z"
+ },
+ "1HhPgErpKRAlpV9JgXDEzEN1G_FpvB97S": {
+  "outcome": "duplicate-download",
+  "of": "16Kk5lbivCzLineE2b6dHg6qSC_101scA",
+  "run": "2026-09-15T1110Z"
+ },
+ "1UpGbWkEa9LSNZEhIZ4qSt2zoVw4gnhcQ": {
+  "outcome": "duplicate-download",
+  "of": "1lUPE1NAY5GWs7g90A4KVFKxvF6iZkx2B",
+  "run": "2026-09-15T1110Z"
+ }
+}
