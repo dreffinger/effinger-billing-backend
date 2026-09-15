@@ -22,3 +22,6 @@
 - Cloud amd.py from repo core lacks `call()/rest_post()/check_eligibility*`: append `amd_shims_2026-09-10.py` in full (not just `call`).
 - `.amd_cred.json` key is `psw`, not `password`.
 - `precheck.py` needs `carriers.json` = `practices/ehpa/carriers.json` copied into the workspace.
+
+## Addendum 06:00 UTC — Baxley write-off (William instruction)
+- No-coverage-at-DOS charges: transfer to patient responsibility then bad-debt no-pay = a single `manual_post.post(cid, carrier, pay=0, wo=balance, "WOBAD", note=...)` that zeros the insurance balance; WOINS fallback if WOBAD is refused (precedent: Alcorn 9/1 99308 on the 0310Z slot). Baxley 99239 chg 23342620 $163 + 99223 chg 23342783 $310 = $473, both -> $0, WOBAD accepted. Then `hideexclusions claimrunid hide="-1"` with both visit/claimid pairs to clear the dead exclusion rows. Register registers/wo_baxley_2026-09-15.json. Reverse + rebill if valid coverage is later found.
