@@ -1,7 +1,9 @@
 #!/bin/bash
-# ERA step 5 chain for the 2026-09-14T2110Z run (d-e): fallback dry+live, clear dry+live, after-snapshot (era_post --all-unposted already ran at 21:14 UTC: 0 postable)
+# ERA step 5 chain for the 2026-09-15T2110Z run (5pm ET 9/15 slot): b before-snapshot + cache, c era_post --all-unposted, d fallback dry+live, e clear dry+live, after-snapshot
 cd /home/claude/unbilled
-S=2026-09-14T2110Z
+S=2026-09-15T2110Z
+echo "### step b BEFORE $(date -u +%H:%M:%S)"; timeout 900 python3 era_step_b_0913.py before $S
+echo "### era_post --all-unposted $(date -u +%H:%M:%S)"; timeout 900 python3 era_post.py --all-unposted
 echo "### fallback DRY $(date -u +%H:%M:%S)"; timeout 600 python3 era_fallback_0913b.py --dry --stamp $S --checks era_checks_before_$S.json
 echo "### fallback LIVE $(date -u +%H:%M:%S)"; timeout 600 python3 era_fallback_0913b.py --stamp $S --checks era_checks_before_$S.json --max-faults 3
 echo "### era_clear DRY $(date -u +%H:%M:%S)"; timeout 600 python3 era_clear.py --dry
