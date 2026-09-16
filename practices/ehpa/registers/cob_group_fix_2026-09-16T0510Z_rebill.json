@@ -1,0 +1,17 @@
+{
+ "pid": "17475906",
+ "stamp": "2026-09-16T0510Z",
+ "steps": [
+  "open BCBS visits 1/2025-7/2026: [('19436454', '23343508', '03/24/2026', '99223', '310.00'), ('19436538', '23343593', '03/25/2026', '99232', '111.00'), ('19436840', '23343888', '03/28/2026', '99232', '111.00'), ('19436841', '23343889', '03/27/2026', '99232', '111.00'), ('19436842', '23343890', '03/26/2026', '99232', '111.00'), ('19436843', '23343891', '03/29/2026', '99232', '111.00'), ('19436972', '23344021', '03/31/2026', '99232', '111.00'), ('19437011', '23344063', '03/30/2026', '99232', '111.00'), ('19437844', '23344965', '04/07/2026', '99223', '310.00'), ('19437933', '23345035', '04/08/2026', '99239', '163.00')]",
+  "v19436454 c23343508 03/24/2026 99223 $310.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '310.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436538 c23343593 03/25/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436840 c23343888 03/28/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436841 c23343889 03/27/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436842 c23343890 03/26/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436843 c23343891 03/29/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19436972 c23344021 03/31/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19437011 c23344063 03/30/2026 99232 $111.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19437844 c23344965 04/07/2026 99223 $310.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '310.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204",
+  "v19437933 c23345035 04/08/2026 99239 $163.00: move moved 0.00 -> {'patbalance': '0.00', 'insbalance': '163.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204 | freq1 freq1 + rebill seq 2 -> 204"
+ ]
+}
