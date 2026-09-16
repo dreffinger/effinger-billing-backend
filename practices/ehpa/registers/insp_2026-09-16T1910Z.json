@@ -1,0 +1,12 @@
+{
+ "visit": "19454776",
+ "steps": [
+  "charges: [('charge23365867', 'pcode65084', '', 'dcode1037452463 dcode1034545552'), ('charge23365868', 'pcode492667', 'mcode7', 'dcode1037452463 dcode1034545552')]",
+  "pcode65084 dx order ['R69', 'L03.90'] never_primary(first)=False",
+  "pcode492667 dx order ['R69', 'L03.90'] never_primary(first)=False",
+  "updextrainsinfo 99223 09/13/2026 -> ok",
+  "resave: saved live=2/2 onhcfa=1 hospfrom=09/13/2026 mods=[('pcode65084', ''), ('pcode492667', 'mcode7')]",
+  "batches after: []"
+ ],
+ "left": []
+}
