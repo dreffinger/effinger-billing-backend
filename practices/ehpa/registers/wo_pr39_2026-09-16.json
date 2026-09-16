@@ -1,0 +1,16 @@
+[
+ {
+  "pid": "17471832",
+  "visit": "19443552",
+  "cid": "23351978",
+  "cpt": "99223",
+  "dos": "05/27/2026",
+  "carrier": "BCBS",
+  "wo": 310.0,
+  "wocode": "WONCS",
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22s2t\" lst=\"09/15/2026 22:51:41\"><Results success=\"1\" paymentid=\"10155516\" /><Error /></PPMDResult",
+  "when": "2026-09-16T0510Z",
+  "why": "PR-39 auth denial - William 9/16 board note"
+ }
+]
