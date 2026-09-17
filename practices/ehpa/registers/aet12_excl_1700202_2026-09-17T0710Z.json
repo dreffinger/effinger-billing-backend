@@ -1,0 +1,710 @@
+[
+ {
+  "claimrunid": "1700202",
+  "visit": "19390645",
+  "claimid": "19390645H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19390680",
+  "claimid": "19390680H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19390720",
+  "claimid": "19390720H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19390721",
+  "claimid": "19390721H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19390722",
+  "claimid": "19390722H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19390723",
+  "claimid": "19390723H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 443.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19391503",
+  "claimid": "19391503H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 389.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19391718",
+  "claimid": "19391718H",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 504.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19393287",
+  "claimid": "19393287G",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 274.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19407002",
+  "claimid": "19407002K",
+  "patientid": "17473362",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19407003",
+  "claimid": "19407003K",
+  "patientid": "17473362",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19408392",
+  "claimid": "19408392K",
+  "patientid": "17473442",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19408393",
+  "claimid": "19408393K",
+  "patientid": "17473442",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19409551",
+  "claimid": "19409551K",
+  "patientid": "17473518",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19409552",
+  "claimid": "19409552K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19409553",
+  "claimid": "19409553K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19409692",
+  "claimid": "19409692K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19409811",
+  "claimid": "19409811K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19412418",
+  "claimid": "19412418K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 389.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19413424",
+  "claimid": "19413424K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 141.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19413557",
+  "claimid": "19413557K",
+  "patientid": "17473520",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 315.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414180",
+  "claimid": "19414180K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414188",
+  "claimid": "19414188K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414274",
+  "claimid": "19414274K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414306",
+  "claimid": "19414306K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414418",
+  "claimid": "19414418K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414562",
+  "claimid": "19414562K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414692",
+  "claimid": "19414692K",
+  "patientid": "17473853",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414705",
+  "claimid": "19414705K",
+  "patientid": "17473853",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414706",
+  "claimid": "19414706K",
+  "patientid": "12233544",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19414829",
+  "claimid": "19414829K",
+  "patientid": "17473853",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19418450",
+  "claimid": "19418450K",
+  "patientid": "17474208",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19418457",
+  "claimid": "19418457K",
+  "patientid": "17474208",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19418565",
+  "claimid": "19418565K",
+  "patientid": "17474208",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19418655",
+  "claimid": "19418655K",
+  "patientid": "17474208",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428598",
+  "claimid": "19428598K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428599",
+  "claimid": "19428599K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428600",
+  "claimid": "19428600K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428601",
+  "claimid": "19428601K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428602",
+  "claimid": "19428602K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19428675",
+  "claimid": "19428675K",
+  "patientid": "17475139",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19430590",
+  "claimid": "19430590K",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 315.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19435179",
+  "claimid": "19435179K",
+  "patientid": "17475771",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19435180",
+  "claimid": "19435180K",
+  "patientid": "17475771",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19441257",
+  "claimid": "19441257K",
+  "patientid": "17476419",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19441258",
+  "claimid": "19441258K",
+  "patientid": "17476419",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19441288",
+  "claimid": "19441288K",
+  "patientid": "17476419",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19442112",
+  "claimid": "19442112K",
+  "patientid": "17476506",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19442184",
+  "claimid": "19442184K",
+  "patientid": "17476506",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19442553",
+  "claimid": "19442553K",
+  "patientid": "17476533",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19442588",
+  "claimid": "19442588K",
+  "patientid": "17476533",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19443445",
+  "claimid": "19443445L",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 198.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19444457",
+  "claimid": "19444457K",
+  "patientid": "17476788",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19444517",
+  "claimid": "19444517K",
+  "patientid": "17476788",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19445938",
+  "claimid": "19445938K",
+  "patientid": "17476909",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 310.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19445962",
+  "claimid": "19445962K",
+  "patientid": "17476909",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 160.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19445971",
+  "claimid": "19445971K",
+  "patientid": "17476909",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19446072",
+  "claimid": "19446072K",
+  "patientid": "17476909",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 111.0
+ },
+ {
+  "claimrunid": "1700202",
+  "visit": "19446156",
+  "claimid": "19446156K",
+  "patientid": "17471138",
+  "carrier": "AET12 6870",
+  "errs": [
+   "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+   "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM"
+  ],
+  "fee": 315.0
+ }
+]
