@@ -29,8 +29,12 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
         L('VOIDED %s %s %s era %.2f wos %d ok=%s' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']), ok_all)); touched += 1; time.sleep(0.3)
     n += 1
     if touched and not dry:
-        chk = next((c for c in era_post.checks() if c['id'] == cid), None)
+        chk = next((c for c in era_post.checks() if str(c['id']) == str(cid)), None)
         if chk:
-            try: nv, amt = era_post.post_check(chk); posted_total += amt; L('POSTED check %s %s: %d visits $%.2f' % (cid, chk['paymentnumber'], nv, amt))
+            # 9/10 lesson (captured_calls.md), applied to the helper 9/17: the remit stores each visit's insurancebalance as
+            # of load time (0 after the write-off), so postable() skips the just-voided visits unless they are in FORCE_VISITS.
+            era_post.FORCE_VISITS.clear(); era_post.FORCE_VISITS.update(int(r['visitid']) for r in rs)
+            try: nv, amt = era_post.post_check(chk); posted_total += amt; L('POSTED check %s %s: %d visits $%.2f (FORCE_VISITS %d)' % (cid, chk['paymentnumber'], nv, amt, len(era_post.FORCE_VISITS)))
             except Exception as e: L('POST ERROR check %s: %s' % (cid, str(e)[:120]))
+            era_post.FORCE_VISITS.clear()
 L('=== done: checks %d, write-offs voided $%.2f, posted $%.2f ===' % (n, tot_void, posted_total))
