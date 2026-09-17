@@ -1,0 +1,693 @@
+{
+ "stamp": "2026-09-17T1910Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19454879",
+   "pid": "17473782",
+   "name": "RICKERBY,GLENYS",
+   "steps": [
+    "dos 2026-09-14 cpts ['99223'] charges [('charge23366029', '99223', '', 'dcode1037452705 dcode1034912718', '310.00', '310.00')]",
+    "99223 dx ['G95.89', 'G95.29'] never_primary(first)=False",
+    "admission 09/14/2026 (own 99223)",
+    "updextrainsinfo 99223 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366029', '', 'dcode1037452705 dcode1034912718')]"
+   ]
+  },
+  {
+   "vid": "19454880",
+   "pid": "17476608",
+   "name": "BRAMLEY,SARINA",
+   "steps": [
+    "dos 2026-09-14 cpts ['99223'] charges [('charge23366030', '99223', '', 'dcode1034544340', '310.00', '310.00')]",
+    "99223 dx ['M16.0'] never_primary(first)=False",
+    "admission 09/14/2026 (own 99223)",
+    "updextrainsinfo 99223 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366030', '', 'dcode1034544340')]"
+   ]
+  },
+  {
+   "vid": "19454881",
+   "pid": "17477716",
+   "name": "WALCOTT,ANNETH C",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366031', '99233', '', 'dcode1034545425', '160.00', '160.00')]",
+    "99233 dx ['I69.30'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366031', '', 'dcode1034545425')]"
+   ]
+  },
+  {
+   "vid": "19454882",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366032', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '160.00', '160.00')]",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (same stay: admission 08/27/2026 already on visit 19454645 (2026-09-13))",
+    "updextrainsinfo 99233 08/27/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/27/2026 charges=[('charge23366032', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832')]"
+   ]
+  },
+  {
+   "vid": "19454883",
+   "pid": "17477640",
+   "name": "REEVE,CYRILLA M",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366033', '99233', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "admission 09/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/02/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/02/2026 charges=[('charge23366033', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159')]"
+   ]
+  },
+  {
+   "vid": "19454884",
+   "pid": "17472703",
+   "name": "RACKHAM,JARROD R",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366034', '99233', '', 'dcode1034545247', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "admission 09/05/2026 (same stay: admission 09/05/2026 already on visit 19454648 (2026-09-13))",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366034', '', 'dcode1034545247')]"
+   ]
+  },
+  {
+   "vid": "19454885",
+   "pid": "17470950",
+   "name": "HAYWOOD,JEFFCOAT M",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366035', '99232', '', 'dcode1034545446', '111.00', '111.00')]",
+    "99232 dx ['Z96.651'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.651'])",
+    "fix_visit -> ADD-I10 v19454885 ['dcode1034543883', 'dcode1034545446'] -> freq1 + rebill seq 1 -> 204",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366035', '', 'dcode1034543883 dcode1034545446')]"
+   ]
+  },
+  {
+   "vid": "19454886",
+   "pid": "20863",
+   "name": "HATHERLEY,DAHLIA",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366036', '99233', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709', '160.00', '160.00')]",
+    "99233 dx ['B20', 'G20.C', 'G93.40', 'R25.1', 'G24.9'] never_primary(first)=False",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 08/30/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/30/2026 charges=[('charge23366036', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709')]"
+   ]
+  },
+  {
+   "vid": "19454887",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366037', '99233', '', 'dcode1037454862', '160.00', '160.00')]",
+    "99233 dx ['S81.801S'] never_primary(first)=True",
+    "Winslow Jr rule (William 9/6): M86.9 dcode1034545415 in front of S81.801S -> diagcodes ['dcode1034545415', 'dcode1037454862']",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23366037', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  },
+  {
+   "vid": "19454888",
+   "pid": "17470940",
+   "name": "HOGARTH,CHARMIAN",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366038', '99233', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045', '160.00', '160.00')]",
+    "99233 dx ['I26.94', 'K57.92', 'R46.89', 'R41.82', 'F03.918', 'G93.41', 'R62.7', 'E86.0'] never_primary(first)=False",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366038', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045')]"
+   ]
+  },
+  {
+   "vid": "19454889",
+   "pid": "17477722",
+   "name": "DENHOLT,TRACEN",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366039', '99232', '', 'dcode1034912659', '111.00', '111.00')]",
+    "99232 dx ['M19.012'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366039', '', 'dcode1034912659')]"
+   ]
+  },
+  {
+   "vid": "19454890",
+   "pid": "17477706",
+   "name": "TREDWELL,RUSTIN",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366040', '99232', '', 'dcode1034545564', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "admission 09/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/08/2026 charges=[('charge23366040', '', 'dcode1034545564')]"
+   ]
+  },
+  {
+   "vid": "19454891",
+   "pid": "17477516",
+   "name": "MEDHURST,CHESTER",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366041', '99233', '', 'dcode1037452463 dcode1034545552', '160.00', '160.00')]",
+    "99233 dx ['R69', 'L03.90'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366041', '', 'dcode1037452463 dcode1034545552')]"
+   ]
+  },
+  {
+   "vid": "19454892",
+   "pid": "17476020",
+   "name": "VICKERS,JENIFER",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366042', '99233', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006', '160.00', '160.00')]",
+    "99233 dx ['N18.6', 'Z99.2', 'R41.82', 'E16.2', 'I63.9'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366042', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006')]"
+   ]
+  },
+  {
+   "vid": "19454893",
+   "pid": "17475970",
+   "name": "LOWRY,FENWICK L",
+   "steps": [
+    "dos 2026-09-14 cpts ['99239'] charges [('charge23366043', '99239', '', 'dcode1037453443 dcode1037452810', '163.00', '163.00')]",
+    "99239 dx ['R58', 'M79.81'] never_primary(first)=False",
+    "admission 09/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99239 09/04/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/04/2026 charges=[('charge23366043', '', 'dcode1037453443 dcode1037452810')]"
+   ]
+  },
+  {
+   "vid": "19454894",
+   "pid": "17477720",
+   "name": "KESSLER,SELMA SABLE",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366044', '99232', '', 'dcode1034545489', '111.00', '111.00')]",
+    "99232 dx ['M17.12'] never_primary(first)=False",
+    "admission 09/11/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/11/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/11/2026 charges=[('charge23366044', '', 'dcode1034545489')]"
+   ]
+  },
+  {
+   "vid": "19454895",
+   "pid": "17477182",
+   "name": "[name]",
+   "steps": [
+    "dos 2026-09-14 cpts ['99239'] charges [('charge23366045', '99239', '', 'dcode1034545999', '163.00', '163.00')]",
+    "99239 dx ['I21.3'] never_primary(first)=False",
+    "admission 09/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99239 09/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/07/2026 charges=[('charge23366045', '', 'dcode1034545999')]"
+   ]
+  },
+  {
+   "vid": "19454896",
+   "pid": "17477718",
+   "name": "MABRY,[first] J",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366046', '99233', '', 'dcode1034545564', '160.00', '160.00')]",
+    "99233 dx ['M17.11'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366046', '', 'dcode1034545564')]"
+   ]
+  },
+  {
+   "vid": "19454897",
+   "pid": "17477708",
+   "name": "ASHWORTH,SHELAGH E",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366047', '99232', '', 'dcode1034546011', '111.00', '111.00')]",
+    "99232 dx ['M19.011'] never_primary(first)=False",
+    "admission 09/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/08/2026 charges=[('charge23366047', '', 'dcode1034546011')]"
+   ]
+  },
+  {
+   "vid": "19454898",
+   "pid": "17477717",
+   "name": "[name]",
+   "steps": [
+    "dos 2026-09-14 cpts ['99232'] charges [('charge23366048', '99232', '', 'dcode1034545435', '111.00', '111.00')]",
+    "99232 dx ['M16.12'] never_primary(first)=False",
+    "admission 09/11/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/11/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/11/2026 charges=[('charge23366048', '', 'dcode1034545435')]"
+   ]
+  },
+  {
+   "vid": "19454899",
+   "pid": "17475638",
+   "name": "FOSDYKE,CARLOTTA L",
+   "steps": [
+    "dos 2026-09-14 cpts ['99233'] charges [('charge23366049', '99233', '', 'dcode1034543888 dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['J15.9', 'R69'] never_primary(first)=False",
+    "admission 09/06/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/06/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/06/2026 charges=[('charge23366049', '', 'dcode1034543888 dcode1037452463')]"
+   ]
+  },
+  {
+   "vid": "19454902",
+   "pid": "17477497",
+   "name": "DEVANE,SHELAGH",
+   "steps": [
+    "dos 2026-09-14 cpts ['99223', '99497'] charges [('charge23366052', '99223', '', 'dcode1034545088', '310.00', '310.00'), ('charge23366053', '99497', 'mcode7', 'dcode1034545088', '133.00', '133.00')]",
+    "99223 dx ['A41.9'] never_primary(first)=False",
+    "99497 dx ['A41.9'] never_primary(first)=False",
+    "admission 09/14/2026 (own 99223)",
+    "updextrainsinfo 99223 09/14/2026 -> ok",
+    "updextrainsinfo 99497 09/14/2026 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366052', '', 'dcode1034545088'), ('charge23366053', 'mcode7', 'dcode1034545088')]"
+   ]
+  },
+  {
+   "vid": "19454908",
+   "pid": "17474741",
+   "name": "MABRY,LAUREL Rebekah",
+   "steps": [
+    "dos 2026-09-15 cpts ['99223', '99497'] charges [('charge23366059', '99223', '', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182', '310.00', '310.00'), ('charge23366060', '99497', 'mcode7', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182', '133.00', '133.00')]",
+    "99223 dx ['D62', 'K92.2', 'I48.91', 'Z87.440', 'M62.81', 'D64.9', 'K57.81'] never_primary(first)=False",
+    "99497 dx ['D62', 'K92.2', 'I48.91', 'Z87.440', 'M62.81', 'D64.9', 'K57.81'] never_primary(first)=False",
+    "admission 09/15/2026 (own 99223)",
+    "updextrainsinfo 99223 09/15/2026 -> ok",
+    "updextrainsinfo 99497 09/15/2026 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=09/15/2026 charges=[('charge23366059', '', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182'), ('charge23366060', 'mcode7', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182')]"
+   ]
+  },
+  {
+   "vid": "19454911",
+   "pid": "17477706",
+   "name": "TREDWELL,RUSTIN",
+   "steps": [
+    "dos 2026-09-15 cpts ['99232'] charges [('charge23366063', '99232', '', 'dcode1034545564', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "admission 09/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/08/2026 charges=[('charge23366063', '', 'dcode1034545564')]"
+   ]
+  },
+  {
+   "vid": "19454912",
+   "pid": "17473782",
+   "name": "RICKERBY,GLENYS",
+   "steps": [
+    "dos 2026-09-15 cpts ['99232'] charges [('charge23366064', '99232', '', 'dcode1037452705 dcode1034912718', '111.00', '111.00')]",
+    "99232 dx ['G95.89', 'G95.29'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366064', '', 'dcode1037452705 dcode1034912718')]"
+   ]
+  },
+  {
+   "vid": "19454913",
+   "pid": "17477516",
+   "name": "MEDHURST,CHESTER",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366065', '99233', '', 'dcode1037452463 dcode1034545552', '160.00', '160.00')]",
+    "99233 dx ['R69', 'L03.90'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366065', '', 'dcode1037452463 dcode1034545552')]"
+   ]
+  },
+  {
+   "vid": "19454917",
+   "pid": "17476608",
+   "name": "BRAMLEY,SARINA",
+   "steps": [
+    "dos 2026-09-15 cpts ['99232'] charges [('charge23366069', '99232', '', 'dcode1034544340', '111.00', '111.00')]",
+    "99232 dx ['M16.0'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366069', '', 'dcode1034544340')]"
+   ]
+  },
+  {
+   "vid": "19454918",
+   "pid": "17476020",
+   "name": "VICKERS,JENIFER",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366070', '99233', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006', '160.00', '160.00')]",
+    "99233 dx ['N18.6', 'Z99.2', 'R41.82', 'E16.2', 'I63.9'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366070', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006')]"
+   ]
+  },
+  {
+   "vid": "19454920",
+   "pid": "17470940",
+   "name": "HOGARTH,CHARMIAN",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366072', '99233', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045', '160.00', '160.00')]",
+    "99233 dx ['I26.94', 'K57.92', 'R46.89', 'R41.82', 'F03.918', 'G93.41', 'R62.7', 'E86.0'] never_primary(first)=False",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366072', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045')]"
+   ]
+  },
+  {
+   "vid": "19454921",
+   "pid": "17470950",
+   "name": "HAYWOOD,JEFFCOAT M",
+   "steps": [
+    "dos 2026-09-15 cpts ['99232'] charges [('charge23366073', '99232', '', 'dcode1034545446', '111.00', '111.00')]",
+    "99232 dx ['Z96.651'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.651'])",
+    "fix_visit -> ADD-I10 v19454921 ['dcode1034543883', 'dcode1034545446'] -> freq1 + rebill seq 1 -> 204",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366073', '', 'dcode1034543883 dcode1034545446')]"
+   ]
+  },
+  {
+   "vid": "19454922",
+   "pid": "17477640",
+   "name": "REEVE,CYRILLA M",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366074', '99233', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "admission 09/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/02/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/02/2026 charges=[('charge23366074', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159')]"
+   ]
+  },
+  {
+   "vid": "19454923",
+   "pid": "17477716",
+   "name": "WALCOTT,ANNETH C",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366075', '99233', '', 'dcode1034545425', '160.00', '160.00')]",
+    "99233 dx ['I69.30'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366075', '', 'dcode1034545425')]"
+   ]
+  },
+  {
+   "vid": "19454924",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366076', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '160.00', '160.00')]",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (same stay: admission 08/27/2026 already on visit 19454882 (2026-09-14))",
+    "updextrainsinfo 99233 08/27/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/27/2026 charges=[('charge23366076', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832')]"
+   ]
+  },
+  {
+   "vid": "19454925",
+   "pid": "17472703",
+   "name": "RACKHAM,JARROD R",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366077', '99233', '', 'dcode1034545247', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "admission 09/05/2026 (same stay: admission 09/05/2026 already on visit 19454884 (2026-09-14))",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366077', '', 'dcode1034545247')]"
+   ]
+  },
+  {
+   "vid": "19454926",
+   "pid": "20863",
+   "name": "HATHERLEY,DAHLIA",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366078', '99233', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709', '160.00', '160.00')]",
+    "99233 dx ['B20', 'G20.C', 'G93.40', 'R25.1', 'G24.9'] never_primary(first)=False",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 08/30/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/30/2026 charges=[('charge23366078', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709')]"
+   ]
+  },
+  {
+   "vid": "19454928",
+   "pid": "17477722",
+   "name": "DENHOLT,TRACEN",
+   "steps": [
+    "dos 2026-09-15 cpts ['99232'] charges [('charge23366080', '99232', '', 'dcode1034912659', '111.00', '111.00')]",
+    "99232 dx ['M19.012'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366080', '', 'dcode1034912659')]"
+   ]
+  },
+  {
+   "vid": "19454929",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366081', '99233', '', 'dcode1037454862', '160.00', '160.00')]",
+    "99233 dx ['S81.801S'] never_primary(first)=True",
+    "Winslow Jr rule (William 9/6): M86.9 dcode1034545415 in front of S81.801S -> diagcodes ['dcode1034545415', 'dcode1037454862']",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23366081', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  },
+  {
+   "vid": "19454930",
+   "pid": "17477497",
+   "name": "DEVANE,SHELAGH",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366082', '99233', '', 'dcode1034545088', '160.00', '160.00')]",
+    "99233 dx ['A41.9'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366082', '', 'dcode1034545088')]"
+   ]
+  },
+  {
+   "vid": "19454931",
+   "pid": "17475638",
+   "name": "FOSDYKE,CARLOTTA L",
+   "steps": [
+    "dos 2026-09-15 cpts ['99233'] charges [('charge23366083', '99233', '', 'dcode1034543888 dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['J15.9', 'R69'] never_primary(first)=False",
+    "admission 09/06/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/06/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/06/2026 charges=[('charge23366083', '', 'dcode1034543888 dcode1037452463')]"
+   ]
+  },
+  {
+   "vid": "19454932",
+   "pid": "17477716",
+   "name": "WALCOTT,ANNETH C",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366084', '99233', '', 'dcode1034545425', '160.00', '160.00')]",
+    "99233 dx ['I69.30'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366084', '', 'dcode1034545425')]"
+   ]
+  },
+  {
+   "vid": "19454934",
+   "pid": "17476020",
+   "name": "VICKERS,JENIFER",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366085', '99233', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006', '160.00', '160.00')]",
+    "99233 dx ['N18.6', 'Z99.2', 'R41.82', 'E16.2', 'I63.9'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366085', '', 'dcode1034545005 dcode1034545103 dcode1034544882 dcode1034545241 dcode1034545006')]"
+   ]
+  },
+  {
+   "vid": "19454935",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366086', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '160.00', '160.00')]",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (same stay: admission 08/27/2026 already on visit 19454924 (2026-09-15))",
+    "updextrainsinfo 99233 08/27/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/27/2026 charges=[('charge23366086', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832')]"
+   ]
+  },
+  {
+   "vid": "19454937",
+   "pid": "17477706",
+   "name": "TREDWELL,RUSTIN",
+   "steps": [
+    "dos 2026-09-16 cpts ['99232'] charges [('charge23366088', '99232', '', 'dcode1034545564', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "admission 09/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/08/2026 charges=[('charge23366088', '', 'dcode1034545564')]"
+   ]
+  },
+  {
+   "vid": "19454938",
+   "pid": "17473782",
+   "name": "RICKERBY,GLENYS",
+   "steps": [
+    "dos 2026-09-16 cpts ['99232'] charges [('charge23366089', '99232', '', 'dcode1037452705 dcode1034912718', '111.00', '111.00')]",
+    "99232 dx ['G95.89', 'G95.29'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366089', '', 'dcode1037452705 dcode1034912718')]"
+   ]
+  },
+  {
+   "vid": "19454939",
+   "pid": "17477640",
+   "name": "REEVE,CYRILLA M",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366090', '99233', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "admission 09/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/02/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/02/2026 charges=[('charge23366090', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159')]"
+   ]
+  },
+  {
+   "vid": "19454940",
+   "pid": "17472703",
+   "name": "RACKHAM,JARROD R",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366091', '99233', '', 'dcode1034545247', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "admission 09/05/2026 (same stay: admission 09/05/2026 already on visit 19454925 (2026-09-15))",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366091', '', 'dcode1034545247')]"
+   ]
+  },
+  {
+   "vid": "19454941",
+   "pid": "17477516",
+   "name": "MEDHURST,CHESTER",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366092', '99233', '', 'dcode1037452463 dcode1034545552', '160.00', '160.00')]",
+    "99233 dx ['R69', 'L03.90'] never_primary(first)=False",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/13/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/13/2026 charges=[('charge23366092', '', 'dcode1037452463 dcode1034545552')]"
+   ]
+  },
+  {
+   "vid": "19454942",
+   "pid": "17474741",
+   "name": "MABRY,LAUREL Rebekah",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366093', '99233', '', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182', '160.00', '160.00')]",
+    "99233 dx ['D62', 'K92.2', 'I48.91', 'Z87.440', 'M62.81', 'D64.9', 'K57.81'] never_primary(first)=False",
+    "admission 09/15/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/15/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/15/2026 charges=[('charge23366093', '', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182')]"
+   ]
+  },
+  {
+   "vid": "19454945",
+   "pid": "17470940",
+   "name": "HOGARTH,CHARMIAN",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366096', '99233', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045', '160.00', '160.00')]",
+    "99233 dx ['I26.94', 'K57.92', 'R46.89', 'R41.82', 'F03.918', 'G93.41', 'R62.7', 'E86.0'] never_primary(first)=False",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23366096', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045')]"
+   ]
+  },
+  {
+   "vid": "19454946",
+   "pid": "17470950",
+   "name": "HAYWOOD,JEFFCOAT M",
+   "steps": [
+    "dos 2026-09-16 cpts ['99232'] charges [('charge23366097', '99232', '', 'dcode1034545446', '111.00', '111.00')]",
+    "99232 dx ['Z96.651'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.651'])",
+    "fix_visit -> ADD-I10 v19454946 ['dcode1034543883', 'dcode1034545446'] -> freq1 + rebill seq 1 -> 204",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366097', '', 'dcode1034543883 dcode1034545446')]"
+   ]
+  },
+  {
+   "vid": "19454947",
+   "pid": "20863",
+   "name": "HATHERLEY,DAHLIA",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366098', '99233', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709', '160.00', '160.00')]",
+    "99233 dx ['B20', 'G20.C', 'G93.40', 'R25.1', 'G24.9'] never_primary(first)=False",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 08/30/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=08/30/2026 charges=[('charge23366098', '', 'dcode1034545114 dcode1037452582 dcode1034545312 dcode1034545183 dcode1037454709')]"
+   ]
+  },
+  {
+   "vid": "19454948",
+   "pid": "17475638",
+   "name": "FOSDYKE,CARLOTTA L",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366099', '99233', '', 'dcode1034543888 dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['J15.9', 'R69'] never_primary(first)=False",
+    "admission 09/06/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/06/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/06/2026 charges=[('charge23366099', '', 'dcode1034543888 dcode1037452463')]"
+   ]
+  },
+  {
+   "vid": "19454949",
+   "pid": "17477722",
+   "name": "DENHOLT,TRACEN",
+   "steps": [
+    "dos 2026-09-16 cpts ['99232'] charges [('charge23366100', '99232', '', 'dcode1034912659', '111.00', '111.00')]",
+    "99232 dx ['M19.012'] never_primary(first)=False",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/10/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/10/2026 charges=[('charge23366100', '', 'dcode1034912659')]"
+   ]
+  },
+  {
+   "vid": "19454950",
+   "pid": "17477497",
+   "name": "DEVANE,SHELAGH",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366101', '99233', '', 'dcode1034545088', '160.00', '160.00')]",
+    "99233 dx ['A41.9'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366101', '', 'dcode1034545088')]"
+   ]
+  },
+  {
+   "vid": "19454952",
+   "pid": "17476608",
+   "name": "BRAMLEY,SARINA",
+   "steps": [
+    "dos 2026-09-16 cpts ['99232'] charges [('charge23366103', '99232', '', 'dcode1034544340', '111.00', '111.00')]",
+    "99232 dx ['M16.0'] never_primary(first)=False",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 09/14/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/14/2026 charges=[('charge23366103', '', 'dcode1034544340')]"
+   ]
+  },
+  {
+   "vid": "19454953",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-16 cpts ['99233'] charges [('charge23366104', '99233', '', 'dcode1037454862', '160.00', '160.00')]",
+    "99233 dx ['S81.801S'] never_primary(first)=True",
+    "Winslow Jr rule (William 9/6): M86.9 dcode1034545415 in front of S81.801S -> diagcodes ['dcode1034545415', 'dcode1037454862']",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23366104', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  }
+ ],
+ "held": [],
+ "left": []
+}
