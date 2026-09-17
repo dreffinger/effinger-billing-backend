@@ -1,0 +1,665 @@
+[
+ {
+  "checkid": "1051696",
+  "checkclaimid": 15439541,
+  "pid": "12182947",
+  "visit": "19453360",
+  "dos": "2026-08-27",
+  "pay": 0.0,
+  "wo": 0.0,
+  "stored_insbal": 0.0,
+  "carc": [
+   [
+    "CO23",
+    56.36
+   ],
+   [
+    "OA23",
+    84.64
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   23363904,
+   23363904
+  ],
+  "live": []
+ },
+ {
+  "checkid": "1051696",
+  "checkclaimid": 15439542,
+  "pid": "17475274",
+  "visit": "19430117",
+  "dos": "2026-01-21",
+  "pay": 0.0,
+  "wo": 310.0,
+  "stored_insbal": 0.0,
+  "carc": [
+   [
+    "CO18",
+    310.0
+   ]
+  ],
+  "rarc": [],
+  "chargedetailid": [
+   23336521
+  ],
+  "live": []
+ },
+ {
+  "checkid": "1051696",
+  "checkclaimid": 15439543,
+  "pid": "12231996",
+  "visit": "19414833",
+  "dos": "2025-08-26",
+  "pay": 0.0,
+  "wo": 443.0,
+  "stored_insbal": 0.0,
+  "carc": [
+   [
+    "CO216",
+    310.0
+   ],
+   [
+    "CO4",
+    133.0
+   ]
+  ],
+  "rarc": [
+   "N891",
+   "N56"
+  ],
+  "chargedetailid": [
+   23318074,
+   23318075
+  ],
+  "live": []
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439544,
+  "pid": "17470743",
+  "visit": "19369510",
+  "dos": "2023-11-15",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437743
+  ],
+  "live": [
+   {
+    "id": "22437743",
+    "proccode": "99232",
+    "dos": "11/15/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439545,
+  "pid": "17470743",
+  "visit": "19369143",
+  "dos": "2023-11-08",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437205
+  ],
+  "live": [
+   {
+    "id": "22437205",
+    "proccode": "99232",
+    "dos": "11/08/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439546,
+  "pid": "17470743",
+  "visit": "19369423",
+  "dos": "2023-11-13",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437589
+  ],
+  "live": [
+   {
+    "id": "22437589",
+    "proccode": "99232",
+    "dos": "11/13/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439547,
+  "pid": "17470743",
+  "visit": "19369256",
+  "dos": "2023-11-11",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437312
+  ],
+  "live": [
+   {
+    "id": "22437312",
+    "proccode": "99232",
+    "dos": "11/11/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439548,
+  "pid": "17470743",
+  "visit": "19372791",
+  "dos": "2023-12-24",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO29",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22440492
+  ],
+  "live": [
+   {
+    "id": "22440492",
+    "proccode": "99232",
+    "dos": "12/24/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439549,
+  "pid": "17470743",
+  "visit": "19373636",
+  "dos": "2023-12-27",
+  "pay": 0.0,
+  "wo": 159.83,
+  "stored_insbal": 15.28,
+  "carc": [
+   [
+    "CO29",
+    163.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22441524
+  ],
+  "live": [
+   {
+    "id": "22441524",
+    "proccode": "99239",
+    "dos": "12/27/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "15.28",
+    "patbal": "0.00",
+    "paid": "147.72",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439550,
+  "pid": "17470743",
+  "visit": "19369242",
+  "dos": "2023-11-12",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437298
+  ],
+  "live": [
+   {
+    "id": "22437298",
+    "proccode": "99232",
+    "dos": "11/12/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439551,
+  "pid": "17470743",
+  "visit": "19372801",
+  "dos": "2023-12-23",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22440503
+  ],
+  "live": [
+   {
+    "id": "22440503",
+    "proccode": "99232",
+    "dos": "12/23/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439552,
+  "pid": "17470743",
+  "visit": "19373650",
+  "dos": "2023-12-26",
+  "pay": 0.0,
+  "wo": 109.95,
+  "stored_insbal": 11.73,
+  "carc": [
+   [
+    "CO29",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22441539
+  ],
+  "live": [
+   {
+    "id": "22441539",
+    "proccode": "99232",
+    "dos": "12/26/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "11.73",
+    "patbal": "0.00",
+    "paid": "99.27",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439553,
+  "pid": "17470743",
+  "visit": "19368940",
+  "dos": "2023-11-06",
+  "pay": 0.0,
+  "wo": 65.44,
+  "stored_insbal": 19.22,
+  "carc": [
+   [
+    "CO18",
+    160.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22436945
+  ],
+  "live": [
+   {
+    "id": "22436945",
+    "proccode": "99233",
+    "dos": "11/06/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "19.22",
+    "patbal": "0.00",
+    "paid": "140.78",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439554,
+  "pid": "17470743",
+  "visit": "19372810",
+  "dos": "2023-12-22",
+  "pay": 0.0,
+  "wo": 172.22,
+  "stored_insbal": 28.0,
+  "carc": [
+   [
+    "CO18",
+    310.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22440513
+  ],
+  "live": [
+   {
+    "id": "22440513",
+    "proccode": "99223",
+    "dos": "12/22/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "28.00",
+    "patbal": "0.00",
+    "paid": "282.00",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439555,
+  "pid": "17470743",
+  "visit": "19369104",
+  "dos": "2023-11-10",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO29",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437162
+  ],
+  "live": [
+   {
+    "id": "22437162",
+    "proccode": "99232",
+    "dos": "11/10/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439556,
+  "pid": "17470743",
+  "visit": "19368915",
+  "dos": "2023-11-07",
+  "pay": 0.0,
+  "wo": 65.44,
+  "stored_insbal": 19.22,
+  "carc": [
+   [
+    "CO29",
+    160.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22436918
+  ],
+  "live": [
+   {
+    "id": "22436918",
+    "proccode": "99233",
+    "dos": "11/07/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "19.22",
+    "patbal": "0.00",
+    "paid": "140.78",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439557,
+  "pid": "17470743",
+  "visit": "19369118",
+  "dos": "2023-11-09",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO18",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437176
+  ],
+  "live": [
+   {
+    "id": "22437176",
+    "proccode": "99232",
+    "dos": "11/09/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ },
+ {
+  "checkid": "1051697",
+  "checkclaimid": 15439558,
+  "pid": "17470743",
+  "visit": "19369405",
+  "dos": "2023-11-14",
+  "pay": 0.0,
+  "wo": 48.14,
+  "stored_insbal": 12.78,
+  "carc": [
+   [
+    "CO29",
+    111.0
+   ]
+  ],
+  "rarc": [
+   "#AM"
+  ],
+  "chargedetailid": [
+   22437569
+  ],
+  "live": [
+   {
+    "id": "22437569",
+    "proccode": "99232",
+    "dos": "11/14/2023",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "billdate": "09/11/2026",
+    "datebilled": null,
+    "insbal": "12.78",
+    "patbal": "0.00",
+    "paid": "98.22",
+    "insorder": null,
+    "void": "0",
+    "paymentcount": null
+   }
+  ]
+ }
+]
