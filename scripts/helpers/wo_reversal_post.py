@@ -15,7 +15,7 @@ for r in recs: bych[r['checkid']].append(r)
 n = 0; tot_void = 0.0; posted_total = 0.0
 for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv[1])):
     if n >= mx: break
-    touched = 0
+    touched = 0; touched_visits = []
     for r in rs:
         key = '%s' % r['visitid']
         if key in done: continue
@@ -26,15 +26,17 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
             REG.write('%s,%s,%s,%s,%s,%s,%s,%s,%s\n' % (stamp, r['check'], r['patient'].replace(',', ' '), r['dos'], chg, woid, code, amt, 'voided' if ok else 'FAILED ' + msg[:60])); REG.flush()
             if not ok: L('  void FAIL %s %s wo %s: %s' % (r['patient'], r['dos'], woid, msg)); time.sleep(0.3)
             else: tot_void += abs(float(amt or 0))
-        L('VOIDED %s %s %s era %.2f wos %d ok=%s' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']), ok_all)); touched += 1; time.sleep(0.3)
+        L('VOIDED %s %s %s era %.2f wos %d ok=%s' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']), ok_all)); touched += 1; touched_visits.append(int(r['visitid'])); time.sleep(0.3)
     n += 1
     if touched and not dry:
-        chk = next((c for c in era_post.checks() if str(c['id']) == str(cid)), None)
+        chk = next((c for c in era_post.checks() if c['id'] == cid), None)
         if chk:
-            # 9/10 lesson (captured_calls.md), applied to the helper 9/17: the remit stores each visit's insurancebalance as
-            # of load time (0 after the write-off), so postable() skips the just-voided visits unless they are in FORCE_VISITS.
-            era_post.FORCE_VISITS.clear(); era_post.FORCE_VISITS.update(int(r['visitid']) for r in rs)
-            try: nv, amt = era_post.post_check(chk); posted_total += amt; L('POSTED check %s %s: %d visits $%.2f (FORCE_VISITS %d)' % (cid, chk['paymentnumber'], nv, amt, len(era_post.FORCE_VISITS)))
+            # The ERA remit stores each visit's insurancebalance as of remit-load time (0, because the
+            # WOINSBANK write-off had already zeroed it). post_check's postable() gate needs balance>0, so
+            # it skips these even though the void just reopened the real balance. Force the just-voided
+            # visits so the payment + contractual adjustment post; then clear the override (proven 9/10).
+            era_post.FORCE_VISITS.update(touched_visits)
+            try: nv, amt = era_post.post_check(chk); posted_total += amt; L('POSTED check %s %s: %d visits $%.2f' % (cid, chk['paymentnumber'], nv, amt))
             except Exception as e: L('POST ERROR check %s: %s' % (cid, str(e)[:120]))
-            era_post.FORCE_VISITS.clear()
+            finally: era_post.FORCE_VISITS.difference_update(touched_visits)
 L('=== done: checks %d, write-offs voided $%.2f, posted $%.2f ===' % (n, tot_void, posted_total))
