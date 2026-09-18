@@ -1266,3 +1266,10 @@ No new AMD call shapes this run. Behaviours worth keeping:
 No new AMD call shapes this run. Behaviours worth keeping:
 - getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 11:14Z 9/18: two nightly closes (9/17, 9/18) produced no claim run - the same finding as the 6:46am ET 'morning money & posting report' (no EOD-close notice since 9/16). Nothing in the API starts a claim run; William closes the day / checks Automation Center rule status.
 - State restore precedence when the newest Drive bundle is OLDER than the last run's GitHub commit: practices/ehpa/registers/ + nightly/runs/ on main win (the bundle carries no patient_db/era_details, only registers + the facesheet list).
+
+# captured_calls additions - 2026-09-18T1310Z (9am ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 13:15Z 9/18 (78 runs): the third consecutive slot with no nightly claim run - nothing in the API starts one; William closes the day / checks the Automation Center rule.
+- WEL04 $0 denial-only ERA 1051706 (2 claims, CO96 + OA23 with N448, one line also CO4/N56): both visits already at $0 insurance balance - era_clear dismisses such a check straight away (no money, no MA63/M76/M64); the denial lines go to the Working Denials rerun via the denials inbox note.
+- Cross-container timing: the 1110Z run was still uploading its state bundle (one 8 KB part every ~4 minutes) when this run started two hours later; a bundle whose part count is short of its manifest is skipped and the repo's practices/ehpa/registers + nightly/runs are the restore source (same precedence as 1110Z).
