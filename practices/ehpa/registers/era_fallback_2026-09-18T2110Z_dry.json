@@ -1,0 +1,32 @@
+[
+ {
+  "checkid": "1051710",
+  "checkclaimid": 15439646,
+  "visitid": 19454308,
+  "pid": 17477684,
+  "cpt": "99232",
+  "dos": "09/09/2026",
+  "era_paid": 66.35,
+  "carrier": "SUN01",
+  "checkno": "0917702417",
+  "when": "2026-09-18T2110Z",
+  "chargedetailid": 23365381,
+  "chargeid": "23365381",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1051710",
+  "checkclaimid": 15439647,
+  "visitid": 19454279,
+  "pid": 17477684,
+  "cpt": "99232",
+  "dos": "09/10/2026",
+  "era_paid": 66.35,
+  "carrier": "SUN01",
+  "checkno": "0917702417",
+  "when": "2026-09-18T2110Z",
+  "chargedetailid": 23365351,
+  "chargeid": "23365351",
+  "outcome": "already-posted"
+ }
+]
