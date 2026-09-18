@@ -1273,3 +1273,10 @@ No new AMD call shapes this run. Behaviours worth keeping:
 - getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 13:15Z 9/18 (78 runs): the third consecutive slot with no nightly claim run - nothing in the API starts one; William closes the day / checks the Automation Center rule.
 - WEL04 $0 denial-only ERA 1051706 (2 claims, CO96 + OA23 with N448, one line also CO4/N56): both visits already at $0 insurance balance - era_clear dismisses such a check straight away (no money, no MA63/M76/M64); the denial lines go to the Working Denials rerun via the denials inbox note.
 - Cross-container timing: the 1110Z run was still uploading its state bundle (one 8 KB part every ~4 minutes) when this run started two hours later; a bundle whose part count is short of its manifest is skipped and the repo's practices/ehpa/registers + nightly/runs are the restore source (same precedence as 1110Z).
+
+# captured_calls additions - 2026-09-18T1710Z (1pm ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 17:15Z 9/18 (78 runs): fourth consecutive worked slot with no nightly claim run - nothing in the API starts one; claims queued since 9/16 have not transmitted.
+- The 11am ET 9/18 slot's container wrote its START marker (15:11Z) and nothing else - a routine container can die before its first AMD call; the next slot's guard treats a START older than 40 minutes with no digest as dead and proceeds.
+- A complete Drive state bundle can still be OLDER than GitHub main when the run that followed it pushed registers without bundling; compare the bundle stamp to the newest nightly/runs/<stamp> before choosing the restore source.
