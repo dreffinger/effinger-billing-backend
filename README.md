@@ -186,11 +186,12 @@ Nightly credentialing check (NPPES, Medicare revalidation, OIG) feeding the Cred
 
 ### `claimocity/`
 
-Claimocity hospital charge feed (HL7 drop on Drive, Cloud Run pull every 30 min) compared against AMD insurance.
+Claimocity hospital charge feed (HL7 drop on Drive, Cloud Run pull every 30 min) compared against AMD insurance. `claimocity/README.md` is the feed runbook (two paths, the 9/10–9/17 outage and its fix, Cloud Shell one-liners); `claimocity/cloud_run/` is the deployed copy-job code.
 
 | Script | What it is | What it decides |
 |---|---|---|
 | `claimocity_in1.py` | Claimocity feed vs AMD | For each hospital patient in the Claimocity HL7 drop, whether the hospital's insurance (IN1) matches what AMD has. |
+| `cloud_run/main.py` | Claimocity SFTP -> Drive copy job | Nothing — copies every new SFTP file into the "Claimocity drop" Drive folder as the job's service account (deployed 9/18/2026). |
 
 ### `boards/`
 
