@@ -1260,3 +1260,9 @@ No new AMD call shapes this run. Behaviours worth keeping:
 - A UnitedHealthcare (UNI01) NO-PAY 835 with one OA-23 line (claim status 1, 'impact of prior payer adjudication', remark #AM) lands in the ERA Center as a $0 denial-only check; era_clear classifies it 'denial with write-off (cascade handles)' and dismisses it, and the visit keeps its open insurance balance for the Working Denials rerun. Not MA63/M76/M64 - no dx work.
 - Cross-container guard: a START file whose run is still uploading its state bundle (0721UTC set at part 23/25 at 09:10Z) but already has its RUN COMPLETE digest = proceed; restore state from GitHub main practices/ehpa/registers/ + nightly/runs/ rather than an incomplete bundle set.
 - Claimocity drop health line (proposed v8 prompt line): newest download__ file 9/9 07:30Z at 09:14Z 9/18 = 9 days; the 9/18 redeploy (google.auth.default + folder shared to the service account) produced no 9/18 file.
+
+# captured_calls additions - 2026-09-18T1110Z (7am ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 11:14Z 9/18: two nightly closes (9/17, 9/18) produced no claim run - the same finding as the 6:46am ET 'morning money & posting report' (no EOD-close notice since 9/16). Nothing in the API starts a claim run; William closes the day / checks Automation Center rule status.
+- State restore precedence when the newest Drive bundle is OLDER than the last run's GitHub commit: practices/ehpa/registers/ + nightly/runs/ on main win (the bundle carries no patient_db/era_details, only registers + the facesheet list).
