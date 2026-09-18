@@ -7,3 +7,5 @@ ERA step 5: 0 unposted checks / $0.00 before -> 0 / $0.00 after - ERA Center emp
 OPEN (Claude's turn, from the 0310Z run): Florida Blue patient-balance audit - 179 charges / 48 charts / $22,499.90 - not worked. Hold Florida Blue patient statements until then.
 Calls learned: no new AMD call shapes (names PATCH via patient_patch.patch({'names': [...]}) re-used from the 9/14 Underhill rename; addr_line1_fix + family_address with line 2 kept). Vocabulary entries added: 0.
 Mirror: GitHub main 5ffa4c1 committed by mirror.py (helpers + registry PHI-gated, Postman JSON regenerated 9 folders / 52 calls); pushed by the run with the attached repository's credentials (see push log); Drive legs and state bundle below
+
+CORRECTION (23:55Z): the state bundle was packed but not uploaded - see the digest (connector too slow: ~4 min per 8 KB part); newest Drive set stays 1123UTC.
