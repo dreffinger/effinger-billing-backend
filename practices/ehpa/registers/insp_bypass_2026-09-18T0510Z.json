@@ -1,0 +1,38 @@
+[
+ {
+  "vid": "19454901",
+  "pid": "17477774",
+  "errs": [
+   [
+    "394578",
+    "The Source of Payment you have chosen is not typical for this carrier. To update the Source of Payment go to System Settings | Carrier | Carrier List | Select Carrier Code | EDI Other.The Source of Pa",
+    "117070083"
+   ]
+  ],
+  "ok": true
+ },
+ {
+  "vid": "19454914",
+  "pid": "17477774",
+  "errs": [
+   [
+    "394579",
+    "The Source of Payment you have chosen is not typical for this carrier. To update the Source of Payment go to System Settings | Carrier | Carrier List | Select Carrier Code | EDI Other.The Source of Pa",
+    "117070083"
+   ]
+  ],
+  "ok": true
+ },
+ {
+  "vid": "19454943",
+  "pid": "17477774",
+  "errs": [
+   [
+    "394580",
+    "The Source of Payment you have chosen is not typical for this carrier. To update the Source of Payment go to System Settings | Carrier | Carrier List | Select Carrier Code | EDI Other.The Source of Pa",
+    "117070083"
+   ]
+  ],
+  "ok": true
+ }
+]

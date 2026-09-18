@@ -1,0 +1,1562 @@
+{
+ "19417372": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19417742": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 198.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19421141": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19421226": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19421355": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19421530": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19421697": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19431376": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 198.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19431876": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19431879": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19432026": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19432341": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19432344": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437306": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 198.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19439504": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442361": {
+  "pid": "17471968",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-10",
+  "age": 8,
+  "insbal": 206.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19423431": {
+  "pid": "17470874",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19423701": {
+  "pid": "17470874",
+  "name": "[name]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427114": {
+  "pid": "17470874",
+  "name": "[name]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19434007": {
+  "pid": "17470874",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 206.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19425398": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427549": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427685": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19428144": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19429865": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430742": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430969": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19432544": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 107.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19432999": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433933": {
+  "pid": "17474613",
+  "name": "BARROW,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19426092": {
+  "pid": "17473383",
+  "name": "DUNSTAN,JOSIAH M",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427585": {
+  "pid": "17473383",
+  "name": "DUNSTAN,JOSIAH M",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19429024": {
+  "pid": "17473383",
+  "name": "DUNSTAN,JOSIAH M",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430729": {
+  "pid": "17473383",
+  "name": "DUNSTAN,JOSIAH M",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19426947": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 107.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427080": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430528": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430779": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433058": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 107.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433976": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19435835": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437369": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19438607": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19439632": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19440847": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442451": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442866": {
+  "pid": "21378",
+  "name": "WHITBY,EDWIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427036": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19427131": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430565": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19430844": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433069": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19440859": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19440861": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 310.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441178": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441189": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441315": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441375": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441469": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441483": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441640": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441991": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 389.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442158": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 163.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442503": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442873": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19443291": {
+  "pid": "17471725",
+  "name": "BLAKELY,NORBERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433010": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19433977": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 206.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437294": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19438156": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19438608": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19439633": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441025": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442452": {
+  "pid": "17471645",
+  "name": "WOTTON,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19435218": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19435658": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19436806": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 107.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19436816": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437727": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19438572": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19438676": {
+  "pid": "21258",
+  "name": "CORWIN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437355": {
+  "pid": "20379",
+  "name": "FENNER,MAUDE",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19437841": {
+  "pid": "20379",
+  "name": "FENNER,MAUDE",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 107.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19439668": {
+  "pid": "20379",
+  "name": "FENNER,MAUDE",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442008": {
+  "pid": "20379",
+  "name": "FENNER,MAUDE",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442490": {
+  "pid": "20379",
+  "name": "FENNER,MAUDE",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 315.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441047": {
+  "pid": "17470743",
+  "name": "GARROW,CERYS L",
+  "n": 1,
+  "paid": 124.07,
+  "newest_bill": "2026-05-26",
+  "age": 115,
+  "insbal": 16.93,
+  "carriers": [
+   "MCAD"
+  ],
+  "class": "hold-a"
+ },
+ "19454235": {
+  "pid": "17470743",
+  "name": "GARROW,CERYS L",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19441980": {
+  "pid": "17476489",
+  "name": "MABRY,[first] H",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 160.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441981": {
+  "pid": "17476489",
+  "name": "MABRY,[first] H",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 141.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19441994": {
+  "pid": "17476489",
+  "name": "MABRY,[first] H",
+  "n": 2,
+  "paid": 0.0,
+  "newest_bill": "2026-09-04",
+  "age": 14,
+  "insbal": 389.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19442414": {
+  "pid": "17473343",
+  "name": "tremayne,desmond",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-05",
+  "age": 13,
+  "insbal": 206.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19447648": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19447649": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19447650": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19447651": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19447878": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448026": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448251": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448583": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448637": {
+  "pid": "17476868",
+  "name": "ADDISON,RUPERT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 111.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448262": {
+  "pid": "17477116",
+  "name": "TAVISTOCK,[first] A",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-13",
+  "age": 5,
+  "insbal": 310.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19448609": {
+  "pid": "17474082",
+  "name": "MARLOWE,BETTINA",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "2026-09-12",
+  "age": 6,
+  "insbal": 204.0,
+  "carriers": [
+   "FLO02"
+  ],
+  "class": "release-b"
+ },
+ "19454223": {
+  "pid": "24330",
+  "name": "ALWYN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454224": {
+  "pid": "12232512",
+  "name": "BEXFORD,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454226": {
+  "pid": "17472285",
+  "name": "CHILTON,[first] B",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454227": {
+  "pid": "17473222",
+  "name": "CLYDE,CORINNE",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454228": {
+  "pid": "17473222",
+  "name": "CLYDE,CORINNE",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 107.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454229": {
+  "pid": "45010",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454230": {
+  "pid": "23252",
+  "name": "CROSSLEY,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454231": {
+  "pid": "20860",
+  "name": "DIGBY,RUSTIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454232": {
+  "pid": "20860",
+  "name": "DIGBY,RUSTIN",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454233": {
+  "pid": "45520",
+  "name": "DRAPER,ROOKWOOD PREWITT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 107.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454234": {
+  "pid": "20879",
+  "name": "EVERLEY,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454236": {
+  "pid": "23215",
+  "name": "GARNETT,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454246": {
+  "pid": "44987",
+  "name": "HARLAN,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454247": {
+  "pid": "21172",
+  "name": "HOLLOWAY,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454248": {
+  "pid": "25869",
+  "name": "LAMBERT,[first]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 107.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454250": {
+  "pid": "23683",
+  "name": "MARLIN,JEFFCOAT",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 141.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ },
+ "19454251": {
+  "pid": "17472436",
+  "name": "[name]",
+  "n": 1,
+  "paid": 0.0,
+  "newest_bill": "None",
+  "age": null,
+  "insbal": 107.0,
+  "carriers": [
+   ""
+  ],
+  "class": "release-b"
+ }
+}
