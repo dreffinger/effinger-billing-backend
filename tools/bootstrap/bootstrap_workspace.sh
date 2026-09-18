@@ -95,6 +95,12 @@ json.dump(simple,open(os.path.join(ws,'carriers.json'),'w'),indent=1)
 print('layout: derived simple carriers.json with',len(simple),'codes')
 PY
     fi
+    # 7) OCR tooling (William 9/17/2026: "add the ability back to ocr a pdf") - scanned facesheets need pdftoppm + tesseract;
+    #    the cloud container starts without them. Best effort, never fatal; Network access must allow apt/pip.
+    if ! command -v tesseract >/dev/null 2>&1 || ! command -v pdftoppm >/dev/null 2>&1; then
+      (apt-get update -q >/dev/null 2>&1 && apt-get install -y -q tesseract-ocr poppler-utils >/dev/null 2>&1) && echo "layout: OCR tools installed (tesseract, poppler-utils)" || echo "layout: WARN could not install tesseract/poppler (apt blocked?) - scanned PDFs cannot be OCRed this run"
+    fi
+    python3 -c "import pymupdf" 2>/dev/null || pip install -q pymupdf >/dev/null 2>&1 || true
     chmod +x "$WS"/*.sh "$WS"/tools/*.sh 2>/dev/null
     echo "layout: copied/refreshed $n helper files into $WS"
     exit 0
