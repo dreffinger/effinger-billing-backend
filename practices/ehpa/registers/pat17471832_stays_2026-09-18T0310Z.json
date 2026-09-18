@@ -1,0 +1,122 @@
+[
+ {
+  "stay": "07/05/2024-07/15/2024",
+  "days": 11,
+  "charges": 12,
+  "dos_with_charge": 11,
+  "insbal": 0.0,
+  "patbal": 0.0,
+  "paid": 1605.0,
+  "carriers": {
+   "UNI20": 12
+  }
+ },
+ {
+  "stay": "08/24/2024-09/06/2024",
+  "days": 14,
+  "charges": 15,
+  "dos_with_charge": 14,
+  "insbal": 0.0,
+  "patbal": 98.9,
+  "paid": 1787.1,
+  "carriers": {
+   "UNI20": 15
+  }
+ },
+ {
+  "stay": "11/12/2025-11/16/2025",
+  "days": 5,
+  "charges": 5,
+  "dos_with_charge": 5,
+  "insbal": 0.0,
+  "patbal": 0.0,
+  "paid": 950.0,
+  "carriers": {
+   "BCBS": 5
+  }
+ },
+ {
+  "stay": "11/30/2025-12/08/2025",
+  "days": 9,
+  "charges": 10,
+  "dos_with_charge": 9,
+  "insbal": 0.0,
+  "patbal": 0.0,
+  "paid": 1576.0,
+  "carriers": {
+   "BCBS": 10
+  }
+ },
+ {
+  "stay": "12/31/2025-01/07/2026",
+  "days": 8,
+  "charges": 9,
+  "dos_with_charge": 8,
+  "insbal": 0.0,
+  "patbal": 443.0,
+  "paid": 1120.0,
+  "carriers": {
+   "BCBS": 9
+  }
+ },
+ {
+  "stay": "02/27/2026-03/02/2026",
+  "days": 4,
+  "charges": 4,
+  "dos_with_charge": 4,
+  "insbal": 0.0,
+  "patbal": 0.0,
+  "paid": 741.0,
+  "carriers": {
+   "BCBS": 4
+  }
+ },
+ {
+  "stay": "03/08/2026-03/13/2026",
+  "days": 6,
+  "charges": 6,
+  "dos_with_charge": 6,
+  "insbal": 0.0,
+  "patbal": 106.37,
+  "paid": 1003.63,
+  "carriers": {
+   "BCBS": 6
+  }
+ },
+ {
+  "stay": "04/02/2026-04/07/2026",
+  "days": 6,
+  "charges": 6,
+  "dos_with_charge": 6,
+  "insbal": 0.0,
+  "patbal": 792.64,
+  "paid": 320.36,
+  "carriers": {
+   "BCBS": 6
+  }
+ },
+ {
+  "stay": "04/28/2026-05/09/2026",
+  "days": 12,
+  "charges": 12,
+  "dos_with_charge": 12,
+  "insbal": 0.0,
+  "patbal": 1100.57,
+  "paid": 482.43,
+  "carriers": {
+   "BCBS": 12
+  }
+ },
+ {
+  "stay": "05/27/2026-06/01/2026",
+  "days": 6,
+  "charges": 6,
+  "dos_with_charge": 6,
+  "insbal": 0.0,
+  "patbal": 378.15,
+  "paid": 486.85,
+  "carriers": {
+   "BCBS": 6
+  }
+ }
+]
