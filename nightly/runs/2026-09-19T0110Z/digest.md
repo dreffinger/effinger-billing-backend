@@ -9,4 +9,6 @@ OPEN (Claude's turn, from the 9/18 0310Z run): Florida Blue patient-balance audi
 Calls learned: no new AMD call shapes. Vocabulary entries added: 0.
 Mirror: GitHub main 4c65615 committed by mirror.py (helpers + registry PHI-gated, Postman JSON regenerated 9 folders / 52 calls); pushed by the run with the attached repository's credentials (see push log); Drive legs and state bundle below
 
+STATE BUNDLE: packed state-only (workspace_state_2026-09-19_0123UTC, 130 files, 30 parts) but NOT uploaded - each 8 KB part would have to be transcribed through the Drive connector's text upload (the run has no file upload path), which corrupted or stalled every earlier attempt; the newest complete set on Drive stays 1123UTC 9/18. Everything the bundle holds is on GitHub main (practices/ehpa/registers/, nightly/runs/2026-09-19T0110Z/) or already on Drive (board inbox files, additions); patient_db 0 records this run, era_details 2 checks (both settled).
+
 RUN COMPLETE
