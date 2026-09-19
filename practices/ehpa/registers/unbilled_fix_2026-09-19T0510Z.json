@@ -1,0 +1,22 @@
+{
+ "laz": [
+  [
+   "rplan18462071",
+   "VA0061079015"
+  ]
+ ],
+ "connell_19454951": "saved live=1/1 insorder=1 refplan=rplan18462069 preauth=None onhcfa=1 hospfrom=09/14/2026",
+ "connell_19455049": "saved live=1/1 insorder=1 refplan=rplan18462069 preauth=None onhcfa=1 hospfrom=09/14/2026",
+ "gordon_19454907": "saved live=1/1 insorder=1,2 refplan=rplan18462073 preauth=None onhcfa=1 hospfrom=09/14/2026",
+ "gordon_19454927": "saved live=1/1 insorder=1,2 refplan=rplan18462073 preauth=None onhcfa=1 hospfrom=09/14/2026",
+ "msp_17477774": [
+  true,
+  "8-n5kww\" lst=\"09/18/2026 22:21:31\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+ ],
+ "msp_17477773": [
+  true,
+  "8-94ld2\" lst=\"09/18/2026 22:21:33\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+ ],
+ "release_lewis": true,
+ "harris_addr": "500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500"
+}

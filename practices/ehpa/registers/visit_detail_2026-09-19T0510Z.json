@@ -1,0 +1,310 @@
+{
+ "23366054": {
+  "visit": "vst19454903",
+  "pid": "17477775",
+  "insorder": "1",
+  "refplan": "rplan18462069",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366054",
+    "pcode65084",
+    "",
+    "21",
+    "dcode1034545202",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366068": {
+  "visit": "vst19454916",
+  "pid": "17477775",
+  "insorder": "1",
+  "refplan": "rplan18462069",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366068",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545202",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366102": {
+  "visit": "vst19454951",
+  "pid": "17477775",
+  "insorder": "1",
+  "refplan": "rplan18462071",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366102",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545202",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366201": {
+  "visit": "vst19455049",
+  "pid": "17477775",
+  "insorder": "1",
+  "refplan": "rplan18462071",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366201",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545202",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366055": {
+  "visit": "vst19454904",
+  "pid": "17477776",
+  "insorder": "1",
+  "refplan": "rplan18462070",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366055",
+    "pcode65084",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366062": {
+  "visit": "vst19454910",
+  "pid": "17477776",
+  "insorder": "1",
+  "refplan": "rplan18462070",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366062",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366087": {
+  "visit": "vst19454936",
+  "pid": "17477776",
+  "insorder": "1",
+  "refplan": "rplan18462070",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366087",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366204": {
+  "visit": "vst19455052",
+  "pid": "17477776",
+  "insorder": "1",
+  "refplan": "rplan18462070",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366204",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366058": {
+  "visit": "vst19454907",
+  "pid": "17477779",
+  "insorder": "1",
+  "refplan": "rplan18462073",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366058",
+    "pcode65084",
+    "",
+    "21",
+    "dcode1034912718 dcode1037454022 dcode1037452759",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366079": {
+  "visit": "vst19454927",
+  "pid": "17477779",
+  "insorder": "1",
+  "refplan": "rplan18462073",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366079",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034912718 dcode1037454022 dcode1037452759",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366180": {
+  "visit": "vst19455030",
+  "pid": "17477798",
+  "insorder": "",
+  "refplan": "rplan18462092",
+  "preauth": null,
+  "onhcfa": "0",
+  "facility": "fac29",
+  "hospfrom": null,
+  "resub": null,
+  "charges": [
+   [
+    "charge23366180",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366210": {
+  "visit": "vst19455057",
+  "pid": "17477798",
+  "insorder": "",
+  "refplan": "rplan18462092",
+  "preauth": null,
+  "onhcfa": "0",
+  "facility": "fac29",
+  "hospfrom": null,
+  "resub": null,
+  "charges": [
+   [
+    "charge23366210",
+    "pcode65084",
+    "",
+    "21",
+    "dcode1034545489",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366200": {
+  "visit": "vst19455048",
+  "pid": "17477774",
+  "insorder": "1,2",
+  "refplan": "rplan18462068",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366200",
+    "pcode65089",
+    "",
+    "21",
+    "dcode1034543883 dcode1034545923",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ },
+ "23366051": {
+  "visit": "vst19454901",
+  "pid": "17477774",
+  "insorder": "1",
+  "refplan": "rplan18462068",
+  "preauth": null,
+  "onhcfa": "1",
+  "facility": "fac29",
+  "hospfrom": "09/14/2026",
+  "resub": "",
+  "charges": [
+   [
+    "charge23366051",
+    "pcode65084",
+    "",
+    "21",
+    "dcode1034543883 dcode1034545923",
+    "0"
+   ]
+  ],
+  "dxmap": []
+ }
+}
