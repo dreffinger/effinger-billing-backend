@@ -1303,3 +1303,11 @@ No new AMD call shapes this run. Behaviours worth keeping:
 - Stedi discovery on a 55-year-old with a stale UHC/AARP line on the SNF sheet returned the live marketplace plan (Ambetter Elite Bronze 6/1-12/31/2026); Centene 68069 direct eligibility answered AAA 42 (unable to respond) four times in a row while AMD's own 271 on the new AMB03 plan answered ACTIVE at once - AMD 271 first, Stedi discovery second, is the right order for a chart with no plan.
 - precheck.py (7pm extra) reported 'no <carrier> plan on chart' on 7 charts that DO carry the plan at seq 1 - its CARRIERS.get(car) match against the parsed insplan tuple misses this run (carriers.json is the simple code->carN map the bootstrap writes). Not fixed this run; verify by getdemographic before acting on that flag.
 - getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 23:15Z 9/18 (78 runs): seventh consecutive worked slot with no nightly claim run - nothing in the API starts one.
+
+# captured_calls additions - 2026-09-19T0110Z (backend billing run 9 PM ET 9/18, ehpa cloud)
+
+No new AMD or Stedi call shapes this run. Behaviours worth keeping:
+- ERA Center: a Humana money check (1051712) that arrives with a single 99309 line auto-posts cleanly through posterapayments (era_post --all-unposted); the fallback's live read-back then reports the line as already-posted (payment carrying the check number is on the charge) and the check leaves GET /api/era/checks without a dismiss call.
+- A Humana NO-PAY check (1051713) carrying only PI252/N4 and OA23 lines is dismissed by era_clear once every line is classed 'denial with write-off (cascade handles)'; its PI252 claims are handed to the Working Denials board through the denials inbox note, never manual-posted.
+- Board hygiene: a mirrored (PHI-gated) run script carries pseudonymized row ids; re-using it verbatim from GitHub creates duplicate board rows under the pseudonym (seen 9/18 01:32Z). Row ids must come from a local, non-mirrored file (inbox/rowids_*.json) - done this run.
+- getclaimrunstatus still lists 1700202 as the newest claim run at 01:15Z 9/19 (78 runs): eighth consecutive worked slot with no nightly claim run.
