@@ -1280,3 +1280,26 @@ No new AMD call shapes this run. Behaviours worth keeping:
 - getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 17:15Z 9/18 (78 runs): fourth consecutive worked slot with no nightly claim run - nothing in the API starts one; claims queued since 9/16 have not transmitted.
 - The 11am ET 9/18 slot's container wrote its START marker (15:11Z) and nothing else - a routine container can die before its first AMD call; the next slot's guard treats a START older than 40 minutes with no digest as dead and proceeds.
 - A complete Drive state bundle can still be OLDER than GitHub main when the run that followed it pushed registers without bundling; compare the bundle stamp to the newest nightly/runs/<stamp> before choosing the restore source.
+
+# captured_calls additions - 2026-09-18T1910Z (3pm ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- A Claimocity feed drop of 24 HCA hospital visits (batch 127737) all arrive in the Claim Inspector with 'Hospitalization From Date empty'; the insp_0917_1910.py recipe (admission = most recent 99223 within 45 days / own 99223 / the same stay's date already on an earlier visit, updextrainsinfo hospitalizationfrom per CPT, full-visit resave onhcfa=1, re-list + bypass advisories with fresh ids) cleared all 24 in one pass, 0 held.
+- Z96.641 / Z96.651 (presence of a joint implant) as the only diagnosis on a 99232 fires dx_primary_fix.never_primary; the cascade lands on add-i10 (I10 dcode1034543883 in front) and freq-1 rebills the visit (204) before the admission-date write.
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 19:25Z 9/18 (78 runs): fifth consecutive worked slot with no nightly claim run - nothing in the API starts one; the 24 inspector-cleared visits, the 2 dx-cascade rebills and the 59 AET12 claims all wait on the Automation Center EOD close.
+
+# captured_calls additions - 2026-09-18T2110Z (5pm ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- A Sunshine (SUN01) 835 pair arrives as two ERA Center checks: the money check (1051710, ACH 0917702417) posts cleanly through posterapayments (era_post --all-unposted, 2 visits, HTTP 200) and leaves GET /api/era/checks on its own; the companion $0 check (1051711, X319609686) carries only denial lines with a WOMCAD write-off code - era_clear dismisses it (POST /api/era/checks/dismiss) and the lines go to the Working Denials board, never to a manual post.
+- OA23 + CO45 on a Sunshine secondary line = Medicare already adjudicated the visit and Sunshine (QMB/crossover) pays $0 on the coinsurance; the remit-stored insurancebalance equals the Medicare coinsurance (21.80 on a 99232) - contractual per William's 9/7 rule, not a patient balance.
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 21:17Z 9/18 (78 runs): sixth consecutive worked slot with no nightly claim run - nothing in the API starts one.
+
+# captured_calls additions - 2026-09-18T2310Z (7pm ET 9/18/2026 slot, ehpa cloud Code Routine)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- A chart whose first/last names are REVERSED answers AAA 73 'Invalid/Missing Subscriber Name' on AMD's free 271 and on Stedi for every payer; the payer recognizes the member the moment the names are sent the other way round (pat17473669: PCC sheet, Pam's email and the UHC/Ambetter 271s all say last MARLON / first BRANNOCK). Fix = patient_patch.patch(pid, {'names': [<the names list with firstname/lastname swapped>]}) -> HTTP 200; lookuppatient name='MARLON, BRANNOCK%' finds the chart afterwards. Same PATCH as the 9/14 Brown first-name change.
+- Address line 1 on a chart whose line 1 is blank: addr_line1_fix.fix() (capturepreviousaddress=true, line 2 kept) saves; a follow-up family_address() that BLANKS line 2 answers 500 'Address is required.' - re-send with the existing line-2 text and it saves (street corrected 2330 -> 2230 W Tennessee St from the payers' 271 address).
+- Stedi discovery on a 55-year-old with a stale UHC/AARP line on the SNF sheet returned the live marketplace plan (Ambetter Elite Bronze 6/1-12/31/2026); Centene 68069 direct eligibility answered AAA 42 (unable to respond) four times in a row while AMD's own 271 on the new AMB03 plan answered ACTIVE at once - AMD 271 first, Stedi discovery second, is the right order for a chart with no plan.
+- precheck.py (7pm extra) reported 'no <carrier> plan on chart' on 7 charts that DO carry the plan at seq 1 - its CARRIERS.get(car) match against the parsed insplan tuple misses this run (carriers.json is the simple code->carN map the bootstrap writes). Not fixed this run; verify by getdemographic before acting on that flag.
+- getclaimrunstatus still lists 1700202 (AMD clock 2026-09-16 22:16) as the newest claim run at 23:15Z 9/18 (78 runs): seventh consecutive worked slot with no nightly claim run - nothing in the API starts one.
