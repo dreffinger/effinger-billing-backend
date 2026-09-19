@@ -1,0 +1,14 @@
+{
+ "vid": "19455133",
+ "pid": "17474446",
+ "cid": "23366273",
+ "from": "pcode601053",
+ "swap": "1 charges edited; 1 live (was 1) | freq1 + rebill seq 1 -> 204",
+ "after": [
+  [
+   "charge23366273",
+   "pcode65142",
+   "300.00"
+  ]
+ ]
+}
