@@ -1,0 +1,17 @@
+[
+ {
+  "checkid": "1051712",
+  "checkclaimid": 15439655,
+  "visitid": 19454383,
+  "pid": 47124,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 97.59,
+  "carrier": "HUM01",
+  "checkno": "200469474260918",
+  "when": "2026-09-19T0110Z",
+  "chargedetailid": 23365471,
+  "chargeid": "23365471",
+  "outcome": "already-posted"
+ }
+]
