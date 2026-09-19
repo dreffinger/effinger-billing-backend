@@ -1,5 +1,5 @@
 
-## 11 AM ET 9/19 columns run (ehpa cloud Code Routine, 15:08-15:21 UTC 9/19, run 2026-09-19T1510Z)
+## 11 AM ET 9/19 columns run (ehpa cloud Code Routine, 15:08-15:22 UTC 9/19, run 2026-09-19T1510Z)
 Bootstrap: repo ATTACHED (origin/main 3bec64e, session branch claude/pensive-einstein-pkw1oh), AMD_OK, STEDI_CRED_OK (no key file), ONE amd.login_cached success, no login lock. Cross-container guard: 1310Z START >40 min old with its RUN COMPLETE digest - proceeded at 15:16Z. Registers from practices/ehpa/registers; missing helpers columns_inspector2_0908.py, era_details_pull.py (not rewritten).
 Boards: Working Denials queue 0; Insurance Refresh Board: drops 0, William's 04:26-04:27Z notes already handled by the 0500Z/0510Z passes. Facesheet folders / Claimocity drop / Optum ERA / treasury / Pam Gmail: nothing new after 11:00Z.
 Columns: Charge Review 0 -> 0 | Claim Inspector 0 -> 0 | Unbilled 14 -> 14 ($3030.26 -> $3030.26): Bill Insurance = "No" at charge level and charge has insuran; Insurance order is missing on visit; Payment reason codes are missing or do not balance. | Exclusions 0 -> 0 rows (overview 1/$204.00 lags the list; no claim run newer than 1700202, fifteenth consecutive slot; 68 AET12 charges $2052.25 open, held). Nothing rebilled, released or written off.
