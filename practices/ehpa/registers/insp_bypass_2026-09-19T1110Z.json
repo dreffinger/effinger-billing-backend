@@ -1,0 +1,24 @@
+[
+ {
+  "vid": "19442479",
+  "pid": "17472124",
+  "errs": [
+   [
+    "394614",
+    "68076080",
+    "[Pattern 3429] Procedure code 99487 is a..."
+   ],
+   [
+    "394615",
+    "77070088049",
+    "[Pattern 7011] The maximum frequency for the..."
+   ],
+   [
+    "394616",
+    "109077085069",
+    "[Pattern 33799] Per Medicare's Medically..."
+   ]
+  ],
+  "ok": true
+ }
+]
