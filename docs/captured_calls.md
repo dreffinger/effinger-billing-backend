@@ -1329,3 +1329,20 @@ No new AMD call shapes. Behaviours proven this run (chart ids only):
 - A resave whose `refplan=` names ANOTHER patient's referral plan repoints the visit there and writes the preauth onto that patient's plan (seen 04:45Z 9/19: pat17477775's 9/16-9/17 visits on pat17477777's main plan rplan18462071, her plan now carrying his VA auth). Rule: read the chart's refplanlist (getdemographic) and confirm ownership before any refplan/preauth resave; visit_charges' refplan readback shows the pointer.
 - getclaimrunstatus at 05:2xZ 9/19 still lists 1700202 (2026-09-16 22:16) as the newest claim run (78 runs): tenth consecutive worked slot with no nightly claim run.
 - ERA Center empty (0 checks) at 05:22Z 9/19 - era_post / fallback / era_clear all no-ops.
+
+# captured_calls additions - 2026-09-19T0500Z (1am ET 9/19 chat session, William-requested full run)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- precheck.py's 'no <carrier> plan on chart' false flags (first seen 7pm ET 9/18) are ROOT-CAUSED and fixed: carriers.json is now the slim {code: "carNNNN"} map, so the old `CARRIERS = {v[0]: k ...}` comprehension (written for carriers_rich.json's {carNNNN: [code, name]}) produced {'c': <code>} and every non-Medicare pair failed the carrier match; the insplan regex was also attribute-order-sensitive. Fixed 9/19: load carriers.json directly and parse insplan attributes order-insensitively, prefer open (no enddate) plans. Re-run: all 10 flagged pairs verified ACTIVE with the members already on the charts. build_money.py had the same v[0]/v[1] pattern for payer names - now reads carriers_rich.json.
+- UMR bills through Stedi payer id 39026 ("UMR"): added to precheck's CAR2STEDI (carrier code UMR = car303242); 271 answered ACTIVE at once (benefit 20260101-20261231).
+- CMS 271 name matching: a suffix chart name ('WINSLOW JR,ERWIN') must keep the suffix IN THE LAST NAME on the 271 - lastName 'WINSLOW' answers AAA 73 Invalid/Missing Subscriber Name, lastName 'WINSLOW JR' answers Active Coverage with full Part A+B service lists. The MBI *search* (name/dob/state) still misses him entirely (AAA 72) - for a chart that already carries an MBI, direct `stedi.py elig CMS <first> "<last with suffix>" <dob> <MBI> <dos>` is the working path (rule f).
+- Money Ledger template: the over-90-days stage note now renders only when the Sunday claim-status sweep data is present (was printing 'undefined/$NaN' on non-Sunday builds); patched in boards/templates/money_template.html and the published artifact (version 14).
+- Insurance Refresh Board sync registry REPAIRED from this chat session (the 9/14 fix, second application): 66 applied inbox files 9/13-9/19T0310Z merged into meta/drive_sync 'applied' (18 -> 84 entries, version 1385) and trashed from 'board inbox'; only the two unapplied 9/19 files remain. Page-code root cause still open: since 9/15 the page advances lastCheck but never adds to 'applied'.
+- getclaimrunstatus still lists 1700202 as the newest claim run at 05:4xZ 9/19 (78 runs): tenth-plus consecutive worked slot with no nightly claim run - everything released this week is queued, nothing transmitted since 9/16; nothing in the API starts a claim run.
+
+# captured_calls additions - 2026-09-19 0710 UTC (3am ET 9/19 backend billing run, ehpa cloud)
+
+No new AMD call shapes and no new behaviours. Read-only observations (chart ids only):
+- getclaimrunstatus at 07:2xZ 9/19 still lists 1700202 (2026-09-16 22:16) as the newest claim run (78 runs): eleventh consecutive worked slot with no nightly claim run.
+- getclaimunbillablecharges snapshot: 14 rows / $3,030.26 (the 0510Z hideunbillablevisits release of v19455048 has left the snapshot; the 11 'Payment reason codes' rows, pat17471007's MV line and pat17477798's two 'Insurance order is missing' rows remain).
+- ERA Center empty (0 checks) at 07:25Z 9/19 - era_post / fallback / era_clear all no-ops.
