@@ -1,0 +1,176 @@
+{
+ "stamp": "2026-09-20T0910Z",
+ "fixed": [
+  {
+   "vid": "19454224",
+   "pid": "12232512",
+   "cid": "23365249",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454235",
+   "pid": "17470743",
+   "cid": "23365271",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "4,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454226",
+   "pid": "17472285",
+   "cid": "23365253",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454251",
+   "pid": "17472436",
+   "cid": "23365303",
+   "mcad_seq": "3",
+   "insbal": 107.0,
+   "insorder_before": "2,3",
+   "dry": "would set insorder=3 and freq1 rebill seq 3"
+  },
+  {
+   "vid": "19454227",
+   "pid": "17473222",
+   "cid": "23365255",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454228",
+   "pid": "17473222",
+   "cid": "23365257",
+   "mcad_seq": "2",
+   "insbal": 107.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454231",
+   "pid": "20860",
+   "cid": "23365263",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "2,3",
+   "dry": "would set insorder=3 and freq1 rebill seq 3"
+  },
+  {
+   "vid": "19454232",
+   "pid": "20860",
+   "cid": "23365265",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "2,3",
+   "dry": "would set insorder=3 and freq1 rebill seq 3"
+  },
+  {
+   "vid": "19454234",
+   "pid": "20879",
+   "cid": "23365269",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "3,1",
+   "dry": "would set insorder=1 and freq1 rebill seq 1"
+  },
+  {
+   "vid": "19454247",
+   "pid": "21172",
+   "cid": "23365295",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454236",
+   "pid": "23215",
+   "cid": "23365273",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "2,1",
+   "dry": "would set insorder=1 and freq1 rebill seq 1"
+  },
+  {
+   "vid": "19454230",
+   "pid": "23252",
+   "cid": "23365261",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454250",
+   "pid": "23683",
+   "cid": "23365301",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454223",
+   "pid": "24330",
+   "cid": "23365247",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454248",
+   "pid": "25869",
+   "cid": "23365297",
+   "mcad_seq": "2",
+   "insbal": 107.0,
+   "insorder_before": "1,2",
+   "dry": "would set insorder=2 and freq1 rebill seq 2"
+  },
+  {
+   "vid": "19454246",
+   "pid": "44987",
+   "cid": "23365293",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "2,1",
+   "dry": "would set insorder=1 and freq1 rebill seq 1"
+  },
+  {
+   "vid": "19454229",
+   "pid": "45010",
+   "cid": "23365259",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "1,3",
+   "dry": "would set insorder=3 and freq1 rebill seq 3"
+  },
+  {
+   "vid": "19454233",
+   "pid": "45520",
+   "cid": "23365267",
+   "mcad_seq": "3",
+   "insbal": 107.0,
+   "insorder_before": "2,3",
+   "dry": "would set insorder=3 and freq1 rebill seq 3"
+  }
+ ],
+ "released": [],
+ "held": [
+  {
+   "vid": "19441047",
+   "pid": "17470743",
+   "why": "MCAD crossover $16.93 behind a reversed Medicare payment (5/26/2026) - held for the report since 0510Z"
+  }
+ ],
+ "errors": []
+}

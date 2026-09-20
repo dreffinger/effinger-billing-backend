@@ -1,0 +1,359 @@
+{
+ "stamp": "2026-09-20T0910Z",
+ "fixed": [
+  {
+   "vid": "19454224",
+   "pid": "12232512",
+   "cid": "23365249",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454235",
+   "pid": "17470743",
+   "cid": "23365271",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "4,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454226",
+   "pid": "17472285",
+   "cid": "23365253",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454251",
+   "pid": "17472436",
+   "cid": "23365303",
+   "mcad_seq": "3",
+   "insbal": 107.0,
+   "insorder_before": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '3'} rebill seq 3 (sent to 3) -> 204",
+   "freq1": "freq1 + rebill seq 3 -> 204",
+   "insorder_after": "3",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454227",
+   "pid": "17473222",
+   "cid": "23365255",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454228",
+   "pid": "17473222",
+   "cid": "23365257",
+   "mcad_seq": "2",
+   "insbal": 107.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454231",
+   "pid": "20860",
+   "cid": "23365263",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '3'} rebill seq 3 (sent to 3) -> 204",
+   "freq1": "freq1 + rebill seq 3 -> 204",
+   "insorder_after": "3",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454232",
+   "pid": "20860",
+   "cid": "23365265",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '3'} rebill seq 3 (sent to 3) -> 204",
+   "freq1": "freq1 + rebill seq 3 -> 204",
+   "insorder_after": "3",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454234",
+   "pid": "20879",
+   "cid": "23365269",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "3,1",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+   "freq1": "freq1 + rebill seq 1 -> 204",
+   "insorder_after": "1",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454247",
+   "pid": "21172",
+   "cid": "23365295",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454236",
+   "pid": "23215",
+   "cid": "23365273",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "2,1",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+   "freq1": "freq1 + rebill seq 1 -> 204",
+   "insorder_after": "1",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454230",
+   "pid": "23252",
+   "cid": "23365261",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454250",
+   "pid": "23683",
+   "cid": "23365301",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454223",
+   "pid": "24330",
+   "cid": "23365247",
+   "mcad_seq": "2",
+   "insbal": 141.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454248",
+   "pid": "25869",
+   "cid": "23365297",
+   "mcad_seq": "2",
+   "insbal": 107.0,
+   "insorder_before": "1,2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "insorder_after": "2",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454246",
+   "pid": "44987",
+   "cid": "23365293",
+   "mcad_seq": "1",
+   "insbal": 141.0,
+   "insorder_before": "2,1",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+   "freq1": "freq1 + rebill seq 1 -> 204",
+   "insorder_after": "1",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454229",
+   "pid": "45010",
+   "cid": "23365259",
+   "mcad_seq": "3",
+   "insbal": 141.0,
+   "insorder_before": "1,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '3'} rebill seq 3 (sent to 3) -> 204",
+   "freq1": "freq1 + rebill seq 3 -> 204",
+   "insorder_after": "3",
+   "live_charges": 1
+  },
+  {
+   "vid": "19454233",
+   "pid": "45520",
+   "cid": "23365267",
+   "mcad_seq": "3",
+   "insbal": 107.0,
+   "insorder_before": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '3'} rebill seq 3 (sent to 3) -> 204",
+   "freq1": "freq1 + rebill seq 3 -> 204",
+   "insorder_after": "3",
+   "live_charges": 1
+  }
+ ],
+ "released": [
+  {
+   "vid": "19454224",
+   "ok": true
+  },
+  {
+   "vid": "19454235",
+   "ok": true
+  },
+  {
+   "vid": "19454226",
+   "ok": true
+  },
+  {
+   "vid": "19454251",
+   "ok": true
+  },
+  {
+   "vid": "19454227",
+   "ok": true
+  },
+  {
+   "vid": "19454228",
+   "ok": true
+  },
+  {
+   "vid": "19454231",
+   "ok": true
+  },
+  {
+   "vid": "19454232",
+   "ok": true
+  },
+  {
+   "vid": "19454234",
+   "ok": true
+  },
+  {
+   "vid": "19454247",
+   "ok": true
+  },
+  {
+   "vid": "19454236",
+   "ok": true
+  },
+  {
+   "vid": "19454230",
+   "ok": true
+  },
+  {
+   "vid": "19454250",
+   "ok": true
+  },
+  {
+   "vid": "19454223",
+   "ok": true
+  },
+  {
+   "vid": "19454248",
+   "ok": true
+  },
+  {
+   "vid": "19454246",
+   "ok": true
+  },
+  {
+   "vid": "19454229",
+   "ok": true
+  },
+  {
+   "vid": "19454233",
+   "ok": true
+  },
+  {
+   "vid": "19442414",
+   "ok": true
+  },
+  {
+   "vid": "19427585",
+   "ok": true
+  },
+  {
+   "vid": "19430729",
+   "ok": true
+  },
+  {
+   "vid": "19448609",
+   "ok": true
+  },
+  {
+   "vid": "19447648",
+   "ok": true
+  },
+  {
+   "vid": "19447649",
+   "ok": true
+  },
+  {
+   "vid": "19447650",
+   "ok": true
+  },
+  {
+   "vid": "19447651",
+   "ok": true
+  },
+  {
+   "vid": "19447878",
+   "ok": true
+  },
+  {
+   "vid": "19448026",
+   "ok": true
+  },
+  {
+   "vid": "19448251",
+   "ok": true
+  },
+  {
+   "vid": "19448583",
+   "ok": true
+  },
+  {
+   "vid": "19448637",
+   "ok": true
+  },
+  {
+   "vid": "19448262",
+   "ok": true
+  }
+ ],
+ "held": [
+  {
+   "vid": "19441047",
+   "pid": "17470743",
+   "why": "MCAD crossover $16.93 behind a reversed Medicare payment (5/26/2026) - held for the report since 0510Z"
+  }
+ ],
+ "errors": []
+}
