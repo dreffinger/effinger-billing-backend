@@ -1,0 +1,42 @@
+[
+ {
+  "id": 1051714,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-19T02:03:16.7",
+  "depositdate": "2026-09-22T00:00:00",
+  "eracarrierid": "1448",
+  "eracarriername": "MEDICARE PART B",
+  "hasnote": false,
+  "systemcarrierid": 6085,
+  "systemcarriercode": "FLO02",
+  "systemcarriername": "FLORIDA MEDICARE",
+  "paymentnumber": "819814877(0)",
+  "paymentamount": 46350.13,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 41470.92,
+  "unpostedamount": 10840.48,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ },
+ {
+  "id": 1051715,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-19T02:03:29.69",
+  "depositdate": "2026-09-22T00:00:00",
+  "eracarrierid": "1448",
+  "eracarriername": "MEDICARE PART B",
+  "hasnote": false,
+  "systemcarrierid": 6085,
+  "systemcarriercode": "FLO02",
+  "systemcarriername": "FLORIDA MEDICARE",
+  "paymentnumber": "819814877(1)",
+  "paymentamount": 46350.13,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 4879.21,
+  "unpostedamount": 1594.4,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]
