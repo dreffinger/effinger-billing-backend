@@ -1,5 +1,5 @@
 
-## 3 AM ET 9/20 columns run (ehpa cloud Code Routine, 07:08-07:23 UTC 9/20, run 2026-09-20T0710Z)
+## 3 AM ET 9/20 columns run (ehpa cloud Code Routine, 07:08-07:25 UTC 9/20, run 2026-09-20T0710Z)
 Bootstrap: repo ATTACHED (origin/main 1b58c8b, session branch claude/pensive-einstein-8pv3vj), AMD_OK, STEDI_CRED_OK (no key file), ONE amd.login_cached success, no login lock. Cross-container guard: 0510Z START >40 min old with RUN COMPLETE digests (0510Z routine, 0530Z nightly cascade) - proceeded 07:09Z. Registers from practices/ehpa/registers (164 files); needs_facesheet_list.md + precheck_cache.json from the 0645Z 'workspace mirror' copies; missing helpers columns_inspector2_0908.py, era_details_pull.py (not rewritten). pseudonyms.json 9/19 19:34Z copy (221 names). Newest Drive state bundle still 2026-09-18_1123UTC.
 Boards: Working Denials queue 0; Insurance Refresh Board drops 0; no row updated since the 0510Z run - nothing new from William. harris-dianne-17477798 RESOLVED (CAP07 on the chart since the 0345Z chat, visits released) - the 9/19 needs-facesheet line above is closed. Sources: nothing new in any watched Drive folder or Pam Gmail since the 0510Z run (only the 0530Z nightly cascade's own files).
 Claim runs: none newer than 1700210 (9/19 21:02 AMD clock).
