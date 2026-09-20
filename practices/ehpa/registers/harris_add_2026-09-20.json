@@ -1,0 +1,35 @@
+{
+ "stamp": "2026-09-20T0345Z",
+ "pid": "17477798",
+ "asked": "William board note 03:29Z 9/20: CAPITAL HEALTH MEDICARE HMO, Policy CIO60139734, eff 09/01/26",
+ "add": [
+  "ins9519492",
+  "1"
+ ],
+ "elig": "ACTIVE | plan  | A  B  | others HN  ; HN  ; HN  ; HN   | death - | addr 5294 WATER VALLEY DR TALLAHASSEE FL 32303 | aaa []",
+ "charges": {
+  "19455030": [
+   [
+    "23366180",
+    "99232",
+    "111.00"
+   ]
+  ],
+  "19455057": [
+   [
+    "23366210",
+    "99223",
+    "310.00"
+   ]
+  ]
+ },
+ "visits": {
+  "19455030": "ok insorder=1 onhcfa=1 live 1",
+  "19455057": "ok insorder=1 onhcfa=1 live 1"
+ },
+ "released": [
+  "19455030",
+  "19455057"
+ ],
+ "unbilled_after": "11"
+}
