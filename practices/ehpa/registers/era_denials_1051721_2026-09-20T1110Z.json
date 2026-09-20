@@ -1,0 +1,404 @@
+[
+ {
+  "checkclaimid": 15440225,
+  "vid": 19420718,
+  "pid": "17474422",
+  "dos": "2025-10-21",
+  "era_carrierid": 6174,
+  "carc": [
+   "CO109"
+  ],
+  "rarc": [
+   "N130"
+  ],
+  "era_insbal": 0.0,
+  "claimstatus": 2,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6174",
+    "enddate": "",
+    "subscribernum": "413...",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "811...",
+    "sequence": "2"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23325806",
+    "proccode": "99223",
+    "dos": "10/21/2025",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/06/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "310.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1844",
+    "amount": null
+   },
+   {
+    "id": "23325807",
+    "proccode": "99497",
+    "dos": "10/21/2025",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/06/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "133.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1844",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440226,
+  "vid": 19453034,
+  "pid": "17473346",
+  "dos": "2026-08-26",
+  "era_carrierid": 6085,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 74.64,
+  "claimstatus": 2,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car42025",
+    "enddate": "",
+    "subscribernum": "220...",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "enddate": "",
+    "subscribernum": "1T1...",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "968...",
+    "sequence": "3"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23363449",
+    "proccode": "99309",
+    "dos": "08/26/2026",
+    "carrier": "FLO02",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1448",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440228,
+  "vid": 19453037,
+  "pid": "17471131",
+  "dos": "2026-08-26",
+  "era_carrierid": 41826,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 74.64,
+  "claimstatus": 2,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car41826",
+    "enddate": "",
+    "subscribernum": "CIO...",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "enddate": "",
+    "subscribernum": "8DV...",
+    "sequence": "2"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23363452",
+    "proccode": "99309",
+    "dos": "08/26/2026",
+    "carrier": "CAP07",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440229,
+  "vid": 19446730,
+  "pid": "17469007",
+  "dos": "2026-06-23",
+  "era_carrierid": 6194,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 160.0,
+  "claimstatus": 1,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "892...",
+    "sequence": "1"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23355837",
+    "proccode": "99316",
+    "dos": "06/23/2026",
+    "carrier": "SUN01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/13/2026",
+    "insbilled": null,
+    "insbal": "160.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 2111",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440232,
+  "vid": 19451168,
+  "pid": "17477383",
+  "dos": "2026-08-03",
+  "era_carrierid": 6194,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 74.64,
+  "claimstatus": 2,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "enddate": "",
+    "subscribernum": "7RP...",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "818...",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "enddate": "",
+    "subscribernum": "7RP...",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "818...",
+    "sequence": "4"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23361168",
+    "proccode": "99309",
+    "dos": "08/03/2026",
+    "carrier": "SUN01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440233,
+  "vid": 19448214,
+  "pid": "17471755",
+  "dos": "2026-07-13",
+  "era_carrierid": 6194,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 389.0,
+  "claimstatus": 1,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "752...",
+    "sequence": "1"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23357468",
+    "proccode": "99306",
+    "dos": "07/13/2026",
+    "carrier": "SUN01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/13/2026",
+    "insbilled": null,
+    "insbal": "256.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 2111",
+    "amount": null
+   },
+   {
+    "id": "23357469",
+    "proccode": "99497",
+    "dos": "07/13/2026",
+    "carrier": "SUN01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/13/2026",
+    "insbilled": null,
+    "insbal": "133.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 2111",
+    "amount": null
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440235,
+  "vid": 19453360,
+  "pid": "12182947",
+  "dos": "2026-08-27",
+  "era_carrierid": 6174,
+  "carc": [
+   "CO16"
+  ],
+  "rarc": [
+   "#AM",
+   "M56"
+  ],
+  "era_insbal": 0.0,
+  "claimstatus": 2,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "enddate": "",
+    "subscribernum": "1J5...",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "enddate": "",
+    "subscribernum": "590...",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "enddate": "",
+    "subscribernum": "590...",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6174",
+    "enddate": "",
+    "subscribernum": "313...",
+    "sequence": "4"
+   }
+  ],
+  "charges": [
+   {
+    "id": "23363904",
+    "proccode": "99309",
+    "dos": "08/27/2026",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "141.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1844",
+    "amount": null
+   }
+  ]
+ }
+]
