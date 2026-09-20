@@ -1,0 +1,110 @@
+{
+ "stamp": "2026-09-20T0510Z",
+ "writeoffs": [
+  {
+   "chargeid": "23361174",
+   "insbalance_before": 16.93,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 22:26:33\"><Results success=\"1\" paym",
+   "wo": 16.93,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.93"
+  },
+  {
+   "chargeid": "23361324",
+   "insbalance_before": 16.93,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 22:26:36\"><Results success=\"1\" paym",
+   "wo": 16.93,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.93"
+  },
+  {
+   "chargeid": "23361618",
+   "insbalance_before": 16.93,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 22:26:40\"><Results success=\"1\" paym",
+   "wo": 16.93,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.93"
+  },
+  {
+   "chargeid": "23363228",
+   "insbalance_before": 16.93,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 22:26:44\"><Results success=\"1\" paym",
+   "wo": 16.93,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.93"
+  },
+  {
+   "chargeid": "23362630",
+   "insbalance_before": 16.14,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 22:26:48\"><Results success=\"1\" paym",
+   "wo": 16.14,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.14"
+  },
+  {
+   "chargeid": "23362631",
+   "insbalance_before": 8.92,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 22:26:52\"><Results success=\"1\" paym",
+   "wo": 8.92,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 8.92"
+  },
+  {
+   "chargeid": "23363902",
+   "insbalance_before": 16.93,
+   "carrier": "",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 22:26:56\"><Results success=\"1\" paym",
+   "wo": 16.93,
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted WOINS 16.93"
+  }
+ ],
+ "visits": [
+  {
+   "vid": "19455112",
+   "cid": "23366251",
+   "steps": [
+    "dx ['R55'] never_primary(first)=False",
+    "admit 09/16/2026 -> ok",
+    "resave insorder 1 onhcfa 1 -> live=1/1 insorder=1 onhcfa=1 hospfrom=09/16/2026",
+    "released=True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/"
+   ],
+   "dx": [
+    "R55"
+   ]
+  },
+  {
+   "vid": "19455126",
+   "cid": "23366265",
+   "steps": [
+    "dx ['R55'] never_primary(first)=False",
+    "admit 09/16/2026 -> ok",
+    "resave insorder 1 onhcfa 1 -> live=1/1 insorder=1 onhcfa=1 hospfrom=09/16/2026",
+    "released=True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/"
+   ],
+   "dx": [
+    "R55"
+   ]
+  }
+ ]
+}
