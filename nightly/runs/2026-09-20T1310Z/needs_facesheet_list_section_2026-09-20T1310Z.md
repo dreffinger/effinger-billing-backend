@@ -1,5 +1,5 @@
 
-## 9 AM ET 9/20 columns run (ehpa cloud Code Routine, 13:08-13:28 UTC 9/20, run 2026-09-20T1310Z)
+## 9 AM ET 9/20 columns run (ehpa cloud Code Routine, 13:08-13:30 UTC 9/20, run 2026-09-20T1310Z)
 Bootstrap: repo ATTACHED (origin/main ec8fdec, session branch claude/pensive-einstein-g3not4), AMD_OK, STEDI_CRED_OK (no key file), AMD password from the environment's AMD_PSW credential, ONE amd.login_cached success, no login lock. Cross-container guard: 1110Z START ~2 h old with its RUN COMPLETE digest - proceeded 13:23Z. Registers from practices/ehpa/registers (179 files); needs_facesheet_list.md + precheck_cache.json + pseudonyms.json from the 1132Z/0645Z/9-19 'workspace mirror' copies; missing helpers columns_inspector2_0908.py, era_details_pull.py (not rewritten). Newest Drive state bundle still 2026-09-18_1123UTC (stale, not unpacked).
 Boards: Working Denials queue 0; Insurance Refresh Board drops 0; no row updated after 11:00Z - nothing new from William. Sources: nothing new in any watched Drive folder or Pam Gmail since the 1110Z run.
 Claim runs: none newer than 1700211 (9/20 02:04 AMD clock).
