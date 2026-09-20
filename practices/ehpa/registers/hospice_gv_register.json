@@ -1,0 +1,142 @@
+[
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19417766",
+  "patientid": "45668",
+  "dos": "2025-09-18",
+  "carcs": [],
+  "insurancebalance": 198.0,
+  "steps": [
+   "charges [('23321530', '99349', '198.00', None)]; Medicare seq 3; plans [{'carrier': 'car6285', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6600', 'enddate': '', 'sequence': '2'}, {'carrier': 'car6085', 'enddate': '', 'sequence': '3'}]"
+  ],
+  "outcome": "DRY"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19420291",
+  "patientid": "20670",
+  "dos": "2025-10-08",
+  "carcs": [],
+  "insurancebalance": 141.0,
+  "steps": [
+   "charges [('23325277', '99309', '141.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6194', 'enddate': '', 'sequence': '2'}]"
+  ],
+  "outcome": "DRY"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19452374",
+  "patientid": "12182946",
+  "dos": "2026-08-22",
+  "carcs": [],
+  "insurancebalance": 206.0,
+  "steps": [
+   "charges [('23362586', '99487', '206.00', None)]; Medicare seq 2; plans [{'carrier': 'car6404', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6085', 'enddate': '', 'sequence': '2'}, {'carrier': 'car6113', 'enddate': '', 'sequence': '3'}]"
+  ],
+  "outcome": "DRY"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19417747",
+  "patientid": "24799",
+  "dos": "2025-09-18",
+  "carcs": [],
+  "insurancebalance": 198.0,
+  "steps": [
+   "charges [('23321500', '99349', '198.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6559', 'enddate': '', 'sequence': '2'}]"
+  ],
+  "outcome": "DRY"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19452564",
+  "patientid": "17477267",
+  "dos": "2026-08-23",
+  "carcs": [],
+  "insurancebalance": 206.0,
+  "steps": [
+   "charges [('23362871', '99487', '206.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6062', 'enddate': '', 'sequence': '2'}]"
+  ],
+  "outcome": "DRY"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19417766",
+  "patientid": "45668",
+  "dos": "2025-09-18",
+  "carcs": [],
+  "insurancebalance": 198.0,
+  "steps": [
+   "charges [('23321530', '99349', '198.00', None)]; Medicare seq 3; plans [{'carrier': 'car6285', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6600', 'enddate': '', 'sequence': '2'}, {'carrier': 'car6085', 'enddate': '', 'sequence': '3'}]",
+   "add GV -> GV on 1/1 charges (1 live)",
+   "rebill -> freq1 + rebill seq 3 -> 204"
+  ],
+  "outcome": "gv-rebilled"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19420291",
+  "patientid": "20670",
+  "dos": "2025-10-08",
+  "carcs": [],
+  "insurancebalance": 141.0,
+  "steps": [
+   "charges [('23325277', '99309', '141.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6194', 'enddate': '', 'sequence': '2'}]",
+   "add GV -> GV on 1/1 charges (1 live)",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "gv-rebilled"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19452374",
+  "patientid": "12182946",
+  "dos": "2026-08-22",
+  "carcs": [],
+  "insurancebalance": 206.0,
+  "steps": [
+   "charges [('23362586', '99487', '206.00', None)]; Medicare seq 2; plans [{'carrier': 'car6404', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6085', 'enddate': '', 'sequence': '2'}, {'carrier': 'car6113', 'enddate': '', 'sequence': '3'}]",
+   "add GV -> GV on 1/1 charges (1 live)",
+   "rebill -> freq1 + rebill seq 2 -> 204"
+  ],
+  "outcome": "gv-rebilled"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19417747",
+  "patientid": "24799",
+  "dos": "2025-09-18",
+  "carcs": [],
+  "insurancebalance": 198.0,
+  "steps": [
+   "charges [('23321500', '99349', '198.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6559', 'enddate': '', 'sequence': '2'}]",
+   "add GV -> GV on 1/1 charges (1 live)",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "gv-rebilled"
+ },
+ {
+  "stamp": "2026-09-20T0510Z",
+  "checkid": 1051716,
+  "visitid": "19452564",
+  "patientid": "17477267",
+  "dos": "2026-08-23",
+  "carcs": [],
+  "insurancebalance": 206.0,
+  "steps": [
+   "charges [('23362871', '99487', '206.00', None)]; Medicare seq 1; plans [{'carrier': 'car6085', 'enddate': '', 'sequence': '1'}, {'carrier': 'car6062', 'enddate': '', 'sequence': '2'}]",
+   "add GV -> GV on 1/1 charges (1 live)",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "gv-rebilled"
+ }
+]

@@ -1,0 +1,40 @@
+{
+ "stamp": "2026-09-20T0510Z",
+ "visits": [
+  {
+   "vid": "19453715",
+   "void_cid": "23364598",
+   "dos": "09/02/2026",
+   "steps": [
+    "unvoid probe (void=0): success=True live after=[] resp=<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 22:27:24\"><Results success=\"1\" /><E",
+    "re-enter charge (restore recipe): ok live after=[('23366287', '99233', '160.00')]",
+    "visit now insorder=1,2 onhcfa=1 charges=1",
+    "ERA Post button FORCE visit: n=1 $85.46; payments on charge now [('24651900', '-85.46', '819814877(0)', '0')] -> posted=True"
+   ],
+   "cid": "23366287"
+  },
+  {
+   "vid": "19453774",
+   "void_cid": "23364669",
+   "dos": "09/03/2026",
+   "steps": [
+    "re-enter charge (restore recipe): ok live after=[('23366288', '99233', '160.00')]",
+    "visit now insorder=1,2 onhcfa=1 charges=1",
+    "freq1 -> freq1 + rebill seq 1 -> 204"
+   ],
+   "cid": "23366288"
+  },
+  {
+   "vid": "19453755",
+   "void_cid": "23364648",
+   "dos": "09/04/2026",
+   "steps": [
+    "re-enter charge (restore recipe): ok live after=[('23366289', '99233', '160.00')]",
+    "visit now insorder=1,2 onhcfa=1 charges=1",
+    "freq1 -> freq1 + rebill seq 1 -> 204"
+   ],
+   "cid": "23366289"
+  }
+ ],
+ "unvoid_probe_works": false
+}

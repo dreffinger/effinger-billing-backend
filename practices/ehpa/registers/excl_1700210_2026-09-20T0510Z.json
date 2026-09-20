@@ -1,0 +1,173 @@
+[
+ {
+  "vid": "19423587",
+  "claimid": "19423587F",
+  "pid": "17469028",
+  "cid": "23329194",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "11/15/2025",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19427201",
+  "claimid": "19427201F",
+  "pid": "17469028",
+  "cid": "23333530",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "12/21/2025",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19442293",
+  "claimid": "19442293F",
+  "pid": "17469028",
+  "cid": "23350303",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "05/17/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19448695",
+  "claimid": "19448695D",
+  "pid": "17471968",
+  "cid": "23358007",
+  "cpts": [
+   "G0439"
+  ],
+  "dos": "04/16/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19448825",
+  "claimid": "19448825D",
+  "pid": "17469028",
+  "cid": "23358255",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "07/17/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19450195",
+  "claimid": "19450195D",
+  "pid": "17473245",
+  "cid": "23360081",
+  "cpts": [
+   "99309"
+  ],
+  "dos": "07/28/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN Q100001339073679",
+   "rebill -> freq7 icn Q100001339073679 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq7 204"
+ },
+ {
+  "vid": "19451524",
+  "claimid": "19451524D",
+  "pid": "17476868",
+  "cid": "23361573",
+  "cpts": [
+   "G0439"
+  ],
+  "dos": "06/20/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN Q100001343020185",
+   "rebill -> freq7 icn Q100001343020185 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq7 204"
+ },
+ {
+  "vid": "19451554",
+  "claimid": "19451554D",
+  "pid": "17473245",
+  "cid": "23361603",
+  "cpts": [
+   "99309"
+  ],
+  "dos": "08/10/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN Q100001342460034",
+   "rebill -> freq7 icn Q100001342460034 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq7 204"
+ },
+ {
+  "vid": "19452629",
+  "claimid": "19452629D",
+  "pid": "17473245",
+  "cid": "23362978",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "08/23/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN Q100001345004480",
+   "rebill -> freq7 icn Q100001345004480 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq7 204"
+ },
+ {
+  "vid": "19452640",
+  "claimid": "19452640D",
+  "pid": "17469028",
+  "cid": "23362998",
+  "cpts": [
+   "99487",
+   "99489"
+  ],
+  "dos": "08/23/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19452861",
+  "claimid": "19452861D",
+  "pid": "17473245",
+  "cid": "23363234",
+  "cpts": [
+   "99309"
+  ],
+  "dos": "08/20/2026",
+  "steps": [
+   "Florida Blue seq 1; prior Florida Blue ICN Q100001345278098",
+   "rebill -> freq7 icn Q100001345278098 + rebill seq 1 -> 204"
+  ],
+  "outcome": "freq7 204"
+ }
+]
