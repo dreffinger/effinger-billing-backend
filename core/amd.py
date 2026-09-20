@@ -1,6 +1,7 @@
 # PLAIN ENGLISH (AdvancedMD client)
 # Decides: Nothing about billing. It logs in to AMD once, keeps the token in .session.json, and sends every XML message the other scripts build.
 # Rules it uses: ONE login attempt per lock cycle - a second failed login locks the POI0712 user and kills the Claimocity feed. If the token expires mid-run it re-logs once and retries the message.
+# Password source: the AMD_POI0712_PASSWORD environment variable (a configured environment secret) when present, else the .amd_cred.json file (Gmail archaeology fallback) - same shape as stedi.py's proxy-injected-key-or-file pattern.
 # Never touches: Patient data. It has no idea what a charge is; it only carries messages.
 # ---
 """AdvancedMD API client — rebuilt 8/30/2026 from advancedmd-api-reference skill.
@@ -44,6 +45,9 @@ CRED = "/home/claude/unbilled/.amd_cred.json"
 LOCK = "/home/claude/unbilled/.amd_login_lock"   # tripped after a failed login; blocks all retries
 
 def _stored_psw():
+    env = os.environ.get("AMD_POI0712_PASSWORD")
+    if env:
+        return env
     if os.path.exists(CRED):
         return json.load(open(CRED)).get("psw")
     return None
