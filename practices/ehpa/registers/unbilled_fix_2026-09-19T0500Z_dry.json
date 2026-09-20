@@ -1,0 +1,135 @@
+{
+ "stamp": "2026-09-19T0500Z",
+ "dry": true,
+ "charts": {
+  "17477776": {
+   "name": "THURLOW,NERYS L",
+   "visits": {
+    "19454904": {
+     "dx": "dx ok: charge23366055 pcode65084 ['M17.12']->ok",
+     "admit_99223": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19454910": {
+     "dx": "dx ok: charge23366062 pcode65089 ['M17.12']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19454936": {
+     "dx": "dx ok: charge23366087 pcode65089 ['M17.12']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19455052": {
+     "dx": "dx ok: charge23366204 pcode65089 ['M17.12']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    }
+   }
+  },
+  "17477775": {
+   "name": "CONWAY,SHELBY DOUGAL",
+   "visits": {
+    "19454903": {
+     "dx": "dx ok: charge23366054 pcode65084 ['M16.11']->ok",
+     "admit_99223": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=VA0061079015"
+    },
+    "19454916": {
+     "dx": "dx ok: charge23366068 pcode65089 ['M16.11']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=VA0061079015"
+    },
+    "19454951": {
+     "dx": "dx ok: charge23366102 pcode65089 ['M16.11']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=VA0061079015"
+    },
+    "19455049": {
+     "dx": "dx ok: charge23366201 pcode65089 ['M16.11']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=VA0061079015"
+    }
+   }
+  },
+  "17477779": {
+   "name": "GORMAN SR,DAVIN J",
+   "visits": {
+    "19454907": {
+     "dx": "dx ok: charge23366058 pcode65084 ['G95.29', 'M43.12', 'M50.01']->ok",
+     "admit_99223": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19454927": {
+     "dx": "dx ok: charge23366079 pcode65089 ['G95.29', 'M43.12', 'M50.01']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    }
+   }
+  },
+  "17477797": {
+   "name": "MASKELL,KIERAN",
+   "visits": {
+    "19455025": {
+     "dx": "dx ok: charge23366174 pcode65090 ['R10.9']->ok",
+     "admit_99233": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19455029": {
+     "dx": "dx ok: charge23366178 pcode65084 ['R10.9']->ok; charge23366179 pcode492667 ['R10.9']->ok",
+     "admit_99223": "DRY",
+     "admit_99497": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19455046": {
+     "dx": "dx ok: charge23366198 pcode65090 ['R10.9']->ok",
+     "admit_99233": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    }
+   }
+  },
+  "17477799": {
+   "name": "FROBISHER,THURLOW",
+   "visits": {
+    "19455032": {
+     "dx": "dx ok: charge23366182 pcode65089 ['G95.29', 'M48.02']->ok",
+     "admit_99232": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    },
+    "19455058": {
+     "dx": "dx ok: charge23366211 pcode65084 ['G95.29', 'M48.02']->ok",
+     "admit_99223": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    }
+   }
+  },
+  "20379": {
+   "name": "FENNER,MAUDE",
+   "visits": {
+    "19455034": {
+     "dx": "dx ok: charge23366185 pcode65084 ['R55']->ok",
+     "admit_99223": "DRY",
+     "resave": "DRY resave insorder ->1 preauth=None"
+    }
+   }
+  }
+ },
+ "released": [],
+ "held": [
+  "19455030",
+  "19455057",
+  "19455048",
+  "19375395",
+  "19385956",
+  "19386697",
+  "19392338",
+  "19392347",
+  "19392360",
+  "19392439",
+  "19392574",
+  "19392671",
+  "19393655",
+  "19393661",
+  "19407788"
+ ]
+}
