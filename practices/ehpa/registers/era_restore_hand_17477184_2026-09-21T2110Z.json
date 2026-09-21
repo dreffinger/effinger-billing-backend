@@ -1,0 +1,415 @@
+[
+ {
+  "vid": "19451189",
+  "cid": "23361189",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jn8pc\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23361189",
+    "cpt": "99309",
+    "dos": "08/03/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653871",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:46.347",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490203",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:08.417",
+      "void": "1"
+     },
+     {
+      "id": "22493458",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:34:50.537",
+      "void": "1"
+     },
+     {
+      "id": "22493465",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:46.347",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:40:48Z"
+ },
+ {
+  "vid": "19453359",
+  "cid": "23363903",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-cj5vb\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23363903",
+    "cpt": "99309",
+    "dos": "08/27/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653872",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:50.013",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490326",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:20.520",
+      "void": "1"
+     },
+     {
+      "id": "22493459",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:34:59.127",
+      "void": "1"
+     },
+     {
+      "id": "22493466",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:50.013",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:40:51Z"
+ },
+ {
+  "vid": "19452834",
+  "cid": "23363209",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jn8pc\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23363209",
+    "cpt": "99309",
+    "dos": "08/24/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653873",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:53.117",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490325",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:20.410",
+      "void": "1"
+     },
+     {
+      "id": "22493460",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:35:06.787",
+      "void": "1"
+     },
+     {
+      "id": "22493467",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:53.117",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:40:55Z"
+ },
+ {
+  "vid": "19452073",
+  "cid": "23362189",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-gxwdp\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23362189",
+    "cpt": "99309",
+    "dos": "08/17/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653874",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:56.373",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490323",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:20.200",
+      "void": "1"
+     },
+     {
+      "id": "22493461",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:35:15.023",
+      "void": "1"
+     },
+     {
+      "id": "22493468",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:40:56.373",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:40:58Z"
+ },
+ {
+  "vid": "19451568",
+  "cid": "23361620",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-ksfvf\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23361620",
+    "cpt": "99309",
+    "dos": "08/13/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653875",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:00.107",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490322",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:20.097",
+      "void": "1"
+     },
+     {
+      "id": "22493462",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:35:23.400",
+      "void": "1"
+     },
+     {
+      "id": "22493469",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:00.107",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:41:02Z"
+ },
+ {
+  "vid": "19451541",
+  "cid": "23361590",
+  "pay": 66.36,
+  "wo": 57.71,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jn8pc\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23361590",
+    "cpt": "99309",
+    "dos": "08/06/2026",
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653876",
+      "amount": 66.36,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:03.373",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490321",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:19.990",
+      "void": "1"
+     },
+     {
+      "id": "22493463",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:35:31.337",
+      "void": "1"
+     },
+     {
+      "id": "22493470",
+      "amount": 57.71,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:03.377",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:41:05Z"
+ },
+ {
+  "vid": "19452413",
+  "cid": "23362661",
+  "pay": 63.28,
+  "wo": 126.58,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-gxwdp\" lst=\"09/21/",
+  "state": [
+   {
+    "cid": "23362661",
+    "cpt": "99487",
+    "dos": "08/22/2026",
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbalance": 0.0,
+    "patbalance": 16.14,
+    "carrier": "MCAD",
+    "pays": [
+     {
+      "id": "24653877",
+      "amount": 63.28,
+      "checkno": "819803392",
+      "carrier": "FLO02",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:06.990",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     {
+      "id": "22490324",
+      "amount": 126.58,
+      "code": "WOINS",
+      "date": "09/17/2026",
+      "createtime": "2026-09-17T02:18:20.310",
+      "void": "1"
+     },
+     {
+      "id": "22493464",
+      "amount": 126.58,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:35:39.930",
+      "void": "1"
+     },
+     {
+      "id": "22493471",
+      "amount": 126.58,
+      "code": "WOINS",
+      "date": "09/21/2026",
+      "createtime": "2026-09-21T14:41:06.990",
+      "void": "0"
+     }
+    ]
+   }
+  ],
+  "when": "2026-09-21T21:41:09Z"
+ }
+]

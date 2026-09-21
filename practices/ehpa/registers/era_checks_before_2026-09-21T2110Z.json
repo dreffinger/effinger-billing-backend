@@ -1,0 +1,22 @@
+[
+ {
+  "id": 1051726,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-21T13:50:57.77",
+  "depositdate": "2026-09-23T00:00:00",
+  "eracarrierid": "1478",
+  "eracarriername": "STATE OF FLORIDA MEDICAID",
+  "hasnote": false,
+  "systemcarrierid": 6113,
+  "systemcarriercode": "MCAD",
+  "systemcarriername": "FLORIDA MEDICAID",
+  "paymentnumber": "073041757",
+  "paymentamount": 0.0,
+  "paymentcode": "NON",
+  "paymentdescription": "",
+  "calculatedamount": 0.0,
+  "unpostedamount": 0.0,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]

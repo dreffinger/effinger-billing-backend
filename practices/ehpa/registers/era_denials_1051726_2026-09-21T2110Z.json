@@ -1,0 +1,4077 @@
+[
+ {
+  "checkclaimid": 15440259,
+  "vid": "19451189",
+  "pid": "17477184",
+  "dos": "2026-08-03",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23361189",
+    "proccode": "99309",
+    "dos": "08/03/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "UNI20",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/02/2026",
+      "check": "26232B1000170787",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440260,
+  "vid": "19453034",
+  "pid": "17473346",
+  "dos": "2026-08-26",
+  "era_carrierid": 6085,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 74.64,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car42025",
+    "begindate": "01/04/2024",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "04/01/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "2,3",
+  "charges": [
+   {
+    "id": "23363449",
+    "proccode": "99309",
+    "dos": "08/26/2026",
+    "fee": "141.00",
+    "carrier": "FLO02",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1448",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440261,
+  "vid": "19452838",
+  "pid": "17473346",
+  "dos": "2026-08-19",
+  "era_carrierid": 6085,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car42025",
+    "begindate": "01/04/2024",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "04/01/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "2,3",
+  "charges": [
+   {
+    "id": "23363213",
+    "proccode": "99309",
+    "dos": "08/19/2026",
+    "fee": "141.00",
+    "carrier": "FLO02",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1448",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "819756915",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/10/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440262,
+  "vid": "19374817",
+  "pid": "24344",
+  "dos": "2024-01-23",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "COB7",
+    107.0
+   ],
+   [
+    "COB7",
+    133.0
+   ]
+  ],
+  "rarc": [
+   "N570"
+  ],
+  "era_insbal": 124.15,
+  "era_lines": [
+   [
+    "99308",
+    107.0,
+    0.0
+   ],
+   [
+    "99497",
+    133.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "06/01/2006",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "1,2,3",
+  "charges": [
+   {
+    "id": "22442833",
+    "proccode": "99308",
+    "dos": "01/23/2024",
+    "fee": "107.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "61.57",
+    "patbal": "0.00",
+    "paid": "45.43",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/10/2024",
+      "check": "345882356",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/11/2024",
+      "check": "NO-PAY-202402150007414",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/11/2024",
+      "check": "NO-PAY-202402170004015",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-45.43",
+      "void": "0",
+      "date": "03/10/2024"
+     }
+    ]
+   },
+   {
+    "id": "22442834",
+    "proccode": "99497",
+    "dos": "01/23/2024",
+    "fee": "133.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "62.58",
+    "patbal": "0.00",
+    "paid": "70.42",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/10/2024",
+      "check": "345882356",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/11/2024",
+      "check": "NO-PAY-202402150007414",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/11/2024",
+      "check": "NO-PAY-202402170004015",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-70.42",
+      "void": "0",
+      "date": "03/10/2024"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440263,
+  "vid": "19453346",
+  "pid": "17477607",
+  "dos": "2026-08-20",
+  "era_carrierid": 42005,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 74.64,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/02/2025",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car42005",
+    "begindate": "09/02/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "1,2",
+  "charges": [
+   {
+    "id": "23363891",
+    "proccode": "99309",
+    "dos": "08/20/2026",
+    "fee": "141.00",
+    "carrier": "UNI01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/16/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/16/2026",
+      "check": "819794238",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440264,
+  "vid": "19452626",
+  "pid": "17477023",
+  "dos": "2026-08-23",
+  "era_carrierid": 42005,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    206.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 142.72,
+  "era_lines": [
+   [
+    "99487",
+    206.0,
+    206.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "08/29/2025",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car42005",
+    "begindate": "08/29/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "1,2",
+  "charges": [
+   {
+    "id": "23362974",
+    "proccode": "99487",
+    "dos": "08/23/2026",
+    "fee": "206.00",
+    "carrier": "UNI01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "142.72",
+    "patbal": "0.00",
+    "paid": "63.28",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-63.28",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440265,
+  "vid": "19451523",
+  "pid": "17477417",
+  "dos": "2026-05-21",
+  "era_carrierid": 6085,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO170",
+    133.0
+   ],
+   [
+    "CO256",
+    256.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130",
+   "N95"
+  ],
+  "era_insbal": 206.93,
+  "era_lines": [
+   [
+    "99306",
+    256.0,
+    0.0
+   ],
+   [
+    "99497",
+    133.0,
+    0.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "08/28/2025",
+    "enddate": "",
+    "sequence": "1"
+   }
+  ],
+  "patient_insorder": "1",
+  "charges": [
+   {
+    "id": "23363471",
+    "proccode": "99306",
+    "dos": "05/21/2026",
+    "fee": "256.00",
+    "carrier": "FLO02",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "126.26",
+    "patbal": "0.00",
+    "paid": "129.74",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1448",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-129.74",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   },
+   {
+    "id": "23363473",
+    "proccode": "99497",
+    "dos": "05/21/2026",
+    "fee": "133.00",
+    "carrier": "FLO02",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "80.67",
+    "patbal": "0.00",
+    "paid": "52.33",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1448",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-52.33",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440266,
+  "vid": "19453357",
+  "pid": "24039",
+  "dos": "2026-08-27",
+  "era_carrierid": 42008,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363901",
+    "proccode": "99309",
+    "dos": "08/27/2026",
+    "fee": "141.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/15/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "819785160",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-141.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "141.00",
+      "void": "1",
+      "date": "09/15/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/15/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440267,
+  "vid": "19453385",
+  "pid": "24039",
+  "dos": "2026-08-31",
+  "era_carrierid": 42008,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    160.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 21.8,
+  "era_lines": [
+   [
+    "99233",
+    160.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363932",
+    "proccode": "99233",
+    "dos": "08/31/2026",
+    "fee": "160.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/15/2026",
+    "insbilled": null,
+    "insbal": "21.80",
+    "patbal": "0.00",
+    "paid": "138.20",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-85.46",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "819785160",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-160.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "160.00",
+      "void": "1",
+      "date": "09/15/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-52.74",
+      "void": "0",
+      "date": "09/15/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440268,
+  "vid": "19453377",
+  "pid": "24039",
+  "dos": "2026-08-30",
+  "era_carrierid": 42008,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    160.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 21.8,
+  "era_lines": [
+   [
+    "99233",
+    160.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363924",
+    "proccode": "99233",
+    "dos": "08/30/2026",
+    "fee": "160.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/15/2026",
+    "insbilled": null,
+    "insbal": "21.80",
+    "patbal": "0.00",
+    "paid": "138.20",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-85.46",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "819785160",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-160.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "160.00",
+      "void": "1",
+      "date": "09/15/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-52.74",
+      "void": "0",
+      "date": "09/15/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440269,
+  "vid": "19453215",
+  "pid": "24039",
+  "dos": "2026-08-29",
+  "era_carrierid": 42008,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    310.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 31.94,
+  "era_lines": [
+   [
+    "99223",
+    310.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363779",
+    "proccode": "99223",
+    "dos": "08/29/2026",
+    "fee": "310.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "31.94",
+    "patbal": "0.00",
+    "paid": "278.06",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-125.20",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819775967",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-310.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "310.00",
+      "void": "1",
+      "date": "09/11/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-152.86",
+      "void": "0",
+      "date": "09/11/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440270,
+  "vid": "19452833",
+  "pid": "24039",
+  "dos": "2026-08-24",
+  "era_carrierid": 42008,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363208",
+    "proccode": "99309",
+    "dos": "08/24/2026",
+    "fee": "141.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819756915",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-141.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "141.00",
+      "void": "1",
+      "date": "09/11/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/11/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440271,
+  "vid": "19452852",
+  "pid": "24039",
+  "dos": "2026-08-20",
+  "era_carrierid": 42008,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "05/17/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "05/18/2026",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23363226",
+    "proccode": "99309",
+    "dos": "08/20/2026",
+    "fee": "141.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819756915",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-141.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "141.00",
+      "void": "1",
+      "date": "09/11/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/11/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440272,
+  "vid": "19452849",
+  "pid": "47039",
+  "dos": "2026-08-20",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 0.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "01/01/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "04/01/2023",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "10/23/2023",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "2,1",
+  "charges": [
+   {
+    "id": "23363223",
+    "proccode": "99309",
+    "dos": "08/20/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/10/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "141.00",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "819756915",
+      "code": null
+     },
+     {
+      "carrier": "MCAD",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOMCAD",
+      "amount": "-16.93",
+      "void": "0",
+      "date": "09/10/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440273,
+  "vid": "19453037",
+  "pid": "17471131",
+  "dos": "2026-08-26",
+  "era_carrierid": 41826,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 74.64,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car41826",
+    "begindate": "09/03/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "08/01/2019",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "2,1",
+  "charges": [
+   {
+    "id": "23363452",
+    "proccode": "99309",
+    "dos": "08/26/2026",
+    "fee": "141.00",
+    "carrier": "CAP07",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440274,
+  "vid": "19453374",
+  "pid": "20863",
+  "dos": "2026-08-30",
+  "era_carrierid": 42008,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    310.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 31.94,
+  "era_lines": [
+   [
+    "99223",
+    310.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "02/01/2010",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "1,2",
+  "charges": [
+   {
+    "id": "23363920",
+    "proccode": "99223",
+    "dos": "08/30/2026",
+    "fee": "310.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/14/2026",
+    "insbilled": null,
+    "insbal": "31.94",
+    "patbal": "0.00",
+    "paid": "278.06",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-125.20",
+      "void": "0",
+      "date": "09/14/2026",
+      "check": "819785160",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-152.86",
+      "void": "0",
+      "date": "09/14/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440275,
+  "vid": "19374650",
+  "pid": "20709",
+  "dos": "2024-01-19",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO16",
+    310.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "MA61"
+  ],
+  "era_insbal": 33.91,
+  "era_lines": [
+   [
+    "99223",
+    310.0,
+    310.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": null,
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "03/01/2017",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "1,3",
+  "charges": []
+ },
+ {
+  "checkclaimid": 15440276,
+  "vid": "19453358",
+  "pid": "20379",
+  "dos": "2026-08-27",
+  "era_carrierid": 6285,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 0.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "11/23/2019",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6174",
+    "begindate": "01/01/2022",
+    "enddate": "07/31/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "03/25/2021",
+    "enddate": "04/01/2026",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "05/24/2019",
+    "enddate": "",
+    "sequence": "4"
+   }
+  ],
+  "patient_insorder": "1,4",
+  "charges": [
+   {
+    "id": "23363902",
+    "proccode": "99309",
+    "dos": "08/27/2026",
+    "fee": "141.00",
+    "carrier": "HUM01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/15/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "141.00",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "819785160",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/19/2026",
+      "check": "",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-141.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "141.00",
+      "void": "1",
+      "date": "09/15/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/15/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-16.93",
+      "void": "0",
+      "date": "09/19/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440277,
+  "vid": "19452854",
+  "pid": "20379",
+  "dos": "2026-08-20",
+  "era_carrierid": 6285,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 0.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "11/23/2019",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6174",
+    "begindate": "01/01/2022",
+    "enddate": "07/31/2026",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "03/25/2021",
+    "enddate": "04/01/2026",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "05/24/2019",
+    "enddate": "",
+    "sequence": "4"
+   }
+  ],
+  "patient_insorder": "1,4",
+  "charges": [
+   {
+    "id": "23363228",
+    "proccode": "99309",
+    "dos": "08/20/2026",
+    "fee": "141.00",
+    "carrier": "HUM01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "141.00",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/10/2026",
+      "check": "349929519",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819756915",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/19/2026",
+      "check": "",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-141.00",
+      "void": "1",
+      "date": "09/10/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "141.00",
+      "void": "1",
+      "date": "09/11/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/11/2026"
+     },
+     {
+      "code": "WOINS",
+      "amount": "-16.93",
+      "void": "0",
+      "date": "09/19/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440278,
+  "vid": "19432512",
+  "pid": "44955",
+  "dos": "2026-02-09",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "01/01/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "01/01/2022",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "01/01/2022",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "1,2,3",
+  "charges": [
+   {
+    "id": "23339074",
+    "proccode": "99309",
+    "dos": "02/09/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/12/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "05/28/2026",
+      "check": "818600717",
+      "code": null
+     },
+     {
+      "carrier": "MCAD",
+      "amount": "0.00",
+      "void": "0",
+      "date": "05/30/2026",
+      "check": "180897537260306",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "1",
+      "date": "05/30/2026",
+      "check": "072528333",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "1",
+      "date": "09/12/2026",
+      "check": "",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "05/28/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440279,
+  "vid": "19425626",
+  "pid": "45049",
+  "dos": "2025-12-01",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 17.65,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "02/01/2014",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "1,2,3",
+  "charges": [
+   {
+    "id": "23331653",
+    "proccode": "99309",
+    "dos": "12/01/2025",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/12/2026",
+    "insbilled": null,
+    "insbal": "17.65",
+    "patbal": "0.00",
+    "paid": "123.35",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-69.21",
+      "void": "0",
+      "date": "05/28/2026",
+      "check": "818269463",
+      "code": null
+     },
+     {
+      "carrier": "MCAD",
+      "amount": "0.00",
+      "void": "0",
+      "date": "05/30/2026",
+      "check": "176345603260114",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "1",
+      "date": "05/30/2026",
+      "check": "072350607",
+      "code": null
+     },
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "1",
+      "date": "09/12/2026",
+      "check": "",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-54.14",
+      "void": "0",
+      "date": "05/28/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440280,
+  "vid": "19453359",
+  "pid": "17477184",
+  "dos": "2026-08-27",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23363903",
+    "proccode": "99309",
+    "dos": "08/27/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440281,
+  "vid": "19452834",
+  "pid": "17477184",
+  "dos": "2026-08-24",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23363209",
+    "proccode": "99309",
+    "dos": "08/24/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "UNI20",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/06/2026",
+      "check": "26245B1000191568",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440282,
+  "vid": "19452413",
+  "pid": "17477184",
+  "dos": "2026-08-22",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO170",
+    206.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N95"
+  ],
+  "era_insbal": 16.14,
+  "era_lines": [
+   [
+    "99487",
+    206.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23362661",
+    "proccode": "99487",
+    "dos": "08/22/2026",
+    "fee": "206.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.14",
+    "patbal": "0.00",
+    "paid": "189.86",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-63.28",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-126.58",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440283,
+  "vid": "19452073",
+  "pid": "17477184",
+  "dos": "2026-08-17",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23362189",
+    "proccode": "99309",
+    "dos": "08/17/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "UNI20",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/02/2026",
+      "check": "26239B1000173392",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440284,
+  "vid": "19451568",
+  "pid": "17477184",
+  "dos": "2026-08-13",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23361620",
+    "proccode": "99309",
+    "dos": "08/13/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "UNI20",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/02/2026",
+      "check": "26232B1000170787",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440285,
+  "vid": "19451541",
+  "pid": "17477184",
+  "dos": "2026-08-06",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 16.93,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23361590",
+    "proccode": "99309",
+    "dos": "08/06/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/17/2026",
+    "insbilled": null,
+    "insbal": "16.93",
+    "patbal": "0.00",
+    "paid": "124.07",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "UNI20",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/02/2026",
+      "check": "26232B1000170787",
+      "code": null
+     },
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/17/2026",
+      "check": "819803392",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-57.71",
+      "void": "0",
+      "date": "09/17/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440286,
+  "vid": "19453379",
+  "pid": "20863",
+  "dos": "2026-08-31",
+  "era_carrierid": 42008,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    160.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 21.8,
+  "era_lines": [
+   [
+    "99233",
+    160.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "02/01/2010",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "1,2",
+  "charges": [
+   {
+    "id": "23363926",
+    "proccode": "99233",
+    "dos": "08/31/2026",
+    "fee": "160.00",
+    "carrier": "FLO99",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/14/2026",
+    "insbilled": null,
+    "insbal": "21.80",
+    "patbal": "0.00",
+    "paid": "138.20",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-85.46",
+      "void": "0",
+      "date": "09/14/2026",
+      "check": "819785160",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-52.74",
+      "void": "0",
+      "date": "09/14/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440287,
+  "vid": "19451168",
+  "pid": "17477383",
+  "dos": "2026-08-03",
+  "era_carrierid": 6194,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N290"
+  ],
+  "era_insbal": 74.64,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "08/29/2020",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "08/29/2020",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "08/29/2025",
+    "enddate": "",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "08/29/2025",
+    "enddate": "",
+    "sequence": "4"
+   }
+  ],
+  "patient_insorder": "1,2",
+  "charges": [
+   {
+    "id": "23361168",
+    "proccode": "99309",
+    "dos": "08/03/2026",
+    "fee": "141.00",
+    "carrier": "SUN01",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "paid": "66.36",
+    "insorder": null,
+    "payerinfo": "",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "FLO02",
+      "amount": "-66.36",
+      "void": "0",
+      "date": "09/11/2026",
+      "check": "819766146",
+      "code": null
+     }
+    ],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440288,
+  "vid": "19454398",
+  "pid": "17477184",
+  "dos": "2026-09-03",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "CO16",
+    282.0
+   ],
+   [
+    "CO45",
+    -141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "MA81",
+   "N290"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "07/23/2019",
+    "enddate": "08/02/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "09/04/2024",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "3",
+  "charges": [
+   {
+    "id": "23365486",
+    "proccode": "99309",
+    "dos": "09/03/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/13/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440289,
+  "vid": "19454225",
+  "pid": "23161",
+  "dos": "2026-09-01",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO256",
+    107.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N130"
+  ],
+  "era_insbal": 107.0,
+  "era_lines": [
+   [
+    "99308",
+    107.0,
+    0.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "07/22/2022",
+    "enddate": "12/31/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car42008",
+    "begindate": "09/05/2024",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "05/19/2019",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365251",
+    "proccode": "99308",
+    "dos": "09/01/2026",
+    "fee": "107.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "107.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440290,
+  "vid": "19454237",
+  "pid": "17472419",
+  "dos": "2026-02-02",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "10/26/2023",
+    "enddate": "01/01/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365275",
+    "proccode": "99309",
+    "dos": "02/02/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440291,
+  "vid": "19454238",
+  "pid": "17472419",
+  "dos": "2026-01-02",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "10/26/2023",
+    "enddate": "01/01/2026",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365277",
+    "proccode": "99309",
+    "dos": "01/02/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440292,
+  "vid": "19454239",
+  "pid": "17472518",
+  "dos": "2025-10-02",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365279",
+    "proccode": "99309",
+    "dos": "10/02/2025",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440293,
+  "vid": "19454240",
+  "pid": "17472518",
+  "dos": "2025-11-03",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365281",
+    "proccode": "99309",
+    "dos": "11/03/2025",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440294,
+  "vid": "19454241",
+  "pid": "17472518",
+  "dos": "2025-12-05",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365283",
+    "proccode": "99309",
+    "dos": "12/05/2025",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440295,
+  "vid": "19454242",
+  "pid": "17472518",
+  "dos": "2026-02-06",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365285",
+    "proccode": "99309",
+    "dos": "02/06/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440296,
+  "vid": "19454243",
+  "pid": "17472518",
+  "dos": "2026-04-09",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365287",
+    "proccode": "99309",
+    "dos": "04/09/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440297,
+  "vid": "19454244",
+  "pid": "17472518",
+  "dos": "2026-03-02",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365289",
+    "proccode": "99309",
+    "dos": "03/02/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440298,
+  "vid": "19454245",
+  "pid": "17472518",
+  "dos": "2026-05-11",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    141.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 141.0,
+  "era_lines": [
+   [
+    "99309",
+    141.0,
+    141.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6062",
+    "begindate": "12/03/2023",
+    "enddate": "06/08/2025",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "06/01/2025",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "",
+  "charges": [
+   {
+    "id": "23365291",
+    "proccode": "99309",
+    "dos": "05/11/2026",
+    "fee": "141.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440299,
+  "vid": "19417241",
+  "pid": "12231996",
+  "dos": "2025-09-18",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    93.07
+   ],
+   [
+    "CO208",
+    216.93
+   ],
+   [
+    "CO22",
+    93.07
+   ],
+   [
+    "CO22",
+    216.93
+   ],
+   [
+    "CO45",
+    -216.93
+   ],
+   [
+    "CO45",
+    -93.07
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286",
+   "N598"
+  ],
+  "era_insbal": 33.75,
+  "era_lines": [
+   [
+    "99223",
+    310.0,
+    310.0
+   ],
+   [
+    "99497",
+    133.0,
+    133.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "01/01/2023",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "02/13/2023",
+    "enddate": "",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6174",
+    "begindate": "08/01/2025",
+    "enddate": "12/31/2025",
+    "sequence": "4"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "01/01/2025",
+    "enddate": "",
+    "sequence": "5"
+   }
+  ],
+  "patient_insorder": "3,5",
+  "charges": [
+   {
+    "id": "23320903",
+    "proccode": "99223",
+    "dos": "09/18/2025",
+    "fee": "310.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/15/2026",
+    "insbilled": null,
+    "insbal": "33.75",
+    "patbal": "0.00",
+    "paid": "276.25",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "WEL04",
+      "amount": "-132.31",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "1008813711",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-143.94",
+      "void": "0",
+      "date": "09/15/2026"
+     }
+    ]
+   },
+   {
+    "id": "23320904",
+    "proccode": "99497",
+    "dos": "09/18/2025",
+    "fee": "133.00",
+    "carrier": "WEL04",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/13/2026",
+    "insbilled": null,
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "paid": "133.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1844",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "WEL04",
+      "amount": "0.00",
+      "void": "0",
+      "date": "09/15/2026",
+      "check": "1008813711",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-133.00",
+      "void": "0",
+      "date": "09/15/2026"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440300,
+  "vid": "19454249",
+  "pid": "17469645",
+  "dos": "2026-09-01",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    107.0
+   ],
+   [
+    "CO22",
+    107.0
+   ],
+   [
+    "CO45",
+    -107.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286",
+   "N598"
+  ],
+  "era_insbal": 107.0,
+  "era_lines": [
+   [
+    "99308",
+    107.0,
+    107.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "12/26/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "01/01/2023",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6404",
+    "begindate": "05/01/2025",
+    "enddate": "",
+    "sequence": "3"
+   },
+   {
+    "id": "",
+    "carrier": "car6194",
+    "begindate": "01/01/2025",
+    "enddate": "",
+    "sequence": "4"
+   }
+  ],
+  "patient_insorder": "1,2,3,4",
+  "charges": [
+   {
+    "id": "23365299",
+    "proccode": "99308",
+    "dos": "09/01/2026",
+    "fee": "107.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "107.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440301,
+  "vid": "19454252",
+  "pid": "44976",
+  "dos": "2024-11-12",
+  "era_carrierid": 6113,
+  "profilecode": "WEFFI",
+  "carc": [
+   [
+    "CO208",
+    107.0
+   ],
+   [
+    "CO208",
+    133.0
+   ],
+   [
+    "CO29",
+    107.0
+   ],
+   [
+    "CO29",
+    133.0
+   ],
+   [
+    "CO45",
+    -133.0
+   ],
+   [
+    "CO45",
+    -107.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N286"
+  ],
+  "era_insbal": 177.34,
+  "era_lines": [
+   [
+    "99308",
+    107.0,
+    107.0
+   ],
+   [
+    "99497",
+    133.0,
+    133.0
+   ]
+  ],
+  "billedprimary": true,
+  "visit_profile": "prof13",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "01/01/2022",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "05/20/2020",
+    "enddate": "",
+    "sequence": "2"
+   }
+  ],
+  "patient_insorder": "2",
+  "charges": [
+   {
+    "id": "23365306",
+    "proccode": "99308",
+    "dos": "11/12/2024",
+    "fee": "107.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "44.34",
+    "patbal": "62.66",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   },
+   {
+    "id": "23365307",
+    "proccode": "99497",
+    "dos": "11/12/2024",
+    "fee": "133.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "133.00",
+    "patbal": "0.00",
+    "paid": "0.00",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [],
+    "writeoffs": []
+   }
+  ]
+ },
+ {
+  "checkclaimid": 15440302,
+  "vid": "19374948",
+  "pid": "17469525",
+  "dos": "2024-01-25",
+  "era_carrierid": 6113,
+  "profilecode": "GARLAND-G",
+  "carc": [
+   [
+    "COB7",
+    107.0
+   ]
+  ],
+  "rarc": [
+   "#AM",
+   "N570"
+  ],
+  "era_insbal": 61.57,
+  "era_lines": [
+   [
+    "99308",
+    107.0,
+    0.0
+   ]
+  ],
+  "billedprimary": false,
+  "visit_profile": "prof15",
+  "plans": [
+   {
+    "id": "",
+    "carrier": "car6285",
+    "begindate": "03/25/2023",
+    "enddate": "",
+    "sequence": "1"
+   },
+   {
+    "id": "",
+    "carrier": "car6085",
+    "begindate": "09/24/2023",
+    "enddate": "",
+    "sequence": "2"
+   },
+   {
+    "id": "",
+    "carrier": "car6113",
+    "begindate": "12/24/2023",
+    "enddate": "",
+    "sequence": "3"
+   }
+  ],
+  "patient_insorder": "2,3",
+  "charges": [
+   {
+    "id": "22443059",
+    "proccode": "99308",
+    "dos": "01/25/2024",
+    "fee": "107.00",
+    "carrier": "MCAD",
+    "lastbilledcarrier": null,
+    "datebilled": null,
+    "billdate": "09/11/2026",
+    "insbilled": null,
+    "insbal": "61.57",
+    "patbal": "0.00",
+    "paid": "45.43",
+    "insorder": null,
+    "payerinfo": "Payor ID: 1478",
+    "profile": null,
+    "payments": [
+     {
+      "carrier": "HUM01",
+      "amount": "0.00",
+      "void": "0",
+      "date": "03/11/2024",
+      "check": "125999527240204",
+      "code": null
+     }
+    ],
+    "writeoffs": [
+     {
+      "code": "WOINS",
+      "amount": "-45.43",
+      "void": "0",
+      "date": "03/11/2024"
+     }
+    ]
+   }
+  ]
+ }
+]

@@ -1,0 +1,135 @@
+{
+ "stamp": "2026-09-21T2110Z",
+ "voids": [
+  [
+   "10158263",
+   true,
+   "8-gxwdp\" lst=\"09/21/2026 14:38:34\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158355",
+   true,
+   "8-cj5vb\" lst=\"09/21/2026 14:38:36\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158356",
+   true,
+   "8-cj5vb\" lst=\"09/21/2026 14:38:37\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158357",
+   true,
+   "8-gxwdp\" lst=\"09/21/2026 14:38:38\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158358",
+   true,
+   "8-ksfvf\" lst=\"09/21/2026 14:38:39\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158359",
+   true,
+   "8-cj5vb\" lst=\"09/21/2026 14:38:40\"><Results /><Error /></PPMDResults>"
+  ],
+  [
+   "10158360",
+   true,
+   "8-gxwdp\" lst=\"09/21/2026 14:38:41\"><Results /><Error /></PPMDResults>"
+  ]
+ ],
+ "moves": [
+  [
+   "23361189",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23363903",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23363209",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23362189",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23361620",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23361590",
+   "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'}"
+  ],
+  [
+   "23362661",
+   "moved 206.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,3'}"
+  ]
+ ],
+ "reposts": [
+  {
+   "visitid": "19451189",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19453359",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19452834",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19452073",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19451568",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19451541",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  },
+  {
+   "visitid": "19452413",
+   "outcome": "no-era-line",
+   "steps": [],
+   "after": null
+  }
+ ],
+ "other_moves": [
+  [
+   "17473346",
+   "23363449",
+   "moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '2'}"
+  ],
+  [
+   "17477607",
+   "23363891",
+   "moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '1,2'}"
+  ],
+  [
+   "17477023",
+   "23362974",
+   "moved 16.14 -> {'patbalance': '0.00', 'insbalance': '16.14', 'insorder': '1,2'}"
+  ]
+ ],
+ "redismiss": [
+  true,
+  "{\"issuccess\":true,\"id\":1051693,\"actionname\":1}"
+ ]
+}
