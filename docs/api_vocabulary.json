@@ -526,8 +526,8 @@
     "Content-Type": "text/xml",
     "Cookie": "token={{token}}"
    },
-   "body": "<ppmdmsg action=\"hideunbillablevisits\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" hide=\"-1\"><usercontext>{{token}}</usercontext><visitlist><visit id=\"vst{{visitid}}\"/></visitlist></ppmdmsg>",
-   "description": "Releases (completes) Unbilled rows. 'Payment from the prior payor is required' with a days-old primary bill = release everything (9/8, 82 rows).",
+   "body": "<ppmdmsg action=\"hideunbillablevisits\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" hide=\"-1\"><usercontext>{{token}}</usercontext><visitlist><visit id=\"{{visitid}}\"/></visitlist></ppmdmsg>",
+   "description": "Releases (completes) Unbilled rows. 'Payment from the prior payor is required' with a days-old primary bill = release everything (9/8, 82 rows). 9/21/2026: the visit id is NUMERIC - a 'vst' prefix faults ('Conversion failed when converting the nvarchar value vst19420307 to data type int').",
    "helper": "unbilled_0907.release",
    "captured": "9/2/2026",
    "body_language": "xml",
@@ -655,7 +655,7 @@
    },
    "body": "[\n {\n  \"id\": 1051562,\n  \"dismissedat\": \"2026-09-06T19:56:36.34\"\n }\n]",
    "body_language": "json",
-   "description": "dismissedat value comes from the dismissed list.",
+   "description": "dismissedat value comes from the dismissed list. Recipe (9/19, reused 9/21): reversedismiss -> GET checkdetails (the claims come back with their carc ids) -> post what is needed -> POST dismiss again. A check whose claims were all processed does not come back this way; use the era_details cache.",
    "helper": "",
    "captured": "9/7/2026 (William)",
    "status": "proven",
@@ -707,7 +707,7 @@
     "Cookie": "token={{token}}"
    },
    "body": "{\"ppmdmsg\": {\"@action\": \"posterapayments\", \"@class\": \"autoremitreports\", \"@msgtime\": \"{{msgtime}}\", \"@checkid\": \"{{checkid}}\", \"usercontext\": \"{{token}}\", \"...\": \"<the check-details payload echoed with amounts>\"}}",
-   "description": "Same message with every amount \"0\" = Process Accepted ($0.00). Post the payment line of an unvalidated ERA, never the $0 denial line (9/6 error, fixed 9/7).",
+   "description": "Same message with every amount \"0\" = Process Accepted ($0.00). Post the payment line of an unvalidated ERA, never the $0 denial line (9/6 error, fixed 9/7). SWEEP RULE (9/21/2026): a posterapayments call for ONE visit (FORCE_VISITS) is not isolated - AMD's engine went on to post 29 other claims of check 819814877, each capped at its visit's open balance (the leftover PR2, e.g. $17.50 for a $68.62 line) on visits that still carried hand posts; never Post a single visit of a check while other claims of that check sit on hand-posted / partially-open visits - void those first or use the ERA-linked addpayments (payreasons.post_line); audit the charts afterwards (payreasons.py --audit --since-payid).",
    "helper": "era_post.post_check / era_clear.zero_post",
    "captured": "9/4/2026; $0 shape 9/7",
    "body_language": "json",
@@ -979,6 +979,50 @@
     "corrected claim"
    ],
    "id": "charges-visits/updextrainsinfo-frequency-7-corrected-claim-payer-icn"
+  },
+  {
+   "id": "payments-era/addpayments-era-linked-manual-post-with-reason-codes",
+   "folder": "Payments & ERA",
+   "name": "addpayments - ERA-linked manual post WITH reason codes (Payment Entry 'post manually')",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml",
+    "Cookie": "token={{token}}"
+   },
+   "body": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"era\" amount=\"{{pay}}\" paycode=\"PE\" woamount=\"{{wo}}\" paymethod=\"9\" carrierid=\"car{{carrierid}}\" depositdate=\"{{depositdate}}\" eraclaimid=\"{{checkclaimid}}\" erareportid=\"{{checkid}}\" case_note=\"\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"{{allowed}}\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"prof{{profileid}}\"><paymentlist><payment amount=\"{{pay}}\" id=\"\" reason=\"CO45\" status=\"B\"><reasonlist payment=\"{{pay}}\" allowed=\"{{allowed}}\"><reason id=\"{{reportreasondetailid}}\" reasonid=\"{{payreasonid}}\" code=\"CO45\" name=\"Charge exceeds fee schedule/maximum allowable or contracted/legislated fee arrangement.\" amount=\"{{co45}}\" units=\"0\" group=\"CO\"/><reason id=\"{{reportreasondetailid}}\" reasonid=\"370\" code=\"PR2\" name=\"Coinsurance Amount\" amount=\"{{pr2}}\" units=\"0\" group=\"PR\"/></reasonlist></payment></paymentlist><writeofflist><writeoff id=\"\" risk=\"0\" amount=\"{{wo}}\" code=\"WOINS\" status=\"B\"/></writeofflist></charge></chargelist></patient></ppmdmsg>",
+   "body_language": "xml",
+   "description": "The ONLY addpayments shape that keeps reason codes on the payment (proven 9/21/2026 on 54 visits, Medicare 819814877 and eight 2024 checks): postingmethod=era + eraclaimid/erareportid + the remit's <reasonlist> with the era_details ids (reason id = reportreasondetailid, reasonid = payreasonid, e.g. CO45 107, PR2 370, CO253 34913). Plain addpayments (postingmethod='' / manual_post.post) silently drops every reason -> 'Payment reason codes are missing or do not balance' holds the secondary. Amounts: pay = the remit's paid (capped at the open insurance balance), wo = the CO/OA/PI adjustments capped so pay+wo <= balance (WOINS; WOLATE CO-29; WONCS CO-96/204/50), PR amounts stay on the visit for the next payer. Works while the check is dismissed or processed (the ids come from the era_details cache). Synchronous and per patient - never sweeps the check the way the Post button can. Reply: <Results success=\"1\" paymentid=\"NNN\"/>.",
+   "helper": "payreasons.post_line / payreasons.era_linked_xml (era_fallback_0913b.py uses it since 9/21); era_manual_post.py is the 9/3 original",
+   "captured": "9/3/2026 (William, Pinckney); reason persistence proven 9/21/2026",
+   "status": "proven",
+   "tags": [
+    "reason codes",
+    "secondary",
+    "unbilled"
+   ]
+  },
+  {
+   "id": "payments-era/repair-payment-reason-codes-unbilled",
+   "folder": "Payments & ERA",
+   "name": "Recipe - repair 'Payment reason codes are missing or do not balance' (void the hand post, re-post the ERA line with reasons)",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml",
+    "Cookie": "token={{token}}"
+   },
+   "body": "<ppmdmsg action=\"void\" class=\"void\" msgtime=\"{{msgtime}}\" patientid=\"pat{{patientid}}\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient id=\"pat{{patientid}}\"><charge id=\"{{chargeid}}\" void=\"0\"><payment id=\"{{paymentid}}\"/></charge></patient></ppmdmsg>",
+   "body_language": "xml",
+   "description": "payreasons.py --unbilled --live (9/21/2026): for each Unbilled row of this class - (1) gettxhistory: the live payments with no <payreason> children on the visit's charges; (2) void each (this call) and the write-off posted with it (same createtime; void_tx.void_writeoff) and any $0 code-less line; (3) find the ERA claim behind it (register -> checkid, else the payment's check number in GET /api/era/checks or /api/era/checks/dismiss); a dismissed check is restored with reversedismiss so checkdetails answers, then dismissed again; a processed check's lines come from the era_details/<checkid>.json cache; (4) post the line again with the ERA-linked addpayments (previous entry); (5) read the chart back: on every live payment |paid| + reason amounts == fee; (6) hideunbillablevisits hide=-1 with the NUMERIC visit id. 54/54 rows repaired 9/21 05:45-06:20 UTC; Unbilled 55 -> 1.",
+   "helper": "payreasons.repair_row / repost_visit / audit",
+   "captured": "9/21/2026",
+   "status": "proven",
+   "tags": [
+    "reason codes",
+    "unbilled",
+    "recipe"
+   ]
   }
  ]
 }
