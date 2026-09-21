@@ -1320,16 +1320,6 @@ No new AMD or Stedi call shapes this run. Behaviours worth keeping:
 - getclaimrunstatus still lists 1700202 as the newest claim run at 03:13Z 9/19 (78 runs): ninth consecutive worked slot with no nightly claim run.
 - ERA Center empty (0 checks) at 03:16Z 9/19 - era_post / fallback / era_clear all no-ops; the chain script is idempotent on an empty list.
 
-# captured_calls additions - 2026-09-19 0510 UTC (1am ET 9/19 backend billing run, ehpa cloud)
-
-No new AMD call shapes. Behaviours proven this run (chart ids only):
-- `updateinsurance` (wrapped shape via ins_update.update) with `mspcode="43"` / `mspcode="12"` on a Medicare seq-2 insplan -> success=1, getdemographic readback shows the code. This clears the Unbilled column error "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance Tab is required." (pat17477774 v19455048, released with hideunbillablevisits afterwards). MSP codes: 12 working aged (employer group primary), 43 disabled with a large group health plan primary - take them from the CMS coordination-of-benefits record type the Stedi MBI lookup returns.
-- A full-visit `updvisitwithnewcharges` resave with `preauth=""` does NOT blank the referral plan's preauth (pat17477777 rplan18462071 kept the value; readback unchanged). Only a non-empty preauth writes.
-- `addreferralplan` class=chargeentry with the 9/8 registry shape (id="" patient=patN ismain="0" status="stat1" sequence="2" ...) and with status="status1" both get-or-RETURNED the chart's existing main plan (echoing its preauth) instead of creating a blank plan - the 9/8 create shape did not create a second plan this run. Whatever made it insert on 9/8 is not in the registry; do not rely on it.
-- A resave whose `refplan=` names ANOTHER patient's referral plan repoints the visit there and writes the preauth onto that patient's plan (seen 04:45Z 9/19: pat17477775's 9/16-9/17 visits on pat17477777's main plan rplan18462071, her plan now carrying his VA auth). Rule: read the chart's refplanlist (getdemographic) and confirm ownership before any refplan/preauth resave; visit_charges' refplan readback shows the pointer.
-- getclaimrunstatus at 05:2xZ 9/19 still lists 1700202 (2026-09-16 22:16) as the newest claim run (78 runs): tenth consecutive worked slot with no nightly claim run.
-- ERA Center empty (0 checks) at 05:22Z 9/19 - era_post / fallback / era_clear all no-ops.
-
 # captured_calls additions - 2026-09-19T0500Z (1am ET 9/19 chat session, William-requested full run)
 
 No new AMD call shapes this run. Behaviours worth keeping:
@@ -1339,6 +1329,24 @@ No new AMD call shapes this run. Behaviours worth keeping:
 - Money Ledger template: the over-90-days stage note now renders only when the Sunday claim-status sweep data is present (was printing 'undefined/$NaN' on non-Sunday builds); patched in boards/templates/money_template.html and the published artifact (version 14).
 - Insurance Refresh Board sync registry REPAIRED from this chat session (the 9/14 fix, second application): 66 applied inbox files 9/13-9/19T0310Z merged into meta/drive_sync 'applied' (18 -> 84 entries, version 1385) and trashed from 'board inbox'; only the two unapplied 9/19 files remain. Page-code root cause still open: since 9/15 the page advances lastCheck but never adds to 'applied'.
 - getclaimrunstatus still lists 1700202 as the newest claim run at 05:4xZ 9/19 (78 runs): tenth-plus consecutive worked slot with no nightly claim run - everything released this week is queued, nothing transmitted since 9/16; nothing in the API starts a claim run.
+
+# captured_calls additions - 2026-09-20T0345Z (11:40pm ET 9/19 chat session, William-requested full run)
+
+No new AMD call shapes. Behaviours worth keeping:
+- WRITE-OFF REVERSAL AT SCALE (William's 'post' on row medicare-era-819814877-writeoffs-0919): wo_reversal_post.py voided all 41 write-offs cleanly, but its posting step silently posted $0 - the era_post.checks() lookup compared the record's string checkid to AMD's numeric id (`c['id'] == cid`), matched nothing, and the `if chk:` guard swallowed it. Fixed (str-compare both sides). The FORCE_VISITS + post_check flow then posted all 41 lines in two calls (26 visits $2,919.96 on 1051714, 4 visits $363.43 on 1051715 = $3,283.39): payment + fresh CO-45 contractual per line from the remit itself, PR coinsurance left on the visit for the secondary (sample 23324494: fee 107 = pay 47.57 + WO 47.29 + PR 12.14 insbal). Lesson: after any void-then-post, grep the log for 'POSTED check' - '=== done' alone can hide a skipped post.
+- The ERA Center's unpostedamount on 1051714/1051715 now reads $9,151.49 total: manual posts the Center cannot see plus the $85.46 orphan (pat17477530 voided visit) - the checks stay HELD, never dismissed, and the phantom balance is cosmetic.
+- Harwick CHP add per William's card paste: CAP07 member CIO01040626-format ids continue (hers CIO60139734), AMD 271 ACTIVE with HN (HMO Medicare Risk) riders, standard admit/insorder/onhcfa release path; Unbilled 13 -> 11.
+- precheck --days 3 rerun cost $0: every pair cached from 9/19 (patient|payer|yyyymm keys), 0 flagged - the cache design works.
+
+# captured_calls additions - 2026-09-19 0510 UTC (1am ET 9/19 backend billing run, ehpa cloud)
+
+No new AMD call shapes. Behaviours proven this run (chart ids only):
+- `updateinsurance` (wrapped shape via ins_update.update) with `mspcode="43"` / `mspcode="12"` on a Medicare seq-2 insplan -> success=1, getdemographic readback shows the code. This clears the Unbilled column error "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance Tab is required." (pat17477774 v19455048, released with hideunbillablevisits afterwards). MSP codes: 12 working aged (employer group primary), 43 disabled with a large group health plan primary - take them from the CMS coordination-of-benefits record type the Stedi MBI lookup returns.
+- A full-visit `updvisitwithnewcharges` resave with `preauth=""` does NOT blank the referral plan's preauth (pat17477777 rplan18462071 kept the value; readback unchanged). Only a non-empty preauth writes.
+- `addreferralplan` class=chargeentry with the 9/8 registry shape (id="" patient=patN ismain="0" status="stat1" sequence="2" ...) and with status="status1" both get-or-RETURNED the chart's existing main plan (echoing its preauth) instead of creating a blank plan - the 9/8 create shape did not create a second plan this run. Whatever made it insert on 9/8 is not in the registry; do not rely on it.
+- A resave whose `refplan=` names ANOTHER patient's referral plan repoints the visit there and writes the preauth onto that patient's plan (seen 04:45Z 9/19: pat17477775's 9/16-9/17 visits on pat17477777's main plan rplan18462071, her plan now carrying his VA auth). Rule: read the chart's refplanlist (getdemographic) and confirm ownership before any refplan/preauth resave; visit_charges' refplan readback shows the pointer.
+- getclaimrunstatus at 05:2xZ 9/19 still lists 1700202 (2026-09-16 22:16) as the newest claim run (78 runs): tenth consecutive worked slot with no nightly claim run.
+- ERA Center empty (0 checks) at 05:22Z 9/19 - era_post / fallback / era_clear all no-ops.
 
 # captured_calls additions - 2026-09-19 0710 UTC (3am ET 9/19 backend billing run, ehpa cloud)
 
@@ -1385,6 +1393,7 @@ No new call shapes this run. Behaviours confirmed (registry-level notes, chart i
 - **Unbilled snapshot unchanged**: the same 14 rows as 1310Z (11 'Payment reason codes are missing or do not balance' on 2024 SUN01/BCBS/HUM01/TRI05 visits held per the 9/15 rule; pat17471007 v19375395 'Bill Insurance = No' MV line on William's turn; pat17477798 x2 'Insurance order is missing' - getdemographic at 15:17Z still returns no insplan, no facesheet in Drive, no Pam email, no drop).
 - **AET12 (car42009) live re-read** (gettxhistory on the 15 charts of exclusion run 1700202): 68 charges, billdate 09/16/2026, insurance balance $2052.25 open, Medicare paid $9703.75, no AET12 payment, none at $0 - held on the carrier-master fix, not re-sent.
 - **Post button on the held Medicare check, fourth slot in a row**: era_post --all-unposted re-offered 29 lines on 1051714 (postable=29 / skipped=103) and AMD refused every one (fault -2147217287, PaymentEntry=29) - the already-manual-posted lines; no double post.
+
 # captured_calls additions - 2026-09-19 1710 UTC (1 PM ET 9/19 backend billing run, ehpa cloud v7)
 
 No new call shapes this run. Behaviours confirmed (registry-level notes, chart ids only):

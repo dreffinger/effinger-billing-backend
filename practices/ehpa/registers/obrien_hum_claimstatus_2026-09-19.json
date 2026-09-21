@@ -1,0 +1,404 @@
+{
+ "19448382": {
+  "dos": "20260710",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "-PAY-20260721000",
+    "paidDate": "2026-07-21",
+    "payerClaim": "820261990396384"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202609110",
+    "paidDate": "2026-09-11",
+    "payerClaim": "820262500108314"
+   }
+  ],
+  "errs": []
+ },
+ "19448813": {
+  "dos": "20260717",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "-PAY-20260721000",
+    "paidDate": "2026-07-21",
+    "payerClaim": "820262010156270"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202609110",
+    "paidDate": "2026-09-11",
+    "payerClaim": "820262500108020"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "-PAY-20260721000",
+    "paidDate": "2026-07-21",
+    "payerClaim": "820262010156162"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "4828535260727",
+    "paidDate": "2026-07-26",
+    "payerClaim": "820262030319016"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202609110",
+    "paidDate": "2026-09-11",
+    "payerClaim": "820262500109262"
+   }
+  ],
+  "errs": []
+ },
+ "19450053": {
+  "dos": "20260727",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166741"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166821"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167366"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167518"
+   }
+  ],
+  "errs": []
+ },
+ "19450052": {
+  "dos": "20260728",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166948"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166741"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166821"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167366"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167518"
+   }
+  ],
+  "errs": []
+ },
+ "19450115": {
+  "dos": "20260729",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167323"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166948"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166741"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166821"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167366"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167518"
+   }
+  ],
+  "errs": []
+ },
+ "19450224": {
+  "dos": "20260730",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608070",
+    "paidDate": "2026-08-07",
+    "payerClaim": "820262180327154"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167323"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166948"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166741"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166821"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167366"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167518"
+   }
+  ],
+  "errs": []
+ },
+ "19450304": {
+  "dos": "20260731",
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608070",
+    "paidDate": "2026-08-07",
+    "payerClaim": "820262180329947"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608070",
+    "paidDate": "2026-08-07",
+    "payerClaim": "820262180327154"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167323"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166948"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166741"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150166821"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "107",
+    "codev": "Processed according to contract provisions (Contract refers to provisions that exist between the Health Plan and a Provider of Health Care Services).",
+    "paid": "0",
+    "check": "NO-PAY-202608040",
+    "paidDate": "2026-08-04",
+    "payerClaim": "820262150167366"
+   }
+  ],
+  "errs": []
+ }
+}
