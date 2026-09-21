@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-21, 52 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-21, 54 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -856,10 +856,10 @@
        }
       ],
       "url": "{{xmlgw}}",
-      "description": "Releases (completes) Unbilled rows. 'Payment from the prior payor is required' with a days-old primary bill = release everything (9/8, 82 rows).\n\nHelper: unbilled_0907.release\nCaptured: 9/2/2026\nStatus: proven",
+      "description": "Releases (completes) Unbilled rows. 'Payment from the prior payor is required' with a days-old primary bill = release everything (9/8, 82 rows). | 9/21/2026: the visit id is NUMERIC (id=\"19420307\"); the vst-prefixed form faults 'Conversion failed when converting the nvarchar value ... to data type int'. Release a 'Payment reason codes' row only after gettxhistory shows the reason codes on every live payment (payreasons.py).\n\nHelper: unbilled_0907.release\nCaptured: 9/2/2026\nStatus: proven",
       "body": {
        "mode": "raw",
-       "raw": "<ppmdmsg action=\"hideunbillablevisits\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" hide=\"-1\"><usercontext>{{token}}</usercontext><visitlist><visit id=\"vst{{visitid}}\"/></visitlist></ppmdmsg>",
+       "raw": "<ppmdmsg action=\"hideunbillablevisits\" class=\"claimsreports\" msgtime=\"{{msgtime}}\" hide=\"-1\"><usercontext>{{token}}</usercontext><visitlist><visit id=\"{{visitid}}\"/></visitlist></ppmdmsg>",
        "options": {
         "raw": {
          "language": "xml"
@@ -1099,7 +1099,7 @@
        }
       ],
       "url": "{{xmlgw}}",
-      "description": "Posts a payment and/or write-off to one charge with a note. era_manual_post.py wraps it for an unvalidated ERA line (post the PAYMENT line, never the $0 denial line). | 9/12/2026 probe: a <payreasonlist> child inside <payment> is accepted (success=1) but NOT stored - addpayments cannot carry CARC reason codes; <reasonlist> faults. A $0 payment without reason codes blocks the next-payer claim ('Payment reason codes are missing or do not balance') - fix = void it (void class=void) and release.\n\nHelper: manual_post.post(cid, carrier, pay, wo, wocode, checknumber, depositdate, note)\nCaptured: 9/3/2026\nStatus: proven",
+      "description": "Posts a payment and/or write-off to one charge with a note. era_manual_post.py wraps it for an unvalidated ERA line (post the PAYMENT line, never the $0 denial line). | 9/12/2026 probe: a <payreasonlist> child inside <payment> is accepted (success=1) but NOT stored - addpayments cannot carry CARC reason codes; <reasonlist> faults. A $0 payment without reason codes blocks the next-payer claim ('Payment reason codes are missing or do not balance') - fix = void it (void class=void) and release. | 9/21/2026: retired for ERA lines - use the ERA-linked shape (payments-era/addpayments-era-linked-manual-post-with-reason-codes), which keeps the CARCs.\n\nHelper: manual_post.post(cid, carrier, pay, wo, wocode, checknumber, depositdate, note)\nCaptured: 9/3/2026\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><payment carrier=\"car{{carrierid}}\" checknumber=\"{{checknumber}}\" depositdate=\"{{depositdate}}\" note=\"{{note}}\"><chargelist><charge id=\"charge{{chargeid}}\" paid=\"{{pay}}\" writeoff=\"{{wo}}\" writeoffcode=\"{{wocode}}\"/></chargelist></payment></ppmdmsg>",
@@ -1126,7 +1126,7 @@
        }
       ],
       "url": "https://pm-wfe-103.advancedmd.com/practicemanager/xmlrpc/processrequest.aspx?long=1",
-      "description": "Same message with every amount \"0\" = Process Accepted ($0.00). Post the payment line of an unvalidated ERA, never the $0 denial line (9/6 error, fixed 9/7).\n\nHelper: era_post.post_check / era_clear.zero_post\nCaptured: 9/4/2026; $0 shape 9/7\nStatus: proven",
+      "description": "Same message with every amount \"0\" = Process Accepted ($0.00). Post the payment line of an unvalidated ERA, never the $0 denial line (9/6 error, fixed 9/7). | SWEEP RULE (9/21/2026): posting a single visit of a check (FORCE_VISITS) made AMD's engine post 29 OTHER claims of the same check, each capped at the visit's open balance (the leftover PR2), on visits that still carried hand posts, then mark the check processed + dismissed. Never Post a single visit of a check while other claims of that check sit on hand-posted / partially-open visits - void those first or post single lines with payreasons.post_line; after any Post run payreasons.py --audit --since-payid <last id before the post> and void + re-post anything capped.\n\nHelper: era_post.post_check / era_clear.zero_post\nCaptured: 9/4/2026; $0 shape 9/7\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "{\"ppmdmsg\": {\"@action\": \"posterapayments\", \"@class\": \"autoremitreports\", \"@msgtime\": \"{{msgtime}}\", \"@checkid\": \"{{checkid}}\", \"usercontext\": \"{{token}}\", \"...\": \"<the check-details payload echoed with amounts>\"}}",
@@ -1174,6 +1174,60 @@
        "options": {
         "raw": {
          "language": "text"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "addpayments — ERA-linked manual post WITH reason codes (Payment Entry 'post manually' shape)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "The addpayments the ERA Center's 'post manually' sends (William's 9/3/2026 Pinckney capture; proven 9/21/2026 on 34 visits): postingmethod=\"era\" with eraclaimid (checkdetails claim checkclaimid) + erareportid (check id) + the remit's <reasonlist> (one <reason> per checkdetails carc entry: reportreasondetailid / payreasonid / reasoncode / reasontext / reasonamt / payreasongroup). Reply <Results success=\"1\" paymentid=\"NNN\"/>; gettxhistory then shows the payment WITH payreason children (CO45 / PR2 / CO253), so the next payer's claim builds. Works whether the check is listed, dismissed or processed (lines from era_details/<checkid>.json). Amounts: pay = remit paid capped at the open insurance balance (getchargedetaildataicd10 insbalance); wo = CO/OA/PI adjustments capped so pay + wo <= that balance (WOINS; WOLATE CO-29; WONCS CO-96/204/50); PR stays on the visit for the secondary. paymethod: ACH -> 9 (PAYMETHOD map in payreasons.py). Verify: on every live payment of the visit |paid| + sum(reason amounts) == fee. A plain addpayments (no ERA link) silently drops reason codes - never use it for an ERA line.\n\nHelper: payreasons.post_line / payreasons.era_linked_xml; era_fallback_0913b.py (5d fallback) posts through it\nCaptured: 9/21/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"era\" amount=\"{{pay}}\" paycode=\"PE\" woamount=\"{{wo}}\" paymethod=\"{{paymethod}}\" carrierid=\"car{{carrierid}}\" depositdate=\"{{depositdate}}\" eraclaimid=\"{{checkclaimid}}\" erareportid=\"{{checkid}}\" case_note=\"\" checknumber=\"{{paymentnumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"{{allowed}}\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"prof{{profileid}}\"><paymentlist><payment amount=\"{{pay}}\" id=\"\" reason=\"{{first_reasoncode}}\" status=\"B\"><reasonlist payment=\"{{pay}}\" allowed=\"{{allowed}}\"><reason id=\"{{reportreasondetailid}}\" reasonid=\"{{payreasonid}}\" code=\"{{reasoncode}}\" name=\"{{reasontext}}\" amount=\"{{reasonamt}}\" units=\"0\" group=\"{{payreasongroup}}\"/></reasonlist></payment></paymentlist><writeofflist><writeoff id=\"\" risk=\"0\" amount=\"{{wo}}\" code=\"{{wocode}}\" status=\"B\"/></writeofflist></charge></chargelist></patient></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "RECIPE — repair an Unbilled 'Payment reason codes are missing or do not balance' row",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "William's 9/21/2026 route for secondaries stuck behind a hand-posted primary (54 rows / $11,858.58 repaired and released 05:45-06:20 UTC 9/21: 20 via the Post button, 34 via the ERA-linked addpayments). Never hold such a row and never release it as-is - repair it. Sweep caution: see the posterapayments entry (a single-visit Post can make AMD post the check's other claims capped at the open balance; audit with payreasons.py --audit --since-payid and void + re-post anything capped).\n\nHelper: payreasons.py (--list, --unbilled --live, --visit, --repost-file, --audit --since-payid); era_clear.reverse_dismiss; void_tx\nCaptured: 9/21/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<!-- not one call: the 9/21/2026 recipe (payreasons.py --list, then --unbilled --live; per visit repost_visit / repair_row)\n1. gettxhistory patientid=pat{{patientid}} -> the visit's live payments with NO payreason children (amounts negative; charge insbal/patbal/fee).\n2. void class=void: the code-less payment, the WOINS posted with it (same createtime) and any $0 code-less line.\n3. The ERA claim behind it: registers/era_manual_register.json (checkid/checkclaimid/chargeid), else the payment's check number against GET /api/era/checks and GET /api/era/checks/dismiss?DismissedDateBegin=YYYY-MM-DD. Dismissed check: POST /api/era/checks/reversedismiss [{\"id\",\"dismissedat\"}] -> GET /api/era/checkdetails?checkid= (claims come back with carc ids) -> POST /api/era/checks/dismiss again. Processed check answers nothing: use era_details/<checkid>.json.\n4. Re-post the same line with the ERA-linked addpayments (payments-era/addpayments-era-linked-manual-post-with-reason-codes).\n5. Verify |paid| + sum(reason amounts) == fee on every live payment, then hideunbillablevisits hide=\"-1\" with the NUMERIC visit id.\n-->",
+       "options": {
+        "raw": {
+         "language": "xml"
         }
        }
       }

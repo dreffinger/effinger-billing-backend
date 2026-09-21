@@ -1,7 +1,8 @@
 # PLAIN ENGLISH (ERA manual-post fallback, 5am ET 9/13/2026 run - prompt v5 step 5d; = era_fallback_0913.py + --stamp/--checks args + register de-duplication: a line whose (check, claim, charge, outcome) is already in the register is not appended again)
 # Decides: for every unposted ERA check, every claim MONEY line the Post button refused or era_post skipped
 #   (unvalidated 'procedure codes do not match', 'multiple adjustment amounts', refused faults) is matched to the
-#   LIVE charge by CPT + DOS and posted by hand with manual_post.post (= addpayments), William's rule: post the
+#   LIVE charge by CPT + DOS and posted through the ERA-linked Payment Entry shape (payreasons.post_line - carries the remit's
+#   reason codes; manual_post.post dropped them until 9/21/2026), William's rule: post the
 #   maximum AMD accepts, disregard the residual. Reversal lines (negative / 'reversal does not match') are never posted.
 #   A non-void payment already carrying this check number on the charge = 'already posted' - nothing posted.
 # Rules it uses: pay = min(ERA paid, open insurance balance); wo = CO adjustments capped so pay+wo <= balance
@@ -9,7 +10,7 @@
 # Never touches: denial-only ($0) lines, reversal lines, orphan lines (no matching charge), anything already posted.
 """Usage: python3 era_fallback_0913.py [--dry] [--max-faults 3]"""
 import json, os, sys, time, datetime, collections
-import txh, manual_post, amd
+import txh, manual_post, amd, payreasons
 dry = "--dry" in sys.argv
 STAMP = sys.argv[sys.argv.index("--stamp") + 1] if "--stamp" in sys.argv else "2026-09-13T0930Z"
 REGF = "registers/era_manual_register.json"
@@ -78,7 +79,12 @@ for chk in checks:
             if dry:
                 rec.update(outcome="DRY would post"); out.append(rec); tot["would-post"] += 1; dol["would-pay"] += pay; dol["would-wo"] += wo; continue
             try:
-                ok, msg = manual_post.post(chg, c.get("carrier") or car, pay, wo, code, str(chkno), dd or None, "ERA %s manual post %s" % (cid, STAMP))
+                # 9/21/2026: post through the ERA-LINKED Payment Entry shape (payreasons.post_line = addpayments postingmethod=era with
+                # eraclaimid/erareportid + the remit's reasonlist) - it keeps the CO45/PR2/CO253 reason codes on the payment, so the
+                # next payer's claim can be built. manual_post.post (plain addpayments) drops reason codes -> 54 secondaries held 9/15-9/21.
+                ln_c = dict(ln); ln_c["chargedetailid"] = int(chg)
+                ok, payid, msg = payreasons.post_line(pid, vid, chk, cl, chg, ln_c, pay=pay, wo=wo, wocode=code)
+                if ok: rec["paymentid"] = payid
             except Exception as e: ok, msg = False, str(e)
             if ok:
                 rec.update(outcome="posted"); tot["posted"] += 1; dol["posted-pay"] += pay; dol["posted-wo"] += wo
