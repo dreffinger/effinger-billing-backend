@@ -1,0 +1,10 @@
+{
+ "visit": "19441047",
+ "pid": "17470743",
+ "charge": "23348845",
+ "action": "hideunbillablevisits hide=-1",
+ "ok": true,
+ "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jn8pc\" lst=\"09/21/2026 06:20:34\"><Results success=\"1\" /><E",
+ "why": "Medicare payment 819087561 balances (66.36 paid + CO45 56.36 + PR2 16.93 + CO253 1.35 = 141.00 fee); MCAD seq-2 $16.93 crossover; standing rule: 'prior payor required' rows are released and re-queue on their own",
+ "at": "2026-09-21T13:20:34.818110Z"
+}
