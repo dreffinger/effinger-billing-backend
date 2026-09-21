@@ -1,321 +1,338 @@
-# PLAIN ENGLISH (Payment reason codes - the Payment Entry "Reason Codes" edit, from the backend)
-# Decides: Which posted insurance payments carry NO reason codes (the fallback addpayments posts since 9/13/2026 -
-#   addpayments silently drops reason codes, proven 9/12), and writes the remit's CARC list (CO-45 / PR-1 / PR-2 ...)
-#   onto each of them the way the Payment Entry window's Reason Codes dialog + Save does (William's DevTools
-#   capture 9/21/2026). A payment balances when paid + sum(reason amounts) == the charge fee; the PR amounts are
-#   taken from the remit verbatim and the contractual CO-45 absorbs the rounding/residual so the check passes.
-# Rules it uses: never invents a PR amount; never touches a payment that already has reason codes; never voids;
-#   dry-run by default; every line goes to practices/ehpa/registers/payreason_repair_<stamp>.json.
-# Never touches: write-offs, charges, claims, ERA Center. It only edits reason codes on existing payments.
+# PLAIN ENGLISH (Payment reason codes - repair and prevent the 'Payment reason codes are missing or do not balance' hold)
+# Decides: which posted insurance payments carry NO reason codes (the manual_post / plain-addpayments hand posts - addpayments
+#   without an ERA link silently drops reason codes, proven 9/12 and again 9/21), and re-posts each such ERA line the way the
+#   ERA Center's "post manually" does: addpayments postingmethod="era" with eraclaimid/erareportid and the remit's
+#   <reasonlist> (William's 9/3/2026 Pinckney capture). That shape KEEPS the CO45/PR2/CO253 reasons on the payment (proven
+#   9/21/2026 on 54 visits), so the next payer's claim can be built. Amounts: paid as paid, CO adjustments written off
+#   (WOINS / WOLATE CO-29 / WONCS CO-96,204,50), PR amounts left on the visit for the secondary or the patient.
+# Rules it uses: void the code-less payment AND the write-off posted with it (same createtime) before re-posting; a $0
+#   code-less payment on the visit is voided too (9/12 rule); a visit is released only when every live payment balances
+#   (|paid| + reasons == fee); a check whose details are gone (dismissed 9/13) is read through reversedismiss -> details
+#   -> dismiss again, or from the era_details/ cache. NEVER the ERA Center Post button for single visits: AMD's engine may
+#   then sweep the rest of the check and post every other claim capped at the visit's leftover balance (9/21 lesson).
+# Never touches: payments that already carry reasons, charges not on the ERA claim, reversal / $0 denial lines.
 # ---
-"""Usage (from /home/claude/unbilled):
-  python3 payreasons.py --scan                 # list code-less fallback payments (registers -> gettxhistory), no writes
-  python3 payreasons.py --scan --since 2026-09-13 --pid 17471007   # chart-wide scan of one patient
-  python3 payreasons.py --unbilled             # the Unbilled 'Payment reason codes are missing or do not balance' rows
-  python3 payreasons.py --live [--limit N]     # apply the reason codes (registers + era_details cache), then verify
-  python3 payreasons.py --live --unbilled --release   # repair the Unbilled rows and release them once balanced
-Library: payreasons.candidates(), payreasons.plan(pay, fee, carc), payreasons.apply(pid, cid, payid, reasons), payreasons.verify(pid, payid)
+"""Usage (cd /home/claude/unbilled):
+  python3 payreasons.py --list                      # the Unbilled reason-code rows and what each visit's payments look like (read-only)
+  python3 payreasons.py --unbilled --live [--no-release]   # repair every 'Payment reason codes' Unbilled row, then release the balanced ones
+  python3 payreasons.py --visit <visitid> --pid <patientid> [--check <checkid>] --live   # one visit
+  python3 payreasons.py --repost-file spec.json --live      # {"visits": [[visitid, pid, checkid], ...]} - re-post voided lines from the cache
+  python3 payreasons.py --audit --since-payid 24653500      # every live payment created after that id on the register charts, vs the remit
+Library: unbilled_rows(), visit_state(pid, vid), balanced(charges), era_line(vid, charges), era_linked_xml(pid, chk, v, lines),
+         post_line(pid, vid, chk, v, cid, ch, pay, wo, wocode), repost_visit(pid, vid, checkid), repair_row(row), release_visit(vid)
 """
-import amd, txh, json, os, re, sys, time, glob, datetime
+import amd, txh, era_post, void_tx, resave, json, os, re, sys, time, glob, datetime, requests
 import xml.etree.ElementTree as ET
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-WS = "/home/claude/unbilled"
-ERA_DETAILS = os.path.join(WS, "era_details")
-REG_DIRS = [os.path.join(WS, "registers"), os.path.join(HERE, "..", "practices", "ehpa", "registers"),
-            "/home/claude/effinger-billing-backend/practices/ehpa/registers"]
-LOG = open(os.path.join(WS if os.path.isdir(WS) else HERE, "payreasons.log"), "a")
+WS = os.path.dirname(os.path.abspath(__file__))
+REGD = os.path.join(WS, "registers"); os.makedirs(REGD, exist_ok=True)
+CACHE = os.path.join(WS, "era_details"); os.makedirs(CACHE, exist_ok=True)
+_LOG = open(os.path.join(WS, "payreasons.log"), "a")
 def L(m):
-    print(m, flush=True); LOG.write("%s %s\n" % (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), m)); LOG.flush()
+    print(m, flush=True); _LOG.write("%s %s\n" % (time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), m)); _LOG.flush()
 def f(v):
     try: return round(float(str(v).replace(",", "") or 0), 2)
     except Exception: return 0.0
+def num(s): return re.sub(r"\D", "", str(s or ""))
 def stamp(): return datetime.datetime.utcnow().strftime("%Y-%m-%dT%H%MZ")
-
-# ---------------------------------------------------------------- registers -> which payments the fallback posted
-def register_lines():
-    """Every 'posted' line of era_manual_register.json + era_fallback_*_live.json (the addpayments fallback posts)."""
-    seen = {}; files = []
-    for d in REG_DIRS:
-        if not os.path.isdir(d): continue
-        files += [os.path.join(d, "era_manual_register.json")] + sorted(glob.glob(os.path.join(d, "era_fallback_*_live.json")))
-    for fn in files:
-        if not os.path.exists(fn): continue
-        try: data = json.load(open(fn))
-        except Exception as e: L("register unreadable %s: %s" % (fn, e)); continue
-        items = data if isinstance(data, list) else (data.get("lines") or data.get("results") or [])
-        for x in items:
-            if x.get("outcome") != "posted" or not x.get("chargeid") and not x.get("chargedetailid"): continue
-            cid = str(x.get("chargeid") or x.get("chargedetailid"))
-            key = (str(x.get("pid")), cid, str(x.get("checkno") or "").split("(")[0])
-            if key in seen: continue
-            seen[key] = {"pid": str(x["pid"]), "cid": cid, "visitid": x.get("visitid"), "checkid": str(x.get("checkid") or ""),
-                         "checkclaimid": x.get("checkclaimid"), "checkno": key[2], "carrier": x.get("carrier"), "cpt": x.get("cpt"),
-                         "dos": x.get("dos"), "pay": f(x.get("pay")), "wo": f(x.get("wo")), "when": x.get("when"), "register": os.path.basename(fn)}
-    return list(seen.values())
-
-# ---------------------------------------------------------------- tx history: the diagnostic (payreason children)
-def chart_payments(pid, root=None):
-    """[(charge attrs, payment attrs, [ (group+code, amount) reasons ])] for every non-void payment on the chart."""
-    root = root if root is not None else txh.fetch(pid)
-    out = []
-    for c in root.iter("charge"):
-        if c.get("void") == "1": continue
-        for p in c.iter("payment"):
-            if p.get("void") == "1": continue
-            reasons = [(r.get("code", ""), f(r.get("amount")), r.get("description", "")) for r in p.iter("payreason")]
-            out.append((c.attrib, p.attrib, reasons))
-    return out
-
-def fee_of(cattrs):
-    for k in ("fee", "amount", "netfee", "charge", "chargeamount"):
-        if cattrs.get(k) not in (None, ""): return f(cattrs.get(k))
-    return 0.0
-
-def codeless(pid, since=None, root=None):
-    """Non-void insurance payments with amount != 0 (or any amount when since is None) and no payreason children."""
-    out = []
-    for c, p, reasons in chart_payments(pid, root):
-        if reasons: continue
-        ct = (p.get("createtime") or p.get("date") or "")[:10]
-        if since and ct and ct < since: continue
-        out.append({"pid": str(pid), "cid": re.sub(r"\D", "", c.get("id", "")), "payid": re.sub(r"\D", "", p.get("id", "")),
-                    "amount": f(p.get("amount")), "checkno": p.get("checknumber", ""), "carrier": p.get("carrier", ""),
-                    "createtime": p.get("createtime", ""), "fee": fee_of(c), "cpt": c.get("proccode", ""), "dos": c.get("dos") or c.get("dateofservice", ""),
-                    "insbalance": f(c.get("insbalance")), "patbalance": f(c.get("patbalance"))})
-    return out
-
-def candidates(since=None, pids=None, chartwide=False):
-    """The repair set. Default = register-driven: every fallback-posted line whose payment (same charge, same check
-    number, same amount) still has no reason codes. chartwide=True = every code-less non-zero insurance payment on the
-    register patients (or --pid) since <since>."""
-    lines = register_lines()
-    by_pid = {}
-    for x in lines: by_pid.setdefault(x["pid"], []).append(x)
-    targets = [str(p) for p in pids] if pids else sorted(by_pid)
-    out = []
-    for pid in targets:
-        root = txh.fetch(pid)
-        cl = codeless(pid, since=since, root=root)
-        if chartwide:
-            for x in cl:
-                if x["amount"] != 0: out.append(dict(x, source="chartwide"))
-            continue
-        for reg in by_pid.get(pid, []):
-            hits = [x for x in cl if x["cid"] == reg["cid"] and abs(x["amount"] - reg["pay"]) < 0.011
-                    and (not reg["checkno"] or not x["checkno"] or x["checkno"].split("(")[0] == reg["checkno"])]
-            for x in hits: out.append(dict(x, source=reg["register"], checkid=reg["checkid"], checkclaimid=reg["checkclaimid"], era_cpt=reg["cpt"], era_dos=reg["dos"]))
-        time.sleep(0.4)
-    return out
-
-# ---------------------------------------------------------------- the remit's CARC list for one charge
-def era_details(checkid):
-    fn = os.path.join(ERA_DETAILS, "%s.json" % checkid)
-    if os.path.exists(fn):
-        try: return json.load(open(fn))
-        except Exception: pass
-    try:
-        import era_post
-        d = era_post.details(checkid)
-        os.makedirs(ERA_DETAILS, exist_ok=True); json.dump(d, open(fn, "w"))
-        return d
-    except Exception as e:
-        L("era_details %s unavailable: %s" % (checkid, e)); return None
-
-def find_check_for_charge(cid, checkno=None):
-    """No check id on file (a hand post outside the registers): search every cached era_details file for the charge."""
-    for fn in sorted(glob.glob(os.path.join(ERA_DETAILS, "*.json")), key=os.path.getmtime, reverse=True):
-        try: d = json.load(open(fn))
-        except Exception: continue
-        for v in d.get("eracheckdetails") or []:
-            for ch in v.get("charges", []):
-                if str(ch.get("chargedetailid")) == str(cid) and (not checkno or str(d.get("paymentnumber", "")).split("(")[0] in ("", checkno)):
-                    return os.path.basename(fn)[:-5], v.get("checkclaimid")
-    return None, None
-
-def remit_carc(checkid, cid=None, checkclaimid=None, cpt=None, dos=None):
-    """[{group, code, amount, payreasonid, reportreasondetailid, text}] for the ERA line matched to this charge."""
-    if not checkid and cid:
-        checkid, checkclaimid = find_check_for_charge(cid)
-        if not checkid: return None, "charge %s not found in any cached era_details file" % cid
-    d = era_details(checkid)
-    if not d: return None, "no era details for check %s" % checkid
-    visits = d.get("eracheckdetails") or d.get("visits") or []
-    for v in visits:
-        if checkclaimid and str(v.get("checkclaimid")) != str(checkclaimid): continue
-        for ch in v.get("charges", []):
-            m = (cid and str(ch.get("chargedetailid")) == str(cid)) or \
-                (cpt and dos and str(ch.get("chargecode")) == str(cpt) and str(ch.get("dos", ""))[:10] == _iso(dos))
-            if not m: continue
-            carc = [{"group": str(r.get("payreasongroup") or ""), "code": str(r.get("reasoncode") or ""), "amount": f(r.get("reasonamt")),
-                     "payreasonid": r.get("payreasonid"), "reportreasondetailid": r.get("reportreasondetailid"), "text": r.get("reasontext", "")}
-                    for r in ch.get("carc", [])]
-            rarc = [r.get("remarkcode") for r in ch.get("rarc", []) if r.get("remarkcode") and r.get("remarkcode") != "#AM"]
-            return {"carc": carc, "rarc": rarc, "era_paid": f(ch.get("paymentamount")), "allowed": f(ch.get("allowedamount")),
-                    "claimamount": f(ch.get("claimamount")), "visit": v.get("visitid")}, ""
-    return None, "charge %s / %s %s not on check %s" % (cid, cpt, dos, checkid)
-
-def _iso(d):
-    d = str(d or "")
-    m = re.match(r"(\d{2})/(\d{2})/(\d{4})", d)
-    return "%s-%s-%s" % (m.group(3), m.group(1), m.group(2)) if m else d[:10]
-
-# ---------------------------------------------------------------- the balanced reason list
-def plan(paid, fee, carc):
-    """PR (patient responsibility) amounts verbatim from the remit; the contractual CO-45 absorbs whatever is needed
-    so paid + sum(reasons) == fee (AMD's 'do not balance' check). Returns (reasons, note) or (None, why)."""
-    reasons = [dict(r) for r in (carc or []) if r.get("code")]
-    if fee <= 0: return None, "charge fee unknown"
-    s = round(sum(r["amount"] for r in reasons), 2)
-    delta = round(fee - paid - s, 2)
-    note = "remit balances" if abs(delta) < 0.011 else "CO45 adjusted by %+.2f (remit CARCs sum %.2f, paid %.2f, fee %.2f)" % (delta, s, paid, fee)
-    if abs(delta) >= 0.011:
-        co45 = next((r for r in reasons if r["group"] == "CO" and r["code"] == "45"), None)
-        if co45 is None:
-            if delta < 0: return None, "reasons exceed the fee by %.2f and there is no CO-45 to reduce" % -delta
-            co45 = {"group": "CO", "code": "45", "amount": 0.0, "payreasonid": None, "text": "Charge exceeds fee schedule/maximum allowable"}
-            reasons.append(co45)
-        if round(co45["amount"] + delta, 2) < 0: return None, "CO-45 would go negative (%.2f%+.2f)" % (co45["amount"], delta)
-        co45["amount"] = round(co45["amount"] + delta, 2)
-    reasons = [r for r in reasons if abs(r["amount"]) >= 0.005 or r["group"] != "CO"]
-    return reasons, note
-
-# ---------------------------------------------------------------- the captured Payment Entry edit (filled in 9/21/2026)
-REASON_IDS = {}   # "CO45" -> payreasonid, learned from era_details carc entries and the Reason Codes dialog lookup
-
-def learn_reason_ids():
-    for fn in glob.glob(os.path.join(ERA_DETAILS, "*.json")):
-        try: d = json.load(open(fn))
-        except Exception: continue
-        for v in d.get("eracheckdetails") or []:
-            for ch in v.get("charges", []):
-                for r in ch.get("carc", []):
-                    k = "%s%s" % (r.get("payreasongroup"), r.get("reasoncode"))
-                    if r.get("payreasonid") and k not in REASON_IDS: REASON_IDS[k] = r["payreasonid"]
-    return REASON_IDS
-
-def build_edit_xml(pid, cid, payid, reasons, current):
-    """The Payment Entry Save with reason codes - shape pending William's DevTools capture (9/21/2026)."""
-    raise NotImplementedError("Payment Entry reason-code edit call not captured yet - paste William's DevTools request")
-
-def apply(pid, cid, payid, reasons, current, dry=True):
-    xml = build_edit_xml(pid, cid, payid, reasons, current)
-    if dry: return True, "DRY " + re.sub(r"\s+", " ", xml)[:400]
-    r = amd.post(xml)
-    ok = 'success="1"' in r and "<Fault" not in r
-    return ok, re.sub(r"\s+", " ", r)[:300]
-
-def verify(pid, payid, expect=None):
-    """Re-read the chart: the payment now carries payreason children and paid + reasons == fee."""
-    for c, p, reasons in chart_payments(pid):
-        if re.sub(r"\D", "", p.get("id", "")) != str(payid): continue
-        fee = fee_of(c); paid = f(p.get("amount")); s = round(sum(a for _, a, _ in reasons), 2)
-        ok = bool(reasons) and abs(paid + s - fee) < 0.011
-        if expect: ok = ok and sorted((k, a) for k, a, _ in reasons) == sorted((r["group"] + r["code"], r["amount"]) for r in expect)
-        return ok, {"reasons": reasons, "paid": paid, "fee": fee, "sum": s}
-    return False, "payment %s not found on chart %s" % (payid, pid)
+def esc(x): return (str(x) if x is not None else "").replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+PAYMETHOD = {"ACH": "9", "NON": "10", "CHK": "11", "FWT": "12", "BOP": "13"}
+# checks whose unposted list entry is gone but whose lines we still re-post from the cache (metadata for the ERA link)
+KNOWN_CHECKS = {"1051714": {"id": 1051714, "paymentnumber": "819814877(0)", "depositdate": "2026-09-22T00:00:00", "paymentcode": "ACH", "systemcarriercode": "FLO02", "systemcarrierid": 6085},
+                "1051715": {"id": 1051715, "paymentnumber": "819814877(1)", "depositdate": "2026-09-22T00:00:00", "paymentcode": "ACH", "systemcarriercode": "FLO02", "systemcarrierid": 6085}}
 
 # ---------------------------------------------------------------- Unbilled rows of this error class
-def unbilled_reason_rows():
-    """getclaimunbillablecharges rows whose error starts 'Payment reason codes' -> [(pid, visitid, cid?, error)]."""
+def unbilled_rows(all_rows=False):
+    """getclaimunbillablecharges -> rows; reason_row = the visit block carries 'Payment reason codes are missing or do not balance'
+    (at the visit level, or under 'One or more charges within this visit have errors')."""
     r = amd.post(amd.msg("getclaimunbillablecharges", "claimsreports", {"lowdate": "", "highdate": "", "carrier": "", "provider": "", "nocookie": "1"}))
     out = []
-    # robust to the exact nesting: one <visit ...> ... </visit> block per row; the error text sits inside it
-    for blk in re.findall(r"<visit\b[^>]*>.*?</visit>", r, flags=re.S) or re.findall(r"<visit\b[^>]*/>", r):
-        if "payment reason codes" not in blk.lower(): continue
+    for blk in re.findall(r"<visit\b[^>]*>.*?</visit>", r, flags=re.S):
         head = dict(re.findall(r'(\w+)="([^"]*)"', re.match(r"<visit\b[^>]*>", blk).group(0)))
-        pid = re.sub(r"\D", "", head.get("patientid") or head.get("patient") or "")
-        if not pid:
-            m = re.search(r'patientid="([^"]*)"|<patient\b[^>]*\bid="([^"]*)"', blk); pid = re.sub(r"\D", "", (m.group(1) or m.group(2)) if m else "")
-        err = re.search(r"Payment reason codes[^<\"]*", blk); err = err.group(0) if err else "Payment reason codes are missing or do not balance"
-        out.append({"pid": pid, "visitid": re.sub(r"\D", "", head.get("id", "")), "error": err, "name": head.get("patientname", "")})
+        errs = re.findall(r'<error\b[^>]*\bname="([^"]*)"', blk)
+        row = {"visitid": num(head.get("id")), "pid": num(head.get("patientid")), "name": head.get("patientname", ""), "next_carrier": head.get("carriercode", ""),
+               "errors": " | ".join(dict.fromkeys(e for e in errs if e)), "reason_row": "payment reason codes" in blk.lower(),
+               "charges": [dict(re.findall(r'(\w+)="([^"]*)"', c)) for c in re.findall(r"<charge\b[^>]*/>", blk)]}
+        if all_rows or row["reason_row"]: out.append(row)
     return out
 
-def unbilled_candidates(rows):
-    """For the flagged visits: every non-void payment on their charges with no payreason children (any amount - a $0
-    code-less 'Process Accepted' post blocks the next payer too; those are voided per the 9/12 rule, non-zero ones repaired)."""
-    reg = {(x["pid"], x["cid"]): x for x in register_lines()}
-    by_pid = {}
-    for r in rows:
-        if r["pid"]: by_pid.setdefault(r["pid"], set()).add(r["visitid"])
-    out = []
-    for pid, vids in sorted(by_pid.items()):
-        root = txh.fetch(pid)
-        for c, p, reasons in chart_payments(pid, root):
-            if reasons or (c.get("visit") or c.get("visitid") or "") not in vids: continue
-            cid = re.sub(r"\D", "", c.get("id", "")); rg = reg.get((pid, cid), {})
-            out.append({"pid": pid, "cid": cid, "visitid": c.get("visit") or c.get("visitid"), "payid": re.sub(r"\D", "", p.get("id", "")),
-                        "amount": f(p.get("amount")), "checkno": (p.get("checknumber") or "").split("(")[0], "carrier": p.get("carrier", ""),
-                        "createtime": p.get("createtime", ""), "fee": fee_of(c), "cpt": c.get("proccode", ""), "dos": c.get("dos") or c.get("dateofservice", ""),
-                        "insbalance": f(c.get("insbalance")), "patbalance": f(c.get("patbalance")), "source": "unbilled",
-                        "checkid": rg.get("checkid"), "checkclaimid": rg.get("checkclaimid"), "era_cpt": rg.get("cpt"), "era_dos": rg.get("dos")})
-        time.sleep(0.4)
-    return out
+def release_visit(vid):
+    """hideunbillablevisits hide=-1 - the visit id is NUMERIC (vst-prefixed ids fault: 'Conversion failed ... nvarchar')."""
+    r = amd.post(amd.msg("hideunbillablevisits", "claimsreports", {"hide": "-1", "nocookie": "1"}, '<visitlist><visit id="%s"/></visitlist>' % num(vid)))
+    return ('success="1"' in r and "<Fault" not in r), re.sub(r"\s+", " ", r)[:160]
 
-def visit_balanced(pid, visitid):
-    """True when every non-void payment on the visit's charges carries reasons that balance to the fee."""
-    for c, p, reasons in chart_payments(pid):
-        if (c.get("visit") or c.get("visitid") or "") != str(visitid): continue
-        if not reasons or abs(f(p.get("amount")) + sum(a for _, a, _ in reasons) - fee_of(c)) >= 0.011: return False
+# ---------------------------------------------------------------- chart state (gettxhistory: amounts are negative credits there)
+def visit_state(pid, vid, root=None):
+    root = root if root is not None else txh.fetch(pid)
+    charges = []
+    for c in root.iter("charge"):
+        if c.get("void") == "1" or num(c.get("visit")) != str(vid): continue
+        pays = [{"id": num(p.get("id")), "amount": abs(f(p.get("amount"))), "checkno": p.get("checknumber") or "", "carrier": p.get("carrier", ""), "date": p.get("date", ""),
+                 "createtime": p.get("createtime", ""), "void": p.get("void", ""), "reasons": [(r.get("code", ""), f(r.get("amount"))) for r in p.iter("payreason")]} for p in c.iter("payment")]
+        wos = [{"id": num(w.get("id")), "amount": abs(f(w.get("amount"))), "code": w.get("wocode", ""), "date": w.get("date", ""), "createtime": w.get("createtime", ""), "void": w.get("void", "")} for w in c.iter("writeoff")]
+        charges.append({"cid": num(c.get("id")), "cpt": c.get("proccode", ""), "dos": c.get("dos", ""), "fee": f(c.get("fee")), "paid": abs(f(c.get("paid"))),
+                        "insbalance": f(c.get("insbal")), "patbalance": f(c.get("patbal")), "carrier": c.get("carrier", ""), "pays": pays, "wos": wos})
+    return charges
+
+def balanced(charges):
+    """AMD's test behind the Unbilled error: every live payment's |paid| + sum(reason amounts) == the charge fee."""
+    for c in charges:
+        for p in c["pays"]:
+            if p["void"] == "1": continue
+            if not p["reasons"] or abs(p["amount"] + sum(a for _, a in p["reasons"]) - c["fee"]) >= 0.011: return False
     return True
 
-def release(visitid):
-    r = amd.post(amd.msg("hideunbillablevisits", "claimsreports", {"hide": "-1", "nocookie": "1"}, '<visitlist><visit id="vst%s"/></visitlist>' % visitid))
-    return ('success="1"' in r and "<Fault" not in r), re.sub(r"\s+", " ", r)[:200]
+def codeless(charges):
+    return [(c, p) for c in charges for p in c["pays"] if p["void"] != "1" and not p["reasons"]]
+
+# ---------------------------------------------------------------- ERA Center: unposted list, dismissed list, details (+ cache), restore
+_CHECKS = None
+def checks_index(refresh=False):
+    global _CHECKS
+    if _CHECKS is None or refresh: _CHECKS = {str(c["id"]): c for c in era_post.checks()}
+    return _CHECKS
+
+_DISMISSED = None
+def dismissed_index(since="2026-08-01"):
+    global _DISMISSED
+    if _DISMISSED is None:
+        r = requests.get(era_post.API + "/era/checks/dismiss", headers=era_post.H(), params={"DismissedDateBegin": since}, timeout=90)
+        _DISMISSED = {str(x["id"]): x for x in (r.json() if r.status_code == 200 else [])}
+    return _DISMISSED
+
+RESTORED = set()
+def restore(checkid):
+    """reversedismiss - the 9/19 recipe: a dismissed check comes back to the unposted list so checkdetails answers again."""
+    x = dismissed_index().get(str(checkid))
+    if not x: return False, "not in the dismissed list"
+    r = requests.post(era_post.API + "/era/checks/reversedismiss", headers=era_post.H(), data=json.dumps([{"id": int(checkid), "dismissedat": x["dismissedat"]}]), timeout=60)
+    ok = r.status_code == 200; L("   reversedismiss %s -> HTTP %s %s" % (checkid, r.status_code, r.text[:90]))
+    if ok: RESTORED.add(str(checkid)); _DET.pop(str(checkid), None); checks_index(refresh=True); time.sleep(1)
+    return ok, r.text[:120]
+
+def redismiss(checkid):
+    r = requests.post(era_post.API + "/era/checks/dismiss", headers=era_post.H(), data=json.dumps(str(checkid)), timeout=60)
+    ok = r.status_code == 200 and '"issuccess":true' in r.text; L("   dismiss %s again -> HTTP %s %s" % (checkid, r.status_code, r.text[:90]))
+    if ok: RESTORED.discard(str(checkid)); checks_index(refresh=True)
+    return ok, r.text[:120]
+
+_DET = {}
+def details(checkid, fresh=False):
+    """Live checkdetails; when AMD returns no claims (check processed or dismissed) the era_details/<id>.json cache is used."""
+    checkid = str(checkid)
+    if fresh: _DET.pop(checkid, None)
+    if checkid not in _DET:
+        d = era_post.details(checkid); fn = os.path.join(CACHE, "%s.json" % checkid)
+        if d.get("eracheckdetails"): json.dump(d, open(fn, "w"))
+        elif os.path.exists(fn): d = json.load(open(fn)); d["_stale_cache"] = True
+        _DET[checkid] = d
+    return _DET[checkid]
+
+def check_meta(checkid, v=None):
+    """The check-level fields the ERA link needs (paymentnumber, depositdate, paymentcode, carrier) from wherever they survive."""
+    cid = str(checkid)
+    chk = checks_index().get(cid) or KNOWN_CHECKS.get(cid)
+    if chk: return chk
+    dm = dismissed_index().get(cid, {})
+    return {"id": int(cid), "paymentnumber": dm.get("paymentnumber", ""), "depositdate": dm.get("checkoreftdate", ""), "paymentcode": dm.get("paymentcode", "ACH"),
+            "systemcarriercode": "", "systemcarrierid": (v or {}).get("carrierid") or ""}
+
+def register_index():
+    """visitid -> the fallback register lines that hand-posted it (checkid, checkclaimid, chargeid ...)."""
+    idx = {}
+    for fn in [os.path.join(REGD, "era_manual_register.json")] + sorted(glob.glob(os.path.join(REGD, "era_fallback_*_live.json"))):
+        if not os.path.exists(fn): continue
+        try: data = json.load(open(fn))
+        except Exception: continue
+        for x in (data if isinstance(data, list) else data.get("lines") or []):
+            if x.get("outcome") == "posted": idx.setdefault(str(x.get("visitid")), []).append(x)
+    return idx
+
+def era_line(vid, charges, allow_restore=True):
+    """(checkid, chk, visit-detail) for the ERA claim behind the visit's hand posts: the register first, then the payments'
+    check numbers against the unposted and dismissed lists; a dismissed check is restored on demand (and re-dismissed by the caller)."""
+    cands = [str(x.get("checkid")) for x in register_index().get(str(vid), [])]
+    chknos = {p["checkno"].split("(")[0] for c, p in codeless(charges) if p["checkno"]}
+    for src in (checks_index(), dismissed_index()):
+        cands += [cid for cid, c in src.items() if str(c.get("paymentnumber", "")).split("(")[0] in chknos]
+    seen = set()
+    for cid in cands:
+        if not cid or cid in seen or cid == "None": continue
+        seen.add(cid)
+        try: d = details(cid)
+        except Exception as e: L("   check %s details: %s" % (cid, e)); continue
+        if not d.get("eracheckdetails") and allow_restore and cid in dismissed_index() and cid not in checks_index():
+            ok, _ = restore(cid)
+            if ok: d = details(cid, fresh=True)
+        for v in d.get("eracheckdetails", []):
+            if str(v.get("visitid")) == str(vid): return cid, check_meta(cid, v), v
+    return None, None, None
+
+# ---------------------------------------------------------------- the ERA-linked Payment Entry shape (carries the reasons)
+def line_amounts(ch, bal):
+    """pay = the remit's paid (capped at the open balance), wo = the CO/OA/PI adjustments capped so pay+wo <= balance,
+    write-off code from the CARC (CO-29 WOLATE, CO-96/204/50 WONCS, else the remit's payreasonwocode or WOINS)."""
+    paid = f(ch.get("paymentamount")); pay = min(paid, bal)
+    co = 0.0; code = (ch.get("payreasonwocode") or "").strip() or "WOINS"
+    for a in ch.get("carc", []):
+        if str(a.get("payreasongroup")).upper() in ("CO", "OA", "PI"):
+            co += f(a.get("reasonamt")); rc = re.sub(r"\D", "", str(a.get("reasoncode") or ""))
+            if rc == "29": code = "WOLATE"
+            elif rc in ("96", "204", "50"): code = "WONCS"
+    wo = max(0.0, min(round(co, 2), round(bal - pay, 2)))
+    return round(pay, 2), round(wo, 2), code, round(paid - pay, 2)
+
+def era_linked_xml(pid, chk, v, lines):
+    """lines = [(cid, era charge dict, pay, wo, wocode)] -> the addpayments message the ERA Center's manual post sends."""
+    charges = ""; applied = 0.0; wo_total = 0.0; prof = "prof%s" % v["profileid"]
+    for cid, ch, pay, wo, wocode in lines:
+        rt = ET.fromstring(resave.detail(cid)); c = [x for x in rt.iter("charge") if x.get("id") == "charge" + str(cid)][0]
+        bal = f(c.get("insbalance")); allowed = f(ch.get("allowedamount"))
+        if pay + wo > bal + 0.005: raise RuntimeError("over-apply on charge %s: pay %.2f + wo %.2f > insbalance %.2f" % (cid, pay, wo, bal))
+        reasons = "".join('<reason id="%s" reasonid="%s" code="%s" name="%s" amount="%s" units="0" group="%s"/>'
+                          % (r["reportreasondetailid"], r["payreasonid"], r["reasoncode"], esc(r["reasontext"]), r["reasonamt"], r["payreasongroup"]) for r in ch.get("carc", []))
+        first = ch["carc"][0]["reasoncode"] if ch.get("carc") else ""
+        charges += ('<charge id="charge%s" allowed="%.2f" insportion="%s" patportion="%s" insbalance="%.2f" patbalance="%s" profile="%s">'
+                    '<paymentlist><payment amount="%.2f" id="" reason="%s" status="B"><reasonlist payment="%.2f" allowed="%.2f">%s</reasonlist></payment></paymentlist>'
+                    '<writeofflist>%s</writeofflist></charge>'
+                    % (cid, allowed, c.get("insportion") or "%.2f" % bal, c.get("patportion") or "0.00", bal, c.get("patbalance") or "0.00", prof,
+                       pay, first, pay, allowed, reasons, ('<writeoff id="" risk="0" amount="%.2f" code="%s" status="B"/>' % (wo, wocode)) if wo > 0 else ""))
+        applied += pay; wo_total += wo
+    dd = str(chk.get("depositdate") or "")[:10]; dd = "%s/%s/%s" % (dd[5:7], dd[8:10], dd[:4]) if "-" in dd else (dd or time.strftime("%m/%d/%Y"))
+    carid = chk.get("systemcarrierid") or v.get("carrierid")
+    return ('<ppmdmsg action="addpayments" class="paymententry" msgtime="%s" useopenedge="1" checkout="0" date="" nocookie="1">'
+            '<patient patientid="pat%s" paysource="2" postingmethod="era" amount="%.2f" paycode="PE" woamount="%.2f" paymethod="%s" carrierid="car%s" '
+            'depositdate="%s" eraclaimid="%s" erareportid="%s" case_note="" checknumber="%s" inclstmt="0" postedby="POI0712" batch="">'
+            '<unappliedpaymentlist/><unappliedwriteofflist/><chargelist>%s</chargelist></patient></ppmdmsg>'
+            % (amd._msgtime(), num(pid), applied, wo_total, PAYMETHOD.get(chk.get("paymentcode"), "9"), num(carid), dd,
+               v["checkclaimid"], chk["id"], str(chk.get("paymentnumber", "")), charges)), applied, wo_total
+
+def post_line(pid, vid, chk, v, cid, ch, pay=None, wo=None, wocode=None):
+    """Post ONE ERA line (with its reasons) onto charge cid. Returns (ok, paymentid, response head)."""
+    if pay is None:
+        rt = ET.fromstring(resave.detail(cid)); c = [x for x in rt.iter("charge") if x.get("id") == "charge" + str(cid)][0]
+        pay, wo, wocode, _ = line_amounts(ch, f(c.get("insbalance")))
+    xml, applied, wot = era_linked_xml(pid, chk, v, [(str(cid), ch, pay, wo, wocode or "WOINS")])
+    r = amd.post(xml); ok = 'success="1"' in r and "<Fault" not in r
+    m = re.search(r'paymentid="(\d+)"', r)
+    return ok, (m.group(1) if m else ""), re.sub(r"\s+", " ", r)[:200]
+
+# ---------------------------------------------------------------- repair
+def repost_visit(pid, vid, checkid, release=True):
+    """Every ERA money line of the visit that has no live matching payment with reasons is re-posted through the ERA-linked shape."""
+    d = details(checkid); vd = [v for v in d.get("eracheckdetails", []) if str(v["visitid"]) == str(vid)]
+    rec = {"visitid": str(vid), "pid": str(pid), "checkid": str(checkid), "steps": []}
+    if not vd: rec["outcome"] = "no-era-line"; return rec
+    v = vd[0]; chk = check_meta(checkid, v); st = visit_state(pid, vid); lines = []
+    for ch in v.get("charges", []):
+        cid = str(ch.get("chargedetailid")); paid = f(ch.get("paymentamount"))
+        if int(ch.get("chargedetailid") or -1) <= 0 or paid <= 0: continue
+        live = [p for c in st if c["cid"] == cid for p in c["pays"] if p["void"] != "1" and abs(p["amount"] - paid) < 0.011 and p["reasons"]]
+        hand = [p for c in st if c["cid"] == cid for p in c["pays"] if p["void"] != "1" and p["amount"] > 0 and not p["reasons"]]
+        if hand: rec["outcome"] = "hand-post-still-live"; rec["hand"] = [(cid, p["id"], p["amount"]) for p in hand]; return rec
+        if live: continue
+        bal = [c for c in st if c["cid"] == cid][0]["insbalance"]
+        pay, wo, code, resid = line_amounts(ch, bal)
+        if pay <= 0: rec["steps"].append(("skip", cid, "no open balance", bal)); continue
+        lines.append((cid, ch, pay, wo, code))
+    if not lines: rec["outcome"] = "already-posted"; return rec
+    xml, applied, wot = era_linked_xml(pid, chk, v, lines)
+    r = amd.post(xml); ok = 'success="1"' in r and "<Fault" not in r
+    rec["steps"].append(("addpayments-era", [(cid, ch.get("chargecode"), pay, wo, code) for cid, ch, pay, wo, code in lines], applied, wot, ok, re.sub(r"\s+", " ", r)[:160]))
+    L("== REPOST visit %s pat%s: %d line(s) pay %.2f wo %.2f -> %s %s" % (vid, pid, len(lines), applied, wot, ok, re.sub(r"\s+", " ", r)[:100]))
+    time.sleep(1.2)
+    after = visit_state(pid, vid); rec["after"] = after
+    good = ok and balanced(after) and all(any(p["void"] != "1" and abs(p["amount"] - pay) < 0.011 and p["reasons"] for c in after if c["cid"] == cid for p in c["pays"]) for cid, ch, pay, wo, code in lines)
+    L("   after: %s" % json.dumps([(c["cid"], c["fee"], c["insbalance"], [(p["id"], p["amount"], p["reasons"]) for p in c["pays"] if p["void"] != "1"]) for c in after]))
+    rec["outcome"] = "repaired" if good else ("posted-unverified" if ok else "post-failed")
+    if good and release:
+        rok, msg = release_visit(vid); rec["steps"].append(("release", rok, msg)); L("   release -> %s" % rok)
+    return rec
+
+def repair_row(row, live=False, release=True, keep_restored=False):
+    """One Unbilled reason-code row: void the code-less payments (+ the write-off posted with each, + $0 code-less lines),
+    then repost_visit from the remit. Dry (live=False) only plans."""
+    pid, vid = row["pid"], row["visitid"]
+    st = visit_state(pid, vid); cl = codeless(st)
+    checkid, chk, v = era_line(vid, st, allow_restore=live)
+    rec = {"visitid": vid, "pid": pid, "name": row.get("name", ""), "next_carrier": row.get("next_carrier", ""), "checkid": checkid,
+           "codeless": [(c["cid"], p["id"], p["amount"], p["checkno"]) for c, p in cl], "steps": []}
+    wos = [(c["cid"], w["id"], w["amount"], w["code"]) for c, p in cl for w in c["wos"] if w["void"] != "1" and w["createtime"][:19] == p["createtime"][:19]]
+    rec["wos_to_void"] = wos
+    L("== visit %s pat%s %s -> %s: code-less %s; write-offs %s; check %s" % (vid, pid, rec["name"], rec["next_carrier"], rec["codeless"], wos, checkid))
+    if balanced(st) and not cl: rec["outcome"] = "already-balanced"
+    elif not v: rec["outcome"] = "no-era-line"
+    else:
+        chkno = str(chk.get("paymentnumber") or "").split("(")[0]
+        if [1 for c, p in cl if p["checkno"] and chkno and p["checkno"].split("(")[0] != chkno]: rec["outcome"] = "mixed-checks"
+        elif not live: rec["outcome"] = "would-repair"
+        else:
+            for c, p in cl:
+                ok, msg = void_tx.void_payment(pid, c["cid"], p["id"]); rec["steps"].append(("void_payment", c["cid"], p["id"], p["amount"], ok)); L("   void payment %s $%.2f on %s -> %s" % (p["id"], p["amount"], c["cid"], ok))
+                if not ok: rec["outcome"] = "void-failed"; break
+                time.sleep(0.4)
+            else:
+                for cid, woid, amt, code in wos:
+                    ok, msg = void_tx.void_writeoff(pid, cid, woid); rec["steps"].append(("void_writeoff", cid, woid, amt, code, ok)); L("   void write-off %s $%.2f %s on %s -> %s" % (woid, amt, code, cid, ok))
+                    if not ok: rec["outcome"] = "void-wo-failed"; break
+                    time.sleep(0.4)
+                else:
+                    sub = repost_visit(pid, vid, checkid, release=release); rec["steps"] += sub.get("steps", []); rec["after"] = sub.get("after"); rec["outcome"] = sub["outcome"]
+    if rec["outcome"] == "already-balanced" and live and release and row.get("reason_row"):
+        rok, msg = release_visit(vid); rec["steps"].append(("release", rok, msg))
+    if checkid in RESTORED and not keep_restored: redismiss(checkid)
+    return rec
+
+def audit(since_payid, pids=None):
+    """Every live payment with id > since_payid on the given charts vs the remit line (cache) - the 9/21 sweep check."""
+    vis = {}
+    for fn in glob.glob(os.path.join(CACHE, "*.json")):
+        try: d = json.load(open(fn))
+        except Exception: continue
+        for v in d.get("eracheckdetails", []): vis.setdefault(str(v["visitid"]), (os.path.basename(fn)[:-5], str(v["patientid"]), v))
+    pids = pids or sorted({p for _, p, _ in vis.values()}); out = []
+    for pid in pids:
+        root = txh.fetch(pid)
+        for c in root.iter("charge"):
+            if c.get("void") == "1": continue
+            for p in c.iter("payment"):
+                if p.get("void") == "1" or int(num(p.get("id")) or 0) <= since_payid: continue
+                v = vis.get(c.get("visit")); era = [ch for ch in v[2].get("charges", []) if str(ch.get("chargedetailid")) == c.get("id")] if v else []
+                paid = f(era[0]["paymentamount"]) if era else None; amt = abs(f(p.get("amount")))
+                out.append({"pid": pid, "visit": c.get("visit"), "cid": c.get("id"), "payid": p.get("id"), "amount": amt, "remit_paid": paid,
+                            "reasons": [(r.get("code"), r.get("amount")) for r in p.iter("payreason")], "verdict": "ok" if paid is not None and abs(amt - paid) < 0.011 else ("no-remit-line" if paid is None else "MISMATCH")})
+        time.sleep(0.25)
+    return out
 
 # ---------------------------------------------------------------- CLI
 if __name__ == "__main__":
     a = sys.argv[1:]
-    def opt(name, default=None):
-        return a[a.index(name) + 1] if name in a and a.index(name) + 1 < len(a) else default
-    live = "--live" in a; do_release = "--release" in a; since = opt("--since"); pids = [opt("--pid")] if opt("--pid") else None
-    limit = int(opt("--limit", "0") or 0)
+    def opt(name, default=None): return a[a.index(name) + 1] if name in a and a.index(name) + 1 < len(a) else default
+    live = "--live" in a; release = "--no-release" not in a
     amd.login_cached()
-    rows = []
-    if "--unbilled" in a:
-        rows = unbilled_reason_rows(); L("Unbilled 'Payment reason codes' rows: %d" % len(rows))
-        cands = unbilled_candidates(rows); mode = "unbilled rows"
+    reg = {"stamp": stamp(), "mode": "live" if live else "dry", "results": []}
+    if "--audit" in a:
+        reg["results"] = audit(int(opt("--since-payid", "0")), [opt("--pid")] if opt("--pid") else None)
+        from collections import Counter; L("audit: %s" % dict(Counter(x["verdict"] for x in reg["results"])))
+        for x in reg["results"]:
+            if x["verdict"] != "ok": L("   %s" % json.dumps(x))
+    elif "--repost-file" in a:
+        spec = json.load(open(opt("--repost-file")))
+        for vid, pid, checkid in spec["visits"]:
+            try: rec = repost_visit(str(pid), str(vid), str(checkid), release=release) if live else {"visitid": vid, "outcome": "dry"}
+            except Exception as e: rec = {"visitid": vid, "pid": pid, "outcome": "error", "error": str(e)[:300]}; L("   ERROR %s %s" % (vid, e))
+            reg["results"].append(rec); time.sleep(0.8)
+    elif "--visit" in a:
+        row = {"visitid": opt("--visit"), "pid": opt("--pid"), "name": "", "reason_row": True}
+        reg["results"].append(repair_row(row, live=live, release=release))
     else:
-        cands = candidates(since=since, pids=pids, chartwide=bool(since)); mode = "chart-wide since %s" % since if since else "register-driven"
-    L("code-less candidate payments: %d (%s)" % (len(cands), mode))
-    reg = {"stamp": stamp(), "mode": "live" if live else "scan", "scope": mode, "unbilled_rows": rows, "candidates": len(cands), "lines": []}
-    n = 0
-    for x in cands:
-        rec = dict(x)
-        if x["amount"] == 0 and x.get("source") == "unbilled":
-            # 9/12 standing rule: a $0 payment with no reason codes on an Unbilled 'Payment reason codes' row = void it
-            if live:
-                import void_tx
-                ok, msg = void_tx.void_payment(x["pid"], x["cid"], x["payid"]); rec.update({"outcome": "voided-zero" if ok else "void-failed", "apply": msg})
-            else: rec["outcome"] = "would-void-zero"
-            reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
-        carc, why = remit_carc(x.get("checkid"), x["cid"], x.get("checkclaimid"), x.get("era_cpt") or x["cpt"], x.get("era_dos") or x["dos"])
-        if not carc:
-            rec["outcome"] = "no-remit"; rec["why"] = why; reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
-        reasons, note = plan(x["amount"], x["fee"], carc["carc"])
-        rec.update({"remit": carc, "plan": reasons, "note": note})
-        if not reasons:
-            rec["outcome"] = "unbalanced"; reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
-        if not live:
-            rec["outcome"] = "would-apply"; reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
-        if limit and n >= limit: rec["outcome"] = "limit"; reg["lines"].append(rec); continue
-        ok, msg = apply(x["pid"], x["cid"], x["payid"], reasons, x, dry=False); n += 1
-        rec["apply"] = msg
-        if ok:
-            time.sleep(0.8); vok, v = verify(x["pid"], x["payid"], reasons); rec["verify"] = v
-            rec["outcome"] = "repaired" if vok else "applied-unverified"
-        else:
-            rec["outcome"] = "failed"
-        reg["lines"].append(rec); L("  %s" % json.dumps(rec)); time.sleep(0.6)
-    if live and do_release and rows:
-        for r in rows:
-            touched = [l for l in reg["lines"] if l["pid"] == r["pid"] and l.get("outcome") in ("repaired", "voided-zero")]
-            if not touched: continue
-            time.sleep(0.5)
-            if not visit_balanced(r["pid"], r["visitid"]):
-                L("vst%s still unbalanced after repair - NOT released" % r["visitid"]); reg.setdefault("held", []).append(r["visitid"]); continue
-            ok, msg = release(r["visitid"]); L("release vst%s -> %s %s" % (r["visitid"], ok, msg)); reg.setdefault("released", []).append({"visitid": r["visitid"], "ok": ok})
-    out = os.path.join(REG_DIRS[0] if os.path.isdir(REG_DIRS[0]) else ".", "payreason_repair_%s.json" % reg["stamp"])
-    os.makedirs(os.path.dirname(out), exist_ok=True); json.dump(reg, open(out, "w"), indent=1)
+        rows = unbilled_rows(); L("Unbilled 'Payment reason codes' rows: %d" % len(rows))
+        for row in rows:
+            try: rec = repair_row(row, live=live and "--unbilled" in a, release=release, keep_restored=True)
+            except Exception as e: rec = {"visitid": row["visitid"], "pid": row["pid"], "outcome": "error", "error": str(e)[:300]}; L("   ERROR %s %s" % (row["visitid"], e))
+            reg["results"].append(rec)
+            json.dump(reg, open(os.path.join(REGD, "payreason_repair_%s.json" % reg["stamp"]), "w"), indent=1, default=str); time.sleep(0.5)
+        for cid in list(RESTORED): redismiss(cid)
+    json.dump(reg, open(os.path.join(REGD, "payreason_repair_%s.json" % reg["stamp"]), "w"), indent=1, default=str)
     from collections import Counter
-    L("SUMMARY %s -> %s" % (dict(Counter(l.get("outcome") for l in reg["lines"])), out))
+    L("SUMMARY: %s" % dict(Counter(x.get("outcome", x.get("verdict", "?")) for x in reg["results"])))

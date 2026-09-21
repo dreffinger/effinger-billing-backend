@@ -1,0 +1,1618 @@
+{
+ "stamp": "2026-09-21T0609Z",
+ "rows": [
+  {
+   "visitid": "19385956",
+   "pid": "25542",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22456204",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "A41.9",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113701",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456229",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "A41.9",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19386697",
+   "pid": "17471795",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22456871",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R00.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456872",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456873",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456874",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392338",
+   "pid": "20903",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "22464275",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "N18.5",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464276",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "N18.5",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392347",
+   "pid": "23391",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22464291",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "K92.2",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464292",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "K92.2",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392360",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464355",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464356",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392439",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464400",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464401",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392574",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464571",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464572",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464641",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464642",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392671",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464733",
+     "visit": "19392671",
+     "dos": "10/30/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113914",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464734",
+     "visit": "19392671",
+     "dos": "10/30/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113914",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19393655",
+   "pid": "17471642",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22466045",
+     "visit": "19393655",
+     "dos": "11/20/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "J18.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22466046",
+     "visit": "19393655",
+     "dos": "11/20/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "J18.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19393661",
+   "pid": "17471642",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22466052",
+     "visit": "19393661",
+     "dos": "11/19/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "J18.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22466053",
+     "visit": "19393661",
+     "dos": "11/19/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "J18.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19407788",
+   "pid": "12179706",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22483110",
+     "visit": "19407788",
+     "dos": "10/18/2024 ",
+     "totalfee": "256.00",
+     "diagcode": "J44.9;K59.00;G89.29;E66.01;Z87.891;J96.02;L03.90;G60.9;Z86.711;E78.5",
+     "chgcode": "99306",
+     "insportion": "256.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "256.00",
+     "batchid": "114348",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22483111",
+     "visit": "19407788",
+     "dos": "10/18/2024 ",
+     "totalfee": "133.00",
+     "diagcode": "J44.9;K59.00;G89.29;E66.01;Z87.891;J96.02;L03.90;G60.9;Z86.711;E78.5",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "133.00",
+     "batchid": "114348",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "visitid": "19385956",
+   "pid": "25542",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19386697",
+   "pid": "17471795",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392338",
+   "pid": "20903",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392347",
+   "pid": "23391",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392360",
+   "pid": "17470697",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392439",
+   "pid": "17470697",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392574",
+   "pid": "17470697",
+   "outcome": "error",
+   "error": "'id'"
+  },
+  {
+   "visitid": "19392671",
+   "pid": "17470697",
+   "mode": "manual",
+   "plan": {
+    "pid": "17470697",
+    "visitid": "19392671",
+    "codeless": [
+     [
+      "22464733",
+      "24643814",
+      92.58,
+      "815915909"
+     ]
+    ],
+    "checkid": "893939",
+    "check_listed": true,
+    "era_visit": {
+     "paid": 92.58,
+     "processok": false,
+     "errors": [
+      {
+       "visitid": 19392671,
+       "claimid": 8921338,
+       "id": 5,
+       "description": "Procedure codes do not match.",
+       "paymententrymessage": ""
+      }
+     ],
+     "claimstatus": 1,
+     "insbal": 54.59,
+     "lines": [
+      {
+       "cid": 22464733,
+       "cpt": "99233",
+       "dos": "2024-10-30",
+       "paid": 92.58,
+       "adj": 43.8,
+       "carc": [
+        [
+         "CO",
+         "CO45",
+         41.91
+        ],
+        [
+         "PR",
+         "PR2",
+         23.62
+        ],
+        [
+         "CO",
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ]
+    },
+    "wos_to_void": [
+     [
+      "22464733",
+      "22485297",
+      43.8,
+      "WOINS"
+     ]
+    ],
+    "already_balanced": false,
+    "check_dismissed": false
+   },
+   "steps": [
+    [
+     "void_payment",
+     "22464733",
+     "24643814",
+     92.58,
+     true,
+     "8-22wl7\" lst=\"09/20/2026 23:11:03\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "void_writeoff",
+     "22464733",
+     "22485297",
+     43.8,
+     "WOINS",
+     true,
+     "8-qf4jf\" lst=\"09/20/2026 23:11:05\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "addpayments-era",
+     [
+      [
+       "22464733",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:11:08\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:11:11\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464733",
+     "cpt": "99233",
+     "dos": "10/30/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643814",
+       "amount": 92.58,
+       "checkno": "815915909",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:07.803",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653766",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:03.910",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653767",
+       "amount": 92.58,
+       "checkno": "815915909",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:08.370",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22410813",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469505",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:51:06.167",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485297",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:07.803",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493372",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:05.110",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493373",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:08.370",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464734",
+     "cpt": "G0316",
+     "dos": "10/30/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410814",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469506",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:51:06.713",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19393655",
+   "pid": "17471642",
+   "mode": "manual",
+   "plan": {
+    "pid": "17471642",
+    "visitid": "19393655",
+    "codeless": [
+     [
+      "22466045",
+      "24643816",
+      92.58,
+      "816043208"
+     ]
+    ],
+    "checkid": "894075",
+    "check_listed": true,
+    "era_visit": {
+     "paid": 92.58,
+     "processok": false,
+     "errors": [
+      {
+       "visitid": 19393655,
+       "claimid": 8924468,
+       "id": 5,
+       "description": "Procedure codes do not match.",
+       "paymententrymessage": ""
+      }
+     ],
+     "claimstatus": 1,
+     "insbal": 54.59,
+     "lines": [
+      {
+       "cid": 22466045,
+       "cpt": "99233",
+       "dos": "2024-11-20",
+       "paid": 92.58,
+       "adj": 43.8,
+       "carc": [
+        [
+         "CO",
+         "CO45",
+         41.91
+        ],
+        [
+         "PR",
+         "PR2",
+         23.62
+        ],
+        [
+         "CO",
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ]
+    },
+    "wos_to_void": [
+     [
+      "22466045",
+      "22485299",
+      43.8,
+      "WOINS"
+     ]
+    ],
+    "already_balanced": false,
+    "check_dismissed": false
+   },
+   "steps": [
+    [
+     "void_payment",
+     "22466045",
+     "24643816",
+     92.58,
+     true,
+     "8-22wl7\" lst=\"09/20/2026 23:11:18\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "void_writeoff",
+     "22466045",
+     "22485299",
+     43.8,
+     "WOINS",
+     true,
+     "8-22wl7\" lst=\"09/20/2026 23:11:20\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "addpayments-era",
+     [
+      [
+       "22466045",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:11:23\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:11:26\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22466045",
+     "cpt": "99233",
+     "dos": "11/20/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643816",
+       "amount": 92.58,
+       "checkno": "816043208",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:20.037",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653768",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:18.957",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653769",
+       "amount": 92.58,
+       "checkno": "816043208",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:23.147",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22409594",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:25.827",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22472768",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:29:06.163",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485299",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:20.037",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493374",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:20.027",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493375",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:23.147",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22466046",
+     "cpt": "G0316",
+     "dos": "11/20/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22409595",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:25.827",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22472769",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:29:06.753",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19393661",
+   "pid": "17471642",
+   "mode": "manual",
+   "plan": {
+    "pid": "17471642",
+    "visitid": "19393661",
+    "codeless": [
+     [
+      "22466052",
+      "24643817",
+      92.58,
+      "816043208"
+     ]
+    ],
+    "checkid": "894075",
+    "check_listed": true,
+    "era_visit": {
+     "paid": 92.58,
+     "processok": false,
+     "errors": [
+      {
+       "visitid": 19393661,
+       "claimid": 8924469,
+       "id": 5,
+       "description": "Procedure codes do not match.",
+       "paymententrymessage": ""
+      }
+     ],
+     "claimstatus": 1,
+     "insbal": 54.59,
+     "lines": [
+      {
+       "cid": 22466052,
+       "cpt": "99233",
+       "dos": "2024-11-19",
+       "paid": 92.58,
+       "adj": 43.8,
+       "carc": [
+        [
+         "CO",
+         "CO45",
+         41.91
+        ],
+        [
+         "PR",
+         "PR2",
+         23.62
+        ],
+        [
+         "CO",
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ]
+    },
+    "wos_to_void": [
+     [
+      "22466052",
+      "22485300",
+      43.8,
+      "WOINS"
+     ]
+    ],
+    "already_balanced": false,
+    "check_dismissed": false
+   },
+   "steps": [
+    [
+     "void_payment",
+     "22466052",
+     "24643817",
+     92.58,
+     true,
+     "8-qf4jf\" lst=\"09/20/2026 23:11:28\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "void_writeoff",
+     "22466052",
+     "22485300",
+     43.8,
+     "WOINS",
+     true,
+     "8-22wl7\" lst=\"09/20/2026 23:11:29\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "addpayments-era",
+     [
+      [
+       "22466052",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:11:33\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:11:36\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22466052",
+     "cpt": "99233",
+     "dos": "11/19/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643817",
+       "amount": 92.58,
+       "checkno": "816043208",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:22.043",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653770",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:28.837",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653771",
+       "amount": 92.58,
+       "checkno": "816043208",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:33.160",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22409596",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:25.827",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22472770",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:29:07.587",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485300",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:22.043",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493376",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:29.927",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493377",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:33.160",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22466053",
+     "cpt": "G0316",
+     "dos": "11/19/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22409597",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:25.827",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22472771",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:29:08.103",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19407788",
+   "pid": "12179706",
+   "mode": "manual",
+   "plan": {
+    "pid": "12179706",
+    "visitid": "19407788",
+    "codeless": [
+     [
+      "22483111",
+      "24643820",
+      58.67,
+      "817231370"
+     ]
+    ],
+    "checkid": "895373",
+    "check_listed": true,
+    "era_visit": {
+     "paid": 58.67,
+     "processok": false,
+     "errors": [
+      {
+       "visitid": 19407788,
+       "claimid": 8941414,
+       "id": 5,
+       "description": "Procedure codes do not match.",
+       "paymententrymessage": ""
+      }
+     ],
+     "claimstatus": 1,
+     "insbal": 270.97,
+     "lines": [
+      {
+       "cid": 22483111,
+       "cpt": "99497",
+       "dos": "2024-10-18",
+       "paid": 58.67,
+       "adj": 59.36,
+       "carc": [
+        [
+         "CO",
+         "CO45",
+         58.16
+        ],
+        [
+         "PR",
+         "PR2",
+         14.97
+        ],
+        [
+         "CO",
+         "CO253",
+         1.2
+        ]
+       ]
+      }
+     ]
+    },
+    "wos_to_void": [
+     [
+      "22483111",
+      "22485303",
+      59.36,
+      "WOINS"
+     ]
+    ],
+    "already_balanced": false,
+    "check_dismissed": false
+   },
+   "steps": [
+    [
+     "void_payment",
+     "22483111",
+     "24643820",
+     58.67,
+     true,
+     "8-22wl7\" lst=\"09/20/2026 23:11:44\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "void_writeoff",
+     "22483111",
+     "22485303",
+     59.36,
+     "WOINS",
+     true,
+     "8-qf4jf\" lst=\"09/20/2026 23:11:46\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "addpayments-era",
+     [
+      [
+       "22483111",
+       "99497",
+       58.67
+      ]
+     ],
+     58.67,
+     59.36,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:11:49\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:11:52\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22483110",
+     "cpt": "99306",
+     "dos": "10/18/2024",
+     "fee": 256.0,
+     "paid": 0.0,
+     "insbalance": 256.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22409203",
+       "amount": 256.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:20.120",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22474358",
+       "amount": 256.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:54:49.303",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22483111",
+     "cpt": "99497",
+     "dos": "10/18/2024",
+     "fee": 133.0,
+     "paid": 118.03,
+     "insbalance": 14.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24576669",
+       "amount": 0.0,
+       "checkno": "152437327",
+       "carrier": "MCAD",
+       "date": "06/02/2026",
+       "createtime": "2026-06-02T00:08:36.830",
+       "void": "0",
+       "reasons": [
+        [
+         "CO170",
+         133.0
+        ]
+       ]
+      },
+      {
+       "id": "24643820",
+       "amount": 58.67,
+       "checkno": "817231370",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:53.310",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653772",
+       "amount": 58.67,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:45.050",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653773",
+       "amount": 58.67,
+       "checkno": "817231370",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:49.093",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         58.16
+        ],
+        [
+         "PR2",
+         14.97
+        ],
+        [
+         "CO253",
+         1.2
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22409204",
+       "amount": 133.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:20.120",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22474359",
+       "amount": 133.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:54:49.847",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485303",
+       "amount": 59.36,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:53.310",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493378",
+       "amount": 59.36,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:46.137",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493379",
+       "amount": 59.36,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:11:49.093",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  }
+ ]
+}

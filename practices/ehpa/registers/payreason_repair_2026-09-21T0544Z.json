@@ -1,0 +1,2288 @@
+{
+ "stamp": "2026-09-21T0544Z",
+ "rows": [
+  {
+   "visitid": "19385956",
+   "pid": "25542",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22456204",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "A41.9",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113701",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456229",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "A41.9",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19386697",
+   "pid": "17471795",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22456871",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R00.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456872",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456873",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456874",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392338",
+   "pid": "20903",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "22464275",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "N18.5",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464276",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "N18.5",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392347",
+   "pid": "23391",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22464291",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "K92.2",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464292",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "K92.2",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392360",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464355",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464356",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392439",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464400",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464401",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392574",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464571",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464572",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464641",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464642",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392671",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464733",
+     "visit": "19392671",
+     "dos": "10/30/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113914",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464734",
+     "visit": "19392671",
+     "dos": "10/30/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113914",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19393655",
+   "pid": "17471642",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22466045",
+     "visit": "19393655",
+     "dos": "11/20/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "J18.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22466046",
+     "visit": "19393655",
+     "dos": "11/20/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "J18.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19393661",
+   "pid": "17471642",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22466052",
+     "visit": "19393661",
+     "dos": "11/19/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "J18.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22466053",
+     "visit": "19393661",
+     "dos": "11/19/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "J18.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113954",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19407788",
+   "pid": "12179706",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22483110",
+     "visit": "19407788",
+     "dos": "10/18/2024 ",
+     "totalfee": "256.00",
+     "diagcode": "J44.9;K59.00;G89.29;E66.01;Z87.891;J96.02;L03.90;G60.9;Z86.711;E78.5",
+     "chgcode": "99306",
+     "insportion": "256.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "256.00",
+     "batchid": "114348",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22483111",
+     "visit": "19407788",
+     "dos": "10/18/2024 ",
+     "totalfee": "133.00",
+     "diagcode": "J44.9;K59.00;G89.29;E66.01;Z87.891;J96.02;L03.90;G60.9;Z86.711;E78.5",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "133.00",
+     "batchid": "114348",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19416177",
+   "pid": "48458",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "23319747",
+     "visit": "19416177",
+     "dos": "09/08/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "G30.9;S06.6X0D;Z91.81",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125173",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23319748",
+     "visit": "19416177",
+     "dos": "09/08/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "G30.9;S06.6X0D;Z91.81",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "125173",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19417081",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23320690",
+     "visit": "19417081",
+     "dos": "09/11/2025 ",
+     "totalfee": "107.00",
+     "diagcode": "I10;G31.1;M19.09;G60.9;R00.1;I50.9",
+     "chgcode": "99308",
+     "insportion": "107.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "107.00",
+     "batchid": "125226",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19419160",
+   "pid": "17474272",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "UNI20",
+   "charges": [
+    {
+     "id": "23324102",
+     "visit": "19419160",
+     "dos": "10/01/2025 ",
+     "totalfee": "256.00",
+     "diagcode": "G31.83;G20.C;I10;F41.9;R44.3;G47.51;E78.5;J44.9",
+     "chgcode": "99306",
+     "insportion": "256.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "256.00",
+     "batchid": "125398",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23324103",
+     "visit": "19419160",
+     "dos": "10/01/2025 ",
+     "totalfee": "133.00",
+     "diagcode": "G31.83;G20.C;I10;F41.9;R44.3;G47.51;E78.5;J44.9",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "133.00",
+     "batchid": "125398",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19419272",
+   "pid": "48458",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "23324212",
+     "visit": "19419272",
+     "dos": "10/02/2025 ",
+     "totalfee": "141.00",
+     "diagcode": "R60.0",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "125405",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19420307",
+   "pid": "25266",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23325290",
+     "visit": "19420307",
+     "dos": "10/08/2025 ",
+     "totalfee": "107.00",
+     "diagcode": "I73.9;I63.9;R47.01;F34.9;F02.80",
+     "chgcode": "99308",
+     "insportion": "107.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "107.00",
+     "batchid": "125471",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19420946",
+   "pid": "48458",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "23326092",
+     "visit": "19420946",
+     "dos": "10/25/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "R60.0",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23326093",
+     "visit": "19420946",
+     "dos": "10/25/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "R60.0",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19421017",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23326234",
+     "visit": "19421017",
+     "dos": "10/25/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "I10;G31.1;M19.09;R00.1;I50.9;R54",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23326235",
+     "visit": "19421017",
+     "dos": "10/25/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "I10;G31.1;M19.09;R00.1;I50.9;R54",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19421106",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "23326412",
+     "visit": "19421106",
+     "dos": "10/25/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;I63.9;R47.01;F34.9;F02.80",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23326413",
+     "visit": "19421106",
+     "dos": "10/25/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;I63.9;R47.01;F34.9;F02.80",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "125500",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19422334",
+   "pid": "17471365",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "UNI20",
+   "charges": [
+    {
+     "id": "23327672",
+     "visit": "19422334",
+     "dos": "10/15/2025 ",
+     "totalfee": "198.00",
+     "diagcode": "G30.9;E78.5;E03.9;R45.1;F32.A",
+     "chgcode": "99349",
+     "insportion": "198.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "198.00",
+     "batchid": "125600",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19422868",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23328218",
+     "visit": "19422868",
+     "dos": "11/06/2025 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;R41.841;I48.0;E03.9;E78.5",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "125631",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19423552",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23329130",
+     "visit": "19423552",
+     "dos": "11/15/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "I10;G31.1;M19.09;R00.1;I50.9;R54",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23329131",
+     "visit": "19423552",
+     "dos": "11/15/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "I10;G31.1;M19.09;R00.1;I50.9;R54",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19423579",
+   "pid": "17471365",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "UNI20",
+   "charges": [
+    {
+     "id": "23329181",
+     "visit": "19423579",
+     "dos": "11/15/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "G30.9;E78.5;E03.9;R45.1;F32.A",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19423603",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23329225",
+     "visit": "19423603",
+     "dos": "11/15/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "E11.9;R41.841;I48.0;E03.9;E78.5",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19423631",
+   "pid": "48458",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "23329263",
+     "visit": "19423631",
+     "dos": "11/15/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "G30.9;R62.7;S06.6X0D",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19423702",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23329403",
+     "visit": "19423702",
+     "dos": "11/15/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;I63.9;E46",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23329404",
+     "visit": "19423702",
+     "dos": "11/15/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;I63.9;E46",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "125686",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19426082",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23332109",
+     "visit": "19426082",
+     "dos": "12/10/2025 ",
+     "totalfee": "141.00",
+     "diagcode": "G31.1;R00.1;I50.9;G60.3;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "125855",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19426931",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23333123",
+     "visit": "19426931",
+     "dos": "12/01/2025 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;E03.9;E78.5;I48.91",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "125927",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19427023",
+   "pid": "17472573",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "23333217",
+     "visit": "19427023",
+     "dos": "12/05/2025 ",
+     "totalfee": "141.00",
+     "diagcode": "S06.360A;F02.80;R62.7",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "125927",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19427115",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23333363",
+     "visit": "19427115",
+     "dos": "12/19/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;I63.9;E46",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "125929",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23333364",
+     "visit": "19427115",
+     "dos": "12/19/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;I63.9;E46",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "125929",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19427244",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23333616",
+     "visit": "19427244",
+     "dos": "12/21/2025 ",
+     "totalfee": "206.00",
+     "diagcode": "G31.1;R00.1;I50.9;G60.3;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "125929",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23333617",
+     "visit": "19427244",
+     "dos": "12/21/2025 ",
+     "totalfee": "109.00",
+     "diagcode": "G31.1;R00.1;I50.9;G60.3;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "125929",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19428125",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23334590",
+     "visit": "19428125",
+     "dos": "01/02/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;E03.9;E78.5;I48.91;J96.02;M62.81;I20.0;D64.9;J44.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126004",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19432979",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23339599",
+     "visit": "19432979",
+     "dos": "02/04/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;E03.9;E78.5;I48.91;J96.02;M62.81;D64.9;J44.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126314",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19434008",
+   "pid": "25266",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23340874",
+     "visit": "19434008",
+     "dos": "02/26/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;E46",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "126369",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19435320",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23342326",
+     "visit": "19435320",
+     "dos": "03/02/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;E03.9;E78.5;I48.91;J96.02;M62.81;D64.9;J44.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126464",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19438330",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23345415",
+     "visit": "19438330",
+     "dos": "04/08/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "G31.1;I50.9;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126664",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19438506",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23345612",
+     "visit": "19438506",
+     "dos": "03/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "G31.1;R00.1;I50.9;G60.3;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "126671",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23345613",
+     "visit": "19438506",
+     "dos": "03/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "G31.1;R00.1;I50.9;G60.3;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "126671",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19438644",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23345876",
+     "visit": "19438644",
+     "dos": "03/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;I63.9;E46;E78.5;G93.40;R47.01",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "126671",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23345877",
+     "visit": "19438644",
+     "dos": "03/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;I63.9;E46;E78.5;G93.40;R47.01",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "126671",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19438973",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23346291",
+     "visit": "19438973",
+     "dos": "04/09/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "E11.9;E03.9;E78.5;I48.91;J96.02;M62.81;D64.9;J44.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126688",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19439539",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23347031",
+     "visit": "19439539",
+     "dos": "04/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "G31.1;I50.9;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "126725",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23347032",
+     "visit": "19439539",
+     "dos": "04/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "G31.1;I50.9;M54.50;M54.9;E03.9;K21.9;M81.6",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "126725",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19439664",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23347281",
+     "visit": "19439664",
+     "dos": "04/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;E46;E78.5;G93.40;R47.01",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "126725",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23347282",
+     "visit": "19439664",
+     "dos": "04/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;E46;E78.5;G93.40;R47.01",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "126725",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19441404",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23349262",
+     "visit": "19441404",
+     "dos": "05/07/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "I50.9;M54.9;G31.1;M54.50;K21.9;E03.9;M81.0",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126856",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19442393",
+   "pid": "20452",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23350471",
+     "visit": "19442393",
+     "dos": "05/17/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "E11.9;F03.90;I69.351;F41.9;M24.50;I10",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "126912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23350472",
+     "visit": "19442393",
+     "dos": "05/17/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "E11.9;F03.90;I69.351;F41.9;M24.50;I10",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "126912",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19442487",
+   "pid": "25266",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "MCAD",
+   "charges": [
+    {
+     "id": "23350629",
+     "visit": "19442487",
+     "dos": "05/17/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I73.9;I69.359;E78.5;R47.01",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "206.00",
+     "batchid": "126912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23350630",
+     "visit": "19442487",
+     "dos": "05/17/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I73.9;I69.359;E78.5;R47.01",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MD - MEDICAID",
+     "fee": "109.00",
+     "batchid": "126912",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19442596",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23350792",
+     "visit": "19442596",
+     "dos": "05/11/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "N39.0;E11.9;E03.9;I48.91;E78.5;J96.02;M62.81;D64.9;J44.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "126912",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19444044",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23352636",
+     "visit": "19444044",
+     "dos": "06/02/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "I48.91;J96.02;E78.5;E03.9;E11.9;M62.81;D64.9;Z87.440",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "127034",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19445127",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23353927",
+     "visit": "19445127",
+     "dos": "06/10/2026 ",
+     "totalfee": "107.00",
+     "diagcode": "I50.9;G31.1;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99308",
+     "insportion": "107.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "107.00",
+     "batchid": "127096",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19446150",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23355073",
+     "visit": "19446150",
+     "dos": "06/25/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I50.9;G31.1;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "127180",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23355074",
+     "visit": "19446150",
+     "dos": "06/25/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I50.9;G31.1;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "127180",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19447325",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23356508",
+     "visit": "19447325",
+     "dos": "07/03/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "I48.91;J96.02;E78.5;E03.9;E11.9;M62.81;D64.9;Z87.440",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "127240",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19447393",
+   "pid": "17476930",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "23356579",
+     "visit": "19447393",
+     "dos": "07/03/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "I63.9;R47.01;R53.2;B20;J18.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "127240",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19447738",
+   "pid": "17476930",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "23356966",
+     "visit": "19447738",
+     "dos": "07/09/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I63.9;R47.01;R53.2;B20;J18.9",
+     "chgcode": "99316",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "127262",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19448800",
+   "pid": "22603",
+   "dos": "",
+   "errors": "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error. | Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23358205",
+     "visit": "19448800",
+     "dos": "07/17/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I50.9;G31.1;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "127304",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23358206",
+     "visit": "19448800",
+     "dos": "07/17/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I50.9;G31.1;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25;GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "127304",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19451354",
+   "pid": "46673",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "23361398",
+     "visit": "19451354",
+     "dos": "08/11/2026 ",
+     "totalfee": "107.00",
+     "diagcode": "I48.91;J96.02;E78.5;E03.9;E11.9;M62.81;D64.9;Z87.440",
+     "chgcode": "99308",
+     "insportion": "107.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "107.00",
+     "batchid": "127485",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19451612",
+   "pid": "22603",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "CON08",
+   "charges": [
+    {
+     "id": "23361679",
+     "visit": "19451612",
+     "dos": "08/12/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "G31.1;I50.9;M54.9;M54.50;K21.9;M81.0;E03.9",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "GV",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "141.00",
+     "batchid": "127501",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "visitid": "19420307",
+   "pid": "25266",
+   "plan": {
+    "pid": "25266",
+    "visitid": "19420307",
+    "codeless": [
+     [
+      "23325290",
+      "24650886",
+      55.97,
+      "819814877(0)"
+     ]
+    ],
+    "checkid": "1051714",
+    "check_listed": true,
+    "era_visit": {
+     "paid": 55.97,
+     "processok": true,
+     "errors": [],
+     "claimstatus": 1,
+     "insbal": 14.28,
+     "lines": [
+      {
+       "cid": 23325290,
+       "cpt": "99308",
+       "dos": "2025-10-08",
+       "paid": 55.97,
+       "adj": 36.75,
+       "carc": [
+        [
+         "CO",
+         "CO45",
+         35.61
+        ],
+        [
+         "PR",
+         "PR2",
+         14.28
+        ],
+        [
+         "CO",
+         "CO253",
+         1.14
+        ]
+       ]
+      }
+     ]
+    },
+    "wos_to_void": [
+     [
+      "23325290",
+      "22490570",
+      36.75,
+      "WOINS"
+     ]
+    ],
+    "already_balanced": false,
+    "check_dismissed": false
+   },
+   "steps": [
+    [
+     "void_payment",
+     "23325290",
+     "24650886",
+     55.97,
+     true,
+     "8-22wl7\" lst=\"09/20/2026 22:45:04\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "void_writeoff",
+     "23325290",
+     "22490570",
+     36.75,
+     "WOINS",
+     true,
+     "8-22wl7\" lst=\"09/20/2026 22:45:06\"><Results success=\"1\" /><Error /></PPMDResults>"
+    ],
+    [
+     "posterapayments",
+     "1051714",
+     1,
+     55.97
+    ],
+    [
+     "release",
+     false,
+     "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 22:45:16\"><Error><Fault><faultcode>"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "23325290",
+     "cpt": "99308",
+     "dos": "10/08/2025",
+     "fee": 107.0,
+     "paid": 92.72,
+     "insbalance": 14.28,
+     "patbalance": 0.0,
+     "carrier": "MCAD",
+     "pays": [
+      {
+       "id": "24572207",
+       "amount": 0.0,
+       "checkno": "152855566",
+       "carrier": "MCAD",
+       "date": "06/01/2026",
+       "createtime": "2026-06-01T20:40:27.913",
+       "void": "0",
+       "reasons": [
+        [
+         "CO22",
+         107.0
+        ]
+       ]
+      },
+      {
+       "id": "24650886",
+       "amount": 55.97,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:22:36.660",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653515",
+       "amount": 55.97,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T22:45:04.857",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653516",
+       "amount": 55.97,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T22:45:12.410",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         35.61
+        ],
+        [
+         "PR2",
+         14.28
+        ],
+        [
+         "CO253",
+         1.14
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22490570",
+       "amount": 36.75,
+       "code": "WOINS",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:22:36.660",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493206",
+       "amount": 36.75,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T22:45:06.340",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493207",
+       "amount": 36.75,
+       "code": "WOMCAD",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T22:45:12.410",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  }
+ ]
+}

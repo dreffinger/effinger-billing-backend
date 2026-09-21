@@ -2,6 +2,9 @@
 # Decides: Nothing on its own: posts a payment and/or write-off to one charge with a note.
 # Rules it uses: Refuses to over-apply beyond the insurance balance.
 # Never touches: Charges at $0.
+# WARNING (9/21/2026): this plain addpayments carries NO reason codes - a primary posted this way blocks the secondary claim
+#   ('Payment reason codes are missing or do not balance'). For an ERA line use payreasons.post_line (ERA-linked shape, keeps the
+#   CO45/PR2/CO253 reasons); use manual_post only for non-ERA money and write-offs.
 # ---
 """Manual (non-ERA) insurance payment + write-off on one charge via Payment Entry addpayments.
 Usage: python3 manual_post.py <chargeid> <carriercode> <payamount> <woamount> <wocode> <checknumber> [depositdate mm/dd/yyyy] [note] [--dry]"""
