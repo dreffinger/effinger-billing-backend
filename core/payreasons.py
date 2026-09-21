@@ -122,8 +122,22 @@ def era_details(checkid):
     except Exception as e:
         L("era_details %s unavailable: %s" % (checkid, e)); return None
 
+def find_check_for_charge(cid, checkno=None):
+    """No check id on file (a hand post outside the registers): search every cached era_details file for the charge."""
+    for fn in sorted(glob.glob(os.path.join(ERA_DETAILS, "*.json")), key=os.path.getmtime, reverse=True):
+        try: d = json.load(open(fn))
+        except Exception: continue
+        for v in d.get("eracheckdetails") or []:
+            for ch in v.get("charges", []):
+                if str(ch.get("chargedetailid")) == str(cid) and (not checkno or str(d.get("paymentnumber", "")).split("(")[0] in ("", checkno)):
+                    return os.path.basename(fn)[:-5], v.get("checkclaimid")
+    return None, None
+
 def remit_carc(checkid, cid=None, checkclaimid=None, cpt=None, dos=None):
     """[{group, code, amount, payreasonid, reportreasondetailid, text}] for the ERA line matched to this charge."""
+    if not checkid and cid:
+        checkid, checkclaimid = find_check_for_charge(cid)
+        if not checkid: return None, "charge %s not found in any cached era_details file" % cid
     d = era_details(checkid)
     if not d: return None, "no era details for check %s" % checkid
     visits = d.get("eracheckdetails") or d.get("visits") or []
@@ -217,6 +231,34 @@ def unbilled_reason_rows():
         out.append({"pid": pid, "visitid": re.sub(r"\D", "", head.get("id", "")), "error": err, "name": head.get("patientname", "")})
     return out
 
+def unbilled_candidates(rows):
+    """For the flagged visits: every non-void payment on their charges with no payreason children (any amount - a $0
+    code-less 'Process Accepted' post blocks the next payer too; those are voided per the 9/12 rule, non-zero ones repaired)."""
+    reg = {(x["pid"], x["cid"]): x for x in register_lines()}
+    by_pid = {}
+    for r in rows:
+        if r["pid"]: by_pid.setdefault(r["pid"], set()).add(r["visitid"])
+    out = []
+    for pid, vids in sorted(by_pid.items()):
+        root = txh.fetch(pid)
+        for c, p, reasons in chart_payments(pid, root):
+            if reasons or (c.get("visit") or c.get("visitid") or "") not in vids: continue
+            cid = re.sub(r"\D", "", c.get("id", "")); rg = reg.get((pid, cid), {})
+            out.append({"pid": pid, "cid": cid, "visitid": c.get("visit") or c.get("visitid"), "payid": re.sub(r"\D", "", p.get("id", "")),
+                        "amount": f(p.get("amount")), "checkno": (p.get("checknumber") or "").split("(")[0], "carrier": p.get("carrier", ""),
+                        "createtime": p.get("createtime", ""), "fee": fee_of(c), "cpt": c.get("proccode", ""), "dos": c.get("dos") or c.get("dateofservice", ""),
+                        "insbalance": f(c.get("insbalance")), "patbalance": f(c.get("patbalance")), "source": "unbilled",
+                        "checkid": rg.get("checkid"), "checkclaimid": rg.get("checkclaimid"), "era_cpt": rg.get("cpt"), "era_dos": rg.get("dos")})
+        time.sleep(0.4)
+    return out
+
+def visit_balanced(pid, visitid):
+    """True when every non-void payment on the visit's charges carries reasons that balance to the fee."""
+    for c, p, reasons in chart_payments(pid):
+        if (c.get("visit") or c.get("visitid") or "") != str(visitid): continue
+        if not reasons or abs(f(p.get("amount")) + sum(a for _, a, _ in reasons) - fee_of(c)) >= 0.011: return False
+    return True
+
 def release(visitid):
     r = amd.post(amd.msg("hideunbillablevisits", "claimsreports", {"hide": "-1", "nocookie": "1"}, '<visitlist><visit id="vst%s"/></visitlist>' % visitid))
     return ('success="1"' in r and "<Fault" not in r), re.sub(r"\s+", " ", r)[:200]
@@ -229,16 +271,25 @@ if __name__ == "__main__":
     live = "--live" in a; do_release = "--release" in a; since = opt("--since"); pids = [opt("--pid")] if opt("--pid") else None
     limit = int(opt("--limit", "0") or 0)
     amd.login_cached()
+    rows = []
     if "--unbilled" in a:
         rows = unbilled_reason_rows(); L("Unbilled 'Payment reason codes' rows: %d" % len(rows))
-        pids = sorted({r["pid"] for r in rows if r["pid"]}) or pids
-    cands = candidates(since=since, pids=pids, chartwide=bool(since))
-    L("code-less candidate payments: %d (%s)" % (len(cands), "chart-wide since %s" % since if since else "register-driven"))
-    reg = {"stamp": stamp(), "mode": "live" if live else "scan", "candidates": len(cands), "lines": []}
+        cands = unbilled_candidates(rows); mode = "unbilled rows"
+    else:
+        cands = candidates(since=since, pids=pids, chartwide=bool(since)); mode = "chart-wide since %s" % since if since else "register-driven"
+    L("code-less candidate payments: %d (%s)" % (len(cands), mode))
+    reg = {"stamp": stamp(), "mode": "live" if live else "scan", "scope": mode, "unbilled_rows": rows, "candidates": len(cands), "lines": []}
     n = 0
     for x in cands:
         rec = dict(x)
-        carc, why = (remit_carc(x.get("checkid"), x["cid"], x.get("checkclaimid"), x.get("era_cpt") or x["cpt"], x.get("era_dos") or x["dos"]) if x.get("checkid") else (None, "no check id (chart-wide hit) - match it to a remit first"))
+        if x["amount"] == 0 and x.get("source") == "unbilled":
+            # 9/12 standing rule: a $0 payment with no reason codes on an Unbilled 'Payment reason codes' row = void it
+            if live:
+                import void_tx
+                ok, msg = void_tx.void_payment(x["pid"], x["cid"], x["payid"]); rec.update({"outcome": "voided-zero" if ok else "void-failed", "apply": msg})
+            else: rec["outcome"] = "would-void-zero"
+            reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
+        carc, why = remit_carc(x.get("checkid"), x["cid"], x.get("checkclaimid"), x.get("era_cpt") or x["cpt"], x.get("era_dos") or x["dos"])
         if not carc:
             rec["outcome"] = "no-remit"; rec["why"] = why; reg["lines"].append(rec); L("  %s" % json.dumps(rec)); continue
         reasons, note = plan(x["amount"], x["fee"], carc["carc"])
@@ -256,10 +307,13 @@ if __name__ == "__main__":
         else:
             rec["outcome"] = "failed"
         reg["lines"].append(rec); L("  %s" % json.dumps(rec)); time.sleep(0.6)
-    if live and do_release and "--unbilled" in a:
+    if live and do_release and rows:
         for r in rows:
-            fixed = [l for l in reg["lines"] if l["pid"] == r["pid"] and l.get("outcome") == "repaired"]
-            if not fixed: continue
+            touched = [l for l in reg["lines"] if l["pid"] == r["pid"] and l.get("outcome") in ("repaired", "voided-zero")]
+            if not touched: continue
+            time.sleep(0.5)
+            if not visit_balanced(r["pid"], r["visitid"]):
+                L("vst%s still unbalanced after repair - NOT released" % r["visitid"]); reg.setdefault("held", []).append(r["visitid"]); continue
             ok, msg = release(r["visitid"]); L("release vst%s -> %s %s" % (r["visitid"], ok, msg)); reg.setdefault("released", []).append({"visitid": r["visitid"], "ok": ok})
     out = os.path.join(REG_DIRS[0] if os.path.isdir(REG_DIRS[0]) else ".", "payreason_repair_%s.json" % reg["stamp"])
     os.makedirs(os.path.dirname(out), exist_ok=True); json.dump(reg, open(out, "w"), indent=1)
