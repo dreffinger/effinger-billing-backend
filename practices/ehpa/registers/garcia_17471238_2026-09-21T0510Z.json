@@ -1,0 +1,65 @@
+{
+ "271_medicare": "REJECTED   | plan  | A  B  | others  | death - | addr <redacted> | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '72', 'FollowUpActionCode': 'C'}]",
+ "hum01": [
+  "ins9519493",
+  "4"
+ ],
+ "order": [
+  true,
+  "8-22wl7\" lst=\"09/20/2026 22:30:10\"><Results success=\"1\"><patient insorder=\"2,4,3\" /></Results><Error /></PPMDResults>"
+ ],
+ "uni20_end": [
+  true,
+  "8-qf4jf\" lst=\"09/20/2026 22:30:12\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+ ],
+ "readback": [
+  "",
+  [
+   [
+    "ins9510482",
+    "car6404",
+    "03/19/2026",
+    "1"
+   ],
+   [
+    "ins9519150",
+    "car6085",
+    "",
+    "2"
+   ],
+   [
+    "ins9519151",
+    "car6113",
+    "",
+    "3"
+   ],
+   [
+    "ins9519493",
+    "car6285",
+    "",
+    "4"
+   ]
+  ]
+ ],
+ "271_hum01": "ACTIVE | plan  | A  B  | others MC MEDICAID GATE CAP DIR ; MC  ;   MEDICARE PART A AND B: | death - | addr <redacted> | aaa []",
+ "v19438592": [
+  "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,4,3'} rebill seq 2,4,3 (sent to 2) -> 204",
+  "freq1 + rebill seq 2 -> 204"
+ ],
+ "v19439617": [
+  "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,4,3'} rebill seq 2,4,3 (sent to 2) -> 204",
+  "freq1 + rebill seq 2 -> 204"
+ ],
+ "v19442401": [
+  "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,4,3'} rebill seq 2,4,3 (sent to 2) -> 204",
+  "freq1 + rebill seq 2 -> 204"
+ ],
+ "v19446256": [
+  "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,4,3'} rebill seq 2,4,3 (sent to 2) -> 204",
+  "freq1 + rebill seq 2 -> 204"
+ ],
+ "v19448464": [
+  "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '204.00', 'insorder': '2,4,3'} rebill seq 2,4,3 (sent to 2) -> 204",
+  "freq1 + rebill seq 2 -> 204"
+ ]
+}
