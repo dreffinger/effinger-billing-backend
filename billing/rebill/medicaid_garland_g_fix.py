@@ -13,12 +13,12 @@ import xml.etree.ElementTree as ET
 import fix_referring_provider as frp
 W="/home/claude/unbilled"; STAMP=datetime.date.today().isoformat()
 TODAYS=(STAMP,(datetime.date.today()-datetime.timedelta(days=1)).isoformat())   # AMD server clock (ET) can be a day behind the container (UTC)
-LOGF=open(f"{W}/medicaid_garland_g_fix_{STAMP}.log","a")
+LOGF=open(os.environ.get("LOGF",f"{W}/medicaid_garland_g_fix_{STAMP}.log"),"a")
 def L(m): print(m,flush=True); LOGF.write(m+"\n"); LOGF.flush()
 CARMAP=json.load(open(f"{W}/carriers_rich.json")); CODE2CAR={v[0]:k for k,v in CARMAP.items()}
 SMMC={"car6194","car6174","car42019","car41991","car41992"}; MCAD="car6113"; FCC="car42008"
-tgt=json.load(open(f"{W}/medicaid_garland_g_targets_2026-09-22.json"))
-DONE=f"{W}/medicaid_garland_g_done.json"; done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
+tgt=json.load(open(os.environ.get("TGT",f"{W}/medicaid_garland_g_targets_2026-09-22.json")))
+DONE=os.environ.get("DONEF",f"{W}/medicaid_garland_g_done.json"); done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
 BUDGET=float(sys.argv[1]) if len(sys.argv)>1 else 230
 def carseq(ins, carid):
     for p in ins:
@@ -119,9 +119,14 @@ for pid,parts in tgt.items():
                 if v.get("profile")!="prof15": L(f"  v{vid}: profile {v.get('profile')} already - treat as B"); kind_eff="B"
                 else: kind_eff="A"
             else: kind_eff="B"
+            if kind_eff=="B" and {p["id"]:p for p in ref}.get(v.get("refplan"),{}).get("refprov")=="rprov13":
+                L(f"  v{vid}: referring already Effinger (rprov13) - skip"); done.add(key); continue
             if kind_eff=="A":
-                d=ET.fromstring(resave.detail(cid0))
-                if any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in d.iter("payment")): L(f"  v{vid}: settling (payment posted) - NOT re-rendered"); stats["skip_paid"]+=1; done.add(key); continue
+                paid=False
+                for cx in allc:                               # settling gate across EVERY live charge on the visit
+                    dx=ET.fromstring(resave.detail(re.sub(r"\D","",cx.get("id"))))
+                    if any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in dx.iter("payment")): paid=True; break
+                if paid: L(f"  v{vid}: settling (payment posted) - NOT re-rendered"); stats["skip_paid"]+=1; done.add(key); continue
                 rr=resave_visit(v,pat,echo(allc),"prof13",newplan,insorder)
                 if "Fault" in rr: L(f"  v{vid}: swap FAULT {re.sub(chr(10),' ',rr)[:90]}"); continue
                 time.sleep(0.8); nv,cs=recreated(pid,vid,sigs,v.get("date"))

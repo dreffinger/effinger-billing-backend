@@ -1,8 +1,8 @@
 import json, re, time, os, sys, amd, resave
 import xml.etree.ElementTree as ET
 import fix_referring_provider as frp
-W="/home/claude/unbilled"; tgt=json.load(open(f"{W}/medicaid_garland_g_targets_2026-09-22.json"))
-DONE=f"{W}/verify_done.json"; done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
+W="/home/claude/unbilled"; tgt=json.load(open(os.environ.get("TGT",f"{W}/medicaid_garland_g_targets_2026-09-22.json")))
+DONE=os.environ.get("DONEF",f"{W}/verify_done.json"); done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
 LOG=open(f"{W}/verify_recreated_2026-09-22.log","a")
 def L(m): print(m,flush=True); LOG.write(m+"\n"); LOG.flush()
 t0=time.time(); st={"visits":0,"ok":0,"repointed":0,"queued":0,"rebilled":0,"bad_profile":0}

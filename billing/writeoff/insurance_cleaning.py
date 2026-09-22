@@ -46,7 +46,7 @@ def adjudicated(r):
     """A payer ACTED on the charge: the open balance is below the charge (a payment/adjustment landed) or a remit stamped
     a last-payment date. allowedamount alone is NOT proof — a freq-1 rebill leaves allowed == fee with nothing paid (9/11/2026)."""
     fee = f(r.get("totalchargeamount")); openbal = f(r.get("insbalance")) + f(r.get("patbalance"))
-    return bool(r.get("lastpaymentdate")) or (fee > 0.005 and openbal < fee - 0.005)
+    return fee > 0.005 and openbal < fee - 0.005        # a $0 denial line stamps lastpaymentdate but reduces nothing
 def age_days(d):
     try: return (datetime.date.today() - datetime.date.fromisoformat(str(d)[:10])).days
     except: return 9999
@@ -100,10 +100,10 @@ def classify(rows, verify_dual=False):
         touched = bool(r.get("lastpaymentdate"))
         old = age_days(r.get("dateofservice")) >= 365
         isdual = pid in dual
-        if isdual and (adjudicated_ or touched):
+        if isdual and adjudicated_:
             b = "1_QMB_WRITEOFF"                                  # Medicaid on file: cannot balance-bill; verify crossover billed first
         elif isdual:
-            b = "1_QMB_NEVER_ADJ" if old else "3_CASCADE_TIMELY"   # dual + never adjudicated: bill Medicaid if timely, else untimely
+            b = "1_QMB_NEVER_ADJ" if old else "3_CASCADE_TIMELY"   # dual + never reduced: WOLATE if untimely, else bill Medicaid
         elif not adjudicated_ and not touched:
             b = ("2_UNTIMELY_WRITEOFF" if old else "3_CASCADE_TIMELY")
             if car in BACKLOG_CARRIERS: b = "2b_BACKLOG_HOLD"      # UNI20/BCBS never-adjudicated: possible unposted ERA -> never blind write-off
@@ -214,8 +214,8 @@ def medicaid_residual(post=False, maxn=10**9, verify_dual=False):
     for x in rows:
         ib = f(x.get("insbalance")); code_ = (x.get("chargecode") or "").strip(); pid = str(x["patientid"])
         adjud = adjudicated(x); dual = pid in nonmed; isccm = code_ in CCM
-        if adjud:            b, code = "D1_PAID_STUB", (CODES["qmb_secondary"] if dual else CODES["qmb_primary"])
-        elif isccm:          b, code = "D2_CCM_NONCOVERED", (CODES["qmb_secondary"] if dual else CODES["noncovered"])
+        if isccm and not adjud:   b, code = "D2_CCM_NONCOVERED", CODES["noncovered"]      # CCM never payable by Medicaid -> WONCS
+        elif adjud:               b, code = "D1_PAID_STUB", (CODES["qmb_secondary"] if dual else CODES["qmb_primary"])
         elif age_days(x.get("dateofservice")) >= 365:
                              b, code = "D3b_UNPAID_EM_UNTIMELY", CODES["untimely"]   # never adjudicated, >12 months -> WOLATE
         else:                b, code = "D3_UNPAID_EM_REBILL", ""

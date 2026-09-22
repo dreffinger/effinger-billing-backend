@@ -1,0 +1,190 @@
+  v19419593: settling (payment posted) - NOT re-rendered
+  v19419594: settling (payment posted) - NOT re-rendered
+  v19419938: settling (payment posted) - NOT re-rendered
+  v19421676: settling (payment posted) - NOT re-rendered
+  v19421677: settling (payment posted) - NOT re-rendered
+  v19423847: settling (payment posted) - NOT re-rendered
+  v19434243: settling (payment posted) - NOT re-rendered
+  v19435830: settling (payment posted) - NOT re-rendered
+  v19436966: settling (payment posted) - NOT re-rendered
+  v19438687: settling (payment posted) - NOT re-rendered
+  v19439405: settling (payment posted) - NOT re-rendered
+  v19441903: settling (payment posted) - NOT re-rendered
+  v19442865: settling (payment posted) - NOT re-rendered
+  v19444330: settling (payment posted) - NOT re-rendered
+  v19445311: settling (payment posted) - NOT re-rendered
+  v19446742: settling (payment posted) - NOT re-rendered
+  v19447508: settling (payment posted) - NOT re-rendered
+  v19449432: settling (payment posted) - NOT re-rendered
+  v19450700: settling (payment posted) - NOT re-rendered
+pat45049: new main plan rplan18462168 (rprov13)
+  A v19429028->19455371 prof13 refplan rplan18462168 HUM01 seq 3  charges 1->1 rebilled 1/1 $57.96
+pat17471725: new main plan rplan18462169 (rprov13)
+  v19420552: settling (payment posted) - NOT re-rendered
+  v19423405: settling (payment posted) - NOT re-rendered
+  v19427036: settling (payment posted) - NOT re-rendered
+  v19430565: settling (payment posted) - NOT re-rendered
+  v19433069: settling (payment posted) - NOT re-rendered
+  v19434942: settling (payment posted) - NOT re-rendered
+  v19437359: settling (payment posted) - NOT re-rendered
+  v19440859: settling (payment posted) - NOT re-rendered
+  v19442873: settling (payment posted) - NOT re-rendered
+  v19443291: settling (payment posted) - NOT re-rendered
+  v19443726: settling (payment posted) - NOT re-rendered
+  v19444509: settling (payment posted) - NOT re-rendered
+  v19444767: settling (payment posted) - NOT re-rendered
+  v19444768: settling (payment posted) - NOT re-rendered
+  v19445150: settling (payment posted) - NOT re-rendered
+  v19445484: settling (payment posted) - NOT re-rendered
+  v19445848: settling (payment posted) - NOT re-rendered
+  v19446579: settling (payment posted) - NOT re-rendered
+  v19446929: settling (payment posted) - NOT re-rendered
+  v19447168: settling (payment posted) - NOT re-rendered
+  v19447372: settling (payment posted) - NOT re-rendered
+  v19447751: settling (payment posted) - NOT re-rendered
+  v19448023: settling (payment posted) - NOT re-rendered
+  v19449450: settling (payment posted) - NOT re-rendered
+  v19449937: settling (payment posted) - NOT re-rendered
+  v19450285: settling (payment posted) - NOT re-rendered
+  v19451537: settling (payment posted) - NOT re-rendered
+  B v19421123 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $209.25
+  B v19423717 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $209.25
+  B v19427131 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $209.25
+  B v19430844 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $216.77
+  B v19433761 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $216.77
+  B v19438661 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $216.77
+  B v19439682 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $216.77
+  B v19440861 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $184.80
+  B v19441178 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441189 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+batch: A re-rendered 1 | B repointed 10 | charges rebilled 18 $1,846.85 | settling-skipped 46 | CHECK 0 | FCC kept 0 | visits done 57/180
+  B v19441315 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441375 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441469 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441483 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441640 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $54.63
+  B v19441991 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $206.93
+  B v19442158 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $78.38
+  B v19442503 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $216.77
+  B v19448439 refplan rplan18462169 HUM01 seq 3  charges 1 rebilled 1 $69.99
+  B v19448923 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $25.06
+  B v19452408 refplan rplan18462169 HUM01 seq 3  charges 2 rebilled 2 $25.06
+pat44955: new main plan rplan18462170 (rprov13)
+  v19441902: settling (payment posted) - NOT re-rendered
+  v19418280: settling (payment posted) - NOT re-rendered
+  v19419584: settling (payment posted) - NOT re-rendered
+  v19423855: settling (payment posted) - NOT re-rendered
+  v19426998: settling (payment posted) - NOT re-rendered
+  v19430036: settling (payment posted) - NOT re-rendered
+  v19434573: settling (payment posted) - NOT re-rendered
+  v19436000: settling (payment posted) - NOT re-rendered
+  v19437169: settling (payment posted) - NOT re-rendered
+  v19438813: settling (payment posted) - NOT re-rendered
+  v19441604: settling (payment posted) - NOT re-rendered
+  v19445435: settling (payment posted) - NOT re-rendered
+  v19448290: settling (payment posted) - NOT re-rendered
+  v19451954: settling (payment posted) - NOT re-rendered
+  v19418989: settling (payment posted) - NOT re-rendered
+  v19420277: settling (payment posted) - NOT re-rendered
+  v19422677: settling (payment posted) - NOT re-rendered
+  v19444471: settling (payment posted) - NOT re-rendered
+  v19447181: settling (payment posted) - NOT re-rendered
+  v19450277: settling (payment posted) - NOT re-rendered
+  v19418288: settling (payment posted) - NOT re-rendered
+  v19419579: settling (payment posted) - NOT re-rendered
+  v19423862: settling (payment posted) - NOT re-rendered
+  v19430021: settling (payment posted) - NOT re-rendered
+  v19432961: settling (payment posted) - NOT re-rendered
+  v19436088: settling (payment posted) - NOT re-rendered
+  v19438310: settling (payment posted) - NOT re-rendered
+  v19445312: settling (payment posted) - NOT re-rendered
+  v19418999: settling (payment posted) - NOT re-rendered
+  v19422674: settling (payment posted) - NOT re-rendered
+  v19426938: settling (payment posted) - NOT re-rendered
+  v19428128: settling (payment posted) - NOT re-rendered
+  v19432988: settling (payment posted) - NOT re-rendered
+  v19435324: settling (payment posted) - NOT re-rendered
+  v19438977: settling (payment posted) - NOT re-rendered
+  v19442606: settling (payment posted) - NOT re-rendered
+pat17472517: new main plan rplan18462171 (rprov13)
+  v19434564: settling (payment posted) - NOT re-rendered
+  v19448281: settling (payment posted) - NOT re-rendered
+  v19451014: settling (payment posted) - NOT re-rendered
+  B v19423193 refplan rplan18462171 HUM01 seq 2  charges 1 rebilled 1 $70.17
+  B v19423205 refplan rplan18462171 HUM01 seq 2  charges 1 rebilled 1 $70.17
+  B v19433214 refplan rplan18462171 HUM01 seq 2  charges 1 rebilled 1 $74.54
+  B v19433215 refplan rplan18462171 HUM01 seq 2  charges 1 rebilled 1 $74.54
+  B v19433216 refplan rplan18462171 HUM01 seq 2  charges 2 rebilled 2 $265.47
+  B v19434304 refplan rplan18462171 HUM01 seq 2  charges 2 rebilled 2 $46.45
+batch: A re-rendered 0 | B repointed 17 | charges rebilled 23 $1,496.68 | settling-skipped 39 | CHECK 0 | FCC kept 0 | visits done 113/180
+  v19418997: settling (payment posted) - NOT re-rendered
+  v19422670: settling (payment posted) - NOT re-rendered
+  v19426933: settling (payment posted) - NOT re-rendered
+  v19427686: settling (payment posted) - NOT re-rendered
+  A v19429021->19455372 prof13 refplan rplan21039 HUM01 seq 2  charges 1->1 rebilled 1/1 $84.64
+  v19444498: settling (payment posted) - NOT re-rendered
+  v19447362: settling (payment posted) - NOT re-rendered
+  v19451029: settling (payment posted) - NOT re-rendered
+  v19424014: settling (payment posted) - NOT re-rendered
+  v19427513: settling (payment posted) - NOT re-rendered
+  v19433030: settling (payment posted) - NOT re-rendered
+  v19435851: settling (payment posted) - NOT re-rendered
+  v19438159: settling (payment posted) - NOT re-rendered
+  v19441037: settling (payment posted) - NOT re-rendered
+  v19445141: settling (payment posted) - NOT re-rendered
+  v19445477: settling (payment posted) - NOT re-rendered
+  v19445840: settling (payment posted) - NOT re-rendered
+  v19433021: settling (payment posted) - NOT re-rendered
+  v19433027: settling (payment posted) - NOT re-rendered
+  v19434018: settling (payment posted) - NOT re-rendered
+  v19434937: settling (payment posted) - NOT re-rendered
+  v19436086: settling (payment posted) - NOT re-rendered
+  v19420271: settling (payment posted) - NOT re-rendered
+  v19422868: settling (payment posted) - NOT re-rendered
+  v19426931: settling (payment posted) - NOT re-rendered
+  v19428125: settling (payment posted) - NOT re-rendered
+  v19432979: settling (payment posted) - NOT re-rendered
+  v19435320: settling (payment posted) - NOT re-rendered
+  v19438973: settling (payment posted) - NOT re-rendered
+  v19442596: settling (payment posted) - NOT re-rendered
+  v19444044: settling (payment posted) - NOT re-rendered
+  v19447325: settling (payment posted) - NOT re-rendered
+  v19451354: settling (payment posted) - NOT re-rendered
+  v19419256: settling (payment posted) - NOT re-rendered
+  v19422658: settling (payment posted) - NOT re-rendered
+  v19425612: settling (payment posted) - NOT re-rendered
+  A v19428322->19455373 prof13 refplan rplan24232 HUM01 seq 2  charges 1->1 rebilled 1/1 $84.64
+  v19432967: settling (payment posted) - NOT re-rendered
+  v19435300: settling (payment posted) - NOT re-rendered
+  v19438959: settling (payment posted) - NOT re-rendered
+  v19442595: settling (payment posted) - NOT re-rendered
+  v19444043: settling (payment posted) - NOT re-rendered
+  v19447324: settling (payment posted) - NOT re-rendered
+  v19450688: settling (payment posted) - NOT re-rendered
+  v19453793: settling (payment posted) - NOT re-rendered
+  v19423411: settling (payment posted) - NOT re-rendered
+  v19426947: settling (payment posted) - NOT re-rendered
+  v19430528: settling (payment posted) - NOT re-rendered
+  v19433058: settling (payment posted) - NOT re-rendered
+  v19435835: settling (payment posted) - NOT re-rendered
+  v19440847: settling (payment posted) - NOT re-rendered
+  v19442866: settling (payment posted) - NOT re-rendered
+  v19435620: settling (payment posted) - NOT re-rendered
+  v19442087: settling (payment posted) - NOT re-rendered
+  A v19430016->19455374 prof13 refplan rplan21933 HUM01 seq 3  charges 1->1 rebilled 1/1 $57.96
+  A v19432955->19455375 prof13 refplan rplan21933 HUM01 seq 3  charges 1->1 rebilled 1/1 $84.64
+  v19441905: settling (payment posted) - NOT re-rendered
+pat17472396: new main plan rplan18462172 (rprov13)
+  B v19448871 refplan rplan18462172 HUM01 seq 2  charges 2 rebilled 2 $25.06
+pat44953: new main plan rplan18462173 (rprov13)
+  B v19450843 refplan rplan18462173 HUM01 seq 1  charges 1 rebilled 1 $163.00
+pat17472393: new main plan rplan18462174 (rprov13)
+  B v19452361 refplan rplan18462174 HUM01 seq 3  charges 2 rebilled 2 $25.06
+  B v19453088 refplan rplan18462174 HUM01 seq 3  charges 2 rebilled 2 $45.29
+  B v19453500 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $21.80
+  B v19453705 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $74.54
+  B v19453716 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $74.54
+  B v19453750 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $74.54
+  B v19453831 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $74.54
+  B v19453850 refplan rplan18462174 HUM01 seq 3  charges 1 rebilled 1 $74.54
+batch: A re-rendered 4 | B repointed 10 | charges rebilled 17 $964.79 | settling-skipped 53 | CHECK 0 | FCC kept 0 | visits done 180/180
