@@ -1686,14 +1686,14 @@ Helpers this run: insp_0922_0510.py / _0510b.py / _0510c.py / _0510d.py (--allow
 - Past filing limit (DOS > 12 months), Garcia-rendered, open: $4,722 (FLO99 $1,995 / HUM01 $2,413 / small MCAD, SUN01, WEL04) - not re-rendered; write-off path.
 
 ## 2026-09-22 chat — FCC (FLO99) root cause (corrects the "FCC never pays -> reroute to Medicaid FFS" assumption)
-- FCC holds $36,026 / 600 charges / 31 patients ($31,120 within 12 months). 77027 271s (all 31, 9/22): FCC listed as BOTH "SMMC Long-Term Care (LTCC)" and "SMMC MMA Capitated" for 20 of 22 active patients -> FCC is the medical payer. LTC-only FCC: Watts, Woody (medical = UHC D-SNP). 9 inactive today.
-- Medicaid FFS has never paid the Medicaid-only FCC patients (hundreds of $0 lines; Busby CO256/N130 on 9/21). Sunshine paid them until 12/2023.
+- FCC holds $36,026 / 600 charges / 31 patients ($31,120 within 12 months). 77027 271s (all 31, 9/22): FCC listed as BOTH "SMMC Long-Term Care (LTCC)" and "SMMC MMA Capitated" for 20 of 22 active patients -> FCC is the medical payer. LTC-only FCC: Wotton, Woody (medical = UHC D-SNP). 9 inactive today.
+- Medicaid FFS has never paid the Medicaid-only FCC patients (hundreds of $0 lines; Varley CO256/N130 on 9/21). Sunshine paid them until 12/2023.
 - FCC's own remits: EHPA/WEFFI claims CO256/N130 (DOS 8/29-8/31/2026); Garcia claims CO16/N290. FCC last paid 8/2023. Carrier master FLO99 = FLORIDA COMMUNITY CARE AVAILITY, cpid 8129 via CHC - claims reach FCC; the denial is contractual.
 - medicaid_garcia_fix.py route() misrouted 31 visits off FCC on 9/22 (17 -> MCAD FFS $2,683 on 4 charts; 14 -> an old SMMC plan $1,770 on 2 charts) - list in unbilled/fcc_misrouted_2026-09-22.json. route() now keeps FCC. William's 9/7 decision (fcc_rebill_0907.py: "FCC is FLO99 - rebill them all there") stands.
 
 ## 2026-09-22 chat — FCC correction (same day)
 - William: FCC may pay by PAPER CHECK, deposited into Square. So "FCC paid nothing since 8/2023" is an AMD-posting artifact, not FCC behavior. FCC ERA enrollment form sent 9/8/2026 (FCCERA@fcchealthplan.com); FCC provider portal (mPulse) accounts dreffinger / dreffinger1 created 9/8.
-- RETRACTED: "FCC denies EHPA's own claims -> network/contract issue". The 5 CO256/N130 lines are hospital E/M (99223 x2, 99233 x3) for duals Jackson (pat24039) and Hatchett (pat20863), DOS 8/29-8/31 - Medicare-first claims, not nursing-home denials. 3 CO16/N290 lines = Garcia 99309s (Jackson).
+- RETRACTED: "FCC denies EHPA's own claims -> network/contract issue". The 5 CO256/N130 lines are hospital E/M (99223 x2, 99233 x3) for duals Jackson (pat24039) and Hatherley (pat20863), DOS 8/29-8/31 - Medicare-first claims, not nursing-home denials. 3 CO16/N290 lines = Garcia 99309s (Jackson).
 - Rule added: hold all FLO99 write-offs/reroutes until reconciled against FCC EOBs / portal / Square deposits.
 
 ## 2026-09-22 chat — FCC resubmission (William: "resubmit all of these with effinger as rendering and referring to fcc")
@@ -1701,3 +1701,7 @@ Helpers this run: insp_0922_0510.py / _0510b.py / _0510c.py / _0510d.py (--allow
 - Runner medicaid_garcia_fix.py FCC_MODE=1: billing order drops Medicaid FFS (car6113) and non-FCC SMMC seqs, keeps FCC after any Medicare/MA; kind C = already Effinger rendering+referring -> resubmit only (no resave); resave check now also requires identical charge ids (no silent void/recreate).
 - Result: FCC-held within 12 months, 315 visits / 21 charts: 294 charges resubmitted ($28,087.84), 3 referring repointed, 98 Garcia-rendered visits NOT re-rendered (Medicare payment posted on every one: $3,031.71, 13 charts). Misrouted-by-me visits (41 moved, 33 live): all back on FCC, 35 charges resubmitted ($4,701), verified 33/33 (rprov13, FCC in order, no FFS/SMMC). 0 non-204 rebills. Older than 12 months left untouched: 208 chg $4,906.92.
 - Lesson: the runner log prints a chart header only when it creates a referral plan - never attribute visits to charts by log position; map through the target file.
+
+## 2026-09-22 07:10 UTC (3 AM ET 9/22 slot, ehpa cloud routine run 2026-09-22T0710Z)
+No new call shapes this run. Calls used: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus/getclaimexclusioncharges, gettxhistory (txh.fetch, full history), getchargedetaildataicd10, updextrainsinfo (hospitalizationfrom only), updvisitwithnewcharges (full-visit echo, onhcfa=1), bypassclaimedits, GET /api/era/checks, POST /api/era/locks/release-expired.
+Learned behaviour (repeat of 0510Z): a chat-session referral-plan repoint / provider re-render (updvisitwithcharges without extins) wipes hospitalizationfrom on PAID hospital visits (pat17472393 x4, pat17472517 x2 this slot) and they land in the Claim Inspector; updextrainsinfo hospitalizationfrom + a full-visit resave with every live charge echoed by id restores them with the payments untouched (readback live=n/n). A re-created CCM visit (pat23161 12/1/2025 99487+99489 on inspector batch 1) raises Pattern 7011 (frequency exceeded) next to 35790 - both advisories, bypassed.

@@ -67,9 +67,18 @@ def visit_charges(chargeid):
     x = detail(chargeid); root = ET.fromstring(x)
     vis = root.find(".//visit"); pat = root.find(".//patient")
     vid = re.sub(r"\D", "", vis.get("id")); pid = re.sub(r"\D", "", pat.get("id"))
-    body = amd.msg('gettxhistory', 'demographics', {'patientid': pid, 'filterhistory': '0', 'pagenumber': '1', 'typefilter': '0', 'sortbypayment': 'false', 'groupbyvisit': '0', 'sortdescending': '1', 'visitid': '0', 'profileid': '', 'getmemo': 'false', 'nocookie': '1'})
-    th = ET.fromstring(amd.post(body, timeout=120))
-    ids = [c.get("id") for c in th.iter("charge") if c.get("visit") == vid and c.get("void") != "1" and not (c.get("fee") or "").startswith("-")]
+    # gettxhistory is paginated (100 charges/page): page until no new charges, or an old visit on a high-volume patient
+    # is invisible and a resave/move would report "charge not live" (found 9/11/2026 on the insurances cleaning task).
+    ids = []; seen = set()
+    for page in range(1, 8):
+        body = amd.msg('gettxhistory', 'demographics', {'patientid': pid, 'filterhistory': '0', 'pagenumber': str(page), 'typefilter': '0', 'sortbypayment': 'false', 'groupbyvisit': '0', 'sortdescending': '1', 'visitid': '0', 'profileid': '', 'getmemo': 'false', 'nocookie': '1'})
+        th = ET.fromstring(amd.post(body, timeout=120))
+        new = 0
+        for c in th.iter("charge"):
+            if c.get("id") in seen: continue
+            seen.add(c.get("id")); new += 1
+            if c.get("visit") == vid and c.get("void") != "1" and not (c.get("fee") or "").startswith("-"): ids.append(c.get("id"))
+        if new == 0 or new < 100: break
     charges = []
     for cid in ids:
         r = ET.fromstring(detail(cid))
@@ -80,5 +89,5 @@ def visit_charges(chargeid):
 DATE_ATTRS = {"hospitalizationfrom", "hospitalizationto", "unabletoworkfrom", "unabletoworkto", "datesimilarsymptom", "dateofinjury", "datelastseen", "datelmp", "dateofsymptom"}
 def clean_extins(attrs):
     """NEVER send an empty/space date attribute on updextrainsinfo: AMD stores it as 01/01/1900 and the claim rejects.
-    Omit blank or 1900 date attrs (omission clears them).  Learned 9/4/2026 on Tillery."""
+    Omit blank or 1900 date attrs (omission clears them).  Learned 9/4/2026 on Tillotson."""
     return {k: v for k, v in attrs.items() if not (k in DATE_ATTRS and (not str(v).strip() or "1900" in str(v)))}
