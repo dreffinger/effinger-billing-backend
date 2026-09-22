@@ -1,0 +1,12 @@
+batch: posted 78 $4,134.15 | skipped (changed) 0 | failed 0 | remaining 311 of 389
+batch: posted 47 $1,518.95 | skipped (changed) 0 | failed 0 | remaining 264 of 389
+  HOLD v19413868: move err syntax error: line 1, column 0
+batch: posted 47 $2,166.62 | skipped (changed) 0 | failed 0 | remaining 166 of 389
+  HOLD v19417413: move -> FAULT <?xml version="1.0" encoding="ISO-8859-1"?><PPMDResults s="advancedmd-api-
+batch: posted 44 $1,347.50 | skipped (changed) 0 | failed 0 | remaining 122 of 389
+  HOLD v19417413: move -> FAULT <?xml version="1.0" encoding="ISO-8859-1"?><PPMDResults s="advancedmd-api-
+batch: posted 39 $639.14 | skipped (changed) 0 | failed 0 | remaining 83 of 389
+  HOLD v19417413: move -> FAULT <?xml version="1.0" encoding="ISO-8859-1"?><PPMDResults s="advancedmd-api-
+batch: posted 41 $1,091.84 | skipped (changed) 0 | failed 0 | remaining 42 of 389
+  HOLD v19417413: move -> FAULT <?xml version="1.0" encoding="ISO-8859-1"?><PPMDResults s="advancedmd-api-
+batch: posted 40 $2,913.46 | skipped (changed) 0 | failed 0 | remaining 2 of 389
