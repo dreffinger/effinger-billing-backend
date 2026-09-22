@@ -60,3 +60,28 @@ pat45010: main plan rplan45167 refprov=rprov15; prof13 open visits on it: ['1943
   new referral plan rplan18462130 refprov=rprov13
   v19430595: refplan rplan45167 -> rplan18462130  charges 2->2  OK
   v19454229: refplan rplan45167 -> rplan18462130  charges 1->1  OK
+
+=== 2026-09-22 resubmit-all (William): 18 charges $1,686.45 rebilled on Medicaid seq, skipped 9, failed 20 ===
+
+=== resubmit on the visit's OWN sequence (United/Sunshine-billed visits): 0 charges $0.00, failed 0 ===
+  REBILL v19433764 c23340477 own-seq 4 (insorder 4) $16.14
+  REBILL v19433764 c23340478 own-seq 4 (insorder 4) $8.92
+  REBILL v19420927 c23326054 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19420927 c23326055 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19423613 c23329240 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19423613 c23329241 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19427566 c23334079 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19427566 c23334080 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19438533 c23345664 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19438533 c23345665 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19439561 c23347075 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19439561 c23347076 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19442425 c23350523 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19446193 c23355157 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19446193 c23355158 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19448506 c23357809 own-seq 3 (insorder 3,4) $204.00
+  REBILL v19448845 c23358295 own-seq 3 (insorder 3,4) $206.00
+  REBILL v19448845 c23358296 own-seq 3 (insorder 3,4) $109.00
+  REBILL v19453666 c23364408 own-seq 3 (insorder 3,4) $141.00
+  REBILL v19454249 c23365299 own-seq 3 (insorder 3) $107.00
+=== resubmit on the visit's OWN sequence (United/Sunshine-billed visits): 20 charges $2,888.06, failed 0 ===

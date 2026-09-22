@@ -77,12 +77,16 @@ def fix_chart(pid, rebill_vids, dry):
         d = ET.fromstring(resave.detail(cids[0])); v2 = d.find(".//visit"); _, _, post = resave.visit_charges(cids[0])
         ok = v2 is not None and v2.get("refplan") == newplan and len(post) == pre
         L(f"  v{vid}: refplan {vis.get('refplan')} -> {v2.get('refplan') if v2 is not None else '?'}  charges {pre}->{len(post)}  {'OK' if ok else '** CHECK **'}")
-        if ok and vid in rebill_vids and seq:
+        # rebill on the sequence the VISIT is billed to: Medicaid's own seq only if it is in this visit's insorder,
+        # else the last-billed sequence (a United/Sunshine-billed visit pushed at the FFS sequence returns HTTP 500 - 9/22).
+        io = (v2.get("insorder") or "").split(",") if v2 is not None else []
+        vseq = seq if seq in io else (io[0] if io else None)
+        if ok and vid in rebill_vids and vseq:
             for c in post:
                 pc = c.get("proccode")
                 amd.post(amd.msg("updextrainsinfo", "chargeentry", {"visitid": re.sub(r"\D", "", vis.get("id")), "nocookie": "1"},
                     f'<extins txtChargeCode="{pc}" resubmissioncode="1" origrefnum="" patsignature="1" emergency="0" epsdt="0" payprov="1" employment="0" autoaccident="0" otheraccident="0" pregnant="0" outsidelab="0"/>'))
-                code, _ = amd.rebill_charge(c.get("id"), seq); L(f"     rebill c{c.get('id')} seq {seq} -> http {code}")
+                code, _ = amd.rebill_charge(c.get("id"), vseq); L(f"     rebill c{c.get('id')} seq {vseq} -> http {code}")
                 time.sleep(0.3)
         time.sleep(0.5)
 
