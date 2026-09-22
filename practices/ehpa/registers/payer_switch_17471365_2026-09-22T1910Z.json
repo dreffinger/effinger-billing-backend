@@ -1,0 +1,19 @@
+{
+ "stamp": "2026-09-22T1910Z",
+ "pid": "17471365",
+ "steps": [
+  "plans before: [{'id': 'ins9510648', 'sequence': '1', 'carrier': 'car6085', 'subscribernum': '[MBI]', 'begindate': '07/03/2023', 'enddate': '', 'coverage': '1', 'grpnum': ''}, {'id': 'ins9510649', 'sequence': '2', 'carrier': 'car6404', 'subscribernum': '04988775211', 'begindate': '05/03/2023', 'enddate': '', 'coverage': '2', 'grpnum': ''}]",
+  "add_ins AAR01 -> ('ins9519517', '3')",
+  "AAR01 plan ins9519517 sequence 3 grpnum=''",
+  "end-date UNI20 ins9510649 10/14/2025 -> (True, '8-76rst\" lst=\"09/22/2026 12:32:33\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>')",
+  "v19422334 move/insorder 1,3 -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '20.86', 'insorder': '1,3'} rebill seq 1,3 (sent to 3) -> 204",
+  "v19422334 freq1 + rebill seq 3 -> 204",
+  "v19422334 readback insorder=1,3 insbilled=0 insbalance=20.86 patbalance=0.00",
+  "v19423579 move/insorder 1,3 -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '25.90', 'insorder': '1,3'} rebill seq 1,3 (sent to 3) -> 204",
+  "v19423579 freq1 + rebill seq 3 -> 204",
+  "v19423579 readback insorder=1,3 insbilled=0 insbalance=25.90 patbalance=0.00",
+  "hideexclusions 1700216 x2 -> ok",
+  "exclusion rows left on 1700216: 0",
+  "plans after: [{'id': 'ins9510648', 'sequence': '1', 'carrier': 'car6085', 'subscribernum': '[MBI]', 'begindate': '07/03/2023', 'enddate': '', 'coverage': '1', 'grpnum': ''}, {'id': 'ins9510649', 'sequence': '2', 'carrier': 'car6404', 'subscribernum': '04988775211', 'begindate': '05/03/2023', 'enddate': '10/14/2025', 'coverage': '2', 'grpnum': ''}, {'id': 'ins9519517', 'sequence': '3', 'carrier': 'car6600', 'subscribernum': '04988775211', 'begindate': '05/03/2023', 'enddate': '', 'coverage': '2', 'grpnum': ''}]"
+ ]
+}
