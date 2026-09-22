@@ -2,7 +2,7 @@
 # Decides: For every open Medicaid-type claim in the past year where Garcia is the rendering (prof15) or the chart's referring
 #          provider (rprov15): make Effinger both. A = profile swap prof15->prof13 (AMD voids + recreates the charges on a new visit)
 #          with refplan set to an rprov13 main plan in the same resave; B = refplan repoint only (no void). Then freq-1 + rebill the
-#          live charges on the sequence of the plan that holds the balance. FCC (FLO99) holds nothing payable: route to MCAD FFS
+#          live charges on the sequence of the plan that holds the balance. FCC (FLO99) is the SMMC MMA plan for most of its members (271): keep FCC
 #          when the patient has car6113 and no active SMMC plan, to the SMMC plan when one exists, else keep FLO99 and flag.
 # Rules it uses: void-trap discipline (visit_charges = every active charge, paginated; recreated count must equal the original);
 #          settling gate (a visit with a posted non-void payment is never re-rendered); never a UI step; resumable.
@@ -29,11 +29,9 @@ def route(ins, holding_code):
     """sequence to bill: the holding carrier's plan, except FLO99 -> MCAD FFS / SMMC plan when on file"""
     hold=CODE2CAR.get(holding_code)
     if hold==FCC:
-        sm=[p for p in ins if p.get("carrier") in SMMC and not p.get("enddate")]
-        if sm: return sm[0]["sequence"], sm[0]["carrier"], "FCC->SMMC"
-        s=carseq(ins,MCAD)
-        if s: return s, MCAD, "FCC->MCAD"
-        return carseq(ins,FCC), FCC, "FCC(kept, no FFS/SMMC plan)"
+        # 9/22 CORRECTION: FL Medicaid's 271 lists FCC as "SMMC MMA Capitated" (the medical plan) for 20 of 22 FCC patients,
+        # and FFS denies those claims CO256/N130. FCC stays the payer; never reroute FCC balances off FCC from this runner.
+        return carseq(ins,FCC), FCC, "FCC kept (SMMC MMA plan)"
     return carseq(ins,hold), hold, ""
 def echo(allc):
     chg=""
