@@ -20,6 +20,7 @@ SMMC={"car6194","car6174","car42019","car41991","car41992"}; MCAD="car6113"; FCC
 tgt=json.load(open(os.environ.get("TGT",f"{W}/medicaid_garcia_targets_2026-09-22.json")))
 DONE=os.environ.get("DONEF",f"{W}/medicaid_garcia_done.json"); done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
 BUDGET=float(sys.argv[1]) if len(sys.argv)>1 else 230
+FCC_MODE=os.environ.get("FCC_MODE")=="1"   # 9/22: resubmit FCC balances to FCC (Medicaid FFS / old SMMC out of the billing order; rebill even when already Effinger)
 def carseq(ins, carid):
     for p in ins:
         if p.get("carrier")==carid and not p.get("enddate"): return p.get("sequence")
@@ -111,14 +112,23 @@ for pid,parts in tgt.items():
             seq,carid,note=route(ins,hold)
             if not seq: L(f"  v{vid}: no sequence for {hold} - skip"); done.add(key); continue
             insorder=v.get("insorder") or ""
-            if seq not in insorder.split(","): insorder=(seq+","+insorder).strip(",")   # make the target plan billable on this visit
+            if FCC_MODE:
+                seqcar={x.get("sequence"):x.get("carrier") for x in ins}
+                lst=[s for s in insorder.split(",") if s and seqcar.get(s) not in ({MCAD}|SMMC)]
+                if seq not in lst: lst.append(seq)
+                insorder=",".join(lst)
+            elif seq not in insorder.split(","): insorder=(seq+","+insorder).strip(",")   # make the target plan billable on this visit
             pre=len(allc); sigs=[(c.get("proccode"),c.get("fee")) for c in allc]; pre_bal=sum(float(c.get("insbalance") or 0) for c in allc)
             if kind=="A":
                 if v.get("profile")!="prof15": L(f"  v{vid}: profile {v.get('profile')} already - treat as B"); kind_eff="B"
                 else: kind_eff="A"
             else: kind_eff="B"
             if kind_eff=="B" and {p["id"]:p for p in ref}.get(v.get("refplan"),{}).get("refprov")=="rprov13":
-                L(f"  v{vid}: referring already Effinger (rprov13) - skip"); done.add(key); continue
+                if not FCC_MODE: L(f"  v{vid}: referring already Effinger (rprov13) - skip"); done.add(key); continue
+                if insorder==(v.get("insorder") or ""):    # already right: resubmit only, no resave
+                    n=rebill_live(re.sub(r"\D","",v.get("id")),[(re.sub(r"\D","",c.get("id")),c.get("proccode")) for c in allc if float(c.get("insbalance") or 0)>0.005],seq)
+                    stats["rebilled"]+=n; stats["money"]+=pre_bal; stats["C"]=stats.get("C",0)+1
+                    L(f"  C v{vid} resubmit only {hold} seq {seq} rebilled {n} ${pre_bal:.2f}"); done.add(key); json.dump(sorted(done),open(DONE,"w")); continue
             if kind_eff=="A":
                 paid=False
                 for cx in allc:                               # settling gate across EVERY live charge on the visit
@@ -136,7 +146,8 @@ for pid,parts in tgt.items():
                 rr=resave_visit(v,pat,echo(allc),v.get("profile"),newplan,insorder)
                 if "Fault" in rr: L(f"  v{vid}: repoint FAULT {re.sub(chr(10),' ',rr)[:90]}"); continue
                 time.sleep(0.5); _,_,post=resave.visit_charges(cid0); d2=ET.fromstring(resave.detail(cid0)); v2=d2.find(".//visit")
-                if v2 is None or v2.get("refplan")!=newplan or len(post)!=pre: L(f"  v{vid}: ** CHECK ** refplan {v2.get('refplan') if v2 is not None else '?'} charges {pre}->{len(post)}"); stats["check"]+=1; continue
+                if v2 is None or v2.get("refplan")!=newplan or len(post)!=pre or sorted(c.get("id") for c in post)!=sorted(c.get("id") for c in allc):
+                    L(f"  v{vid}: ** CHECK ** refplan {v2.get('refplan') if v2 is not None else '?'} charges {pre}->{len(post)} ids-same={sorted(c.get('id') for c in post)==sorted(c.get('id') for c in allc)}"); stats["check"]+=1; continue
                 n=rebill_live(re.sub(r"\D","",v.get("id")),[(re.sub(r"\D","",c.get("id")),c.get("proccode")) for c in post if float(c.get("insbalance") or 0)>0.005],seq)
                 stats["B"]+=1; stats["rebilled"]+=n; stats["money"]+=pre_bal
                 L(f"  B v{vid} refplan {newplan} {hold} seq {seq} {note} charges {pre} rebilled {n} ${pre_bal:.2f}")

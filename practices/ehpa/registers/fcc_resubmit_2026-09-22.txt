@@ -1,0 +1,355 @@
+  C v19422893 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19422922 resubmit only FLO99 seq 3 rebilled 2 $443.00
+  C v19423066 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19423210 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19423309 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19423453 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19425646 resubmit only FLO99 seq 3 rebilled 2 $389.00
+  v19420548: settling (payment posted) - NOT re-rendered
+  v19423399: settling (payment posted) - NOT re-rendered
+  v19426967: settling (payment posted) - NOT re-rendered
+  v19430559: settling (payment posted) - NOT re-rendered
+  v19433050: settling (payment posted) - NOT re-rendered
+  v19435637: settling (payment posted) - NOT re-rendered
+  v19437360: settling (payment posted) - NOT re-rendered
+  v19441048: settling (payment posted) - NOT re-rendered
+  v19444510: settling (payment posted) - NOT re-rendered
+  v19447373: settling (payment posted) - NOT re-rendered
+  v19451538: settling (payment posted) - NOT re-rendered
+  C v19421125 resubmit only FLO99 seq 3 rebilled 1 $137.38
+  C v19423719 resubmit only FLO99 seq 3 rebilled 1 $137.38
+  C v19427133 resubmit only FLO99 seq 3 rebilled 1 $137.38
+  C v19430846 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19433763 resubmit only FLO99 seq 3 rebilled 2 $216.77
+  C v19438663 resubmit only FLO99 seq 3 rebilled 2 $216.77
+  C v19439685 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19442505 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19446312 resubmit only FLO99 seq 3 rebilled 1 $16.14
+  C v19448925 resubmit only FLO99 seq 3 rebilled 1 $16.14
+  C v19452410 resubmit only FLO99 seq 3 rebilled 1 $16.14
+  v19422689: settling (payment posted) - NOT re-rendered
+  v19432998: settling (payment posted) - NOT re-rendered
+  v19434567: settling (payment posted) - NOT re-rendered
+  v19437741: settling (payment posted) - NOT re-rendered
+  v19442615: settling (payment posted) - NOT re-rendered
+  v19444063: settling (payment posted) - NOT re-rendered
+  v19448283: settling (payment posted) - NOT re-rendered
+  v19451020: settling (payment posted) - NOT re-rendered
+  v19453824: settling (payment posted) - NOT re-rendered
+  C v19423639 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19427590 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19430737 resubmit only FLO99 seq 2 rebilled 2 $125.29
+  C v19433928 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19438556 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19439583 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19442443 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19420953 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19423638 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19425808 resubmit only FLO99 seq 2 rebilled 2 $443.00
+  C v19425950 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426018 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426106 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426213 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426228 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426377 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19426636 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19430736 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19433688 resubmit only FLO99 seq 2 rebilled 2 $443.00
+  C v19433790 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19434048 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19434276 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19434299 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19434300 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19434437 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437195 resubmit only FLO99 seq 2 rebilled 2 $389.00
+  C v19437269 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437271 resubmit only FLO99 seq 2 rebilled 2 $443.00
+  C v19437675 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437689 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437708 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437862 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437939 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19437963 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19438065 resubmit only FLO99 seq 2 rebilled 1 $160.00
+  C v19438555 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19438984 resubmit only FLO99 seq 2 rebilled 2 $389.00
+  C v19439582 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19442442 resubmit only FLO99 seq 2 rebilled 1 $206.00
+  C v19443466 resubmit only FLO99 seq 2 rebilled 1 $310.00
+  C v19443546 resubmit only FLO99 seq 2 rebilled 1 $111.00
+  C v19443631 resubmit only FLO99 seq 2 rebilled 1 $111.00
+  C v19443655 resubmit only FLO99 seq 2 rebilled 1 $111.00
+  C v19443734 resubmit only FLO99 seq 2 rebilled 1 $163.00
+  C v19445004 resubmit only FLO99 seq 2 rebilled 2 $389.00
+  C v19446210 resubmit only FLO99 seq 2 rebilled 2 $315.00
+batch: A re-rendered 0 | B repointed 0 | charges rebilled 86 $11,982.81 | settling-skipped 20 | CHECK 0 | FCC kept 0 | visits done 84/315
+  C v19448521 resubmit only FLO99 seq 2 rebilled 1 $204.00
+  C v19448860 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19454225 resubmit only FLO99 seq 2 rebilled 1 $107.00
+  v19425345: settling (payment posted) - NOT re-rendered
+  v19429017: settling (payment posted) - NOT re-rendered
+  v19432502: settling (payment posted) - NOT re-rendered
+  v19435220: settling (payment posted) - NOT re-rendered
+  v19437728: settling (payment posted) - NOT re-rendered
+  v19441618: settling (payment posted) - NOT re-rendered
+  v19447321: settling (payment posted) - NOT re-rendered
+  v19451557: settling (payment posted) - NOT re-rendered
+  C v19427226 resubmit only FLO99 seq 4 rebilled 2 $209.25
+  C v19430612 resubmit only FLO99 seq 4 rebilled 2 $216.77
+  C v19433943 resubmit only FLO99 seq 4 rebilled 1 $142.72
+  C v19438573 resubmit only FLO99 seq 4 rebilled 2 $216.77
+  C v19439597 resubmit only FLO99 seq 4 rebilled 2 $216.77
+  C v19442525 resubmit only FLO99 seq 4 rebilled 2 $216.77
+  C v19448873 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19423728 resubmit only FLO99 seq 3 rebilled 2 $443.00
+  C v19423739 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19423881 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19424036 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19424223 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19426736 resubmit only FLO99 seq 3 rebilled 2 $389.00
+  C v19428684 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19428685 resubmit only FLO99 seq 3 rebilled 2 $443.00
+  C v19429062 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429063 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429064 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429065 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429264 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429285 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429391 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429541 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429542 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19429556 resubmit only FLO99 seq 3 rebilled 1 $160.00
+  C v19432545 resubmit only FLO99 seq 3 rebilled 2 $389.00
+  C v19452444 resubmit only FLO99 seq 3 rebilled 2 $315.00
+  C v19453677 resubmit only FLO99 seq 3 rebilled 1 $107.00
+  C v19453678 resubmit only FLO99 seq 3 rebilled 1 $141.00
+  C v19453680 resubmit only FLO99 seq 3 rebilled 1 $141.00
+  v19419551: settling (payment posted) - NOT re-rendered
+  v19423431: settling (payment posted) - NOT re-rendered
+  C v19423701 resubmit only FLO99 seq 3 rebilled 2 $209.25
+  C v19427114 resubmit only FLO99 seq 3 rebilled 2 $209.25
+  C v19434007 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  v19447366: settling (payment posted) - NOT re-rendered
+  v19451034: settling (payment posted) - NOT re-rendered
+  C v19430819 resubmit only FLO99 seq 3 rebilled 2 $216.77
+  C v19439663 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19442485 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19446298 resubmit only FLO99 seq 3 rebilled 1 $142.72
+  C v19448903 resubmit only FLO99 seq 3 rebilled 1 $16.14
+  C v19452393 resubmit only FLO99 seq 3 rebilled 1 $16.14
+  v19420533: settling (payment posted) - NOT re-rendered
+  v19423397: settling (payment posted) - NOT re-rendered
+  v19426964: settling (payment posted) - NOT re-rendered
+  v19433049: settling (payment posted) - NOT re-rendered
+  v19435635: settling (payment posted) - NOT re-rendered
+  v19441046: settling (payment posted) - NOT re-rendered
+  v19451183: settling (payment posted) - NOT re-rendered
+  v19451532: settling (payment posted) - NOT re-rendered
+  C v19421101 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19423698 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19427109 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19430815 resubmit only FLO99 seq 2 rebilled 2 $125.29
+  C v19434005 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19438638 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19439658 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19442481 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19443536 resubmit only FLO99 seq 2 rebilled 2 $45.29
+  C v19443623 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19443648 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19443817 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19443830 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19444011 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19444020 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19444127 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19444164 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19445441 resubmit only FLO99 seq 2 rebilled 2 $45.29
+  C v19445447 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19445492 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19445698 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19445708 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19445850 resubmit only FLO99 seq 2 rebilled 1 $14.38
+  C v19446048 resubmit only FLO99 seq 2 rebilled 1 $21.59
+batch: A re-rendered 0 | B repointed 0 | charges rebilled 89 $8,464.25 | settling-skipped 20 | CHECK 0 | FCC kept 0 | visits done 170/315
+  C v19448901 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19452389 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19453374 resubmit only FLO99 seq 2 rebilled 1 $31.94
+  C v19453379 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19453759 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19453768 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19453769 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19453770 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19453836 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19453855 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  v19442607: settling (payment posted) - NOT re-rendered
+  v19445160: settling (payment posted) - NOT re-rendered
+  v19447335: settling (payment posted) - NOT re-rendered
+  v19451345: settling (payment posted) - NOT re-rendered
+  C v19452440 resubmit only FLO99 seq 4 rebilled 2 $315.00
+  C v19453682 resubmit only FLO99 seq 4 rebilled 1 $141.00
+  v19443442: settling (payment posted) - NOT re-rendered
+  v19444781: settling (payment posted) - NOT re-rendered
+  v19445144: settling (payment posted) - NOT re-rendered
+  v19445479: settling (payment posted) - NOT re-rendered
+  v19445843: settling (payment posted) - NOT re-rendered
+  v19446574: settling (payment posted) - NOT re-rendered
+  v19446954: settling (payment posted) - NOT re-rendered
+  v19447178: settling (payment posted) - NOT re-rendered
+  v19447365: settling (payment posted) - NOT re-rendered
+  v19447747: settling (payment posted) - NOT re-rendered
+  v19448016: settling (payment posted) - NOT re-rendered
+  v19449933: settling (payment posted) - NOT re-rendered
+  v19450276: settling (payment posted) - NOT re-rendered
+  v19450290: settling (payment posted) - NOT re-rendered
+  v19451170: settling (payment posted) - NOT re-rendered
+  v19451313: settling (payment posted) - NOT re-rendered
+  v19452833: settling (payment posted) - NOT re-rendered
+  v19452852: settling (payment posted) - NOT re-rendered
+  v19453357: settling (payment posted) - NOT re-rendered
+  C v19443314 resubmit only FLO99 seq 3 rebilled 2 $46.45
+  C v19444797 resubmit only FLO99 seq 3 rebilled 2 $46.45
+  C v19452386 resubmit only FLO99 seq 3 rebilled 2 $25.06
+  C v19453215 resubmit only FLO99 seq 3 rebilled 1 $31.94
+  C v19453377 resubmit only FLO99 seq 3 rebilled 1 $21.80
+  C v19453385 resubmit only FLO99 seq 3 rebilled 1 $21.80
+  C v19453504 resubmit only FLO99 seq 3 rebilled 1 $21.80
+  C v19453712 resubmit only FLO99 seq 3 rebilled 1 $74.54
+  C v19453757 resubmit only FLO99 seq 3 rebilled 1 $74.54
+  C v19453775 resubmit only FLO99 seq 3 rebilled 1 $74.54
+  C v19453834 resubmit only FLO99 seq 3 rebilled 1 $74.54
+  C v19453853 resubmit only FLO99 seq 3 rebilled 1 $74.54
+  C v19420929 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19423615 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19427561 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19430716 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19438536 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19439562 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19442426 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19446194 resubmit only FLO99 seq 4 rebilled 1 $206.00
+  C v19448507 resubmit only FLO99 seq 4 rebilled 1 $204.00
+  C v19450054 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19450055 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19450056 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19450057 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19450109 resubmit only FLO99 seq 2 rebilled 1 $31.94
+  C v19450123 resubmit only FLO99 seq 2 rebilled 1 $21.80
+  C v19452377 resubmit only FLO99 seq 2 rebilled 2 $315.00
+  C v19453674 resubmit only FLO99 seq 2 rebilled 1 $141.00
+  C v19453685 resubmit only FLO99 seq 2 rebilled 1 $141.00
+  v19425336: settling (payment posted) - NOT re-rendered
+  v19429007: settling (payment posted) - NOT re-rendered
+  C v19427055 resubmit only FLO99 seq 2 rebilled 1 $70.17
+  C v19427059 resubmit only FLO99 seq 2 rebilled 1 $177.69
+  C v19429273 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19429274 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19429275 resubmit only FLO99 seq 2 rebilled 1 $184.80
+  C v19429389 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19429529 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19429530 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19429531 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19430121 resubmit only FLO99 seq 2 rebilled 2 $259.34
+  C v19430403 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19430411 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  C v19430871 resubmit only FLO99 seq 2 rebilled 1 $74.54
+  v19423415: settling (payment posted) - NOT re-rendered
+  v19427010: settling (payment posted) - NOT re-rendered
+  v19430533: settling (payment posted) - NOT re-rendered
+  v19433062: settling (payment posted) - NOT re-rendered
+  v19435840: settling (payment posted) - NOT re-rendered
+  v19438145: settling (payment posted) - NOT re-rendered
+  v19440851: settling (payment posted) - NOT re-rendered
+  v19444497: settling (payment posted) - NOT re-rendered
+  v19447359: settling (payment posted) - NOT re-rendered
+  v19451028: settling (payment posted) - NOT re-rendered
+  C v19420290 resubmit only FLO99 seq 4 rebilled 1 $20.77
+  C v19421083 resubmit only FLO99 seq 4 rebilled 2 $26.97
+  C v19423686 resubmit only FLO99 seq 4 rebilled 2 $26.97
+  C v19427090 resubmit only FLO99 seq 4 rebilled 2 $26.97
+  C v19430791 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19433986 resubmit only FLO99 seq 4 rebilled 2 $25.06
+batch: A re-rendered 0 | B repointed 0 | charges rebilled 73 $5,690.78 | settling-skipped 35 | CHECK 0 | FCC kept 0 | visits done 266/315
+  C v19438617 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19439640 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19442461 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19446280 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19448888 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  C v19452368 resubmit only FLO99 seq 4 rebilled 2 $25.06
+  B v19452423 refplan rplan22876 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 2 rebilled 2 $315.00
+  B v19453673 refplan rplan22876 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19453686 refplan rplan22876 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  v19418995: settling (payment posted) - NOT re-rendered
+  v19422667: settling (payment posted) - NOT re-rendered
+  v19426929: settling (payment posted) - NOT re-rendered
+  v19432976: settling (payment posted) - NOT re-rendered
+  v19435318: settling (payment posted) - NOT re-rendered
+  v19438971: settling (payment posted) - NOT re-rendered
+  v19442594: settling (payment posted) - NOT re-rendered
+  v19445152: settling (payment posted) - NOT re-rendered
+  v19447323: settling (payment posted) - NOT re-rendered
+  v19451337: settling (payment posted) - NOT re-rendered
+  v19453791: settling (payment posted) - NOT re-rendered
+  C v19420908 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19446177 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  v19433010: settling (payment posted) - NOT re-rendered
+  v19437294: settling (payment posted) - NOT re-rendered
+  v19438156: settling (payment posted) - NOT re-rendered
+  v19441025: settling (payment posted) - NOT re-rendered
+  C v19433977 resubmit only FLO99 seq 2 rebilled 1 $142.72
+  C v19438608 resubmit only FLO99 seq 2 rebilled 2 $216.77
+  C v19439633 resubmit only FLO99 seq 2 rebilled 2 $216.77
+  C v19442452 resubmit only FLO99 seq 2 rebilled 2 $216.77
+  v19423410: settling (payment posted) - NOT re-rendered
+  v19427009: settling (payment posted) - NOT re-rendered
+  v19433057: settling (payment posted) - NOT re-rendered
+  v19435834: settling (payment posted) - NOT re-rendered
+  v19438141: settling (payment posted) - NOT re-rendered
+  v19449439: settling (payment posted) - NOT re-rendered
+  v19449440: settling (payment posted) - NOT re-rendered
+  v19451021: settling (payment posted) - NOT re-rendered
+  C v19420286 resubmit only FLO99 seq 2 rebilled 1 $20.77
+  C v19423676 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19427078 resubmit only FLO99 seq 2 rebilled 2 $26.97
+  C v19430775 resubmit only FLO99 seq 2 rebilled 2 $125.29
+  C v19433973 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19438604 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19439630 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19442449 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19446270 resubmit only FLO99 seq 2 rebilled 1 $16.14
+  C v19448877 resubmit only FLO99 seq 2 rebilled 2 $25.06
+  C v19452355 resubmit only FLO99 seq 2 rebilled 2 $25.06
+batch: A re-rendered 0 | B repointed 3 | charges rebilled 46 $1,950.00 | settling-skipped 23 | CHECK 0 | FCC kept 0 | visits done 315/315
+batch: A re-rendered 0 | B repointed 0 | charges rebilled 0 $0.00 | settling-skipped 0 | CHECK 0 | FCC kept 0 | visits done 0/0
+  B v19455370 refplan rplan18456859 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455361 refplan rplan18461399 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455363 refplan rplan20078 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455342 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455343 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455344 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455345 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455346 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455347 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455348 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455349 refplan rplan20532 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455352 refplan rplan21507 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455353 refplan rplan21507 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455354 refplan rplan21507 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455355 refplan rplan21507 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455356 refplan rplan21507 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455351 refplan rplan21903 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455277 refplan rplan22876 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455278 refplan rplan22876 FLO99 seq 4 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455333 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455334 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455335 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 2 rebilled 2 $315.00
+  B v19455336 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 2 rebilled 2 $389.00
+  B v19455337 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455338 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+batch: A re-rendered 0 | B repointed 25 | charges rebilled 27 $3,607.00 | settling-skipped 0 | CHECK 0 | FCC kept 0 | visits done 25/33
+  B v19455339 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455340 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455341 refplan rplan23179 FLO99 seq 2 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455362 refplan rplan25559 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $107.00
+  B v19455327 refplan rplan25563 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455328 refplan rplan25563 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455329 refplan rplan25563 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+  B v19455330 refplan rplan25563 FLO99 seq 3 FCC kept (SMMC MMA plan) charges 1 rebilled 1 $141.00
+batch: A re-rendered 0 | B repointed 8 | charges rebilled 8 $1,094.00 | settling-skipped 0 | CHECK 0 | FCC kept 0 | visits done 33/33
