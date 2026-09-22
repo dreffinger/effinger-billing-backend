@@ -20746,5 +20746,20 @@
   "chargedetailid": 23366044,
   "chargeid": "23366044",
   "outcome": "already-posted"
+ },
+ {
+  "checkid": "1051741",
+  "checkclaimid": 15440387,
+  "visitid": 19454648,
+  "pid": 17472703,
+  "cpt": "99233",
+  "dos": "09/13/2026",
+  "era_paid": 83.13,
+  "carrier": "FLO99",
+  "checkno": "0917735332",
+  "when": "2026-09-22T2310Z",
+  "chargedetailid": 23365726,
+  "chargeid": "23365726",
+  "outcome": "already-posted"
  }
 ]
