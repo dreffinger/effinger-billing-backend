@@ -484,3 +484,53 @@ pat17471462: new main plan rplan18462164 (rprov13)
   B v19420908 refplan rplan18462133 FLO99 seq 2 FCC(kept, no FFS/SMMC plan) charges 2 rebilled 2 $26.97
   B v19446177 refplan rplan18462133 FLO99 seq 2 FCC(kept, no FFS/SMMC plan) charges 2 rebilled 2 $25.06
 batch: A re-rendered 0 | B repointed 14 | charges rebilled 27 $354.19 | settling-skipped 23 | CHECK 15 | FCC kept 14 | visits done 340/386
+  v19435304: ** CHECK ** original void, recreations not found
+  v19438974: ** CHECK ** original void, recreations not found
+  v19442600: ** CHECK ** original void, recreations not found
+  v19445154: ** CHECK ** original void, recreations not found
+  v19447328: ** CHECK ** original void, recreations not found
+  v19451339: ** CHECK ** original void, recreations not found
+  v19435309: ** CHECK ** original void, recreations not found
+  v19438988: ** CHECK ** original void, recreations not found
+  v19442605: ** CHECK ** original void, recreations not found
+  v19445157: ** CHECK ** original void, recreations not found
+  v19423427: ** CHECK ** original void, recreations not found
+  v19426952: ** CHECK ** original void, recreations not found
+  v19435623: ** CHECK ** original void, recreations not found
+  v19438037: ** CHECK ** original void, recreations not found
+  v19440853: ** CHECK ** original void, recreations not found
+  v19433010: settling (payment posted) - NOT re-rendered
+  v19437294: settling (payment posted) - NOT re-rendered
+  v19438156: settling (payment posted) - NOT re-rendered
+  v19441025: settling (payment posted) - NOT re-rendered
+  v19423410: settling (payment posted) - NOT re-rendered
+  v19427009: settling (payment posted) - NOT re-rendered
+  A v19430526->19455369 prof13 refplan rplan23739 FLO99 seq 2 FCC(kept, no FFS/SMMC plan) charges 1->1 rebilled 1/1 $84.64
+  v19433057: settling (payment posted) - NOT re-rendered
+  v19435834: settling (payment posted) - NOT re-rendered
+  v19438141: settling (payment posted) - NOT re-rendered
+  v19449439: settling (payment posted) - NOT re-rendered
+  v19449440: settling (payment posted) - NOT re-rendered
+  v19451021: settling (payment posted) - NOT re-rendered
+  A v19453789->19455370 prof13 refplan rplan18456859 FLO99 seq 2 FCC->MCAD charges 1->1 rebilled 1/1 $107.00
+pat17472546: new main plan rplan18462165 (rprov13)
+  B v19453762 refplan rplan18462165 SUN01 seq 2  charges 1 rebilled 1 $74.54
+  B v19453767 refplan rplan18462165 SUN01 seq 2  charges 1 rebilled 1 $184.80
+  B v19453839 refplan rplan18462165 SUN01 seq 2  charges 1 rebilled 1 $74.54
+  B v19453858 refplan rplan18462165 SUN01 seq 2  charges 1 rebilled 1 $74.54
+  B v19443049 refplan rplan18462142 SUN01 seq 3  charges 1 rebilled 1 $54.63
+pat17473198: new main plan rplan18462166 (rprov13)
+  B v19420968 refplan rplan18462166 SUN01 seq 4  charges 2 rebilled 2 $159.20
+pat17474046: new main plan rplan18462167 (rprov13)
+  B v19448434 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $204.00
+  B v19453675 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19453676 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19453679 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454343 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $107.00
+  B v19454344 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454345 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454346 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454347 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454348 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+  B v19454349 refplan rplan18462167 SIM01 seq 2  charges 1 rebilled 1 $141.00
+batch: A re-rendered 2 | B repointed 17 | charges rebilled 20 $2,393.89 | settling-skipped 12 | CHECK 15 | FCC kept 1 | visits done 371/386
