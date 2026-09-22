@@ -1,0 +1,22 @@
+{
+ "stamp": "2026-09-22T2310Z",
+ "check": "1051741",
+ "payer": "Centene (AMD label FLO99; Sunshine Payor ID 2111 lines + FCC lines), trace 0917735332, check date 2026-09-22, $83.13",
+ "posted": [
+  {"checkclaimid": 15440387, "visitid": "19454648", "chargeid": "23365726", "pid": "17472703", "dos": "09/13/2026", "cpt": "99233", "paid": 83.13, "wo": 76.87, "outcome": "auto-posted", "why": "ERA Center Post button (era_post --all-unposted) posted $83.13 + CO45 $76.87 WOMCAD with the reason code (payment 24654492); fallback read it back as already-posted."}
+ ],
+ "lines": [
+  {"checkclaimid": 15440380, "visitid": "19453377", "chargeid": "23363924", "pid": "24039", "dos": "08/30/2026", "cpt": "99233", "carc": "CO26", "rarc": "N650", "amount": 160.0, "open": 21.80, "outcome": "fcc-hold", "why": "FCC (car42008) $0 CO-26 'expenses incurred prior to coverage' on the Medicare coinsurance residual (Medicare 819785160 paid 85.46 + WOINS 52.74 9/15; PR2 21.80 open to FCC seq 2). Same FCC-dual coinsurance group held 9/21 (pat24039 x6); William's 9/22 FCC rule - reconcile paper checks/Square before any write-off or reroute. Nothing posted, nothing written off."},
+  {"checkclaimid": 15440383, "visitid": "19453357", "chargeid": "23363901", "pid": "24039", "dos": "08/27/2026", "cpt": "99309", "carc": "CO26", "rarc": "N650", "amount": 141.0, "open": 16.93, "outcome": "fcc-hold", "why": "same as above (Medicare paid 66.36 + WOINS 57.71 9/15; PR2 16.93 open to FCC)."},
+  {"checkclaimid": 15440385, "visitid": "19453215", "chargeid": "23363779", "pid": "24039", "dos": "08/29/2026", "cpt": "99223", "carc": "CO26", "rarc": "N650", "amount": 310.0, "open": 31.94, "outcome": "fcc-hold", "why": "same as above (Medicare 819775967 paid 125.20 + WOINS 152.86 9/11; PR2 31.94 open to FCC)."},
+  {"checkclaimid": 15440386, "visitid": "19453385", "chargeid": "23363932", "pid": "24039", "dos": "08/31/2026", "cpt": "99233", "carc": "CO26", "rarc": "N650", "amount": 160.0, "open": 21.80, "outcome": "fcc-hold", "why": "same as above (Medicare paid 85.46 + WOINS 52.74 9/15; PR2 21.80 open to FCC)."},
+  {"checkclaimid": 15440381, "visitid": "19417241", "chargeid": "23320903/23320904", "pid": "12231996", "dos": "09/18/2025", "cpt": "99223+99497", "carc": "CO109", "rarc": "N130", "amount": 443.0, "open": 0.0, "outcome": "already-settled", "why": "WEL04 paid 132.31 (1008813711, 9/15) + WOINS 143.94; Medicaid crossover $0 9/21 + WOCAID2ND 33.75; 99497 CO97 WOINS 133.00 - both charges at $0. Nothing to do, never rebill."},
+  {"checkclaimid": 15440382, "visitid": "19453355", "chargeid": "23363899", "pid": "17472286", "dos": "08/27/2026", "cpt": "99309", "carc": "CO16", "rarc": "M56", "amount": 141.0, "open": 16.93, "outcome": "denial-william", "why": "Sunshine secondary CO16/M56 'missing/invalid payer identifier' on the Medicare coinsurance residual (Medicare 819785160 paid 66.36 + WOINS 57.71 9/14; PR2 16.93 open) - joins the centene-m56-denials-0920 cluster (SUN01 carrier payer id / CPID question on William's turn). Held."},
+  {"checkclaimid": 15440384, "visitid": "19453356", "chargeid": "23363900", "pid": "20729", "dos": "08/27/2026", "cpt": "99309", "carc": "CO16", "rarc": "M56", "amount": 141.0, "open": 16.93, "outcome": "denial-william", "why": "same M56 pattern (Medicare paid 66.36 + WOINS 57.71 9/14; PR2 16.93 open to the Sunshine secondary) - centene-m56-denials-0920 cluster. Held."},
+  {"checkclaimid": 15440388, "visitid": "19444472", "chargeid": "23353160", "pid": "17469541", "dos": "06/01/2026", "cpt": "99309", "carc": "CO16", "rarc": "M56", "amount": 141.0, "open": 0.0, "outcome": "already-settled", "why": "SUN01 $0 CO16 twice (6/19 T003184024, 9/15 0917682685) and WOMCAD 141.00 posted 9/15 - charge at $0. Nothing to do."}
+ ],
+ "ma63_m76_m64": [],
+ "writeoffs": [],
+ "rebills": [],
+ "cleared": "era_clear dismissed 1051741 (8 denial-only lines held for the cascade, no postable money left); GET /api/era/checks after = 0"
+}
