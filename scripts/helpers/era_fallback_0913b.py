@@ -15,9 +15,9 @@ dry = "--dry" in sys.argv
 STAMP = sys.argv[sys.argv.index("--stamp") + 1] if "--stamp" in sys.argv else "2026-09-13T0930Z"
 REGF = "registers/era_manual_register.json"
 reg = json.load(open(REGF)) if os.path.exists(REGF) else []
-settled = {(r["checkid"], r["checkclaimid"], r.get("chargedetailid") or r.get("cpt")) for r in reg if r["outcome"] in ("posted", "already-posted")}
+settled = {(r["checkid"], r.get("checkclaimid"), r.get("chargedetailid") or r.get("cpt")) for r in reg if r["outcome"] in ("posted", "already-posted")}
 checks = json.load(open(sys.argv[sys.argv.index("--checks") + 1] if "--checks" in sys.argv else "era_checks_before_2026-09-13T0930Z.json"))
-seen = {(r["checkid"], r["checkclaimid"], r.get("chargedetailid") or r.get("cpt"), r["outcome"]) for r in reg}
+seen = {(r["checkid"], r.get("checkclaimid"), r.get("chargedetailid") or r.get("cpt"), r["outcome"]) for r in reg}  # .get: the 9/21 2110Z hand-post-restored entries carry no checkclaimid (KeyError 9/22 0310Z)
 TX = {}
 def charges_of(pid):
     if pid not in TX:
