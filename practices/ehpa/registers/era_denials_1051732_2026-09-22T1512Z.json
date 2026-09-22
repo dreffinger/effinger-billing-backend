@@ -1,0 +1,34 @@
+{
+ "stamp": "2026-09-22T1512Z",
+ "check": "1051732",
+ "lines": [
+  {
+   "checkid": "1051732",
+   "checkclaimid": 15440355,
+   "visitid": "19375395",
+   "chargeid": "22443545",
+   "pid": "17471007",
+   "dos": "02/02/2024",
+   "cpt": "99232",
+   "carc": "CO29",
+   "rarc": "N702",
+   "amount": 111.0,
+   "outcome": "already-settled",
+   "why": "live gettxhistory: CHP paid $75.68 (check 4015323, 9/25/2024) after a $-75.68 reversal 3/11/2024; contractual -35.32 and WOINSBANK -75.68 (5/30/2026); insurance and patient balance $0. The 9/16/2026 freq-1 rebill drew the CO-29. Nothing to post, nothing to write off, never rebill."
+  },
+  {
+   "checkid": "1051732",
+   "checkclaimid": 15440356,
+   "visitid": "19442947",
+   "chargeid": "23351214",
+   "pid": "17476603",
+   "dos": "05/21/2026",
+   "cpt": "99232",
+   "carc": "COA1",
+   "rarc": "",
+   "amount": 111.0,
+   "outcome": "denial-william",
+   "why": "CHP $0 CO-A1 (no remark code) on the 5/21/2026 99232 billed 9/10/2026, $111 open on insurance. Cascade: AMD 271 on the CHP plan ACTIVE (HMO commercial); Stedi CHP 95112 at DOS 5/21/2026 ACTIVE Commercial HMO, plan begin 1/1/2019, but CHP lists 'Lantern (was SurgeryPlus)' as an Other/Additional Payor - Primary Payer, group policy, coordination of benefits 11/3/2025-open; Stedi MBI lookup NC + FL ERR 72 (not a Medicare beneficiary, age 64 at DOS). No write, no rebill: board row chp-coa1-17476603 on William's turn (was the 5/21/2026 HCA stay a Lantern/SurgeryPlus surgical episode -> bill Lantern; otherwise appeal/call CHP 850-523-7361 for the A1 reason)."
+  }
+ ]
+}

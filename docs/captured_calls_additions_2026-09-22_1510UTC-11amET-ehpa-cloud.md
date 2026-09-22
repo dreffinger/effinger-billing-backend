@@ -1,0 +1,7 @@
+# captured_calls additions - 2026-09-22 15:10 UTC (11 AM ET 9/22 slot, ehpa cloud Code Routine, run 2026-09-22T1512Z)
+
+No new call shapes this run. Every call used is already in the registry: amd.login_cached (one login), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus / getclaimexclusioncharges, POST /api/era/locks/release-expired, GET /api/era/checks, GET /api/era/checkdetails, posterapayments (era_post.py --all-unposted), POST /api/era/checks/dismiss (era_clear), gettxhistory (txh.fetch), getdemographic, the AMD free 271 (elig_amd.py), Stedi eligibility v3 (CHP 95112) and Stedi MBI lookup (MBILUNOSSN).
+
+Learned (payer behaviour, not a call): a Capital Health Plan 271 can list "Lantern (was SurgeryPlus)" as an Other/Additional Payor with entityIdentifier "Primary Payer", insurance type Group Policy and a coordination-of-benefits window (pat17476603: 20251103-20781231) while CHP itself answers ACTIVE commercial HMO. Lantern/SurgeryPlus is an employer surgical-bundle program, not a medical insurer - a CHP CO-A1 denial on a hospital E&M with that entity in the 271 is a William question (bundle episode -> bill Lantern; medical admission -> appeal CHP), never a wrong-payer re-route through the cascade.
+
+Columns 0/11/1/0 unchanged; ERA: CAP07 check 1051732 (4123363, $469.27) auto-posted 4 lines, 2 denial lines to the register (era_denials_1051732_2026-09-22T1512Z.json), dismissed; unposted list 1 -> 0.
