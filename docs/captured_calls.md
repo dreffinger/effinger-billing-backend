@@ -1762,3 +1762,12 @@ Lessons this run:
 - DECEASED GUARD (William 9/22): deceased_guard.check ran on every visit before its resave; the guard's Stedi lookup now sends NO Authorization header when secrets/stedi_live.key is absent (the ehpa cloud proxy attaches the credential) - it had returned 'unverified' on every FLO02 chart before this patch.
 - UHC 'SUBSCRIBER AND SUBSCRIBER ID NOT FOUND' + 'PA MEMBER PICK REJECT' on a Medicare-secondary residual (pat17471365, claim run 1700216): the chart's seq-2 plan was an AARP Medicare Supplement Plan F entered under UNI20 (CPID 3429 = UHC commercial/MA). AMD 271 on the plan names 'AARP SUPPLEMENTAL PLANS INS BY UNITEDHEALTHCARE'; Stedi AARP 36273 with the same member id = ACTIVE; UHC 87726 = empty. Fix: AAR01 (car6600) added seq 3 with the same member id (no group), UNI20 end-dated the day before the first rejected DOS, both visits insorder 1,3 + freq1 rebilled on seq 3, exclusions completed. Note: AMD's Medicare 271 on this chart answers AAA 71 (birth date does not match) and the Stedi MBI lookup by name/DOB misses (ERR 72) although Medicare paid the primaries - the chart DOB may differ from CMS; flagged in the report.
 - gettxhistory with typefilter=1 returns only charges with an open balance; pagenumber 2..4 repeat page 1 (no paging with that filter).
+
+# captured_calls additions - 2026-09-22 21:10 UTC (5pm ET 9/22 slot, ehpa cloud Code Routine, run 2026-09-22T2110Z)
+
+## Run summary (no new call shapes)
+- Columns: Charge Review 0 -> 0 | Claim Inspector 11 -> 11 (all pat17472874, April-2026 stay held for the HCA admission date; error ids 394797-394807 unchanged) | Unbilled 1 -> 1 (v19441047 MCAD crossover hold) | Exclusions 0 -> 0 rows on every claim run (82 runs, newest 1700216, AMD clock 9/21 21:09).
+- ERA step 5: GET /api/era/checks empty before and after (0 / $0.00); locks release-expired sent; era_post / fallback / era_clear all 0; payreasons --list 0 rows. No new 835, Availity PDF or Check/EFT export on Drive.
+- Boards: Working Denials queue 0; Insurance Refresh Board 0 new drops, no row updated after 19:40Z; Pam Gmail nothing newer than the three 9/21 16:46Z readmit records.
+- Calls used (all already in the registry): login_cached, getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges, POST /api/era/locks/release-expired, GET /api/era/checks.
+- Vocabulary: unchanged (54 entries).
