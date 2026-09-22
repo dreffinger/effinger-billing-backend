@@ -1,0 +1,561 @@
+{
+ "stamp": "2026-09-22T1310Z",
+ "check": "1051731",
+ "payer": "WEL04 (Centene/Sunshine 1003560795, $0.00, 19 claims)",
+ "action": "no post, no rebill, no write-off - every line sits on a charge already at $0; check dismissed by era_clear",
+ "lines": [
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440336,
+   "visitid": 19413587,
+   "chargeid": 23316622,
+   "patientid": 12231996,
+   "dos": "2025-08-17",
+   "cpt": "99487",
+   "claimamount": 206.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO96",
+     206.0
+    ]
+   ],
+   "rarcs": [
+    "N448",
+    "N56"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-96/N448 + CO-4/N56 on the 8/17/2025 CCM (99487/99489): charge already at $0 (WOINS 9/6/2026) - DOS past 12 months on 9/22/2026, nothing open",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440336,
+   "visitid": 19413587,
+   "chargeid": 23316623,
+   "patientid": 12231996,
+   "dos": "2025-08-17",
+   "cpt": "99489",
+   "claimamount": 109.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO4",
+     109.0
+    ]
+   ],
+   "rarcs": [
+    "N448",
+    "N56"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-96/N448 + CO-4/N56 on the 8/17/2025 CCM (99487/99489): charge already at $0 (WOINS 9/6/2026) - DOS past 12 months on 9/22/2026, nothing open",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440337,
+   "visitid": 19368915,
+   "chargeid": 22436918,
+   "patientid": 17470743,
+   "dos": "2023-11-07",
+   "cpt": "99233",
+   "claimamount": 160.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     160.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440338,
+   "visitid": 19373636,
+   "chargeid": 22441524,
+   "patientid": 17470743,
+   "dos": "2023-12-27",
+   "cpt": "99239",
+   "claimamount": 163.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     163.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440339,
+   "visitid": 19368940,
+   "chargeid": 22436945,
+   "patientid": 17470743,
+   "dos": "2023-11-06",
+   "cpt": "99233",
+   "claimamount": 160.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     160.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440340,
+   "visitid": 19369242,
+   "chargeid": 22437298,
+   "patientid": 17470743,
+   "dos": "2023-11-12",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO29",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-29 untimely: charge already at $0 (WOINS 9/6/2026 or WOMCAD 9/22/2026 on the chart) - nothing open, no WOLATE needed",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440341,
+   "visitid": 19369118,
+   "chargeid": 22437176,
+   "patientid": 17470743,
+   "dos": "2023-11-09",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440342,
+   "visitid": 19372801,
+   "chargeid": 22440503,
+   "patientid": 17470743,
+   "dos": "2023-12-23",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440343,
+   "visitid": 19412901,
+   "chargeid": 23315808,
+   "patientid": 12231996,
+   "dos": "2025-08-04",
+   "cpt": "99308",
+   "claimamount": 107.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO29",
+     107.0
+    ]
+   ],
+   "rarcs": [],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-29 untimely: charge already at $0 (WOINS 9/6/2026 or WOMCAD 9/22/2026 on the chart) - nothing open, no WOLATE needed",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440344,
+   "visitid": 19369510,
+   "chargeid": 22437743,
+   "patientid": 17470743,
+   "dos": "2023-11-15",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO29",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-29 untimely: charge already at $0 (WOINS 9/6/2026 or WOMCAD 9/22/2026 on the chart) - nothing open, no WOLATE needed",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440345,
+   "visitid": 19372810,
+   "chargeid": 22440513,
+   "patientid": 17470743,
+   "dos": "2023-12-22",
+   "cpt": "99223",
+   "claimamount": 310.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     310.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440346,
+   "visitid": 19417150,
+   "chargeid": 23320762,
+   "patientid": 12182947,
+   "dos": "2025-09-02",
+   "cpt": "99308",
+   "claimamount": 107.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO29",
+     107.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-29 untimely: charge already at $0 (WOINS 9/6/2026 or WOMCAD 9/22/2026 on the chart) - nothing open, no WOLATE needed",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440347,
+   "visitid": 19369256,
+   "chargeid": 22437312,
+   "patientid": 17470743,
+   "dos": "2023-11-11",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440348,
+   "visitid": 19369423,
+   "chargeid": 22437589,
+   "patientid": 17470743,
+   "dos": "2023-11-13",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440349,
+   "visitid": 19369143,
+   "chargeid": 22437205,
+   "patientid": 17470743,
+   "dos": "2023-11-08",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO29",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-29 untimely: charge already at $0 (WOINS 9/6/2026 or WOMCAD 9/22/2026 on the chart) - nothing open, no WOLATE needed",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440350,
+   "visitid": 19369104,
+   "chargeid": 22437162,
+   "patientid": 17470743,
+   "dos": "2023-11-10",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440351,
+   "visitid": 19417241,
+   "chargeid": 23320903,
+   "patientid": 12231996,
+   "dos": "2025-09-18",
+   "cpt": "99223",
+   "claimamount": 310.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO23",
+     174.99
+    ],
+    [
+     "OA",
+     "OA23",
+     135.01
+    ]
+   ],
+   "rarcs": [
+    "#AM",
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "secondary (claim status 2) CO-23/OA-23 prior-payer adjudication: WellCare's -132.31 payment 9/15/2026 and the Medicaid [member id] 9/21/2026 already on the charge - $0 open",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440351,
+   "visitid": 19417241,
+   "chargeid": 23320904,
+   "patientid": 12231996,
+   "dos": "2025-09-18",
+   "cpt": "99497",
+   "claimamount": 133.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO23",
+     133.0
+    ]
+   ],
+   "rarcs": [
+    "#AM",
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "secondary (claim status 2) CO-23/OA-23 prior-payer adjudication: WellCare's -132.31 payment 9/15/2026 and the Medicaid [member id] 9/21/2026 already on the charge - $0 open",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440352,
+   "visitid": 19372791,
+   "chargeid": 22440492,
+   "patientid": 17470743,
+   "dos": "2023-12-24",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440353,
+   "visitid": 19373650,
+   "chargeid": 22441539,
+   "patientid": 17470743,
+   "dos": "2023-12-26",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  },
+  {
+   "checkid": 1051731,
+   "checkclaimid": 15440354,
+   "visitid": 19369405,
+   "chargeid": 22437569,
+   "patientid": 17470743,
+   "dos": "2023-11-14",
+   "cpt": "99232",
+   "claimamount": 111.0,
+   "paid": 0.0,
+   "carcs": [
+    [
+     "CO",
+     "CO18",
+     111.0
+    ]
+   ],
+   "rarcs": [
+    "#AM"
+   ],
+   "live_insbal": 0.0,
+   "live_patbal": 0.0,
+   "outcome": "already-settled",
+   "why": "CO-18 duplicate: the 9/11/2026 freq-1 rebill of a visit WellCare already paid 3/10/2024 (checks 1007584156/1007653937/1007660810); residual written off WOMCAD 9/22/2026 by the chat batch - never rebill",
+   "when": "2026-09-22T13:28:15Z"
+  }
+ ]
+}
