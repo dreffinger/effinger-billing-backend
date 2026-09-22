@@ -122,8 +122,17 @@ def msg(action, cls, attrs=None, children=""):
     return '<ppmdmsg action="%s" class="%s" msgtime="%s" %s>%s</ppmdmsg>' % (
         action, cls, _msgtime(), a, children)
 
-def rebill_charge(chargeid, sequencenumber):
-    """REST rebill — the dialog's Submit. HTTP 204 = success."""
+def rebill_charge(chargeid, sequencenumber, dod_guard=True):
+    """REST rebill — the dialog's Submit. HTTP 204 = success.
+    DECEASED GUARD (William 9/22/2026): refuses (HTTP-style 409, nothing sent) when the date of service is after the
+    patient's date of death - see core/deceased_guard.py. dod_guard=False only for an explicit, logged override."""
+    if dod_guard:
+        try:
+            import deceased_guard
+            blocked, why = deceased_guard.check_charge(chargeid, sequencenumber)
+            if blocked: return 409, "BLOCKED by deceased guard: " + why
+        except Exception as e:                      # fail CLOSED: an unreadable charge is held, never sent blind
+            return 409, f"BLOCKED by deceased guard: could not verify ({str(e)[:100]}) - retry next run"
     web, tok = login_cached()
     host = re.sub(r"providerapi", "pm-api-103", web)  # not reliable; use fixed host
     url = "https://pm-api-103.advancedmd.com/api/claim/chargerebill"
