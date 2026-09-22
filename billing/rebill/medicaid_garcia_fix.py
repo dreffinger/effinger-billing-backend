@@ -46,7 +46,8 @@ def echo(allc):
 def resave_visit(v,pat,chg,profile,refplan,insorder):
     va=f'id="{v.get("id")}" date="{v.get("date")}" profile="{profile}" insorder="{insorder}" refplan="{refplan}" facility="{v.get("facility")}" force="1"'
     return amd.post(amd.msg("updvisitwithnewcharges","chargeentry",{"patientid":pat.get("id"),"episodeid":v.get("episode"),"approval":"1","inspectorenabled":"1","getfinancials":"-1","customclaimfieldsavailable":"1","nocookie":"1"},f"<visit {va}><chargelist>{chg}</chargelist></visit>"))
-def recreated(pid, origvid, sigs):
+CONS=f"{W}/medicaid_garcia_consumed.json"; consumed=set(json.load(open(CONS))) if os.path.exists(CONS) else set()
+def recreated(pid, origvid, sigs, orig_date=None):
     """active charges created today on a NEW visit matching (proc,fee) of the voided originals"""
     found=[]
     for page in range(1,6):
@@ -60,9 +61,13 @@ def recreated(pid, origvid, sigs):
     # group by new visit; pick the visit whose (proc,fee) multiset matches
     byv={}
     for c in found: byv.setdefault(c.get("visit"),[]).append(c)
-    want=sorted(str(fee) for _,fee in sigs)        # match on FEE only: detail says pcode65119, history says 99309 (same charge)
+    want=sorted(str(fee) for _,fee in sigs)        # fee only: detail says pcode65119, history says 99309 (same charge)
     for nv,cs in sorted(byv.items()):
-        if sorted(str(c.get("fee")) for c in cs)==want: return nv,cs
+        if nv in consumed or sorted(str(c.get("fee")) for c in cs)!=want: continue
+        if orig_date:                                   # and the recreation carries the original DOS
+            dd=ET.fromstring(resave.detail(re.sub(r"\D","",cs[0].get("id")))); vv=dd.find(".//visit")
+            if vv is None or vv.get("date")!=orig_date: continue
+        consumed.add(nv); json.dump(sorted(consumed),open(CONS,"w")); return nv,cs
     return None,[]
 def rebill_live(vidn, cids_procs, seq):
     n=0
@@ -99,7 +104,7 @@ for pid,parts in tgt.items():
                     for e in extra:
                         dd=ET.fromstring(resave.detail(e["cid"])); cc=[x for x in dd.iter("charge") if x.get("id")=="charge"+e["cid"]]
                         if cc: sig.append((cc[0].get("proccode"),cc[0].get("fee")))
-                    seq,carid,note=route(ins,hold); nv,cs=recreated(pid,vid,sig)
+                    seq,carid,note=route(ins,hold); nv,cs=recreated(pid,vid,sig,v.get("date") if v is not None else None)
                     if nv and seq:
                         n=rebill_live(nv,[(re.sub(r"\D","",c.get("id")),c.get("proccode")) for c in cs],seq); stats["A"]+=1; stats["rebilled"]+=n; stats["money"]+=sum(float(c.get("insbal") or 0) for c in cs)
                         L(f"  A(recovered) v{vid}->{nv} rebilled {n}/{len(cs)} seq {seq} {note}"); done.add(key); json.dump(sorted(done),open(DONE,"w")); continue
@@ -119,7 +124,7 @@ for pid,parts in tgt.items():
                 if any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in d.iter("payment")): L(f"  v{vid}: settling (payment posted) - NOT re-rendered"); stats["skip_paid"]+=1; done.add(key); continue
                 rr=resave_visit(v,pat,echo(allc),"prof13",newplan,insorder)
                 if "Fault" in rr: L(f"  v{vid}: swap FAULT {re.sub(chr(10),' ',rr)[:90]}"); continue
-                time.sleep(0.8); nv,cs=recreated(pid,vid,sigs)
+                time.sleep(0.8); nv,cs=recreated(pid,vid,sigs,v.get("date"))
                 if not nv or len(cs)!=pre: L(f"  v{vid}: ** CHECK ** recreated {len(cs)}/{pre} on {nv}"); stats["check"]+=1; continue
                 n=rebill_live(nv,[(re.sub(r"\D","",c.get("id")),c.get("proccode")) for c in cs],seq)
                 stats["A"]+=1; stats["rebilled"]+=n; stats["money"]+=pre_bal
