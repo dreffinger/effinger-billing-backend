@@ -1,0 +1,241 @@
+{
+ "stamp": "2026-09-22T1910Z",
+ "dry": true,
+ "visits": [
+  {
+   "vid": "19455444",
+   "pid": "20729",
+   "name": "ROSS,MARGUERITE",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366736', '99233', '', 'dcode1037455120 dcode1034545095 dcode1034544969 dcode1034544976 dcode1034545188', '160.00', '160.00')]",
+    "99233 dx ['S72.90XD', 'F03.90', 'M81.0', 'I48.91', 'K21.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/18/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/18/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455445",
+   "pid": "20729",
+   "name": "ROSS,MARGUERITE",
+   "steps": [
+    "dos 2026-09-19 cpts ['99233'] charges [('charge23366737', '99233', '', 'dcode1037455120 dcode1034545095 dcode1034544969 dcode1034544976 dcode1034545188', '160.00', '160.00')]",
+    "99233 dx ['S72.90XD', 'F03.90', 'M81.0', 'I48.91', 'K21.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/18/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/18/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455446",
+   "pid": "20729",
+   "name": "ROSS,MARGUERITE",
+   "steps": [
+    "dos 2026-09-18 cpts ['99223', '99497'] charges [('charge23366738', '99223', '', 'dcode1037455120 dcode1034545095 dcode1034544969 dcode1034544976 dcode1034545188', '310.00', '310.00'), ('charge23366739', '99497', 'mcode7', 'dcode1037455120 dcode1034545095 dcode1034544969 dcode1034544976 dcode1034545188', '133.00', '133.00')]",
+    "99223 dx ['S72.90XD', 'F03.90', 'M81.0', 'I48.91', 'K21.9'] never_primary(first)=False",
+    "99497 dx ['S72.90XD', 'F03.90', 'M81.0', 'I48.91', 'K21.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/18/2026 (own 99223)",
+    "DRY: would set hospitalizationfrom 09/18/2026 on ['99223', '99497'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455449",
+   "pid": "17475816",
+   "name": "TURK,DANA D",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366742', '99233', '', 'dcode1034545446', '160.00', '160.00')]",
+    "99233 dx ['Z96.651'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.651'])",
+    "deceased guard: clear (carrier FLORIDA BLUE)",
+    "admission 09/18/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/18/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455450",
+   "pid": "17477557",
+   "name": "SLAUGHTER,RUFUS",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366743', '99233', '', 'dcode1037452463 dcode1034545149 dcode1037452557 dcode1034545046', '160.00', '160.00')]",
+    "99233 dx ['R69', 'J69.0', 'R50.9', 'R06.02'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/17/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/17/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455451",
+   "pid": "17477640",
+   "name": "REEVES,CYNTHIA M",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366744', '99233', '', 'dcode1037452463 dcode1034545088 dcode1034544877 dcode1034545037 dcode1034544892 dcode1037455173 dcode1034544856 dcode1034545159', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUMANA)",
+    "admission 09/02/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/02/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455452",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366745', '99233', '', 'dcode1034545247', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUNSHINE STATE HEALTH PLAN)",
+    "admission 09/05/2026 (same stay: admission 09/05/2026 already on visit 19455216 (2026-09-19))",
+    "DRY: would set hospitalizationfrom 09/05/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455453",
+   "pid": "17477516",
+   "name": "MEDCHILL,CHARLES",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366746', '99233', '', 'dcode1037452463 dcode1034545552', '160.00', '160.00')]",
+    "99233 dx ['R69', 'L03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/13/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/13/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455454",
+   "pid": "17474741",
+   "name": "MASON,LAURA ReBA",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366747', '99233', '', 'dcode1034545266 dcode1034545378 dcode1034544976 dcode1034545339 dcode1034543889 dcode1034544432 dcode1037455182', '160.00', '160.00')]",
+    "99233 dx ['D62', 'K92.2', 'I48.91', 'Z87.440', 'M62.81', 'D64.9', 'K57.81'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/15/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/15/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455455",
+   "pid": "17477774",
+   "name": "LEWIS,KETISHA",
+   "steps": [
+    "dos 2026-09-20 cpts ['99232'] charges [('charge23366748', '99232', '', 'dcode1034545923', '111.00', '111.00')]",
+    "99232 dx ['Z96.641'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.641'])",
+    "deceased guard: clear (carrier UMR CHOICE)",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/14/2026 on ['99232'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455456",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366749', '99233', '', 'dcode1034914759 dcode1034912665 dcode1037454843 dcode1034544882 dcode1037454144 dcode1034544984 dcode1034545213 dcode1034545045', '160.00', '160.00')]",
+    "99233 dx ['I26.94', 'K57.92', 'R46.89', 'R41.82', 'F03.918', 'G93.41', 'R62.7', 'E86.0'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/05/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455457",
+   "pid": "23969",
+   "name": "HICKS,LEON",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366750', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/17/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/17/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455459",
+   "pid": "17470950",
+   "name": "HAYES,JEFFERY M",
+   "steps": [
+    "dos 2026-09-20 cpts ['99232'] charges [('charge23366751', '99232', '', 'dcode1034545446', '111.00', '111.00')]",
+    "99232 dx ['Z96.651'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z96.651'])",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/10/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/10/2026 on ['99232'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455460",
+   "pid": "17476583",
+   "name": "HALLEY,JYNX",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366752', '99233', '', 'dcode1034545280', '160.00', '160.00')]",
+    "99233 dx ['R07.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/16/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/16/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455461",
+   "pid": "17475638",
+   "name": "FOSKEY,CAROLYN L",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366753', '99233', '', 'dcode1034543888 dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['J15.9', 'R69'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/06/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/06/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455463",
+   "pid": "17477497",
+   "name": "DAVY,SHIRLEY",
+   "steps": [
+    "dos 2026-09-20 cpts ['99233'] charges [('charge23366754', '99233', '', 'dcode1034545088', '160.00', '160.00')]",
+    "99233 dx ['A41.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/14/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/14/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455464",
+   "pid": "17476667",
+   "name": "fulmer,gene",
+   "steps": [
+    "dos 2026-09-20 cpts ['99239'] charges [('charge23366755', '99239', '', 'dcode1034545280', '163.00', '163.00')]",
+    "99239 dx ['R07.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUMANA)",
+    "admission 09/19/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/19/2026 on ['99239'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455465",
+   "pid": "17476667",
+   "name": "fulmer,gene",
+   "steps": [
+    "dos 2026-09-19 cpts ['99223', '99497'] charges [('charge23366756', '99223', '', 'dcode1034545280', '310.00', '310.00'), ('charge23366757', '99497', 'mcode7', 'dcode1034545280', '133.00', '133.00')]",
+    "99223 dx ['R07.9'] never_primary(first)=False",
+    "99497 dx ['R07.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUMANA)",
+    "admission 09/19/2026 (own 99223)",
+    "DRY: would set hospitalizationfrom 09/19/2026 on ['99223', '99497'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19455466",
+   "pid": "17471916",
+   "name": "FIERRO,MARTHA A",
+   "steps": [
+    "dos 2026-09-20 cpts ['99239'] charges [('charge23366758', '99239', '', 'dcode1034912518', '163.00', '163.00')]",
+    "99239 dx ['M43.16'] never_primary(first)=False",
+    "deceased guard: clear (carrier UNITED HEALTHCARE)",
+    "admission 09/16/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 09/16/2026 on ['99239'], resave onhcfa=1 chg_over={}"
+   ]
+  }
+ ],
+ "held": [],
+ "left": []
+}

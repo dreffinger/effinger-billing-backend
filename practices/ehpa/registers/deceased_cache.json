@@ -119,6 +119,11 @@
   "name": "HOGAN,CHARLENE",
   "src": "stedi: no death on record"
  },
+ "17470950": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17471156": {
   "checked": "2026-09-22",
   "dod": "2025-11-12",
@@ -148,6 +153,11 @@
   "dod": null,
   "name": "GARCIA,MERCEDES",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17471365": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17471496": {
   "checked": "2026-09-22",
@@ -587,6 +597,11 @@
   "name": "HENDERSON,SUSAN",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17474741": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17474826": {
   "checked": "2026-09-22",
   "dod": null,
@@ -677,6 +692,11 @@
   "name": "JOINER,MARY",
   "src": "stedi: no death on record"
  },
+ "17476583": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476603": {
   "checked": "2026-09-22",
   "dod": null,
@@ -741,6 +761,16 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "SCHINDLER,CAROLYN A",
+  "src": "stedi: no death on record"
+ },
+ "17477516": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477557": {
+  "checked": "2026-09-22",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "20379": {
@@ -910,6 +940,11 @@
   "dod": null,
   "name": "CHATMAN,CHARLIE",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "23969": {
+  "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "24214": {
   "checked": "2026-09-22",
