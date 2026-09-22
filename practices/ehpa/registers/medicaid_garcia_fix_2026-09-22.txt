@@ -1,0 +1,266 @@
+pat17472559: new main plan rplan18462145 (rprov13)
+  v19439258: settling (payment posted) - NOT re-rendered
+  v19440129: settling (payment posted) - NOT re-rendered
+  B v19438718 refplan rplan18462145 MCAD seq 3  charges 2 rebilled 2 $46.45
+  B v19439598 refplan rplan18462145 MCAD seq 3  charges 2 rebilled 2 $25.06
+  v19425398: settling (payment posted) - NOT re-rendered
+  v19427685: settling (payment posted) - NOT re-rendered
+  v19428144: settling (payment posted) - NOT re-rendered
+  v19429865: settling (payment posted) - NOT re-rendered
+  v19430969: settling (payment posted) - NOT re-rendered
+  v19432544: settling (payment posted) - NOT re-rendered
+  v19432999: settling (payment posted) - NOT re-rendered
+  v19453822: settling (payment posted) - NOT re-rendered
+pat17473383: new main plan rplan18462146 (rprov13)
+  v19426092: settling (payment posted) - NOT re-rendered
+  v19429024: settling (payment posted) - NOT re-rendered
+pat17471238: new main plan rplan18462147 (rprov13)
+  v19427034: settling (payment posted) - NOT re-rendered
+  v19435821: settling (payment posted) - NOT re-rendered
+  v19438311: settling (payment posted) - NOT re-rendered
+  v19441915: settling (payment posted) - NOT re-rendered
+  v19445304: settling (payment posted) - NOT re-rendered
+  v19441047: settling (payment posted) - NOT re-rendered
+  v19423417: settling (payment posted) - NOT re-rendered
+  v19426956: settling (payment posted) - NOT re-rendered
+  v19430536: settling (payment posted) - NOT re-rendered
+  v19432522: settling (payment posted) - NOT re-rendered
+  v19438149: settling (payment posted) - NOT re-rendered
+  v19440856: settling (payment posted) - NOT re-rendered
+  v19435626: settling (payment posted) - NOT re-rendered
+pat17476681: new main plan rplan18462148 (rprov13)
+  v19444505: settling (payment posted) - NOT re-rendered
+  v19444506: settling (payment posted) - NOT re-rendered
+  v19444762: settling (payment posted) - NOT re-rendered
+  v19444763: settling (payment posted) - NOT re-rendered
+  v19445147: settling (payment posted) - NOT re-rendered
+  v19445482: settling (payment posted) - NOT re-rendered
+  v19445846: settling (payment posted) - NOT re-rendered
+  v19446577: settling (payment posted) - NOT re-rendered
+  v19446955: settling (payment posted) - NOT re-rendered
+  v19447165: settling (payment posted) - NOT re-rendered
+  v19447367: settling (payment posted) - NOT re-rendered
+  v19447748: settling (payment posted) - NOT re-rendered
+  v19448021: settling (payment posted) - NOT re-rendered
+  v19449454: settling (payment posted) - NOT re-rendered
+  v19449934: settling (payment posted) - NOT re-rendered
+  v19450283: settling (payment posted) - NOT re-rendered
+  v19450295: settling (payment posted) - NOT re-rendered
+  v19451035: settling (payment posted) - NOT re-rendered
+  v19451036: settling (payment posted) - NOT re-rendered
+  v19451565: settling (payment posted) - NOT re-rendered
+  v19452070: settling (payment posted) - NOT re-rendered
+  v19452853: settling (payment posted) - NOT re-rendered
+  B v19448906 refplan rplan18462148 MCAD seq 3  charges 2 rebilled 2 $25.06
+  v19444761: settling (payment posted) - NOT re-rendered
+pat17472420: new main plan rplan18462149 (rprov13)
+  v19453804: settling (payment posted) - NOT re-rendered
+pat17476489: new main plan rplan18462150 (rprov13)
+  v19441980: settling (payment posted) - NOT re-rendered
+  v19441981: settling (payment posted) - NOT re-rendered
+  B v19441994 refplan rplan18462150 MCAD seq 3  charges 2 rebilled 2 $206.93
+  v19418285: settling (payment posted) - NOT re-rendered
+  v19419575: settling (payment posted) - NOT re-rendered
+  v19423850: settling (payment posted) - NOT re-rendered
+  v19427003: settling (payment posted) - NOT re-rendered
+  v19430018: settling (payment posted) - NOT re-rendered
+  v19432959: settling (payment posted) - NOT re-rendered
+  v19435818: settling (payment posted) - NOT re-rendered
+  v19436965: settling (payment posted) - NOT re-rendered
+  v19437184: settling (payment posted) - NOT re-rendered
+  v19438692: settling (payment posted) - NOT re-rendered
+  v19441910: settling (payment posted) - NOT re-rendered
+batch: A re-rendered 0 | B repointed 4 | charges rebilled 8 $303.50 | settling-skipped 62 | CHECK 0 | FCC kept 0 | visits done 66/386
+  v19418285: settling (payment posted) - NOT re-rendered
+  v19419575: settling (payment posted) - NOT re-rendered
+  v19423850: settling (payment posted) - NOT re-rendered
+  v19427003: settling (payment posted) - NOT re-rendered
+  v19430018: settling (payment posted) - NOT re-rendered
+  v19432959: settling (payment posted) - NOT re-rendered
+  v19435818: settling (payment posted) - NOT re-rendered
+  v19436965: settling (payment posted) - NOT re-rendered
+  v19437184: settling (payment posted) - NOT re-rendered
+  v19438692: settling (payment posted) - NOT re-rendered
+  v19441910: settling (payment posted) - NOT re-rendered
+  v19453801: settling (payment posted) - NOT re-rendered
+  v19453799: settling (payment posted) - NOT re-rendered
+pat17471793: new main plan rplan18462151 (rprov13)
+  v19419547: settling (payment posted) - NOT re-rendered
+  v19421787: settling (payment posted) - NOT re-rendered
+  v19423426: settling (payment posted) - NOT re-rendered
+  B v19421091 refplan rplan18462151 MCAD seq 3  charges 2 rebilled 2 $209.25
+  B v19423692 refplan rplan18462151 MCAD seq 3  charges 1 rebilled 1 $137.38
+  v19453798: settling (payment posted) - NOT re-rendered
+pat44962: new main plan rplan18462152 (rprov13)
+  v19453797: settling (payment posted) - NOT re-rendered
+  v19453794: ** CHECK ** recreated 0/1 on None
+  v19419003: ** CHECK ** recreated 0/1 on None
+  v19422486: ** CHECK ** recreated 0/1 on None
+  v19425613: ** CHECK ** recreated 0/1 on None
+  v19428473: ** CHECK ** recreated 0/1 on None
+  v19432010: ** CHECK ** recreated 0/1 on None
+  v19434238: ** CHECK ** recreated 0/1 on None
+  v19434571: ** CHECK ** recreated 0/1 on None
+  v19438972: ** CHECK ** recreated 0/1 on None
+  v19441620: ** CHECK ** recreated 0/1 on None
+  v19444040: ** CHECK ** recreated 0/1 on None
+pat45210: new main plan rplan18462153 (rprov13)
+  v19453790: settling (payment posted) - NOT re-rendered
+  v19418980: ** CHECK ** recreated 0/1 on None
+  v19422665: ** CHECK ** recreated 0/1 on None
+  v19453364: ** CHECK ** recreated 0/1 on None
+  v19418992: settling (payment posted) - NOT re-rendered
+  v19422684: settling (payment posted) - NOT re-rendered
+  v19426096: settling (payment posted) - NOT re-rendered
+  v19428130: settling (payment posted) - NOT re-rendered
+  v19435218: settling (payment posted) - NOT re-rendered
+  v19435658: settling (payment posted) - NOT re-rendered
+  v19436806: settling (payment posted) - NOT re-rendered
+  v19436816: settling (payment posted) - NOT re-rendered
+  v19437727: settling (payment posted) - NOT re-rendered
+  v19438676: settling (payment posted) - NOT re-rendered
+  v19453817: settling (payment posted) - NOT re-rendered
+  v19453813: settling (payment posted) - NOT re-rendered
+  v19446730: ** CHECK ** recreated 0/1 on None
+  v19419546: settling (payment posted) - NOT re-rendered
+  v19423425: settling (payment posted) - NOT re-rendered
+pat17472286: new main plan rplan18462154 (rprov13)
+  v19452850: settling (payment posted) - NOT re-rendered
+  v19453355: settling (payment posted) - NOT re-rendered
+  v19453494: settling (payment posted) - NOT re-rendered
+pat17477383: new main plan rplan18462155 (rprov13)
+  v19451168: settling (payment posted) - NOT re-rendered
+  v19418981: settling (payment posted) - NOT re-rendered
+  v19422485: settling (payment posted) - NOT re-rendered
+  v19425611: settling (payment posted) - NOT re-rendered
+  v19429029: settling (payment posted) - NOT re-rendered
+  v19432009: settling (payment posted) - NOT re-rendered
+  v19434561: settling (payment posted) - NOT re-rendered
+  v19437743: settling (payment posted) - NOT re-rendered
+  v19444053: settling (payment posted) - NOT re-rendered
+  v19444054: settling (payment posted) - NOT re-rendered
+  v19448278: settling (payment posted) - NOT re-rendered
+  v19451195: settling (payment posted) - NOT re-rendered
+  v19447393: settling (payment posted) - NOT re-rendered
+  v19447738: settling (payment posted) - NOT re-rendered
+pat17472429: new main plan rplan18462156 (rprov13)
+  v19447158: settling (payment posted) - NOT re-rendered
+  v19451303: settling (payment posted) - NOT re-rendered
+  B v19427082 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $137.38
+  B v19430782 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $142.72
+  B v19433978 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $142.72
+batch: A re-rendered 0 | B repointed 5 | charges rebilled 6 $769.45 | settling-skipped 52 | CHECK 15 | FCC kept 0 | visits done 112/386
+  v19453794: ** CHECK ** original void, recreations not found
+  v19419003: ** CHECK ** original void, recreations not found
+  v19422486: ** CHECK ** original void, recreations not found
+  v19425613: ** CHECK ** original void, recreations not found
+  v19428473: ** CHECK ** original void, recreations not found
+  v19432010: ** CHECK ** original void, recreations not found
+  v19434238: ** CHECK ** original void, recreations not found
+  v19434571: ** CHECK ** original void, recreations not found
+  v19438972: ** CHECK ** original void, recreations not found
+  v19441620: ** CHECK ** original void, recreations not found
+  v19444040: ** CHECK ** original void, recreations not found
+  v19418980: ** CHECK ** original void, recreations not found
+  v19422665: ** CHECK ** original void, recreations not found
+  v19453364: ** CHECK ** original void, recreations not found
+  v19446730: ** CHECK ** original void, recreations not found
+  B v19438609 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $142.72
+  B v19442453 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $142.72
+  B v19446273 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $142.72
+  B v19448879 refplan rplan18462156 SUN01 seq 5  charges 1 rebilled 1 $16.14
+  B v19452359 refplan rplan18462156 SUN01 seq 5  charges 2 rebilled 2 $25.06
+  v19448214: ** CHECK ** recreated 0/2 on None
+  v19437355: settling (payment posted) - NOT re-rendered
+  v19437841: settling (payment posted) - NOT re-rendered
+  v19442008: settling (payment posted) - NOT re-rendered
+pat17475222: new main plan rplan18462157 (rprov13)
+  v19432504: ** CHECK ** recreated 0/1 on None
+  v19432505: ** CHECK ** recreated 0/1 on None
+  v19434234: ** CHECK ** recreated 0/1 on None
+  v19434236: ** CHECK ** recreated 0/1 on None
+  v19434237: ** CHECK ** recreated 0/1 on None
+  v19434262: ** CHECK ** recreated 0/1 on None
+  v19444985: ** CHECK ** recreated 0/2 on None
+  v19445133: ** CHECK ** recreated 0/1 on None
+  v19445158: ** CHECK ** recreated 0/1 on None
+  v19445428: ** CHECK ** recreated 0/1 on None
+  v19445832: ** CHECK ** recreated 0/1 on None
+pat17477039: new main plan rplan18462158 (rprov13)
+  v19447499: ** CHECK ** recreated 0/1 on None
+  v19447502: ** CHECK ** recreated 0/1 on None
+  v19448130: ** CHECK ** recreated 0/1 on None
+  v19449336: ** CHECK ** recreated 0/1 on None
+  v19449921: ** CHECK ** recreated 0/1 on None
+  v19450269: ** CHECK ** recreated 0/1 on None
+  v19425350: settling (payment posted) - NOT re-rendered
+  v19435304: ** CHECK ** recreated 0/1 on None
+  v19438974: ** CHECK ** recreated 0/1 on None
+  v19442600: ** CHECK ** recreated 0/1 on None
+  v19445154: ** CHECK ** recreated 0/1 on None
+  v19447328: ** CHECK ** recreated 0/1 on None
+  v19451339: ** CHECK ** recreated 0/1 on None
+  v19451192: ** CHECK ** recreated 0/1 on None
+  v19440436: ** CHECK ** recreated 0/1 on None
+  v19450679: ** CHECK ** recreated 0/1 on None
+batch: A re-rendered 0 | B repointed 5 | charges rebilled 6 $469.36 | settling-skipped 4 | CHECK 42 | FCC kept 0 | visits done 121/386
+  A(recovered) v19453794->19455277 rebilled 1/1 seq 3 
+  A(recovered) v19419003->19455278 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19422486->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19425613->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19428473->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19432010->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19434238->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19434571->19455278 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19438972->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19441620->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19444040->19455277 rebilled 1/1 seq 3 FCC->MCAD
+  A(recovered) v19418980->19455288 rebilled 1/1 seq 2 
+  A(recovered) v19422665->19455288 rebilled 1/1 seq 2 
+  A(recovered) v19453364->19455290 rebilled 1/1 seq 1 
+  A(recovered) v19446730->19455291 rebilled 1/1 seq 1 
+  A(recovered) v19448214->19455292 rebilled 2/2 seq 1 
+  v19437355: settling (payment posted) - NOT re-rendered
+  v19437841: settling (payment posted) - NOT re-rendered
+  v19442008: settling (payment posted) - NOT re-rendered
+  A(recovered) v19432504->19455293 rebilled 1/1 seq 1 
+  A(recovered) v19432505->19455294 rebilled 1/1 seq 1 
+  A(recovered) v19434234->19455293 rebilled 1/1 seq 1 
+  A(recovered) v19434236->19455294 rebilled 1/1 seq 1 
+  A(recovered) v19434237->19455294 rebilled 1/1 seq 1 
+  A(recovered) v19434262->19455293 rebilled 1/1 seq 1 
+  A(recovered) v19444985->19455299 rebilled 2/2 seq 1 
+  A(recovered) v19445133->19455300 rebilled 1/1 seq 1 
+  A(recovered) v19445158->19455300 rebilled 1/1 seq 1 
+  A(recovered) v19445428->19455300 rebilled 1/1 seq 1 
+  A(recovered) v19445832->19455300 rebilled 1/1 seq 1 
+  A(recovered) v19447499->19455304 rebilled 1/1 seq 1 
+  A(recovered) v19447502->19455305 rebilled 1/1 seq 1 
+  A(recovered) v19448130->19455305 rebilled 1/1 seq 1 
+  A(recovered) v19449336->19455305 rebilled 1/1 seq 1 
+  A(recovered) v19449921->19455305 rebilled 1/1 seq 1 
+  A(recovered) v19450269->19455305 rebilled 1/1 seq 1 
+  v19425350: settling (payment posted) - NOT re-rendered
+  v19435304: ** CHECK ** original void, recreations not found
+  v19438974: ** CHECK ** original void, recreations not found
+  v19442600: ** CHECK ** original void, recreations not found
+  v19445154: ** CHECK ** original void, recreations not found
+  v19447328: ** CHECK ** original void, recreations not found
+  v19451339: ** CHECK ** original void, recreations not found
+  A(recovered) v19451192->19455316 rebilled 1/1 seq 1 
+  A(recovered) v19440436->19455317 rebilled 1/1 seq 1 
+  A(recovered) v19450679->19455317 rebilled 1/1 seq 1 
+pat17472874: new main plan rplan18462159 (rprov13)
+  A v19426088->19455319 prof13 refplan rplan18462159 WEL04 seq 1  charges 1->1 rebilled 1/1 $107.00
+  A v19427523->19455319 prof13 refplan rplan18462159 WEL04 seq 1  charges 1->1 rebilled 1/1 $107.00
+  A v19429019->19455321 prof13 refplan rplan18462159 WEL04 seq 1  charges 1->1 rebilled 1/1 $141.00
+  A v19435197->19455322 prof13 refplan rplan18462159 WEL04 seq 1  charges 1->1 rebilled 1/1 $160.00
+  A v19435301->19455321 prof13 refplan rplan18462159 WEL04 seq 1  charges 1->1 rebilled 1/1 $141.00
+  B v19437843 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19437926 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19437951 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19438061 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19438356 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19438357 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+  B v19438358 refplan rplan18462159 WEL04 seq 1  charges 1 rebilled 1 $160.00
+batch: A re-rendered 41 | B repointed 7 | charges rebilled 50 $7,473.00 | settling-skipped 4 | CHECK 6 | FCC kept 0 | visits done 169/386
