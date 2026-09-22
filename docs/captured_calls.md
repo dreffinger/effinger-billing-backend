@@ -1690,3 +1690,8 @@ Helpers this run: insp_0922_0510.py / _0510b.py / _0510c.py / _0510d.py (--allow
 - Medicaid FFS has never paid the Medicaid-only FCC patients (hundreds of $0 lines; Varley CO256/N130 on 9/21). Sunshine paid them until 12/2023.
 - FCC's own remits: EHPA/WEFFI claims CO256/N130 (DOS 8/29-8/31/2026); Garland-G claims CO16/N290. FCC last paid 8/2023. Carrier master FLO99 = FLORIDA COMMUNITY CARE AVAILITY, cpid 8129 via CHC - claims reach FCC; the denial is contractual.
 - medicaid_garland_g_fix.py route() misrouted 31 visits off FCC on 9/22 (17 -> MCAD FFS $2,683 on 4 charts; 14 -> an old SMMC plan $1,770 on 2 charts) - list in unbilled/fcc_misrouted_2026-09-22.json. route() now keeps FCC. William's 9/7 decision (fcc_rebill_0907.py: "FCC is FLO99 - rebill them all there") stands.
+
+## 2026-09-22 chat — FCC correction (same day)
+- William: FCC may pay by PAPER CHECK, deposited into Square. So "FCC paid nothing since 8/2023" is an AMD-posting artifact, not FCC behavior. FCC ERA enrollment form sent 9/8/2026 (FCCERA@fcchealthplan.com); FCC provider portal (mPulse) accounts dreffinger / dreffinger1 created 9/8.
+- RETRACTED: "FCC denies EHPA's own claims -> network/contract issue". The 5 CO256/N130 lines are hospital E/M (99223 x2, 99233 x3) for duals Jacobsen (pat24039) and Hatherley (pat20863), DOS 8/29-8/31 - Medicare-first claims, not nursing-home denials. 3 CO16/N290 lines = Garland-G 99309s (Jacobsen).
+- Rule added: hold all FLO99 write-offs/reroutes until reconciled against FCC EOBs / portal / Square deposits.
