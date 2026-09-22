@@ -39,13 +39,17 @@ def stedi_lookup(pid, dos_iso):
     if a.get("deceased") not in (None, "", "0"): return _iso(a.get("deceased")) if re.search(r"\d", a.get("deceased")) else dos_iso, True
     last, first = (a.get("name", "").split(",") + [""])[:2]; first = first.strip().split(" ")[0]
     mm = re.match(r"(\d\d)/(\d\d)/(\d{4})", a.get("dob", "")); dob8 = f"{mm.group(3)}{mm.group(1)}{mm.group(2)}" if mm else ""
+    # 9/22/2026 (3pm ET run): the ehpa cloud environment carries the Stedi key as a proxy-attached credential (bootstrap net =
+    # STEDI_CRED_OK, no key file) - a missing key file means send NO Authorization header and let the proxy add it (stedi.py does the same).
     try: key = open(KEYF).read().strip()
-    except Exception: return None, False
+    except Exception: key = None
     body = {"tradingPartnerServiceId": "MBILUNOSSN", "provider": {"organizationName": "EFFINGER HEALTH PA", "npi": "1629515325"},
             "subscriber": {"firstName": first, "lastName": last.strip(), "dateOfBirth": dob8, "address": {"state": "FL"}},
             "encounter": {"dateOfService": dos_iso.replace("-", ""), "serviceTypeCodes": ["30"]}}
     try:
-        j = requests.post(STEDI, json=body, headers={"Authorization": key, "Content-Type": "application/json"}, timeout=60).json()
+        hdr = {"Content-Type": "application/json"}
+        if key: hdr["Authorization"] = key
+        j = requests.post(STEDI, json=body, headers=hdr, timeout=60).json()
     except Exception: return None, False
     errs = [e.get("code") for e in j.get("errors", []) or []]
     return dod_from_271(j), (not errs or errs == ["72"])       # 72 = not a Medicare beneficiary: nothing to find, still a valid answer
