@@ -85,3 +85,14 @@ pat45010: main plan rplan45167 refprov=rprov15; prof13 open visits on it: ['1943
   REBILL v19453666 c23364408 own-seq 3 (insorder 3,4) $141.00
   REBILL v19454249 c23365299 own-seq 3 (insorder 3) $107.00
 === resubmit on the visit's OWN sequence (United/Sunshine-billed visits): 20 charges $2,888.06, failed 0 ===
+
+=== main-plan flip to rprov13 (addreferralplan ismain=1) ===
+pat17472419: main=rprov13 - skip
+pat17472518: main=rprov13 - skip
+pat12232512: main=rprov13 - skip
+pat17469645: main=rprov13 - skip
+pat17472285: main=rprov13 - skip
+pat17472436: main=rprov13 - skip
+pat17473222: main=rprov13 - skip
+pat44987: main=rprov13 - skip
+pat45010: main=rprov13 - skip
