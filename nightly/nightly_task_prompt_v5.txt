@@ -20,4 +20,6 @@ STEP 4b - Credentialing check: `python3 cred_check.py` (NPPES diff for the three
 
 STEP 5 - Money Ledger refresh: `python3 build_money.py` (rebuilds money_data.json and money_ledger.html from tonight's unpaid list, ERA Center, claim runs, exclusions and write-off registers), then republish /home/claude/unbilled/money_ledger.html to the existing artifact with the Artifact tool using url https://claude.ai/code/artifact/2d2c85c6-903b-451a-ab53-bdc074703797 (label it with tonight's date). Do not change its favicon.
 
+REFERRING-PROVIDER SWEEP (every run, after the rebills): `python3 billing/rebill/sweep_refprov.py` — any chart whose main referral plan still names Garcia (rprov15) but carries open prof13 (Effinger) visits gets a new main plan with rprov13 (addreferralplan ismain=1), a full-charge repoint of those visits (void-trap: every active charge echoed, counts verified) and a freq-1 rebill on each visit's OWN sequence. Log the charts touched. Never a UI step.
+
 REPORT: end with a compact summary under 150 words: visits checked, exceptions found, charts fixed and dollars re-sent, ERA dollars posted, write-offs (name + amount), what is waiting on William, Stedi lookups used and approximate cost, and any script errors verbatim. PHI rule: names and dollar amounts are fine in this report and on the board (William's private artifacts); never put SSNs anywhere.
