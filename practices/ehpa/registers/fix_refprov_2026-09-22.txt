@@ -96,3 +96,18 @@ pat17472436: main=rprov13 - skip
 pat17473222: main=rprov13 - skip
 pat44987: main=rprov13 - skip
 pat45010: main=rprov13 - skip
+pat12182506: new main rplan18462132; 1 open prof13 visits
+pat12231909: new main rplan18462133; 3 open prof13 visits
+pat12231996: new main rplan18462134; 3 open prof13 visits
+pat17468923: new main rplan18462135; 2 open prof13 visits
+pat17469028: new main rplan18462136; 5 open prof13 visits
+pat17469426: new main rplan18462137; 1 open prof13 visits
+pat17469429: new main rplan18462138; 1 open prof13 visits
+pat17470697: new main rplan18462139; 33 open prof13 visits
+batch: charts 8 visits repointed 28 rebilled 45 $3,168.95 checks 0 | charts done 7/96
+pat17470802: new main rplan18462140; 2 open prof13 visits
+pat17470874: new main rplan18462141; 3 open prof13 visits
+pat17470875: new main rplan18462142; 1 open prof13 visits
+pat17470939: new main rplan18462143; 9 open prof13 visits
+pat17470940: new main rplan18462144; 39 open prof13 visits
+batch: charts 5 visits repointed 31 rebilled 49 $6,014.80 checks 0 | charts done 12/96
