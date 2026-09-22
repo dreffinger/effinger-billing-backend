@@ -71,3 +71,18 @@ if __name__ == "__main__":
     elif a[0] == "disc": print(json.dumps(disc_summ(disc(a[1], a[2], a[3], a[4], a[5] if len(a) > 5 else None)), indent=1))
     elif a[0] == "payer": print([(p["payer"]["displayName"], p["payer"]["primaryPayerId"], p["payer"]["transactionSupport"]["eligibilityCheck"]) for p in payers(a[1])[:6]])
     elif a[0] == "enr": print([(e["payer"].get("name"), e["status"]) for e in enrollments()])
+
+# 9/22/2026 DECEASED GUARD: every Medicare 271 feeds the date-of-death cache (core/deceased_guard.py) when the caller passes pid=.
+def _dod_hook(pid, j):
+    try:
+        import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "core"))
+        import deceased_guard
+        if pid: deceased_guard.record(pid, j)
+    except Exception: pass
+_elig_raw, _mbi_raw = elig, mbi
+def elig(payer, first, last, dob, member_id, dos, stc=("30",), pid=None):
+    j = _elig_raw(payer, first, last, dob, member_id, dos, stc)
+    if payer in ("CMS", "MBILU", "MBILUNOSSN"): _dod_hook(pid, j)
+    return j
+def mbi(first, last, dob, state=None, dos=None, ssn=None, pid=None):
+    j = _mbi_raw(first, last, dob, state, dos, ssn); _dod_hook(pid, j); return j
