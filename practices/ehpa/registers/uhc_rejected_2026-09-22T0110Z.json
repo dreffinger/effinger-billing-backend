@@ -1,0 +1,6971 @@
+{
+ "stamp": "2026-09-22T0110Z",
+ "source": "UHC portal rejected_claims*.csv x6 (Drive bht Optum era downloads, 9/22 00:00-00:05Z)",
+ "n": 436,
+ "classes": {
+  "open-other-carrier": 8,
+  "closed-in-amd": 315,
+  "open-partly-paid": 3,
+  "open-pre-0501-2026": 69,
+  "open-2026": 41
+ },
+ "rows": [
+  {
+   "visitid": "19452247",
+   "letter": "B",
+   "dos": "08/22/2026",
+   "submitted": "08/31/2026",
+   "expires": "11/29/2026",
+   "pid": "17477491",
+   "carrier": "UHCMA",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19452145",
+   "letter": "B",
+   "dos": "08/18/2026",
+   "submitted": "08/31/2026",
+   "expires": "11/29/2026",
+   "pid": "17477491",
+   "carrier": "UHCMA",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19452148",
+   "letter": "B",
+   "dos": "08/19/2026",
+   "submitted": "08/31/2026",
+   "expires": "11/29/2026",
+   "pid": "17477491",
+   "carrier": "UHCMA",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19452217",
+   "letter": "B",
+   "dos": "08/21/2026",
+   "submitted": "08/31/2026",
+   "expires": "11/29/2026",
+   "pid": "17477491",
+   "carrier": "UHCMA",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19409405",
+   "letter": "C",
+   "dos": "07/14/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408648",
+   "letter": "C",
+   "dos": "06/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408175",
+   "letter": "C",
+   "dos": "06/22/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19420367",
+   "letter": "C",
+   "dos": "10/13/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439505",
+   "letter": "C",
+   "dos": "04/22/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408205",
+   "letter": "C",
+   "dos": "06/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423577",
+   "letter": "C",
+   "dos": "11/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431387",
+   "letter": "D",
+   "dos": "01/28/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424658",
+   "letter": "C",
+   "dos": "11/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409598",
+   "letter": "C",
+   "dos": "07/16/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416086",
+   "letter": "C",
+   "dos": "09/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "21263",
+   "carrier": "UNI20",
+   "insbal": 68.62,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-68.62",
+     "09/04/2026",
+     "C5966498"
+    ],
+    [
+     "UNI20",
+     "68.62",
+     "09/04/2026",
+     "U6946547"
+    ]
+   ],
+   "writeoffs": [
+    [
+     null,
+     "-137.38",
+     "09/04/2026"
+    ]
+   ],
+   "class": "open-partly-paid",
+   "detail": "a payment already sits on the visit (U6946547) - the re-sent claim duplicated an adjudicated one"
+  },
+  {
+   "visitid": "19407977",
+   "letter": "C",
+   "dos": "06/21/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409021",
+   "letter": "C",
+   "dos": "07/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408171",
+   "letter": "C",
+   "dos": "06/22/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439652",
+   "letter": "C",
+   "dos": "04/20/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439521",
+   "letter": "C",
+   "dos": "04/22/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433870",
+   "letter": "C",
+   "dos": "02/26/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19434259",
+   "letter": "C",
+   "dos": "02/18/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412924",
+   "letter": "C",
+   "dos": "08/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19420344",
+   "letter": "C",
+   "dos": "10/14/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422703",
+   "letter": "C",
+   "dos": "11/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419004",
+   "letter": "C",
+   "dos": "09/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407384",
+   "letter": "C",
+   "dos": "06/04/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424926",
+   "letter": "C",
+   "dos": "11/20/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417573",
+   "letter": "C",
+   "dos": "09/16/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422179",
+   "letter": "C",
+   "dos": "10/22/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423444",
+   "letter": "C",
+   "dos": "11/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408170",
+   "letter": "C",
+   "dos": "06/21/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19426977",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416574",
+   "letter": "C",
+   "dos": "09/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409798",
+   "letter": "C",
+   "dos": "07/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423574",
+   "letter": "C",
+   "dos": "11/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423573",
+   "letter": "C",
+   "dos": "11/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424925",
+   "letter": "C",
+   "dos": "11/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429011",
+   "letter": "C",
+   "dos": "01/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422178",
+   "letter": "C",
+   "dos": "10/29/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409821",
+   "letter": "C",
+   "dos": "07/07/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439524",
+   "letter": "C",
+   "dos": "04/20/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419619",
+   "letter": "C",
+   "dos": "10/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19420353",
+   "letter": "C",
+   "dos": "10/14/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418295",
+   "letter": "C",
+   "dos": "09/24/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419618",
+   "letter": "C",
+   "dos": "10/01/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416575",
+   "letter": "C",
+   "dos": "09/04/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19413390",
+   "letter": "C",
+   "dos": "08/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19420526",
+   "letter": "C",
+   "dos": "10/07/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408202",
+   "letter": "C",
+   "dos": "06/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416118",
+   "letter": "C",
+   "dos": "09/07/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416059",
+   "letter": "C",
+   "dos": "09/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417120",
+   "letter": "C",
+   "dos": "09/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414542",
+   "letter": "C",
+   "dos": "08/12/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425186",
+   "letter": "C",
+   "dos": "11/10/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19428318",
+   "letter": "C",
+   "dos": "01/05/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423666",
+   "letter": "C",
+   "dos": "11/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439513",
+   "letter": "C",
+   "dos": "04/22/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416989",
+   "letter": "C",
+   "dos": "09/09/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19430000",
+   "letter": "C",
+   "dos": "01/13/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421505",
+   "letter": "C",
+   "dos": "10/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427031",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425185",
+   "letter": "C",
+   "dos": "12/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439773",
+   "letter": "C",
+   "dos": "04/21/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423582",
+   "letter": "C",
+   "dos": "11/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433402",
+   "letter": "C",
+   "dos": "02/19/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407573",
+   "letter": "C",
+   "dos": "06/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417134",
+   "letter": "C",
+   "dos": "09/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "21263",
+   "carrier": "UNI20",
+   "insbal": 37.46,
+   "charges": [
+    [
+     "99307",
+     "68.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-37.46",
+     "09/04/2026",
+     "C6037727"
+    ],
+    [
+     "UNI20",
+     "37.46",
+     "09/04/2026",
+     "U6946547"
+    ]
+   ],
+   "writeoffs": [
+    [
+     null,
+     "-30.54",
+     "09/04/2026"
+    ]
+   ],
+   "class": "open-partly-paid",
+   "detail": "a payment already sits on the visit (U6946547) - the re-sent claim duplicated an adjudicated one"
+  },
+  {
+   "visitid": "19418992",
+   "letter": "C",
+   "dos": "10/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418300",
+   "letter": "C",
+   "dos": "09/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19438161",
+   "letter": "C",
+   "dos": "04/06/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422651",
+   "letter": "C",
+   "dos": "11/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19437724",
+   "letter": "C",
+   "dos": "04/03/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19438317",
+   "letter": "C",
+   "dos": "04/10/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419569",
+   "letter": "C",
+   "dos": "10/07/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19437311",
+   "letter": "C",
+   "dos": "04/02/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419596",
+   "letter": "C",
+   "dos": "10/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19436808",
+   "letter": "C",
+   "dos": "03/17/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19438162",
+   "letter": "C",
+   "dos": "03/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419595",
+   "letter": "C",
+   "dos": "10/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19432503",
+   "letter": "C",
+   "dos": "02/06/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19426367",
+   "letter": "C",
+   "dos": "12/12/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409086",
+   "letter": "C",
+   "dos": "07/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407287",
+   "letter": "C",
+   "dos": "06/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431379",
+   "letter": "C",
+   "dos": "01/28/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429018",
+   "letter": "C",
+   "dos": "01/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408204",
+   "letter": "C",
+   "dos": "06/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408651",
+   "letter": "C",
+   "dos": "06/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408201",
+   "letter": "C",
+   "dos": "06/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408717",
+   "letter": "C",
+   "dos": "07/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424932",
+   "letter": "C",
+   "dos": "11/26/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415102",
+   "letter": "C",
+   "dos": "08/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "21263",
+   "carrier": "UNI20",
+   "insbal": 37.46,
+   "charges": [
+    [
+     "99307",
+     "68.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-37.46",
+     "09/04/2026",
+     "C5916032"
+    ],
+    [
+     "UNI20",
+     "37.46",
+     "09/04/2026",
+     "U6946547"
+    ]
+   ],
+   "writeoffs": [
+    [
+     null,
+     "-30.54",
+     "09/04/2026"
+    ]
+   ],
+   "class": "open-partly-paid",
+   "detail": "a payment already sits on the visit (U6946547) - the re-sent claim duplicated an adjudicated one"
+  },
+  {
+   "visitid": "19433405",
+   "letter": "C",
+   "dos": "02/19/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433071",
+   "letter": "C",
+   "dos": "02/17/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424933",
+   "letter": "C",
+   "dos": "11/20/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423446",
+   "letter": "C",
+   "dos": "11/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19440427",
+   "letter": "C",
+   "dos": "04/28/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19430962",
+   "letter": "C",
+   "dos": "01/27/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19436819",
+   "letter": "C",
+   "dos": "03/18/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425640",
+   "letter": "C",
+   "dos": "12/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19438693",
+   "letter": "C",
+   "dos": "04/13/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433070",
+   "letter": "D",
+   "dos": "02/10/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407664",
+   "letter": "C",
+   "dos": "06/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19411242",
+   "letter": "C",
+   "dos": "07/17/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412351",
+   "letter": "C",
+   "dos": "07/31/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439028",
+   "letter": "C",
+   "dos": "04/16/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439776",
+   "letter": "C",
+   "dos": "04/21/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427521",
+   "letter": "C",
+   "dos": "12/26/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427538",
+   "letter": "C",
+   "dos": "12/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17474798",
+   "carrier": "UNI20",
+   "insbal": 36.66,
+   "charges": [
+    [
+     "99316",
+     "160.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-123.34",
+     "09/05/2026",
+     "26042B1000278771"
+    ],
+    [
+     "SUN01",
+     "0.00",
+     "09/11/2026",
+     "0917650774"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19430006",
+   "letter": "C",
+   "dos": "01/13/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19432539",
+   "letter": "C",
+   "dos": "02/03/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433577",
+   "letter": "C",
+   "dos": "02/17/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19426368",
+   "letter": "C",
+   "dos": "12/10/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17474798",
+   "carrier": "UNI20",
+   "insbal": 37.04,
+   "charges": [
+    [
+     "99308",
+     "107.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-69.96",
+     "09/05/2026",
+     "26042B1000278771"
+    ],
+    [
+     "SUN01",
+     "0.00",
+     "09/11/2026",
+     "0917650774"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19436821",
+   "letter": "C",
+   "dos": "03/17/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19436822",
+   "letter": "C",
+   "dos": "03/25/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407874",
+   "letter": "C",
+   "dos": "06/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429868",
+   "letter": "C",
+   "dos": "01/16/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431391",
+   "letter": "C",
+   "dos": "01/29/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19428130",
+   "letter": "C",
+   "dos": "01/02/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433004",
+   "letter": "C",
+   "dos": "02/10/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427520",
+   "letter": "C",
+   "dos": "12/26/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19440500",
+   "letter": "C",
+   "dos": "04/29/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439772",
+   "letter": "C",
+   "dos": "04/21/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424928",
+   "letter": "C",
+   "dos": "11/20/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422159",
+   "letter": "C",
+   "dos": "10/29/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422684",
+   "letter": "C",
+   "dos": "11/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19426096",
+   "letter": "C",
+   "dos": "12/01/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427019",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412334",
+   "letter": "C",
+   "dos": "07/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415606",
+   "letter": "C",
+   "dos": "08/27/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425344",
+   "letter": "C",
+   "dos": "12/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425188",
+   "letter": "C",
+   "dos": "12/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407642",
+   "letter": "C",
+   "dos": "06/09/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416988",
+   "letter": "C",
+   "dos": "09/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416580",
+   "letter": "C",
+   "dos": "09/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439900",
+   "letter": "C",
+   "dos": "04/23/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19441029",
+   "letter": "C",
+   "dos": "05/01/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424041",
+   "letter": "C",
+   "dos": "11/10/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419610",
+   "letter": "C",
+   "dos": "10/01/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424927",
+   "letter": "C",
+   "dos": "11/25/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17474798",
+   "carrier": "UNI20",
+   "insbal": 39.23,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-101.77",
+     "09/05/2026",
+     "26042B1000278771"
+    ],
+    [
+     "SUN01",
+     "0.00",
+     "09/11/2026",
+     "0917650774"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19435662",
+   "letter": "C",
+   "dos": "03/06/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421781",
+   "letter": "C",
+   "dos": "10/24/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422647",
+   "letter": "C",
+   "dos": "11/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424017",
+   "letter": "C",
+   "dos": "11/17/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "21263",
+   "carrier": "UNI20",
+   "insbal": 107.0,
+   "charges": [
+    [
+     "99308",
+     "107.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407873",
+   "letter": "C",
+   "dos": "06/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425346",
+   "letter": "C",
+   "dos": "12/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17474798",
+   "carrier": "UNI20",
+   "insbal": 39.23,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-101.77",
+     "09/05/2026",
+     "26042B1000278771"
+    ],
+    [
+     "SUN01",
+     "0.00",
+     "09/11/2026",
+     "0917650774"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407880",
+   "letter": "C",
+   "dos": "06/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408507",
+   "letter": "C",
+   "dos": "06/27/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433005",
+   "letter": "C",
+   "dos": "02/10/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429007",
+   "letter": "C",
+   "dos": "01/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19413391",
+   "letter": "C",
+   "dos": "08/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412929",
+   "letter": "C",
+   "dos": "08/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425357",
+   "letter": "C",
+   "dos": "12/02/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421679",
+   "letter": "C",
+   "dos": "10/28/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17474409",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99316",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19419609",
+   "letter": "C",
+   "dos": "10/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419360",
+   "letter": "C",
+   "dos": "10/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424931",
+   "letter": "C",
+   "dos": "11/19/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414543",
+   "letter": "C",
+   "dos": "08/12/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19434261",
+   "letter": "C",
+   "dos": "02/26/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19436805",
+   "letter": "C",
+   "dos": "03/20/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433574",
+   "letter": "C",
+   "dos": "02/20/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19433575",
+   "letter": "C",
+   "dos": "02/12/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19411036",
+   "letter": "C",
+   "dos": "07/12/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412915",
+   "letter": "C",
+   "dos": "08/04/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422644",
+   "letter": "C",
+   "dos": "11/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19435415",
+   "letter": "C",
+   "dos": "03/13/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427051",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427518",
+   "letter": "C",
+   "dos": "12/26/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19443858",
+   "letter": "C",
+   "dos": "05/28/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429016",
+   "letter": "C",
+   "dos": "01/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427039",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19427020",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19435660",
+   "letter": "C",
+   "dos": "03/11/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407653",
+   "letter": "C",
+   "dos": "06/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19439805",
+   "letter": "C",
+   "dos": "04/21/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423443",
+   "letter": "C",
+   "dos": "11/11/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19429012",
+   "letter": "C",
+   "dos": "01/09/2026",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422176",
+   "letter": "C",
+   "dos": "10/29/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412923",
+   "letter": "C",
+   "dos": "08/06/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19419359",
+   "letter": "C",
+   "dos": "09/17/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412335",
+   "letter": "C",
+   "dos": "06/28/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412332",
+   "letter": "D",
+   "dos": "06/28/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417872",
+   "letter": "C",
+   "dos": "09/17/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "44954",
+   "carrier": "UNI20",
+   "insbal": 198.0,
+   "charges": [
+    [
+     "99349",
+     "198.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19422337",
+   "letter": "C",
+   "dos": "10/09/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408498",
+   "letter": "C",
+   "dos": "06/27/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19425336",
+   "letter": "C",
+   "dos": "12/03/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424294",
+   "letter": "C",
+   "dos": "11/17/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415408",
+   "letter": "C",
+   "dos": "09/01/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416570",
+   "letter": "C",
+   "dos": "09/04/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407876",
+   "letter": "D",
+   "dos": "06/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19413386",
+   "letter": "C",
+   "dos": "08/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415394",
+   "letter": "C",
+   "dos": "08/29/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19426974",
+   "letter": "C",
+   "dos": "12/18/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417115",
+   "letter": "C",
+   "dos": "09/08/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "17473885",
+   "carrier": "FLO02",
+   "insbal": 71.79,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/05/2026",
+     "FLO02"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "0.00",
+     "09/04/2026",
+     "C6305181"
+    ],
+    [
+     "FLO02",
+     "-69.21",
+     "09/19/2026",
+     "819814877(0)"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with FLO02, not UHC"
+  },
+  {
+   "visitid": "19421507",
+   "letter": "C",
+   "dos": "10/15/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19422655",
+   "letter": "C",
+   "dos": "11/05/2025",
+   "submitted": "09/04/2026",
+   "expires": "12/03/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408710",
+   "letter": "D",
+   "dos": "07/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407819",
+   "letter": "D",
+   "dos": "06/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431654",
+   "letter": "D",
+   "dos": "02/04/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19413984",
+   "letter": "D",
+   "dos": "08/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407818",
+   "letter": "D",
+   "dos": "06/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408219",
+   "letter": "D",
+   "dos": "06/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408020",
+   "letter": "D",
+   "dos": "06/21/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417583",
+   "letter": "D",
+   "dos": "09/22/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409856",
+   "letter": "D",
+   "dos": "07/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407839",
+   "letter": "D",
+   "dos": "06/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418661",
+   "letter": "D",
+   "dos": "10/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418459",
+   "letter": "D",
+   "dos": "09/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418083",
+   "letter": "D",
+   "dos": "09/27/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407821",
+   "letter": "D",
+   "dos": "06/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408415",
+   "letter": "D",
+   "dos": "06/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431528",
+   "letter": "D",
+   "dos": "02/02/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424395",
+   "letter": "D",
+   "dos": "11/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "12180163",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407934",
+   "letter": "D",
+   "dos": "06/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414303",
+   "letter": "D",
+   "dos": "08/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19431512",
+   "letter": "D",
+   "dos": "02/03/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408596",
+   "letter": "D",
+   "dos": "07/01/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408227",
+   "letter": "D",
+   "dos": "06/22/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408406",
+   "letter": "D",
+   "dos": "06/26/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414417",
+   "letter": "D",
+   "dos": "08/24/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407831",
+   "letter": "D",
+   "dos": "06/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409175",
+   "letter": "D",
+   "dos": "07/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408597",
+   "letter": "D",
+   "dos": "07/01/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414559",
+   "letter": "D",
+   "dos": "08/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408663",
+   "letter": "D",
+   "dos": "07/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409802",
+   "letter": "D",
+   "dos": "07/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407940",
+   "letter": "D",
+   "dos": "06/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407005",
+   "letter": "D",
+   "dos": "06/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408546",
+   "letter": "D",
+   "dos": "06/29/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412391",
+   "letter": "D",
+   "dos": "08/05/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408226",
+   "letter": "D",
+   "dos": "06/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416413",
+   "letter": "D",
+   "dos": "09/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17474002",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19423448",
+   "letter": "D",
+   "dos": "11/14/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418149",
+   "letter": "D",
+   "dos": "09/28/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19415749",
+   "letter": "D",
+   "dos": "09/07/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407817",
+   "letter": "D",
+   "dos": "06/13/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408547",
+   "letter": "D",
+   "dos": "06/28/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407275",
+   "letter": "E",
+   "dos": "06/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421882",
+   "letter": "D",
+   "dos": "10/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19415656",
+   "letter": "D",
+   "dos": "09/05/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418733",
+   "letter": "D",
+   "dos": "10/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19415673",
+   "letter": "D",
+   "dos": "09/06/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414283",
+   "letter": "D",
+   "dos": "08/22/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421845",
+   "letter": "D",
+   "dos": "10/31/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19411346",
+   "letter": "D",
+   "dos": "07/26/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408670",
+   "letter": "D",
+   "dos": "07/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408661",
+   "letter": "D",
+   "dos": "07/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408512",
+   "letter": "D",
+   "dos": "06/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407004",
+   "letter": "D",
+   "dos": "06/04/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423317",
+   "letter": "D",
+   "dos": "11/13/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409183",
+   "letter": "D",
+   "dos": "07/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415417",
+   "letter": "D",
+   "dos": "09/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17471204",
+   "carrier": "UNI20",
+   "insbal": 42.3,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-126.90",
+     "09/04/2026",
+     "W335003063"
+    ]
+   ],
+   "writeoffs": [
+    [
+     null,
+     "-140.80",
+     "09/04/2026"
+    ]
+   ],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19408220",
+   "letter": "D",
+   "dos": "06/22/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414218",
+   "letter": "D",
+   "dos": "08/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418067",
+   "letter": "D",
+   "dos": "09/26/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19408600",
+   "letter": "D",
+   "dos": "07/01/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407281",
+   "letter": "D",
+   "dos": "06/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424408",
+   "letter": "D",
+   "dos": "11/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414202",
+   "letter": "D",
+   "dos": "08/21/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408026",
+   "letter": "D",
+   "dos": "06/21/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421685",
+   "letter": "D",
+   "dos": "10/28/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19408699",
+   "letter": "D",
+   "dos": "07/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424206",
+   "letter": "D",
+   "dos": "11/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408698",
+   "letter": "D",
+   "dos": "07/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415881",
+   "letter": "D",
+   "dos": "09/08/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19435175",
+   "letter": "D",
+   "dos": "03/09/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407716",
+   "letter": "D",
+   "dos": "06/16/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418569",
+   "letter": "D",
+   "dos": "10/01/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421862",
+   "letter": "D",
+   "dos": "10/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418310",
+   "letter": "D",
+   "dos": "09/29/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19408598",
+   "letter": "D",
+   "dos": "06/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19406973",
+   "letter": "E",
+   "dos": "06/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407692",
+   "letter": "D",
+   "dos": "06/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414909",
+   "letter": "D",
+   "dos": "08/28/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407841",
+   "letter": "E",
+   "dos": "06/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416228",
+   "letter": "D",
+   "dos": "09/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473990",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407717",
+   "letter": "D",
+   "dos": "06/15/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407274",
+   "letter": "D",
+   "dos": "06/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408316",
+   "letter": "D",
+   "dos": "06/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415416",
+   "letter": "D",
+   "dos": "09/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17471204",
+   "carrier": "UNI20",
+   "insbal": 15.21,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-45.63",
+     "09/04/2026",
+     "W335003063"
+    ]
+   ],
+   "writeoffs": [
+    [
+     null,
+     "-50.16",
+     "09/04/2026"
+    ]
+   ],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407936",
+   "letter": "D",
+   "dos": "06/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19423318",
+   "letter": "D",
+   "dos": "11/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19413983",
+   "letter": "D",
+   "dos": "08/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407738",
+   "letter": "D",
+   "dos": "06/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409173",
+   "letter": "D",
+   "dos": "07/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19409217",
+   "letter": "D",
+   "dos": "07/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407280",
+   "letter": "D",
+   "dos": "06/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407826",
+   "letter": "D",
+   "dos": "06/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417982",
+   "letter": "D",
+   "dos": "09/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19409179",
+   "letter": "D",
+   "dos": "07/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19411345",
+   "letter": "D",
+   "dos": "07/27/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408317",
+   "letter": "D",
+   "dos": "06/24/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407704",
+   "letter": "D",
+   "dos": "06/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408554",
+   "letter": "D",
+   "dos": "06/26/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407271",
+   "letter": "D",
+   "dos": "06/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407693",
+   "letter": "D",
+   "dos": "06/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19406974",
+   "letter": "E",
+   "dos": "06/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408548",
+   "letter": "D",
+   "dos": "06/27/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407707",
+   "letter": "D",
+   "dos": "06/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407932",
+   "letter": "D",
+   "dos": "06/20/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19415533",
+   "letter": "D",
+   "dos": "09/04/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417878",
+   "letter": "D",
+   "dos": "09/23/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19406944",
+   "letter": "D",
+   "dos": "06/02/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407185",
+   "letter": "D",
+   "dos": "06/05/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407830",
+   "letter": "D",
+   "dos": "06/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408016",
+   "letter": "D",
+   "dos": "06/21/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407186",
+   "letter": "D",
+   "dos": "06/04/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407719",
+   "letter": "D",
+   "dos": "06/14/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417877",
+   "letter": "D",
+   "dos": "09/24/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19424409",
+   "letter": "D",
+   "dos": "11/22/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407001",
+   "letter": "D",
+   "dos": "06/04/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407720",
+   "letter": "D",
+   "dos": "06/13/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19406936",
+   "letter": "D",
+   "dos": "06/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407933",
+   "letter": "D",
+   "dos": "06/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19408549",
+   "letter": "D",
+   "dos": "06/30/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407721",
+   "letter": "D",
+   "dos": "06/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416041",
+   "letter": "D",
+   "dos": "09/08/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473990",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/04/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407737",
+   "letter": "D",
+   "dos": "06/12/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424213",
+   "letter": "D",
+   "dos": "11/19/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19421681",
+   "letter": "D",
+   "dos": "10/29/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19407706",
+   "letter": "D",
+   "dos": "06/13/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416342",
+   "letter": "D",
+   "dos": "09/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17473990",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19431511",
+   "letter": "D",
+   "dos": "02/03/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407784",
+   "letter": "E",
+   "dos": "06/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19435174",
+   "letter": "D",
+   "dos": "03/08/2026",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412410",
+   "letter": "D",
+   "dos": "08/04/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19411347",
+   "letter": "D",
+   "dos": "07/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414697",
+   "letter": "D",
+   "dos": "08/26/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407283",
+   "letter": "D",
+   "dos": "06/09/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19414700",
+   "letter": "D",
+   "dos": "08/25/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407827",
+   "letter": "D",
+   "dos": "06/18/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19424319",
+   "letter": "D",
+   "dos": "11/21/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407270",
+   "letter": "D",
+   "dos": "06/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19406943",
+   "letter": "D",
+   "dos": "06/03/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19407705",
+   "letter": "D",
+   "dos": "06/11/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416336",
+   "letter": "D",
+   "dos": "09/10/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "17474002",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19414819",
+   "letter": "D",
+   "dos": "08/27/2025",
+   "submitted": "09/05/2026",
+   "expires": "12/04/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19381584",
+   "letter": "B",
+   "dos": "04/23/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19412611",
+   "letter": "L",
+   "dos": "08/06/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418991",
+   "letter": "C",
+   "dos": "10/02/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "20336",
+   "carrier": "UNI20",
+   "insbal": 141.0,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19419665",
+   "letter": "C",
+   "dos": "10/08/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "12181899",
+   "carrier": "UNI20",
+   "insbal": 141.0,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19427528",
+   "letter": "D",
+   "dos": "12/20/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "17473032",
+   "carrier": "UNI20",
+   "insbal": 198.0,
+   "charges": [
+    [
+     "99349",
+     "198.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19422683",
+   "letter": "C",
+   "dos": "11/03/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "20336",
+   "carrier": "UNI20",
+   "insbal": 107.0,
+   "charges": [
+    [
+     "99308",
+     "107.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19416121",
+   "letter": "C",
+   "dos": "09/07/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "12181899",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19377556",
+   "letter": "B",
+   "dos": "02/08/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19380675",
+   "letter": "B",
+   "dos": "04/09/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19377516",
+   "letter": "B",
+   "dos": "03/05/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19377012",
+   "letter": "B",
+   "dos": "02/27/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19418299",
+   "letter": "D",
+   "dos": "09/25/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "17473032",
+   "carrier": "UNI20",
+   "insbal": 198.0,
+   "charges": [
+    [
+     "99349",
+     "198.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19416125",
+   "letter": "M",
+   "dos": "09/07/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "17473662",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19376166",
+   "letter": "B",
+   "dos": "02/13/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19383337",
+   "letter": "B",
+   "dos": "05/14/2024",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416125",
+   "letter": "L",
+   "dos": "09/07/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "17473662",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/06/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19427253",
+   "letter": "H",
+   "dos": "12/21/2025",
+   "submitted": "09/07/2026",
+   "expires": "12/06/2026",
+   "pid": "17473032",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421685",
+   "letter": "E",
+   "dos": "10/28/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418310",
+   "letter": "E",
+   "dos": "09/29/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418733",
+   "letter": "E",
+   "dos": "10/03/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421679",
+   "letter": "D",
+   "dos": "10/28/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474409",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99316",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421845",
+   "letter": "E",
+   "dos": "10/31/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418083",
+   "letter": "E",
+   "dos": "09/27/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418459",
+   "letter": "E",
+   "dos": "09/30/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421681",
+   "letter": "E",
+   "dos": "10/29/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421862",
+   "letter": "E",
+   "dos": "10/30/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474508",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19417982",
+   "letter": "E",
+   "dos": "09/25/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19417246",
+   "letter": "D",
+   "dos": "09/20/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "44954",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19417169",
+   "letter": "G",
+   "dos": "09/18/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19416740",
+   "letter": "G",
+   "dos": "09/15/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417222",
+   "letter": "G",
+   "dos": "09/19/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19438982",
+   "letter": "F",
+   "dos": "04/14/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19437730",
+   "letter": "F",
+   "dos": "04/03/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19452570",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17470849",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452810",
+   "letter": "B",
+   "dos": "08/25/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452220",
+   "letter": "B",
+   "dos": "08/21/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452638",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473306",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452229",
+   "letter": "B",
+   "dos": "08/21/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477492",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451534",
+   "letter": "B",
+   "dos": "08/06/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477084",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99316",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451377",
+   "letter": "C",
+   "dos": "08/11/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477402",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450681",
+   "letter": "B",
+   "dos": "08/04/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473306",
+   "carrier": "UNI20",
+   "insbal": 198.0,
+   "charges": [
+    [
+     "99349",
+     "198.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19416741",
+   "letter": "G",
+   "dos": "09/14/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417592",
+   "letter": "G",
+   "dos": "09/22/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19452251",
+   "letter": "B",
+   "dos": "08/22/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477492",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451394",
+   "letter": "C",
+   "dos": "08/12/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477402",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452663",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "12182506",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450732",
+   "letter": "C",
+   "dos": "08/06/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477349",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452821",
+   "letter": "B",
+   "dos": "08/24/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477492",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450768",
+   "letter": "C",
+   "dos": "08/05/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477349",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451472",
+   "letter": "C",
+   "dos": "08/13/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477402",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451593",
+   "letter": "B",
+   "dos": "08/14/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477419",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450756",
+   "letter": "B",
+   "dos": "08/05/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477316",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450500",
+   "letter": "B",
+   "dos": "08/03/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477316",
+   "carrier": "UNI20",
+   "insbal": 443.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99497",
+     "133.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452963",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452809",
+   "letter": "B",
+   "dos": "08/25/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477492",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450839",
+   "letter": "C",
+   "dos": "08/07/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477349",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19453118",
+   "letter": "B",
+   "dos": "08/28/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451925",
+   "letter": "B",
+   "dos": "08/15/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477419",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452961",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477492",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19421055",
+   "letter": "E",
+   "dos": "10/25/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "22546",
+   "carrier": "UHCMA",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19417007",
+   "letter": "G",
+   "dos": "09/17/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19417284",
+   "letter": "G",
+   "dos": "09/20/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19452654",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474441",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452581",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473236",
+   "carrier": "UNI20",
+   "insbal": 206.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451548",
+   "letter": "B",
+   "dos": "08/10/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "insbal": 141.0,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452619",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452595",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17476265",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19453119",
+   "letter": "B",
+   "dos": "08/27/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19453496",
+   "letter": "B",
+   "dos": "08/31/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477608",
+   "carrier": "UHCMA",
+   "insbal": 141.0,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  },
+  {
+   "visitid": "19421789",
+   "letter": "D",
+   "dos": "10/21/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474409",
+   "carrier": "UNI20",
+   "insbal": 389.0,
+   "charges": [
+    [
+     "99306",
+     "256.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99497",
+     "133.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19420992",
+   "letter": "D",
+   "dos": "10/25/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "44954",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19417398",
+   "letter": "G",
+   "dos": "09/21/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19451202",
+   "letter": "B",
+   "dos": "08/03/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477084",
+   "carrier": "UNI20",
+   "insbal": 141.0,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452214",
+   "letter": "B",
+   "dos": "08/20/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452252",
+   "letter": "B",
+   "dos": "08/22/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452624",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17476531",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19450663",
+   "letter": "B",
+   "dos": "08/04/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477316",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452147",
+   "letter": "B",
+   "dos": "08/19/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 443.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99497",
+     "133.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19436802",
+   "letter": "E",
+   "dos": "03/17/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "insbal": 43.41,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-97.59",
+     "09/02/2026",
+     "V5475692"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19452614",
+   "letter": "B",
+   "dos": "08/23/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17476749",
+   "carrier": "UNI20",
+   "insbal": 315.0,
+   "charges": [
+    [
+     "99487",
+     "206.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ],
+    [
+     "99489",
+     "109.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19451575",
+   "letter": "B",
+   "dos": "08/13/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477419",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452972",
+   "letter": "B",
+   "dos": "08/26/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19452822",
+   "letter": "B",
+   "dos": "08/24/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473342",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19417878",
+   "letter": "E",
+   "dos": "09/23/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19416336",
+   "letter": "E",
+   "dos": "09/10/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474002",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19416342",
+   "letter": "E",
+   "dos": "09/10/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473990",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418569",
+   "letter": "E",
+   "dos": "10/01/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19424395",
+   "letter": "E",
+   "dos": "11/23/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "12180163",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418149",
+   "letter": "E",
+   "dos": "09/28/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19421882",
+   "letter": "E",
+   "dos": "10/30/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 310.0,
+   "charges": [
+    [
+     "99223",
+     "310.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418067",
+   "letter": "E",
+   "dos": "09/26/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19416413",
+   "letter": "E",
+   "dos": "09/11/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17474002",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19418661",
+   "letter": "E",
+   "dos": "10/02/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 111.0,
+   "charges": [
+    [
+     "99232",
+     "111.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19417877",
+   "letter": "E",
+   "dos": "09/24/2025",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17473781",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19454083",
+   "letter": "B",
+   "dos": "09/08/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17476191",
+   "carrier": "UNI20",
+   "insbal": 160.0,
+   "charges": [
+    [
+     "99233",
+     "160.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-2026",
+   "detail": "open UHC balance, no payment - needs the portal's rejection reason before any correction"
+  },
+  {
+   "visitid": "19437367",
+   "letter": "F",
+   "dos": "04/01/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "",
+   "class": "closed-in-amd",
+   "carrier": "",
+   "insbal": 0.0,
+   "detail": "visit not on the unpaid list - no open insurance balance in AMD"
+  },
+  {
+   "visitid": "19436803",
+   "letter": "E",
+   "dos": "03/24/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "insbal": 43.41,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-97.59",
+     "09/02/2026",
+     "V5475692"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19435656",
+   "letter": "E",
+   "dos": "03/11/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "insbal": 43.41,
+   "charges": [
+    [
+     "99309",
+     "141.00",
+     null,
+     null,
+     "09/10/2026",
+     "UNI20"
+    ]
+   ],
+   "payments": [
+    [
+     "UNI20",
+     "-97.59",
+     "09/02/2026",
+     "V5475692"
+    ]
+   ],
+   "writeoffs": [],
+   "class": "open-pre-0501-2026",
+   "detail": "UNI20 visit older than 5/1/2026 - William's standing rule: never rebill (unposted-ERA backlog)"
+  },
+  {
+   "visitid": "19453361",
+   "letter": "B",
+   "dos": "08/27/2026",
+   "submitted": "09/10/2026",
+   "expires": "12/09/2026",
+   "pid": "17477608",
+   "carrier": "UHCMA",
+   "insbal": 256.0,
+   "charges": [
+    [
+     "99306",
+     "256.00",
+     null,
+     null,
+     "09/10/2026",
+     "UHCMA"
+    ]
+   ],
+   "payments": [],
+   "writeoffs": [],
+   "class": "open-other-carrier",
+   "detail": "open balance now sits with UHCMA, not UHC"
+  }
+ ]
+}
