@@ -1,0 +1,51 @@
+{
+ "cat": {
+  "MCAD": {
+   "3 payer PAID it - left as-is (residual = write-off path)": [
+    69,
+    2804.3899999999994
+   ],
+   "1 re-rendered to you + rebilled": [
+    3,
+    355.0
+   ]
+  },
+  "SUN01": {
+   "3 payer PAID it - left as-is (residual = write-off path)": [
+    34,
+    1770.8700000000006
+   ],
+   "1 re-rendered to you + rebilled": [
+    3,
+    690.0
+   ]
+  },
+  "WEL04": {
+   "3 payer PAID it - left as-is (residual = write-off path)": [
+    4,
+    228.48999999999998
+   ],
+   "1 re-rendered to you + rebilled": [
+    31,
+    4812.0
+   ]
+  },
+  "WEL07": {
+   "1 re-rendered to you + rebilled": [
+    3,
+    389.0
+   ]
+  },
+  "HUM01": {
+   "3 payer PAID it - left as-is (residual = write-off path)": [
+    138,
+    3773.8299999999977
+   ],
+   "1 re-rendered to you + rebilled": [
+    5,
+    369.84
+   ]
+  }
+ },
+ "still": []
+}
