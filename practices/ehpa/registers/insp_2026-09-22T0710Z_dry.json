@@ -1,0 +1,92 @@
+{
+ "stamp": "2026-09-22T0710Z",
+ "dry": true,
+ "visits": [
+  {
+   "vid": "19433214",
+   "pid": "17472517",
+   "name": "HOLBROOK,JULIET DUFF",
+   "steps": [
+    "dos 2026-02-20 cpts ['99233'] charges [('charge23339932', '99233', '', 'dcode1034544881', '74.54', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['J18.9'] never_primary(first)=False",
+    "admission 02/18/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 02/18/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19450843",
+   "pid": "44953",
+   "name": "ORWELL,PADRAIG",
+   "steps": [
+    "dos 2026-08-07 cpts ['99239'] charges [('charge23360845', '99239', '', 'dcode1034545237 dcode1034544601 dcode1034545150', '163.00', '163.00')]",
+    "99239 dx ['F31.9', 'G47.00', 'G30.9'] never_primary(first)=False",
+    "admission 08/04/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/04/2026 on ['99239'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19453088",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-08-27 cpts ['99223', '99497'] charges [('charge23363586', '99223', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '31.94', '310.00'), ('charge23363587', '99497', 'mcode7', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '13.35', '133.00')]",
+    "payment posted (['125.20', '52.33']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99223 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "99497 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (own 99223)",
+    "DRY: would set hospitalizationfrom 08/27/2026 on ['99223', '99497'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19453500",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-01 cpts ['99233'] charges [('charge23364197', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '21.80', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/27/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19453716",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-03 cpts ['99233'] charges [('charge23364599', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '74.54', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/27/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19453750",
+   "pid": "17472393",
+   "name": "TILLOTSON,WAINWRIGHT",
+   "steps": [
+    "dos 2026-09-04 cpts ['99233'] charges [('charge23364643', '99233', '', 'dcode1034914049 dcode1034544856 dcode1034545286 dcode1034914293 dcode1034545159 dcode1037453832', '74.54', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['I69.391', 'F41.9', 'R42', 'I24.9', 'F32.A', 'R45.4'] never_primary(first)=False",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/27/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19423205",
+   "pid": "17472517",
+   "name": "HOLBROOK,JULIET DUFF",
+   "steps": [
+    "dos 2025-11-12 cpts ['99233'] charges [('charge23328645', '99233', '', 'dcode1034544920', '70.17', '160.00')]",
+    "payment posted (['89.83']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['J96.21'] never_primary(first)=False",
+    "admission 11/08/2025 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 11/08/2025 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  }
+ ],
+ "held": [],
+ "left": []
+}
