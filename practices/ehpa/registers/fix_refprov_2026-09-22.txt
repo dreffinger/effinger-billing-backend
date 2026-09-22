@@ -1,0 +1,62 @@
+pat17472419: main plan rplan18456537 refprov=rprov15; prof13 open visits on it: ['19454237', '19454238']; existing Effinger plan: []
+  new referral plan rplan18462122 refprov=rprov13
+  v19454237: refplan rplan18456537 -> rplan18462122  charges 1->1  OK
+     rebill ccharge23365275 seq 2 -> http 204
+  v19454238: refplan rplan18456537 -> rplan18462122  charges 1->1  OK
+     rebill ccharge23365277 seq 2 -> http 204
+pat17472518: main plan rplan18456636 refprov=rprov15; prof13 open visits on it: ['19454239', '19454240', '19454241', '19454242', '19454243', '19454244', '19454245']; existing Effinger plan: []
+  new referral plan rplan18462123 refprov=rprov13
+  v19454239: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365279 seq 2 -> http 204
+  v19454240: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365281 seq 2 -> http 204
+  v19454241: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365283 seq 2 -> http 204
+  v19454242: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365285 seq 2 -> http 204
+  v19454243: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365287 seq 2 -> http 204
+  v19454244: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365289 seq 2 -> http 204
+  v19454245: refplan rplan18456636 -> rplan18462123  charges 1->1  OK
+     rebill ccharge23365291 seq 2 -> http 204
+pat12232512: main plan rplan13238964 refprov=rprov15; prof13 open visits on it: ['19430847', '19433764', '19454224']; existing Effinger plan: []
+  new referral plan rplan18462124 refprov=rprov13
+  v19430847: refplan rplan13238964 -> rplan18462124  charges 2->2  OK
+  v19433764: refplan rplan13238964 -> rplan18462124  charges 2->2  OK
+  v19454224: refplan rplan13238964 -> rplan18462124  charges 1->1  OK
+pat17469645: main plan rplan18453761 refprov=rprov15; prof13 open visits on it: ['19420927', '19423613', '19427566', '19438533', '19439561', '19442425', '19446193', '19448506', '19448845', '19453666', '19453683', '19454249']; existing Effinger plan: []
+  new referral plan rplan18462125 refprov=rprov13
+  v19420927: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19423613: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19427566: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19438533: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19439561: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19442425: refplan rplan18453761 -> rplan18462125  charges 1->1  OK
+  v19446193: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19448506: refplan rplan18453761 -> rplan18462125  charges 1->1  OK
+  v19448845: refplan rplan18453761 -> rplan18462125  charges 2->2  OK
+  v19453666: refplan rplan18453761 -> rplan18462125  charges 1->1  OK
+  v19453683: refplan rplan18453761 -> rplan18462125  charges 1->1  OK
+  v19454249: refplan rplan18453761 -> rplan18462125  charges 1->1  OK
+pat17472285: main plan rplan18456403 refprov=rprov15; prof13 open visits on it: ['19430838', '19454226']; existing Effinger plan: []
+  new referral plan rplan18462126 refprov=rprov13
+  v19430838: refplan rplan18456403 -> rplan18462126  charges 2->2  OK
+  v19454226: refplan rplan18456403 -> rplan18462126  charges 1->1  OK
+pat17472436: main plan rplan18456554 refprov=rprov15; prof13 open visits on it: ['19430711', '19454251']; existing Effinger plan: []
+  new referral plan rplan18462127 refprov=rprov13
+  v19430711: refplan rplan18456554 -> rplan18462127  charges 2->2  OK
+  v19454251: refplan rplan18456554 -> rplan18462127  charges 1->1  OK
+pat17473222: main plan rplan18457340 refprov=rprov15; prof13 open visits on it: ['19430837', '19454227', '19454228']; existing Effinger plan: []
+  new referral plan rplan18462128 refprov=rprov13
+  v19430837: refplan rplan18457340 -> rplan18462128  charges 2->2  OK
+  v19454227: refplan rplan18457340 -> rplan18462128  charges 1->1  OK
+  v19454228: refplan rplan18457340 -> rplan18462128  charges 1->1  OK
+pat44976: main plan rplan45133 refprov=rprov15; prof13 open visits on it: []; existing Effinger plan: []
+pat44987: main plan rplan45144 refprov=rprov15; prof13 open visits on it: ['19454246']; existing Effinger plan: []
+  new referral plan rplan18462129 refprov=rprov13
+  v19454246: refplan rplan45144 -> rplan18462129  charges 1->1  OK
+pat45010: main plan rplan45167 refprov=rprov15; prof13 open visits on it: ['19430595', '19454229']; existing Effinger plan: []
+  new referral plan rplan18462130 refprov=rprov13
+  v19430595: refplan rplan45167 -> rplan18462130  charges 2->2  OK
+  v19454229: refplan rplan45167 -> rplan18462130  charges 1->1  OK
