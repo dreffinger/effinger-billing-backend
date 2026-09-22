@@ -122,8 +122,17 @@ def msg(action, cls, attrs=None, children=""):
     return '<ppmdmsg action="%s" class="%s" msgtime="%s" %s>%s</ppmdmsg>' % (
         action, cls, _msgtime(), a, children)
 
-def rebill_charge(chargeid, sequencenumber):
-    """REST rebill — the dialog's Submit. HTTP 204 = success."""
+def rebill_charge(chargeid, sequencenumber, dod_guard=True):
+    """REST rebill — the dialog's Submit. HTTP 204 = success.
+    DECEASED GUARD (William [DOB]): refuses (HTTP-style 409, nothing sent) when the date of service is after the
+    patient's date of death - see core/deceased_guard.py. dod_guard=False only for an explicit, logged override."""
+    if dod_guard:
+        try:
+            import deceased_guard
+            blocked, why = deceased_guard.check_charge(chargeid, sequencenumber)
+            if blocked: return 409, "BLOCKED by deceased guard: " + why
+        except Exception as e:                      # fail CLOSED: an unreadable charge is held, never sent blind
+            return 409, f"BLOCKED by deceased guard: could not verify ({str(e)[:100]}) - retry next run"
     web, tok = login_cached()
     host = re.sub(r"providerapi", "pm-api-103", web)  # not reliable; use fixed host
     url = "https://pm-api-103.advancedmd.com/api/claim/chargerebill"
@@ -153,9 +162,6 @@ def check_eligibility(insplan_id, stc="30", timeout=120):
                       json=body, timeout=timeout)
     try: return r.status_code, r.json()
     except Exception: return r.status_code, r.text
-
-
-# --- full shim block merged 2026-09-15 ---
 # RESTORE RECIPE (9/10/2026 nightly): the workspace amd.py = repo core/amd.py (GitHub main) with this
 # block APPENDED. It reconciles the two helper generations (repo scripts use amd.post/amd.msg; the
 # 9/8-9/9 mirror scripts amdw/precheck use amd.call/amd.rest_post). Also patch precheck.py:
