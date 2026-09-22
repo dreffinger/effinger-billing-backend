@@ -1,0 +1,37 @@
+{
+ "stamp": "2026-09-22T0510Z",
+ "dry": true,
+ "charts": {
+  "17477818": {
+   "added": [],
+   "elig": [],
+   "visits": {
+    "19455213": {
+     "dx": "dx ok: charge23366389 pcode65089 dx ['M17.12'] -> ok",
+     "resave": "DRY resave 1 charges insorder ->"
+    },
+    "19455214": {
+     "dx": "dx ok: charge23366390 pcode65084 dx ['M17.12'] -> ok",
+     "resave": "DRY resave 1 charges insorder ->"
+    }
+   },
+   "addr": "DRY"
+  },
+  "17477819": {
+   "added": [],
+   "elig": [],
+   "visits": {
+    "19455215": {
+     "dx": "dx ok: charge23366391 pcode65089 dx ['M17.11'] -> ok",
+     "resave": "DRY resave 1 charges insorder ->"
+    },
+    "19455224": {
+     "dx": "dx ok: charge23366401 pcode65084 dx ['M17.11'] -> ok",
+     "resave": "DRY resave 1 charges insorder ->"
+    }
+   },
+   "addr": "DRY"
+  }
+ },
+ "released": []
+}

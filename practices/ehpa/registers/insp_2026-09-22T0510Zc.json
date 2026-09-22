@@ -1,0 +1,333 @@
+{
+ "stamp": "2026-09-22T0510Zc",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted (['92.58', '-92.58', '92.58']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/22/2024 -> ok",
+    "updextrainsinfo G0316 10/22/2024 -> ok",
+    "resave: saved live=4/4 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464571', '', 'dcode1034544882'), ('charge22464572', 'mcode7', 'dcode1034544882'), ('charge22464641', 'mcode7', 'dcode1034544882'), ('charge22464642', 'mcode7', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19443049",
+   "pid": "17470875",
+   "name": "CRANDALL,JOCELYN ANN",
+   "steps": [
+    "dos 2026-05-24 cpts ['99232'] charges [('charge23351324', '99232', '', 'dcode1034545448 dcode1037452923', '54.63', '111.00')]",
+    "payment posted (['56.37']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['N10', 'H66.90'] never_primary(first)=False",
+    "admission 05/21/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 05/21/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=05/21/2026 charges=[('charge23351324', '', 'dcode1034545448 dcode1037452923')]"
+   ]
+  },
+  {
+   "vid": "19453767",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-03 cpts ['99223'] charges [('charge23364662', '99223', '', 'dcode1034545415 dcode1037454862', '184.80', '310.00')]",
+    "payment posted (['125.20']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99223 dx ['M86.9', 'S81.801S'] never_primary(first)=False",
+    "admission 09/03/2026 (own 99223)",
+    "updextrainsinfo 99223 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23364662', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  },
+  {
+   "vid": "19453839",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-06 cpts ['99233'] charges [('charge23364757', '99233', '', 'dcode1034545415 dcode1037454862', '74.54', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['M86.9', 'S81.801S'] never_primary(first)=False",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23364757', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  },
+  {
+   "vid": "19453858",
+   "pid": "17472546",
+   "name": "WINSLOW JR,ERWIN",
+   "steps": [
+    "dos 2026-09-05 cpts ['99233'] charges [('charge23364777', '99233', '', 'dcode1034545415 dcode1037454862', '74.54', '160.00')]",
+    "payment posted (['85.46']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['M86.9', 'S81.801S'] never_primary(first)=False",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/03/2026 charges=[('charge23364777', '', 'dcode1034545415 dcode1037454862')]"
+   ]
+  },
+  {
+   "vid": "19392264",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-23 cpts ['99232'] charges [('charge22464223', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464223', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392365",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-25 cpts ['99232'] charges [('charge22464362', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464362', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392381",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-26 cpts ['99232'] charges [('charge22464390', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464390', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392525",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-28 cpts ['99232'] charges [('charge22464512', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464512', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted (['92.58', '-92.58', '92.58']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/22/2024 -> ok",
+    "updextrainsinfo G0316 10/22/2024 -> ok",
+    "resave: saved live=4/4 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464571', '', 'dcode1034544882'), ('charge22464572', 'mcode7', 'dcode1034544882'), ('charge22464641', 'mcode7', 'dcode1034544882'), ('charge22464642', 'mcode7', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392671",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-30 cpts ['99233', 'G0316'] charges [('charge22464733', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464734', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted (['92.58', '-92.58', '92.58']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99233 dx ['R41.82'] never_primary(first)=False",
+    "G0316 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/22/2024 -> ok",
+    "updextrainsinfo G0316 10/22/2024 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464733', '', 'dcode1034544882'), ('charge22464734', 'mcode7', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392755",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-01 cpts ['99232'] charges [('charge22464798', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464798', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392843",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-03 cpts ['99232'] charges [('charge22464863', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464863', '', 'dcode1034544882')]"
+   ]
+  },
+  {
+   "vid": "19392844",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-02 cpts ['99232'] charges [('charge22464864', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted (['61.54']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['R41.82'] never_primary(first)=False",
+    "admission 10/22/2024 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/22/2024 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/22/2024 charges=[('charge22464864', '', 'dcode1034544882')]"
+   ]
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "126638",
+   "19437843",
+   "17472874",
+   [
+    [
+     "394797",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437926",
+   "17472874",
+   [
+    [
+     "394798",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437951",
+   "17472874",
+   [
+    [
+     "394799",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438356",
+   "17472874",
+   [
+    [
+     "394800",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438357",
+   "17472874",
+   [
+    [
+     "394801",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438358",
+   "17472874",
+   [
+    [
+     "394802",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126671",
+   "19438701",
+   "17472874",
+   [
+    [
+     "394803",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439010",
+   "17472874",
+   [
+    [
+     "394804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439022",
+   "17472874",
+   [
+    [
+     "394805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439233",
+   "17472874",
+   [
+    [
+     "394806",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126725",
+   "19439702",
+   "17472874",
+   [
+    [
+     "394807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126850",
+   "19441315",
+   "17471725",
+   [
+    [
+     "394821",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ]
+ ]
+}

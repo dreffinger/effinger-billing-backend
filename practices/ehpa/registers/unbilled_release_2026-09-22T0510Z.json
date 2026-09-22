@@ -1,0 +1,179 @@
+{
+ "stamp": "2026-09-22T0510Z",
+ "candidates": 15,
+ "released": [
+  {
+   "vid": "19427585",
+   "pid": "17473383",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/05/2026",
+   "insbal": 315.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19430729",
+   "pid": "17473383",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/05/2026",
+   "insbal": 315.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19442414",
+   "pid": "17473343",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/05/2026",
+   "insbal": 206.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19447648",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19447649",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19447650",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19447651",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19447878",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448026",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448251",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448262",
+   "pid": "17477116",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 310.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448583",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448609",
+   "pid": "17474082",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/12/2026",
+   "insbal": 204.0,
+   "payments": [],
+   "released": true
+  },
+  {
+   "vid": "19448637",
+   "pid": "17476868",
+   "carriers": [
+    "FLO02"
+   ],
+   "lastbill": "09/13/2026",
+   "insbal": 111.0,
+   "payments": [],
+   "released": true
+  }
+ ],
+ "held": [
+  {
+   "vid": "19441047",
+   "pid": "17470743",
+   "carriers": [
+    "MCAD"
+   ],
+   "lastbill": "05/26/2026",
+   "insbal": 16.93,
+   "payments": [
+    [
+     "05/26/2026",
+     "-66.36",
+     "FLO02"
+    ]
+   ],
+   "why": "primary paid > 60 days ago and the secondary is still unbilled - not released (write-off/secondary-window case for the report)"
+  }
+ ]
+}

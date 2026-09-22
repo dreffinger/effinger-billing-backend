@@ -1,0 +1,604 @@
+{
+ "stamp": "2026-09-22T0510Zb",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19427817",
+   "pid": "12231996",
+   "name": "JASPER,JETHRO",
+   "steps": [
+    "dos 2026-01-03 cpts ['99233'] charges [('charge23334411', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "admission 12/16/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 12/16/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/16/2025 charges=[('charge23334411', '', 'dcode1034545448')]"
+   ]
+  },
+  {
+   "vid": "19428152",
+   "pid": "12231996",
+   "name": "JASPER,JETHRO",
+   "steps": [
+    "dos 2026-01-05 cpts ['99233'] charges [('charge23334616', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "admission 12/16/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 12/16/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/16/2025 charges=[('charge23334616', '', 'dcode1034545448')]"
+   ]
+  },
+  {
+   "vid": "19428166",
+   "pid": "12231996",
+   "name": "JASPER,JETHRO",
+   "steps": [
+    "dos 2026-01-04 cpts ['99233'] charges [('charge23334630', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "admission 12/16/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 12/16/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/16/2025 charges=[('charge23334630', '', 'dcode1034545448')]"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19437843",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-07 cpts ['99233'] charges [('charge23344964', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19437843 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19437926",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-08 cpts ['99233'] charges [('charge23345028', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19437926 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19437951",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-09 cpts ['99233'] charges [('charge23345053', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19437951 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19438356",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-12 cpts ['99233'] charges [('charge23345441', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19438356 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19438357",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-11 cpts ['99233'] charges [('charge23345443', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19438357 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19438358",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-13 cpts ['99233'] charges [('charge23345444', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19438358 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19438701",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-14 cpts ['99233'] charges [('charge23345967', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19438701 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19439010",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-17 cpts ['99233'] charges [('charge23346357', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19439010 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19439022",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-16 cpts ['99233'] charges [('charge23346369', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19439022 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19439233",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-19 cpts ['99233'] charges [('charge23346559', '99233', '', 'dcode1034914202', '160.00', '160.00')]",
+    "99233 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19439233 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19439702",
+   "pid": "17472874",
+   "name": "THACKERAY,KENDREW D",
+   "steps": [
+    "dos 2026-04-21 cpts ['99239'] charges [('charge23347346', '99239', '', 'dcode1034914202', '163.00', '163.00')]",
+    "99239 dx ['Z89.511'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('add-i10', ['I10', 'Z89.511'])",
+    "fix_visit -> ADD-I10 v19439702 ['dcode1034543883', 'dcode1034914202'] -> freq1 + rebill seq 1 -> 204",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19443049",
+   "pid": "17470875",
+   "name": "CRANDALL,JOCELYN ANN",
+   "steps": [
+    "dos 2026-05-24 cpts ['99232'] charges [('charge23351324', '99232', '', 'dcode1034545448 dcode1037452923', '54.63', '111.00')]",
+    "payment posted on a charge (['56.37']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392264",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-23 cpts ['99232'] charges [('charge22464223', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392365",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-25 cpts ['99232'] charges [('charge22464362', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392381",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-26 cpts ['99232'] charges [('charge22464390', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392525",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-28 cpts ['99232'] charges [('charge22464512', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392671",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-10-30 cpts ['99233', 'G0316'] charges [('charge22464733', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464734', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392755",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-01 cpts ['99232'] charges [('charge22464798', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392843",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-03 cpts ['99232'] charges [('charge22464863', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392844",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "steps": [
+    "dos 2024-11-02 cpts ['99232'] charges [('charge22464864', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  }
+ ],
+ "left": [
+  [
+   "1",
+   "19392574",
+   "17470697",
+   [
+    [
+     "394757",
+     "Pattern 3429 Procedure code G0316 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "394758",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394759",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126638",
+   "19437843",
+   "17472874",
+   [
+    [
+     "394797",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437926",
+   "17472874",
+   [
+    [
+     "394798",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437951",
+   "17472874",
+   [
+    [
+     "394799",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438356",
+   "17472874",
+   [
+    [
+     "394800",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438357",
+   "17472874",
+   [
+    [
+     "394801",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438358",
+   "17472874",
+   [
+    [
+     "394802",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126671",
+   "19438701",
+   "17472874",
+   [
+    [
+     "394803",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439010",
+   "17472874",
+   [
+    [
+     "394804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439022",
+   "17472874",
+   [
+    [
+     "394805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439233",
+   "17472874",
+   [
+    [
+     "394806",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126725",
+   "19439702",
+   "17472874",
+   [
+    [
+     "394807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126943",
+   "19443049",
+   "17470875",
+   [
+    [
+     "394795",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "394796",
+     "Pattern 11256 The ICD-10-CM code(s) H6690 defines an unspecified ICD-10-CM diagnosis code "
+    ]
+   ]
+  ],
+  [
+   "127645",
+   "19453767",
+   "17472546",
+   [
+    [
+     "394792",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "127650",
+   "19453839",
+   "17472546",
+   [
+    [
+     "394793",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "127650",
+   "19453858",
+   "17472546",
+   [
+    [
+     "394794",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113900",
+   "19392264",
+   "17470697",
+   [
+    [
+     "394747",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394748",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113904",
+   "19392365",
+   "17470697",
+   [
+    [
+     "394750",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394751",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113906",
+   "19392381",
+   "17470697",
+   [
+    [
+     "394752",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394753",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113910",
+   "19392525",
+   "17470697",
+   [
+    [
+     "394755",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394756",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113912",
+   "19392574",
+   "17470697",
+   [
+    [
+     "394757",
+     "Pattern 3429 Procedure code G0316 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "394758",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394759",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113914",
+   "19392671",
+   "17470697",
+   [
+    [
+     "394760",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394761",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113918",
+   "19392755",
+   "17470697",
+   [
+    [
+     "394763",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394764",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113922",
+   "19392843",
+   "17470697",
+   [
+    [
+     "394767",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394768",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "113922",
+   "19392844",
+   "17470697",
+   [
+    [
+     "394765",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "394766",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ]
+ ]
+}
