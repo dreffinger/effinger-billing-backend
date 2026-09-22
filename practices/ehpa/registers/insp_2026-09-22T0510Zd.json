@@ -1,0 +1,156 @@
+{
+ "stamp": "2026-09-22T0510Zd",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19441315",
+   "pid": "17471725",
+   "name": "BLANCO,NORMAN",
+   "steps": [
+    "dos 2026-05-07 cpts ['99232'] charges [('charge23349165', '99232', '', 'dcode1034544920 dcode1034544881', '54.63', '111.00')]",
+    "payment posted (['56.37']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99232 dx ['J96.21', 'J18.9'] never_primary(first)=False",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 05/04/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=05/04/2026 charges=[('charge23349165', '', 'dcode1034544920 dcode1034544881')]"
+   ]
+  },
+  {
+   "vid": "19442158",
+   "pid": "17471725",
+   "name": "BLANCO,NORMAN",
+   "steps": [
+    "dos 2026-05-12 cpts ['99239'] charges [('charge23350143', '99239', '', 'dcode1034544881 dcode1037452582 dcode1034545095 dcode1034545213 dcode1034545178 dcode1034544882', '78.38', '163.00')]",
+    "payment posted (['84.62']) - resave ALLOWED this pass: the 9/22 chat repoint already resaved this paid visit and wiped its admission date; every live charge is echoed by id",
+    "99239 dx ['J18.9', 'G20.C', 'F03.90', 'R62.7', 'N40.0', 'R41.82'] never_primary(first)=False",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99239 05/04/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=05/04/2026 charges=[('charge23350143', '', 'dcode1034544881 dcode1037452582 dcode1034545095 dcode1034545213 dcode1034545178 dcode1034544882')]"
+   ]
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "126638",
+   "19437843",
+   "17472874",
+   [
+    [
+     "394797",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437926",
+   "17472874",
+   [
+    [
+     "394798",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437951",
+   "17472874",
+   [
+    [
+     "394799",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438356",
+   "17472874",
+   [
+    [
+     "394800",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438357",
+   "17472874",
+   [
+    [
+     "394801",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438358",
+   "17472874",
+   [
+    [
+     "394802",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126671",
+   "19438701",
+   "17472874",
+   [
+    [
+     "394803",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439010",
+   "17472874",
+   [
+    [
+     "394804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439022",
+   "17472874",
+   [
+    [
+     "394805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439233",
+   "17472874",
+   [
+    [
+     "394806",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126725",
+   "19439702",
+   "17472874",
+   [
+    [
+     "394807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ]
+ ]
+}

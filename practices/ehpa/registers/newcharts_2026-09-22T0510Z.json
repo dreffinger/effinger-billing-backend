@@ -1,0 +1,82 @@
+{
+ "stamp": "2026-09-22T0510Z",
+ "dry": false,
+ "charts": {
+  "17477818": {
+   "added": [
+    [
+     "car6085",
+     "ins9519509",
+     "1",
+     "new"
+    ]
+   ],
+   "elig": [
+    [
+     "car6085",
+     "ACTIVE | plan 20150901 | A 20150901 B 20150901 | others QM FL QMB Plan ; OT  18:S4802 N6:146 WELLCARE PRESCRIPTION INSURANCE, INC.: | death - | addr 9717 PRESTANCIA WAY TALLAHASSEE FL 323126823 | aaa []"
+    ]
+   ],
+   "visits": {
+    "19455213": {
+     "dx": "dx ok: charge23366389 pcode65089 dx ['M17.12'] -> ok",
+     "admit_99232": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=09/18/2026 live 1 (was 1)"
+    },
+    "19455214": {
+     "dx": "dx ok: charge23366390 pcode65084 dx ['M17.12'] -> ok",
+     "admit_99223": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=09/18/2026 live 1 (was 1)"
+    }
+   },
+   "addr": "500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500"
+  },
+  "17477819": {
+   "added": [
+    [
+     "car6285",
+     "ins9519510",
+     "1",
+     "new"
+    ]
+   ],
+   "elig": [
+    [
+     "car6285",
+     "ACTIVE | plan  | A  B  | others PR Alcoa ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; | death - | addr 108 WOODLAND DR CRAWFORDVILLE FL 323274053 | aaa []"
+    ]
+   ],
+   "visits": {
+    "19455215": {
+     "dx": "dx ok: charge23366391 pcode65089 dx ['M17.11'] -> ok",
+     "admit_99232": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=09/18/2026 live 1 (was 1)"
+    },
+    "19455224": {
+     "dx": "dx ok: charge23366401 pcode65084 dx ['M17.11'] -> ok",
+     "admit_99223": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=09/18/2026 live 1 (was 1)"
+    }
+   },
+   "addr": "500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500"
+  }
+ },
+ "released": [
+  {
+   "vid": "19455213",
+   "ok": true
+  },
+  {
+   "vid": "19455214",
+   "ok": true
+  },
+  {
+   "vid": "19455215",
+   "ok": true
+  },
+  {
+   "vid": "19455224",
+   "ok": true
+  }
+ ]
+}

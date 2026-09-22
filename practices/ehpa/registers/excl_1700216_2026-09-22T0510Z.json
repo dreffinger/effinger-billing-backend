@@ -1,0 +1,51 @@
+[
+ {
+  "vid": "19386697",
+  "claimid": "19386697F",
+  "pid": "17471795",
+  "cid": "22456871",
+  "cpts": [
+   "99233",
+   "G0316",
+   "G0316",
+   "G0316"
+  ],
+  "dos": "07/24/2024",
+  "steps": [
+   "Florida Blue seq 2; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 2 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19392347",
+  "claimid": "19392347E",
+  "pid": "23391",
+  "cid": "22464291",
+  "cpts": [
+   "99233",
+   "G0316"
+  ],
+  "dos": "10/24/2024",
+  "steps": [
+   "Florida Blue seq 2; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 2 -> 204"
+  ],
+  "outcome": "freq1 204"
+ },
+ {
+  "vid": "19423631",
+  "claimid": "19423631C",
+  "pid": "48458",
+  "cid": "23329263",
+  "cpts": [
+   "99487"
+  ],
+  "dos": "11/15/2025",
+  "steps": [
+   "Florida Blue seq 2; prior Florida Blue ICN None",
+   "rebill -> freq1 + rebill seq 2 -> 204"
+  ],
+  "outcome": "freq1 204"
+ }
+]

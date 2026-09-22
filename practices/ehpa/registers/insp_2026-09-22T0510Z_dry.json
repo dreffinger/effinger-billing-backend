@@ -1,0 +1,377 @@
+{
+ "stamp": "2026-09-22T0510Z",
+ "dry": true,
+ "visits": [
+  {
+   "vid": "19450738",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-06 cpts ['99233'] charges [('charge23360697', '99233', '', 'dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19450828",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-08 cpts ['99233'] charges [('charge23360830', '99233', '', 'dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19450858",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-07 cpts ['99233'] charges [('charge23360861', '99233', '', 'dcode1037452463', '160.00', '160.00')]",
+    "99233 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99233'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19451293",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-09 cpts ['99232'] charges [('charge23361336', '99232', '', 'dcode1037452463', '111.00', '111.00')]",
+    "99232 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99232'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19451324",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-10 cpts ['99232'] charges [('charge23361368', '99232', '', 'dcode1037452463', '111.00', '111.00')]",
+    "99232 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99232'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19451371",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-11 cpts ['99239'] charges [('charge23361415', '99239', '', 'dcode1037452463', '163.00', '163.00')]",
+    "99239 dx ['R69'] never_primary(first)=False",
+    "admission 08/05/2026 (most recent 99223 within 45d)",
+    "DRY: would set hospitalizationfrom 08/05/2026 on ['99239'], resave onhcfa=1 chg_over={}"
+   ]
+  },
+  {
+   "vid": "19452059",
+   "pid": "17470940",
+   "name": "HOGAN,CHARLENE",
+   "steps": [
+    "dos 2026-08-18 cpts ['99223', '99497'] charges [('charge23362172', '99223', '', 'dcode1034912665 dcode1034545194 dcode1034545071', '310.00', '310.00'), ('charge23362173', '99497', 'mcode7', 'dcode1034912665 dcode1034545194 dcode1034545071', '133.00', '133.00')]",
+    "99223 dx ['K57.92', 'R53.81', 'R53.1'] never_primary(first)=False",
+    "99497 dx ['K57.92', 'R53.81', 'R53.1'] never_primary(first)=False",
+    "admission 08/18/2026 (own 99223)",
+    "DRY: would set hospitalizationfrom 08/18/2026 on ['99223', '99497'], resave onhcfa=1 chg_over={}"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19427817",
+   "pid": "12231996",
+   "name": "JAMES,JEHOSHAPHAT",
+   "steps": [
+    "dos 2026-01-03 cpts ['99233'] charges [('charge23334411', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19428152",
+   "pid": "12231996",
+   "name": "JAMES,JEHOSHAPHAT",
+   "steps": [
+    "dos 2026-01-05 cpts ['99233'] charges [('charge23334616', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19428166",
+   "pid": "12231996",
+   "name": "JAMES,JEHOSHAPHAT",
+   "steps": [
+    "dos 2026-01-04 cpts ['99233'] charges [('charge23334630', '99233', '', 'dcode1034545448', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19433764",
+   "pid": "12232512",
+   "name": "BEVERLY,TEMICA",
+   "steps": [
+    "dos 2026-02-26 cpts ['99487', '99489'] charges [('charge23340477', '99487', '', 'dcode1034544866 dcode1034545006 dcode1034545356 dcode1034543883 dcode1034544863', '16.14', '206.00'), ('charge23340478', '99489', 'mcode7', 'dcode1034544866 dcode1034545006 dcode1034545356 dcode1034543883 dcode1034544863', '8.92', '109.00')]",
+    "payment posted on a charge (['63.28', '34.95']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19403870",
+   "pid": "17470939",
+   "name": "SKELLY,ARTHUR",
+   "steps": [
+    "dos 2025-04-14 cpts ['99487'] charges [('charge22477999', '99487', '', 'dcode1034543883 dcode1034544863 dcode1034545150 dcode1034544892', '104.49', '206.00')]",
+    "payment posted on a charge (['101.51']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19404007",
+   "pid": "17468923",
+   "name": "KLEINSMITH,MARIANNE",
+   "steps": [
+    "dos 2025-04-14 cpts ['99487'] charges [('charge22478145', '99487', '', 'dcode1037454116 dcode1034544984 dcode1037453656 dcode1034543889 dcode1037454117 dcode1034545166 dcode1034545283', '104.49', '206.00')]",
+    "payment posted on a charge (['101.51']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19438533",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2026-03-20 cpts ['99487', '99489'] charges [('charge23345664', '99487', '', 'dcode1034544880 dcode1034545021 dcode1034545156 dcode1034543889 dcode1037452976 dcode1037454065 dcode1034545237', '206.00', '206.00'), ('charge23345665', '99489', 'mcode7', 'dcode1034544880 dcode1034545021 dcode1034545156 dcode1034543889 dcode1037452976 dcode1037454065 dcode1034545237', '109.00', '109.00')]",
+    "99487 dx ['J44.9', 'C18.9', 'G89.29', 'M62.81', 'Z86.59', 'K73.9', 'F31.9'] never_primary(first)=False",
+    "99489 dx ['J44.9', 'C18.9', 'G89.29', 'M62.81', 'Z86.59', 'K73.9', 'F31.9'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19439561",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2026-04-20 cpts ['99487', '99489'] charges [('charge23347075', '99487', '', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034545021 dcode1034545237 dcode1037454897 dcode1037454065 dcode1037454124', '206.00', '206.00'), ('charge23347076', '99489', 'mcode7', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034545021 dcode1034545237 dcode1037454897 dcode1037454065 dcode1037454124', '109.00', '109.00')]",
+    "99487 dx ['J44.9', 'G89.29', 'M62.81', 'C18.9', 'F31.9', 'F10.11', 'K73.9', 'Z51.89'] never_primary(first)=False",
+    "99489 dx ['J44.9', 'G89.29', 'M62.81', 'C18.9', 'F31.9', 'F10.11', 'K73.9', 'Z51.89'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19442425",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2026-05-17 cpts ['99487'] charges [('charge23350523', '99487', '', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034545021 dcode1034545237 dcode1037454897 dcode1037454065 dcode1037454124', '206.00', '206.00')]",
+    "99487 dx ['J44.9', 'G89.29', 'M62.81', 'C18.9', 'F31.9', 'F10.11', 'K73.9', 'Z51.89'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19443049",
+   "pid": "17470875",
+   "name": "CRUVER,JOYCE ANN",
+   "steps": [
+    "dos 2026-05-24 cpts ['99232'] charges [('charge23351324', '99232', '', 'dcode1034545448 dcode1037452923', '54.63', '111.00')]",
+    "payment posted on a charge (['56.37']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19446193",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2026-06-25 cpts ['99487', '99489'] charges [('charge23355157', '99487', '', 'dcode1034545021 dcode1034545156 dcode1034544880 dcode1037455016 dcode1037454418 dcode1034545237', '206.00', '206.00'), ('charge23355158', '99489', 'mcode7', 'dcode1034545021 dcode1034545156 dcode1034544880 dcode1037455016 dcode1037454418 dcode1034545237', '109.00', '109.00')]",
+    "99487 dx ['C18.9', 'G89.29', 'J44.9', 'F10.91', 'Z87.19', 'F31.9'] never_primary(first)=False",
+    "99489 dx ['C18.9', 'G89.29', 'J44.9', 'F10.91', 'Z87.19', 'F31.9'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19448845",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2026-07-17 cpts ['99487', '99489'] charges [('charge23358295', '99487', '', 'dcode1034545021 dcode1034545156 dcode1034544880 dcode1034545271 dcode1037454065 dcode1034545237', '206.00', '206.00'), ('charge23358296', '99489', 'mcode7', 'dcode1034545021 dcode1034545156 dcode1034544880 dcode1034545271 dcode1037454065 dcode1034545237', '109.00', '109.00')]",
+    "99487 dx ['C18.9', 'G89.29', 'J44.9', 'F10.10', 'K73.9', 'F31.9'] never_primary(first)=False",
+    "99489 dx ['C18.9', 'G89.29', 'J44.9', 'F10.10', 'K73.9', 'F31.9'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19452372",
+   "pid": "17470802",
+   "name": "PIERCE,TOMMY",
+   "steps": [
+    "dos 2026-08-22 cpts ['99487', '99489'] charges [('charge23362582', '99487', '', 'dcode1037455110 dcode1034545261 dcode1034545233 dcode1034544913 dcode1034544884 dcode1034545056 dcode1034545997 dcode1034543883 dcode1034544892 dcode1034914314 dcode1037454502 dcode1037454403', '206.00', '206.00'), ('charge23362583', '99489', 'mcode7', 'dcode1037455110 dcode1034545261 dcode1034545233 dcode1034544913 dcode1034544884 dcode1034545056 dcode1034545997 dcode1034543883 dcode1034544892 dcode1034914314 dcode1037454502 dcode1037454403', '109.00', '109.00')]",
+    "99487 dx ['T85.730A', 'N30.90', 'R10.9', 'G91.2', 'D72.829', 'R29.6', 'R56.9', 'I10', 'E78.5', 'K51.90', 'Z98.2', 'N28.1'] never_primary(first)=False",
+    "99489 dx ['T85.730A', 'N30.90', 'R10.9', 'G91.2', 'D72.829', 'R29.6', 'R56.9', 'I10', 'E78.5', 'K51.90', 'Z98.2', 'N28.1'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19392264",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-23 cpts ['99232'] charges [('charge22464223', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392360",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-24 cpts ['99233', 'G0316'] charges [('charge22464355', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464356', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392365",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-25 cpts ['99232'] charges [('charge22464362', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19420908",
+   "pid": "12231909",
+   "name": "TURNER-EALEY,WILLIE",
+   "steps": [
+    "dos 2025-10-25 cpts ['99487', '99489'] charges [('charge23326016', '99487', '', 'dcode1034544858 dcode1037454489 dcode1034544863 dcode1037454552 dcode1034912943 dcode1037454546 dcode1034914633 dcode1037453503', '17.50', '206.00'), ('charge23326017', '99489', 'mcode7', 'dcode1034544858 dcode1037454489 dcode1034544863 dcode1037454552 dcode1034912943 dcode1037454546 dcode1034914633 dcode1037453503', '9.47', '109.00')]",
+    "payment posted on a charge (['68.62', '37.13']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19420927",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2025-10-25 cpts ['99487', '99489'] charges [('charge23326054', '99487', '', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034914170 dcode1034545021 dcode1034545244 dcode1034545237 dcode1037454065', '206.00', '206.00'), ('charge23326055', '99489', 'mcode7', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034914170 dcode1034545021 dcode1034545244 dcode1034545237 dcode1037454065', '109.00', '109.00')]",
+    "99487 dx ['J44.9', 'G89.29', 'M62.81', 'R41.841', 'C18.9', 'D51.9', 'F31.9', 'K73.9'] never_primary(first)=False",
+    "99489 dx ['J44.9', 'G89.29', 'M62.81', 'R41.841', 'C18.9', 'D51.9', 'F31.9', 'K73.9'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19392381",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-26 cpts ['99232'] charges [('charge22464390', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392439",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-27 cpts ['99233', 'G0316'] charges [('charge22464400', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464401', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392525",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-28 cpts ['99232'] charges [('charge22464512', '99232', '', 'dcode1034544882', '49.46', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392574",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-29 cpts ['99233', 'G0316'] charges [('charge22464571', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464572', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464641', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97'), ('charge22464642', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392671",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-30 cpts ['99233', 'G0316'] charges [('charge22464733', '99233', '', 'dcode1034544882', '23.62', '160.00'), ('charge22464734', 'G0316', 'mcode7', 'dcode1034544882', '30.97', '30.97')]",
+    "payment posted on a charge (['92.58', '-92.58', '92.58']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392734",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-10-31 cpts ['99232'] charges [('charge22464757', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392755",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-11-01 cpts ['99232'] charges [('charge22464798', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392843",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-11-03 cpts ['99232'] charges [('charge22464863', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19392844",
+   "pid": "17470697",
+   "name": "SIMONS,ANNE",
+   "steps": [
+    "dos 2024-11-02 cpts ['99232'] charges [('charge22464864', '99232', '', 'dcode1034544882', '15.70', '111.00')]",
+    "payment posted on a charge (['61.54']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19423613",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2025-11-15 cpts ['99487', '99489'] charges [('charge23329240', '99487', '', 'dcode1034544880 dcode1034545021 dcode1034545156 dcode1034543889 dcode1034544866 dcode1034914170', '206.00', '206.00'), ('charge23329241', '99489', 'mcode7', 'dcode1034544880 dcode1034545021 dcode1034545156 dcode1034543889 dcode1034544866 dcode1034914170', '109.00', '109.00')]",
+    "99487 dx ['J44.9', 'C18.9', 'G89.29', 'M62.81', 'E66.01', 'R41.841'] never_primary(first)=False",
+    "99489 dx ['J44.9', 'C18.9', 'G89.29', 'M62.81', 'E66.01', 'R41.841'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  },
+  {
+   "vid": "19427566",
+   "pid": "17469645",
+   "name": "MACDONALD,CHARLES",
+   "steps": [
+    "dos 2025-12-28 cpts ['99487', '99489'] charges [('charge23334079', '99487', '', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034914170 dcode1034545021 dcode1034545244 dcode1034545237 dcode1037454065', '206.00', '206.00'), ('charge23334080', '99489', 'mcode7', 'dcode1034544880 dcode1034545156 dcode1034543889 dcode1034914170 dcode1034545021 dcode1034545244 dcode1034545237 dcode1037454065', '109.00', '109.00')]",
+    "99487 dx ['J44.9', 'G89.29', 'M62.81', 'R41.841', 'C18.9', 'D51.9', 'F31.9', 'K73.9'] never_primary(first)=False",
+    "99489 dx ['J44.9', 'G89.29', 'M62.81', 'R41.841', 'C18.9', 'D51.9', 'F31.9', 'K73.9'] never_primary(first)=False",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ]
+  }
+ ],
+ "left": []
+}

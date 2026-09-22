@@ -1,0 +1,35 @@
+{
+ "stamp": "2026-09-22T0510Zc",
+ "dry": true,
+ "visits": [],
+ "held": [
+  {
+   "vid": "19453767",
+   "pid": "17472546",
+   "name": "BELL JR,ERVIN",
+   "steps": [
+    "dos 2026-09-03 cpts ['99223'] charges [('charge23364662', '99223', '', 'dcode1034545415 dcode1037454862', '184.80', '310.00')]",
+    "payment posted on a charge (['125.20']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19453839",
+   "pid": "17472546",
+   "name": "BELL JR,ERVIN",
+   "steps": [
+    "dos 2026-09-06 cpts ['99233'] charges [('charge23364757', '99233', '', 'dcode1034545415 dcode1037454862', '74.54', '160.00')]",
+    "payment posted on a charge (['85.46']) - HOLD, no resave"
+   ]
+  },
+  {
+   "vid": "19453858",
+   "pid": "17472546",
+   "name": "BELL JR,ERVIN",
+   "steps": [
+    "dos 2026-09-05 cpts ['99233'] charges [('charge23364777', '99233', '', 'dcode1034545415 dcode1037454862', '74.54', '160.00')]",
+    "payment posted on a charge (['85.46']) - HOLD, no resave"
+   ]
+  }
+ ],
+ "left": []
+}
