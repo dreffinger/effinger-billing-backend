@@ -4,14 +4,16 @@ import os
 # Decides: For every (payer, check) group in plan.json, builds a synthetic 835, imports it into the AMD ERA Center, and posts each
 #          money line with the ERA-linked Payment Entry shape (reason codes kept) under the PAYER'S carrier from the chart.
 # Rules it uses: pay = the EOB's paid capped at the live insurance balance (post the maximum AMD accepts, report the residual);
-#          no write-offs unless --wo (SIM01 residuals: WOMCAD on a primary claim, WOCAID2ND on a secondary one; FLO99 write-offs are HELD -
-#          William's rule: FCC reconciles against the FCC portal/checks first); a premature write-off that zeroed a line the payer then paid is
-#          voided before posting; a line already carrying a live payment with this check number is skipped; a $0 balance with another payer's
-#          live payment = overpayment -> HOLD (refund/recoup decision); the payer's plan is added to the chart when missing (member id from
-#          the EOB, NO group number); every check is dismissed after its lines are handled so the 2-hourly routine never Posts it under the
-#          wrong (billed) carrier.  Never touches: charges, claims, other payers' payments.
+#          the residual write-off rides in the SAME post (Medicaid plans SIM01/FLO99: WOCAID2ND when OA-23 shows a prior payer, else WOMCAD;
+#          Medigap: WOINS only when the residual is exactly the primary's contractual never adjusted; --nowo = payments only);
+#          a premature write-off (amount = what the payer then paid / the shortfall) is voided before posting - never any other write-off;
+#          a line already carrying a live payment with this check number is skipped; another payer's live payment of the same amount with
+#          a $0 balance = OVERPAYMENT -> HOLD (refund/recoup decision); the payer's plan is added to the chart when missing (member id from
+#          the EOB, NO group number); a claim whose EOB lines do not match the chart is re-filed with AMD's own CPTs (TRN <ref>L, or a
+#          plan-group trn_suffix) and posted under the clean check number; every check is dismissed after its lines are handled so the
+#          2-hourly routine never Posts it under the wrong (billed) carrier.  Never touches: charges, claims, other payers' payments.
 # ---
-"""Usage: python3 post_paper.py [--dry] [--only REF,REF] [--family FAM] [--max N] [--wo]
+"""Usage: python3 post_paper.py [--dry] [--only REF,REF] [--family FAM] [--max N] [--nowo] [--keep]
 Reads /home/claude/scans/plan.json (plan.py), writes /home/claude/scans/out835/<fam>_<trace>.835 and post_register.json."""
 import sys, os, re, json, time, copy, datetime, argparse, requests
 sys.path.insert(0, os.environ.get("SCANS_DIR", "/home/claude/scans") + "")
@@ -73,7 +75,7 @@ def upload_group(rm, ctrl, dry):
     for i in range(30):                      # the import is asynchronous: 5 s .. 4 min seen on 9/22; polling every 5 s drew HTTP 500s
         time.sleep(10)
         for c in checks_safe():
-            if str(c.get("paymentnumber", "")).split("(")[0] == trace: L("   check %s appeared after %d s" % (c["id"], (i + 1) * 5)); return c, trace, fn, total
+            if str(c.get("paymentnumber", "")).split("(")[0] == trace: L("   check %s appeared after %d s" % (c["id"], (i + 1) * 10)); return c, trace, fn, total
     return None, trace, fn, total
 def dismiss(chk):
     ok, t = payreasons.redismiss(chk["id"]); return ok
