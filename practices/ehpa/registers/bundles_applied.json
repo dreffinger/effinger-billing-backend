@@ -1,0 +1,10 @@
+[
+ {
+  "sha256": "a731d26a25380eb6c70b63493ff720688bf306215a648172cc17a2f7888ceffa",
+  "source": "effinger-billing-backend_2026-09-21.bundle.b64 (project doc)",
+  "applied": "2026-09-23T11:13:50Z",
+  "head_after": "42cd727f94174edaa3477a020005f3b9ae15c71d",
+  "heads": "e0f40ccca8b39eb86779c9c86edcb15b08d6383d refs/heads/main | e0f40ccca8b39eb86779c9c86edcb15b08d6383d refs/heads/claude/payreasons-repair-2026-09-21",
+  "note": "merged by hand 9/23 (3 conflicts resolved for main); the 9/19 bundle is inside it"
+ }
+]
