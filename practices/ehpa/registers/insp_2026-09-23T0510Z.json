@@ -1,0 +1,419 @@
+{
+ "stamp": "2026-09-23T0510Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19455279",
+   "pid": "22858",
+   "name": "THACKERAY,[first]",
+   "steps": [
+    "dos 2025-11-03 cpts ['99309'] pos 31 insorder 4,3 onhcfa 1 charges [('charge23366476', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['E11.9', 'R16.0', 'F43.10', 'G47.62', 'B02.23', 'K74.60', 'K21.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366476', '', 'dcode1034544863 dcode103745344')]"
+   ]
+  },
+  {
+   "vid": "19455281",
+   "pid": "22858",
+   "name": "THACKERAY,[first]",
+   "steps": [
+    "dos 2026-01-02 cpts ['99309'] pos 31 insorder 4,3 onhcfa 1 charges [('charge23366480', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['E11.9', 'R16.0', 'B02.23', 'K74.60', 'R25.2'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366480', '', 'dcode1034544863 dcode103745344')]"
+   ]
+  },
+  {
+   "vid": "19455282",
+   "pid": "22858",
+   "name": "THACKERAY,[first]",
+   "steps": [
+    "dos 2026-02-02 cpts ['99309'] pos 31 insorder 4,3 onhcfa 1 charges [('charge23366482', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['E11.9', 'R16.0', 'B02.23', 'K74.60', 'R25.2'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366482', '', 'dcode1034544863 dcode103745344')]"
+   ]
+  },
+  {
+   "vid": "19455288",
+   "pid": "25553",
+   "name": "FARRANT,[first]",
+   "steps": [
+    "dos 2025-10-02 cpts ['99308'] pos 31 insorder 2 onhcfa 1 charges [('charge23366494', '99308', '', '107.00', '107.00')]",
+    "99308 dx ['N31.8', 'F41.9', 'G82.50', 'F32.A', 'G35.D', 'G47.00'] never_primary(first)=False",
+    "deceased guard: clear (carrier MCAD)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366494', '', 'dcode1037453609 dcode103454485')]"
+   ]
+  },
+  {
+   "vid": "19455290",
+   "pid": "17477183",
+   "name": "ALCOTT,ALFIE G",
+   "steps": [
+    "dos 2026-08-28 cpts ['99309'] pos 31 insorder 1 onhcfa 1 charges [('charge23366498', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['Z86.69', 'F25.9', 'I10', 'E78.5', 'F03.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['F25.9', 'I10', 'E78.5', 'F03.90'])",
+    "fix_visit -> DELETE v19455290 ['dcode1034544426', 'dcode1034543883', 'dcode1034544892', 'dcode1034545095'] -> freq1 + rebill seq 1 -> 204",
+    "deceased guard: clear (carrier SUN01)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366498', '', 'dcode1034544426 dcode103454388')]"
+   ]
+  },
+  {
+   "vid": "19455298",
+   "pid": "17475222",
+   "name": "[name]",
+   "steps": [
+    "dos 2026-02-16 cpts ['99308'] pos 31 insorder 1,2 onhcfa 1 charges [('charge23366516', '99308', '', '107.00', '107.00')]",
+    "99308 dx ['I50.20', 'I49.9', 'I25.10', 'Z86.711', 'E11.9', 'Z59.00', 'E78.5'] never_primary(first)=False",
+    "deceased guard: clear (carrier WEL04)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366516', '', 'dcode1034545169 dcode103745385')]"
+   ]
+  },
+  {
+   "vid": "19455301",
+   "pid": "22252",
+   "name": "JACOBSEN,NORCOTT",
+   "steps": [
+    "dos 2026-06-09 cpts ['99309'] pos 31 insorder 1,3 onhcfa 1 charges [('charge23366524', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['E11.10', 'E87.20', 'N17.9', 'G93.41', 'E87.21', 'Z91.199', 'I48.20', 'E87.0', 'N39.0'] never_primary(first)=False",
+    "deceased guard: clear (carrier WEL04)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366524', '', 'dcode1034545616 dcode103745435')]"
+   ]
+  },
+  {
+   "vid": "19455303",
+   "pid": "22252",
+   "name": "JACOBSEN,NORCOTT",
+   "steps": [
+    "dos 2026-06-22 cpts ['99309'] pos 31 insorder 1,3 onhcfa 1 charges [('charge23366528', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['E11.9', 'G93.41', 'I48.20', 'Z91.199', 'E03.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier WEL04)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366528', '', 'dcode1034544863 dcode103454498')]"
+   ]
+  },
+  {
+   "vid": "19455317",
+   "pid": "12179690",
+   "name": "SLATER,RUPERT",
+   "steps": [
+    "dos 2026-04-28 cpts ['99349'] pos 13 insorder 1 onhcfa 1 charges [('charge23366556', '99349', '', '198.00', '198.00')]",
+    "99349 dx ['F03.90', 'F10.10', 'T74.01XA', 'I10', 'M10.00'] never_primary(first)=False",
+    "deceased guard: clear (carrier WEL04)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366556', '', 'dcode1034545095 dcode103454527')]"
+   ]
+  },
+  {
+   "vid": "19455350",
+   "pid": "17472553",
+   "name": "HESKETH,[first]",
+   "steps": [
+    "dos 2026-09-01 cpts ['99308'] pos 31 insorder 3 onhcfa 1 charges [('charge23366626', '99308', '', '107.00', '107.00')]",
+    "99308 dx ['C22.8', 'I50.9', 'F25.9', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366626', '', 'dcode1037454345 dcode103454388')]"
+   ]
+  },
+  {
+   "vid": "19455358",
+   "pid": "21489",
+   "name": "PELLAM,DAVIN",
+   "steps": [
+    "dos 2026-04-14 cpts ['99309'] pos 31 insorder 1,4 onhcfa 1 charges [('charge23366642', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['I69.30', 'D64.9', 'G62.9', 'M06.9', 'Z98.890', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366642', '', 'dcode1034545425 dcode103454443')]"
+   ]
+  },
+  {
+   "vid": "19455359",
+   "pid": "21489",
+   "name": "PELLAM,DAVIN",
+   "steps": [
+    "dos 2026-05-11 cpts ['99309'] pos 31 insorder 1,4 onhcfa 1 charges [('charge23366644', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['I69.30', 'D64.9', 'F32.A', 'G62.9', 'M06.9', 'Z98.890', 'L03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366644', '', 'dcode1034545425 dcode103454443')]"
+   ]
+  },
+  {
+   "vid": "19455364",
+   "pid": "20060",
+   "name": "[name]",
+   "steps": [
+    "dos 2025-11-04 cpts ['99309'] pos 31 insorder 1,2 onhcfa 1 charges [('charge23366654', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['I69.30', 'K21.9', 'M62.838', 'R47.01', 'M24.511', 'M24.512', 'M24.521', 'M24.522', 'E78.5', 'I10'] never_primary(first)=False",
+    "deceased guard: clear (carrier MCAD)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366654', '', 'dcode1034545425 dcode103454518')]"
+   ]
+  },
+  {
+   "vid": "19455369",
+   "pid": "23721",
+   "name": "ROWANTREE,[first]",
+   "steps": [
+    "dos 2026-01-20 cpts ['99309'] pos 31 insorder 1,2 onhcfa 1 charges [('charge23366664', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['I25.10', 'I10', 'F03.90', 'E44.1', 'R45.1', 'F41.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366664', '', 'dcode1034543884 dcode103454388')]"
+   ]
+  },
+  {
+   "vid": "19455374",
+   "pid": "21915",
+   "name": "[name]",
+   "steps": [
+    "dos 2026-01-12 cpts ['99308'] pos 31 insorder 1,2,3 onhcfa 1 charges [('charge23366674', '99308', '', '107.00', '107.00')]",
+    "99308 dx ['I73.9', 'E78.5', 'E11.9', 'M62.81', 'F02.80'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366674', '', 'dcode1034543887 dcode103454489')]"
+   ]
+  },
+  {
+   "vid": "19455375",
+   "pid": "21915",
+   "name": "[name]",
+   "steps": [
+    "dos 2026-02-09 cpts ['99309'] pos 31 insorder 1,2,3 onhcfa 1 charges [('charge23366676', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['I73.9', 'E78.5', 'E11.9', 'M62.81', 'F02.80'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23366676', '', 'dcode1034543887 dcode103454489')]"
+   ]
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "126638",
+   "19437843",
+   "17472874",
+   [
+    [
+     "394797",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437926",
+   "17472874",
+   [
+    [
+     "394798",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437951",
+   "17472874",
+   [
+    [
+     "394799",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438356",
+   "17472874",
+   [
+    [
+     "394800",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438357",
+   "17472874",
+   [
+    [
+     "394801",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438358",
+   "17472874",
+   [
+    [
+     "394802",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126671",
+   "19438701",
+   "17472874",
+   [
+    [
+     "394803",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439010",
+   "17472874",
+   [
+    [
+     "394804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439022",
+   "17472874",
+   [
+    [
+     "394805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439233",
+   "17472874",
+   [
+    [
+     "394806",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126725",
+   "19439702",
+   "17472874",
+   [
+    [
+     "394807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [
+  {
+   "batch": "1",
+   "vid": "19455304",
+   "pid": "17477039",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) I69359 defines an unspec"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19455305",
+   "pid": "17477039",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) I69359 defines an unspec"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19455306",
+   "pid": "17477039",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) I69359 defines an unspec"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113484",
+   "vid": "19378344",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113486",
+   "vid": "19378427",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113498",
+   "vid": "19378837",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113590",
+   "vid": "19382689",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113592",
+   "vid": "19382773",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "113594",
+   "vid": "19382846",
+   "pid": "25903",
+   "errs": [
+    "Pattern 20657 The beginning date of service occurred more th"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "127109",
+   "vid": "19445442",
+   "pid": "17476868",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspeci"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "127180",
+   "vid": "19446238",
+   "pid": "17476868",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspeci"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "127765",
+   "vid": "19455479",
+   "pid": "17477830",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) I69359 defines an unspec"
+   ],
+   "ok": true
+  }
+ ],
+ "pending_left": 0
+}

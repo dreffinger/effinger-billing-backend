@@ -20761,5 +20761,35 @@
   "chargedetailid": 23365726,
   "chargeid": "23365726",
   "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052806",
+  "checkclaimid": 15441548,
+  "visitid": 19442087,
+  "pid": 17469466,
+  "cpt": "99309",
+  "dos": "05/14/2026",
+  "era_paid": 16.93,
+  "carrier": "HUM01",
+  "checkno": "200700340260922",
+  "when": "2026-09-23T0910Z",
+  "chargedetailid": 23350068,
+  "chargeid": "23350068",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052806",
+  "checkclaimid": 15441549,
+  "visitid": 19435620,
+  "pid": 17469466,
+  "cpt": "99309",
+  "dos": "03/12/2026",
+  "era_paid": 16.93,
+  "carrier": "HUM01",
+  "checkno": "200700340260922",
+  "when": "2026-09-23T0910Z",
+  "chargedetailid": 23342638,
+  "chargeid": "23342638",
+  "outcome": "already-posted"
  }
 ]
