@@ -1085,6 +1085,41 @@
      }
     },
     {
+     "name": "Upload an 835 into the ERA Center (POST /api/era/upload/835, multipart)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json, text/plain, */*"
+       },
+       {
+        "key": "origin",
+        "value": "https://static-100.advancedmd.com"
+       },
+       {
+        "key": "referer",
+        "value": "https://static-100.advancedmd.com/"
+       }
+      ],
+      "url": "https://pm-api-103.advancedmd.com/api/era/upload/835",
+      "description": "Captured from William's UI import 9/2/2026 (era_upload.py); proven 9/22/2026 with SYNTHETIC 835s built from paper EOBs (billing/paper_remits/build835.py). Response {issuccess, filename, filesize, filemd5checksum}; the check appears in GET /api/era/checks asynchronously (5 s to ~4 min; polling every 5 s drew HTTP 500s, poll every 10 s). Dedupe is by file MD5, not by TRN: the same bytes are skipped, a different file with the same TRN creates a NEW check. AMD matches CLP01 = the AMD claim number (8-digit visit id + sequence letter, e.g. 19442529A) to the visit and each SVC line to the charge by CPT; it reads ONE reason per CAS segment (a second triplet in the same CAS is dropped -> 'Contains invalid payment reason codes'); AMT*B6 is ignored (allowed = charge - adjustments); a claim with no SVC lines still matches the visit and shows chargecount / chargecode / insurancebalance but errors 'Procedure codes do not match' (chargedetailid -1) - usable as a probe; the check's systemcarrier is whatever AMD matched from N1*PR (often the visit's BILLED carrier), so a paper payer is posted with the ERA-linked addpayments carrying carrierid = the payer's plan on the chart.\n\nHelper: era_upload.upload\nCaptured: 9/2/2026 (UI import); 9/22/2026 synthetic-835 proof (chat)\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "multipart/form-data: field 'file' = <name>.835 (Content-Type text/plain, the raw X12 835 text)",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
+     }
+    },
+    {
      "name": "addpayments — manual payment / write-off (Payment Entry)",
      "request": {
       "method": "POST",
@@ -1228,41 +1263,6 @@
        "options": {
         "raw": {
          "language": "xml"
-        }
-       }
-      }
-     }
-    },
-    {
-     "name": "Upload an 835 (ERA Center import)",
-     "request": {
-      "method": "POST",
-      "header": [
-       {
-        "key": "Authorization",
-        "value": "Bearer {{token}}"
-       },
-       {
-        "key": "Accept",
-        "value": "application/json, text/plain, */*"
-       },
-       {
-        "key": "origin",
-        "value": "https://static-100.advancedmd.com"
-       },
-       {
-        "key": "referer",
-        "value": "https://static-100.advancedmd.com/"
-       }
-      ],
-      "url": "https://pm-api-103.advancedmd.com/api/era/upload/835",
-      "description": "Captured from William's UI import 9/2/2026 (era_upload.py); proven 9/22/2026 with SYNTHETIC 835s built from paper EOBs (billing/paper_remits/build835.py). Response {issuccess, filename, filesize, filemd5checksum}; the check appears in GET /api/era/checks asynchronously (5 s to ~4 min; polling every 5 s drew HTTP 500s, poll every 10 s). Dedupe is by file MD5, not by TRN: the same bytes are skipped, a different file with the same TRN creates a NEW check. AMD matches CLP01 = the AMD claim number (8-digit visit id + sequence letter, e.g. 19442529A) to the visit and each SVC line to the charge by CPT; it reads ONE reason per CAS segment (a second triplet in the same CAS is dropped -> 'Contains invalid payment reason codes'); AMT*B6 is ignored (allowed = charge - adjustments); a claim with no SVC lines still matches the visit and shows chargecount / chargecode / insurancebalance but errors 'Procedure codes do not match' (chargedetailid -1) - usable as a probe; the check's systemcarrier is whatever AMD matched from N1*PR (often the visit's BILLED carrier), so a paper payer is posted with the ERA-linked addpayments carrying carrierid = the payer's plan on the chart.\n\nHelper: era_upload.upload / billing/paper_remits/post_paper.py\nCaptured: 9/2/2026 (William); proven with synthetic files 9/22/2026\nStatus: proven",
-      "body": {
-       "mode": "raw",
-       "raw": "multipart/form-data; one field 'file' = the .835 text (filename *.835, text/plain)",
-       "options": {
-        "raw": {
-         "language": "text"
         }
        }
       }

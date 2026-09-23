@@ -1,0 +1,2054 @@
+{
+ "stamp": "2026-09-23T0510Z",
+ "dry": false,
+ "fixed": [
+  {
+   "run": "1700227",
+   "vid": "19422893",
+   "claimid": "19422893L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-10 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19422922",
+   "claimid": "19422922L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-09 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19423066",
+   "claimid": "19423066L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-11 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19423210",
+   "claimid": "19423210L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-12 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19423309",
+   "claimid": "19423309L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-13 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19423453",
+   "claimid": "19423453L",
+   "pid": "25545",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-14 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/09/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19427055",
+   "claimid": "19427055G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-23 cpts ['99233'] insbal 70.17 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 12/18/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/18/2025 insbilled=['0']"
+   ],
+   "amount": 70.17,
+   "admission": "12/18/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19427059",
+   "claimid": "19427059G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-18 cpts ['99223'] insbal 177.69 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 12/18/2025 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/18/2025 insbilled=['0']"
+   ],
+   "amount": 177.69,
+   "admission": "12/18/2025"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429273",
+   "claimid": "19429273G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-15 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429274",
+   "claimid": "19429274G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-14 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429275",
+   "claimid": "19429275G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-13 cpts ['99223'] insbal 184.80 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 184.8,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429389",
+   "claimid": "19429389G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-16 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429529",
+   "claimid": "19429529G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-18 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429530",
+   "claimid": "19429530G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-17 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19429531",
+   "claimid": "19429531G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-19 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/13/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/13/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/13/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19430121",
+   "claimid": "19430121G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-24 cpts ['99223', '99233'] insbal 259.34 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/24/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/24/2026 insbilled=['0', '0']"
+   ],
+   "amount": 259.34,
+   "admission": "01/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19430403",
+   "claimid": "19430403G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-26 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/23/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/23/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/23/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19430411",
+   "claimid": "19430411G",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-25 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/23/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/23/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/23/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19430871",
+   "claimid": "19430871F",
+   "pid": "17471762",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-27 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 01/23/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=01/23/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "01/23/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19433215",
+   "claimid": "19433215H",
+   "pid": "17472517",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-19 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 02/18/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/18/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "02/18/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19433216",
+   "claimid": "19433216H",
+   "pid": "17472517",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-18 cpts ['99223', '99497'] insbal 265.47 onhcfa 1 insorder 3,2 lastbilledseq 2 ex=None",
+    "admission 02/18/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/18/2026 insbilled=['0', '0']"
+   ],
+   "amount": 265.47,
+   "admission": "02/18/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19440861",
+   "claimid": "19440861D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-04 cpts ['99223'] insbal 184.80 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 184.8,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441178",
+   "claimid": "19441178D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-06 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441189",
+   "claimid": "19441189D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-05 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441375",
+   "claimid": "19441375D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-08 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441469",
+   "claimid": "19441469D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-10 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441483",
+   "claimid": "19441483D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-09 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19441640",
+   "claimid": "19441640D",
+   "pid": "17471725",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-11 cpts ['99232'] insbal 54.63 onhcfa 1 insorder 2,3 lastbilledseq 3 ex=None",
+    "admission 05/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=05/04/2026 insbilled=['0']"
+   ],
+   "amount": 54.63,
+   "admission": "05/04/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450054",
+   "claimid": "19450054B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-28 cpts ['99233'] insbal 21.80 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450055",
+   "claimid": "19450055B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-27 cpts ['99233'] insbal 21.80 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450056",
+   "claimid": "19450056B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-26 cpts ['99233'] insbal 21.80 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450057",
+   "claimid": "19450057B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-25 cpts ['99233'] insbal 21.80 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450109",
+   "claimid": "19450109B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-24 cpts ['99223'] insbal 31.94 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 31.94,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19450123",
+   "claimid": "19450123B",
+   "pid": "17477259",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-07-29 cpts ['99233'] insbal 21.80 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 07/24/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=07/24/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "07/24/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453215",
+   "claimid": "19453215E",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-29 cpts ['99223'] insbal 31.94 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 31.94,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453374",
+   "claimid": "19453374C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-30 cpts ['99223'] insbal 31.94 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 31.94,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453377",
+   "claimid": "19453377E",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-30 cpts ['99233'] insbal 21.80 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453379",
+   "claimid": "19453379C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-31 cpts ['99233'] insbal 21.80 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453385",
+   "claimid": "19453385E",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-31 cpts ['99233'] insbal 21.80 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453504",
+   "claimid": "19453504E",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-01 cpts ['99233'] insbal 21.80 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 21.8,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453705",
+   "claimid": "19453705C",
+   "pid": "17472393",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-02 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 4,3 lastbilledseq 3 ex=None",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/27/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/27/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453712",
+   "claimid": "19453712C",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-02 cpts ['99233'] insbal 74.54 onhcfa 0 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453757",
+   "claimid": "19453757C",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-04 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453759",
+   "claimid": "19453759C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-04 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453762",
+   "claimid": "19453762C",
+   "pid": "17472546",
+   "car": "SUN01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-04 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 09/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=09/03/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "09/03/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453768",
+   "claimid": "19453768C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-03 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453769",
+   "claimid": "19453769C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-02 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453770",
+   "claimid": "19453770C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-01 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453775",
+   "claimid": "19453775C",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-03 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453831",
+   "claimid": "19453831C",
+   "pid": "17472393",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-06 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 4,3 lastbilledseq 3 ex=None",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/27/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/27/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453834",
+   "claimid": "19453834C",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-06 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453836",
+   "claimid": "19453836C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-06 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453850",
+   "claimid": "19453850C",
+   "pid": "17472393",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-05 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 4,3 lastbilledseq 3 ex=None",
+    "admission 08/27/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/27/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/27/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453853",
+   "claimid": "19453853C",
+   "pid": "24039",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-05 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,3 lastbilledseq 3 ex=None",
+    "admission 08/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=08/29/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/29/2026"
+  },
+  {
+   "run": "1700227",
+   "vid": "19453855",
+   "claimid": "19453855C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-09-05 cpts ['99233'] insbal 74.54 onhcfa 1 insorder 1,2 lastbilledseq 2 ex=None",
+    "admission 08/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=08/30/2026 insbilled=['0']"
+   ],
+   "amount": 74.54,
+   "admission": "08/30/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19392360",
+   "claimid": "19392360F",
+   "pid": "17470697",
+   "car": "FLO02",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2024-10-24 cpts ['99233', 'G0316'] insbal 54.59 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "admission 10/22/2024 (same stay: admission 10/22/2024 already on visit 19392264 (2024-10-23))",
+    "updextrainsinfo [('99233', 'ok'), ('G0316', 'ok')]",
+    "chargerebill seq 1 -> 204 ",
+    "readback hospfrom=10/22/2024 insbilled=['0', '0']"
+   ],
+   "amount": 54.59,
+   "admission": "10/22/2024"
+  },
+  {
+   "run": "1700228",
+   "vid": "19392439",
+   "claimid": "19392439F",
+   "pid": "17470697",
+   "car": "FLO02",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2024-10-27 cpts ['99233', 'G0316'] insbal 54.59 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "admission 10/22/2024 (same stay: admission 10/22/2024 already on visit 19392381 (2024-10-26))",
+    "updextrainsinfo [('99233', 'ok'), ('G0316', 'ok')]",
+    "chargerebill seq 1 -> 204 ",
+    "readback hospfrom=10/22/2024 insbilled=['0', '0']"
+   ],
+   "amount": 54.59,
+   "admission": "10/22/2024"
+  },
+  {
+   "run": "1700228",
+   "vid": "19392734",
+   "claimid": "19392734C",
+   "pid": "17470697",
+   "car": "FLO02",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2024-10-31 cpts ['99232'] insbal 15.70 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "admission 10/22/2024 (same stay: admission 10/22/2024 already on visit 19392671 (2024-10-30))",
+    "updextrainsinfo [('99232', 'ok')]",
+    "chargerebill seq 1 -> 204 ",
+    "readback hospfrom=10/22/2024 insbilled=['0']"
+   ],
+   "amount": 15.7,
+   "admission": "10/22/2024"
+  },
+  {
+   "run": "1700228",
+   "vid": "19423728",
+   "claimid": "19423728L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-15 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/15/2025 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/15/2025 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "11/15/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19423739",
+   "claimid": "19423739L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-16 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/15/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/15/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/15/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19423881",
+   "claimid": "19423881L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-17 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/15/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/15/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/15/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19424036",
+   "claimid": "19424036L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-18 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/15/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/15/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/15/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19424223",
+   "claimid": "19424223L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-19 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 11/15/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=11/15/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "11/15/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19425808",
+   "claimid": "19425808G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-09 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19425950",
+   "claimid": "19425950G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-10 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426018",
+   "claimid": "19426018G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-11 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426106",
+   "claimid": "19426106G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-12 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426213",
+   "claimid": "19426213G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-14 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426228",
+   "claimid": "19426228G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-13 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426377",
+   "claimid": "19426377G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-15 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19426636",
+   "claimid": "19426636G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-12-16 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 12/09/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=12/09/2025 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "12/09/2025"
+  },
+  {
+   "run": "1700228",
+   "vid": "19428684",
+   "claimid": "19428684L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-09 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19428685",
+   "claimid": "19428685L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-08 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429062",
+   "claimid": "19429062L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-13 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429063",
+   "claimid": "19429063L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-12 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429064",
+   "claimid": "19429064L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-11 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429065",
+   "claimid": "19429065L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-10 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429264",
+   "claimid": "19429264L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-15 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429285",
+   "claimid": "19429285L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-14 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429391",
+   "claimid": "19429391L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-16 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429541",
+   "claimid": "19429541L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-18 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429542",
+   "claimid": "19429542L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-19 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19429556",
+   "claimid": "19429556L",
+   "pid": "20514",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-01-17 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 3 lastbilledseq 3 ex=None",
+    "admission 01/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 3 -> 204 ",
+    "readback hospfrom=01/08/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "01/08/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19433688",
+   "claimid": "19433688G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-25 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19433790",
+   "claimid": "19433790G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-26 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19434048",
+   "claimid": "19434048G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-27 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19434276",
+   "claimid": "19434276G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-03-02 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19434299",
+   "claimid": "19434299G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-02-28 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19434300",
+   "claimid": "19434300G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-03-01 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19434437",
+   "claimid": "19434437G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-03-03 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 02/25/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=02/25/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "02/25/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437269",
+   "claimid": "19437269G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-03 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437271",
+   "claimid": "19437271G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-02 cpts ['99223', '99497'] insbal 443.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437675",
+   "claimid": "19437675G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-06 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437689",
+   "claimid": "19437689G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-05 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437708",
+   "claimid": "19437708G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-04 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437862",
+   "claimid": "19437862G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-07 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437939",
+   "claimid": "19437939G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-08 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19437963",
+   "claimid": "19437963G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-09 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19438065",
+   "claimid": "19438065G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-10 cpts ['99233'] insbal 160.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 04/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo [('99233', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=04/02/2026 insbilled=['0']"
+   ],
+   "amount": 160.0,
+   "admission": "04/02/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19443466",
+   "claimid": "19443466G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-27 cpts ['99223'] insbal 310.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "admission 05/27/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok')]",
+    "chargerebill seq 2 -> 204 ",
+    "readback hospfrom=05/27/2026 insbilled=['0']"
+   ],
+   "amount": 310.0,
+   "admission": "05/27/2026"
+  },
+  {
+   "run": "1700228",
+   "vid": "19450766",
+   "claimid": "19450766C",
+   "pid": "17470940",
+   "car": "FLO02",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-08-05 cpts ['99223', '99497'] insbal 443.00 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "admission 08/05/2026 (own 99223)",
+    "updextrainsinfo [('99223', 'ok'), ('99497', 'ok')]",
+    "chargerebill seq 1 -> 204 ",
+    "readback hospfrom=08/05/2026 insbilled=['0', '0']"
+   ],
+   "amount": 443.0,
+   "admission": "08/05/2026"
+  }
+ ],
+ "completed_zero": [
+  {
+   "run": "1700227",
+   "vid": "19443536",
+   "claimid": "19443536C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-28 cpts ['99223', '99497'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19443623",
+   "claimid": "19443623C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-29 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19443648",
+   "claimid": "19443648C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-30 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19443817",
+   "claimid": "19443817C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-01 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19443830",
+   "claimid": "19443830C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-31 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19444011",
+   "claimid": "19444011C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-03 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19444020",
+   "claimid": "19444020C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-02 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19444127",
+   "claimid": "19444127C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-04 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19444164",
+   "claimid": "19444164C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-05 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19445441",
+   "claimid": "19445441C",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-18 cpts ['99223', '99497'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19445447",
+   "claimid": "19445447B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-19 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19445492",
+   "claimid": "19445492B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-20 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19445698",
+   "claimid": "19445698B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-21 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19445708",
+   "claimid": "19445708B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-22 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700227",
+   "vid": "19446048",
+   "claimid": "19446048B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-24 cpts ['99239'] insbal 0.00 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  },
+  {
+   "run": "1700228",
+   "vid": "19443546",
+   "claimid": "19443546G",
+   "pid": "23161",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-05-28 cpts ['99232'] insbal 0.00 onhcfa 0 insorder 2 lastbilledseq 2 ex=None",
+    "insurance balance $0 -> complete only"
+   ],
+   "amount": 0
+  }
+ ],
+ "completed_pref0283": [
+  {
+   "run": "1700227",
+   "vid": "19386697",
+   "claimid": "19386697G",
+   "pid": "17471795",
+   "car": "BCBS",
+   "err": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    "dos 2024-07-24 cpts ['99233', 'G0316'] insbal 116.53 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=07/19/2024",
+    "Florida Blue secondary PREF0283 -> complete per the crossover-wait rule, not re-sent"
+   ],
+   "amount": 116.53
+  },
+  {
+   "run": "1700227",
+   "vid": "19423631",
+   "claimid": "19423631D",
+   "pid": "48458",
+   "car": "BCBS",
+   "err": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    "dos 2025-11-15 cpts ['99487'] insbal 17.50 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "Florida Blue secondary PREF0283 -> complete per the crossover-wait rule, not re-sent"
+   ],
+   "amount": 17.5
+  }
+ ],
+ "held": [
+  {
+   "run": "1700227",
+   "vid": "19423193",
+   "claimid": "19423193H",
+   "pid": "17472517",
+   "car": "HUM01",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2025-11-11 cpts ['99233'] insbal 70.17 onhcfa 1 insorder 3,2 lastbilledseq 2 ex=None",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ],
+   "amount": 70.17
+  },
+  {
+   "run": "1700227",
+   "vid": "19445850",
+   "claimid": "19445850B",
+   "pid": "20863",
+   "car": "FLO99",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-06-23 cpts ['99232'] insbal 14.38 onhcfa 0 insorder 1,2 lastbilledseq 2 ex=None",
+    "HOLD: no 99223 anchor within 45 days and no earlier visit of the stay carries an admission date"
+   ],
+   "amount": 14.38
+  },
+  {
+   "run": "1700229",
+   "vid": "19438061",
+   "claimid": "19438061G",
+   "pid": "17472874",
+   "car": "WEL04",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-10 cpts ['99233'] insbal 160.00 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "HOLD: chart on the standing hold (no admission anchor, William's turn)"
+   ],
+   "amount": 160.0
+  },
+  {
+   "run": "1700229",
+   "vid": "19438903",
+   "claimid": "19438903G",
+   "pid": "17472874",
+   "car": "WEL04",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-15 cpts ['99233'] insbal 160.00 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "HOLD: chart on the standing hold (no admission anchor, William's turn)"
+   ],
+   "amount": 160.0
+  },
+  {
+   "run": "1700229",
+   "vid": "19438993",
+   "claimid": "19438993G",
+   "pid": "17472874",
+   "car": "WEL04",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-18 cpts ['99233'] insbal 160.00 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "HOLD: chart on the standing hold (no admission anchor, William's turn)"
+   ],
+   "amount": 160.0
+  },
+  {
+   "run": "1700229",
+   "vid": "19439271",
+   "claimid": "19439271G",
+   "pid": "17472874",
+   "car": "WEL04",
+   "err": "CH 72  PDTP0303:MISSING RELATED ADMISSION DATE",
+   "steps": [
+    "dos 2026-04-20 cpts ['99233'] insbal 160.00 onhcfa 1 insorder 1,2 lastbilledseq 1 ex=None",
+    "HOLD: chart on the standing hold (no admission anchor, William's turn)"
+   ],
+   "amount": 160.0
+  }
+ ],
+ "faults": [],
+ "completed_calls": [
+  {
+   "run": "1700227",
+   "n": 72,
+   "ok": true
+  },
+  {
+   "run": "1700228",
+   "n": 47,
+   "ok": true
+  }
+ ]
+}
