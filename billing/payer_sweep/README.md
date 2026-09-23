@@ -1,0 +1,10 @@
+# Wrong-payer / Medicare-first sweep (9/23/2026)
+
+William: "search Stedi for Medicare-first patients' visits within the past year and fix them to resubmit all the claims to Medicare; assess WellCare / VA / TRICARE / CHP / any unpaid claims; check all, insurance-discover, verify all, rebill all corrected claims, give a report."
+
+1. `medfirst_sweep.py --group cascade|unpaid|both --tiers 1,2` (from `/home/claude/unbilled`, repo helpers on `PYTHONPATH`, `secrets/stedi_live.key` present): for every patient with unpaid past-year visits at a non-Medicare payer (unpaid list = `POST /api/claim/massrebillsearch {}`) - AMD's free 271 on each chart plan (cached per plan+day in `patient_db/`), Stedi MBI lookup on the latest DOS (cached per patient+month), the live visit history (Medicare payment? last carrier?), and a verdict: ORIGINAL_MEDICARE / MA_SAME_PAYER / MA_SWITCH / NO_MEDICARE_RECORD / PART_A_ONLY / DECEASED with a per-visit plan (REBILL_TO_MEDICARE, SECONDARY_PENDING, CLAIM_CONTENT, REPOINT_TO_MA, VA_REVIEW, REVIEW). Output `medfirst_<stamp>.jsonl` (resume-safe).
+2. Second pass by hand (see the 9/23 digest): CMS eligibility with the chart MBI for name misses, payer eligibility on the DOS, `stedi.disc` when a plan is inactive; Advantage plans read by legal entity (rules.md 9/23).
+3. `cascade_act_0923.py`, `medfirst_act_0923.py`, `medfirst_act2_0923.py`: the per-patient fixes actually executed (add plan / end-date / chart order via `ins_update.update(sequence=...)` / `freq1_visit.run` + `move_to_ins.move(cid, order, rebill_seq=)`); registers `*_register.json` (Drive working copy). Guards: never a visit with a Medicare payment or a Medicare $0 adjudication, never the 9/10 re-created Medicaid-only visits, never a DOS after the date of death, VA listed only. `move_to_pat` only on charges without payments.
+4. `medfirst_report.py` -> `wrong_payer_sweep_<date>.xlsx` (PHI: Drive / William) from the jsonl + registers + `medfirst_notes.json` (per-chart verification notes, Drive working copy only).
+
+Standing lessons in `practices/ehpa/rules.md` (9/23 block). Next time: run the sweep monthly from the routine (tiers 1+2 take ~75 min; Stedi cost ~$30).
