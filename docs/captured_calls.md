@@ -1320,24 +1320,6 @@ No new AMD or Stedi call shapes this run. Behaviours worth keeping:
 - getclaimrunstatus still lists 1700202 as the newest claim run at 03:13Z 9/19 (78 runs): ninth consecutive worked slot with no nightly claim run.
 - ERA Center empty (0 checks) at 03:16Z 9/19 - era_post / fallback / era_clear all no-ops; the chain script is idempotent on an empty list.
 
-# captured_calls additions - 2026-09-19T0500Z (1am ET 9/19 chat session, William-requested full run)
-
-No new AMD call shapes this run. Behaviours worth keeping:
-- precheck.py's 'no <carrier> plan on chart' false flags (first seen 7pm ET 9/18) are ROOT-CAUSED and fixed: carriers.json is now the slim {code: "carNNNN"} map, so the old `CARRIERS = {v[0]: k ...}` comprehension (written for carriers_rich.json's {carNNNN: [code, name]}) produced {'c': <code>} and every non-Medicare pair failed the carrier match; the insplan regex was also attribute-order-sensitive. Fixed 9/19: load carriers.json directly and parse insplan attributes order-insensitively, prefer open (no enddate) plans. Re-run: all 10 flagged pairs verified ACTIVE with the members already on the charts. build_money.py had the same v[0]/v[1] pattern for payer names - now reads carriers_rich.json.
-- UMR bills through Stedi payer id 39026 ("UMR"): added to precheck's CAR2STEDI (carrier code UMR = car303242); 271 answered ACTIVE at once (benefit 20260101-20261231).
-- CMS 271 name matching: a suffix chart name ('WINSLOW JR,ERWIN') must keep the suffix IN THE LAST NAME on the 271 - lastName 'WINSLOW' answers AAA 73 Invalid/Missing Subscriber Name, lastName 'WINSLOW JR' answers Active Coverage with full Part A+B service lists. The MBI *search* (name/dob/state) still misses him entirely (AAA 72) - for a chart that already carries an MBI, direct `stedi.py elig CMS <first> "<last with suffix>" <dob> <MBI> <dos>` is the working path (rule f).
-- Money Ledger template: the over-90-days stage note now renders only when the Sunday claim-status sweep data is present (was printing 'undefined/$NaN' on non-Sunday builds); patched in boards/templates/money_template.html and the published artifact (version 14).
-- Insurance Refresh Board sync registry REPAIRED from this chat session (the 9/14 fix, second application): 66 applied inbox files 9/13-9/19T0310Z merged into meta/drive_sync 'applied' (18 -> 84 entries, version 1385) and trashed from 'board inbox'; only the two unapplied 9/19 files remain. Page-code root cause still open: since 9/15 the page advances lastCheck but never adds to 'applied'.
-- getclaimrunstatus still lists 1700202 as the newest claim run at 05:4xZ 9/19 (78 runs): tenth-plus consecutive worked slot with no nightly claim run - everything released this week is queued, nothing transmitted since 9/16; nothing in the API starts a claim run.
-
-# captured_calls additions - 2026-09-20T0345Z (11:40pm ET 9/19 chat session, William-requested full run)
-
-No new AMD call shapes. Behaviours worth keeping:
-- WRITE-OFF REVERSAL AT SCALE (William's 'post' on row medicare-era-819814877-writeoffs-0919): wo_reversal_post.py voided all 41 write-offs cleanly, but its posting step silently posted $0 - the era_post.checks() lookup compared the record's string checkid to AMD's numeric id (`c['id'] == cid`), matched nothing, and the `if chk:` guard swallowed it. Fixed (str-compare both sides). The FORCE_VISITS + post_check flow then posted all 41 lines in two calls (26 visits $2,919.96 on 1051714, 4 visits $363.43 on 1051715 = $3,283.39): payment + fresh CO-45 contractual per line from the remit itself, PR coinsurance left on the visit for the secondary (sample 23324494: fee 107 = pay 47.57 + WO 47.29 + PR 12.14 insbal). Lesson: after any void-then-post, grep the log for 'POSTED check' - '=== done' alone can hide a skipped post.
-- The ERA Center's unpostedamount on 1051714/1051715 now reads $9,151.49 total: manual posts the Center cannot see plus the $85.46 orphan (pat17477530 voided visit) - the checks stay HELD, never dismissed, and the phantom balance is cosmetic.
-- Harwick CHP add per William's card paste: CAP07 member CIO01040626-format ids continue (hers CIO60139734), AMD 271 ACTIVE with HN (HMO Medicare Risk) riders, standard admit/insorder/onhcfa release path; Unbilled 13 -> 11.
-- precheck --days 3 rerun cost $0: every pair cached from 9/19 (patient|payer|yyyymm keys), 0 flagged - the cache design works.
-
 # captured_calls additions - 2026-09-19 0510 UTC (1am ET 9/19 backend billing run, ehpa cloud)
 
 No new AMD call shapes. Behaviours proven this run (chart ids only):
@@ -1347,6 +1329,16 @@ No new AMD call shapes. Behaviours proven this run (chart ids only):
 - A resave whose `refplan=` names ANOTHER patient's referral plan repoints the visit there and writes the preauth onto that patient's plan (seen 04:45Z 9/19: pat17477775's 9/16-9/17 visits on pat17477777's main plan rplan18462071, her plan now carrying his VA auth). Rule: read the chart's refplanlist (getdemographic) and confirm ownership before any refplan/preauth resave; visit_charges' refplan readback shows the pointer.
 - getclaimrunstatus at 05:2xZ 9/19 still lists 1700202 (2026-09-16 22:16) as the newest claim run (78 runs): tenth consecutive worked slot with no nightly claim run.
 - ERA Center empty (0 checks) at 05:22Z 9/19 - era_post / fallback / era_clear all no-ops.
+
+# captured_calls additions - 2026-09-19T0500Z (1am ET 9/19 chat session, William-requested full run)
+
+No new AMD call shapes this run. Behaviours worth keeping:
+- precheck.py's 'no <carrier> plan on chart' false flags (first seen 7pm ET 9/18) are ROOT-CAUSED and fixed: carriers.json is now the slim {code: "carNNNN"} map, so the old `CARRIERS = {v[0]: k ...}` comprehension (written for carriers_rich.json's {carNNNN: [code, name]}) produced {'c': <code>} and every non-Medicare pair failed the carrier match; the insplan regex was also attribute-order-sensitive. Fixed 9/19: load carriers.json directly and parse insplan attributes order-insensitively, prefer open (no enddate) plans. Re-run: all 10 flagged pairs verified ACTIVE with the members already on the charts. build_money.py had the same v[0]/v[1] pattern for payer names - now reads carriers_rich.json.
+- UMR bills through Stedi payer id 39026 ("UMR"): added to precheck's CAR2STEDI (carrier code UMR = car303242); 271 answered ACTIVE at once (benefit 20260101-20261231).
+- CMS 271 name matching: a suffix chart name ('WINSLOW JR,ERWIN') must keep the suffix IN THE LAST NAME on the 271 - lastName 'WINSLOW' answers AAA 73 Invalid/Missing Subscriber Name, lastName 'WINSLOW JR' answers Active Coverage with full Part A+B service lists. The MBI *search* (name/dob/state) still misses him entirely (AAA 72) - for a chart that already carries an MBI, direct `stedi.py elig CMS <first> "<last with suffix>" <dob> <MBI> <dos>` is the working path (rule f).
+- Money Ledger template: the over-90-days stage note now renders only when the Sunday claim-status sweep data is present (was printing 'undefined/$NaN' on non-Sunday builds); patched in boards/templates/money_template.html and the published artifact (version 14).
+- Insurance Refresh Board sync registry REPAIRED from this chat session (the 9/14 fix, second application): 66 applied inbox files 9/13-9/19T0310Z merged into meta/drive_sync 'applied' (18 -> 84 entries, version 1385) and trashed from 'board inbox'; only the two unapplied 9/19 files remain. Page-code root cause still open: since 9/15 the page advances lastCheck but never adds to 'applied'.
+- getclaimrunstatus still lists 1700202 as the newest claim run at 05:4xZ 9/19 (78 runs): tenth-plus consecutive worked slot with no nightly claim run - everything released this week is queued, nothing transmitted since 9/16; nothing in the API starts a claim run.
 
 # captured_calls additions - 2026-09-19 0710 UTC (3am ET 9/19 backend billing run, ehpa cloud)
 
@@ -1393,7 +1385,6 @@ No new call shapes this run. Behaviours confirmed (registry-level notes, chart i
 - **Unbilled snapshot unchanged**: the same 14 rows as 1310Z (11 'Payment reason codes are missing or do not balance' on 2024 SUN01/BCBS/HUM01/TRI05 visits held per the 9/15 rule; pat17471007 v19375395 'Bill Insurance = No' MV line on William's turn; pat17477798 x2 'Insurance order is missing' - getdemographic at 15:17Z still returns no insplan, no facesheet in Drive, no Pam email, no drop).
 - **AET12 (car42009) live re-read** (gettxhistory on the 15 charts of exclusion run 1700202): 68 charges, billdate 09/16/2026, insurance balance $2052.25 open, Medicare paid $9703.75, no AET12 payment, none at $0 - held on the carrier-master fix, not re-sent.
 - **Post button on the held Medicare check, fourth slot in a row**: era_post --all-unposted re-offered 29 lines on 1051714 (postable=29 / skipped=103) and AMD refused every one (fault -2147217287, PaymentEntry=29) - the already-manual-posted lines; no double post.
-
 # captured_calls additions - 2026-09-19 1710 UTC (1 PM ET 9/19 backend billing run, ehpa cloud v7)
 
 No new call shapes this run. Behaviours confirmed (registry-level notes, chart ids only):
@@ -1508,31 +1499,6 @@ Behaviours and negative results worth keeping (chart ids only):
 - CLAIM RUN 1700211 (AMD clock 2026-09-20 02:04:48, the night's EOD close) carried the 11 Florida Blue SECONDARY claims the 1am run (0510Z) had re-sent - 5 as frequency 7 with the Florida Blue ICN from the posted $0 denial (pat17473245 x4, pat17476868 x1) and 6 as frequency 1 (pat17469028 x5, pat17471968 x1) - and Change Healthcare's front end rejected ALL 11 again: CH FH PREF0283 MISSING PAYER DOC CONTROL NUM (claim letters E/G). Read live this run (excl_1700211_verify, registers/excl_1700211_verify_2026-09-20T1110Z.json): every charge carries the 9/19 Medicare payment (check 819814877, carrier 6085) WITH its Medicare ICN in `<payment origrefnum>` (1126251744110-style numbers), insorder "2,1", extins resubmissioncode 7+origrefnum (the 5) or 1 (the 6), insurance balance open on every line. So neither frequency 7 with the FLORIDA BLUE claim number nor frequency 1 satisfies PREF0283, and the payer document control number CH wants is not the one AMD prints from the primary payment's origrefnum either (the freq-1 claims had it on the Medicare payment record). This re-confirms the 9/10-9/13 finding for a third time: PREF0283 on a Florida Blue secondary is the Medicare crossover DCN block, which nothing in the API supplies.
 - Applied William's standing decision (9/13 04:44Z, board row bcbs-secondary-dcn-0910: "crossover-wait, just drop this for now"): hideexclusions claimrunid=1700211 hide=-1 for the 11 visit/claim ids -> success 1, re-list 0 rows. No rebill, no write-off; balances stay on Florida Blue for the Medicare crossover. Rule for every later run: a Florida Blue (CPID 1414) secondary rejected PREF0283 is completed off the exclusion list and left for the crossover - never re-sent, on either frequency.
 - getclaimexclusionclaimruns still lists run 1700210 with claimcount 11 but getclaimexclusioncharges on it returns an empty visit list (the 1am run completed them) - the run list's claimcount is the historical count, not the open count; trust the per-run list call.
-# captured_calls additions - 2026-09-21 05:30-06:25 UTC chat (William live, ~1:30-2:30 AM ET) - payment reason codes
-
-## What was wrong
-54 Unbilled rows 'Payment reason codes are missing or do not balance' ($11,858.58; 37 at the visit level + 17 under 'One or more charges within this visit have errors'): secondaries (CON08 13, HUM01 12, MCAD 8, SUN01 7, BCBS 7, TRI05 4, UNI20 3) stuck behind Medicare primaries that the ERA fallback had hand-posted with `manual_post.post` (plain addpayments) 9/13-9/19 - 43 on the two held Medicare entries 1051714/1051715 (ERA 819814877), 11 on eight 2024 checks dismissed 9/13 (892988 893080 895008 893862 893899 893939 894075 895373). A plain addpayments carries no `<payreason>` children (9/12 probe), so AMD cannot build the CAS segments of the next payer's claim.
-
-## The fix that works (no UI capture needed)
-1. `gettxhistory` -> the visit's live payments with no `payreason` children (amounts are negative there; `insbal`/`patbal`/`fee` on the charge).
-2. `void` class=void the code-less payment, the WOINS posted with it (same `createtime`), and any $0 code-less line (9/12 rule).
-3. The ERA claim behind it: the fallback register (checkid/checkclaimid/chargeid), else the payment's check number against GET /api/era/checks and GET /api/era/checks/dismiss?DismissedDateBegin=. A dismissed check: POST /api/era/checks/reversedismiss `[{"id","dismissedat"}]` -> GET checkdetails (claims come back with their `carc` ids) -> POST dismiss again (the 9/19 recipe). A processed check answers nothing - its lines come from `era_details/<checkid>.json` written earlier.
-4. Re-post the line with the **ERA-linked** addpayments: `postingmethod="era" eraclaimid=<checkclaimid> erareportid=<checkid> checknumber=<paymentnumber>` and the remit's `<reasonlist payment allowed><reason id=<reportreasondetailid> reasonid=<payreasonid> code name amount units="0" group/>` (the 9/3 Pinckney shape). Reply `<Results success="1" paymentid="NNN"/>`; gettxhistory then shows the payment WITH `payreason` children (CO45 / PR2 / CO253). Amounts: pay = remit paid (capped at the open insurance balance), wo = CO/OA/PI adjustments capped so pay+wo <= balance (WOINS; WOLATE CO-29; WONCS CO-96/204/50); PR left on the visit -> the secondary gets it. Works whether the check is listed, dismissed or processed.
-5. Verify: on every live payment of the visit |paid| + sum(reason amounts) == fee. Then `hideunbillablevisits hide="-1"` with the **numeric** visit id (`vst19420307` faults: "Conversion failed when converting the nvarchar value ... to data type int").
-Helper: payreasons.py (`--list`, `--unbilled --live`, `--visit`, `--repost-file`, `--audit --since-payid`). era_fallback_0913b.py now posts through `payreasons.post_line` - manual_post.post is never used for an ERA line again.
-
-## The sweep (new AMD behaviour - the rule that came out of tonight)
-The first 20 visits were done with the Post button (posterapayments, FORCE_VISITS = one visit, after voiding that visit's hand post) and came out right. But while single visits were being posted, AMD's engine went on and posted 29 OTHER claims of check 1051714 (ids 24653594-24653668, 05:52-05:56 UTC, in check order) - each capped at the visit's open balance, i.e. the leftover PR2 ($17.50 posted for a $68.62 line) with the full reason list - on visits that still carried their hand posts; then both entries were marked processed and dismissed (22:59 AMD clock, changedby POI0712). Voiding a capped payment does NOT re-open the ERA claim (reversedismiss brought the check back with its 76 never-posted zero-balance claims, not those). All 29 were voided and re-posted through the ERA-linked addpayments from the cache. RULE: never Post a single visit of a check while other claims of that check sit on hand-posted / partially-open visits; void those first, or post single lines with payreasons.post_line; after any Post, `payreasons.py --audit --since-payid <last id before the post>` and void + re-post anything capped.
-
-## Result
-54/54 visits repaired and released 05:45-06:20 UTC: 20 via the Post button (correct), 34 via the ERA-linked addpayments (23 after the sweep, 11 old 'Procedure codes do not match' lines). Final audit over the 15 charts of 819814877: 58 live payments created tonight, every one equal to the remit's paid amount, no duplicates. Unbilled 55 -> 1 (pat17470743 MCAD $16.93 prior-payor row, a different case). ERA Center: 0 unposted checks (1051714/1051715 processed + dismissed; the eight 2024 checks restored and dismissed again). Registers: registers/payreason_repair_2026-09-21T*.json, capped_fix_voids_2026-09-21T0605Z.json; run folder nightly/runs/2026-09-21T0545Z-chat (probe script, audit, before-list).
-
-## Calls
-- addpayments ERA-linked with reasonlist -> vocabulary payments-era/addpayments-era-linked-manual-post-with-reason-codes (proven; keeps reasons).
-- recipe entry payments-era/repair-payment-reason-codes-unbilled.
-- hideunbillablevisits: numeric visit id (vocabulary entry fixed).
-- posterapayments: sweep rule appended; reversedismiss: recipe appended.
-
 
 ## captured_calls additions - 2026-09-21 05:10 UTC (1am ET 9/21 columns run, ehpa cloud Code Routine)
 No new AMD call SHAPES. Calls exercised: login (one attempt, cached token), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimexclusionclaimruns + getclaimexclusioncharges, gettxhistory, lookuppatient name wildcard (x9), getdemographic, PATCH /api/demographic/patients/{id} (dob + family address), EligibilityDetailsLegacy/checkEligibility, addinsurance, updateinsurance (sequence + enddate), updvisitwithcharges (full echo, insorder), updextrainsinfo resubmissioncode=1, POST /api/claim/chargerebill (204 x10), addpayments (write-offs x43: WOINS x19, WOLATE x24), hideunbillablevisits (14 visits), ERA GET checks / checkdetails / locks release-expired / posterapayments; Stedi MBILUNOSSN x4, Humana 61101 x2.
@@ -1948,3 +1914,14 @@ No new call shape this run. Calls used, all already in the registry: getclaimcen
 Behaviour confirmed: the Claims Center is unchanged from the 1110Z slot (Charge Review 0, Claim Inspector 16, Unbilled 13, Exclusions 2 list rows / overview 3) - every row a standing hold; newest claim run still 1700229 (82 runs), so no new rejections; ERA Center empty before and after. No AMD writes this run.
 
 Bootstrap note: tools/bootstrap_workspace.sh check names columns_inspector2_0908.py and era_details_pull.py as required helpers absent from main - neither blocked the run (insp_<slot>.py scripts are the inspector template since 9/22; era_step_b_0913.py fills the era_details cache itself); listed for the next chat session to restore or to drop from the REQ list.
+
+# captured_calls additions - 2026-09-23 1510UTC (11am ET 9/23 slot, ehpa cloud Code Routine)
+
+No new AMD / Stedi call shapes this run (read-only slot: columns 0/16/13/2 all standing holds, ERA Center empty).
+
+## Behaviours confirmed
+- getclaimcenteroverview still lags the list calls (exclusioncount 3 / $469 while getclaimexclusioncharges returns 2 rows on run 1700227).
+- GET /api/era/checks empty at 15:17Z after POST /api/era/locks/release-expired; era_step_b before/after snapshots, era_post, era_fallback, era_clear all no-ops.
+
+## GitHub inbox
+- The 9/23 chat's PACKAGE effinger-billing-backend_2026-09-23_payer-sweep (7 base64 parts + manifest + loose PACKAGE_apply_bundle.py on Drive 'github mirror') and its follow-up payer-sweep-2 (1 part) were applied this run by tools/mirror/apply_bundle.py - see the run digest for the merge/push result.

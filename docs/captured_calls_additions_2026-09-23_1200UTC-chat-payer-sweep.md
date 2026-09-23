@@ -15,8 +15,11 @@
 - `lookuppatient` (class lookup, name="LAST,FIR%") finds hyphenated surnames only by the first token ("POUCHET,G%"), and a patient can have two charts (pat17470713 / pat17472439).
 
 ## Where the code and registers are
-- GitHub main (package `effinger-billing-backend_2026-09-23_payer-sweep`, sha256 cdfadf70…, in the project's GITHUB INBOX / Drive github mirror manifest): `billing/payer_sweep/{medfirst_sweep.py, cascade_act_0923.py, medfirst_act_0923.py, medfirst_act2_0923.py, medfirst_report.py, README.md}`; `docs/captured_calls_additions_2026-09-23_payer-sweep.md` (this file); `practices/ehpa/rules.md` 9/23 block.
-- Drive `billing agent project files/wrong payer sweep 2026-09-23`: sweep_rebilled, sweep_verification, sweep_your_decisions, sweep_summary, sweep_act_registers, medfirst_notes (Google Sheets; PHI-OK working copy). The workbook wrong_spayer_sweep_2026-09-23.xlsx went to William in chat.
+- GitHub main via PACKAGE `effinger-billing-backend_2026-09-23_payer-sweep` (sha256 da0a97c3d85ee0824a8bee595954bd56c0ffca0ea2006bd2faa6e95900a68825, 25 commits, base c1b899a = origin/main after the 1110Z run, head 40bac56): Drive `github mirror` holds the manifest, 7 verified base64 parts and a loose PACKAGE_apply_bundle.py (the routine cannot read project docs; the byte-exact .b64 is also the project doc mirror/outbox/…payer-sweep.bundle.b64). Contents: `billing/payer_sweep/{medfirst_sweep.py, cascade_act_0923.py, medfirst_act_0923.py, medfirst_act2_0923.py, medfirst_report.py, README.md}`; `docs/captured_calls_additions_2026-09-23_payer-sweep.md` (this file); `practices/ehpa/rules.md` 9/23 block; `tools/mirror/` (parts-aware apply_bundle.py, mirror.bundle() writes parts); docs/MIRROR.md.
+- Drive `billing agent project files/wrong payer sweep 2026-09-23`: sweep_rebilled, sweep_verification, sweep_your_decisions, sweep_summary, sweep_act_registers, medfirst_notes (Google Sheets; PHI-OK working copy). The workbook wrong_payer_sweep_2026-09-23.xlsx went to William in chat.
+
+## Mirror lesson (for docs/MIRROR.md — already in the package)
+- A Drive text upload through the connector is one tool call, so a package travels as ≤45 KB base64 PARTS (76-char lines); read every part back with `download_file_content` (base64) → decode → `cmp` — 5 of 7 first uploads on 9/23 carried one wrong character; `read_file_content` returns an empty body for text/plain files.
 
 ## Rules for practices/ehpa/rules.md
 (already committed on main 07c7516 — the 9/23 block: sweep method, CMS Advantage legal entities, AARP supplement via discovery, Railroad Medicare CO16, BlueMedicare payer, read rules.md before a chart-write helper, allowed overwrite, CHP posting, package manifests)
