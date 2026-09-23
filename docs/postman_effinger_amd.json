@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-23, 54 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-23, 55 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1082,6 +1082,41 @@
       ],
       "url": "https://pm-api-103.advancedmd.com/api/era/locks/release-expired",
       "description": "Helper: era_post.locks\nCaptured: 9/4/2026\nStatus: proven"
+     }
+    },
+    {
+     "name": "Upload an 835 into the ERA Center (POST /api/era/upload/835, multipart)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json, text/plain, */*"
+       },
+       {
+        "key": "origin",
+        "value": "https://static-100.advancedmd.com"
+       },
+       {
+        "key": "referer",
+        "value": "https://static-100.advancedmd.com/"
+       }
+      ],
+      "url": "https://pm-api-103.advancedmd.com/api/era/upload/835",
+      "description": "Response {\"issuccess\":true,\"filename\",\"filesize\",\"filemd5checksum\"}. The check appears in GET /api/era/checks asynchronously (5 s to ~4.5 min); dedupe is by file MD5, not TRN (identical bytes skipped silently; a different file with the same TRN02 creates a NEW check). CLP01 = the AMD claim number (8-digit visit id + claim letter); SVC lines match charges by CPT; a CLP03 of 0 makes the importer drop the whole file. Proven 9/22/2026 with synthetic 835s built from paper EOBs (billing/paper_remits/build835.py) - paper and virtual-card remits are posted through the ERA Center this way, never by hand.\n\nHelper: era_upload.upload\nCaptured: 9/2/2026 (UI import); 9/22/2026 synthetic-835 proof (chat)\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "multipart/form-data: field 'file' = <name>.835 (Content-Type text/plain, the raw X12 835 text)",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
      }
     },
     {
