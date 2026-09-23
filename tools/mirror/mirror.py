@@ -166,14 +166,24 @@ def bundle(slug=""):
     rng = "origin/main..%s" % branch if base and sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode == 0 else "--all"
     sh("git bundle create -q %s %s" % (path, rng))   # thin: only the new commits, under the branch's own ref name (refs/heads/<branch>) so `git pull <bundle> <branch>` finds it
     raw = open(path, "rb").read(); sha = hashlib.sha256(raw).hexdigest()
-    open(path + ".b64", "w").write(base64.b64encode(raw).decode())
+    b64 = base64.b64encode(raw).decode(); open(path + ".b64", "w").write(b64)
+    PART = 45000   # a Drive text upload through the connector is one tool call, capped well under this; parts of 45 KB survive (9/23 lesson)
+    parts = []
+    for i in range(0, len(b64), PART):
+        name = "%s.bundle.b64.part%02d" % (stem, len(parts) + 1); chunk = b64[i:i + PART]
+        open(os.path.join(out, name), "w").write(chunk); parts.append({"name": name, "chars": len(chunk), "sha256": hashlib.sha256(chunk.encode()).hexdigest()})
     commits = sh("git log --format=%%h\\ %%s %s" % (rng if rng != "--all" else "-20"), check=False).stdout.strip().splitlines()
     man = {"package": stem, "bundle": stem + ".bundle.b64", "sha256": sha, "bytes": len(raw), "range": rng, "branch": branch, "base": base, "head": sh("git rev-parse HEAD").stdout.strip(),
-           "commits": commits, "created": TODAY, "apply": "python3 tools/mirror/apply_bundle.py <file.b64> --sha256 %s && git push origin %s && git push origin HEAD:<synced branch>; then mirror.py sync" % (sha, branch)}
+           "commits": commits, "created": TODAY,
+           "parts": parts,
+           "apply": "download every part (PACKAGE_<stem>.bundle.b64.partNN, text) and tools/mirror/apply_bundle.py (loose copy 'PACKAGE_apply_bundle.py' in 'github mirror' when tools/mirror/ is not in main yet); "
+                    "python3 apply_bundle.py <part01> <part02> ... --sha256 %s (it concatenates the parts, decodes, verifies, pulls refs/heads/%s = a fast-forward when main is still at base %s) "
+                    "&& git push origin %s && git push origin HEAD:<synced branch>; then mirror.py sync (Postman regenerate + Drive copies). Without apply_bundle.py: cat parts > x.b64; base64 -d x.b64 > x.bundle; git bundle verify x.bundle; git pull --no-rebase x.bundle %s" % (sha, branch, base[:9], branch, branch)}
     _json.dump(man, open(os.path.join(out, stem + ".manifest.json"), "w"), indent=1)
     print("git: push blocked -> PACKAGE written: %s(.b64) + %s.manifest.json (sha256 %s, %d commits)" % (path, stem, sha[:12], len(commits)))
-    print("     upload the .b64 AND the manifest to Drive 'github mirror' (%s) and project_write the .b64 as mirror/outbox/%s.bundle.b64;"
-          " the next routine run's GITHUB INBOX step applies it (apply_bundle.py) and pushes. William need not touch it." % (DRIVE["github mirror"], stem))
+    print("     upload the PARTS (%d x <=45 KB text, PACKAGE_<stem>.bundle.b64.partNN) + the manifest (PACKAGE_<stem>.manifest.json) + a loose PACKAGE_apply_bundle.py to Drive 'github mirror' (%s)"
+          " - the routine cannot read project docs, so Drive must carry the bytes; project_write the whole .b64 as mirror/outbox/%s.bundle.b64 too (byte-exact, for a chat session)."
+          " The next routine run's GITHUB INBOX step applies it and pushes. William need not touch it." % (len(parts), DRIVE["github mirror"], stem))
     return False
 
 # ---- driver -------------------------------------------------------------------------------------

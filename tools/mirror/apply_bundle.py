@@ -6,7 +6,7 @@
 #          so the routine's mirror step can push main + the synced branch and regenerate Postman/Drive from what the session learned.
 # Rules it uses: never applies the same bundle twice (sha256 register); never force-merges - a conflict stops with the bundle left
 #          untouched for William; the working tree must be clean.  Never touches: AMD, Drive, Postman (the caller does the mirror).
-"""Usage: python3 tools/mirror/apply_bundle.py <bundle.b64|bundle> [--sha256 <hex>] [--register practices/ehpa/registers/bundles_applied.json] [--dry]
+"""Usage: python3 tools/mirror/apply_bundle.py <bundle.b64|bundle | part01.b64 part02.b64 ...> [--sha256 <hex>] [--register practices/ehpa/registers/bundles_applied.json] [--dry]
 Exit 0 = applied (or already applied), 2 = verification failed, 3 = merge conflict / dirty tree."""
 import sys, os, json, base64, hashlib, subprocess, datetime, re, tempfile
 def sh(*a, **k):
@@ -14,14 +14,20 @@ def sh(*a, **k):
 def main():
     args = sys.argv[1:]
     if not args: print(__doc__); return 1
-    src = args[0]; want = args[args.index("--sha256") + 1] if "--sha256" in args else None
+    want = args[args.index("--sha256") + 1] if "--sha256" in args else None
     reg = args[args.index("--register") + 1] if "--register" in args else "practices/ehpa/registers/bundles_applied.json"
     dry = "--dry" in args
-    root = sh("git", "rev-parse", "--show-toplevel")[1]; os.chdir(root)
-    raw = open(src, "rb").read()
-    if src.endswith(".b64") or raw[:4] != b"# v2":
-        text = raw.decode("ascii", "ignore"); text = re.sub(r"\s+", "", text)      # Drive text uploads may wrap / flip characters (9/14 lesson) - the sha256 check below catches a flip
+    flags = {"--sha256", "--register"}
+    srcs = [a for i, a in enumerate(args) if not a.startswith("--") and (i == 0 or args[i - 1] not in flags)]   # one .bundle/.b64, or the .b64 PARTS in order (part01 part02 ...; a Drive text upload is capped, so big packages are split - 9/23 lesson)
+    src = srcs[0]
+    if len(srcs) > 1 or src.endswith(".b64"):
+        text = "".join(open(s_, "rb").read().decode("ascii", "ignore") for s_ in sorted(srcs) if len(srcs) > 1) if len(srcs) > 1 else open(src, "rb").read().decode("ascii", "ignore")
+        text = re.sub(r"\s+", "", text)      # Drive text uploads may wrap / flip characters (9/14 lesson) - the sha256 check below catches a flip
         raw = base64.b64decode(text)
+    else:
+        raw = open(src, "rb").read()
+        if raw[:4] != b"# v2":
+            raw = base64.b64decode(re.sub(r"\s+", "", raw.decode("ascii", "ignore")))
     h = hashlib.sha256(raw).hexdigest()
     if want and h.lower() != want.lower(): print("SHA256 MISMATCH: bundle %s vs manifest %s - not applied" % (h, want)); return 2
     applied = json.load(open(reg)) if os.path.exists(reg) else []
