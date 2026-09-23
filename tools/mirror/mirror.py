@@ -171,6 +171,7 @@ def bundle(slug=""):
     parts = []
     for i in range(0, len(b64), PART):
         name = "%s.bundle.b64.part%02d" % (stem, len(parts) + 1); chunk = b64[i:i + PART]
+        chunk = "\n".join(chunk[j:j + 76] for j in range(0, len(chunk), 76)) + "\n"   # 76-char lines: a Read tool truncates very long lines; apply_bundle strips the whitespace again
         open(os.path.join(out, name), "w").write(chunk); parts.append({"name": name, "chars": len(chunk), "sha256": hashlib.sha256(chunk.encode()).hexdigest()})
     commits = sh("git log --format=%%h\\ %%s %s" % (rng if rng != "--all" else "-20"), check=False).stdout.strip().splitlines()
     man = {"package": stem, "bundle": stem + ".bundle.b64", "sha256": sha, "bytes": len(raw), "range": rng, "branch": branch, "base": base, "head": sh("git rev-parse HEAD").stdout.strip(),
