@@ -2,25 +2,40 @@
  "12179890": {
   "checked": "2026-09-22",
   "dod": "2025-08-30",
-  "name": "CROSBY,HELEN G",
+  "name": "CROSSLEY,HELEN G",
   "src": "stedi-medicare-271"
  },
  "12182505": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "FITZPATRICK,CAROL",
+  "name": "FITZPATRICK,CORINNE",
+  "src": "stedi: no death on record"
+ },
+ "12182506": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "12182776": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CATALANO,NICHOLAS T",
+  "name": "CATALANO,CORVIN T",
   "src": "stedi: no death on record"
  },
  "12182946": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "PENNY,CARMA",
+  "src": "stedi: no death on record"
+ },
+ "12182947": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "12183032": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "12231909": {
@@ -32,13 +47,18 @@
  "12232001": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "LANGSTON,LINDA",
+  "name": "LANGSTON,NORCOTT",
+  "src": "stedi: no death on record"
+ },
+ "12232248": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "12232512": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BEVERLY,TEMICA",
+  "name": "BEXFORD,TEMICA",
   "src": "stedi: no death on record"
  },
  "12234330": {
@@ -56,7 +76,7 @@
  "17468922": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "LEWIS KING,BARBARA",
+  "name": "LISLE KINSALE,BARBARA",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17468923": {
@@ -68,13 +88,13 @@
  "17469078": {
   "checked": "2026-09-22",
   "dod": "2026-02-28",
-  "name": "CRUVER,JAMES",
+  "name": "CRANDALL,JASPER",
   "src": "stedi-medicare-271"
  },
  "17469397": {
   "checked": "2026-09-22",
   "dod": "2026-08-06",
-  "name": "KUHNE,KAY",
+  "name": "KUHNE,KAYE",
   "src": "stedi-medicare-271"
  },
  "17469429": {
@@ -86,25 +106,45 @@
  "17469446": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MAXWELL,KENNETH EDWARD",
+  "name": "MAPLIN,KENDREW EDWARD",
+  "src": "stedi: no death on record"
+ },
+ "17469466": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17469645": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17470713": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "POUCHET-MELVIN,GAIL",
+  "name": "POUCHET-ELLERY,GWEN",
   "src": "stedi: no death on record"
  },
  "17470743": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "GARRETT,CINDY L",
+  "name": "GARROW,CERYS L",
   "src": "stedi: no death on record"
  },
  "17470804": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "FAHEY,ETHEL M",
+  "src": "stedi: no death on record"
+ },
+ "17470849": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17470875": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17470939": {
@@ -116,7 +156,7 @@
  "17470940": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HOGAN,CHARLENE",
+  "name": "HOGARTH,CHARMIAN",
   "src": "stedi: no death on record"
  },
  "17470950": {
@@ -127,13 +167,13 @@
  "17471156": {
   "checked": "2026-09-22",
   "dod": "2025-11-12",
-  "name": "WATT,CAROL",
+  "name": "WATT,CORINNE",
   "src": "stedi-medicare-271"
  },
  "17471172": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "THOMAS,BILLIE G",
+  "name": "THURLOW,BILLIE G",
   "src": "stedi: no death on record"
  },
  "17471174": {
@@ -147,6 +187,11 @@
   "dod": null,
   "name": "GARCIA,MERCEDES",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17471326": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17471333": {
   "checked": "2026-09-22",
@@ -162,7 +207,7 @@
  "17471496": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DAVIS,MARY",
+  "name": "DAVIS,MARISA",
   "src": "stedi: no death on record"
  },
  "17471688": {
@@ -174,13 +219,13 @@
  "17471725": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BLANCO,NORMAN",
+  "name": "BLAKELY,NORMAN",
   "src": "stedi: no death on record"
  },
  "17471773": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "STARLING,JOSEPH",
+  "name": "STARLING,JOSIAH",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17471791": {
@@ -198,8 +243,13 @@
  "17471843": {
   "checked": "2026-09-22",
   "dod": "2026-05-18",
-  "name": "STORY,SUZANNE E",
+  "name": "STORY,SABRINA E",
   "src": "stedi-medicare-271"
+ },
+ "17471968": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17472124": {
   "checked": "2026-09-22",
@@ -210,25 +260,30 @@
  "17472285": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CHRISTIAN,WALTER B",
+  "name": "CHILTON,WALTER B",
   "src": "stedi: no death on record"
  },
  "17472396": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CULPEPPER,ROBERT",
+  "name": "CARDWELL,RUPERT",
+  "src": "stedi: no death on record"
+ },
+ "17472397": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17472420": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MARTEN,JEFFREY",
+  "name": "MARLIN,JEFFREY",
   "src": "stedi: no death on record"
  },
  "17472431": {
   "checked": "2026-09-22",
   "dod": "2025-11-16",
-  "name": "ANDREWS,FRANKLIN",
+  "name": "ANSELL,FRANKLIN",
   "src": "stedi-medicare-271"
  },
  "17472436": {
@@ -252,13 +307,18 @@
  "17472553": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HERRON,RALPH",
+  "name": "HESKETH,RALPH",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17472556": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17472582": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BROOKS,ROGER",
+  "name": "BROOKES,ROGER",
   "src": "stedi: no death on record"
  },
  "17472594": {
@@ -279,6 +339,11 @@
   "name": "DECAMP JR,TIMOTHY G",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17472730": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472731": {
   "checked": "2026-09-22",
   "dod": null,
@@ -291,10 +356,15 @@
   "name": "JONES,EDDIE",
   "src": "stedi: no death on record"
  },
+ "17472741": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472766": {
   "checked": "2026-09-22",
   "dod": "2025-08-18",
-  "name": "HUMPHREYS,DAVID",
+  "name": "HUMPHREYS,DAVIN",
   "src": "stedi-medicare-271"
  },
  "17472784": {
@@ -303,16 +373,21 @@
   "name": "AVRETT,ANGEL DENISE",
   "src": "stedi-medicare-271"
  },
+ "17472829": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472833": {
   "checked": "2026-09-22",
   "dod": "2026-03-04",
-  "name": "CHILES,CAROLYN",
+  "name": "CHILES,CARLOTTA",
   "src": "stedi-medicare-271"
  },
  "17472839": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "TILLMAN,KENNETH",
+  "name": "THACKERAY,KENDREW",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17472873": {
@@ -330,7 +405,7 @@
  "17472931": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "THOMAS,CAMILLE S",
+  "name": "THURLOW,CAMILLE S",
   "src": "stedi: no death on record"
  },
  "17473004": {
@@ -344,6 +419,16 @@
   "dod": "2025-09-29",
   "name": "MCLAUGHLIN,HELEN",
   "src": "stedi-medicare-271"
+ },
+ "17473062": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17473065": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17473086": {
   "checked": "2026-09-22",
@@ -372,19 +457,19 @@
  "17473191": {
   "checked": "2026-09-22",
   "dod": "2026-03-28",
-  "name": "ONEAL,DAVID",
+  "name": "ONEAL,DAVIN",
   "src": "stedi-medicare-271"
  },
  "17473197": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MCCALL,ASELA",
+  "name": "MARLOWE,ASELA",
   "src": "stedi: no death on record"
  },
  "17473208": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "RIPLEY,CHARLES",
+  "name": "RIPLEY,CHESTER",
   "src": "stedi: no death on record"
  },
  "17473211": {
@@ -396,7 +481,12 @@
  "17473222": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CLARK,CAROL",
+  "name": "CLYDE,CORINNE",
+  "src": "stedi: no death on record"
+ },
+ "17473233": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17473235": {
@@ -405,22 +495,27 @@
   "name": "DAVIDSON,JANE L",
   "src": "stedi: no death on record"
  },
+ "17473236": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17473245": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DAYHOFF,DANNY",
+  "name": "DALRYMPLE,DANE",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17473282": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SANDERS,MARTHA",
+  "name": "SANDERS,MARTHE",
   "src": "stedi: no death on record"
  },
  "17473308": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "GUST,SUzanne",
+  "name": "GRESHAM,SUzanne",
   "src": "stedi: no death on record"
  },
  "17473309": {
@@ -441,10 +536,15 @@
   "name": "RAUGHLEY,JOSHUA",
   "src": "stedi: no death on record"
  },
+ "17473347": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17473383": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DUNCAN,JOSEPH M",
+  "name": "DUNSTAN,JOSIAH M",
   "src": "stedi: no death on record"
  },
  "17473393": {
@@ -468,7 +568,7 @@
  "17473431": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CARMICHAEL,LINDA",
+  "name": "CARMICHAEL,NORCOTT",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17473440": {
@@ -489,10 +589,15 @@
   "name": "WINSTANLEY BALL,DONNA",
   "src": "stedi-medicare-271"
  },
+ "17473477": {
+  "checked": "2026-09-23",
+  "dod": "2026-09-15",
+  "src": "stedi-medicare-271"
+ },
  "17473482": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "GROVES,ROBERT",
+  "name": "GROVES,RUPERT",
   "src": "stedi: no death on record"
  },
  "17473548": {
@@ -513,10 +618,15 @@
   "name": "POLSTON,SHELLIE",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17473669": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17473885": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "RUMBLEY,ROBERT A",
+  "name": "RUMBLEY,RUPERT A",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17473964": {
@@ -534,7 +644,7 @@
  "17474082": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MCCALL,BESSIE",
+  "name": "MARLOWE,BETTINA",
   "src": "stedi: no death on record"
  },
  "17474126": {
@@ -564,13 +674,13 @@
  "17474420": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOHNSON,DOROTHY RUTH",
+  "name": "PELLAM,DOROTHY RUTH",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17474445": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HURST  III,JAMES E",
+  "name": "HURST  III,JASPER E",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17474516": {
@@ -588,13 +698,13 @@
  "17474614": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BICTELA,NANCY",
+  "name": "BICTELA,NERYS",
   "src": "stedi: no death on record"
  },
  "17474670": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HENDERSON,SUSAN",
+  "name": "HEXLEY,SUSAN",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17474741": {
@@ -614,22 +724,37 @@
   "name": "SELLARS,MARILYN",
   "src": "stedi: no death on record"
  },
+ "17474911": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17475063": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOHNSON,RONNIE",
+  "name": "PELLAM,RONNIE",
+  "src": "stedi: no death on record"
+ },
+ "17475198": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17475392": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17475536": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "RICHARDSON,GERALDINE H",
+  "name": "RICKERBY,GERALDINE H",
   "src": "stedi: no death on record"
  },
  "17475601": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOINER,MARY",
+  "name": "JOINER,MARISA",
   "src": "stedi: no death on record"
  },
  "17475602": {
@@ -641,7 +766,7 @@
  "17475638": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "FOSKEY,CAROLYN L",
+  "name": "FOSDYKE,CARLOTTA L",
   "src": "stedi: no death on record"
  },
  "17475697": {
@@ -654,6 +779,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "SAMPSON,DUREATHA",
+  "src": "stedi: no death on record"
+ },
+ "17475993": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476021": {
@@ -677,19 +807,24 @@
  "17476438": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BURNETTE,CAROL",
+  "name": "BURWELL,CORINNE",
+  "src": "stedi: no death on record"
+ },
+ "17476458": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476479": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MASON,LAURA RIBA",
+  "name": "MABRY,LAUREL RIBA",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17476530": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOINER,MARY",
+  "name": "JOINER,MARISA",
   "src": "stedi: no death on record"
  },
  "17476583": {
@@ -703,22 +838,47 @@
   "name": null,
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17476680": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17476681": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476748": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "PARKS,LARRY",
+  "name": "PARKS,LYLE",
+  "src": "stedi: no death on record"
+ },
+ "17476749": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476792": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "WILLIAMS,CARLTON",
+  "name": "ROWANTREE,CARLTON",
   "src": "stedi: no death on record"
  },
  "17476855": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "BRADNEY,LENORA",
+  "src": "stedi: no death on record"
+ },
+ "17476865": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17476869": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476975": {
@@ -730,7 +890,12 @@
  "17477125": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CROSBY,ATHA T",
+  "name": "CROSSLEY,ATHA T",
+  "src": "stedi: no death on record"
+ },
+ "17477134": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17477190": {
@@ -739,28 +904,48 @@
   "name": "HUXFORD,MICHAEL O",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17477204": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17477267": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "WALDEN,MARTHA SUE",
+  "name": "WALDRON,MARTHE SUE",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17477289": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "WALSH,GEORGE",
+  "name": "WHITLOCK,GEORGE",
+  "src": "stedi: no death on record"
+ },
+ "17477310": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477353": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477496": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17477497": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DAVY,SHIRLEY",
+  "name": "DEVANE,SHELAGH",
   "src": "stedi: no death on record"
  },
  "17477499": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SCHINDLER,CAROLYN A",
+  "name": "SCHINDLER,CARLOTTA A",
   "src": "stedi: no death on record"
  },
  "17477516": {
@@ -773,16 +958,36 @@
   "dod": null,
   "src": "stedi: no death on record"
  },
+ "17477719": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477774": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477829": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477830": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "20379": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "FELIX,MAE",
+  "name": "FENNER,MAUDE",
   "src": "stedi: no death on record"
  },
  "20399": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HAWKINS,MARY",
+  "name": "HAWKINS,MARISA",
   "src": "stedi: no death on record"
  },
  "20407": {
@@ -795,6 +1000,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "MENACOF,ELLIE",
+  "src": "stedi: no death on record"
+ },
+ "20514": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "20670": {
@@ -818,55 +1028,60 @@
  "20729": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "ROSS,MARGUERITE",
+  "name": "ROSSITER,MARGERY",
   "src": "stedi: no death on record"
  },
  "20752": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CATALANO,NICHOLAS",
+  "name": "CATALANO,CORVIN",
   "src": "stedi: not a Medicare beneficiary"
  },
  "20796": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MATTHEWS,SARAH",
+  "name": "MATTHEWS,SARINA",
   "src": "stedi: no death on record"
  },
  "20860": {
   "checked": "2026-09-22",
   "dod": "2026-08-02",
-  "name": "DICKEY,RUSSELL",
+  "name": "DIGBY,RUSTIN",
   "src": "stedi-medicare-271"
  },
  "20879": {
   "checked": "2026-09-22",
   "dod": "2026-06-16",
-  "name": "ETHERIDGE,GEORGE",
+  "name": "EVERLEY,GEORGE",
   "src": "stedi-medicare-271"
  },
  "20933": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "RUPP,CAROL",
+  "name": "RUPP,CORINNE",
+  "src": "stedi: no death on record"
+ },
+ "21020": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "21172": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HOLLAND,DEBORAH",
+  "name": "HOLLOWAY,DEBORAH",
   "src": "stedi: no death on record"
  },
  "21308": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CONNELL,RICHARD",
+  "name": "CONWAY,ROWAN",
   "src": "stedi: no death on record"
  },
  "21491": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JESSUP,LAURA",
+  "name": "JESSUP,LAUREL",
   "src": "stedi: no death on record"
  },
  "21564": {
@@ -878,7 +1093,7 @@
  "21839": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "FLOYD,MARY",
+  "name": "FLOYD,MARISA",
   "src": "stedi: not a Medicare beneficiary"
  },
  "21885": {
@@ -899,10 +1114,25 @@
   "name": "VINSON,BEATRICE",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "22322": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "22603": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "FANGUY,ANNABELLE",
+  "src": "stedi: no death on record"
+ },
+ "22758": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "23161": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "23162": {
@@ -911,22 +1141,27 @@
   "name": "CADWELL,EMILY L",
   "src": "stedi: no death on record"
  },
+ "23204": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "23252": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CROSBY,ATHA",
+  "name": "CROSSLEY,ATHA",
   "src": "stedi: no death on record"
  },
  "23617": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DEISTCHLE,SUZANNE",
+  "name": "DEISTCHLE,SABRINA",
   "src": "stedi: no death on record"
  },
  "23683": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MARTEN,JEFFERY",
+  "name": "MARLIN,JEFFCOAT",
   "src": "stedi: no death on record"
  },
  "23832": {
@@ -938,11 +1173,21 @@
  "23847": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CHATMAN,CHARLIE",
+  "name": "CHADWELL,CARSTEN",
   "src": "stedi: not a Medicare beneficiary"
  },
  "23969": {
   "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "24154": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "24208": {
+  "checked": "2026-09-23",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -955,7 +1200,7 @@
  "24330": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "ALEXANDER,DENNIS",
+  "name": "ALWYN,DENNIS",
   "src": "stedi: no death on record"
  },
  "24475": {
@@ -967,7 +1212,7 @@
  "24560": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MULLIS,RUSSELL",
+  "name": "MULLIS,RUSTIN",
   "src": "stedi: no death on record"
  },
  "24651": {
@@ -979,13 +1224,13 @@
  "24750": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HESTER,LINDA",
+  "name": "HESTER,NORCOTT",
   "src": "stedi: no death on record"
  },
  "25160": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "ROLLINS,THOMAS",
+  "name": "ROLLINS,THURLOW",
   "src": "stedi: no death on record"
  },
  "25266": {
@@ -997,7 +1242,7 @@
  "25541": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MITCHELL,CAROL",
+  "name": "MITCHELL,CORINNE",
   "src": "stedi: no death on record"
  },
  "25558": {
@@ -1015,19 +1260,29 @@
  "25592": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SPEED,GAIL",
+  "name": "SPEED,GWEN",
   "src": "stedi: no death on record"
  },
  "25596": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HALPERIN,GAIL",
+  "name": "HALLORAN,GWEN",
   "src": "stedi: no death on record"
  },
  "42092": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "JARRETT,SALLY",
+  "src": "stedi: no death on record"
+ },
+ "44944": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "44954": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "44962": {
@@ -1039,25 +1294,25 @@
  "44984": {
   "checked": "2026-09-22",
   "dod": "2026-08-24",
-  "name": "THOMAS,THELMA",
+  "name": "THURLOW,THORA",
   "src": "stedi-medicare-271"
  },
  "44987": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HARMON,MURDEEN",
+  "name": "HARLAN,MURDEEN",
   "src": "stedi: no death on record"
  },
  "44997": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "TESTA,NANCY",
+  "name": "TESTA,NERYS",
   "src": "stedi: no death on record"
  },
  "45008": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MANN,RICHARD K",
+  "name": "MANN,ROWAN K",
   "src": "stedi: no death on record"
  },
  "45010": {
@@ -1069,7 +1324,7 @@
  "45052": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "CAROTHERS,MARY LOU",
+  "name": "CAROTHERS,MARISA LOU",
   "src": "stedi: no death on record"
  },
  "45210": {
@@ -1078,11 +1333,21 @@
   "name": "VEASEY,DELORES",
   "src": "stedi: no death on record"
  },
+ "45496": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "45520": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "DRAKE,RONALD PREWITT",
+  "name": "DRAPER,RONALD PREWITT",
   "src": "stedi: no death on record"
+ },
+ "45668": {
+  "checked": "2026-09-23",
+  "dod": "2026-07-27",
+  "src": "stedi-medicare-271"
  },
  "45724": {
   "checked": "2026-09-22",
@@ -1090,16 +1355,26 @@
   "name": "BIERBAUM,JOANN",
   "src": "stedi-medicare-271"
  },
+ "46048": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "46051": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOHNSON,ELIZABETH A",
+  "name": "PELLAM,ELIZABETH A",
   "src": "stedi: no death on record"
  },
  "46673": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "TAPLEY,SHIRLEY",
+  "name": "TAPLEY,SHELAGH",
+  "src": "stedi: no death on record"
+ },
+ "46678": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "46679": {
@@ -1114,10 +1389,20 @@
   "name": "WILLIAMSON,CARROLL MAX",
   "src": "stedi: no death on record"
  },
+ "46692": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "48207": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "48449": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "ROBINSON,CAROL",
+  "name": "ROWLEY,CORINNE",
   "src": "stedi: no death on record"
  }
 }
