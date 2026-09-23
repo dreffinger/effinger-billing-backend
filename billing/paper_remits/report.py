@@ -72,16 +72,18 @@ fn = os.path.join(OUT, "paper_remits_posting_workbook_%s.xlsx" % STAMP); wb.save
 tot_posted = round(sum(r.get("pay") or 0 for r in posted), 2); tot_wo = round(sum(r.get("wo") or 0 for r in posted), 2)
 byfam = collections.defaultdict(lambda: [0, 0.0])
 for r in posted: byfam[r["family"]][0] += 1; byfam[r["family"]][1] += r.get("pay") or 0
-plan_total = round(sum(g["claims_total"] for g in P["groups"]), 2)
+base_groups = [g for g in P["groups"] if not g.get("trn_suffix")]   # re-filed groups repeat claims already counted
+plan_total = round(sum(g["claims_total"] for g in base_groups), 2)
 holds_c = collections.Counter(h["why"] for h in P["holds"])
 md = ["# Paper / virtual-card remittances — posted into AdvancedMD %s" % STAMP, "",
       "**Scanned:** 13 ScanSnap batches from Gmail, 502 pages OCR'd and categorized (workbook sheet 'Page inventory').", "",
-      "**Posting plan:** %d checks/cards, %d claims, $%.2f on the EOBs (sheet 'Checks (groups)')." % (len(P["groups"]), sum(len(g["claims"]) for g in P["groups"]), plan_total), "",
+      "**Posting plan:** %d checks/cards, %d claims, $%.2f on the EOBs (sheet 'Checks (groups)'; re-filed groups at the bottom repeat claims whose EOB lines needed AMD's own CPTs)." % (len(base_groups), sum(len(g["claims"]) for g in base_groups), plan_total), "",
       "**Posted in AMD:** %d lines, **$%.2f** payments + $%.2f write-offs (WOMCAD/WOCAID2ND/WOINS), every line through the ERA Center with its reason codes, under the payer's own carrier (sheet 'Posted in AMD')." % (len(posted), tot_posted, tot_wo), ""]
 md += ["| Payer | Lines | Posted |", "|---|---|---|"] + ["| %s | %d | $%.2f |" % (PAYER.get(f, f), n, a) for f, (n, a) in sorted(byfam.items(), key=lambda kv: -kv[1][1])]
 md += ["", "**Held / to decide:** %d lines (sheet 'Holds & errors'): %s" % (len(other), "; ".join("%s x%d" % (k, v) for k, v in collections.Counter(r["status"] for r in other).items())), ""]
 md += ["**Not posted by design (sheet 'Not posted (by design)'):** " + "; ".join("%s: %d" % (k.split(" - ")[0].split(" (")[0], v) for k, v in holds_c.items()), ""]
-md += ["**Virtual cards to key in Square:** %d stubs, $%.2f — none run yet (Square 5/1–9/22 history checked); %d cards ($%.2f) say Valid Thru 09/26 and expire in days." % (len(STUBS), sum(s["amount"] for s in STUBS), sum(1 for s in STUBS if s.get("exp") == "09/26"), sum(s["amount"] for s in STUBS if s.get("exp") == "09/26")), ""]
+keyable = [s for s in STUBS if not s.get("warning")]; twins = [s for s in STUBS if s.get("warning")]
+md += ["**Virtual cards to key in Square:** %d stubs in the pile, $%.2f; none run yet (Square 5/1–9/22 history checked). %d of them ($%.2f) are duplicated by a PHYSICAL CHECK of the same amount in the same pile (the payer re-issued the card as a check) — deposit the check, do not key those. That leaves **%d cards, $%.2f to key**; %d of those ($%.2f) say Valid Thru 09/26 and expire within days." % (len(STUBS), sum(s["amount"] for s in STUBS), len(twins), sum(s["amount"] for s in twins), len(keyable), sum(s["amount"] for s in keyable), sum(1 for s in keyable if s.get("exp") == "09/26"), sum(s["amount"] for s in keyable if s.get("exp") == "09/26")), ""]
 md += ["**Correspondence needing action** (sheet 'Correspondence & actions'): Optum/WellCare records requests x2 (Camacho DOS 6/22/2026, Catledge DOS 8/28/2025), UHC 'additional information' on Betteridge 7/28/2026, Cigna/Evernorth termination 8/31/2026 (recredentialing), WellCare non-contracted dispute notices.", ""]
 open(os.path.join(OUT, "paper_remits_summary_%s.md" % STAMP), "w").write("\n".join(md))
 print("\n".join(md)); print("wrote", fn)
