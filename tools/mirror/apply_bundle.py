@@ -8,7 +8,7 @@
 #          untouched for William; the working tree must be clean.  Never touches: AMD, Drive, Postman (the caller does the mirror).
 """Usage: python3 tools/mirror/apply_bundle.py <bundle.b64|bundle> [--sha256 <hex>] [--register practices/ehpa/registers/bundles_applied.json] [--dry]
 Exit 0 = applied (or already applied), 2 = verification failed, 3 = merge conflict / dirty tree."""
-import sys, os, json, base64, hashlib, subprocess, datetime, re
+import sys, os, json, base64, hashlib, subprocess, datetime, re, tempfile
 def sh(*a, **k):
     r = subprocess.run(a, capture_output=True, text=True, **k); return r.returncode, (r.stdout + r.stderr).strip()
 def main():
@@ -26,14 +26,16 @@ def main():
     if want and h.lower() != want.lower(): print("SHA256 MISMATCH: bundle %s vs manifest %s - not applied" % (h, want)); return 2
     applied = json.load(open(reg)) if os.path.exists(reg) else []
     if any(x.get("sha256") == h for x in applied): print("already applied:", h); return 0
-    tmp = os.path.join(root, ".inbox_%s.bundle" % h[:12]); open(tmp, "wb").write(raw)
+    tmp = os.path.join(tempfile.gettempdir(), "inbox_%s.bundle" % h[:12]); open(tmp, "wb").write(raw)   # outside the repo: an untracked file must not fail the clean-tree check
     try:
         code, out = sh("git", "bundle", "verify", tmp)
         if code != 0: print("git bundle verify FAILED:", out); return 2
         heads = sh("git", "bundle", "list-heads", tmp)[1]; print("bundle heads:", heads.replace("\n", " | "))
-        if sh("git", "status", "--porcelain")[1].strip(): print("working tree not clean - commit or stash first"); return 3
+        refs = [ln.split()[1] for ln in heads.splitlines() if len(ln.split()) > 1]
+        ref = next((r.replace("refs/heads/", "") for r in refs if r.startswith("refs/heads/")), "HEAD")   # thin packages carry refs/heads/<branch>; older ones only HEAD
+        if sh("git", "status", "--porcelain", "--untracked-files=no")[1].strip(): print("working tree not clean (tracked changes) - commit or stash first"); return 3
         if dry: print("DRY: would pull", tmp); return 0
-        code, out = sh("git", "pull", "--no-rebase", "--no-edit", tmp, "main")
+        code, out = sh("git", "pull", "--no-rebase", "--no-edit", tmp, ref)
         if code != 0:
             sh("git", "merge", "--abort"); print("PULL FAILED (conflict?) - bundle left for William:", out[-400:]); return 3
         head = sh("git", "rev-parse", "HEAD")[1]

@@ -130,7 +130,8 @@ def commit_and_push(message):
     if not st:
         print("git: nothing changed since the last mirror")
     else:
-        sh('git -c user.name="billing-mirror" -c user.email="mirror@effinger.local" commit -q -m %s' % json.dumps(message))
+        trailer = "\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>\nClaude-Session: %s" % os.environ.get("CLAUDE_SESSION_URL", "https://claude.ai/code/session_015icETjbznLEETp3wfpHYbA")
+        sh('git -c user.name="Claude" -c user.email="noreply@anthropic.com" commit -q -m %s' % json.dumps(message + trailer))   # 9/22 stop-hook rule: commits are authored by Claude <noreply@anthropic.com>, never billing-mirror
         print("git: committed -> %s" % sh("git rev-parse --short HEAD").stdout.strip())
     tok = token()
     if not tok:
@@ -161,13 +162,14 @@ def bundle(slug=""):
     stem = "effinger-billing-backend_%s%s" % (TODAY, ("_" + slug) if slug else "")
     path = os.path.join(out, stem + ".bundle")
     base = sh("git rev-parse --verify -q origin/main", check=False).stdout.strip()
-    rng = "origin/main..HEAD" if base and sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode == 0 else "--all"
-    sh("git bundle create -q %s %s%s" % (path, rng, " HEAD" if rng != "--all" else ""))   # thin: only the new commits; the routine's clone already has origin/main
+    branch = sh("git rev-parse --abbrev-ref HEAD", check=False).stdout.strip() or "main"
+    rng = "origin/main..%s" % branch if base and sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode == 0 else "--all"
+    sh("git bundle create -q %s %s" % (path, rng))   # thin: only the new commits, under the branch's own ref name (refs/heads/<branch>) so `git pull <bundle> <branch>` finds it
     raw = open(path, "rb").read(); sha = hashlib.sha256(raw).hexdigest()
     open(path + ".b64", "w").write(base64.b64encode(raw).decode())
-    commits = sh("git log --format=%%h\\ %%s %s" % ("origin/main..HEAD" if rng != "--all" else "-20"), check=False).stdout.strip().splitlines()
-    man = {"package": stem, "bundle": stem + ".bundle.b64", "sha256": sha, "bytes": len(raw), "range": rng, "base": base, "head": sh("git rev-parse HEAD").stdout.strip(),
-           "commits": commits, "created": TODAY, "apply": "python3 tools/mirror/apply_bundle.py <file.b64> --sha256 %s && git push origin main && git push origin HEAD:<synced branch>; then mirror.py sync" % sha}
+    commits = sh("git log --format=%%h\\ %%s %s" % (rng if rng != "--all" else "-20"), check=False).stdout.strip().splitlines()
+    man = {"package": stem, "bundle": stem + ".bundle.b64", "sha256": sha, "bytes": len(raw), "range": rng, "branch": branch, "base": base, "head": sh("git rev-parse HEAD").stdout.strip(),
+           "commits": commits, "created": TODAY, "apply": "python3 tools/mirror/apply_bundle.py <file.b64> --sha256 %s && git push origin %s && git push origin HEAD:<synced branch>; then mirror.py sync" % (sha, branch)}
     _json.dump(man, open(os.path.join(out, stem + ".manifest.json"), "w"), indent=1)
     print("git: push blocked -> PACKAGE written: %s(.b64) + %s.manifest.json (sha256 %s, %d commits)" % (path, stem, sha[:12], len(commits)))
     print("     upload the .b64 AND the manifest to Drive 'github mirror' (%s) and project_write the .b64 as mirror/outbox/%s.bundle.b64;"
