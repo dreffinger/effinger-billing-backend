@@ -152,7 +152,7 @@ def commit_and_push(message):
             return bundle()
     return True
 
-def bundle(slug=""):
+def bundle(slug="", base_ref=None):
     """Fallback when the push is blocked (William 9/23/2026): leave a PACKAGE the 2-hourly routine applies to the triple mirror -
     a thin git bundle (everything after origin/main when that ref is known, else --all), the same bundle as base64 TEXT (Drive
     text uploads survive; binaries download corrupt through the connector) and a JSON manifest with the sha256 the routine
@@ -161,9 +161,9 @@ def bundle(slug=""):
     out = os.path.join(WS, "outbox"); os.makedirs(out, exist_ok=True)
     stem = "effinger-billing-backend_%s%s" % (TODAY, ("_" + slug) if slug else "")
     path = os.path.join(out, stem + ".bundle")
-    base = sh("git rev-parse --verify -q origin/main", check=False).stdout.strip()
+    base = sh("git rev-parse --verify -q %s" % (base_ref or "origin/main"), check=False).stdout.strip()   # base_ref: a follow-up package on top of an earlier package's head (its commits are not on origin yet)
     branch = sh("git rev-parse --abbrev-ref HEAD", check=False).stdout.strip() or "main"
-    rng = "origin/main..%s" % branch if base and sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode == 0 else "--all"
+    rng = "%s..%s" % (base_ref or "origin/main", branch) if base and sh("git merge-base --is-ancestor %s HEAD" % (base_ref or "origin/main"), check=False).returncode == 0 else "--all"
     sh("git bundle create -q %s %s" % (path, rng))   # thin: only the new commits, under the branch's own ref name (refs/heads/<branch>) so `git pull <bundle> <branch>` finds it
     raw = open(path, "rb").read(); sha = hashlib.sha256(raw).hexdigest()
     b64 = base64.b64encode(raw).decode(); open(path + ".b64", "w").write(b64)
