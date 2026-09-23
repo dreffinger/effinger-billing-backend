@@ -11,6 +11,11 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "12182506": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "12182776": {
   "checked": "2026-09-22",
   "dod": null,
@@ -23,6 +28,16 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "12182947": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "12183032": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "12231909": {
   "checked": "2026-09-22",
   "dod": null,
@@ -33,6 +48,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "QUILL,NORCOTT",
+  "src": "stedi: no death on record"
+ },
+ "12232248": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "12232512": {
@@ -89,6 +109,16 @@
   "name": "MAPLIN,KENDREW EDWIN",
   "src": "stedi: no death on record"
  },
+ "17469466": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17469645": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17470713": {
   "checked": "2026-09-22",
   "dod": null,
@@ -105,6 +135,16 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "17470849": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17470875": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17470939": {
@@ -147,6 +187,11 @@
   "dod": null,
   "name": "GARLAND-G,MERCY",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17471326": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17471333": {
   "checked": "2026-09-22",
@@ -201,6 +246,11 @@
   "name": "[name]",
   "src": "stedi-medicare-271"
  },
+ "17471968": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472124": {
   "checked": "2026-09-22",
   "dod": null,
@@ -217,6 +267,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "CARDWELL,RUPERT",
+  "src": "stedi: no death on record"
+ },
+ "17472397": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17472420": {
@@ -255,6 +310,11 @@
   "name": "HESKETH,[first]",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17472556": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472582": {
   "checked": "2026-09-22",
   "dod": null,
@@ -279,6 +339,11 @@
   "name": "[name]",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17472730": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17472731": {
   "checked": "2026-09-22",
   "dod": null,
@@ -289,6 +354,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "THORNEY,[first]",
+  "src": "stedi: no death on record"
+ },
+ "17472741": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17472766": {
@@ -302,6 +372,11 @@
   "dod": "[DOB]",
   "name": "AVERILL,ANGELICA DENBY",
   "src": "stedi-medicare-271"
+ },
+ "17472829": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17472833": {
   "checked": "2026-09-22",
@@ -344,6 +419,16 @@
   "dod": "[DOB]",
   "name": "[name]",
   "src": "stedi-medicare-271"
+ },
+ "17473062": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17473065": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17473086": {
   "checked": "2026-09-22",
@@ -399,10 +484,20 @@
   "name": "CLYDE,CORINNE",
   "src": "stedi: no death on record"
  },
+ "17473233": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17473235": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "17473236": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17473245": {
@@ -439,6 +534,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "17473347": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17473383": {
@@ -489,6 +589,11 @@
   "name": "[name]",
   "src": "stedi-medicare-271"
  },
+ "17473477": {
+  "checked": "2026-09-23",
+  "dod": "[DOB]",
+  "src": "stedi-medicare-271"
+ },
  "17473482": {
   "checked": "2026-09-22",
   "dod": null,
@@ -512,6 +617,11 @@
   "dod": null,
   "name": "[name]",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17473669": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17473885": {
   "checked": "2026-09-22",
@@ -614,10 +724,25 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "17474911": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17475063": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "PELLAM,[first]",
+  "src": "stedi: no death on record"
+ },
+ "17475198": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17475392": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17475536": {
@@ -656,6 +781,11 @@
   "name": "SAMSON,DURA",
   "src": "stedi: no death on record"
  },
+ "17475993": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476021": {
   "checked": "2026-09-22",
   "dod": null,
@@ -678,6 +808,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "BURWELL,CORINNE",
+  "src": "stedi: no death on record"
+ },
+ "17476458": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476479": {
@@ -703,10 +838,25 @@
   "name": null,
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17476680": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17476681": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476748": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "JARRELL,LYLE",
+  "src": "stedi: no death on record"
+ },
+ "17476749": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17476792": {
@@ -721,6 +871,16 @@
   "name": "GILLAM,[first]",
   "src": "stedi: no death on record"
  },
+ "17476865": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17476869": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476975": {
   "checked": "2026-09-22",
   "dod": null,
@@ -733,11 +893,21 @@
   "name": "CROSSLEY,[first] T",
   "src": "stedi: no death on record"
  },
+ "17477134": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17477190": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
   "src": "stedi: not a Medicare beneficiary"
+ },
+ "17477204": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "17477267": {
   "checked": "2026-09-22",
@@ -749,6 +919,21 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "WHITLOCK,[first]",
+  "src": "stedi: no death on record"
+ },
+ "17477310": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477353": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477496": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17477497": {
@@ -770,6 +955,26 @@
  },
  "17477557": {
   "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477719": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477774": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477829": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477830": {
+  "checked": "2026-09-23",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -795,6 +1000,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "20514": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "20670": {
@@ -851,6 +1061,11 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "21020": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "21172": {
   "checked": "2026-09-22",
   "dod": null,
@@ -899,16 +1114,36 @@
   "name": "FARROW,COLDHARBOUR",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "22322": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "22603": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "PATIENT411,ANNABELLE",
   "src": "stedi: no death on record"
  },
+ "22758": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "23161": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "23162": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "23204": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "23252": {
@@ -943,6 +1178,16 @@
  },
  "23969": {
   "checked": "2026-09-22",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "24154": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "24208": {
+  "checked": "2026-09-23",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -1030,6 +1275,16 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "44944": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "44954": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "44962": {
   "checked": "2026-09-22",
   "dod": null,
@@ -1078,17 +1333,32 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "45496": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "45520": {
   "checked": "2026-09-22",
   "dod": null,
   "name": "DRAPER,ROOKWOOD PREWITT",
   "src": "stedi: no death on record"
  },
+ "45668": {
+  "checked": "2026-09-23",
+  "dod": "[DOB]",
+  "src": "stedi-medicare-271"
+ },
  "45724": {
   "checked": "2026-09-22",
   "dod": "[DOB]",
   "name": "[name]",
   "src": "stedi-medicare-271"
+ },
+ "46048": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "46051": {
   "checked": "2026-09-22",
@@ -1102,6 +1372,11 @@
   "name": "TAPSTER,SHELAGH",
   "src": "stedi: no death on record"
  },
+ "46678": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "46679": {
   "checked": "2026-09-22",
   "dod": null,
@@ -1112,6 +1387,16 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name] MAX",
+  "src": "stedi: no death on record"
+ },
+ "46692": {
+  "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "48207": {
+  "checked": "2026-09-23",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "48449": {
