@@ -13,7 +13,7 @@ P = json.load(open(D + "/plan.json")); REG = json.load(open(D + "/post_register.
 R = json.load(open(D + "/remits.json")); STUBS = json.load(open(D + "/vcc_stubs.json"))
 PAYER = {"UA": "United American Insurance Co (Globe Life) - Medigap", "WN": "Washington National / Bankers Life - Medigap", "AET12": "Aetna Senior Supplemental (American Continental) - Medigap",
          "MUT01": "United of Omaha (Mutual of Omaha) - Medigap", "ECHO": "Physicians Life Insurance Co (via ECHO/EPC) - Medigap", "SIM01": "Simply Healthcare LTSS/MMA (Medicaid, via Zelis)",
-         "FLO99": "Florida Community Care (Medicaid SMMC) - paper check", "USAA": "USAA Life - Medigap (via Zelis)", "CHAMPVA": "CHAMPVA (EFT, info only)", "BCBS": "Florida Blue (EFT, already electronic)"}
+         "FLO99": "Florida Community Care (Medicaid SMMC) - paper check", "USAA": "USAA Life - Medigap (via Zelis)", "CHAMPVA": "CHAMPVA (EFT - no 835 reaches AMD; posted from the paper EOB)", "BCBS": "Florida Blue (EFT, already electronic)"}
 def pg(pages): return ", ".join("%s p%02d" % (b[-6:], p) for b, p in pages)
 # latest register row per (family, ref, acct, cpt)
 latest = collections.OrderedDict()
@@ -76,7 +76,7 @@ base_groups = [g for g in P["groups"] if not g.get("trn_suffix")]   # re-filed g
 plan_total = round(sum(g["claims_total"] for g in base_groups), 2)
 holds_c = collections.Counter(h["why"] for h in P["holds"])
 md = ["# Paper / virtual-card remittances — posted into AdvancedMD %s" % STAMP, "",
-      "**Scanned:** 13 ScanSnap batches from Gmail, 502 pages OCR'd and categorized (workbook sheet 'Page inventory').", "",
+      "**Scanned:** 13 ScanSnap batches from Gmail, 502 pages OCR'd and categorized (workbook sheet 'Page inventory'). 9/23: + the 9 Simply claims the parser missed, 2 FCC checks (OCR misreads / re-entered visit) and the CHAMPVA EFT payments that never reached AMD.", "",
       "**Posting plan:** %d checks/cards, %d claims, $%.2f on the EOBs (sheet 'Checks (groups)'; re-filed groups at the bottom repeat claims whose EOB lines needed AMD's own CPTs)." % (len(base_groups), sum(len(g["claims"]) for g in base_groups), plan_total), "",
       "**Posted in AMD:** %d lines, **$%.2f** payments + $%.2f write-offs (WOMCAD/WOCAID2ND/WOINS), every line through the ERA Center with its reason codes, under the payer's own carrier (sheet 'Posted in AMD')." % (len(posted), tot_posted, tot_wo), ""]
 md += ["| Payer | Lines | Posted |", "|---|---|---|"] + ["| %s | %d | $%.2f |" % (PAYER.get(f, f), n, a) for f, (n, a) in sorted(byfam.items(), key=lambda kv: -kv[1][1])]

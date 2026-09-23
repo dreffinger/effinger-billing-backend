@@ -151,13 +151,27 @@ def commit_and_push(message):
             return bundle()
     return True
 
-def bundle():
-    """Fallback: a git bundle William can push from his own machine (small, one file)."""
+def bundle(slug=""):
+    """Fallback when the push is blocked (William 9/23/2026): leave a PACKAGE the 2-hourly routine applies to the triple mirror -
+    a thin git bundle (everything after origin/main when that ref is known, else --all), the same bundle as base64 TEXT (Drive
+    text uploads survive; binaries download corrupt through the connector) and a JSON manifest with the sha256 the routine
+    verifies before `tools/mirror/apply_bundle.py` pulls it and pushes main + the synced branch. Nothing learned waits for William."""
+    import hashlib, base64, json as _json
     out = os.path.join(WS, "outbox"); os.makedirs(out, exist_ok=True)
-    path = os.path.join(out, "effinger-billing-backend_%s.bundle" % TODAY)
-    sh("git bundle create -q %s --all" % path)
-    print("git: wrote %s - upload it to Drive 'github mirror' (%s); William: git pull <bundle> main && git push"
-          % (path, DRIVE["github mirror"]))
+    stem = "effinger-billing-backend_%s%s" % (TODAY, ("_" + slug) if slug else "")
+    path = os.path.join(out, stem + ".bundle")
+    base = sh("git rev-parse --verify -q origin/main", check=False).stdout.strip()
+    rng = "origin/main..HEAD" if base and sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode == 0 else "--all"
+    sh("git bundle create -q %s %s%s" % (path, rng, " HEAD" if rng != "--all" else ""))   # thin: only the new commits; the routine's clone already has origin/main
+    raw = open(path, "rb").read(); sha = hashlib.sha256(raw).hexdigest()
+    open(path + ".b64", "w").write(base64.b64encode(raw).decode())
+    commits = sh("git log --format=%%h\\ %%s %s" % ("origin/main..HEAD" if rng != "--all" else "-20"), check=False).stdout.strip().splitlines()
+    man = {"package": stem, "bundle": stem + ".bundle.b64", "sha256": sha, "bytes": len(raw), "range": rng, "base": base, "head": sh("git rev-parse HEAD").stdout.strip(),
+           "commits": commits, "created": TODAY, "apply": "python3 tools/mirror/apply_bundle.py <file.b64> --sha256 %s && git push origin main && git push origin HEAD:<synced branch>; then mirror.py sync" % sha}
+    _json.dump(man, open(os.path.join(out, stem + ".manifest.json"), "w"), indent=1)
+    print("git: push blocked -> PACKAGE written: %s(.b64) + %s.manifest.json (sha256 %s, %d commits)" % (path, stem, sha[:12], len(commits)))
+    print("     upload the .b64 AND the manifest to Drive 'github mirror' (%s) and project_write the .b64 as mirror/outbox/%s.bundle.b64;"
+          " the next routine run's GITHUB INBOX step applies it (apply_bundle.py) and pushes. William need not touch it." % (DRIVE["github mirror"], stem))
     return False
 
 # ---- driver -------------------------------------------------------------------------------------

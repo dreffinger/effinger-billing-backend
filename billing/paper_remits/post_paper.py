@@ -32,6 +32,7 @@ def rec(**kw):
     kw["when"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"); register.append(kw); save()
     L("   %-8s %s %s %s %s" % (kw.get("status"), kw.get("family"), kw.get("acct"), kw.get("cpt", ""), kw.get("note", "")))
 def done_key(fam, ref, acct, cpt): return any(r.get("family") == fam and r.get("ref") == ref and r.get("acct") == acct and r.get("cpt") == cpt and r.get("status") == "POSTED" for r in register)
+def done_acct(fam, ref, acct): return any(r.get("family") == fam and r.get("ref") == ref and r.get("acct") == acct and r.get("status") == "POSTED" for r in register)   # a claim with no EOB lines was posted with AMD's own CPTs
 
 def plans(pid):
     r = amd.post('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="pat%s" nocookie="1"/>' % (amd._msgtime(), num(pid)))
@@ -133,7 +134,7 @@ def line_plan(fam, seq, ch, live, ref):
 
 def process_group(g, a, ctrl):
     fam, ref = g["family"], g["ref"]
-    claims = [copy.deepcopy(c) for c in g["claims"] if not all(done_key(fam, ref, c["acct"], l.get("cpt")) for l in (c.get("lines") or [{}]))]
+    claims = [copy.deepcopy(c) for c in g["claims"] if not (all(done_key(fam, ref, c["acct"], l["cpt"]) for l in c["lines"]) if c.get("lines") else done_acct(fam, ref, c["acct"]))]
     if not claims: L("== %s %s: every line already in the register" % (fam, ref)); return
     L("== %s %s (%s, %s) %d claims $%.2f expected %s" % (fam, ref, g["ref_source"], g["date"], len(claims), g["claims_total"], g["expected_total"]))
     rm = {"id": "G%s" % ref, "family": fam, "claims": claims, "check_number": ref + g.get("trn_suffix", ""), "date": g["date"], "method": "check"}   # trn_suffix: a new TRN for a re-filed group, posted under the clean check number
@@ -187,7 +188,7 @@ def process_group(g, a, ctrl):
                 rec(status="ERROR", pay=lp["pay"], note="addpayments refused: %s | %s" % (head[:160], lp["note"]), **base)
             time.sleep(0.5)
     if relines:
-        rm2 = {"id": "G%sL" % ref, "family": fam, "claims": [], "check_number": ref + "L", "date": g["date"], "method": "check"}
+        rm2 = {"id": "G%sL" % ref, "family": fam, "claims": [], "check_number": ref + g.get("trn_suffix", "") + "L", "date": g["date"], "method": "check"}   # the suffix keeps a re-filed group's second file from matching an earlier dismissed '<ref>L' check
         for claim, pid, vid, codes in relines:
             live = live_lines(pid, vid); active = [c for c in live if c["fee"] > 0]
             if not active: rec(status="HOLD", family=fam, ref=ref, acct=claim["acct"], pid=pid, vid=vid, note="no live charges on the visit"); continue
