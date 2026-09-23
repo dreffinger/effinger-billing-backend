@@ -1,0 +1,64 @@
+{
+ "stamp": "2026-09-19T1605Z (12:05 PM ET)",
+ "pid": "44953",
+ "patient": "ORWELL,PADRAIG",
+ "carrier": "HUM01",
+ "asked": "William chat 9/19: 'write these off' / 'not contract payable'",
+ "note": "Not contract payable - Humana 277 9/19/2026: F0/107 processed according to contract provisions, $0.00 paid on original (7/21/2026) and rebill (9/11/2026 NO-PAY remits) - write off per William 9/19/2026",
+ "rows": [
+  {
+   "visit": "19450053",
+   "dos": "07/27/2026",
+   "cid": "23359916",
+   "cpt": "99223",
+   "amount": 310.0,
+   "result": "WO ok"
+  },
+  {
+   "visit": "19450052",
+   "dos": "07/28/2026",
+   "cid": "23359915",
+   "cpt": "99233",
+   "amount": 160.0,
+   "result": "WO ok"
+  },
+  {
+   "visit": "19450115",
+   "dos": "07/29/2026",
+   "cid": "23359976",
+   "cpt": "99233",
+   "amount": 160.0,
+   "result": "WO ok"
+  },
+  {
+   "visit": "19450224",
+   "dos": "07/30/2026",
+   "cid": "23360110",
+   "cpt": "99233",
+   "amount": 160.0,
+   "result": "WO ok"
+  },
+  {
+   "visit": "19450304",
+   "dos": "07/31/2026",
+   "cid": "23360190",
+   "cpt": "99233",
+   "amount": 160.0,
+   "result": "WO ok"
+  }
+ ],
+ "already_settled": [
+  {
+   "visit": "19448382",
+   "cpt": "G0439",
+   "fee": 204.0
+  },
+  {
+   "visit": "19448813",
+   "cpt": "99487+99489",
+   "fee": 315.0
+  }
+ ],
+ "total": 950.0,
+ "verify_left": []
+}
