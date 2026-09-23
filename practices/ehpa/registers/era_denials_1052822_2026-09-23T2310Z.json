@@ -1,0 +1,1364 @@
+{
+ "stamp": "2026-09-23T2310Z",
+ "denials": [
+  {
+   "check": "1052822",
+   "pid": "24039",
+   "vid": "19453504",
+   "dos": "2026-09-01",
+   "claimstatus": 2,
+   "era_insbal": 21.8,
+   "rarc": [
+    "N650"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "07/22/2022",
+     "enddate": "05/17/2026",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car42008",
+     "begindate": "05/18/2026",
+     "enddate": "",
+     "sequence": "3"
+    }
+   ],
+   "order": "",
+   "charges": [
+    {
+     "id": "23364201",
+     "proccode": "99233",
+     "dos": "09/01/2026",
+     "fee": "160.00",
+     "carrier": "FLO99",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "21.80",
+     "patbal": "0.00",
+     "paid": "138.20",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8129",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/10/2026",
+       "check": "349929519",
+       "code": null
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-85.46",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-160.00",
+       "void": "1",
+       "date": "09/10/2026"
+      },
+      {
+       "code": "WOINS",
+       "amount": "160.00",
+       "void": "1",
+       "date": "09/17/2026"
+      },
+      {
+       "code": "WOINS",
+       "amount": "-52.74",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17473343",
+   "vid": "19448278",
+   "dos": "2026-07-07",
+   "claimstatus": 2,
+   "era_insbal": 16.93,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/01/2024",
+     "enddate": "05/31/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "3"
+    }
+   ],
+   "order": "3",
+   "charges": [
+    {
+     "id": "23357538",
+     "proccode": "99309",
+     "dos": "07/07/2026",
+     "fee": "141.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "UNI20",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/02/2026",
+       "check": "26203B1000323965",
+       "code": null
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472429",
+   "vid": "19448395",
+   "dos": "2026-07-10",
+   "claimstatus": 2,
+   "era_insbal": 0.0,
+   "rarc": [
+    "N448"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/27/2023",
+     "enddate": "07/01/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "11/27/2023",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "10/24/2023",
+     "enddate": "07/01/2026",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "4"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "5"
+    }
+   ],
+   "order": "5",
+   "charges": [
+    {
+     "id": "23357696",
+     "proccode": "G0439",
+     "dos": "07/10/2026",
+     "fee": "204.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "0.00",
+     "paid": "204.00",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "UNI20",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/02/2026",
+       "check": "V7359997",
+       "code": null
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-134.01",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-69.99",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472429",
+   "vid": "19451303",
+   "dos": "2026-08-10",
+   "claimstatus": 2,
+   "era_insbal": 11.59,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/27/2023",
+     "enddate": "07/01/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "11/27/2023",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "10/24/2023",
+     "enddate": "07/01/2026",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "4"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "5"
+    }
+   ],
+   "order": "5",
+   "charges": [
+    {
+     "id": "23361346",
+     "proccode": "99308",
+     "dos": "08/10/2026",
+     "fee": "107.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "11.59",
+     "patbal": "0.00",
+     "paid": "95.41",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-45.44",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-49.97",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472429",
+   "vid": "19452359",
+   "dos": "2026-08-22",
+   "claimstatus": 2,
+   "era_insbal": 25.06,
+   "rarc": [
+    "N448"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/27/2023",
+     "enddate": "07/01/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "11/27/2023",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "10/24/2023",
+     "enddate": "07/01/2026",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "4"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "5"
+    }
+   ],
+   "order": "5",
+   "charges": [
+    {
+     "id": "23362558",
+     "proccode": "99487",
+     "dos": "08/22/2026",
+     "fee": "206.00",
+     "carrier": "SUN01",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "16.14",
+     "patbal": "0.00",
+     "paid": "189.86",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-63.28",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-126.58",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    },
+    {
+     "id": "23362559",
+     "proccode": "99489",
+     "dos": "08/22/2026",
+     "fee": "109.00",
+     "carrier": "SUN01",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "8.92",
+     "patbal": "0.00",
+     "paid": "100.08",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-34.95",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-65.13",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "20729",
+   "vid": "19453498",
+   "dos": "2026-08-31",
+   "claimstatus": 2,
+   "era_insbal": 16.93,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23364195",
+     "proccode": "99309",
+     "dos": "08/31/2026",
+     "fee": "141.00",
+     "carrier": "FLO02",
+     "billdate": "09/10/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472286",
+   "vid": "19453494",
+   "dos": "2026-08-31",
+   "claimstatus": 2,
+   "era_insbal": 16.93,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6174",
+     "begindate": "02/28/2024",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/27/2020",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "05/27/2020",
+     "enddate": "",
+     "sequence": "3"
+    }
+   ],
+   "order": "2,3",
+   "charges": [
+    {
+     "id": "23364191",
+     "proccode": "99309",
+     "dos": "08/31/2026",
+     "fee": "141.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17473343",
+   "vid": "19451195",
+   "dos": "2026-08-07",
+   "claimstatus": 2,
+   "era_insbal": 16.93,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/01/2024",
+     "enddate": "05/31/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "3"
+    }
+   ],
+   "order": "3",
+   "charges": [
+    {
+     "id": "23361197",
+     "proccode": "99309",
+     "dos": "08/07/2026",
+     "fee": "141.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "UNI20",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/02/2026",
+       "check": "26232B1000170787",
+       "code": null
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472429",
+   "vid": "19447158",
+   "dos": "2026-07-02",
+   "claimstatus": 2,
+   "era_insbal": 16.93,
+   "rarc": [
+    "M56"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/27/2023",
+     "enddate": "07/01/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "11/27/2023",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "10/24/2023",
+     "enddate": "07/01/2026",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "4"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "5"
+    }
+   ],
+   "order": "5",
+   "charges": [
+    {
+     "id": "23356282",
+     "proccode": "99309",
+     "dos": "07/02/2026",
+     "fee": "141.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "payments": [
+      {
+       "carrier": "UNI20",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/02/2026",
+       "check": "V7132217",
+       "code": null
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472429",
+   "vid": "19448879",
+   "dos": "2026-07-17",
+   "claimstatus": 2,
+   "era_insbal": 16.14,
+   "rarc": [
+    "N448"
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "07/27/2023",
+     "enddate": "07/01/2026",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "11/27/2023",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "10/24/2023",
+     "enddate": "07/01/2026",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "4"
+    },
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "5"
+    }
+   ],
+   "order": "5",
+   "charges": [
+    {
+     "id": "23358363",
+     "proccode": "99487",
+     "dos": "07/17/2026",
+     "fee": "206.00",
+     "carrier": "SUN01",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "16.14",
+     "patbal": "0.00",
+     "paid": "189.86",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-63.28",
+       "void": "0",
+       "date": "09/17/2026",
+       "check": "819803392",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOINS",
+       "amount": "-126.58",
+       "void": "0",
+       "date": "09/17/2026"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "posted": [
+  {
+   "check": "1052822",
+   "pid": "17472703",
+   "vid": "19454884",
+   "dos": "2026-09-14",
+   "claimstatus": 1,
+   "era_insbal": 160.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "06/06/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366034",
+     "proccode": "99233",
+     "dos": "09/14/2026",
+     "fee": "160.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "0.00",
+     "paid": "160.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "SUN01",
+       "amount": "-83.13",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "0917749719",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOMCAD",
+       "amount": "-76.87",
+       "void": "0",
+       "date": "09/23/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472703",
+   "vid": "19454940",
+   "dos": "2026-09-16",
+   "claimstatus": 1,
+   "era_insbal": 160.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "06/06/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366091",
+     "proccode": "99233",
+     "dos": "09/16/2026",
+     "fee": "160.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "0.00",
+     "paid": "160.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "SUN01",
+       "amount": "-83.13",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "0917749719",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOMCAD",
+       "amount": "-76.87",
+       "void": "0",
+       "date": "09/23/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052822",
+   "pid": "17472703",
+   "vid": "19454925",
+   "dos": "2026-09-15",
+   "claimstatus": 1,
+   "era_insbal": 160.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6194",
+     "begindate": "06/06/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366077",
+     "proccode": "99233",
+     "dos": "09/15/2026",
+     "fee": "160.00",
+     "carrier": "SUN01",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "0.00",
+     "paid": "160.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2111",
+     "payments": [
+      {
+       "carrier": "SUN01",
+       "amount": "-83.13",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "0917749719",
+       "code": null
+      }
+     ],
+     "writeoffs": [
+      {
+       "code": "WOMCAD",
+       "amount": "-76.87",
+       "void": "0",
+       "date": "09/23/2026"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477706",
+   "vid": "19454937",
+   "dos": "2026-09-16",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366088",
+     "proccode": "99232",
+     "dos": "09/16/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477706",
+   "vid": "19455051",
+   "dos": "2026-09-17",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366203",
+     "proccode": "99232",
+     "dos": "09/17/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/18/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477775",
+   "vid": "19454916",
+   "dos": "2026-09-15",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366068",
+     "proccode": "99232",
+     "dos": "09/15/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477775",
+   "vid": "19454951",
+   "dos": "2026-09-16",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366102",
+     "proccode": "99232",
+     "dos": "09/16/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477775",
+   "vid": "19455049",
+   "dos": "2026-09-17",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366201",
+     "proccode": "99232",
+     "dos": "09/17/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477706",
+   "vid": "19455113",
+   "dos": "2026-09-18",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366252",
+     "proccode": "99232",
+     "dos": "09/18/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477775",
+   "vid": "19455129",
+   "dos": "2026-09-18",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366268",
+     "proccode": "99232",
+     "dos": "09/18/2026",
+     "fee": "111.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "39.10",
+     "paid": "71.90",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-71.90",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052821",
+   "pid": "17477775",
+   "vid": "19454903",
+   "dos": "2026-09-14",
+   "claimstatus": 1,
+   "era_insbal": 310.0,
+   "rarc": [],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car42025",
+     "begindate": "09/01/2026",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "charges": [
+    {
+     "id": "23366054",
+     "proccode": "99223",
+     "dos": "09/14/2026",
+     "fee": "310.00",
+     "carrier": "VACCN",
+     "billdate": "09/19/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "150.30",
+     "paid": "159.70",
+     "insorder": null,
+     "payerinfo": "Payor ID: 8257",
+     "payments": [
+      {
+       "carrier": "VACCN",
+       "amount": "-159.70",
+       "void": "0",
+       "date": "09/23/2026",
+       "check": "3009447223",
+       "code": null
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  }
+ ]
+}
