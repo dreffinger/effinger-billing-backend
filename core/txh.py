@@ -9,6 +9,10 @@ import xml.etree.ElementTree as ET
 def fetch(pid):
     body = amd.msg('gettxhistory','demographics',{'patientid':str(pid),'filterhistory':'0','pagenumber':'1','typefilter':'0','sortbypayment':'false','groupbyvisit':'0','sortdescending':'1','visitid':'0','profileid':'','getmemo':'false','nocookie':'1'})
     return ET.fromstring(amd.post(body, timeout=120))
+def fetch_visit(pid, vid):
+    """ONE visit's history (gettxhistory visitid=) - page 1 of the whole chart misses old visits on long charts (9/22/2026: pat21489 / pat23161)."""
+    body = amd.msg('gettxhistory','demographics',{'patientid':str(pid),'filterhistory':'0','pagenumber':'1','typefilter':'0','sortbypayment':'false','groupbyvisit':'0','sortdescending':'1','visitid':str(vid),'profileid':'','getmemo':'false','nocookie':'1'})
+    return ET.fromstring(amd.post(body, timeout=120))
 if __name__ == "__main__":
     root = fetch(sys.argv[1])
     if "--raw" in sys.argv:

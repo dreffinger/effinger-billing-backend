@@ -27,12 +27,22 @@
   "hca_facesheets": "1itL6N-3Xdu0QAtOA8BqtK9NeM3gb417W",
   "tmh_facesheets": "1uj5Sa9tmJHnV8VbMS42AjPAJtcpi-G2x",
   "pcc_facesheets": "1hEf4XJ6ppTH_UWva21JPW25g3uebKPAh",
-  "claimocity_drop": "1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI"
+  "claimocity_drop": "1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI",
+  "scansnap": "1wpksmUG0a8VgPk2q41LNNIfRiwEJAXQh",
+  "workspace_mirror": "135OCbRNCnFLyVm2GBXk1XsE3lt0vnsrn",
+  "github_mirror": "1yr8X30h01-tPa0swclvtBFdAisiHzgJ8",
+  "board_inbox": "1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8"
  },
  "boards": {
   "insurance_refresh": "ae4bc5c4-1d6c-4ffc-bc78-3fc284ad262d",
   "credentialing": "5f3f4986-3553-4b70-b472-5f5757225d3a",
   "money_ledger": "2d2c85c6-903b-451a-ab53-bdc074703797",
   "billing_back_end_doc": "3dd11acd-e1b3-4298-9cb2-6b5601504630"
+ },
+ "input_channels": {
+  "scansnap_cloud_app": "scanner -> Gmail attachment (PDF batches) + Drive 'scansnap' folder; remits, facesheets, census (docs/input_channels.md)",
+  "zapier_gmail": "gmail_get_attachment_by_filename for attachments the Gmail connector cannot read (> ~6 MB)",
+  "square_virtual_terminal": "Zelis/ECHO virtual cards keyed by hand; API cannot take card numbers",
+  "claimocity": "census/facesheet app (current); ScanSnap census scan proposed as the quicker alternative"
  }
 }

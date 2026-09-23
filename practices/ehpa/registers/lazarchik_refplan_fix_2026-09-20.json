@@ -1,0 +1,34 @@
+{
+ "stamp": "2026-09-20T0435Z",
+ "pid": "17477777",
+ "new_plan": "rplan18462071",
+ "vmap": {
+  "19454905": "23366056",
+  "19454919": "23366071"
+ },
+ "final": [
+  {
+   "id": "rplan18462071",
+   "refprov": "rprov13",
+   "type": "I",
+   "refplanstatus": "1",
+   "reason": "SELF-REFERRAL",
+   "preauthreq": "0",
+   "preauth": "VA0061079015",
+   "refnum": "",
+   "facility": "fac1",
+   "proccode": "",
+   "diagcodes": "",
+   "begindate": "09/14/2026",
+   "enddate": "",
+   "maxvisits": "",
+   "usedvisits": "",
+   "maxamount": "",
+   "usedamount": "",
+   "status": "status1",
+   "sequence": "1",
+   "notes": "",
+   "ismain": "1"
+  }
+ ]
+}

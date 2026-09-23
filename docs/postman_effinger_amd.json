@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-09-23, 55 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-09-23, 56 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1107,7 +1107,7 @@
        }
       ],
       "url": "https://pm-api-103.advancedmd.com/api/era/upload/835",
-      "description": "Response {\"issuccess\":true,\"filename\",\"filesize\",\"filemd5checksum\"}. The check appears in GET /api/era/checks asynchronously (5 s to ~4.5 min); dedupe is by file MD5, not TRN (identical bytes skipped silently; a different file with the same TRN02 creates a NEW check). CLP01 = the AMD claim number (8-digit visit id + claim letter); SVC lines match charges by CPT; a CLP03 of 0 makes the importer drop the whole file. Proven 9/22/2026 with synthetic 835s built from paper EOBs (billing/paper_remits/build835.py) - paper and virtual-card remits are posted through the ERA Center this way, never by hand.\n\nHelper: era_upload.upload\nCaptured: 9/2/2026 (UI import); 9/22/2026 synthetic-835 proof (chat)\nStatus: proven",
+      "description": "Captured from William's UI import 9/2/2026 (era_upload.py); proven 9/22/2026 with SYNTHETIC 835s built from paper EOBs (billing/paper_remits/build835.py). Response {issuccess, filename, filesize, filemd5checksum}; the check appears in GET /api/era/checks asynchronously (5 s to ~4 min; polling every 5 s drew HTTP 500s, poll every 10 s). Dedupe is by file MD5, not by TRN: the same bytes are skipped, a different file with the same TRN creates a NEW check. AMD matches CLP01 = the AMD claim number (8-digit visit id + sequence letter, e.g. 19442529A) to the visit and each SVC line to the charge by CPT; it reads ONE reason per CAS segment (a second triplet in the same CAS is dropped -> 'Contains invalid payment reason codes'); AMT*B6 is ignored (allowed = charge - adjustments); a claim with no SVC lines still matches the visit and shows chargecount / chargecode / insurancebalance but errors 'Procedure codes do not match' (chargedetailid -1) - usable as a probe; the check's systemcarrier is whatever AMD matched from N1*PR (often the visit's BILLED carrier), so a paper payer is posted with the ERA-linked addpayments carrying carrierid = the payer's plan on the chart.\n\nHelper: era_upload.upload\nCaptured: 9/2/2026 (UI import); 9/22/2026 synthetic-835 proof (chat)\nStatus: proven",
       "body": {
        "mode": "raw",
        "raw": "multipart/form-data: field 'file' = <name>.835 (Content-Type text/plain, the raw X12 835 text)",
@@ -1263,6 +1263,33 @@
        "options": {
         "raw": {
          "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "RECIPE — paper / virtual-card EOB -> synthetic 835 -> ERA Center -> ERA-linked post under the payer's carrier",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "9/22/2026 chat session: 13 ScanSnap batches / 502 pages -> 37 checks & virtual cards -> posted through the ERA Center with reason codes (register billing/paper_remits registers). Incidents that shaped the rules: voiding every write-off on a line removed the Medicare contractual (re-applied: move_to_ins.move then manual_post WOINS); a Medigap AND a Medicaid plan both paying the same coinsurance is an overpayment HOLD, not a post.\n\nHelper: billing/paper_remits/post_paper.py\nCaptured: 9/22/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<!-- billing/paper_remits/post_paper.py, per (payer family, check/card reference):\n1. build835.build(group) -> POST /api/era/upload/835 (payments-era/upload-835) -> poll GET /api/era/checks for TRN02 -> GET /api/era/checkdetails?checkid=\n2. per visit: getdemographic -> the payer's carrier on the chart (addinsurance without group number when missing, member id from the EOB) ; gettxhistory -> live charges (insbalance, live payments, write-offs)\n3. line decision: SKIP when a live payment already carries this check number; HOLD when another payer already paid the same amount and the balance is 0 (overpayment); void ONLY a write-off whose amount equals what the payer paid / the shortfall (a premature write-off), never the primary's contractual; pay = min(EOB paid, insurance balance); write-off in the SAME post: Medicaid plans (SIM01/FLO99) residual = WOCAID2ND when OA-23 is present else WOMCAD, Medigap residual = WOINS only when it equals the primary's CO45+253 never adjusted, otherwise nothing (AMD moves a Plan-N-style residual to the patient itself)\n4. addpayments class=paymententry postingmethod=\"era\" eraclaimid=checkclaimid erareportid=checkid carrierid=car<payer plan> checknumber=<clean check number> paymethod=11 (CHK) with the reasonlist from checkdetails (payments-era/addpayments-era-linked-manual-post-with-reason-codes) -> gettxhistory verifies the payment + reasons -> POST /api/era/checks/dismiss\n5. a claim whose EOB has no CPT lines (or whose CPT differs from the chart): second file TRN <ref>L with AMD's own charge codes, paid allocated by fee, OA-23 for the remainder when another payer already paid the line -->",
+       "options": {
+        "raw": {
+         "language": "text"
         }
        }
       }
