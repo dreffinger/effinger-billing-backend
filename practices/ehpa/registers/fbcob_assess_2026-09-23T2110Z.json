@@ -1,0 +1,1411 @@
+{
+ "17473086": {
+  "19409354": {
+   "charges": [
+    {
+     "cid": "22484798",
+     "cpt": "99487",
+     "dos": "07/14/2025",
+     "fee": 206.0,
+     "paid": 206.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616630",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:50:05.933",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454906",
+       "amount": 206.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:50:05.933",
+       "void": "0"
+      }
+     ]
+    },
+    {
+     "cid": "22484799",
+     "cpt": "99489",
+     "dos": "07/14/2025",
+     "fee": 109.0,
+     "paid": 109.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616631",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:50:07.380",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454907",
+       "amount": 109.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:50:07.380",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22484798",
+     "24616630",
+     0.0,
+     "",
+     "BCBS"
+    ],
+    [
+     "22484799",
+     "24616631",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19420961": {
+   "charges": [
+    {
+     "cid": "23326122",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": []
+    },
+    {
+     "cid": "23326123",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "paid": 0.0,
+     "insbalance": 109.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19420894": {
+   "charges": [
+    {
+     "cid": "23325990",
+     "cpt": "99349",
+     "dos": "10/24/2025",
+     "fee": 198.0,
+     "paid": 81.77,
+     "insbalance": 116.23,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650414",
+       "amount": 81.77,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:08.480",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         93.7
+        ],
+        [
+         "PR2",
+         20.86
+        ],
+        [
+         "CO253",
+         1.67
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19417565": {
+   "charges": [
+    {
+     "cid": "23321300",
+     "cpt": "99349",
+     "dos": "09/19/2025",
+     "fee": 198.0,
+     "paid": 81.77,
+     "insbalance": 116.23,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650413",
+       "amount": 81.77,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:08.390",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         93.7
+        ],
+        [
+         "PR2",
+         20.86
+        ],
+        [
+         "CO253",
+         1.67
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  }
+ },
+ "17476090": {
+  "19438064": {
+   "charges": [
+    {
+     "cid": "23345155",
+     "cpt": "99232",
+     "dos": "04/10/2026",
+     "fee": 111.0,
+     "paid": 56.37,
+     "insbalance": 54.63,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650547",
+       "amount": 56.37,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:18.773",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         39.1
+        ],
+        [
+         "PR2",
+         14.38
+        ],
+        [
+         "CO253",
+         1.15
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  }
+ },
+ "17472195": {
+  "19433890": {
+   "charges": [
+    {
+     "cid": "23340673",
+     "cpt": "99487",
+     "dos": "02/26/2026",
+     "fee": 206.0,
+     "paid": 112.09,
+     "insbalance": 93.91,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650616",
+       "amount": 112.09,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:23.900",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         63.02
+        ],
+        [
+         "PR2",
+         28.6
+        ],
+        [
+         "CO253",
+         2.29
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19433413": {
+   "charges": [
+    {
+     "cid": "23340126",
+     "cpt": "99349",
+     "dos": "02/19/2026",
+     "fee": 198.0,
+     "paid": 88.61,
+     "insbalance": 109.39,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650617",
+       "amount": 88.61,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:23.990",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         84.98
+        ],
+        [
+         "PR2",
+         22.6
+        ],
+        [
+         "CO253",
+         1.81
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19430677": {
+   "charges": [
+    {
+     "cid": "23337091",
+     "cpt": "99487",
+     "dos": "01/27/2026",
+     "fee": 206.0,
+     "paid": 112.09,
+     "insbalance": 93.91,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650618",
+       "amount": 112.09,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.077",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         63.02
+        ],
+        [
+         "PR2",
+         28.6
+        ],
+        [
+         "CO253",
+         2.29
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23337092",
+     "cpt": "99489",
+     "dos": "01/27/2026",
+     "fee": 109.0,
+     "paid": 60.74,
+     "insbalance": 48.26,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650619",
+       "amount": 60.74,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.077",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         31.53
+        ],
+        [
+         "PR2",
+         15.49
+        ],
+        [
+         "CO253",
+         1.24
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19427221": {
+   "charges": [
+    {
+     "cid": "23333570",
+     "cpt": "99487",
+     "dos": "12/21/2025",
+     "fee": 206.0,
+     "paid": 101.51,
+     "insbalance": 104.49,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650620",
+       "amount": 101.51,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.213",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         76.52
+        ],
+        [
+         "PR2",
+         25.9
+        ],
+        [
+         "CO253",
+         2.07
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23333571",
+     "cpt": "99489",
+     "dos": "12/21/2025",
+     "fee": 109.0,
+     "paid": 54.29,
+     "insbalance": 54.71,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650621",
+       "amount": 54.29,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.213",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         39.75
+        ],
+        [
+         "PR2",
+         13.85
+        ],
+        [
+         "CO253",
+         1.11
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19421063": {
+   "charges": [
+    {
+     "cid": "23326326",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "paid": 101.51,
+     "insbalance": 104.49,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650622",
+       "amount": 101.51,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.340",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         76.52
+        ],
+        [
+         "PR2",
+         25.9
+        ],
+        [
+         "CO253",
+         2.07
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23326327",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "paid": 54.29,
+     "insbalance": 54.71,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650623",
+       "amount": 54.29,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.340",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         39.75
+        ],
+        [
+         "PR2",
+         13.85
+        ],
+        [
+         "CO253",
+         1.11
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19442312": {
+   "charges": [
+    {
+     "cid": "23350341",
+     "cpt": "99487",
+     "dos": "05/17/2026",
+     "fee": 206.0,
+     "paid": 112.09,
+     "insbalance": 93.91,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650614",
+       "amount": 112.09,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:23.770",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         63.02
+        ],
+        [
+         "PR2",
+         28.6
+        ],
+        [
+         "CO253",
+         2.29
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23350342",
+     "cpt": "99489",
+     "dos": "05/17/2026",
+     "fee": 109.0,
+     "paid": 60.74,
+     "insbalance": 48.26,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650615",
+       "amount": 60.74,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:23.770",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         31.53
+        ],
+        [
+         "PR2",
+         15.49
+        ],
+        [
+         "CO253",
+         1.24
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19420521": {
+   "charges": [
+    {
+     "cid": "23325498",
+     "cpt": "99344",
+     "dos": "10/15/2025",
+     "fee": 300.0,
+     "paid": 91.24,
+     "insbalance": 208.76,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24650624",
+       "amount": 91.24,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:24.467",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         183.63
+        ],
+        [
+         "PR2",
+         23.27
+        ],
+        [
+         "CO253",
+         1.86
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  }
+ },
+ "24937": {
+  "19411042": {
+   "charges": [
+    {
+     "cid": "22486737",
+     "cpt": "99232",
+     "dos": "07/22/2025",
+     "fee": 111.0,
+     "paid": 111.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616679",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:32.313",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454959",
+       "amount": 111.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:32.313",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22486737",
+     "24616679",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409957": {
+   "charges": [
+    {
+     "cid": "22485626",
+     "cpt": "99233",
+     "dos": "07/21/2025",
+     "fee": 160.0,
+     "paid": 160.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616678",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:30.487",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454958",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:30.487",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22485626",
+     "24616678",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409908": {
+   "charges": [
+    {
+     "cid": "22485614",
+     "cpt": "99233",
+     "dos": "07/20/2025",
+     "fee": 160.0,
+     "paid": 160.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616676",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:28.667",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454955",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:28.667",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22485614",
+     "24616676",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409861": {
+   "charges": [
+    {
+     "cid": "22485603",
+     "cpt": "99233",
+     "dos": "07/19/2025",
+     "fee": 160.0,
+     "paid": 160.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616675",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:26.780",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454953",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:26.780",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22485603",
+     "24616675",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409816": {
+   "charges": [
+    {
+     "cid": "22485555",
+     "cpt": "99223",
+     "dos": "07/17/2025",
+     "fee": 310.0,
+     "paid": 310.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616672",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:23.493",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454950",
+       "amount": 310.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:23.493",
+       "void": "0"
+      }
+     ]
+    },
+    {
+     "cid": "22485556",
+     "cpt": "99497",
+     "dos": "07/17/2025",
+     "fee": 133.0,
+     "paid": 133.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616673",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:25.050",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454951",
+       "amount": 133.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:25.050",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22485555",
+     "24616672",
+     0.0,
+     "",
+     "BCBS"
+    ],
+    [
+     "22485556",
+     "24616673",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409815": {
+   "charges": [
+    {
+     "cid": "22485554",
+     "cpt": "99233",
+     "dos": "07/18/2025",
+     "fee": 160.0,
+     "paid": 160.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616671",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:21.730",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454948",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:51:21.730",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22485554",
+     "24616671",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  }
+ },
+ "17469028": {
+  "19408122": {
+   "charges": [
+    {
+     "cid": "22483440",
+     "cpt": "99487",
+     "dos": "06/23/2025",
+     "fee": 206.0,
+     "paid": 206.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616612",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:31.903",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454888",
+       "amount": 206.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:31.903",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22483440",
+     "24616612",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19409414": {
+   "charges": [
+    {
+     "cid": "22484907",
+     "cpt": "99487",
+     "dos": "07/14/2025",
+     "fee": 206.0,
+     "paid": 206.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616613",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:33.517",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454889",
+       "amount": 206.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:33.517",
+       "void": "0"
+      }
+     ]
+    },
+    {
+     "cid": "22484908",
+     "cpt": "99489",
+     "dos": "07/14/2025",
+     "fee": 109.0,
+     "paid": 109.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "BCBS",
+     "pays": [
+      {
+       "id": "24616614",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "BCBS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:35.117",
+       "void": "0",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22454890",
+       "amount": 109.0,
+       "code": "WOINS",
+       "date": "09/07/2026",
+       "createtime": "2026-09-07T18:49:35.117",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "codeless": [
+    [
+     "22484907",
+     "24616613",
+     0.0,
+     "",
+     "BCBS"
+    ],
+    [
+     "22484908",
+     "24616614",
+     0.0,
+     "",
+     "BCBS"
+    ]
+   ],
+   "balanced": false
+  },
+  "19422340": {
+   "charges": [
+    {
+     "cid": "23327678",
+     "cpt": "99349",
+     "dos": "10/09/2025",
+     "fee": 198.0,
+     "paid": 0.0,
+     "insbalance": 198.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19423587": {
+   "charges": [
+    {
+     "cid": "23329194",
+     "cpt": "99487",
+     "dos": "11/15/2025",
+     "fee": 206.0,
+     "paid": 88.73,
+     "insbalance": 117.27,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650763",
+       "amount": 88.73,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.147",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         76.52
+        ],
+        [
+         "PR1",
+         16.31
+        ],
+        [
+         "PR2",
+         22.63
+        ],
+        [
+         "CO253",
+         1.81
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23329195",
+     "cpt": "99489",
+     "dos": "11/15/2025",
+     "fee": 109.0,
+     "paid": 54.29,
+     "insbalance": 54.71,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650764",
+       "amount": 54.29,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.147",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         39.75
+        ],
+        [
+         "PR2",
+         13.85
+        ],
+        [
+         "CO253",
+         1.11
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19427201": {
+   "charges": [
+    {
+     "cid": "23333530",
+     "cpt": "99487",
+     "dos": "12/21/2025",
+     "fee": 206.0,
+     "paid": 101.51,
+     "insbalance": 104.49,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650765",
+       "amount": 101.51,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.287",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         76.52
+        ],
+        [
+         "PR2",
+         25.9
+        ],
+        [
+         "CO253",
+         2.07
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23333531",
+     "cpt": "99489",
+     "dos": "12/21/2025",
+     "fee": 109.0,
+     "paid": 54.29,
+     "insbalance": 54.71,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650766",
+       "amount": 54.29,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.287",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         39.75
+        ],
+        [
+         "PR2",
+         13.85
+        ],
+        [
+         "CO253",
+         1.11
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19440438": {
+   "charges": [
+    {
+     "cid": "23348139",
+     "cpt": "99349",
+     "dos": "04/28/2026",
+     "fee": 198.0,
+     "paid": 0.0,
+     "insbalance": 198.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  },
+  "19442293": {
+   "charges": [
+    {
+     "cid": "23350303",
+     "cpt": "99487",
+     "dos": "05/17/2026",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650769",
+       "amount": 0.0,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.573",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         63.02
+        ],
+        [
+         "PR1",
+         142.98
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23350304",
+     "cpt": "99489",
+     "dos": "05/17/2026",
+     "fee": 109.0,
+     "paid": 39.57,
+     "insbalance": 69.43,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24650770",
+       "amount": 39.57,
+       "checkno": "819814877(0)",
+       "carrier": "FLO02",
+       "date": "09/19/2026",
+       "createtime": "2026-09-19T02:17:36.573",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         31.53
+        ],
+        [
+         "PR1",
+         27.0
+        ],
+        [
+         "PR2",
+         10.09
+        ],
+        [
+         "CO253",
+         0.81
+        ]
+       ]
+      }
+     ],
+     "wos": []
+    }
+   ],
+   "codeless": [],
+   "balanced": true
+  }
+ }
+}

@@ -1,0 +1,47 @@
+{
+ "stamp": "2026-09-23T2110Z",
+ "rows": [
+  {
+   "pid": "12182506",
+   "vid": "19452663",
+   "claim": "19452663C",
+   "run": "1700229",
+   "carrier": "UNI20",
+   "error": "PA ACK,REJCTD ... DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE",
+   "live": [
+    {
+     "id": "23363042",
+     "proccode": "99487",
+     "dos": "08/23/2026",
+     "fee": "206.00",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "carrier": "UNI20",
+     "billdate": "09/22/2026",
+     "payerinfo": "Payor ID: 3429"
+    }
+   ],
+   "action": "complete (duplicate-claim rejection rule) - no rebill",
+   "completed": true
+  }
+ ],
+ "held": [
+  {
+   "pid": "17472517",
+   "vid": "19423193",
+   "claim": "19423193H",
+   "carrier": "HUM01",
+   "amt": "70.17",
+   "why": "PDTP0303 - no 99223 anchor within 45 days (standing hold)"
+  },
+  {
+   "pid": "20863",
+   "vid": "19445850",
+   "claim": "19445850B",
+   "carrier": "FLO99",
+   "amt": "14.38",
+   "why": "PDTP0303 - no 99223 anchor within 45 days (standing hold)"
+  }
+ ]
+}
