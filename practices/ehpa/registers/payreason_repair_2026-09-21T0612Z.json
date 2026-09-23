@@ -1,0 +1,1882 @@
+{
+ "stamp": "2026-09-21T0612Z",
+ "rows": [
+  {
+   "visitid": "19385956",
+   "pid": "25542",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "SUN01",
+   "charges": [
+    {
+     "id": "22456204",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "A41.9",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113701",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456229",
+     "visit": "19385956",
+     "dos": "07/10/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "A41.9",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19386697",
+   "pid": "17471795",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22456871",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R00.1",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456872",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456873",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22456874",
+     "visit": "19386697",
+     "dos": "07/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R00.1",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392338",
+   "pid": "20903",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "HUM01",
+   "charges": [
+    {
+     "id": "22464275",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "N18.5",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464276",
+     "visit": "19392338",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "N18.5",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392347",
+   "pid": "23391",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "BCBS",
+   "charges": [
+    {
+     "id": "22464291",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "K92.2",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464292",
+     "visit": "19392347",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "K92.2",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113902",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392360",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464355",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464356",
+     "visit": "19392360",
+     "dos": "10/24/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113904",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392439",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464400",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464401",
+     "visit": "19392439",
+     "dos": "10/27/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113908",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "visitid": "19392574",
+   "pid": "17470697",
+   "dos": "",
+   "errors": "Payment reason codes are missing or do not balance.",
+   "reason_row": true,
+   "next_carrier": "TRI05",
+   "charges": [
+    {
+     "id": "22464571",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "160.00",
+     "diagcode": "R41.82",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "160.00",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464572",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "113912",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464641",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "22464642",
+     "visit": "19392574",
+     "dos": "10/29/2024 ",
+     "totalfee": "30.97",
+     "diagcode": "R41.82",
+     "chgcode": "G0316",
+     "insportion": "30.97",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "30.97",
+     "batchid": "1",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  }
+ ],
+ "results": [
+  {
+   "visitid": "19385956",
+   "pid": "25542",
+   "checkid": "892988",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22456204",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:12:32\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:12:35\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22456204",
+     "cpt": "99233",
+     "dos": "07/10/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643803",
+       "amount": 92.58,
+       "checkno": "815257710",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:11.537",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653755",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:09:58.640",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653774",
+       "amount": 92.58,
+       "checkno": "815257710",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:32.750",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414985",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:27.633",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22476166",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:13:23.943",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485286",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:11.537",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493365",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:09:59.687",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493380",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:32.750",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22456229",
+     "cpt": "G0316",
+     "dos": "07/10/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "20603579",
+       "amount": 0.0,
+       "checkno": "346564973",
+       "carrier": "FLO02",
+       "date": "07/28/2024",
+       "createtime": "2024-07-28T09:28:38.960",
+       "void": "0",
+       "reasons": [
+        [
+         "CO16",
+         30.97
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414986",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:27.633",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22476167",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:13:24.527",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19386697",
+   "pid": "17471795",
+   "checkid": "893080",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22456871",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:12:41\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:12:45\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22456871",
+     "cpt": "99233",
+     "dos": "07/24/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24635772",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:17.307",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24643804",
+       "amount": 92.58,
+       "checkno": "815328590",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:16.477",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653756",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:07.653",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653757",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:08.710",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653775",
+       "amount": 92.58,
+       "checkno": "815328590",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:41.970",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414735",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:23.800",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22475230",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:09:31.510",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22477666",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:17.307",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22484197",
+       "amount": 160.0,
+       "code": "WOINS",
+       "date": "09/11/2026",
+       "createtime": "2026-09-11T23:09:23.613",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485287",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:16.477",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493366",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:13.007",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493381",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:41.970",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22456872",
+     "cpt": "G0316",
+     "dos": "07/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "20603743",
+       "amount": 0.0,
+       "checkno": "346618541",
+       "carrier": "FLO02",
+       "date": "08/05/2024",
+       "createtime": "2024-08-05T10:28:55.560",
+       "void": "0",
+       "reasons": [
+        [
+         "CO16",
+         30.97
+        ]
+       ]
+      },
+      {
+       "id": "24635773",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:19.367",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653758",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:09.787",
+       "void": "1",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414736",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:23.800",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22475244",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:09:32.257",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22477667",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:19.367",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22484198",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/11/2026",
+       "createtime": "2026-09-11T23:09:24.133",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22456873",
+     "cpt": "G0316",
+     "dos": "07/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "20603744",
+       "amount": 0.0,
+       "checkno": "346618541",
+       "carrier": "FLO02",
+       "date": "08/05/2024",
+       "createtime": "2024-08-05T10:28:55.560",
+       "void": "0",
+       "reasons": [
+        [
+         "CO16",
+         30.97
+        ]
+       ]
+      },
+      {
+       "id": "24635774",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:20.893",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653759",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:10.963",
+       "void": "1",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414737",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:23.800",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22475261",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:09:33.030",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22477668",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:20.893",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22484199",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/11/2026",
+       "createtime": "2026-09-11T23:09:24.643",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22456874",
+     "cpt": "G0316",
+     "dos": "07/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "20603745",
+       "amount": 0.0,
+       "checkno": "346618541",
+       "carrier": "FLO02",
+       "date": "08/05/2024",
+       "createtime": "2024-08-05T10:28:55.560",
+       "void": "0",
+       "reasons": [
+        [
+         "CO16",
+         30.97
+        ]
+       ]
+      },
+      {
+       "id": "24635775",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:22.383",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653760",
+       "amount": 0.0,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:12",
+       "void": "1",
+       "reasons": []
+      }
+     ],
+     "wos": [
+      {
+       "id": "22414738",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:36:23.800",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22475271",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T22:09:33.497",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22477669",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/10/2026",
+       "createtime": "2026-09-10T00:16:22.383",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22484200",
+       "amount": 30.97,
+       "code": "WOINS",
+       "date": "09/11/2026",
+       "createtime": "2026-09-11T23:09:25.257",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19392338",
+   "pid": "20903",
+   "checkid": "895008",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22464275",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:12:51\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:12:53\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464275",
+     "cpt": "99233",
+     "dos": "10/24/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643819",
+       "amount": 92.58,
+       "checkno": "816740529",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:46.603",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653761",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:20.640",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653776",
+       "amount": 92.58,
+       "checkno": "816740529",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:51.070",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22409324",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:21.910",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22466146",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:09:48.317",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485302",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:46.603",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493367",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:21.893",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493382",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:12:51.070",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464276",
+     "cpt": "G0316",
+     "dos": "10/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22409325",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:21.910",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22466147",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:09:48.843",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19392347",
+   "pid": "23391",
+   "checkid": "893862",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22464291",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:00\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:13:03\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464291",
+     "cpt": "99233",
+     "dos": "10/24/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643809",
+       "amount": 92.58,
+       "checkno": "815876983",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:53.600",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653762",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:30.077",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653777",
+       "amount": 92.58,
+       "checkno": "815876983",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:00.180",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22410790",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.447",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469844",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:54:44.833",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485292",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:53.600",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493368",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:31.307",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493383",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:00.180",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464292",
+     "cpt": "G0316",
+     "dos": "10/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410791",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.447",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469845",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:54:45.373",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19392360",
+   "pid": "17470697",
+   "checkid": "893862",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22464355",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:08\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:11\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464355",
+     "cpt": "99233",
+     "dos": "10/24/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643808",
+       "amount": 92.58,
+       "checkno": "815876983",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:49.970",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653763",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:37.360",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653778",
+       "amount": 92.58,
+       "checkno": "815876983",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:08.223",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22410802",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469823",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:54:27.637",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485291",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:02:49.970",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493369",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:38.527",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493384",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:08.223",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464356",
+     "cpt": "G0316",
+     "dos": "10/24/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410803",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22469824",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T20:54:28.187",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19392439",
+   "pid": "17470697",
+   "checkid": "893899",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22464400",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:17\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:20\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464400",
+     "cpt": "99233",
+     "dos": "10/27/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643812",
+       "amount": 92.58,
+       "checkno": "815906990",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:00.617",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653764",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:45.387",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653779",
+       "amount": 92.58,
+       "checkno": "815906990",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:17.177",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22410806",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470364",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:09.497",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485295",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:00.617",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493370",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:46.530",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493385",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:17.177",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464401",
+     "cpt": "G0316",
+     "dos": "10/27/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410807",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470365",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:09.900",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  },
+  {
+   "visitid": "19392574",
+   "pid": "17470697",
+   "checkid": "893899",
+   "mode": "repost-manual",
+   "steps": [
+    [
+     "addpayments-era",
+     [
+      [
+       "22464571",
+       "99233",
+       92.58
+      ]
+     ],
+     92.58,
+     43.8,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/20/2026 23:13:23\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-22wl7\" lst=\"09/20/2026 23:13:26\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "22464571",
+     "cpt": "99233",
+     "dos": "10/29/2024",
+     "fee": 160.0,
+     "paid": 136.38,
+     "insbalance": 23.62,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24643813",
+       "amount": 92.58,
+       "checkno": "815906990",
+       "carrier": "FLO02",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:02.980",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653765",
+       "amount": 92.58,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:52.470",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24653780",
+       "amount": 92.58,
+       "checkno": "815906990",
+       "carrier": "FLO02",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:23.403",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         41.91
+        ],
+        [
+         "PR2",
+         23.62
+        ],
+        [
+         "CO253",
+         1.89
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22410809",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470367",
+       "amount": 160.0,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:11.590",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22485296",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/13/2026",
+       "createtime": "2026-09-13T01:03:02.980",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493371",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:10:53.540",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22493386",
+       "amount": 43.8,
+       "code": "WOINS",
+       "date": "09/20/2026",
+       "createtime": "2026-09-20T23:13:23.403",
+       "void": "0",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464572",
+     "cpt": "G0316",
+     "dos": "10/29/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410810",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470368",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:12.120",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464641",
+     "cpt": "G0316",
+     "dos": "10/29/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410811",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470369",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:12.937",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    },
+    {
+     "cid": "22464642",
+     "cpt": "G0316",
+     "dos": "10/29/2024",
+     "fee": 30.97,
+     "paid": 0.0,
+     "insbalance": 30.97,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [],
+     "wos": [
+      {
+       "id": "22410812",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "05/31/2026",
+       "createtime": "2026-05-31T23:32:43.663",
+       "void": "1",
+       "source": "2"
+      },
+      {
+       "id": "22470370",
+       "amount": 30.97,
+       "code": "WOINSBANK",
+       "date": "09/09/2026",
+       "createtime": "2026-09-09T21:01:13.473",
+       "void": "1",
+       "source": "2"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  }
+ ]
+}

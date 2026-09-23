@@ -1,0 +1,46 @@
+{
+ "probes": [
+  {
+   "action": "updreferralplan",
+   "class": "chargeentry",
+   "shape": "bare",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 21:05:01\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action updreferr"
+  },
+  {
+   "action": "updreferralplan",
+   "class": "chargeentry",
+   "shape": "wrapped",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 21:05:02\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action updreferr"
+  },
+  {
+   "action": "updatereferralplan",
+   "class": "chargeentry",
+   "shape": "bare",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 21:05:03\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action updateref"
+  },
+  {
+   "action": "updreferralplan",
+   "class": "chargeentry",
+   "shape": "full",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 21:05:04\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action updreferr"
+  },
+  {
+   "action": "editreferralplan",
+   "class": "chargeentry",
+   "shape": "full",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qf4jf\" lst=\"09/19/2026 21:05:05\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action editrefer"
+  },
+  {
+   "action": "updreferralplan",
+   "class": "demographics",
+   "shape": "wrapped",
+   "ok": false,
+   "resp": "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-8vg4h\" lst=\"09/19/2026 21:05:06\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Error</faultstring><detail><code>-2147219453</code><description>AMD-152563-09192105 | Action updreferr"
+  }
+ ]
+}

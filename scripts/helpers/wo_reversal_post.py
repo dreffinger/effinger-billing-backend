@@ -29,7 +29,7 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
         L('VOIDED %s %s %s era %.2f wos %d ok=%s' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']), ok_all)); touched += 1; touched_visits.append(int(r['visitid'])); time.sleep(0.3)
     n += 1
     if touched and not dry:
-        chk = next((c for c in era_post.checks() if c['id'] == cid), None)
+        chk = next((c for c in era_post.checks() if str(c['id']) == str(cid)), None)   # 9/20: ids come back numeric; str-compare or the post step silently skips
         if chk:
             # The ERA remit stores each visit's insurancebalance as of remit-load time (0, because the
             # WOINSBANK write-off had already zeroed it). post_check's postable() gate needs balance>0, so
