@@ -1,0 +1,22 @@
+[
+ {
+  "id": 1052806,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-23T01:45:06.63",
+  "depositdate": "2026-09-21T00:00:00",
+  "eracarrierid": "2449",
+  "eracarriername": "HUMANA INC.",
+  "hasnote": false,
+  "systemcarrierid": 6285,
+  "systemcarriercode": "HUM01",
+  "systemcarriername": "HUMANA",
+  "paymentnumber": "200700340260922",
+  "paymentamount": 33.86,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 33.86,
+  "unpostedamount": 33.86,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]
