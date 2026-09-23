@@ -6,5 +6,19 @@
   "head_after": "42cd727f94174edaa3477a020005f3b9ae15c71d",
   "heads": "e0f40ccca8b39eb86779c9c86edcb15b08d6383d refs/heads/main | e0f40ccca8b39eb86779c9c86edcb15b08d6383d refs/heads/claude/payreasons-repair-2026-09-21",
   "note": "merged by hand 9/23 (3 conflicts resolved for main); the 9/19 bundle is inside it"
+ },
+ {
+  "sha256": "da0a97c3d85ee0824a8bee595954bd56c0ffca0ea2006bd2faa6e95900a68825",
+  "source": "pkg1_part01.part",
+  "applied": "2026-09-23T15:38:58Z",
+  "head_after": "5a6f63bc188e74ac7748a8e7b4a731db941c3f43",
+  "heads": "40bac560469e782fff9f77633b2ab5e7d28a23d7 refs/heads/main"
+ },
+ {
+  "sha256": "91f819d1e7a4f4f7e2043f14e31d5c03e60f0486f7e24e7fcf8610e55e8ca825",
+  "source": "pkg2_part01.part",
+  "applied": "2026-09-23T15:39:41Z",
+  "head_after": "2fe1c40dd8295bfea94b6bf8e45183f26e102dc8",
+  "heads": "8a9584b2c17e02c4a2e524e427227b2ed0646150 refs/heads/main"
  }
 ]
