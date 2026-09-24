@@ -1,0 +1,1241 @@
+{
+ "stamp": "2026-09-24T0110Z",
+ "checkid": "1052825",
+ "lines": [
+  {
+   "visitid": "19452376",
+   "patientid": "17471793",
+   "chargeid": "23362590",
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650018",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163860",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:30:46\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19452376",
+   "patientid": "17471793",
+   "chargeid": "23362591",
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650019",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163861",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:30:50\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19446286",
+   "patientid": "17471793",
+   "chargeid": "23355333",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650014",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163862",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:30:55\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19446286",
+   "patientid": "17471793",
+   "chargeid": "23355334",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650015",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163863",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:30:59\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19448890",
+   "patientid": "17471793",
+   "chargeid": "23358385",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650021",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163864",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:31:03\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19448890",
+   "patientid": "17471793",
+   "chargeid": "23358386",
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650022",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163865",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:07\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19448923",
+   "patientid": "17471725",
+   "chargeid": "23358449",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650110",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163866",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:12\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19448923",
+   "patientid": "17471725",
+   "chargeid": "23358450",
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650111",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163867",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:31:16\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19452408",
+   "patientid": "17471725",
+   "chargeid": "23362651",
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650142",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163868",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:21\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19452408",
+   "patientid": "17471725",
+   "chargeid": "23362652",
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650143",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163869",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:25\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19427227",
+   "patientid": "17474586",
+   "chargeid": "23333582",
+   "cpt": "99487",
+   "dos": "2025-12-21",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 17.5,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650034",
+     "68.62",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.5,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MA)",
+   "humana_ids": [],
+   "ok": true,
+   "paymentid": "10163870",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:31:30\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 17.50"
+  },
+  {
+   "visitid": "19453441",
+   "patientid": "21378",
+   "chargeid": "23364142",
+   "cpt": "99309",
+   "dos": "2026-07-09",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24595845",
+     "66.36",
+     "REPOST-GARLAND-G",
+     null
+    ],
+    [
+     "pay24626669",
+     "16.93",
+     "199572528260909",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19453442",
+   "patientid": "21378",
+   "chargeid": "23364144",
+   "cpt": "99309",
+   "dos": "2026-07-23",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24595847",
+     "66.36",
+     "REPOST-GARLAND-G",
+     null
+    ],
+    [
+     "pay24626691",
+     "16.93",
+     "199572528260909",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19434304",
+   "patientid": "17472517",
+   "chargeid": "23341284",
+   "cpt": "99497",
+   "dos": "2026-02-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 133.0,
+   "insbalance": 13.35,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650031",
+     "52.33",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 13.35,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MMA)",
+   "humana_ids": [
+    "H54659114",
+    "9553687997"
+   ],
+   "ok": true,
+   "paymentid": "10163871",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:36\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOCAID2ND 13.35"
+  },
+  {
+   "visitid": "19453443",
+   "patientid": "20379",
+   "chargeid": "23364146",
+   "cpt": "99309",
+   "dos": "2026-07-23",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24595849",
+     "66.36",
+     "REPOST-GARLAND-G",
+     null
+    ],
+    [
+     "pay24616859",
+     "16.93",
+     "199329342260907",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19444498",
+   "patientid": "17471793",
+   "chargeid": "23353186",
+   "cpt": "99309",
+   "dos": "2026-06-04",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650013",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163872",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:41\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19427519",
+   "patientid": "17474586",
+   "chargeid": "23334008",
+   "cpt": "99308",
+   "dos": "2025-12-26",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 12.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650035",
+     "47.57",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 12.14,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [],
+   "ok": true,
+   "paymentid": "10163873",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:46\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 12.14"
+  },
+  {
+   "visitid": "19446929",
+   "patientid": "17471725",
+   "chargeid": "23356054",
+   "cpt": "99309",
+   "dos": "2026-06-30",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650105",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163874",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:31:50\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19445150",
+   "patientid": "17471725",
+   "chargeid": "23353956",
+   "cpt": "99309",
+   "dos": "2026-06-15",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650123",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163875",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:55\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19444509",
+   "patientid": "17471725",
+   "chargeid": "23353196",
+   "cpt": "99309",
+   "dos": "2026-06-04",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650145",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163876",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:31:59\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19445848",
+   "patientid": "17471725",
+   "chargeid": "23354717",
+   "cpt": "99308",
+   "dos": "2026-06-22",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 11.59,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650103",
+     "45.44",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 11.59,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163877",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:03\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 11.59"
+  },
+  {
+   "visitid": "19447751",
+   "patientid": "17471725",
+   "chargeid": "23356979",
+   "cpt": "99309",
+   "dos": "2026-07-09",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650108",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163878",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:08\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19447372",
+   "patientid": "17471725",
+   "chargeid": "23356558",
+   "cpt": "99309",
+   "dos": "2026-07-06",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650107",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163879",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:32:12\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19451537",
+   "patientid": "17471725",
+   "chargeid": "23361586",
+   "cpt": "99309",
+   "dos": "2026-08-06",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650144",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163880",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:16\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19450285",
+   "patientid": "17471725",
+   "chargeid": "23360170",
+   "cpt": "99309",
+   "dos": "2026-07-27",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650141",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163881",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:32:21\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19425341",
+   "patientid": "17474586",
+   "chargeid": "23331333",
+   "cpt": "99309",
+   "dos": "2025-12-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 17.65,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650033",
+     "69.21",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.65,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [],
+   "ok": true,
+   "paymentid": "10163882",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:25\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 17.65"
+  },
+  {
+   "visitid": "19449450",
+   "patientid": "17471725",
+   "chargeid": "23359085",
+   "cpt": "99309",
+   "dos": "2026-07-20",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650112",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163883",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:29\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19449937",
+   "patientid": "17471725",
+   "chargeid": "23359784",
+   "cpt": "99308",
+   "dos": "2026-07-23",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 11.59,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650140",
+     "45.44",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 11.59,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163884",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:32:33\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 11.59"
+  },
+  {
+   "visitid": "19447168",
+   "patientid": "17471725",
+   "chargeid": "23356292",
+   "cpt": "99309",
+   "dos": "2026-07-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650106",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163885",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:38\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19444768",
+   "patientid": "17471725",
+   "chargeid": "23353518",
+   "cpt": "99308",
+   "dos": "2026-06-08",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 11.59,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650124",
+     "45.44",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 11.59,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163886",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:42\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 11.59"
+  },
+  {
+   "visitid": "19445484",
+   "patientid": "17471725",
+   "chargeid": "23354359",
+   "cpt": "99309",
+   "dos": "2026-06-18",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650122",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163887",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:46\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19446579",
+   "patientid": "17471725",
+   "chargeid": "23355696",
+   "cpt": "99309",
+   "dos": "2026-06-25",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650104",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163888",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:32:51\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19448023",
+   "patientid": "17471725",
+   "chargeid": "23357205",
+   "cpt": "99309",
+   "dos": "2026-07-12",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650109",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163889",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:32:55\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19445304",
+   "patientid": "17471238",
+   "chargeid": "23354112",
+   "cpt": "99309",
+   "dos": "2026-06-16",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650176",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "8152178675"
+   ],
+   "ok": true,
+   "paymentid": "10163890",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:33:00\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19447362",
+   "patientid": "17471793",
+   "chargeid": "23356545",
+   "cpt": "99309",
+   "dos": "2026-07-06",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650016",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163891",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:33:04\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19451029",
+   "patientid": "17471793",
+   "chargeid": "23361040",
+   "cpt": "99309",
+   "dos": "2026-08-06",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650017",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9606160211"
+   ],
+   "ok": true,
+   "paymentid": "10163892",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:33:08\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19444767",
+   "patientid": "17471725",
+   "chargeid": "23353517",
+   "cpt": "99309",
+   "dos": "2026-06-11",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650125",
+     "66.36",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "9616808494"
+   ],
+   "ok": true,
+   "paymentid": "10163893",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-pjncs\" lst=\"09/23/2026 18:33:12\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19434564",
+   "patientid": "17472517",
+   "chargeid": "23341549",
+   "cpt": "99308",
+   "dos": "2026-03-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 11.59,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650032",
+     "45.44",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 11.59,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "H54659114",
+    "9553687997"
+   ],
+   "ok": true,
+   "paymentid": "10163894",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-5q4kx\" lst=\"09/23/2026 18:33:17\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 11.59"
+  }
+ ]
+}

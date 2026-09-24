@@ -131,6 +131,11 @@
   "name": "GARROW,CERYS L",
   "src": "stedi: no death on record"
  },
+ "17470802": {
+  "checked": "2026-09-24",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17470804": {
   "checked": "2026-09-22",
   "dod": null,
@@ -792,6 +797,11 @@
   "name": "COPELAND,JULES",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17476042": {
+  "checked": "2026-09-24",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476094": {
   "checked": "2026-09-22",
   "dod": null,
@@ -908,6 +918,11 @@
   "checked": "2026-09-23",
   "dod": null,
   "src": "stedi: no death on record"
+ },
+ "17477227": {
+  "checked": "2026-09-24",
+  "dod": "[DOB]",
+  "src": "stedi-medicare-271"
  },
  "17477267": {
   "checked": "2026-09-22",
