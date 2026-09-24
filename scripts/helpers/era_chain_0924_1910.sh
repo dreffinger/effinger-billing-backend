@@ -1,5 +1,5 @@
 #!/bin/bash
-# ERA step 5 chain for the 2026-09-24T1910Z run (1pm ET 9/24 slot): locks release + before snapshot + details cache, Post button, fallback dry/live, era_clear dry/live, after snapshot, payreasons list
+# ERA step 5 chain for the 2026-09-24T1910Z run (3pm ET 9/24 slot): locks release + before snapshot + details cache, Post button, fallback dry/live, era_clear dry/live, after snapshot, payreasons list
 cd /home/claude/unbilled
 export DECEASED_CACHE=/home/claude/unbilled/registers/deceased_cache.json
 S=2026-09-24T1910Z
