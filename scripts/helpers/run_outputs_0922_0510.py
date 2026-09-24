@@ -66,7 +66,7 @@ app("era-manual-post-0912", "na", "ERA step 5 (%s, run %s): %s" % (SLOT, S, ERA_
 app("aet12-carrier-cpid", "na", "%s: HOLD per your 9/21 word - not rebilled, not re-verified this slot; Exclusions 3 -> 0 (Florida Blue PREF0283 secondaries, none AET12); a nightly claim run finally posted again (1700216, 9/21 21:09 AMD clock, 55 claims) - it carried no AET12 claims." % SLOT)
 app("availity-remits-backlog", "na", "%s: no new Availity PDF or Check/EFT export in 'bht Optum era downloads' / 'treasury payments' (nothing new anywhere in Drive after 03:23Z 9/22); Working Denials queue 0; board drops 0; Pam Gmail: nothing newer than the three 16:46Z 9/21 readmit records already worked." % SLOT)
 app("bcbs-patient-balance-audit-0918", "na", "%s: not worked this run (same blocker: the CO-45 split needs the Availity CheckDetails rows re-parsed from the Check PDFs; the 80 full-charge $0 denials are denial decisions) - hold Florida Blue patient statements." % SLOT)
-app("bell-jr-erwin", "ok", "%s: the 9/22 chat session's referring-provider repoint resaved his PAID 9/3-9/6/2026 HCA visits (v19453767/58/39) and wiped their admission date, which put them back in the Claim Inspector; 09/03/2026 written back (M86.9 still first) and resaved - inspector clear, nothing needed from you." % SLOT)
+app("winslow-jr-erwin", "ok", "%s: the 9/22 chat session's referring-provider repoint resaved his PAID 9/3-9/6/2026 HCA visits (v19453767/58/39) and wiped their admission date, which put them back in the Claim Inspector; 09/03/2026 written back (M86.9 still first) and resaved - inspector clear, nothing needed from you." % SLOT)
 app("uhc-rejected-claims-0922", "na", "%s: unchanged - waiting on the rejection reason for the 41 August-2026 UHC claims." % SLOT)
 # the three NEW rows (patient names, DOBs, MBIs, member ids) live in secrets/board_rows_<stamp>.json - PHI never enters the repo
 ops.extend(json.load(open("secrets/board_rows_%s.json" % S)))
@@ -87,7 +87,7 @@ open("needs_facesheet_list_section_%s.md" % S, "w").write(SEC)
 if "--final" in sys.argv:
     dig = """# 2026-09-22_0510UTC run digest - backend billing run, 1 AM ET 9/22 slot (ehpa cloud)
 %s
-Board inbox: board_updates_%s.json (%d ops: checks appends on era-manual-post-0912, aet12-carrier-cpid, availity-remits-backlog, bcbs-patient-balance-audit-0918, bell-jr-erwin, uhc-rejected-claims-0922; new rows thackeray-kendrew-17472874 (William's turn), dalby-jovan-17477818, saltash-bexford-17477819) uploaded; nothing trashed (none of the 25 inbox files is in the board's applied map). Denials file skipped (queue 0).
+Board inbox: board_updates_%s.json (%d ops: checks appends on era-manual-post-0912, aet12-carrier-cpid, availity-remits-backlog, bcbs-patient-balance-audit-0918, winslow-jr-erwin, uhc-rejected-claims-0922; new rows thackeray-kendrew-17472874 (William's turn), dalby-jovan-17477818, saltash-bexford-17477819) uploaded; nothing trashed (none of the 25 inbox files is in the board's applied map). Denials file skipped (queue 0).
 Vocabulary entries added: 0 (54 calls). Postman: unchanged.
 Mirror: %s
 

@@ -1995,6 +1995,12 @@ No new call shape this run. Behaviours confirmed:
 - Read-back of all 290 target visits (MCAD, SUN01, WEL04, WEL07, HUM01): 45 re-rendered + rebilled ($6,616), 245 PAID by the payer and left as-is ($8,578 residual = write-off path), 0 still Garland-G-unpaid. CORRECTION to the 9/22 assumption: only WellCare truly rejected Garland-G's NPI (34 of 38 unpaid); Humana paid 138/143, FL Medicaid 69/72, Sunshine 34/37 under her NPI. The settling gate is what kept those payments from being unapplied.
 - Past filing limit (DOS > 12 months), Garland-G-rendered, open: $4,722 (FLO99 $1,995 / HUM01 $2,413 / small MCAD, SUN01, WEL04) - not re-rendered; write-off path.
 
+## Additions from the nightly cascade 2026-09-24T0530Z (1:30 AM ET 9/24/2026)
+No new call shape. Behaviours learned:
+- posterapayments (era_post.post_check) on a check with one bad PaymentEntry line answers the -2147217287 'N payment could not be posted' fault for the WHOLE batch, yet every other line in the batch IS posted (9/24: 113 of 114 lines of check 1052828 landed, unpostedamount fell $11,504.56 -> $278.58 while the reply said Results null / Fault). After such a fault re-read GET /api/era/checks + checkdetails before retrying anything - the remaining lines are the only ones left to post by hand.
+- precheck.py CARRIERS: the workspace carriers.json is the rich carN->[code,name] map; the code->carN lookup must go through the manual_post-style normalizer or every non-Medicare pair reads 'no <carrier> plan on chart'.
+- gv_rebill.run(pid, seq) sweeps EVERY COB9 $0 posting on the chart for 364 days; when the Medicare record carries a date of death, bound the sweep to DOS <= DOD-1 (hospice_gv_0924_0530.run_bounded) so post-death charges are left to the DOD rule.
+
 # captured_calls additions - 2026-09-24 0510 UTC (1 AM ET 9/24 slot, ehpa cloud Code Routine, run 2026-09-24T0510Z)
 
 No new call shape this run. Behaviours learned (chart ids only):

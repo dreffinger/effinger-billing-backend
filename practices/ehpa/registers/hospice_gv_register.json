@@ -138,5 +138,516 @@
    "rebill -> freq1 + rebill seq 1 -> 204"
   ],
   "outcome": "gv-rebilled"
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19422338",
+  "result": "10/15/2025 99349 reversed, insbal 198.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19423583",
+  "result": "11/15/2025 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19423583",
+  "result": "11/15/2025 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19427200",
+  "result": "12/21/2025 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19427200",
+  "result": "12/21/2025 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19430685",
+  "result": "01/27/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19430685",
+  "result": "01/27/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19440428",
+  "result": "04/28/2026 99349 reversed, insbal 198.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19442291",
+  "result": "05/17/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19442291",
+  "result": "05/17/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19422338",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19423583",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19427200",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19430685",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19440428",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "12235552",
+  "visit": "19442291",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19421128",
+  "result": "10/25/2025 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19421128",
+  "result": "10/25/2025 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19423720",
+  "result": "11/15/2025 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19424026",
+  "result": "11/17/2025 99307 reversed, insbal 68.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19425184",
+  "result": "12/02/2025 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426216",
+  "result": "12/14/2025 99233 reversed, insbal 160.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426217",
+  "result": "12/13/2025 99233 reversed, insbal 160.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426363",
+  "result": "12/12/2025 99223 reversed, insbal 310.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426363",
+  "result": "12/12/2025 99497 reversed, insbal 133.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426378",
+  "result": "12/15/2025 99233 reversed, insbal 160.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426634",
+  "result": "12/17/2025 99239 reversed, insbal 163.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426635",
+  "result": "12/16/2025 99233 reversed, insbal 160.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19430035",
+  "result": "01/13/2026 99307 reversed, insbal 68.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19430850",
+  "result": "01/27/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19430850",
+  "result": "01/27/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19433041",
+  "result": "02/10/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19435638",
+  "result": "03/09/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19438174",
+  "result": "04/06/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19438666",
+  "result": "03/20/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19438666",
+  "result": "03/20/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19439689",
+  "result": "04/20/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19439689",
+  "result": "04/20/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19441043",
+  "result": "05/01/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19442508",
+  "result": "05/17/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19442508",
+  "result": "05/17/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19444489",
+  "result": "06/04/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19446315",
+  "result": "06/25/2026 99487 reversed, insbal 206.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19446315",
+  "result": "06/25/2026 99489 reversed, insbal 109.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19447374",
+  "result": "07/06/2026 99308 reversed, insbal 107.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19421128",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19423720",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19424026",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19425184",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426216",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426217",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426363",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '133.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426378",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426634",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '163.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19426635",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19430035",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19430850",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19433041",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19435638",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19438174",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19438666",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19439689",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19441043",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19442508",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19444489",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19446315",
+  "result": "GV on 2/2 charges (2 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '109.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17472784",
+  "visit": "19447374",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19452657",
+  "result": "add_gv -> GV on 2/2 charges (2 live)",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19452657",
+  "result": "freq1_visit seq 2 -> freq1 + rebill seq 2 -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19452657",
+  "result": "add_gv -> GV on 2/2 charges (2 live)",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19452657",
+  "result": "freq1_visit seq 2 -> freq1 + rebill seq 2 -> 204",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19449794",
+  "result": "07/24/2026 99349 reversed, insbal 198.00",
+  "check": 1052829
+ },
+ {
+  "stamp": "2026-09-24T0530Z",
+  "pid": "17471496",
+  "visit": "19449794",
+  "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+  "check": 1052829
  }
 ]
