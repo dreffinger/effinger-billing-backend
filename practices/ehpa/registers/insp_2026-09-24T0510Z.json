@@ -1,0 +1,150 @@
+{
+ "stamp": "2026-09-24T0510Z",
+ "dry": false,
+ "mod25": [
+  {
+   "vid": "19430729",
+   "pid": "17473383",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455610",
+   "pid": "17473233",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455723",
+   "pid": "22858",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455735",
+   "pid": "17473669",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455736",
+   "pid": "17469645",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455737",
+   "pid": "17477134",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455746",
+   "pid": "20514",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455767",
+   "pid": "17471673",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19455786",
+   "pid": "17477844",
+   "result": "99489 already carries mcode7"
+  },
+  {
+   "vid": "19427585",
+   "pid": "17473383",
+   "result": "99489 already carries mcode7"
+  }
+ ],
+ "bypassed": [
+  {
+   "vid": "19430729",
+   "pid": "17473383",
+   "batch": "126125",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455610",
+   "pid": "17473233",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455723",
+   "pid": "22858",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455735",
+   "pid": "17473669",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455736",
+   "pid": "17469645",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455737",
+   "pid": "17477134",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455746",
+   "pid": "20514",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455767",
+   "pid": "17471673",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19455786",
+   "pid": "17477844",
+   "batch": "127783",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  },
+  {
+   "vid": "19427585",
+   "pid": "17473383",
+   "batch": "125953",
+   "errs": [
+    "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99"
+   ],
+   "ok": true
+  }
+ ],
+ "left": [],
+ "faults": []
+}
