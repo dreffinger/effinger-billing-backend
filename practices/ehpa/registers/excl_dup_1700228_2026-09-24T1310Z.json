@@ -1,0 +1,69 @@
+{
+ "run": "1700228",
+ "stamp": "2026-09-24T1310Z",
+ "rows": [
+  {
+   "visit": "19448871",
+   "claimid": "19448871C",
+   "pid": "17472396",
+   "dos": "07/17/2026",
+   "err": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM"
+  },
+  {
+   "visit": "19450843",
+   "claimid": "19450843E",
+   "pid": "44953",
+   "dos": "08/07/2026",
+   "err": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM"
+  }
+ ],
+ "charges": [
+  {
+   "id": "23358347",
+   "visit": "19448871",
+   "proccode": "99487",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "billdate": "09/22/2026",
+   "insbilled": null,
+   "insbal": "16.14",
+   "patbal": "0.00",
+   "paid": "189.86",
+   "insorder": null,
+   "payerinfo": "Payor ID: 2449",
+   "pid": "17472396"
+  },
+  {
+   "id": "23358348",
+   "visit": "19448871",
+   "proccode": "99489",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "billdate": "09/22/2026",
+   "insbilled": null,
+   "insbal": "8.92",
+   "patbal": "0.00",
+   "paid": "100.08",
+   "insorder": null,
+   "payerinfo": "Payor ID: 2449",
+   "pid": "17472396"
+  },
+  {
+   "id": "23360845",
+   "visit": "19450843",
+   "proccode": "99239",
+   "dos": "08/07/2026",
+   "carrier": "HUM01",
+   "billdate": "09/22/2026",
+   "insbilled": null,
+   "insbal": "163.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 2449",
+   "pid": "44953"
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-vbsvz\" lst=\"09/24/2026 06:20:45\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": []
+}
