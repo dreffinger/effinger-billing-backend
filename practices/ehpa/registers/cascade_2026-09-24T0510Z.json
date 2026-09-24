@@ -1,0 +1,210 @@
+{
+ "stamp": "2026-09-24T0510Z",
+ "dry": false,
+ "done": [
+  {
+   "pid": "17477843",
+   "carrier": "car6085",
+   "begin": "05/01/1994",
+   "insorder": "1",
+   "visits": [
+    "19455779"
+   ],
+   "note": "Stedi MBI lookup: straight Medicare, Part A/B 5/1/1994, no MA / Part D entity",
+   "steps": [
+    "add_ins -> ins9520565 seq 1",
+    "address: ('200 | clear-line2 500', {'before': {'address1': '', 'address2': '1045 E PEARL ST', 'city': 'MONTICELLO', 'state': 'FL', 'zipcode': '32344', 'email': ''}, 'after': {'address1': '1045 E PEARL ST', 'ad",
+    "v19455779: insorder 1 onhcfa 1 hosp - mods [] (2 charges) []"
+   ],
+   "elig": "ACTIVE | plan 19940501 | A 19940501 B 19940501 | others  | death - | addr 1045 E PEARL STREET MONTICELLO FL <id> | aaa []"
+  },
+  {
+   "pid": "17477844",
+   "carrier": "car6404",
+   "begin": "01/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455786"
+   ],
+   "note": "MBI lookup ERR 72; discovery: UHC HMO-POS AARP Medicare Advantage FL-0011 member <id> plan 1/1-12/31/2026 ACTIVE",
+   "steps": [
+    "add_ins -> ins9520566 seq 1",
+    "address: ('200 | clear-line2 500', {'before': {'address1': '', 'address2': '6020 BEACH RD', 'city': 'PERRY', 'state': 'FL', 'zipcode': '32348', 'email': ''}, 'after': {'address1': '6020 BEACH RD', 'address2': ",
+    "v19455786: insorder 1 onhcfa 1 hosp - mods [] (2 charges) []"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>; HN HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H N6:H1045-041-000 UNITEDHEALTHCARE:87726; HN  ; HN  ; HN  ;   SYNAPSE HEALTH:;   OPTUMRX: | death - | addr 6020 BEACH RD PERRY FL 32348 | aaa []"
+  },
+  {
+   "pid": "17477845",
+   "carrier": "car6404",
+   "begin": "06/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455896",
+    "19455853"
+   ],
+   "note": "MBI lookup ERR 72; discovery: UHC HMO-POS AARP Medicare Advantage GA-5 member <id> plan 6/1-12/31/2026 ACTIVE",
+   "steps": [
+    "add_ins -> ins9520567 seq 1",
+    "address: ('500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500', {'before': {'address1': '', 'address2': '1281 GA HWY 93 N', 'city': 'CAIRO', 'state': 'GA', 'zipcode': '39827', 'e",
+    "v19455896: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99223', 'ok')]\"]",
+    "v19455853: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99232', 'ok')]\"]"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>; PS HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC GA-5 (HMO- N6:H5322-047-002 UNITEDHEALTHCARE:87726; PS  ; PS  ; PS  ; PS  ; PS  ; PS  ;   SYNAPSE H | death - | addr 1281 GA HIGHWAY 93 N CAIRO GA 39827 | aaa []"
+  },
+  {
+   "pid": "17477846",
+   "carrier": "car6404",
+   "begin": "08/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455893",
+    "19455857"
+   ],
+   "note": "MBI <mbi> with MA entity Care Improvement Plus (UHC), COB 11/1/2024; UHC 87726 by MBI: RPPO AARP Medicare Advantage Patriot FL-MA01 member <id> ACTIVE 2026, benefit begin 8/1/2026",
+   "steps": [
+    "add_ins -> ins9520568 seq 1",
+    "address: ('500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500', {'before': {'address1': '', 'address2': '222 SHEATS RD', 'city': 'MONTICELLO', 'state': 'FL', 'zipcode': '32344', ",
+    "v19455893: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99223', 'ok')]\"]",
+    "v19455857: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99232', 'ok')]\"]"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>; PR RPPO-AARP MEDICARE ADVANTAGE PATRIOT NO RX FL-MA01 N6:R0759-002-000 UNITEDHEALTHCARE:87726; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ;   SYNAPSE H | death - | addr 222 SHEETS RD MONTICELLO FL 32344 | aaa []"
+  },
+  {
+   "pid": "17477847",
+   "carrier": "car6404",
+   "begin": "09/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455892",
+    "19455862"
+   ],
+   "note": "MBI lookup ERR 72; discovery: UHC Group Medicare Advantage LPPO member <id> plan begin 9/1/2026 ACTIVE",
+   "steps": [
+    "add_ins -> ins9520569 seq 1",
+    "address: ('500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500', {'before': {'address1': '', 'address2': 'PO BOX 13191', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32317', ",
+    "v19455892: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (2 charges) [\"admit 09/21/2026 -> [('99223', 'ok'), ('pcode492667', 'ok')]\"]",
+    "v19455862: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99232', 'ok')]\"]"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>; PR LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PP N6:H2001-817-000 UNITEDHEALTHCARE:87726; PR  ; PR  ; PR  ;   OPTUMRX:;   EFFINGER:122532 | death - | addr 4096 DUFFY CT TALLAHASSEE FL 32309 | aaa []"
+  },
+  {
+   "pid": "17477848",
+   "carrier": "car6404",
+   "begin": "09/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455897",
+    "19455863"
+   ],
+   "note": "MBI lookup ERR 72; discovery: UHC Group Medicare Advantage LPPO member <id> plan 9/1-12/31/2026 ACTIVE",
+   "steps": [
+    "add_ins -> ins9520570 seq 1",
+    "address: ('500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500', {'before': {'address1': '', 'address2': '228 DOGWOOD DRIVE', 'city': 'THOMASVILLE', 'state': 'GA', 'zipcode': '317",
+    "v19455897: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99223', 'ok')]\"]",
+    "v19455863: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99232', 'ok')]\"]"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>; PR LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PP N6:H2001-816-000 UNITEDHEALTHCARE:87726; PR  ; PR  ; PR  ;   OPTUMRX:;   EFFINGER:122532 | death - | addr 228 DOGWOOD DRIVE THOMASVILLE GA <id> | aaa []"
+  },
+  {
+   "pid": "17477849",
+   "carrier": "car6085",
+   "begin": "08/01/2015",
+   "insorder": "1",
+   "visits": [
+    "19455894",
+    "19455864"
+   ],
+   "note": "Stedi MBI lookup: straight Medicare, Part A 4/1/2014 B 8/1/2015; Humana entity is 'OT' (Part D) only",
+   "steps": [
+    "add_ins -> ins9520571 seq 1",
+    "address: ('500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500', {'before': {'address1': '', 'address2': '133 CARDINAL RIDGE RD', 'city': 'THOMASVILLE', 'state': 'GA', 'zipcode': ",
+    "v19455894: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99223', 'ok')]\"]",
+    "v19455864: insorder 1 onhcfa 1 hosp 09/21/2026 mods [] (1 charges) [\"admit 09/21/2026 -> [('99232', 'ok')]\"]"
+   ],
+   "elig": "ACTIVE | plan 20140401,20150801 | A 20140401 B 20150801 | others OT  18:S5884 N6:189 HUMANA INSURANCE CO. & HUMANA INSURANCE CO. OF NY: | death - | addr 133 CARDINAL RIDGE RD THOMASVILLE GA <id> | aaa []"
+  },
+  {
+   "pid": "17477851",
+   "carrier": "car302853",
+   "begin": "02/01/2026",
+   "insorder": "1",
+   "visits": [
+    "19455900"
+   ],
+   "note": "MBI lookup ERR 72; discovery: FL UnitedHealthcare Dual Complete HMO-POS (QMB) member <id> plan 2/1-12/31/2026 ACTIVE -> UHCMA",
+   "steps": [
+    "add_ins -> ins9520572 seq 1",
+    "address: ('200 | clear-line2 500', {'before': {'address1': '', 'address2': '19613 NW 46TH AVE', 'city': 'ALACHUA', 'state': 'FL', 'zipcode': '32615', 'email': ''}, 'after': {'address1': '19613 NW 46TH AVE', 'a",
+    "v19455900: insorder 1 onhcfa 1 hosp - mods [] (2 charges) []"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:<mbi>;   DBP DENTAL-  WONDERBOX:;   OPTUMRX:;   EFFINGER:<id> | death - | addr 19613 NW 46TH AVE ALACHUA FL 32615 | aaa []"
+  },
+  {
+   "pid": "45049",
+   "visits": [
+    "19455371"
+   ],
+   "note": "chart Medicare plan ins10559 answered AAA 72; Stedi MBI lookup: <mbi>, Part A/B 2/1/2014, WellCare PDP (straight Medicare) -> member id corrected, insorder 1 (Medicaid + Humana INACTIVE), original claim",
+   "steps": [
+    "ins_update subscribernum -> True 8-h6h4q\" lst=\"09/23/2026 22:49:30\"><Results success=\"1\"><patient insorder=\"\" /><",
+    "address: ('200 | clear-line2 500', {'before': {'address1': '', 'address2': '3641 S BYRON BUTLER PKWY', 'city': 'PERRY', 'state': 'FL', 'zipcode': '32348', 'email': ''}, 'after': {'address1': '3641 S BYRON BUTL",
+    "v19455371: insorder 1 onhcfa 1 hosp - mods [] (1 charges)",
+    "freq1 + rebill seq 1 -> 204"
+   ],
+   "elig": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '72', 'FollowUpActionCode': 'C'}]"
+  },
+  {
+   "pid": "17472874",
+   "visits": [
+    "19455321",
+    "19455322",
+    "19455323"
+   ],
+   "note": "UNI20 INACTIVE + Sunshine AAA 78 on AMD's 271; Stedi discovery: CMS (straight Medicare) member <mbi> ACTIVE 9/1-9/20/2026 -> FLO02 added, September visits routed to it; the April-2026 stay hold is untouched",
+   "steps": [
+    "add_ins -> ins9520573 seq 4",
+    "begindate -> 20200801: True",
+    "address: ('200', {'before': {'address1': '', 'address2': '2423 RAMBLEMAN', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32303', 'email': ''}, 'after': {'address1': '2423 RAMBLEWOOD CT', 'address2': '2423 ",
+    "v19455321: insorder 4 onhcfa 1 hosp - mods [] (1 charges)",
+    "freq1 + rebill seq 4 -> 204",
+    "v19455322: insorder 4 onhcfa 1 hosp - mods [] (1 charges)",
+    "freq1 + rebill seq 4 -> 204",
+    "v19455323: insorder 4 onhcfa 1 hosp - mods [] (1 charges)",
+    "freq1 + rebill seq 4 -> 204",
+    "patient order -> 4: True"
+   ],
+   "elig": "ACTIVE | plan 20200801 | A 20200801 B 20200801 | others OT  18:S4802 N6:083 WELLCARE PRESCRIPTION INSURANCE, INC.: | death - | addr 4423 RAMBLE WOOD CT TALLAHASSEE FL 32303 | aaa []"
+  }
+ ],
+ "held": [
+  {
+   "pid": "17477850",
+   "vids": [
+    "19455898",
+    "19455868"
+   ],
+   "why": "Medicare's 271 names Capital Health Plan (HMO Medicare Risk, COB 2/1/2026) as the MA plan; CHP eligibility by MBI answers AAA 72 and discovery did not return a CHP member id - the CHP member id (HCA facesheet / card) is needed - William"
+  },
+  {
+   "pid": "17477639",
+   "vids": [
+    "19455621"
+   ],
+   "why": "no plan on the chart; Stedi MBI lookup ERR 72 (not a Medicare beneficiary, dob 1981); insurance discovery coveragesFound 0; no facesheet / Pam email / drop; address empty - William: facesheet or card (Sodalis ALF CCM 9/20/2026, $315)"
+  },
+  {
+   "pid": "17477842",
+   "vids": [
+    "19455665"
+   ],
+   "why": "1921-placeholder-DOB chart created by the feed; lookuppatient shows the real same-name charts (born 1938, 10+ duplicates); never attach insurance to a mis-dated duplicate - William: merge / move the 9/20/2026 CCM ($315) to the right chart"
+  }
+ ],
+ "faults": [],
+ "release_call": {
+  "n": 17,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-<id>-pln9p\" lst=\"09/23/2026 22:50:34\"><Results success=\"1\" /><E"
+ }
+}

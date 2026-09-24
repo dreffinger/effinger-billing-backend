@@ -1,0 +1,897 @@
+{
+ "stamp": "2026-09-24T0510Z",
+ "dry": false,
+ "fixed": [
+  {
+   "pid": "17476544",
+   "vid": "19451019",
+   "insorder": "2",
+   "seq": 2,
+   "note": "BCBS ended 06/08/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17476544",
+   "vid": "19451191",
+   "insorder": "2",
+   "seq": 2,
+   "note": "BCBS ended 06/08/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17476544",
+   "vid": "19451353",
+   "insorder": "2",
+   "seq": 2,
+   "note": "BCBS ended 06/08/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17470802",
+   "vid": "19452372",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/19/2026; Medicare seq 2 ACTIVE (QMB)",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17470802",
+   "vid": "19453348",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/19/2026; Medicare seq 2 ACTIVE (QMB)",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17470802",
+   "vid": "19453495",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/19/2026; Medicare seq 2 ACTIVE (QMB)",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17470802",
+   "vid": "19454877",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/19/2026; Medicare seq 2 ACTIVE (QMB)",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455310",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455311",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455312",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455313",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455314",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "48163",
+   "vid": "19455315",
+   "insorder": "4,2",
+   "seq": 4,
+   "note": "plans seq1/3 ended 12/31/2025; UHC Dual Complete seq 4 ACTIVE from 1/1/2026 (Medicaid 271: D-SNP UHC), Medicaid FFS second",
+   "steps": [
+    "insorder now 4,2 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "17473669",
+   "vid": "19455735",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 05/31/2026; Ambetter AMB03 seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17469645",
+   "vid": "19453683",
+   "insorder": "3,1",
+   "seq": 3,
+   "note": "UHC Dual Complete (MA) seq 3 ACTIVE -> Medicare never secondary to an MA plan; Medicaid FFS second (LTC Sunshine is custodial, no MMA entity)",
+   "steps": [
+    "insorder now 3,1 (1 charges echoed)",
+    "freq1 + rebill seq 3 -> 204"
+   ]
+  },
+  {
+   "pid": "17469645",
+   "vid": "19455736",
+   "insorder": "3,1",
+   "seq": 3,
+   "note": "UHC Dual Complete (MA) seq 3 ACTIVE -> Medicare never secondary to an MA plan; Medicaid FFS second (LTC Sunshine is custodial, no MMA entity)",
+   "steps": [
+    "insorder now 3,1 (2 charges echoed)",
+    "freq1 + rebill seq 3 -> 204"
+   ]
+  },
+  {
+   "pid": "17473233",
+   "vid": "19455610",
+   "insorder": "1",
+   "seq": 1,
+   "note": "AARP MA from UHC seq 1 ACTIVE (H1045) -> MA plan alone; Medicare not secondary",
+   "steps": [
+    "insorder now 1 (2 charges echoed)",
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "25266",
+   "vid": "19455802",
+   "insorder": "2,3",
+   "seq": 2,
+   "note": "Medicare seq 2 ACTIVE (QMB) first; Sunshine SMMC MMA seq 3 second; Medicaid FFS never first",
+   "steps": [
+    "insorder now 2,3 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17473208",
+   "vid": "19455630",
+   "insorder": "2",
+   "seq": 2,
+   "note": "CHP ended 04/21/2025; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17473197",
+   "vid": "19455638",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 05/16/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17475312",
+   "vid": "19455651",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicare ended 08/22/2026; AARP MA (UNI20) seq 2 ACTIVE from 8/23/2026",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17473199",
+   "vid": "19455653",
+   "insorder": "2,3",
+   "seq": 2,
+   "note": "BCBS ended 12/31/2025; Medicare seq 2 ACTIVE; AARP Medigap seq 3 (board row berry-priscilla-denials)",
+   "steps": [
+    "insorder now 2,3 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17473422",
+   "vid": "19455667",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 05/06/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "24655",
+   "vid": "19455697",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicare ended 09/17/2025; AARP MA (UNI20) seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "22858",
+   "vid": "19455723",
+   "insorder": "4",
+   "seq": 4,
+   "note": "SUN01 ended 05/31/2025; Medicaid 271 names SMMC MMA Capitated FLORIDA COMMUNITY CARE -> FCC seq 4 (comprehensive plan)",
+   "steps": [
+    "insorder now 4 (2 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "17472517",
+   "vid": "19455740",
+   "insorder": "3,2",
+   "seq": 3,
+   "note": "CHP ended 08/31/2026; Medicare seq 3 ACTIVE (QMB) first, Humana Medicaid MMA seq 2 second",
+   "steps": [
+    "insorder now 3,2 (2 charges echoed)",
+    "freq1 + rebill seq 3 -> 204"
+   ]
+  },
+  {
+   "pid": "21378",
+   "vid": "19455764",
+   "insorder": "1,5",
+   "seq": 1,
+   "note": "Medicare seq 1 ACTIVE (QMB); UHCMA ended 12/08/2025, UNI20 INACTIVE; Humana Medicaid MMA seq 5 second",
+   "steps": [
+    "insorder now 1,5 (1 charges echoed)",
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "17471673",
+   "vid": "19455767",
+   "insorder": "3,2",
+   "seq": 3,
+   "note": "Medicare ended 10/07/2025; UHC D-SNP (UNI20) seq 3 ACTIVE from 10/8/2025; Medicaid FFS second (LTC FCC custodial, no MMA entity)",
+   "steps": [
+    "insorder now 3,2 (2 charges echoed)",
+    "freq1 + rebill seq 3 -> 204"
+   ]
+  },
+  {
+   "pid": "45008",
+   "vid": "19455787",
+   "insorder": "4",
+   "seq": 4,
+   "note": "Medicare seq 4 ACTIVE (QMB); every other plan ended",
+   "steps": [
+    "insorder now 4 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "24039",
+   "vid": "19455792",
+   "insorder": "1,3",
+   "seq": 1,
+   "note": "Medicare seq 1 ACTIVE; SUN01 ended 05/17/2026; FCC seq 3 second",
+   "steps": [
+    "insorder now 1,3 (2 charges echoed)",
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "17477128",
+   "vid": "19455814",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/03/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17477128",
+   "vid": "19455905",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 08/03/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "12232512",
+   "vid": "19455818",
+   "insorder": "4,3",
+   "seq": 4,
+   "note": "Medicare ended 02/09/2026; UHC D-SNP (UNI20) seq 4 ACTIVE from 2/10/2026; Humana Medicaid seq 3 second",
+   "steps": [
+    "insorder now 4,3 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "45001",
+   "vid": "19455826",
+   "insorder": "4,3",
+   "seq": 4,
+   "note": "Medicare seq 4 ACTIVE from 4/1/2026 (QMB); Medicaid 271 names SMMC MMA Humana -> HUM01 seq 3 second",
+   "steps": [
+    "insorder now 4,3 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "45001",
+   "vid": "19455910",
+   "insorder": "4,3",
+   "seq": 4,
+   "note": "Medicare seq 4 ACTIVE from 4/1/2026 (QMB); Medicaid 271 names SMMC MMA Humana -> HUM01 seq 3 second",
+   "steps": [
+    "insorder now 4,3 (1 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "17473571",
+   "vid": "19455833",
+   "insorder": "2",
+   "seq": 2,
+   "note": "UNI20 ended 05/05/2026; Medicare seq 2 ACTIVE",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "insorder": "4,3",
+   "seq": 4,
+   "note": "billed to Medicare (ended 10/01/2025, $0 answer 9/6); Medicaid 271 names D-SNP HUMANA; HumanaChoice seq 4 ACTIVE from 10/2/2025 -> wrong payer, re-route",
+   "steps": [
+    "insorder now 4,3 (2 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "insorder": "4,3",
+   "seq": 4,
+   "note": "billed to Medicare (ended 10/01/2025, $0 answer 9/6); Medicaid 271 names D-SNP HUMANA; HumanaChoice seq 4 ACTIVE from 10/2/2025 -> wrong payer, re-route",
+   "steps": [
+    "insorder now 4,3 (2 charges echoed)",
+    "freq1 + rebill seq 4 -> 204"
+   ]
+  },
+  {
+   "pid": "21915",
+   "vid": "19455374",
+   "insorder": "1,3",
+   "seq": 1,
+   "note": "Medicare seq 1 ACTIVE; Medicaid 271 names SMMC MMA Humana -> HUM01 seq 3 second (not Medicaid FFS); never billed - original claim to Medicare",
+   "steps": [
+    "insorder now 1,3 (1 charges echoed)",
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "21915",
+   "vid": "19455375",
+   "insorder": "1,3",
+   "seq": 1,
+   "note": "Medicare seq 1 ACTIVE; Medicaid 271 names SMMC MMA Humana -> HUM01 seq 3 second (not Medicaid FFS); never billed - original claim to Medicare",
+   "steps": [
+    "insorder now 1,3 (1 charges echoed)",
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  }
+ ],
+ "released_b": [
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "note": "secondary BCBS residual 23.62 behind a Medicare payment; primary link missing -> release, re-queues on its own",
+   "steps": []
+  },
+  {
+   "pid": "17473343",
+   "vid": "19442414",
+   "note": "billed Medicare 9/5, $0 answer 9/6 (check 26143B1000143315) - reason not in the cache; release per rule (b), listed for a look",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447648",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447649",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447650",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447651",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447878",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19448026",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19448251",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19448583",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17476868",
+   "vid": "19448637",
+   "note": "Medicare primary sent 9/13-9/16, unanswered - released again (rule b)",
+   "steps": []
+  },
+  {
+   "pid": "17477116",
+   "vid": "19448262",
+   "note": "Medicare primary (seq 2 first) sent, unanswered - release",
+   "steps": []
+  },
+  {
+   "pid": "23159",
+   "vid": "19455332",
+   "note": "late-entered 01/02/2026 visit, never billed; Medicare seq 1 ACTIVE -> original claim to Medicare + release",
+   "steps": [
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "23721",
+   "vid": "19455369",
+   "note": "late-entered 01/20/2026 visit, never billed; Medicare seq 1 ACTIVE -> original claim + release",
+   "steps": [
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "21021",
+   "vid": "19455372",
+   "note": "late-entered 01/05/2026 visit, never billed; Medicare (date of death 03/12/2026, DOS before it) -> original claim + release",
+   "steps": [
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  },
+  {
+   "pid": "24214",
+   "vid": "19455373",
+   "note": "late-entered 01/02/2026 visit, never billed; Medicare seq 1 ACTIVE -> original claim + release",
+   "steps": [
+    "freq1 + rebill seq 1 -> 204"
+   ]
+  }
+ ],
+ "excl_fixed": [
+  {
+   "run": "1700236",
+   "vid": "19455364",
+   "claimid": "19455364A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicaid 271: SMMC MMA Capitated FLORIDA COMMUNITY CARE -> FCC seq 2",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455365",
+   "claimid": "19455365A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "same",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455366",
+   "claimid": "19455366A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "same",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455367",
+   "claimid": "19455367A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "same",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455368",
+   "claimid": "19455368A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "same",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455781",
+   "claimid": "19455781A",
+   "pid": "20060",
+   "insorder": "2",
+   "seq": 2,
+   "note": "same",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455737",
+   "claimid": "19455737A",
+   "pid": "17477134",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicaid 271: SMMC MMA Capitated FLORIDA COMMUNITY CARE -> FCC seq 2",
+   "steps": [
+    "insorder now 2 (2 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455746",
+   "claimid": "19455746A",
+   "pid": "20514",
+   "insorder": "3",
+   "seq": 3,
+   "note": "Medicaid 271: SMMC MMA Capitated FLORIDA COMMUNITY CARE -> FCC seq 3",
+   "steps": [
+    "insorder now 3 (2 charges echoed)",
+    "freq1 + rebill seq 3 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455782",
+   "claimid": "19455782A",
+   "pid": "17475713",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicaid 271: SMMC MMA Capitated HUMANA MEDICAL PLAN -> HUM01 seq 2",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  },
+  {
+   "run": "1700236",
+   "vid": "19455810",
+   "claimid": "19455810A",
+   "pid": "17474046",
+   "insorder": "2",
+   "seq": 2,
+   "note": "Medicaid 271: SMMC MMA Capitated SIMPLY HEALTHCARE -> SIM01 seq 2",
+   "steps": [
+    "insorder now 2 (1 charges echoed)",
+    "freq1 + rebill seq 2 -> 204"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "pid": "17470743",
+   "vid": "19441047",
+   "why": "MCAD crossover behind a reversed Medicare payment - standing hold"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19430630",
+   "why": "Claim Inspector hold (Pattern 15775)"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19455471",
+   "why": "cascade exhausted 9/23 - William's turn (row alcorn-alfred-17477183)"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19455759",
+   "why": "same - second visit (CCM 9/20/2026)"
+  },
+  {
+   "pid": "17473232",
+   "vid": "19455597",
+   "why": "CCM 09/20/2026 AFTER the date of death 06/02/2026 on Medicare's 271 - William: void"
+  },
+  {
+   "pid": "17471681",
+   "vid": "19455606",
+   "why": "CCM 09/20/2026 AFTER the date of death 09/10/2026 on Medicare's 271 - William: DOS on/before 9/10 or void"
+  },
+  {
+   "pid": "45049",
+   "vid": "19455371",
+   "why": "Medicare 271 REJECTED AAA 72 (member id) - cascade (Stedi MBI) in the cascade script"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19455321-23",
+   "why": "UNI20 seq 3 not ACTIVE on the 271: INACTIVE"
+  }
+ ],
+ "faults": [],
+ "patient_order": [
+  {
+   "pid": "25266",
+   "order": "2,3",
+   "was": "1,2,3",
+   "result": "ok"
+  },
+  {
+   "pid": "17473208",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17473197",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17475312",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17473199",
+   "order": "2,3",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17473422",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "24655",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "22858",
+   "order": "4",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17472517",
+   "order": "3,2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "21378",
+   "order": "1,5",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17471673",
+   "order": "3,2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "45008",
+   "order": "4",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "24039",
+   "order": "1,3",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17477128",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "12232512",
+   "order": "4,3",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "45001",
+   "order": "4,3",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17473571",
+   "order": "2",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "17473383",
+   "order": "4,3",
+   "was": "",
+   "result": "ok"
+  },
+  {
+   "pid": "21915",
+   "order": "1,3",
+   "was": "1,2,3",
+   "result": "ok"
+  },
+  {
+   "pid": "17469645",
+   "order": "3,1",
+   "was": "3,1,2,4",
+   "result": "ok"
+  },
+  {
+   "pid": "17473233",
+   "order": "1",
+   "was": "1,2",
+   "result": "ok"
+  },
+  {
+   "pid": "20060",
+   "order": "2",
+   "was": "1,2",
+   "result": "ok"
+  },
+  {
+   "pid": "17477134",
+   "order": "2",
+   "was": "1,2",
+   "result": "ok"
+  },
+  {
+   "pid": "20514",
+   "order": "3",
+   "was": "2,3",
+   "result": "ok"
+  },
+  {
+   "pid": "17475713",
+   "order": "2",
+   "was": "1,2",
+   "result": "ok"
+  },
+  {
+   "pid": "17474046",
+   "order": "2",
+   "was": "1,2",
+   "result": "ok"
+  }
+ ],
+ "release_call": {
+  "n": 56,
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-<id>-h6h4q\" lst=\"09/23/2026 22:45:26\"><Results success=\"1\" /><E"
+ },
+ "excl_completed": [
+  {
+   "run": "1700236",
+   "n": 10,
+   "ok": true
+  }
+ ]
+}
