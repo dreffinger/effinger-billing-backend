@@ -21332,5 +21332,33 @@
   "chargedetailid": 23343888,
   "chargeid": "23343888",
   "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052828",
+  "checkclaimid": 15441851,
+  "visitid": 19420915,
+  "pid": 46673,
+  "cpt": "99487",
+  "dos": "10/25/2025",
+  "era_paid": 68.62,
+  "carrier": "FLO02",
+  "checkno": "819843767",
+  "when": "2026-09-24T0710Z",
+  "chargeid": "23326030",
+  "outcome": "residual 68.62 (charge at $0 - paid/adjusted by check 348567230 06/01/2026)"
+ },
+ {
+  "checkid": "1052828",
+  "checkclaimid": 15441851,
+  "visitid": 19420915,
+  "pid": 46673,
+  "cpt": "99489",
+  "dos": "10/25/2025",
+  "era_paid": 37.13,
+  "carrier": "FLO02",
+  "checkno": "819843767",
+  "when": "2026-09-24T0710Z",
+  "chargeid": "23326031",
+  "outcome": "already-posted (0530Z: pay 37.13 + WOINS 62.40, paymentid 24656160; $9.47 PR-2 coinsurance open)"
  }
 ]
