@@ -1,0 +1,272 @@
+{
+ "stamp": "2026-09-24T0110Z",
+ "actions": [
+  {
+   "visit": "19452859",
+   "pid": "17476042",
+   "step": "move back + insorder 2 + rebill seq 2",
+   "outcome": "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "before": [
+    [
+     "23363232",
+     "99309",
+     "0.00",
+     "141.00"
+    ]
+   ],
+   "after": [
+    [
+     "23363232",
+     "99309",
+     "141.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19452616",
+   "pid": "17476042",
+   "step": "move back + insorder 2 + rebill seq 2",
+   "outcome": "moved 315.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "before": [
+    [
+     "23362956",
+     "99487",
+     "0.00",
+     "206.00"
+    ],
+    [
+     "23362957",
+     "99489",
+     "0.00",
+     "109.00"
+    ]
+   ],
+   "after": [
+    [
+     "23362956",
+     "99487",
+     "206.00",
+     "0.00"
+    ],
+    [
+     "23362957",
+     "99489",
+     "109.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19452694",
+   "pid": "17470802",
+   "step": "move back + insorder 2 + rebill seq 2",
+   "outcome": "moved 389.00 -> {'patbalance': '0.00', 'insbalance': '256.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "before": [
+    [
+     "23363073",
+     "99306",
+     "0.00",
+     "256.00"
+    ],
+    [
+     "23363074",
+     "99497",
+     "0.00",
+     "133.00"
+    ]
+   ],
+   "after": [
+    [
+     "23363073",
+     "99306",
+     "256.00",
+     "0.00"
+    ],
+    [
+     "23363074",
+     "99497",
+     "133.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19452832",
+   "pid": "17470802",
+   "step": "move back + insorder 2 + rebill seq 2",
+   "outcome": "moved 141.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "before": [
+    [
+     "23363207",
+     "99309",
+     "0.00",
+     "141.00"
+    ]
+   ],
+   "after": [
+    [
+     "23363207",
+     "99309",
+     "141.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19452631",
+   "pid": "17476094",
+   "step": "move back to insurance",
+   "charge": "23362982",
+   "outcome": "moved 216.77 -> {'patbalance': '0.00', 'insbalance': '142.72', 'insorder': '2'}"
+  },
+  {
+   "visit": "19452631",
+   "pid": "17476094",
+   "step": "move back to insurance",
+   "charge": "23362983",
+   "outcome": "nothing to move"
+  },
+  {
+   "visit": "19452631",
+   "pid": "17476094",
+   "step": "state after move-back",
+   "outcome": [
+    [
+     "23362982",
+     "99487",
+     "142.72",
+     "0.00"
+    ],
+    [
+     "23362983",
+     "99489",
+     "74.05",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19452628",
+   "pid": "17473422",
+   "step": "move back to insurance",
+   "charge": "23362976",
+   "outcome": "moved 216.77 -> {'patbalance': '0.00', 'insbalance': '142.72', 'insorder': '2'}"
+  },
+  {
+   "visit": "19452628",
+   "pid": "17473422",
+   "step": "move back to insurance",
+   "charge": "23362977",
+   "outcome": "nothing to move"
+  },
+  {
+   "visit": "19452628",
+   "pid": "17473422",
+   "step": "state after move-back",
+   "outcome": [
+    [
+     "23362976",
+     "99487",
+     "142.72",
+     "0.00"
+    ],
+    [
+     "23362977",
+     "99489",
+     "74.05",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "step": "dismissed Medicare checks 819814877",
+   "outcome": [
+    "1051714",
+    "1051715"
+   ]
+  },
+  {
+   "step": "restore",
+   "check": "1051714",
+   "outcome": true,
+   "lines": 76
+  },
+  {
+   "step": "redismiss",
+   "check": "1051714",
+   "outcome": "ok"
+  },
+  {
+   "step": "restore",
+   "check": "1051715",
+   "outcome": true,
+   "lines": 1
+  },
+  {
+   "step": "redismiss",
+   "check": "1051715",
+   "outcome": "ok"
+  },
+  {
+   "visit": "19452631",
+   "pid": "17476094",
+   "step": "Medicare remit line",
+   "outcome": "not found in the 819814877 checks - left for the next run"
+  },
+  {
+   "visit": "19452628",
+   "pid": "17473422",
+   "step": "Medicare remit line",
+   "outcome": "not found in the 819814877 checks - left for the next run"
+  },
+  {
+   "visit": "19452587",
+   "pid": "17473477",
+   "step": "hospice rebill re-check",
+   "outcome": "freq1 + rebill seq 2 -> 204",
+   "state": [
+    [
+     "23362901",
+     "99487",
+     "206.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19449802",
+   "pid": "17477227",
+   "step": "hospice rebill re-check",
+   "outcome": "freq1 + rebill seq 2 -> 204",
+   "state": [
+    [
+     "23359641",
+     "99306",
+     "256.00",
+     "0.00"
+    ],
+    [
+     "23359642",
+     "99497",
+     "133.00",
+     "0.00"
+    ]
+   ]
+  },
+  {
+   "visit": "19450279",
+   "pid": "17477227",
+   "step": "hospice rebill re-check",
+   "outcome": "freq1 + rebill seq 2 -> 204",
+   "state": [
+    [
+     "23360164",
+     "99316",
+     "160.00",
+     "0.00"
+    ]
+   ]
+  }
+ ]
+}

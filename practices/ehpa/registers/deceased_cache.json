@@ -2,7 +2,7 @@
  "12179890": {
   "checked": "2026-09-22",
   "dod": "2025-08-30",
-  "name": "CROSSLEY,HELEN G",
+  "name": "CROSSLEY,HELENA G",
   "src": "stedi-medicare-271"
  },
  "12182505": {
@@ -82,7 +82,7 @@
  "17468923": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "KLEINSMITH,MARIANNE",
+  "name": "KLEINSMITH,MARIAN",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17469078": {
@@ -106,7 +106,7 @@
  "17469446": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "MAPLIN,KENDREW EDWARD",
+  "name": "MAPLIN,KENDREW EDWIN",
   "src": "stedi: no death on record"
  },
  "17469466": {
@@ -129,6 +129,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "GARROW,CERYS L",
+  "src": "stedi: no death on record"
+ },
+ "17470802": {
+  "checked": "2026-09-24",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "17470804": {
@@ -179,13 +184,13 @@
  "17471174": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "ENFINGER,MICHAEL",
+  "name": "ENDERBY,MICAH",
   "src": "stedi: no death on record"
  },
  "17471238": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "GARCIA,MERCEDES",
+  "name": "GARLAND-G,MERCY",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17471326": {
@@ -196,7 +201,7 @@
  "17471333": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "GARCIA,MERCEDES",
+  "name": "GARLAND-G,MERCY",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17471365": {
@@ -219,7 +224,7 @@
  "17471725": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "BLAKELY,NORMAN",
+  "name": "BLAKELY,NORBERT",
   "src": "stedi: no death on record"
  },
  "17471773": {
@@ -301,7 +306,7 @@
  "17472517": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HOLZBERGER,JULIE DUFF",
+  "name": "HOLBROOK,JULIET DUFF",
   "src": "stedi: no death on record"
  },
  "17472553": {
@@ -411,13 +416,13 @@
  "17473004": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "YOUNG,PATRICIA",
+  "name": "YOUNG,PATRICE",
   "src": "stedi: no death on record"
  },
  "17473019": {
   "checked": "2026-09-22",
   "dod": "2025-09-29",
-  "name": "MCLAUGHLIN,HELEN",
+  "name": "MCLAUGHLIN,HELENA",
   "src": "stedi-medicare-271"
  },
  "17473062": {
@@ -556,7 +561,7 @@
  "17473422": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "FAZZI,DIANA",
+  "name": "FARLEY,DELIA",
   "src": "stedi: no death on record"
  },
  "17473423": {
@@ -580,7 +585,7 @@
  "17473460": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SMITH,RODNEY",
+  "name": "SMYTHE,RODNEY",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17473462": {
@@ -662,7 +667,7 @@
  "17474198": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SMITH,MARy",
+  "name": "SMYTHE,MARy",
   "src": "stedi: no death on record"
  },
  "17474200": {
@@ -754,13 +759,13 @@
  "17475601": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOINER,MARISA",
+  "name": "JARVIS,MARISA",
   "src": "stedi: no death on record"
  },
  "17475602": {
   "checked": "2026-09-22",
   "dod": "2026-04-16",
-  "name": "LaFLEUR,DIANA",
+  "name": "LaFLEUR,DELIA",
   "src": "stedi-medicare-271"
  },
  "17475638": {
@@ -772,13 +777,13 @@
  "17475697": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "LEONARD,TOMMY",
+  "name": "LEONARD,TOBIAS",
   "src": "stedi: no death on record"
  },
  "17475777": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "SAMPSON,DUREATHA",
+  "name": "SAMSON,DURA",
   "src": "stedi: no death on record"
  },
  "17475993": {
@@ -792,10 +797,15 @@
   "name": "COOPER,JACK",
   "src": "stedi: not a Medicare beneficiary"
  },
+ "17476042": {
+  "checked": "2026-09-24",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17476094": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "COLES,CHERYL",
+  "name": "COLBY,CHERISE",
   "src": "stedi: no death on record"
  },
  "17476264": {
@@ -824,7 +834,7 @@
  "17476530": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "JOINER,MARISA",
+  "name": "JARVIS,MARISA",
   "src": "stedi: no death on record"
  },
  "17476583": {
@@ -901,13 +911,18 @@
  "17477190": {
   "checked": "2026-09-22",
   "dod": null,
-  "name": "HUXFORD,MICHAEL O",
+  "name": "HUXFORD,MICAH O",
   "src": "stedi: not a Medicare beneficiary"
  },
  "17477204": {
   "checked": "2026-09-23",
   "dod": null,
   "src": "stedi: no death on record"
+ },
+ "17477227": {
+  "checked": "2026-09-24",
+  "dod": "2026-08-01",
+  "src": "stedi-medicare-271"
  },
  "17477267": {
   "checked": "2026-09-22",
