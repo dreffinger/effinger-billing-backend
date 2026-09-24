@@ -1,9 +1,9 @@
-# PLAIN ENGLISH (Rebill Garcia denials under Dr. Effinger)
-# Decides: Which Garcia-rendered denials (N290/N767) to re-send with you as rendering provider, and does it without voiding the originals.
+# PLAIN ENGLISH (Rebill Garland-G denials under Dr. Effinger)
+# Decides: Which Garland-G-rendered denials (N290/N767) to re-send with you as rendering provider, and does it without voiding the originals.
 # Rules it uses: Your 9/3 call: Medicare/MA with FS modifier, the rest under your NPI. A profile change voids charges, so it recreates them carefully.
 # Never touches: Paid visits; TRICARE secondary lines on Medicare-paid visits.
 # ---
-"""Rebill Garcia-rendered denials (N290 / N767) under Dr. Effinger as rendering provider.
+"""Rebill Garland-G-rendered denials (N290 / N767) under Dr. Effinger as rendering provider.
 William 9/3/2026: 'rebill the Medicare/MA ones with FS and the rest under my NPI as-is'.
 Mechanics (learned on Winslow/Fenwick 9/2): a profile change via updvisitwithnewcharges makes AMD VOID the
 charges and create new ones under the new profile (possibly a new visit id).  Safe only on unpaid charges.

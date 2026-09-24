@@ -11,7 +11,8 @@ import amd, era_post, stedi, requests, json, re, sys, datetime, time, os
 CAR2STEDI = {"FLO02": "MEDICARE", "RET01": "MEDICARE", "UNI20": "87726", "UHCMA": "87726", "AAR01": "87726", "HUM01": "61101", "AET07": "60054",
              "CIG09": "62308", "CIG13": "63092", "BCBS": "BCBSF", "SUN01": "68069", "WEL04": "68069", "AMB03": "68069", "SIM01": "SMPLY",
              "CAP07": "95112", "MCAD": "77027", "TRI00": "99727", "TRI05": "99727", "VACCN": "VACCN", "UMR": "39026", "FLO99": None, "PHI01": None}
-CARRIERS = json.load(open("carriers.json"))          # code -> carNNNN (plain string values - 9/19: v[0] indexing took the first CHARACTER and broke every non-Medicare match)
+_cj = json.load(open("carriers.json"))
+CARRIERS = {(v[0] if isinstance(v, (list, tuple)) else k): (k if isinstance(v, (list, tuple)) else v) for k, v in _cj.items()}  # accepts rich carN->[code,name] or simple code->carN (manual_post-style normalizer, 9/24)
 def plans(pid):
     r = amd.post('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="pat%s" nocookie="1"/>' % (amd._msgtime(), pid))
     p = re.search(r'<patient [^>]*>', r); a = dict(re.findall(r'(\w+)="([^"]*)"', p.group(0))) if p else {}

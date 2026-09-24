@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (fix referring provider on re-rendered visits)
-# Decides: Which visits still print Garcia (rprov15) as referring provider after the 9/11 re-render to Effinger (prof13),
+# Decides: Which visits still print Garland-G (rprov15) as referring provider after the 9/11 re-render to Effinger (prof13),
 #          and repoints them at a new referral plan whose referring provider is Effinger (rprov13).
 # Rules it uses: the referring provider lives on the visit's referral plan (refplan); plans cannot be updated via the gateway
 #          (9/20 probes), so: addreferralplan (ismain=0, refprov=rprov13) -> repoint the visit with a FULL-charge resave (void-trap:
@@ -10,7 +10,7 @@ import sys, re, time, json, argparse, datetime
 sys.path.insert(0, "/home/claude/effinger-billing-backend/core")
 import amd, resave
 import xml.etree.ElementTree as ET
-EFFINGER_RPROV = "rprov13"; GARCIA_RPROV = "rprov15"; MCAD = "car6113"
+EFFINGER_RPROV = "rprov13"; GARLAND-G_RPROV = "rprov15"; MCAD = "car6113"
 STAMP = datetime.date.today().isoformat(); LOGF = open(f"/home/claude/unbilled/fix_refprov_{STAMP}.log", "a")
 def L(m): print(m, flush=True); LOGF.write(m + "\n"); LOGF.flush()
 
@@ -46,7 +46,7 @@ def fix_chart(pid, rebill_vids, dry):
     ref, ins = plans(pid); main = [p for p in ref if p.get("ismain") == "1"]
     if not main: L(f"pat{pid}: no main plan - skip"); return
     mp = main[0]
-    if mp.get("refprov") != GARCIA_RPROV: L(f"pat{pid}: main plan refprov={mp.get('refprov')} (not Garcia) - skip"); return
+    if mp.get("refprov") != GARLAND-G_RPROV: L(f"pat{pid}: main plan refprov={mp.get('refprov')} (not Garland-G) - skip"); return
     already = [p for p in ref if p.get("refprov") == EFFINGER_RPROV and p.get("ismain") != "1"]
     vis_on_main = open_visits_on_plan(pid, mp["id"])
     L(f"pat{pid}: main plan {mp['id']} refprov=rprov15; prof13 open visits on it: {list(vis_on_main)}; existing Effinger plan: {[p['id'] for p in already]}")

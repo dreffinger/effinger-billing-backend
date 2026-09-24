@@ -89,7 +89,7 @@ for vid, cid, amt in (("19453357", "23363901", 16.93), ("19453385", "23363932", 
 for vid, cid, amt in (("19453374", "23363920", 31.94), ("19453379", "23363926", 21.80)):
     hold("20863", vid, cid, amt, "QMB dual on FCC: Medicaid FFS answered the crossover CO256 - FCC is the payer (never paid, AAA 41)")
 for pid, vid, cid in (("17472419", "19454237", "23365275"), ("17472419", "19454238", "23365277"), ("17472518", "19454239", "23365279"), ("17472518", "19454240", "23365281"), ("17472518", "19454241", "23365283"), ("17472518", "19454242", "23365285"), ("17472518", "19454243", "23365287"), ("17472518", "19454244", "23365289"), ("17472518", "19454245", "23365291")):
-    hold(pid, vid, cid, 141.00, "Medicaid-primary 99309 re-created under Effinger (prof13) 9/13: CO208/N286 NPI not matched / referring provider identifier - every prof13 Medicaid claim on this remit answers N286 while Garcia-rendered ones answer N290; referring provider on the re-created visits needs William (board row)")
+    hold(pid, vid, cid, 141.00, "Medicaid-primary 99309 re-created under Effinger (prof13) 9/13: CO208/N286 NPI not matched / referring provider identifier - every prof13 Medicaid claim on this remit answers N286 while Garland-G-rendered ones answer N290; referring provider on the re-created visits needs William (board row)")
 hold("47039", "19452849", "23363223", 0.0, "already settled (WOMCAD 16.93 posted earlier) - insurance balance 0")
 hold("20379", "19453358", "23363902", 0.0, "already settled (WOINS 16.93 per the 9/20 Humana N767 rule) - balance 0")
 hold("20379", "19452854", "23363228", 0.0, "already settled - balance 0")

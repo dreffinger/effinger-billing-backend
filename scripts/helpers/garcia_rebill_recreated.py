@@ -1,4 +1,4 @@
-"""Freq-1 + rebill the 31 recreated (prof13/Effinger) charges from the Garcia->Effinger swap.
+"""Freq-1 + rebill the 31 recreated (prof13/Effinger) charges from the Garland-G->Effinger swap.
 Each recreated charge: createtime today, insbal>0, on a new visit id.
 Read each new visit's insorder live -> rebill on the Medicaid (car6113) sequence.
 NO profile change here (already prof13). NO void risk (freq1 mechanics only)."""
@@ -11,7 +11,7 @@ CAR=_j.load(open("/home/claude/unbilled/carriers.json"))
 MCAD=CAR["MCAD"]  # car6113
 mcadnum=re.sub(r"\D","",MCAD)
 
-recreated=json.load(open("/home/claude/unbilled/garcia_recreated.json"))
+recreated=json.load(open("/home/claude/unbilled/garland-g_recreated.json"))
 
 _PLANCACHE={}
 def medicaid_seq(pid):
@@ -33,7 +33,7 @@ def medicaid_seq(pid):
     _PLANCACHE[pid]=seq
     return seq
 
-LOG="/home/claude/unbilled/garcia_rebill_recreated.log"
+LOG="/home/claude/unbilled/garland-g_rebill_recreated.log"
 done=set()
 if os.path.exists(LOG):
     for l in open(LOG):

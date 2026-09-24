@@ -1,7 +1,7 @@
 # PLAIN ENGLISH (Insurance Refresh Board answers for the 11pm ET 9/14 run - inbox file builder)
 # Decides: Nothing. Writes board_updates_2026-09-15T0310Z.json with the results of tonight's board actions: one note + one
 #   lookup-trail line per row that was worked (Alcorn, Brown, Bull, Coalson x2, Collins, Ford, Morris, Moore, Peterson,
-#   Penhale, Clack, Gray, Tillery), the Stedi API blocks captured tonight, the ERA/Availity remit reconciliation on the
+#   Penhale, Clack, Gray, Tillotson), the Stedi API blocks captured tonight, the ERA/Availity remit reconciliation on the
 #   ERA row plus a new row for the Florida Blue remits William exported, and status changes only where the row's ask is
 #   finished (update ops, never set; appends are keyed by src+when so a re-applied file cannot duplicate them).
 # Rules it uses: the first sentence of `need` is the ask; rows William may have touched get update, not set.
@@ -84,12 +84,12 @@ row("morris-rowan-44976",
     checks=[chk("ok", "WOLATE $206.00 (23326386, id 10153273) + $109.00 (23326387, id 10153274); balance $0")],
     status="done", need="Done 9/15: 10/25/2025 Humana CCM claim ($315) written off WOLATE (untimely) - ids 10153273 + 10153274.")
 
-row("moore-mary-denials",
+row("moore-marisa-denials",
     notes=[note("11pm ET 9/14 run: CAP07 Capital Health Plan (car41826) added with member CIO60023770, begin 01/01/2026, NO group -> ins9519415, sequence 2. Stedi CHP 95112 at DOS 2/6/2026: ACTIVE, Medicare Risk (MA), plan begin 20260101. Florida Blue plan XJBH29440242 (ins9516490) end-dated 12/31/2025 (success 1); patient insurance order set to 2 (CAP07). Both February visits resaved insorder 2 + onhcfa 1 and freq-1 rebilled on seq 2: 2/6/2026 99223 $310 vst19431787 (charge 23338435) and 2/7/2026 99232 $111 vst19431884 (charge 23338525) -> 204 each. Chart address not changed (TMH: 2677 Old Bainbridge Rd Apt 911) - say the word.")],
     checks=[chk("ok", "CAP07 car41826 member CIO60023770 begin 01/01/2026 added -> ins9519415 seq 2 (no group); BCBS ins9516490 end-dated 12/31/2025; patient insorder 2"),
             chk("ok", "ACTIVE Medicare Risk (MA), planBegin 20260101", "Stedi eligibility CHP 95112, DOS 2/6/2026"),
             chk("ok", "vst19431787 (2/6 99223 $310) + vst19431884 (2/7 99232 $111) insorder 2, freq-1 + chargerebill seq 2 -> 204 x2")],
-    api=[{"at": NOW, "src": "Stedi API - CHP 95112 eligibility, DOS 2026-02-06", "text": "MOORE, MARY dob on file member CIO60023770 -> Active Coverage, insuranceType Medicare Risk (MA), planDateInformation planBegin 20260101; serviceTypeCodes 30; errors none."}],
+    api=[{"at": NOW, "src": "Stedi API - CHP 95112 eligibility, DOS 2026-02-06", "text": "MOORE, MARISA dob on file member CIO60023770 -> Active Coverage, insuranceType Medicare Risk (MA), planDateInformation planBegin 20260101; serviceTypeCodes 30; errors none."}],
     status="done", need="Done 9/15: CHP Advantage Plus CIO60023770 on the chart (seq 2, begin 1/1/2026, no group), Stedi ACTIVE, Florida Blue ended 12/31/2025, both February 2026 HCA claims ($421) re-sent freq-1 to CAP07. Optional: chart address -> TMH's 2677 Old Bainbridge Rd Apt 911 if you want it.",
     extra={"inscarrier": "CAP07 Capital Health Plan (Medicare Advantage)", "insid": "CIO60023770", "insplans": "BCBS Florida Blue XJBH29440242 (ended 12/31/2025) · 2nd CAP07 Capital Health Plan CIO60023770 (1/1/2026 - open)"})
 
@@ -119,7 +119,7 @@ row("gray-doris-denials",
             chk("ok", "7/8/2025 99487 + 99489 already $0 (UNI20 $0 9/7/2026 + WOINS $206/$109 same day) - nothing open", "AMD tx history")],
     status="done", need="Done 9/15: UHC says INACTIVE on 7/8/2025 and the $315 was already written off WOINS on 9/7/2026 - no balance left, nothing to rebill. Closed per your 'write off as untimely' rule.")
 
-row("tillery-wayne-17472393",
+row("tillotson-wainwright-17472393",
     notes=[note("11pm ET 9/14 run: you are right - nothing for you here. It sat on your turn because the 12/16/2025 Humana claim ($256, visit 19426733) was re-sent 9/12 and had no answer; that is a watch item, not a question. Moved back to Claude's watch list: the next run that sees Humana's answer (277 or ERA) acts on it (corrected claim / appeal with the census / write-off per the rules).")],
     checks=[chk("na", "9/12 HUM01 resubmission of 12/16/2025 still unanswered (no ERA among the 37 unposted checks tonight); watch item only")],
     need="Watching: Humana's answer to the 9/12 resubmission of the 12/16/2025 visit ($256). Nothing for William.")

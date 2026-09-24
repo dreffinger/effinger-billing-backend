@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (board update file builder, 3 PM ET 9/14/2026 slot - ehpa cloud run 2026-09-14T1910Z)
 # Decides: nothing on AMD. Writes board_updates_2026-09-14T1910Z.json (Insurance Refresh Board inbox ops):
-#   - james-jehoshaphat-open: records the WellCare duplicate-claim rejection on run 1700190 (9/18/2025 visit) completed, no rebill.
+#   - jasper-jethro-open: records the WellCare duplicate-claim rejection on run 1700190 (9/18/2025 visit) completed, no rebill.
 #   - aet12-carrier-cpid: claim run 1700190 (9/13 21:07 UTC, 4 claims) predates the 04:20 UTC AET12 re-send - still waiting.
 #   - bull-thurlow-17477723: this slot's check line (chart still 0 plans, no facesheet anywhere).
 #   - era-manual-post-0912: this slot's ERA line (idempotent by src+when).
@@ -10,7 +10,7 @@ stamp = "2026-09-14T1910Z"; now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtim
 era_line = sys.argv[1] if len(sys.argv) > 1 else "ERA step ran - see run report"
 src = "3pm ET 9/14 columns run (ehpa cloud)"
 ops = [
- {"op": "upsert", "collection": "items", "id": "james-jehoshaphat-open",
+ {"op": "upsert", "collection": "items", "id": "jasper-jethro-open",
   "append": {"checks": [{"ok": "ok", "result": "Exclusion run 1700190 (9/13 21:07 UTC) visit 19417241 claim 19417241G (99223+99497 9/18/2025, $443, WEL04): WellCare answered 'THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 09/05/2026' - the 9/5 claim is already in play, so the exclusion was completed with no rebill (William's duplicate rule). Nothing else on this row changed.", "src": src, "when": "9/14"}],
              "notes": [{"who": "Claude", "at": now, "text": "3pm ET 9/14 run: WellCare bounced the 9/18/2025 hospital claim as a duplicate of the 9/5/2026 submission - completed off the exclusion list, original claim stays out. Watching."}]}},
  {"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid",

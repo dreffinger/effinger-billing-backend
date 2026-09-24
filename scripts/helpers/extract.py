@@ -243,7 +243,7 @@ def parse_bcbs(t):
         m = re.match(r"^\s*(\w{5})\s+(.+?)\s+([A-Z]{1,4}\d{6,12}|\d{9,12})(?:\s+\S+)*\s+\$?(-?[\d,]+\.\d\d)\s*$", line)
         if m:
             names = m.group(2).strip(); prov = ""
-            pm = re.match(r"(WILLIAM L EFFINGER|PAMELA P GARCIA|PAMELA GARCIA|WILLIAM EFFINGER)\s+(.*)$", names)
+            pm = re.match(r"(WILLIAM L EFFINGER|PAMELA P GARLAND-G|PAMELA GARLAND-G|WILLIAM EFFINGER)\s+(.*)$", names)
             if pm: prov, names = pm.group(1), pm.group(2)
             cur = {"provider": prov, "patient": names.strip(), "member": m.group(3), "claim_paid": money(m.group(4)), "lines": []}; claims.append(cur); continue
         m = re.match(r"\s*([A-Z]\d{12,16})\s+([0-9A-Z]{8,10})\s+(\d\d/\d\d/20\d\d)\s+(\d\d/\d\d/20\d\d)\s+(99\d{3}|G\d{4})\s+(?:(\d\d)\s+)?(\d{4})\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s+\$?([\d,]+\.\d\d)\s*([\d,]*)", line)

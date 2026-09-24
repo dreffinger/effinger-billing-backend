@@ -1,0 +1,5 @@
+## Additions from the nightly cascade 2026-09-24T0530Z (1:30 AM ET 9/24/2026)
+No new call shape. Behaviours learned:
+- posterapayments (era_post.post_check) on a check with one bad PaymentEntry line answers the -2147217287 'N payment could not be posted' fault for the WHOLE batch, yet every other line in the batch IS posted (9/24: 113 of 114 lines of check 1052828 landed, unpostedamount fell $11,504.56 -> $278.58 while the reply said Results null / Fault). After such a fault re-read GET /api/era/checks + checkdetails before retrying anything - the remaining lines are the only ones left to post by hand.
+- precheck.py CARRIERS: the workspace carriers.json is the rich carN->[code,name] map; the code->carN lookup must go through the manual_post-style normalizer or every non-Medicare pair reads 'no <carrier> plan on chart'.
+- gv_rebill.run(pid, seq) sweeps EVERY COB9 $0 posting on the chart for 364 days; when the Medicare record carries a date of death, bound the sweep to DOS <= DOD-1 (hospice_gv_0924_0530.run_bounded) so post-death charges are left to the DOD rule.

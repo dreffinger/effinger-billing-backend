@@ -1,4 +1,4 @@
-"""Re-render the 30 confirmed-unpaid prof15 (Garcia) Medicaid visits to prof13 (Effinger).
+"""Re-render the 30 confirmed-unpaid prof15 (Garland-G) Medicaid visits to prof13 (Effinger).
 AUTHORIZED by William 9/11/2026 on his explicit representation that these were Dr. Effinger's
 own personally-performed visits (resolves the FL-Medicaid no-APRN-incident-to concern).
 
@@ -9,16 +9,16 @@ VOID-TRAP DISCIPLINE:
  - re-verify live: profile still prof15 AND not settling (no posted payment) BEFORE each swap
  - after swap: locate NEW live charges, resubmissioncode=1, rebill on the Medicaid sequence
 No FS modifier (these are Effinger's own visits, not split/shared).
-Writes garcia_to_effinger.log ; resumable via DONE lines.  --dry to preview.
+Writes garland-g_to_effinger.log ; resumable via DONE lines.  --dry to preview.
 """
 import sys, json, os, time, re
 sys.path[:0]=['/home/claude/effinger-billing-backend/core']
 import amd, resave
 import xml.etree.ElementTree as ET
 
-EFFINGER="prof13"; GARCIA="prof15"
+EFFINGER="prof13"; GARLAND-G="prof15"
 DRY="--dry" in sys.argv
-targets=json.load(open("/home/claude/unbilled/hold_prof15_garcia.json"))
+targets=json.load(open("/home/claude/unbilled/hold_prof15_garland-g.json"))
 rows=json.load(open("/home/claude/unbilled/medicaid_open.json"))
 # map visit -> its charge detail ids (to seed visit_charges)
 byvisit={}
@@ -27,7 +27,7 @@ for r in rows:
         c=c.strip()
         if c: byvisit.setdefault(r["visitid"],[]).append(c)
 
-LOG="/home/claude/unbilled/garcia_to_effinger.log"
+LOG="/home/claude/unbilled/garland-g_to_effinger.log"
 done=set()
 if os.path.exists(LOG):
     for l in open(LOG):
@@ -37,13 +37,13 @@ f=open(LOG,"a")
 def L(m): print(m,flush=True); f.write(m+"\n"); f.flush()
 
 # pre/post active-charge counts per patient for the void scan
-prepost="/home/claude/unbilled/garcia_prepost.json"
+prepost="/home/claude/unbilled/garland-g_prepost.json"
 counts=json.load(open(prepost)) if os.path.exists(prepost) else {}
 
 def active_charges_of_visit(vis_elem_charges):
     return [c for c in vis_elem_charges if c.get("void")!="1"]
 
-L("=== Garcia(prof15)->Effinger(prof13) re-render %s dry=%s targets=%d ==="%(time.ctime(),DRY,len(targets)))
+L("=== Garland-G(prof15)->Effinger(prof13) re-render %s dry=%s targets=%d ==="%(time.ctime(),DRY,len(targets)))
 amd.login_cached()
 ok=0; skip=0; fail=0; money=0.0
 for t in targets:
@@ -70,7 +70,7 @@ for t in targets:
         rt=ET.fromstring(resave.detail(cid0))
         paid=any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in rt.iter("payment"))
     except Exception: pass
-    if prof!=GARCIA:
+    if prof!=GARLAND-G:
         L("SKIP v%s profile=%s (not prof15 — already moved or other)"%(vid,prof)); skip+=1; continue
     if paid:
         L("SKIP v%s now-settling (payment posted since scan)"%vid); skip+=1; continue
@@ -143,4 +143,4 @@ for t in targets:
     L("DONE v%s -> %s prof13 seq=%s charges pre=%d post=%d rebilled=%d preserved=%d $%.2f%s"%(vid,newvid,seq,precount,postcount,rebilled,skipped_zero,t["bal"],flag))
     ok+=1; money+=t["bal"]
     time.sleep(0.6)
-L("=== Garcia->Effinger done: ok=%d skip=%d fail=%d  $%.2f queued ==="%(ok,skip,fail,money))
+L("=== Garland-G->Effinger done: ok=%d skip=%d fail=%d  $%.2f queued ==="%(ok,skip,fail,money))

@@ -16,7 +16,7 @@ except Exception: live = {}
 U = json.load(open(os.environ.get("SCANS_DIR", "/home/claude/scans") + "/unpaid_2026-09-23.json"))
 names = collections.defaultdict(set)
 for v in U: names[re.sub(r"[^A-Z ,]", "", v["patientname"].upper()).strip()].add(str(v["patientid"]))
-def norm(p): return re.sub(r"(PAMELA P GARCIA|WILLIAM L EFFINGER)", "", (p or "").upper()).strip()
+def norm(p): return re.sub(r"(PAMELA P GARLAND-G|WILLIAM L EFFINGER)", "", (p or "").upper()).strip()
 def from_unpaid(patient):
     p = re.sub(r"[^A-Z ]", "", norm(patient)).split()
     if not p: return []
