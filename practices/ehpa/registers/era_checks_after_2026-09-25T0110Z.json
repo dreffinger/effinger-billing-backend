@@ -1,0 +1,22 @@
+[
+ {
+  "id": 1052828,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-23T22:36:24.5",
+  "depositdate": "2026-09-25T00:00:00",
+  "eracarrierid": "1448",
+  "eracarriername": "MEDICARE PART B",
+  "hasnote": false,
+  "systemcarrierid": 6085,
+  "systemcarriercode": "FLO02",
+  "systemcarriername": "FLORIDA MEDICARE",
+  "paymentnumber": "819843767",
+  "paymentamount": 11504.56,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 11504.56,
+  "unpostedamount": 105.75,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]
