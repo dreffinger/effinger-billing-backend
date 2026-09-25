@@ -1,0 +1,31 @@
+{
+ "stamp": "2026-09-25T0520Z",
+ "mode": "dry",
+ "results": [
+  {
+   "visitid": "19420915",
+   "pid": "46673",
+   "name": "TAPLEY,SHIRLEY",
+   "next_carrier": "HUM01",
+   "checkid": "1052828",
+   "codeless": [
+    [
+     "23326031",
+     "24656160",
+     37.13,
+     "819843767"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23326031",
+     "22495515",
+     62.4,
+     "WOINS"
+    ]
+   ],
+   "outcome": "would-repair"
+  }
+ ]
+}
