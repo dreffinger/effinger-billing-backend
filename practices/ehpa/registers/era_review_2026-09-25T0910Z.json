@@ -1,0 +1,5789 @@
+{
+ "stamp": "2026-09-25T0910Z",
+ "denials": [
+  {
+   "check": "1052841",
+   "pid": "17476021",
+   "vid": "19454876",
+   "dos": "2026-09-01",
+   "claimstatus": 0,
+   "era_insbal": 141.0,
+   "era_lines": [
+    {
+     "cpt": "99309",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO16",
+       141.0
+      ]
+     ],
+     "rarc": [
+      "N211",
+      "N382"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "04/05/2021",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23366026",
+     "proccode": "99309",
+     "dos": "09/01/2026",
+     "fee": "141.00",
+     "carrier": "FLO02",
+     "billdate": "09/17/2026",
+     "insbilled": null,
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "GARLAND-G",
+     "payments": [],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19448778",
+   "dos": "2026-07-17",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23358161",
+     "proccode": "99487",
+     "dos": "07/17/2026",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "07/31/2026",
+       "checknumber": "349738775",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24588334"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656126"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495481"
+      }
+     ]
+    },
+    {
+     "id": "23358162",
+     "proccode": "99489",
+     "dos": "07/17/2026",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "07/31/2026",
+       "checknumber": "349738775",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24588335"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656127"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495482"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19450738",
+   "dos": "2026-08-06",
+   "claimstatus": 1,
+   "era_insbal": 21.8,
+   "era_lines": [
+    {
+     "cpt": "99233",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       160.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23360697",
+     "proccode": "99233",
+     "dos": "08/06/2026",
+     "fee": "160.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "21.80",
+     "patbal": "0.00",
+     "paid": "138.20",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592316"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-85.46",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656145"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-52.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495500"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19421059",
+   "dos": "2025-10-25",
+   "claimstatus": 1,
+   "era_insbal": 39.75,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23326318",
+     "proccode": "99487",
+     "dos": "10/25/2025",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "06/01/2026",
+       "checknumber": "348560559",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24572960"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656124"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495479"
+      }
+     ]
+    },
+    {
+     "id": "23326319",
+     "proccode": "99489",
+     "dos": "10/25/2025",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "06/01/2026",
+       "checknumber": "348560559",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24572961"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656125"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495480"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "45668",
+   "vid": "19417766",
+   "dos": "2025-09-18",
+   "claimstatus": 1,
+   "era_insbal": 198.0,
+   "era_lines": [
+    {
+     "cpt": "99349",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO29",
+       198.0
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "N211"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6285",
+     "begindate": "01/01/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6600",
+     "begindate": "01/01/2022",
+     "enddate": "",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2022",
+     "enddate": "",
+     "sequence": "3"
+    }
+   ],
+   "order": "3,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23321530",
+     "proccode": "99349",
+     "dos": "09/18/2025",
+     "fee": "198.00",
+     "carrier": "FLO02",
+     "billdate": "09/20/2026",
+     "insbilled": null,
+     "insbal": "198.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "GARLAND-G",
+     "payments": [],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470697",
+   "vid": "19392574",
+   "dos": "2024-10-29",
+   "claimstatus": 1,
+   "era_insbal": 116.53,
+   "era_lines": [
+    {
+     "cpt": "G0316",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO16",
+       30.97
+      ]
+     ],
+     "rarc": [
+      "N211",
+      "MA15",
+      "N823"
+     ]
+    },
+    {
+     "cpt": "G0316",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO16",
+       30.97
+      ]
+     ],
+     "rarc": [
+      "N211",
+      "MA15",
+      "N823"
+     ]
+    },
+    {
+     "cpt": "G0316",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO16",
+       30.97
+      ]
+     ],
+     "rarc": [
+      "N211",
+      "MA15",
+      "N823"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "11/27/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6559",
+     "begindate": "11/27/2022",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "22464571",
+     "proccode": "99233",
+     "dos": "10/29/2024",
+     "fee": "160.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "23.62",
+     "patbal": "0.00",
+     "paid": "136.38",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-92.58",
+       "void": "1",
+       "date": "09/13/2026",
+       "checknumber": "815906990",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24643813"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "92.58",
+       "void": "1",
+       "date": "09/20/2026",
+       "checknumber": "",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24653765"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-92.58",
+       "void": "0",
+       "date": "09/20/2026",
+       "checknumber": "815906990",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24653780"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-160.00",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410809"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "160.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22470367"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-43.80",
+       "void": "1",
+       "date": "09/13/2026",
+       "id": "22485296"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "43.80",
+       "void": "1",
+       "date": "09/20/2026",
+       "id": "22493371"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-43.80",
+       "void": "0",
+       "date": "09/20/2026",
+       "id": "22493386"
+      }
+     ]
+    },
+    {
+     "id": "22464572",
+     "proccode": "G0316",
+     "dos": "10/29/2024",
+     "fee": "30.97",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "30.97",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-30.97",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410810"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "30.97",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22470368"
+      }
+     ]
+    },
+    {
+     "id": "22464641",
+     "proccode": "G0316",
+     "dos": "10/29/2024",
+     "fee": "30.97",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "30.97",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-30.97",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410811"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "30.97",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22470369"
+      }
+     ]
+    },
+    {
+     "id": "22464642",
+     "proccode": "G0316",
+     "dos": "10/29/2024",
+     "fee": "30.97",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "30.97",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-30.97",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410812"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "30.97",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22470370"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470697",
+   "vid": "19392671",
+   "dos": "2024-10-30",
+   "claimstatus": 1,
+   "era_insbal": 54.59,
+   "era_lines": [
+    {
+     "cpt": "G0316",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO16",
+       30.97
+      ]
+     ],
+     "rarc": [
+      "N211",
+      "MA15",
+      "N823"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "11/27/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6559",
+     "begindate": "11/27/2022",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "22464733",
+     "proccode": "99233",
+     "dos": "10/30/2024",
+     "fee": "160.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "23.62",
+     "patbal": "0.00",
+     "paid": "136.38",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-92.58",
+       "void": "1",
+       "date": "09/13/2026",
+       "checknumber": "815915909",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24643814"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "92.58",
+       "void": "1",
+       "date": "09/20/2026",
+       "checknumber": "",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24653766"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-92.58",
+       "void": "0",
+       "date": "09/20/2026",
+       "checknumber": "815915909",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24653767"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-160.00",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410813"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "160.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22469505"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-43.80",
+       "void": "1",
+       "date": "09/13/2026",
+       "id": "22485297"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "43.80",
+       "void": "1",
+       "date": "09/20/2026",
+       "id": "22493372"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-43.80",
+       "void": "0",
+       "date": "09/20/2026",
+       "id": "22493373"
+      }
+     ]
+    },
+    {
+     "id": "22464734",
+     "proccode": "G0316",
+     "dos": "10/30/2024",
+     "fee": "30.97",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "30.97",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [],
+     "writeoffs": [
+      {
+       "wocode": "WOINSBANK",
+       "amount": "-30.97",
+       "void": "1",
+       "date": "05/31/2026",
+       "id": "22410814"
+      },
+      {
+       "wocode": "WOINSBANK",
+       "amount": "30.97",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22469506"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19448555",
+   "dos": "2026-07-14",
+   "claimstatus": 1,
+   "era_insbal": 0.0,
+   "era_lines": [
+    {
+     "cpt": "G0439",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       204.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23357858",
+     "proccode": "G0439",
+     "dos": "07/14/2026",
+     "fee": "204.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "0.00",
+     "paid": "204.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "07/25/2026",
+       "checknumber": "349725031",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24587529"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-134.01",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656128"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-69.99",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495483"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "24799",
+   "vid": "19417747",
+   "dos": "2025-09-18",
+   "claimstatus": 1,
+   "era_insbal": 198.0,
+   "era_lines": [
+    {
+     "cpt": "99349",
+     "paid": 0.0,
+     "cas": [
+      [
+       "CO",
+       "CO29",
+       198.0
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "N211"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6559",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23321500",
+     "proccode": "99349",
+     "dos": "09/18/2025",
+     "fee": "198.00",
+     "carrier": "FLO02",
+     "billdate": "09/20/2026",
+     "insbilled": null,
+     "insbal": "198.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "GARLAND-G",
+     "payments": [],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19423667",
+   "dos": "2025-11-15",
+   "claimstatus": 1,
+   "era_insbal": 39.75,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23329335",
+     "proccode": "99487",
+     "dos": "11/15/2025",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "818120040",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24567171"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22391024"
+      }
+     ]
+    },
+    {
+     "id": "23329336",
+     "proccode": "99489",
+     "dos": "11/15/2025",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "818120040",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24567172"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22391025"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19427211",
+   "dos": "2025-12-21",
+   "claimstatus": 1,
+   "era_insbal": 39.75,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23333550",
+     "proccode": "99487",
+     "dos": "12/21/2025",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "818359061",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24567871"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22391602"
+      }
+     ]
+    },
+    {
+     "id": "23333551",
+     "proccode": "99489",
+     "dos": "12/21/2025",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "818359061",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24567872"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22391603"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19430666",
+   "dos": "2026-01-27",
+   "claimstatus": 1,
+   "era_insbal": 220.45,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23337069",
+     "proccode": "99487",
+     "dos": "01/27/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "142.98",
+     "patbal": "0.00",
+     "paid": "63.02",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348960390",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566579"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-63.02",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22390710"
+      }
+     ]
+    },
+    {
+     "id": "23337070",
+     "proccode": "99489",
+     "dos": "01/27/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "77.47",
+     "patbal": "0.00",
+     "paid": "31.53",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348960390",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566580"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-31.53",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22390711"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19433878",
+   "dos": "2026-02-26",
+   "claimstatus": 1,
+   "era_insbal": 78.64,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23340652",
+     "proccode": "99487",
+     "dos": "02/26/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "78.64",
+     "patbal": "0.00",
+     "paid": "127.36",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-63.05",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "818678905",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24569284"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-64.31",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22392848"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19442301",
+   "dos": "2026-05-17",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23350319",
+     "proccode": "99487",
+     "dos": "05/17/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "06/02/2026",
+       "checknumber": "819152633",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24579814"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "06/02/2026",
+       "id": "22423501"
+      }
+     ]
+    },
+    {
+     "id": "23350320",
+     "proccode": "99489",
+     "dos": "05/17/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "06/02/2026",
+       "checknumber": "819152633",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24579815"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "06/02/2026",
+       "id": "22423502"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19446159",
+   "dos": "2026-06-25",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23355091",
+     "proccode": "99487",
+     "dos": "06/25/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "07/10/2026",
+       "checknumber": "819380420",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24584917"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "07/10/2026",
+       "id": "22427086"
+      }
+     ]
+    },
+    {
+     "id": "23355092",
+     "proccode": "99489",
+     "dos": "06/25/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "07/10/2026",
+       "checknumber": "819380420",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24584918"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "07/10/2026",
+       "id": "22427087"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19452661",
+   "dos": "2026-08-23",
+   "claimstatus": 1,
+   "era_insbal": 28.6,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23363039",
+     "proccode": "99487",
+     "dos": "08/23/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "819747724",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24626765"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/09/2026",
+       "id": "22464081"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470939",
+   "vid": "19448769",
+   "dos": "2026-07-17",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "05/21/2023",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23358143",
+     "proccode": "99487",
+     "dos": "07/17/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "07/31/2026",
+       "checknumber": "819507287",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24588497"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "07/31/2026",
+       "id": "22428910"
+      }
+     ]
+    },
+    {
+     "id": "23358144",
+     "proccode": "99489",
+     "dos": "07/17/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "07/31/2026",
+       "checknumber": "819507287",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24588498"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "07/31/2026",
+       "id": "22428911"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19446167",
+   "dos": "2026-06-25",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23355107",
+     "proccode": "99487",
+     "dos": "06/25/2026",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "07/08/2026",
+       "checknumber": "349637039",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24584571"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656155"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495510"
+      }
+     ]
+    },
+    {
+     "id": "23355108",
+     "proccode": "99489",
+     "dos": "06/25/2026",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "07/08/2026",
+       "checknumber": "349637039",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24584572"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656156"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495511"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19433886",
+   "dos": "2026-02-26",
+   "claimstatus": 1,
+   "era_insbal": 28.6,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23340667",
+     "proccode": "99487",
+     "dos": "02/26/2026",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "349092978",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566988"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656146"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495501"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469429",
+   "vid": "19430623",
+   "dos": "2026-01-27",
+   "claimstatus": 1,
+   "era_insbal": 220.45,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23336983",
+     "proccode": "99487",
+     "dos": "01/27/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "142.98",
+     "patbal": "0.00",
+     "paid": "63.02",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348960390",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566645"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-63.02",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22390776"
+      }
+     ]
+    },
+    {
+     "id": "23336984",
+     "proccode": "99489",
+     "dos": "01/27/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "77.47",
+     "patbal": "0.00",
+     "paid": "31.53",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348960390",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566646"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-31.53",
+       "void": "0",
+       "date": "05/28/2026",
+       "id": "22390777"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469028",
+   "vid": "19452640",
+   "dos": "2026-08-23",
+   "claimstatus": 1,
+   "era_insbal": 142.17,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "12/23/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2025",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23362998",
+     "proccode": "99487",
+     "dos": "08/23/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "93.91",
+     "patbal": "0.00",
+     "paid": "112.09",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650773"
+      }
+     ],
+     "writeoffs": []
+    },
+    {
+     "id": "23362999",
+     "proccode": "99489",
+     "dos": "08/23/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "48.26",
+     "patbal": "0.00",
+     "paid": "60.74",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650774"
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469028",
+   "vid": "19423587",
+   "dos": "2025-11-15",
+   "claimstatus": 1,
+   "era_insbal": 171.98,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "12/23/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2025",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23329194",
+     "proccode": "99487",
+     "dos": "11/15/2025",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "117.27",
+     "patbal": "0.00",
+     "paid": "88.73",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-88.73",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650763"
+      }
+     ],
+     "writeoffs": []
+    },
+    {
+     "id": "23329195",
+     "proccode": "99489",
+     "dos": "11/15/2025",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "54.71",
+     "patbal": "0.00",
+     "paid": "54.29",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650764"
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469028",
+   "vid": "19427201",
+   "dos": "2025-12-21",
+   "claimstatus": 1,
+   "era_insbal": 159.2,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "12/23/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2025",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23333530",
+     "proccode": "99487",
+     "dos": "12/21/2025",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "104.49",
+     "patbal": "0.00",
+     "paid": "101.51",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650765"
+      }
+     ],
+     "writeoffs": []
+    },
+    {
+     "id": "23333531",
+     "proccode": "99489",
+     "dos": "12/21/2025",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "54.71",
+     "patbal": "0.00",
+     "paid": "54.29",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650766"
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469028",
+   "vid": "19442293",
+   "dos": "2026-05-17",
+   "claimstatus": 1,
+   "era_insbal": 275.43,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "12/23/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2025",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23350303",
+     "proccode": "99487",
+     "dos": "05/17/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650769"
+      }
+     ],
+     "writeoffs": []
+    },
+    {
+     "id": "23350304",
+     "proccode": "99489",
+     "dos": "05/17/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "69.43",
+     "patbal": "0.00",
+     "paid": "39.57",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-39.57",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650770"
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469028",
+   "vid": "19448825",
+   "dos": "2026-07-17",
+   "claimstatus": 1,
+   "era_insbal": 142.17,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "12/23/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/01/2025",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23358255",
+     "proccode": "99487",
+     "dos": "07/17/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "93.91",
+     "patbal": "0.00",
+     "paid": "112.09",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650771"
+      }
+     ],
+     "writeoffs": []
+    },
+    {
+     "id": "23358256",
+     "proccode": "99489",
+     "dos": "07/17/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "48.26",
+     "patbal": "0.00",
+     "paid": "60.74",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/19/2026",
+       "checknumber": "819814877(0)",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24650772"
+      }
+     ],
+     "writeoffs": []
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19442308",
+   "dos": "2026-05-17",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23350333",
+     "proccode": "99487",
+     "dos": "05/17/2026",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/30/2026",
+       "checknumber": "349476892",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24570458"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656148"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495503"
+      }
+     ]
+    },
+    {
+     "id": "23350334",
+     "proccode": "99489",
+     "dos": "05/17/2026",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/30/2026",
+       "checknumber": "349476892",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24570459"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656149"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495504"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19450828",
+   "dos": "2026-08-08",
+   "claimstatus": 1,
+   "era_insbal": 21.8,
+   "era_lines": [
+    {
+     "cpt": "99233",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       160.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23360830",
+     "proccode": "99233",
+     "dos": "08/08/2026",
+     "fee": "160.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "21.80",
+     "patbal": "0.00",
+     "paid": "138.20",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592319"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-85.46",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656142"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-52.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495497"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19451293",
+   "dos": "2026-08-09",
+   "claimstatus": 1,
+   "era_insbal": 14.38,
+   "era_lines": [
+    {
+     "cpt": "99232",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       111.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23361336",
+     "proccode": "99232",
+     "dos": "08/09/2026",
+     "fee": "111.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "14.38",
+     "patbal": "0.00",
+     "paid": "96.62",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592313"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-56.37",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656140"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.25",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495495"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19451324",
+   "dos": "2026-08-10",
+   "claimstatus": 1,
+   "era_insbal": 14.38,
+   "era_lines": [
+    {
+     "cpt": "99232",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       111.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23361368",
+     "proccode": "99232",
+     "dos": "08/10/2026",
+     "fee": "111.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "14.38",
+     "patbal": "0.00",
+     "paid": "96.62",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592314"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-56.37",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656136"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.25",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495491"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19451371",
+   "dos": "2026-08-11",
+   "claimstatus": 1,
+   "era_insbal": 21.59,
+   "era_lines": [
+    {
+     "cpt": "99239",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       163.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23361415",
+     "proccode": "99239",
+     "dos": "08/11/2026",
+     "fee": "163.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "21.59",
+     "patbal": "0.00",
+     "paid": "141.41",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592315"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-84.62",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656135"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-56.79",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495490"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19452059",
+   "dos": "2026-08-18",
+   "claimstatus": 1,
+   "era_insbal": 45.29,
+   "era_lines": [
+    {
+     "cpt": "99223",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       310.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99497",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       133.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23362172",
+     "proccode": "99223",
+     "dos": "08/18/2026",
+     "fee": "310.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "31.94",
+     "patbal": "0.00",
+     "paid": "278.06",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/28/2026",
+       "checknumber": "349878943",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24593334"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-125.20",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656137"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-152.86",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495492"
+      }
+     ]
+    },
+    {
+     "id": "23362173",
+     "proccode": "99497",
+     "dos": "08/18/2026",
+     "fee": "133.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "13.35",
+     "patbal": "0.00",
+     "paid": "119.65",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/28/2026",
+       "checknumber": "349878943",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24593335"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-52.33",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656138"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-67.32",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495493"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19427218",
+   "dos": "2025-12-21",
+   "claimstatus": 1,
+   "era_insbal": 39.75,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23333564",
+     "proccode": "99487",
+     "dos": "12/21/2025",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348817451",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566139"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656151"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495506"
+      }
+     ]
+    },
+    {
+     "id": "23333565",
+     "proccode": "99489",
+     "dos": "12/21/2025",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348817451",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566140"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656152"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495507"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19430673",
+   "dos": "2026-01-27",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23337083",
+     "proccode": "99487",
+     "dos": "01/27/2026",
+     "fee": "206.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348967750",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566672"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656153"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495508"
+      }
+     ]
+    },
+    {
+     "id": "23337084",
+     "proccode": "99489",
+     "dos": "01/27/2026",
+     "fee": "109.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "05/28/2026",
+       "checknumber": "348967750",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24566673"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656154"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495509"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17470940",
+   "vid": "19450858",
+   "dos": "2026-08-07",
+   "claimstatus": 1,
+   "era_insbal": 21.8,
+   "era_lines": [
+    {
+     "cpt": "99233",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       160.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "12/20/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "03/20/2023",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23360861",
+     "proccode": "99233",
+     "dos": "08/07/2026",
+     "fee": "160.00",
+     "carrier": "UNI20",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "21.80",
+     "patbal": "0.00",
+     "paid": "138.20",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "0.00",
+       "void": "0",
+       "date": "08/22/2026",
+       "checknumber": "349854078",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24592312"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-85.46",
+       "void": "0",
+       "date": "09/23/2026",
+       "checknumber": "819843767",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656141"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-52.74",
+       "void": "0",
+       "date": "09/23/2026",
+       "id": "22495496"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052841",
+   "pid": "17469426",
+   "vid": "19452635",
+   "dos": "2026-08-23",
+   "claimstatus": 1,
+   "era_insbal": 44.09,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       206.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 0.0,
+     "cas": [
+      [
+       "OA",
+       "OA18",
+       109.0
+      ]
+     ],
+     "rarc": [
+      "MA01"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "01/23/2023",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6404",
+     "begindate": "11/23/2022",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23362988",
+     "proccode": "99487",
+     "dos": "08/23/2026",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "819747724",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24626773"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/09/2026",
+       "id": "22464089"
+      }
+     ]
+    },
+    {
+     "id": "23362989",
+     "proccode": "99489",
+     "dos": "08/23/2026",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/22/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "819747724",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24626774"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/09/2026",
+       "id": "22464090"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "posted": [
+  {
+   "check": "1052840",
+   "pid": "17476868",
+   "vid": "19447648",
+   "dos": "2026-07-10",
+   "claimstatus": 1,
+   "era_insbal": 111.0,
+   "era_lines": [
+    {
+     "cpt": "99232",
+     "paid": 56.37,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       39.1
+      ],
+      [
+       "PR",
+       "PR2",
+       14.38
+      ],
+      [
+       "CO",
+       "CO253",
+       1.15
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "06/25/2019",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23356875",
+     "proccode": "99232",
+     "dos": "07/10/2026",
+     "fee": "111.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "14.38",
+     "patbal": "0.00",
+     "paid": "96.62",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/16/2026",
+       "checknumber": "213420173",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24647229"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-56.37",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656309"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-40.25",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495615"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "22880",
+   "vid": "19454411",
+   "dos": "2026-09-02",
+   "claimstatus": 1,
+   "era_insbal": 141.0,
+   "era_lines": [
+    {
+     "cpt": "99309",
+     "paid": 66.36,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       56.36
+      ],
+      [
+       "PR",
+       "PR2",
+       16.93
+      ],
+      [
+       "CO",
+       "CO253",
+       1.35
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18",
+      "N535"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6600",
+     "begindate": "07/22/2022",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23365499",
+     "proccode": "99309",
+     "dos": "09/02/2026",
+     "fee": "141.00",
+     "carrier": "AAR01",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "GARLAND-G",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656310"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495616"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17477010",
+   "vid": "19454395",
+   "dos": "2026-09-03",
+   "claimstatus": 1,
+   "era_insbal": 141.0,
+   "era_lines": [
+    {
+     "cpt": "99309",
+     "paid": 66.36,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       56.36
+      ],
+      [
+       "PR",
+       "PR2",
+       16.93
+      ],
+      [
+       "CO",
+       "CO253",
+       1.35
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA07",
+      "N535"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/18/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6113",
+     "begindate": "07/18/2021",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "1,2",
+   "death": "",
+   "charges": [
+    {
+     "id": "23365483",
+     "proccode": "99309",
+     "dos": "09/03/2026",
+     "fee": "141.00",
+     "carrier": "MCAD",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "GARLAND-G",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656311"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495617"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17476975",
+   "vid": "19454396",
+   "dos": "2026-09-03",
+   "claimstatus": 1,
+   "era_insbal": 141.0,
+   "era_lines": [
+    {
+     "cpt": "99309",
+     "paid": 66.36,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       56.36
+      ],
+      [
+       "PR",
+       "PR2",
+       16.93
+      ],
+      [
+       "CO",
+       "CO253",
+       1.35
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "N535"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "07/02/2020",
+     "enddate": "",
+     "sequence": "1"
+    }
+   ],
+   "order": "1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23365484",
+     "proccode": "99309",
+     "dos": "09/03/2026",
+     "fee": "141.00",
+     "carrier": "FLO02",
+     "billdate": "09/13/2026",
+     "insbilled": null,
+     "insbal": "0.00",
+     "patbal": "16.93",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "GARLAND-G",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-66.36",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656312"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-57.71",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495618"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19449541",
+   "dos": "2026-07-22",
+   "claimstatus": 1,
+   "era_insbal": 198.0,
+   "era_lines": [
+    {
+     "cpt": "99349",
+     "paid": 88.61,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       84.98
+      ],
+      [
+       "PR",
+       "PR2",
+       22.6
+      ],
+      [
+       "CO",
+       "CO253",
+       1.81
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23359179",
+     "proccode": "99349",
+     "dos": "07/22/2026",
+     "fee": "198.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "22.60",
+     "patbal": "0.00",
+     "paid": "175.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "GARLAND-G",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-88.61",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656313"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-86.79",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495619"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19448756",
+   "dos": "2026-07-17",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 112.09,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       63.02
+      ],
+      [
+       "PR",
+       "PR2",
+       28.6
+      ],
+      [
+       "CO",
+       "CO253",
+       2.29
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 60.74,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       31.53
+      ],
+      [
+       "PR",
+       "PR2",
+       15.49
+      ],
+      [
+       "CO",
+       "CO253",
+       1.24
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23358117",
+     "proccode": "99487",
+     "dos": "07/17/2026",
+     "fee": "206.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656314"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495620"
+      }
+     ]
+    },
+    {
+     "id": "23358118",
+     "proccode": "99489",
+     "dos": "07/17/2026",
+     "fee": "109.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656315"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495621"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19442533",
+   "dos": "2026-05-17",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 112.09,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       63.02
+      ],
+      [
+       "PR",
+       "PR2",
+       28.6
+      ],
+      [
+       "CO",
+       "CO253",
+       2.29
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 60.74,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       31.53
+      ],
+      [
+       "PR",
+       "PR2",
+       15.49
+      ],
+      [
+       "CO",
+       "CO253",
+       1.24
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23350717",
+     "proccode": "99487",
+     "dos": "05/17/2026",
+     "fee": "206.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634360"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656316"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-125.70",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475783"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "125.70",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484297"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495622"
+      }
+     ]
+    },
+    {
+     "id": "23350718",
+     "proccode": "99489",
+     "dos": "05/17/2026",
+     "fee": "109.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634361"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656317"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-68.68",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475784"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "68.68",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484298"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495623"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19440499",
+   "dos": "2026-04-29",
+   "claimstatus": 1,
+   "era_insbal": 198.0,
+   "era_lines": [
+    {
+     "cpt": "99349",
+     "paid": 88.61,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       84.98
+      ],
+      [
+       "PR",
+       "PR2",
+       22.6
+      ],
+      [
+       "CO",
+       "CO253",
+       1.81
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23348188",
+     "proccode": "99349",
+     "dos": "04/29/2026",
+     "fee": "198.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "22.60",
+     "patbal": "0.00",
+     "paid": "175.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "GARLAND-G",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634389"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-88.61",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656318"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-98.01",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475812"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "98.01",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484296"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-86.79",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495624"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19430634",
+   "dos": "2026-01-27",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 112.09,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       63.02
+      ],
+      [
+       "PR",
+       "PR2",
+       28.6
+      ],
+      [
+       "CO",
+       "CO253",
+       2.29
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 60.74,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       31.53
+      ],
+      [
+       "PR",
+       "PR2",
+       15.49
+      ],
+      [
+       "CO",
+       "CO253",
+       1.24
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23337005",
+     "proccode": "99487",
+     "dos": "01/27/2026",
+     "fee": "206.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "28.60",
+     "patbal": "0.00",
+     "paid": "177.40",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634558"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-112.09",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656319"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-206.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475984"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "206.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484237"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-65.31",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495625"
+      }
+     ]
+    },
+    {
+     "id": "23337006",
+     "proccode": "99489",
+     "dos": "01/27/2026",
+     "fee": "109.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "15.49",
+     "patbal": "0.00",
+     "paid": "93.51",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634559"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-60.74",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656320"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-109.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475985"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "109.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484238"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-32.77",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495626"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19427165",
+   "dos": "2025-12-21",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 101.51,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       76.52
+      ],
+      [
+       "PR",
+       "PR2",
+       25.9
+      ],
+      [
+       "CO",
+       "CO253",
+       2.07
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 54.29,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       39.75
+      ],
+      [
+       "PR",
+       "PR2",
+       13.85
+      ],
+      [
+       "CO",
+       "CO253",
+       1.11
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23333458",
+     "proccode": "99487",
+     "dos": "12/21/2025",
+     "fee": "206.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634587"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656321"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-206.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22476013"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "206.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484235"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495627"
+      }
+     ]
+    },
+    {
+     "id": "23333459",
+     "proccode": "99489",
+     "dos": "12/21/2025",
+     "fee": "109.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634588"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656322"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-109.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22476014"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "109.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484236"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495628"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "17474082",
+   "vid": "19420972",
+   "dos": "2025-10-25",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 101.51,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       76.52
+      ],
+      [
+       "PR",
+       "PR2",
+       25.9
+      ],
+      [
+       "CO",
+       "CO253",
+       2.07
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 54.29,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       39.75
+      ],
+      [
+       "PR",
+       "PR2",
+       13.85
+      ],
+      [
+       "CO",
+       "CO253",
+       1.11
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "MA18"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6062",
+     "begindate": "10/28/2020",
+     "enddate": "",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "09/04/2024",
+     "enddate": "",
+     "sequence": "2"
+    }
+   ],
+   "order": "2,1",
+   "death": "",
+   "charges": [
+    {
+     "id": "23326144",
+     "proccode": "99487",
+     "dos": "10/25/2025",
+     "fee": "206.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "25.90",
+     "patbal": "0.00",
+     "paid": "180.10",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634490"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-101.51",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656323"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-206.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475915"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "206.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484233"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-78.59",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495629"
+      }
+     ]
+    },
+    {
+     "id": "23326145",
+     "proccode": "99489",
+     "dos": "10/25/2025",
+     "fee": "109.00",
+     "carrier": "BCBS",
+     "billdate": "09/25/2026",
+     "insbilled": null,
+     "insbal": "13.85",
+     "patbal": "0.00",
+     "paid": "95.15",
+     "insorder": null,
+     "payerinfo": "",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "BCBS",
+       "amount": "0.00",
+       "void": "0",
+       "date": "09/09/2026",
+       "checknumber": "213403769",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24634491"
+      },
+      {
+       "carrier": "FLO02",
+       "amount": "-54.29",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656324"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-109.00",
+       "void": "1",
+       "date": "09/09/2026",
+       "id": "22475916"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "109.00",
+       "void": "1",
+       "date": "09/12/2026",
+       "id": "22484234"
+      },
+      {
+       "wocode": "WOINS",
+       "amount": "-40.86",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495630"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "check": "1052840",
+   "pid": "45008",
+   "vid": "19421095",
+   "dos": "2025-10-25",
+   "claimstatus": 1,
+   "era_insbal": 315.0,
+   "era_lines": [
+    {
+     "cpt": "99487",
+     "paid": 68.62,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       118.48
+      ],
+      [
+       "PR",
+       "PR2",
+       17.5
+      ],
+      [
+       "CO",
+       "CO253",
+       1.4
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "N782",
+      "MA18",
+      "MA07",
+      "N535"
+     ]
+    },
+    {
+     "cpt": "99489",
+     "paid": 37.13,
+     "cas": [
+      [
+       "CO",
+       "CO45",
+       61.64
+      ],
+      [
+       "PR",
+       "PR2",
+       9.47
+      ],
+      [
+       "CO",
+       "CO253",
+       0.76
+      ]
+     ],
+     "rarc": [
+      "MA01",
+      "N782",
+      "MA18",
+      "MA07",
+      "N535"
+     ]
+    }
+   ],
+   "plans": [
+    {
+     "id": "",
+     "carrier": "car6113",
+     "begindate": "",
+     "enddate": "07/31/2022",
+     "sequence": "1"
+    },
+    {
+     "id": "",
+     "carrier": "car6285",
+     "begindate": "",
+     "enddate": "10/24/2025",
+     "sequence": "2"
+    },
+    {
+     "id": "",
+     "carrier": "car42019",
+     "begindate": "08/01/2022",
+     "enddate": "10/06/2023",
+     "sequence": "3"
+    },
+    {
+     "id": "",
+     "carrier": "car6085",
+     "begindate": "11/01/2022",
+     "enddate": "",
+     "sequence": "4"
+    }
+   ],
+   "order": "4",
+   "death": "",
+   "charges": [
+    {
+     "id": "23326390",
+     "proccode": "99487",
+     "dos": "10/25/2025",
+     "fee": "206.00",
+     "carrier": "FLO02",
+     "billdate": "09/13/2026",
+     "insbilled": null,
+     "insbal": "17.50",
+     "patbal": "0.00",
+     "paid": "188.50",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-68.62",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656325"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-119.88",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495631"
+      }
+     ]
+    },
+    {
+     "id": "23326391",
+     "proccode": "99489",
+     "dos": "10/25/2025",
+     "fee": "109.00",
+     "carrier": "FLO02",
+     "billdate": "09/13/2026",
+     "insbilled": null,
+     "insbal": "9.47",
+     "patbal": "0.00",
+     "paid": "99.53",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "provcode": "WEFFI",
+     "payments": [
+      {
+       "carrier": "FLO02",
+       "amount": "-37.13",
+       "void": "0",
+       "date": "09/25/2026",
+       "checknumber": "819853087",
+       "paymentcode": null,
+       "origrefnum": null,
+       "id": "24656326"
+      }
+     ],
+     "writeoffs": [
+      {
+       "wocode": "WOINS",
+       "amount": "-62.40",
+       "void": "0",
+       "date": "09/25/2026",
+       "id": "22495632"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

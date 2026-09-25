@@ -21579,5 +21579,2884 @@
   "chargeid": 22464275,
   "outcome": "denial-only-handled WOCAID2ND 23.62 (OA-23 Humana Medicaid secondary $0, check 200940909260924)",
   "when": "2026-09-25T0110Z"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441964,
+  "visitid": 19447648,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/10/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23356875,
+  "chargeid": "23356875",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441965,
+  "visitid": 19454411,
+  "pid": 22880,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365499,
+  "chargeid": "23365499",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441966,
+  "visitid": 19454395,
+  "pid": 17477010,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365483,
+  "chargeid": "23365483",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441967,
+  "visitid": 19454396,
+  "pid": 17476975,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365484,
+  "chargeid": "23365484",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441968,
+  "visitid": 19449541,
+  "pid": 17474082,
+  "cpt": "99349",
+  "dos": "07/22/2026",
+  "era_paid": 88.61,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23359179,
+  "chargeid": "23359179",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441969,
+  "visitid": 19448756,
+  "pid": 17474082,
+  "cpt": "99487",
+  "dos": "07/17/2026",
+  "era_paid": 112.09,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358117,
+  "chargeid": "23358117",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441969,
+  "visitid": 19448756,
+  "pid": 17474082,
+  "cpt": "99489",
+  "dos": "07/17/2026",
+  "era_paid": 60.74,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358118,
+  "chargeid": "23358118",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441970,
+  "visitid": 19442533,
+  "pid": 17474082,
+  "cpt": "99487",
+  "dos": "05/17/2026",
+  "era_paid": 112.09,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350717,
+  "chargeid": "23350717",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441970,
+  "visitid": 19442533,
+  "pid": 17474082,
+  "cpt": "99489",
+  "dos": "05/17/2026",
+  "era_paid": 60.74,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350718,
+  "chargeid": "23350718",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441971,
+  "visitid": 19440499,
+  "pid": 17474082,
+  "cpt": "99349",
+  "dos": "04/29/2026",
+  "era_paid": 88.61,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23348188,
+  "chargeid": "23348188",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441972,
+  "visitid": 19430634,
+  "pid": 17474082,
+  "cpt": "99487",
+  "dos": "01/27/2026",
+  "era_paid": 112.09,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337005,
+  "chargeid": "23337005",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441972,
+  "visitid": 19430634,
+  "pid": 17474082,
+  "cpt": "99489",
+  "dos": "01/27/2026",
+  "era_paid": 60.74,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337006,
+  "chargeid": "23337006",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441973,
+  "visitid": 19427165,
+  "pid": 17474082,
+  "cpt": "99487",
+  "dos": "12/21/2025",
+  "era_paid": 101.51,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333458,
+  "chargeid": "23333458",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441973,
+  "visitid": 19427165,
+  "pid": 17474082,
+  "cpt": "99489",
+  "dos": "12/21/2025",
+  "era_paid": 54.29,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333459,
+  "chargeid": "23333459",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441974,
+  "visitid": 19420972,
+  "pid": 17474082,
+  "cpt": "99487",
+  "dos": "10/25/2025",
+  "era_paid": 101.51,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326144,
+  "chargeid": "23326144",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441974,
+  "visitid": 19420972,
+  "pid": 17474082,
+  "cpt": "99489",
+  "dos": "10/25/2025",
+  "era_paid": 54.29,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326145,
+  "chargeid": "23326145",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441975,
+  "visitid": 19421095,
+  "pid": 45008,
+  "cpt": "99487",
+  "dos": "10/25/2025",
+  "era_paid": 68.62,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326390,
+  "chargeid": "23326390",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441975,
+  "visitid": 19421095,
+  "pid": 45008,
+  "cpt": "99489",
+  "dos": "10/25/2025",
+  "era_paid": 37.13,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326391,
+  "chargeid": "23326391",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441976,
+  "visitid": 19448577,
+  "pid": 17477116,
+  "cpt": "99232",
+  "dos": "07/15/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357880,
+  "chargeid": "23357880",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441977,
+  "visitid": 19448262,
+  "pid": 17477116,
+  "cpt": "99223",
+  "dos": "07/14/2026",
+  "era_paid": 125.2,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357523,
+  "chargeid": "23357523",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441978,
+  "visitid": 19454413,
+  "pid": 21411,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365501,
+  "chargeid": "23365501",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441979,
+  "visitid": 19454384,
+  "pid": 17477566,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365472,
+  "chargeid": "23365472",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441980,
+  "visitid": 19454388,
+  "pid": 42092,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365476,
+  "chargeid": "23365476",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441981,
+  "visitid": 19454389,
+  "pid": 21238,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365477,
+  "chargeid": "23365477",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441982,
+  "visitid": 19454304,
+  "pid": 17477650,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365377,
+  "chargeid": "23365377",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441983,
+  "visitid": 19454274,
+  "pid": 17477650,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365346,
+  "chargeid": "23365346",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441984,
+  "visitid": 19454400,
+  "pid": 17476032,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365488,
+  "chargeid": "23365488",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441985,
+  "visitid": 19454409,
+  "pid": 17473346,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365497,
+  "chargeid": "23365497",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441986,
+  "visitid": 19454408,
+  "pid": 17476874,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365496,
+  "chargeid": "23365496",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441987,
+  "visitid": 19454271,
+  "pid": 17471349,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365343,
+  "chargeid": "23365343",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441988,
+  "visitid": 19454267,
+  "pid": 17476042,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365339,
+  "chargeid": "23365339",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441989,
+  "visitid": 19454297,
+  "pid": 17477182,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365370,
+  "chargeid": "23365370",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441990,
+  "visitid": 19454268,
+  "pid": 17477182,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365340,
+  "chargeid": "23365340",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441991,
+  "visitid": 19454391,
+  "pid": 17477182,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365479,
+  "chargeid": "23365479",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441992,
+  "visitid": 19454447,
+  "pid": 17477182,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365535,
+  "chargeid": "23365535",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441993,
+  "visitid": 19454428,
+  "pid": 17477182,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365516,
+  "chargeid": "23365516",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441994,
+  "visitid": 19454299,
+  "pid": 17472393,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365372,
+  "chargeid": "23365372",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441995,
+  "visitid": 19454269,
+  "pid": 17472393,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365341,
+  "chargeid": "23365341",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441996,
+  "visitid": 19454451,
+  "pid": 17472393,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365539,
+  "chargeid": "23365539",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441997,
+  "visitid": 19454402,
+  "pid": 17473962,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365490,
+  "chargeid": "23365490",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441998,
+  "visitid": 19454430,
+  "pid": 17472393,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365518,
+  "chargeid": "23365518",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15441999,
+  "visitid": 19454374,
+  "pid": 17473658,
+  "cpt": "99232",
+  "dos": "09/10/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365454,
+  "chargeid": "23365454",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442000,
+  "visitid": 19454293,
+  "pid": 17473658,
+  "cpt": "99223",
+  "dos": "09/08/2026",
+  "era_paid": 125.2,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365366,
+  "chargeid": "23365366",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442001,
+  "visitid": 19454292,
+  "pid": 17473658,
+  "cpt": "99232",
+  "dos": "09/09/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365365,
+  "chargeid": "23365365",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442002,
+  "visitid": 19454449,
+  "pid": 17473658,
+  "cpt": "99232",
+  "dos": "09/11/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365537,
+  "chargeid": "23365537",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442003,
+  "visitid": 19454392,
+  "pid": 17477557,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365480,
+  "chargeid": "23365480",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442004,
+  "visitid": 19454393,
+  "pid": 17472286,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365481,
+  "chargeid": "23365481",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442005,
+  "visitid": 19454394,
+  "pid": 20729,
+  "cpt": "99309",
+  "dos": "09/03/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365482,
+  "chargeid": "23365482",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442006,
+  "visitid": 19454387,
+  "pid": 17475536,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365475,
+  "chargeid": "23365475",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442007,
+  "visitid": 19454300,
+  "pid": 17471349,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365373,
+  "chargeid": "23365373",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442008,
+  "visitid": 19454399,
+  "pid": 24368,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365487,
+  "chargeid": "23365487",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442009,
+  "visitid": 19454296,
+  "pid": 17476042,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365369,
+  "chargeid": "23365369",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442010,
+  "visitid": 19454305,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365378,
+  "chargeid": "23365378",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442011,
+  "visitid": 19454403,
+  "pid": 17470940,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365491,
+  "chargeid": "23365491",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442012,
+  "visitid": 19454417,
+  "pid": 17477225,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365505,
+  "chargeid": "23365505",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442013,
+  "visitid": 19454310,
+  "pid": 17477350,
+  "cpt": "99239",
+  "dos": "09/09/2026",
+  "era_paid": 84.62,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365383,
+  "chargeid": "23365383",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442014,
+  "visitid": 19454418,
+  "pid": 45010,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365506,
+  "chargeid": "23365506",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442015,
+  "visitid": 19454404,
+  "pid": 12182776,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365492,
+  "chargeid": "23365492",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442016,
+  "visitid": 19454419,
+  "pid": 45052,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365507,
+  "chargeid": "23365507",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442017,
+  "visitid": 19454405,
+  "pid": 20937,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365493,
+  "chargeid": "23365493",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442018,
+  "visitid": 19454311,
+  "pid": 17472546,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365384,
+  "chargeid": "23365384",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442019,
+  "visitid": 19454281,
+  "pid": 17472546,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365353,
+  "chargeid": "23365353",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442020,
+  "visitid": 19454458,
+  "pid": 17472546,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365546,
+  "chargeid": "23365546",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442021,
+  "visitid": 19454438,
+  "pid": 17472546,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365526,
+  "chargeid": "23365526",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442022,
+  "visitid": 19454406,
+  "pid": 17476868,
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365494,
+  "chargeid": "23365494",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442023,
+  "visitid": 19448637,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/16/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357943,
+  "chargeid": "23357943",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442024,
+  "visitid": 19448583,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/15/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357886,
+  "chargeid": "23357886",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442025,
+  "visitid": 19448251,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/14/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357509,
+  "chargeid": "23357509",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442026,
+  "visitid": 19448026,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/13/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357207,
+  "chargeid": "23357207",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442027,
+  "visitid": 19447878,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/12/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357075,
+  "chargeid": "23357075",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442028,
+  "visitid": 19447651,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/11/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23356878,
+  "chargeid": "23356878",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442029,
+  "visitid": 19447650,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/08/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23356877,
+  "chargeid": "23356877",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442030,
+  "visitid": 19447649,
+  "pid": 17476868,
+  "cpt": "99232",
+  "dos": "07/09/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23356876,
+  "chargeid": "23356876",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442031,
+  "visitid": 19454416,
+  "pid": 45520,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365504,
+  "chargeid": "23365504",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442032,
+  "visitid": 19454280,
+  "pid": 20379,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365352,
+  "chargeid": "23365352",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442033,
+  "visitid": 19454309,
+  "pid": 20379,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365382,
+  "chargeid": "23365382",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442034,
+  "visitid": 19454436,
+  "pid": 17475638,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365524,
+  "chargeid": "23365524",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442035,
+  "visitid": 19454454,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365542,
+  "chargeid": "23365542",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442036,
+  "visitid": 19454433,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365521,
+  "chargeid": "23365521",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442037,
+  "visitid": 19454414,
+  "pid": 17471131,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365502,
+  "chargeid": "23365502",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442038,
+  "visitid": 19454421,
+  "pid": 17470950,
+  "cpt": "99232",
+  "dos": "09/12/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365509,
+  "chargeid": "23365509",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442039,
+  "visitid": 19454468,
+  "pid": 17470950,
+  "cpt": "99223",
+  "dos": "09/10/2026",
+  "era_paid": 125.2,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365556,
+  "chargeid": "23365556",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442040,
+  "visitid": 19454422,
+  "pid": 17470950,
+  "cpt": "99232",
+  "dos": "09/11/2026",
+  "era_paid": 56.37,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365510,
+  "chargeid": "23365510",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442041,
+  "visitid": 19454306,
+  "pid": 20863,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365379,
+  "chargeid": "23365379",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442042,
+  "visitid": 19454276,
+  "pid": 20863,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365348,
+  "chargeid": "23365348",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442043,
+  "visitid": 19454455,
+  "pid": 20863,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365543,
+  "chargeid": "23365543",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442044,
+  "visitid": 19454275,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365347,
+  "chargeid": "23365347",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442045,
+  "visitid": 19454435,
+  "pid": 20863,
+  "cpt": "99233",
+  "dos": "09/12/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365523,
+  "chargeid": "23365523",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442046,
+  "visitid": 19454290,
+  "pid": 17473747,
+  "cpt": "99233",
+  "dos": "09/07/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365362,
+  "chargeid": "23365362",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442047,
+  "visitid": 19454289,
+  "pid": 17473747,
+  "cpt": "99233",
+  "dos": "09/08/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365361,
+  "chargeid": "23365361",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442048,
+  "visitid": 19454288,
+  "pid": 17473747,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365360,
+  "chargeid": "23365360",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442049,
+  "visitid": 19454287,
+  "pid": 17473747,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365359,
+  "chargeid": "23365359",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442050,
+  "visitid": 19454456,
+  "pid": 17473747,
+  "cpt": "99239",
+  "dos": "09/11/2026",
+  "era_paid": 84.62,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365544,
+  "chargeid": "23365544",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442051,
+  "visitid": 19454415,
+  "pid": 45447,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365503,
+  "chargeid": "23365503",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442052,
+  "visitid": 19454307,
+  "pid": 17475638,
+  "cpt": "99233",
+  "dos": "09/09/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365380,
+  "chargeid": "23365380",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442053,
+  "visitid": 19454278,
+  "pid": 17475638,
+  "cpt": "99233",
+  "dos": "09/10/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365350,
+  "chargeid": "23365350",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442054,
+  "visitid": 19454457,
+  "pid": 17475638,
+  "cpt": "99233",
+  "dos": "09/11/2026",
+  "era_paid": 85.46,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365545,
+  "chargeid": "23365545",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442055,
+  "visitid": 19454291,
+  "pid": 17473747,
+  "cpt": "99223",
+  "dos": "09/06/2026",
+  "era_paid": 125.2,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365363,
+  "chargeid": "23365363",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442055,
+  "visitid": 19454291,
+  "pid": 17473747,
+  "cpt": "99497",
+  "dos": "09/06/2026",
+  "era_paid": 52.33,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365364,
+  "chargeid": "23365364",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052840",
+  "checkclaimid": 15442056,
+  "visitid": 19454407,
+  "pid": 17476917,
+  "cpt": "99309",
+  "dos": "09/02/2026",
+  "era_paid": 66.36,
+  "carrier": "FLO02",
+  "checkno": "819853087",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23365495,
+  "chargeid": "23365495",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442057,
+  "visitid": 19454876,
+  "pid": 17476021,
+  "cpt": "99309",
+  "dos": "2026-09-01",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23366026,
+  "chargeid": "23366026",
+  "cas": [
+   [
+    "CO",
+    "CO16"
+   ]
+  ],
+  "rarc": [
+   "N211",
+   "N382"
+  ],
+  "outcome": "denial-insurance-lookup (AMD 271 AAA 72, Stedi MBI ERR 72) - board row"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442058,
+  "visitid": 19448778,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358161,
+  "chargeid": "23358161",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442058,
+  "visitid": 19448778,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358162,
+  "chargeid": "23358162",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442059,
+  "visitid": 19450738,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "2026-08-06",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23360697,
+  "chargeid": "23360697",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442060,
+  "visitid": 19421059,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2025-10-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326318,
+  "chargeid": "23326318",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442060,
+  "visitid": 19421059,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2025-10-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23326319,
+  "chargeid": "23326319",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442061,
+  "visitid": 19417766,
+  "pid": 45668,
+  "cpt": "99349",
+  "dos": "2025-09-18",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23321530,
+  "chargeid": "23321530",
+  "cas": [
+   [
+    "CO",
+    "CO29"
+   ]
+  ],
+  "rarc": [
+   "MA01",
+   "N211"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442062,
+  "visitid": 19392574,
+  "pid": 17470697,
+  "cpt": "G0316",
+  "dos": "2024-10-29",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 22464572,
+  "chargeid": "22464572",
+  "cas": [
+   [
+    "CO",
+    "CO16"
+   ]
+  ],
+  "rarc": [
+   "N211",
+   "MA15",
+   "N823"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442062,
+  "visitid": 19392574,
+  "pid": 17470697,
+  "cpt": "G0316",
+  "dos": "2024-10-29",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 22464641,
+  "chargeid": "22464641",
+  "cas": [
+   [
+    "CO",
+    "CO16"
+   ]
+  ],
+  "rarc": [
+   "N211",
+   "MA15",
+   "N823"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442062,
+  "visitid": 19392574,
+  "pid": 17470697,
+  "cpt": "G0316",
+  "dos": "2024-10-29",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 22464642,
+  "chargeid": "22464642",
+  "cas": [
+   [
+    "CO",
+    "CO16"
+   ]
+  ],
+  "rarc": [
+   "N211",
+   "MA15",
+   "N823"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442063,
+  "visitid": 19392671,
+  "pid": 17470697,
+  "cpt": "G0316",
+  "dos": "2024-10-30",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 22464734,
+  "chargeid": "22464734",
+  "cas": [
+   [
+    "CO",
+    "CO16"
+   ]
+  ],
+  "rarc": [
+   "N211",
+   "MA15",
+   "N823"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442064,
+  "visitid": 19448555,
+  "pid": 17470940,
+  "cpt": "G0439",
+  "dos": "2026-07-14",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23357858,
+  "chargeid": "23357858",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442065,
+  "visitid": 19417747,
+  "pid": 24799,
+  "cpt": "99349",
+  "dos": "2025-09-18",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23321500,
+  "chargeid": "23321500",
+  "cas": [
+   [
+    "CO",
+    "CO29"
+   ]
+  ],
+  "rarc": [
+   "MA01",
+   "N211"
+  ],
+  "outcome": "written-off-WOLATE"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442066,
+  "visitid": 19423667,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2025-11-15",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23329335,
+  "chargeid": "23329335",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-818120040"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442066,
+  "visitid": 19423667,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2025-11-15",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23329336,
+  "chargeid": "23329336",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-818120040"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442067,
+  "visitid": 19427211,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333550,
+  "chargeid": "23333550",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-818359061"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442067,
+  "visitid": 19427211,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333551,
+  "chargeid": "23333551",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-818359061"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442068,
+  "visitid": 19430666,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337069,
+  "chargeid": "23337069",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "duplicate-[name]-348960390"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442068,
+  "visitid": 19430666,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337070,
+  "chargeid": "23337070",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "duplicate-[name]-348960390"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442069,
+  "visitid": 19433878,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-02-26",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23340652,
+  "chargeid": "23340652",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-818678905"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442070,
+  "visitid": 19442301,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350319,
+  "chargeid": "23350319",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819152633"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442070,
+  "visitid": 19442301,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350320,
+  "chargeid": "23350320",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819152633"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442071,
+  "visitid": 19446159,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-06-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23355091,
+  "chargeid": "23355091",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819380420"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442071,
+  "visitid": 19446159,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2026-06-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23355092,
+  "chargeid": "23355092",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819380420"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442072,
+  "visitid": 19452661,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-08-23",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23363039,
+  "chargeid": "23363039",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819747724"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442073,
+  "visitid": 19448769,
+  "pid": 17470939,
+  "cpt": "99487",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358143,
+  "chargeid": "23358143",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819507287"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442073,
+  "visitid": 19448769,
+  "pid": 17470939,
+  "cpt": "99489",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358144,
+  "chargeid": "23358144",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819507287"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442074,
+  "visitid": 19446167,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2026-06-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23355107,
+  "chargeid": "23355107",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442074,
+  "visitid": 19446167,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2026-06-25",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23355108,
+  "chargeid": "23355108",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442075,
+  "visitid": 19433886,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2026-02-26",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23340667,
+  "chargeid": "23340667",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442076,
+  "visitid": 19430623,
+  "pid": 17469429,
+  "cpt": "99487",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23336983,
+  "chargeid": "23336983",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "duplicate-[name]-348960390"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442076,
+  "visitid": 19430623,
+  "pid": 17469429,
+  "cpt": "99489",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23336984,
+  "chargeid": "23336984",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "duplicate-[name]-348960390"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442077,
+  "visitid": 19452640,
+  "pid": 17469028,
+  "cpt": "99487",
+  "dos": "2026-08-23",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362998,
+  "chargeid": "23362998",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442077,
+  "visitid": 19452640,
+  "pid": 17469028,
+  "cpt": "99489",
+  "dos": "2026-08-23",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362999,
+  "chargeid": "23362999",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442078,
+  "visitid": 19423587,
+  "pid": 17469028,
+  "cpt": "99487",
+  "dos": "2025-11-15",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23329194,
+  "chargeid": "23329194",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442078,
+  "visitid": 19423587,
+  "pid": 17469028,
+  "cpt": "99489",
+  "dos": "2025-11-15",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23329195,
+  "chargeid": "23329195",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442079,
+  "visitid": 19427201,
+  "pid": 17469028,
+  "cpt": "99487",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333530,
+  "chargeid": "23333530",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442079,
+  "visitid": 19427201,
+  "pid": 17469028,
+  "cpt": "99489",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333531,
+  "chargeid": "23333531",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442080,
+  "visitid": 19442293,
+  "pid": 17469028,
+  "cpt": "99487",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350303,
+  "chargeid": "23350303",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "duplicate-[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442080,
+  "visitid": 19442293,
+  "pid": 17469028,
+  "cpt": "99489",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350304,
+  "chargeid": "23350304",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442081,
+  "visitid": 19448825,
+  "pid": 17469028,
+  "cpt": "99487",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358255,
+  "chargeid": "23358255",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442081,
+  "visitid": 19448825,
+  "pid": 17469028,
+  "cpt": "99489",
+  "dos": "2026-07-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23358256,
+  "chargeid": "23358256",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819814877(0)"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442082,
+  "visitid": 19442308,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350333,
+  "chargeid": "23350333",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442082,
+  "visitid": 19442308,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2026-05-17",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23350334,
+  "chargeid": "23350334",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442083,
+  "visitid": 19450828,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "2026-08-08",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23360830,
+  "chargeid": "23360830",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442084,
+  "visitid": 19451293,
+  "pid": 17470940,
+  "cpt": "99232",
+  "dos": "2026-08-09",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23361336,
+  "chargeid": "23361336",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442085,
+  "visitid": 19451324,
+  "pid": 17470940,
+  "cpt": "99232",
+  "dos": "2026-08-10",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23361368,
+  "chargeid": "23361368",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442086,
+  "visitid": 19451371,
+  "pid": 17470940,
+  "cpt": "99239",
+  "dos": "2026-08-11",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23361415,
+  "chargeid": "23361415",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442087,
+  "visitid": 19452059,
+  "pid": 17470940,
+  "cpt": "99223",
+  "dos": "2026-08-18",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362172,
+  "chargeid": "23362172",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442087,
+  "visitid": 19452059,
+  "pid": 17470940,
+  "cpt": "99497",
+  "dos": "2026-08-18",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362173,
+  "chargeid": "23362173",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442088,
+  "visitid": 19427218,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333564,
+  "chargeid": "23333564",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442088,
+  "visitid": 19427218,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2025-12-21",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23333565,
+  "chargeid": "23333565",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442089,
+  "visitid": 19430673,
+  "pid": 17470940,
+  "cpt": "99487",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337083,
+  "chargeid": "23337083",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442089,
+  "visitid": 19430673,
+  "pid": 17470940,
+  "cpt": "99489",
+  "dos": "2026-01-27",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23337084,
+  "chargeid": "23337084",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442090,
+  "visitid": 19450858,
+  "pid": 17470940,
+  "cpt": "99233",
+  "dos": "2026-08-07",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23360861,
+  "chargeid": "23360861",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819843767"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442091,
+  "visitid": 19452635,
+  "pid": 17469426,
+  "cpt": "99487",
+  "dos": "2026-08-23",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362988,
+  "chargeid": "23362988",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819747724"
+ },
+ {
+  "checkid": "1052841",
+  "checkclaimid": 15442091,
+  "visitid": 19452635,
+  "pid": 17469426,
+  "cpt": "99489",
+  "dos": "2026-08-23",
+  "era_paid": 0.0,
+  "carrier": "FLO02",
+  "checkno": "349999075",
+  "when": "2026-09-25T0910Z",
+  "chargedetailid": 23362989,
+  "chargeid": "23362989",
+  "cas": [
+   [
+    "OA",
+    "OA18"
+   ]
+  ],
+  "rarc": [
+   "MA01"
+  ],
+  "outcome": "[name]-819747724"
  }
 ]
