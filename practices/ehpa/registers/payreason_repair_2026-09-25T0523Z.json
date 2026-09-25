@@ -1,0 +1,209 @@
+{
+ "stamp": "2026-09-25T0523Z",
+ "mode": "live",
+ "results": [
+  {
+   "visitid": "19420915",
+   "pid": "46673",
+   "name": "TAPSTER,SHELAGH",
+   "next_carrier": "HUM01",
+   "checkid": "1052828",
+   "codeless": [
+    [
+     "23326031",
+     "24656160",
+     37.13,
+     "819843767"
+    ]
+   ],
+   "steps": [
+    [
+     "void_payment",
+     "23326031",
+     "24656160",
+     37.13,
+     true
+    ],
+    [
+     "void_writeoff",
+     "23326031",
+     "22495515",
+     62.4,
+     "WOINS",
+     true
+    ],
+    [
+     "skip",
+     "23326030",
+     "no open balance",
+     0.0
+    ],
+    [
+     "addpayments-era",
+     [
+      [
+       "23326031",
+       "99489",
+       37.13,
+       62.4,
+       "WOINS"
+      ]
+     ],
+     37.13,
+     62.4,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-bf6rt\" lst=\"09/24/2026 22:23:20\"><Results success=\"1\" paym"
+    ],
+    [
+     "release",
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-vjrhl\" lst=\"09/24/2026 22:23:23\"><Results success=\"1\" /><E"
+    ]
+   ],
+   "wos_to_void": [
+    [
+     "23326031",
+     "22495515",
+     62.4,
+     "WOINS"
+    ]
+   ],
+   "after": [
+    {
+     "cid": "23326030",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "paid": 206.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24572921",
+       "amount": 0.0,
+       "checkno": "348567230",
+       "carrier": "FLO02",
+       "date": "06/01/2026",
+       "createtime": "2026-06-01T21:03:16.307",
+       "void": "0",
+       "reasons": [
+        [
+         "CO151",
+         206.0
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22417480",
+       "amount": 206.0,
+       "code": "WOINS",
+       "date": "06/01/2026",
+       "createtime": "2026-06-01T21:03:16.307",
+       "void": "0"
+      }
+     ]
+    },
+    {
+     "cid": "23326031",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "paid": 99.53,
+     "insbalance": 9.47,
+     "patbalance": 0.0,
+     "carrier": "FLO02",
+     "pays": [
+      {
+       "id": "24572922",
+       "amount": 0.0,
+       "checkno": "348567230",
+       "carrier": "FLO02",
+       "date": "06/01/2026",
+       "createtime": "2026-06-01T21:03:16.410",
+       "void": "0",
+       "reasons": [
+        [
+         "CO16",
+         109.0
+        ]
+       ]
+      },
+      {
+       "id": "24656160",
+       "amount": 37.13,
+       "checkno": "819843767",
+       "carrier": "FLO02",
+       "date": "09/23/2026",
+       "createtime": "2026-09-23T23:19:17.487",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24656306",
+       "amount": 37.13,
+       "checkno": "",
+       "carrier": "FLO02",
+       "date": "09/24/2026",
+       "createtime": "2026-09-24T22:23:15.223",
+       "void": "1",
+       "reasons": []
+      },
+      {
+       "id": "24656307",
+       "amount": 37.13,
+       "checkno": "819843767",
+       "carrier": "FLO02",
+       "date": "09/24/2026",
+       "createtime": "2026-09-24T22:23:20.517",
+       "void": "0",
+       "reasons": [
+        [
+         "CO45",
+         61.64
+        ],
+        [
+         "PR2",
+         9.47
+        ],
+        [
+         "CO253",
+         0.76
+        ]
+       ]
+      }
+     ],
+     "wos": [
+      {
+       "id": "22495515",
+       "amount": 62.4,
+       "code": "WOINS",
+       "date": "09/23/2026",
+       "createtime": "2026-09-23T23:19:17.487",
+       "void": "1"
+      },
+      {
+       "id": "22495613",
+       "amount": 62.4,
+       "code": "WOINS",
+       "date": "09/24/2026",
+       "createtime": "2026-09-24T22:23:16.973",
+       "void": "1"
+      },
+      {
+       "id": "22495614",
+       "amount": 62.4,
+       "code": "WOINS",
+       "date": "09/24/2026",
+       "createtime": "2026-09-24T22:23:20.517",
+       "void": "0"
+      }
+     ]
+    }
+   ],
+   "outcome": "repaired"
+  }
+ ]
+}
