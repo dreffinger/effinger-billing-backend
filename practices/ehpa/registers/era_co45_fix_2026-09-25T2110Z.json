@@ -1,0 +1,56 @@
+{
+ "stamp": "2026-09-25T2110Z",
+ "dry": false,
+ "A": [
+  {
+   "pid": "17477799",
+   "vid": "19455058",
+   "cid": "23366211",
+   "cpt": "99223",
+   "check": "0934734717",
+   "before": {
+    "fee": 310.0,
+    "paid": 79.85,
+    "patbal": 230.15,
+    "insbal": 0.0
+   },
+   "wo": 150.3,
+   "move": "moved 230.15 -> {'patbalance': '0.00', 'insbalance': '230.15', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 14:23:40\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 79.85,
+    "insbal": 0.0,
+    "paid": 230.15
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477799",
+   "vid": "19455032",
+   "cid": "23366182",
+   "cpt": "99232",
+   "check": "0934734717",
+   "before": {
+    "fee": 111.0,
+    "paid": 35.95,
+    "patbal": 75.05,
+    "insbal": 0.0
+   },
+   "wo": 39.1,
+   "move": "moved 75.05 -> {'patbalance': '0.00', 'insbalance': '75.05', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 14:23:51\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 35.95,
+    "insbal": 0.0,
+    "paid": 75.05
+   },
+   "result": "posted"
+  }
+ ]
+}
