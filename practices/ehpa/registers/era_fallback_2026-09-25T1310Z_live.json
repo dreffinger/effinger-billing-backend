@@ -1,0 +1,32 @@
+[
+ {
+  "checkid": "1052842",
+  "checkclaimid": 15442092,
+  "visitid": 19454907,
+  "pid": 17477779,
+  "cpt": "99223",
+  "dos": "09/14/2026",
+  "era_paid": 156.51,
+  "carrier": "WEL04",
+  "checkno": "1004607063",
+  "when": "2026-09-25T1310Z",
+  "chargedetailid": 23366058,
+  "chargeid": "23366058",
+  "outcome": "already-posted"
+ },
+ {
+  "checkid": "1052842",
+  "checkclaimid": 15442093,
+  "visitid": 19454927,
+  "pid": 17477779,
+  "cpt": "99232",
+  "dos": "09/15/2026",
+  "era_paid": 70.46,
+  "carrier": "WEL04",
+  "checkno": "1004607063",
+  "when": "2026-09-25T1310Z",
+  "chargedetailid": 23366079,
+  "chargeid": "23366079",
+  "outcome": "already-posted"
+ }
+]
