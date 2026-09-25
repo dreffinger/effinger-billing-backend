@@ -131,7 +131,9 @@ def commit_and_push(message):
         print("git: nothing changed since the last mirror")
     else:
         trailer = "\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>\nClaude-Session: %s" % os.environ.get("CLAUDE_SESSION_URL", "https://claude.ai/code/session_015icETjbznLEETp3wfpHYbA")
-        sh('git -c user.name="Claude" -c user.email="noreply@anthropic.com" commit -q -m %s' % json.dumps(message + trailer))   # 9/22 stop-hook rule: commits are authored by Claude <noreply@anthropic.com>, never billing-mirror
+        msgfile = os.path.join(WS, "outbox", ".commit_msg.txt"); os.makedirs(os.path.dirname(msgfile), exist_ok=True)
+        open(msgfile, "w").write(message + trailer + "\n")   # 9/25: -F keeps the trailer on real lines (json.dumps through the shell left literal \n in the message)
+        sh('git -c user.name="Claude" -c user.email="noreply@anthropic.com" commit -q -F %s' % json.dumps(msgfile))   # 9/22 stop-hook rule: commits are authored by Claude <noreply@anthropic.com>, never billing-mirror
         print("git: committed -> %s" % sh("git rev-parse --short HEAD").stdout.strip())
     tok = token()
     if not tok:
