@@ -1,0 +1,424 @@
+{
+ "stamp": "2026-09-25T1510Z",
+ "dry": false,
+ "A": [
+  {
+   "pid": "17477776",
+   "vid": "19454904",
+   "cid": "23366055",
+   "cpt": "99223",
+   "patbal_before": 153.49,
+   "wo": 153.49,
+   "check": "4123813",
+   "move": "moved 153.49 -> {'patbalance': '0.00', 'insbalance': '153.49', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:23:47\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477776",
+   "vid": "19454910",
+   "cid": "23366062",
+   "cpt": "99232",
+   "patbal_before": 40.54,
+   "wo": 40.54,
+   "check": "4123813",
+   "move": "moved 40.54 -> {'patbalance': '0.00', 'insbalance': '40.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:23:57\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477776",
+   "vid": "19454936",
+   "cid": "23366087",
+   "cpt": "99232",
+   "patbal_before": 40.54,
+   "wo": 40.54,
+   "check": "4123813",
+   "move": "moved 40.54 -> {'patbalance': '0.00', 'insbalance': '40.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:24:07\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477776",
+   "vid": "19455052",
+   "cid": "23366204",
+   "cpt": "99232",
+   "patbal_before": 40.54,
+   "wo": 40.54,
+   "check": "4123813",
+   "move": "moved 40.54 -> {'patbalance': '0.00', 'insbalance': '40.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:24:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477798",
+   "vid": "19455030",
+   "cid": "23366180",
+   "cpt": "99232",
+   "patbal_before": 40.54,
+   "wo": 40.54,
+   "check": "4123813",
+   "move": "moved 40.54 -> {'patbalance': '0.00', 'insbalance': '40.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:24:28\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477798",
+   "vid": "19455057",
+   "cid": "23366210",
+   "cpt": "99223",
+   "patbal_before": 153.49,
+   "wo": 153.49,
+   "check": "4123813",
+   "move": "moved 153.49 -> {'patbalance': '0.00', 'insbalance': '153.49', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:24:38\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477471",
+   "vid": "19451896",
+   "cid": "23361986",
+   "cpt": "99223",
+   "patbal_before": 153.49,
+   "wo": 153.49,
+   "check": "4123813",
+   "move": "moved 153.49 -> {'patbalance': '0.00', 'insbalance': '153.49', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:24:49\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477349",
+   "vid": "19450732",
+   "cid": "23360691",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:24:59\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477349",
+   "vid": "19450768",
+   "cid": "23360728",
+   "cpt": "99223",
+   "patbal_before": 184.79,
+   "wo": 184.79,
+   "check": "W0384723",
+   "move": "moved 184.79 -> {'patbalance': '0.00', 'insbalance': '184.79', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:25:08\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477349",
+   "vid": "19450839",
+   "cid": "23360841",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:25:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477402",
+   "vid": "19451377",
+   "cid": "23361421",
+   "cpt": "99223",
+   "patbal_before": 184.79,
+   "wo": 184.79,
+   "check": "W0384723",
+   "move": "moved 184.79 -> {'patbalance': '0.00', 'insbalance': '184.79', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:25:28\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477402",
+   "vid": "19451394",
+   "cid": "23361438",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:25:38\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477402",
+   "vid": "19451472",
+   "cid": "23361520",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:25:48\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477203",
+   "vid": "19449614",
+   "cid": "23359383",
+   "cpt": "99223",
+   "patbal_before": 184.79,
+   "wo": 184.79,
+   "check": "W0384723",
+   "move": "moved 184.79 -> {'patbalance': '0.00', 'insbalance': '184.79', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:25:59\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   }
+  },
+  {
+   "pid": "17477203",
+   "vid": "19449615",
+   "cid": "23359384",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:26:09\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477203",
+   "vid": "19449625",
+   "cid": "23359400",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:26:19\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477203",
+   "vid": "19450072",
+   "cid": "23359935",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:26:29\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17477203",
+   "vid": "19450073",
+   "cid": "23359936",
+   "cpt": "99232",
+   "patbal_before": 54.63,
+   "wo": 54.63,
+   "check": "W0384723",
+   "move": "moved 54.63 -> {'patbalance': '0.00', 'insbalance': '54.63', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-p4mxg\" lst=\"09/25/2026 08:26:39\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 111.0
+   }
+  },
+  {
+   "pid": "17473342",
+   "vid": "19453118",
+   "cid": "23363618",
+   "cpt": "99233",
+   "patbal_before": 74.54,
+   "wo": 74.54,
+   "check": "W0384723",
+   "move": "moved 74.54 -> {'patbalance': '0.00', 'insbalance': '74.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-jqcw2\" lst=\"09/25/2026 08:26:49\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   }
+  },
+  {
+   "pid": "17473342",
+   "vid": "19453119",
+   "cid": "23363619",
+   "cpt": "99233",
+   "patbal_before": 74.54,
+   "wo": 74.54,
+   "check": "W0384723",
+   "move": "moved 74.54 -> {'patbalance': '0.00', 'insbalance': '74.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-249g2\" lst=\"09/25/2026 08:26:59\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   }
+  }
+ ],
+ "B": [
+  {
+   "pid": "17476042",
+   "vid": "19453092",
+   "cid": "23363592",
+   "patbal_before": 160.0,
+   "move": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "after": {
+    "patbal": 0.0,
+    "insbal": 160.0,
+    "carrier": "FLO02"
+   }
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453101",
+   "cid": "23363601",
+   "patbal_before": 160.0,
+   "move": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "after": {
+    "patbal": 0.0,
+    "insbal": 160.0,
+    "carrier": "FLO02"
+   }
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453127",
+   "cid": "23363629",
+   "patbal_before": 310.0,
+   "move": "moved 310.00 -> {'patbalance': '0.00', 'insbalance': '310.00', 'insorder': '2'}",
+   "after": {
+    "patbal": 0.0,
+    "insbal": 310.0,
+    "carrier": "FLO02"
+   }
+  }
+ ]
+}
