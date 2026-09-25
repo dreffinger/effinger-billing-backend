@@ -1,0 +1,6 @@
+# captured_calls additions - run 2026-09-25T1910Z (3pm ET 9/25/2026, ehpa cloud Code Routine)
+No new call shape this run. Behaviours confirmed:
+- getclaimcenteroverview at 19:20Z: chargereview 0 / inspector 21 ($3,957) / unbilled 26 ($5,252) / exclusions 8 ($1,268 - lags; per-run list = 2) / claimrunstatus 83 runs; newest claim run still 1700236. New inspector batch 127789 (one visit) since 17:20Z.
+- Admission-date clear on a one-charge HCA visit: updextrainsinfo class=chargeentry visitid=vst19456117 with <extins txtChargeCode="99232" hospitalizationfrom="09/21/2026" .../> answered <Results><extins id="2793382" hospitalizationfrom="09/21/2026" hospitalizationto="" ...> (txtChargeCode is the CPT, not the pcode id - resave.detail's <proccode id code> element maps pcode65089 -> 99232); updvisitwithnewcharges full echo with onhcfa="1" returned no Fault; getclaiminspectorcharges batchid=127789 then listed the visit PENDING with an empty errorlist and ~20 s later the batch was gone from getclaiminspectorbatches - the overview count (21) lagged the list (20) for the rest of the run.
+- GET /api/era/checks: 0 unposted checks at 19:24Z; POST /api/era/locks/release-expired sent; payreasons --list 0 Unbilled 'Payment reason codes' rows.
+- amd.login_cached(): one relogin at 19:20Z from a fresh container (.session.json written, .amd_login_lock cleared on success).
