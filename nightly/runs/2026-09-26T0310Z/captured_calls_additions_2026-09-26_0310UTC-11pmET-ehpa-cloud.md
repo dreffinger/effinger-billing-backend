@@ -1,0 +1,6 @@
+# captured_calls additions - run 2026-09-26T0310Z (11pm ET 9/25/2026, ehpa cloud Code Routine)
+No new call shape this run. Behaviours confirmed:
+- Fresh container bootstrap: repo attached on session branch claude/pensive-einstein-5np9vj (main checked out for the work); bootstrap_workspace.sh net -> AMD_OK / STEDI_CRED_OK / GitHub reachable; .amd_cred.json written normally; ONE amd.login_cached success 03:16Z.
+- getclaimcenteroverview at 03:16Z and again at 03:2xZ: chargereview 0 / inspector 20 ($3,846) / unbilled 26 ($5,252) / exclusions 7 ($1,108 - lags; the per-run list call returns 1 row) / claimrunstatus 83 runs; newest claim run still 1700236 (no nightly claim run has posted for 9/25 evening as of 03:20Z).
+- GET /api/era/checks at 03:17Z and after: 0 unposted checks (POST /api/era/locks/release-expired sent first). era_details cache empty in the fresh container - nothing to pull.
+- Board reads (ArtifactData): commands where status==queued -> 0; items where status==claude -> 200+ rows (the standing watch rows; result capped, paged by updated >= 2026-09-26T01:00:00Z -> 0 changed); drops where status==new -> 0. Both drive_sync registries unchanged since 9/24 06:16Z / 9/15 - none of the current inbox files are listed, nothing trashed.
