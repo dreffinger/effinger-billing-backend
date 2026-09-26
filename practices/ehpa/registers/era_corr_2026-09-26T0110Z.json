@@ -1,0 +1,266 @@
+{
+ "stamp": "2026-09-26T0110Z",
+ "dry": false,
+ "lines": [
+  {
+   "pid": "17477640",
+   "vid": "19453722",
+   "cid": "23364607",
+   "cpt": "99223",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 310.0,
+    "paid": 156.51,
+    "patbal": 153.49,
+    "insbal": 0.0
+   },
+   "wo": 153.49,
+   "move": "moved 221.08 -> {'patbalance': '0.00', 'insbalance': '153.49', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qxcgv\" lst=\"09/25/2026 18:34:02\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 310.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19453722",
+   "cid": "23364608",
+   "cpt": "99497",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 133.0,
+    "paid": 65.41,
+    "patbal": 67.59,
+    "insbal": 0.0
+   },
+   "wo": 67.59,
+   "move": "nothing to move",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-kh5b5\" lst=\"09/25/2026 18:34:08\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 133.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19453851",
+   "cid": "23364770",
+   "cpt": "99233",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 160.0,
+    "paid": 106.82,
+    "patbal": 53.18,
+    "insbal": 0.0
+   },
+   "wo": 53.18,
+   "move": "moved 53.18 -> {'patbalance': '0.00', 'insbalance': '53.18', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qxcgv\" lst=\"09/25/2026 18:34:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19453830",
+   "cid": "23364748",
+   "cpt": "99233",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 160.0,
+    "paid": 106.82,
+    "patbal": 53.18,
+    "insbal": 0.0
+   },
+   "wo": 53.18,
+   "move": "moved 53.18 -> {'patbalance': '0.00', 'insbalance': '53.18', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-kh5b5\" lst=\"09/25/2026 18:34:27\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19453947",
+   "cid": "23364861",
+   "cpt": "99233",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 160.0,
+    "paid": 106.82,
+    "patbal": 53.18,
+    "insbal": 0.0
+   },
+   "wo": 53.18,
+   "move": "moved 53.18 -> {'patbalance': '0.00', 'insbalance': '53.18', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qxcgv\" lst=\"09/25/2026 18:34:37\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19454086",
+   "cid": "23365056",
+   "cpt": "99233",
+   "check": "201060565260925",
+   "code": "WOINS",
+   "before": {
+    "fee": 160.0,
+    "paid": 106.82,
+    "patbal": 53.18,
+    "insbal": 0.0
+   },
+   "wo": 53.18,
+   "move": "moved 53.18 -> {'patbalance': '0.00', 'insbalance': '53.18', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qxcgv\" lst=\"09/25/2026 18:34:46\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "21378",
+   "vid": "19437369",
+   "cid": "23344510",
+   "cpt": "99309",
+   "check": "201060564260925",
+   "code": "WOCAID2ND",
+   "before": {
+    "fee": 141.0,
+    "paid": 97.99,
+    "patbal": 43.01,
+    "insbal": 0.0
+   },
+   "wo": 43.01,
+   "move": "moved 43.01 -> {'patbalance': '0.00', 'insbalance': '43.01', 'insorder': '1,5'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-qxcgv\" lst=\"09/25/2026 18:34:57\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 141.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "21378",
+   "vid": "19420287",
+   "cid": "23325273",
+   "cpt": "99309",
+   "check": "201060564260925",
+   "code": "WOCAID2ND",
+   "before": {
+    "fee": 141.0,
+    "paid": 102.19,
+    "patbal": 38.81,
+    "insbal": 0.0
+   },
+   "wo": 38.81,
+   "move": "moved 38.81 -> {'patbalance': '0.00', 'insbalance': '38.81', 'insorder': '1,5'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-kh5b5\" lst=\"09/25/2026 18:35:09\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 141.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17472517",
+   "vid": "19423193",
+   "cid": "23328627",
+   "cpt": "99233",
+   "check": "201060564260925",
+   "code": "WOCAID2ND",
+   "before": {
+    "fee": 160.0,
+    "paid": 89.87,
+    "patbal": 70.13,
+    "insbal": 0.0
+   },
+   "wo": 70.13,
+   "move": "moved 70.13 -> {'patbalance': '0.00', 'insbalance': '70.13', 'insorder': '3,2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-kh5b5\" lst=\"09/25/2026 18:35:20\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17472517",
+   "vid": "19423205",
+   "cid": "23328645",
+   "cpt": "99233",
+   "check": "201060564260925",
+   "code": "WOCAID2ND",
+   "before": {
+    "fee": 160.0,
+    "paid": 89.87,
+    "patbal": 70.13,
+    "insbal": 0.0
+   },
+   "wo": 70.13,
+   "move": "moved 70.13 -> {'patbalance': '0.00', 'insbalance': '70.13', 'insorder': '3,2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-6949566548-kh5b5\" lst=\"09/25/2026 18:35:30\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "paid": 160.0
+   },
+   "result": "posted"
+  }
+ ]
+}
