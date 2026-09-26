@@ -1,0 +1,2844 @@
+{
+ "stamp": "2026-09-26T0110Z",
+ "checkid": "1052850",
+ "lines": [
+  {
+   "visitid": "19416133",
+   "patientid": "17471238",
+   "chargeid": "23319671",
+   "checkclaimid": 15442146,
+   "cpt": "99487",
+   "dos": "2025-09-08",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 137.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650779",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 137.38,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 137.38"
+  },
+  {
+   "visitid": "19416237",
+   "patientid": "17472625",
+   "chargeid": "23319837",
+   "checkclaimid": 15442147,
+   "cpt": "99232",
+   "dos": "2025-09-09",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 15.41,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651857",
+     "60.42",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 15.41,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 15.41"
+  },
+  {
+   "visitid": "19453716",
+   "patientid": "17472393",
+   "chargeid": "23364599",
+   "checkclaimid": 15442148,
+   "cpt": "99233",
+   "dos": "2026-09-03",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 74.54,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650525",
+     "85.46",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.54,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.54"
+  },
+  {
+   "visitid": "19453500",
+   "patientid": "17472393",
+   "chargeid": "23364197",
+   "checkclaimid": 15442149,
+   "cpt": "99233",
+   "dos": "2026-09-01",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 21.8,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651854",
+     "85.46",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 21.8,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80"
+  },
+  {
+   "visitid": "19453750",
+   "patientid": "17472393",
+   "chargeid": "23364643",
+   "checkclaimid": 15442150,
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 74.54,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650490",
+     "85.46",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.54,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.54"
+  },
+  {
+   "visitid": "19452361",
+   "patientid": "17472393",
+   "chargeid": "23362562",
+   "checkclaimid": 15442151,
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 16.14,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651859",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 16.14,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14"
+  },
+  {
+   "visitid": "19452361",
+   "patientid": "17472393",
+   "chargeid": "23362563",
+   "checkclaimid": 15442151,
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 8.92,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651860",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 8.92,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 8.92"
+  },
+  {
+   "visitid": "19453088",
+   "patientid": "17472393",
+   "chargeid": "23363586",
+   "checkclaimid": 15442152,
+   "cpt": "99223",
+   "dos": "2026-08-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 310.0,
+   "insbalance": 31.94,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651855",
+     "125.20",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 31.94,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 31.94"
+  },
+  {
+   "visitid": "19453088",
+   "patientid": "17472393",
+   "chargeid": "23363587",
+   "checkclaimid": 15442152,
+   "cpt": "99497",
+   "dos": "2026-08-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 133.0,
+   "insbalance": 13.35,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651856",
+     "52.33",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 13.35,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 13.35"
+  },
+  {
+   "visitid": "19442451",
+   "patientid": "21378",
+   "chargeid": "23350558",
+   "checkclaimid": 15442153,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650463",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19442451",
+   "patientid": "21378",
+   "chargeid": "23350559",
+   "checkclaimid": 15442153,
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650464",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19423678",
+   "patientid": "21378",
+   "chargeid": "23329361",
+   "checkclaimid": 15442154,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 137.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650481",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 137.38,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 137.38"
+  },
+  {
+   "visitid": "19423678",
+   "patientid": "21378",
+   "chargeid": "23329362",
+   "checkclaimid": 15442154,
+   "cpt": "99489",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 71.87,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650482",
+     "37.13",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 71.87,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 71.87"
+  },
+  {
+   "visitid": "19438607",
+   "patientid": "21378",
+   "chargeid": "23345807",
+   "checkclaimid": 15442156,
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650468",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19438607",
+   "patientid": "21378",
+   "chargeid": "23345808",
+   "checkclaimid": 15442156,
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650469",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19433976",
+   "patientid": "21378",
+   "chargeid": "23340820",
+   "checkclaimid": 15442157,
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650472",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19433976",
+   "patientid": "21378",
+   "chargeid": "23340821",
+   "checkclaimid": 15442157,
+   "cpt": "99489",
+   "dos": "2026-02-26",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650473",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19430779",
+   "patientid": "21378",
+   "chargeid": "23337296",
+   "checkclaimid": 15442158,
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650475",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19430779",
+   "patientid": "21378",
+   "chargeid": "23337297",
+   "checkclaimid": 15442158,
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650476",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19434304",
+   "patientid": "17472517",
+   "chargeid": "23341283",
+   "checkclaimid": 15442160,
+   "cpt": "99306",
+   "dos": "2026-02-27",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 256.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650030",
+     "129.74",
+     "819803392",
+     "6085"
+    ],
+    [
+     "pay24655921",
+     "33.10",
+     "200815298260923",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19434304",
+   "patientid": "17472517",
+   "chargeid": "23341284",
+   "checkclaimid": 15442160,
+   "cpt": "99497",
+   "dos": "2026-02-27",
+   "carcs": [
+    "COCO147"
+   ],
+   "adj": 133.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650031",
+     "52.33",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19433214",
+   "patientid": "17472517",
+   "chargeid": "23339932",
+   "checkclaimid": 15442161,
+   "cpt": "99233",
+   "dos": "2026-02-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 74.54,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650383",
+     "85.46",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.54,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.54"
+  },
+  {
+   "visitid": "19423205",
+   "patientid": "17472517",
+   "chargeid": "23328645",
+   "checkclaimid": 15442164,
+   "cpt": "99233",
+   "dos": "2025-11-12",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 160.0,
+   "insbalance": 0.0,
+   "patbalance": 70.13,
+   "prior_payments": [
+    [
+     "pay24650384",
+     "89.83",
+     "819814877(0)",
+     "6085"
+    ],
+    [
+     "pay24656490",
+     "0.04",
+     "201060564260925",
+     "6113"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19433216",
+   "patientid": "17472517",
+   "chargeid": "23339934",
+   "checkclaimid": 15442165,
+   "cpt": "99223",
+   "dos": "2026-02-18",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 310.0,
+   "insbalance": 184.8,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650380",
+     "125.20",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 184.8,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 184.80"
+  },
+  {
+   "visitid": "19433216",
+   "patientid": "17472517",
+   "chargeid": "23339935",
+   "checkclaimid": 15442165,
+   "cpt": "99497",
+   "dos": "2026-02-18",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 133.0,
+   "insbalance": 80.67,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650381",
+     "52.33",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 80.67,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 80.67"
+  },
+  {
+   "visitid": "19423603",
+   "patientid": "46673",
+   "chargeid": "23329225",
+   "checkclaimid": 15442166,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 17.5,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24653744",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 17.5,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.50"
+  },
+  {
+   "visitid": "19423603",
+   "patientid": "46673",
+   "chargeid": "23329225",
+   "checkclaimid": 15442167,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19416238",
+   "patientid": "17472625",
+   "chargeid": "23319838",
+   "checkclaimid": 15442168,
+   "cpt": "99223",
+   "dos": "2025-09-08",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 310.0,
+   "insbalance": 33.75,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651858",
+     "132.31",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 33.75,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 33.75"
+  },
+  {
+   "visitid": "19442158",
+   "patientid": "17471725",
+   "chargeid": "23350143",
+   "checkclaimid": 15442169,
+   "cpt": "99239",
+   "dos": "2026-05-12",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 163.0,
+   "insbalance": 78.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650596",
+     "84.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - duplicate (OA-18), original adjudication stands"
+  },
+  {
+   "visitid": "19441315",
+   "patientid": "17471725",
+   "chargeid": "23349165",
+   "checkclaimid": 15442170,
+   "cpt": "99232",
+   "dos": "2026-05-07",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650635",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - duplicate (OA-18), original adjudication stands"
+  },
+  {
+   "visitid": "19441640",
+   "patientid": "17471725",
+   "chargeid": "23349554",
+   "checkclaimid": 15442171,
+   "cpt": "99232",
+   "dos": "2026-05-11",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650599",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19427131",
+   "patientid": "17471725",
+   "chargeid": "23333395",
+   "checkclaimid": 15442172,
+   "cpt": "99487",
+   "dos": "2025-12-19",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 137.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650687",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 137.38,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 137.38"
+  },
+  {
+   "visitid": "19427131",
+   "patientid": "17471725",
+   "chargeid": "23333396",
+   "checkclaimid": 15442172,
+   "cpt": "99489",
+   "dos": "2025-12-19",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 71.87,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650688",
+     "37.13",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 71.87,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 71.87"
+  },
+  {
+   "visitid": "19448923",
+   "patientid": "17471725",
+   "chargeid": "23358449",
+   "checkclaimid": 15442173,
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650110",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19448923",
+   "patientid": "17471725",
+   "chargeid": "23358450",
+   "checkclaimid": 15442173,
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650111",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19433761",
+   "patientid": "17471725",
+   "chargeid": "23340471",
+   "checkclaimid": 15442174,
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650703",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19433761",
+   "patientid": "17471725",
+   "chargeid": "23340472",
+   "checkclaimid": 15442174,
+   "cpt": "99489",
+   "dos": "2026-02-26",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650704",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19439682",
+   "patientid": "17471725",
+   "chargeid": "23347315",
+   "checkclaimid": 15442175,
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650717",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19439682",
+   "patientid": "17471725",
+   "chargeid": "23347316",
+   "checkclaimid": 15442175,
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650718",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19442503",
+   "patientid": "17471725",
+   "chargeid": "23350659",
+   "checkclaimid": 15442176,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650694",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19442503",
+   "patientid": "17471725",
+   "chargeid": "23350660",
+   "checkclaimid": 15442176,
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650695",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19442158",
+   "patientid": "17471725",
+   "chargeid": "23350143",
+   "checkclaimid": 15442177,
+   "cpt": "99239",
+   "dos": "2026-05-12",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 163.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19423717",
+   "patientid": "17471725",
+   "chargeid": "23329430",
+   "checkclaimid": 15442178,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 137.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650690",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 137.38,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 137.38"
+  },
+  {
+   "visitid": "19423717",
+   "patientid": "17471725",
+   "chargeid": "23329431",
+   "checkclaimid": 15442178,
+   "cpt": "99489",
+   "dos": "2025-11-15",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 71.87,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650691",
+     "37.13",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 71.87,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 71.87"
+  },
+  {
+   "visitid": "19438661",
+   "patientid": "17471725",
+   "chargeid": "23345911",
+   "checkclaimid": 15442179,
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650721",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19438661",
+   "patientid": "17471725",
+   "chargeid": "23345912",
+   "checkclaimid": 15442179,
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650722",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19430844",
+   "patientid": "17471725",
+   "chargeid": "23337424",
+   "checkclaimid": 15442180,
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650684",
+     "63.28",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19430844",
+   "patientid": "17471725",
+   "chargeid": "23337425",
+   "checkclaimid": 15442180,
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650685",
+     "34.95",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19448439",
+   "patientid": "17471725",
+   "chargeid": "23357741",
+   "checkclaimid": 15442181,
+   "cpt": "G0439",
+   "dos": "2026-07-10",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 204.0,
+   "insbalance": 69.99,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650702",
+     "134.01",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 69.99,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 69.99"
+  },
+  {
+   "visitid": "19453856",
+   "patientid": "20379",
+   "chargeid": "23364775",
+   "checkclaimid": 15442182,
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 74.54,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650813",
+     "85.46",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.54,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.54"
+  },
+  {
+   "visitid": "19441991",
+   "patientid": "17471725",
+   "chargeid": "23349947",
+   "checkclaimid": 15442183,
+   "cpt": "99306",
+   "dos": "2026-05-14",
+   "carcs": [
+    "OAOA18"
+   ],
+   "adj": 256.0,
+   "insbalance": 126.26,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650597",
+     "129.74",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - duplicate (OA-18), original adjudication stands"
+  },
+  {
+   "visitid": "19441991",
+   "patientid": "17471725",
+   "chargeid": "23349948",
+   "checkclaimid": 15442183,
+   "cpt": "99497",
+   "dos": "2026-05-14",
+   "carcs": [
+    "COCO147"
+   ],
+   "adj": 133.0,
+   "insbalance": 80.67,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650598",
+     "52.33",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 80.67,
+   "why": "CO-147 on ACP 99497 - no Medicaid fee-schedule line, never payable by the secondary (9/23 FCC decode)",
+   "outcome": "DRY would post $0 + WOCAID2ND 80.67"
+  },
+  {
+   "visitid": "19421123",
+   "patientid": "17471725",
+   "chargeid": "23326446",
+   "checkclaimid": 15442184,
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 137.38,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650697",
+     "68.62",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 137.38,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 137.38"
+  },
+  {
+   "visitid": "19421123",
+   "patientid": "17471725",
+   "chargeid": "23326447",
+   "checkclaimid": 15442184,
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 71.87,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650698",
+     "37.13",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 71.87,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 71.87"
+  },
+  {
+   "visitid": "19452408",
+   "patientid": "17471725",
+   "chargeid": "23362651",
+   "checkclaimid": 15442185,
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650142",
+     "63.28",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19452408",
+   "patientid": "17471725",
+   "chargeid": "23362652",
+   "checkclaimid": 15442185,
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650143",
+     "34.95",
+     "819803392",
+     "6085"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19441469",
+   "patientid": "17471725",
+   "chargeid": "23349371",
+   "checkclaimid": 15442186,
+   "cpt": "99232",
+   "dos": "2026-05-10",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650601",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19442503",
+   "patientid": "17471725",
+   "chargeid": "23350659",
+   "checkclaimid": 15442187,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19442503",
+   "patientid": "17471725",
+   "chargeid": "23350660",
+   "checkclaimid": 15442187,
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19427131",
+   "patientid": "17471725",
+   "chargeid": "23333395",
+   "checkclaimid": 15442188,
+   "cpt": "99487",
+   "dos": "2025-12-19",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19427131",
+   "patientid": "17471725",
+   "chargeid": "23333396",
+   "checkclaimid": 15442188,
+   "cpt": "99489",
+   "dos": "2025-12-19",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19440861",
+   "patientid": "17471725",
+   "chargeid": "23348617",
+   "checkclaimid": 15442189,
+   "cpt": "99223",
+   "dos": "2026-05-04",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 310.0,
+   "insbalance": 184.8,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650646",
+     "125.20",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 184.8,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 184.80"
+  },
+  {
+   "visitid": "19441178",
+   "patientid": "17471725",
+   "chargeid": "23349016",
+   "checkclaimid": 15442190,
+   "cpt": "99232",
+   "dos": "2026-05-06",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650645",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19441375",
+   "patientid": "17471725",
+   "chargeid": "23349226",
+   "checkclaimid": 15442191,
+   "cpt": "99232",
+   "dos": "2026-05-08",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650602",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19441189",
+   "patientid": "17471725",
+   "chargeid": "23349027",
+   "checkclaimid": 15442192,
+   "cpt": "99232",
+   "dos": "2026-05-05",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650644",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19441483",
+   "patientid": "17471725",
+   "chargeid": "23349385",
+   "checkclaimid": 15442193,
+   "cpt": "99232",
+   "dos": "2026-05-09",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "insbalance": 54.63,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650600",
+     "56.37",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 54.63,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 54.63"
+  },
+  {
+   "visitid": "19441315",
+   "patientid": "17471725",
+   "chargeid": "23349165",
+   "checkclaimid": 15442194,
+   "cpt": "99232",
+   "dos": "2026-05-07",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 111.0,
+   "outcome": "skip - same charge already handled on this check (repeated claim)"
+  },
+  {
+   "visitid": "19442490",
+   "patientid": "20379",
+   "chargeid": "23350635",
+   "checkclaimid": 15442195,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 142.72,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650818",
+     "63.28",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 142.72,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 142.72"
+  },
+  {
+   "visitid": "19442490",
+   "patientid": "20379",
+   "chargeid": "23350636",
+   "checkclaimid": 15442195,
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 74.05,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650819",
+     "34.95",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOCAID2ND",
+   "wo": 74.05,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Medicaid FFS secondary)",
+   "outcome": "DRY would post $0 + WOCAID2ND 74.05"
+  },
+  {
+   "visitid": "19419547",
+   "patientid": "17471793",
+   "chargeid": "23324495",
+   "checkclaimid": 15442196,
+   "cpt": "99309",
+   "dos": "2025-10-07",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650398",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19453804",
+   "patientid": "17472420",
+   "chargeid": "23364713",
+   "checkclaimid": 15442197,
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650416",
+     "45.44",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19420277",
+   "patientid": "17473383",
+   "chargeid": "23325263",
+   "checkclaimid": 15442198,
+   "cpt": "99309",
+   "dos": "2025-10-16",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 17.65,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651891",
+     "69.21",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.65,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 17.65"
+  },
+  {
+   "visitid": "19418989",
+   "patientid": "17473383",
+   "chargeid": "23323899",
+   "checkclaimid": 15442199,
+   "cpt": "99309",
+   "dos": "2025-10-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 17.65,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651890",
+     "69.21",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.65,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 17.65"
+  },
+  {
+   "visitid": "19426092",
+   "patientid": "17473383",
+   "chargeid": "23332119",
+   "checkclaimid": 15442200,
+   "cpt": "99309",
+   "dos": "2025-12-05",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650793",
+     "69.21",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19429024",
+   "patientid": "17473383",
+   "chargeid": "23335535",
+   "checkclaimid": 15442201,
+   "cpt": "99309",
+   "dos": "2026-01-05",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650792",
+     "66.36",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19422677",
+   "patientid": "17473383",
+   "chargeid": "23328006",
+   "checkclaimid": 15442202,
+   "cpt": "99309",
+   "dos": "2025-11-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 17.65,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651892",
+     "69.21",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.65,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 17.65"
+  },
+  {
+   "visitid": "19435835",
+   "patientid": "21378",
+   "chargeid": "23342805",
+   "checkclaimid": 15442203,
+   "cpt": "99309",
+   "dos": "2026-03-09",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650471",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19442866",
+   "patientid": "21378",
+   "chargeid": "23351125",
+   "checkclaimid": 15442204,
+   "cpt": "99309",
+   "dos": "2026-05-18",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650462",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19453798",
+   "patientid": "17476348",
+   "chargeid": "23364707",
+   "checkclaimid": 15442205,
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650345",
+     "45.44",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19433058",
+   "patientid": "21378",
+   "chargeid": "23339679",
+   "checkclaimid": 15442206,
+   "cpt": "99308",
+   "dos": "2026-02-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650474",
+     "45.44",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19430528",
+   "patientid": "21378",
+   "chargeid": "23336845",
+   "checkclaimid": 15442207,
+   "cpt": "99309",
+   "dos": "2026-01-20",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650477",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19423411",
+   "patientid": "21378",
+   "chargeid": "23328924",
+   "checkclaimid": 15442208,
+   "cpt": "99308",
+   "dos": "2025-11-04",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 59.43,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650483",
+     "47.57",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 59.43,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 59.43"
+  },
+  {
+   "visitid": "19440847",
+   "patientid": "21378",
+   "chargeid": "23348602",
+   "checkclaimid": 15442209,
+   "cpt": "99309",
+   "dos": "2026-05-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650465",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19438973",
+   "patientid": "46673",
+   "chargeid": "23346291",
+   "checkclaimid": 15442210,
+   "cpt": "99309",
+   "dos": "2026-04-09",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24653749",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ],
+    [
+     "pay24656293",
+     "16.93",
+     "200940909260924",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19447325",
+   "patientid": "46673",
+   "chargeid": "23356508",
+   "checkclaimid": 15442211,
+   "cpt": "99309",
+   "dos": "2026-07-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24653752",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ],
+    [
+     "pay24656292",
+     "16.93",
+     "200940909260924",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19435320",
+   "patientid": "46673",
+   "chargeid": "23342326",
+   "checkclaimid": 15442212,
+   "cpt": "99309",
+   "dos": "2026-03-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 0.0,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24653748",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ],
+    [
+     "pay24656284",
+     "16.93",
+     "200940909260924",
+     "6285"
+    ]
+   ],
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "visitid": "19439258",
+   "patientid": "17472559",
+   "chargeid": "23346588",
+   "checkclaimid": 15442213,
+   "cpt": "99309",
+   "dos": "2026-04-17",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651865",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19440129",
+   "patientid": "17472559",
+   "chargeid": "23347794",
+   "checkclaimid": 15442214,
+   "cpt": "99309",
+   "dos": "2026-04-24",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24651862",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19426947",
+   "patientid": "21378",
+   "chargeid": "23333139",
+   "checkclaimid": 15442215,
+   "cpt": "99308",
+   "dos": "2025-12-09",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 59.43,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650480",
+     "47.57",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 59.43,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 59.43"
+  },
+  {
+   "visitid": "19437727",
+   "patientid": "21258",
+   "chargeid": "23344832",
+   "checkclaimid": 15442216,
+   "cpt": "99309",
+   "dos": "2026-04-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650642",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19436806",
+   "patientid": "21258",
+   "chargeid": "23343854",
+   "checkclaimid": 15442217,
+   "cpt": "99308",
+   "dos": "2026-03-24",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650640",
+     "45.44",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19438676",
+   "patientid": "21258",
+   "chargeid": "23345940",
+   "checkclaimid": 15442218,
+   "cpt": "99316",
+   "dos": "2026-04-08",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 160.0,
+   "insbalance": 80.58,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650627",
+     "79.42",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 80.58,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 80.58"
+  },
+  {
+   "visitid": "19421787",
+   "patientid": "17471793",
+   "chargeid": "23327114",
+   "checkclaimid": 15442219,
+   "cpt": "99309",
+   "dos": "2025-10-28",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650401",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19423426",
+   "patientid": "17471793",
+   "chargeid": "23328939",
+   "checkclaimid": 15442220,
+   "cpt": "99309",
+   "dos": "2025-11-04",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650400",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19441915",
+   "patientid": "17471238",
+   "chargeid": "23349875",
+   "checkclaimid": 15442221,
+   "cpt": "99309",
+   "dos": "2026-05-13",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650791",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19438311",
+   "patientid": "17471238",
+   "chargeid": "23345398",
+   "checkclaimid": 15442222,
+   "cpt": "99309",
+   "dos": "2026-04-10",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650789",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19435821",
+   "patientid": "17471238",
+   "chargeid": "23342791",
+   "checkclaimid": 15442223,
+   "cpt": "99309",
+   "dos": "2026-03-10",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650790",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19427034",
+   "patientid": "17471238",
+   "chargeid": "23333229",
+   "checkclaimid": 15442224,
+   "cpt": "99309",
+   "dos": "2025-12-11",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650760",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19437359",
+   "patientid": "17471725",
+   "chargeid": "23344498",
+   "checkclaimid": 15442225,
+   "cpt": "99309",
+   "dos": "2026-04-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650720",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19440859",
+   "patientid": "17471725",
+   "chargeid": "23348614",
+   "checkclaimid": 15442226,
+   "cpt": "99309",
+   "dos": "2026-05-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650682",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19423405",
+   "patientid": "17471725",
+   "chargeid": "23328918",
+   "checkclaimid": 15442227,
+   "cpt": "99309",
+   "dos": "2025-11-04",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650696",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19443726",
+   "patientid": "17471725",
+   "chargeid": "23352215",
+   "checkclaimid": 15442228,
+   "cpt": "99309",
+   "dos": "2026-05-29",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650701",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19430565",
+   "patientid": "17471725",
+   "chargeid": "23336885",
+   "checkclaimid": 15442229,
+   "cpt": "99309",
+   "dos": "2026-01-20",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650686",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19427036",
+   "patientid": "17471725",
+   "chargeid": "23333231",
+   "checkclaimid": 15442230,
+   "cpt": "99309",
+   "dos": "2025-12-09",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 71.79,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650689",
+     "69.21",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 71.79,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 71.79"
+  },
+  {
+   "visitid": "19420552",
+   "patientid": "17471725",
+   "chargeid": "23325531",
+   "checkclaimid": 15442231,
+   "cpt": "99308",
+   "dos": "2025-10-08",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 59.43,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650699",
+     "47.57",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 59.43,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 59.43"
+  },
+  {
+   "visitid": "19433069",
+   "patientid": "17471725",
+   "chargeid": "23339692",
+   "checkclaimid": 15442232,
+   "cpt": "99309",
+   "dos": "2026-02-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650683",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19443291",
+   "patientid": "17471725",
+   "chargeid": "23351630",
+   "checkclaimid": 15442233,
+   "cpt": "99309",
+   "dos": "2026-05-23",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650692",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19434942",
+   "patientid": "17471725",
+   "chargeid": "23341921",
+   "checkclaimid": 15442234,
+   "cpt": "99309",
+   "dos": "2026-03-03",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650719",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19442873",
+   "patientid": "17471725",
+   "chargeid": "23351132",
+   "checkclaimid": 15442235,
+   "cpt": "99309",
+   "dos": "2026-05-18",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650693",
+     "66.36",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  },
+  {
+   "visitid": "19416716",
+   "patientid": "17471725",
+   "chargeid": "23320360",
+   "checkclaimid": 15442236,
+   "cpt": "99308",
+   "dos": "2025-09-11",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 59.43,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650700",
+     "47.57",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 59.43,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 59.43"
+  },
+  {
+   "visitid": "19453795",
+   "patientid": "44997",
+   "chargeid": "23364704",
+   "checkclaimid": 15442237,
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650528",
+     "45.44",
+     "819814877(0)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19437841",
+   "patientid": "20379",
+   "chargeid": "23344962",
+   "checkclaimid": 15442238,
+   "cpt": "99308",
+   "dos": "2026-04-06",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 107.0,
+   "insbalance": 61.56,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650823",
+     "45.44",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 61.56,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 61.56"
+  },
+  {
+   "visitid": "19437355",
+   "patientid": "20379",
+   "chargeid": "23344494",
+   "checkclaimid": 15442239,
+   "cpt": "99309",
+   "dos": "2026-04-02",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 74.64,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24650824",
+     "66.36",
+     "819814877(1)",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 74.64,
+   "why": "CO-185/N767 Medicaid FFS crossover on a Medicare-paid line - rules.md 9/20 WOINS",
+   "outcome": "DRY would post $0 + WOINS 74.64"
+  }
+ ]
+}
