@@ -38,9 +38,10 @@ pa = dict(re.findall(r'(\w+)="([^"]*)"', (re.search(r'<patient [^>]*>', d) or ["
 out["ross"]["plans"] = [{k: p.get(k) for k in ("id","carrier","subscribernum","sequence","begindate","enddate","coverage")} for p in plans]
 out["ross"]["patient"] = {k: pa.get(k) for k in ("id","name","dob","insorder","respparty")}
 print("ROSSITER demographic:", out["ross"]["patient"]); [print("   PLAN", p) for p in out["ross"]["plans"]]
+FIRST, LAST, DOB = open("local/pat20729_identity.txt").read().split()   # identity kept out of the mirrored copy
 for mid in tuple(open("local/pat20729_medicaid_ids.txt").read().split()):
     try:
-        j = stedi.elig("68069", "MARGERY", "ROSSITER", "19480625", mid, "20260923")
+        j = stedi.elig("68069", FIRST, LAST, DOB, mid, "20260923")
         st = [(b.get("code"), b.get("name"), b.get("planCoverageDescription") or "", (b.get("insuranceType") or ""), b.get("benefitBegin") or "") for b in (j.get("benefitsInformation") or []) if b.get("code") in ("1","6")][:4]
         errs = [(e.get("code"), e.get("description")) for e in (j.get("errors") or [])]
         pl = j.get("planDateInformation") or {}
