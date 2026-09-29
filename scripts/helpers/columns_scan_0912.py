@@ -4,7 +4,7 @@
 # Never touches: AMD writes.
 import amd, re, json, time, sys, os
 import xml.etree.ElementTree as ET
-OUT = "scan_0912"; os.makedirs(OUT, exist_ok=True)
+OUT = "scan_0929_0710"; os.makedirs(OUT, exist_ok=True)
 tag = sys.argv[1] if len(sys.argv) > 1 else "before"
 amd.login_cached()
 
