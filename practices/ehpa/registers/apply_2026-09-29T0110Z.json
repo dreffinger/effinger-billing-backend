@@ -1,0 +1,73 @@
+{
+ "stamp": "2026-09-29T0110Z",
+ "dry": false,
+ "ross": {
+  "add": "('ins9520651', '2')",
+  "insid": "ins9520651",
+  "seq": "2",
+  "order": "(True, 'd-mrhk5\" lst=\"09/28/2026 18:23:51\"><Results success=\"1\"><patient insorder=\"1,2\" /></Results><Error /></PPMDResults>')",
+  "elig271": "?",
+  "elig271_eb": []
+ },
+ "released": [
+  "19392347",
+  "19441047",
+  "19442414",
+  "19453094",
+  "19453102",
+  "19453106",
+  "19453209"
+ ],
+ "resaved": [
+  {
+   "vid": "19455444",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19455445",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19455446",
+   "ok": true,
+   "live": 2,
+   "was": 2,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19455852",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19455877",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19456249",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  },
+  {
+   "vid": "19456269",
+   "ok": true,
+   "live": 1,
+   "was": 1,
+   "insorder": "1,2"
+  }
+ ],
+ "release_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-t9kqs\" lst=\"09/28/2026 18:25:08\"><Results success=\"1\" /><Error /></PPMDResults>"
+}

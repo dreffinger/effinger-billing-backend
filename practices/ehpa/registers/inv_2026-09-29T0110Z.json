@@ -1,0 +1,215 @@
+{
+ "prior": {
+  "19392347": {
+   "pid": "23391",
+   "charges": [
+    {
+     "id": "22464291",
+     "proccode": "99233",
+     "dos": "10/24/2024",
+     "carrier": "BCBS",
+     "billdate": "09/21/2026",
+     "insbilled": null,
+     "insbal": "23.62",
+     "patbal": "0.00",
+     "paid": "136.38",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1414",
+     "void": "0",
+     "fee": "160.00"
+    },
+    {
+     "id": "22464292",
+     "proccode": "G0316",
+     "dos": "10/24/2024",
+     "carrier": "FLO02",
+     "billdate": "09/10/2026",
+     "insbilled": null,
+     "insbal": "30.97",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "void": "0",
+     "fee": "30.97"
+    }
+   ],
+   "payments": []
+  },
+  "19441047": {
+   "pid": "17470743",
+   "charges": [
+    {
+     "id": "23348845",
+     "proccode": "99309",
+     "dos": "05/01/2026",
+     "carrier": "MCAD",
+     "billdate": "05/26/2026",
+     "insbilled": null,
+     "insbal": "16.93",
+     "patbal": "0.00",
+     "paid": "124.07",
+     "insorder": null,
+     "payerinfo": "",
+     "void": "0",
+     "fee": "141.00"
+    }
+   ],
+   "payments": []
+  },
+  "19442414": {
+   "pid": "17473343",
+   "charges": [
+    {
+     "id": "23350510",
+     "proccode": "99487",
+     "dos": "05/17/2026",
+     "carrier": "FLO02",
+     "billdate": "09/05/2026",
+     "insbilled": null,
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 1448",
+     "void": "0",
+     "fee": "206.00"
+    }
+   ],
+   "payments": []
+  },
+  "19453094": {
+   "pid": "24853",
+   "charges": [
+    {
+     "id": "23363594",
+     "proccode": "99233",
+     "dos": "08/28/2026",
+     "carrier": "HUM01",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "160.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2449",
+     "void": "0",
+     "fee": "160.00"
+    }
+   ],
+   "payments": []
+  },
+  "19453102": {
+   "pid": "24853",
+   "charges": [
+    {
+     "id": "23363602",
+     "proccode": "99233",
+     "dos": "08/27/2026",
+     "carrier": "HUM01",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "160.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2449",
+     "void": "0",
+     "fee": "160.00"
+    }
+   ],
+   "payments": []
+  },
+  "19453106": {
+   "pid": "24853",
+   "charges": [
+    {
+     "id": "23363606",
+     "proccode": "99233",
+     "dos": "08/26/2026",
+     "carrier": "HUM01",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "160.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2449",
+     "void": "0",
+     "fee": "160.00"
+    }
+   ],
+   "payments": []
+  },
+  "19453209": {
+   "pid": "24853",
+   "charges": [
+    {
+     "id": "23363771",
+     "proccode": "99233",
+     "dos": "08/30/2026",
+     "carrier": "HUM01",
+     "billdate": "09/23/2026",
+     "insbilled": null,
+     "insbal": "160.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "insorder": null,
+     "payerinfo": "Payor ID: 2449",
+     "void": "0",
+     "fee": "160.00"
+    }
+   ],
+   "payments": []
+  }
+ },
+ "lookup": {
+  "<name%>": [
+   {
+    "id": "pat20729"
+   }
+  ]
+ },
+ "ross": {
+  "plans": [
+   {
+    "id": "ins4580",
+    "carrier": "car6085",
+    "subscribernum": "7K26DU7XD43",
+    "sequence": "1",
+    "begindate": "07/22/2022",
+    "enddate": "",
+    "coverage": "1"
+   }
+  ],
+  "patient": {
+   "id": "pat20729",
+   "insorder": "1"
+  },
+  "<census Medicaid id ...004647>": {
+   "status": "[['1', 'Active Coverage', '', '', ''], ['1', 'Active Coverage', '', '', ''], ['1', 'Active Coverage', '', '', ''], ['1', 'Active Coverage', '', '', '']]",
+   "errors": "[]",
+   "plan": "{'planBegin': '20260901', 'dateOfLastUpdate': '20260928'}",
+   "planStatus": [
+    [
+     "Active Coverage",
+     "Medicaid LTC Dual"
+    ],
+    [
+     "Active Coverage",
+     "Medicaid LTC Dual"
+    ],
+    [
+     "Active Coverage",
+     "Medicaid LTC Dual"
+    ]
+   ]
+  },
+  "<photo-read id ...504647>": {
+   "status": "[]",
+   "errors": "[['72', 'Invalid/Missing Subscriber/Insured ID']]",
+   "plan": "{'dateOfLastUpdate': '20260928'}",
+   "planStatus": []
+  }
+ }
+}
