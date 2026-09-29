@@ -1,0 +1,1217 @@
+{
+ "stamp": "2026-09-29T1110Z",
+ "dry": false,
+ "A": [
+  {
+   "pid": "17476868",
+   "vid": "19447500",
+   "cid": "23356689",
+   "cpt": "99223",
+   "check": "819872046",
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "patbal": 0.0,
+    "insbal": 184.8
+   },
+   "wo": 152.86,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:34:45\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 31.94,
+    "insbal": 0.0,
+    "paid": 278.06
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17476868",
+   "vid": "19447500",
+   "cid": "23356690",
+   "cpt": "99497",
+   "check": "819872046",
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "patbal": 0.0,
+    "insbal": 80.67
+   },
+   "wo": 67.32,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:34:49\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 13.35,
+    "insbal": 0.0,
+    "paid": 119.65
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477182",
+   "vid": "19454644",
+   "cid": "23365722",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:34:53\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17472393",
+   "vid": "19454645",
+   "cid": "23365723",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:34:58\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436827",
+   "cid": "23343875",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:02\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436591",
+   "cid": "23343643",
+   "cpt": "99223",
+   "check": "819872046",
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "patbal": 0.0,
+    "insbal": 184.8
+   },
+   "wo": 152.86,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:35:06\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 31.94,
+    "insbal": 0.0,
+    "paid": 278.06
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17472834",
+   "vid": "19454661",
+   "cid": "23365739",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:10\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25160",
+   "vid": "19454662",
+   "cid": "23365740",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:14\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17471688",
+   "vid": "19454663",
+   "cid": "23365741",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "20407",
+   "vid": "19452433",
+   "cid": "23362700",
+   "cpt": "99487",
+   "check": "819872046",
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "patbal": 0.0,
+    "insbal": 142.72
+   },
+   "wo": 126.58,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:35:22\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.14,
+    "insbal": 0.0,
+    "paid": 189.86
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "20407",
+   "vid": "19452433",
+   "cid": "23362701",
+   "cpt": "99489",
+   "check": "819872046",
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "patbal": 0.0,
+    "insbal": 74.05
+   },
+   "wo": 65.13,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:27\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 8.92,
+    "insbal": 0.0,
+    "paid": 100.08
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477719",
+   "vid": "19454649",
+   "cid": "23365727",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:35:31\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17476479",
+   "vid": "19454664",
+   "cid": "23365742",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:35\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17477747",
+   "vid": "19454665",
+   "cid": "23365743",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:39\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470940",
+   "vid": "19454652",
+   "cid": "23365730",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:44\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470950",
+   "vid": "19454653",
+   "cid": "23365731",
+   "cpt": "99232",
+   "check": "819872046",
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "patbal": 0.0,
+    "insbal": 54.63
+   },
+   "wo": 40.25,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:35:48\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 14.38,
+    "insbal": 0.0,
+    "paid": 96.62
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "20399",
+   "vid": "19452442",
+   "cid": "23362717",
+   "cpt": "99487",
+   "check": "819872046",
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "patbal": 0.0,
+    "insbal": 142.72
+   },
+   "wo": 126.58,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:35:52\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.14,
+    "insbal": 0.0,
+    "paid": 189.86
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "20399",
+   "vid": "19452442",
+   "cid": "23362718",
+   "cpt": "99489",
+   "check": "819872046",
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "patbal": 0.0,
+    "insbal": 74.05
+   },
+   "wo": 65.13,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:35:56\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 8.92,
+    "insbal": 0.0,
+    "paid": 100.08
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "20863",
+   "vid": "19454654",
+   "cid": "23365732",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:36:00\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19446145",
+   "cid": "23355063",
+   "cpt": "99487",
+   "check": "819872046",
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "patbal": 0.0,
+    "insbal": 142.72
+   },
+   "wo": 126.58,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:36:04\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.14,
+    "insbal": 0.0,
+    "paid": 189.86
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19446145",
+   "cid": "23355064",
+   "cpt": "99489",
+   "check": "819872046",
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "patbal": 0.0,
+    "insbal": 74.05
+   },
+   "wo": 65.13,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:36:09\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 8.92,
+    "insbal": 0.0,
+    "paid": 100.08
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19444322",
+   "cid": "23353027",
+   "cpt": "99308",
+   "check": "819872046",
+   "co": 49.97,
+   "pr": 11.59,
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "patbal": 0.0,
+    "insbal": 61.56
+   },
+   "wo": 49.97,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:13\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 11.59,
+    "insbal": 0.0,
+    "paid": 95.41
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442877",
+   "cid": "23351137",
+   "cpt": "99306",
+   "check": "819872046",
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "patbal": 0.0,
+    "insbal": 126.26
+   },
+   "wo": 93.16,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 33.1,
+    "insbal": 0.0,
+    "paid": 222.9
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442877",
+   "cid": "23351138",
+   "cpt": "99497",
+   "check": "819872046",
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "patbal": 0.0,
+    "insbal": 80.67
+   },
+   "wo": 67.32,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:36:22\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 13.35,
+    "insbal": 0.0,
+    "paid": 119.65
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442585",
+   "cid": "23350781",
+   "cpt": "99223",
+   "check": "819872046",
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "patbal": 0.0,
+    "insbal": 184.8
+   },
+   "wo": 152.86,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:26\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 31.94,
+    "insbal": 0.0,
+    "paid": 278.06
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442574",
+   "cid": "23350770",
+   "cpt": "99232",
+   "check": "819872046",
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "patbal": 0.0,
+    "insbal": 54.63
+   },
+   "wo": 40.25,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:31\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 14.38,
+    "insbal": 0.0,
+    "paid": 96.62
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442573",
+   "cid": "23350769",
+   "cpt": "99232",
+   "check": "819872046",
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "patbal": 0.0,
+    "insbal": 54.63
+   },
+   "wo": 40.25,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:35\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 14.38,
+    "insbal": 0.0,
+    "paid": 96.62
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25596",
+   "vid": "19442572",
+   "cid": "23350768",
+   "cpt": "99232",
+   "check": "819872046",
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "patbal": 0.0,
+    "insbal": 54.63
+   },
+   "wo": 40.25,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:36:39\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 14.38,
+    "insbal": 0.0,
+    "paid": 96.62
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17475638",
+   "vid": "19454656",
+   "cid": "23365734",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:43\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19454666",
+   "cid": "23365744",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:47\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19454667",
+   "cid": "23365745",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 0.0,
+    "insbal": 74.64
+   },
+   "wo": 57.71,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:36:51\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 16.93,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19446222",
+   "cid": "23355215",
+   "cpt": "99487",
+   "check": "819872046",
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "patbal": 142.72,
+    "insbal": 0.0
+   },
+   "wo": 126.58,
+   "move": "moved 216.77 -> {'patbalance': '0.00', 'insbalance': '142.72', 'insorder': '2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:37:03\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.14,
+    "insbal": 0.0,
+    "paid": 189.86
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19446222",
+   "cid": "23355216",
+   "cpt": "99489",
+   "check": "819872046",
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "patbal": 0.0,
+    "insbal": 74.05
+   },
+   "wo": 65.13,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:07\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 8.92,
+    "insbal": 0.0,
+    "paid": 100.08
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19445474",
+   "cid": "23354349",
+   "cpt": "99309",
+   "check": "819872046",
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 74.64,
+    "insbal": 0.0
+   },
+   "wo": 57.71,
+   "move": "moved 74.64 -> {'patbalance': '0.00', 'insbalance': '74.64', 'insorder': '2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:18\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "paid": 124.07
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19454658",
+   "cid": "23365736",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 0.0,
+    "insbal": 74.54
+   },
+   "wo": 52.74,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:22\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "25710",
+   "vid": "19432731",
+   "cid": "23339379",
+   "cpt": "99233",
+   "check": "819872046",
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "patbal": 74.54,
+    "insbal": 0.0
+   },
+   "wo": 52.74,
+   "move": "moved 74.54 -> {'patbalance': '0.00', 'insbalance': '74.54', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:33\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 21.8,
+    "insbal": 0.0,
+    "paid": 138.2
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "45210",
+   "vid": "19452419",
+   "cid": "23362673",
+   "cpt": "99487",
+   "check": "819872046",
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "patbal": 0.0,
+    "insbal": 142.72
+   },
+   "wo": 126.58,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:37\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 16.14,
+    "insbal": 0.0,
+    "paid": 189.86
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "45210",
+   "vid": "19452419",
+   "cid": "23362674",
+   "cpt": "99489",
+   "check": "819872046",
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "patbal": 0.0,
+    "insbal": 74.05
+   },
+   "wo": 65.13,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:42\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 8.92,
+    "insbal": 0.0,
+    "paid": 100.08
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17476020",
+   "vid": "19454642",
+   "cid": "23365720",
+   "cpt": "99223",
+   "check": "819872046",
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "patbal": 0.0,
+    "insbal": 184.8
+   },
+   "wo": 152.86,
+   "move": false,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:46\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 31.94,
+    "paid": 278.06
+   },
+   "result": "posted"
+  }
+ ],
+ "B": [
+  {
+   "pid": "17470697",
+   "vid": "19392264",
+   "cid": "22464223",
+   "cpt": "99232",
+   "check": "815876983",
+   "allowed": 78.49,
+   "pr2": 15.7,
+   "before": {
+    "fee": 111.0,
+    "paid": 61.54,
+    "patbal": 0.0,
+    "insbal": 49.46
+   },
+   "wo": 33.76,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:50\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 15.7,
+    "paid": 95.3
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470697",
+   "vid": "19392365",
+   "cid": "22464362",
+   "cpt": "99232",
+   "check": "815876983",
+   "allowed": 78.49,
+   "pr2": 15.7,
+   "before": {
+    "fee": 111.0,
+    "paid": 61.54,
+    "patbal": 0.0,
+    "insbal": 49.46
+   },
+   "wo": 33.76,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:54\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 15.7,
+    "paid": 95.3
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470697",
+   "vid": "19392381",
+   "cid": "22464390",
+   "cpt": "99232",
+   "check": "815906990",
+   "allowed": 78.49,
+   "pr2": 15.7,
+   "before": {
+    "fee": 111.0,
+    "paid": 61.54,
+    "patbal": 0.0,
+    "insbal": 49.46
+   },
+   "wo": 33.76,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:37:59\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 15.7,
+    "paid": 95.3
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470697",
+   "vid": "19392525",
+   "cid": "22464512",
+   "cpt": "99232",
+   "check": "815906990",
+   "allowed": 78.49,
+   "pr2": 15.7,
+   "before": {
+    "fee": 111.0,
+    "paid": 61.54,
+    "patbal": 0.0,
+    "insbal": 49.46
+   },
+   "wo": 33.76,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:38:03\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 0.0,
+    "insbal": 15.7,
+    "paid": 95.3
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17468923",
+   "vid": "19404007",
+   "cid": "22478145",
+   "cpt": "99487",
+   "check": "816846022",
+   "allowed": 129.48,
+   "pr2": 25.9,
+   "before": {
+    "fee": 206.0,
+    "paid": 101.51,
+    "patbal": 0.0,
+    "insbal": 104.49
+   },
+   "wo": 78.59,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zvppv\" lst=\"09/29/2026 04:38:34\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 25.9,
+    "insbal": 0.0,
+    "paid": 180.1
+   },
+   "result": "posted"
+  },
+  {
+   "pid": "17470939",
+   "vid": "19403870",
+   "cid": "22477999",
+   "cpt": "99487",
+   "check": "816846022",
+   "allowed": 129.48,
+   "pr2": 25.9,
+   "before": {
+    "fee": 206.0,
+    "paid": 101.51,
+    "patbal": 0.0,
+    "insbal": 104.49
+   },
+   "wo": 78.59,
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wpjj7\" lst=\"09/29/2026 04:38:39\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "patbal": 25.9,
+    "insbal": 0.0,
+    "paid": 180.1
+   },
+   "result": "posted"
+  }
+ ]
+}
