@@ -1,0 +1,157 @@
+{
+ "run": "1700243",
+ "stamp": "2026-09-28T2310Z",
+ "rows": [
+  {
+   "visit": "19445941",
+   "claimid": "19445941F",
+   "pid": "17476912",
+   "dos": "06/22/2026",
+   "err": "PA THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 06/26/2026. IFTHIS IS A CLAIM FOR DISTINCT SERVICES, PLEASE VALIDATE THE ACCURACY OF TH"
+  },
+  {
+   "visit": "19447314",
+   "claimid": "19447314D",
+   "pid": "17475777",
+   "dos": "07/03/2026",
+   "err": "PA  ACK,REJCTD FOR INVAL INFO-CLAIM,ENCNTR HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION"
+  },
+  {
+   "visit": "19451378",
+   "claimid": "19451378C",
+   "pid": "17477375",
+   "dos": "08/11/2026",
+   "err": "PA THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 08/31/2026. IFTHIS IS A CLAIM FOR DISTINCT SERVICES, PLEASE VALIDATE THE ACCURACY OF TH"
+  },
+  {
+   "visit": "19451386",
+   "claimid": "19451386C",
+   "pid": "17477375",
+   "dos": "08/12/2026",
+   "err": "PA THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 08/31/2026. IFTHIS IS A CLAIM FOR DISTINCT SERVICES, PLEASE VALIDATE THE ACCURACY OF TH"
+  },
+  {
+   "visit": "19451481",
+   "claimid": "19451481C",
+   "pid": "17477375",
+   "dos": "08/13/2026",
+   "err": "PA THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 08/31/2026. IFTHIS IS A CLAIM FOR DISTINCT SERVICES, PLEASE VALIDATE THE ACCURACY OF TH"
+  },
+  {
+   "visit": "19455316",
+   "claimid": "19455316B",
+   "pid": "17477375",
+   "dos": "08/07/2026",
+   "err": "PA THIS SEEMS TO BE A DUPLICATE OF A CLAIM SUBMITTED 09/24/2026. IFTHIS IS A CLAIM FOR DISTINCT SERVICES, PLEASE VALIDATE THE ACCURACY OF TH"
+  }
+ ],
+ "charges": [
+  {
+   "id": "23354840",
+   "visit": "19445941",
+   "proccode": "99306",
+   "dos": "06/22/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "256.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17476912"
+  },
+  {
+   "id": "23354841",
+   "visit": "19445941",
+   "proccode": "99497",
+   "dos": "06/22/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "133.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17476912"
+  },
+  {
+   "id": "23356497",
+   "visit": "19447314",
+   "proccode": "99309",
+   "dos": "07/03/2026",
+   "carrier": "UNI20",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "141.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 3429",
+   "pid": "17475777"
+  },
+  {
+   "id": "23361422",
+   "visit": "19451378",
+   "proccode": "99223",
+   "dos": "08/11/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "310.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17477375"
+  },
+  {
+   "id": "23361430",
+   "visit": "19451386",
+   "proccode": "99233",
+   "dos": "08/12/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "160.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17477375"
+  },
+  {
+   "id": "23361529",
+   "visit": "19451481",
+   "proccode": "99233",
+   "dos": "08/13/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "160.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17477375"
+  },
+  {
+   "id": "23366554",
+   "visit": "19455316",
+   "proccode": "99306",
+   "dos": "08/07/2026",
+   "carrier": "WEL04",
+   "billdate": "09/27/2026",
+   "insbilled": null,
+   "insbal": "256.00",
+   "patbal": "0.00",
+   "paid": "0.00",
+   "insorder": null,
+   "payerinfo": "Payor ID: 1844",
+   "pid": "17477375"
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-gnghd\" lst=\"09/28/2026 16:26:08\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": []
+}

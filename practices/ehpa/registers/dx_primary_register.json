@@ -34,5 +34,106 @@
   ],
   "rebill": "freq1 + rebill seq 1 -> 204",
   "when": "2026-09-22T19:25:56Z"
+ },
+ {
+  "pid": "17473748",
+  "vid": "19456196",
+  "cid": "23367820",
+  "action": "delete",
+  "dx_after": [
+   "M62.81",
+   "F23",
+   "F33.1"
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 204",
+  "when": "2026-09-28T23:25:55Z"
+ },
+ {
+  "pid": "17477774",
+  "vid": "19456257",
+  "cid": "23367881",
+  "action": "add-i10",
+  "dx_after": [
+   "I10",
+   "Z96.641"
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 204",
+  "when": "2026-09-28T23:29:51Z"
+ },
+ {
+  "pid": "17477774",
+  "vid": "19456273",
+  "cid": "23367897",
+  "action": "add-i10",
+  "dx_after": [
+   "I10",
+   "Z96.641"
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 204",
+  "when": "2026-09-28T23:32:54Z"
+ },
+ {
+  "pid": "17470950",
+  "vid": "19456279",
+  "cid": "23367903",
+  "action": "add-i10",
+  "dx_after": [
+   "I10",
+   "Z96.651"
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 204",
+  "when": "2026-09-28T23:34:12Z"
+ },
+ {
+  "pid": "17477900",
+  "vid": "19456244",
+  "cid": "23367868",
+  "action": "add-i10",
+  "dx_after": [
+   "I10",
+   "Z96.642"
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 204",
+  "when": "2026-09-28T23:46:24Z"
+ },
+ {
+  "pid": "17477900",
+  "vid": "19456292",
+  "cid": "23367917",
+  "action": "add-i10",
+  "dx_after": [
+   "I10",
+   "Z96.642"
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 204",
+  "when": "2026-09-28T23:46:51Z"
+ },
+ {
+  "pid": "17475713",
+  "vid": "19455782",
+  "cid": "23367225",
+  "action": "delete",
+  "dx_after": [
+   "M24.50",
+   "M25.50",
+   "E46",
+   "R62.7",
+   "R45.89"
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 204",
+  "when": "2026-09-28T23:54:27Z"
+ },
+ {
+  "pid": "17475713",
+  "vid": "19456212",
+  "cid": "23367836",
+  "action": "delete",
+  "dx_after": [
+   "E46",
+   "R62.7",
+   "R45.89"
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 204",
+  "when": "2026-09-28T23:54:49Z"
  }
 ]

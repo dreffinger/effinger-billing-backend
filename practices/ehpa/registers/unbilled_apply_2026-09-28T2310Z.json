@@ -1,0 +1,195 @@
+{
+ "stamp": "2026-09-28T2310Z",
+ "dry": false,
+ "charts": {
+  "17477893": {
+   "code": "HUM01",
+   "why": "Medicare's 271 names HUMANA INSURANCE COMPANY PPO (MA, COB 1/1/2025); Stedi Humana 61101 with the MBI -> ACTIVE HumanaChoice Florida, member id returned; plan begin 1/1/2025",
+   "steps": [
+    "plan HUM01 car6285 begin 01/01/2025 - Medicare's 271 names HUMANA INSURANCE COMPANY PPO (MA, COB 1/1/2025); Stedi Humana 61101 with the MBI -> ACTIVE HumanaChoice Florida, member id returned; plan begin 1/1/2025",
+    "visits [('19456229', '99232', '09/24/2026', ['M23.261', 'M23.211']), ('19456294', '99223', '09/23/2026', ['M23.261', 'M23.211'])] admission 09/23/2026 (own 99223=True)",
+    "add_ins -> ins9520639 seq 1",
+    "AMD 271 -> ACTIVE | plan  | A  B  | others PR HumanaChoice Florida ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR | death - | addr 200 GREENWOOD CIR APT E233 QUINCY FL 323514536 | aaa []",
+    "address line 1 holds the apartment (APT E233), street in line 2 - left as is (deliverable)",
+    "v19456229 updextrainsinfo 99232 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456229 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367853', '')]",
+    "v19456294 updextrainsinfo 99223 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456294 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367919', '')]",
+    "patient default order 1 -> True d-gnghd\" lst=\"09/28/2026 16:42:42\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456229', '19456294'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/2026 16:42:43\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others PR HumanaChoice Florida ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR | death - | addr 200 GREENWOOD CIR APT E233 QUINCY FL 323514536 | aaa []"
+  },
+  "17477894": {
+   "code": "HUM01",
+   "why": "MBI lookup FL/GA ERR 72; Stedi discovery (GA, Thomasville address) -> CMS MBI 9M64K11XN95 + Humana Honor member H92100734 ACTIVE plan begin 1/1/2025 (MA)",
+   "steps": [
+    "plan HUM01 car6285 begin 01/01/2025 - MBI lookup FL/GA ERR 72; Stedi discovery (GA, Thomasville address) -> CMS MBI 9M64K11XN95 + Humana Honor member H92100734 ACTIVE plan begin 1/1/2025 (MA)",
+    "visits [('19456230', '99232', '09/24/2026', ['M16.11']), ('19456295', '99223', '09/23/2026', ['M16.11'])] admission 09/23/2026 (own 99223=True)",
+    "add_ins -> ins9520640 seq 1",
+    "AMD 271 -> ACTIVE | plan  | A  B  | others PR Humana Honor ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR   | death - | addr 119 WILLOW RIDGE CIR THOMASVILLE GA 317572834 | aaa []",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '119 WILLOW RIDGE CIR', 'city': 'THOMASVILLE', 'state': 'GA', 'zipcode': '31757', 'email': '+12292247946'}, 'after': {'address1': '119 WILLOW RIDGE CIR', 'address2': '119 WILLOW RIDGE CIR', 'city': 'THOMASVILLE', 'state': 'GA', 'zipcode': '31757'}}",
+    "v19456230 updextrainsinfo 99232 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456230 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367854', '')]",
+    "v19456295 updextrainsinfo 99223 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456295 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367920', '')]",
+    "patient default order 1 -> True d-t9kqs\" lst=\"09/28/2026 16:43:16\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456230', '19456295'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-t9kqs\" lst=\"09/28/2026 16:43:17\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others PR Humana Honor ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR   | death - | addr 119 WILLOW RIDGE CIR THOMASVILLE GA 317572834 | aaa []"
+  },
+  "17477895": {
+   "code": "UNI20",
+   "why": "MBI lookup ERR 72; Stedi discovery + UHC 87726 -> AARP Medicare Advantage from UHC HMO-POS member 908407085 ACTIVE 2/1-12/31/2026",
+   "steps": [
+    "plan UNI20 car6404 begin 02/01/2026 - MBI lookup ERR 72; Stedi discovery + UHC 87726 -> AARP Medicare Advantage from UHC HMO-POS member 908407085 ACTIVE 2/1-12/31/2026",
+    "visits [('19456231', '99232', '09/24/2026', ['S76.012A', 'M70.62']), ('19456232', '99232', '09/23/2026', ['S76.012A', 'M70.62']), ('19456299', '99223', '09/22/2026', ['S76.012A', 'M70.62'])] admission 09/22/2026 (own 99223=True)",
+    "add_ins -> ins9520641 seq 1",
+    "AMD 271 -> ACTIVE | plan  | A  B  | others   F6:7NX2CQ3UH93; HN HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H N6:H1045-041-000 UNITEDHEALTHCARE:87726; HN  ; HN  ; HN  ;   SYNAPSE HEALTH:;   UNITEDHE | death - | addr 2572 YARMOUTH LN TALLAHASSEE FL 32309 | aaa []",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '2572 YARMOUTH LN', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32309', 'email': '+18505599976'}, 'after': {'address1': '2572 YARMOUTH LN', 'address2': '2572 YARMOUTH LN', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32309'}}",
+    "v19456231 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456231 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367855', '')]",
+    "v19456232 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456232 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367856', '')]",
+    "v19456299 updextrainsinfo 99223 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456299 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367925', '')]",
+    "patient default order 1 -> True d-t9kqs\" lst=\"09/28/2026 16:43:56\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456231', '19456232', '19456299'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-gnghd\" lst=\"09/28/2026 16:43:56\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others   F6:7NX2CQ3UH93; HN HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H N6:H1045-041-000 UNITEDHEALTHCARE:87726; HN  ; HN  ; HN  ;   SYNAPSE HEALTH:;   UNITEDHE | death - | addr 2572 YARMOUTH LN TALLAHASSEE FL 32309 | aaa []"
+  },
+  "17477896": {
+   "code": "FLO02",
+   "why": "Stedi MBI lookup: straight Medicare A/B since 5/1/2005, no MA / Medigap entity",
+   "steps": [
+    "plan FLO02 car6085 begin 05/01/2005 - Stedi MBI lookup: straight Medicare A/B since 5/1/2005, no MA / Medigap entity",
+    "visits [('19456235', '99232', '09/23/2026', ['M17.11']), ('19456306', '99223', '09/22/2026', ['M17.11'])] admission 09/22/2026 (own 99223=True)",
+    "add_ins -> ins9520642 seq 1",
+    "AMD 271 -> ACTIVE | plan 20050501 | A 20050501 B 20050501 | others    | death - | addr 133 ZION HILL RD CRAWFORDVILLE FL 323270042 | aaa []",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '133 ZION HILL ROAD', 'city': 'CRAWFORDVILLE', 'state': 'FL', 'zipcode': '32327', 'email': '+18506612804'}, 'after': {'address1': '133 ZION HILL ROAD', 'address2': '133 ZION HILL ROAD', 'city': 'CRAWFORDVILLE', 'state': 'FL', 'zipcode': '32327'}}",
+    "v19456235 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456235 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367859', '')]",
+    "v19456306 updextrainsinfo 99223 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456306 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367940', '')]",
+    "patient default order 1 -> True d-gnghd\" lst=\"09/28/2026 16:44:28\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456235', '19456306'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/2026 16:44:28\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan 20050501 | A 20050501 B 20050501 | others    | death - | addr 133 ZION HILL RD CRAWFORDVILLE FL 323270042 | aaa []"
+  },
+  "17477897": {
+   "code": "FLO02",
+   "why": "Stedi MBI lookup: Medicare A/B since 5/1/2021; CMS 'OT' entity UNITEDHEALTHCARE INS CO (benefit 1/1/2025, no MA type) = AARP Medigap; UHC 87726 echoed member 211147921 (no plan status)",
+   "steps": [
+    "plan FLO02 car6085 begin 05/01/2021 - Stedi MBI lookup: Medicare A/B since 5/1/2021; CMS 'OT' entity UNITEDHEALTHCARE INS CO (benefit 1/1/2025, no MA type) = AARP Medigap; UHC 87726 echoed member 211147921 (no plan status)",
+    "visits [('19456236', '99232', '09/23/2026', ['M17.11']), ('19456308', '99223', '09/22/2026', ['M17.11'])] admission 09/22/2026 (own 99223=True)",
+    "add_ins -> ins9520643 seq 1",
+    "AMD 271 -> ACTIVE | plan 20210501 | A 20210501 B 20210501 | others OT  18:S5921 N6:383 UNITEDHEALTHCARE INS. CO. & UHC INS. CO. OF NY: | death - | addr 5708 GRASSLAND RD TALLAHASSEE FL 323179559 | aaa []",
+    "add_ins secondary AAR01 -> ins9520644 seq 2",
+    "AMD 271 secondary -> REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '72', 'FollowUpActionCode': 'C'}]",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '5708 GRASSLAND RD', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32317', 'email': '+18506561127'}, 'after': {'address1': '5708 GRASSLAND RD', 'address2': '5708 GRASSLAND RD', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32317'}}",
+    "v19456236 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456236 resave insorder 1,2 -> True saved live=1/1 insorder=1,2 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367860', '')]",
+    "v19456308 updextrainsinfo 99223 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456308 resave insorder 1,2 -> True saved live=1/1 insorder=1,2 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367942', '')]",
+    "patient default order 1,2 -> True d-gnghd\" lst=\"09/28/2026 16:45:01\"><Results success=\"1\"><patient insorder=\"1,2\" /></Results><Error /></PPMDResults>",
+    "release ['19456236', '19456308'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/2026 16:45:02\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan 20210501 | A 20210501 B 20210501 | others OT  18:S5921 N6:383 UNITEDHEALTHCARE INS. CO. & UHC INS. CO. OF NY: | death - | addr 5708 GRASSLAND RD TALLAHASSEE FL 323179559 | aaa []",
+   "elig2": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '72', 'FollowUpActionCode': 'C'}]"
+  },
+  "17477899": {
+   "code": "HUM01",
+   "why": "Medicare's 271 names EMPHESYS INSURANCE COMPANY PPO (Humana, COB 6/1/2026); Stedi Humana 61101 with the MBI -> ACTIVE 'HUM Full Ac Giveback', member id returned, plan begin 6/1/2026",
+   "steps": [
+    "plan HUM01 car6285 begin 06/01/2026 - Medicare's 271 names EMPHESYS INSURANCE COMPANY PPO (Humana, COB 6/1/2026); Stedi Humana 61101 with the MBI -> ACTIVE 'HUM Full Ac Giveback', member id returned, plan begin 6/1/2026",
+    "visits [('19456243', '99232', '09/24/2026', ['M17.11']), ('19456245', '99232', '09/23/2026', ['M17.11']), ('19456298', '99223', '09/22/2026', ['M17.11'])] admission 09/22/2026 (own 99223=True)",
+    "add_ins -> ins9520645 seq 1",
+    "AMD 271 -> ACTIVE | plan  | A  B  | others PR HUM Full Ac Giveback ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR | death - | addr 10 6TH STREET EASTPOINT FL 323280896 | aaa []",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '10 6TH ST', 'city': 'EASTPOINT', 'state': 'FL', 'zipcode': '32328', 'email': '+19073142415'}, 'after': {'address1': '10 6TH ST', 'address2': '10 6TH ST', 'city': 'EASTPOINT', 'state': 'FL', 'zipcode': '32328'}}",
+    "v19456243 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456243 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367867', '')]",
+    "v19456245 updextrainsinfo 99232 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456245 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367869', '')]",
+    "v19456298 updextrainsinfo 99223 hospitalizationfrom 09/22/2026 -> ok",
+    "v19456298 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23367924', '')]",
+    "patient default order 1 -> True d-dfqmm\" lst=\"09/28/2026 16:45:44\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456243', '19456245', '19456298'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-t9kqs\" lst=\"09/28/2026 16:45:45\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan  | A  B  | others PR HUM Full Ac Giveback ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR  ; PR | death - | addr 10 6TH STREET EASTPOINT FL 323280896 | aaa []"
+  },
+  "17477900": {
+   "code": "FLO02",
+   "why": "Stedi MBI lookup: Medicare A/B since 7/1/2023; CMS 'OT' UNITEDHEALTHCARE INS CO (benefit 9/1/2023, no MA type) = AARP Medigap; UHC 87726 echoed member 328781587",
+   "steps": [
+    "plan FLO02 car6085 begin 07/01/2023 - Stedi MBI lookup: Medicare A/B since 7/1/2023; CMS 'OT' UNITEDHEALTHCARE INS CO (benefit 9/1/2023, no MA type) = AARP Medigap; UHC 87726 echoed member 328781587",
+    "visits [('19456244', '99232', '09/24/2026', ['Z96.642']), ('19456292', '99223', '09/23/2026', ['Z96.642'])] admission 09/23/2026 (own 99223=True)",
+    "add_ins -> ins9520646 seq 1",
+    "AMD 271 -> ACTIVE | plan 20230701 | A 20230701 B 20230701 | others OT  18:S5921 N6:383 UNITEDHEALTHCARE INS. CO. & UHC INS. CO. OF NY: | death - | addr 900 RIGGINS RD APT 811 TALLAHASSEE FL 323082221 | aaa []",
+    "add_ins secondary AAR01 -> ins9520647 seq 2",
+    "AMD 271 secondary -> ACTIVE | plan 20260101 | A  B  | others  | death - | addr 900 RIGGINS RD APT 811 TALLAHASSEE FL 32308 | aaa []",
+    "address line 1 holds the apartment (APT 811), street in line 2 - left as is (deliverable)",
+    "v19456244 updextrainsinfo 99232 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456244 resave insorder 1,2 -> True saved live=1/1 insorder=1,2 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367868', '')]",
+    "v19456244 PRIMARY-DX GATE ['Z96.642'] -> plan ('add-i10', ['I10', 'Z96.642'])",
+    "v19456244 fix_visit -> ADD-I10 v19456244 ['dcode1034543883', 'dcode1034912664'] -> freq1 + rebill seq 1 -> 204",
+    "v19456292 updextrainsinfo 99223 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456292 resave insorder 1,2 -> True saved live=1/1 insorder=1,2 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367917', '')]",
+    "v19456292 PRIMARY-DX GATE ['Z96.642'] -> plan ('add-i10', ['I10', 'Z96.642'])",
+    "v19456292 fix_visit -> ADD-I10 v19456292 ['dcode1034543883', 'dcode1034912664'] -> freq1 + rebill seq 1 -> 204",
+    "patient default order 1,2 -> True d-dfqmm\" lst=\"09/28/2026 16:46:53\"><Results success=\"1\"><patient insorder=\"1,2\" /></Results><Error /></PPMDResults>",
+    "release ['19456244', '19456292'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/2026 16:46:53\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan 20230701 | A 20230701 B 20230701 | others OT  18:S5921 N6:383 UNITEDHEALTHCARE INS. CO. & UHC INS. CO. OF NY: | death - | addr 900 RIGGINS RD APT 811 TALLAHASSEE FL 323082221 | aaa []",
+   "elig2": "ACTIVE | plan 20260101 | A  B  | others  | death - | addr 900 RIGGINS RD APT 811 TALLAHASSEE FL 32308 | aaa []"
+  },
+  "17477901": {
+   "code": "FLO02",
+   "why": "Stedi MBI lookup: straight Medicare A/B since 1/1/2021, no MA / Medigap entity",
+   "steps": [
+    "plan FLO02 car6085 begin 01/01/2021 - Stedi MBI lookup: straight Medicare A/B since 1/1/2021, no MA / Medigap entity",
+    "visits [('19456246', '99223', '09/23/2026', ['M16.11', 'M75.101', 'I25.10', 'I10', 'Z79.82', 'Z95.5', 'Z79.02']), ('19456247', '99232', '09/24/2026', ['M16.11', 'M75.101', 'I25.10', 'I10', 'Z79.82', 'Z95.5', 'Z79.02'])] admission 09/23/2026 (own 99223=True)",
+    "add_ins -> ins9520648 seq 1",
+    "AMD 271 -> ACTIVE | plan 20210101 | A 20210101 B 20210101 | others  | death - | addr 3517 CROSSHAVEN LN TALLAHASSEE FL 323092444 | aaa []",
+    "addr line1 fix -> 500 {\"title\":\"Email is not a valid format.\",\"status\":500} | 200 | clear-line2 500 {'before': {'address1': '', 'address2': '3517 CROSSHAVEN LN', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32309', 'email': '+12526463808'}, 'after': {'address1': '3517 CROSSHAVEN LN', 'address2': '3517 CROSSHAVEN LN', 'city': 'TALLAHASSEE', 'state': 'FL', 'zipcode': '32309'}}",
+    "v19456246 updextrainsinfo 99223 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456246 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367870', '')]",
+    "v19456247 updextrainsinfo 99232 hospitalizationfrom 09/23/2026 -> ok",
+    "v19456247 resave insorder 1 -> True saved live=1/1 insorder=1 onhcfa=1 hospfrom=09/23/2026 charges=[('charge23367871', '')]",
+    "patient default order 1 -> True d-dfqmm\" lst=\"09/28/2026 16:47:22\"><Results success=\"1\"><patient insorder=\"1\" /></Results><Error /></PPMDResults>",
+    "release ['19456246', '19456247'] -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/2026 16:47:22\"><Results success=\"1\" /><E"
+   ],
+   "elig": "ACTIVE | plan 20210101 | A 20210101 B 20210101 | others  | death - | addr 3517 CROSSHAVEN LN TALLAHASSEE FL 323092444 | aaa []"
+  },
+  "21489": {
+   "steps": [
+    "SUN01 ins7696 enddate 04/13/2026 -> True d-gnghd\" lst=\"09/28/2026 16:47:24\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+    "v19455358 resave insorder 4 -> True saved live=1/1 insorder=4 onhcfa=1 hospfrom=None charges=[('charge23366642', '')]",
+    "v19455358 freq1 seq 4 -> freq1 + rebill seq 4 -> 204",
+    "v19455359 resave insorder 4 -> True saved live=1/1 insorder=4 onhcfa=1 hospfrom=None charges=[('charge23366644', '')]",
+    "v19455359 freq1 seq 4 -> freq1 + rebill seq 4 -> 204",
+    "hideexclusions 1700243 ['19455358', '19455359'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-dfqmm\" lst=\"09/28/"
+   ]
+  }
+ },
+ "released": [
+  "19456229",
+  "19456294",
+  "19456230",
+  "19456295",
+  "19456231",
+  "19456232",
+  "19456299",
+  "19456235",
+  "19456306",
+  "19456236",
+  "19456308",
+  "19456243",
+  "19456245",
+  "19456298",
+  "19456244",
+  "19456292",
+  "19456246",
+  "19456247"
+ ],
+ "held": []
+}
