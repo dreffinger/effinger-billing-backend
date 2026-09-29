@@ -1,0 +1,303 @@
+{
+ "stamp": "2026-09-29T2110Z",
+ "lines": [
+  {
+   "pid": "17475198",
+   "vid": "19455800",
+   "cid": "23367252",
+   "co": 125.29,
+   "pr": 0,
+   "before": {
+    "cpt": "99487",
+    "patbal": 125.29,
+    "insbal": 0.0,
+    "wos": []
+   },
+   "move": "moved 189.71 -> {'patbalance': '0.00', 'insbalance': '125.29', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-t96vg\" lst=\"09/29/2026 14:38:04\"><Resu"
+   ],
+   "after": {
+    "cpt": "99487",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17475198",
+   "vid": "19455800",
+   "cid": "23367253",
+   "co": 64.42,
+   "pr": 0,
+   "before": {
+    "cpt": "99489",
+    "patbal": 0.0,
+    "insbal": 64.42,
+    "wos": []
+   },
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lhdrc\" lst=\"09/29/2026 14:38:08\"><Resu"
+   ],
+   "after": {
+    "cpt": "99489",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17471792",
+   "vid": "19455771",
+   "cid": "23367213",
+   "co": 125.29,
+   "pr": 24.21,
+   "before": {
+    "cpt": "99487",
+    "patbal": 149.5,
+    "insbal": 0.0,
+    "wos": []
+   },
+   "move": "moved 149.50 -> {'patbalance': '0.00', 'insbalance': '149.50', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 14:38:17\"><Resu"
+   ],
+   "after": {
+    "cpt": "99487",
+    "patbal": 24.21,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17473669",
+   "vid": "19455477",
+   "cid": "23366773",
+   "co": 90.51,
+   "pr": 0,
+   "before": {
+    "cpt": "99306",
+    "patbal": 90.51,
+    "insbal": 0.0,
+    "wos": []
+   },
+   "move": "moved 156.76 -> {'patbalance': '0.00', 'insbalance': '90.51', 'insorder': '2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 14:38:27\"><Resu"
+   ],
+   "after": {
+    "cpt": "99306",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17473669",
+   "vid": "19455477",
+   "cid": "23366774",
+   "co": 66.25,
+   "pr": 0,
+   "before": {
+    "cpt": "99497",
+    "patbal": 0.0,
+    "insbal": 66.25,
+    "wos": []
+   },
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 14:38:31\"><Resu"
+   ],
+   "after": {
+    "cpt": "99497",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477827",
+   "vid": "19455443",
+   "cid": "23366734",
+   "co": 115.33,
+   "pr": 0,
+   "before": {
+    "cpt": "99306",
+    "patbal": 115.33,
+    "insbal": 0.0,
+    "wos": []
+   },
+   "move": "moved 191.59 -> {'patbalance': '0.00', 'insbalance': '115.33', 'insorder': '1'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 14:38:41\"><Resu"
+   ],
+   "after": {
+    "cpt": "99306",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477827",
+   "vid": "19455443",
+   "cid": "23366735",
+   "co": 76.26,
+   "pr": 0,
+   "before": {
+    "cpt": "99497",
+    "patbal": 0.0,
+    "insbal": 76.26,
+    "wos": []
+   },
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lhdrc\" lst=\"09/29/2026 14:38:45\"><Resu"
+   ],
+   "after": {
+    "cpt": "99497",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17473669",
+   "vid": "19455735",
+   "cid": "23367147",
+   "co": 125.29,
+   "pr": 0,
+   "before": {
+    "cpt": "99487",
+    "patbal": 125.29,
+    "insbal": 0.0,
+    "wos": []
+   },
+   "move": "moved 189.71 -> {'patbalance': '0.00', 'insbalance': '125.29', 'insorder': '2'}",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 14:38:56\"><Resu"
+   ],
+   "after": {
+    "cpt": "99487",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17473669",
+   "vid": "19455735",
+   "cid": "23367148",
+   "co": 64.42,
+   "pr": 0,
+   "before": {
+    "cpt": "99489",
+    "patbal": 0.0,
+    "insbal": 64.42,
+    "wos": []
+   },
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lhdrc\" lst=\"09/29/2026 14:39:00\"><Resu"
+   ],
+   "after": {
+    "cpt": "99489",
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "wos": [
+     [
+      "WOINS",
+      "",
+      "0"
+     ]
+    ]
+   },
+   "result": "corrected"
+  }
+ ],
+ "dismiss": {
+  "1052883": [
+   200,
+   "{\"issuccess\":true,\"id\":1052883,\"actionname\":1}"
+  ],
+  "1052887": [
+   200,
+   "{\"issuccess\":true,\"id\":1052887,\"actionname\":1}"
+  ],
+  "1052884": [
+   200,
+   "{\"issuccess\":true,\"id\":1052884,\"actionname\":1}"
+  ]
+ },
+ "era_after": [
+  [
+   1052885,
+   "SUN01",
+   "0917789488",
+   616.12,
+   616.12
+  ]
+ ]
+}

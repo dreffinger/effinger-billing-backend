@@ -1,0 +1,3206 @@
+{
+ "stamp": "2026-09-29T2110Z",
+ "check": "1052885",
+ "dry": true,
+ "lines": [
+  {
+   "pid": "22538",
+   "vid": "19422684",
+   "cid": "23328013",
+   "claim": 15442947,
+   "cpt": "99308",
+   "dos": "2025-11-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 47.57,
+    "insbal": 59.43,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 47.57,
+    "check": "819814877(0)",
+    "coins": 12.14,
+    "contractual": 47.29
+   },
+   "fix45": "DRY WOINS 47.29 (Medicare 819814877(0))",
+   "outcome": "coinsurance 12.14 stays on insurance (CO16 - William's row); contractual DRY WOINS 47.29 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453949",
+   "cid": "23364863",
+   "claim": 15442948,
+   "cpt": "99233",
+   "dos": "2026-09-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819825344",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual not needed (balance = coinsurance)"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453853",
+   "cid": "23364772",
+   "claim": 15442949,
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual DRY WOINS 52.74 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453858",
+   "cid": "23364777",
+   "claim": 15442950,
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after DRY WOINS 52.74 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453767",
+   "cid": "23364662",
+   "claim": 15442951,
+   "cpt": "99223",
+   "dos": "2026-09-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "duplicate CO-18/N522 - original adjudication on this check, nothing to post"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453839",
+   "cid": "23364757",
+   "claim": 15442952,
+   "cpt": "99233",
+   "dos": "2026-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "duplicate CO-18/N522 - original adjudication on this check, nothing to post"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453834",
+   "cid": "23364752",
+   "claim": 15442953,
+   "cpt": "99233",
+   "dos": "2026-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual DRY WOINS 52.74 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453712",
+   "cid": "23364595",
+   "claim": 15442954,
+   "cpt": "99233",
+   "dos": "2026-09-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual DRY WOINS 52.74 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453757",
+   "cid": "23364650",
+   "claim": 15442955,
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual DRY WOINS 52.74 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453762",
+   "cid": "23364655",
+   "claim": 15442956,
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after DRY WOINS 52.74 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19455290",
+   "cid": "23366498",
+   "claim": 15442957,
+   "cpt": "99309",
+   "dos": "2026-08-28",
+   "paid": 88.28,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 88.28,
+   "wo": 52.72,
+   "wocode": "WOMCAD",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 88.28 wo 52.72 WOMCAD"
+  },
+  {
+   "pid": "24039",
+   "vid": "19453775",
+   "cid": "23364670",
+   "claim": 15442958,
+   "cpt": "99233",
+   "dos": "2026-09-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO99"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "outcome": "coinsurance 21.80 stays on insurance (CO26 - William's row); contractual DRY WOINS 52.74 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17469007",
+   "vid": "19455291",
+   "cid": "23366500",
+   "claim": 15442959,
+   "cpt": "99316",
+   "dos": "2026-06-23",
+   "paid": 100.75,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 100.75,
+   "wo": 59.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 100.75 wo 59.25 WOINS"
+  },
+  {
+   "pid": "25266",
+   "vid": "19430536",
+   "cid": "23336856",
+   "claim": 15442960,
+   "cpt": "99309",
+   "dos": "2026-01-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17471755",
+   "vid": "19455292",
+   "cid": "23366503",
+   "claim": 15442961,
+   "cpt": "99306",
+   "dos": "2026-07-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO222"
+   ],
+   "rarcs": [
+    "N640"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DENIAL CO-222/N640 (frequency/units) - listed, nothing written"
+  },
+  {
+   "pid": "17471755",
+   "vid": "19455292",
+   "cid": "23366504",
+   "claim": 15442961,
+   "cpt": "99497",
+   "dos": "2026-07-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.0,
+   "wo": 133.0,
+   "wocode": "WONCS",
+   "outcome": "DRY would post $0 + WONCS 133.00 (CCM/ACP billed Medicaid-primary)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19455765",
+   "cid": "23367205",
+   "claim": 15442962,
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DRY REROUTE to Medicare (insorder 4,5, freq 1, seq 4)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19427082",
+   "cid": "23333297",
+   "claim": 15442963,
+   "cpt": "99487",
+   "dos": "2025-12-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19438149",
+   "cid": "23345241",
+   "claim": 15442964,
+   "cpt": "99309",
+   "dos": "2026-04-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19423417",
+   "cid": "23328930",
+   "claim": 15442965,
+   "cpt": "99308",
+   "dos": "2025-11-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 47.57,
+    "insbal": 59.43,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 47.57,
+    "check": "819814877(0)",
+    "coins": 12.14,
+    "contractual": 47.29
+   },
+   "fix45": "DRY WOINS 47.29 (Medicare 819814877(0))",
+   "outcome": "coinsurance 12.14 stays on insurance (CO16 - William's row); contractual DRY WOINS 47.29 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19448426",
+   "cid": "23357727",
+   "claim": 15442966,
+   "cpt": "G0439",
+   "dos": "2026-07-10",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 204.0,
+    "paid": 134.01,
+    "insbal": 69.99,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 134.01,
+    "check": "819814877(0)",
+    "coins": 0.0,
+    "contractual": 69.99
+   },
+   "fix45": "DRY WOINS 69.99 (Medicare 819814877(0))",
+   "outcome": "contractual corrected; no coinsurance on this code (100%% Medicare) - $0 line settled"
+  },
+  {
+   "pid": "17477829",
+   "vid": "19455478",
+   "cid": "23366775",
+   "claim": 15442967,
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 150.15,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 150.15,
+   "wo": 105.85,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 150.15 wo 105.85 WOINS"
+  },
+  {
+   "pid": "17477829",
+   "vid": "19455478",
+   "cid": "23366776",
+   "claim": 15442967,
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.0,
+   "wo": 133.0,
+   "wocode": "WONCS",
+   "outcome": "DRY would post $0 + WONCS 133.00 (CCM/ACP billed Medicaid-primary)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19438609",
+   "cid": "23345811",
+   "claim": 15442968,
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453839",
+   "cid": "23364757",
+   "claim": 15442969,
+   "cpt": "99233",
+   "dos": "2026-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after DRY WOINS 52.74 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453767",
+   "cid": "23364662",
+   "claim": 15442970,
+   "cpt": "99223",
+   "dos": "2026-09-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 125.2,
+    "check": "819814877(0)",
+    "coins": 31.94,
+    "contractual": 152.86
+   },
+   "fix45": "DRY WOINS 152.86 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 31.94,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 31.94 (after DRY WOINS 152.86 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19422485",
+   "cid": "23327819",
+   "claim": 15442971,
+   "cpt": "99309",
+   "dos": "2025-11-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 69.21,
+    "insbal": 71.79,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 69.21,
+    "check": "819814877(0)",
+    "coins": 17.66,
+    "contractual": 54.13
+   },
+   "fix45": "DRY WOINS 54.13 (Medicare 819814877(0))",
+   "outcome": "coinsurance 17.66 stays on insurance (CO16 - William's row); contractual DRY WOINS 54.13 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19423636",
+   "cid": "23329272",
+   "claim": 15442972,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19423636",
+   "cid": "23329273",
+   "claim": 15442972,
+   "cpt": "99489",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 37.13,
+    "insbal": 71.87,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 37.13,
+    "check": "819814877(0)",
+    "coins": 9.47,
+    "contractual": 62.4
+   },
+   "fix45": "DRY WOINS 62.40 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 9.47 (after DRY WOINS 62.40 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19427582",
+   "cid": "23334111",
+   "claim": 15442973,
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19427582",
+   "cid": "23334112",
+   "claim": 15442973,
+   "cpt": "99489",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 37.13,
+    "insbal": 71.87,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 37.13,
+    "check": "819814877(0)",
+    "coins": 9.47,
+    "contractual": 62.4
+   },
+   "fix45": "DRY WOINS 62.40 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 9.47 (after DRY WOINS 62.40 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19420951",
+   "cid": "23326102",
+   "claim": 15442974,
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19420951",
+   "cid": "23326103",
+   "claim": 15442974,
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 37.13,
+    "insbal": 71.87,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 37.13,
+    "check": "819814877(0)",
+    "coins": 9.47,
+    "contractual": 62.4
+   },
+   "fix45": "DRY WOINS 62.40 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 9.47 (after DRY WOINS 62.40 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473198",
+   "vid": "19420968",
+   "cid": "23326136",
+   "claim": 15442975,
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 101.51,
+    "insbal": 104.49,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 101.51,
+    "check": "819814877(0)",
+    "coins": 25.9,
+    "contractual": 78.59
+   },
+   "fix45": "DRY WOINS 78.59 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 25.9,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 25.90 (after DRY WOINS 78.59 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473198",
+   "vid": "19420968",
+   "cid": "23326137",
+   "claim": 15442975,
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 54.29,
+    "insbal": 54.71,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 54.29,
+    "check": "819814877(0)",
+    "coins": 13.85,
+    "contractual": 40.86
+   },
+   "fix45": "DRY WOINS 40.86 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 13.85,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 13.85 (after DRY WOINS 40.86 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473198",
+   "vid": "19420968",
+   "cid": "23326136",
+   "claim": 15442976,
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17473198",
+   "vid": "19420968",
+   "cid": "23326137",
+   "claim": 15442976,
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17474272",
+   "vid": "19419160",
+   "cid": "23324102",
+   "claim": 15442977,
+   "cpt": "99306",
+   "dos": "2025-10-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 256.0,
+    "paid": 226.19,
+    "insbal": 29.81,
+    "patbal": 0.0,
+    "carrier": "UNI20"
+   },
+   "medicare": {
+    "paid": 116.85,
+    "check": "819814877(0)",
+    "coins": 29.81,
+    "contractual": 109.34
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "outcome": "coinsurance 29.81 stays on insurance (CO16 - William's row); contractual not needed (balance = coinsurance)"
+  },
+  {
+   "pid": "17474272",
+   "vid": "19419160",
+   "cid": "23324103",
+   "claim": 15442977,
+   "cpt": "99497",
+   "dos": "2025-10-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 133.0,
+    "paid": 120.64,
+    "insbal": 12.36,
+    "patbal": 0.0,
+    "carrier": "UNI20"
+   },
+   "medicare": {
+    "paid": 48.46,
+    "check": "819814877(0)",
+    "coins": 12.36,
+    "contractual": 72.18
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "outcome": "coinsurance 12.36 stays on insurance (CO16 - William's row); contractual not needed (balance = coinsurance)"
+  },
+  {
+   "pid": "22538",
+   "vid": "19426096",
+   "cid": "23332123",
+   "claim": 15442978,
+   "cpt": "99308",
+   "dos": "2025-12-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 47.57,
+    "insbal": 59.43,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 47.57,
+    "check": "819814877(0)",
+    "coins": 12.14,
+    "contractual": 47.29
+   },
+   "fix45": "DRY WOINS 47.29 (Medicare 819814877(0))",
+   "outcome": "coinsurance 12.14 stays on insurance (CO16 - William's row); contractual DRY WOINS 47.29 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19416181",
+   "cid": "23319755",
+   "claim": 15442979,
+   "cpt": "99487",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19416181",
+   "cid": "23319756",
+   "claim": 15442979,
+   "cpt": "99489",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 37.13,
+    "insbal": 71.87,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 37.13,
+    "check": "819814877(0)",
+    "coins": 9.47,
+    "contractual": 62.4
+   },
+   "fix45": "DRY WOINS 62.40 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 9.47 (after DRY WOINS 62.40 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "23162",
+   "vid": "19453822",
+   "cid": "23364731",
+   "claim": 15442980,
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbal": 61.56,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 45.44,
+    "check": "819814877(0)",
+    "coins": 11.59,
+    "contractual": 49.97
+   },
+   "fix45": "DRY WOINS 49.97 (Medicare 819814877(0))",
+   "outcome": "coinsurance 11.59 stays on insurance (CO16 - William's row); contractual DRY WOINS 49.97 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472703",
+   "vid": "19455855",
+   "cid": "23367320",
+   "claim": 15442981,
+   "cpt": "99233",
+   "dos": "2026-09-22",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOMCAD",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 83.13 wo 76.87 WOMCAD"
+  },
+  {
+   "pid": "17472703",
+   "vid": "19455880",
+   "cid": "23367345",
+   "claim": 15442982,
+   "cpt": "99233",
+   "dos": "2026-09-21",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOMCAD",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 83.13 wo 76.87 WOMCAD"
+  },
+  {
+   "pid": "17472703",
+   "vid": "19455452",
+   "cid": "23366745",
+   "claim": 15442983,
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOMCAD",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 83.13 wo 76.87 WOMCAD"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19454097",
+   "cid": "23365066",
+   "claim": 15442984,
+   "cpt": "99233",
+   "dos": "2026-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819834619",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453762",
+   "cid": "23364655",
+   "claim": 15442985,
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "duplicate CO-18/N522 - original adjudication on this check, nothing to post"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453956",
+   "cid": "23364869",
+   "claim": 15442986,
+   "cpt": "99233",
+   "dos": "2026-09-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819825344",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "20670",
+   "vid": "19455778",
+   "cid": "23367220",
+   "claim": 15442987,
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DRY REROUTE to Medicare (insorder 1,2, freq 1, seq 1)"
+  },
+  {
+   "pid": "17476162",
+   "vid": "19439239",
+   "cid": "23346564",
+   "claim": 15442988,
+   "cpt": "99233",
+   "dos": "2026-04-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 85.46,
+    "check": "819814877(0)",
+    "coins": 21.8,
+    "contractual": 52.74
+   },
+   "fix45": "DRY WOINS 52.74 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 21.80 (after DRY WOINS 52.74 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17477829",
+   "vid": "19455789",
+   "cid": "23367236",
+   "claim": 15442989,
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.0,
+   "wo": 206.0,
+   "wocode": "WONCS",
+   "outcome": "DRY would post $0 + WONCS 206.00 (CCM/ACP billed Medicaid-primary)"
+  },
+  {
+   "pid": "17477829",
+   "vid": "19455789",
+   "cid": "23367237",
+   "claim": 15442989,
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.0,
+   "wo": 109.0,
+   "wocode": "WONCS",
+   "outcome": "DRY would post $0 + WONCS 109.00 (CCM/ACP billed Medicaid-primary)"
+  },
+  {
+   "pid": "17472546",
+   "vid": "19453858",
+   "cid": "23364777",
+   "claim": 15442990,
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "duplicate CO-18/N522 - original adjudication on this check, nothing to post"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19430782",
+   "cid": "23337302",
+   "claim": 15442991,
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19433978",
+   "cid": "23340823",
+   "claim": 15442992,
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19442487",
+   "cid": "23350629",
+   "claim": 15442993,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19442487",
+   "cid": "23350630",
+   "claim": 15442993,
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19439664",
+   "cid": "23347281",
+   "claim": 15442994,
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19439664",
+   "cid": "23347282",
+   "claim": 15442994,
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19440856",
+   "cid": "23348611",
+   "claim": 15442995,
+   "cpt": "99308",
+   "dos": "2026-05-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbal": 61.56,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 45.44,
+    "check": "819814877(0)",
+    "coins": 11.59,
+    "contractual": 49.97
+   },
+   "fix45": "DRY WOINS 49.97 (Medicare 819814877(0))",
+   "outcome": "coinsurance 11.59 stays on insurance (CO16 - William's row); contractual DRY WOINS 49.97 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19455721",
+   "cid": "23367120",
+   "claim": 15442996,
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DRY REROUTE to Medicare (insorder 2,3, freq 1, seq 2)"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19455721",
+   "cid": "23367121",
+   "claim": 15442996,
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DRY REROUTE to Medicare (insorder 2,3, freq 1, seq 2)"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19444053",
+   "cid": "23352645",
+   "claim": 15442997,
+   "cpt": "99309",
+   "dos": "2026-06-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19416142",
+   "cid": "23319683",
+   "claim": 15442998,
+   "cpt": "99487",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 68.62,
+    "insbal": 137.38,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "DRY WOINS 119.87 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after DRY WOINS 119.87 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19448907",
+   "cid": "23358419",
+   "claim": 15442999,
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19448907",
+   "cid": "23358420",
+   "claim": 15442999,
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbal": 74.05,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 34.95,
+    "check": "819814877(0)",
+    "coins": 8.92,
+    "contractual": 65.13
+   },
+   "fix45": "DRY WOINS 65.13 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 8.92 (after DRY WOINS 65.13 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17469541",
+   "vid": "19455805",
+   "cid": "23367259",
+   "claim": 15443000,
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.0,
+   "wo": 206.0,
+   "wocode": "WONCS",
+   "outcome": "DRY would post $0 + WONCS 206.00 (CCM/ACP billed Medicaid-primary)"
+  },
+  {
+   "pid": "17470875",
+   "vid": "19443049",
+   "cid": "23351324",
+   "claim": 15443001,
+   "cpt": "99232",
+   "dos": "2026-05-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbal": 54.63,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 56.37,
+    "check": "819814877(0)",
+    "coins": 14.38,
+    "contractual": 40.25
+   },
+   "fix45": "DRY WOINS 40.25 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 14.38,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 14.38 (after DRY WOINS 40.25 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19448494",
+   "cid": "23357797",
+   "claim": 15443002,
+   "cpt": "G0439",
+   "dos": "2026-07-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 204.0,
+    "paid": 134.01,
+    "insbal": 69.99,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 134.01,
+    "check": "819814877(0)",
+    "coins": 0.0,
+    "contractual": 69.99
+   },
+   "fix45": "DRY WOINS 69.99 (Medicare 819814877(0))",
+   "outcome": "contractual corrected; no coinsurance on this code (100%% Medicare) - $0 line settled"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19429029",
+   "cid": "23335540",
+   "claim": 15443003,
+   "cpt": "99309",
+   "dos": "2026-01-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19432009",
+   "cid": "23338627",
+   "claim": 15443004,
+   "cpt": "99309",
+   "dos": "2026-02-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17470875",
+   "vid": "19443049",
+   "cid": "23351324",
+   "claim": 15443005,
+   "cpt": "99232",
+   "dos": "2026-05-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbal": 54.63,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "duplicate CO-18/N522 - original adjudication on this check, nothing to post"
+  },
+  {
+   "pid": "46250",
+   "vid": "19420717",
+   "cid": "23325805",
+   "claim": 15443006,
+   "cpt": "99232",
+   "dos": "2025-10-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 111.0,
+    "paid": 60.42,
+    "insbal": 50.58,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 60.42,
+    "check": "819814877(0)",
+    "coins": 15.41,
+    "contractual": 35.17
+   },
+   "fix45": "DRY WOINS 35.17 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 15.41,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 15.41 (after DRY WOINS 35.17 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "46250",
+   "vid": "19419023",
+   "cid": "23323938",
+   "claim": 15443007,
+   "cpt": "99306",
+   "dos": "2025-09-30",
+   "paid": 0.93,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 256.0,
+    "paid": 137.46,
+    "insbal": 118.54,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "pay": 0.93,
+   "wo": 117.61,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 0.93 wo 117.61 WOCAID2ND"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19425611",
+   "cid": "23331638",
+   "claim": 15443008,
+   "cpt": "99309",
+   "dos": "2025-12-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 69.21,
+    "insbal": 71.79,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 69.21,
+    "check": "819814877(0)",
+    "coins": 17.66,
+    "contractual": 54.13
+   },
+   "fix45": "DRY WOINS 54.13 (Medicare 819814877(0))",
+   "outcome": "coinsurance 17.66 stays on insurance (CO16 - William's row); contractual DRY WOINS 54.13 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19434561",
+   "cid": "23341546",
+   "claim": 15443009,
+   "cpt": "99309",
+   "dos": "2026-03-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19437743",
+   "cid": "23344848",
+   "claim": 15443010,
+   "cpt": "99309",
+   "dos": "2026-04-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19418992",
+   "cid": "23323902",
+   "claim": 15443011,
+   "cpt": "99308",
+   "dos": "2025-10-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 47.57,
+    "insbal": 59.43,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 47.57,
+    "check": "819814877(0)",
+    "coins": 12.14,
+    "contractual": 47.29
+   },
+   "fix45": "DRY WOINS 47.29 (Medicare 819814877(0))",
+   "outcome": "coinsurance 12.14 stays on insurance (CO16 - William's row); contractual DRY WOINS 47.29 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "22538",
+   "vid": "19428130",
+   "cid": "23334595",
+   "claim": 15443012,
+   "cpt": "99308",
+   "dos": "2026-01-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbal": 61.56,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 45.44,
+    "check": "819814877(0)",
+    "coins": 11.59,
+    "contractual": 49.97
+   },
+   "fix45": "DRY WOINS 49.97 (Medicare 819814877(0))",
+   "outcome": "coinsurance 11.59 stays on insurance (CO16 - William's row); contractual DRY WOINS 49.97 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19432522",
+   "cid": "23339084",
+   "claim": 15443013,
+   "cpt": "99309",
+   "dos": "2026-02-10",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17476930",
+   "vid": "19447393",
+   "cid": "23356579",
+   "claim": 15443014,
+   "cpt": "99309",
+   "dos": "2026-07-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual not needed (balance = coinsurance)"
+  },
+  {
+   "pid": "17476930",
+   "vid": "19447738",
+   "cid": "23356966",
+   "claim": 15443015,
+   "cpt": "99316",
+   "dos": "2026-07-09",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 139.74,
+    "insbal": 20.26,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 79.42,
+    "check": "819814877(0)",
+    "coins": 20.26,
+    "contractual": 60.32
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "outcome": "coinsurance 20.26 stays on insurance (CO16 - William's row); contractual not needed (balance = coinsurance)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19442453",
+   "cid": "23350562",
+   "claim": 15443016,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19453670",
+   "cid": "23364416",
+   "claim": 15443017,
+   "cpt": "99308",
+   "dos": "2026-06-01",
+   "paid": 7.85,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 53.46,
+    "insbal": 53.54,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "pay": 7.85,
+   "wo": 45.69,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 7.85 wo 45.69 WOCAID2ND"
+  },
+  {
+   "pid": "25266",
+   "vid": "19427115",
+   "cid": "23333363",
+   "claim": 15443018,
+   "cpt": "99487",
+   "dos": "2025-12-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19427115",
+   "cid": "23333364",
+   "claim": 15443018,
+   "cpt": "99489",
+   "dos": "2025-12-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19442453",
+   "cid": "23350562",
+   "claim": 15443019,
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19452359",
+   "cid": "23362558",
+   "claim": 15443020,
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819803392",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19452359",
+   "cid": "23362559",
+   "claim": 15443020,
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 34.95,
+    "check": "819803392",
+    "coins": 8.92,
+    "contractual": 65.13
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 8.92 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19448879",
+   "cid": "23358363",
+   "claim": 15443021,
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819803392",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19434008",
+   "cid": "23340874",
+   "claim": 15443022,
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19420307",
+   "cid": "23325290",
+   "claim": 15443023,
+   "cpt": "99308",
+   "dos": "2025-10-08",
+   "paid": 0.71,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "residual 0.71",
+   "why": "open insurance balance $0 - already adjudicated"
+  },
+  {
+   "pid": "25266",
+   "vid": "19435626",
+   "cid": "23342644",
+   "claim": 15443024,
+   "cpt": "99308",
+   "dos": "2026-03-12",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbal": 61.56,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 45.44,
+    "check": "819814877(0)",
+    "coins": 11.59,
+    "contractual": 49.97
+   },
+   "fix45": "DRY WOINS 49.97 (Medicare 819814877(0))",
+   "outcome": "coinsurance 11.59 stays on insurance (CO16 - William's row); contractual DRY WOINS 49.97 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19446273",
+   "cid": "23355308",
+   "claim": 15443025,
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "medicare": {
+    "paid": 63.28,
+    "check": "819814877(0)",
+    "coins": 16.14,
+    "contractual": 126.58
+   },
+   "fix45": "DRY WOINS 126.58 (Medicare 819814877(0))",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 16.14 (after DRY WOINS 126.58 (Medicare 819814877(0)))"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19444054",
+   "cid": "23352646",
+   "claim": 15443026,
+   "cpt": "99309",
+   "dos": "2026-06-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 66.36,
+    "check": "819814877(0)",
+    "coins": 16.93,
+    "contractual": 57.71
+   },
+   "fix45": "DRY WOINS 57.71 (Medicare 819814877(0))",
+   "outcome": "coinsurance 16.93 stays on insurance (CO16 - William's row); contractual DRY WOINS 57.71 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19427082",
+   "cid": "23333297",
+   "claim": 15443027,
+   "cpt": "99487",
+   "dos": "2025-12-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "25266",
+   "vid": "19423702",
+   "cid": "23329403",
+   "claim": 15443028,
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19423702",
+   "cid": "23329404",
+   "claim": 15443028,
+   "cpt": "99489",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19453681",
+   "cid": "23364438",
+   "claim": 15443029,
+   "cpt": "99309",
+   "dos": "2026-08-03",
+   "paid": 10.21,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 78.07,
+    "insbal": 62.93,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "pay": 10.21,
+   "wo": 52.72,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 10.21 wo 52.72 WOCAID2ND"
+  },
+  {
+   "pid": "25266",
+   "vid": "19426956",
+   "cid": "23333148",
+   "claim": 15443030,
+   "cpt": "99309",
+   "dos": "2025-12-09",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 69.21,
+    "insbal": 71.79,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "medicare": {
+    "paid": 69.21,
+    "check": "819814877(0)",
+    "coins": 17.66,
+    "contractual": 54.13
+   },
+   "fix45": "DRY WOINS 54.13 (Medicare 819814877(0))",
+   "outcome": "coinsurance 17.66 stays on insurance (CO16 - William's row); contractual DRY WOINS 54.13 (Medicare 819814877(0))"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19438609",
+   "cid": "23345811",
+   "claim": 15443031,
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19430782",
+   "cid": "23337302",
+   "claim": 15443032,
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19433978",
+   "cid": "23340823",
+   "claim": 15443033,
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "25266",
+   "vid": "19438644",
+   "cid": "23345876",
+   "claim": 15443034,
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19438644",
+   "cid": "23345877",
+   "claim": 15443034,
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "pid": "25266",
+   "vid": "19421106",
+   "cid": "23326412",
+   "claim": 15443035,
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 68.62,
+    "check": "819814877(0)",
+    "coins": 17.51,
+    "contractual": 119.87
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 17.51,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 17.51 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19421106",
+   "cid": "23326413",
+   "claim": 15443035,
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 99.53,
+    "insbal": 9.47,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 37.13,
+    "check": "819814877(0)",
+    "coins": 9.47,
+    "contractual": 62.4
+   },
+   "fix45": "not needed (balance = coinsurance)",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "outcome": "DRY would post $0 + WOCAID2ND 9.47 (after not needed (balance = coinsurance))"
+  },
+  {
+   "pid": "25266",
+   "vid": "19453669",
+   "cid": "23364414",
+   "claim": 15443036,
+   "cpt": "99308",
+   "dos": "2026-07-20",
+   "paid": 7.85,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 53.46,
+    "insbal": 53.54,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "pay": 7.85,
+   "wo": 45.69,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "DRY would post pay 7.85 wo 45.69 WOCAID2ND"
+  },
+  {
+   "pid": "17472429",
+   "vid": "19446273",
+   "cid": "23355308",
+   "claim": 15443037,
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "when": "2026-09-29T2110Z",
+   "outcome": "skip - same charge/answer already handled on this check (repeated claim)"
+  },
+  {
+   "pid": "17473343",
+   "vid": "19418981",
+   "cid": "23323891",
+   "claim": 15443038,
+   "cpt": "99308",
+   "dos": "2025-10-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "when": "2026-09-29T2110Z",
+   "before": {
+    "fee": 107.0,
+    "paid": 47.57,
+    "insbal": 59.43,
+    "patbal": 0.0,
+    "carrier": "SUN01"
+   },
+   "medicare": {
+    "paid": 47.57,
+    "check": "819814877(0)",
+    "coins": 12.14,
+    "contractual": 47.29
+   },
+   "fix45": "DRY WOINS 47.29 (Medicare 819814877(0))",
+   "outcome": "coinsurance 12.14 stays on insurance (CO16 - William's row); contractual DRY WOINS 47.29 (Medicare 819814877(0))"
+  }
+ ]
+}
