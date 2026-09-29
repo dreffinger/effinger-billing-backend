@@ -1,0 +1,68 @@
+{
+ "stamp": "2026-09-29T1910Z",
+ "visits": [
+  {
+   "vid": "19456469",
+   "errs": [
+    [
+     "395498",
+     "Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate."
+    ]
+   ],
+   "charges": [
+    "23368116"
+   ],
+   "gate": [
+    {
+     "cid": "23368116",
+     "cpt": "pcode65119",
+     "dx": [
+      "S72.001D",
+      "Z91.81",
+      "H91.90",
+      "I10",
+      "I48.0",
+      "K21.9",
+      "R54",
+      "I50.9",
+      "E03.9",
+      "N47.1",
+      "N40.0",
+      "H35.30"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": "dry"
+  },
+  {
+   "vid": "19456470",
+   "errs": [
+    [
+     "395499",
+     "Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) H9190 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate."
+    ]
+   ],
+   "charges": [
+    "23368117"
+   ],
+   "gate": [
+    {
+     "cid": "23368117",
+     "cpt": "pcode65119",
+     "dx": [
+      "S72.001D",
+      "Z91.81",
+      "H91.90",
+      "I10",
+      "I48.0",
+      "K21.9",
+      "R54"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": "dry"
+  }
+ ]
+}
