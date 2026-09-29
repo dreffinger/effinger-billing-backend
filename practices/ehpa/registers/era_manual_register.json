@@ -26096,5 +26096,222 @@
   "when": "2026-09-29T1110Z",
   "chargeid": "23363912",
   "outcome": "denial-handled: PR-27 wrong payer already re-routed 9/23-9/24"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455290",
+  "chargedetailid": "23366498",
+  "cpt": "99309",
+  "outcome": "posted",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455291",
+  "chargedetailid": "23366500",
+  "cpt": "99316",
+  "outcome": "posted",
+  "pay": 100.75,
+  "wo": 59.25,
+  "wocode": "WOINS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455292",
+  "chargedetailid": "23366504",
+  "cpt": "99497",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 133.0,
+  "wocode": "WONCS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455478",
+  "chargedetailid": "23366775",
+  "cpt": "99306",
+  "outcome": "posted",
+  "pay": 150.15,
+  "wo": 105.85,
+  "wocode": "WOINS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455478",
+  "chargedetailid": "23366776",
+  "cpt": "99497",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 133.0,
+  "wocode": "WONCS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455855",
+  "chargedetailid": "23367320",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455880",
+  "chargedetailid": "23367345",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455452",
+  "chargedetailid": "23366745",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19454097",
+  "chargedetailid": "23365066",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 21.8,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19453956",
+  "chargedetailid": "23364869",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 21.8,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455789",
+  "chargedetailid": "23367236",
+  "cpt": "99487",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 206.0,
+  "wocode": "WONCS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455789",
+  "chargedetailid": "23367237",
+  "cpt": "99489",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 109.0,
+  "wocode": "WONCS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19455805",
+  "chargedetailid": "23367259",
+  "cpt": "99487",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 206.0,
+  "wocode": "WONCS",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19419023",
+  "chargedetailid": "23323938",
+  "cpt": "99306",
+  "outcome": "posted",
+  "pay": 0.93,
+  "wo": 117.61,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19453670",
+  "chargedetailid": "23364416",
+  "cpt": "99308",
+  "outcome": "posted",
+  "pay": 7.85,
+  "wo": 45.69,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19452359",
+  "chargedetailid": "23362558",
+  "cpt": "99487",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 16.14,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19452359",
+  "chargedetailid": "23362559",
+  "cpt": "99489",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 8.92,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19448879",
+  "chargedetailid": "23358363",
+  "cpt": "99487",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 16.14,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19453681",
+  "chargedetailid": "23364438",
+  "cpt": "99309",
+  "outcome": "posted",
+  "pay": 10.21,
+  "wo": 52.72,
+  "wocode": "WOCAID2ND",
+  "when": "2026-09-29T2310Z"
+ },
+ {
+  "checkid": "1052885",
+  "visitid": "19420307",
+  "chargedetailid": "23325290",
+  "cpt": "99308",
+  "outcome": "residual 0.71",
+  "when": "2026-09-29T2310Z"
  }
 ]
