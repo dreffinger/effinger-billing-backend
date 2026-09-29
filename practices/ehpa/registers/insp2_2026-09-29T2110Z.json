@@ -1,0 +1,28 @@
+[
+ {
+  "batch": "127783",
+  "vid": "19455735",
+  "pid": "17473669",
+  "errs": [
+   [
+    "395501",
+    "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID"
+   ]
+  ],
+  "bypassed": true,
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 14:41:57\"><Results retval=\"0\" /><Er"
+ },
+ {
+  "batch": "127783",
+  "vid": "19455800",
+  "pid": "17475198",
+  "errs": [
+   [
+    "395500",
+    "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID"
+   ]
+  ],
+  "bypassed": true,
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 14:41:58\"><Results retval=\"0\" /><Er"
+ }
+]
