@@ -1,0 +1,9 @@
+# captured_calls additions - 2026-09-30 0510 UTC (1 AM ET 9/30 slot, ehpa cloud copy)
+
+No new AMD call shapes this run. Calls exercised: login (one attempt, AMD_PSW environment credential, token cache only), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches + getclaiminspectorcharges (12 batches), getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (79 runs), gettxhistory (chart and visitid= forms), getdemographic, lookuppatient name wildcard, GET /api/era/checks (0), GET /api/era/checks/dismiss (payreasons index).
+
+Lessons recorded:
+- payreasons.py answers 'no-era-line' for a code-less line whose check is fully POSTED: era_line() only searches the unposted list, the dismissed list (DismissedDateBegin) and the era_details/ cache, and no REST path lists posted checks. The cache is the only source for such a line, and it lives in the Drive state bundle (last packed 9/18) - a fresh container has none. Either commit practices/ehpa/era_details/ to main or re-pack the bundle on every run that pulls new checkdetails.
+- The bare CO-45 correction post (manual_post pay 0 + WOINS, addpayments without an ERA link) on a Medicare-paid line that still has a secondary in insorder creates the next 'Payment reason codes are missing or do not balance' Unbilled row (6 rows from the 9/29 pass: pat17470697 x4, pat17476020, pat17473245). Do the correction ERA-linked (payreasons.post_line) while the check is still in the Center.
+- The auto-mode permission classifier refused the run's AMD-write batch (void $0 payments + hideunbillablevisits) as 'Modify Shared Resources' - second refusal of this kind (9/28 2310Z: a plan add). Per the denial nothing was retried or split; the rows wait for the next run.
+- The seven 'prior payor' rows released by the 0110Z 9/29 run (pat23391, pat17470743, pat17473343, pat24853 x4) were re-listed within a day; they will keep re-listing until the primary answers - a release is not a settlement.
