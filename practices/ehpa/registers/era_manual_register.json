@@ -27093,5 +27093,117 @@
   "wo": 45.69,
   "wocode": "WOCAID2ND",
   "when": "2026-09-30T0110Z"
+ },
+ {
+  "checkid": "1052907",
+  "checkclaimid": 15443232,
+  "visitid": "19416177",
+  "chargeid": "23319747",
+  "outcome": "refused: classifier (pay 17.50, residual 0.57)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052907",
+  "checkclaimid": 15443232,
+  "visitid": "19416177",
+  "chargeid": "23319748",
+  "outcome": "refused: classifier (pay 8.90 + WOINS 0.57)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052907",
+  "checkclaimid": null,
+  "visitid": "19420946",
+  "chargeid": "23326092",
+  "outcome": "refused: classifier (pay 17.50, residual 0.57)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052907",
+  "checkclaimid": null,
+  "visitid": "19420946",
+  "chargeid": "23326093",
+  "outcome": "refused: classifier (pay 8.90 + WOINS 0.57)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": 15443173,
+  "visitid": "19450471",
+  "chargeid": "23360409",
+  "outcome": "refused: classifier (pay 21.80 + WOINS 52.74)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": 15443176,
+  "visitid": "19450490",
+  "chargeid": "23360429",
+  "outcome": "refused: classifier (pay 21.80 + WOINS 52.74)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": 15443201,
+  "visitid": "19450376",
+  "chargeid": "23360287",
+  "outcome": "refused: classifier (pay 31.94 + WOINS 152.86)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": 15443201,
+  "visitid": "19450376",
+  "chargeid": "23360288",
+  "outcome": "refused: classifier (pay 13.35 + WOINS 67.32)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19436538",
+  "chargeid": "23343593",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19436840",
+  "chargeid": "23343888",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19436841",
+  "chargeid": "23343889",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19436842",
+  "chargeid": "23343890",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19436972",
+  "chargeid": "23344021",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
+ },
+ {
+  "checkid": "1052906",
+  "checkclaimid": null,
+  "visitid": "19437011",
+  "chargeid": "23344063",
+  "outcome": "residual 2.75 (charge already at $0 - adjudicated 213436603)",
+  "when": "2026-09-30T18:04:55Z"
  }
 ]
