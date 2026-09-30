@@ -1,0 +1,148 @@
+{
+ "stamp": "2026-09-30T1310Z",
+ "live": false,
+ "rows": [
+  {
+   "vid": "19392347",
+   "pid": "23391",
+   "carrier": "BCBS",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted.",
+    "One or more charges within this visit have errors. Charges with errors will be listed under the relevant error."
+   ],
+   "charges": [
+    [
+     "22464291",
+     "99233",
+     "BCBS",
+     "09/21/2026",
+     "23.62",
+     "136.38"
+    ],
+    [
+     "22464292",
+     "G0316",
+     "FLO02",
+     "09/10/2026",
+     "30.97",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19441047",
+   "pid": "17470743",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23348845",
+     "99309",
+     "MCAD",
+     "05/26/2026",
+     "16.93",
+     "124.07"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19442414",
+   "pid": "17473343",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23350510",
+     "99487",
+     "FLO02",
+     "09/05/2026",
+     "206.00",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19453094",
+   "pid": "24853",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23363594",
+     "99233",
+     "HUM01",
+     "09/23/2026",
+     "160.00",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19453102",
+   "pid": "24853",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23363602",
+     "99233",
+     "HUM01",
+     "09/23/2026",
+     "160.00",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19453106",
+   "pid": "24853",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23363606",
+     "99233",
+     "HUM01",
+     "09/23/2026",
+     "160.00",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  },
+  {
+   "vid": "19453209",
+   "pid": "24853",
+   "carrier": "",
+   "errs": [
+    "A payment from the prior payor is required before another claim can be submitted."
+   ],
+   "charges": [
+    [
+     "23363771",
+     "99233",
+     "HUM01",
+     "09/23/2026",
+     "160.00",
+     "0.00"
+    ]
+   ],
+   "release": "dry"
+  }
+ ]
+}
