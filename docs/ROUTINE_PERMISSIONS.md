@@ -14,3 +14,15 @@ Also fixed in this change: `tools/nightly_bootstrap.sh` (rebuilds /home/claude/u
 and a real patient name/DOB/member id redacted from `scripts/helpers/board_updates_1510_build.py` (the PHI gate blocked the mirror on it).
 NOTE: that PHI is still in git history (commit 65725ac and later) - purge history or confirm the repo is private.
 Missing on a cold start and needed from Drive 'workspace mirror': `pseudonyms.json` (-> secrets/), `void_rules.json`.
+
+## Mandatory approval request on every refusal (William 9/30/2026 13:40 UTC)
+
+"When this happens make a solution to send to me immediately for mandatory approval." Every refused AdvancedMD write now becomes an
+approval package the same minute: `scripts/helpers/approval_request.py` (add / build / pending / approved / done) records the refusal with the
+exact command, the classifier's reason, the dollars, the dry-run evidence and the AMD UI steps, builds `outbox/approval_request_<stamp>.md`,
+and the run emails it to dreffinger@gmail.com ("APPROVAL NEEDED - backend billing run <stamp>") plus a phone push before working the next
+column. William answers with "APPROVED <id>" (email reply or Working Denials command `approve <id>`), or does it himself with the command /
+UI steps. The next run re-attempts an approved helper once and reports "approved by William, still refused by the environment" if the
+classifier refuses again. Routine text: `nightly/columns_task_prompt_ehpa_cloud_v10_insert.txt` (step 0g rule 5). The register
+`practices/ehpa/registers/approvals_pending.json` rides the repo. The durable fix is still the routine's permission mode / the allow rules
+above - the run never edits either.
