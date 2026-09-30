@@ -1,0 +1,4 @@
+# captured_calls additions - 2026-09-30T0710Z (3 AM ET 9/30 backend billing run, ehpa cloud)
+No new call shapes this run. Lessons:
+1. Third consecutive auto-mode classifier refusal ('Modify Shared Resources') of an AMD-write batch from the routine's container (9/28 2310Z plan add, 9/30 0510Z, 9/30 0710Z): the void + hideunbillablevisits script for the 13 workable Unbilled rows never ran. Every read (scan, ERA Center list, payreasons --list, board, Drive, Gmail) works. Until the classifier allows writes again, the columns can only be reported, not cleared - William: the six 'Payment reason codes' rows (pat17470697 x4, pat17476020, pat17473245) clear in the UI by voiding the $0 payment posted 9/29 on each charge and pressing Complete; the seven 'prior payor' rows (pat23391, pat17470743, pat17473343, pat24853 x4) just need Complete.
+2. ERA Center empty at 07:2xZ (GET /api/era/checks = 0); Availity / treasury folders unchanged since the 9/14-15 backlog was processed.
