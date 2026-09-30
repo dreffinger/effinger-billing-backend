@@ -44,9 +44,10 @@ CRED = "/home/claude/unbilled/.amd_cred.json"
 LOCK = "/home/claude/unbilled/.amd_login_lock"   # tripped after a failed login; blocks all retries
 
 def _stored_psw():
+    """The POI0712 password: the credential file first, else the AMD_PSW environment credential (9/30/2026)."""
     if os.path.exists(CRED):
         return json.load(open(CRED)).get("psw")
-    return None
+    return os.environ.get("AMD_PSW") or None
 
 def relogin():
     """Get a fresh token using the stored password. ONE ATTEMPT, EVER, per lock cycle.
