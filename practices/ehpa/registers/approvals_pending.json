@@ -11,8 +11,11 @@
    "evidence_file": "registers/insp_2026-09-30T1310Z_dry.json",
    "evidence": "{\n \"stamp\": \"2026-09-30T1310Z\",\n \"live\": false,\n \"visits\": [\n  {\n   \"batch\": \"127783\",\n   \"vid\": \"19455623\",\n   \"pid\": \"17477638\",\n   \"pattern\": \"Pattern 35790\",\n   \"errs\": [\n    [\n     \"395517\",\n     \"Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455623, Line ID 23366977, that has received an edit with a Review status.Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455623, Line ID 23366977, that has received an edit with a Review status.\"\n    ]\n   ],\n   \"charges\": [\n    \"23366977\",\n    \"23366978\"\n   ],\n   \"gate\": [\n    {\n     \"cid\": \"23366977\",\n     \"cpt\": \"pcode492676\",\n     \"mods\": [],\n     \"dx\": [\n      \"I63.9\",\n      \"I10\",\n      \"I48.91\",\n      \"E78.5\",\n      \"C61\",\n      \"R27.0\"\n     ],\n     \"first_never_primary\": false\n    },\n    {\n     \"cid\": \"23366978\",\n     \"cpt\": \"pcode492677\",\n     \"mods\": [\n      \"25\"\n     ],\n     \"dx\": [\n      \"I63.9\",\n      \"I10\",\n      \"I48.91\",\n      \"E78.5\",\n      \"C61\",\n      \"R27.0\"\n     ],\n     \"first_never_primary\": false\n    }\n   ],\n   \"bypassed\": \"dry\",\n   \"i63_swap\": \"dry: would swap I63.9 -> I69.30 on ['23366977', '23366978'] (facility )\",\n   \"only_adv\": true,\n   \"gate_ok\": true,\n   \"mod_ok\": true\n  },\n  {\n   \"batch\": \"127783\",\n   \"vid\": \"19455801\",\n   \"pid\": \"17476681\",\n   \"pattern\": \"Pattern 11256\",\n   \"errs\": [\n    [\n     \"395518\",\n     \"Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.\"\n    ]\n   ],\n   \"charges\": [\n    \"23367254\",\n    \"23367255\"\n   ],\n   \"gate\": [\n    {\n     \"cid\": \"23367254\",\n     \"cpt\": \"pcode492676\",\n     \"mods\": [],\n     \"dx\": [\n      \"G12.21\",\n      \"S70.00XA\",\n      \"M25.559\",\n      \"M19.90\"\n     ],\n     \"first_never_primary\": false\n    },\n    {\n     \"cid\": \"23367255\",\n     \"cpt\": \"pcode492677\",\n     \"mods\": [],\n     \"dx\": [\n      \"G12.21\",\n      \"S70.00XA\",\n      \"M25.559\",\n      \"M19.90\"\n     ],\n     \"first_never_primary\": false\n    }\n   ],\n   \"bypassed\": \"dry\",\n   \"i63_swap\": null,\n   \"only_adv\": true,\n   \"gate_ok\": true,\n   \"mod_ok\": true\n  },\n  {\n   \"batch\": \"127793\",\n   \"vid\": \"19456218\",\n   \"pid\": \"17476681\",\n   \"pattern\": \"Pattern 11256\",\n   \"errs\": [\n    [\n     \"395519\",\n     \"Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.\"\n    ]\n   ],\n   \"charges\": [\n    \"23367842\"\n   ],\n   \"gate\": [\n    {\n     \"cid\": \"23367842\",\n     \"cpt\": \"pcode65119\",\n     \"mods\": [],\n     \"dx\": [\n      \"G12.21\",\n      \"S70.00XA\",\n      \"M25.559\",\n      \"M19.90\"\n     ],\n     \"first_never_primary\": false\n    }\n   ],\n   \"bypassed\": \"dry\",\n   \"i63_swap\": null,\n   \"only_adv\": true,\n   \"gate_ok\": true,\n   \"mod_ok\": true\n  }\n ]\n}",
    "ui": "Claim Inspector > batch 127783 > visit 19455623: edit dx I63.9 -> I69.30 on both charges, Save, then Bypass the 35790 edit; batch 127783 visit 19455801 and batch 127793 visit 19456218: Bypass the 11256 edit (or recode with the documented side).",
-   "status": "waiting",
-   "answer": null
+   "status": "approved",
+   "answer": {
+    "at": "2026-09-30T21:25:24Z",
+    "note": "APPROVED by William: email replies 14:02-14:13Z 9/30 + approval page HuYd2bSm2NxkFgYRqra7wR 14:19Z; run 2110Z re-attempt (dry pass) refused again by the auto-mode classifier [Real-World Transactions] - fourth refusal"
+   }
   },
   {
    "id": "A-2026-09-30T1310Z-A2",
@@ -25,6 +28,23 @@
    "evidence_file": "",
    "evidence": "",
    "ui": "Unbilled > each visit > Payment Entry: void the $0 payment with no reason codes (leave the WOINS and the paid line), then Complete the visit.",
+   "status": "approved",
+   "answer": {
+    "at": "2026-09-30T21:25:24Z",
+    "note": "APPROVED by William on the approval page HuYd2bSm2NxkFgYRqra7wR 14:19Z 9/30; run 2110Z re-attempt (dry pass) refused again by the auto-mode classifier [Real-World Transactions] - fourth refusal"
+   }
+  },
+  {
+   "id": "A-2026-09-30T2110Z-A1",
+   "stamp": "2026-09-30T2110Z",
+   "at": "2026-09-30T21:30:33Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_post.py --all-unposted",
+   "reason": "auto-mode classifier: Real-World Transactions (the --dry pass ran; the live Post button was refused - same item as A-2026-09-30T1910Z-A1, still unanswered)",
+   "what": "ERA Center Post button on the 2 unposted checks: posts the two postable Florida Blue Medigap-secondary lines on 1052907 (v19416177, v19420946); 1052906 (213453023) has 0 postable lines - its 3 Addison lines (v19450471 21.80, v19450490 21.80, v19450376 45.29) carry AMD validation error 10 'multiple adjustment amounts' and are the hand-post package A-2026-09-30T1710Z-A1 (waiting on your APPROVED line). Result once done: 1052907 remainder 1.14 residual disregarded, check dismissed; unposted list 2 checks $203.42 -> 1 check $149.48.",
+   "dollars": "$52.80 (check 1052907 Florida Blue 423809550: chart 48458 v19416177 + v19420946 Medigap-secondary CCM lines 17.50 + 8.90 each)",
+   "evidence_file": "registers/era_post_dry_2026-09-30T2110Z.txt",
+   "evidence": "",
+   "ui": "ERA Center > check 423809550 (Florida Blue 9/30) > Post; then the DANIEL claims post 17.50 / 8.90 each; Dismiss the check. Check 213453023 > ADDISON 8/1, 8/2, 8/3 claims > Reconcile per package A-2026-09-30T1710Z-A1.",
    "status": "waiting",
    "answer": null
   }
