@@ -1,0 +1,9 @@
+era_post.py --all-unposted --dry, 2026-09-30 21:23Z: 2 checks unposted, $203.42
+check 1052906 FLO02 213453023 $1814.20 unposted=149.48 visits=38 postable=0 skipped=38
+  refused by AMD (validation error 10 'multiple adjustment amounts for the same charge'): v19450471 (paid 21.80), v19450490 (paid 21.80), v19450376 (paid 45.29), v19437933 ($0) = the hand-post package A-2026-09-30T1710Z-A1
+  skipped not postable (remit-stored balance 0): v19452599 paid 44.09; six 2.75 lines chart 17475906 (residual, disregarded); $0 lines v19416997, v19454905, v19436454, v19437844, v19436843
+  $0 denial lines: 17476534 v19442554/v19442555/v19442589 (OA-18 duplicates - originals to find, never rebill); 17476544 x11 (PR-177 Medigap inactive - coinsurance stays patient)
+check 1052907 BCBS 423809550 $946.15 unposted=53.94 visits=6 postable=2 skipped=4
+  postable: chart 48458 v19416177 + v19420946 Medigap-secondary CCM 17.50 + 8.90 each = $52.80 (+1.14 residual disregarded)
+  $0 lines: v19450195 (PR-22 pair), v19452647 (FB secondary before any Medicare payment), v19416420 (9/10/2025)
+LIVE RUN 21:4xZ: `python3 era_post.py --all-unposted` refused by the auto-mode classifier [Real-World Transactions]. Nothing posted.
