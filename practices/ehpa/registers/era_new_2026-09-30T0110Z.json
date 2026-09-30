@@ -1,0 +1,1080 @@
+{
+ "stamp": "2026-09-30T0110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1052889",
+   "checkclaimid": 15443048,
+   "visitid": "19455947",
+   "pid": "47124",
+   "chargedetailid": "23367431",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 79.1,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 79.1,
+   "wo": 126.9,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165005",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:29:29\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052889",
+   "checkclaimid": 15443048,
+   "visitid": "19455947",
+   "pid": "47124",
+   "chargedetailid": "23367432",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 43.69,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 43.69,
+   "wo": 65.31,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165006",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:29:32\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052889",
+   "checkclaimid": 15443049,
+   "visitid": "19455703",
+   "pid": "17473065",
+   "chargedetailid": "23367085",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 140.12,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 140.12,
+   "wo": 65.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165007",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:29:37\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052889",
+   "checkclaimid": 15443049,
+   "visitid": "19455703",
+   "pid": "17473065",
+   "chargedetailid": "23367086",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 75.92,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 75.92,
+   "wo": 33.08,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165008",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:29:40\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443050,
+   "visitid": "19455714",
+   "pid": "17473347",
+   "chargedetailid": "23367107",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 140.12,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 140.12,
+   "wo": 65.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165009",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:29:44\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443050,
+   "visitid": "19455714",
+   "pid": "17473347",
+   "chargedetailid": "23367108",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 75.92,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 75.92,
+   "wo": 33.08,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165010",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:29:47\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443051,
+   "visitid": "19455683",
+   "pid": "48444",
+   "chargedetailid": "23367060",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 140.12,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 140.12,
+   "wo": 65.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165011",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:29:51\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443052,
+   "visitid": "19455669",
+   "pid": "17472396",
+   "chargedetailid": "23367041",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 79.1,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N782",
+    "N781"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 79.1,
+   "wo": 126.9,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165012",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:29:56\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443053,
+   "visitid": "19454450",
+   "pid": "17477640",
+   "chargedetailid": "23365538",
+   "cpt": "99233",
+   "dos": "2026-09-11",
+   "paid": 106.82,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N16"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 106.82,
+   "wo": 53.18,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165013",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443054,
+   "visitid": "19454426",
+   "pid": "17477640",
+   "chargedetailid": "23365514",
+   "cpt": "99233",
+   "dos": "2026-09-12",
+   "paid": 106.82,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N16"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 106.82,
+   "wo": 53.18,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165014",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:04\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052890",
+   "checkclaimid": 15443055,
+   "visitid": "19455622",
+   "pid": "17477353",
+   "chargedetailid": "23366976",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 140.12,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 140.12,
+   "wo": 65.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165015",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:09\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443056,
+   "visitid": "19452590",
+   "pid": "17476264",
+   "chargedetailid": "23362906",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 28.6,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165016",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:14\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443056,
+   "visitid": "19452590",
+   "pid": "17476264",
+   "chargedetailid": "23362907",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 15.49,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165017",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:17\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443057,
+   "visitid": "19448748",
+   "pid": "17476264",
+   "chargedetailid": "23358101",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 28.6,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165018",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:22\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443057,
+   "visitid": "19448748",
+   "pid": "17476264",
+   "chargedetailid": "23358102",
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 15.49,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165019",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:25\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443058,
+   "visitid": "19442359",
+   "pid": "17476264",
+   "chargedetailid": "23350414",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 28.6,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165020",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:30\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443058,
+   "visitid": "19442359",
+   "pid": "17476264",
+   "chargedetailid": "23350415",
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 15.49,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165021",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:33\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443059,
+   "visitid": "19420915",
+   "pid": "46673",
+   "chargedetailid": "23326031",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 99.53,
+    "insbal": 9.47,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165022",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:30:38\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443060,
+   "visitid": "19420915",
+   "pid": "46673",
+   "chargedetailid": "23326030",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443060,
+   "visitid": "19420915",
+   "pid": "46673",
+   "chargedetailid": "23326031",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "outcome": "skip - charge already handled on this check (repeated claim)"
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443061,
+   "visitid": "19454095",
+   "pid": "20379",
+   "chargedetailid": "23365064",
+   "cpt": "99233",
+   "dos": "2026-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165023",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:43\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443062,
+   "visitid": "19445313",
+   "pid": "24651",
+   "chargedetailid": "23354121",
+   "cpt": "99223",
+   "dos": "2026-06-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 31.94,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 31.94,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165024",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:48\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443063,
+   "visitid": "19439566",
+   "pid": "24651",
+   "chargedetailid": "23347085",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165025",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:53\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443063,
+   "visitid": "19439566",
+   "pid": "24651",
+   "chargedetailid": "23347086",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165026",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:30:56\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443064,
+   "visitid": "19442430",
+   "pid": "24651",
+   "chargedetailid": "23350530",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165027",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:31:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443064,
+   "visitid": "19442430",
+   "pid": "24651",
+   "chargedetailid": "23350531",
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165028",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:31:04\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443065,
+   "visitid": "19445445",
+   "pid": "24651",
+   "chargedetailid": "23354312",
+   "cpt": "99232",
+   "dos": "2026-06-18",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbal": 14.38,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 14.38,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165029",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:31:08\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443066,
+   "visitid": "19445452",
+   "pid": "24651",
+   "chargedetailid": "23354319",
+   "cpt": "99232",
+   "dos": "2026-06-19",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbal": 14.38,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance",
+   "pay": 0.0,
+   "wo": 14.38,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165030",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fghkp\" lst=\"09/29/2026 18:31:12\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443067,
+   "visitid": "19439804",
+   "pid": "17476264",
+   "chargedetailid": "23347448",
+   "cpt": "99350",
+   "dos": "2026-04-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 277.0,
+    "paid": 243.98,
+    "insbal": 33.02,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "CO-185/N767 Medicaid-secondary crossover on a Medicare-paid line - 9/20 rule WOINS",
+   "pay": 0.0,
+   "wo": 33.02,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165031",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:31:17\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443068,
+   "visitid": "19440498",
+   "pid": "17476264",
+   "chargedetailid": "23348187",
+   "cpt": "99349",
+   "dos": "2026-04-29",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 198.0,
+    "paid": 175.4,
+    "insbal": 22.6,
+    "patbal": 0.0,
+    "carrier": "FLO02"
+   },
+   "why": "CO-185/N767 Medicaid-secondary crossover on a Medicare-paid line - 9/20 rule WOINS",
+   "pay": 0.0,
+   "wo": 22.6,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165032",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:31:21\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443069,
+   "visitid": "19444059",
+   "pid": "24651",
+   "chargedetailid": "23352651",
+   "cpt": "99309",
+   "dos": "2026-06-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "CO-185/N767 Medicaid-secondary crossover on a Medicare-paid line - 9/20 rule WOINS",
+   "pay": 0.0,
+   "wo": 16.93,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165033",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:31:26\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052891",
+   "checkclaimid": 15443070,
+   "visitid": "19441623",
+   "pid": "24651",
+   "chargedetailid": "23349537",
+   "cpt": "99309",
+   "dos": "2026-05-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "when": "2026-09-30T0110Z",
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "MCAD"
+   },
+   "why": "CO-185/N767 Medicaid-secondary crossover on a Medicare-paid line - 9/20 rule WOINS",
+   "pay": 0.0,
+   "wo": 16.93,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165034",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-9sd4c\" lst=\"09/29/2026 18:31:31\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}
