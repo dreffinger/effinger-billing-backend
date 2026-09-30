@@ -13,7 +13,7 @@ recs = json.load(open('inspector_admits.json'))
 seen = {}
 for r in recs:
     seen[r['visitid']] = r  # one charge per visit
-DONE = {'19453373','19453366'}  # REY 08/30 + TILLERY 08/29 already cleared
+DONE = {'19453373','19453366'}  # REY 08/30 + TILLOTSON 08/29 already cleared
 
 def set_date(visitid, code, admit):
     ext = ('<extins txtChargeCode="%s" hospitalizationfrom="%s" patsignature="1" '

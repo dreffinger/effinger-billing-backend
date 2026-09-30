@@ -4,7 +4,7 @@
 #   with a real MBI, bill Medicare first: set the visit's insurance order to the Medicare sequence (full-visit echo via
 #   move_to_ins.move), reset frequency 1 and rebill (freq1_visit.run). One chart (pat25596) carries the old HICN on its
 #   Medicare plan - the MBI from the board's Stedi lookup (kept in secrets/mbi_25596.txt, never in this file) is written first (ins_update, wrapped shape).
-#   Robinson-type case: Medicare IS seq 1 on the chart but the CCM visit went to Florida Blue as primary -> same fix.
+#   Rowley-type case: Medicare IS seq 1 on the chart but the CCM visit went to Florida Blue as primary -> same fix.
 #   Dalrymple-type case: chart order Florida Blue first -> patient default order set Medicare first (ins_update sequence "2,1").
 # Rules it uses: William 9/7 Medicare-before-supplement; 9/3 every rebill goes out frequency 1; void trap = full echo.
 # Never touches: payments, charges with a $0 balance, charts without a valid MBI (those are reported instead).
@@ -16,10 +16,10 @@ PLAN = [
     # pid, medicare insid, medicare seq, [(vid, cid)], patient-order fix (insid, "seq,seq") or None, mbi fix (insid, mbi) or None
     ("17473245", "ins9519180", 2, [("19446222", "23355215"), ("19445474", "23354349")], ("ins9519180", "2,1"), None),      # Dalrymple: BCBS first on chart, Medicare A/B active
     ("17476868", "ins9519179", 2, [("19447500", "23356689")], None, None),                                                 # Addison 7/7 visit (patient order already 2,1)
-    ("25596", "ins5628", 1, [("19446145", "23355063")], None, ("ins5628", open("secrets/mbi_25596.txt").read().strip())),                                 # Halperin: HICN -> MBI, Medicare seq 1
+    ("25596", "ins5628", 1, [("19446145", "23355063")], None, ("ins5628", open("secrets/mbi_25596.txt").read().strip())),                                 # Halloran: HICN -> MBI, Medicare seq 1
     ("12180329", "ins6028401", 1, [("19436591", "23343643"), ("19436827", "23343875")], None, None),                       # Sayer III
-    ("25710", "ins1615", 1, [("19432731", "23339379")], None, None),                                                       # Bateman
-    ("48449", "ins6005745", 1, [("19448810", "23358225")], None, None),                                                    # Robinson: PR-204 on BCBS billed as primary; Medicare is seq 1
+    ("25710", "ins1615", 1, [("19432731", "23339379")], None, None),                                                       # Bexley-Bateson
+    ("48449", "ins6005745", 1, [("19448810", "23358225")], None, None),                                                    # Rowley: PR-204 on BCBS billed as primary; Medicare is seq 1
 ]
 out = []
 for pid, mins, seq, visits, order_fix, mbi_fix in PLAN:
@@ -38,7 +38,7 @@ for pid, mins, seq, visits, order_fix, mbi_fix in PLAN:
         except Exception as e:
             rec["steps"].append("patient order ERROR %s" % repr(e)[:120])
         time.sleep(0.5)
-    # Halperin: add every other open Florida-Blue-carrier charge of 2026 on the chart
+    # Halloran: add every other open Florida-Blue-carrier charge of 2026 on the chart
     if pid == "25596":
         extra = []
         for c in txh.fetch(pid).iter("charge"):
@@ -58,13 +58,13 @@ for pid, mins, seq, visits, order_fix, mbi_fix in PLAN:
         time.sleep(0.6)
     out.append(rec); print(json.dumps(rec, indent=1), flush=True)
 json.dump(out, open("registers/availity_cob_fix_%s.json" % STAMP, "w"), indent=1)
-# Moriarty Pate (pat17475906): Florida Blue MA says another policy is primary - Stedi MBI lookup for the COB picture
+# Merriwether Paxton (pat17475906): Florida Blue MA says another policy is primary - Stedi MBI lookup for the COB picture
 try:
     import stedi
     d = amd.post(amd.msg("getdemographic", "demographics", {"patientid": "17475906", "nocookie": "1"}), timeout=120)
     dob = re.search(r' dob="([^"]*)"', d); dob = dob.group(1) if dob else ""
     m = re.match(r"(\d\d)/(\d\d)/(\d{4})", dob); ymd = (m.group(3) + m.group(1) + m.group(2)) if m else dob.replace("-", "")
-    j = stedi.mbi("NELL", "MORIARTY-PATE", ymd, "FL", "20260329")
+    j = stedi.mbi("NELL", "MERRIWETHER-PAXTON", ymd, "FL", "20260329")
     s = json.dumps(j)[:1500]
     print("STEDI MBI pat17475906:", s)
     json.dump(j, open("registers/stedi_mbi_17475906_%s.json" % STAMP, "w"), indent=1)

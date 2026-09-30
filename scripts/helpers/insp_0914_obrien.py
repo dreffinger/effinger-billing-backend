@@ -5,12 +5,12 @@
 #   on the 99489 add-on only (mcode7); full-visit resave (charge echo); re-list the batch and bypass Pattern 35790 with the
 #   FRESH error ids; then reset freq 1 + chargerebill on the Humana sequence so the corrected claim leaves as an original.
 # Never touches: missing-data errors, voided/paid charges, other patients.
-"""Usage: python3 insp_0914_obrien.py [--dry]"""
+"""Usage: python3 insp_0914_orwell.py [--dry]"""
 import amd, resave, freq1_visit, json, re, sys, time
 import xml.etree.ElementTree as ET
 dry = "--dry" in sys.argv
 amd.login_cached()
-LOG = open("insp_0914_obrien.log", "a")
+LOG = open("insp_0914_orwell.log", "a")
 def L(m): print(m, flush=True); LOG.write(m + "\n"); LOG.flush()
 S = json.load(open("scan_0912/summary_before.json"))
 BAD = "dcode1034545237"   # F31.9
@@ -18,7 +18,7 @@ targets = []
 for bid, vs in S["inspector"].items():
     for v in vs:
         if v["pid"] == "44953": targets.append((bid, v))
-L("=== O'Brien inspector visits: %d (dry=%s) ===" % (len(targets), dry))
+L("=== Orwell inspector visits: %d (dry=%s) ===" % (len(targets), dry))
 # Humana sequence on the chart
 x = amd.post(amd.msg("getdemographic", "demographics", {"patientid": "pat44953", "nocookie": "1"}), timeout=60)
 plans = [dict(i.attrib) for i in ET.fromstring(x).iter("insplan")]

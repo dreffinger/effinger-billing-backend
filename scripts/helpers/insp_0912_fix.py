@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (9/12 05:20 UTC inspector batch 127692 - 7 visits, all 117065068 hospitalization-from missing)
 # Anchors (most recent 99223 on/before DOS within 45 days, via gettxhistory):
-#   HOLLIS 08/26/2026, FENNER 09/03/2026, GARCIA 09/08/2026 (his 9/8 visit IS the 99223).
+#   HOLLIS 08/26/2026, FENNER 09/03/2026, GARLAND-G 09/08/2026 (his 9/8 visit IS the 99223).
 # Write hospitalizationfrom only (NEVER hospitalizationto), then full-visit resave with onhcfa=1, then re-list.
 import amd, resave, re, sys, time
 
@@ -14,9 +14,9 @@ JOBS = [  # (visitid, chargeid, cpt, hospfrom, tag)
     ('19454296', '23365369', '99233', '08/26/2026', 'HOLLIS 9/9'),
     ('19454280', '23365352', '99233', '09/03/2026', 'FENNER 9/10'),
     ('19454309', '23365382', '99233', '09/03/2026', 'FENNER 9/9'),
-    ('19454277', '23365349', '99232', '09/08/2026', 'GARCIA 9/10'),
-    ('19454285', '23365357', '99232', '09/08/2026', 'GARCIA 9/9'),
-    ('19454315', '23365388', '99223', '09/08/2026', 'GARCIA 9/8'),
+    ('19454277', '23365349', '99232', '09/08/2026', 'GARLAND-G 9/10'),
+    ('19454285', '23365357', '99232', '09/08/2026', 'GARLAND-G 9/9'),
+    ('19454315', '23365388', '99223', '09/08/2026', 'GARLAND-G 9/8'),
 ]
 
 def extins(vid, cpt, hf):

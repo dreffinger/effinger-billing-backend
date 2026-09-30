@@ -63,7 +63,7 @@ for t in targets:
     insorder=vis.get("insorder") or "1"
     seq=insorder.split(",")[0]
     if prof!="prof13":
-        L("SKIP %s profile=%s (not prof13) — Garcia/other, hold"%(vid,prof)); skip+=1; continue
+        L("SKIP %s profile=%s (not prof13) — Garland-G/other, hold"%(vid,prof)); skip+=1; continue
     if paid:
         L("SKIP %s now-settling (payment posted since scan)"%vid); skip+=1; continue
     # active proccodes on the visit (for extins per code) — from live detail (one charge) + siblings

@@ -74,7 +74,7 @@ for rid, txt in (("conway-shelby-17477775", "chart still has zero insurance plan
 app("wexford-shelagh-17471007", "human", "3pm ET 9/18: visit 19375395 still on the Unbilled snapshot ('Bill Insurance = No at charge level and charge has insurance balance', the MV $75.68 line) - unchanged, still yours: delete the line, set Bill Insurance with the carrier, or move the $75.68 to the patient balance.")
 app("bcbs-patient-balance-audit-0918", "na", "3pm ET 9/18: not worked this run (same blocker as 0710Z-1710Z: the CO-45 split needs the Availity CheckDetails rows re-parsed from the Check PDFs; the 80 full-charge $0-denial lines are denial decisions) - hold Florida Blue patient statements.")
 # rows of charts whose new HCA visits were cleared from the inspector (only rows that exist on the board)
-ROWS = {"17472546": "winslow-jr-ervin", "17477722": "dekle-tracey-17477722", "17477719": "mcdaniel-james-17477719", "17477706": "tredwell-rustin", "17472393": "tillery-wayne-17472393"}
+ROWS = {"17472546": "winslow-jr-erwin", "17477722": "denholt-tracen-17477722", "17477719": "macdowell-jasper-17477719", "17477706": "tredwell-rustin", "17472393": "tillotson-wainwright-17472393"}
 for pid, rid in ROWS.items():
     vs = fixed_by_pid.get(pid)
     if not vs: continue

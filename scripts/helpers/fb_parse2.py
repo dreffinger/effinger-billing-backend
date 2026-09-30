@@ -9,7 +9,7 @@ import re, json, os, glob, collections
 D = os.environ.get("SCANS_DIR", "/home/claude/scans") + ""; OCR = D + "/ocr"
 LINE = re.compile(r"^\s*([A-Z][A-Z0-9]{10,17})\s+(\d{8}[A-Z0-9])\s+(\d\d/\d\d/\d{4})\s+(\d\d/\d\d/\d{4})\s+(99\d{3}|G\d{4}|\d{5})\s+(?:(\d\d)\s+)?(?:(\d\d)\s+)?(\d{4})\s+"
                   r"\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s+\$?(-?[\d,]+\.\d\d)\s*([\d,\. ]*)$")
-HDR = re.compile(r"^\s*(\w{5})\s+(WILLIAM L EFFINGER|PAMELA P GARCIA)\s+(.+?)\s+([A-Z]{1,4}\d{6,12}|\d{9,12}|R\d{8})\s+\$?(-?[\d,]+\.\d\d)\s*$")
+HDR = re.compile(r"^\s*(\w{5})\s+(WILLIAM L EFFINGER|PAMELA P GARLAND-G)\s+(.+?)\s+([A-Z]{1,4}\d{6,12}|\d{9,12}|R\d{8})\s+\$?(-?[\d,]+\.\d\d)\s*$")
 REM = re.compile(r"Remarks/Reasons:\s*(.*)")
 REMCODE = re.compile(r"\(\s*\d+\s*\)\s*([A-Z0-9]{4,6})")
 LEG = re.compile(r"^\s*[\dlIiJoO,\]\)\|=_]*\s*([A-Z]{4,6})\s+[—_\-:]*\s*(.{8,})$")

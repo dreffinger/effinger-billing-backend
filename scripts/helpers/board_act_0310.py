@@ -13,7 +13,7 @@
 #   Penhale   - WOINS the two Medicare residuals ($113.02 + $142.98), no secondary.
 # Rules it uses: no group numbers; pay + write-off never above the open insurance balance; full-visit charge echo on every
 #   resave (void trap); hospitalizationfrom only, never hospitalizationto.
-# Never touches: Clack (needs the CARC first), Gray (already written off), Tillery (note only), any UNI20/BCBS aged balance.
+# Never touches: Clack (needs the CARC first), Gray (already written off), Tillotson (note only), any UNI20/BCBS aged balance.
 """Usage: python3 board_act_0310.py [--dry] [--only alcorn,brown,...]"""
 import amd, resave, add_ins, ins_update, freq1_visit, manual_post, patient_patch, json, re, sys, time, datetime
 import xml.etree.ElementTree as ET

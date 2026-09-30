@@ -2,7 +2,7 @@
 # Decides: nothing on AMD. Writes board_updates_2026-09-14T1510Z.json (Insurance Refresh Board inbox ops):
 #   - coalson-yvonne-17474210: answers William's 9/14 03:58Z note ("put the numbers here to paste into availity")
 #     with the Availity claim-status block for the 6 open Humana charges (read live from gettxhistory this run).
-#   - bull-thomas-17477723 / aet12-carrier-cpid / era-manual-post-0912: this slot's check lines (idempotent by src+when).
+#   - bull-thurlow-17477723 / aet12-carrier-cpid / era-manual-post-0912: this slot's check lines (idempotent by src+when).
 # Never touches: the board directly (no write_db) - the board applies this file when William opens it.
 import json, sys, time
 stamp = "2026-09-14T1510Z"; now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
@@ -23,7 +23,7 @@ ops = [
   "append": {"api": [{"src": "AMD gettxhistory - open HUM01 lines for the Availity lookup", "at": now, "text": availity}],
              "notes": [{"who": "Claude", "at": now, "text": "Per your 03:58Z note: the Availity numbers are in the blue box (member id, NPIs, TIN, every DOS/CPT/$ and visit id). All six Sept-Oct 2025 hospital lines are open at the billed amount, last sent 9/10/2026 freq-1. Post the Humana reason here and the next run acts (appeal, correct, or documented write-off)."}],
              "checks": [{"ok": "ok", "result": "6 open HUM01 charges $914 (9/29-10/4/2025), all billed 9/10/2026, paid $0; Availity block written to the row", "src": src, "when": "9/14"}]}},
- {"op": "upsert", "collection": "items", "id": "bull-thomas-17477723",
+ {"op": "upsert", "collection": "items", "id": "bull-thurlow-17477723",
   "append": {"checks": [{"ok": "no", "result": "chart still has zero insurance plans (getdemographic 15:15 UTC); no facesheet in hca/tmh/PCC/Claimocity folders or the parent since 9/14 04:49 UTC, Pam Gmail sweep newer_than:2d = 0, no board drop; visits 19454443/19454465 ($421) stay in Unbilled", "src": src, "when": "9/14"}]}},
  {"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid",
   "append": {"checks": [{"ok": "na", "result": "Exclusions 0 rows; still no claim run since 1700188 (9/12 21:09 UTC) - the 59 AET12 claims re-sent 04:20 UTC under the Standard Professional profile are decided by the next claim run", "src": src, "when": "9/14"}]}},

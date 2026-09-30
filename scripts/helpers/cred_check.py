@@ -5,8 +5,8 @@
 # ---
 """Usage: python3 cred_check.py   -> cred_check_YYYYMMDD.json + printed summary"""
 import requests, json, csv, io, datetime, os, sys
-NPIS = {"1629515325": "Effinger Health PA (group)", "1225327380": "William Effinger DO", "1235128869": "Pamela Garcia ARNP"}
-PEOPLE = [("EFFINGER", "WILLIAM"), ("GARCIA", "PAMELA")]; BUS = ["EFFINGER"]
+NPIS = {"1629515325": "Effinger Health PA (group)", "1225327380": "William Effinger DO", "1235128869": "Pamela Garland-G ARNP"}
+PEOPLE = [("EFFINGER", "WILLIAM"), ("GARLAND-G", "PAMELA")]; BUS = ["EFFINGER"]
 today = datetime.date.today(); stamp = today.strftime("%Y%m%d"); out = {"date": today.isoformat(), "nppes": {}, "nppes_changes": [], "revalidation": {}, "leie": None, "reminders": []}
 # 1. NPPES
 for npi, who in NPIS.items():

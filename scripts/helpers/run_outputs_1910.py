@@ -57,7 +57,7 @@ for pt, vid, dos, cpt, admit, ext, msg in admits:
     if vid == "19454659": extra = "; repointed to the 9/4 stay referral plan rplan18461941 (VA9011001288; plan readback unchanged, main plan untouched)"
     add("Claim Inspector", "cleared", pt, dos, "", "Hospitalization From Date empty (117065068)", "admission %s written (updextrainsinfo hospitalizationfrom only), full-visit resave onhcfa=1%s" % (admit, extra), visit=vid)
 add("Claim Inspector", "cleared", "PARKS,WILLIE LOVE", "09/02/2026", "", "Pattern 11256 unspecified laterality I69.359", "bypassed + logged to laterality_flag_log.md (no captured correction)", visit="19454663")
-add("Claim Inspector", "cleared", "DALRYMPLE,DANNY", "09/02/2026", "", "Pattern 11256 unspecified laterality M16.9", "bypassed + logged to laterality_flag_log.md (bilateral dcode lookup not captured)", visit="19454667")
+add("Claim Inspector", "cleared", "DALRYMPLE,DANE", "09/02/2026", "", "Pattern 11256 unspecified laterality M16.9", "bypassed + logged to laterality_flag_log.md (bilateral dcode lookup not captured)", visit="19454667")
 if n_in: add("Claim Inspector", "remaining", action="see scan_0912/summary_after.json: %d visits still listed" % n_in)
 for r in after.get("unbilled", []):
     err = r["_errs"][0] if r["_errs"] else ""
@@ -109,10 +109,10 @@ row("era-manual-post-0912", checks=[chk("ok" if (posted or auto_n or cleared) el
 row("availity-remits-backlog", checks=[chk("na", "No Availity PDF or Check/EFT export newer than the 0310Z pass in 'bht Optum era downloads' / 'treasury payments' (nothing modified after 05:00Z 9/15; every PDF there is in registers/availity_register.json, 98 files; the 9/14 Check/EFT CSV is reconciled) - nothing new to parse, post or reconcile; facesheet folders, board drops and Pam Gmail: nothing new.", SRC + " - ERA step 5(g)")])
 row("lowry-fenwick", checks=[chk("ok", "New HCA 99233 visit 9/13 (vst19454659) arrived on the MAIN referral plan with no admission date: admission 09/04/2026 written, repointed to the 9/4 stay's plan rplan18461941 (plan readback still VA9011001288; rplan18461940 still VA9010836682; main plan unchanged), onhcfa=1, inspector clear - goes to VA CCN on the next claim run with the 9/4 auth.")],
     notes=[{"who": "Claude", "at": NOW, "text": "9/13 visit pointed at the 9/4 stay's referral plan (VA9011001288) so it carries the auth; nothing needed from you."}])
-row("winslow-jr-ervin", checks=[chk("ok", "New HCA 99233 visit 9/13 (vst19454658) came through the feed with S81.801S as the only dx again; same 9/3 stay -> admission 09/03/2026 written, M86.9 (dcode1034545415) put in front per your 9/6 rule, full-visit resave onhcfa=1, Pattern 20389 advisory bypassed, inspector clear.")])
+row("winslow-jr-erwin", checks=[chk("ok", "New HCA 99233 visit 9/13 (vst19454658) came through the feed with S81.801S as the only dx again; same 9/3 stay -> admission 09/03/2026 written, M86.9 (dcode1034545415) put in front per your 9/6 rule, full-visit resave onhcfa=1, Pattern 20389 advisory bypassed, inspector clear.")])
 for rid, vid, txt in (("ashworth-shelagh", "19454660", "New HCA 99232 visit 9/13 (vst19454660): admission 09/08/2026 written, onhcfa=1, inspector clear - queued to Florida Blue on the next run"),
                       ("gainous-tracy-17477717", "19454655", "New HCA 99232 visit 9/13 (vst19454655): admission 09/11/2026 written, onhcfa=1, inspector clear - queued to UHCMA on the next run"),
-                      ("dekle-tracey-17477722", "19454657", "New HCA 99232 visit 9/13 (vst19454657): admission 09/10/2026 written, onhcfa=1, inspector clear - queued to UNI20 on the next run")):
+                      ("denholt-tracen-17477722", "19454657", "New HCA 99232 visit 9/13 (vst19454657): admission 09/10/2026 written, onhcfa=1, inspector clear - queued to UNI20 on the next run")):
     row(rid, checks=[chk("ok", txt)])
 json.dump({"schema": "irb-board-updates/1", "source": "backend billing run %s" % S, "created": NOW, "ops": ops}, open("board_updates_%s.json" % S, "w"), indent=1)
 print("wrote board_updates_%s.json" % S, len(ops), "ops")

@@ -1,5 +1,5 @@
-# PLAIN ENGLISH (Medicaid/SMMC: Garcia -> Effinger, rendering AND referring; William 9/22/2026, full set)
-# Decides: For every open Medicaid-type claim in the past year where Garcia is the rendering (prof15) or the chart's referring
+# PLAIN ENGLISH (Medicaid/SMMC: Garland-G -> Effinger, rendering AND referring; William 9/22/2026, full set)
+# Decides: For every open Medicaid-type claim in the past year where Garland-G is the rendering (prof15) or the chart's referring
 #          provider (rprov15): make Effinger both. A = profile swap prof15->prof13 (AMD voids + recreates the charges on a new visit)
 #          with refplan set to an rprov13 main plan in the same resave; B = refplan repoint only (no void). Then freq-1 + rebill the
 #          live charges on the sequence of the plan that holds the balance. FCC (FLO99) is the SMMC MMA plan for most of its members (271): keep FCC
@@ -13,12 +13,12 @@ import xml.etree.ElementTree as ET
 import fix_referring_provider as frp
 W="/home/claude/unbilled"; STAMP=datetime.date.today().isoformat()
 TODAYS=(STAMP,(datetime.date.today()-datetime.timedelta(days=1)).isoformat())   # AMD server clock (ET) can be a day behind the container (UTC)
-LOGF=open(os.environ.get("LOGF",f"{W}/medicaid_garcia_fix_{STAMP}.log"),"a")
+LOGF=open(os.environ.get("LOGF",f"{W}/medicaid_garland-g_fix_{STAMP}.log"),"a")
 def L(m): print(m,flush=True); LOGF.write(m+"\n"); LOGF.flush()
 CARMAP=json.load(open(f"{W}/carriers_rich.json")); CODE2CAR={v[0]:k for k,v in CARMAP.items()}
 SMMC={"car6194","car6174","car42019","car41991","car41992"}; MCAD="car6113"; FCC="car42008"
-tgt=json.load(open(os.environ.get("TGT",f"{W}/medicaid_garcia_targets_2026-09-22.json")))
-DONE=os.environ.get("DONEF",f"{W}/medicaid_garcia_done.json"); done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
+tgt=json.load(open(os.environ.get("TGT",f"{W}/medicaid_garland-g_targets_2026-09-22.json")))
+DONE=os.environ.get("DONEF",f"{W}/medicaid_garland-g_done.json"); done=set(json.load(open(DONE))) if os.path.exists(DONE) else set()
 BUDGET=float(sys.argv[1]) if len(sys.argv)>1 else 230
 FCC_MODE=os.environ.get("FCC_MODE")=="1"   # 9/22: resubmit FCC balances to FCC (Medicaid FFS / old SMMC out of the billing order; rebill even when already Effinger)
 def carseq(ins, carid):
@@ -45,7 +45,7 @@ def echo(allc):
 def resave_visit(v,pat,chg,profile,refplan,insorder):
     va=f'id="{v.get("id")}" date="{v.get("date")}" profile="{profile}" insorder="{insorder}" refplan="{refplan}" facility="{v.get("facility")}" force="1"'
     return amd.post(amd.msg("updvisitwithnewcharges","chargeentry",{"patientid":pat.get("id"),"episodeid":v.get("episode"),"approval":"1","inspectorenabled":"1","getfinancials":"-1","customclaimfieldsavailable":"1","nocookie":"1"},f"<visit {va}><chargelist>{chg}</chargelist></visit>"))
-CONS=f"{W}/medicaid_garcia_consumed.json"; consumed=set(json.load(open(CONS))) if os.path.exists(CONS) else set()
+CONS=f"{W}/medicaid_garland-g_consumed.json"; consumed=set(json.load(open(CONS))) if os.path.exists(CONS) else set()
 def recreated(pid, origvid, sigs, orig_date=None):
     """active charges created today on a NEW visit matching (proc,fee) of the voided originals"""
     found=[]

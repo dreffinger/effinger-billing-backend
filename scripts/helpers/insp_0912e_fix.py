@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (9/12 19:50 UTC 3pm ET run, inspector batch 127700 - 2 visits, both 117065068 hospitalization-from missing)
 # Anchors (most recent 99223 on/before DOS within 45 days, via gettxhistory):
-#   SEDGWICK pat17473658 -> 99223 09/08/2026; PELLAM CHARLES E pat17477710 -> 99223 09/09/2026 (both 99232 on 9/10/2026, HCA fac29).
+#   SEDGWICK pat17473658 -> 99223 09/08/2026; PELLAM CHESTER E pat17477710 -> 99223 09/09/2026 (both 99232 on 9/10/2026, HCA fac29).
 # Write hospitalizationfrom only (NEVER hospitalizationto), then full-visit resave with onhcfa=1, then re-list.
 import amd, resave, re, sys, time
 

@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Orme Simply rebill under Effinger, 9/12 7am ET run): William 08:50 UTC on board row orme-cotterell-simply-npi:
 # "rebill these with effinger 122 npi as the rendering provider". The rendering provider on an AMD visit is its profile:
-# prof15 = Garcia (the 7 rejected visits), prof13 = Effinger (her Jun-Aug 2026 visits that were accepted). Resave each of the
+# prof15 = Garland-G (the 7 rejected visits), prof13 = Effinger (her Jun-Aug 2026 visits that were accepted). Resave each of the
 # 7 excluded visits with profile=prof13 (full charge echo), freq-1 rebill the Simply sequence (2), complete the exclusions.
 # Never touches: her other visits, balances, plans.
 import amd, resave, era_post, freq1_visit, re, time, json

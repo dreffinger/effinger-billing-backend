@@ -5,7 +5,7 @@
 #       resave with insorder + onhcfa=1 (charge echo, void trap), move a blank address line 1 up from line 2, then release.
 #   (b) the 18 re-created Medicaid visits (prof13 re-render, never billed): freq-1 + chargerebill on the Medicaid car6113 sequence,
 #       then release.  (c) 'prior payor' rows whose primary claim is days old and unanswered (9/8 rule): release.
-#   (d) O'Brien 'charges have errors' rows: release once the inspector batches are clean.
+#   (d) Orwell 'charges have errors' rows: release once the inspector batches are clean.
 # Never touches: the 11 'payment reason codes' rows (2024 FLO02 reversals - HELD, reported), Bull (no coverage found - board),
 #   any UNI20/BCBS aged balance, group numbers, hospitalizationto.
 """Usage: python3 unbilled_0914_fix.py [--dry] [--only a,b,c,d]"""
@@ -105,12 +105,12 @@ if "c" in only:
     pp = [r["id"] for r in S["unbilled"] if r["_errs"][0].startswith("A payment from the prior payor") and r["id"] not in RECREATED]
     L("--- (c) prior-payor rows to release: %d ---" % len(pp)); REL += pp
 
-# ---------------- (d) O'Brien rows ----------------
+# ---------------- (d) Orwell rows ----------------
 if "d" in only:
     b = amd.call('action="getclaiminspectorbatches" class="chargeentry" nocookie="1"'); bl = re.findall(r'<batch id="([^"]+)"', b)
     ob = [r["id"] for r in S["unbilled"] if r["patientid"] == "44953"]
-    if bl: L("--- (d) inspector batches still open %s -> O'Brien rows %s NOT released" % (bl, ob))
-    else: L("--- (d) inspector clean -> release O'Brien rows %s" % ob); REL += ob
+    if bl: L("--- (d) inspector batches still open %s -> Orwell rows %s NOT released" % (bl, ob))
+    else: L("--- (d) inspector clean -> release Orwell rows %s" % ob); REL += ob
 
 # ---------------- release ----------------
 REL = list(dict.fromkeys(REL))
