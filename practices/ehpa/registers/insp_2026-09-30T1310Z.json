@@ -1,0 +1,140 @@
+{
+ "stamp": "2026-09-30T1310Z",
+ "live": true,
+ "visits": [
+  {
+   "batch": "127783",
+   "vid": "19455623",
+   "pid": "17477638",
+   "pattern": "Pattern 35790",
+   "errs": [
+    [
+     "395517",
+     "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455623, Line ID 23366977, that has received an edit with a Review status.Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455623, Line ID 23366977, that has received an edit with a Review status."
+    ]
+   ],
+   "charges": [
+    "23366977",
+    "23366978"
+   ],
+   "gate": [
+    {
+     "cid": "23366977",
+     "cpt": "pcode492676",
+     "mods": [],
+     "dx": [
+      "I63.9",
+      "I10",
+      "I48.91",
+      "E78.5",
+      "C61",
+      "R27.0"
+     ],
+     "first_never_primary": false
+    },
+    {
+     "cid": "23366978",
+     "cpt": "pcode492677",
+     "mods": [
+      "25"
+     ],
+     "dx": [
+      "I63.9",
+      "I10",
+      "I48.91",
+      "E78.5",
+      "C61",
+      "R27.0"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": "clean after swap",
+   "i63_swap": "2 charges edited; 2 live (was 2)",
+   "errs_after_swap": []
+  },
+  {
+   "batch": "127783",
+   "vid": "19455801",
+   "pid": "17476681",
+   "pattern": "Pattern 11256",
+   "errs": [
+    [
+     "395518",
+     "Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate."
+    ]
+   ],
+   "charges": [
+    "23367254",
+    "23367255"
+   ],
+   "gate": [
+    {
+     "cid": "23367254",
+     "cpt": "pcode492676",
+     "mods": [],
+     "dx": [
+      "G12.21",
+      "S70.00XA",
+      "M25.559",
+      "M19.90"
+     ],
+     "first_never_primary": false
+    },
+    {
+     "cid": "23367255",
+     "cpt": "pcode492677",
+     "mods": [],
+     "dx": [
+      "G12.21",
+      "S70.00XA",
+      "M25.559",
+      "M19.90"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": true,
+   "i63_swap": null,
+   "only_adv": true,
+   "gate_ok": true,
+   "mod_ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-76pq7\" lst=\"09/30/2026 16:21:35\"><Results retval=\"0\" /><Error /></PPMDResults>"
+  },
+  {
+   "batch": "127793",
+   "vid": "19456218",
+   "pid": "17476681",
+   "pattern": "Pattern 11256",
+   "errs": [
+    [
+     "395519",
+     "Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) M25559 and S7000XA defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate."
+    ]
+   ],
+   "charges": [
+    "23367842"
+   ],
+   "gate": [
+    {
+     "cid": "23367842",
+     "cpt": "pcode65119",
+     "mods": [],
+     "dx": [
+      "G12.21",
+      "S70.00XA",
+      "M25.559",
+      "M19.90"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": true,
+   "i63_swap": null,
+   "only_adv": true,
+   "gate_ok": true,
+   "mod_ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-76pq7\" lst=\"09/30/2026 16:21:37\"><Results retval=\"0\" /><Error /></PPMDResults>"
+  }
+ ]
+}
