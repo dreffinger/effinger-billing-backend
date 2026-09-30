@@ -9,16 +9,16 @@ VOID-TRAP DISCIPLINE:
  - re-verify live: profile still prof15 AND not settling (no posted payment) BEFORE each swap
  - after swap: locate NEW live charges, resubmissioncode=1, rebill on the Medicaid sequence
 No FS modifier (these are Effinger's own visits, not split/shared).
-Writes garland_g_to_effinger.log ; resumable via DONE lines.  --dry to preview.
+Writes garland-g_to_effinger.log ; resumable via DONE lines.  --dry to preview.
 """
 import sys, json, os, time, re
 sys.path[:0]=['/home/claude/effinger-billing-backend/core']
 import amd, resave
 import xml.etree.ElementTree as ET
 
-EFFINGER="prof13"; GARLAND_G="prof15"
+EFFINGER="prof13"; GARLAND-G="prof15"
 DRY="--dry" in sys.argv
-targets=json.load(open("/home/claude/unbilled/hold_prof15_garland_g.json"))
+targets=json.load(open("/home/claude/unbilled/hold_prof15_garland-g.json"))
 rows=json.load(open("/home/claude/unbilled/medicaid_open.json"))
 # map visit -> its charge detail ids (to seed visit_charges)
 byvisit={}
@@ -27,7 +27,7 @@ for r in rows:
         c=c.strip()
         if c: byvisit.setdefault(r["visitid"],[]).append(c)
 
-LOG="/home/claude/unbilled/garland_g_to_effinger.log"
+LOG="/home/claude/unbilled/garland-g_to_effinger.log"
 done=set()
 if os.path.exists(LOG):
     for l in open(LOG):
@@ -37,7 +37,7 @@ f=open(LOG,"a")
 def L(m): print(m,flush=True); f.write(m+"\n"); f.flush()
 
 # pre/post active-charge counts per patient for the void scan
-prepost="/home/claude/unbilled/garland_g_prepost.json"
+prepost="/home/claude/unbilled/garland-g_prepost.json"
 counts=json.load(open(prepost)) if os.path.exists(prepost) else {}
 
 def active_charges_of_visit(vis_elem_charges):
@@ -70,7 +70,7 @@ for t in targets:
         rt=ET.fromstring(resave.detail(cid0))
         paid=any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in rt.iter("payment"))
     except Exception: pass
-    if prof!=GARLAND_G:
+    if prof!=GARLAND-G:
         L("SKIP v%s profile=%s (not prof15 — already moved or other)"%(vid,prof)); skip+=1; continue
     if paid:
         L("SKIP v%s now-settling (payment posted since scan)"%vid); skip+=1; continue

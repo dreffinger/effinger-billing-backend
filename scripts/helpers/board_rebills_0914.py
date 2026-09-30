@@ -96,13 +96,13 @@ if "whitby" in only:
     for vid, lines in dec.items():
         if any(x["paid"] for x in lines): L("  skip v%s paid" % vid); continue
         L("  v%s %s preauth resave -> %s" % (vid, lines[0]["dos"], resave_full(lines[0]["cid"], preauth="251203513351")))
-        rebill(vid, lines[0]["cid"], ae[0]["sequence"], "white_dec")
-    st = stedi_elig("60054", first, last, dob, ae[0]["subscribernum"], "20251027", pid, "white_oct") if ae else "no plan"
-    L("  AET07 status at 10/27/2025: %s" % st); OUT["white_oct_status"] = st
+        rebill(vid, lines[0]["cid"], ae[0]["sequence"], "whitby_dec")
+    st = stedi_elig("60054", first, last, dob, ae[0]["subscribernum"], "20251027", pid, "whitby_oct") if ae else "no plan"
+    L("  AET07 status at 10/27/2025: %s" % st); OUT["whitby_oct_status"] = st
     if st == "ACTIVE":
         for vid, lines in oct_.items():
             if any(x["paid"] for x in lines): L("  skip v%s paid" % vid); continue
-            rebill(vid, lines[0]["cid"], ae[0]["sequence"], "white_oct")
+            rebill(vid, lines[0]["cid"], ae[0]["sequence"], "whitby_oct")
     else: L("  Oct/Nov visits NOT rebilled (%s) -> report" % st)
 
 if "bexley" in only:
