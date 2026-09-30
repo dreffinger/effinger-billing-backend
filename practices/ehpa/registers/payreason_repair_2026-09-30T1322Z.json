@@ -1,0 +1,156 @@
+{
+ "stamp": "2026-09-30T1322Z",
+ "mode": "dry",
+ "results": [
+  {
+   "visitid": "19392264",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "next_carrier": "TRI05",
+   "checkid": null,
+   "codeless": [
+    [
+     "22464223",
+     "24657025",
+     0.0,
+     "815876983"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "22464223",
+     "22496112",
+     33.76,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19392365",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "next_carrier": "TRI05",
+   "checkid": null,
+   "codeless": [
+    [
+     "22464362",
+     "24657026",
+     0.0,
+     "815876983"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "22464362",
+     "22496113",
+     33.76,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19392381",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "next_carrier": "TRI05",
+   "checkid": null,
+   "codeless": [
+    [
+     "22464390",
+     "24657027",
+     0.0,
+     "815906990"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "22464390",
+     "22496114",
+     33.76,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19392525",
+   "pid": "17470697",
+   "name": "SIMCOE,ANNIKA",
+   "next_carrier": "TRI05",
+   "checkid": null,
+   "codeless": [
+    [
+     "22464512",
+     "24657028",
+     0.0,
+     "815906990"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "22464512",
+     "22496115",
+     33.76,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454642",
+   "pid": "17476020",
+   "name": "VICKERS,JENIFER",
+   "next_carrier": "MCAD",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365720",
+     "24657024",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365720",
+     "22496111",
+     152.86,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454667",
+   "pid": "17473245",
+   "name": "DALRYMPLE,DANE",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365745",
+     "24657016",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365745",
+     "22496103",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  }
+ ]
+}
