@@ -2,12 +2,18 @@
   "permissions": {
     "allow": [
       "Bash(cd *)",
+      "Bash(timeout *)",
+      "Bash(python3 *)",
+      "Bash(python3 -*)",
+      "Bash(python *)",
+      "Bash(pip install *)",
       "Bash(bash tools/nightly_bootstrap.sh *)",
       "Bash(bash tools/nightly_bootstrap.sh)",
       "Bash(bash tools/bootstrap/bootstrap_workspace.sh *)",
       "Bash(python3 tools/bootstrap/ws_bundle.py *)",
       "Bash(python3 tools/mirror/mirror.py *)",
       "Bash(python3 tools/mirror/apply_bundle.py *)",
+      "Bash(python3 tools/mirror/phi_gate.py *)",
       "Bash(python3 columns_scan.py *)",
       "Bash(python3 unbilled_repair.py *)",
       "Bash(python3 payreasons.py *)",
@@ -38,7 +44,9 @@
       "Bash(python3 stedi.py *)",
       "Bash(python3 add_ins.py *)",
       "Bash(python3 ins_update.py *)",
+      "Bash(python3 move_to_ins.py *)",
       "Bash(python3 rebill_patient_year.py *)",
+      "Bash(python3 txh.py *)",
       "Bash(python3 cred_check.py *)",
       "Bash(python3 cred_check.py)",
       "Bash(python3 build_money.py *)",
@@ -46,10 +54,21 @@
       "Bash(python3 pay_scan.py *)",
       "Bash(python3 pay_scan.py)",
       "Bash(python3 -m py_compile *)",
+      "Bash(ls *)", "Bash(cat *)", "Bash(head *)", "Bash(tail *)", "Bash(wc *)", "Bash(grep *)", "Bash(sed -n *)", "Bash(find *)",
+      "Bash(cp *)", "Bash(mkdir *)", "Bash(ln -s *)", "Bash(ln -sfn *)", "Bash(chmod 600 *)", "Bash(base64 -d *)", "Bash(rm *.b64)",
+      "Bash(curl -sS *)",
       "Bash(git fetch *)", "Bash(git pull *)", "Bash(git checkout *)", "Bash(git add *)", "Bash(git rm *)",
-      "Bash(git commit *)", "Bash(git status *)", "Bash(git log *)", "Bash(git diff *)", "Bash(git branch *)",
-      "Bash(git push origin main)", "Bash(git push origin HEAD:*)", "Bash(git push -u origin *)",
-      "Edit(/home/claude/unbilled/**)", "Write(/home/claude/unbilled/**)", "Read(/home/claude/unbilled/**)"
+      "Bash(git commit *)", "Bash(git status *)", "Bash(git log *)", "Bash(git diff *)", "Bash(git branch *)", "Bash(git merge *)", "Bash(git show *)",
+      "Bash(git push origin main)", "Bash(git push origin HEAD:*)", "Bash(git push -u origin *)", "Bash(git push -q -u origin *)",
+      "Edit(/home/claude/unbilled/**)", "Write(/home/claude/unbilled/**)", "Read(/home/claude/unbilled/**)",
+      "Edit(/home/claude/effinger-billing-backend/**)", "Write(/home/claude/effinger-billing-backend/**)",
+      "Edit(/home/user/effinger-billing-backend/**)", "Write(/home/user/effinger-billing-backend/**)",
+      "Artifact", "ArtifactData",
+      "mcp__Google_Drive__*", "mcp__Google-Drive__*",
+      "mcp__github__*",
+      "mcp__Gmail__search_threads", "mcp__Gmail__get_thread",
+      "mcp__Claude_Code_Remote__send_later", "mcp__Claude_Code_Remote__subscribe_pr_activity",
+      "PushNotification"
     ]
   }
 }
