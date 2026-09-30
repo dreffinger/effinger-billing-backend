@@ -16,7 +16,7 @@ SRC = "/home/claude/unbilled"; DST = "/home/claude/effinger-billing-backend"
 # --- pseudonyms -------------------------------------------------------------
 # Patient surnames and first names are swapped for stable pseudonyms on the way
 # into the mirror. The map holds real names, so it lives in the workspace and is
-# never committed. Clinician names (Garcia, Pam), the practice name and payers
+# never committed. Clinician names (Garland-G, Pam), the practice name and payers
 # are not in the map and pass through untouched. Suffixes are preserved because
 # only the name token is mapped: "<name> Jr" -> "<pseudonym> Jr".
 # Fail closed: without the map this refuses to build rather than publish names.
@@ -129,7 +129,7 @@ A second loop polls Stedi Insurance Discovery every 30 minutes (`eligibility/dis
 """)
 os.makedirs(DST + "/practices/ehpa", exist_ok=True)
 json.dump({"code": "ehpa", "name": "Effinger Health PA", "dba": "North Florida Senior Care", "group_npi": "1629515325", "tin": "81-4723941",
-           "providers": {"1225327380": "William L. Effinger DO", "1235128869": "Pamela Garcia ARNP"},
+           "providers": {"1225327380": "William L. Effinger DO", "1235128869": "Pamela Garland-G ARNP"},
            "address": "1891 Capital Circle NE Suite 9, Tallahassee FL 32308-4486", "phone_fax": "888-698-2714",
            "amd": {"office_key": "152563", "api_user": "POI0712", "xml_gateway": "processrequest.aspx", "rest": "https://pm-api-103.advancedmd.com/api"},
            "stedi": {"enrolled_npi": "1629515325", "key": "secrets/stedi.key (never in git)"},

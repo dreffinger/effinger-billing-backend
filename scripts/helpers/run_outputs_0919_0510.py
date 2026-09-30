@@ -56,9 +56,9 @@ LISLE_TXT = ("Unbilled column 1am ET 9/19: the 9/17 99232 (v19455048, $111) land
              "(insorder 1,2, admit 09/14/2026, onhcfa 1 already on it). The 9/14-9/16 UMR visits show billdate 09/18/2026.")
 PELLAM_TXT = ("Preventive: same MSP rule as pat17477774 - the Medicare seq-2 plan (ins9519460) behind the Cigna group plan now carries MSP code 12 (working aged, the CMS record type from the 9/18 cascade) so the "
                "Unbilled column will not hold his visits for it (updateinsurance success 1, readback 12).")
-HARRIS_NEED = ("WILLIAM: admission facesheet or card for %s (DOB %s, HCA Florida Capital Hospital, admitted 9/16/2026). Age 73 but CMS has no Medicare record (Stedi MBI lookup with the chart SSN and without it: ERR 72); "
+HARWICK_NEED = ("WILLIAM: admission facesheet or card for %s (DOB %s, HCA Florida Capital Hospital, admitted 9/16/2026). Age 73 but CMS has no Medicare record (Stedi MBI lookup with the chart SSN and without it: ERR 72); "
                "Stedi discovery (FL, DOS 9/16/2026): coveragesFound 0; no facesheet in the HCA/TMH/PCC/Claimocity folders, no Pam email, no board drop; no other chart of that name in AMD. Address line 1 filled "
-               "(5294 WATER VALLEY DR; %s). 2 visits (99223 9/16 v19455057, 99232 9/17 v19455030 = $421) wait in Unbilled 'Insurance order is missing'." % (IDS["harris_patient"], IDS["harris_dob"], IDS["harris_phone_note"]))
+               "(5294 WATER VALLEY DR; %s). 2 visits (99223 9/16 v19455057, 99232 9/17 v19455030 = $421) wait in Unbilled 'Insurance order is missing'." % (IDS["harwick_patient"], IDS["harwick_dob"], IDS["harwick_phone_note"]))
 REGISTRY_TXT = ("No - being on the board does not fix it. At 04:46-04:48Z (while you were on it) the page re-applied the inbox files again: the rows' versions bumped and the registry's applied map is still only the 9/12-9/14 "
                 "files (meta/drive_sync version 1384, lastCheck 04:48:56Z). Until the page's registry write is repaired (a chat session with write_db re-registering the 9/15-9/19 board_updates / denials_updates file ids "
                 "as applied, as was done 9/14), or the 9/15-9/18 files are moved out of 'board inbox' into 'ingested before 9-14' by hand, every open re-applies them and the pseudonymized duplicate rows come back. "
@@ -109,7 +109,7 @@ app(IDS["lazarchik"], "human", LAZ_TXT, "One UI edit for you: clear the Pre-Auth
     {"status": "william", "need": LAZ_TXT})
 app(IDS["lewis"], "ok", LISLE_TXT, None, {"status": "claude"})
 app(IDS["johnson"], "ok", PELLAM_TXT, None, {"status": "claude"})
-ops.append({"op": "upsert", "collection": "items", "id": IDS["harris"], "set": {"patient": IDS["harris_patient"], "dob": IDS["harris_dob"], "facility": "HCA FLORIDA CAPITAL HOSPITAL", "amdid": "17477798", "mbi": "", "need": HARRIS_NEED, "amount": 421, "status": "william",
+ops.append({"op": "upsert", "collection": "items", "id": IDS["harris"], "set": {"patient": IDS["harwick_patient"], "dob": IDS["harwick_dob"], "facility": "HCA FLORIDA CAPITAL HOSPITAL", "amdid": "17477798", "mbi": "", "need": HARWICK_NEED, "amount": 421, "status": "william",
     "why": "Unbilled column 9/19: new chart from the Claimocity feed with no insurance plan ('Insurance order is missing on visit')", "created": NOW},
     "append": {"checks": [{"ok": "human", "src": SRC + " - insurance cascade", "result": "Cascade exhausted: no plan on the chart; Stedi MBI lookup with the chart SSN and without it: ERR 72; Stedi discovery (FL, DOS 9/16/2026): coveragesFound 0; lookuppatient: no other chart of that name; no facesheet in the HCA/TMH/PCC/Claimocity folders, no Pam email, no board drop. Address line 1 filled (street moved up from line 2). Visits 19455057 (99223 9/16), 19455030 (99232 9/17) = $421 stay in Unbilled.", "when": W}],
                "notes": [{"who": "Claude", "text": "Created by the %s run. Every automated source is exhausted - your turn for the facesheet / card (HCA Omnissa).", "at": NOW}]}})

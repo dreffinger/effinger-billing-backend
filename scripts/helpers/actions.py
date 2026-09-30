@@ -32,8 +32,8 @@ for acct, rs in fcc_by_acct.items():
     state = ("OPEN ins $%.2f of $%.2f" % (openins, fee)) if openins else ("PATIENT BAL $%.2f" % openpat if openpat else "SETTLED") + " | paid by %s" % paid_by
     if b == "76":
         if openins:
-            add("WRITE-OFF (your OK)", "FCC (FLO99) secondary", r0["patient"], acct, pid, dos, cpts, billed, state, plans, "FCC 76 'provider validation state requirements' on the Medicare crossover (Garcia NF visit)",
-                "Medicare paid; the coinsurance ($%.2f) is what FCC refused. FCC's 99309 allowance ($70.62) is below what Medicare paid, so even a validated crossover pays $0-3 -> write off WOCAID2ND (dual, never patient). Credentialing: Garcia's Florida Medicaid/FCC provider validation is the root cause (see ADMIN)." % openins,
+            add("WRITE-OFF (your OK)", "FCC (FLO99) secondary", r0["patient"], acct, pid, dos, cpts, billed, state, plans, "FCC 76 'provider validation state requirements' on the Medicare crossover (Garland-G NF visit)",
+                "Medicare paid; the coinsurance ($%.2f) is what FCC refused. FCC's 99309 allowance ($70.62) is below what Medicare paid, so even a validated crossover pays $0-3 -> write off WOCAID2ND (dual, never patient). Credentialing: Garland-G's Florida Medicaid/FCC provider validation is the root cause (see ADMIN)." % openins,
                 "medium", openins, page)
         else:
             add("INFO (already settled)", "FCC (FLO99) secondary", r0["patient"], acct, pid, dos, cpts, billed, state, plans, "FCC 76 on the Medicare crossover", "Nothing to do - Medicare paid and the coinsurance was already written off", "none", 0, page)

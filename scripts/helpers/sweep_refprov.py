@@ -1,5 +1,5 @@
 # PLAIN ENGLISH (referring-provider sweep, standing nightly step)
-# Decides: Which charts still default to Garcia (rprov15) as referring provider while carrying open prof13 (Effinger) visits,
+# Decides: Which charts still default to Garland-G (rprov15) as referring provider while carrying open prof13 (Effinger) visits,
 #          and fixes them on the back end: addreferralplan ismain=1 refprov=rprov13 (becomes the chart's main plan; the old one
 #          is demoted), full-charge repoint of every open prof13 visit on the old plan, freq-1 rebill on the VISIT'S OWN sequence.
 # Rules it uses: void-trap discipline on every resave (all active charges echoed, charge count verified); never touches
@@ -22,7 +22,7 @@ if __name__ == "__main__":
     amd.login_cached(); pids = all_open_pids(); hits = []
     for pid in pids:
         ref, ins = frp.plans(pid); main = [p for p in ref if p.get("ismain") == "1"]
-        if main and main[0].get("refprov") == frp.GARCIA_RPROV: hits.append(pid)
+        if main and main[0].get("refprov") == frp.GARLAND-G_RPROV: hits.append(pid)
         time.sleep(0.2)
     frp.L(f"sweep {STAMP}: {len(pids)} charts with open balances, {len(hits)} still default to rprov15: {hits[:40]}")
     if a.dry: sys.exit(0)

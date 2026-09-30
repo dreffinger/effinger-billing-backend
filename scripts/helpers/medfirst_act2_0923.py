@@ -92,7 +92,7 @@ def rebill_vids(pid): return [vid for vid, a in ROWS[pid]["plan"] if a == "REBIL
 
 # --- ORIGINAL MEDICARE: Medicare first, freq-1 rebill of the visits the sweep marked REBILL_TO_MEDICARE ---------------------------
 # NOT here (9/23 finding): the 1/27/2026 CCM visits carry Medicare's $0 deductible adjudication (PR1) - the balance is the QMB/Medicaid
-# secondary's, never a Medicare rebill; and the 194542xx January-February visits are the 9/10 Garcia->Effinger RE-CREATED Medicaid-only
+# secondary's, never a Medicare rebill; and the 194542xx January-February visits are the 9/10 Garland-G->Effinger RE-CREATED Medicaid-only
 # visits (digest 2026-09-20T0910Z) - their Medicare claim lives on the original visit, so a Medicare rebill would be a duplicate.
 MED = ["17476042", "46692", "17470802", "21885", "17473661", "17477529", "23617", "25541"]
 for pid in MED:

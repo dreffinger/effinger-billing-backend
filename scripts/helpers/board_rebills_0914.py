@@ -3,7 +3,7 @@
 #   DIETER pat17469541: SUN01 member on file matches the facesheet -> freq-1 rebill the one open charge on seq 1.
 #   COLLINS pat17477059: BCBS member matches the facesheet -> Stedi BCBSF eligibility at the July 2026 DOS; ACTIVE -> freq-1
 #     rebill the 5 July visits on the BCBS seq; INACTIVE -> reported for William's patient-responsibility rule (no write-off here).
-#   WHITE RONALD pat17474496: Dec 2025 visits (12/2-12/5) resaved with preauth 251203513351 (full charge echo) + freq-1 rebill
+#   WHITBY RONALD pat17474496: Dec 2025 visits (12/2-12/5) resaved with preauth 251203513351 (full charge echo) + freq-1 rebill
 #     on the AET07 seq; Oct/Nov 2025 visits -> Stedi 60054 eligibility at 10/27/2025; ACTIVE -> freq-1 rebill, else reported.
 #   BEXLEY pat17475817: facesheet says SUNSHINE AMBETTER HIX (AMB03) U9896931601 eff 3/14/2026, auth IP5065597859 -> add AMB03
 #     (no group number), end-date SUN01 3/13/2026, set the two open visits' insorder to the AMB03 seq with the preauth, freq-1 rebill.
@@ -86,7 +86,7 @@ if "collins" in only:
     else: L("  NOT rebilled -> report for William (patient-responsibility rule)")
 
 if "white" in only:
-    pid = "17474496"; L("--- WHITE RONALD pat%s ---" % pid)
+    pid = "17474496"; L("--- WHITBY RONALD pat%s ---" % pid)
     pa, pl = demo(pid); ae = [p for p in pl if p.get("carrier") == "car6047" and not p.get("enddate")]
     last, first = (pa.get("name") or ",").split(",")[0].strip(), (pa.get("name") or ",").split(",")[1].strip().split()[0]
     dob = datetime.datetime.strptime(pa.get("dob"), "%m/%d/%Y").strftime("%Y%m%d")
@@ -96,13 +96,13 @@ if "white" in only:
     for vid, lines in dec.items():
         if any(x["paid"] for x in lines): L("  skip v%s paid" % vid); continue
         L("  v%s %s preauth resave -> %s" % (vid, lines[0]["dos"], resave_full(lines[0]["cid"], preauth="251203513351")))
-        rebill(vid, lines[0]["cid"], ae[0]["sequence"], "white_dec")
-    st = stedi_elig("60054", first, last, dob, ae[0]["subscribernum"], "20251027", pid, "white_oct") if ae else "no plan"
-    L("  AET07 status at 10/27/2025: %s" % st); OUT["white_oct_status"] = st
+        rebill(vid, lines[0]["cid"], ae[0]["sequence"], "whitby_dec")
+    st = stedi_elig("60054", first, last, dob, ae[0]["subscribernum"], "20251027", pid, "whitby_oct") if ae else "no plan"
+    L("  AET07 status at 10/27/2025: %s" % st); OUT["whitby_oct_status"] = st
     if st == "ACTIVE":
         for vid, lines in oct_.items():
             if any(x["paid"] for x in lines): L("  skip v%s paid" % vid); continue
-            rebill(vid, lines[0]["cid"], ae[0]["sequence"], "white_oct")
+            rebill(vid, lines[0]["cid"], ae[0]["sequence"], "whitby_oct")
     else: L("  Oct/Nov visits NOT rebilled (%s) -> report" % st)
 
 if "baxley" in only:

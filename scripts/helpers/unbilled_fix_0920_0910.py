@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Unbilled 'prior payor' fix + release, 5am ET 9/20/2026 run 2026-09-20T0910Z)
 # Decides: two kinds of 'A payment from the prior payor is required' rows.
-#  (1) RE-CREATED MEDICAID VISITS (the 9/10 Garcia->Effinger profile swap re-created 19 Jan-Feb 2026 SNF visits as new visit ids;
+#  (1) RE-CREATED MEDICAID VISITS (the 9/10 Garland-G->Effinger profile swap re-created 19 Jan-Feb 2026 SNF visits as new visit ids;
 #      charge carrier blank, never billed, insbilled 0): their visit insorder still reads the chart default (Medicare first), so
 #      every chargerebill on Medicaid's sequence queued a SECONDARY claim that AMD holds for the primary's payment - releasing them
 #      (9/11, 9/16, 9/17, 9/20 0510Z) never sent them. Fix = the skill's 'bill a non-primary plan without reordering' rule:
