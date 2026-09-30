@@ -1072,6 +1072,30 @@
     "era",
     "recipe"
    ]
+  },
+  {
+   "id": "payments-era/addpayments-era-linked-two-writeoffs",
+   "folder": "Payments & ERA",
+   "name": "addpayments — ERA-linked $0 post with TWO write-offs (Medicare contractual + Medicaid coinsurance) on one charge",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml",
+    "Cookie": "token={{token}}"
+   },
+   "body": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"era\" amount=\"{{pay}}\" paycode=\"PE\" woamount=\"{{wo1_plus_wo2}}\" paymethod=\"{{paymethod}}\" carrierid=\"car{{carrierid}}\" depositdate=\"{{depositdate}}\" eraclaimid=\"{{checkclaimid}}\" erareportid=\"{{checkid}}\" case_note=\"{{note}}\" checknumber=\"{{paymentnumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"{{allowed}}\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"prof{{profileid}}\"><paymentlist><payment amount=\"{{pay}}\" id=\"\" reason=\"{{first_reasoncode}}\" status=\"B\"><reasonlist payment=\"{{pay}}\" allowed=\"{{allowed}}\"><reason id=\"{{reportreasondetailid}}\" reasonid=\"{{payreasonid}}\" code=\"{{reasoncode}}\" name=\"{{reasontext}}\" amount=\"{{reasonamt}}\" units=\"0\" group=\"{{payreasongroup}}\"/></reasonlist></payment></paymentlist><writeofflist><writeoff id=\"\" risk=\"0\" amount=\"{{wo1}}\" code=\"WOINS\" status=\"B\"/><writeoff id=\"\" risk=\"0\" amount=\"{{wo2}}\" code=\"WOCAID2ND\" status=\"B\"/></writeofflist></charge></chargelist></patient></ppmdmsg>",
+   "description": "Variant of the ERA-linked manual post (proven 9/30/2026 on 25 Sunshine dual-crossover lines, check 1052885): the charge's <writeofflist> takes several <writeoff> children - WOINS = Medicare's contractual never adjusted (fee - Medicare paid - coinsurance; allowed = Medicare paid / 0.784, coinsurance 20% of allowed, 0 on G0439) and WOCAID2ND = the coinsurance the Medicaid secondary answered $0 on (OA-23 / CO-96 N448); payment amount 0, patient woamount = the sum, reasons from checkdetails. Use it on a LAST-PAYER charge (live carrier = the last plan in the visit's insorder): any post that leaves a balance there makes AMD transfer the remainder to the PATIENT (2310Z lesson), so the whole open insurance balance must settle in ONE post. Reply success=1 paymentid; gettxhistory then shows one $0 payment with reasons and two write-off lines, insbalance 0, patbalance 0.",
+   "helper": "era_sun_0110.py post_multi() (nightly/runs/2026-09-30T0110Z); payreasons.era_linked_xml is the one-write-off original",
+   "captured": "9/30/2026",
+   "body_language": "xml",
+   "status": "proven",
+   "tags": [
+    "ERA",
+    "write-off",
+    "WOCAID2ND",
+    "last payer",
+    "addpayments"
+   ]
   }
  ]
 }
