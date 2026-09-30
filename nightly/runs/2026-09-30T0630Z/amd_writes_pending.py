@@ -1,4 +1,4 @@
-# PLAIN ENGLISH (Pending AMD writes from the 2026-09-30T0630Z nightly cascade - NOT yet applied)
+# PLAIN ENGLISH (AMD writes from the 2026-09-30T0630Z nightly cascade - APPLIED 9/30 12:15-12:28Z with William's approval; kept as the record)
 # Decides: Nothing new. Applies the three chart fixes the cascade settled on 9/30 (rules a/c of the nightly prompt) once a session
 #          with AMD-write permission runs it: cd /home/claude/unbilled && python3 amd_writes_pending.py
 # Why it was not run: the auto-mode permission classifier refused the batch ("Modify Shared Resources") - third refusal of this kind
@@ -16,7 +16,7 @@
 # Never touches: paid visits (rebill_patient_year skips them), any other chart.
 import add_ins, ins_update, rebill_patient_year as R, re
 out = []
-def seq_of(s): return re.sub(r"\D", "", str(s)) or str(s)
+def seq_of(s): return s[1] if isinstance(s, tuple) else re.sub(r"\D", "", str(s))   # add_ins.add returns (insid, seq) - the 9/30 first pass concatenated both and AMD faulted
 # pat17477638: add UNI20 (car6404) <UHC member id - see board file> from 09/01/2026; rebill the 4 open visits (9/2, 9/20, 9/23, 9/24; $976) freq-1 to it
 s = add_ins.add("17477638", "car6404", "<UHC member id - see board file>", "09/01/2026"); out.append(("17477638 add UNI20", s))
 out += [("17477638", l) for l in R.run("17477638", seq_of(s), 40)]
