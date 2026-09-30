@@ -1,0 +1,652 @@
+[
+ {
+  "patientid": 17470940,
+  "carrier": "FLO02",
+  "visits": 3,
+  "balance": 756.0,
+  "dos": "20260925",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477516,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 596.0,
+  "dos": "20260925",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477638,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 470.0,
+  "dos": "20260924",
+  "result": "not found on Medicare: 72 Invalid/Missing Subscriber/Insured ID"
+ },
+ {
+  "patientid": 17477716,
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 470.0,
+  "dos": "20260924",
+  "result": "OK active - HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H {\"coordinationOfBenefits\": \"20020101-99991231\", \"plan\": \"20260101-20261231\", \"benefitBegin\": \"20260801\"}"
+ },
+ {
+  "patientid": 17471384,
+  "carrier": "HUM01",
+  "visits": 1,
+  "balance": 443.0,
+  "dos": "20260925",
+  "result": "OK active - MEDICAID GATE CAP DIR {\"planBegin\": \"20260901\", \"planEnd\": \"20260930\", \"service\": \"20260925\"}"
+ },
+ {
+  "patientid": 17477901,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477900,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17472114,
+  "carrier": "HUM01",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20260924",
+  "result": "OK active - HUM Full Ac Giveback {\"planBegin\": \"20260101\", \"service\": \"20260924\"}"
+ },
+ {
+  "patientid": 17477894,
+  "carrier": "HUM01",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20260924",
+  "result": "OK active - Humana Honor {\"planBegin\": \"20250101\", \"service\": \"20260924\"}"
+ },
+ {
+  "patientid": 17477893,
+  "carrier": "HUM01",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20260924",
+  "result": "OK active - HumanaChoice Florida {\"planBegin\": \"20250101\", \"service\": \"20260924\"}"
+ },
+ {
+  "patientid": 23159,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 46692,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477497,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17475638,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17476583,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 20863,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 23969,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17474741,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477719,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17474911,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 20729,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477557,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477828,
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 320.0,
+  "dos": "20260924",
+  "result": "OK active - LPPO-UHC COMPLETE CARE GA-3 (PPO C-SNP) {\"plan\": \"20260301-20261231\", \"benefitBegin\": \"20250801\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17470950,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 310.0,
+  "dos": "20260925",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17476727,
+  "carrier": "BCBS",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK active - BLUEOPTIONS PREDICTABLE COST 05781 {\"plan\": \"20251001-99991231\", \"planBegin\": \"20251001\", \"planEnd\": \"99991231\", \"eligibilityBegin\": \"20251001\", \"eligibilityEnd\": \"99991231\"}"
+ },
+ {
+  "patientid": 17477849,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477774,
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17477899,
+  "carrier": "HUM01",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK active - HUM Full Ac Giveback {\"planBegin\": \"20260601\", \"service\": \"20260924\"}"
+ },
+ {
+  "patientid": 17477847,
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK active - LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PP {\"planBegin\": \"20260901\"}"
+ },
+ {
+  "patientid": 17472641,
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK active - HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H {\"plan\": \"20260101-20261231\", \"benefitBegin\": \"20260801\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17477895,
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20260924",
+  "result": "OK active - HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H {\"plan\": \"20260201-20261231\", \"benefitBegin\": \"20260801\"}"
+ },
+ {
+  "patientid": 22322,
+  "carrier": "CAP07",
+  "visits": 1,
+  "balance": 198.0,
+  "dos": "20260923",
+  "result": "payer error: 75 Subscriber/Insured Not Found"
+ },
+ {
+  "patientid": 17476264,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 198.0,
+  "dos": "20260923",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 22758,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 20716,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17473748,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "ADVANTAGE PLAN on DOS: UNITEDHEALTHCARE OF FLORIDA, INC.  (dates {\"coordinationOfBenefits\": \"20260701\"})"
+ },
+ {
+  "patientid": 17477128,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17470875,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477651,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 20379,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17470743,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17472124,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 21172,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 24039,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 12232001,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17475697,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 45008,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477830,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17476975,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "not found on Medicare: 42 Unable to Respond at Current Time"
+ },
+ {
+  "patientid": 17477843,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17472286,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 47039,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17472594,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 23721,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 20728,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17469466,
+  "carrier": "HUM01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - MEDICAID GATE CAP DIR {\"planBegin\": \"20260901\", \"planEnd\": \"20260930\", \"service\": \"20260924\"}"
+ },
+ {
+  "patientid": 17476681,
+  "carrier": "MCAD",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "ERROR 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/eligibility/v3"
+ },
+ {
+  "patientid": 17474046,
+  "carrier": "SIM01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL SIMPLY HEALTH CARE COMPREHENSIVE LTSS (NON-DUAL {\"plan\": \"20250801-20260930\", \"primaryCareProvider\": \"20260219-99991231\", \"certification\": \"20270630\"}"
+ },
+ {
+  "patientid": 17472849,
+  "carrier": "SIM01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL SIMPLY HEALTH CARE COMPREHENSIVE LTSS (DUAL) {\"coordinationOfBenefits\": \"20110401-99991231\", \"planBegin\": \"20260801\", \"certification\": \"20270131\"}"
+ },
+ {
+  "patientid": 17469541,
+  "carrier": "SUN01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - Medicaid LTC Non Dual {\"planBegin\": \"20260901\", \"dateOfLastUpdate\": \"20260930\"}"
+ },
+ {
+  "patientid": 17477829,
+  "carrier": "SUN01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - SSI Non Dual MMA {\"planBegin\": \"20260828\", \"dateOfLastUpdate\": \"20260930\"}"
+ },
+ {
+  "patientid": 20670,
+  "carrier": "SUN01",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - SSHP - LTC with HCBS Dual Eligible {\"planBegin\": \"20250201\", \"dateOfLastUpdate\": \"20260930\"}"
+ },
+ {
+  "patientid": 17477851,
+  "carrier": "UHCMA",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE HMOPOS CO QMB H2 {\"plan\": \"20260201-20261231\"}"
+ },
+ {
+  "patientid": 17477772,
+  "carrier": "UHCMA",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - HMOPOS-UHC DUAL COMPLETE GA-S3 (HMO-POS D-SNP) {}"
+ },
+ {
+  "patientid": 12232512,
+  "carrier": "UNI20",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE LPPO HIDE FULL H {\"plan\": \"20260701-20261231\"}"
+ },
+ {
+  "patientid": 17477844,
+  "carrier": "UNI20",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H {\"plan\": \"20260101-20261231\", \"benefitBegin\": \"20260801\"}"
+ },
+ {
+  "patientid": 17471673,
+  "carrier": "UNI20",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE LPPO HIDE FULL H {\"plan\": \"20260101-20261231\"}"
+ },
+ {
+  "patientid": 17472556,
+  "carrier": "UNI20",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE LPPO HIDE QMB ON {\"plan\": \"20260101-20261231\"}"
+ },
+ {
+  "patientid": 12182947,
+  "carrier": "WEL04",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "payer error: 78 Subscriber/Insured Not in Group/Plan Identified"
+ },
+ {
+  "patientid": 17476739,
+  "carrier": "WEL04",
+  "visits": 1,
+  "balance": 141.0,
+  "dos": "20260924",
+  "result": "payer error: 78 Subscriber/Insured Not in Group/Plan Identified"
+ },
+ {
+  "patientid": 17477897,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 111.0,
+  "dos": "20260923",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477896,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 111.0,
+  "dos": "20260923",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17477848,
+  "carrier": "UNI20",
+  "visits": 1,
+  "balance": 111.0,
+  "dos": "20260923",
+  "result": "OK active - LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PP {\"plan\": \"20260901-20261231\"}"
+ },
+ {
+  "patientid": 24330,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 21308,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 44987,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17469446,
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "OK straight Medicare"
+ },
+ {
+  "patientid": 17473190,
+  "carrier": "FLO99",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "no eligibility on Stedi for this payer"
+ },
+ {
+  "patientid": 20060,
+  "carrier": "FLO99",
+  "visits": 1,
+  "balance": 107.0,
+  "dos": "20260924",
+  "result": "no eligibility on Stedi for this payer"
+ }
+]
