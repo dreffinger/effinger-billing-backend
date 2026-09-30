@@ -22,7 +22,7 @@ if __name__ == "__main__":
     amd.login_cached(); pids = all_open_pids(); hits = []
     for pid in pids:
         ref, ins = frp.plans(pid); main = [p for p in ref if p.get("ismain") == "1"]
-        if main and main[0].get("refprov") == frp.GARLAND_G_RPROV: hits.append(pid)
+        if main and main[0].get("refprov") == frp.GARLAND-G_RPROV: hits.append(pid)
         time.sleep(0.2)
     frp.L(f"sweep {STAMP}: {len(pids)} charts with open balances, {len(hits)} still default to rprov15: {hits[:40]}")
     if a.dry: sys.exit(0)

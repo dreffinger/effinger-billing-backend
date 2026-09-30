@@ -26,7 +26,7 @@ wo = load("registers/writeoffs_%s.json" % S, [])
 wot = collections.defaultdict(float); won = collections.Counter()
 for r in wo:
     if r.get("ok"): wot[r["tag"]] += r["amount"]; won[r["tag"]] += 1
-gar = load("registers/garland_g_17471238_%s.json" % S, {})
+gar = load("registers/garland-g_17471238_%s.json" % S, {})
 ERA_TXT = ("%d unposted checks / $%.2f before -> %d / $%.2f after. Locks release-expired sent. The two held Medicare ERA 819814877 entries 1051714 / 1051715 ($7835.06 + $1230.97, check date 9/22): the Post button re-offered 29 + 14 lines ($2390.12 + $1096.96) and AMD refused every one again (fault -2147217287 'post each payment manually' = the lines already posted by hand 9/13-9/20; nothing double-posted); fallback (dry then live) 0 lines to post (147 register-skips); era_clear HOLD on both (43 'postable money' lines in the remit-stored view = hand-posted lines the Center cannot see + the write-off lines, 77 'money already on the visit'); 0 dismissed, 0 addpayments faults; residuals disregarded $0; orphans none. No new 835s in 'bht Optum era downloads'; no new Availity PDF or Check/EFT export (the six watched folders hold nothing after 12:00Z 9/20 except the Garland-G facesheet); no MA63/M76/M64 work; ERA cache 2/2 checks." % (nb, ab, na, aa))
 def payreason_rows(rows): return [r for r in rows if any(e.startswith("Payment reason") for e in (r.get("_errs") or []))]
 payreason = len(payreason_rows(ua)); prior_b = [r for r in ub if any(e.startswith("A payment from the prior") for e in (r.get("_errs") or []))]

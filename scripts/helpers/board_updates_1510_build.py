@@ -8,7 +8,7 @@ import json, sys, time
 stamp = "2026-09-14T1510Z"; now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 era_line = sys.argv[1] if len(sys.argv) > 1 else "ERA step ran - see run report"
 src = "11am ET 9/14 columns run (ehpa cloud)"
-availity = ("AVAILITY CLAIM STATUS - ZELL, OVERBURY (DOB [DOB]), payer HUMANA (HumanaChoice MA, AMD carrier HUM01, Payor ID 2449), member id [member id], "
+availity = ("AVAILITY CLAIM STATUS - <patient name>, DOB <redacted>, payer HUMANA (HumanaChoice MA, AMD carrier HUM01, Payor ID 2449), member id <redacted>, "
             "billing provider EFFINGER HEALTH PA NPI 1629515325 TIN 81-4723941, rendering William L. Effinger DO NPI 1225327380, place of service 21 HCA Florida Capital Hospital. "
             "Open lines (all last billed 09/10/2026 freq-1, paid $0, insurance balance = billed): "
             "09/29/2025 99223 $310.00 (visit 19418455); 09/30/2025 99232 $111.00 (19418452); 10/01/2025 99232 $111.00 (19418568); "
