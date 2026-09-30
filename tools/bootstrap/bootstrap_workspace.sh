@@ -71,6 +71,10 @@ case "$mode" in
     [ -f "$REPO/practices/ehpa/carriers.json" ] && cp -p "$REPO/practices/ehpa/carriers.json" "$WS/carriers_rich.json"
     [ -f "$REPO/practices/ehpa/facilities.json" ] && [ ! -e "$WS/facilities.json" ] && cp -p "$REPO/practices/ehpa/facilities.json" "$WS/facilities.json"
     [ -f "$REPO/practices/ehpa/rules.md" ] && cp -p "$REPO/practices/ehpa/rules.md" "$WS/rules.md"
+    # 2b) practice state kept in the repo (9/30/2026); patient_db/ and era_details/ are PHI and travel only in the Drive state bundle
+    mkdir -p "$WS/registers"
+    [ -d "$REPO/practices/ehpa/registers" ] && cp -pn "$REPO"/practices/ehpa/registers/* "$WS/registers/" 2>/dev/null
+    for f in needs_facesheet_list.md laterality_flag_log.md; do [ -f "$REPO/practices/ehpa/$f" ] && [ ! -e "$WS/$f" ] && cp -p "$REPO/practices/ehpa/$f" "$WS/$f"; done
     # 3) docs the run needs locally
     for d in docs/captured_calls.md docs/api_vocabulary.json docs/MIRROR.md; do
       [ -f "$REPO/$d" ] && [ ! -e "$WS/$(basename "$d")" ] && cp -p "$REPO/$d" "$WS/$(basename "$d")"
@@ -108,13 +112,13 @@ PY
 
   check)
     hdr "workspace manifest $WS ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-    REQ="amd.py stedi.py elig271.py elig_amd.py resave.py precheck.py inspector_0907.py columns_inspector2_0908.py era_upload.py era_post.py era_details_pull.py claimocity_in1.py add_ins.py ins_update.py freq1_visit.py patient_patch.py move_to_ins.py void_scan.py"
-    OPT="amdw.py manual_post.py void_tx.py restore_charge.py era_clear.py era_manual_post.py github_sync.py carriers.json facilities.json api_vocabulary.json"
+    REQ="amd.py stedi.py elig271.py elig_amd.py resave.py precheck.py inspector_0907.py columns_scan.py unbilled_repair.py payreasons.py dx_primary_fix.py era_upload.py era_post.py era_fallback_0913b.py era_clear.py claimocity_in1.py add_ins.py ins_update.py freq1_visit.py patient_patch.py move_to_ins.py void_scan.py void_tx.py txh.py"
+    OPT="amdw.py manual_post.py restore_charge.py era_manual_post.py era_details_pull.py columns_inspector2_0908.py working_denials.py working_denials_act.py availity_pdf.py availity_remits.py github_sync.py carriers.json facilities.json api_vocabulary.json"
     missing=0
     for f in $REQ; do if [ -f "$WS/$f" ]; then printf '  ok       %s\n' "$f"; else printf '  MISSING  %s   (required by the standing prompt)\n' "$f"; missing=$((missing+1)); fi; done
     for f in $OPT; do if [ -f "$WS/$f" ]; then printf '  ok       %s\n' "$f"; else printf '  absent   %s   (optional)\n' "$f"; fi; done
     hdr "credentials (presence only)"
-    [ -s "$WS/.amd_cred.json" ] && echo "  ok       .amd_cred.json (AMD password, Gmail thread 1866ce7e2233e4c0)" || echo "  MISSING  .amd_cred.json  -> write {\"psw\": \"<from Gmail thread 1866ce7e2233e4c0>\"} (chmod 600)"
+    [ -s "$WS/.amd_cred.json" ] && echo "  ok       .amd_cred.json (AMD password, Gmail thread 1866ce7e2233e4c0)" || [ -n "${AMD_PSW:-}" ] && echo "  ok       AMD_PSW environment credential (no credential file needed)" || echo "  MISSING  .amd_cred.json  -> write {\"psw\": \"<from Gmail thread 1866ce7e2233e4c0>\"} (chmod 600)"
     [ -s "$WS/secrets/stedi_live.key" ] && echo "  ok       secrets/stedi_live.key (Gmail fallback, thread 1a083035f566f9fb)" || echo "  proxy    secrets/stedi_live.key absent - relying on the environment API credential (bootstrap net must have printed STEDI_CRED_OK)"
     [ -s "$WS/secrets/github_pat.key" ] && echo "  ok       secrets/github_pat.key (Gmail thread 'github claude token')" || echo "  absent   secrets/github_pat.key (only needed when the repo is not attached to the routine)"
     [ -s "$WS/secrets/pseudonyms.json" ] && echo "  ok       secrets/pseudonyms.json (Drive 'workspace mirror'; copy to <repo>/secrets/ before mirror.py)" || echo "  MISSING  secrets/pseudonyms.json -> Drive 'workspace mirror' pseudonyms.json"

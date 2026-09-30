@@ -12,3 +12,4 @@ secrets/
 .amd_cred.json
 __pycache__/
 *.tgz
+!.claude/settings.json

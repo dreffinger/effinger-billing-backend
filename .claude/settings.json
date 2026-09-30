@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd *)",
+      "Bash(bash tools/bootstrap_workspace.sh *)",
+      "Bash(python3 tools/ws_bundle.py *)",
+      "Bash(python3 tools/mirror/mirror.py *)",
+      "Bash(python3 tools/mirror/apply_bundle.py *)",
+      "Bash(python3 columns_scan.py *)",
+      "Bash(python3 unbilled_repair.py *)",
+      "Bash(python3 payreasons.py *)",
+      "Bash(python3 inspector_0907.py *)",
+      "Bash(python3 dx_primary_fix.py *)",
+      "Bash(python3 freq1_visit.py *)",
+      "Bash(python3 elig_amd.py *)",
+      "Bash(python3 precheck.py *)",
+      "Bash(python3 era_upload.py *)",
+      "Bash(python3 era_post.py *)",
+      "Bash(python3 era_fallback_0913b.py *)",
+      "Bash(python3 era_clear.py *)",
+      "Bash(python3 manual_post.py *)",
+      "Bash(python3 working_denials.py *)",
+      "Bash(python3 working_denials_act.py *)",
+      "Bash(python3 availity_pdf.py *)",
+      "Bash(python3 availity_paste.py *)",
+      "Bash(python3 availity_remits.py *)",
+      "Bash(python3 claimocity_in1.py *)",
+      "Bash(python3 void_scan.py *)",
+      "Bash(python3 -m py_compile *)",
+      "Bash(git fetch *)", "Bash(git checkout *)", "Bash(git add *)", "Bash(git rm *)",
+      "Bash(git commit *)", "Bash(git status *)", "Bash(git log *)", "Bash(git diff *)", "Bash(git branch *)",
+      "Bash(git push origin main)", "Bash(git push origin HEAD:*)", "Bash(git push -u origin *)",
+      "Edit(/home/claude/unbilled/**)", "Read(/home/claude/unbilled/**)"
+    ]
+  },
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "AdvancedMD billing writes for Effinger Health PA (office key 152563, API user POI0712) made through the helper scripts in /home/claude/unbilled or scripts/helpers of this repository - void / voidpayment, hideunbillablevisits, hideexclusions, bypassclaimedits, approvecharges, updvisitwithnewcharges / updvisitwithcharges, updextrainsinfo, chargerebill, addpayments / posterapayments / ERA dismiss, addinsurance / updateinsurance, addreferralplan, the demographics PATCH - are the purpose of this scheduled routine and carry the practice owner's standing approval (William Effinger, 9/30/2026). They are the user's own data in the user's own practice-management system, not a shared resource; the helpers run --dry before --live and keep registers.",
+      "Uploads to the practice's own Google Drive folders, the board inbox JSON files, the Gmail 'current face sheets needed' email to dreffinger@gmail.com only, and git pushes of this repository's main and synced branches are the routine's mirror step and are pre-approved."
+    ]
+  }
+}
