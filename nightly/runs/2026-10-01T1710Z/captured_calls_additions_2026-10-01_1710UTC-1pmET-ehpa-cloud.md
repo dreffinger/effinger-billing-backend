@@ -1,0 +1,3 @@
+# captured_calls additions - 2026-10-01 1710 UTC (1 PM ET 10/1 backend billing run, ehpa cloud) - no new call shapes
+- Calls used (all captured earlier): login (one, cached token), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches+charges / getclaimunbillablecharges / getclaimrunstatus+getclaimexclusioncharges (columns_scan.py before + after), GET /api/era/checks + /api/era/checkdetails (reads_pass.py), posterapayments dry (era_post.py --all-unposted --dry), lookuppatient LAST,FIR% (four pending admits), getdemographic (patient insorder read on one chart).
+- No AMD write was needed this slot (columns static, ERA Center held on the takeback pair and the pending approvals); no classifier refusal.
