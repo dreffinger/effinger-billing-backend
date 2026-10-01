@@ -1,0 +1,38 @@
+{
+ "stamp": "2026-10-01T1510Z",
+ "at": "2026-10-01T15:28:21Z",
+ "lookups": {
+  "VORCE,ILL%": [
+   [
+    "pat17477953",
+    "09/10/1934"
+   ]
+  ],
+  "WILLARD,JOY%": [],
+  "JONES,ISA%": [],
+  "LAWHON,BET%": [],
+  "BOYDSTON,CAR%": []
+ },
+ "vorce": {
+  "pid": "17477953",
+  "source": "Pam Gmail 1a0f805151b0b25d (PCC admission record photos, Brynwood, admitted 09/29/2026 from TMH)",
+  "facesheet": {
+   "primary": "Medicare A (MBI on sheet)",
+   "secondary": "UHC policy 961574166 'coinsurance from private'",
+   "auth": "A332754373 (facility SNF auth, digits uncertain)",
+   "medicaid": ""
+  },
+  "stedi": {
+   "mbi_lookup": "MBI 8WF1WK8HD05 A/B 19990901, MA entity PREFERRED CARE PARTNERS INC HMO Medicare Risk COB 20230801",
+   "uhc_87726_member_961574166": "ACTIVE HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011, plan 20260101-20261231 benefitBegin 20260801",
+   "discovery": "CMS active; AETNA 60054 W104085726 2003 (stale)"
+  },
+  "amd": {
+   "plan_added": "UNI20 car6404 961574166 begin 08/01/2026 -> ins9520691 seq 1 (no group)",
+   "amd_271": "ACTIVE, HN HMOPOS-AARP MA FROM UHC FL-0011 H1045-041-000, addr 525 ALABAMA ST MONTICELLO FL 32344",
+   "patient_insorder": "1",
+   "address": "line1 SNF, line2 brynwood, 32308-4486",
+   "charges": 0
+  }
+ }
+}
