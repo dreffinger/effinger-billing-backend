@@ -1,0 +1,4 @@
+# captured_calls additions - 2026-10-01 07:10 UTC (3 AM ET 10/1) backend billing run, ehpa cloud - no new call shapes
+- Calls used (all captured earlier): getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches+charges / getclaimunbillablecharges / getclaimrunstatus+getclaimexclusioncharges (columns_scan.py), GET /api/era/checks + GET /api/era/checkdetails (reads_0710.py, cached era_details/1052906.json), lookuppatient LAST,FIR% x4, getdemographic (pat17476868 order readback 2,1 = Medicare first), era_post.py --all-unposted --dry (build only, no posterapayments), era_clear.py --dry (no dismiss).
+- No AMD write this run: every Claim Inspector / Unbilled row is a standing hold, Exclusions empty, the one ERA check (1052906) is the takeback hold.
+- Lesson (confirmed again): the Claims Center overview exclusioncount (13) lags the list calls (0 rows) - trust the list calls.
