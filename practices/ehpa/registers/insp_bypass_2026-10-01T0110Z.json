@@ -1,0 +1,56 @@
+[
+ {
+  "stamp": "2026-10-01T0110Z",
+  "live": true,
+  "batch": "127783",
+  "vid": "19455716",
+  "pattern": "Pattern 35790",
+  "found": true,
+  "pid": "12232248",
+  "errs": [
+   [
+    "395538",
+    "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455716, Line ID 23367111, that has received an edit with a Review status.Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455716, Line ID 23367111, that has received an edit with a Review status."
+   ]
+  ],
+  "charges": [
+   "23367111",
+   "23367112"
+  ],
+  "gate": [
+   {
+    "cid": "23367111",
+    "cpt": "pcode492676",
+    "mods": [],
+    "dx": [
+     "F03.90",
+     "I10",
+     "F32.A",
+     "F41.9",
+     "R29.6"
+    ],
+    "first_never_primary": false
+   },
+   {
+    "cid": "23367112",
+    "cpt": "pcode492677",
+    "mods": [
+     "25"
+    ],
+    "dx": [
+     "F03.90",
+     "I10",
+     "F32.A",
+     "F41.9",
+     "R29.6"
+    ],
+    "first_never_primary": false
+   }
+  ],
+  "only_adv": true,
+  "gate_ok": true,
+  "mod_ok": true,
+  "bypassed": true,
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-fzwgb\" lst=\"09/30/2026 18:32:32\"><Results retval=\"0\" /><Error /></PPMDResults>"
+ }
+]
