@@ -1,0 +1,241 @@
+[
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "22023",
+  "anchor": "23326012",
+  "seq": "1",
+  "why": "UHCMA CO-B9 10/25/2025 99487",
+  "vid": "19420906",
+  "charges": [
+   {
+    "id": "charge23326012",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23326012"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23326012'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "22023",
+  "anchor": "23334147",
+  "seq": "1",
+  "why": "UHCMA CO-B9 12/28/2025 99487",
+  "vid": "19427600",
+  "charges": [
+   {
+    "id": "charge23334147",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23334147"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23334147'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "22023",
+  "anchor": "23337128",
+  "seq": "1",
+  "why": "UHCMA CO-B9 01/27/2026 99487",
+  "vid": "19430695",
+  "charges": [
+   {
+    "id": "charge23337128",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23337128"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23337128'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "22023",
+  "anchor": "23338626",
+  "seq": "1",
+  "why": "UHCMA CO-B9 02/02/2026 99307",
+  "vid": "19432008",
+  "charges": [
+   {
+    "id": "charge23338626",
+    "proc": "pcode65117",
+    "mods": "",
+    "insbalance": "68.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23338626"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23338626'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "21263",
+  "anchor": "23350599",
+  "seq": "1",
+  "why": "UNI20 OA-18/CO-B9 05/17/2026 99487+99489 (GV on 99487 only)",
+  "vid": "19442472",
+  "charges": [
+   {
+    "id": "charge23350599",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   },
+   {
+    "id": "charge23364539",
+    "proc": "pcode492677",
+    "mods": "",
+    "insbalance": "109.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23364539"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23364539'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "21263",
+  "anchor": "23355341",
+  "seq": "1",
+  "why": "UNI20 CO-B9 06/25/2026 99487+99489 (GV on 99487 only)",
+  "vid": "19446290",
+  "charges": [
+   {
+    "id": "charge23355341",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   },
+   {
+    "id": "charge23364540",
+    "proc": "pcode492677",
+    "mods": "",
+    "insbalance": "109.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23364540"
+  ],
+  "result": "dry: would add GV to 1 charge(s) ['charge23364540'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "21263",
+  "anchor": "23326392",
+  "seq": "1",
+  "why": "UNI20 CO-B9 10/25/2025 99487+99489 (paid then recouped, net $0)",
+  "vid": "19421096",
+  "charges": [
+   {
+    "id": "charge23326392",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "68.62"
+   },
+   {
+    "id": "charge23326393",
+    "proc": "pcode492677",
+    "mods": "mcode7",
+    "insbalance": "37.14"
+   }
+  ],
+  "payments": [
+   [
+    "24596175",
+    -68.62
+   ],
+   [
+    "24598372",
+    68.62
+   ],
+   [
+    "24596176",
+    -37.14
+   ],
+   [
+    "24598373",
+    37.14
+   ]
+  ],
+  "net_paid": 0.0,
+  "gv_missing_before": [
+   "charge23326392",
+   "charge23326393"
+  ],
+  "result": "dry: would add GV to 2 charge(s) ['charge23326392', 'charge23326393'] then frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "17473477",
+  "anchor": "23350410",
+  "seq": "2",
+  "why": "UNI20 CO-B9 05/17/2026 99487 (GV present, never re-sent; DOS before the 9/15/2026 date of death)",
+  "vid": "19442357",
+  "charges": [
+   {
+    "id": "charge23350410",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [],
+  "result": "dry: would add GV to 0 charge(s) [] then frequency-1 rebill seq 2"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": false,
+  "pid": "17473477",
+  "anchor": "23358095",
+  "seq": "2",
+  "why": "UNI20 CO-B9 07/17/2026 99487 (GV present, never re-sent; DOS before the 9/15/2026 date of death)",
+  "vid": "19448745",
+  "charges": [
+   {
+    "id": "charge23358095",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [],
+  "result": "dry: would add GV to 0 charge(s) [] then frequency-1 rebill seq 2"
+ }
+]
