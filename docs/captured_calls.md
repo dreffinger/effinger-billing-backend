@@ -2956,6 +2956,24 @@ unposted list went (10/1: only 1052922 dismissed since 10/1; 1052906 + 1052921 s
 Lesson: `era_post.py --all-unposted --dry` iterates only checks with unposted money > 0, so its "1 checks" header is not the
 ERA Center count - read `era_checks_before_<stamp>.json` (reads_pass.py) for the before/after count and dollars.
 
+## 2026-09-22 chat — Medicaid/SMMC Garland-G -> Effinger, full past-year set (William)
+- Runner `billing/rebill/medicaid_garland-g_fix.py` (targets from masswriteoffsearch per Medicaid carrier id, DOS >= 1 year): A = prof15 visits -> profile swap to prof13 with refplan=rprov13 main plan in the same resave (AMD voids + recreates on a new visit; recreations start insbilled=0 = already queued); B = prof13 visits on rprov15 charts -> refplan repoint; both freq-1 + chargerebill on the balance-holding plan's sequence. FCC (FLO99) balances route to MCAD FFS when car6113 is on file and no active SMMC plan, to the SMMC plan when one exists, else kept on FLO99 and flagged.
+- Lessons: (1) AMD's server clock is ET and can be a calendar day behind the container (UTC) - never match createtime on the container date alone; (2) charge DETAIL reports proccode as pcodeNNNN while gettxhistory reports the CPT - match recreations on FEE + visit DATE, never on proccode, and keep a consumed set so two same-fee visits swapped back-to-back cannot claim one recreation; (3) settling gate matters at scale: 231 of 302 Garland-G-rendered Medicaid visits already carried a posted payment and were NOT re-rendered (that remainder is the WOMCAD/WOCAID2ND write-off case).
+- Results: 386 target visits / 71 charts; 94 visits re-rendered (verified: all prof13, referring rprov13, 182 charges queued); 84 visits repointed; 231 settling-skipped; FCC: 26 -> MCAD, 14 -> SMMC, 38 kept (no FFS/SMMC plan on file -> Stedi cascade). Registers: medicaid_garland-g_fix_2026-09-22.txt, verify_recreated_2026-09-22.txt.
+
+## 2026-09-22 chat — Humana + the ~290-visit verification (Garland-G -> Effinger, William confirmed the visits were his)
+- Humana (HUM01 car6285, HUMMA1 car302851) through the same runner (now parametrized: TGT / DONEF / LOGF env vars; visit-wide settling gate; B-kind skipped when the visit's plan is already rprov13): 180 visits - 5 re-rendered, 37 repointed, 58 charges rebilled, 138 settling.
+- Read-back of all 290 target visits (MCAD, SUN01, WEL04, WEL07, HUM01): 45 re-rendered + rebilled ($6,616), 245 PAID by the payer and left as-is ($8,578 residual = write-off path), 0 still Garland-G-unpaid. CORRECTION to the 9/22 assumption: only WellCare truly rejected Garland-G's NPI (34 of 38 unpaid); Humana paid 138/143, FL Medicaid 69/72, Sunshine 34/37 under her NPI. The settling gate is what kept those payments from being unapplied.
+- Past filing limit (DOS > 12 months), Garland-G-rendered, open: $4,722 (FLO99 $1,995 / HUM01 $2,413 / small MCAD, SUN01, WEL04) - not re-rendered; write-off path.
+
+## 2026-10-01 23:10 UTC (7 PM ET 10/1) backend billing run - ehpa cloud
+
+No new call shapes, no new helpers. Reads only: getclaimcenteroverview + the four list calls (columns_scan.py), GET /api/era/checks
++ checkdetails (reads_pass.py), lookuppatient x5 (the four 9/30 admits still have no chart; the 10/1 Brynwood admit resolves to
+pat17477953), era_post.py --all-unposted --dry (0 postable / 14 skipped), precheck.py --days 3 --max 120 (1 pair, 0 flagged).
+Nothing written to AdvancedMD. Columns 0/21/33/0 unchanged; ERA 2 checks $149.48 unchanged; approvals A-2026-10-01T1110Z-A1/A2/A3
+still unanswered (Gmail thread 1a0f741c8df8f617 has no reply; Working Denials queue empty).
+
 ## 2026-09-22 chat — Medicaid/SMMC Garcia -> Effinger, full past-year set (William)
 - Runner `billing/rebill/medicaid_garcia_fix.py` (targets from masswriteoffsearch per Medicaid carrier id, DOS >= 1 year): A = prof15 visits -> profile swap to prof13 with refplan=rprov13 main plan in the same resave (AMD voids + recreates on a new visit; recreations start insbilled=0 = already queued); B = prof13 visits on rprov15 charts -> refplan repoint; both freq-1 + chargerebill on the balance-holding plan's sequence. FCC (FLO99) balances route to MCAD FFS when car6113 is on file and no active SMMC plan, to the SMMC plan when one exists, else kept on FLO99 and flagged.
 - Lessons: (1) AMD's server clock is ET and can be a calendar day behind the container (UTC) - never match createtime on the container date alone; (2) charge DETAIL reports proccode as pcodeNNNN while gettxhistory reports the CPT - match recreations on FEE + visit DATE, never on proccode, and keep a consumed set so two same-fee visits swapped back-to-back cannot claim one recreation; (3) settling gate matters at scale: 231 of 302 Garcia-rendered Medicaid visits already carried a posted payment and were NOT re-rendered (that remainder is the WOMCAD/WOCAID2ND write-off case).
