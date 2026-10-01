@@ -1,0 +1,39 @@
+{
+ "stamp": "2026-10-01T1310Z",
+ "check": 1052922,
+ "carrier": "WEL04",
+ "paymentnumber": "1008829482",
+ "checkdate": "2026-09-29",
+ "lines": [
+  {
+   "visit": 19455820,
+   "pid": "pat12182947",
+   "cpt": "99487+99489",
+   "dos": "09/20/2026",
+   "paid": 122.79,
+   "outcome": "posted (Post button)",
+   "woins": 192.21,
+   "balances": "0/0"
+  },
+  {
+   "visit": 19455776,
+   "pid": "pat17476739",
+   "cpt": "99487",
+   "dos": "09/20/2026",
+   "paid": 79.1,
+   "outcome": "posted (Post button)",
+   "woins": 126.9,
+   "balances": "0/0"
+  },
+  {
+   "visit": 19455316,
+   "pid": "pat17477375",
+   "cpt": "99306",
+   "dos": "08/07/2026",
+   "paid": 0.0,
+   "carc": "CO18 exact duplicate",
+   "outcome": "duplicate-original-pending",
+   "original": "WellCare claim 3879905006 P1/38 pending (Stedi 277 10/1, effective 9/29/2026); claim B = 9/27 resend, CH duplicate rejection 9/28 (run 1700243); not rebilled, $256 insurance balance stays open at WEL04"
+  }
+ ]
+}

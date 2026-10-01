@@ -27444,5 +27444,32 @@
   "insbal": 9.47,
   "paymentid": "10165229",
   "outcome": "posted"
+ },
+ {
+  "checkid": 1052922,
+  "checkclaimid": null,
+  "visitid": 19455820,
+  "chargeid": null,
+  "outcome": "posted",
+  "when": "2026-10-01T13:22:36Z",
+  "note": "run 2026-10-01T1310Z"
+ },
+ {
+  "checkid": 1052922,
+  "checkclaimid": null,
+  "visitid": 19455776,
+  "chargeid": null,
+  "outcome": "posted",
+  "when": "2026-10-01T13:22:36Z",
+  "note": "run 2026-10-01T1310Z"
+ },
+ {
+  "checkid": 1052922,
+  "checkclaimid": null,
+  "visitid": 19455316,
+  "chargeid": null,
+  "outcome": "duplicate-original-pending",
+  "when": "2026-10-01T13:22:36Z",
+  "note": "run 2026-10-01T1310Z"
  }
 ]
