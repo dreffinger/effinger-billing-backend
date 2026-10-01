@@ -11,7 +11,7 @@
 #   (updvisitwithnewcharges, EVERY live charge echoed - resave.visit_charges; each of these visits has exactly one, the helper aborts if not), re-list the batch and
 #   bypass only advisory patterns with fresh ids; for A6 no resave (insorder 1,2 and balances untouched) - readback, amd.rebill_charge(cid, 2) -> 204, hideexclusions.
 # Rules it uses: the void trap (full echo), never bypass missing data, deceased guard inside amd.rebill_charge, one AMD login (cached).
-# Never touches: the 15 Tillman visits (no anchor - William), payments, write-offs, insurance plans.
+# Never touches: the 15 Thackeray visits (no anchor - William), payments, write-offs, insurance plans.
 #   python3 admits_1310.py          # dry: re-read every anchor and charge live, list what it would write
 #   python3 admits_1310.py --live   # apply; register registers/admits_2026-09-30T1310Z.json
 import amd, resave, txh, era_post, json, sys, re, time, datetime
