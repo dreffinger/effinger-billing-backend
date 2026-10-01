@@ -1,0 +1,42 @@
+# PLAIN ENGLISH (Claim Inspector pass, 3pm ET 10/1/2026 run 2026-10-01T1910Z): one new row on batch 127856 (pat17472854, visit 19456672,
+#   99306 + 99497-25 on 09/29/2026, UNI20) raises only Pattern 11256 (S32.509A unspecified laterality) - an advisory under the standing
+#   rule "Unspecified-laterality 11256 -> bypass and log to laterality_flag_log.md". Decides: (1) PRIMARY-DX GATE on every live charge of
+#   the visit (dx_primary_fix.never_primary on the FIRST code; S32.509A is an initial-encounter injury code, W19.XXXA sits second) - only
+#   then (2) re-list the batch and bypass Pattern 11256 with the FRESH error ids, logging the visit/code to laterality_flag_log.md.
+#   Anything else on the batch is left alone. Modeled on nightly/runs/2026-09-29T2110Z/insp_0929_2110.py.
+# Never touches: payments, write-offs, diagnosis lists (no never-primary code found -> no edit), hospitalization dates, insurance plans.
+#   python3 insp_1001_1910.py          # dry (default): gate + list what would be bypassed
+#   python3 insp_1001_1910.py --live   # bypass; register registers/insp_2026-10-01T1910Z.json
+import amd, resave, dx_primary_fix, re, json, time, sys, datetime
+import xml.etree.ElementTree as ET
+LIVE = "--live" in sys.argv; DRY = not LIVE; STAMP = "2026-10-01T1910Z"; BATCH = "127856"; PID = "17472854"; VID = "19456672"
+amd.login_cached()
+out = {"stamp": STAMP, "live": LIVE, "visits": []}
+t = amd.post(amd.msg("getclaiminspectorcharges", "chargeentry", {"batchid": BATCH, "nocookie": "1"}), timeout=120)
+root = ET.fromstring(t)
+for v in root.iter("visit"):
+    if v.get("patientid") != PID or v.get("id") != VID: continue
+    vid = v.get("id"); errs = [(e.get("id"), re.sub(r"\s+", " ", (e.text or "") + "".join((c.text or "") for c in e.iter()))) for e in v.iter("error")]
+    chgs = [c.get("id") for c in v.iter("charge")]
+    rec = {"vid": vid, "errs": errs, "charges": chgs, "gate": [], "bypassed": None}
+    for cid in chgs:
+        x = resave.detail(cid.replace("charge", ""))
+        codes = re.findall(r'<diagcode id="(dcode\d+)"[^>]*?\bcode="([^"]*)"', x)
+        m = re.search(r'<charge [^>]*diagcodes="([^"]*)"', x)
+        order = (m.group(1).split() if m else [])
+        dmap = dict(codes); first = dmap.get(order[0], "") if order else ""
+        cpt = re.search(r'<charge [^>]*proccode="([^"]*)"', x)
+        rec["gate"].append({"cid": cid, "cpt": cpt.group(1) if cpt else "", "dx": [dmap.get(d, d) for d in order], "first_never_primary": bool(first and dx_primary_fix.never_primary(first))})
+    only_adv = all("Pattern 11256" in e[1] for e in errs)
+    gate_ok = not any(g["first_never_primary"] for g in rec["gate"])
+    rec["only_advisory"] = only_adv; rec["gate_ok"] = gate_ok
+    if only_adv and gate_ok and errs:
+        if DRY: rec["bypassed"] = "dry"
+        else:
+            r = amd.post(amd.msg("bypassclaimedits", "chargeentry", {"nocookie": "1"}, '<visitlist><visit id="%s"><claimeditlist>%s</claimeditlist></visit></visitlist>' % (vid, "".join('<claimedit id="%s"/>' % e[0] for e in errs))))
+            rec["bypassed"] = "Fault" not in r; rec["resp"] = r[:200]
+            if rec["bypassed"]:
+                open("laterality_flag_log.md", "a").write("- %s run %s: pat%s visit %s charges %s - Pattern 11256 S32.509A (unspecified pubis fracture, initial) bypassed as advisory; documentation may support a laterality code (William)\n" % (datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%MZ"), STAMP, PID, vid, ",".join(chgs)))
+    out["visits"].append(rec); print(json.dumps(rec)[:700], flush=True); time.sleep(0.3)
+json.dump(out, open("registers/insp_%s.json" % STAMP, "w"), indent=1)
+print("DONE", "live" if LIVE else "dry", len(out["visits"]), "visit(s)")
