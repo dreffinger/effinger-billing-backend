@@ -650,4 +650,4 @@
   "result": "GV on 1/1 charges (1 live) -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
   "check": 1052829
  }
-]
+]{"stamp": "2026-10-01T0539Z", "live": true, "pid": "17472396", "vid": "19422657", "anchor": "23327984", "seq": "1", "charges": [{"id": "charge23327984", "proc": "pcode65118", "mods": "", "insbalance": "107.00"}], "payments": [], "add_gv": ["GV on 1/1 charges (1 live)"], "mods_after": [["charge23327984", "mcode713"]], "rebill": "freq1 + rebill seq 1 -> 204", "result": "GV added + frequency-1 rebill seq 1"}
