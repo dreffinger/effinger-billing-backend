@@ -1,0 +1,268 @@
+{
+ "run": "2026-10-02T0524Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:24:31\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470743",
+   "vid": "19441047",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wqpzw\" lst=\"10/01/2026 22:24:32\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473343",
+   "vid": "19442414",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:24:34\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19453094",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:24:35\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19453102",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wqpzw\" lst=\"10/01/2026 22:24:36\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19453106",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-wqpzw\" lst=\"10/01/2026 22:24:37\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19453209",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:24:38\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19453501",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:24:39\"><Results success=\"1\" /><E"
+   ]
+  }
+ ],
+ "left": [
+  {
+   "pid": "17474541",
+   "vid": "19430630",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437843",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437926",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437951",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438061",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438356",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438357",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438358",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438701",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438903",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438993",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439010",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439022",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439233",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439271",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439702",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19441616",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19442523",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19444342",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19446223",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19447320",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19455471",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17473232",
+   "vid": "19455597",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17471681",
+   "vid": "19455606",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477639",
+   "vid": "19455621",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477842",
+   "vid": "19455665",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19455759",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477850",
+   "vid": "19455868",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477850",
+   "vid": "19455898",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477870",
+   "vid": "19456058",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477892",
+   "vid": "19456228",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477898",
+   "vid": "19456237",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477850",
+   "vid": "19456281",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477850",
+   "vid": "19456282",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477892",
+   "vid": "19456293",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477898",
+   "vid": "19456307",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477933",
+   "vid": "19456467",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477946",
+   "vid": "19456584",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19456663",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}

@@ -1,0 +1,106 @@
+{
+ "stamp": "2026-10-02T0510Z",
+ "live": true,
+ "visits": [
+  {
+   "batch": "126912",
+   "vid": "19442523",
+   "errs": [
+    [
+     "395563",
+     "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019442523, Line ID 23350697, that has received an edit with a Review status.Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019442523, Line ID 23350697, that has received an edit with a Review status."
+    ]
+   ],
+   "charges": [
+    "23350697",
+    "23350698"
+   ],
+   "gate": [
+    {
+     "cid": "23350697",
+     "cpt": "pcode492676",
+     "modcodes": "mcode713",
+     "dx": [
+      "C18.9",
+      "K60.30",
+      "Z93.3",
+      "G20.C",
+      "E11.9",
+      "I48.91",
+      "R56.9"
+     ],
+     "first_never_primary": false
+    },
+    {
+     "cid": "23350698",
+     "cpt": "pcode492677",
+     "modcodes": "mcode7 mcode713",
+     "dx": [
+      "C18.9",
+      "K60.30",
+      "Z93.3",
+      "G20.C",
+      "E11.9",
+      "I48.91",
+      "R56.9"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": true,
+   "only_advisory": true,
+   "gate_ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-865p2\" lst=\"10/01/2026 22:30:31\"><Results retval=\"0\" /><Error /></PPMDResults>"
+  },
+  {
+   "batch": "127180",
+   "vid": "19446223",
+   "errs": [
+    [
+     "395564",
+     "The primary procedure code on Claim ID... Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019446223, Line ID 23355217, that has received an edit with a Review status.Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019446223, Line ID 23355217, that has received an edit with a Review status."
+    ]
+   ],
+   "charges": [
+    "23355217",
+    "23355218"
+   ],
+   "gate": [
+    {
+     "cid": "23355217",
+     "cpt": "pcode492676",
+     "modcodes": "mcode713",
+     "dx": [
+      "C18.9",
+      "K60.30",
+      "Z93.3",
+      "G20.C",
+      "E11.9",
+      "I48.91",
+      "R56.9"
+     ],
+     "first_never_primary": false
+    },
+    {
+     "cid": "23355218",
+     "cpt": "pcode492677",
+     "modcodes": "mcode7 mcode713",
+     "dx": [
+      "C18.9",
+      "K60.30",
+      "Z93.3",
+      "G20.C",
+      "E11.9",
+      "I48.91",
+      "R56.9"
+     ],
+     "first_never_primary": false
+    }
+   ],
+   "bypassed": true,
+   "only_advisory": true,
+   "gate_ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-865p2\" lst=\"10/01/2026 22:30:34\"><Results retval=\"0\" /><Error /></PPMDResults>"
+  }
+ ]
+}

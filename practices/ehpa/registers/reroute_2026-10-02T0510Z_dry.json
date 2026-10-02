@@ -1,0 +1,195 @@
+{
+ "stamp": "2026-10-02T0510Z",
+ "live": false,
+ "at": "2026-10-02T05:24:18Z",
+ "items": [
+  {
+   "pid": "17472396",
+   "vid": "19441616",
+   "cid": "23349530",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23349530",
+     "dos": "05/07/2026",
+     "cpt": "99308",
+     "carrier": "FLO02",
+     "billdate": "05/17/2026",
+     "insbal": "107.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23349530, '2') + freq1_visit.run(19441616, 23349530, 2)"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19442523",
+   "cid": "23350697",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23350697",
+     "dos": "05/17/2026",
+     "cpt": "99487",
+     "carrier": "FLO02",
+     "billdate": "05/19/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    },
+    {
+     "cid": "23350698",
+     "dos": "05/17/2026",
+     "cpt": "99489",
+     "carrier": "FLO02",
+     "billdate": "05/19/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23350697, '2') + freq1_visit.run(19442523, 23350697, 2)"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19444342",
+   "cid": "23353047",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23353047",
+     "dos": "06/05/2026",
+     "cpt": "99307",
+     "carrier": "HUM01",
+     "billdate": "09/10/2026",
+     "insbal": "68.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23353047, '2') + freq1_visit.run(19444342, 23353047, 2)"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19446223",
+   "cid": "23355217",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23355217",
+     "dos": "06/25/2026",
+     "cpt": "99487",
+     "carrier": "FLO02",
+     "billdate": "06/28/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    },
+    {
+     "cid": "23355218",
+     "dos": "06/25/2026",
+     "cpt": "99489",
+     "carrier": "FLO02",
+     "billdate": "06/28/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23355217, '2') + freq1_visit.run(19446223, 23355217, 2)"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19447320",
+   "cid": "23356503",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23356503",
+     "dos": "07/03/2026",
+     "cpt": "99309",
+     "carrier": "FLO02",
+     "billdate": "07/11/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23356503, '2') + freq1_visit.run(19447320, 23356503, 2)"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19455798",
+   "cid": "23367250",
+   "order": "2,3",
+   "seq": 2,
+   "col": "none",
+   "live": [
+    {
+     "cid": "23367250",
+     "dos": "09/20/2026",
+     "cpt": "99487",
+     "carrier": "SIM01",
+     "billdate": "09/23/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23367250, '2,3') + freq1_visit.run(19455798, 23367250, 2)"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19456476",
+   "cid": "23368122",
+   "order": "2,3",
+   "seq": 2,
+   "col": "exclusion",
+   "claimrun": "1700250",
+   "claimid": "19456476A",
+   "live": [
+    {
+     "cid": "23368122",
+     "dos": "09/24/2026",
+     "cpt": "99309",
+     "carrier": "SIM01",
+     "billdate": "09/29/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "outcome": "DRY would: move_to_ins.move(23368122, '2,3') + freq1_visit.run(19456476, 23368122, 2)"
+  }
+ ],
+ "patient_order": {
+  "17472849": {
+   "insid": "ins9519135",
+   "order": "2,3",
+   "ok": null,
+   "msg": "dry"
+  }
+ },
+ "released": [],
+ "exclusions": []
+}
