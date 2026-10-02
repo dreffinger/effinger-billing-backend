@@ -58,7 +58,7 @@
       "Bash(cp *)", "Bash(mkdir *)", "Bash(ln -s *)", "Bash(ln -sfn *)", "Bash(chmod 600 *)", "Bash(base64 -d *)", "Bash(rm *.b64)",
       "Bash(curl -sS *)",
       "Bash(git fetch *)", "Bash(git pull *)", "Bash(git checkout *)", "Bash(git add *)", "Bash(git rm *)",
-      "Bash(git commit *)", "Bash(git status *)", "Bash(git log *)", "Bash(git diff *)", "Bash(git branch *)", "Bash(git merge *)", "Bash(git show *)",
+      "Bash(git commit *)", "Bash(git status *)", "Bash(git log *)", "Bash(git diff *)", "Bash(git branch *)", "Bash(git merge *)", "Bash(git show *)", "Bash(git ls-tree *)",
       "Bash(git push origin main)", "Bash(git push origin HEAD:*)", "Bash(git push -u origin *)", "Bash(git push -q -u origin *)",
       "Edit(/home/claude/unbilled/**)", "Write(/home/claude/unbilled/**)", "Read(/home/claude/unbilled/**)",
       "Edit(/home/claude/effinger-billing-backend/**)", "Write(/home/claude/effinger-billing-backend/**)",
@@ -66,7 +66,7 @@
       "Artifact", "ArtifactData",
       "mcp__Google_Drive__*", "mcp__Google-Drive__*",
       "mcp__github__*",
-      "mcp__Gmail__search_threads", "mcp__Gmail__get_thread",
+      "mcp__Gmail__search_threads", "mcp__Gmail__get_thread", "mcp__Gmail__send_message",
       "mcp__Claude_Code_Remote__send_later", "mcp__Claude_Code_Remote__subscribe_pr_activity",
       "PushNotification"
     ]
