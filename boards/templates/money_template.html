@@ -71,9 +71,40 @@ details.p .body b{font:500 13px var(--mono)}
 .legend span{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px;vertical-align:middle}
 @media (max-width:760px){ .stage summary{grid-template-columns:28px 1fr auto} .stage .cnt{display:none} .bars{grid-template-columns:110px 1fr 90px} .bars .c{display:none} details.p summary{grid-template-columns:1fr 1fr} }
 button:focus-visible{outline:2px solid var(--hold);outline-offset:2px}
+/* ===== palettes (ported from the live artifact so a nightly refresh keeps William's picker) ===== */
+:root[data-palette="ehpa"],:root[data-palette="midnight"],:root[data-palette="plum"]{--bg:#ffffff;--surface:#ffffff;--line:#d7d8da;--ink:#082f35;--muted:#636469;--in:#1b8037;--in-soft:#dcfae6;--out:#c5000f;--out-soft:#fbdcdf;--wait:#917005;--wait-soft:#fff3c4;--hold:#0163aa;--hold-soft:#e0ecf6;--bar:#d7d8da;--disp:'Quicksand',system-ui,sans-serif;--sans:'Quicksand',system-ui,sans-serif;}
+@media (prefers-color-scheme:dark){:root[data-palette="ehpa"]:not([data-theme="light"]){--bg:#253e59;--surface:#304861;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--in:#3dd475;--in-soft:#1f4a3c;--out:#e58f95;--out-soft:#4d1f2a;--wait:#ffc409;--wait-soft:#4a4020;--hold:#6cb1cc;--hold-soft:#1f3f5c;--bar:#465b72;}}
+:root[data-palette="ehpa"][data-theme="dark"]{--bg:#253e59;--surface:#304861;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--in:#3dd475;--in-soft:#1f4a3c;--out:#e58f95;--out-soft:#4d1f2a;--wait:#ffc409;--wait-soft:#4a4020;--hold:#6cb1cc;--hold-soft:#1f3f5c;--bar:#465b72;}
+@media (prefers-color-scheme:dark){:root[data-palette="midnight"]:not([data-theme="light"]){--bg:#082f35;--surface:#214449;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--in:#3dd475;--in-soft:#164a41;--out:#df7079;--out-soft:#3d1b22;--wait:#ffc409;--wait-soft:#3d4020;--hold:#6cb1cc;--hold-soft:#123c4a;--bar:#3c6169;}}
+:root[data-palette="midnight"][data-theme="dark"]{--bg:#082f35;--surface:#214449;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--in:#3dd475;--in-soft:#164a41;--out:#df7079;--out-soft:#3d1b22;--wait:#ffc409;--wait-soft:#3d4020;--hold:#6cb1cc;--hold-soft:#123c4a;--bar:#3c6169;}
+@media (prefers-color-scheme:dark){:root[data-palette="plum"]:not([data-theme="light"]){--bg:#181924;--surface:#2c2933;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--in:#50ef73;--in-soft:#173a1d;--out:#ff877a;--out-soft:#3f1f22;--wait:#ffd442;--wait-soft:#3d3616;--hold:#8aa9bf;--hold-soft:#25303c;--bar:#626468;}}
+:root[data-palette="plum"][data-theme="dark"]{--bg:#181924;--surface:#2c2933;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--in:#50ef73;--in-soft:#173a1d;--out:#ff877a;--out-soft:#3f1f22;--wait:#ffd442;--wait-soft:#3d3616;--hold:#8aa9bf;--hold-soft:#25303c;--bar:#626468;}
+.ehpa-pal{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;margin:0 0 12px;font-family:'Quicksand',system-ui,sans-serif}
+.ehpa-pal button{font:600 12px 'Quicksand',system-ui,sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.ehpa-pal button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.ehpa-pal .sw{display:inline-flex;gap:2px}.ehpa-pal .sw i{width:9px;height:9px;border-radius:50%;display:inline-block}
 </style>
 
 <div class="wrap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap">
+<div class="ehpa-pal" id="ehpa-pal" aria-label="Color palette">
+  <button data-pal="ehpa" aria-pressed="false"><span class="sw"><i style="background:#253e59"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>ehpa</button>
+  <button data-pal="midnight" aria-pressed="true"><span class="sw"><i style="background:#082f35"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>Midnight</button>
+  <button data-pal="plum" aria-pressed="false"><span class="sw"><i style="background:#181924"></i><i style="background:#9be8e2"></i><i style="background:#1d122e"></i></span>Plum</button>
+  <button data-pal="original" aria-pressed="false">Original</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, KEY='money-ledger-pal3', pal='midnight';
+  try{pal=localStorage.getItem(KEY)||'midnight';}catch(e){}
+  function apply(p){ if(p&&p!=='original') root.setAttribute('data-palette',p); else root.removeAttribute('data-palette');
+    document.querySelectorAll('#ehpa-pal [data-pal]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.pal===p?'true':'false');});
+    try{localStorage.setItem(KEY,p);}catch(e){} }
+  apply(pal);
+  document.querySelectorAll('#ehpa-pal [data-pal]').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.pal);});});
+})();
+</script>
+
 <header><div><h1>Effinger Money Ledger</h1><div class="asof" id="asof"></div></div>
 <div class="tabs"><button class="tab" data-v="stage" aria-pressed="true">By process stage</button><button class="tab" data-v="payer" aria-pressed="false">By payer</button></div></header>
 <div class="kpis" id="kpis"></div>
