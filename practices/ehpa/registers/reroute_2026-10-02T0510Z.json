@@ -1,0 +1,234 @@
+{
+ "stamp": "2026-10-02T0510Z",
+ "live": true,
+ "at": "2026-10-02T05:24:41Z",
+ "items": [
+  {
+   "pid": "17472396",
+   "vid": "19441616",
+   "cid": "23349530",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23349530",
+     "dos": "05/07/2026",
+     "cpt": "99308",
+     "carrier": "FLO02",
+     "billdate": "05/17/2026",
+     "insbal": "107.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19442523",
+   "cid": "23350697",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23350697",
+     "dos": "05/17/2026",
+     "cpt": "99487",
+     "carrier": "FLO02",
+     "billdate": "05/19/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    },
+    {
+     "cid": "23350698",
+     "dos": "05/17/2026",
+     "cpt": "99489",
+     "carrier": "FLO02",
+     "billdate": "05/19/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19444342",
+   "cid": "23353047",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23353047",
+     "dos": "06/05/2026",
+     "cpt": "99307",
+     "carrier": "HUM01",
+     "billdate": "09/10/2026",
+     "insbal": "68.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19446223",
+   "cid": "23355217",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23355217",
+     "dos": "06/25/2026",
+     "cpt": "99487",
+     "carrier": "FLO02",
+     "billdate": "06/28/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    },
+    {
+     "cid": "23355218",
+     "dos": "06/25/2026",
+     "cpt": "99489",
+     "carrier": "FLO02",
+     "billdate": "06/28/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19447320",
+   "cid": "23356503",
+   "order": "2",
+   "seq": 2,
+   "col": "unbilled",
+   "live": [
+    {
+     "cid": "23356503",
+     "dos": "07/03/2026",
+     "cpt": "99309",
+     "carrier": "FLO02",
+     "billdate": "07/11/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19455798",
+   "cid": "23367250",
+   "order": "2,3",
+   "seq": 2,
+   "col": "none",
+   "live": [
+    {
+     "cid": "23367250",
+     "dos": "09/20/2026",
+     "cpt": "99487",
+     "carrier": "SIM01",
+     "billdate": "09/23/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,3'} rebill seq 2,3 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19456476",
+   "cid": "23368122",
+   "order": "2,3",
+   "seq": 2,
+   "col": "exclusion",
+   "claimrun": "1700250",
+   "claimid": "19456476A",
+   "live": [
+    {
+     "cid": "23368122",
+     "dos": "09/24/2026",
+     "cpt": "99309",
+     "carrier": "SIM01",
+     "billdate": "09/29/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "nonvoid_money_payments": 0
+    }
+   ],
+   "readback_insorder": "2,3",
+   "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '2,3'} rebill seq 2,3 (sent to 2) -> 204",
+   "freq1": "freq1 + rebill seq 2 -> 204",
+   "outcome": "rerouted + rebilled"
+  }
+ ],
+ "patient_order": {
+  "17472849": {
+   "insid": "[member id]",
+   "order": "2,3",
+   "ok": true,
+   "msg": "d-lq6tf\" lst=\"10/01/2026 22:24:43\"><Results success=\"1\"><patient insorder=\"2,3\" /></Results><Error /></PPMDResults>"
+  }
+ },
+ "released": {
+  "vids": [
+   "19441616",
+   "19442523",
+   "19444342",
+   "19446223",
+   "19447320"
+  ],
+  "ok": true,
+  "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:26:51\"><Results success=\"1\" /><Error /></PPMDResults>"
+ },
+ "exclusions": [
+  {
+   "run": "1700250",
+   "vid": "19456476",
+   "claimid": "19456476A",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 22:26:50\"><Results success=\"1\" /><Error /></PPMDResults>"
+  }
+ ]
+}
