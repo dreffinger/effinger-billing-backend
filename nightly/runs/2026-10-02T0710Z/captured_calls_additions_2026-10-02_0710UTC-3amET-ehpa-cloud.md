@@ -1,0 +1,4 @@
+## 2026-10-02 07:10 UTC (3 AM ET 10/2) backend billing run - ehpa cloud
+- No new call shapes. No AMD writes this run (verification pass: every column row is a standing hold; no facesheet, Pam email, drop, board note, 835 or Availity file arrived since the 0510Z run).
+- Reads: columns_scan.py before (getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches + getclaiminspectorcharges x12, getclaimunbillablecharges, getclaimexclusionclaimruns + getclaimexclusioncharges x80), getdemographic x11 (the Unbilled 'Insurance order is missing' charts), GET /api/era/checks x2, GET /api/era/checkdetails?checkid=1052906, era_post.py --all-unposted --dry, era_clear.py --dry.
+- Observation: getclaimrunstatus still lists 1700250 (AMD clock 9/29 21:09) as the newest claim run at 07:15Z 10/2 - no nightly claim run posted for 9/30 or 10/1; everything released since 9/29 waits on it (same pattern as 9/17-9/19).
