@@ -1,0 +1,4 @@
+## 2026-10-02 01:10 UTC (9 PM ET 10/1) backend billing run - ehpa cloud
+- No new call shapes. Helper added: `hum_1052927_0110.py` (copy of `hum_1052825_0110.py` with the check id, the scan-dir path for the checks snapshot and an explicit TRI05/pat21238 hold) - ERA-linked $0 denial write-offs through `payreasons.post_line` on the Humana NO-PAY check 1052927: 5 lines WOINS $87.50, all balances read back 0.
+- Lesson: a Humana NO-PAY 835 that AMD maps to carrier 6085 (FLORIDA MEDICARE) on the list is still a Humana SECONDARY answer - the claim-level carrierid on checkdetails says which chart plan answered (6085 / 6285 / 6559); after the write-offs the list re-mapped the check to the last line's carrier (TRI05).
+- `era_clear.py` live after the approvals A1-A3 landed (cascade session 01:08Z): dismissed 1052921 (79 $0 lines zero-posted) and 1052927; held 1052906 (3 unvalidated money lines = the takeback pair).
