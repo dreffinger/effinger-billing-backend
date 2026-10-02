@@ -1,0 +1,176 @@
+{
+ "stamp": "2026-10-02T0110Z",
+ "checkid": "1052927",
+ "lines": [
+  {
+   "visitid": "19421095",
+   "patientid": "45008",
+   "chargeid": "23326390",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 206.0,
+   "insbalance": 17.5,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24656325",
+     "68.62",
+     "819853087",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 17.5,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MA)",
+   "humana_ids": [
+    "H7760233000"
+   ],
+   "ok": true,
+   "paymentid": "10165374",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-hnlhj\" lst=\"10/01/2026 18:28:48\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 17.50"
+  },
+  {
+   "visitid": "19421095",
+   "patientid": "45008",
+   "chargeid": "23326391",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 109.0,
+   "insbalance": 9.47,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24656326",
+     "37.13",
+     "819853087",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 9.47,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MA)",
+   "humana_ids": [
+    "H7760233000"
+   ],
+   "ok": true,
+   "paymentid": "10165375",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 18:28:53\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 9.47"
+  },
+  {
+   "visitid": "19454309",
+   "patientid": "20379",
+   "chargeid": "23365382",
+   "cpt": "99233",
+   "dos": "2026-09-09",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 21.8,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24656384",
+     "85.46",
+     "819853087",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 21.8,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MA)",
+   "humana_ids": [
+    "H74410073"
+   ],
+   "ok": true,
+   "paymentid": "10165376",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 18:28:58\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 21.80"
+  },
+  {
+   "visitid": "19454280",
+   "patientid": "20379",
+   "chargeid": "23365352",
+   "cpt": "99233",
+   "dos": "2026-09-10",
+   "carcs": [
+    "OAOA23"
+   ],
+   "adj": 160.0,
+   "insbalance": 21.8,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24656383",
+     "85.46",
+     "819853087",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 21.8,
+   "why": "OA-23 dual crossover $0 on Medicare coinsurance (Humana MA)",
+   "humana_ids": [
+    "H74410073"
+   ],
+   "ok": true,
+   "paymentid": "10165377",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-hnlhj\" lst=\"10/01/2026 18:29:03\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 21.80"
+  },
+  {
+   "visitid": "19454405",
+   "patientid": "20937",
+   "chargeid": "23365493",
+   "cpt": "99309",
+   "dos": "2026-09-01",
+   "carcs": [
+    "COCO185"
+   ],
+   "adj": 141.0,
+   "insbalance": 16.93,
+   "patbalance": 0.0,
+   "prior_payments": [
+    [
+     "pay24656368",
+     "66.36",
+     "819853087",
+     "6085"
+    ]
+   ],
+   "wocode": "WOINS",
+   "wo": 16.93,
+   "why": "CO-185/N767 Humana Medicaid secondary - William 9/20 WOINS",
+   "humana_ids": [
+    "7904001454"
+   ],
+   "ok": true,
+   "paymentid": "10165378",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-lq6tf\" lst=\"10/01/2026 18:29:08\"><Results success=\"1\" paym",
+   "insbalance_after": 0.0,
+   "patbalance_after": 0.0,
+   "outcome": "posted $0 + WOINS 16.93"
+  },
+  {
+   "visitid": "19454389",
+   "patientid": "21238",
+   "outcome": "HOLD - TRI05 standing hold"
+  }
+ ]
+}

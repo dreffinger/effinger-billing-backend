@@ -27471,5 +27471,66 @@
   "outcome": "duplicate-original-pending",
   "when": "2026-10-01T13:22:36Z",
   "note": "run 2026-10-01T1310Z"
+ },
+ {
+  "checkid": "1052927",
+  "checkclaimid": null,
+  "visitid": "19421095",
+  "chargeid": "23326390",
+  "outcome": "denial-only line written off WOINS 17.50 (Humana $0 secondary answer, OAOA23)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052927",
+  "checkclaimid": null,
+  "visitid": "19421095",
+  "chargeid": "23326391",
+  "outcome": "denial-only line written off WOINS 9.47 (Humana $0 secondary answer, OAOA23)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052927",
+  "checkclaimid": null,
+  "visitid": "19454309",
+  "chargeid": "23365382",
+  "outcome": "denial-only line written off WOINS 21.80 (Humana $0 secondary answer, OAOA23)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052927",
+  "checkclaimid": null,
+  "visitid": "19454280",
+  "chargeid": "23365352",
+  "outcome": "denial-only line written off WOINS 21.80 (Humana $0 secondary answer, OAOA23)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052927",
+  "checkclaimid": null,
+  "visitid": "19454405",
+  "chargeid": "23365493",
+  "outcome": "denial-only line written off WOINS 16.93 (Humana $0 secondary answer, COCO185)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052927",
+  "visitid": "19454389",
+  "chargeid": "23365477",
+  "outcome": "HOLD - TRI05 standing hold (Olson carrier file); check dismissed with the line unposted",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
+ },
+ {
+  "checkid": "1052921",
+  "visitid": null,
+  "chargeid": null,
+  "outcome": "dismissed after approvals A1-A3 applied 01:08Z (79 $0 lines zero-posted, 129 denial lines on the cascade)",
+  "when": "2026-10-02T01:31:50Z",
+  "run": "2026-10-02T0110Z"
  }
 ]
