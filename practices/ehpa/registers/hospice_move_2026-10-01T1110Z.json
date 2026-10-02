@@ -1,0 +1,56 @@
+[
+ {
+  "pid": "22023",
+  "cid": "23326012",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "22023",
+  "cid": "23334147",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "22023",
+  "cid": "23337128",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "22023",
+  "cid": "23338626",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "21263",
+  "cid": "23350599",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "21263",
+  "cid": "23355341",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "21263",
+  "cid": "23326392",
+  "seq": "1",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.62', 'insorder': '1'} rebill seq 1 (sent to 1) -> 204"
+ },
+ {
+  "pid": "17473477",
+  "cid": "23350410",
+  "seq": "2",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204"
+ },
+ {
+  "pid": "17473477",
+  "cid": "23358095",
+  "seq": "2",
+  "result": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} rebill seq 2 (sent to 2) -> 204"
+ }
+]

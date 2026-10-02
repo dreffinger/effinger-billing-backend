@@ -1,0 +1,323 @@
+[
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "22023",
+  "anchor": "23326012",
+  "seq": "1",
+  "why": "UHCMA CO-B9 10/25/2025 99487",
+  "vid": "19420906",
+  "charges": [
+   {
+    "id": "charge23326012",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23326012"
+  ],
+  "add_gv": "GV on 1/1 charges (1 live)",
+  "mods_after": [
+   [
+    "charge23326012",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "22023",
+  "anchor": "23334147",
+  "seq": "1",
+  "why": "UHCMA CO-B9 12/28/2025 99487",
+  "vid": "19427600",
+  "charges": [
+   {
+    "id": "charge23334147",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23334147"
+  ],
+  "add_gv": "GV on 1/1 charges (1 live)",
+  "mods_after": [
+   [
+    "charge23334147",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "22023",
+  "anchor": "23337128",
+  "seq": "1",
+  "why": "UHCMA CO-B9 01/27/2026 99487",
+  "vid": "19430695",
+  "charges": [
+   {
+    "id": "charge23337128",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23337128"
+  ],
+  "add_gv": "GV on 1/1 charges (1 live)",
+  "mods_after": [
+   [
+    "charge23337128",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "22023",
+  "anchor": "23338626",
+  "seq": "1",
+  "why": "UHCMA CO-B9 02/02/2026 99307",
+  "vid": "19432008",
+  "charges": [
+   {
+    "id": "charge23338626",
+    "proc": "pcode65117",
+    "mods": "",
+    "insbalance": "68.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23338626"
+  ],
+  "add_gv": "GV on 1/1 charges (1 live)",
+  "mods_after": [
+   [
+    "charge23338626",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "21263",
+  "anchor": "23350599",
+  "seq": "1",
+  "why": "UNI20 OA-18/CO-B9 05/17/2026 99487+99489 (GV on 99487 only)",
+  "vid": "19442472",
+  "charges": [
+   {
+    "id": "charge23350599",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   },
+   {
+    "id": "charge23364539",
+    "proc": "pcode492677",
+    "mods": "",
+    "insbalance": "109.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23364539"
+  ],
+  "add_gv": "GV on 2/2 charges (2 live)",
+  "mods_after": [
+   [
+    "charge23350599",
+    "mcode713"
+   ],
+   [
+    "charge23364539",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "21263",
+  "anchor": "23355341",
+  "seq": "1",
+  "why": "UNI20 CO-B9 06/25/2026 99487+99489 (GV on 99487 only)",
+  "vid": "19446290",
+  "charges": [
+   {
+    "id": "charge23355341",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   },
+   {
+    "id": "charge23364540",
+    "proc": "pcode492677",
+    "mods": "",
+    "insbalance": "109.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [
+   "charge23364540"
+  ],
+  "add_gv": "GV on 2/2 charges (2 live)",
+  "mods_after": [
+   [
+    "charge23355341",
+    "mcode713"
+   ],
+   [
+    "charge23364540",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "21263",
+  "anchor": "23326392",
+  "seq": "1",
+  "why": "UNI20 CO-B9 10/25/2025 99487+99489 (paid then recouped, net $0)",
+  "vid": "19421096",
+  "charges": [
+   {
+    "id": "charge23326392",
+    "proc": "pcode492676",
+    "mods": "",
+    "insbalance": "68.62"
+   },
+   {
+    "id": "charge23326393",
+    "proc": "pcode492677",
+    "mods": "mcode7",
+    "insbalance": "37.14"
+   }
+  ],
+  "payments": [
+   [
+    "24596175",
+    -68.62
+   ],
+   [
+    "24598372",
+    68.62
+   ],
+   [
+    "24596176",
+    -37.14
+   ],
+   [
+    "24598373",
+    37.14
+   ]
+  ],
+  "net_paid": 0.0,
+  "gv_missing_before": [
+   "charge23326392",
+   "charge23326393"
+  ],
+  "add_gv": "GV on 2/2 charges (2 live)",
+  "mods_after": [
+   [
+    "charge23326392",
+    "mcode713"
+   ],
+   [
+    "charge23326393",
+    "mcode7 mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 1 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 1"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "17473477",
+  "anchor": "23350410",
+  "seq": "2",
+  "why": "UNI20 CO-B9 05/17/2026 99487 (GV present, never re-sent; DOS before the 9/15/2026 date of death)",
+  "vid": "19442357",
+  "charges": [
+   {
+    "id": "charge23350410",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [],
+  "mods_after": [
+   [
+    "charge23350410",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 2"
+ },
+ {
+  "stamp": "2026-10-01T1110Z",
+  "live": true,
+  "pid": "17473477",
+  "anchor": "23358095",
+  "seq": "2",
+  "why": "UNI20 CO-B9 07/17/2026 99487 (GV present, never re-sent; DOS before the 9/15/2026 date of death)",
+  "vid": "19448745",
+  "charges": [
+   {
+    "id": "charge23358095",
+    "proc": "pcode492676",
+    "mods": "mcode713",
+    "insbalance": "206.00"
+   }
+  ],
+  "payments": [],
+  "net_paid": 0,
+  "gv_missing_before": [],
+  "mods_after": [
+   [
+    "charge23358095",
+    "mcode713"
+   ]
+  ],
+  "rebill": "freq1 + rebill seq 2 -> 500",
+  "result": "GV on every charge + frequency-1 rebill seq 2"
+ }
+]
