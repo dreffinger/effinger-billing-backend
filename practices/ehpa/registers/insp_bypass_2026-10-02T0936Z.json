@@ -1,0 +1,46 @@
+[
+ {
+  "stamp": "2026-10-02T0936Z",
+  "live": true,
+  "batch": "127783",
+  "vid": "19455913",
+  "pattern": "Pattern 7011",
+  "found": true,
+  "pid": "17476032",
+  "errs": [
+   [
+    "395565",
+    "Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable maximum frequency for the procedure is 1 time per calendar month.Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable maximum frequency for the procedure is 1 time per calendar month."
+   ]
+  ],
+  "charges": [
+   "23367382"
+  ],
+  "gate": [
+   {
+    "cid": "23367382",
+    "cpt": "pcode492676",
+    "mods": [
+     "GV"
+    ],
+    "dx": [
+     "N17.9",
+     "N18.9",
+     "I27.20",
+     "J44.9",
+     "I63.9",
+     "E11.9",
+     "Z86.74",
+     "N39.0",
+     "I21.9"
+    ],
+    "first_never_primary": false
+   }
+  ],
+  "only_adv": true,
+  "gate_ok": true,
+  "mod_ok": true,
+  "bypassed": true,
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-zkppj\" lst=\"10/02/2026 02:36:56\"><Results retval=\"0\" /><Error /></PPMDResults>"
+ }
+]

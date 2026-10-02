@@ -28,7 +28,14 @@ def H():
 def checks():
     r = requests.get(API + "/era/checks", headers=H(), timeout=60); r.raise_for_status(); return r.json()
 def details(checkid):
-    r = requests.get(API + "/era/checkdetails", params={"checkid": checkid}, headers=H(), timeout=120); r.raise_for_status(); return r.json()
+    r = requests.get(API + "/era/checkdetails", params={"checkid": checkid}, headers=H(), timeout=120); r.raise_for_status(); d = r.json()
+    # 10/2/2026 lesson: a fully posted check leaves the list as PROCESSED (not dismissed) and checkdetails answers an empty
+    # claim list afterwards, so cache the lines in era_details/ BEFORE anything posts them (payreasons and the audits read it).
+    try:
+        if d.get("eracheckdetails"):
+            os.makedirs("era_details", exist_ok=True); json.dump(d, open(os.path.join("era_details", "%s.json" % checkid), "w"))
+    except Exception as e: L("   cache write failed for %s: %s" % (checkid, e))
+    return d
 def batch():
     r = requests.get(API + "/transaction/batch", headers=H(), timeout=60); return r.text.strip().strip('"') or "1"
 def locks(checkid, claimids=""):

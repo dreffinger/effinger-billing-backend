@@ -1,0 +1,45 @@
+[
+ {
+  "stamp": "2026-10-02T0935Z",
+  "live": false,
+  "batch": "127783",
+  "vid": "19455913",
+  "pattern": "Pattern 7011",
+  "found": true,
+  "pid": "17476032",
+  "errs": [
+   [
+    "395565",
+    "Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable maximum frequency for the procedure is 1 time per calendar month.Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable maximum frequency for the procedure is 1 time per calendar month."
+   ]
+  ],
+  "charges": [
+   "23367382"
+  ],
+  "gate": [
+   {
+    "cid": "23367382",
+    "cpt": "pcode492676",
+    "mods": [
+     "GV"
+    ],
+    "dx": [
+     "N17.9",
+     "N18.9",
+     "I27.20",
+     "J44.9",
+     "I63.9",
+     "E11.9",
+     "Z86.74",
+     "N39.0",
+     "I21.9"
+    ],
+    "first_never_primary": false
+   }
+  ],
+  "only_adv": true,
+  "gate_ok": true,
+  "mod_ok": true,
+  "bypassed": "dry"
+ }
+]
