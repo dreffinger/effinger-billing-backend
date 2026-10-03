@@ -1,0 +1,71 @@
+[
+ {
+  "id": 1052906,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-30T08:57:59.263",
+  "depositdate": "2026-09-30T00:00:00",
+  "eracarrierid": "1414",
+  "eracarriername": "FLORIDA BLUE",
+  "hasnote": false,
+  "systemcarrierid": 6062,
+  "systemcarriercode": "BCBS",
+  "systemcarriername": "FLORIDA BLUE",
+  "paymentnumber": "213453023",
+  "paymentamount": 1814.2,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 1814.2,
+  "unpostedamount": 104.19,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ },
+ {
+  "id": 1052948,
+  "licensekey": 152563,
+  "receiveddate": "2026-10-03T11:30:42.587",
+  "depositdate": "2026-10-02T00:00:00",
+  "eracarrierid": "2872",
+  "eracarriername": "[name]",
+  "hasnote": false,
+  "systemcarrierid": 6872,
+  "systemcarriercode": "TRI00",
+  "systemcarriername": "TRICARE EAST",
+  "paymentnumber": "R36061002014230",
+  "paymentamount": 0.0,
+  "paymentcode": "NON",
+  "paymentdescription": "",
+  "calculatedamount": 0.0,
+  "unpostedamount": 0.0,
+  "checkstatusid": 1,
+  "providerleveladjustment": [
+   {
+    "code": "72",
+    "amount": -231.61
+   },
+   {
+    "code": "WO",
+    "amount": 231.61
+   }
+  ]
+ },
+ {
+  "id": 1052954,
+  "licensekey": 152563,
+  "receiveddate": "2026-10-03T14:02:48.1",
+  "depositdate": "2026-10-02T00:00:00",
+  "eracarrierid": "2449",
+  "eracarriername": "HUMANA INC.",
+  "hasnote": false,
+  "systemcarrierid": 6285,
+  "systemcarriercode": "HUM01",
+  "systemcarriername": "HUMANA",
+  "paymentnumber": "201994566261003",
+  "paymentamount": 121.57,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 121.57,
+  "unpostedamount": 0.0,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]
