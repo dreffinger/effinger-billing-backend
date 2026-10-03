@@ -1,0 +1,64 @@
+[
+ {
+  "pid": "17471793",
+  "vid": "19455780",
+  "cid": "23367223",
+  "order": "2,4",
+  "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,4'} rebill seq 2,4 (sent to 2) -> 204",
+  "freq1": "freq1 + rebill seq 2 -> 204",
+  "after": {
+   "insorder": "2,4",
+   "resub": "1",
+   "charges": [
+    [
+     "charge23367223",
+     "0",
+     "206.00"
+    ]
+   ]
+  }
+ },
+ {
+  "pid": "20407",
+  "vid": "19455733",
+  "cid": "23367143",
+  "order": "2,3",
+  "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,3'} rebill seq 2,3 (sent to 2) -> 204",
+  "freq1": "freq1 + rebill seq 2 -> 204",
+  "after": {
+   "insorder": "2,3",
+   "resub": "1",
+   "charges": [
+    [
+     "charge23367143",
+     "0",
+     "206.00"
+    ],
+    [
+     "charge23367144",
+     "0",
+     "109.00"
+    ]
+   ]
+  }
+ },
+ {
+  "pid": "17469466",
+  "vid": "19455762",
+  "cid": "23367201",
+  "order": "2,3",
+  "move": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2,3'} rebill seq 2,3 (sent to 2) -> 204",
+  "freq1": "freq1 + rebill seq 2 -> 204",
+  "after": {
+   "insorder": "2,3",
+   "resub": "1",
+   "charges": [
+    [
+     "charge23367201",
+     "0",
+     "206.00"
+    ]
+   ]
+  }
+ }
+]

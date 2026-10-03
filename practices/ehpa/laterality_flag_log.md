@@ -1,2 +1,7 @@
 - 2026-09-29 21:19Z run 2026-09-29T2110Z: pat17477843 visit 19456469 charges 23368116 - Pattern 11256 H91.90 (unspecified hearing loss) bypassed as advisory; documentation may support a laterality code (William)
 - 2026-09-29 21:19Z run 2026-09-29T2110Z: pat17477843 visit 19456470 charges 23368117 - Pattern 11256 H91.90 (unspecified hearing loss) bypassed as advisory; documentation may support a laterality code (William)
+- 2026-10-03 21:32Z run 2026-10-03T2110Z: v19456848 pat17477719 Pattern 11256 unspecified laterality bypassed
+- 2026-10-03 21:32Z run 2026-10-03T2110Z: v19456857 pat17477719 Pattern 11256 unspecified laterality bypassed
+- 2026-10-03 21:32Z run 2026-10-03T2110Z: v19456876 pat17477719 Pattern 11256 unspecified laterality bypassed
+- 2026-10-03 21:32Z run 2026-10-03T2110Z: v19456889 pat17477719 Pattern 11256 unspecified laterality bypassed
+- 2026-10-03 21:47Z run 2026-10-03T2110Z: v19455762 pat17469466 Pattern 11256 unspecified laterality bypassed

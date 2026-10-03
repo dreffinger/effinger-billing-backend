@@ -1,0 +1,66 @@
+{
+ "stamp": "2026-10-03T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1052957",
+   "checkclaimid": 15443756,
+   "visitid": "19452223",
+   "pid": "24853",
+   "chargedetailid": "23362342",
+   "cpt": "99223",
+   "dos": "2026-08-20",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N782",
+    "N781"
+   ],
+   "when": "2026-10-03T2110Z",
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10165609",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-pxvxk\" lst=\"10/03/2026 14:39:08\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1052957",
+   "checkclaimid": 15443756,
+   "visitid": "19452223",
+   "pid": "24853",
+   "chargedetailid": "23362343",
+   "cpt": "99497",
+   "dos": "2026-08-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO97"
+   ],
+   "rarcs": [],
+   "when": "2026-10-03T2110Z",
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "outcome": "HOLD - $0 answer with no prior payment on the charge (not a secondary residual)"
+  }
+ ]
+}
