@@ -1,0 +1,40 @@
+{
+ "stamp": "2026-10-03T1510Z",
+ "live": true,
+ "pid": "12182505",
+ "vid": "19452655",
+ "checkid": 1052946,
+ "carc": "PR-B9 MA01 (RET01 Railroad Medicare)",
+ "seq": "3",
+ "charges": [
+  {
+   "id": "23363029",
+   "proc": "99487",
+   "mods": "",
+   "fee": "206.00"
+  },
+  {
+   "id": "23363030",
+   "proc": "99489",
+   "mods": "",
+   "fee": "109.00"
+  }
+ ],
+ "payments": [],
+ "add_gv": "GV on 2/2 charges (2 live)",
+ "rebill": "freq1 + rebill seq 3 -> 204",
+ "result": "GV added + frequency-1 rebill seq 3",
+ "mods_after": [
+  [
+   "23363029",
+   null,
+   null
+  ],
+  [
+   "23363030",
+   null,
+   null
+  ]
+ ],
+ "dismiss": 200
+}
