@@ -1,0 +1,2007 @@
+{
+ "tag": "before",
+ "at": "2026-10-03T07:17:53Z",
+ "overview": {
+  "chargereviewcount": "0",
+  "chargereviewamount": "0.00",
+  "claiminspectorcount": "21",
+  "claiminspectoramount": "3955.00",
+  "unbillablecount": "34",
+  "unbillableamount": "6944.00",
+  "exclusioncount": "15",
+  "exclusionamount": "2918.00",
+  "claimrunstatuscount": "88",
+  "claimrunstatusamount": "2086162.73"
+ },
+ "chargereview": [],
+ "inspector": {
+  "126125": [
+   {
+    "vid": "19430630",
+    "pid": "17474541",
+    "name": "RODRIGUEZ,ROSEMARY",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395005",
+      "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primary procedure code.Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primary p",
+      "109083066"
+     ],
+     [
+      "395006",
+      "Pattern 4426 Modifier 25 may be reported in error with E/M code 99489. There is no history line found on the same date that requires the use of modifier 25 on the current line.Pattern 4426 Modifier 25",
+      "85078066050053"
+     ]
+    ],
+    "chgs": [
+     [
+      "23336998",
+      null
+     ]
+    ]
+   }
+  ],
+  "126638": [
+   {
+    "vid": "19437843",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394797",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23344964",
+      null
+     ]
+    ]
+   }
+  ],
+  "126640": [
+   {
+    "vid": "19437926",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394798",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345028",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19437951",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394799",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345053",
+      null
+     ]
+    ]
+   }
+  ],
+  "126646": [
+   {
+    "vid": "19438061",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395008",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345152",
+      null
+     ]
+    ]
+   }
+  ],
+  "126664": [
+   {
+    "vid": "19438356",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394800",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345441",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19438357",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394801",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345443",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19438358",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394802",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345444",
+      null
+     ]
+    ]
+   }
+  ],
+  "126671": [
+   {
+    "vid": "19438701",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394803",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23345967",
+      null
+     ]
+    ]
+   }
+  ],
+  "126683": [
+   {
+    "vid": "19438903",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395009",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346194",
+      null
+     ]
+    ]
+   }
+  ],
+  "126691": [
+   {
+    "vid": "19438993",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395010",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346339",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19439010",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394804",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346357",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19439022",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394805",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346369",
+      null
+     ]
+    ]
+   }
+  ],
+  "126707": [
+   {
+    "vid": "19439233",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394806",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346559",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19439271",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395011",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23346604",
+      null
+     ]
+    ]
+   }
+  ],
+  "126725": [
+   {
+    "vid": "19439702",
+    "pid": "17472874",
+    "name": "TILLMAN,KENNETH D",
+    "status": "ERROR",
+    "errs": [
+     [
+      "394807",
+      "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatient services.Hospitalization From Date in the Extra Info tab is empty. This is a required field for inpatie",
+      "117065068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23347346",
+      null
+     ]
+    ]
+   }
+  ],
+  "127783": [
+   {
+    "vid": "19455625",
+    "pid": "17473477",
+    "name": "SMITH,BEVERLY",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395106",
+      "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455625, Line ID 23366980, that has received an edit with a Review st",
+      "68065080"
+     ]
+    ],
+    "chgs": [
+     [
+      "23366980",
+      null
+     ],
+     [
+      "23366981",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19455691",
+    "pid": "45668",
+    "name": "MCGINNIS,SARA",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395057",
+      "Pattern 20389 Diagnosis code F0280 describes an external cause, or requires the diagnosis code for the first underlying disease, and should never be listed as the primary diagnosis for a procedure.Pat",
+      "78080068"
+     ]
+    ],
+    "chgs": [
+     [
+      "23367068",
+      null
+     ],
+     [
+      "23367069",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19455936",
+    "pid": "20863",
+    "name": "HATCHETT,DAISY",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395153",
+      "Pattern 24078 Per Medicare CCI Guidelines, history procedure code 99233 on history line ID 23366195 and claim ID 152563-0019455043 has an unbundle relationship with procedure code 99306.Pattern 24078 ",
+      "109085072"
+     ]
+    ],
+    "chgs": [
+     [
+      "23367409",
+      null
+     ],
+     [
+      "23367410",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19455940",
+    "pid": "17477208",
+    "name": "VAUGHN,NELLIE",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395156",
+      "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455939, Line ID 23367415, that has received an edit with a Review st",
+      "68065080"
+     ],
+     [
+      "395157",
+      "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID 152563-0019455940, Line ID 23367417, that has received an edit with a Review st",
+      "68065080"
+     ],
+     [
+      "395158",
+      "Pattern 3429 Procedure code 99487 is a possible duplicate of the same procedure code found on Claim ID 152563-0019455939, Line ID 23367415 performed by the same provider on the same day.Pattern 3429 P",
+      "68076080"
+     ],
+     [
+      "395159",
+      "Pattern 3429 Procedure code 99489 is a possible duplicate of the same procedure code found on Claim ID 152563-0019455939, Line ID 23367416 performed by the same provider on the same day.Pattern 3429 P",
+      "68076080"
+     ],
+     [
+      "395160",
+      "Pattern 35777 Procedure code 99487 with an allowed daily frequency of 1 has been exceeded by 1 for date of service 09/20/2026.Pattern 35777 Procedure code 99487 with an allowed daily frequency of 1 ha",
+      "77070068"
+     ],
+     [
+      "395161",
+      "Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable maximum frequency for the procedure is 1 time per calendar month.Pattern 7011 The maximum frequency for the p",
+      "77070088049"
+     ]
+    ],
+    "chgs": [
+     [
+      "23367417",
+      null
+     ],
+     [
+      "23367418",
+      null
+     ]
+    ]
+   }
+  ],
+  "127793": [
+   {
+    "vid": "19456171",
+    "pid": "17476036",
+    "name": "GREENE,JESSE L",
+    "status": "ERROR",
+    "errs": [
+     [
+      "395338",
+      "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primary procedure code.Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primary p",
+      "109083066"
+     ],
+     [
+      "395339",
+      "Pattern 11256 The ICD-10-CM code(s) S91309D defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a",
+      "85078083076"
+     ]
+    ],
+    "chgs": [
+     [
+      "23367795",
+      null
+     ]
+    ]
+   }
+  ]
+ },
+ "unbilled_totalcount": "34",
+ "unbilled_totalamount": "6944.00",
+ "unbilled": [
+  {
+   "id": "19430630",
+   "errorcount": "1",
+   "patientid": "17474541",
+   "patientname": "RODRIGUEZ,ROSEMARY",
+   "patientchart": "4111",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6085",
+   "carriercode": "FLO02",
+   "carriername": "FLORIDA MEDICARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23336998",
+     "visit": "19430630",
+     "dos": "01/27/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "I10;E03.9;H35.30;D06.9;M15.0",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "CC - COMMERCIAL",
+     "fee": "109.00",
+     "batchid": "126125",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19437843",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23344964",
+     "visit": "19437843",
+     "dos": "04/07/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126638",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19437926",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345028",
+     "visit": "19437926",
+     "dos": "04/08/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126640",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19437951",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345053",
+     "visit": "19437951",
+     "dos": "04/09/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126640",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438061",
+   "errorcount": "1",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6404",
+   "carriercode": "UNI20",
+   "carriername": "UNITED HEALTHCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345152",
+     "visit": "19438061",
+     "dos": "04/10/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126646",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438356",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345441",
+     "visit": "19438356",
+     "dos": "04/12/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126664",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438357",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345443",
+     "visit": "19438357",
+     "dos": "04/11/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126664",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438358",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345444",
+     "visit": "19438358",
+     "dos": "04/13/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126664",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438701",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23345967",
+     "visit": "19438701",
+     "dos": "04/14/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126671",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438903",
+   "errorcount": "1",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6404",
+   "carriercode": "UNI20",
+   "carriername": "UNITED HEALTHCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346194",
+     "visit": "19438903",
+     "dos": "04/15/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126683",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19438993",
+   "errorcount": "1",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6404",
+   "carriercode": "UNI20",
+   "carriername": "UNITED HEALTHCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346339",
+     "visit": "19438993",
+     "dos": "04/18/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126691",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19439010",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346357",
+     "visit": "19439010",
+     "dos": "04/17/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126691",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19439022",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346369",
+     "visit": "19439022",
+     "dos": "04/16/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126691",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19439233",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346559",
+     "visit": "19439233",
+     "dos": "04/19/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126707",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19439271",
+   "errorcount": "1",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6404",
+   "carriercode": "UNI20",
+   "carriername": "UNITED HEALTHCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23346604",
+     "visit": "19439271",
+     "dos": "04/20/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "Z89.511",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "160.00",
+     "batchid": "126707",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19439702",
+   "errorcount": "2",
+   "patientid": "17472874",
+   "patientname": "TILLMAN,KENNETH D",
+   "patientchart": "3372",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "6174",
+   "carriercode": "WEL04",
+   "carriername": "WELLCARE",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "_chgs": [
+    {
+     "id": "23347346",
+     "visit": "19439702",
+     "dos": "04/21/2026 ",
+     "totalfee": "163.00",
+     "diagcode": "I10;Z89.511",
+     "chgcode": "99239",
+     "insportion": "163.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "WL - WELLCARE",
+     "fee": "163.00",
+     "batchid": "126725",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455471",
+   "errorcount": "1",
+   "patientid": "17477183",
+   "patientname": "ALCORN,ALFRED G",
+   "patientchart": "4675",
+   "provcode": "GARCIA",
+   "provname": "GARCIA, PAMELA",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23366762",
+     "visit": "19455471",
+     "dos": "09/18/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "Z86.69;F25.9;I10;E78.5;F03.90",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "141.00",
+     "batchid": "127765",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455597",
+   "errorcount": "1",
+   "patientid": "17473232",
+   "patientname": "WHITEHOUSE,RICHARD",
+   "patientchart": "3609",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23366935",
+     "visit": "19455597",
+     "dos": "09/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "G20.C;F03.90;I10;G47.30;R25.1;G31.84;H52.4;R26.81;R53.81;Z91.81",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23366936",
+     "visit": "19455597",
+     "dos": "09/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "G20.C;F03.90;I10;G47.30;R25.1;G31.84;H52.4;R26.81;R53.81;Z91.81",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "109.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455606",
+   "errorcount": "1",
+   "patientid": "17471681",
+   "patientname": "POWELL,ROBERT",
+   "patientchart": "2522",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23366948",
+     "visit": "19455606",
+     "dos": "09/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "I25.10;E11.9;I10;Z91.199;F32.A;F41.9",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "MC - MEDICARE",
+     "fee": "206.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455621",
+   "errorcount": "1",
+   "patientid": "17477639",
+   "patientname": "WHITSON,SHANE STEPHEN",
+   "patientchart": "4776",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23366974",
+     "visit": "19455621",
+     "dos": "09/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "Z86.79;K21.9;E78.5;R45.86;F43.10;F41.9;Z87.898;F90.9;R48.0;R22.1;M48.00",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "206.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23366975",
+     "visit": "19455621",
+     "dos": "09/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "Z86.79;K21.9;E78.5;R45.86;F43.10;F41.9;Z87.898;F90.9;R48.0;R22.1;M48.00",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "109.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455665",
+   "errorcount": "1",
+   "patientid": "17477842",
+   "patientname": "JOINER,MARY",
+   "patientchart": "4816",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367033",
+     "visit": "19455665",
+     "dos": "09/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "G47.33;Z99.89;I49.5;I25.10;I63.9;I10;L89.159",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "206.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23367034",
+     "visit": "19455665",
+     "dos": "09/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "G47.33;Z99.89;I49.5;I25.10;I63.9;I10;L89.159",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "109.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455759",
+   "errorcount": "1",
+   "patientid": "17477183",
+   "patientname": "ALCORN,ALFRED G",
+   "patientchart": "4675",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367197",
+     "visit": "19455759",
+     "dos": "09/20/2026 ",
+     "totalfee": "206.00",
+     "diagcode": "Z86.69;F25.9;I10;E78.5;F03.90",
+     "chgcode": "99487",
+     "insportion": "206.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "206.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23367198",
+     "visit": "19455759",
+     "dos": "09/20/2026 ",
+     "totalfee": "109.00",
+     "diagcode": "Z86.69;F25.9;I10;E78.5;F03.90",
+     "chgcode": "99489",
+     "insportion": "109.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "109.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455868",
+   "errorcount": "1",
+   "patientid": "17477850",
+   "patientname": "GRIFFIN,JAYSON M",
+   "patientchart": "4824",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367333",
+     "visit": "19455868",
+     "dos": "09/22/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "M17.12",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "160.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19455898",
+   "errorcount": "1",
+   "patientid": "17477850",
+   "patientname": "GRIFFIN,JAYSON M",
+   "patientchart": "4824",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367365",
+     "visit": "19455898",
+     "dos": "09/21/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M17.12",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23367366",
+     "visit": "19455898",
+     "dos": "09/21/2026 ",
+     "totalfee": "133.00",
+     "diagcode": "M17.12",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "133.00",
+     "batchid": "127783",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456058",
+   "errorcount": "1",
+   "patientid": "17477870",
+   "patientname": "OSBORN,MARYANN",
+   "patientchart": "4826",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367540",
+     "visit": "19456058",
+     "dos": "09/22/2026 ",
+     "totalfee": "256.00",
+     "diagcode": "R07.9;I48.91;R10.9",
+     "chgcode": "99306",
+     "insportion": "256.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "256.00",
+     "batchid": "127787",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23367541",
+     "visit": "19456058",
+     "dos": "09/22/2026 ",
+     "totalfee": "133.00",
+     "diagcode": "R07.9;I48.91;R10.9",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "133.00",
+     "batchid": "127787",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456228",
+   "errorcount": "1",
+   "patientid": "17477892",
+   "patientname": "PIGNATARO,SUSAN M",
+   "patientchart": "4827",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367852",
+     "visit": "19456228",
+     "dos": "09/24/2026 ",
+     "totalfee": "111.00",
+     "diagcode": "M25.562",
+     "chgcode": "99232",
+     "insportion": "111.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "111.00",
+     "batchid": "127793",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456237",
+   "errorcount": "1",
+   "patientid": "17477898",
+   "patientname": "WILL,CATHERINE S",
+   "patientchart": "4833",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367861",
+     "visit": "19456237",
+     "dos": "09/23/2026 ",
+     "totalfee": "111.00",
+     "diagcode": "M16.12",
+     "chgcode": "99232",
+     "insportion": "111.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "111.00",
+     "batchid": "127793",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456281",
+   "errorcount": "1",
+   "patientid": "17477850",
+   "patientname": "GRIFFIN,JAYSON M",
+   "patientchart": "4824",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367905",
+     "visit": "19456281",
+     "dos": "09/24/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "M17.12",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "160.00",
+     "batchid": "127793",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456282",
+   "errorcount": "1",
+   "patientid": "17477850",
+   "patientname": "GRIFFIN,JAYSON M",
+   "patientchart": "4824",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367906",
+     "visit": "19456282",
+     "dos": "09/23/2026 ",
+     "totalfee": "160.00",
+     "diagcode": "M17.12",
+     "chgcode": "99233",
+     "insportion": "160.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "160.00",
+     "batchid": "127793",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456293",
+   "errorcount": "1",
+   "patientid": "17477892",
+   "patientname": "PIGNATARO,SUSAN M",
+   "patientchart": "4827",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367918",
+     "visit": "19456293",
+     "dos": "09/23/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M25.562",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127793",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456307",
+   "errorcount": "1",
+   "patientid": "17477898",
+   "patientname": "WILL,CATHERINE S",
+   "patientchart": "4833",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23367941",
+     "visit": "19456307",
+     "dos": "09/22/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M16.12",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127797",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456467",
+   "errorcount": "1",
+   "patientid": "17477933",
+   "patientname": "SMITH,MYRTLE JEAN",
+   "patientchart": "4837",
+   "provcode": "GARCIA",
+   "provname": "GARCIA, PAMELA",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23368114",
+     "visit": "19456467",
+     "dos": "09/21/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "F02.80;E78.5;M06.9;F20.0",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "141.00",
+     "batchid": "127827",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456584",
+   "errorcount": "1",
+   "patientid": "17477946",
+   "patientname": "CHRISTOPHER,CHRISTIANE",
+   "patientchart": "4839",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23368267",
+     "visit": "19456584",
+     "dos": "09/28/2026 ",
+     "totalfee": "256.00",
+     "diagcode": "I63.9;W19.XXXA;F39;N18.31;E03.9;E78.5;D64.9;Z78.9;R29.6;R06.00;J69.0",
+     "chgcode": "99306",
+     "insportion": "256.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "256.00",
+     "batchid": "127835",
+     "dmecharge": "N",
+     "units": "1.0"
+    },
+    {
+     "id": "23368268",
+     "visit": "19456584",
+     "dos": "09/28/2026 ",
+     "totalfee": "133.00",
+     "diagcode": "I63.9;W19.XXXA;F39;N18.31;E03.9;E78.5;D64.9;Z78.9;R29.6;R06.00;J69.0",
+     "chgcode": "99497",
+     "insportion": "133.00",
+     "patportion": "0.00",
+     "modifiers": "25",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "133.00",
+     "batchid": "127835",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19456663",
+   "errorcount": "1",
+   "patientid": "17477183",
+   "patientname": "ALCORN,ALFRED G",
+   "patientchart": "4675",
+   "provcode": "GARCIA",
+   "provname": "GARCIA, PAMELA",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23368365",
+     "visit": "19456663",
+     "dos": "09/28/2026 ",
+     "totalfee": "141.00",
+     "diagcode": "Z86.69;F25.9;I10;E78.5;F03.90",
+     "chgcode": "99309",
+     "insportion": "141.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "141.00",
+     "batchid": "127856",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  }
+ ],
+ "exclusions": {
+  "1699931": [],
+  "1699949": [],
+  "1699950": [],
+  "1699952": [],
+  "1700009": [],
+  "1700013": [],
+  "1700048": [],
+  "1700060": [],
+  "1700079": [],
+  "1700080": [],
+  "1700082": [],
+  "1700088": [],
+  "1700090": [],
+  "1700092": [],
+  "1700093": [],
+  "1700094": [],
+  "1700096": [],
+  "1700098": [],
+  "1700099": [],
+  "1700100": [],
+  "1700101": [],
+  "1700102": [],
+  "1700103": [],
+  "1700104": [],
+  "1700105": [],
+  "1700106": [],
+  "1700107": [],
+  "1700108": [],
+  "1700109": [],
+  "1700110": [],
+  "1700111": [],
+  "1700112": [],
+  "1700113": [],
+  "1700114": [],
+  "1700115": [],
+  "1700116": [],
+  "1700118": [],
+  "1700119": [],
+  "1700120": [],
+  "1700121": [],
+  "1700122": [],
+  "1700123": [],
+  "1700129": [],
+  "1700130": [],
+  "1700131": [],
+  "1700132": [],
+  "1700133": [],
+  "1700136": [],
+  "1700139": [],
+  "1700140": [],
+  "1700141": [],
+  "1700142": [],
+  "1700146": [],
+  "1700147": [],
+  "1700151": [],
+  "1700156": [],
+  "1700158": [],
+  "1700166": [],
+  "1700168": [],
+  "1700178": [],
+  "1700179": [],
+  "1700181": [],
+  "1700182": [],
+  "1700183": [],
+  "1700186": [],
+  "1700188": [],
+  "1700192": [],
+  "1700193": [],
+  "1700201": [],
+  "1700202": [],
+  "1700210": [],
+  "1700211": [],
+  "1700216": [],
+  "1700227": [],
+  "1700228": [],
+  "1700229": [],
+  "1700236": [],
+  "1700243": [],
+  "1700250": []
+ }
+}

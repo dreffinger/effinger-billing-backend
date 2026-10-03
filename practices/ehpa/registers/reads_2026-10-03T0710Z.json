@@ -1,0 +1,178 @@
+{
+ "admits": {
+  "WILBOURNE,JOY%": [],
+  "WILLARD,JOY%": [
+   {
+    "id": "pat17477966",
+    "chart": "4841",
+    "dob": "04/22/1933"
+   }
+  ],
+  "JONES,ISA%": [],
+  "LAWHON,BET%": [],
+  "BOYDSTON,CAR%": [],
+  "BOYDSTON,OPA%": []
+ },
+ "charts": {
+  "17477183": {
+   "insorder": "",
+   "dob": "11/15/1957",
+   "addr1": "7093 FL GA HWY",
+   "plans": [
+    {
+     "id": "ins9518595",
+     "carrier": "car6194",
+     "sequence": "1",
+     "begindate": "03/23/2026",
+     "enddate": "08/31/2026",
+     "subscribernum": "7452486960"
+    }
+   ]
+  },
+  "17473232": {
+   "insorder": "",
+   "dob": "12/20/1951",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9512832",
+     "carrier": "car6085",
+     "sequence": "1",
+     "begindate": "05/12/2024",
+     "enddate": "",
+     "subscribernum": "9TE5M04JN62"
+    },
+    {
+     "id": "ins9512833",
+     "carrier": "car6404",
+     "sequence": "2",
+     "begindate": "04/12/2025",
+     "enddate": "04/27/2025",
+     "subscribernum": "0029441631"
+    }
+   ]
+  },
+  "17471681": {
+   "insorder": "",
+   "dob": "02/06/1952",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9511150",
+     "carrier": "car6085",
+     "sequence": "1",
+     "begindate": "08/19/2023",
+     "enddate": "",
+     "subscribernum": "4CX0DE8JU42"
+    },
+    {
+     "id": "ins9511163",
+     "carrier": "car6285",
+     "sequence": "2",
+     "begindate": "12/19/2023",
+     "enddate": "12/03/2024",
+     "subscribernum": "H72974496"
+    }
+   ]
+  },
+  "17477639": {
+   "insorder": "",
+   "dob": "09/18/1981",
+   "addr1": "",
+   "plans": []
+  },
+  "17477842": {
+   "insorder": "",
+   "dob": "06/24/1921",
+   "addr1": "",
+   "plans": []
+  },
+  "17477850": {
+   "insorder": "",
+   "dob": "08/26/1981",
+   "addr1": "UNIT A",
+   "plans": []
+  },
+  "17477870": {
+   "insorder": "1,3",
+   "dob": "06/24/1936",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9520598",
+     "carrier": "car6404",
+     "sequence": "1",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "997109956"
+    },
+    {
+     "id": "ins9520599",
+     "carrier": "car6113",
+     "sequence": "2",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "9665958151"
+    },
+    {
+     "id": "ins9520600",
+     "carrier": "car6285",
+     "sequence": "3",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "9665958151"
+    }
+   ]
+  },
+  "17477892": {
+   "insorder": "",
+   "dob": "12/24/1950",
+   "addr1": "",
+   "plans": []
+  },
+  "17477898": {
+   "insorder": "",
+   "dob": "06/27/1957",
+   "addr1": "",
+   "plans": []
+  },
+  "17477933": {
+   "insorder": "",
+   "dob": "01/01/1900",
+   "addr1": "",
+   "plans": []
+  },
+  "17477946": {
+   "insorder": "",
+   "dob": "11/20/1961",
+   "addr1": "280 JOHN KNOX ROAD",
+   "plans": []
+  }
+ },
+ "era": {
+  "before_count": 1,
+  "before_total": 104.19,
+  "checks": [
+   {
+    "id": 1052906,
+    "licensekey": 152563,
+    "receiveddate": "2026-09-30T08:57:59.263",
+    "depositdate": "2026-09-30T00:00:00",
+    "eracarrierid": "1414",
+    "eracarriername": "FLORIDA BLUE",
+    "hasnote": false,
+    "systemcarrierid": 6062,
+    "systemcarriercode": "BCBS",
+    "systemcarriername": "FLORIDA BLUE",
+    "paymentnumber": "213453023",
+    "paymentamount": 1814.2,
+    "paymentcode": "ACH",
+    "paymentdescription": "",
+    "calculatedamount": 1814.2,
+    "unpostedamount": 104.19,
+    "checkstatusid": 1,
+    "providerleveladjustment": []
+   }
+  ]
+ }
+}
