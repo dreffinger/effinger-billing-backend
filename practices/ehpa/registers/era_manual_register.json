@@ -27772,5 +27772,101 @@
   "wo": 0.0,
   "wocode": "",
   "when": "2026-10-03T1510Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443728,
+  "visitid": "19453843",
+  "chargedetailid": "23364761",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443729,
+  "visitid": "19453844",
+  "chargedetailid": "23364762",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443730,
+  "visitid": "19453846",
+  "chargedetailid": "23364764",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443731,
+  "visitid": "19453845",
+  "chargedetailid": "23364763",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443733,
+  "visitid": "19453841",
+  "chargedetailid": "23364759",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443734,
+  "visitid": "19453842",
+  "chargedetailid": "23364760",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 85.46,
+  "wo": 74.54,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443735,
+  "visitid": "19453847",
+  "chargedetailid": "23364765",
+  "cpt": "99223",
+  "outcome": "posted",
+  "pay": 125.21,
+  "wo": 184.79,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052947",
+  "checkclaimid": 15443735,
+  "visitid": "19453847",
+  "chargedetailid": "23364766",
+  "cpt": "99497",
+  "outcome": "posted",
+  "pay": 52.34,
+  "wo": 80.66,
+  "wocode": "WOINS",
+  "when": "2026-10-03T1710Z"
  }
 ]
