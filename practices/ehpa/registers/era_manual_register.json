@@ -27868,5 +27868,65 @@
   "wo": 80.66,
   "wocode": "WOINS",
   "when": "2026-10-03T1710Z"
+ },
+ {
+  "checkid": "1052949",
+  "checkclaimid": 15443741,
+  "visitid": "19452226",
+  "chargedetailid": "23362347",
+  "cpt": "99233",
+  "outcome": "posted",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": "WOINS",
+  "when": "2026-10-03T2110Z"
+ },
+ {
+  "checkid": "1052949",
+  "checkclaimid": 15443742,
+  "visitid": "19452057",
+  "chargedetailid": "23362170",
+  "cpt": "99232",
+  "outcome": "posted",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": "WOINS",
+  "when": "2026-10-03T2110Z"
+ },
+ {
+  "checkid": "1052949",
+  "checkclaimid": 15443743,
+  "visitid": "19452225",
+  "chargedetailid": "23362346",
+  "cpt": "99223",
+  "outcome": "posted",
+  "pay": 31.94,
+  "wo": 0.0,
+  "wocode": "WOINS",
+  "when": "2026-10-03T2110Z"
+ },
+ {
+  "checkid": "1052954",
+  "checkclaimid": 15443752,
+  "visitid": "19456305",
+  "chargedetailid": "23367938",
+  "cpt": "99223",
+  "outcome": "posted",
+  "pay": 121.57,
+  "wo": 188.43,
+  "wocode": "WOINS",
+  "when": "2026-10-03T2110Z"
+ },
+ {
+  "checkid": "1052957",
+  "checkclaimid": 15443756,
+  "visitid": "19452223",
+  "chargedetailid": "23362342",
+  "cpt": "99223",
+  "outcome": "posted",
+  "pay": 156.51,
+  "wo": 153.49,
+  "wocode": "WOINS",
+  "when": "2026-10-03T2110Z"
  }
 ]

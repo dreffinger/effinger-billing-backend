@@ -1,0 +1,228 @@
+{
+ "stamp": "2026-10-03T2110Z",
+ "dry": true,
+ "checks": {
+  "1052948": {
+   "trn": "R36061002014230",
+   "carrier": "TRI00",
+   "amount": 0.0,
+   "open_lines": 0,
+   "lines": [
+    {
+     "visitid": "19409106",
+     "pid": "17473493",
+     "chargedetailid": "22484525",
+     "cpt": "99233",
+     "dos": "2025-07-09",
+     "paid": 0.0,
+     "claimamount": 160.0,
+     "carcs": [
+      "CO29"
+     ],
+     "state": "settled - insurance balance already 0 (CO29)"
+    },
+    {
+     "visitid": "19409114",
+     "pid": "17473493",
+     "chargedetailid": "22484534",
+     "cpt": "99223",
+     "dos": "2025-07-08",
+     "paid": 0.0,
+     "claimamount": 310.0,
+     "carcs": [
+      "CO29"
+     ],
+     "state": "settled - insurance balance already 0 (CO29)"
+    },
+    {
+     "visitid": "19414701",
+     "pid": "17473856",
+     "chargedetailid": "23317914",
+     "cpt": "99232",
+     "dos": "2025-08-26",
+     "paid": 0.0,
+     "claimamount": 111.0,
+     "carcs": [
+      "CO29"
+     ],
+     "state": "settled - insurance balance already 0 (CO29)"
+    },
+    {
+     "visitid": "19414702",
+     "pid": "17473856",
+     "chargedetailid": "23317915",
+     "cpt": "99223",
+     "dos": "2025-08-25",
+     "paid": 0.0,
+     "claimamount": 310.0,
+     "carcs": [
+      "CO29"
+     ],
+     "state": "settled - insurance balance already 0 (CO29)"
+    },
+    {
+     "visitid": "19414820",
+     "pid": "17473856",
+     "chargedetailid": "23318060",
+     "cpt": "99232",
+     "dos": "2025-08-27",
+     "paid": 0.0,
+     "claimamount": 111.0,
+     "carcs": [
+      "CO29"
+     ],
+     "state": "settled - insurance balance already 0 (CO29)"
+    }
+   ],
+   "dismiss": "dry"
+  },
+  "1052949": {
+   "trn": "00148049016",
+   "carrier": "UNI20",
+   "amount": 68.12,
+   "open_lines": 0,
+   "lines": [
+    {
+     "visitid": "19452226",
+     "pid": "17477350",
+     "chargedetailid": "23362347",
+     "cpt": "99233",
+     "dos": "2026-08-21",
+     "paid": 21.8,
+     "claimamount": 160.0,
+     "carcs": [
+      "OA23"
+     ],
+     "state": "posted (00148049016 on the charge), insbal 0.00"
+    },
+    {
+     "visitid": "19452057",
+     "pid": "17477350",
+     "chargedetailid": "23362170",
+     "cpt": "99232",
+     "dos": "2026-08-18",
+     "paid": 14.38,
+     "claimamount": 111.0,
+     "carcs": [
+      "OA23"
+     ],
+     "state": "posted (00148049016 on the charge), insbal 0.00"
+    },
+    {
+     "visitid": "19452225",
+     "pid": "17477350",
+     "chargedetailid": "23362346",
+     "cpt": "99223",
+     "dos": "2026-08-20",
+     "paid": 31.94,
+     "claimamount": 310.0,
+     "carcs": [
+      "OA23"
+     ],
+     "state": "posted (00148049016 on the charge), insbal 0.00"
+    }
+   ],
+   "dismiss": "dry"
+  },
+  "1052954": {
+   "trn": "201994566261003",
+   "carrier": "HUM01",
+   "amount": 121.57,
+   "open_lines": 0,
+   "lines": [
+    {
+     "visitid": "19455780",
+     "pid": "17471793",
+     "chargedetailid": "23367223",
+     "cpt": "99487",
+     "dos": "2026-09-20",
+     "paid": 0.0,
+     "claimamount": 206.0,
+     "carcs": [
+      "PI252"
+     ],
+     "state": "denial-only PI252 $206.00 open on HUM01 - handed to the board"
+    },
+    {
+     "visitid": "19455733",
+     "pid": "20407",
+     "chargedetailid": "23367143",
+     "cpt": "99487",
+     "dos": "2026-09-20",
+     "paid": 0.0,
+     "claimamount": 206.0,
+     "carcs": [
+      "PI252"
+     ],
+     "state": "denial-only PI252 $206.00 open on HUM01 - handed to the board"
+    },
+    {
+     "visitid": "19455733",
+     "pid": "20407",
+     "chargedetailid": "23367144",
+     "cpt": "99489",
+     "dos": "2026-09-20",
+     "paid": 0.0,
+     "claimamount": 109.0,
+     "carcs": [
+      "PI252"
+     ],
+     "state": "denial-only PI252 $109.00 open on HUM01 - handed to the board"
+    },
+    {
+     "visitid": "19455762",
+     "pid": "17469466",
+     "chargedetailid": "23367201",
+     "cpt": "99487",
+     "dos": "2026-09-20",
+     "paid": 0.0,
+     "claimamount": 206.0,
+     "carcs": [
+      "PI252"
+     ],
+     "state": "denial-only PI252 $206.00 open on HUM01 - handed to the board"
+    },
+    {
+     "visitid": "19456305",
+     "pid": "17471384",
+     "chargedetailid": "23367938",
+     "cpt": "99223",
+     "dos": "2026-09-25",
+     "paid": 121.57,
+     "claimamount": 310.0,
+     "carcs": [
+      "CO45"
+     ],
+     "state": "posted (201994566261003 on the charge), insbal 0.00"
+    },
+    {
+     "visitid": "19456305",
+     "pid": "17471384",
+     "chargedetailid": "23367939",
+     "cpt": "99497",
+     "dos": "2026-09-25",
+     "paid": 0.0,
+     "claimamount": 133.0,
+     "carcs": [
+      "CO147"
+     ],
+     "state": "denial-only CO147 $133.00 open on HUM01 - handed to the board"
+    },
+    {
+     "visitid": "19454665",
+     "pid": "17477747",
+     "chargedetailid": "23365743",
+     "cpt": "99309",
+     "dos": "2026-09-02",
+     "paid": 0.0,
+     "claimamount": 141.0,
+     "carcs": [
+      "CO185"
+     ],
+     "state": "settled - insurance balance already 0 (CO185)"
+    }
+   ],
+   "dismiss": "dry"
+  }
+ }
+}
