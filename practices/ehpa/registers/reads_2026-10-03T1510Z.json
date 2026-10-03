@@ -1,0 +1,191 @@
+{
+ "admits": {
+  "WILBOURNE,PATIENT339%": [],
+  "THORNEY,[first]%": [],
+  "TRENT,[first]%": [],
+  "HARLOW,[first]%": [],
+  "HARLOW,[first]%": []
+ },
+ "charts": {
+  "17477183": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "[address]",
+   "plans": [
+    {
+     "id": "ins9518595",
+     "carrier": "car6194",
+     "sequence": "1",
+     "begindate": "03/23/2026",
+     "enddate": "08/31/2026",
+     "subscribernum": "[member id]"
+    }
+   ]
+  },
+  "17473232": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9512832",
+     "carrier": "car6085",
+     "sequence": "1",
+     "begindate": "05/12/2024",
+     "enddate": "",
+     "subscribernum": "[MBI]"
+    },
+    {
+     "id": "ins9512833",
+     "carrier": "car6404",
+     "sequence": "2",
+     "begindate": "04/12/2025",
+     "enddate": "04/27/2025",
+     "subscribernum": "[member id]"
+    }
+   ]
+  },
+  "17471681": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9511150",
+     "carrier": "car6085",
+     "sequence": "1",
+     "begindate": "08/19/2023",
+     "enddate": "",
+     "subscribernum": "[MBI]"
+    },
+    {
+     "id": "ins9511163",
+     "carrier": "car6285",
+     "sequence": "2",
+     "begindate": "12/19/2023",
+     "enddate": "12/03/2024",
+     "subscribernum": "[member id]"
+    }
+   ]
+  },
+  "17477639": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": []
+  },
+  "17477842": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": []
+  },
+  "17477850": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "[address]",
+   "plans": []
+  },
+  "17477870": {
+   "insorder": "1,3",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": [
+    {
+     "id": "ins9520598",
+     "carrier": "car6404",
+     "sequence": "1",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "[member id]"
+    },
+    {
+     "id": "ins9520599",
+     "carrier": "car6113",
+     "sequence": "2",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "[member id]"
+    },
+    {
+     "id": "ins9520600",
+     "carrier": "car6285",
+     "sequence": "3",
+     "begindate": "09/23/2025",
+     "enddate": "",
+     "subscribernum": "[member id]"
+    }
+   ]
+  },
+  "17477892": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": []
+  },
+  "17477898": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": []
+  },
+  "17477933": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "",
+   "plans": []
+  },
+  "17477946": {
+   "insorder": "",
+   "dob": "[DOB]",
+   "addr1": "[address]",
+   "plans": []
+  }
+ },
+ "era": {
+  "before_count": 2,
+  "before_total": 104.19,
+  "checks": [
+   {
+    "id": 1052906,
+    "licensekey": 152563,
+    "receiveddate": "2026-09-30T08:57:59.263",
+    "depositdate": "2026-09-30T00:00:00",
+    "eracarrierid": "1414",
+    "eracarriername": "FLORIDA BLUE",
+    "hasnote": false,
+    "systemcarrierid": 6062,
+    "systemcarriercode": "BCBS",
+    "systemcarriername": "FLORIDA BLUE",
+    "paymentnumber": "213453023",
+    "paymentamount": 1814.2,
+    "paymentcode": "ACH",
+    "paymentdescription": "",
+    "calculatedamount": 1814.2,
+    "unpostedamount": 104.19,
+    "checkstatusid": 1,
+    "providerleveladjustment": []
+   },
+   {
+    "id": 1052946,
+    "licensekey": 152563,
+    "receiveddate": "2026-10-03T06:39:45.713",
+    "depositdate": "2026-10-06T00:00:00",
+    "eracarrierid": "1443",
+    "eracarriername": "PALMETTO GBA - RAILROAD MEDICARE",
+    "hasnote": false,
+    "systemcarrierid": 6080,
+    "systemcarriercode": "RET01",
+    "systemcarriername": "RETIRED RAILROAD MEDICARE",
+    "paymentnumber": "321385160",
+    "paymentamount": 0.0,
+    "paymentcode": "NON",
+    "paymentdescription": "",
+    "calculatedamount": 0.0,
+    "unpostedamount": 0.0,
+    "checkstatusid": 1,
+    "providerleveladjustment": []
+   }
+  ]
+ }
+}

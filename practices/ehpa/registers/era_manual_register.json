@@ -27748,5 +27748,29 @@
   "wo": 0.0,
   "wocode": "",
   "when": "2026-10-03T1310Z"
+ },
+ {
+  "checkid": "1052946",
+  "checkclaimid": 15443726,
+  "visitid": "19452655",
+  "chargedetailid": "23363029",
+  "cpt": "99487",
+  "outcome": "denial-only PR-B9 hospice - GV added + freq-1 rebill seq 3 (GV added + frequency-1 rebill seq 3)",
+  "pay": 0.0,
+  "wo": 0.0,
+  "wocode": "",
+  "when": "2026-10-03T1510Z"
+ },
+ {
+  "checkid": "1052946",
+  "checkclaimid": 15443726,
+  "visitid": "19452655",
+  "chargedetailid": "23363030",
+  "cpt": "99489",
+  "outcome": "denial-only PR-B9 hospice - GV added + freq-1 rebill seq 3 (GV added + frequency-1 rebill seq 3)",
+  "pay": 0.0,
+  "wo": 0.0,
+  "wocode": "",
+  "when": "2026-10-03T1510Z"
  }
 ]

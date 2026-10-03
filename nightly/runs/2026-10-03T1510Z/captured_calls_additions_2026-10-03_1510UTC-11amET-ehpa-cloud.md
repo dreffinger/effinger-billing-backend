@@ -1,0 +1,5 @@
+# captured_calls additions - run 2026-10-03T1510Z (11 AM ET 10/3, ehpa cloud)
+
+## 2026-10-03T1510Z - no new call shapes
+- Re-used shapes only: columns scan (getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches+charges / getclaimunbillablecharges / getclaimrunstatus+getclaimexclusioncharges), lookuppatient x6, getdemographic x11, GET /api/era/checks, GET /api/era/checkdetails?checkid=1052946, gettxhistory, updvisitwithcharges full-visit echo (gv_rebill.add_gv: GV mcode713 on 2 charges), updextrainsinfo resubmissioncode=1 x2 + POST /api/claim/chargerebill seq 3 -> 204 (freq1_visit.run), bypassclaimedits (one claimedit id), POST /api/era/checks/dismiss body "1052946" -> {"issuccess":true}.
+- Lesson (procedural, not a new shape): a Railroad Medicare (RET01, car6080) PR-B9 hospice line on a $0 ERA check behaves exactly like the Medicare/UHC CO-B9 lines - era_clear.py --dry classifies it as 'zero 1' (it would zero-post the PR line and move $315 to the patient balance), so the check is dismissed directly after the GV rebill instead of running era_clear live. Worked example: act_1510_1003.py (pat12182505 v19452655).
