@@ -1,0 +1,95 @@
+{
+ "stamp": "2026-10-03T2310Z",
+ "dry": true,
+ "visits": [
+  {
+   "vid": "19456845",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-10-02 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368505', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=09/05/2026 chg_over={}"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456855",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-10-01 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368516', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=09/05/2026 chg_over={}"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456874",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-09-30 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368535', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=09/05/2026 chg_over={}"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456893",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-09-29 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368555', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=09/05/2026 chg_over={}"
+   ],
+   "admission": "09/05/2026"
+  }
+ ],
+ "held": [
+  {
+   "vid": "19456834",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-09-30 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368492', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  },
+  {
+   "vid": "19456835",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-10-02 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368493', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  },
+  {
+   "vid": "19456836",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-10-01 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368494', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  }
+ ],
+ "left": [],
+ "bypassed": []
+}

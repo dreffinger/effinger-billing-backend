@@ -1,0 +1,393 @@
+{
+ "stamp": "2026-10-03T2310Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19456845",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-10-02 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368505', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23368505', '', 'dcode1034545247')]"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456855",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-10-01 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368516', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23368516', '', 'dcode1034545247')]"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456874",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-09-30 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368535', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23368535', '', 'dcode1034545247')]"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19456893",
+   "pid": "17472703",
+   "name": "RACKLEY,JARED R",
+   "steps": [
+    "dos 2026-09-29 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23368555', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23368555', '', 'dcode1034545247')]"
+   ],
+   "admission": "09/05/2026"
+  }
+ ],
+ "held": [
+  {
+   "vid": "19456834",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-09-30 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368492', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  },
+  {
+   "vid": "19456835",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-10-02 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368493', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  },
+  {
+   "vid": "19456836",
+   "pid": "17476868",
+   "name": "ADAMS,ROBERT",
+   "steps": [
+    "dos 2026-10-01 cpts ['99233'] pos 21 insorder 2,1 onhcfa 0 charges [('charge23368494', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G20.A1', 'M62.81', 'I10', 'F03.90'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "HOLD: no 99223 anchor within 45 days"
+   ]
+  }
+ ],
+ "left": [
+  [
+   "126125",
+   "19430630",
+   "17474541",
+   [
+    [
+     "395005",
+     "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primar"
+    ],
+    [
+     "395006",
+     "Pattern 4426 Modifier 25 may be reported in error with E/M code 99489. There is no history"
+    ]
+   ]
+  ],
+  [
+   "126638",
+   "19437843",
+   "17472874",
+   [
+    [
+     "394797",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437926",
+   "17472874",
+   [
+    [
+     "394798",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126640",
+   "19437951",
+   "17472874",
+   [
+    [
+     "394799",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126646",
+   "19438061",
+   "17472874",
+   [
+    [
+     "395008",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438356",
+   "17472874",
+   [
+    [
+     "394800",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438357",
+   "17472874",
+   [
+    [
+     "394801",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126664",
+   "19438358",
+   "17472874",
+   [
+    [
+     "394802",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126671",
+   "19438701",
+   "17472874",
+   [
+    [
+     "394803",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126683",
+   "19438903",
+   "17472874",
+   [
+    [
+     "395009",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19438993",
+   "17472874",
+   [
+    [
+     "395010",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439010",
+   "17472874",
+   [
+    [
+     "394804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126691",
+   "19439022",
+   "17472874",
+   [
+    [
+     "394805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439233",
+   "17472874",
+   [
+    [
+     "394806",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126707",
+   "19439271",
+   "17472874",
+   [
+    [
+     "395011",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "126725",
+   "19439702",
+   "17472874",
+   [
+    [
+     "394807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "127783",
+   "19455625",
+   "17473477",
+   [
+    [
+     "395106",
+     "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary pro"
+    ]
+   ]
+  ],
+  [
+   "127783",
+   "19455691",
+   "45668",
+   [
+    [
+     "395057",
+     "Pattern 20389 Diagnosis code F0280 describes an external cause, or requires the diagnosis "
+    ]
+   ]
+  ],
+  [
+   "127783",
+   "19455936",
+   "20863",
+   [
+    [
+     "395153",
+     "Pattern 24078 Per Medicare CCI  Guidelines, history procedure code 99233 on history line I"
+    ]
+   ]
+  ],
+  [
+   "127783",
+   "19455940",
+   "17477208",
+   [
+    [
+     "395156",
+     "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary pro"
+    ],
+    [
+     "395157",
+     "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary pro"
+    ],
+    [
+     "395158",
+     "Pattern 3429 Procedure code 99487 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "395159",
+     "Pattern 3429 Procedure code 99489 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "395160",
+     "Pattern 35777 Procedure code 99487 with an allowed daily frequency of 1 has been exceeded "
+    ],
+    [
+     "395161",
+     "Pattern 7011 The maximum frequency for the procedure code has been exceeded. The allowable"
+    ]
+   ]
+  ],
+  [
+   "127793",
+   "19456171",
+   "17476036",
+   [
+    [
+     "395338",
+     "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primar"
+    ],
+    [
+     "395339",
+     "Pattern 11256 The ICD-10-CM code(s) S91309D defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "127866",
+   "19456834",
+   "17476868",
+   [
+    [
+     "395612",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "127866",
+   "19456835",
+   "17476868",
+   [
+    [
+     "395611",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "127866",
+   "19456836",
+   "17476868",
+   [
+    [
+     "395616",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [],
+ "pending_left": 0
+}
