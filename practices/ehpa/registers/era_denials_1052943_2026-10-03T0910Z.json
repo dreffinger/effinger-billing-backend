@@ -1,0 +1,1015 @@
+{
+ "stamp": "2026-10-03T0910Z",
+ "check": "1052943",
+ "trace": "350036553",
+ "payer": "FLO02",
+ "groups": {
+  "CO109": "CO-109/N418 not this payer (Medicare 271 names a UHC Medicare Advantage plan; pre-5/1/2026 UNI20 rule - not rebilled)",
+  "CO22": "CO-22/MA04 other payer primary - visit set to UMR first (insorder 1,2) and sent to UMR as an original claim (204)",
+  "COB14": "CO-B14 one visit per day - duplicate same-day claim, the original adjudication stands; small open balance is the coinsurance residual",
+  "CO151": "CO-151 (+CO-234/N390 on 99489) frequency - CCM cluster, William's decision (appeal with care-plan documentation or WONCS)",
+  "CO16": "CO-16/N382/N211 invalid patient identifier - Medicare 271 rejects the chart MBI (AAA 72) and Stedi finds no beneficiary by name/DOB - Medicare card / facesheet needed (William)",
+  "COB9": "CO-B9 hospice - CCM during hospice on a deceased patient (CMS death 6/21/2026) - William's GV/write-off decision"
+ },
+ "lines": [
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443677,
+   "visitid": 19422927,
+   "pid": "17474613",
+   "dos": "2025-11-06",
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 389.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443678,
+   "visitid": 19422900,
+   "pid": "17474611",
+   "dos": "2025-11-10",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 160.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443679,
+   "visitid": 19422901,
+   "pid": "17474611",
+   "dos": "2025-11-09",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 160.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443680,
+   "visitid": 19422902,
+   "pid": "17474611",
+   "dos": "2025-11-08",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 160.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443681,
+   "visitid": 19422924,
+   "pid": "17474611",
+   "dos": "2025-11-07",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 443.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443682,
+   "visitid": 19423060,
+   "pid": "17474611",
+   "dos": "2025-11-11",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 160.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443683,
+   "visitid": 19423203,
+   "pid": "17474611",
+   "dos": "2025-11-12",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 160.0,
+   "group": "CO109",
+   "outcome": "not rebilled - UNI20 pre-5/1/2026 backlog rule",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443684,
+   "visitid": 19425210,
+   "pid": "17474611",
+   "dos": "2025-12-03",
+   "cpts": [
+    "99232"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443685,
+   "visitid": 19425212,
+   "pid": "17474611",
+   "dos": "2025-12-01",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443686,
+   "visitid": 19425213,
+   "pid": "17474611",
+   "dos": "2025-11-30",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443687,
+   "visitid": 19456273,
+   "pid": "17477774",
+   "dos": "2026-09-23",
+   "cpts": [
+    "99232"
+   ],
+   "carcs": [
+    "CO22"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA04"
+   ],
+   "insbal": 111.0,
+   "group": "CO22",
+   "outcome": "rebilled to primary (UMR) seq 1",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443688,
+   "visitid": 19425214,
+   "pid": "17474611",
+   "dos": "2025-11-29",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443689,
+   "visitid": 19417359,
+   "pid": "17471762",
+   "dos": "2025-09-21",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443690,
+   "visitid": 19423570,
+   "pid": "17471762",
+   "dos": "2025-11-15",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443691,
+   "visitid": 19436848,
+   "pid": "17475972",
+   "dos": "2026-03-27",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "COB14"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 14.38,
+   "group": "COB14",
+   "outcome": "recorded - original adjudication stands",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443692,
+   "visitid": 19416148,
+   "pid": "46673",
+   "dos": "2025-09-08",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 0.0,
+   "group": "CO151",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443693,
+   "visitid": 19442418,
+   "pid": "46673",
+   "dos": "2026-05-17",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 206.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443694,
+   "visitid": 19448833,
+   "pid": "17473343",
+   "dos": "2026-07-17",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 315.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443695,
+   "visitid": 19452421,
+   "pid": "17473343",
+   "dos": "2026-08-22",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 315.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443696,
+   "visitid": 19442414,
+   "pid": "17473343",
+   "dos": "2026-05-17",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 206.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443697,
+   "visitid": 19455623,
+   "pid": "17477638",
+   "dos": "2026-09-20",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N211",
+    "N382"
+   ],
+   "insbal": 315.0,
+   "group": "CO16",
+   "outcome": "william - Medicare card/facesheet",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443698,
+   "visitid": 19425211,
+   "pid": "17474611",
+   "dos": "2025-12-02",
+   "cpts": [
+    "99232"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443699,
+   "visitid": 19456250,
+   "pid": "17477638",
+   "dos": "2026-09-24",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N211",
+    "N382"
+   ],
+   "insbal": 160.0,
+   "group": "CO16",
+   "outcome": "william - Medicare card/facesheet",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443700,
+   "visitid": 19456257,
+   "pid": "17477774",
+   "dos": "2026-09-24",
+   "cpts": [
+    "99232"
+   ],
+   "carcs": [
+    "CO22"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA04"
+   ],
+   "insbal": 111.0,
+   "group": "CO22",
+   "outcome": "rebilled to primary (UMR) seq 1",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443701,
+   "visitid": 19442292,
+   "pid": "17468923",
+   "dos": "2026-05-17",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 315.0,
+   "group": "COB9",
+   "outcome": "william - hospice GV decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443702,
+   "visitid": 19423870,
+   "pid": "17474613",
+   "dos": "2025-11-10",
+   "cpts": [
+    "99309"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443703,
+   "visitid": 19424546,
+   "pid": "17474613",
+   "dos": "2025-11-21",
+   "cpts": [
+    "99309"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443704,
+   "visitid": 19424547,
+   "pid": "17474613",
+   "dos": "2025-11-18",
+   "cpts": [
+    "99309"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443705,
+   "visitid": 19456297,
+   "pid": "23159",
+   "dos": "2026-09-22",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 443.0,
+   "group": "CO151",
+   "outcome": "william - duplicate 99223+99497 of v19456050 (same DOS) - void decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443706,
+   "visitid": 19416182,
+   "pid": "23162",
+   "dos": "2025-09-08",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N390"
+   ],
+   "insbal": 0.0,
+   "group": "CO151",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443707,
+   "visitid": 19455615,
+   "pid": "17473431",
+   "dos": "2026-09-20",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N211",
+    "N382"
+   ],
+   "insbal": 315.0,
+   "group": "CO16",
+   "outcome": "william - Medicare card/facesheet",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443708,
+   "visitid": 19416174,
+   "pid": "23832",
+   "dos": "2025-09-08",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 0.0,
+   "group": "CO151",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443709,
+   "visitid": 19423627,
+   "pid": "17473383",
+   "dos": "2025-11-15",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 0.0,
+   "group": "CO151",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443710,
+   "visitid": 19421109,
+   "pid": "20379",
+   "dos": "2025-10-25",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 206.0,
+   "group": "CO109",
+   "outcome": "william - existing board row felix-mae-20379 CO-109",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443711,
+   "visitid": 19455707,
+   "pid": "17477549",
+   "dos": "2026-09-20",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N211",
+    "N382"
+   ],
+   "insbal": 315.0,
+   "group": "CO16",
+   "outcome": "william - Medicare card/facesheet",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443712,
+   "visitid": 19434046,
+   "pid": "20379",
+   "dos": "2026-02-27",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443713,
+   "visitid": 19436854,
+   "pid": "20379",
+   "dos": "2026-03-23",
+   "cpts": [
+    "99306"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443714,
+   "visitid": 19438648,
+   "pid": "20379",
+   "dos": "2026-03-20",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443715,
+   "visitid": 19423457,
+   "pid": "17474200",
+   "dos": "2025-11-15",
+   "cpts": [
+    "99233"
+   ],
+   "carcs": [
+    "COB14"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 15.41,
+   "group": "COB14",
+   "outcome": "recorded - original adjudication stands",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443716,
+   "visitid": 19452441,
+   "pid": "17472553",
+   "dos": "2026-08-22",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 315.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443717,
+   "visitid": 19442431,
+   "pid": "17472553",
+   "dos": "2026-05-17",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 206.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443718,
+   "visitid": 19442429,
+   "pid": "21885",
+   "dos": "2026-05-17",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 206.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443719,
+   "visitid": 19423619,
+   "pid": "21885",
+   "dos": "2025-11-15",
+   "cpts": [
+    "99487"
+   ],
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "insbal": 206.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443720,
+   "visitid": 19420933,
+   "pid": "17472517",
+   "dos": "2025-10-25",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 315.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443721,
+   "visitid": 19416165,
+   "pid": "17472517",
+   "dos": "2025-09-08",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "carcs": [
+    "CO151",
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "insbal": 315.0,
+   "group": "CO151",
+   "outcome": "william - CCM frequency decision",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443722,
+   "visitid": 19434297,
+   "pid": "20379",
+   "dos": "2026-02-28",
+   "cpts": [
+    "99239"
+   ],
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "insbal": 0.0,
+   "group": "CO109",
+   "outcome": "already adjudicated - insurance balance 0",
+   "when": "2026-10-03T0910Z"
+  },
+  {
+   "checkid": "1052943",
+   "checkclaimid": 15443723,
+   "visitid": 19456296,
+   "pid": "17477638",
+   "dos": "2026-09-23",
+   "cpts": [
+    "99223"
+   ],
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N211",
+    "N382"
+   ],
+   "insbal": 310.0,
+   "group": "CO16",
+   "outcome": "william - Medicare card/facesheet",
+   "when": "2026-10-03T0910Z"
+  }
+ ]
+}
