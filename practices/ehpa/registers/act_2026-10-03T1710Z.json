@@ -1,0 +1,32 @@
+{
+ "stamp": "2026-10-03T1710Z",
+ "checkid": 1052947,
+ "dry": false,
+ "lines": [
+  {
+   "visitid": "19453848",
+   "pid": "17476042",
+   "chargedetailid": "23364767",
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "state": "PR-27 wrong payer - visit already at FLO02 (billdate 09/23/2026, insbal 160.00, paid 0.00) - nothing to post"
+  },
+  {
+   "visitid": "19453833",
+   "pid": "17476042",
+   "chargedetailid": "23364751",
+   "cpt": "99233",
+   "dos": "2026-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "state": "PR-27 wrong payer - visit already at FLO02 (billdate 09/10/2026, insbal 0.00, paid 138.20) - nothing to post"
+  }
+ ],
+ "dismiss": 200
+}

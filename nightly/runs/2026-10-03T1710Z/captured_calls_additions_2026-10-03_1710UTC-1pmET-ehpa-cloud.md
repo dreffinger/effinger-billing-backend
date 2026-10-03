@@ -1,0 +1,5 @@
+# captured_calls additions - run 2026-10-03T1710Z (1 PM ET 10/3, ehpa cloud)
+
+No new call shapes this run. Calls used (all previously captured): getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus / getclaimexclusioncharges (columns_scan.py), lookuppatient, getdemographic, gettxhistory (txh.fetch_visit), GET /api/era/checks, GET /api/era/checkdetails?checkid=1052947, the ERA-linked addpayments shape (payreasons.post_line) x8, POST /api/era/checks/dismiss (body = JSON string of the check id) -> {"issuccess":true,"id":1052947,"actionname":1}.
+
+Lesson recorded: a UHC PR-27 'coverage terminated' $0 line on a chart that was already re-routed to Medicare needs no action - verify charge@carrier / @billdate on the live visit (txh.fetch_visit) and dismiss the check once the money lines are posted; never zero-post the PR-27 line (era_clear.py --dry would have, which transfers the charge to the patient balance - the 9/24 pr27_fix lesson).
