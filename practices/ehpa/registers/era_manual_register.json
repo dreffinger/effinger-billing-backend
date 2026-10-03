@@ -27736,5 +27736,17 @@
   "wo": 52.74,
   "wocode": "WOINS",
   "when": "2026-10-03T0910Z"
+ },
+ {
+  "checkid": "1052945",
+  "checkclaimid": 15443725,
+  "visitid": "19455316",
+  "chargedetailid": "23366554",
+  "cpt": "99306",
+  "outcome": "denial-only CO18 exact duplicate (RARC #AM) - not rebilled; original WellCare claim 3879905006 pending (277 9/29); same line as check 1052922 on 10/1",
+  "pay": 0.0,
+  "wo": 0.0,
+  "wocode": "",
+  "when": "2026-10-03T1310Z"
  }
 ]
