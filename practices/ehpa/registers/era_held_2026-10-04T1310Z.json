@@ -1,0 +1,424 @@
+{
+ "stamp": "2026-10-04T1310Z",
+ "era_1052906_lines": [
+  {
+   "checkclaimid": 15443173,
+   "visit": 19450471,
+   "pid": 17476868,
+   "dos": "2026-08-02",
+   "paid": 21.8,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "OA23",
+     138.2
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443175,
+   "visit": 19450490,
+   "pid": 17476868,
+   "dos": "2026-08-03",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "PR22",
+     -160.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "N598",
+    "#AM"
+   ],
+   "hasrev": true,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443176,
+   "visit": 19450490,
+   "pid": 17476868,
+   "dos": "2026-08-03",
+   "paid": 21.8,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "OA23",
+     138.2
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM"
+   ],
+   "hasrev": true,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443185,
+   "visit": 19452599,
+   "pid": 17474082,
+   "dos": "2026-08-23",
+   "paid": 44.09,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     125.7
+    ],
+    [
+     "OA23",
+     51.7
+    ],
+    [
+     "CO45",
+     68.68
+    ],
+    [
+     "OA23",
+     24.83
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM",
+    "N381",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443188,
+   "visit": 19454905,
+   "pid": 17477777,
+   "dos": "2026-09-14",
+   "paid": 0.0,
+   "insbal": 310.0,
+   "carc": [
+    [
+     "CO45",
+     109.3
+    ],
+    [
+     "PR1",
+     200.7
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443199,
+   "visit": 19450471,
+   "pid": 17476868,
+   "dos": "2026-08-02",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO226",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "N706",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443202,
+   "visit": 19450376,
+   "pid": 17476868,
+   "dos": "2026-08-01",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO226",
+     310.0
+    ],
+    [
+     "CO226",
+     133.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "N706",
+    "#AM",
+    "N381",
+    "N706",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443204,
+   "visit": 19436538,
+   "pid": 17475906,
+   "dos": "2026-03-25",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443205,
+   "visit": 19436840,
+   "pid": 17475906,
+   "dos": "2026-03-28",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443206,
+   "visit": 19436841,
+   "pid": 17475906,
+   "dos": "2026-03-27",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443207,
+   "visit": 19436842,
+   "pid": 17475906,
+   "dos": "2026-03-26",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443208,
+   "visit": 19436843,
+   "pid": 17475906,
+   "dos": "2026-03-29",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "OA18",
+     111.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443209,
+   "visit": 19436972,
+   "pid": 17475906,
+   "dos": "2026-03-31",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443210,
+   "visit": 19437011,
+   "pid": 17475906,
+   "dos": "2026-03-30",
+   "paid": 2.75,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     40.25
+    ],
+    [
+     "CO252",
+     68.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": false,
+   "err": []
+  },
+  {
+   "checkclaimid": 15443212,
+   "visit": 19437933,
+   "pid": 17475906,
+   "dos": "2026-04-08",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO22",
+     -163.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "N479",
+    "MA92",
+    "#AM"
+   ],
+   "hasrev": true,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443213,
+   "visit": 19437933,
+   "pid": 17475906,
+   "dos": "2026-04-08",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "PR22",
+     163.0
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "MA04",
+    "#AM"
+   ],
+   "hasrev": true,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  },
+  {
+   "checkclaimid": 15443214,
+   "visit": 19437933,
+   "pid": 17475906,
+   "dos": "2026-04-08",
+   "paid": 0.0,
+   "insbal": 0.0,
+   "carc": [
+    [
+     "CO45",
+     56.79
+    ],
+    [
+     "PR1",
+     106.21
+    ]
+   ],
+   "rarc": [
+    "N381",
+    "#AM"
+   ],
+   "hasrev": true,
+   "err": [
+    "The carrier has returned multiple adjustment amounts for the"
+   ]
+  }
+ ]
+}
