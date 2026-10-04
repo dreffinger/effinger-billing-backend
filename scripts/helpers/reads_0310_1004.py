@@ -54,7 +54,7 @@ for pid, label in [("17473431", "pat17473431"), ("17477549", "pat17477549"), ("1
             line = elig_amd.one_line(s); out["elig"]["%s %s" % (pid, p["id"])] = line
             P("271 pat%s %s seq %s %s -> %s" % (pid, p["id"], p.get("sequence"), p.get("carrier"), line[:220])); time.sleep(0.3)
     except Exception as e: P("271 pat%s ERROR %s" % (pid, e))
-for nm in ("pat17475906 PATE,N%", "pat17475906,N%", "PATE,N%", "CHRISTOPHER,CHR%", "WILBOURNE,%", "JONES,ISA%", "LAWHON,BET%", "BOYDSTON,%"):
+for nm in ("pat17475906 PAXTON,N%", "pat17475906,N%", "PAXTON,N%", "CHRISTENSEN,CHR%", "WILBOURNE,%", "JONES,ISA%", "LAWHON,BET%", "BOYDSTON,%"):
     try:
         r = amd.post(amd.msg("lookuppatient", "lookup", {"name": nm, "nocookie": "1"}))
         pats = [dict(re.findall(r'(\w+)="([^"]*)"', x)) for x in re.findall(r'<patient [^>]*/?>', r)]
