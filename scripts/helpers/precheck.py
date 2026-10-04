@@ -10,16 +10,12 @@ precheck_YYYYMMDD.json and prints a summary.  Cache: precheck_cache.json keyed p
 import amd, era_post, stedi, requests, json, re, sys, datetime, time, os
 CAR2STEDI = {"FLO02": "MEDICARE", "RET01": "MEDICARE", "UNI20": "87726", "UHCMA": "87726", "AAR01": "87726", "HUM01": "61101", "AET07": "60054",
              "CIG09": "62308", "CIG13": "63092", "BCBS": "BCBSF", "SUN01": "68069", "WEL04": "14163", "AMB03": "68069", "SIM01": "SMPLY",
-             "CAP07": "95112", "MCAD": "77027", "TRI00": "99727", "TRI05": "99727", "VACCN": "VACCN", "UMR": "39026", "FLO99": None, "PHI01": None}
-_cj = json.load(open("carriers.json"))
-CARRIERS = {(v[0] if isinstance(v, (list, tuple)) else k): (k if isinstance(v, (list, tuple)) else v) for k, v in _cj.items()}  # accepts rich carN->[code,name] or simple code->carN (manual_post-style normalizer, 9/24)
+             "CAP07": "95112", "MCAD": "77027", "TRI00": "99727", "TRI05": "99727", "VACCN": "VACCN", "FLO99": None, "PHI01": None}
+CARRIERS = {v[0]: k for k, v in json.load(open("carriers.json")).items()}          # code -> carNNNN
 def plans(pid):
     r = amd.post('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="pat%s" nocookie="1"/>' % (amd._msgtime(), pid))
     p = re.search(r'<patient [^>]*>', r); a = dict(re.findall(r'(\w+)="([^"]*)"', p.group(0))) if p else {}
-    pl = []                                         # 9/19: parse insplan attributes order-insensitively (the old ordered regex missed real plans)
-    for m in re.findall(r'<insplan [^>]*>', r):
-        d = dict(re.findall(r'(\w+)="([^"]*)"', m))
-        pl.append((d.get("id", ""), d.get("carrier", ""), d.get("begindate", ""), d.get("enddate", ""), d.get("subscribernum", ""), d.get("sequence", "")))
+    pl = re.findall(r'<insplan id="(ins\d+)" carrier="(car\d+)" begindate="([^"]*)" enddate="([^"]*)"[^>]*subscribernum="([^"]*)"[^>]*sequence="(\d+)"', r)
     return a, pl
 def main():
     a = sys.argv[1:]; days = int(a[a.index("--days") + 1]) if "--days" in a else 14; mx = int(a[a.index("--max") + 1]) if "--max" in a else 150; dry = "--dry" in a
@@ -42,7 +38,7 @@ def main():
         try:
             pa, pl = plans(pid); last, first = (pa.get("name") or vs[0]["patientname"]).split(",")[0].strip(), (pa.get("name") or vs[0]["patientname"]).split(",")[-1].strip().split(" ")[0]
             dob = pa.get("dob", ""); dobc = dob[6:] + dob[:2] + dob[3:5] if dob else ""
-            mm = [p for p in pl if p[1] == CARRIERS.get(car)]; mine = [p for p in mm if not p[3]] or mm; member = mine[0][4] if mine else ""
+            mine = [p for p in pl if p[1] == CARRIERS.get(car)]; member = mine[0][4] if mine else ""
             rec.update({"dob": dob, "member": member})
             if dry: rec["result"] = "DRY"; out.append(rec); continue
             n += 1

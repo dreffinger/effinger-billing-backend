@@ -75,7 +75,7 @@ if __name__ == "__main__":
 # 9/22/2026 DECEASED GUARD: every Medicare 271 feeds the date-of-death cache (core/deceased_guard.py) when the caller passes pid=.
 def _dod_hook(pid, j):
     try:
-        import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "core"))
+        import sys, os; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import deceased_guard
         if pid: deceased_guard.record(pid, j)
     except Exception: pass
