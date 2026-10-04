@@ -1,0 +1,3 @@
+# captured_calls additions - 2026-10-04 1710 UTC (1 PM ET 10/4 backend billing run, ehpa cloud)
+
+No new AMD or Stedi call shapes this run. Calls exercised (all already in the registry): login_cached (one login 17:19Z), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges (11 batches), getclaimunbillablecharges, getclaimexclusionclaimruns/getclaimexclusioncharges, getdemographic x3, gettxhistory x2, GET /api/era/checks, GET /api/era/checkdetails?checkid=1052906. No writes: every column row was a standing hold on William's turn and the only unposted ERA check is the held Florida Blue takeback pair (unpostedamount 104.19 of paymentamount 1814.20, paymentnumber 213453023, deposit 2026-09-30).
