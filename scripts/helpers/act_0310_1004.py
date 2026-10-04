@@ -187,6 +187,6 @@ if want("pat17475906"):
     d = amd.post(amd.msg("getdemographic", "demographics", {"patientid": "17475906", "nocookie": "1"}), timeout=120)
     plans = [dict(re.findall(r'(\w+)="([^"]*)"', x)) for x in re.findall(r'<insplan [^>]*/?>', d)]
     L("pat17475906 pat17475906 plans: %s" % [(p.get("id"), p.get("sequence"), p.get("carrier"), p.get("subscribernum"), p.get("begindate"), p.get("enddate")) for p in plans])
-    out["moriarty_plans"] = plans
+    out["merriwether_plans"] = plans
 json.dump(out, open("registers/act_%s%s.json" % (STAMP, "_dry" if DRY else ""), "w"), indent=1)
 L("DONE %s" % ("DRY" if DRY else "LIVE"))
