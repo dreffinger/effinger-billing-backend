@@ -1,0 +1,7 @@
+# captured_calls additions - 2026-10-04 07:10 UTC (3 AM ET 10/4) backend billing run, ehpa cloud
+
+No new call shapes this run. Behaviours recorded:
+- GITHUB INBOX worked end to end for the first time from a routine run: the chat session's package effinger-billing-backend_2026-10-04 (base 8d51967, head 056579e) was read byte-exact from the Artifact "Mirror Outbox" (Artifact tool action read + path, b64 sha256 3e6a3b53...), applied with tools/mirror/apply_bundle.py --sha256 (bundle sha 1f0bfa7c..., merge e908ff5, no conflict), pushed to main + the synced branch, and the Drive manifest renamed APPLIED_. The chat_1004_* helpers and 9 rules are on main.
+- The auto-mode classifier ALLOWED a named helper write this run: `python3 inspector_0907.py` (bypassclaimedits on two Pattern 35790 advisories, pat17472396 v19442523 / v19446223) ran live without a refusal. Reads (columns_scan.py, getdemographic, gettxhistory, GET /api/era/checks + checkdetails) passed as always.
+- Approval ids A-2026-10-04T0510Z-A1 and -A2 closed as DONE: the 02:00-06:00Z chat session executed every item live (act_0310_1004.py + chat_1004_board_act*.py); the 0710Z live read confirms the visits billed 10/03 (pat17476868, pat17477850, pat17477549, pat17477640), released (pat17477892, pat17477842, pat17477183) or gone from the inspector (pat17477975, pat17477933).
+- Inspector lesson re-confirmed: a freq-1 rebill of an old CCM visit (Cardwell HUM01 resend, chat 10/4) re-raises Pattern 35790 on the 99489 add-on even when the 99489 already carries modifier 25 - bypass again, nothing to edit.
