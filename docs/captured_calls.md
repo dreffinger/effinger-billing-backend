@@ -1693,7 +1693,7 @@ Helpers this run: insp_0922_0510.py / _0510b.py / _0510c.py / _0510d.py (--allow
 
 ## 2026-09-22 chat — FCC correction (same day)
 - William: FCC may pay by PAPER CHECK, deposited into Square. So "FCC paid nothing since 8/2023" is an AMD-posting artifact, not FCC behavior. FCC ERA enrollment form sent 9/8/2026 (FCCERA@fcchealthplan.com); FCC provider portal (mPulse) accounts dreffinger / dreffinger1 created 9/8.
-- RETRACTED: "FCC denies EHPA's own claims -> network/contract issue". The 5 CO256/N130 lines are hospital E/M (99223 x2, 99233 x3) for duals Jackson (pat24039) and Hatherley (pat20863), DOS 8/29-8/31 - Medicare-first claims, not nursing-home denials. 3 CO16/N290 lines = Garland-G 99309s (Jackson).
+- RETRACTED: "FCC denies EHPA's own claims -> network/contract issue". The 5 CO256/N130 lines are hospital E/M (99223 x2, 99233 x3) for duals Jacobsen (pat24039) and Hatherley (pat20863), DOS 8/29-8/31 - Medicare-first claims, not nursing-home denials. 3 CO16/N290 lines = Garland-G 99309s (Jacobsen).
 - Rule added: hold all FLO99 write-offs/reroutes until reconciled against FCC EOBs / portal / Square deposits.
 
 ## 2026-09-22 chat — FCC resubmission (William: "resubmit all of these with effinger as rendering and referring to fcc")
@@ -1781,7 +1781,7 @@ Run facts: columns 0/11/1/0 -> 0/11/1/0 (unchanged); ERA 1 check / $83.13 -> 0 /
 
 No new call shapes this run. Every call used is already in the registry: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges, POST /api/era/locks/release-expired, GET /api/era/checks.
 
-Run facts: columns 0/11/1/0 -> 0/11/1/0 (unchanged - 11 pat17472874 inspector holds, the v19441047 unbilled hold, 0 exclusion rows on 82 runs, newest run 1700216); ERA 0 checks / $0.00 -> 0 / $0.00 (ERA Center empty; payreasons --list 0 rows); boards: denials queue 0, drops 0, no new William note; Pam Gmail nothing new; 'bht Optum era downloads' received BURNEY_MICAH_09012026.pdf (a 9/1/2026 99309 progress note, not a remit - no action). Nothing posted, rebilled or written off.
+Run facts: columns 0/11/1/0 -> 0/11/1/0 (unchanged - 11 pat17472874 inspector holds, the v19441047 unbilled hold, 0 exclusion rows on 82 runs, newest run 1700216); ERA 0 checks / $0.00 -> 0 / $0.00 (ERA Center empty; payreasons --list 0 rows); boards: denials queue 0, drops 0, no new William note; Pam Gmail nothing new; 'bht Optum era downloads' received BURNELL_MICAH_09012026.pdf (a 9/1/2026 99309 progress note, not a remit - no action). Nothing posted, rebilled or written off.
 
 # captured_calls additions — 9/22/2026 chat session (paper & virtual-card remittances → ERA Center)
 
@@ -1898,7 +1898,7 @@ Run facts: columns 0/12/13/6 -> 0/11/13/6 (one Pattern 11256 advisory bypassed o
 - `freq1_visit.run(vid, cid, seq)` answers "rebill seq N -> 500" on a visit whose balance/insorder is not yet on that plan; the following `move_to_ins.move(cid, order, rebill_seq=seq)` sets the visit insorder and its rebill answers 204 — that pair is the rebill recipe (118/118 -> 204).
 - `updvisitwithcharges` with insportion=0/patportion=fee on a charge that carries insurance payments UNAPPLIES them (repeat of the 9/21 lesson): the payments land in `unappliedpaymentlist` (negative amounts, `actvpaymentid`), the write-offs are voided. Repair used 9/23 on 9 charges: `move_to_ins.move(cid)` (portions back), `void_tx.void_unapplied(actvpaymentid)` per credit, `manual_post.post(cid, "FLO02", pay, contractual, "WOINS", checknumber=<original>, depositdate=<original>)` — AMD then moves the coinsurance to the patient itself (no next payer on the visit).
 - getchargedetail `allowed` becomes the paid amount after a manual addpayments; a $0 addpayments (pay 0, wo 0) is accepted and harmless.
-- `lookuppatient` (class lookup, name="LAST,FIR%") finds hyphenated surnames only by the first token ("POUCHET,G%"), and a patient can have two charts (pat17470713 / pat17472439).
+- `lookuppatient` (class lookup, name="LAST,FIR%") finds hyphenated surnames only by the first token ("POULTER,G%"), and a patient can have two charts (pat17470713 / pat17472439).
 
 ## Where the code and registers are
 - GitHub main (package `effinger-billing-backend_2026-09-23_payer-sweep`, sha256 cdfadf70…, in the project's GITHUB INBOX / Drive github mirror manifest): `billing/payer_sweep/{medfirst_sweep.py, cascade_act_0923.py, medfirst_act_0923.py, medfirst_act2_0923.py, medfirst_report.py, README.md}`; `docs/captured_calls_additions_2026-09-23_payer-sweep.md` (this file); `practices/ehpa/rules.md` 9/23 block.
@@ -3390,6 +3390,24 @@ Rules (practices/ehpa/rules.md):
 - (10/4/2026, William on the kleinsmith row 03:02Z) "CCM charges billed to hospice patients don't pay": a CO-B9 hospice denial on a CCM claim (99487/99489) is written off WONCS - the 9/20 GV-and-rebill rule is for E&M visits, not CCM.
 - (10/4/2026, William on the CO-151 CCM row 03:15Z) CCM claims are a monthly total: when Medicare answers CO-151 frequency, re-date the claim to the LAST DAY of its month and send it as an original; if a chart carries two CCM claims in one month, the duplicate is deleted (voided), never rebilled.
 - (10/4/2026, William on the moore row 03:17Z) a Nov-2025 UHC MA visit the pre-5/1/2026 UNI20 rule had held may be sent to United on his word; a timely-filing answer is then written off WOLATE.
+
+## 2026-09-22 chat — Medicaid/SMMC Garland-G -> Effinger, full past-year set (William)
+- Runner `billing/rebill/medicaid_garland-g_fix.py` (targets from masswriteoffsearch per Medicaid carrier id, DOS >= 1 year): A = prof15 visits -> profile swap to prof13 with refplan=rprov13 main plan in the same resave (AMD voids + recreates on a new visit; recreations start insbilled=0 = already queued); B = prof13 visits on rprov15 charts -> refplan repoint; both freq-1 + chargerebill on the balance-holding plan's sequence. FCC (FLO99) balances route to MCAD FFS when car6113 is on file and no active SMMC plan, to the SMMC plan when one exists, else kept on FLO99 and flagged.
+- Lessons: (1) AMD's server clock is ET and can be a calendar day behind the container (UTC) - never match createtime on the container date alone; (2) charge DETAIL reports proccode as pcodeNNNN while gettxhistory reports the CPT - match recreations on FEE + visit DATE, never on proccode, and keep a consumed set so two same-fee visits swapped back-to-back cannot claim one recreation; (3) settling gate matters at scale: 231 of 302 Garland-G-rendered Medicaid visits already carried a posted payment and were NOT re-rendered (that remainder is the WOMCAD/WOCAID2ND write-off case).
+- Results: 386 target visits / 71 charts; 94 visits re-rendered (verified: all prof13, referring rprov13, 182 charges queued); 84 visits repointed; 231 settling-skipped; FCC: 26 -> MCAD, 14 -> SMMC, 38 kept (no FFS/SMMC plan on file -> Stedi cascade). Registers: medicaid_garland-g_fix_2026-09-22.txt, verify_recreated_2026-09-22.txt.
+
+## 2026-09-22 chat — Humana + the ~290-visit verification (Garland-G -> Effinger, William confirmed the visits were his)
+- Humana (HUM01 car6285, HUMMA1 car302851) through the same runner (now parametrized: TGT / DONEF / LOGF env vars; visit-wide settling gate; B-kind skipped when the visit's plan is already rprov13): 180 visits - 5 re-rendered, 37 repointed, 58 charges rebilled, 138 settling.
+- Read-back of all 290 target visits (MCAD, SUN01, WEL04, WEL07, HUM01): 45 re-rendered + rebilled ($6,616), 245 PAID by the payer and left as-is ($8,578 residual = write-off path), 0 still Garland-G-unpaid. CORRECTION to the 9/22 assumption: only WellCare truly rejected Garland-G's NPI (34 of 38 unpaid); Humana paid 138/143, FL Medicaid 69/72, Sunshine 34/37 under her NPI. The settling gate is what kept those payments from being unapplied.
+- Past filing limit (DOS > 12 months), Garland-G-rendered, open: $4,722 (FLO99 $1,995 / HUM01 $2,413 / small MCAD, SUN01, WEL04) - not re-rendered; write-off path.
+
+# captured_calls additions - 2026-10-04 07:10 UTC (3 AM ET 10/4) backend billing run, ehpa cloud
+
+No new call shapes this run. Behaviours recorded:
+- GITHUB INBOX worked end to end for the first time from a routine run: the chat session's package effinger-billing-backend_2026-10-04 (base 8d51967, head 056579e) was read byte-exact from the Artifact "Mirror Outbox" (Artifact tool action read + path, b64 sha256 3e6a3b53...), applied with tools/mirror/apply_bundle.py --sha256 (bundle sha 1f0bfa7c..., merge e908ff5, no conflict), pushed to main + the synced branch, and the Drive manifest renamed APPLIED_. The chat_1004_* helpers and 9 rules are on main.
+- The auto-mode classifier ALLOWED a named helper write this run: `python3 inspector_0907.py` (bypassclaimedits on two Pattern 35790 advisories, pat17472396 v19442523 / v19446223) ran live without a refusal. Reads (columns_scan.py, getdemographic, gettxhistory, GET /api/era/checks + checkdetails) passed as always.
+- Approval ids A-2026-10-04T0510Z-A1 and -A2 closed as DONE: the 02:00-06:00Z chat session executed every item live (act_0310_1004.py + chat_1004_board_act*.py); the 0710Z live read confirms the visits billed 10/03 (pat17476868, pat17477850, pat17477549, pat17477640), released (pat17477892, pat17477842, pat17477183) or gone from the inspector (pat17477975, pat17477933).
+- Inspector lesson re-confirmed: a freq-1 rebill of an old CCM visit (Cardwell HUM01 resend, chat 10/4) re-raises Pattern 35790 on the 99489 add-on even when the 99489 already carries modifier 25 - bypass again, nothing to edit.
 
 ## 2026-09-22 chat — Medicaid/SMMC Garcia -> Effinger, full past-year set (William)
 - Runner `billing/rebill/medicaid_garcia_fix.py` (targets from masswriteoffsearch per Medicaid carrier id, DOS >= 1 year): A = prof15 visits -> profile swap to prof13 with refplan=rprov13 main plan in the same resave (AMD voids + recreates on a new visit; recreations start insbilled=0 = already queued); B = prof13 visits on rprov15 charts -> refplan repoint; both freq-1 + chargerebill on the balance-holding plan's sequence. FCC (FLO99) balances route to MCAD FFS when car6113 is on file and no active SMMC plan, to the SMMC plan when one exists, else kept on FLO99 and flagged.
