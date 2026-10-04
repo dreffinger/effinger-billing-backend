@@ -1,0 +1,13 @@
+{
+ "stamp": "2026-10-04T1110Z",
+ "dry": true,
+ "log": [
+  "WOCAID2ND c23365353 -> True DRY bal 21.80 prof prof13 pid 17472546 -> pay 0.00 wo 21.80",
+  "WOCAID2ND c23365384 -> True DRY bal 21.80 prof prof13 pid 17472546 -> pay 0.00 wo 21.80",
+  "WOCAID2ND c23365526 -> True DRY bal 21.80 prof prof13 pid 17472546 -> pay 0.00 wo 21.80",
+  "WOCAID2ND c23365546 -> True DRY bal 21.80 prof prof13 pid 17472546 -> pay 0.00 wo 21.80",
+  "DRY pat17472429: ins_update sequence=4,5; freq1 v19456182 c23367806 seq 4; move_to_ins DRY move 0.00 seq 4,5",
+  "DRY pat20670: ins_update sequence=1,2; freq1 v19456209 c23367833 seq 1; move_to_ins DRY move 0.00 seq 1,2",
+  "DRY dismiss 1052960"
+ ]
+}
