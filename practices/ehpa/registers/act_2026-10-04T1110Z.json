@@ -1,0 +1,18 @@
+{
+ "stamp": "2026-10-04T1110Z",
+ "dry": false,
+ "log": [
+  "WOCAID2ND c23365353 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/04/2026 04:24:39\"><Results success=\"1\" paymentid=\"10165648\" /><Error /></PPMDResult",
+  "WOCAID2ND c23365384 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-pxvxk\" lst=\"10/04/2026 04:24:42\"><Results success=\"1\" paymentid=\"10165649\" /><Error /></PPMDResult",
+  "WOCAID2ND c23365526 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/04/2026 04:24:43\"><Results success=\"1\" paymentid=\"10165650\" /><Error /></PPMDResult",
+  "WOCAID2ND c23365546 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-pxvxk\" lst=\"10/04/2026 04:24:45\"><Results success=\"1\" paymentid=\"10165651\" /><Error /></PPMDResult",
+  "pat17472429 ins_update order 4,5 -> (True, 'd-k5dwp\" lst=\"10/04/2026 04:24:47\"><Results success=\"1\"><patient insorder=\"4,5\" /></Results><Error /></PPMDResults>')",
+  "pat17472429 freq1 v19456182 c23367806 seq 4 -> freq1 + rebill seq 4 -> 500",
+  "pat17472429 move_to_ins c23367806 4,5 -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '107.00', 'insorder': '4,5'} rebill seq 4,5 (sent to 4) -> 204",
+  "pat20670 ins_update order 1,2 -> (True, 'd-k5dwp\" lst=\"10/04/2026 04:25:11\"><Results success=\"1\"><patient insorder=\"1,2\" /></Results><Error /></PPMDResults>')",
+  "pat20670 freq1 v19456209 c23367833 seq 1 -> freq1 + rebill seq 1 -> 500",
+  "pat20670 move_to_ins c23367833 1,2 -> moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '1,2'} rebill seq 1,2 (sent to 1) -> 204",
+  "dismiss 1052960 -> 200 {\"issuccess\":true,\"id\":1052960,\"actionname\":1}",
+  "checks after: [1052906]"
+ ]
+}
