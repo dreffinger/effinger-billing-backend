@@ -1,5 +1,6 @@
+
 <title>Insurance Refresh Board</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap&family=Quicksand:wght@300..700">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <style>
 :root{
@@ -28,6 +29,20 @@
   --done:#8FB0D0; --done-soft:#1F2E3D; --open:#E38A8A; --open-soft:#3A1E1E;
     --send:#6E9FD6; --send-ink:#0B1A2E; --send-hover:#84AEDF; --api:#8DB8EA; --api-soft:#182636; --api-line:#2B4160;
 }
+/* ===== palette: ehpa (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="ehpa"]{--bg:#ffffff;--surface:#ffffff;--line:#d7d8da;--ink:#082f35;--muted:#636469;--accent:#0054e9;--accent-soft:#e0f4fd;--accent-ink:#ffffff;--william:#b5169b;--william-soft:#fbe0f7;--claude:#0054e9;--claude-soft:#e0f4fd;--done:#1b8037;--done-soft:#dcfae6;--open:#c5000f;--open-soft:#fbdcdf;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#0163aa;--api-soft:#e0ecf6;--api-line:#bcd3e8;}
+@media (prefers-color-scheme:dark){:root[data-palette="ehpa"]:not([data-theme="light"]){--bg:#253e59;--surface:#304861;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--accent:#70d6f8;--accent-soft:#2a4f68;--accent-ink:#082f35;--william:#f841e0;--william-soft:#4d2447;--claude:#70d6f8;--claude-soft:#2a4f68;--done:#3dd475;--done-soft:#1f4a3c;--open:#e58f95;--open-soft:#4d1f2a;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#6cb1cc;--api-soft:#1f3f5c;--api-line:#465b72;}}
+:root[data-palette="ehpa"][data-theme="dark"]{--bg:#253e59;--surface:#304861;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--accent:#70d6f8;--accent-soft:#2a4f68;--accent-ink:#082f35;--william:#f841e0;--william-soft:#4d2447;--claude:#70d6f8;--claude-soft:#2a4f68;--done:#3dd475;--done-soft:#1f4a3c;--open:#e58f95;--open-soft:#4d1f2a;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#6cb1cc;--api-soft:#1f3f5c;--api-line:#465b72;}
+/* ===== palette: Midnight (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="midnight"]{--bg:#ffffff;--surface:#ffffff;--line:#d7d8da;--ink:#082f35;--muted:#636469;--accent:#0054e9;--accent-soft:#e0f4fd;--accent-ink:#ffffff;--william:#b5169b;--william-soft:#fbe0f7;--claude:#0054e9;--claude-soft:#e0f4fd;--done:#1b8037;--done-soft:#dcfae6;--open:#c5000f;--open-soft:#fbdcdf;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#0163aa;--api-soft:#e0ecf6;--api-line:#bcd3e8;}
+@media (prefers-color-scheme:dark){:root[data-palette="midnight"]:not([data-theme="light"]){--bg:#082f35;--surface:#214449;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--accent:#70d6f8;--accent-soft:#1f5a68;--accent-ink:#082f35;--william:#f841e0;--william-soft:#4a2044;--claude:#70d6f8;--claude-soft:#1f5a68;--done:#3dd475;--done-soft:#164a41;--open:#df7079;--open-soft:#3d1b22;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#6cb1cc;--api-soft:#123c4a;--api-line:#3c6169;}}
+:root[data-palette="midnight"][data-theme="dark"]{--bg:#082f35;--surface:#214449;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--accent:#70d6f8;--accent-soft:#1f5a68;--accent-ink:#082f35;--william:#f841e0;--william-soft:#4a2044;--claude:#70d6f8;--claude-soft:#1f5a68;--done:#3dd475;--done-soft:#164a41;--open:#df7079;--open-soft:#3d1b22;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#6cb1cc;--api-soft:#123c4a;--api-line:#3c6169;}
+/* ===== palette: Plum (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="plum"]{--bg:#ffffff;--surface:#ffffff;--line:#d7d8da;--ink:#082f35;--muted:#636469;--accent:#0054e9;--accent-soft:#e0f4fd;--accent-ink:#ffffff;--william:#b5169b;--william-soft:#fbe0f7;--claude:#0054e9;--claude-soft:#e0f4fd;--done:#1b8037;--done-soft:#dcfae6;--open:#c5000f;--open-soft:#fbdcdf;--send:#70d6f8;--send-ink:#082f35;--send-hover:#63bcda;--api:#0163aa;--api-soft:#e0ecf6;--api-line:#bcd3e8;}
+@media (prefers-color-scheme:dark){:root[data-palette="plum"]:not([data-theme="light"]){--bg:#181924;--surface:#2c2933;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--accent:#9be8e2;--accent-soft:#243a3f;--accent-ink:#19171d;--william:#f841e0;--william-soft:#43223f;--claude:#9be8e2;--claude-soft:#243a3f;--done:#50ef73;--done-soft:#173a1d;--open:#ff877a;--open-soft:#3f1f22;--send:#9be8e2;--send-ink:#19171d;--send-hover:#85ccc5;--api:#8aa9bf;--api-soft:#25303c;--api-line:#626468;}}
+:root[data-palette="plum"][data-theme="dark"]{--bg:#181924;--surface:#2c2933;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--accent:#9be8e2;--accent-soft:#243a3f;--accent-ink:#19171d;--william:#f841e0;--william-soft:#43223f;--claude:#9be8e2;--claude-soft:#243a3f;--done:#50ef73;--done-soft:#173a1d;--open:#ff877a;--open-soft:#3f1f22;--send:#9be8e2;--send-ink:#19171d;--send-hover:#85ccc5;--api:#8aa9bf;--api-soft:#25303c;--api-line:#626468;}
+:root[data-palette="ehpa"],:root[data-palette="midnight"],:root[data-palette="plum"]{--disp:'Quicksand',system-ui,sans-serif;--sans:'Quicksand',system-ui,sans-serif;}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45}
 .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
@@ -44,9 +59,53 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
 .chip:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .list{display:flex;flex-direction:column;gap:10px}
-.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(200px,1.1fr) minmax(260px,2fr) 110px 150px;gap:14px 18px;align-items:start}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:minmax(200px,1.1fr) minmax(260px,2fr) 100px 172px;gap:14px 18px;align-items:start}
 .item.done{opacity:.72}
+.item.new{border-color:var(--william);box-shadow:inset 4px 0 0 var(--william)}
+.pill.new{background:var(--william);color:#fff;margin-right:6px}
+.lead{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:3px}
+.item.new .lead{color:var(--william)}
+.ask{font-size:16.5px;font-weight:600;line-height:1.35;text-wrap:pretty;overflow-wrap:anywhere}
+.rest{color:var(--muted);font-size:13.5px;margin-top:6px;line-height:1.45}
+/* 9/24 (William): nothing on a card is folded away any more. The board re-renders every time the store changes (each run file the
+   Drive sync applies, every note), and a <details> he had opened snapped shut on each re-render. The rest of the need, the why,
+   the plans/facilities lines, the lookup trail, the copy-paste blocks and every note are now simply listed out. */
+.detail{margin-top:2px}
+.detail .api{margin-top:8px}
+.idline{margin-top:5px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink)}
+.idline .part{display:inline-block;white-space:nowrap;max-width:100%}
+.idline .k{color:var(--muted);font-family:var(--sans);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-right:3px}
+.idline .sep{color:var(--line);margin:0 6px}
+.idline .v{user-select:all}
+.idline .car{color:var(--muted);font-family:var(--sans);font-size:12px}
+/* the notes thread: every note, oldest first, the newest one right above the compose box - nothing clamped or folded */
+.thread .th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:1px}
+.thread .note .at b{font-weight:500;color:var(--ink)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:stretch;border-radius:999px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.22);max-width:calc(100vw - 32px)}
+.fab-main{display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 16px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 15px/1.15 var(--sans);white-space:nowrap}
+.fab-main:hover{filter:brightness(1.07)} .fab-main:focus-visible,.fab-min:focus-visible{outline:3px solid var(--william);outline-offset:-3px}
+.fab-main svg{width:22px;height:22px;flex:none}
+.fab-main .txt small{display:block;font:400 11.5px/1.2 var(--sans);opacity:.88;margin-top:2px}
+.fab-min{border:0;border-left:1px solid rgba(255,255,255,.35);background:var(--accent);color:var(--accent-ink);font:700 18px var(--sans);padding:0 13px;cursor:pointer;line-height:1}
+.fab-min:hover{filter:brightness(1.07)}
+.fab.min .fab-main .txt{display:none} .fab.min .fab-main{padding:12px 12px 12px 14px}
+@media (max-width:760px){ .fab-main .txt small{display:none} .fab-main{font-size:14px;padding:11px 14px} }
+@media (prefers-reduced-motion:no-preference){ .fab{transition:box-shadow .15s} }
 .who{font-weight:700;font-size:16px}
+/* 10/3 (William): the ACTUAL facility at the top-left of every card, with the residence type (ALF resident / SNF resident).
+   Source order: facnow (written by the backend from the chart's visits) → the newest entry of the facilities line → lastfac → the row's facility text. */
+.facbadge{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 8px}
+.facbadge .fname{font:700 12.5px/1.2 var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 8px;max-width:100%;overflow-wrap:anywhere}
+.facbadge .fkind{font:700 10.5px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:5px 8px;white-space:nowrap}
+.facbadge .fkind.snf{background:var(--accent-soft);color:var(--accent)}
+.facbadge .fkind.alf{background:var(--william-soft);color:var(--william)}
+.facbadge .fkind.hosp,.facbadge .fkind.irf{background:var(--open-soft);color:var(--open)}
+.facbadge .fkind.alfsnf{background:var(--bg);color:var(--muted);border:1px dashed var(--line)}
+.facbadge .fkind.il,.facbadge .fkind.home,.facbadge .fkind.tele,.facbadge .fkind.icf,.facbadge .fkind.office,.facbadge .fkind.other{background:var(--done-soft);color:var(--done)}
+.facbadge .fdos{font:11.5px var(--mono);color:var(--muted)}
+.facbadge .fres{flex:1 1 100%;font:12px var(--sans);color:var(--muted);margin-top:-3px}
+.facbadge .fres b{font-weight:600;color:var(--ink)}
+.facbadge.unknown .fname{color:var(--muted);font-weight:600;border-style:dashed}
 /* identity block under the name: AMD chart number, then DOB, insurance ID (+ carrier), last facility (+ last DOS) */
 .idb{margin-top:5px;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:var(--ink);word-break:break-word}
 .idb .r{display:grid;grid-template-columns:54px 1fr;gap:6px;align-items:baseline}
@@ -56,7 +115,7 @@ h1{font-size:26px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balan
 .idb .car{color:var(--muted);font-family:var(--sans);font-size:12px;user-select:text}
 .idb .more{color:var(--muted);font-family:var(--sans);font-size:12px;line-height:1.4;margin-top:3px}
 .fac{font-size:13px;color:var(--muted);margin-top:2px}
-.ids{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5;word-break:break-all}
+.ids{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5;white-space:nowrap}
 .need{font-size:14.5px}
 .need .why{color:var(--muted);margin-top:4px;font-size:13.5px}
 .trail{margin-top:8px;border-left:2px solid var(--line);padding-left:10px;display:flex;flex-direction:column;gap:3px}
@@ -161,13 +220,16 @@ button.btn:disabled{opacity:.5;cursor:default}
   <header>
     <div>
       <h1>Insurance Refresh Board</h1>
-      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. William posts what he finds; Claude posts what was billed. Both sides see the same list, A→Z by last name.</p>
+      <p class="sub">Patients whose claims are waiting on a plan, an MBI, or a decision. Each card starts top-left with the patient's actual facility and where they live (<b>ALF resident</b> / <b>SNF resident</b>; hospital stays show the hospital and the home facility underneath), then leads with the one thing needed now, then lists the full details, the lookup trail and every note underneath — nothing to click open. <b>New</b> = Claude added something since your last note on that row. The floating button (bottom right) opens a billing chat that can log into AMD and work the board live with you.</p>
     </div>
     <div>
       <div class="pal" aria-label="Color palette">
         <span class="lbl">Colors</span>
         <div class="row">
-          <button data-pal="copper" aria-pressed="true"><span class="sw"><i style="background:#22262D"></i><i style="background:#E0855A"></i><i style="background:#7FBF9E"></i></span>Copper &amp; Sage</button>
+          <button data-pal="ehpa" aria-pressed="false"><span class="sw"><i style="background:#253e59"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>ehpa</button>
+        <button data-pal="midnight" aria-pressed="true"><span class="sw"><i style="background:#082f35"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>Midnight</button>
+        <button data-pal="plum" aria-pressed="false"><span class="sw"><i style="background:#181924"></i><i style="background:#9be8e2"></i><i style="background:#1d122e"></i></span>Plum</button>
+          <button data-pal="copper" aria-pressed="false"><span class="sw"><i style="background:#22262D"></i><i style="background:#E0855A"></i><i style="background:#7FBF9E"></i></span>Copper &amp; Sage</button>
           <button data-pal="amber" aria-pressed="false"><span class="sw"><i style="background:#141A20"></i><i style="background:#E2B25C"></i><i style="background:#4FB3B8"></i></span>Amber &amp; Teal</button>
         </div>
         <div class="row">
@@ -181,7 +243,7 @@ button.btn:disabled{opacity:.5;cursor:default}
   </header>
 
   <div class="stats">
-    <div class="stat w"><b id="n-william">–</b><span>Your turn</span></div>
+    <div class="stat w"><b id="n-william">–</b><span id="n-william-l">Your turn</span></div>
     <div class="stat c"><b id="n-claude">–</b><span>Claude's turn</span></div>
     <div class="stat o"><b id="n-amount">–</b><span>$ waiting</span></div>
     <div class="stat d"><b id="n-done">–</b><span>Done</span></div>
@@ -189,6 +251,7 @@ button.btn:disabled{opacity:.5;cursor:default}
 
   <div class="toolbar" role="group" aria-label="Filter">
     <button class="chip" data-f="william" aria-pressed="true">Your turn</button>
+    <button class="chip" data-f="new" aria-pressed="false" title="Your-turn rows where Claude added something after your last note">New for you</button>
     <button class="chip" data-f="open" aria-pressed="false">Open</button>
     <button class="chip" data-f="claude" aria-pressed="false">Claude's turn</button>
     <button class="chip" data-f="done" aria-pressed="false">Done</button>
@@ -221,30 +284,64 @@ button.btn:disabled{opacity:.5;cursor:default}
   </section>
 </div>
 
+<div class="fab" id="fab" role="complementary" aria-label="Open a billing chat">
+  <a class="fab-main" id="fab-open" href="https://claude.ai/project/01a083fd-4e9a-75fc-be20-7d5bcd7ddbd9" target="_blank" rel="noopener" title="Opens the ehpa cloud project in a new tab. Start a new chat there and say 'work the Insurance Refresh Board' — that chat has the billing repo, the skills, the captured-calls vocabulary and the AMD login. The Chrome side panel cannot log into AMD.">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>
+    <span class="txt">Open a billing chat<small>ehpa cloud · repo, skills, vocabulary, AMD login</small></span>
+  </a>
+  <button class="fab-min" id="fab-min" type="button" title="Collapse to a small button" aria-label="Collapse the chat button">–</button>
+</div>
+
 <script>
 (function(){
   const $=s=>document.querySelector(s);
   // ---- palette / theme picker (top right). Saved per browser.
   const root=document.documentElement;
   function applyPal(p, t){
-    if(p==='amber') root.setAttribute('data-palette','amber'); else root.removeAttribute('data-palette');
+    if(p==='amber'||p==='ehpa'||p==='midnight'||p==='plum') root.setAttribute('data-palette',p); else root.removeAttribute('data-palette');
     if(t==='light'||t==='dark') root.setAttribute('data-theme',t); else root.removeAttribute('data-theme');
-    document.querySelectorAll('.pal [data-pal]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.pal===(p||'copper')?'true':'false'));
+    document.querySelectorAll('.pal [data-pal]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.pal===(p||'midnight')?'true':'false'));
     document.querySelectorAll('.pal [data-theme]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.theme===(t||'auto')?'true':'false'));
-    try{ localStorage.setItem('irb-pal', p||'copper'); localStorage.setItem('irb-theme', t||'auto'); }catch(e){}
+    try{ localStorage.setItem('irb-pal3', p||'midnight'); localStorage.setItem('irb-theme3', t||'auto'); }catch(e){}
   }
-  let savedPal='copper', savedTheme='auto';
-  try{ savedPal=localStorage.getItem('irb-pal')||'copper'; savedTheme=localStorage.getItem('irb-theme')||'auto'; }catch(e){}
+  let savedPal='midnight', savedTheme='auto';
+  try{ savedPal=localStorage.getItem('irb-pal3')||'midnight'; savedTheme=localStorage.getItem('irb-theme3')||'auto'; }catch(e){}
   applyPal(savedPal, savedTheme);
+  // ---- floating "Open a billing chat" button: always visible, collapsible to a small round button (remembered per browser)
+  (function(){
+    const fab=$('#fab'), mn=$('#fab-min'); if(!fab||!mn) return;
+    let min=false; try{ min=localStorage.getItem('irb-fab')==='min'; }catch(e){}
+    const paint=()=>{ fab.classList.toggle('min', min); mn.textContent=min?'+':'–'; mn.title=min?'Expand the chat button':'Collapse to a small button'; mn.setAttribute('aria-label', mn.title); };
+    mn.addEventListener('click', ()=>{ min=!min; try{ localStorage.setItem('irb-fab', min?'min':'open'); }catch(e){} paint(); });
+    paint();
+  })();
   document.querySelectorAll('.pal [data-pal]').forEach(b=>b.addEventListener('click',()=>{ savedPal=b.dataset.pal; applyPal(savedPal, savedTheme); }));
   document.querySelectorAll('.pal [data-theme]').forEach(b=>b.addEventListener('click',()=>{ savedTheme=b.dataset.theme; applyPal(savedPal, savedTheme); }));
   let items=[]; let filter='william'; let db=null; let unsub=null;
+  const drafts={};   // row id -> the note William has typed but not yet posted (survives the re-render on every store change)
   const money=n=>'$'+Math.round(Number(n)||0).toLocaleString();
   const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?'':d.toLocaleString([], {month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const turnOf=it=> it.status==='done'?'done':(it.status==='william'?'william':'claude');
 
   const TIC={ok:'✓',no:'✗',na:'○',human:'→'};
+  // The one thing needed now: the first sentence of the need (its 'WILLIAM:' / 'DONE 9/14:' prefix dropped); the rest is listed right under it.
+  function headline(need){
+    const s=String(need||'').replace(/^\s*(?:WILLIAM(?: FLAG)?|CLAUDE|DONE[^:]{0,40}|RESOLVED[^:]{0,40}|CLOSED[^:]{0,40}|Rebilled[^:]{0,40})\s*:\s*/i,'').trim();
+    if(!s) return {h:'',rest:''};
+    const m=s.match(/^([\s\S]{15,230}?[.!?])(?=\s|$)/); let h=m?m[1]:s;
+    if(h.length>230){ const cut=h.lastIndexOf(' ',215); h=h.slice(0, cut>80?cut:215)+'…'; }
+    const rest=s.slice(h.endsWith('…')?h.length-1:h.length).trim();
+    return {h, rest};
+  }
+  // New for William = it is his turn and Claude (a run or a chat) added a note after his last note on the row, or he has never touched it.
+  function newness(it){
+    if(turnOf(it)!=='william') return false;
+    let lastW='', lastC='';
+    for(const n of (Array.isArray(it.notes)?it.notes:[])){ const a=String(n.at||''); if(n.who==='William'){ if(a>lastW) lastW=a; } else if(a>lastC) lastC=a; }
+    if(!lastW) return true;
+    return lastC>lastW;
+  }
   // checks[] entries come in two shapes: the board's {ok, src, result, when} and the billing run's {result, step, text, at}
   function normCheck(c){
     if(!c||typeof c!=='object') return {k:'na',src:'',res:'',when:''};
@@ -271,35 +368,113 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(m) return {fac:m[1], dos:'thru '+m[2].split(/[–-]/).pop()};
     return {fac:first||String(it.facility||''), dos:''};
   }
+  // ---- 10/3 (William): the actual facility, top-left of every card, with the residence type (ALF resident / SNF resident).
+  const KIND_LABEL={SNF:'SNF resident',ALF:'ALF resident',ALFSNF:'ALF or SNF resident',IL:'IL resident',ICF:'ICF resident',HOSP:'hospital inpatient',IRF:'inpatient rehab',HOME:'home visit',TELE:'telehealth',OFFICE:'office',OTHER:''};
+  function kindOf(name){
+    const n=String(name||'').toUpperCase().replace(/&/g,' AND ').replace(/\s+/g,' ');
+    if(!n) return 'OTHER';
+    // 1. assisted living (every ALF in the AMD facility list carries 'ALF' in its name)
+    if(/\bALF\b|ASSISTED|MEMORY CARE|BROOKDALE|ALLEGRO|AZALEA|CANTERFIELD|CAPITAL SQUARE|GROVE AT CANOPY|HARBOR ?CHASE|PACIFICA|SODALIS|TAPESTRY|PARRY/.test(n)) return 'ALF';
+    // 2. the nursing facilities by name - before the hospital check, so 'Aviata (admit 9/25 from TMH)' stays the SNF
+    if(/BRYNWOOD|OAKES|ASPIRE|AVIATA|CENTRE POINTE|CENTER POINTE|EDEN SPRINGS|LAKE PARK|SEVEN HILLS|ST\.? JASPER|BERTRAND|HEALTH AND REHAB|REHABILITATION CENTER|NURSING/.test(n)) return 'SNF';
+    if(/HCA REHAB|INPATIENT REHAB|\bIRF\b/.test(n)) return 'IRF';
+    if(/HOSPITAL|\bHCA\b|\bTMH\b|MEMORIAL|MEDICAL CENTER|\bER\b|EMERGENCY/.test(n)) return 'HOSP';
+    if(/INDEPENDENT LIVING|\bIL\b/.test(n)) return 'IL';
+    if(/DEVELOPMENTAL|\bICF\b/.test(n)) return 'ICF';
+    if(/TELEHEALTH/.test(n)) return 'TELE';
+    if(/INDIVIDUAL PATIENT HOMES|\bHOME\b/.test(n)) return 'HOME';
+    if(/NORTH FLORIDA SENIOR CARE|\bOFFICE\b/.test(n)) return 'OFFICE';
+    // 5. generic nursing-facility tokens (the run's place-of-service guesses: 'SNF (99306 8/27/2026)', 'NF')
+    if(/\bSNF\b|\bNF\b|\bLTC\b|SKILLED|REHAB|HEALTH CENTER|WESTMINSTER/.test(n)) return 'SNF';
+    return 'OTHER';
+  }
+  // the facilities line: "Name m/yy–m/yy · Name m/yy (Pam)", newest first (board_facilities.py)
+  function facEntries(it){
+    return String(it.facilities||'').split(' · ').map(x=>x.trim()).filter(Boolean).map(x=>{
+      const m=x.match(/^(.*?)\s+(\d{1,2}\/\d{2}(?:[–-]\d{1,2}\/\d{2})?)(\s*\(Pam\))?$/);
+      return m?{name:m[1],range:m[2],pam:!!m[3]}:{name:x,range:'',pam:false};
+    });
+  }
+  const RES_KIND=/^(SNF|ALF|IL|ICF)$/;
+  function facInfo(it){
+    const fn=it.facnow;
+    if(fn&&typeof fn==='object'&&fn.name){
+      const k=String(fn.kind||kindOf(fn.name)).toUpperCase();
+      const res=(fn.res&&typeof fn.res==='object'&&fn.res.name)?{name:String(fn.res.name),kind:String(fn.res.kind||kindOf(fn.res.name)).toUpperCase()}:null;
+      return {name:String(fn.name),kind:k,dos:String(fn.dos||''),res,src:'chart'};
+    }
+    const ents=facEntries(it);
+    if(ents.length){
+      const top=ents[0], k=kindOf(top.name);
+      const resEnt=RES_KIND.test(k)?null:ents.find(e=>RES_KIND.test(kindOf(e.name)));
+      return {name:top.name,kind:k,dos:top.range?('thru '+top.range.split(/[–-]/).pop()):'',res:resEnt?{name:resEnt.name,kind:kindOf(resEnt.name)}:null,src:'visits'};
+    }
+    if(it.lastfac) return {name:String(it.lastfac),kind:kindOf(it.lastfac),dos:String(it.lastdos||''),res:null,src:'chart'};
+    const t=String(it.facility||'').trim();
+    if(t){ const generic=/^(SNF|ALF|NF|HCA|TMH)(\b|[\s\/(])/i.test(t); let k=kindOf(t);
+      if(generic && /\bALF\b/i.test(t) && /\b(SNF|NF)\b/i.test(t)) k='ALFSNF';   // the run's 'SNF / ALF' place-of-service guess: which one is not known yet
+      return {name:t,kind:k,dos:'',res:null,src:generic?'guess':'text'}; }
+    return null;
+  }
+  function facBadge(it){
+    const f=facInfo(it);
+    if(!f) return (it.amdid&&/^\d+$/.test(String(it.amdid).trim()))?`<div class="facbadge unknown" title="No facility on this row yet — the backend fills it from the chart's visits"><span class="fname">facility not on file yet</span></div>`:'';
+    const lbl=KIND_LABEL[f.kind]||''; const cls=String(f.kind||'other').toLowerCase();
+    const res=f.res?`<span class="fres">resident at <b>${esc(f.res.name)}</b> · ${esc(KIND_LABEL[f.res.kind]||f.res.kind)}</span>`:'';
+    const title=f.src==='guess'?'Place-of-service type from the visit codes — the actual facility name lands when the backend reads the chart':'From the AMD chart: the facility of the newest visit, with where the patient lives';
+    return `<div class="facbadge${f.src==='guess'?' unknown':''}" title="${title}"><span class="fname">${esc(f.name)}</span>${lbl?`<span class="fkind ${cls}">${esc(lbl)}</span>`:''}${f.dos?`<span class="fdos">${esc(f.dos)}</span>`:''}${res}</div>`;
+  }
   function render(){
     const show=items.filter(it=>{
       const t=turnOf(it);
       if(filter==='all') return true;
       if(filter==='open') return t!=='done';
+      if(filter==='new') return newness(it);
       return t===filter;
     }).sort((a,b)=>String(a.patient||'').localeCompare(String(b.patient||''), undefined, {sensitivity:'base'}) || (Number(b.amount||0)-Number(a.amount||0)));   // A→Z by last name (William 9/14)
     const open=items.filter(it=>turnOf(it)!=='done');
-    $('#n-william').textContent=open.filter(it=>turnOf(it)==='william').length;
+    const mine=open.filter(it=>turnOf(it)==='william'), fresh=mine.filter(newness);
+    $('#n-william').textContent=mine.length;
+    $('#n-william-l').textContent=fresh.length?`Your turn · ${fresh.length} new`:'Your turn';
     $('#n-claude').textContent=open.filter(it=>turnOf(it)==='claude').length;
     $('#n-amount').textContent=money(open.reduce((s,it)=>s+Number(it.amount||0),0));
     $('#n-done').textContent=items.filter(it=>turnOf(it)==='done').length;
     const list=$('#list');
-    if(!show.length){ list.innerHTML='<div class="empty">Nothing here.</div>'; return; }
+    // 9/24: the list is rebuilt on every store change (each run file the Drive sync applies, every note). Keep what William
+    // is typing - each row's unsent draft, and the caret in the box he is in - across the rebuild instead of wiping it.
+    let focus=null;
+    list.querySelectorAll('textarea[data-id]').forEach(ta=>{ const v=ta.value; if(v.trim()) drafts[ta.dataset.id]=v; else delete drafts[ta.dataset.id]; if(ta===document.activeElement) focus={id:ta.dataset.id, s:ta.selectionStart, e:ta.selectionEnd}; });
+    const restore=()=>{
+      list.querySelectorAll('textarea[data-id]').forEach(ta=>{ const v=drafts[ta.dataset.id]; if(v!==undefined && ta.value!==v) ta.value=v; });
+      if(focus){ const ta=list.querySelector(`textarea[data-id="${CSS.escape(focus.id)}"]`); if(ta){ try{ ta.focus({preventScroll:true}); ta.setSelectionRange(focus.s, focus.e); }catch(e){} } }
+    };
+    if(!show.length){ list.innerHTML=`<div class="empty">${filter==='new'?'Nothing new — every row on your turn already has your latest word on it.':'Nothing here.'}</div>`; return; }
     list.innerHTML=show.map(it=>{
-      const t=turnOf(it);
+      const t=turnOf(it), isNew=newness(it);
       const label=t==='william'?'William':(t==='claude'?'Claude':'Done');
-      const notes=(it.notes||[]).slice(-8).map(n=>`<div class="note"><span class="by ${n.who==='William'?'w':'c'}">${esc(n.who)}</span><span>${esc(n.text)}</span><span class="at">${when(n.at)}</span></div>`).join('');
+      const allNotes=(Array.isArray(it.notes)?it.notes:[]).filter(n=>n&&typeof n==='object');
+      // every note, oldest first; the newest one (right above the compose box) is tagged so it is easy to find in a long thread
+      const noteRow=(n,i)=>`<div class="note"><span class="by ${n.who==='William'?'w':'c'}">${esc(n.who)}</span><span>${esc(n.text)}</span><span class="at">${when(n.at)}${allNotes.length>1&&i===allNotes.length-1?' · <b>latest</b>':''}</span></div>`;
+      const thread=allNotes.length?`<div class="thread"><div class="th">Notes · ${allNotes.length}</div>${allNotes.map(noteRow).join('')}</div>`:'';
       const ins=insIdOf(it), lf=lastFacOf(it), chartNo=it.amdid||it.pid||'';
       const morePlans=String(it.insplans||'').includes(' · ')?String(it.insplans||'').split(' · ').slice(1).join(' · '):'';
       const moreFacs=String(it.facilities||'').includes(' · ')?String(it.facilities||''):'';
-      const idb=(!chartNo&&!it.dob&&!ins.id&&!lf.fac)?'':`<div class="idb" title="From the AMD chart: chart number, date of birth, the insurance ID of the plan that bills first, and the last facility the patient was seen at">
-          ${chartNo?`<div class="r amd"><span class="k">AMD</span><span class="v">${esc(chartNo)}</span></div>`:``}
-          ${it.dob?`<div class="r"><span class="k">DOB</span><span class="v">${esc(it.dob)}</span></div>`:``}
-          ${ins.id?`<div class="r"><span class="k">Ins ID</span><span><span class="v">${esc(ins.id)}</span>${ins.car?` <span class="car">· ${esc(ins.car)}</span>`:``}</span></div>`:(chartNo?`<div class="r"><span class="k">Ins ID</span><span class="car">no active plan on the chart</span></div>`:``)}
-          ${lf.fac?`<div class="r"><span class="k">Last at</span><span><span class="v">${esc(lf.fac)}</span>${lf.dos?` <span class="car">· ${esc(lf.dos)}</span>`:``}</span></div>`:``}
-          ${morePlans?`<div class="more" title="Other plans on the chart, in billing order">also ${esc(morePlans)}</div>`:``}
-          ${moreFacs?`<div class="more" title="Every facility where the patient was seen (from AMD visits), newest first">${esc(moreFacs)}</div>`:``}
-        </div>`;
+      const idParts=[];
+      if(chartNo) idParts.push(`<span class="k">AMD</span><span class="v">${esc(chartNo)}</span>`);
+      if(it.dob) idParts.push(`<span class="k">DOB</span><span class="v">${esc(it.dob)}</span>`);
+      if(ins.id) idParts.push(`<span class="k">Ins</span><span class="v">${esc(ins.id)}</span>${ins.car?` <span class="car">${esc(ins.car)}</span>`:''}`);
+      else if(chartNo) idParts.push(`<span class="k">Ins</span><span class="car">no active plan on the chart</span>`);
+      const idline=idParts.length?`<div class="idline" title="From the AMD chart: chart number, date of birth, the insurance ID of the plan that bills first (the facility is the badge above the name)">${idParts.map(x=>'<span class="part">'+x+'</span>').join('<span class="sep">·</span>')}</div>`:'';
+      const hl=headline(it.need);
+      const lead = t==='done' ? 'Done' : (t==='claude' ? "Claude is on it" : (isNew ? 'New — what I need from you' : 'What I need from you'));
+      const extras=[];
+      if(hl.rest) extras.push(`<div class="rest">${esc(hl.rest)}</div>`);
+      if(it.why) extras.push(`<div class="why">${esc(it.why)}</div>`);
+      if(morePlans) extras.push(`<div class="facs" title="Other plans on the chart, in billing order">Also on the chart: ${esc(morePlans)}</div>`);
+      if(moreFacs) extras.push(`<div class="facs" title="Every facility where the patient was seen (from AMD visits), newest first">Seen at: ${esc(moreFacs)}</div>`);
+      const tr=trail(it), ab=apiBlocks(it);
+      // 9/24 (William): listed out in full, always - no <details> toggle, so a re-render can't fold it back up
+      const details=(extras.length||tr||ab)?`<div class="detail">${extras.join('')}${tr}${ab}</div>`:'';
       const controls = db ? `
         <div class="compose">
           <textarea data-id="${esc(it.id)}" placeholder="Post what you found — plan name + dates, member #, MBI, or a decision" aria-label="Note for ${esc(it.patient)}"></textarea>
@@ -309,16 +484,16 @@ button.btn:disabled{opacity:.5;cursor:default}
         </div>
         <label class="fdrop" data-drop="${esc(it.id)}" title="Saves the sheet on this card like a Post - the patient stays on your list until you Post → Claude"><span class="plus">+</span> Facesheet drop <span class="fst" id="fst-${esc(it.id)}">${esc((dropState[it.id]||{}).st||'PDF — drag here or click')}</span><input type="file" accept="application/pdf,.pdf" multiple data-dropfile="${esc(it.id)}"></label>
         <div class="send2"><button class="btn" data-act="post" data-id="${esc(it.id)}" title="Saves the note here but keeps this patient on your list">Post</button><button class="btn primary" data-act="note" data-id="${esc(it.id)}" title="Saves the note and hands the patient to Claude">Post → Claude</button></div>` : '';
-      return `<article class="item ${t}" id="it-${esc(it.id)}">
-        <div><div class="who">${esc(it.patient)}</div>${idb}${!lf.fac&&it.facility?`<div class="fac">${esc(it.facility)}</div>`:``}</div>
-        <div class="need">${esc(it.need)}${it.why?`<div class="why">${esc(it.why)}</div>`:''}${trail(it)}</div>
+      return `<article class="item ${t}${isNew?' new':''}" id="it-${esc(it.id)}">
+        <div>${facBadge(it)}<div class="who">${esc(it.patient)}</div>${idline}</div>
+        <div class="need"><span class="lead">${lead}</span><div class="ask">${esc(hl.h)||'<span class="why">(nothing written yet)</span>'}</div>${details}</div>
         <div class="amt">${Number(it.amount)>0?money(it.amount):''}</div>
-        <div><span class="pill ${t}">${label}</span><div class="ids" style="margin-top:6px">${it.updated?'updated '+when(it.updated):''}</div></div>
-        ${notes?`<div class="thread">${notes}</div>`:''}
-        ${apiBlocks(it)}
+        <div>${isNew?'<span class="pill new" title="Claude added something after your last note on this row">New</span>':''}<span class="pill ${t}">${label}</span><div class="ids" style="margin-top:6px">${it.updated?'updated '+when(it.updated):''}</div></div>
+        ${thread}
         ${controls}
       </article>`;
     }).join('');
+    restore();
   }
 
   document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
@@ -340,8 +515,12 @@ button.btn:disabled{opacity:.5;cursor:default}
     if(b.dataset.act==='done'){ if(text) notes.push({who:'William',text,at:now}); notes.push({who:'William',text:'Marked done',at:now}); status='done'; }
     if(b.dataset.act==='reopen'){ notes.push({who:'William',text:text||'Reopened',at:now}); status='claude'; }
     b.disabled=true;
-    try{ await withRetry(()=>db.doc('items/'+id).update({notes,status,updated:now})); if(ta) ta.value=''; }
-    catch(e){ $('#conn').textContent='Could not save ('+(e.code||'error')+'). Try again.'; }
+    if(ta) ta.value=''; delete drafts[id];   // cleared before the write, so a re-render that lands mid-write cannot carry the posted text back into the box
+    try{ await withRetry(()=>db.doc('items/'+id).update({notes,status,updated:now})); }
+    catch(e){
+      $('#conn').textContent='Could not save ('+(e.code||'error')+'). Try again.';
+      if(text){ drafts[id]=text; const cur=document.querySelector(`textarea[data-id="${CSS.escape(id)}"]`); if(cur) cur.value=text; }   // give the note back
+    }
     b.disabled=false;
   });
 
@@ -362,12 +541,12 @@ button.btn:disabled{opacity:.5;cursor:default}
     const rows=items.filter(it=>turnOf(it)==='william');
     if(!rows.length){ $('#conn').textContent='Nothing is your turn right now.'; return; }
     const esc2=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
-    const head=['Patient','DOB','AMD ID','Insurance ID','Carrier','All plans on chart','Last facility','Last DOS','Facility','MBI','What is needed','Why','$ waiting','Checks already run','Last note','PASTE what you find here','Done'];
+    const head=['New?','Patient','DOB','AMD ID','Insurance ID','Carrier','All plans on chart','Facility','Location','Last DOS','Resident at','Facility text','MBI','What is needed','Why','$ waiting','Checks already run','Last note','PASTE what you find here','Done'];
     const lines=[head.map(esc2).join(',')].concat(rows.map(it=>{
       const last=(it.notes||[]).slice(-1)[0];
       const trailTxt=(Array.isArray(it.checks)?it.checks:[]).map(c0=>{const c=normCheck(c0);return TIC[c.k]+' '+c.src+': '+c.res;}).join(' | ');
-      const ins=insIdOf(it), lf=lastFacOf(it);
-      return [it.patient,it.dob,it.amdid||it.pid||'',ins.id,ins.car,it.insplans||'',lf.fac,lf.dos,it.facility||'',it.mbi,it.need,it.why,it.amount,trailTxt,last?last.who+': '+last.text:'','',''].map(esc2).join(',');
+      const ins=insIdOf(it), fi=facInfo(it)||{name:'',kind:'',dos:'',res:null};
+      return [newness(it)?'NEW':'',it.patient,it.dob,it.amdid||it.pid||'',ins.id,ins.car,it.insplans||'',fi.name,KIND_LABEL[fi.kind]||'',fi.dos,fi.res?(fi.res.name+' ('+(KIND_LABEL[fi.res.kind]||fi.res.kind)+')'):'',it.facility||'',it.mbi,it.need,it.why,it.amount,trailTxt,last?last.who+': '+last.text:'','',''].map(esc2).join(',');
     }));
     const csv='﻿'+lines.join('\r\n');
     const d=new Date(); const name='Insurance_worksheet_'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.csv';
@@ -477,21 +656,33 @@ button.btn:disabled{opacity:.5;cursor:default}
     for(const k of ids){ const e=applied[k]; if(isObj(e)&&typeof e.error==='string'&&e.error.length>80) e.error=e.error.slice(0,80); }
     if(ids.length>120){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-120).forEach(k=>delete applied[k]); full=true; }   // 9/14: 300 entries with long error text outgrew the doc and the save failed silently, so files were re-applied on every open
     reg.applied=applied;
-    if(full) await withRetry(()=>db.doc(REG_PATH).set(reg)); else await withRetry(()=>db.doc(REG_PATH).update(reg));
+    // 9/14 9 PM: a merge-style update() was NOT persisting the applied map (the registry kept only two 9/12 entries while lastCheck
+    // moved), so every inbox file re-applied on every sync and their stale status/need overwrote William's Mark done / Post → Claude.
+    // The registry is small; always write the whole document.
+    await withRetry(()=>db.doc(REG_PATH).set(reg));
   }
-  async function applyOp(op, now){
+  async function applyOp(op, now, fileCreated){
     if(!isObj(op)) throw new Error('op is not an object');
     const col=String(op.collection||'items'), id=String(op.id||''), kind=String(op.op||'upsert').toLowerCase();
     if(!COLL_OK.test(col)) throw new Error('collection not allowed: '+col);
     if(!ID_OK.test(id)||id==='.'||id==='..') throw new Error('bad id: '+id);
     const ref=db.doc(col+'/'+id);
     if(kind==='delete'){ await withRetry(()=>ref.delete()); return; }
-    if(kind==='replace'){ if(!isObj(op.data)) throw new Error('replace needs data'); await withRetry(()=>ref.set(Object.assign({},op.data,{updated:op.data.updated||now}))); return; }
+    if(kind==='replace'){
+      if(!isObj(op.data)) throw new Error('replace needs data');
+      const cur0=await withRetry(()=>ref.get());
+      if(cur0.exists && fileCreated && String((cur0.data()||{}).updated||'')>String(fileCreated)) return 'stale';   // the row moved on after this file was written
+      await withRetry(()=>ref.set(Object.assign({},op.data,{updated:op.data.updated||now}))); return;
+    }
     if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
     const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
     const snap=await withRetry(()=>ref.get()); const cur=snap.exists?snap.data():null;
     if(!cur && kind==='update') throw new Error('no such row: '+col+'/'+id);
     const patch=Object.assign({}, set);
+    // Stale-file guard (9/14): a run file only speaks for the moment it was written. If the row changed after that (William's Mark done /
+    // Post → Claude, a chat update), its status, need and why are newer than the file's — keep them; the file's appends still land.
+    const stale = !!(cur && fileCreated && String(cur.updated||'')>String(fileCreated));
+    if(stale){ for(const k of ['status','need','why']) delete patch[k]; }
     for(const k of Object.keys(app)){
       const add=Array.isArray(app[k])?app[k]:[app[k]];
       const base=Array.isArray(patch[k])?patch[k].slice():(cur&&Array.isArray(cur[k])?cur[k].slice():[]);
@@ -530,7 +721,7 @@ button.btn:disabled{opacity:.5;cursor:default}
           if(!isObj(body)||!String(body.schema||'').startsWith('irb-board-updates/')||!Array.isArray(body.ops)){ entry.error='not an irb-board-updates file'; }
           else{
             const now=new Date().toISOString(); const errs=[];
-            for(const op of body.ops){ try{ await applyOp(op, now); entry.ops++; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+            for(const op of body.ops){ try{ const r=await applyOp(op, now, body.created); entry.ops++; if(r==='stale') entry.stale=(entry.stale||0)+1; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
             if(errs.length) entry.error=errs.join('; ');
           }
         }
