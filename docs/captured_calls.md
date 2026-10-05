@@ -3705,3 +3705,10 @@ Lesson (sources): Pam's admit emails arrive as iPhone photos; the Gmail connecto
 - LESSON (2026-10-05T2110Z): move_to_ins.move (updvisitwithcharges full-visit echo) answers Fault 'Server Error' on a visit that carries a '#INT' interest charge (pat20407 v19452433, charge c23368059 $0, carrier blank) - the interest line cannot be echoed; skip the visit and report it (UI: void the interest line, then move/write off).
 - LESSON (2026-10-05T2110Z): on a dual whose chart has no Medicaid plan, the Medicaid FFS 835 still answers (CMS crossover) - lines CO-45/N45 status 2 on Medicare coinsurance = WOCAID2ND under MCAD (manual_post accepted carrier MCAD with no MCAD plan on the chart: pat17477650, pat17476094).
 - Approval loop: an approval marked 'approved' on the Mandatory Approvals page (collection approvals, answeredBy page) is re-attempted once by the next run (act_1710_1005.py --dry then --live, both accepted 10/5 21:20Z).
+
+# captured_calls additions - 2026-10-05T2310Z (7 PM ET 10/5 backend billing run, ehpa cloud)
+No new AMD or Stedi call shapes this run (reads only: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges, GET /api/era/checks, GET /api/era/checkdetails; era_post --dry).
+
+## Lesson (helper, not a call): precheck.py carrier map shape
+- bootstrap_workspace.sh layout derives carriers.json in the SIMPLE form (code -> carN) from practices/ehpa/carriers.json, while precheck.py built its code->carN map with `{v[0]: k ...}` from the RICH form (carN -> [code, name]). On the simple form v[0] is the letter 'c', so no carrier ever matched and every pair flagged 'no <carrier> plan on chart' (12 of 13 flags on 10/5 2310Z; the 9/18 '7 precheck plan-match misses' were the same defect). precheck.py now accepts both shapes. Re-run: 2 informational flags only.
+- Still open in CAR2STEDI: FIR07 (no Stedi payer id mapped); FLO99 (FCC) has no Stedi eligibility - both report-only.

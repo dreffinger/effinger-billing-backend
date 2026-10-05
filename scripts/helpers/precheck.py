@@ -11,7 +11,9 @@ import amd, era_post, stedi, requests, json, re, sys, datetime, time, os
 CAR2STEDI = {"FLO02": "MEDICARE", "RET01": "MEDICARE", "UNI20": "87726", "UHCMA": "87726", "AAR01": "87726", "HUM01": "61101", "AET07": "60054",
              "CIG09": "62308", "CIG13": "63092", "BCBS": "BCBSF", "SUN01": "68069", "WEL04": "14163", "AMB03": "68069", "SIM01": "SMPLY",
              "CAP07": "95112", "MCAD": "77027", "TRI00": "99727", "TRI05": "99727", "VACCN": "VACCN", "FLO99": None, "PHI01": None}
-CARRIERS = {v[0]: k for k, v in json.load(open("carriers.json")).items()}          # code -> carNNNN
+_cj = json.load(open("carriers.json"))
+# code -> carNNNN; accepts BOTH shapes (10/5/2026 fix): rich {carN: [code, name]} and simple {code: carN} - the simple form made every pair flag 'no plan on chart'
+CARRIERS = {(v[0] if isinstance(v, (list, tuple)) else k): (k if isinstance(v, (list, tuple)) else v) for k, v in _cj.items()}
 def plans(pid):
     r = amd.post('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="pat%s" nocookie="1"/>' % (amd._msgtime(), pid))
     p = re.search(r'<patient [^>]*>', r); a = dict(re.findall(r'(\w+)="([^"]*)"', p.group(0))) if p else {}
