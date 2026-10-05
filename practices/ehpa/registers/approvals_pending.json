@@ -169,6 +169,20 @@
     "at": "2026-10-04T09:20:49Z",
     "note": "closed by the 0910Z run: the 0710Z run's live read confirmed every item executed by the 02:00-06:00Z chat session (chat_1004_board_act*.py); item I (pat17477777 referral plan) stays William's - no API edits a referral plan"
    }
+  },
+  {
+   "id": "A-2026-10-05T1710Z-A1",
+   "stamp": "2026-10-05T1710Z",
+   "at": "2026-10-05T17:30:31Z",
+   "cmd": "cd /home/claude/unbilled && python3 act_1710_1005.py --live",
+   "reason": "auto mode classifier: 'Stage 2 classifier error - blocking based on stage 1 assessment' (refused even the --dry pass; denial applies to the outcome, so the live write was not attempted)",
+   "what": "Humana ERA check 1052967 (202220649261005, 10/5, $0) answered CO-B9 'patient is enrolled in a hospice' on three visits of pat17472396 (v19444342 6/5/2026 99307, v19447320 7/3/2026 99309, v19446223 6/25/2026 99487+99489). Your 9/20 standing rule: hospice denial = GV + frequency-1 rebill to straight Medicare, never written off. The chart's Medicare plan ins9511768 (MBI on file, AMD 271 today: Part A/B ACTIVE since 2/1/2014, Humana = the MA plan) is end-dated 04/30/2026, which is why the 10/2 run re-routed these May-July visits to Humana seq 2. The helper: (1) ins_update enddate='' on ins9511768 (re-open Medicare), (2) patient default order 1,2 (Medicare first), (3) each of the 5 visits (the 3 denied + the two May visits the same re-route sent to Humana) set to insorder 1 with a full-visit echo and frequency-1 rebilled on the Medicare sequence (GV already on every charge from the 10/1 gv_rebill). No payment is posted on any of them. Result when done: 5 claims leave to Medicare with GV on the next claim run; ERA check 1052967 is then dismissed.",
+   "dollars": "$946 (5 hospice-period visits of pat17472396: v19444342 99307 6/5 $68, v19447320 99309 7/3 $141, v19446223 99487+99489 6/25 $315, v19441616 99308 5/7 $107, v19442523 99487+99489 5/17 $315)",
+   "evidence_file": "registers/hospice_humana_b9_plan_2026-10-05T1710Z.json",
+   "evidence": "",
+   "ui": "Patient 17472396 > Insurance: clear the End Date on the Medicare plan (seq 1) and set the order Medicare first; Charges: open each of the 5 visits (6/5, 7/3, 6/25, 5/7, 5/17/2026), set Insurance Order = 1 (Medicare), Save; Claims > rebill each as frequency 1 (original) to Medicare; then ERA Center: dismiss check 1052967.",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
