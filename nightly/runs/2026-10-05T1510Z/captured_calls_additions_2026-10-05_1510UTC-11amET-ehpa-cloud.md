@@ -1,0 +1,7 @@
+# captured_calls additions - 2026-10-05 1510 UTC (11 AM ET 10/5 backend billing run, ehpa cloud)
+
+## No new call shapes this run
+Calls exercised (all in the registry): login_cached (ONE login 15:14Z, no lock), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/getclaiminspectorcharges (batch 127783), getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (81 runs, 0 rows), GET /api/era/checks (1 check), posterapayments --dry on 1052906 (0 postable / 17 skipped), gettxhistory visitid= x4 (reads only). No AMD writes.
+
+## Lessons
+- GITHUB PACKAGE TRANSPORT: a Drive 'github mirror' package part of 23,870 base64 chars re-typed from the Drive connector's download_file_content answer came back with the EXACT length but a wrong sha256, and `git index-pack` failed 'inflate: data stream error (incorrect data check) at offset 4036' - one or more flipped characters. Third failure of this route on the 10/5 packages (1110Z, 1310Z, 1510Z). The 9 KB pseudonyms.json came through intact the same way, so the practical cap for connector transcription is well under 20 KB; packages above that need a push from the session that wrote them (repo attached) or William's machine. Rule for the routine: try a package part once, verify with `git bundle verify` + `git fetch <bundle>` (index-pack validates the pack checksum even when no manifest sha is at hand), and leave it on the first failure.

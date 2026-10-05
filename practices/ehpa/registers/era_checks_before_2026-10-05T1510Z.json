@@ -1,0 +1,15 @@
+{
+ "at": "2026-10-05T15:31:53Z",
+ "checks": [
+  {
+   "id": 1052906,
+   "payer": "BCBS Florida Blue ACH 213453023",
+   "checkamount": 1814.2,
+   "unpostedamount": 104.19,
+   "lines": 17,
+   "postable": 0,
+   "skipped": 17,
+   "held": "takeback pair pat17476868 v19450471+v19450490 'multiple adjustment amounts' + pat17477777 v19454905 $0 PR-1 deductible; William's decision"
+  }
+ ]
+}
