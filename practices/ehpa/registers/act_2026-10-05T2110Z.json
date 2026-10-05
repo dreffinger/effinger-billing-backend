@@ -1,0 +1,268 @@
+{
+ "log": [
+  "WOCAID2ND pat17476020 v19454934 c23366085 21.80 (CO-45 N45) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:14\"><Resu",
+  "WOCAID2ND pat17476020 v19454918 c23366070 21.80 (CO-45 N45) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:35:16\"><Resu",
+  "WOCAID2ND pat17476020 v19454892 c23366042 21.80 (CO-45 N45) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:18\"><Resu",
+  "WOCAID2ND pat17476020 v19454642 c23365720 31.94 (CO-45 N45) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:21\"><Resu",
+  "WOCAID2ND pat17477650 v19454274 c23365346 21.80 (CO-45 N45 (Medicaid crossover; MCAD not on chart)) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:24\"><Resu",
+  "WOCAID2ND pat17477650 v19454304 c23365377 21.80 (CO-45 N45 (Medicaid crossover; MCAD not on chart)) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:26\"><Resu",
+  "WOCAID2ND pat23617 v19420945 c23326090 17.50 (CO-170 N95 CCM) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:35:28\"><Resu",
+  "WOCAID2ND pat23617 v19420945 c23326091 9.47 (CO-170 N95 CCM) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:30\"><Resu",
+  "WOCAID2ND pat23617 v19430732 c23337202 16.14 (CO-170 N95 CCM) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:32\"><Resu",
+  "WOCAID2ND pat23617 v19430732 c23337203 8.92 (CO-170 N95 CCM) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:34\"><Resu",
+  "WOCAID2ND pat17476094 v19448872 c23358349 16.14 (CO-170 N95 CCM (crossover; MCAD not on chart)) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:36\"><Resu",
+  "WOCAID2ND pat17476094 v19448872 c23358350 8.92 (CO-170 N95 CCM (crossover; MCAD not on chart)) -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:39\"><Resu",
+  "MOVE pat20863 v19454654 c23365732 (FCC secondary out 9/29) -> moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '1,2'}",
+  "MOVE pat17475638 v19454656 c23365734 (Medicare paid; secondary order to settle) -> moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3'}",
+  "MOVE pat17472393 v19454645 c23365723 (Humana MMA secondary out 9/29) -> moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '4,3'}",
+  "MOVE pat17472546 v19454658 c23365736 (Sunshine secondary out 9/29) -> moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '1,2'}",
+  "MOVE pat17477747 v19454665 c23365743 (United American Medigap out 9/29) -> moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '1,2'}",
+  "MOVE pat25160 v19454662 c23365740 (dual per the crossover; MCAD not on chart - cluster) -> moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '1'}",
+  "MOVE pat17473422 v19454666 c23365744 (dual per the crossover; MCAD not on chart - cluster) -> moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '2'}",
+  "MOVE pat20407 v19452433 c23362700 (CCM dual residual - WOCAID2ND follows) -> FAULT <?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:36:35\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Er",
+  "MOVE pat20407 v19452433 c23362701 (CCM dual residual - WOCAID2ND follows) -> FAULT <?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:36:42\"><Error><Fault><faultcode>Server</faultcode><faultstring>Server Er",
+  "WOCAID2ND pat20407 v19452433 c23362700 16.14 (CO-170 N95 CCM (after move-back)) -> False over-apply: pay 0.00 + wo 16.14 > insbalance 0.00",
+  "WOCAID2ND pat20407 v19452433 c23362701 8.92 (CO-170 N95 CCM (after move-back)) -> False over-apply: pay 0.00 + wo 8.92 > insbalance 0.00",
+  "ins_update pat17475638 order 3,1 -> True d-p549t\" lst=\"10/05/2026 14:36:49\"><Results success=\"1\"><patient insorder=\"3,1\" /></Results><Error /></PPMDResults>",
+  "ROUTE pat17475638 v19454307 c23365380 -> freq1 freq1 + rebill seq 1 -> 500 | moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204",
+  "ROUTE pat17475638 v19454278 c23365350 -> freq1 freq1 + rebill seq 1 -> 500 | moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204",
+  "ROUTE pat17475638 v19454457 c23365545 -> freq1 freq1 + rebill seq 1 -> 500 | moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204",
+  "ROUTE pat17475638 v19454436 c23365524 -> freq1 freq1 + rebill seq 1 -> 500 | moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204",
+  "ROUTE pat17475638 v19454656 c23365734 -> freq1 freq1 + rebill seq 1 -> 500 | moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204",
+  "NOT dismissing - 2 write-off(s) failed: [('23362700', 'over-apply: pay 0.00 + wo 16.14 > insbalance 0.00'), ('23362701', 'over-apply: pay 0.00 + wo 8.92 > insbalance 0.00')]"
+ ],
+ "stamp": "2026-10-05T2110Z",
+ "check": "073078977",
+ "live": true,
+ "wo": [
+  [
+   "17476020",
+   "19454934",
+   "23366085",
+   21.8,
+   "CO-45 N45",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:14\"><Resu"
+  ],
+  [
+   "17476020",
+   "19454918",
+   "23366070",
+   21.8,
+   "CO-45 N45",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:35:16\"><Resu"
+  ],
+  [
+   "17476020",
+   "19454892",
+   "23366042",
+   21.8,
+   "CO-45 N45",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:18\"><Resu"
+  ],
+  [
+   "17476020",
+   "19454642",
+   "23365720",
+   31.94,
+   "CO-45 N45",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:21\"><Resu"
+  ],
+  [
+   "17477650",
+   "19454274",
+   "23365346",
+   21.8,
+   "CO-45 N45 (Medicaid crossover; MCAD not on chart)",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:24\"><Resu"
+  ],
+  [
+   "17477650",
+   "19454304",
+   "23365377",
+   21.8,
+   "CO-45 N45 (Medicaid crossover; MCAD not on chart)",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:26\"><Resu"
+  ],
+  [
+   "23617",
+   "19420945",
+   "23326090",
+   17.5,
+   "CO-170 N95 CCM",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:35:28\"><Resu"
+  ],
+  [
+   "23617",
+   "19420945",
+   "23326091",
+   9.47,
+   "CO-170 N95 CCM",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:30\"><Resu"
+  ],
+  [
+   "23617",
+   "19430732",
+   "23337202",
+   16.14,
+   "CO-170 N95 CCM",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:35:32\"><Resu"
+  ],
+  [
+   "23617",
+   "19430732",
+   "23337203",
+   8.92,
+   "CO-170 N95 CCM",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:34\"><Resu"
+  ],
+  [
+   "17476094",
+   "19448872",
+   "23358349",
+   16.14,
+   "CO-170 N95 CCM (crossover; MCAD not on chart)",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-p549t\" lst=\"10/05/2026 14:35:36\"><Resu"
+  ],
+  [
+   "17476094",
+   "19448872",
+   "23358350",
+   8.92,
+   "CO-170 N95 CCM (crossover; MCAD not on chart)",
+   true,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/05/2026 14:35:39\"><Resu"
+  ],
+  [
+   "20407",
+   "19452433",
+   "23362700",
+   16.14,
+   "CO-170 N95 CCM (after move-back)",
+   false,
+   "over-apply: pay 0.00 + wo 16.14 > insbalance 0.00"
+  ],
+  [
+   "20407",
+   "19452433",
+   "23362701",
+   8.92,
+   "CO-170 N95 CCM (after move-back)",
+   false,
+   "over-apply: pay 0.00 + wo 8.92 > insbalance 0.00"
+  ]
+ ],
+ "mv": [
+  [
+   "20863",
+   "19454654",
+   "23365732",
+   "FCC secondary out 9/29",
+   "moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '1,2'}"
+  ],
+  [
+   "17475638",
+   "19454656",
+   "23365734",
+   "Medicare paid; secondary order to settle",
+   "moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3'}"
+  ],
+  [
+   "17472393",
+   "19454645",
+   "23365723",
+   "Humana MMA secondary out 9/29",
+   "moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '4,3'}"
+  ],
+  [
+   "17472546",
+   "19454658",
+   "23365736",
+   "Sunshine secondary out 9/29",
+   "moved 21.80 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '1,2'}"
+  ],
+  [
+   "17477747",
+   "19454665",
+   "23365743",
+   "United American Medigap out 9/29",
+   "moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '1,2'}"
+  ],
+  [
+   "25160",
+   "19454662",
+   "23365740",
+   "dual per the crossover; MCAD not on chart - cluster",
+   "moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '1'}"
+  ],
+  [
+   "17473422",
+   "19454666",
+   "23365744",
+   "dual per the crossover; MCAD not on chart - cluster",
+   "moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '2'}"
+  ],
+  [
+   "20407",
+   "19452433",
+   "23362700",
+   "CCM dual residual - WOCAID2ND follows",
+   "FAULT <?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cfgq5\" lst=\"10/05/2026 14:36:35\"><Error><Fault><faul"
+  ],
+  [
+   "20407",
+   "19452433",
+   "23362701",
+   "CCM dual residual - WOCAID2ND follows",
+   "FAULT <?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 14:36:42\"><Error><Fault><faul"
+  ]
+ ],
+ "dismiss": [],
+ "route": [
+  [
+   "17475638",
+   "19454307",
+   "23365380",
+   "freq1 + rebill seq 1 -> 500",
+   "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204"
+  ],
+  [
+   "17475638",
+   "19454278",
+   "23365350",
+   "freq1 + rebill seq 1 -> 500",
+   "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204"
+  ],
+  [
+   "17475638",
+   "19454457",
+   "23365545",
+   "freq1 + rebill seq 1 -> 500",
+   "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204"
+  ],
+  [
+   "17475638",
+   "19454436",
+   "23365524",
+   "freq1 + rebill seq 1 -> 500",
+   "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204"
+  ],
+  [
+   "17475638",
+   "19454656",
+   "23365734",
+   "freq1 + rebill seq 1 -> 500",
+   "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '21.80', 'insorder': '3,1'} rebill seq 3,1 (sent to 1) -> 204"
+  ]
+ ]
+}
