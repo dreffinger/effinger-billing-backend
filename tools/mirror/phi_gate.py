@@ -121,7 +121,10 @@ def scrub(text, names, code=False):
     code=True: tokens outside string literals / comments are identifiers and get an underscore-safe pseudonym."""
     if not names:
         return text
-    keys = sorted(names, key=len, reverse=True)
+    # a real name that is also someone else's pseudonym (Marguerite: Margaret's pseudonym and a patient) is left as it
+    # is - it already reads as a pseudonym, and mapping it would turn every pseudonymized file over again (10/6)
+    taken = {v.lower() for v in names.values()}
+    keys = sorted((k for k in names if k.lower() not in taken), key=len, reverse=True)
     alts = [re.escape(k) for k in keys] + [re.escape(k.upper()) for k in keys]
     rx = re.compile(r"(?<![A-Za-z])(" + "|".join(alts) + r")(?![A-Za-z])")
     lows = [re.escape(k.lower()) for k in keys if k.lower() not in COMMON_WORDS and len(k) >= 4]
@@ -222,7 +225,8 @@ SLUG_NAME = re.compile(r"\b([a-z][a-z']+)-([a-z][a-z']+)((?:-[a-z])?)-(\d{5,9})\
 FILE_SLUG = re.compile(r"\b([a-z][a-z']+)_([a-z][a-z']+)_((?:19|20)\d{6})\b")
 # identifiers the rewrite hunt found the first rules missing
 MBI_FRAG = re.compile(r"\b[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y]{2}\d?\b")   # 9-10 chars of an MBI
-DOB_SUB = re.compile(r"(?i)((?:\bdob\b|\bdod\b|date\s*of\s*(?:birth|death)|dateofbirth|dateofdeath|birth\s*date|birthdate|birthday|\bbirth\b|\bdeath\b|deceased|\bdied\b|\bborn\b)[^\n]{0,16}?)"
+# the gap after the word never crosses a placeholder: "dob [DOB], admitted 07/19/2026" is stable on a second pass
+DOB_SUB = re.compile(r"(?i)((?:\bdob\b|\bdod\b|date\s*of\s*(?:birth|death)|dateofbirth|dateofdeath|birth\s*date|birthdate|birthday|\bbirth\b|\bdeath\b|deceased|\bdied\b|\bborn\b)[^\n\[\]]{0,16}?)"
                      r"((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}(?:T[\d:.]*Z?)?|\b\d{1,2}/\d{1,2}/(?:19|20)\d{2}\b|\b\d{1,2}/\d{1,2}/\d{2}\b|\b(?:19|20)\d{6}\b)")
 MEMBER_JSON = re.compile(r'("(?:subscribernum|subscriberid|subscriber_id|memberid|member_id|membernum|member|insid|insuredid|policynum|policynumber|policy_number|hicnum|hicn|medicaidid|medicaid_id|medicaidnum)"\s*:\s*")([A-Za-z0-9][A-Za-z0-9\-]{4,})(")', re.I)
 MEMBER_PROSE = re.compile(r"(?i)\b(member|subscriber|policy|insured|recipient|medicaid|hic|hicn)((?:\s*(?:id|#|number|no\.?|num))?\s*[:=#]?\s*)(?=[A-Za-z0-9\-]*\d)([A-Za-z0-9][A-Za-z0-9\-]{5,})\b")

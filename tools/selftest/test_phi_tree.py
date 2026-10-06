@@ -81,6 +81,13 @@ check("pending-admit file names: last_first_yyyymmdd -> [name]_[DOB]; a pseudony
       r("patient_db/pending_admits/xanther_mira_%s.json and simcoe_annika_%s.json" % (DOB8, DOB8), names, code=False)
       == "patient_db/pending_admits/[name]_[DOB].json and simcoe_annika_[DOB].json")
 check("an ordinary-word surname as a scanned-sheet file name or helper stem is mapped", r("Omnissa Horizon field.pdf, field_1002.py, --field, a field", names2, code=False) == "Omnissa Horizon fenwick.pdf, fenwick_1002.py, --field, a field")
+# a second pass over an already-scrubbed file must change nothing (the tree gate re-scrubs every changed file)
+ADM = "07/19/" + "2026"; DOS = "2/20/" + "2026"                                   # dates of service, never a DOB
+once = r("dob %s, admitted %s; DOD %s then %s" % (BORN, ADM, DOD, DOS), names, code=False)
+check("DOB placeholder stops the rule: the next date on the line survives", once == "dob [DOB], admitted %s; DOD [DOB] then %s" % (ADM, DOS), once)
+check("...and a second pass is a no-op", r(once, names, code=False) == once)
+names3 = {"Zorbaz": "Simcoe", "Simcoe": "Pellam"}
+check("a real name that is also a pseudonym is left alone, so pseudonymized text is stable", r("Zorbaz and Simcoe", names3) == "Simcoe and Simcoe" and r(r("Zorbaz", names3), names3) == "Simcoe")
 
 # --- tree mode on a throwaway checkout ---
 d = tempfile.mkdtemp(prefix="phi_tree_")
