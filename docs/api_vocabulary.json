@@ -1133,6 +1133,28 @@
    "helper": "billing/era_input/fetch_scans.py chunks <persisted tool-result files...>",
    "captured": "2026-10-05",
    "description": "Created with write_code_action 10/5/2026 (GET https://www.googleapis.com/drive/v3/files/{id}?alt=media with a Range header, plus the metadata call). 4,000,000-byte slices -> 5.33 MB tool results, persisted to disk and joined locally; 21 slices for five 14.7-20.8 MB batches. A 6 MB slice was never tested (the Drive connector choked at 9.6 MB of JSON, so stay at 4 MB). Each call is one Zapier task."
+  },
+  {
+   "id": "payments-era/unapplied-credit",
+   "folder": "Payments & ERA",
+   "name": "Post an UNAPPLIED insurance credit on a chart (addpayments, unappliedpaymentlist, empty chargelist)",
+   "method": "POST",
+   "url": "{{xmlgw}}",
+   "headers": {
+    "Content-Type": "text/xml"
+   },
+   "body": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"\" amount=\"{{amount}}\" paycode=\"PE\" woamount=\"0.00\" paymethod=\"11\" carrierid=\"car{{carrierid}}\" depositdate=\"{{depositdate}}\" case_note=\"{{note}}\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist><payment source=\"2\" profile=\"prof{{profileid}}\" amount=\"{{amount}}\" carrier=\"car{{carrierid}}\"/></unappliedpaymentlist><unappliedwriteofflist/><chargelist/></patient></ppmdmsg>",
+   "body_language": "xml",
+   "description": "Proven 10/6/2026 (repost_held.py / fcc_repost_1006): a payer's DUPLICATE payment (the same service paid on two checks) is posted as ONE unapplied insurance credit on the chart - William's 9/3/2026 overpayment rule (never applied to other claims; the payer nets it on a later remit or requests a refund). Response <Results success=\"1\" paymentid=\"NNN\"/>; gettxhistory then shows the credit inside <unappliedpaymentlist> as a <payment> with checknumber, carrier, amount (negative) and actvpaymentid = that paymentid (void it with void_tx.void_unapplied(actvpaymentid) if ever needed). paymethod 11 = CHK (9 ACH, 10 NON, 12 FWT, 13 BOP). Same shape as era_alloc_post's remainder, without the ERA link (postingmethod empty, no eraclaimid/erareportid) because the original check in the ERA Center was already dismissed.",
+   "helper": "billing/paper_remits/repost_held.py (unapplied[])",
+   "captured": "2026-10-06 backend (derived from era_alloc_post.py's unapplied remainder, 9/2026)",
+   "status": "proven",
+   "tags": [
+    "payments",
+    "overpayment",
+    "unapplied",
+    "paper-remits"
+   ]
   }
  ]
 }

@@ -2742,8 +2742,8 @@
   "when": "2026-10-06T01:55:18Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 43.01), ('WOINS', 19.92)], live payments [('FLO02', 78.07), ('MCAD', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 43.01), ('WOINS', 19.92)], live payments [('FLO02', 78.07), ('MCAD', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 10.21 posted ERA-linked under check 01964930 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01964930",
   "acct": "19450674A",
@@ -2757,7 +2757,10 @@
   "checkid": 1052991,
   "carrier": "FLO99",
   "plan": "ADDED FLO99 as ins9520748 seq 3 (member [member id], no group)",
-  "when": "2026-10-06T01:55:58Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165944",
+  "posted_pay": 10.21,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -3594,8 +3597,8 @@
   "when": "2026-10-06T02:02:14Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19449933B",
@@ -3609,7 +3612,10 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:16Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165945",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -3748,8 +3754,8 @@
   "when": "2026-10-06T02:02:37Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 3.61 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19448016B",
@@ -3763,11 +3769,14 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:39Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165946",
+  "posted_pay": 3.61,
+  "wocode": "WOCAID2ND"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19446574B",
@@ -3781,7 +3790,10 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:41Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165947",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -3818,8 +3830,8 @@
   "when": "2026-10-06T02:02:46Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19447178B",
@@ -3833,11 +3845,14 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:49Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165948",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19447747B",
@@ -3851,11 +3866,14 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:50Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165949",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19450276B",
@@ -3869,7 +3887,10 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:02:52Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165950",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -3940,8 +3961,8 @@
   "when": "2026-10-06T02:03:02Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19447365B",
@@ -3955,11 +3976,14 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:03:04Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165951",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 3.61 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19450290B",
@@ -3973,7 +3997,10 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:03:06Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165952",
+  "posted_pay": 3.61,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -4010,8 +4037,8 @@
   "when": "2026-10-06T02:03:10Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "status": "POSTED",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review | 10/6 02:55Z on William's 'post them': premature write-off voided, FCC pay 4.26 posted ERA-linked under check 01971199 + WOCAID2ND residual; balance 0 (fcc_repost_1006)",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19446954B",
@@ -4025,7 +4052,10 @@
   "checkid": 1052994,
   "carrier": "FLO99",
   "plan": "on chart seq 3 (FLO99)",
-  "when": "2026-10-06T02:03:12Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "10165953",
+  "posted_pay": 4.26,
+  "wocode": "WOCAID2ND"
  },
  {
   "status": "POSTED",
@@ -4872,53 +4902,53 @@
   "when": "2026-10-06T02:06:33Z"
  },
  {
-  "status": "HOLD",
+  "status": "SUPERSEDED",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19426952L",
   "pid": "20060",
   "vid": "19426952",
-  "note": "no live charges on the visit -> re-filed onto live visit 19455365L (HOLD)",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455365L (HOLD) -> resolved 10/6 as a CREDIT row (duplicate FCC payment held as unapplied credit)",
   "when": "2026-10-06T02:06:50Z"
  },
  {
-  "status": "HOLD",
+  "status": "SUPERSEDED",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19440853L",
   "pid": "20060",
   "vid": "19440853",
-  "note": "no live charges on the visit -> re-filed onto live visit 19455368L (HOLD)",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455368L (HOLD) -> resolved 10/6 as a CREDIT row (duplicate FCC payment held as unapplied credit)",
   "when": "2026-10-06T02:07:07Z"
  },
  {
-  "status": "HOLD",
+  "status": "SUPERSEDED",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19423427L",
   "pid": "20060",
   "vid": "19423427",
-  "note": "no live charges on the visit -> re-filed onto live visit 19455364L (HOLD)",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455364L (HOLD) -> resolved 10/6 as a CREDIT row (duplicate FCC payment held as unapplied credit)",
   "when": "2026-10-06T02:07:25Z"
  },
  {
-  "status": "HOLD",
+  "status": "SUPERSEDED",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19435623L",
   "pid": "20060",
   "vid": "19435623",
-  "note": "no live charges on the visit -> re-filed onto live visit 19455366L (HOLD)",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455366L (HOLD) -> resolved 10/6 as a CREDIT row (duplicate FCC payment held as unapplied credit)",
   "when": "2026-10-06T02:07:42Z"
  },
  {
-  "status": "HOLD",
+  "status": "SUPERSEDED",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19438037L",
   "pid": "20060",
   "vid": "19438037",
-  "note": "no live charges on the visit -> re-filed onto live visit 19455367L (HOLD)",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455367L (HOLD) -> resolved 10/6 as a CREDIT row (duplicate FCC payment held as unapplied credit)",
   "when": "2026-10-06T02:07:59Z"
  },
  {
@@ -6144,8 +6174,8 @@
   "when": "2026-10-06T02:23:01Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 52.72)], live payments [('FLO99', 88.28)]) - review",
+  "status": "CREDIT",
+  "note": "duplicate FCC payment: check 01985850 (9/30) already paid this re-entered visit in full; the 01971199 (9/10) money ($70.62) is part of the $299.83 UNAPPLIED FLO99 credit on the chart (payment 24658613, 10/6 02:56Z) per the 9/3 overpayment rule",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19455366L",
@@ -6159,11 +6189,12 @@
   "checkid": 1053005,
   "carrier": "FLO99",
   "plan": "on chart seq 2 (FLO99)",
-  "when": "2026-10-06T02:23:03Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "24658613"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 60.75)], live payments [('FLO99', 80.25)]) - review",
+  "status": "CREDIT",
+  "note": "duplicate FCC payment: check 01985850 (9/30) already paid this re-entered visit in full; the 01971199 (9/10) money ($64.20) is part of the $299.83 UNAPPLIED FLO99 credit on the chart (payment 24658613, 10/6 02:56Z) per the 9/3 overpayment rule",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19455364L",
@@ -6177,11 +6208,12 @@
   "checkid": 1053005,
   "carrier": "FLO99",
   "plan": "on chart seq 2 (FLO99)",
-  "when": "2026-10-06T02:23:05Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "24658613"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 45.69)], live payments [('FLO99', 61.31)]) - review",
+  "status": "CREDIT",
+  "note": "duplicate FCC payment: check 01985850 (9/30) already paid this re-entered visit in full; the 01971199 (9/10) money ($49.05) is part of the $299.83 UNAPPLIED FLO99 credit on the chart (payment 24658613, 10/6 02:56Z) per the 9/3 overpayment rule",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19455368L",
@@ -6195,11 +6227,12 @@
   "checkid": 1053005,
   "carrier": "FLO99",
   "plan": "on chart seq 2 (FLO99)",
-  "when": "2026-10-06T02:23:06Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "24658613"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 50.32)], live payments [('FLO99', 56.68)]) - review",
+  "status": "CREDIT",
+  "note": "duplicate FCC payment: check 01985850 (9/30) already paid this re-entered visit in full; the 01971199 (9/10) money ($45.34) is part of the $299.83 UNAPPLIED FLO99 credit on the chart (payment 24658613, 10/6 02:56Z) per the 9/3 overpayment rule",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19455365L",
@@ -6213,7 +6246,8 @@
   "checkid": 1053005,
   "carrier": "FLO99",
   "plan": "on chart seq 2 (FLO99)",
-  "when": "2026-10-06T02:23:08Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "24658613"
  },
  {
   "status": "POSTED",
@@ -6276,8 +6310,8 @@
   "when": "2026-10-06T02:23:18Z"
  },
  {
-  "status": "HOLD",
-  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 52.72)], live payments [('FLO99', 88.28)]) - review",
+  "status": "CREDIT",
+  "note": "duplicate FCC payment: check 01985850 (9/30) already paid this re-entered visit in full; the 01971199 (9/10) money ($70.62) is part of the $299.83 UNAPPLIED FLO99 credit on the chart (payment 24658613, 10/6 02:56Z) per the 9/3 overpayment rule",
   "family": "FLO99",
   "ref": "01971199",
   "acct": "19455367L",
@@ -6291,7 +6325,8 @@
   "checkid": 1053005,
   "carrier": "FLO99",
   "plan": "on chart seq 2 (FLO99)",
-  "when": "2026-10-06T02:23:20Z"
+  "when": "2026-10-06T02:56Z",
+  "payid": "24658613"
  },
  {
   "status": "POSTED",

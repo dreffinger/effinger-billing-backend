@@ -1,0 +1,20 @@
+{
+ "about": "post_paper.py holds from the 10/5/2026 pile that William released 10/6 ('post them'). Carried out 02:55Z by the workspace script fcc_repost_1006.py (Drive workspace mirror); this spec reproduces it through billing/paper_remits/repost_held.py. Chart ids only.",
+ "lines": [
+  {"pid": "45210", "vid": "19450674", "cid": "23360625", "checkid": "1052991", "void_writeoff_id": "22480088", "paid": 10.21, "wocode": "WOCAID2ND", "check_number": "01964930", "deposit_date": "2026-09-03", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19449933", "cid": "23359780", "checkid": "1052994", "void_writeoff_id": "22495173", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19448016", "cid": "23357198", "checkid": "1052994", "void_writeoff_id": "22495179", "paid": 3.61, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19446574", "cid": "23355691", "checkid": "1052994", "void_writeoff_id": "22495142", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19447178", "cid": "23356302", "checkid": "1052994", "void_writeoff_id": "22495183", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19447747", "cid": "23356975", "checkid": "1052994", "void_writeoff_id": "22495185", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19450276", "cid": "23360161", "checkid": "1052994", "void_writeoff_id": "22495177", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19447365", "cid": "23356548", "checkid": "1052994", "void_writeoff_id": "22495182", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19450290", "cid": "23360176", "checkid": "1052994", "void_writeoff_id": "22495176", "paid": 3.61, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008},
+  {"pid": "24039", "vid": "19446954", "cid": "23356080", "checkid": "1052994", "void_writeoff_id": "22495184", "paid": 4.26, "wocode": "WOCAID2ND", "check_number": "01971199", "deposit_date": "2026-09-10", "payment_code": "CHK", "carrier_id": 42008}
+ ],
+ "unapplied": [
+  {"pid": "20060", "carrier_id": 42008, "check_number": "01971199", "deposit_date": "09/10/2026", "amount": 299.83, "profile": "prof13", "payment_code": "CHK",
+   "note": "FCC check 01971199 (9/10/2026) paid visits 19455364-68 (originals 19423427/19426952/19435623/19438037/19440853) that FCC paid again on check 01985850 (9/30/2026) - duplicate payment held as unapplied FLO99 credit per William 9/3 overpayment rule; posted 10/6/2026 on his 'post them' instruction"}
+ ],
+ "result_2026-10-06T0255Z": {"lines_posted": 10, "payments": "10165944-10165953", "paid_total": 47.25, "unapplied_payment_id": "24658613 (actv 10165954)", "unapplied_total": 299.83}
+}
