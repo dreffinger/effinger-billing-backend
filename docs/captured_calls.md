@@ -3809,3 +3809,9 @@ Lesson: a Claim Inspector batch of 28 HCA rows (14 admission-date holds + 14 Pat
 No new call shapes this run. Calls exercised (all already in the registry): login (one), getclaimcenteroverview + the four Claims Center list calls (columns_scan.py before/after), GET /api/era/checks, GET /api/era/checkdetails (3 new checks cached), gettxhistory visit reads, the ERA-linked addpayments (payreasons.post_line - 5 lines on checks 1053018 / 1053019 / 1053020, incl. a $0 WOCAID2ND dual residual and a $0 WOINS CO-185 residual), updvisitwithcharges full-echo balance move (move_to_ins.py --no-rebill, one charge), POST /api/era/checks/dismiss x3, Stedi 276/277 claim status x28 (claim_status_sweep.py).
 
 Observation (not a new shape): a Centene 835 that AMD files under WEL04 (WellCare, carrier 6174) carries SUN01 (6194) claims on the same check - the ERA-linked post uses the check's systemcarrierid (6174) for the payment carrier, as the Post button does; AMD accepted it on the SUN01-billed charges (pat17472703 x2) and the balances went to $0.
+
+# captured_calls additions - 2026-10-06 2310 UTC (7 PM ET backend billing run, ehpa cloud)
+
+No new call shapes this run (ONE login 23:17Z; reads only: getclaimcenteroverview + the four list calls via columns_scan.py, GET /api/era/checks, GET /api/era/checkdetails?checkid=1052906, massrebillsearch + 21 Stedi 277 claim-status checks via claim_status_sweep.py, precheck.py eligibility reads).
+
+Lesson (TRAP, operational): `python3 era_post.py --help` is not a help flag - era_post.py parses sys.argv for --dry / --carrier / --visits / --all-unposted only, so any other flag runs a LIVE Post pass over the unposted list ("0 checks, dry=False" this run, nothing posted). Learn its options from the header or `grep sys.argv era_post.py`; never probe it with an unknown flag.

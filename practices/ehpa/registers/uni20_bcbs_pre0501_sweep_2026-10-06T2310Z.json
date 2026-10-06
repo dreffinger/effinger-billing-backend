@@ -1,0 +1,560 @@
+{
+ "run": "2026-10-06T2310Z",
+ "pass": 8,
+ "asked": 21,
+ "skipped_answered": 220,
+ "sent": 0,
+ "note": "UNI20/BCBS pre-5/1/2026 pass 8: 20 PENDING, 1 UNKNOWN (v19433791, 4th empty answer); 0 candidates (no D0/A3-A8 rows); nothing sent",
+ "rows": [
+  {
+   "vid": 19420037,
+   "pid": 23967,
+   "carrier": "UNI20",
+   "dos": "2025-10-16",
+   "balance": 443.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19422019,
+   "pid": 23967,
+   "carrier": "UNI20",
+   "dos": "2025-11-01",
+   "balance": 443.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19424212,
+   "pid": 17471977,
+   "carrier": "BCBS",
+   "dos": "2025-11-19",
+   "balance": 310.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19433791,
+   "pid": 17475632,
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "action": "UNKNOWN - review",
+   "codes": [],
+   "icn": null
+  },
+  {
+   "vid": 19439702,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19424211,
+   "pid": 17471977,
+   "carrier": "BCBS",
+   "dos": "2025-11-20",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19437843,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19437926,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19437951,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438061,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438356,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-12",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438357,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438358,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-13",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438701,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-14",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438903,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-15",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19438993,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-18",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19439010,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-17",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19439022,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-16",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19439233,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-19",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19439271,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  },
+  {
+   "vid": 19455322,
+   "pid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "action": "PENDING at payer - wait",
+   "codes": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "icn": null
+  }
+ ]
+}
