@@ -43,9 +43,10 @@ def main():
     skip = set()
     if "--skip-answered" in a:
         for fn in a[a.index("--skip-answered") + 1].split(","):
-            for r in json.load(open(fn)):
+            j = json.load(open(fn)); recs = j.get("rows", []) if isinstance(j, dict) else j   # 10/6 1310Z: the sweep registers are {rows:[{vid, action}]}
+            for r in recs:
                 act = r.get("action") or ""
-                if act.startswith(("PAID", "FINALIZED", "DENIED", "NOT ON FILE")): skip.add(str(r.get("visitid")))
+                if act.startswith(("PAID", "FINALIZED", "DENIED", "NOT ON FILE")): skip.add(str(r.get("visitid") or r.get("vid")))
         print("skipping %d visits already answered" % len(skip))
     amd.login_cached(); today = datetime.date.today(); stamp = today.strftime("%Y%m%d")
     unp = requests.post(era_post.API + "/claim/massrebillsearch", headers=era_post.H(), json={}, timeout=120).json()

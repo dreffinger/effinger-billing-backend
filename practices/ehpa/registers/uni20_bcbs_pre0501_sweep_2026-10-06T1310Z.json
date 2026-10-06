@@ -1,0 +1,3545 @@
+{
+ "summary": {
+  "PENDING": 23,
+  "UNKNOWN": 1,
+  "PAID": 17,
+  "DENIED": 13,
+  "NOT ON FILE": 6,
+  "paid_total_open": 2086.0,
+  "denied_total_open": 1833.0
+ },
+ "stamp": "2026-10-06T1310Z",
+ "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS --skip-answered (120 visits answered at 0710Z/1110Z skipped)",
+ "rows": [
+  {
+   "pid": 23967,
+   "vid": "19420037",
+   "carrier": "UNI20",
+   "dos": "2025-10-16",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "18608245"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422019",
+   "carrier": "UNI20",
+   "dos": "2025-11-01",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "18608246"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19417361",
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890698"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19420986",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890712"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17471977,
+   "vid": "19424212",
+   "carrier": "BCBS",
+   "dos": "2025-11-19",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "H100001353814125",
+    "H100001353814274"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17475632,
+   "vid": "19433791",
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "UNKNOWN",
+   "action": "UNKNOWN - review",
+   "cats": [],
+   "paid": [],
+   "checks": [],
+   "paidDates": [],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19417570",
+   "carrier": "UNI20",
+   "dos": "2025-09-18",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890699"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439702",
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791665400"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17471977,
+   "vid": "19424211",
+   "carrier": "BCBS",
+   "dos": "2025-11-20",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "H100001353814125",
+    "H100001353814274"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19437843",
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664000",
+    "920262791664100",
+    "920262791664200",
+    "920262791664300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19437926",
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664000",
+    "920262791664100",
+    "920262791664200",
+    "920262791664300",
+    "920262791664500"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19437951",
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664000",
+    "920262791664100",
+    "920262791664200",
+    "920262791664300",
+    "920262791664400",
+    "920262791664500"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438061",
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664000",
+    "920262791664100",
+    "920262791664200",
+    "920262791664300",
+    "920262791664400",
+    "920262791664500",
+    "920262791664600"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438356",
+   "carrier": "UNI20",
+   "dos": "2026-04-12",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664200",
+    "920262791664300",
+    "920262791664400",
+    "920262791664500",
+    "920262791664600",
+    "920262791664700",
+    "920262791664800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438357",
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664100",
+    "920262791664200",
+    "920262791664300",
+    "920262791664400",
+    "920262791664500",
+    "920262791664600",
+    "920262791664700"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438358",
+   "carrier": "UNI20",
+   "dos": "2026-04-13",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664300",
+    "920262791664400",
+    "920262791664500",
+    "920262791664600",
+    "920262791664700",
+    "920262791664800",
+    "920262791665100"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438701",
+   "carrier": "UNI20",
+   "dos": "2026-04-14",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664400",
+    "920262791664500",
+    "920262791664600",
+    "920262791664700",
+    "920262791664800",
+    "920262791665000",
+    "920262791665100"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438903",
+   "carrier": "UNI20",
+   "dos": "2026-04-15",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664400",
+    "920262791664600",
+    "920262791664700",
+    "920262791664800",
+    "920262791664900",
+    "920262791665000",
+    "920262791665100"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19438993",
+   "carrier": "UNI20",
+   "dos": "2026-04-18",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664800",
+    "920262791664900",
+    "920262791665000",
+    "920262791665100",
+    "920262791665200",
+    "920262791665300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439010",
+   "carrier": "UNI20",
+   "dos": "2026-04-17",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664700",
+    "920262791664800",
+    "920262791664900",
+    "920262791665000",
+    "920262791665100",
+    "920262791665200",
+    "920262791665300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439022",
+   "carrier": "UNI20",
+   "dos": "2026-04-16",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664600",
+    "920262791664700",
+    "920262791664800",
+    "920262791664900",
+    "920262791665000",
+    "920262791665100",
+    "920262791665200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439233",
+   "carrier": "UNI20",
+   "dos": "2026-04-19",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664900",
+    "920262791665000",
+    "920262791665100",
+    "920262791665200",
+    "920262791665300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439271",
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ],
+    [
+     "A1",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "920262791664900",
+    "920262791665000",
+    "920262791665200",
+    "920262791665300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19455322",
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "20090623"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474409,
+   "vid": "19421679",
+   "carrier": "UNI20",
+   "dos": "2025-10-28",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $123.35 - find/post the ERA (check 45076323)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "21",
+     "Missing or invalid information."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "123.35",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "45076323"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-04",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "80627748",
+    "920262478146000",
+    "932262538623100"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474027,
+   "vid": "19417768",
+   "carrier": "UNI20",
+   "dos": "2025-09-16",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $101.77 - find/post the ERA (check 26252B1000426598,280631010)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "101.77",
+    "0"
+   ],
+   "checks": [
+    "26252B1000426598",
+    "280631010"
+   ],
+   "paidDates": [
+    "2025-10-07",
+    "2026-09-04"
+   ],
+   "payerClaims": [
+    "25R802934600",
+    "RD0710950000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474257,
+   "vid": "19420541",
+   "carrier": "UNI20",
+   "dos": "2025-10-07",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $101.77 - find/post the ERA (check 26252B1000426598,26256B1000176953,280634691)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "101.77",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26252B1000426598",
+    "26256B1000176953",
+    "280634691"
+   ],
+   "paidDates": [
+    "2025-10-30",
+    "2026-09-04",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "25T354629600",
+    "RD0710426000",
+    "RD0990218400"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 21258,
+   "vid": "19417576",
+   "carrier": "UNI20",
+   "dos": "2025-09-17",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083"
+   ],
+   "paidDates": [
+    "2026-09-09"
+   ],
+   "payerClaims": [
+    "26Q180371900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 20336,
+   "vid": "19418991",
+   "carrier": "UNI20",
+   "dos": "2025-10-02",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "D0",
+     "187",
+     "Date(s) of service."
+    ]
+   ],
+   "paid": [],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17473534,
+   "vid": "19417102",
+   "carrier": "UNI20",
+   "dos": "2025-09-15",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26252B1000426598",
+    "280628985"
+   ],
+   "paidDates": [
+    "2025-09-23",
+    "2026-09-04"
+   ],
+   "payerClaims": [
+    "RB2155322100",
+    "RD0710815400"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473534,
+   "vid": "19417116",
+   "carrier": "UNI20",
+   "dos": "2025-09-08",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26252B1000426598",
+    "280628985"
+   ],
+   "paidDates": [
+    "2025-09-23",
+    "2026-09-04"
+   ],
+   "payerClaims": [
+    "RB2155306100",
+    "RD0711512300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 20379,
+   "vid": "19423389",
+   "carrier": "UNI20",
+   "dos": "2025-11-04",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083"
+   ],
+   "paidDates": [
+    "2026-09-09"
+   ],
+   "payerClaims": [
+    "26Q166554200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 20379,
+   "vid": "19425352",
+   "carrier": "UNI20",
+   "dos": "2025-12-02",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083"
+   ],
+   "paidDates": [
+    "2026-09-09"
+   ],
+   "payerClaims": [
+    "26Q166555700"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12181899,
+   "vid": "19419665",
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "A3",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0210384"
+   ],
+   "paidDates": [
+    "2026-09-07",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "20230825",
+    "921262503799200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474258,
+   "vid": "19419622",
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "D0",
+     "187",
+     "Date(s) of service."
+    ]
+   ],
+   "paid": [],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17474258,
+   "vid": "19420346",
+   "carrier": "UNI20",
+   "dos": "2025-10-14",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "D0",
+     "187",
+     "Date(s) of service."
+    ]
+   ],
+   "paid": [],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17474258,
+   "vid": "19422181",
+   "carrier": "UNI20",
+   "dos": "2025-10-22",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "D0",
+     "187",
+     "Date(s) of service."
+    ]
+   ],
+   "paid": [],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19419268",
+   "carrier": "UNI20",
+   "dos": "2025-10-02",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828306800",
+    "RD0990869900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19422873",
+   "carrier": "UNI20",
+   "dos": "2025-11-06",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828545900",
+    "RD0988839200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19426935",
+   "carrier": "UNI20",
+   "dos": "2025-12-01",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828240400",
+    "RD0990649000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19432971",
+   "carrier": "UNI20",
+   "dos": "2026-02-11",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828503100",
+    "RD0988582900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19435306",
+   "carrier": "UNI20",
+   "dos": "2026-03-02",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828201800",
+    "RD0988644000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469645,
+   "vid": "19438964",
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-08",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0828493100",
+    "RD0990447700"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 47124,
+   "vid": "19417079",
+   "carrier": "UNI20",
+   "dos": "2025-09-11",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $101.78 - find/post the ERA (check 62883522)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ]
+   ],
+   "paid": [
+    "101.78"
+   ],
+   "checks": [
+    "62883522"
+   ],
+   "paidDates": [
+    "2025-10-08"
+   ],
+   "payerClaims": [
+    "03101113"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473965,
+   "vid": "19417572",
+   "carrier": "UNI20",
+   "dos": "2025-09-16",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "RD0988610600"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474256,
+   "vid": "19419615",
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $101.77 - find/post the ERA (check 26252B1000426598,280634691)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "101.77",
+    "0"
+   ],
+   "checks": [
+    "26252B1000426598",
+    "280634691"
+   ],
+   "paidDates": [
+    "2025-10-30",
+    "2026-09-04"
+   ],
+   "payerClaims": [
+    "25T356313500",
+    "RD0709680800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472484,
+   "vid": "19416571",
+   "carrier": "UNI20",
+   "dos": "2025-09-08",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $101.78 - find/post the ERA (check 60495904)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A3",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "101.78",
+    "0"
+   ],
+   "checks": [
+    "60495904"
+   ],
+   "paidDates": [
+    "2025-09-19",
+    "2026-09-04"
+   ],
+   "payerClaims": [
+    "82653724",
+    "920262478184900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19455323",
+   "carrier": "UNI20",
+   "dos": "2026-03-02",
+   "balance": 141.0,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "A4",
+     "0",
+     "Cannot provide further status electronically."
+    ]
+   ],
+   "paid": [],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17471795,
+   "vid": "19386697",
+   "carrier": "BCBS",
+   "dos": "2024-07-24",
+   "balance": 116.53,
+   "icn": null,
+   "kind": "NOT ON FILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "A4",
+     "35",
+     "Claim/encounter not found."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19415749",
+   "carrier": "UNI20",
+   "dos": "2025-09-07",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $193.36 - find/post the ERA (check 60497708,60498657,60499741)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "48.34",
+    "0",
+    "48.34",
+    "0",
+    "48.34",
+    "0",
+    "48.34",
+    "0"
+   ],
+   "checks": [
+    "60497708",
+    "60498657",
+    "60499741"
+   ],
+   "paidDates": [
+    "2025-09-24",
+    "2025-09-25",
+    "2025-09-26",
+    "2026-09-05"
+   ],
+   "payerClaims": [
+    "70849379",
+    "71398468",
+    "77565643",
+    "82171397",
+    "920262485354600",
+    "920262485354700",
+    "920262485354800",
+    "920262485354900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19415881",
+   "carrier": "UNI20",
+   "dos": "2025-09-08",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $193.36 - find/post the ERA (check 60497708,60498657,60499741)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "48.34",
+    "0",
+    "48.34",
+    "0",
+    "48.34",
+    "0",
+    "48.34",
+    "0"
+   ],
+   "checks": [
+    "60497708",
+    "60498657",
+    "60499741"
+   ],
+   "paidDates": [
+    "2025-09-24",
+    "2025-09-25",
+    "2025-09-26",
+    "2026-09-05"
+   ],
+   "payerClaims": [
+    "70849379",
+    "71398468",
+    "77565643",
+    "82171397",
+    "920262485354600",
+    "920262485354700",
+    "920262485354800",
+    "920262485354900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19417982",
+   "carrier": "UNI20",
+   "dos": "2025-09-25",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $193.36 - find/post the ERA (check 60509992)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167802",
+    "84167805",
+    "84167807",
+    "84167808",
+    "920262485355200",
+    "920262485355300",
+    "920262485355400",
+    "920262485355500",
+    "932262538646500",
+    "932262538646800",
+    "932262538647200",
+    "932262538647400"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418067",
+   "carrier": "UNI20",
+   "dos": "2025-09-26",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $241.70 - find/post the ERA (check 60509992,60511024)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167802",
+    "84167805",
+    "84167807",
+    "84167808",
+    "84378903",
+    "920262485355200",
+    "920262485355300",
+    "920262485355400",
+    "920262485355500",
+    "920262485355600",
+    "932262538646500",
+    "932262538646800",
+    "932262538647200",
+    "932262538647400",
+    "932262538647600"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418083",
+   "carrier": "UNI20",
+   "dos": "2025-09-27",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $290.04 - find/post the ERA (check 60509992,60511024)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167802",
+    "84167805",
+    "84167807",
+    "84167808",
+    "84378903",
+    "84562368",
+    "920262485355200",
+    "920262485355300",
+    "920262485355400",
+    "920262485355500",
+    "920262485355600",
+    "920262485355700",
+    "932262538646500",
+    "932262538646800",
+    "932262538647200",
+    "932262538647400",
+    "932262538647600",
+    "932262538647700"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418149",
+   "carrier": "UNI20",
+   "dos": "2025-09-28",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $350.46 - find/post the ERA (check 60509992,60511024,60511760)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024",
+    "60511760"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2025-10-20",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167802",
+    "84167805",
+    "84167807",
+    "84167808",
+    "84378903",
+    "84562368",
+    "84825528",
+    "920262485355200",
+    "920262485355300",
+    "920262485355400",
+    "920262485355500",
+    "920262485355600",
+    "920262485355700",
+    "920262485355800",
+    "932262538646500",
+    "932262538646800",
+    "932262538647200",
+    "932262538647400",
+    "932262538647600",
+    "932262538647700",
+    "932262538647800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418310",
+   "carrier": "UNI20",
+   "dos": "2025-09-29",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $362.54 - find/post the ERA (check 60509992,60511024,60511760)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024",
+    "60511760"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2025-10-20",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167805",
+    "84167807",
+    "84167808",
+    "84378903",
+    "84562368",
+    "84825528",
+    "84825529",
+    "920262485355300",
+    "920262485355400",
+    "920262485355500",
+    "920262485355600",
+    "920262485355700",
+    "920262485355800",
+    "920262485355900",
+    "932262538646800",
+    "932262538647200",
+    "932262538647400",
+    "932262538647600",
+    "932262538647700",
+    "932262538647800",
+    "932262538647900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418459",
+   "carrier": "UNI20",
+   "dos": "2025-09-30",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $374.62 - find/post the ERA (check 60509992,60511024,60511760)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024",
+    "60511760",
+    "60516466"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2025-10-20",
+    "2025-10-29",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167807",
+    "84167808",
+    "84378903",
+    "84562368",
+    "84825528",
+    "84825529",
+    "85749689",
+    "920262485355400",
+    "920262485355500",
+    "920262485355600",
+    "920262485355700",
+    "920262485355800",
+    "920262485355900",
+    "920262485356000",
+    "932262538647200",
+    "932262538647400",
+    "932262538647600",
+    "932262538647700",
+    "932262538647800",
+    "932262538647900",
+    "932262538648000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418569",
+   "carrier": "UNI20",
+   "dos": "2025-10-01",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $326.28 - find/post the ERA (check 60509992,60511024,60511760)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60509992",
+    "60511024",
+    "60511760",
+    "60516466"
+   ],
+   "paidDates": [
+    "2025-10-16",
+    "2025-10-17",
+    "2025-10-20",
+    "2025-10-29",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84167808",
+    "84378903",
+    "84562368",
+    "84825528",
+    "84825529",
+    "85749689",
+    "920262485355500",
+    "920262485355600",
+    "920262485355700",
+    "920262485355800",
+    "920262485355900",
+    "920262485356000",
+    "932262538647400",
+    "932262538647600",
+    "932262538647700",
+    "932262538647800",
+    "932262538647900",
+    "932262538648000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418661",
+   "carrier": "UNI20",
+   "dos": "2025-10-02",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $277.94 - find/post the ERA (check 60511024,60511760,60516466)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60511024",
+    "60511760",
+    "60516466"
+   ],
+   "paidDates": [
+    "2025-10-17",
+    "2025-10-20",
+    "2025-10-29",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84378903",
+    "84562368",
+    "84825528",
+    "84825529",
+    "85749689",
+    "920262485355600",
+    "920262485355700",
+    "920262485355800",
+    "920262485355900",
+    "920262485356000",
+    "932262538647600",
+    "932262538647700",
+    "932262538647800",
+    "932262538647900",
+    "932262538648000"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19418733",
+   "carrier": "UNI20",
+   "dos": "2025-10-03",
+   "balance": 111.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $229.60 - find/post the ERA (check 60511024,60511760,60516466)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provi"
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "60.42",
+    "0",
+    "0",
+    "48.34",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60511024",
+    "60511760",
+    "60516466"
+   ],
+   "paidDates": [
+    "2025-10-17",
+    "2025-10-20",
+    "2025-10-29",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "84562368",
+    "84825528",
+    "84825529",
+    "85749689",
+    "920262485355700",
+    "920262485355800",
+    "920262485355900",
+    "920262485356000",
+    "932262538647700",
+    "932262538647800",
+    "932262538647900",
+    "932262538648000"
+   ],
+   "errors": []
+  }
+ ]
+}
