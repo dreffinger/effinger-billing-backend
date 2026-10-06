@@ -4,7 +4,7 @@
 # Never touches: Payments already posted.
 # ONE REBILL PER VISIT (William 10/6/2026): with seq it rebills the first plan of the new order itself. When a frequency-1
 #   reset + rebill follows (freq1_visit.run), pass rebill=False (CLI --no-rebill) - or use freq1_visit.reroute for a pure
-#   re-route. amd.rebill_charge also skips (208) a second rebill of the same charge + sequence inside 6 hours.
+#   re-route. amd.rebill_charge also skips (204 'SKIPPED') a second rebill of the same VISIT + sequence in one script run.
 # ---
 """Move a charge's balance from patient responsibility back to insurance (or vice-versa) and optionally rebill (rebill=False: never).
 Full-echo updvisitwithcharges with insportion/patportion/insbalance/patbalance overridden.
@@ -44,7 +44,7 @@ def move(cid, seq=None, dry=False, rebill_seq=None, rebill=True):
     if seq and not rebill:
         rb = " (no rebill - the caller rebills ONCE via freq1_visit)"
     elif seq:
-        rs = int(rebill_seq) if rebill_seq else int(str(seq).split(",")[0]); code, _ = amd.rebill_charge(cid, rs); rb = " rebill seq %s (sent to %s) -> %s" % (seq, rs, code)
+        rs = int(rebill_seq) if rebill_seq else int(str(seq).split(",")[0]); code, _ = amd.rebill_charge(cid, rs, visitid=vis.get("id")); rb = " rebill seq %s (sent to %s) -> %s" % (seq, rs, code)
     return "moved %.2f -> %s%s" % (moved, st, rb)
 if __name__ == "__main__":
     a = sys.argv; seq = a[a.index("--seq") + 1] if "--seq" in a else None

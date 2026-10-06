@@ -1,0 +1,23 @@
+{
+ "about": "TIMELY-FILING WATCH (William 10/6/2026: 'Send all these United ones and then write them off if they return timely filing'). Visits William ordered re-sent past the usual filing window. Every billing routine that sees an answer for one of these visits acts on it: timely filing (CARC 29 any group, or a filing-limit message) -> WOLATE write-off of the charge's whole open balance (move a patient-side balance back first with move_to_ins.move(cid), no seq); paid -> normal ERA posting; OA-18 duplicate -> standing duplicate rule; other denial -> standing denial rules. No approval card needed (William's order). Never re-send a watch visit. Chart ids / visit ids / charge ids and dollars only - no names or member ids.",
+ "items": [
+  {
+   "id": "united-12232248-2025",
+   "pid": "12232248",
+   "carrier": "UNI20",
+   "plan": "ins9517757 (seq 2, AARP Medicare Advantage HMO-POS, AMD 271 ACTIVE 10/6/2026)",
+   "order": "William 10/6/2026 04:0xZ in chat: send all these United ones and then write them off if they return timely filing",
+   "sent": "2026-10-06 (united_send_1006.py --live: visit insorder 2 + ONE frequency-1 rebill to seq 2 per visit, chargerebill 204 x6)",
+   "status": "open",
+   "visits": [
+    {"vid": "19417751", "dos": "09/18/2025", "cpt": "99349", "charges": ["23321504"], "insbal": 198.00, "outcome": "sent"},
+    {"vid": "19417390", "dos": "09/21/2025", "cpt": "99487+99489", "charges": ["23321127", "23321128"], "insbal": 315.00, "outcome": "sent"},
+    {"vid": "19420985", "dos": "10/25/2025", "cpt": "99487+99489", "charges": ["23326170", "23326171"], "insbal": 315.00, "outcome": "sent"},
+    {"vid": "19424313", "dos": "11/19/2025", "cpt": "99349", "charges": ["23330068"], "insbal": 198.00, "outcome": "sent"},
+    {"vid": "19424662", "dos": "11/25/2025", "cpt": "99487+99489", "charges": ["23330503", "23330504"], "insbal": 315.00, "outcome": "sent"},
+    {"vid": "19427156", "dos": "12/22/2025", "cpt": "99487+99489", "charges": ["23333440", "23333441"], "insbal": 315.00, "outcome": "sent"}
+   ],
+   "total": 1656.00
+  }
+ ]
+}

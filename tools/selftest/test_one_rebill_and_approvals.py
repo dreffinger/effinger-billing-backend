@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # PLAIN ENGLISH (self-test, 10/6/2026) - proves offline, with fakes and NO AdvancedMD traffic, the guarantees William asked to make
-#   permanent: ONE rebill per visit (amd.rebill_charge ledger, move_to_ins rebill=False, freq1_visit.reroute), the visit order set
+#   permanent: ONE rebill per visit (amd.rebill_charge per-visit per-run guard, move_to_ins rebill=False, freq1_visit.reroute), the visit order set
 #   without a rebill (resave.set_insorder), the patient order verified and carried by an active plan (ins_update.update), and the
 #   approval email/push carrying links to the approval buttons (approval_submit). Run: python3 tools/selftest/test_one_rebill_and_approvals.py
 # Never touches: AMD, Gmail, Drive, the page. Writes only to a temp directory.
@@ -16,7 +16,7 @@ def check(name, cond, extra=""):
     print(("ok   " if cond else "FAIL ") + name + ("" if cond else "  " + str(extra)))
     if not cond: FAILS.append(name)
 
-# ------------------------------------------------------------------ A. amd.rebill_charge ledger
+# ------------------------------------------------------------------ A. amd.rebill_charge: one rebill per VISIT per run
 class Resp:
     def __init__(self, code): self.status_code = code; self.text = ""
 CALLS = []; NEXT = []
@@ -24,27 +24,36 @@ def fake_post(url, json=None, headers=None, timeout=None):
     CALLS.append(json); return Resp(NEXT.pop(0) if NEXT else 204)
 amd.requests = types.SimpleNamespace(post=fake_post)
 amd.login_cached = lambda psw=None: ("https://web", "tok")
-check("ledger path follows BILLING_WORKSPACE", amd.REBILL_LEDGER.startswith(TMP), amd.REBILL_LEDGER)
-c1 = amd.rebill_charge("charge111", 1, dod_guard=False)
-c2 = amd.rebill_charge("111", 1, dod_guard=False)
-check("first rebill sent (204)", c1[0] == 204 and len(CALLS) == 1, c1)
-check("second rebill same charge+seq NOT sent (208)", c2[0] == 208 and len(CALLS) == 1 and "already rebilled" in c2[1], c2)
-c3 = amd.rebill_charge("111", 2, dod_guard=False)
-check("different sequence is sent", c3[0] == 204 and len(CALLS) == 2, c3)
-c4 = amd.rebill_charge("111", 1, dod_guard=False, allow_repeat=True)
-check("allow_repeat override is sent", c4[0] == 204 and len(CALLS) == 3, c4)
-NEXT[:] = [500]; c5 = amd.rebill_charge("222", 1, dod_guard=False); c6 = amd.rebill_charge("222", 1, dod_guard=False)
-check("a 500 is not recorded - the later rebill still goes", c5[0] == 500 and c6[0] == 204 and len(CALLS) == 5, (c5, c6))
-led = json.load(open(amd.REBILL_LEDGER)); led["222:1"]["ts"] = time.time() - 7 * 3600; json.dump(led, open(amd.REBILL_LEDGER, "w"))
-c7 = amd.rebill_charge("222", 1, dod_guard=False)
-check("outside the 6-hour window it is sent again", c7[0] == 204 and len(CALLS) == 6, c7)
-open(amd.REBILL_LEDGER, "w").write("{not json"); c8 = amd.rebill_charge("333", 1, dod_guard=False)
-check("corrupt ledger fails OPEN (rebill still sent)", c8[0] == 204 and len(CALLS) == 7, c8)
-check("ledger rewritten after a corrupt read", "333:1" in json.load(open(amd.REBILL_LEDGER)))
+VISIT_OF = {"801": "900", "802": "900", "803": "901"}
+def detail_post(body, timeout=180):
+    m = re.search(r'chargeid="(\d+)"', body)
+    if not m or m.group(1) not in VISIT_OF: raise RuntimeError("detail unreadable")
+    return '<PPMDResults><Results><visit id="vst%s" episode="1"/><patient id="pat5"/></Results></PPMDResults>' % VISIT_OF[m.group(1)]
+amd.post = detail_post
+check("audit log path follows BILLING_WORKSPACE", amd.REBILL_LOG.startswith(TMP), amd.REBILL_LOG)
+c1 = amd.rebill_charge("charge801", 1, dod_guard=False)
+c2 = amd.rebill_charge("802", 1, dod_guard=False)
+check("first rebill of a visit is sent (204)", c1[0] == 204 and len(CALLS) == 1 and not c1[1].startswith("SKIPPED"), c1)
+check("second charge of the SAME visit, same seq, same run -> 204 SKIPPED, nothing sent", c2[0] == 204 and c2[1].startswith("SKIPPED") and len(CALLS) == 1, c2)
+c3 = amd.rebill_charge("801", 2, dod_guard=False)
+check("same visit, another sequence -> sent", c3[0] == 204 and len(CALLS) == 2, c3)
+c4 = amd.rebill_charge("801", 1, dod_guard=False, allow_repeat=True)
+check("allow_repeat forces a second rebill", c4[0] == 204 and len(CALLS) == 3 and not c4[1].startswith("SKIPPED"), c4)
+c5 = amd.rebill_charge("803", 1, dod_guard=False)
+check("a different visit is sent", c5[0] == 204 and len(CALLS) == 4, c5)
+NEXT[:] = [500]; c6 = amd.rebill_charge("x77", 1, dod_guard=False, visitid="950"); c7 = amd.rebill_charge("x77", 1, dod_guard=False, visitid="950")
+check("a 500 is not recorded - the next rebill of that visit is sent", c6[0] == 500 and c7[0] == 204 and len(CALLS) == 6, (c6, c7))
+c8 = amd.rebill_charge("999", 1, dod_guard=False); c9 = amd.rebill_charge("999", 1, dod_guard=False)
+check("unreadable visit falls back to the charge id (fail-open, still one per charge)", c8[0] == 204 and c9[1].startswith("SKIPPED") and len(CALLS) == 7, (c8, c9))
+amd._REBILLED.clear()                                   # a NEW script run (process) starts with an empty guard
+c10 = amd.rebill_charge("801", 1, dod_guard=False)
+check("a LATER run is never blocked (corrected rebill after a claim-run rejection goes out)", c10[0] == 204 and len(CALLS) == 8 and not c10[1].startswith("SKIPPED"), c10)
+log = [json.loads(l) for l in open(amd.REBILL_LOG)]
+check("every sent 2xx rebill is in the audit log (7), skips and 500s are not", len(log) == 7 and all(e["status"] == 204 for e in log), len(log))
 import deceased_guard
 deceased_guard.check_charge = lambda cid, seq: (True, "DOS after date of death")
-c9 = amd.rebill_charge("444", 1)
-check("deceased guard still blocks (409) and is not recorded", c9[0] == 409 and "444:1" not in json.load(open(amd.REBILL_LEDGER)), c9)
+c11 = amd.rebill_charge("803", 3)
+check("deceased guard still blocks (409) and is not recorded", c11[0] == 409 and "v901:3" not in amd._REBILLED and len(CALLS) == 8, c11)
 
 # ------------------------------------------------------------------ B. resave.set_insorder (no rebill)
 def visit(order, n=2):
@@ -89,11 +98,12 @@ check("move(..., rebill=False) never rebills", not REB and "no rebill" in m1, m1
 REB.clear(); m2 = move_to_ins.move("500", "1,2")
 check("move(...) default keeps its single rebill (backward compatible)", REB == [("500", 1)], (REB, m2))
 
-# ------------------------------------------------------------------ E. ins_update.update order carried by an ACTIVE plan + verified
+# ------------------------------------------------------------------ E. ins_update.update order carried by an ACTIVE plan + verified + restored
 amd.rebill_charge = amd_rebill_orig
 CH = {"insorder": "1,2", "plans": {"ins10": {"sequence": "1", "enddate": "06/21/2025", "carrier": "car1"},
-                                   "ins20": {"sequence": "2", "enddate": "", "carrier": "car2"}}, "sent": [], "blank_via": set()}
+                                   "ins20": {"sequence": "2", "enddate": "", "carrier": "car2"}}, "sent": [], "blank_via": set(), "boom": False}
 def demo():
+    if CH["boom"] and CH["sent"]: raise RuntimeError("read timeout")
     pl = "".join('<insplan id="%s" sequence="%s" enddate="%s" carrier="%s"/>' % (k, v["sequence"], v["enddate"], v["carrier"]) for k, v in CH["plans"].items())
     return '<PPMDResults><Results><patient id="pat5" insorder="%s"/>%s</Results></PPMDResults>' % (CH["insorder"], pl)
 def i_post(body, timeout=180):
@@ -101,30 +111,49 @@ def i_post(body, timeout=180):
     m = re.search(r'<insplan id="(ins\d+)" ([^>]*)>', body); a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(2)))
     CH["sent"].append((m.group(1), a))
     if "sequence" in a:
-        ended = CH["plans"][m.group(1)]["enddate"] not in ("",) or m.group(1) in CH["blank_via"]
+        ended = CH["plans"][m.group(1)]["enddate"] != "" or m.group(1) in CH["blank_via"]
         CH["insorder"] = "" if ended else a["sequence"]
     else:
         CH["insorder"] = ""                                    # 9/21 behaviour: a plain field edit wipes the order
         for k in ("enddate", "carrier"):
             if k in a: CH["plans"][m.group(1)][k] = a[k]
     return '<?xml version="1.0"?><PPMDResults s="x" lst="y"><Results success="1"><patient insorder="%s" /></Results><Error /></PPMDResults>' % CH["insorder"]
+def reset(order, end10="", blank=()):
+    CH["sent"].clear(); CH["insorder"] = order; CH["plans"]["ins10"]["enddate"] = end10; CH["blank_via"] = set(blank); CH["boom"] = False
 amd.post = i_post; amd._msgtime = lambda: "10/6/2026 3:30:00 AM"
+reset("1,2", end10="06/21/2025")
 ok, msg = ins_update.update("5", "ins10", sequence="2,1")        # the 10/6 chart-12232248 case: ins10 = the end-dated plan
-check("order via an END-DATED plan is carried by the active plan and lands", ok and CH["insorder"] == "2,1" and [s[0] for s in CH["sent"]] == ["ins20"], (msg, CH["sent"]))
-CH["sent"].clear(); CH["insorder"] = "1,2"; CH["plans"]["ins10"]["enddate"] = ""
+check("order asked via an END-DATED plan is carried by the active plan and lands (one call)", ok and CH["insorder"] == "2,1" and [x[0] for x in CH["sent"]] == ["ins20"], (msg, CH["sent"]))
+reset("1,2")
 ok, msg = ins_update.update("5", "10", enddate="06/21/2025", sequence="2,1")
 check("field edit + order = two calls; the field call carries NO sequence; order lands",
       ok and len(CH["sent"]) == 2 and "sequence" not in CH["sent"][0][1] and CH["sent"][0][0] == "ins10" and CH["sent"][1][0] == "ins20" and CH["insorder"] == "2,1", (msg, CH["sent"]))
-CH["sent"].clear(); CH["insorder"] = "1,2"; CH["plans"]["ins10"]["enddate"] = ""; CH["blank_via"] = {"ins10"}
+reset("1,2", blank={"ins10"})
 ok, msg = ins_update.update("5", "10", sequence="2,1")
-check("a blank answer is re-sent ONCE through another active plan", ok and [s[0] for s in CH["sent"]] == ["ins10", "ins20"] and CH["insorder"] == "2,1", (msg, CH["sent"]))
-CH["sent"].clear(); CH["blank_via"] = {"ins10", "ins20"}; CH["insorder"] = "1,2"
+check("a blank answer is re-sent ONCE through another active plan", ok and [x[0] for x in CH["sent"]] == ["ins10", "ins20"] and CH["insorder"] == "2,1", (msg, CH["sent"]))
+reset("1,2", blank={"ins10", "ins20"})
 ok, msg = ins_update.update("5", "10", sequence="2,1")
-check("never more than two order calls; reports NOT set", not ok and len(CH["sent"]) == 2 and "NOT set" in msg, (msg, CH["sent"]))
+check("order that never lands: 2 tries, previous order restore attempted, reported NOT set", not ok and len(CH["sent"]) == 4 and "NOT set" in msg and "previous insorder" in msg, (msg, CH["sent"]))
+reset("2,1")
+ok, msg = ins_update.update("5", "20", carrier="car9")
+check("a field edit that wipes the order gets the previous order put back", ok and CH["insorder"] == "2,1" and "restored" in msg and len(CH["sent"]) == 2 and "sequence" not in CH["sent"][0][1], (msg, CH["sent"]))
+reset("1,2")
+ok, msg = ins_update.update("5", "10", enddate="06/21/2025")
+check("end-dating the LEADING plan: order not restored through it (would blank) - WARNING, field edit ok", ok and "WARNING" in msg and len(CH["sent"]) == 1, (msg, CH["sent"]))
+reset("2,1", end10="06/21/2025")
+ok, msg = ins_update.update("5", "20", sequence="1,2")
+check("an order led by an end-dated plan is refused WITHOUT writing", not ok and not CH["sent"] and "end-dated" in msg, (msg, CH["sent"]))
+reset("2,1"); CH["boom"] = True
+try:
+    ok, msg = ins_update.update("5", "10", enddate="06/21/2025", sequence="2,1"); raised = False
+except Exception as e:
+    raised = True; msg = repr(e)
+check("a failed re-read after a write returns (ok, msg) instead of raising", not raised and "check the chart" in msg, msg)
+reset("1,2")
 ok, msg = ins_update.update("5", "99", sequence="1")
 check("unknown plan -> insplan not found", not ok and msg == "insplan not found", msg)
 ok, msg = ins_update.update("5", "10")
-check("nothing to change -> no write", not ok and msg == "nothing to change", msg)
+check("nothing to change -> no write", not ok and msg == "nothing to change" and not CH["sent"], msg)
 
 # ------------------------------------------------------------------ F. approval email + push carry the links
 items = approval_submit.build_items([{"letter": "A", "command": "cd /home/claude/unbilled && python3 x.py --live --only A", "reason": "classifier <refused>",
