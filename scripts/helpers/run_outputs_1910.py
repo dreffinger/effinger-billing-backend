@@ -56,7 +56,7 @@ for pt, vid, dos, cpt, admit, ext, msg in admits:
     if vid == "19454653": extra = "; primary-dx gate: only dx Z96.651 (secondary-only Z code) -> I10 (dcode1034543883) added in front per William 9/14 cascade, full-visit resave"
     if vid == "19454659": extra = "; repointed to the 9/4 stay referral plan rplan18461941 (VA9011001288; plan readback unchanged, main plan untouched)"
     add("Claim Inspector", "cleared", pt, dos, "", "Hospitalization From Date empty (117065068)", "admission %s written (updextrainsinfo hospitalizationfrom only), full-visit resave onhcfa=1%s" % (admit, extra), visit=vid)
-add("Claim Inspector", "cleared", "PARKS,WILLIE LOVE", "09/02/2026", "", "Pattern 11256 unspecified laterality I69.359", "bypassed + logged to laterality_flag_log.md (no captured correction)", visit="19454663")
+add("Claim Inspector", "cleared", "JARRELL,WILLIE LOVE", "09/02/2026", "", "Pattern 11256 unspecified laterality I69.359", "bypassed + logged to laterality_flag_log.md (no captured correction)", visit="19454663")
 add("Claim Inspector", "cleared", "DALRYMPLE,DANE", "09/02/2026", "", "Pattern 11256 unspecified laterality M16.9", "bypassed + logged to laterality_flag_log.md (bilateral dcode lookup not captured)", visit="19454667")
 if n_in: add("Claim Inspector", "remaining", action="see scan_0912/summary_after.json: %d visits still listed" % n_in)
 for r in after.get("unbilled", []):

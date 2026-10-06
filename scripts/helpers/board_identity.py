@@ -22,13 +22,13 @@ def _load_json(name):
         if os.path.exists(p): return json.load(open(p))
     return {}
 CARRIERS = _load_json("carriers.json")          # "car6085": ["FLO02", "MEDICARE ..."]
-SHORT = {"HCA FLORIDA CAPITAL HOSPITAL TALLAHASSEE MEDICAL C": "HCA Capital Hospital",
+SHORTALL = {"HCA FLORIDA CAPITAL HOSPITAL TALLAHASSEE MEDICAL C": "HCA Capital Hospital",
          "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC": "Brynwood (Monticello)",
          "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT": "Centre Pointe Health & Rehab"}
 TODAY = datetime.date.today()
 
 def short(n):
-    n = SHORT.get(n) or n.title().replace(" Alf", " ALF").replace(" Llc", "").replace("Of ", "of ").replace("At ", "at ").replace("And ", "and ").strip()
+    n = SHORTALL.get(n) or n.title().replace(" Alf", " ALF").replace(" Llc", "").replace("Of ", "of ").replace("At ", "at ").replace("And ", "and ").strip()
     return re.sub(r"\s+", " ", n)
 def carrier_label(car):
     code, name = (CARRIERS.get(car) or [car, ""])[:2]

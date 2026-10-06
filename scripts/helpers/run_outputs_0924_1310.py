@@ -83,7 +83,7 @@ dig = """# %s run digest - backend billing run, %s slot (ehpa cloud)
 - Board: board_updates_%s.json (4 appends: orwell-padraig-44953, aet12-carrier-cpid, availity-remits-backlog, bcbs-patient-balance-audit-0918) -> board inbox; inbox registry lists none of the current inbox files - nothing trashed; denials inbox: nothing queued, no file.
 - Calls learned: no new call shape (captured_calls_additions_2026-09-24_1310UTC-9amET-ehpa-cloud.md, behaviours only). Vocabulary entries added: 0.
 - Mirror: %s
-- Waiting on William: unchanged from 0510Z (whitson-shane-17477639 facesheet, jarvis-marisa-17477842 duplicate chart, griffin-jayson-17477850 CHP member id, whitfield-rowan-17473232 + penhale-rupert-17471681 CCM after death, alcorn-alfred-17477183 facesheet, thackeray-kendrew-17472874 HCA admission date, AET12 carrier master, Florida Blue / VA CCN ERA setup, deistchle 8/22 CCM CO-151, centene-m56-denials-0920, Optum Pay remits to download, prompt v8 + v9 insert not yet pasted).
+- Waiting on William: unchanged from 0510Z (whitlow-shay-17477639 facesheet, jarvis-marisa-17477842 duplicate chart, griffith-jace-17477850 CHP member id, whitfield-rowan-17473232 + penhale-rupert-17471681 CCM after death, alcott-alfie-17477183 facesheet, thackeray-kendrew-17472874 HCA admission date, AET12 carrier master, Florida Blue / VA CCN ERA setup, deistchle 8/22 CCM CO-151, centene-m56-denials-0920, Optum Pay remits to download, prompt v8 + v9 insert not yet pasted).
 - Script errors: none.
 
 RUN COMPLETE

@@ -121,7 +121,7 @@ def line_plan(fam, seq, ch, live, ref):
         if other: return {"action": "HOLD", "note": "no insurance balance - already paid by %s (%s $%.2f): OVERPAYMENT/refund decision" % (other[0]["carrier"], other[0]["checkno"], other[0]["amount"])}
         return {"action": "HOLD", "note": "no insurance balance left on the charge (patbal %.2f) - nothing AMD will accept" % f(live["patbalance"])}
     resid = round(bal - plan["pay"], 2); short = round(paid - plan["pay"], 2)
-    if short > 0.004: plan["note"] += "SHORT: EOB paid %.2f, balance only %.2f -> posting the maximum; " % (paid, plan["pay"])
+    if short > 0.004: plan["note"] += "SHORTALL: EOB paid %.2f, balance only %.2f -> posting the maximum; " % (paid, plan["pay"])
     if resid > 0.004:
         # what is left after the payer's money: Medicaid plans (SIM01/FLO99) -> dual cost-share / Medicaid contractual write-off in the SAME post
         # (nothing may transfer to a dual's patient balance); Medigap supplements -> WOINS only when it is exactly the primary's contractual

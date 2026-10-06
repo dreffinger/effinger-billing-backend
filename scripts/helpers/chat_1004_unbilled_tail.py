@@ -12,7 +12,7 @@ from chat_1004_board_act import L, rec, done, DRY
 import move_to_ins, freq1_visit, amd
 amd.login_cached()
 L("== unbilled tail (DRY=%s)" % DRY)
-# 1. Garrett
+# 1. Garrow
 ok = A.writeoff("garrett", "23348845", "MCAD", 16.93, "WOCAID2ND",
                 "Medicaid crossover paid 0.00 on the Medicare coinsurance (Medicare paid 5/26/2026; Medicaid 0.00 postings 6/1 and 9/12/2026) - contractual per William's rule; chat 10/4/2026")
 L("   garrett writeoff -> %s" % ok)

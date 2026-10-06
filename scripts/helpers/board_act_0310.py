@@ -1,13 +1,13 @@
 # PLAIN ENGLISH (Insurance Refresh Board actions, 11 PM ET 9/14/2026 slot - ehpa cloud run 9/15 0310UTC)
 # Carries out the board rows William handed back to this run (his 9/14 answers), one chart at a time:
-#   Alcorn   - write off the 9/1/2026 99308 ($107) as self-pay no-pay bad debt (Sunshine ended 8/31, Medicaid pending).
+#   Alcott   - write off the 9/1/2026 99308 ($107) as self-pay no-pay bad debt (Sunshine ended 8/31, Medicaid pending).
 #   Brown    - correct the first name RANDLE -> RANDY on the chart, then freq-1 rebill the 7/13 and 7/14 Aetna visits.
 #   Bull     - add Capital Health Plan (CAP07, member from Stedi, begin 6/1/2024), write the 9/10 admission date, set the
 #              visit insurance order to the new plan, release the two visits from Unbilled.
 #   Coalson  - WOLATE (timely filing, DOS 9/29-10/4/2025 first billed 9/10/2026) on the six Humana charges.
 #   Collins  - freq-1 rebill the five July BCBS visits (write-off only after Florida Blue answers).
-#   Ford / Morris - WOLATE on the 10/25/2025 CCM lines (Humana, first billed 9/10/2026).
-#   Moore    - add CAP07 (Stedi: MA plan active 1/1/2026), end-date Florida Blue 12/31/2025, move the two February visits
+#   Ford / Morrow - WOLATE on the 10/25/2025 CCM lines (Humana, first billed 9/10/2026).
+#   Morland    - add CAP07 (Stedi: MA plan active 1/1/2026), end-date Florida Blue 12/31/2025, move the two February visits
 #              to the CAP07 sequence and freq-1 rebill.
 #   Peterson - freq-1 rebill the 1/16/2026 99223 Aetna visit.
 #   Penhale   - WOINS the two Medicare residuals ($113.02 + $142.98), no secondary.
@@ -71,9 +71,9 @@ def release(vids):
     r = amd.post(amd.msg("hideunbillablevisits", "claimsreports", {"hide": "-1", "nocookie": "1"}, "<visitlist>%s</visitlist>" % "".join('<visit id="%s"/>' % v for v in vids)), timeout=120)
     return "ok" if "Fault" not in r else "FAULT " + re.sub(r"\s+", " ", r[:200])
 
-# ---------------- Alcorn pat17477183 ----------------
+# ---------------- Alcott pat17477183 ----------------
 if "alcorn" in only:
-    L("-- Alcorn 9/1/2026 99308 cid 23364736 v19453827 $107 -> WOBAD")
+    L("-- Alcott 9/1/2026 99308 cid 23364736 v19453827 $107 -> WOBAD")
     r = wo("23364736", "SUN01", 107.00, "WOBAD", "Self-pay no-pay bad debt - no insurance on 9/1/2026 (Sunshine ended 8/31/2026), Medicaid pending - " + NOTE_DATE)
     if "REFUSED" in r and not dry:
         L("  WOBAD refused, retrying WOINS"); r = wo("23364736", "SUN01", 107.00, "WOINS", "Self-pay no-pay - no insurance on 9/1/2026 (Sunshine ended 8/31/2026), Medicaid pending - " + NOTE_DATE)
@@ -129,19 +129,19 @@ if "collins" in only:
     for vid, cid in (("19447727", "23356955"), ("19447678", "23356905"), ("19447677", "23356904"), ("19447879", "23357076"), ("19448232", "23357491")):
         rec("collins", "v%s/%s %s" % (vid, cid, f1(vid, cid, 1))); time.sleep(0.4)
 
-# ---------------- Ford pat17471384 / Morris pat44976 ----------------
+# ---------------- Ford pat17471384 / Morrow pat44976 ----------------
 if "ford" in only:
     L("-- Ford WOLATE 10/25/2025 CCM HUM01")
     for cid, amt in (("23326416", 206), ("23326417", 109)):
         rec("ford", "%s $%s %s" % (cid, amt, wo(cid, "HUM01", amt, "WOLATE", "Timely filing - DOS 10/25/2025 first billed 9/10/2026, Humana CO-29 - " + NOTE_DATE)))
 if "morris" in only:
-    L("-- Morris WOLATE 10/25/2025 CCM HUM01")
+    L("-- Morrow WOLATE 10/25/2025 CCM HUM01")
     for cid, amt in (("23326386", 206), ("23326387", 109)):
         rec("morris", "%s $%s %s" % (cid, amt, wo(cid, "HUM01", amt, "WOLATE", "Timely filing - DOS 10/25/2025 first billed 9/10/2026, Humana CO-29 - " + NOTE_DATE)))
 
-# ---------------- Moore pat17475407 ----------------
+# ---------------- Morland pat17475407 ----------------
 if "moore" in only:
-    L("-- Moore add CAP07 CIO60023770 01/01/2026, end BCBS 12/31/2025, move Feb visits")
+    L("-- Morland add CAP07 CIO60023770 01/01/2026, end BCBS 12/31/2025, move Feb visits")
     io, pl = plans("17475407"); have = [p for p in pl if p.get("carrier") == "car41826" and not p.get("enddate")]
     if have:
         seq = have[0]["sequence"]; rec("moore", "CAP07 already on chart %s seq %s" % (have[0]["id"], seq))

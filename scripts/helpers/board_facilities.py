@@ -5,9 +5,9 @@
 # ---
 import txh, json, glob, re, collections, datetime, sys, os
 SRC = sys.argv[1]; out = {}
-SHORT = {"HCA FLORIDA CAPITAL HOSPITAL TALLAHASSEE MEDICAL C": "HCA Capital Hospital", "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC": "Brynwood (Monticello)", "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT": "Centre Pointe Health & Rehab"}
+SHORTALL = {"HCA FLORIDA CAPITAL HOSPITAL TALLAHASSEE MEDICAL C": "HCA Capital Hospital", "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC": "Brynwood (Monticello)", "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT": "Centre Pointe Health & Rehab"}
 def short(n):
-    n = SHORT.get(n) or n.title().replace(" Alf", " ALF").replace(" Llc", "").replace("Of ", "of ").replace("At ", "at ").replace("And ", "and ").strip()
+    n = SHORTALL.get(n) or n.title().replace(" Alf", " ALF").replace(" Llc", "").replace("Of ", "of ").replace("At ", "at ").replace("And ", "and ").strip()
     return re.sub(r"\s+", " ", n)
 def mmyy(d): return "%d/%s" % (int(d[:2]), d[8:10])
 for f in sorted(glob.glob(os.path.join(SRC, "*.json"))):

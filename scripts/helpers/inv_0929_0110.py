@@ -27,7 +27,7 @@ for vid, pid in PRIOR:
             pays.append({k: a.get(k) for k in ("id","charge","chargeid","date","amount","carrier","checknumber","paymentcode","void","type")})
     out["prior"][vid] = {"pid": pid, "charges": rows, "payments": pays}
     print("v%s pat%s" % (vid, pid)); [print("   CHG", r) for r in rows]; [print("   PAY", p) for p in pays]
-for nm in ("CHRISTOPHER,CHR%", "POWLETTE,SAN%", "ROSSITER,MARG%"):
+for nm in ("CHRISTENSEN,CHR%", "POWLETTE,SAN%", "ROSSITER,MARG%"):
     r = amd.post(amd.msg("lookuppatient", "lookup", {"name": nm, "nocookie": "1"}))
     pats = [dict(re.findall(r'(\w+)="([^"]*)"', x)) for x in re.findall(r'<patient [^>]*/?>', r)]
     out["lookup"][nm] = [{k: p.get(k) for k in ("id","name","chart","dob")} for p in pats]

@@ -1,7 +1,7 @@
 # PLAIN ENGLISH (read-only facts for the 1 AM ET 10/4 run, 2026-10-04T0510Z): William answered more Insurance Refresh Board rows
 #   03:20-03:47Z 10/4 and the Claims Center scan shows new HCA charts in the inspector/unbilled. Before any write this script reads
 #   the LIVE chart state: plans (getdemographic), charges/payments (gettxhistory), AMD 271 where a plan is in question, Stedi MBI
-#   lookup for the hospice chart (Screws) and the new no-insurance chart (Zippay), lookupcarrier for Lantern.
+#   lookup for the hospice chart (Scrivener) and the new no-insurance chart (Zane), lookupcarrier for Lantern.
 #   Output: registers/reads_2026-10-04T0510Z.json + a printed summary. Never touches: AMD writes.
 import amd, elig_amd, stedi, re, json, time, sys, datetime
 amd.login_cached()
@@ -27,7 +27,7 @@ def hist(pid):
 CHARTS = {
  "17476534": "bellamy WONCS $731 (5/11-5/13/2026 HCA)", "17471681": "powell void v19455606", "17474541": "rodriguez restore 99487 c23336997 (v19430630)",
  "17477375": "screws Medicare+GV (8/11-8/13/2026)", "17477892": "pignataro CAP07 CIO50078852 + admit 9/23", "17477640": "reeves admission 09/02/2026 v19456252/v19456267",
- "20729": "ross add SUN01 7415004647 seq2", "12180329": "scott Medicare 4PM5Y81WY57 + FB spouse XJJH62710650", "17474290": "short FB VMYH57761517",
+ "20729": "ross add SUN01 7415004647 seq2", "12180329": "scott Medicare <MBI-redacted: read it from the chart plan at run time> + FB spouse XJJH62710650", "17474290": "short FB VMYH57761517",
  "17477842": "joiner placeholder chart", "17472416": "joiner real chart", "17477972": "herring inspector admit", "17477975": "singleton inspector admit",
  "17477974": "tischler pending", "17477933": "smith myrtle F02.80", "17477973": "zippay no insurance", "17477777": "lazarchik refplan", "17469007": "jackson linda 'mine' 6/23 CCM",
  "17476603": "king lantern",
@@ -59,7 +59,7 @@ for pid in ("12180329", "17474290", "20729", "17477375", "17472416"):
             line = elig_amd.one_line(s); out["elig"]["%s %s" % (pid, p["id"])] = line
             P("271 pat%s %s seq %s %s -> %s" % (pid, p["id"], p.get("sequence"), p.get("carrier"), line[:220])); time.sleep(0.3)
     except Exception as e: P("271 pat%s ERROR %s" % (pid, e))
-# Stedi MBI lookups: Screws (hospice, Medicare needed), Zippay (new chart)
+# Stedi MBI lookups: Scrivener (hospice, Medicare needed), Zane (new chart)
 for pid in ("17477375", "17477973"):
     dm = out["charts"].get(pid, {}).get("demo") or {}
     try:

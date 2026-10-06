@@ -4,7 +4,7 @@
 # Never touches: Unapproved visits or CPTs.
 # ---
 """Direct (non-ERA-linked) insurance write-offs via Payment Entry 'addpayments' — for approved visits whose
-ERA lines are unmatched (chargedetailid -1) or already gone.  Proven on Morris 07/10/2026 (9/3/2026).
+ERA lines are unmatched (chargedetailid -1) or already gone.  Proven on Morrow 07/10/2026 (9/3/2026).
 Only charges whose proccode maps to the approved CPT set are written off; balances read live.
 Usage: python3 wo_direct.py --carrier MCAD --code WOMCAD --visits-file mcad_ccm_writeoff_visits.json [--only id,id] [--dry]"""
 import amd, resave, json, re, sys, time

@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Insurance Refresh Board answers for the 11pm ET 9/14 run - inbox file builder)
 # Decides: Nothing. Writes board_updates_2026-09-15T0310Z.json with the results of tonight's board actions: one note + one
-#   lookup-trail line per row that was worked (Alcorn, Brown, Bull, Coalson x2, Collins, Ford, Morris, Moore, Peterson,
+#   lookup-trail line per row that was worked (Alcott, Brown, Bull, Coalson x2, Collins, Ford, Morrow, Morland, Peterson,
 #   Penhale, Clack, Gray, Tillotson), the Stedi API blocks captured tonight, the ERA/Availity remit reconciliation on the
 #   ERA row plus a new row for the Florida Blue remits William exported, and status changes only where the row's ask is
 #   finished (update ops, never set; appends are keyed by src+when so a re-applied file cannot duplicate them).
@@ -39,7 +39,7 @@ def era_sum(l):
 nb, ab = era_sum(eb); na, aa = era_sum(ea)
 
 # ---------------- rows William answered 9/14 ----------------
-row("alcorn-alfred",
+row("alcott-alfie",
     notes=[note("11pm ET 9/14 run: posted the self-pay no-pay write-off on the 9/1/2026 99308 (charge 23364736, visit 19453827): WOBAD $107.00, AMD payment id 10153264, note 'Self-pay no-pay bad debt - no insurance on 9/1/2026 (Sunshine ended 8/31/2026), Medicaid pending - William 9/14/2026'. The 8/28/2026 99309 ($141) stays with Sunshine as billed. If Medicaid is reinstated back to 9/1, say so and the write-off gets voided and the visit billed.")],
     checks=[chk("ok", "WOBAD $107.00 posted on charge 23364736 (9/1/2026 99308), payment id 10153264; balance $0")],
     status="done", need="Done 9/15: 9/1/2026 99308 ($107, visit 19453827) written off WOBAD (self-pay no-pay, no insurance on the DOS, Medicaid pending) - payment id 10153264. The 8/28 99309 ($141) stays billed to Sunshine (covered through 8/31). Reverse the write-off and bill it if Medicaid is reinstated back to 9/1.")
@@ -79,17 +79,17 @@ row("ford-sammie-l-17471384",
     notes=[note("11pm ET 9/14 run: WOLATE posted on the 10/25/2025 CCM lines - 99487 $206.00 charge 23326416 (payment id 10153271) and 99489 $109.00 charge 23326417 (payment id 10153272), note 'Timely filing - DOS 10/25/2025 first billed 9/10/2026, Humana CO-29 - William 9/14/2026'. Balance $0.")],
     checks=[chk("ok", "WOLATE $206.00 (23326416, id 10153271) + $109.00 (23326417, id 10153272); balance $0")],
     status="done", need="Done 9/15: 10/25/2025 Humana CCM claim ($315) written off WOLATE (untimely) - ids 10153271 + 10153272.")
-row("morris-rowan-44976",
+row("morrow-rowan-44976",
     notes=[note("11pm ET 9/14 run: WOLATE posted on the 10/25/2025 CCM lines - 99487 $206.00 charge 23326386 (payment id 10153273) and 99489 $109.00 charge 23326387 (payment id 10153274), note 'Timely filing - DOS 10/25/2025 first billed 9/10/2026, Humana CO-29 - William 9/14/2026'. Balance $0.")],
     checks=[chk("ok", "WOLATE $206.00 (23326386, id 10153273) + $109.00 (23326387, id 10153274); balance $0")],
     status="done", need="Done 9/15: 10/25/2025 Humana CCM claim ($315) written off WOLATE (untimely) - ids 10153273 + 10153274.")
 
-row("moore-marisa-denials",
+row("morland-marisa-denials",
     notes=[note("11pm ET 9/14 run: CAP07 Capital Health Plan (car41826) added with member CIO60023770, begin 01/01/2026, NO group -> ins9519415, sequence 2. Stedi CHP 95112 at DOS 2/6/2026: ACTIVE, Medicare Risk (MA), plan begin 20260101. Florida Blue plan XJBH29440242 (ins9516490) end-dated 12/31/2025 (success 1); patient insurance order set to 2 (CAP07). Both February visits resaved insorder 2 + onhcfa 1 and freq-1 rebilled on seq 2: 2/6/2026 99223 $310 vst19431787 (charge 23338435) and 2/7/2026 99232 $111 vst19431884 (charge 23338525) -> 204 each. Chart address not changed (TMH: 2677 Old Bainbridge Rd Apt 911) - say the word.")],
     checks=[chk("ok", "CAP07 car41826 member CIO60023770 begin 01/01/2026 added -> ins9519415 seq 2 (no group); BCBS ins9516490 end-dated 12/31/2025; patient insorder 2"),
             chk("ok", "ACTIVE Medicare Risk (MA), planBegin 20260101", "Stedi eligibility CHP 95112, DOS 2/6/2026"),
             chk("ok", "vst19431787 (2/6 99223 $310) + vst19431884 (2/7 99232 $111) insorder 2, freq-1 + chargerebill seq 2 -> 204 x2")],
-    api=[{"at": NOW, "src": "Stedi API - CHP 95112 eligibility, DOS 2026-02-06", "text": "MOORE, MARISA dob on file member CIO60023770 -> Active Coverage, insuranceType Medicare Risk (MA), planDateInformation planBegin 20260101; serviceTypeCodes 30; errors none."}],
+    api=[{"at": NOW, "src": "Stedi API - CHP 95112 eligibility, DOS 2026-02-06", "text": "MORLAND, MARISA dob on file member CIO60023770 -> Active Coverage, insuranceType Medicare Risk (MA), planDateInformation planBegin 20260101; serviceTypeCodes 30; errors none."}],
     status="done", need="Done 9/15: CHP Advantage Plus CIO60023770 on the chart (seq 2, begin 1/1/2026, no group), Stedi ACTIVE, Florida Blue ended 12/31/2025, both February 2026 HCA claims ($421) re-sent freq-1 to CAP07. Optional: chart address -> TMH's 2677 Old Bainbridge Rd Apt 911 if you want it.",
     extra={"inscarrier": "CAP07 Capital Health Plan (Medicare Advantage)", "insid": "CIO60023770", "insplans": "BCBS Florida Blue XJBH29440242 (ended 12/31/2025) · 2nd CAP07 Capital Health Plan CIO60023770 (1/1/2026 - open)"})
 

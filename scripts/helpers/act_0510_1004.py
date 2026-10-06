@@ -3,15 +3,15 @@
 #   A: pat17474541 (restore) - the 99487 is already restored (c23368589, unbilled): resave the visit Medicare-first (insorder 2,1) and freq-1 rebill seq 2.
 #   B: pat17477375 (bill Medicare with GV) - the three 8/11-8/13/2026 visits already carry GV but were re-sent to WEL04 9/27: set insorder 3 (Medicare seq 3) + freq-1 seq 3.
 #   C: pat17477892 (CAP07 CIO50078852 is already on the chart): admission 09/23/2026 on the 3 HCA visits, insorder 1, onhcfa 1, release.
-#   D: pat17477842 (Joiner: 'fix the charts and send the claim') - chart now has the real DOB + the Medicare plan: visit 19455665 insorder 1 + release.
+#   D: pat17477842 (Jarvis: 'fix the charts and send the claim') - chart now has the real DOB + the Medicare plan: visit 19455665 insorder 1 + release.
 #   E: pat17477975 (inspector hold): admission 09/28/2026 (the chart's own 99223) on v19456869/70/900, onhcfa 1.
 #   F: pat17477933 v19456467 (inspector Pattern 20389 F02.80 first): F02.80 -> F03.90 (dcode1034545095), full-visit resave, re-list batch 127827, bypass fresh advisory ids.
-#   G: pat12180329 (Scott): chart last name 'SCOTT III' -> last name SCOTT + suffix III (Medicare's 271 rejects AAA 73 on the name); AMD 271; if ACTIVE, freq-1 the 5 open full-charge Medicare visits.
-#   H: pat17474290 (Short): Stedi Florida Blue eligibility at DOS 10/06/2025 (read only - decides whether the 9/4 claim stands).
-#   I: pat17477777 (Lazarchik): try addreferralplan (ismain=0 status=stat1) for a BLANK plan; if a NEW rplan id comes back, repoint the two open visits to it with preauth="".
-#   J: pat17476534 (Bellamy 'write off WONCS'): WONCS on the open 5/11-5/13/2026 insurance balances, check BOARD1004.
-#   K: pat17477640 (Reeves): admission 09/02/2026 (HCA arrival list: ADM IN 9/2, discharged 9/27) on v19456252/v19456267 - extins only, claims already out 9/30.
-#   --dry prints every write; --only A,B,... limits. Never touches: payments, hospitalizationto, group numbers, the paid Lazarchik visit, standing holds.
+#   G: pat12180329 (Sayer): chart last name 'SAYER III' -> last name SAYER + suffix III (Medicare's 271 rejects AAA 73 on the name); AMD 271; if ACTIVE, freq-1 the 5 open full-charge Medicare visits.
+#   H: pat17474290 (Shortall): Stedi Florida Blue eligibility at DOS 10/06/2025 (read only - decides whether the 9/4 claim stands).
+#   I: pat17477777 (Lazenby): try addreferralplan (ismain=0 status=stat1) for a BLANK plan; if a NEW rplan id comes back, repoint the two open visits to it with preauth="".
+#   J: pat17476534 (Bellingham 'write off WONCS'): WONCS on the open 5/11-5/13/2026 insurance balances, check BOARD1004.
+#   K: pat17477640 (Reeve): admission 09/02/2026 (HCA arrival list: ADM IN 9/2, discharged 9/27) on v19456252/v19456267 - extins only, claims already out 9/30.
+#   --dry prints every write; --only A,B,... limits. Never touches: payments, hospitalizationto, group numbers, the paid Lazenby visit, standing holds.
 import amd, resave, era_post, add_ins, ins_update, freq1_visit, manual_post, move_to_ins, elig_amd, stedi, patient_patch, recode, re, json, sys, time, datetime
 import xml.etree.ElementTree as ET
 DRY = "--dry" in sys.argv
@@ -121,7 +121,7 @@ if want("F"):
             L("  bypass %s -> %s" % ([e[0] for e in adv], "ok" if "Fault" not in r2 else r2[:160]))
 if want("G"):
     pid = "12180329"
-    if DRY: L("G pat%s DRY patch names: lastname SCOTT suffix III (was 'SCOTT III')" % pid)
+    if DRY: L("G pat%s DRY patch names: lastname SAYER suffix III (was 'SAYER III')" % pid)
     else:
         p = patient_patch.get(pid); f = patient_patch.flatten(p); nm = [dict(n) for n in f.get("names", [])]
         for n in nm:
@@ -134,7 +134,7 @@ if want("G"):
         else: L("  Medicare 271 still not ACTIVE - visits not re-sent")
 if want("H"):
     try:
-        j = stedi.elig("00590", "KEVIN", "SHORT", "19660829", "VMYH57761517", "20251006"); L("H pat17474290 Stedi Florida Blue @10/06/2025: " + json.dumps(j)[:600])
+        j = stedi.elig("00590", "KELVIN", "SHORTALL", "19660829", "VMYH57761517", "20251006"); L("H pat17474290 Stedi Florida Blue @10/06/2025: " + json.dumps(j)[:600])
     except Exception as e: L("H stedi error %s" % e)
 if want("I"):
     pid = "17477777"; main = "rplan18462071"
@@ -153,7 +153,7 @@ if want("J"):
     pid = "17476534"
     for r in R["charts"][pid]["all"]:
         if r["void"] != "1" and r["dos"] and r["dos"][6:] == "2026" and r["dos"][:2] == "05" and float(r["insbal"] or 0) > 0:
-            ok, msg = manual_post.post(r["id"], "BCBS", 0.0, float(r["insbal"]), "WONCS", checknumber="BOARD1004", note="Florida Blue PR-50/PR-197 - William 10/4/2026 'write off WONCS' (board bellamy-amons-17476534)", dry=DRY)
+            ok, msg = manual_post.post(r["id"], "BCBS", 0.0, float(r["insbal"]), "WONCS", checknumber="BOARD1004", note="Florida Blue PR-50/PR-197 - William 10/4/2026 'write off WONCS' (board bellingham-amon-17476534)", dry=DRY)
             L("J pat%s c%s v%s %s %s WONCS %s -> %s %s" % (pid, r["id"], r["visit"], r["dos"], r["proccode"], r["insbal"], "ok" if ok else "FAIL", str(msg)[:140])); time.sleep(0.3)
 if want("K"):
     pid = "17477640"

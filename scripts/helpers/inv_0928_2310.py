@@ -68,7 +68,7 @@ for pid, vs in pats.items():
     time.sleep(0.3)
 # Pam admits 9/28 - chart lookup only
 look = {}
-for q in ["FORSYTH,DIA%", "FORD,SAM%", "HATHERLEY,DAI%", "ROSSITER,MAR%", "BERGER,VIC%", "POWLETTE,SAN%", "CHRISTOPHER,CHR%"]:
+for q in ["FORSYTH,DIA%", "FORD,SAM%", "HATHERLEY,DAI%", "ROSSITER,MAR%", "BERGER,VIC%", "POWLETTE,SAN%", "CHRISTENSEN,CHR%"]:
     try:
         lp = amd.post(amd.msg("lookuppatient", "lookup", {"name": q, "nocookie": "1"})); root = ET.fromstring(lp.encode("latin-1", "ignore"))
         look[q] = [{"id": x.get("id"), "name": x.get("name"), "chart": x.get("chart"), "dob": x.get("dob")} for x in root.iter("patient")]
