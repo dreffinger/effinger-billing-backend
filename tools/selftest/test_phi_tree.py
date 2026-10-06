@@ -35,7 +35,7 @@ check("billing vocabulary is not a name", r("DOS,CPT WOINS,WOLATE UNI20,BCBS LAS
 check("code keeps its tokens, string literals and comments are scrubbed", r('import os\nDOS,CPT = 1, 2\nx = "%s"  # %s\n' % (lf("XANTHER", "JOHN"), lf("KIRBY", "ANN")), names) == 'import os\nDOS,CPT = 1, 2\nx = "[name]"  # [name]\n')
 check("a hyphenated pseudonym inside a module name becomes underscore", r("import medicaid_quenby_fix\n", {"Quenby": "Garland-G"}) == "import medicaid_garland_g_fix\n")
 check("MBI / SSN / member id / DOB -> placeholders", r("MBI %s ssn %s subscribernum=%s DOB %s" % (MBI_S, SSN_S, MEM_S, DOB_S), names, code=False) == "MBI [MBI] ssn [SSN] subscribernum=[member id] DOB [DOB]")
-check("board slug from a real name -> [name]-<amdid>, pseudonym slug kept", r("id [name]-10000001 and pellam-[first]-10000002", names, code=False) == "id [name]-10000001 and pellam-[first]-10000002")
+check("board slug from a real name -> [name]-<amdid>, pseudonym slug keeps the surname and hides an unmapped first name", r("id xanther-mira-" + "10000001 and pellam-sue-" + "10000002", names, code=False) == "id [name]-10000001 and pellam-[first]-10000002")
 
 # --- the 10/6 afternoon lessons (what the history rewrite exposed) ---
 names2 = {"Quenby": "Garland-G", "Field": "Fenwick", "Vantable": "Lowry"}
@@ -48,10 +48,39 @@ out = r(src, names2)
 check("ordinary-word surname: lowercase stays a word (--field, field_list) except as a whole dict key; Title/CAPS map; other surnames map in slugs and keys", out == 'import amd\nsh("git rev-parse --field HEAD"); field_list = []; f = "lowry_rebill.py"; k = {"lowry": 1, "fenwick": 2}; t = "Fenwick FENWICK"\n', out)
 src = "import amd\ntargets={'1':('%s',CUT),'2':('%s',CUT)}\nq='name=\"%s%%%%\"' %% t\n" % (lf("VANTABLE", "MIRA"), lf("XANTHER", "OTTO"), lf("XANTHER", "OTTO"))
 out = r(src, names2)
-check("LAST,FIRST in a quoted literal keeps its closing quote and the %% format escape", out == "import amd\ntargets={'1':('%s',CUT),'2':('[name]',CUT)}\nq='name=\"[name]%%%%\"' %% t\n" % lf("LOWRY", "MIRA"), out)
+check("LAST,FIRST in a quoted literal keeps its closing quote and the %% format escape", out == "import amd\ntargets={'1':('LOWRY,[first]',CUT),'2':('[name]',CUT)}\nq='name=\"[name]%%\"' % t\n", out)
 check("...and it compiles", compiles(out))
 check("apostrophe inside a name is kept, a trailing one is not swallowed", r("%s (pat 5); '%s'" % (lf("O'HARE", "MARISA-ANN"), lf("XANTHER", "JOE")), names, code=False) == "[name] (pat 5); '[name]'")
 check("a path with a lowercase surname is mapped, underscore-safe", r("scripts/helpers/vantable_check_0510.py nightly/quenby_fix.py", names2, code=False) == "scripts/helpers/lowry_check_0510.py nightly/garland_g_fix.py")
+
+# --- the second round (what the rewrite hunt found) - every sample value is assembled at run time ---
+MEM_A = "XJJH" + "12345678"; MEM_H = "H72" + "12345"; POL = "987" + "654321"; MEM_W = "W29" + "1234567"
+DOB8 = "1950" + "0102"; ISO = "1950-01-" + "02T00:00:00"; DOD = "2025-08-" + "30"; BORN = "1/2/" + "50"
+PH1 = "850-555-" + "0101"; PH2 = "+1 850-555-" + "0102"; PH3 = "(850) 555-" + "0103"
+ADDR1 = "768 RED OAK " + "DR"; ADDR2 = "2677 Old Bainbridge " + "Rd Apt 911"
+check("JSON name fields: unmapped last -> [name], pseudonym last keeps a pseudonym first and hides another, JR suffix, single-part fields",
+      r(('"name": "%s", "patient": "%s", "patientname": "%s B", "responsibleparty": "%s", "first' + 'name": "OTTO", "last' + 'name": "SIMCOE"') % (lf("VANTABLE JR", "OTTO"), lf("SIMCOE", "OTTO"), lf("SIMCOE", "ANNIKA"), lf("SIMCOE JR", "ANNIKA")), names, code=False)
+      == ('"name": "[name]", "patient": "SIMCOE,[first]", "patientname": "%s B", "responsibleparty": "%s", "first' + 'name": "[name]", "last' + 'name": "SIMCOE"') % (lf("SIMCOE", "ANNIKA"), lf("SIMCOE JR", "ANNIKA")))
+check("bare LAST,FIRST: pseudonym last + unknown first -> LAST,[first] (mixed case too), a suffix, a pat-id form",
+      r("note %s (pat 3) and %s D, %s; %s" % (lf("SIMCOE", "Otto"), lf("SIMCOE", "ANNIKA"), lf("XANTHER JR", "OTTO"), lf("SIMCOE", "OTTO")), names, code=False)
+      == "note SIMCOE,[first] (pat 3) and %s D, [name]; SIMCOE,[first]" % lf("SIMCOE", "ANNIKA"))
+check("board slugs in code strings: unknown last -> [name]-id, pseudonym last + unknown first -> last-[first]-id, an initial is kept",
+      r('import x\nrow("xanther-mira-' + '10000001"); row("simcoe-mira-' + '10000002"); row("simcoe-annika-l-' + '10000003")\n', names)
+      == 'import x\nrow("[name]-10000001"); row("simcoe-[first]-10000002"); row("simcoe-annika-l-10000003")\n')
+check("member / subscriber / policy ids in JSON fields and prose; payer ids untouched",
+      r('"subscribernum": "%s", member %s and policy %s, "member": "%s", payer 87726, Medicaid 77027 ACTIVE' % (MEM_A, MEM_H, POL, MEM_W), names, code=False)
+      == '"subscribernum": "[member id]", member [member id] and policy [member id], "member": "[member id]", payer 87726, Medicaid 77027 ACTIVE')
+check("DOB / DOD in every shape", r('"dob": "%s", "death": "%s", dateOfBirth "%s", dob %s, born %s, "dod": "%s"' % (ISO, DOB8, DOB8, DOB8, BORN, DOD), names, code=False)
+      == '"dob": "[DOB]", "death": "[DOB]", dateOfBirth "[DOB]", dob [DOB], born [DOB], "dod": "[DOB]"')
+check("a 9-10 character MBI fragment", r("others MB IG:%s MEDICARE" % MBI_S[:10], names, code=False) == "others MB IG:[MBI] MEDICARE")
+check("phones: JSON fields and a patient's phone in prose; the practice 'Phone:' line is kept",
+      r('"phone": "%s", home phone %s, Phone: %s practice' % (PH1, PH2, PH3), names, code=False) == '"phone": "[phone]", home phone [phone], Phone: %s practice' % PH3)
+check("addresses: JSON fields and a street line in prose; '1 visit with Dr' is kept",
+      r('"address1": "%s", at %s, 1 visit with Dr Effinger' % (ADDR1, ADDR2), names, code=False) == '"address1": "[address]", at [address], 1 visit with Dr Effinger')
+check("pending-admit file names: last_first_yyyymmdd -> [name]_[DOB]; a pseudonym pair keeps its names",
+      r("patient_db/pending_admits/xanther_mira_%s.json and simcoe_annika_%s.json" % (DOB8, DOB8), names, code=False)
+      == "patient_db/pending_admits/[name]_[DOB].json and simcoe_annika_[DOB].json")
+check("an ordinary-word surname as a scanned-sheet file name or helper stem is mapped", r("Omnissa Horizon field.pdf, field_1002.py, --field, a field", names2, code=False) == "Omnissa Horizon fenwick.pdf, fenwick_1002.py, --field, a field")
 
 # --- tree mode on a throwaway checkout ---
 d = tempfile.mkdtemp(prefix="phi_tree_")

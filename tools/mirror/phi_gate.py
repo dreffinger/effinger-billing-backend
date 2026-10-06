@@ -126,6 +126,9 @@ def scrub(text, names, code=False):
     rx = re.compile(r"(?<![A-Za-z])(" + "|".join(alts) + r")(?![A-Za-z])")
     lows = [re.escape(k.lower()) for k in keys if k.lower() not in COMMON_WORDS and len(k) >= 4]
     lrx = re.compile(r"(?<![A-Za-z])(?<!--)(" + "|".join(lows) + r")(?![A-Za-z])") if lows else None
+    # an ordinary-word surname is still a name as a scanned-sheet file name ("savage.pdf") or a helper stem ("short_1002.py")
+    commons = [re.escape(k.lower()) for k in keys if k.lower() in COMMON_WORDS]
+    crx = re.compile(r"(?<![A-Za-z])(" + "|".join(commons) + r")(?=\.(?:pdf|jpe?g|png|json|txt)\b|_\d{3,})") if commons else None
     def run(seg, ident):
         def rep(m):
             k = m.group(1)
@@ -134,8 +137,9 @@ def scrub(text, names, code=False):
             fake = fake.upper() if k.isupper() and len(k) > 1 else fake
             return _ident_safe(fake, m, ident)
         seg = rx.sub(rep, seg)
-        if lrx:
-            seg = lrx.sub(lambda m: _ident_safe(names[next(n for n in keys if n.lower() == m.group(1))].lower(), m, ident), seg)
+        for low_rx in (lrx, crx):
+            if low_rx:
+                seg = low_rx.sub(lambda m: _ident_safe(names[next(n for n in keys if n.lower() == m.group(1))].lower(), m, ident), seg)
         return seg
     if not code:
         return run(text, False)
@@ -181,22 +185,22 @@ def warn_names(text, names):
 # a run report) are Drive-only: a new or changed one is taken out of the tree (a tracked one is put back
 # to HEAD) and named in the output. mirror.py runs this on "." before `git add -A`; the 10/6 lesson:
 # the 9/30 payreason registers and the 10/3 digest reached GitHub with patient names in them.
-JSON_NAME = re.compile(r'("(?:patient|name|patname|patientname|pt|pat_name|patient_name|lastfirst)"\s*:\s*")([A-Z][A-Z\'\-]+,\s?[A-Z][A-Z\'\- ]*)(")')
+# ---- the name / identifier rules (10/6/2026 afternoon: rewritten after the history-rewrite hunt) ------------
 # a name part: letters, with ' or - only BETWEEN letters (O'BRIEN, SMITH-JONES) - never a closing quote (10/6:
-# 'CHADWICK,SELINA' lost its quote and the file no longer compiled)
+# 'CHADWICK,SELINA' lost its quote and the file no longer compiled); a suffix (JR/SR/II/III/IV) may follow the last name
 _NP = r"[A-Z](?:[A-Z]|['\-](?=[A-Z]))"
-PROSE_NAME = re.compile(r"\b(" + _NP + r"{2,}),\s?(" + _NP + r"{1,})((?: [A-Z]\.?)?)(?=\s*\((?:pat|chart|amd|id)\s*\d)")
-DOB_SUB = re.compile(r"(\b(?:DOB|dob|birth|Birth|BIRTH)\b[^\n]{0,12}?)((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}\b|\b\d{1,2}/\d{1,2}/(?:19|20)\d{2}\b)")
-MEMBER_SUB = re.compile(r"(?i)((?:subscribernum|member\s*(?:id|#|number)|medicaid\s*(?:id|#|number)?|membernum)\W{0,4})\d{8,11}\b")
-DRIVE_ONLY = re.compile(r"(?i)(digest|needs_facesheet|run[ _]report|facesheets?[ _]needed|_run report)")
-TEXT_EXT = {".json", ".jsonl", ".md", ".txt", ".csv", ".py", ".sh", ".log", ".html", ".yaml", ".yml", ".xml"}
-CODE_EXT = {".py", ".sh"}
-SKIP_DIRS = {".git", "secrets", "__pycache__", "node_modules"}
-
+_FP = r"[A-Z](?:[A-Za-z]|['\-](?=[A-Za-z]))"                      # a first name may be mixed case (SMYTHE,Mary)
+_SUF = r"(?: (?:JR|SR|II|III|IV))?"
+SUFFIX_RE = re.compile(r" (?:JR|SR|II|III|IV)$")
+NAME_KEYS = r"(?:patient|name|patname|patientname|pt|pat_name|patient_name|lastfirst|responsibleparty|respparty|guarantor|subscribername|subscriber_name|insuredname|insured_name|patientfullname)"
+PART_KEYS = r"(?:firstname|lastname|first_name|last_name|patfname|patlname|subscriberfirstname|subscriberlastname|insuredfirstname|insuredlastname|first|last)"
+JSON_NAME = re.compile(r'("' + NAME_KEYS + r'"\s*:\s*")([^"\n]*)(")', re.I)
+JSON_PART = re.compile(r'("' + PART_KEYS + r'"\s*:\s*")([^"\n]*)(")', re.I)
+PROSE_NAME = re.compile(r"\b(" + _NP + r"{2,}" + _SUF + r"),\s?(" + _FP + r"{1,})((?: [A-Z]\.?)?)(?=\s*\((?:pat|chart|amd|id)\s*\d)")
 # AMD's own LAST,FIRST form (no space after the comma) anywhere in a DATA file - a needs list, a digest, a CSV,
 # a register note. Billing vocabulary that happens to look like it (DOS,CPT / WOINS,WOLATE) is allow-listed.
 # (the AMD lookup wildcard "%" after the name is left where it is: "[name]%" and "[name]%%" keep a %-format valid)
-LASTFIRST_BARE = re.compile(r"\b(" + _NP + r"{2,}),(" + _NP + r"{1,})((?: [A-Z]\.?)?)(?![A-Za-z0-9=_])")
+LASTFIRST_BARE = re.compile(r"\b(" + _NP + r"{2,}" + _SUF + r"),(" + _FP + r"{1,})((?: [A-Z]\.?)?)(?![A-Za-z0-9=_])")
 NOT_LASTFIRST = {"DOS", "CPT", "CO", "PR", "OA", "PI", "CR", "WOINS", "WOLATE", "WONCS", "WOPAT", "ERA", "ICN", "MBI", "NPI", "SSN",
                  "DOB", "UNI", "BCBS", "HUM", "AET", "SUN", "WEL", "CAP", "SIM", "TRI", "VACCN", "CCN", "RARC", "CARC", "JSON", "CSV",
                  "PDF", "XML", "API", "AMD", "UHC", "AARP", "HMO", "PPO", "POS", "FFS", "LTC", "SNF", "ALF", "HCA", "CCM", "TCM", "PAID",
@@ -207,39 +211,113 @@ NOT_LASTFIRST = {"DOS", "CPT", "CO", "PR", "OA", "PI", "CR", "WOINS", "WOLATE", 
                  "BLOCKED", "SKIPPED", "APPLIED", "DONE", "WAITING", "APPROVED", "DECLINED", "STEDI", "CMS", "PECOS", "NPPES", "OIG",
                  "LEIE", "CAQH", "DEA", "SELECT", "FROM", "WHERE", "DRY", "LIVE", "ALL", "NONE", "MA", "PDP", "EFT", "TRN", "ERR", "ID",
                  "LAST", "FIRST", "NAME", "PID", "VID", "CID", "SEQ", "ICD", "HCPCS", "DX", "NDC", "VA", "UC", "USA", "FL", "GA", "AL",
-                 "REF", "ACK", "CLM", "CHK", "DD", "REJCTD", "RETURND", "ENCNTER", "ACCPTD", "PENDNG", "ADJ", "AMT", "QTY", "SVC", "NM", "DTP"}
+                 "REF", "ACK", "CLM", "CHK", "DD", "REJCTD", "RETURND", "ENCNTER", "ACCPTD", "PENDNG", "ADJ", "AMT", "QTY", "SVC", "NM", "DTP",
+                 "THEN", "ELSE", "WITH", "WITHOUT", "ONLY", "NEW", "OLD", "MAX", "MIN", "SUM", "AVG", "TODO", "NOTE", "WARN", "INFO", "DEBUG"}
 CODE_HINT = re.compile(r"^(import |from \S+ import |def |class |#!/|#!)", re.M)
 # in code only the comments and string literals are prose: a name list / search pattern lives in a string, never in a token
 STR_OR_COMMENT = re.compile(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|#[^\n]*)')
-# board-row slugs built from real names ("last-first-<amdid>", the BOARD ACCESS RULE's id form)
-SLUG_NAME = re.compile(r"\b[a-z][a-z']{1,}-[a-z][a-z']{1,}-(\d{6,9})\b")
+# board-row slugs built from real names ("last-first-<amdid>", the BOARD ACCESS RULE's id form, with an optional initial)
+SLUG_NAME = re.compile(r"\b([a-z][a-z']+)-([a-z][a-z']+)((?:-[a-z])?)-(\d{5,9})\b")
+# file names built from a name and a date of birth (patient_db/pending_admits/<last>_<first>_<yyyymmdd>.json)
+FILE_SLUG = re.compile(r"\b([a-z][a-z']+)_([a-z][a-z']+)_((?:19|20)\d{6})\b")
+# identifiers the rewrite hunt found the first rules missing
+MBI_FRAG = re.compile(r"\b[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y]{2}\d?\b")   # 9-10 chars of an MBI
+DOB_SUB = re.compile(r"(?i)((?:\bdob\b|\bdod\b|date\s*of\s*(?:birth|death)|dateofbirth|dateofdeath|birth\s*date|birthdate|birthday|\bbirth\b|\bdeath\b|deceased|\bdied\b|\bborn\b)[^\n]{0,16}?)"
+                     r"((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}(?:T[\d:.]*Z?)?|\b\d{1,2}/\d{1,2}/(?:19|20)\d{2}\b|\b\d{1,2}/\d{1,2}/\d{2}\b|\b(?:19|20)\d{6}\b)")
+MEMBER_JSON = re.compile(r'("(?:subscribernum|subscriberid|subscriber_id|memberid|member_id|membernum|member|insid|insuredid|policynum|policynumber|policy_number|hicnum|hicn|medicaidid|medicaid_id|medicaidnum)"\s*:\s*")([A-Za-z0-9][A-Za-z0-9\-]{4,})(")', re.I)
+MEMBER_PROSE = re.compile(r"(?i)\b(member|subscriber|policy|insured|recipient|medicaid|hic|hicn)((?:\s*(?:id|#|number|no\.?|num))?\s*[:=#]?\s*)(?=[A-Za-z0-9\-]*\d)([A-Za-z0-9][A-Za-z0-9\-]{5,})\b")
+MEMBER_SUB = MEMBER_PROSE                                       # older name, kept for callers
+PHONE_JSON = re.compile(r'("(?:phone|homephone|cellphone|mobilephone|workphone|phone1|phone2|phonenumber|phone_number|homephone1|cell|mobile)"\s*:\s*")(\+?[\d\-\(\) .]{7,})(")', re.I)
+PHONE_PROSE = re.compile(r"(?i)((?:home|cell|mobile|patient|pt|resident|her|his|their)\s*phone[\s:#=-]{0,3}|\bcell[\s:#=-]{0,3}|\bmobile[\s:#=-]{0,3}|\bphone\s+)((?:\+?1[ -.]?)?\(?\d{3}\)?[ -.]?\d{3}[ -.]?\d{4})\b")
+ADDR_JSON = re.compile(r'("(?:address|address1|address2|addr1|addr2|street|streetaddress|address_1|address_2|homeaddress|mailingaddress)"\s*:\s*")([^"\n]{4,})(")', re.I)
+# case matters here: "2 else None st" is code, "2677 Old Bainbridge Rd" is an address
+ADDR_PROSE = re.compile(r"\b\d{1,5}\s+(?:[A-Z][A-Za-z'.]*\s+){1,4}(?:ST|St|STREET|Street|AVE|Ave|AVENUE|Avenue|RD|Rd|ROAD|Road|DR|Dr|DRIVE|Drive|LN|Ln|LANE|Lane|BLVD|Blvd|BOULEVARD|Boulevard|COURT|Court|CIRCLE|Circle|TRAIL|Trail|PARKWAY|Parkway|HWY|Hwy|HIGHWAY|Highway|TERRACE|Terrace|PLACE|Place)\b\.?(?:\s+(?:APT|Apt|UNIT|Unit|STE|Ste|SUITE|Suite|#)\s*[A-Za-z0-9\-]+)?")
+DRIVE_ONLY = re.compile(r"(?i)(digest|needs_facesheet|run[ _]report|facesheets?[ _]needed|_run report)")
+TEXT_EXT = {".json", ".jsonl", ".md", ".txt", ".csv", ".py", ".sh", ".log", ".html", ".yaml", ".yml", ".xml"}
+CODE_EXT = {".py", ".sh"}
+SKIP_DIRS = {".git", "secrets", "__pycache__", "node_modules"}
+
+def _name_token(last, first, mid, vals_up):
+    """LAST[,FIRST] decision: a last name that is not a pseudonym -> "[name]"; a pseudonym last name keeps a pseudonym
+    first name and hides any other ("DASHWOOD,[first]" - the real first name beside a mapped surname was the most
+    common survivor of the first history rewrite)."""
+    lastkey = SUFFIX_RE.sub("", last)
+    if lastkey in NOT_LASTFIRST or (first and first.upper() in NOT_LASTFIRST):
+        return None                                            # vocabulary, leave it
+    if lastkey not in vals_up:
+        return "[name]"
+    if first and first.upper() not in vals_up:
+        return last + ",[first]" + (mid or "")
+    return None
 
 def _bare(m, vals_up):
-    last, first = m.group(1), m.group(2)
-    if last in NOT_LASTFIRST or first in NOT_LASTFIRST or last in vals_up:
-        return m.group(0)
-    return "[name]"
+    r = _name_token(m.group(1), m.group(2), m.group(3), vals_up)
+    return m.group(0) if r is None else r
+
+_VALUE = re.compile(r"^(" + _NP + r"{2,}(?: " + _NP + r"{2,})?" + _SUF + r"),\s?(" + _FP + r"{1,})((?: [A-Z]\.?)?)$")
+def _json_value(v, vals_up, single):
+    if not v or v.startswith("[") or not re.search(r"[A-Za-z]", v):
+        return v
+    m = _VALUE.match(v)
+    if m:
+        last = m.group(1)
+        if " " in SUFFIX_RE.sub("", last):                     # two-word last name: every word must be a pseudonym
+            if not all(w in vals_up for w in SUFFIX_RE.sub("", last).split()):
+                return "[name]"
+            r = _name_token(last.split()[-1] if SUFFIX_RE.search(last) else last.split()[-1], m.group(2), m.group(3), vals_up)
+            return v if r is None else (("[name]") if r == "[name]" else last + ",[first]" + (m.group(3) or ""))
+        r = _name_token(last, m.group(2), m.group(3), vals_up)
+        return v if r is None else r
+    if single or re.fullmatch(r"[A-Z][A-Z'\- ]{1,}", v):      # one name part (a firstname field, a bare surname)
+        words = [w for w in re.split(r"[ ,]+", v) if w]
+        if all(w.upper() in vals_up or w.upper() in NOT_LASTFIRST or SUFFIX_RE.match(" " + w) for w in words):
+            return v
+        return "[name]"
+    return v
 
 def redact(text, names, code=None):
     """Scrub + substitute (never refuse): the transform the 10/6 history rewrite applied to every blob.
     code=None decides from the content (an import / def / shebang = code: the bare LAST,FIRST rule is skipped there)."""
     vals_up = {v.upper() for v in names.values()}
+    vals_lo = {v.lower() for v in names.values()}
     if code is None:
         code = bool(CODE_HINT.search(text))
     t = scrub(text, names, code=code)
-    t = JSON_NAME.sub(lambda m: m.group(1) + ("[name]" if m.group(2).split(",")[0].strip() not in vals_up else m.group(2)) + m.group(3), t)
-    t = PROSE_NAME.sub(lambda m: m.group(0) if m.group(1) in vals_up else "[name]", t)
+    t = JSON_NAME.sub(lambda m: m.group(1) + _json_value(m.group(2), vals_up, False) + m.group(3), t)
+    t = JSON_PART.sub(lambda m: m.group(1) + _json_value(m.group(2), vals_up, True) + m.group(3), t)
+    t = PROSE_NAME.sub(lambda m: _bare(m, vals_up), t)
+    def slug(m):
+        last, first, ini, pid = m.group(1), m.group(2), m.group(3), m.group(4)
+        if last not in vals_lo:
+            return "[name]-" + pid
+        if first not in vals_lo:
+            return last + "-[first]" + ini + "-" + pid
+        return m.group(0)
+    def fslug(m):
+        if m.group(1) in vals_lo and m.group(2) in vals_lo:
+            return m.group(1) + "_" + m.group(2) + "_[DOB]"
+        return "[name]_[DOB]"
+    def prose_rules(s):
+        s = LASTFIRST_BARE.sub(lambda m: _bare(m, vals_up), s)
+        s = SLUG_NAME.sub(slug, s)
+        s = FILE_SLUG.sub(fslug, s)
+        return s
     if not code:
-        t = LASTFIRST_BARE.sub(lambda m: _bare(m, vals_up), t)
-        t = SLUG_NAME.sub(lambda m: m.group(0) if m.group(0).split("-")[0] in {v.lower() for v in names.values()} else "[name]-" + m.group(1), t)
+        t = prose_rules(t)
     else:
-        t = STR_OR_COMMENT.sub(lambda s: LASTFIRST_BARE.sub(lambda m: _bare(m, vals_up), s.group(0)), t)
+        t = STR_OR_COMMENT.sub(lambda s: prose_rules(s.group(0)), t)
     for label, rx in ID_PATTERNS:
         if label == "date of birth":
             continue
         t = rx.sub({"MBI": "[MBI]", "SSN": "[SSN]", "VA ICN": "[ICN]"}.get(label, "[secret]"), t)
+    t = MBI_FRAG.sub("[MBI]", t)
     t = DOB_SUB.sub(lambda m: m.group(1) + "[DOB]", t)
-    t = MEMBER_SUB.sub(lambda m: m.group(1) + "[member id]", t)
+    t = MEMBER_JSON.sub(lambda m: m.group(1) + "[member id]" + m.group(3), t)
+    t = MEMBER_PROSE.sub(lambda m: m.group(1) + m.group(2) + "[member id]", t)
+    t = PHONE_JSON.sub(lambda m: m.group(1) + "[phone]" + m.group(3), t)
+    t = PHONE_PROSE.sub(lambda m: m.group(1) + "[phone]", t)
+    t = ADDR_JSON.sub(lambda m: m.group(1) + "[address]" + m.group(3), t)
+    t = ADDR_PROSE.sub("[address]", t)
     return t
 
 def _git(args, cwd):
