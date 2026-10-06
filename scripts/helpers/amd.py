@@ -124,64 +124,45 @@ def msg(action, cls, attrs=None, children=""):
         action, cls, _msgtime(), a, children)
 
 # ONE REBILL PER VISIT (William 10/6/2026: "make this fix to the routine permanent so it doesn't delay billing").
-# A re-route used to call move_to_ins.move(cid, seq) - which rebills on its own - and then freq1_visit.run, which rebills
-# again: two chargerebill calls for one visit (act_1710_1005, applied by the 10/5 2110Z run). Every rebill passes through
-# rebill_charge, so the guard lives here: each SUCCESSFUL chargerebill is written to registers/rebill_ledger.json and a
-# second one for the same charge + plan sequence inside REBILL_WINDOW_H hours is NOT sent - it answers 208 ("already
-# reported") with the earlier rebill's time. A 500/409 is never recorded, so freq1-then-move patterns whose first call
-# failed still rebill once. allow_repeat=True is the explicit, logged override (a claim that came back and was corrected).
-# The ledger fails OPEN: if it cannot be read or written the rebill still goes out - billing is never held for it.
+# chargerebill rebills the WHOLE claim (rebillentireclaim=True), so the guard is per VISIT + plan sequence, and per script run
+# (this process): a second rebill of a visit this run already rebilled successfully is NOT sent - it answers 204 with text
+# "SKIPPED ..." (the claim IS queued, so callers that test for 204 keep working). That stops the move_to_ins.move(cid, seq) +
+# freq1_visit.run double (act_1710_1005, 10/5) and per-charge loops over one visit, and it can never block a LATER run's
+# corrected rebill (after a claim-run rejection is fixed). allow_repeat=True forces a second one. Every 2xx rebill is appended to
+# registers/rebill_log.jsonl - an audit trail only, it never blocks. Fails open: an unreadable visit falls back to the charge id.
 WS_DIR = os.environ.get("BILLING_WORKSPACE", "/home/claude/unbilled")
-REBILL_LEDGER = os.path.join(WS_DIR, "registers", "rebill_ledger.json")
-REBILL_WINDOW_H = 6
+REBILL_LOG = os.path.join(WS_DIR, "registers", "rebill_log.jsonl")
+_REBILLED = {}
 
-def _ledger_load():
+def _visit_of(chargeid):
     try:
-        with open(REBILL_LEDGER) as f:
-            d = json.load(f)
-        return d if isinstance(d, dict) else {}
-    except Exception:
-        return {}
-
-def _ledger_key(chargeid, sequencenumber):
-    return "%s:%s" % (int(re.sub(r"\D", "", str(chargeid))), int(sequencenumber))
-
-def rebill_seen(chargeid, sequencenumber, window_h=None):
-    """The ledger entry when this charge + plan sequence was rebilled successfully inside the window, else None."""
-    try:
-        e = _ledger_load().get(_ledger_key(chargeid, sequencenumber))
-        age = time.time() - float((e or {}).get("ts", 0))
-        return e if e and 0 <= age < (REBILL_WINDOW_H if window_h is None else window_h) * 3600 else None
+        x = post(msg("getchargedetaildataicd10", "demographics", {"chargeid": re.sub(r"\D", "", str(chargeid)), "nocookie": "1"}))
+        m = re.search(r'<visit\s(?:[^>]*?\s)?id="(?:vst)?(\d+)"', x)
+        return m.group(1) if m else None
     except Exception:
         return None
 
-def _ledger_record(chargeid, sequencenumber, status):
+def _rebill_log(entry):
     try:
-        d = _ledger_load(); now = time.time()
-        d = {k: v for k, v in d.items() if isinstance(v, dict) and now - float(v.get("ts", 0)) < 7 * 86400}
-        d[_ledger_key(chargeid, sequencenumber)] = {"ts": now, "status": status,
-            "at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "by": os.path.basename(sys.argv[0] or "") or "interactive"}
-        os.makedirs(os.path.dirname(REBILL_LEDGER), exist_ok=True)
-        tmp = REBILL_LEDGER + ".tmp"
-        with open(tmp, "w") as f:
-            json.dump(d, f, indent=1)
-        os.replace(tmp, REBILL_LEDGER)
+        os.makedirs(os.path.dirname(REBILL_LOG), exist_ok=True)
+        with open(REBILL_LOG, "a") as f:
+            f.write(json.dumps(entry) + "\n")
     except Exception:
         pass
 
-def rebill_charge(chargeid, sequencenumber, dod_guard=True, allow_repeat=False):
+def rebill_charge(chargeid, sequencenumber, dod_guard=True, allow_repeat=False, visitid=None):
     """REST rebill — the dialog's Submit. HTTP 204 = success.
-    ONE REBILL PER VISIT (William 10/6/2026): a repeat for the same charge + sequence inside REBILL_WINDOW_H hours answers
-    208 and sends nothing (see the ledger note above); allow_repeat=True is the deliberate, logged override.
+    ONE REBILL PER VISIT (William 10/6/2026): a second rebill of the same VISIT + sequence in this script run is not sent - it
+    answers 204 "SKIPPED ..." (see the note above); pass visitid= when the caller knows it (saves a read); allow_repeat=True forces it.
     DECEASED GUARD (William [DOB]): refuses (HTTP-style 409, nothing sent) when the date of service is after the
     patient's date of death - see core/deceased_guard.py. dod_guard=False only for an explicit, logged override."""
-    if not allow_repeat:
-        seen = rebill_seen(chargeid, sequencenumber)
-        if seen:
-            return 208, ("SKIPPED - already rebilled: charge %s seq %s at %s (HTTP %s, by %s); one rebill per visit - nothing sent "
-                         "(allow_repeat=True only for a deliberate second rebill)" % (re.sub(r"\D", "", str(chargeid)), sequencenumber,
-                         seen.get("at"), seen.get("status"), seen.get("by")))
+    cidn = re.sub(r"\D", "", str(chargeid))
+    vid = re.sub(r"\D", "", str(visitid)) if visitid else _visit_of(cidn)
+    key = ("v%s" % vid if vid else "c%s" % cidn) + ":%s" % int(sequencenumber)
+    if key in _REBILLED and not allow_repeat:
+        e = _REBILLED[key]
+        return 204, ("SKIPPED - visit %s already rebilled to seq %s in this run at %s (charge %s, HTTP %s); one rebill per visit - "
+                     "nothing sent (allow_repeat=True forces a second)" % (vid or "?", sequencenumber, e["at"], e["charge"], e["status"]))
     if dod_guard:
         try:
             import deceased_guard
@@ -199,7 +180,9 @@ def rebill_charge(chargeid, sequencenumber, dod_guard=True, allow_repeat=False):
                                  "rebillentireclaim": True, "reason": ""},
                       headers={"Authorization": "Bearer " + tok}, timeout=60)
     if 200 <= r.status_code < 300:
-        _ledger_record(chargeid, sequencenumber, r.status_code)
+        e = {"at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "visit": vid, "charge": cidn,
+             "seq": int(sequencenumber), "status": r.status_code, "by": os.path.basename(sys.argv[0] or "") or "interactive"}
+        _REBILLED[key] = e; _rebill_log(e)
     return r.status_code, r.text[:500]
 
 if __name__ == "__main__":

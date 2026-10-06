@@ -1,0 +1,27 @@
+{
+ "stamp": "2026-10-06T0348Z",
+ "live": true,
+ "pid": "12232248",
+ "order": "William 10/6/2026: send all these United ones; write off if they return timely filing",
+ "steps": [
+  "v19417751 09/18/2025 99349 ins $198.00 carrier UNI20",
+  "v19417390 09/21/2025 99487+99489 ins $315.00 carrier BCBS",
+  "v19420985 10/25/2025 99487+99489 ins $315.00 carrier BCBS",
+  "v19424313 11/19/2025 99349 ins $198.00 carrier UNI20",
+  "v19424662 11/25/2025 99487+99489 ins $315.00 carrier BCBS",
+  "v19427156 12/22/2025 99487+99489 ins $315.00 carrier BCBS",
+  "  v19417751 c23321504 order: insorder already 2 - resave skipped",
+  "  v19417751 c23321504: freq1 + rebill seq 2 -> 204",
+  "  v19417390 c23321127 order: resave vst19417390 insorder now 2, 2 live (was 2)",
+  "  v19417390 c23321127: freq1 + rebill seq 2 -> 204",
+  "  v19420985 c23326170 order: resave vst19420985 insorder now 2, 2 live (was 2)",
+  "  v19420985 c23326170: freq1 + rebill seq 2 -> 204",
+  "  v19424313 c23330068 order: insorder already 2 - resave skipped",
+  "  v19424313 c23330068: freq1 + rebill seq 2 -> 204",
+  "  v19424662 c23330503 order: resave vst19424662 insorder now 2, 2 live (was 2)",
+  "  v19424662 c23330503: freq1 + rebill seq 2 -> 204",
+  "  v19427156 c23333440 order: resave vst19427156 insorder now 2, 2 live (was 2)",
+  "  v19427156 c23333440: freq1 + rebill seq 2 -> 204",
+  "total $1656.00 on 6 visits SENT to UNI20"
+ ]
+}
