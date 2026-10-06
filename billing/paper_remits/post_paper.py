@@ -23,8 +23,9 @@ from payreasons import f, num, L
 PLAN = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/plan.json"; OUT = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/out835"; REG = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/post_register.json"
 CAR = {"UA": "42005", "WN": "41999", "AET12": "42009", "MUT01": "42012", "ECHO": "302810", "SIM01": "42019", "FLO99": "42008", "USAA": "303211", "CHAMPVA": "6447",
        "MER01": "6135",                                   # Meritain Health (TPA, pays by ECHO QuicRemit card) - 10/5/2026
+       "TRI00": "6872",                                   # TRICARE East (Humana Military) - pays by paper check while the EDI/ERA enrollment is in flight - 10/5/2026
        "BLUE": ["6062", "6515", "303217"]}                # a Blue plan paying by PAPER CHECK / card (BCBS of Alabama 10/1/2026): whichever Blue carrier the chart already carries (FLORIDA BLUE, ANTHEM, FLORIDABLUE MEDICARE), else FLORIDA BLUE
-CARCODE = {"UA": "UNI01", "WN": "BAN07", "AET12": "AET12", "MUT01": "MUT01", "ECHO": "PHY10", "SIM01": "SIM01", "FLO99": "FLO99", "USAA": "USAA", "CHAMPVA": "CHA03", "MER01": "MER01", "BLUE": "BCBS"}
+CARCODE = {"UA": "UNI01", "WN": "BAN07", "AET12": "AET12", "MUT01": "MUT01", "ECHO": "PHY10", "SIM01": "SIM01", "FLO99": "FLO99", "USAA": "USAA", "CHAMPVA": "CHA03", "MER01": "MER01", "BLUE": "BCBS", "TRI00": "TRI00"}
 CARCODE_BY_ID = {"6062": "BCBS", "6515": "ANT05", "303217": "BCBS1"}
 def car_ids(fam): v = CAR[fam]; return v if isinstance(v, list) else [v]
 REUSE = {"1370764627": "1051743"}          # checks already in the Center from the 9/22 import tests (TRN suffixed 'T'; posted with the clean number)

@@ -11,7 +11,7 @@ from collections import defaultdict, OrderedDict
 R = json.load(open(os.environ.get("SCANS_DIR", "/home/claude/scans") + "/remits.json"))
 def r2(x): return None if x is None else round(x + 1e-9, 2)
 def eq(a, b, tol=0.006): return a is not None and b is not None and abs(a - b) < tol
-POST_FAMILIES = {"UA", "WN", "AET12", "MUT01", "ECHO", "SIM01", "FLO99", "USAA", "CHAMPVA", "MER01", "BLUE"}   # MER01 + BLUE (paper check / card only - llm_merge maps EFT-paid Blue RAs to family BCBS, which stays held) added 10/5/2026
+POST_FAMILIES = {"UA", "WN", "AET12", "MUT01", "ECHO", "SIM01", "FLO99", "USAA", "CHAMPVA", "MER01", "BLUE", "TRI00"}   # MER01 + BLUE (paper check / card only - llm_merge maps EFT-paid Blue RAs to family BCBS, which stays held) added 10/5/2026
 claims = []   # flattened
 for rm in R:
     if rm.get("is_stub") or rm.get("is_physical_check"): continue
