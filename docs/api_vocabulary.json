@@ -203,8 +203,8 @@
     "Cookie": "token={{token}}"
    },
    "body": "<ppmdmsg action=\"updateinsurance\" class=\"demographics\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext><patient id=\"pat{{patientid}}\" changed=\"1\"><insplanlist><insplan id=\"ins{{insid}}\" enddate=\"{{new}}\" o_enddate=\"{{old}}\"/></insplanlist></patient></ppmdmsg>",
-   "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8). The `sequence` attribute is NOT the plan's number here - AMD reads it as the PATIENT's insurance ORDER (insorder): sequence=\"2,1\" sets Medicare-first; echoing a plan's own sequence on any other edit resets the patient order to that one plan (9/14/2026, pat17472393: a begin-date edit turned insorder 4,3 into 4). ins_update.update() drops it unless passed.",
-   "helper": "ins_update.update(pid, insid, **fields)",
+   "description": "Send ONLY the changed field plus its o_<field> original; echoing every attribute fails 'Another user has changed this insurance record'. The bare unwrapped <insplan/> child can fault 'Value can not be null' (9/8). The `sequence` attribute is NOT the plan's number here - AMD reads it as the PATIENT's insurance ORDER (insorder): sequence=\"2,1\" sets Medicare-first; echoing a plan's own sequence on any other edit resets the patient order to that one plan (9/14/2026, pat17472393: a begin-date edit turned insorder 4,3 into 4). ins_update.update() drops it unless passed. PATIENT ORDER (10/6/2026, chart 12232248): sequence=\"2,1\" sent through a plan that is END-DATED answers success=\"1\" with <patient insorder=\"\"/> - the order is wiped; the same call through an ACTIVE plan lands. ins_update.update now sends the order as its own call through an active plan, verifies the answer (or a getdemographic re-read) and re-sends once through another active plan.",
+   "helper": "ins_update.update(pid, insid, **fields) - sequence= goes through an active plan, verified (10/6/2026)",
    "captured": "9/3/2026; wrapped shape 9/8/2026; sequence = patient insorder 9/14/2026",
    "body_language": "xml",
    "status": "proven",
@@ -494,8 +494,8 @@
    },
    "body": "{\n \"licensekey\": \"152563\",\n \"username\": \"POI0712\",\n \"chargedetailfid\": {{chargedetailfid}},\n \"sequencenumber\": 1,\n \"rebillentireclaim\": true,\n \"reason\": \"\"\n}",
    "body_language": "json",
-   "description": "HTTP 204 = queued. ALWAYS set resubmissioncode=1 origrefnum='' via updextrainsinfo first (William 9/3: every rebill is an original claim). sequencenumber = first number of the visit's insorder. Verify insbilled flips to 0.",
-   "helper": "amd.rebill_charge(cid, seq) / freq1_visit.run(vid, cid, seq)",
+   "description": "HTTP 204 = queued. ALWAYS set resubmissioncode=1 origrefnum='' via updextrainsinfo first (William 9/3: every rebill is an original claim). sequencenumber = first number of the visit's insorder. Verify insbilled flips to 0. ONE REBILL PER VISIT (William 10/6/2026): amd.rebill_charge records every 2xx rebill in registers/rebill_ledger.json and answers 208 (nothing sent) for a second rebill of the same charge + sequence inside 6 hours; allow_repeat=True is the logged override. Re-route = freq1_visit.reroute(vid, cid, order, seq): visit insorder by a no-rebill full-visit echo (resave.set_insorder), then ONE freq-1 reset + ONE chargerebill - never move_to_ins.move(cid, seq) + freq1_visit.run (two rebills).",
+   "helper": "amd.rebill_charge(cid, seq[, allow_repeat]) / freq1_visit.run(vid, cid, seq) / freq1_visit.reroute(vid, cid, order[, seq])",
    "captured": "9/3/2026",
    "status": "proven",
    "tags": []

@@ -10,14 +10,20 @@
 #   written (no SSNs, MBIs, member/subscriber/policy numbers on the page, in the email or the push - docs/APPROVALS_LOOP.md); the
 #   push to main is fast-forward only and a refusal is printed, never forced. Pure standard library.
 # Never touches: AdvancedMD (no reads, no writes), the page database, Gmail or the phone - it only writes the files those calls use.
+# 10/6/2026 (William: "make this fix to the routine permanent so it doesn't delay billing - use the programs to send emails to link
+#   to approval buttons and push notification with link"): the email also comes as HTML (outbox/approval_request_<stamp>.html, the
+#   Gmail htmlBody) with one button to the page and one "Review & Approve" button per package that opens THAT card's Approve /
+#   Decline buttons (page#<id> scrolls to and outlines the card); the push text always ends with the link (one package -> its card,
+#   several -> the page). Both routines (2-hourly billing run, nightly cascade) call this the moment a write is refused.
 # Usage:
 #   python3 approval_submit.py --stamp 2026-10-06T0137Z --items items.json [--repo <repo root>] [--workspace /home/claude/unbilled]
 #          [--run-kind "chat session"] [--trailer "Co-Authored-By: ..."] [--push-main] [--dry]
 #   items.json = [{"letter":"A", "command":"cd /home/claude/unbilled && python3 x.py --live --only A", "reason":"<classifier text>",
 #                  "what":"...", "dollars":"$21.80", "ui":"...", "evidence":"...", "evidence_file":"<optional path>"}, ...]
-import json, os, re, sys, datetime, argparse, subprocess
+import json, os, re, sys, datetime, argparse, subprocess, html
 
 PAGE = "https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR"
+CASCADE = "https://claude.ai/code/session_01JYK9QNpG4udFd3o6dqCupt"   # the ask-mode session that applies approved cards on 'go'
 TO = "dreffinger@gmail.com"
 SSN = re.compile(r"\d{3}-\d{2}-\d{4}")
 MBI = re.compile(r"^[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y]{2}\d{2}$")
@@ -68,7 +74,8 @@ def email(items, stamp):
     L += ["  %s  ->  %s#%s" % (i["id"], PAGE, i["id"]) for i in items]
     L += ["", "The permission classifier refused %d AdvancedMD write(s). Each was planned, dry-run verified and NOT retried. "
           "Nothing was changed in AMD for these items." % n, "", "HOW TO APPROVE (pick one):",
-          "  1. Tap Approve (or Decline) on the item's card on the Mandatory Approvals page - the cascade session applies approved cards on your 'go'.",
+          "  1. Tap Approve (or Decline) on the item's card on the Mandatory Approvals page - the next billing run (every 2 hours) re-attempts an approved",
+          "     card once; to apply it right now, open the cascade session (%s) in ask mode and say 'go'." % CASCADE,
           "  2. Or reply to this email with the line:  APPROVED <id>   (one per line; add 'NO <id>' to decline). The next run reads the reply and re-attempts that helper once.",
           "  3. Or do it yourself now: the exact command and the AMD UI steps are under each item.",
           "NOTE: an approval lets the next run RE-ATTEMPT the helper; the refusal comes from the auto-mode permission classifier, which does not read approvals.",
@@ -82,16 +89,54 @@ def email(items, stamp):
         L.append("")
     return subj, "\n".join(L)
 
-def push_text(items, stamp):
-    letters = ",".join(i["id"].rsplit("-", 1)[1] for i in items)
+def total_dollars(items):
     total = 0.0
     for i in items:
-        m = re.search(r"\d[\d,]*\.?\d*", i["dollars"])
+        m = re.search(r"\d[\d,]*\.?\d*", i["dollars"] or "")
         if m: total += float(m.group(0).replace(",", ""))
-    tail = " - approve on the Mandatory Approvals page"
-    head = "APPROVAL NEEDED run %s: %d AMD write(s) refused (items %s, $%.2f)" % (stamp, len(items), letters, total)
-    if len(head) + len(tail) > 189: head = "APPROVAL NEEDED run %s: %d AMD write(s) refused ($%.2f)" % (stamp, len(items), total)
-    return (head + tail)[:189]
+    return total
+
+def card_link(i): return "%s#%s" % (PAGE, i["id"])
+
+def push_text(items, stamp):
+    """One line under 200 characters that ALWAYS ends with the link: one package -> its card (the Approve button), several -> the page."""
+    letters = ",".join(i["id"].rsplit("-", 1)[1] for i in items)
+    tail = " - tap Approve: " + (card_link(items[0]) if len(items) == 1 else PAGE)
+    head = "APPROVAL NEEDED run %s: %d AMD write(s) refused (items %s, $%.2f)" % (stamp, len(items), letters, total_dollars(items))
+    if len(head) + len(tail) > 199: head = "APPROVAL NEEDED: %d AMD write(s), $%.2f" % (len(items), total_dollars(items))
+    if len(head) + len(tail) > 199: tail = " - tap Approve: " + PAGE
+    return head[:199 - len(tail)] + tail
+
+def title(i, n=150):
+    t = re.sub(r"\s+", " ", i["what"] or "").strip()
+    return t if len(t) <= n else t[:n].rsplit(" ", 1)[0] + "..."
+
+def html_email(items, stamp, subj):
+    """The Gmail htmlBody: a button to the page, then one card per package with a 'Review & Approve' button that opens that
+    card's Approve / Decline buttons on the page (page#<id>), then the details. Inline styles only (Gmail drops <style>)."""
+    e = lambda s: html.escape(str(s or ""), quote=True)
+    btn = ("display:inline-block;background:%s;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;"
+           "font:700 15px -apple-system,Segoe UI,Arial,sans-serif")
+    H = ['<div style="font:15px -apple-system,Segoe UI,Arial,sans-serif;color:#141413;max-width:640px">',
+         '<p style="font-size:17px;font-weight:700;margin:0 0 6px">MANDATORY APPROVAL WRITES: %d new package(s) / $%.2f waiting - tap Approve or Decline</p>'
+         % (len(items), total_dollars(items)),
+         '<p style="margin:0 0 14px;color:#5f6368">%s</p>' % e(subj),
+         '<p style="margin:0 0 20px"><a href="%s" style="%s">Open Mandatory Approvals</a></p>' % (e(PAGE), btn % "#0163aa")]
+    for i in items:
+        H += ['<div style="border:1px solid #d7d8da;border-radius:12px;padding:14px 16px;margin:0 0 14px;background:#f6f7f8">',
+              '<div style="font:500 12px monospace;color:#5f6368">%s</div>' % e(i["id"]),
+              '<div style="font-weight:700;margin:4px 0">%s</div>' % e(i["dollars"] or "n/a"),
+              '<div style="margin:0 0 10px">%s</div>' % e(title(i)),
+              '<a href="%s" style="%s">Review &amp; Approve</a>' % (e(card_link(i)), btn % "#1b8037"),
+              '<div style="font-size:12.5px;color:#5f6368;margin-top:10px">Refused as: %s<br>Command: <code>%s</code><br>AMD screens (same result by hand): %s</div>'
+              % (e(i["reason"]), e(i["cmd"]), e(i["ui"] or "-")),
+              '</div>']
+    H += ['<p style="font-size:13.5px;margin:18px 0 6px"><b>After you tap Approve</b>, the next billing run (every 2 hours) re-attempts the write '
+          'once and the card flips to done. To apply it right now instead, open the <a href="%s">Nightly insurance cascade session</a> '
+          'in ask mode and say <b>go</b>.</p>' % e(CASCADE),
+          '<p style="font-size:12.5px;color:#5f6368;margin:0">Nothing was changed in AdvancedMD for these items. Each was dry-run verified and not '
+          'retried. Or reply to this email with a line <code>APPROVED &lt;id&gt;</code> (or <code>NO &lt;id&gt;</code>).</p></div>']
+    return "\n".join(H)
 
 def put(path, text, dry):
     if dry: print("DRY would write %s (%d chars)" % (path, len(text))); return
@@ -117,8 +162,9 @@ def git_step(repo, regpath, n, stamp, trailers, push_main, dry):
 def checklist(ob, stamp):
     print("\nNEXT - this session makes these three MCP calls now:")
     print("  1. ArtifactData batch  -> url + writes from %s/approval_cards_%s.json" % (ob, stamp))
-    print("  2. Gmail send_message  -> to %s (only); subject = %s/approval_subject_%s.txt; body = %s/approval_request_%s.md (its first line is the subject)" % (TO, ob, stamp, ob, stamp))
-    print("  3. PushNotification    -> text = %s/approval_push_%s.txt" % (ob, stamp))
+    print("  2. Gmail send_message  -> to %s (only); subject = %s/approval_subject_%s.txt; htmlBody = %s/approval_request_%s.html (the buttons);"
+          " plain-text body, where the tool takes one = %s/approval_request_%s.md" % (TO, ob, stamp, ob, stamp, ob, stamp))
+    print("  3. PushNotification    -> status proactive, message = %s/approval_push_%s.txt (ends with the link)" % (ob, stamp))
     print("If this session cannot make them, the hourly 'billing approvals sync' routine picks the waiting items up from main.")
 
 if __name__ == "__main__":
@@ -146,6 +192,7 @@ if __name__ == "__main__":
     subj, body = email(items, a.stamp); push = push_text(items, a.stamp)
     put(os.path.join(ob, "approval_cards_%s.json" % a.stamp), json.dumps(cards(items, a.run_kind, a.stamp), indent=1), a.dry)
     put(os.path.join(ob, "approval_request_%s.md" % a.stamp), body, a.dry)
+    put(os.path.join(ob, "approval_request_%s.html" % a.stamp), html_email(items, a.stamp, subj), a.dry)
     put(os.path.join(ob, "approval_subject_%s.txt" % a.stamp), subj, a.dry)
     put(os.path.join(ob, "approval_push_%s.txt" % a.stamp), push, a.dry)
     if a.dry: print("\nSUBJECT:", subj, "\nPUSH:", push, "\nCARDS:", ", ".join(i["id"] for i in items), "\n--- body (head) ---\n" + body[:700] + "\n---")

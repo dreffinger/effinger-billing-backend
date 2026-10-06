@@ -2,13 +2,16 @@
 # Decides: Moves a visit's patient-responsibility balance back to insurance, sets the plan order on the visit, and rebills it.
 # Rules it uses: Moves every charge on the visit (the whole visit belongs to insurance, your 9/3 rule). Full-visit echo.
 # Never touches: Payments already posted.
+# ONE REBILL PER VISIT (William 10/6/2026): with seq it rebills the first plan of the new order itself. When a frequency-1
+#   reset + rebill follows (freq1_visit.run), pass rebill=False (CLI --no-rebill) - or use freq1_visit.reroute for a pure
+#   re-route. amd.rebill_charge also skips (208) a second rebill of the same charge + sequence inside 6 hours.
 # ---
-"""Move a charge's balance from patient responsibility back to insurance (or vice-versa) and optionally rebill.
+"""Move a charge's balance from patient responsibility back to insurance (or vice-versa) and optionally rebill (rebill=False: never).
 Full-echo updvisitwithcharges with insportion/patportion/insbalance/patbalance overridden.
-Usage: python3 move_to_ins.py <chargeid> [--seq N] [--dry]"""
+Usage: python3 move_to_ins.py <chargeid> [--seq N] [--dry] [--no-rebill]"""
 import amd, resave, re, sys, time
 import xml.etree.ElementTree as ET
-def move(cid, seq=None, dry=False, rebill_seq=None):
+def move(cid, seq=None, dry=False, rebill_seq=None, rebill=True):
     vis, pat, allc = resave.visit_charges(cid)   # ALL live charges - omitting one voids it
     if not any(c.get("id") == "charge" + cid for c in allc): return "charge not live on visit"
     chg = ""; moved = 0.0
@@ -38,9 +41,11 @@ def move(cid, seq=None, dry=False, rebill_seq=None):
     x2 = resave.detail(cid); m = re.search(r'<charge [^>]*id="charge%s"[^>]*>' % cid, x2); v2 = re.search(r'<visit [^>]*>', x2).group(0)
     st = dict(re.findall(r'(insbalance|patbalance)="([^"]*)"', m.group(0))); st["insorder"] = re.search(r'insorder="([^"]*)"', v2).group(1)
     rb = ""
-    if seq:
+    if seq and not rebill:
+        rb = " (no rebill - the caller rebills ONCE via freq1_visit)"
+    elif seq:
         rs = int(rebill_seq) if rebill_seq else int(str(seq).split(",")[0]); code, _ = amd.rebill_charge(cid, rs); rb = " rebill seq %s (sent to %s) -> %s" % (seq, rs, code)
     return "moved %.2f -> %s%s" % (moved, st, rb)
 if __name__ == "__main__":
     a = sys.argv; seq = a[a.index("--seq") + 1] if "--seq" in a else None
-    print(move(a[1], seq, "--dry" in a))
+    print(move(a[1], seq, "--dry" in a, rebill="--no-rebill" not in a))
