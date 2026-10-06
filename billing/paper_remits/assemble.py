@@ -58,7 +58,7 @@ for b in BATCH_ORDER:
             cl = [ua_claim_norm(c) for c in r.get("claims", [])]
             dc = r.get("doccode")
             target = None
-            if cur_ua is not None and cur_ua["batch_hint"] == b if "batch_hint" in cur_ua else False: target = cur_ua
+            if cur_ua is not None and cur_ua.get("batch_hint") == b: target = cur_ua   # 10/5/2026: the old conditional-expression precedence raised TypeError when a detail page came before any cover
             if cur_ua is not None and cur_ua["pages"] and cur_ua["pages"][-1][0] == b: target = cur_ua
             if target is None:
                 target = new_remit(family="UA", payer="UNITED AMERICAN INSURANCE CO", method="check", pages=[], doccode=dc, notes=["detail page without a cover in this batch"])
