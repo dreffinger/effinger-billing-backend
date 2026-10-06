@@ -201,6 +201,30 @@
    "total": 564.0,
    "claimed": "2026-10-06T1310Z",
    "sent": "2026-10-06 13:34Z (freq1_visit.py reroute, visit insorder already right - no resave; ONE frequency-1 reset + ONE chargerebill per visit, 204 x4)"
+  },
+  {
+   "id": "uni20-bcbs-pre0501-2026-10-06T1510Z",
+   "carrier": "UNI20",
+   "order": "William 10/6/2026 (v12 step 5b2): UNI20/BCBS visits before 5/1/2026 answered NOT ON FILE by the payer's 277 are sent once; written off WOLATE only on the payer's timely-filing answer",
+   "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS --skip-answered (pass 4, 2026-10-06 15:2xZ): 60 checked - 22 PAID in 2025 (unposted), 11 DENIED 585, 23 PENDING, 1 UNKNOWN, 3 NOT ON FILE D0 187 (2 of them 2023 visits of chart 17469033 that carry a payer ICN - search misses, not sent)",
+   "status": "open",
+   "sent": "",
+   "visits": [
+    {
+     "pid": "20336",
+     "vid": "19422683",
+     "dos": "11/03/2025",
+     "cpt": "99308",
+     "charges": [
+      "23328012"
+     ],
+     "insbal": 107.0,
+     "plan_order": "2",
+     "lookup": "same chart as the 0710Z/1310Z items: CMS MBI lookup at the DOS = Care Improvement Plus South Central (UHC MA PPO) 4/1/2024-4/30/2026, DOD after the DOS; AMD UNI20 plan seq 2; billdate 09/06/2026, no payment, not in the rebill log",
+     "outcome": "sending 2026-10-06T1510Z"
+    }
+   ],
+   "total": 107.0
   }
  ]
 }
