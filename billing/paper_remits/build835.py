@@ -20,8 +20,9 @@ PAYERS = {  # family -> payer block (name, payer id used in REF*2U / TRN03, addr
     "BCBS":    {"name": "FLORIDA BLUE", "id": "00590", "addr": "PO BOX 1798", "city": "JACKSONVILLE", "st": "FL", "zip": "322311798", "tin": "1590267100"},
     "BLUE":    {"name": "BLUE CROSS BLUE SHIELD (PAPER)", "id": "BLUEP", "addr": "PO BOX 995", "city": "BIRMINGHAM", "st": "AL", "zip": "35298", "tin": "1630598830"},
     "MER01":   {"name": "MERITAIN HEALTH", "id": "41124", "addr": "1405 XENIUM LANE NORTH STE 140", "city": "MINNEAPOLIS", "st": "MN", "zip": "55441", "tin": "1411686870"},
+    "TRI00":   {"name": "TRICARE EAST REGION", "id": "99727", "addr": "PO BOX 7981", "city": "MADISON", "st": "WI", "zip": "537077981", "tin": "1205166262"},
 }
-FILING = {"UA": "CI", "WN": "CI", "AET12": "CI", "MUT01": "CI", "ECHO": "CI", "USAA": "CI", "SIM01": "MC", "FLO99": "MC", "CHAMPVA": "CH", "BCBS": "CI", "BLUE": "CI", "MER01": "CI"}
+FILING = {"UA": "CI", "WN": "CI", "AET12": "CI", "MUT01": "CI", "ECHO": "CI", "USAA": "CI", "SIM01": "MC", "FLO99": "MC", "CHAMPVA": "CH", "BCBS": "CI", "BLUE": "CI", "MER01": "CI", "TRI00": "CH"}
 def pos_for(cpt):
     c = str(cpt)
     if c.startswith("9922") or c.startswith("9923") or c in ("99238", "99239"): return "21"

@@ -31,7 +31,25 @@ def norm_acct(a):
     return None
 FAMILY_MAP = {"UA": "UA", "WN": "WN", "AET12": "AET12", "MUT01": "MUT01", "ECHO": "ECHO", "SIM01": "SIM01", "FLO99": "FLO99", "USAA": "USAA", "CHAMPVA": "CHAMPVA",
               "MERITAIN": "MER01", "MER01": "MER01", "BCBS": "BCBS", "ANTHEM": "BCBS", "BLUE": "BCBS", "MEDICARE": "MEDICARE", "HUMANA": "HUMANA", "UHC": "UHC",
-              "BANK": "BANK", "GAINWELL": "GAINWELL", "ZELIS": "ZELIS-VCARD", "OTHER": "OTHER"}
+              "BANK": "BANK", "TRI00": "TRI00", "TRICARE": "TRI00", "GAINWELL": "GAINWELL", "ZELIS": "ZELIS-VCARD", "OTHER": "OTHER"}
+# payer-name classifier: the LLM's family field is only a hint (10/5/2026: agents wrote FLO99 for Florida Blue, MUT01 for Physicians Mutual, FCC/OTHER for Florida Community Care)
+PAYER_RULES = [("FLORIDA COMMUNITY", "FLO99"), ("(FCC)", "FLO99"), ("FCC ", "FLO99"),
+               ("PHYSICIANS MUTUAL", "ECHO"), ("PHYSICIANS LIFE", "ECHO"), ("PHYSICIANS SELECT", "ECHO"),
+               ("UNITED OF OMAHA", "MUT01"), ("MUTUAL OF OMAHA", "MUT01"), ("UNITED AMERICAN", "UA"), ("GLOBE LIFE", "UA"),
+               ("WASHINGTON NATIONAL", "WN"), ("BANKERS LIFE", "WN"), ("AETNA SENIOR", "AET12"), ("CONTINENTAL LIFE", "AET12"), ("AMERICAN CONTINENTAL", "AET12"),
+               ("SIMPLY", "SIM01"), ("USAA", "USAA"), ("CHAMPVA", "CHAMPVA"), ("10-7959", "CHAMPVA"), ("MERITAIN", "MER01"),
+               ("FLORIDA BLUE", "BCBS"), ("OF FLORIDA", "BCBS"), ("HEALTH OPTIONS", "BCBS"), ("STATE EMPLOYEES", "BCBS"), ("ANTHEM", "BCBS"), ("HCSC", "BCBS"),
+               ("BLUE CROSS", "BCBS"), ("BLUECROSS", "BCBS"), ("BCBS", "BCBS"), ("BLUE SHIELD", "BCBS"),
+               ("MEDICARE ADVANTAGE", "BCBS"), ("HUMANA MILITARY", "TRI00"), ("TRICARE", "TRI00"), ("HUMANA", "HUMANA"), ("UNITEDHEALTH", "UHC"), ("UNITED HEALTH", "UHC"), ("OPTUM", "UHC"), ("UMR", "UHC"),
+               ("GAINWELL", "GAINWELL"), ("AHCA", "GAINWELL"), ("FLORIDA MEDICAID", "GAINWELL"), ("IDEALIFE", "OTHER"), ("ZELIS VIRTUAL CARD", "ZELIS"),
+               ("CAPITAL CITY WEALTH", "BANK"), ("PERSONAL CHECK", "BANK"), ("MEDICARE", "MEDICARE")]
+def fam_from_payer(name, fam0):
+    u = (name or "").upper()
+    for k, f in PAYER_RULES:
+        if k in u: return f
+    return fam0
+def is_florida_blue(name):
+    u = (name or "").upper(); return ("FLORIDA BLUE" in u) or ("OF FLORIDA" in u and "BLUE" in u) or ("HEALTH OPTIONS" in u) or ("STATE EMPLOYEES" in u)
 out = []; corr = []; stubs = []; report = []
 def L(s): report.append(s); print(s)
 docs = []
@@ -44,9 +62,13 @@ L("documents: %d from %d files" % (len(docs), len(glob.glob(D + "/llm/*_parse.js
 def pages_of(d): return [(str(d["_batch"]), int(p)) for p in (d.get("pages") or [])]
 n = 0
 for d in docs:
-    fam0 = (d.get("family") or "OTHER").upper(); fam = FAMILY_MAP.get(fam0, "OTHER"); typ = (d.get("doc_type") or "other").lower(); method = (d.get("method") or "unknown").lower()
-    if typ == "letter" or d.get("correspondence"):
-        c = d.get("correspondence") or {}
+    fam0 = (d.get("family") or "OTHER").upper(); fam0 = fam_from_payer(d.get("payer_name"), fam0); fam = FAMILY_MAP.get(fam0, "OTHER"); typ = (d.get("doc_type") or "other").lower(); method = (d.get("method") or "unknown").lower()
+    if typ == "vcard_stub" and d.get("claims"):   # a card stub printed WITH the EOB is a remittance paid by card, not a bare stub
+        typ = "remittance"; method = "vcard"
+        if fam == "ZELIS-VCARD": fam = "OTHER"
+    cblk = d.get("correspondence") or {}
+    if typ == "letter" or (isinstance(cblk, dict) and (cblk.get("about") or cblk.get("action_requested") or cblk.get("from"))):
+        c = cblk if isinstance(cblk, dict) else {}
         corr.append([("%s: %s" % (d.get("payer_name") or fam0, c.get("about") or d.get("notes") or ""))[:200], ("%s | ids %s" % (c.get("from") or "", ", ".join(c.get("identifiers") or [])))[:160],
                      ("%s%s" % (c.get("action_requested") or "", (" | by " + c["deadline"]) if c.get("deadline") else ""))[:300], "%s p%s" % (str(d["_batch"])[-6:], ",".join(str(p) for p in d.get("pages") or []))])
         if not d.get("claims"): continue
@@ -64,7 +86,8 @@ for d in docs:
         rec["method"] = "eft"; rec["notes"].append("EFT/ACH payment notice - the 835 should reach the ERA Center on its own; verify, never post from paper")
     if typ == "zero_statement" or (rec["amount"] is not None and rec["amount"] == 0 and d.get("claims")): rec["zero_payment"] = True; rec["method"] = "none"
     # Blues: paper check or card -> postable family BLUE; EFT / $0 -> held BCBS
-    if fam == "BCBS" and typ == "remittance" and method in ("check", "vcard") and (rec["amount"] or 0) > 0: rec["family"] = "BLUE"
+    if fam == "BCBS" and typ == "remittance" and method in ("check", "vcard") and (rec["amount"] or 0) > 0 and not is_florida_blue(d.get("payer_name")): rec["family"] = "BLUE"
+    if fam == "BCBS" and is_florida_blue(d.get("payer_name")) and (rec["amount"] or 0) > 0 and rec["method"] not in ("eft", "none"): rec["method"] = "eft"; rec["notes"].append("Florida Blue pays by EFT and its 835 reaches the ERA Center - held, never posted from paper")
     if d.get("card") and typ != "vcard_stub": rec.update({"card": (d["card"] or {}).get("number"), "exp": (d["card"] or {}).get("exp"), "cvc": (d["card"] or {}).get("cvc")})
     for c in d.get("claims") or []:
         lines = []
@@ -92,7 +115,7 @@ for c in [r for r in out if r.get("is_physical_check")]:
     if not hit and c.get("amount") is not None: hit = [m for m in docs_m if eq(m.get("amount"), c["amount"]) and m["family"] in (c["family"], "BLUE", "BCBS") and not m.get("zero_payment")]
     if len(hit) == 1:
         m = hit[0]; m["physical_check"] = {"number": c.get("check_number"), "date": c.get("date"), "amount": c.get("amount"), "pages": c["pages"]}; c["linked_to"] = m["id"]
-        if m["family"] == "BCBS": m["family"] = "BLUE"; m["method"] = "check"
+        if m["family"] == "BCBS" and not is_florida_blue(m.get("payer")): m["family"] = "BLUE"; m["method"] = "check"
 # validate
 for r in docs_m:
     cl = r["claims"]; paid_sum = r2(sum((c.get("paid") or 0) for c in cl)) if cl else None; r["claims_paid_sum"] = paid_sum; ok = True
@@ -100,7 +123,11 @@ for r in docs_m:
     for c in cl:
         if not c.get("acct") or "?" in (c.get("acct") or ""): r["notes"].append("unreadable AMD account %r (%s)" % (c.get("acct_raw"), c.get("patient"))); ok = False
         ls = c.get("lines", [])
-        if ls and c.get("paid") is not None and all(l.get("paid") is not None for l in ls) and not eq(sum(l["paid"] for l in ls), c["paid"]): r["notes"].append("%s: line paid sum != claim paid" % c.get("acct")); ok = False
+        if ls and c.get("paid") is not None and all(l.get("paid") is not None for l in ls) and not eq(sum(l["paid"] for l in ls), c["paid"]):
+            nz = [l for l in ls if (l.get("paid") or 0) != 0]
+            if len(nz) == 1:   # one money line: the printed line figure was the allowed/other column (FCC secondary statements) - the claim total is what the check carries
+                r["notes"].append("%s: line paid %.2f reset to claim paid %.2f (single money line)" % (c.get("acct"), nz[0]["paid"], c["paid"])); nz[0]["paid"] = c["paid"]
+            else: r["notes"].append("%s: line paid sum != claim paid" % c.get("acct")); ok = False
     if not cl and (r.get("amount") or 0) > 0 and r["method"] != "eft": r["notes"].append("money document with no claim lines"); ok = False
     r["valid"] = ok
 # virtual cards -> keying list
@@ -108,6 +135,15 @@ for r in out:
     if r.get("card") and (r.get("is_stub") or r["method"] == "vcard"):
         stubs.append({"card": r["card"], "last4": str(r["card"])[-4:], "exp": r.get("exp"), "cvc_ocr": r.get("cvc"), "zip": None, "amount": r.get("stub_amount") or r.get("amount"), "payment_id": r.get("payment_id"), "family": r["family"], "remit": r.get("linked_to") or r["id"],
                       "claims": len(r.get("claims", [])), "square": None, "batch": r["pages"][0][0] if r["pages"] else "", "page": r["pages"][0][1] if r["pages"] else 0, "mailing": (r.get("doccode") or {}).get("seq"), "warning": None})
+seen_cards = {}; uniq = []
+for s_ in stubs:
+    k = (re.sub(r"\D", "", str(s_["card"] or "")), r2(s_["amount"]))
+    if k in seen_cards:
+        seen_cards[k]["also_on"] = (seen_cards[k].get("also_on") or []) + ["%s p%s" % (s_["batch"][-6:], s_["page"])]
+        if seen_cards[k]["family"] in ("ZELIS-VCARD", "OTHER") and s_["family"] not in ("ZELIS-VCARD", "OTHER"): seen_cards[k].update({"family": s_["family"], "remit": s_["remit"], "claims": s_["claims"], "payment_id": seen_cards[k]["payment_id"] or s_["payment_id"]})
+        continue
+    seen_cards[k] = s_; uniq.append(s_)
+stubs = uniq
 # physical-check twins of a card (payer re-issued the expired card as a check): deposit the check, never key both
 checks = [r for r in out if r.get("is_physical_check") or r.get("physical_check")]
 for s in stubs:
@@ -119,11 +155,20 @@ regex_path = D + "/remits_regex.json"
 merged = []
 if os.path.exists(regex_path):
     R = json.load(open(regex_path)); keep = [r for r in R if not r.get("is_stub") and not r.get("is_physical_check") and r.get("valid")]
-    refs = {(r["family"], str(r.get("check_number") or r.get("payment_id") or "")) for r in keep}; accts = {(r["family"], c.get("acct"), r2(c.get("paid"))) for r in keep for c in r["claims"]}
+    def refkey(r): return (r["family"], str(r.get("check_number") or r.get("payment_id") or "").lstrip("0"))
+    # an LLM record that is valid and carries more claims (or a different document amount) than the regex record with the same reference supersedes it
+    drop_regex = set()
+    for r in out:
+        if r.get("is_stub") or r.get("is_physical_check") or not r.get("valid"): continue
+        for k in keep:
+            if refkey(k) == refkey(r) and refkey(r)[1] and (len(r["claims"]) > len(k["claims"]) or not eq(k.get("amount"), r.get("amount"))):
+                drop_regex.add(k["id"]); L("regex %s %s superseded by llm %s (%d vs %d claims, $%s vs $%s)" % (k["id"], refkey(k), r["id"], len(k["claims"]), len(r["claims"]), k.get("amount"), r.get("amount")))
+    keep = [k for k in keep if k["id"] not in drop_regex]
+    refs = {refkey(r) for r in keep}; accts = {(r["family"], c.get("acct"), r2(c.get("paid"))) for r in keep for c in r["claims"]}
     merged += keep; added = 0
     for r in out:
         if r.get("is_stub") or r.get("is_physical_check"): merged.append(r); continue
-        key = (r["family"], str(r.get("check_number") or r.get("payment_id") or ""))
+        key = refkey(r)
         if key in refs and all((r["family"], c.get("acct"), c.get("paid")) in accts for c in r["claims"]): L("llm %s %s duplicates a valid regex record - dropped" % (r["id"], key)); continue
         merged.append(r); added += 1
     L("merge: %d valid regex records kept, %d llm records added" % (len(keep), added))
