@@ -23,6 +23,25 @@ PAYERS = {  # family -> payer block (name, payer id used in REF*2U / TRN03, addr
     "TRI00":   {"name": "[name]", "id": "99727", "addr": "PO BOX 7981", "city": "MADISON", "st": "WI", "zip": "537077981", "tin": "1205166262"},
 }
 FILING = {"UA": "CI", "WN": "CI", "AET12": "CI", "MUT01": "CI", "ECHO": "CI", "USAA": "CI", "SIM01": "MC", "FLO99": "MC", "CHAMPVA": "CH", "BCBS": "CI", "BLUE": "CI", "MER01": "CI", "TRI00": "CH"}
+FCC_CONTRACTUAL = {"3", "PC 3", "PC 3/077", "077", "14", "075", "PC 14/075", "14/075", "PC 14", "PC 075"}
+def norm_cas(group, code, fam=None):
+    """(group, code) -> a valid CARC pair. Numeric codes pass through (PR-45 -> PR-2); payer legend text is mapped by meaning; anything else falls back by group."""
+    g = (group or "CO").upper().strip(); c = str(code or "").strip(); u = c.upper()
+    if g not in ("CO", "PR", "OA", "PI"): g = "CO"
+    if fam == "FLO99" and u in FCC_CONTRACTUAL: return ("CO", "45")
+    if re.fullmatch(r"[A-Z]?\d{1,3}", u) and u.isdigit():
+        if g == "PR" and u in ("45", "253", "23"): return ("PR", "2")
+        return (g, u)
+    if "DEDUCT" in u and g == "PR": return ("PR", "1")
+    if "COPAY" in u or "CO-PAY" in u: return ("PR", "3")
+    if "CO-INS" in u or "COINS" in u or "COST SHARE" in u or "CO INS" in u: return ("PR", "2")
+    if "OTHER PAYER" in u or "OHI" in u or "MEDICARE PAID" in u or "PRIOR PAYER" in u or "PRIMARY" in u: return ("OA", "23")
+    if "SEQUEST" in u: return ("OA", "253")
+    if "NOT COVERED" in u or "NOT VERED" in u or "NON-COVERED" in u or "NONCOVERED" in u: return ("CO", "96")
+    if "DUPLICATE" in u: return ("CO", "18")
+    if "TIMELY" in u: return ("CO", "29")
+    if "QPA" in u or "DISCOUNT" in u or "CONTRACT" in u or "ALLOW" in u or "FEE SCHEDULE" in u: return ("CO", "45")
+    return {"PR": ("PR", "2"), "OA": ("OA", "23"), "PI": ("PI", "45")}.get(g, ("CO", "45"))
 def pos_for(cpt):
     c = str(cpt)
     if c.startswith("9922") or c.startswith("9923") or c in ("99238", "99239"): return "21"
@@ -70,6 +89,9 @@ def claim_segments(rm, c, seq):
         for a in ccas:
             for l, p in zip(lines, allocate(a["amount"], w)):
                 if p: l.setdefault("cas", []).append({"group": a["group"], "code": a["code"], "amount": p})
+    # normalise reason codes: payers print their own legend codes (FCC "PC 3", Meritain "Provider Discount (QPA)", "Co-Ins") - AMD's importer wants a numeric CARC per CAS
+    for l in lines:
+        for a in l.get("cas", []): a["group"], a["code"] = norm_cas(a.get("group"), a.get("code"), rm.get("family"))
     status = "2" if any(a["code"] == "23" for l in lines for a in l.get("cas", [])) or any(a["code"] == "23" for a in ccas) or rm.get("family") in ("UA", "WN", "AET12", "MUT01", "ECHO", "USAA") else "1"
     if (paid or 0) == 0 and charge: status = "4" if not any(a["code"] == "23" for l in lines for a in l.get("cas", [])) else "2"
     # balance each line: charge = paid + PR + adjustments; put any residual into CO-45 (contractual) so the file balances
