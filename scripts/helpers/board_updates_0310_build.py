@@ -84,7 +84,7 @@ row("morrow-rowan-44976",
     checks=[chk("ok", "WOLATE $206.00 (23326386, id 10153273) + $109.00 (23326387, id 10153274); balance $0")],
     status="done", need="Done 9/15: 10/25/2025 Humana CCM claim ($315) written off WOLATE (untimely) - ids 10153273 + 10153274.")
 
-row("moore-marisa-denials",
+row("morland-marisa-denials",
     notes=[note("11pm ET 9/14 run: CAP07 Capital Health Plan (car41826) added with member [member id], begin 01/01/2026, NO group -> ins9519415, sequence 2. Stedi CHP 95112 at DOS 2/6/2026: ACTIVE, Medicare Risk (MA), plan begin 20260101. Florida Blue plan XJBH29440242 (ins9516490) end-dated 12/31/2025 (success 1); patient insurance order set to 2 (CAP07). Both February visits resaved insorder 2 + onhcfa 1 and freq-1 rebilled on seq 2: 2/6/2026 99223 $310 vst19431787 (charge 23338435) and 2/7/2026 99232 $111 vst19431884 (charge 23338525) -> 204 each. Chart address not changed (TMH: [address]) - say the word.")],
     checks=[chk("ok", "CAP07 car41826 member [member id] begin 01/01/2026 added -> ins9519415 seq 2 (no group); BCBS ins9516490 end-dated 12/31/2025; patient insorder 2"),
             chk("ok", "ACTIVE Medicare Risk (MA), planBegin 20260101", "Stedi eligibility CHP 95112, DOS 2/6/2026"),

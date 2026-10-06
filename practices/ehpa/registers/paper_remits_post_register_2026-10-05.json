@@ -1,0 +1,6326 @@
+[
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: BAN07 already paid $16.93 on this line (check 1901896447) and the balance is 0.00 - refund/recoup decision",
+  "family": "WN",
+  "ref": "1372588379",
+  "acct": "19442009A",
+  "pid": "17473010",
+  "vid": "19442009",
+  "cid": "23349995",
+  "cpt": "99309",
+  "dos": "05/14/2026",
+  "fee": 141.0,
+  "eob_paid": 16.93,
+  "checkid": 1052969,
+  "carrier": "BAN07",
+  "plan": "on chart seq 2 (BAN07)",
+  "when": "2026-10-06T01:37:40Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: BAN07 already paid $16.14 on this line (check 1901896447) and the balance is 0.00 - refund/recoup decision",
+  "family": "WN",
+  "ref": "1372588379",
+  "acct": "19442355A",
+  "pid": "17473010",
+  "vid": "19442355",
+  "cid": "23350406",
+  "cpt": "99487",
+  "dos": "05/17/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052969,
+  "carrier": "BAN07",
+  "plan": "on chart seq 2 (BAN07)",
+  "when": "2026-10-06T01:37:41Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: BAN07 already paid $8.92 on this line (check 1901896447) and the balance is 0.00 - refund/recoup decision",
+  "family": "WN",
+  "ref": "1372588379",
+  "acct": "19442355A",
+  "pid": "17473010",
+  "vid": "19442355",
+  "cid": "23350407",
+  "cpt": "99489",
+  "dos": "05/17/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052969,
+  "carrier": "BAN07",
+  "plan": "on chart seq 2 (BAN07)",
+  "when": "2026-10-06T01:37:41Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165779",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19453680B",
+  "pid": "20514",
+  "vid": "19453680",
+  "cid": "23364436",
+  "cpt": "99309",
+  "dos": "08/11/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052970,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T01:38:14Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19453815B",
+  "pid": "20514",
+  "vid": "19453815",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455349B (POSTED 10/6)",
+  "when": "2026-10-06T01:38:32Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19453806B",
+  "pid": "17477134",
+  "vid": "19453806",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455361B (POSTED 10/6)",
+  "when": "2026-10-06T01:38:49Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19422665N",
+  "pid": "25553",
+  "vid": "19422665",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455289N (POSTED 10/6)",
+  "when": "2026-10-06T01:39:07Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19418980F",
+  "pid": "25553",
+  "vid": "19418980",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455288F (POSTED 10/6)",
+  "when": "2026-10-06T01:39:24Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 82.87,
+  "wo": 80.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165780",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    80.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 80.13 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707376024",
+  "acct": "19453100A",
+  "pid": "17476853",
+  "vid": "19453100",
+  "cid": "23363600",
+  "cpt": "99239",
+  "dos": "08/27/2026",
+  "fee": 163.0,
+  "eob_paid": 82.87,
+  "checkid": 1052971,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:39:57Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165781",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707376024",
+  "acct": "19453103A",
+  "pid": "17476853",
+  "vid": "19453103",
+  "cid": "23363603",
+  "cpt": "99233",
+  "dos": "08/26/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052972,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "relined": true,
+  "when": "2026-10-06T01:40:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165782",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707330771",
+  "acct": "19452241A",
+  "pid": "17476853",
+  "vid": "19452241",
+  "cid": "23362374",
+  "cpt": "99233",
+  "dos": "08/22/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052973,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:41:01Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: UNI01 already paid $31.94 on this line (check 0010586523) and the balance is 0.00 - refund/recoup decision",
+  "family": "UA",
+  "ref": "1372391066",
+  "acct": "19446881A",
+  "pid": "17476979",
+  "vid": "19446881",
+  "cid": "23355995",
+  "cpt": "99223",
+  "dos": "07/01/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052974,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:41:29Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: UNI01 already paid $16.93 on this line (check 0010586523) and the balance is 0.00 - refund/recoup decision",
+  "family": "UA",
+  "ref": "1372391066",
+  "acct": "19447389A",
+  "pid": "45520",
+  "vid": "19447389",
+  "cid": "23356575",
+  "cpt": "99309",
+  "dos": "07/01/2026",
+  "fee": 141.0,
+  "eob_paid": 16.93,
+  "checkid": 1052974,
+  "carrier": "UNI01",
+  "plan": "on chart seq 4 (UNI01)",
+  "when": "2026-10-06T01:41:31Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165783",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19451291A",
+  "pid": "17474741",
+  "vid": "19451291",
+  "cid": "23361334",
+  "cpt": "99232",
+  "dos": "08/09/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165784",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19451322A",
+  "pid": "17474741",
+  "vid": "19451322",
+  "cid": "23361366",
+  "cpt": "99232",
+  "dos": "08/10/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:08Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165785",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19450737A",
+  "pid": "17474741",
+  "vid": "19450737",
+  "cid": "23360696",
+  "cpt": "99233",
+  "dos": "08/06/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:13Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165786",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19450755A",
+  "pid": "17474741",
+  "vid": "19450755",
+  "cid": "23360714",
+  "cpt": "99233",
+  "dos": "08/05/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:20Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.59,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165787",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    55.06
+   ],
+   [
+    "OA23",
+    84.62
+   ],
+   [
+    "OA253",
+    1.73
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19451369A",
+  "pid": "17474741",
+  "vid": "19451369",
+  "cid": "23361413",
+  "cpt": "99239",
+  "dos": "08/11/2026",
+  "fee": 163.0,
+  "eob_paid": 21.59,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:25Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 31.94,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165788",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    150.3
+   ],
+   [
+    "OA23",
+    125.2
+   ],
+   [
+    "OA253",
+    2.56
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010860560",
+  "acct": "19450582A",
+  "pid": "17474741",
+  "vid": "19450582",
+  "cid": "23360528",
+  "cpt": "99223",
+  "dos": "08/04/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052975,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:42:32Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 28.6,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165789",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    177.4
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079232230",
+  "acct": "19452559A",
+  "pid": "24750",
+  "vid": "19452559",
+  "cid": "23362864",
+  "cpt": "99487",
+  "dos": "08/23/2026",
+  "fee": 206.0,
+  "eob_paid": 28.6,
+  "checkid": 1052977,
+  "carrier": "AET12",
+  "plan": "on chart seq 2 (AET12)",
+  "relined": true,
+  "when": "2026-10-06T01:43:29Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706892829) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372589074",
+  "acct": "19446333A",
+  "pid": "17476853",
+  "vid": "19446333",
+  "cid": "23355424",
+  "cpt": "99232",
+  "dos": "06/26/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052978,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:44:00Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706892829) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372589074",
+  "acct": "19446349A",
+  "pid": "17476853",
+  "vid": "19446349",
+  "cid": "23355441",
+  "cpt": "99232",
+  "dos": "06/27/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052978,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:44:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 230.1,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165790",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    22.37
+   ],
+   [
+    "PR2",
+    57.53
+   ]
+  ],
+  "verified": true,
+  "note": "residual 79.90 left after the post (AMD: next payer / patient); ",
+  "family": "MER01",
+  "ref": "415094527",
+  "acct": "19451930B",
+  "pid": "17471600",
+  "vid": "19451930",
+  "cid": "23362020",
+  "cpt": "99223",
+  "dos": "08/17/2026",
+  "fee": 310.0,
+  "eob_paid": 230.1,
+  "checkid": 1052979,
+  "carrier": "MER01",
+  "plan": "on chart seq 2 (MER01)",
+  "when": "2026-10-06T01:44:34Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165791",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "PR2",
+    22.2
+   ]
+  ],
+  "verified": true,
+  "note": "residual 22.20 left after the post (AMD: next payer / patient); ",
+  "family": "MER01",
+  "ref": "415094527",
+  "acct": "19452051B",
+  "pid": "17471600",
+  "vid": "19452051",
+  "cid": "23362164",
+  "cpt": "99232",
+  "dos": "08/18/2026",
+  "fee": 111.0,
+  "eob_paid": 88.8,
+  "checkid": 1052979,
+  "carrier": "MER01",
+  "plan": "on chart seq 2 (MER01)",
+  "when": "2026-10-06T01:44:40Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165792",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    96.62
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "ECHO",
+  "ref": "409365083",
+  "acct": "19445453A",
+  "pid": "17476854",
+  "vid": "19445453",
+  "cid": "23354320",
+  "cpt": "99232",
+  "dos": "06/19/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052980,
+  "carrier": "PHY10",
+  "plan": "on chart seq 2 (PHY10)",
+  "when": "2026-10-06T01:45:11Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165793",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    96.62
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "ECHO",
+  "ref": "409365083",
+  "acct": "19445386A",
+  "pid": "17476854",
+  "vid": "19445386",
+  "cid": "23354206",
+  "cpt": "99232",
+  "dos": "06/18/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052980,
+  "carrier": "PHY10",
+  "plan": "on chart seq 2 (PHY10)",
+  "when": "2026-10-06T01:45:17Z"
+ },
+ {
+  "status": "SKIP",
+  "note": "already posted (live payment 409365083 with this check number)",
+  "family": "ECHO",
+  "ref": "409365083",
+  "acct": "19445317A",
+  "pid": "17476854",
+  "vid": "19445317",
+  "cid": "23354125",
+  "cpt": "99232",
+  "dos": "06/17/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052980,
+  "carrier": "PHY10",
+  "plan": "on chart seq 2 (PHY10)",
+  "when": "2026-10-06T01:45:19Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 31.94,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165794",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    278.06
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "ECHO",
+  "ref": "409365083",
+  "acct": "19445323A",
+  "pid": "17476854",
+  "vid": "19445323",
+  "cid": "23354135",
+  "cpt": "99223",
+  "dos": "06/16/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052980,
+  "carrier": "PHY10",
+  "plan": "on chart seq 2 (PHY10)",
+  "when": "2026-10-06T01:45:25Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165795",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    96.62
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "ECHO",
+  "ref": "409365083",
+  "acct": "19445493A",
+  "pid": "17476854",
+  "vid": "19445493",
+  "cid": "23354368",
+  "cpt": "99232",
+  "dos": "06/20/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052980,
+  "carrier": "PHY10",
+  "plan": "on chart seq 2 (PHY10)",
+  "when": "2026-10-06T01:45:31Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 20.41,
+  "wo": 105.85,
+  "wocode": "WOMCAD",
+  "paymentid": "10165796",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    235.59
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 105.85 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01975912",
+  "acct": "19453134A",
+  "pid": "24368",
+  "vid": "19453134",
+  "cid": "23363641",
+  "cpt": "99306",
+  "dos": "08/27/2026",
+  "fee": 256.0,
+  "eob_paid": 20.41,
+  "checkid": 1052981,
+  "carrier": "FLO99",
+  "plan": "ADDED FLO99 as ins9520746 seq 4 (member [member id], no group)",
+  "when": "2026-10-06T01:46:05Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: MUT01 already paid $14.38 on this line (check 2608040217152216) and the balance is 0.00 - refund/recoup decision",
+  "family": "MUT01",
+  "ref": "829821460",
+  "acct": "19447713A",
+  "pid": "17477027",
+  "vid": "19447713",
+  "cid": "23356941",
+  "cpt": "99232",
+  "dos": "07/07/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052982,
+  "carrier": "MUT01",
+  "plan": "on chart seq 2 (MUT01)",
+  "when": "2026-10-06T01:46:32Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: MUT01 already paid $31.94 on this line (check 2608040217152216) and the balance is 0.00 - refund/recoup decision",
+  "family": "MUT01",
+  "ref": "829821460",
+  "acct": "19447350A",
+  "pid": "17477027",
+  "vid": "19447350",
+  "cid": "23356533",
+  "cpt": "99223",
+  "dos": "07/06/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052982,
+  "carrier": "MUT01",
+  "plan": "on chart seq 2 (MUT01)",
+  "when": "2026-10-06T01:46:34Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: MUT01 already paid $14.38 on this line (check 2608040217152216) and the balance is 0.00 - refund/recoup decision",
+  "family": "MUT01",
+  "ref": "829821460",
+  "acct": "19447632A",
+  "pid": "17477027",
+  "vid": "19447632",
+  "cid": "23356859",
+  "cpt": "99232",
+  "dos": "07/08/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052982,
+  "carrier": "MUT01",
+  "plan": "on chart seq 2 (MUT01)",
+  "when": "2026-10-06T01:46:36Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 17.5,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165797",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    188.5
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19421017B",
+  "pid": "22603",
+  "vid": "19421017",
+  "cid": "23326234",
+  "cpt": "99487",
+  "dos": "10/25/2025",
+  "fee": 206.0,
+  "eob_paid": 17.5,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "ADDED AET12 as ins9520747 seq 3 (member [member id], no group)",
+  "when": "2026-10-06T01:47:19Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 9.47,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165798",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    99.53
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19421017B",
+  "pid": "22603",
+  "vid": "19421017",
+  "cid": "23326235",
+  "cpt": "99489",
+  "dos": "10/25/2025",
+  "fee": 109.0,
+  "eob_paid": 9.47,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "ADDED AET12 as ins9520747 seq 3 (member [member id], no group)",
+  "when": "2026-10-06T01:47:23Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 5.78,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165799",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "PR2",
+    55.76
+   ],
+   [
+    "OA23",
+    79.46
+   ]
+  ],
+  "verified": true,
+  "note": "residual 55.76 left after the post (AMD: next payer / patient); ",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19438330B",
+  "pid": "22603",
+  "vid": "19438330",
+  "cid": "23345415",
+  "cpt": "99309",
+  "dos": "04/08/2026",
+  "fee": 141.0,
+  "eob_paid": 5.78,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:29Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165800",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    189.86
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19438506B",
+  "pid": "22603",
+  "vid": "19438506",
+  "cid": "23345612",
+  "cpt": "99487",
+  "dos": "03/20/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:34Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 8.92,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165801",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    100.08
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19438506B",
+  "pid": "22603",
+  "vid": "19438506",
+  "cid": "23345613",
+  "cpt": "99489",
+  "dos": "03/20/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:38Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165802",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    189.86
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19439539B",
+  "pid": "22603",
+  "vid": "19439539",
+  "cid": "23347031",
+  "cpt": "99487",
+  "dos": "04/20/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:43Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 8.92,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165803",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    100.08
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19439539B",
+  "pid": "22603",
+  "vid": "19439539",
+  "cid": "23347032",
+  "cpt": "99489",
+  "dos": "04/20/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:47Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.93,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165804",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    124.07
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19441404B",
+  "pid": "22603",
+  "vid": "19441404",
+  "cid": "23349262",
+  "cpt": "99309",
+  "dos": "05/07/2026",
+  "fee": 141.0,
+  "eob_paid": 16.93,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:52Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165805",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    189.86
+   ]
+  ],
+  "verified": true,
+  "note": "residual 126.58 left after the post (AMD: next payer / patient); ",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19442384D",
+  "pid": "22603",
+  "vid": "19442384",
+  "cid": "23350455",
+  "cpt": "99487",
+  "dos": "05/17/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:47:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 8.92,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165806",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    100.08
+   ]
+  ],
+  "verified": true,
+  "note": "residual 65.13 left after the post (AMD: next payer / patient); ",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19442384D",
+  "pid": "22603",
+  "vid": "19442384",
+  "cid": "23350456",
+  "cpt": "99489",
+  "dos": "05/17/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 17.5,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165807",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    188.5
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19423552B",
+  "pid": "22603",
+  "vid": "19423552",
+  "cid": "23329130",
+  "cpt": "99487",
+  "dos": "11/15/2025",
+  "fee": 206.0,
+  "eob_paid": 17.5,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:07Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 9.47,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165808",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    99.53
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19423552B",
+  "pid": "22603",
+  "vid": "19423552",
+  "cid": "23329131",
+  "cpt": "99489",
+  "dos": "11/15/2025",
+  "fee": 109.0,
+  "eob_paid": 9.47,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:11Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 12.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165809",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    94.86
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19417081B",
+  "pid": "22603",
+  "vid": "19417081",
+  "cid": "23320690",
+  "cpt": "99308",
+  "dos": "09/11/2025",
+  "fee": 107.0,
+  "eob_paid": 12.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:17Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 17.65,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165810",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    123.35
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19426082B",
+  "pid": "22603",
+  "vid": "19426082",
+  "cid": "23332109",
+  "cpt": "99309",
+  "dos": "12/10/2025",
+  "fee": 141.0,
+  "eob_paid": 17.65,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:23Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 17.5,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165811",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    188.5
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19427244B",
+  "pid": "22603",
+  "vid": "19427244",
+  "cid": "23333616",
+  "cpt": "99487",
+  "dos": "12/21/2025",
+  "fee": 206.0,
+  "eob_paid": 17.5,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:29Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 9.47,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165812",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    99.53
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19427244B",
+  "pid": "22603",
+  "vid": "19427244",
+  "cid": "23333617",
+  "cpt": "99489",
+  "dos": "12/21/2025",
+  "fee": 109.0,
+  "eob_paid": 9.47,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:33Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 11.59,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165813",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    95.41
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19445127B",
+  "pid": "22603",
+  "vid": "19445127",
+  "cid": "23353927",
+  "cpt": "99308",
+  "dos": "06/10/2026",
+  "fee": 107.0,
+  "eob_paid": 11.59,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:38Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165814",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    189.86
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19446150B",
+  "pid": "22603",
+  "vid": "19446150",
+  "cid": "23355073",
+  "cpt": "99487",
+  "dos": "06/25/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:43Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 8.92,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165815",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    100.08
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19446150B",
+  "pid": "22603",
+  "vid": "19446150",
+  "cid": "23355074",
+  "cpt": "99489",
+  "dos": "06/25/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:47Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.14,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165816",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    189.86
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19448800B",
+  "pid": "22603",
+  "vid": "19448800",
+  "cid": "23358205",
+  "cpt": "99487",
+  "dos": "07/17/2026",
+  "fee": 206.0,
+  "eob_paid": 16.14,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:53Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 8.92,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165817",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    100.08
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19448800B",
+  "pid": "22603",
+  "vid": "19448800",
+  "cid": "23358206",
+  "cpt": "99489",
+  "dos": "07/17/2026",
+  "fee": 109.0,
+  "eob_paid": 8.92,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:48:57Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.93,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165818",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "OA23",
+    124.07
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "AET12",
+  "ref": "0079265902",
+  "acct": "19451612B",
+  "pid": "22603",
+  "vid": "19451612",
+  "cid": "23361679",
+  "cpt": "99309",
+  "dos": "08/12/2026",
+  "fee": 141.0,
+  "eob_paid": 16.93,
+  "checkid": 1052983,
+  "carrier": "AET12",
+  "plan": "on chart seq 3 (AET12)",
+  "when": "2026-10-06T01:49:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 80.25,
+  "wo": 60.75,
+  "wocode": "WOMCAD",
+  "paymentid": "10165819",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    60.75
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 60.75 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01985850",
+  "acct": "19455364B",
+  "pid": "20060",
+  "vid": "19455364",
+  "cid": "23366654",
+  "cpt": "99309",
+  "dos": "11/04/2025",
+  "fee": 141.0,
+  "eob_paid": 80.25,
+  "checkid": 1052984,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:49:35Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165820",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01985850",
+  "acct": "19455367B",
+  "pid": "20060",
+  "vid": "19455367",
+  "cid": "23366660",
+  "cpt": "99309",
+  "dos": "04/06/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052984,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:49:41Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 56.68,
+  "wo": 50.32,
+  "wocode": "WOMCAD",
+  "paymentid": "10165821",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    50.32
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 50.32 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01985850",
+  "acct": "19455365B",
+  "pid": "20060",
+  "vid": "19455365",
+  "cid": "23366656",
+  "cpt": "99308",
+  "dos": "12/09/2025",
+  "fee": 107.0,
+  "eob_paid": 56.68,
+  "checkid": 1052984,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:49:47Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165822",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01985850",
+  "acct": "19455366B",
+  "pid": "20060",
+  "vid": "19455366",
+  "cid": "23366658",
+  "cpt": "99309",
+  "dos": "03/12/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052984,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:49:52Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 61.31,
+  "wo": 45.69,
+  "wocode": "WOMCAD",
+  "paymentid": "10165823",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    45.69
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 45.69 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01985850",
+  "acct": "19455368B",
+  "pid": "20060",
+  "vid": "19455368",
+  "cid": "23366662",
+  "cpt": "99308",
+  "dos": "05/01/2026",
+  "fee": 107.0,
+  "eob_paid": 61.31,
+  "checkid": 1052984,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:49:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 49.05,
+  "wo": 57.95,
+  "wocode": "WOMCAD",
+  "paymentid": "10165824",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    57.95
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 57.95 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01987051",
+  "acct": "19456211A",
+  "pid": "20060",
+  "vid": "19456211",
+  "cid": "23367835",
+  "cpt": "99308",
+  "dos": "09/24/2026",
+  "fee": 107.0,
+  "eob_paid": 49.05,
+  "checkid": 1052985,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T01:50:18Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 20.86,
+  "wo": 95.37,
+  "wocode": "WOINS",
+  "paymentid": "10165825",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    95.37
+   ],
+   [
+    "OA23",
+    81.77
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 95.37 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19417742D",
+  "pid": "17471968",
+  "vid": "19417742",
+  "cid": "23321495",
+  "cpt": "99349",
+  "dos": "09/18/2025",
+  "fee": 198.0,
+  "eob_paid": 20.86,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:50:52Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 28.6,
+  "wo": 65.31,
+  "wocode": "WOINS",
+  "paymentid": "10165826",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    65.31
+   ],
+   [
+    "OA23",
+    112.09
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 65.31 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19452648B",
+  "pid": "17471968",
+  "vid": "19452648",
+  "cid": "23363014",
+  "cpt": "99487",
+  "dos": "08/23/2026",
+  "fee": 206.0,
+  "eob_paid": 28.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:50:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 15.49,
+  "wo": 32.77,
+  "wocode": "WOINS",
+  "paymentid": "10165827",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    32.77
+   ],
+   [
+    "OA23",
+    60.74
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 32.77 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19452648B",
+  "pid": "17471968",
+  "vid": "19452648",
+  "cid": "23363015",
+  "cpt": "99489",
+  "dos": "08/23/2026",
+  "fee": 109.0,
+  "eob_paid": 15.49,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.92,
+  "wo": 47.25,
+  "wocode": "WOINS",
+  "paymentid": "10165828",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    47.25
+   ],
+   [
+    "OA23",
+    89.83
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 47.25 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19421697F",
+  "pid": "17471968",
+  "vid": "19421697",
+  "cid": "23327026",
+  "cpt": "99233",
+  "dos": "10/29/2025",
+  "fee": 160.0,
+  "eob_paid": 22.92,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:07Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.92,
+  "wo": 47.25,
+  "wocode": "WOINS",
+  "paymentid": "10165829",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    47.25
+   ],
+   [
+    "OA23",
+    89.83
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 47.25 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19421530F",
+  "pid": "17471968",
+  "vid": "19421530",
+  "cid": "23326873",
+  "cpt": "99233",
+  "dos": "10/28/2025",
+  "fee": 160.0,
+  "eob_paid": 22.92,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:13Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.92,
+  "wo": 47.25,
+  "wocode": "WOINS",
+  "paymentid": "10165830",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    47.25
+   ],
+   [
+    "OA23",
+    89.83
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 47.25 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19421355F",
+  "pid": "17471968",
+  "vid": "19421355",
+  "cid": "23326708",
+  "cpt": "99233",
+  "dos": "10/27/2025",
+  "fee": 160.0,
+  "eob_paid": 22.92,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:18Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.92,
+  "wo": 47.25,
+  "wocode": "WOINS",
+  "paymentid": "10165831",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    47.25
+   ],
+   [
+    "OA23",
+    89.83
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 47.25 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19421226F",
+  "pid": "17471968",
+  "vid": "19421226",
+  "cid": "23326575",
+  "cpt": "99233",
+  "dos": "10/26/2025",
+  "fee": 160.0,
+  "eob_paid": 22.92,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:24Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.92,
+  "wo": 47.25,
+  "wocode": "WOINS",
+  "paymentid": "10165832",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    47.25
+   ],
+   [
+    "OA23",
+    89.83
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 47.25 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19421141F",
+  "pid": "17471968",
+  "vid": "19421141",
+  "cid": "23326473",
+  "cpt": "99233",
+  "dos": "10/25/2025",
+  "fee": 160.0,
+  "eob_paid": 22.92,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:30Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 25.9,
+  "wo": 78.59,
+  "wocode": "WOINS",
+  "paymentid": "10165833",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    78.59
+   ],
+   [
+    "OA23",
+    101.51
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 78.59 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19417372D",
+  "pid": "17471968",
+  "vid": "19417372",
+  "cid": "23321091",
+  "cpt": "99487",
+  "dos": "09/21/2025",
+  "fee": 206.0,
+  "eob_paid": 25.9,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:35Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 13.85,
+  "wo": 40.86,
+  "wocode": "WOINS",
+  "paymentid": "10165834",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    40.86
+   ],
+   [
+    "OA23",
+    54.29
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 40.86 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19417372D",
+  "pid": "17471968",
+  "vid": "19417372",
+  "cid": "23321092",
+  "cpt": "99489",
+  "dos": "09/21/2025",
+  "fee": 109.0,
+  "eob_paid": 13.85,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:39Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 28.6,
+  "wo": 65.31,
+  "wocode": "WOINS",
+  "paymentid": "10165835",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    65.31
+   ],
+   [
+    "OA23",
+    112.09
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 65.31 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19442361D",
+  "pid": "17471968",
+  "vid": "19442361",
+  "cid": "23350417",
+  "cpt": "99487",
+  "dos": "05/17/2026",
+  "fee": 206.0,
+  "eob_paid": 28.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:45Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 52.74,
+  "wocode": "WOINS",
+  "paymentid": "10165836",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.74
+   ],
+   [
+    "OA23",
+    85.46
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.74 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19432344F",
+  "pid": "17471968",
+  "vid": "19432344",
+  "cid": "23338938",
+  "cpt": "99233",
+  "dos": "02/10/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:50Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 52.74,
+  "wocode": "WOINS",
+  "paymentid": "10165837",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.74
+   ],
+   [
+    "OA23",
+    85.46
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.74 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19432026F",
+  "pid": "17471968",
+  "vid": "19432026",
+  "cid": "23338644",
+  "cpt": "99233",
+  "dos": "02/09/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:51:56Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 28.6,
+  "wo": 65.31,
+  "wocode": "WOINS",
+  "paymentid": "10165838",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    65.31
+   ],
+   [
+    "OA23",
+    112.09
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 65.31 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19439504D",
+  "pid": "17471968",
+  "vid": "19439504",
+  "cid": "23346966",
+  "cpt": "99487",
+  "dos": "04/22/2026",
+  "fee": 206.0,
+  "eob_paid": 28.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:01Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 15.49,
+  "wo": 32.77,
+  "wocode": "WOINS",
+  "paymentid": "10165839",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    32.77
+   ],
+   [
+    "OA23",
+    60.74
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 32.77 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19439504D",
+  "pid": "17471968",
+  "vid": "19439504",
+  "cid": "23346967",
+  "cpt": "99489",
+  "dos": "04/22/2026",
+  "fee": 109.0,
+  "eob_paid": 15.49,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:05Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 52.74,
+  "wocode": "WOINS",
+  "paymentid": "10165840",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.74
+   ],
+   [
+    "OA23",
+    85.46
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.74 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19431879F",
+  "pid": "17471968",
+  "vid": "19431879",
+  "cid": "23338518",
+  "cpt": "99233",
+  "dos": "02/07/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:10Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 52.74,
+  "wocode": "WOINS",
+  "paymentid": "10165841",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.74
+   ],
+   [
+    "OA23",
+    85.46
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.74 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19431876F",
+  "pid": "17471968",
+  "vid": "19431876",
+  "cid": "23338515",
+  "cpt": "99233",
+  "dos": "02/08/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:16Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.6,
+  "wo": 86.79,
+  "wocode": "WOINS",
+  "paymentid": "10165842",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    86.79
+   ],
+   [
+    "OA23",
+    88.61
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 86.79 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19431376D",
+  "pid": "17471968",
+  "vid": "19431376",
+  "cid": "23337991",
+  "cpt": "99349",
+  "dos": "01/28/2026",
+  "fee": 198.0,
+  "eob_paid": 22.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:22Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.6,
+  "wo": 86.79,
+  "wocode": "WOINS",
+  "paymentid": "10165843",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    86.79
+   ],
+   [
+    "OA23",
+    88.61
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 86.79 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19437306D",
+  "pid": "17471968",
+  "vid": "19437306",
+  "cid": "23344395",
+  "cpt": "99349",
+  "dos": "04/02/2026",
+  "fee": 198.0,
+  "eob_paid": 22.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:27Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.6,
+  "wo": 86.79,
+  "wocode": "WOINS",
+  "paymentid": "10165844",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    86.79
+   ],
+   [
+    "OA23",
+    88.61
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 86.79 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19449788B",
+  "pid": "17471968",
+  "vid": "19449788",
+  "cid": "23359626",
+  "cpt": "99349",
+  "dos": "07/24/2026",
+  "fee": 198.0,
+  "eob_paid": 22.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:33Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 52.74,
+  "wocode": "WOINS",
+  "paymentid": "10165845",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.74
+   ],
+   [
+    "OA23",
+    85.46
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.74 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19432341F",
+  "pid": "17471968",
+  "vid": "19432341",
+  "cid": "23338935",
+  "cpt": "99233",
+  "dos": "02/11/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:38Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 28.6,
+  "wo": 65.31,
+  "wocode": "WOINS",
+  "paymentid": "10165846",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    65.31
+   ],
+   [
+    "OA23",
+    112.09
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 65.31 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19448721B",
+  "pid": "17471968",
+  "vid": "19448721",
+  "cid": "23358034",
+  "cpt": "99487",
+  "dos": "07/13/2026",
+  "fee": 206.0,
+  "eob_paid": 28.6,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:44Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 15.49,
+  "wo": 32.77,
+  "wocode": "WOINS",
+  "paymentid": "10165847",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    32.77
+   ],
+   [
+    "OA23",
+    60.74
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 32.77 WOINS; ",
+  "family": "BLUE",
+  "ref": "RD0038448083",
+  "acct": "19448721B",
+  "pid": "17471968",
+  "vid": "19448721",
+  "cid": "23358035",
+  "cpt": "99489",
+  "dos": "07/13/2026",
+  "fee": 109.0,
+  "eob_paid": 15.49,
+  "checkid": 1052986,
+  "carrier": "BCBS",
+  "plan": "on chart seq 1 (BCBS)",
+  "when": "2026-10-06T01:52:47Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: AET12 already paid $31.94 on this line (check 0014848179) and the balance is 0.00 - refund/recoup decision",
+  "family": "AET12",
+  "ref": "1372560968",
+  "acct": "19442588A",
+  "pid": "17476533",
+  "vid": "19442588",
+  "cid": "23350784",
+  "cpt": "99223",
+  "dos": "05/11/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052987,
+  "carrier": "AET12",
+  "plan": "on chart seq 2 (AET12)",
+  "when": "2026-10-06T01:53:26Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: AET12 already paid $14.38 on this line (check 0014848179) and the balance is 0.00 - refund/recoup decision",
+  "family": "AET12",
+  "ref": "1372560968",
+  "acct": "19442553A",
+  "pid": "17476533",
+  "vid": "19442553",
+  "cid": "23350749",
+  "cpt": "99232",
+  "dos": "05/12/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052987,
+  "carrier": "AET12",
+  "plan": "on chart seq 2 (AET12)",
+  "when": "2026-10-06T01:53:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 119.78,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165848",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    150.3
+   ],
+   [
+    "PR2",
+    39.92
+   ]
+  ],
+  "verified": true,
+  "note": "residual 190.22 left after the post (AMD: next payer / patient); ",
+  "family": "TRI00",
+  "ref": "0061421001",
+  "acct": "19450231B",
+  "pid": "17477265",
+  "vid": "19450231",
+  "cid": "23362085",
+  "cpt": "99223",
+  "dos": "07/29/2026",
+  "fee": 310.0,
+  "eob_paid": 119.78,
+  "checkid": 1052988,
+  "carrier": "TRI00",
+  "plan": "on chart seq 1 (TRI00)",
+  "when": "2026-10-06T01:53:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 53.93,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165849",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.09
+   ],
+   [
+    "PR2",
+    17.98
+   ]
+  ],
+  "verified": true,
+  "note": "residual 57.07 left after the post (AMD: next payer / patient); ",
+  "family": "TRI00",
+  "ref": "0061421001",
+  "acct": "19450231B",
+  "pid": "17477265",
+  "vid": "19450231",
+  "cid": "23360116",
+  "cpt": "99232",
+  "dos": "07/30/2026",
+  "fee": 111.0,
+  "eob_paid": 53.93,
+  "checkid": 1052988,
+  "carrier": "TRI00",
+  "plan": "on chart seq 1 (TRI00)",
+  "when": "2026-10-06T01:54:02Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165850",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707321846",
+  "acct": "19452166A",
+  "pid": "17476853",
+  "vid": "19452166",
+  "cid": "23362292",
+  "cpt": "99233",
+  "dos": "08/20/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052989,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:54:34Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 121.57,
+  "wo": 188.43,
+  "wocode": "WOMCAD",
+  "paymentid": "10165851",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    188.43
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 188.43 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707321846",
+  "acct": "19452146A",
+  "pid": "17476853",
+  "vid": "19452146",
+  "cid": "23362270",
+  "cpt": "99223",
+  "dos": "08/18/2026",
+  "fee": 310.0,
+  "eob_paid": 121.57,
+  "checkid": 1052989,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:54:40Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165852",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707321846",
+  "acct": "19452215A",
+  "pid": "17476853",
+  "vid": "19452215",
+  "cid": "23362333",
+  "cpt": "99233",
+  "dos": "08/21/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052989,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:54:46Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165853",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "7707321846",
+  "acct": "19452149A",
+  "pid": "17476853",
+  "vid": "19452149",
+  "cid": "23362275",
+  "cpt": "99233",
+  "dos": "08/19/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052989,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:54:52Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 54.81,
+  "wo": 56.19,
+  "wocode": "WOMCAD",
+  "paymentid": "10165854",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    56.19
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 56.19 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "1372052050",
+  "acct": "19445316A",
+  "pid": "17476853",
+  "vid": "19445316",
+  "cid": "23354124",
+  "cpt": "99232",
+  "dos": "06/17/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052990,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:55:13Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 121.57,
+  "wo": 188.43,
+  "wocode": "WOMCAD",
+  "paymentid": "10165855",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    188.43
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 188.43 WOMCAD; ",
+  "family": "SIM01",
+  "ref": "1372052050",
+  "acct": "19445449A",
+  "pid": "17476853",
+  "vid": "19445449",
+  "cid": "23354316",
+  "cpt": "99223",
+  "dos": "06/19/2026",
+  "fee": 310.0,
+  "eob_paid": 121.57,
+  "checkid": 1052990,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T01:55:18Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 43.01), ('WOINS', 19.92)], live payments [('FLO02', 78.07), ('MCAD', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01964930",
+  "acct": "19450674A",
+  "pid": "45210",
+  "vid": "19450674",
+  "cid": "23360625",
+  "cpt": "99309",
+  "dos": "07/20/2026",
+  "fee": 141.0,
+  "eob_paid": 10.21,
+  "checkid": 1052991,
+  "carrier": "FLO99",
+  "plan": "ADDED FLO99 as ins9520748 seq 3 (member [member id], no group)",
+  "when": "2026-10-06T01:55:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165856",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19453673B",
+  "pid": "22858",
+  "vid": "19453673",
+  "cid": "23364422",
+  "cpt": "99309",
+  "dos": "07/07/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052992,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T01:56:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165857",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19453686B",
+  "pid": "22858",
+  "vid": "19453686",
+  "cid": "23364448",
+  "cpt": "99309",
+  "dos": "08/07/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052992,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T01:56:34Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19438972L",
+  "pid": "22858",
+  "vid": "19438972",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455285L (POSTED 10/6)",
+  "when": "2026-10-06T01:56:51Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19444040J",
+  "pid": "22858",
+  "vid": "19444040",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455287J (POSTED 10/6)",
+  "when": "2026-10-06T01:57:09Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19419003L",
+  "pid": "22858",
+  "vid": "19419003",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455278L (POSTED 10/6)",
+  "when": "2026-10-06T01:57:26Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19434571D",
+  "pid": "22858",
+  "vid": "19434571",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455284D (POSTED 10/6)",
+  "when": "2026-10-06T01:57:43Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19422486L",
+  "pid": "22858",
+  "vid": "19422486",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455279L (POSTED 10/6)",
+  "when": "2026-10-06T01:58:00Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19441620L",
+  "pid": "22858",
+  "vid": "19441620",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455286L (POSTED 10/6)",
+  "when": "2026-10-06T01:58:18Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19432010L",
+  "pid": "22858",
+  "vid": "19432010",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455282L (POSTED 10/6)",
+  "when": "2026-10-06T01:58:35Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19434238L",
+  "pid": "22858",
+  "vid": "19434238",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455283L (POSTED 10/6)",
+  "when": "2026-10-06T01:58:52Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19425613L",
+  "pid": "22858",
+  "vid": "19425613",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455280L (POSTED 10/6)",
+  "when": "2026-10-06T01:59:10Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19428473L",
+  "pid": "22858",
+  "vid": "19428473",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455281L (POSTED 10/6)",
+  "when": "2026-10-06T01:59:27Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165858",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19450859A",
+  "pid": "17474741",
+  "vid": "19450859",
+  "cid": "23360862",
+  "cpt": "99233",
+  "dos": "08/07/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T01:59:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 33.02,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165859",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    111.9
+   ],
+   [
+    "OA23",
+    129.44
+   ],
+   [
+    "OA253",
+    2.64
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451786A",
+  "pid": "17474741",
+  "vid": "19451786",
+  "cid": "23361868",
+  "cpt": "99350",
+  "dos": "08/16/2026",
+  "fee": 277.0,
+  "eob_paid": 33.02,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:03Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165860",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19450829A",
+  "pid": "17474741",
+  "vid": "19450829",
+  "cid": "23360831",
+  "cpt": "99233",
+  "dos": "08/08/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:09Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 31.94,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165861",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    150.3
+   ],
+   [
+    "OA23",
+    125.2
+   ],
+   [
+    "OA253",
+    2.56
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451455A",
+  "pid": "17477405",
+  "vid": "19451455",
+  "cid": "23361503",
+  "cpt": "99223",
+  "dos": "08/11/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:14Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165862",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451464A",
+  "pid": "17477405",
+  "vid": "19451464",
+  "cid": "23361512",
+  "cpt": "99232",
+  "dos": "08/13/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:20Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165863",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451591A",
+  "pid": "17477405",
+  "vid": "19451591",
+  "cid": "23361646",
+  "cpt": "99232",
+  "dos": "08/14/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:25Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165864",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451906A",
+  "pid": "17477405",
+  "vid": "19451906",
+  "cid": "23361996",
+  "cpt": "99232",
+  "dos": "08/17/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:32Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165865",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451916A",
+  "pid": "17477405",
+  "vid": "19451916",
+  "cid": "23362006",
+  "cpt": "99232",
+  "dos": "08/16/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:38Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 14.38,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165866",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.1
+   ],
+   [
+    "OA23",
+    56.37
+   ],
+   [
+    "OA253",
+    1.15
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451927A",
+  "pid": "17477405",
+  "vid": "19451927",
+  "cid": "23362017",
+  "cpt": "99232",
+  "dos": "08/15/2026",
+  "fee": 111.0,
+  "eob_paid": 14.38,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:44Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 16.93,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165867",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    56.36
+   ],
+   [
+    "OA23",
+    66.36
+   ],
+   [
+    "OA253",
+    1.35
+   ]
+  ],
+  "verified": true,
+  "note": "void premature write-off WOINS#22480160 $16.93 first; ",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19451939A",
+  "pid": "45520",
+  "vid": "19451939",
+  "cid": "23362029",
+  "cpt": "99309",
+  "dos": "08/12/2026",
+  "fee": 141.0,
+  "eob_paid": 16.93,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 4 (UNI01)",
+  "when": "2026-10-06T02:00:50Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 31.94,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165868",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    278.06
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19452060A",
+  "pid": "17474741",
+  "vid": "19452060",
+  "cid": "23362174",
+  "cpt": "99223",
+  "dos": "08/18/2026",
+  "fee": 310.0,
+  "eob_paid": 31.94,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:55Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 13.35,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165869",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    119.65
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19452060A",
+  "pid": "17474741",
+  "vid": "19452060",
+  "cid": "23362175",
+  "cpt": "99497",
+  "dos": "08/18/2026",
+  "fee": 133.0,
+  "eob_paid": 13.35,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:00:59Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165870",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19452153A",
+  "pid": "17474741",
+  "vid": "19452153",
+  "cid": "23362279",
+  "cpt": "99233",
+  "dos": "08/19/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:01:04Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165871",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19452160A",
+  "pid": "17474741",
+  "vid": "19452160",
+  "cid": "23362286",
+  "cpt": "99233",
+  "dos": "08/20/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:01:10Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 21.8,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165872",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    51.0
+   ],
+   [
+    "OA23",
+    85.46
+   ],
+   [
+    "OA253",
+    1.74
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "UA",
+  "ref": "0010909199",
+  "acct": "19452216A",
+  "pid": "17474741",
+  "vid": "19452216",
+  "cid": "23362334",
+  "cpt": "99233",
+  "dos": "08/21/2026",
+  "fee": 160.0,
+  "eob_paid": 21.8,
+  "checkid": 1052993,
+  "carrier": "UNI01",
+  "plan": "on chart seq 2 (UNI01)",
+  "when": "2026-10-06T02:01:15Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165873",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423453J",
+  "pid": "25545",
+  "vid": "19423453",
+  "cid": "23328996",
+  "cpt": "99233",
+  "dos": "11/14/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:01:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165874",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429062J",
+  "pid": "20514",
+  "vid": "19429062",
+  "cid": "23335579",
+  "cpt": "99233",
+  "dos": "01/13/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:03Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 121.57,
+  "wo": 188.43,
+  "wocode": "WOMCAD",
+  "paymentid": "10165875",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    188.43
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 188.43 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19428685J",
+  "pid": "20514",
+  "vid": "19428685",
+  "cid": "23335194",
+  "cpt": "99223",
+  "dos": "01/08/2026",
+  "fee": 310.0,
+  "eob_paid": 121.57,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:09Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 150.15,
+  "wo": 105.85,
+  "wocode": "WOMCAD",
+  "paymentid": "10165876",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    105.85
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 105.85 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19432545J",
+  "pid": "20514",
+  "vid": "19432545",
+  "cid": "23339107",
+  "cpt": "99306",
+  "dos": "01/23/2026",
+  "fee": 256.0,
+  "eob_paid": 150.15,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:14Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19449933B",
+  "pid": "24039",
+  "vid": "19449933",
+  "cid": "23359780",
+  "cpt": "99309",
+  "dos": "07/23/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:16Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 20.41,
+  "wo": 12.69,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165877",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    105.85
+   ],
+   [
+    "OA23",
+    129.74
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.69 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19444797B",
+  "pid": "24039",
+  "vid": "19444797",
+  "cid": "23353564",
+  "cpt": "99306",
+  "dos": "06/08/2026",
+  "fee": 256.0,
+  "eob_paid": 20.41,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:21Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165878",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19451313B",
+  "pid": "24039",
+  "vid": "19451313",
+  "cid": "23361356",
+  "cpt": "99309",
+  "dos": "08/10/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:26Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165879",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19445479B",
+  "pid": "24039",
+  "vid": "19445479",
+  "cid": "23354354",
+  "cpt": "99309",
+  "dos": "06/18/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:31Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 20.41,
+  "wo": 12.69,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165880",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    105.85
+   ],
+   [
+    "OA23",
+    129.74
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.69 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19443314D",
+  "pid": "24039",
+  "vid": "19443314",
+  "cid": "23351658",
+  "cpt": "99306",
+  "dos": "05/21/2026",
+  "fee": 256.0,
+  "eob_paid": 20.41,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:37Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19448016B",
+  "pid": "24039",
+  "vid": "19448016",
+  "cid": "23357198",
+  "cpt": "99308",
+  "dos": "07/12/2026",
+  "fee": 107.0,
+  "eob_paid": 3.61,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:39Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19446574B",
+  "pid": "24039",
+  "vid": "19446574",
+  "cid": "23355691",
+  "cpt": "99309",
+  "dos": "06/25/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:41Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165881",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19451170B",
+  "pid": "24039",
+  "vid": "19451170",
+  "cid": "23361170",
+  "cpt": "99309",
+  "dos": "08/03/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:46Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19447178B",
+  "pid": "24039",
+  "vid": "19447178",
+  "cid": "23356302",
+  "cpt": "99309",
+  "dos": "07/02/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:49Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19447747B",
+  "pid": "24039",
+  "vid": "19447747",
+  "cid": "23356975",
+  "cpt": "99309",
+  "dos": "07/09/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:50Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19450276B",
+  "pid": "24039",
+  "vid": "19450276",
+  "cid": "23360161",
+  "cpt": "99309",
+  "dos": "07/27/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:52Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165882",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19443442D",
+  "pid": "24039",
+  "vid": "19443442",
+  "cid": "23351824",
+  "cpt": "99309",
+  "dos": "05/26/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:02:56Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165883",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19444781B",
+  "pid": "24039",
+  "vid": "19444781",
+  "cid": "23353546",
+  "cpt": "99309",
+  "dos": "06/11/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:02Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19447365B",
+  "pid": "24039",
+  "vid": "19447365",
+  "cid": "23356548",
+  "cpt": "99309",
+  "dos": "07/06/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:04Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 49.97), ('WOCAID2ND', 11.59)], live payments [('FLO02', 45.44), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19450290B",
+  "pid": "24039",
+  "vid": "19450290",
+  "cid": "23360176",
+  "cpt": "99308",
+  "dos": "07/30/2026",
+  "fee": 107.0,
+  "eob_paid": 3.61,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:06Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165884",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19445843B",
+  "pid": "24039",
+  "vid": "19445843",
+  "cid": "23354712",
+  "cpt": "99309",
+  "dos": "06/22/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:10Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOINS', 57.71), ('WOCAID2ND', 16.93)], live payments [('FLO02', 66.36), ('SUN01', 0.0), ('FLO99', 0.0)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19446954B",
+  "pid": "24039",
+  "vid": "19446954",
+  "cid": "23356080",
+  "cpt": "99309",
+  "dos": "06/30/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:12Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 4.26,
+  "wo": 12.67,
+  "wocode": "WOCAID2ND",
+  "paymentid": "10165885",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ],
+   [
+    "OA23",
+    66.36
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 12.67 WOCAID2ND; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19445144B",
+  "pid": "24039",
+  "vid": "19445144",
+  "cid": "23353950",
+  "cpt": "99309",
+  "dos": "06/15/2026",
+  "fee": 141.0,
+  "eob_paid": 4.26,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:17Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165886",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19453685B",
+  "pid": "20060",
+  "vid": "19453685",
+  "cid": "23364446",
+  "cpt": "99309",
+  "dos": "08/06/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:03:23Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165887",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429063J",
+  "pid": "20514",
+  "vid": "19429063",
+  "cid": "23335580",
+  "cpt": "99233",
+  "dos": "01/12/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165888",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19453678B",
+  "pid": "20514",
+  "vid": "19453678",
+  "cid": "23364432",
+  "cpt": "99309",
+  "dos": "07/03/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:34Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165889",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19428684J",
+  "pid": "20514",
+  "vid": "19428684",
+  "cid": "23335193",
+  "cpt": "99233",
+  "dos": "01/09/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:39Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165890",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423066J",
+  "pid": "25545",
+  "vid": "19423066",
+  "cid": "23328398",
+  "cpt": "99233",
+  "dos": "11/11/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:45Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 132.0,
+  "wo": 178.0,
+  "wocode": "WOMCAD",
+  "paymentid": "10165891",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    178.0
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 178.00 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19422922J",
+  "pid": "25545",
+  "vid": "19422922",
+  "cid": "23328271",
+  "cpt": "99223",
+  "dos": "11/09/2025",
+  "fee": 310.0,
+  "eob_paid": 132.0,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:50Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165892",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423309J",
+  "pid": "25545",
+  "vid": "19423309",
+  "cid": "23328781",
+  "cpt": "99233",
+  "dos": "11/13/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:03:55Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165893",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19422893J",
+  "pid": "25545",
+  "vid": "19422893",
+  "cid": "23328243",
+  "cpt": "99233",
+  "dos": "11/10/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:01Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 138.39,
+  "wo": 117.61,
+  "wocode": "WOMCAD",
+  "paymentid": "10165894",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    117.61
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 117.61 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19425646J",
+  "pid": "25545",
+  "vid": "19425646",
+  "cid": "23331675",
+  "cpt": "99306",
+  "dos": "12/07/2025",
+  "fee": 256.0,
+  "eob_paid": 138.39,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:06Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165895",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423210J",
+  "pid": "25545",
+  "vid": "19423210",
+  "cid": "23328653",
+  "cpt": "99233",
+  "dos": "11/12/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:12Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 61.31,
+  "wo": 45.69,
+  "wocode": "WOMCAD",
+  "paymentid": "10165896",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    45.69
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 45.69 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19453677B",
+  "pid": "20514",
+  "vid": "19453677",
+  "cid": "23364430",
+  "cpt": "99308",
+  "dos": "06/09/2026",
+  "fee": 107.0,
+  "eob_paid": 61.31,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:17Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165897",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423881J",
+  "pid": "20514",
+  "vid": "19423881",
+  "cid": "23329614",
+  "cpt": "99233",
+  "dos": "11/17/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:23Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165898",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429264J",
+  "pid": "20514",
+  "vid": "19429264",
+  "cid": "23335819",
+  "cpt": "99233",
+  "dos": "01/15/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165899",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429542J",
+  "pid": "20514",
+  "vid": "19429542",
+  "cid": "23336068",
+  "cpt": "99233",
+  "dos": "01/19/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:34Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165900",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429065J",
+  "pid": "20514",
+  "vid": "19429065",
+  "cid": "23335582",
+  "cpt": "99233",
+  "dos": "01/10/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:39Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 138.39,
+  "wo": 117.61,
+  "wocode": "WOMCAD",
+  "paymentid": "10165901",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    117.61
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 117.61 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19426736J",
+  "pid": "20514",
+  "vid": "19426736",
+  "cid": "23332867",
+  "cpt": "99306",
+  "dos": "12/01/2025",
+  "fee": 256.0,
+  "eob_paid": 138.39,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:44Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165902",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429556J",
+  "pid": "20514",
+  "vid": "19429556",
+  "cid": "23336082",
+  "cpt": "99233",
+  "dos": "01/17/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:50Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165903",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19424223J",
+  "pid": "20514",
+  "vid": "19424223",
+  "cid": "23329991",
+  "cpt": "99233",
+  "dos": "11/19/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:04:56Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165904",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429064J",
+  "pid": "20514",
+  "vid": "19429064",
+  "cid": "23335581",
+  "cpt": "99233",
+  "dos": "01/11/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:01Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165905",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429285J",
+  "pid": "20514",
+  "vid": "19429285",
+  "cid": "23335840",
+  "cpt": "99233",
+  "dos": "01/14/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:06Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165906",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19424036J",
+  "pid": "20514",
+  "vid": "19424036",
+  "cid": "23329801",
+  "cpt": "99233",
+  "dos": "11/18/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:11Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165907",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429391J",
+  "pid": "20514",
+  "vid": "19429391",
+  "cid": "23335885",
+  "cpt": "99233",
+  "dos": "01/16/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:18Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 83.13,
+  "wo": 76.87,
+  "wocode": "WOMCAD",
+  "paymentid": "10165908",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.87
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.87 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19429541J",
+  "pid": "20514",
+  "vid": "19429541",
+  "cid": "23336067",
+  "cpt": "99233",
+  "dos": "01/18/2026",
+  "fee": 160.0,
+  "eob_paid": 83.13,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:23Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 89.87,
+  "wo": 70.13,
+  "wocode": "WOMCAD",
+  "paymentid": "10165909",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.13
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.13 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423739J",
+  "pid": "20514",
+  "vid": "19423739",
+  "cid": "23329460",
+  "cpt": "99233",
+  "dos": "11/16/2025",
+  "fee": 160.0,
+  "eob_paid": 89.87,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:29Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 132.0,
+  "wo": 178.0,
+  "wocode": "WOMCAD",
+  "paymentid": "10165910",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    178.0
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 178.00 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423728J",
+  "pid": "20514",
+  "vid": "19423728",
+  "cid": "23329448",
+  "cpt": "99223",
+  "dos": "11/15/2025",
+  "fee": 310.0,
+  "eob_paid": 132.0,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:05:35Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 88.28,
+  "wo": 52.72,
+  "wocode": "WOMCAD",
+  "paymentid": "10165911",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    52.72
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 52.72 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19453674B",
+  "pid": "20060",
+  "vid": "19453674",
+  "cid": "23364424",
+  "cpt": "99309",
+  "dos": "07/02/2026",
+  "fee": 141.0,
+  "eob_paid": 88.28,
+  "checkid": 1052994,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:05:40Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19422880K",
+  "pid": "20514",
+  "vid": "19422880",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455343K (POSTED 10/6)",
+  "when": "2026-10-06T02:05:58Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19435313K",
+  "pid": "20514",
+  "vid": "19435313",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455346K (POSTED 10/6)",
+  "when": "2026-10-06T02:06:16Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19419548L",
+  "pid": "20060",
+  "vid": "19419548",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455363L (POSTED 10/6)",
+  "when": "2026-10-06T02:06:33Z"
+ },
+ {
+  "status": "HOLD",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19426952L",
+  "pid": "20060",
+  "vid": "19426952",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455365L (HOLD)",
+  "when": "2026-10-06T02:06:50Z"
+ },
+ {
+  "status": "HOLD",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19440853L",
+  "pid": "20060",
+  "vid": "19440853",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455368L (HOLD)",
+  "when": "2026-10-06T02:07:07Z"
+ },
+ {
+  "status": "HOLD",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19423427L",
+  "pid": "20060",
+  "vid": "19423427",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455364L (HOLD)",
+  "when": "2026-10-06T02:07:25Z"
+ },
+ {
+  "status": "HOLD",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19435623L",
+  "pid": "20060",
+  "vid": "19435623",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455366L (HOLD)",
+  "when": "2026-10-06T02:07:42Z"
+ },
+ {
+  "status": "HOLD",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19438037L",
+  "pid": "20060",
+  "vid": "19438037",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455367L (HOLD)",
+  "when": "2026-10-06T02:07:59Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19434569K",
+  "pid": "25545",
+  "vid": "19434569",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455329K (POSTED 10/6)",
+  "when": "2026-10-06T02:08:16Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19422347K",
+  "pid": "25545",
+  "vid": "19422347",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455328K (POSTED 10/6)",
+  "when": "2026-10-06T02:08:34Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19437747K",
+  "pid": "25545",
+  "vid": "19437747",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455330K (POSTED 10/6)",
+  "when": "2026-10-06T02:08:51Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19418994K",
+  "pid": "25545",
+  "vid": "19418994",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455327K (POSTED 10/6)",
+  "when": "2026-10-06T02:09:08Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19419271K",
+  "pid": "20514",
+  "vid": "19419271",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455342K (POSTED 10/6)",
+  "when": "2026-10-06T02:09:25Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19438967K",
+  "pid": "20514",
+  "vid": "19438967",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455347K (POSTED 10/6)",
+  "when": "2026-10-06T02:09:43Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19432973K",
+  "pid": "20514",
+  "vid": "19432973",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455345K (POSTED 10/6)",
+  "when": "2026-10-06T02:10:01Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19442611K",
+  "pid": "20514",
+  "vid": "19442611",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455348K (POSTED 10/6)",
+  "when": "2026-10-06T02:10:18Z"
+ },
+ {
+  "status": "SUPERSEDED",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19428330K",
+  "pid": "20514",
+  "vid": "19428330",
+  "note": "no live charges on the visit -> re-filed onto live visit 19455344K (POSTED 10/6)",
+  "when": "2026-10-06T02:10:35Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: AET12 already paid $22.60 on this line (check 911652004) and the balance is 0.00 - refund/recoup decision",
+  "family": "AET12",
+  "ref": "1373733187",
+  "acct": "19443445A",
+  "pid": "17471138",
+  "vid": "19443445",
+  "cid": "23351827",
+  "cpt": "99349",
+  "dos": "05/26/2026",
+  "fee": 198.0,
+  "eob_paid": 22.6,
+  "checkid": 1052995,
+  "carrier": "AET12",
+  "plan": "on chart seq 2 (AET12)",
+  "when": "2026-10-06T02:11:03Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 919702469) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372590697",
+  "acct": "19446043A",
+  "pid": "17476853",
+  "vid": "19446043",
+  "cid": "23354940",
+  "cpt": "99232",
+  "dos": "06/24/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052996,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:11:42Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 919702469) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372590697",
+  "acct": "19446064A",
+  "pid": "17476853",
+  "vid": "19446064",
+  "cid": "23354961",
+  "cpt": "99232",
+  "dos": "06/25/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052996,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:11:44Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706900413) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372589265",
+  "acct": "19446043B",
+  "pid": "17476853",
+  "vid": "19446043",
+  "cid": "23355748",
+  "cpt": "99232",
+  "dos": "06/23/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052997,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:12:11Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706900413) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1372589265",
+  "acct": "19446590A",
+  "pid": "17476853",
+  "vid": "19446590",
+  "cid": "23355709",
+  "cpt": "99232",
+  "dos": "06/28/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1052997,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:12:13Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 71.91,
+  "wo": 39.09,
+  "wocode": "WOINS",
+  "paymentid": "10165912",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    39.09
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 39.09 WOINS; ",
+  "family": "CHAMPVA",
+  "ref": "7416W119493",
+  "acct": "19444028E",
+  "pid": "17476719",
+  "vid": "19444028",
+  "cid": "23352619",
+  "cpt": "99232",
+  "dos": "06/02/2026",
+  "fee": 111.0,
+  "eob_paid": 71.91,
+  "checkid": 1052998,
+  "carrier": "CHA03",
+  "plan": "on chart seq 1 (CHA03)",
+  "when": "2026-10-06T02:12:43Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 159.7,
+  "wo": 150.3,
+  "wocode": "WOINS",
+  "paymentid": "10165913",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    150.3
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 150.30 WOINS; ",
+  "family": "CHAMPVA",
+  "ref": "7416W119493",
+  "acct": "19443950E",
+  "pid": "17476719",
+  "vid": "19443950",
+  "cid": "23352503",
+  "cpt": "99223",
+  "dos": "06/01/2026",
+  "fee": 310.0,
+  "eob_paid": 159.7,
+  "checkid": 1052998,
+  "carrier": "CHA03",
+  "plan": "on chart seq 1 (CHA03)",
+  "when": "2026-10-06T02:12:49Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 22.6,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165914",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    65.04
+   ],
+   [
+    "OA23",
+    110.36
+   ]
+  ],
+  "verified": true,
+  "note": "",
+  "family": "CHAMPVA",
+  "ref": "7416W120036",
+  "acct": "19452228B",
+  "pid": "17476458",
+  "vid": "19452228",
+  "cid": "23362349",
+  "cpt": "99349",
+  "dos": "08/17/2026",
+  "fee": 198.0,
+  "eob_paid": 22.6,
+  "checkid": 1052999,
+  "carrier": "CHA03",
+  "plan": "on chart seq 2 (CHA03)",
+  "when": "2026-10-06T02:13:30Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 168.76,
+  "wo": 141.24,
+  "wocode": "WOINS",
+  "paymentid": "10165915",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    141.24
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 141.24 WOINS; ",
+  "family": "CHAMPVA",
+  "ref": "7416W119492",
+  "acct": "19427688E",
+  "pid": "17475051",
+  "vid": "19427688",
+  "cid": "23334270",
+  "cpt": "99223",
+  "dos": "12/31/2025",
+  "fee": 310.0,
+  "eob_paid": 168.76,
+  "checkid": 1053000,
+  "carrier": "CHA03",
+  "plan": "on chart seq 1 (CHA03)",
+  "when": "2026-10-06T02:14:01Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19447125A",
+  "pid": "17476853",
+  "vid": "19447125",
+  "cid": "23356246",
+  "cpt": "99232",
+  "dos": "07/04/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:29Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19446925A",
+  "pid": "17476853",
+  "vid": "19446925",
+  "cid": "23356050",
+  "cpt": "99232",
+  "dos": "06/30/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:30Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19446931A",
+  "pid": "17476853",
+  "vid": "19446931",
+  "cid": "23356056",
+  "cpt": "99232",
+  "dos": "07/02/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:32Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19446926A",
+  "pid": "17476853",
+  "vid": "19446926",
+  "cid": "23356051",
+  "cpt": "99232",
+  "dos": "06/29/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:33Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19447140A",
+  "pid": "17476853",
+  "vid": "19447140",
+  "cid": "23356259",
+  "cpt": "99232",
+  "dos": "07/03/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:35Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19447188A",
+  "pid": "17476853",
+  "vid": "19447188",
+  "cid": "23356312",
+  "cpt": "99232",
+  "dos": "07/06/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:36Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19446947A",
+  "pid": "17476853",
+  "vid": "19446947",
+  "cid": "23356073",
+  "cpt": "99232",
+  "dos": "07/01/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:38Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "OVERPAYMENT: SIM01 already paid $54.81 on this line (check 7706997720) and the balance is 0.00 - refund/recoup decision",
+  "family": "SIM01",
+  "ref": "1373614071",
+  "acct": "19447149A",
+  "pid": "17476853",
+  "vid": "19447149",
+  "cid": "23356270",
+  "cpt": "99232",
+  "dos": "07/05/2026",
+  "fee": 111.0,
+  "eob_paid": 54.81,
+  "checkid": 1053001,
+  "carrier": "SIM01",
+  "plan": "on chart seq 1 (SIM01)",
+  "when": "2026-10-06T02:14:39Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 7.19,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165916",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    -64.71
+   ],
+   [
+    "CO96",
+    39.1
+   ],
+   [
+    "PR2",
+    7.19
+   ],
+   [
+    "OA23",
+    122.23
+   ]
+  ],
+  "verified": true,
+  "note": "residual 7.19 left after the post (AMD: next payer / patient); ",
+  "family": "BLUE",
+  "ref": "755629",
+  "acct": "19446348A",
+  "pid": "17476931",
+  "vid": "19446348",
+  "cid": "23355440",
+  "cpt": "99232",
+  "dos": "06/27/2026",
+  "fee": 111.0,
+  "eob_paid": 7.19,
+  "checkid": 1053002,
+  "carrier": "BCBS",
+  "plan": "on chart seq 2 (BCBS)",
+  "when": "2026-10-06T02:15:09Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 15.97,
+  "wo": 0.0,
+  "wocode": null,
+  "paymentid": "10165917",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    -143.73
+   ],
+   [
+    "CO96",
+    150.3
+   ],
+   [
+    "PR2",
+    15.97
+   ],
+   [
+    "OA23",
+    271.49
+   ]
+  ],
+  "verified": true,
+  "note": "residual 15.97 left after the post (AMD: next payer / patient); ",
+  "family": "BLUE",
+  "ref": "755629",
+  "acct": "19446342A",
+  "pid": "17476931",
+  "vid": "19446342",
+  "cid": "23355433",
+  "cpt": "99223",
+  "dos": "06/26/2026",
+  "fee": 310.0,
+  "eob_paid": 15.97,
+  "checkid": 1053002,
+  "carrier": "BCBS",
+  "plan": "on chart seq 2 (BCBS)",
+  "when": "2026-10-06T02:15:15Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 49.05,
+  "wo": 57.95,
+  "wocode": "WOMCAD",
+  "paymentid": "10165918",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    57.95
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 57.95 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19455349B",
+  "pid": "20514",
+  "vid": "19455349",
+  "cid": "23366624",
+  "cpt": "99308",
+  "dos": "09/01/2026",
+  "fee": 107.0,
+  "eob_paid": 49.05,
+  "checkid": 1053003,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:20:09Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165919",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19455361B",
+  "pid": "17477134",
+  "vid": "19455361",
+  "cid": "23366648",
+  "cpt": "99309",
+  "dos": "09/01/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053003,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:20:14Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165920",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19455289N",
+  "pid": "25553",
+  "vid": "19455289",
+  "cid": "23366496",
+  "cpt": "99308",
+  "dos": "11/03/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053003,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:20:20Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165921",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01972517",
+  "acct": "19455288F",
+  "pid": "25553",
+  "vid": "19455288",
+  "cid": "23366494",
+  "cpt": "99308",
+  "dos": "10/02/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053003,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:20:25Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165922",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455285L",
+  "pid": "22858",
+  "vid": "19455285",
+  "cid": "23366488",
+  "cpt": "99309",
+  "dos": "04/09/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:20:58Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165923",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455287J",
+  "pid": "22858",
+  "vid": "19455287",
+  "cid": "23366492",
+  "cpt": "99309",
+  "dos": "06/02/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:03Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165924",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455278L",
+  "pid": "22858",
+  "vid": "19455278",
+  "cid": "23366474",
+  "cpt": "99308",
+  "dos": "10/02/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:09Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 49.05,
+  "wo": 57.95,
+  "wocode": "WOMCAD",
+  "paymentid": "10165925",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    57.95
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 57.95 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455284D",
+  "pid": "22858",
+  "vid": "19455284",
+  "cid": "23366486",
+  "cpt": "99308",
+  "dos": "03/02/2026",
+  "fee": 107.0,
+  "eob_paid": 49.05,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:14Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 64.2,
+  "wo": 76.8,
+  "wocode": "WOMCAD",
+  "paymentid": "10165926",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.8
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.80 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455279L",
+  "pid": "22858",
+  "vid": "19455279",
+  "cid": "23366476",
+  "cpt": "99309",
+  "dos": "11/03/2025",
+  "fee": 141.0,
+  "eob_paid": 64.2,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:19Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165927",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455286L",
+  "pid": "22858",
+  "vid": "19455286",
+  "cid": "23366490",
+  "cpt": "99309",
+  "dos": "05/05/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:24Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165928",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455282L",
+  "pid": "22858",
+  "vid": "19455282",
+  "cid": "23366482",
+  "cpt": "99309",
+  "dos": "02/02/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:30Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165929",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455283L",
+  "pid": "22858",
+  "vid": "19455283",
+  "cid": "23366484",
+  "cpt": "99309",
+  "dos": "02/27/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:35Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 64.2,
+  "wo": 76.8,
+  "wocode": "WOMCAD",
+  "paymentid": "10165930",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.8
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.80 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455280L",
+  "pid": "22858",
+  "vid": "19455280",
+  "cid": "23366478",
+  "cpt": "99309",
+  "dos": "12/01/2025",
+  "fee": 141.0,
+  "eob_paid": 64.2,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:40Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165931",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01974130",
+  "acct": "19455281L",
+  "pid": "22858",
+  "vid": "19455281",
+  "cid": "23366480",
+  "cpt": "99309",
+  "dos": "01/02/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053004,
+  "carrier": "FLO99",
+  "plan": "on chart seq 4 (FLO99)",
+  "when": "2026-10-06T02:21:45Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165932",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455343K",
+  "pid": "20514",
+  "vid": "19455343",
+  "cid": "23366612",
+  "cpt": "99308",
+  "dos": "11/06/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:16Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165933",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455345K",
+  "pid": "20514",
+  "vid": "19455345",
+  "cid": "23366616",
+  "cpt": "99309",
+  "dos": "02/11/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:22Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165934",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455347K",
+  "pid": "20514",
+  "vid": "19455347",
+  "cid": "23366620",
+  "cpt": "99309",
+  "dos": "04/09/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:28Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165935",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455342K",
+  "pid": "20514",
+  "vid": "19455342",
+  "cid": "23366610",
+  "cpt": "99308",
+  "dos": "10/02/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:33Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 64.2,
+  "wo": 76.8,
+  "wocode": "WOMCAD",
+  "paymentid": "10165936",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.8
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.80 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455327K",
+  "pid": "25545",
+  "vid": "19455327",
+  "cid": "23366576",
+  "cpt": "99309",
+  "dos": "10/02/2025",
+  "fee": 141.0,
+  "eob_paid": 64.2,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:39Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165937",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455330K",
+  "pid": "25545",
+  "vid": "19455330",
+  "cid": "23366582",
+  "cpt": "99309",
+  "dos": "04/03/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:44Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 64.2,
+  "wo": 76.8,
+  "wocode": "WOMCAD",
+  "paymentid": "10165938",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    76.8
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 76.80 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455328K",
+  "pid": "25545",
+  "vid": "19455328",
+  "cid": "23366578",
+  "cpt": "99309",
+  "dos": "11/03/2025",
+  "fee": 141.0,
+  "eob_paid": 64.2,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:50Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165939",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455348K",
+  "pid": "20514",
+  "vid": "19455348",
+  "cid": "23366622",
+  "cpt": "99309",
+  "dos": "05/11/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:22:55Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165940",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455329K",
+  "pid": "25545",
+  "vid": "19455329",
+  "cid": "23366580",
+  "cpt": "99309",
+  "dos": "03/02/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:23:01Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 52.72)], live payments [('FLO99', 88.28)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455366L",
+  "pid": "20060",
+  "vid": "19455366",
+  "cid": "23366658",
+  "cpt": "99309",
+  "dos": "03/12/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:03Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 60.75)], live payments [('FLO99', 80.25)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455364L",
+  "pid": "20060",
+  "vid": "19455364",
+  "cid": "23366654",
+  "cpt": "99309",
+  "dos": "11/04/2025",
+  "fee": 141.0,
+  "eob_paid": 64.2,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:05Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 45.69)], live payments [('FLO99', 61.31)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455368L",
+  "pid": "20060",
+  "vid": "19455368",
+  "cid": "23366662",
+  "cpt": "99308",
+  "dos": "05/01/2026",
+  "fee": 107.0,
+  "eob_paid": 49.05,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:06Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 50.32)], live payments [('FLO99', 56.68)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455365L",
+  "pid": "20060",
+  "vid": "19455365",
+  "cid": "23366656",
+  "cpt": "99308",
+  "dos": "12/09/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:08Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 45.34,
+  "wo": 61.66,
+  "wocode": "WOMCAD",
+  "paymentid": "10165941",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    61.66
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 61.66 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455363L",
+  "pid": "20060",
+  "vid": "19455363",
+  "cid": "23366652",
+  "cpt": "99308",
+  "dos": "10/07/2025",
+  "fee": 107.0,
+  "eob_paid": 45.34,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:12Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 49.05,
+  "wo": 57.95,
+  "wocode": "WOMCAD",
+  "paymentid": "10165942",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    57.95
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 57.95 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455346K",
+  "pid": "20514",
+  "vid": "19455346",
+  "cid": "23366618",
+  "cpt": "99308",
+  "dos": "03/02/2026",
+  "fee": 107.0,
+  "eob_paid": 49.05,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:23:18Z"
+ },
+ {
+  "status": "HOLD",
+  "note": "no insurance balance and no premature write-off to void (live write-offs [('WOMCAD', 52.72)], live payments [('FLO99', 88.28)]) - review",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455367L",
+  "pid": "20060",
+  "vid": "19455367",
+  "cid": "23366660",
+  "cpt": "99309",
+  "dos": "04/06/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 2 (FLO99)",
+  "when": "2026-10-06T02:23:20Z"
+ },
+ {
+  "status": "POSTED",
+  "pay": 70.62,
+  "wo": 70.38,
+  "wocode": "WOMCAD",
+  "paymentid": "10165943",
+  "insbal_after": 0.0,
+  "reasons": [
+   [
+    "CO45",
+    70.38
+   ]
+  ],
+  "verified": true,
+  "note": "write-off 70.38 WOMCAD; ",
+  "family": "FLO99",
+  "ref": "01971199",
+  "acct": "19455344K",
+  "pid": "20514",
+  "vid": "19455344",
+  "cid": "23366614",
+  "cpt": "99309",
+  "dos": "01/02/2026",
+  "fee": 141.0,
+  "eob_paid": 70.62,
+  "checkid": 1053005,
+  "carrier": "FLO99",
+  "plan": "on chart seq 3 (FLO99)",
+  "when": "2026-10-06T02:23:25Z"
+ }
+]

@@ -27,7 +27,7 @@ def hist(pid):
 CHARTS = {
  "17476534": "bellingham WONCS $731 (5/11-5/13/2026 HCA)", "17471681": "powell void v19455606", "17474541": "rodway restore 99487 c23336997 (v19430630)",
  "17477375": "screws Medicare+GV (8/11-8/13/2026)", "17477892": "pignone CAP07 CIO50078852 + admit 9/23", "17477640": "reeve admission 09/02/2026 v19456252/v19456267",
- "20729": "rossiter add SUN01 7415004647 seq2", "12180329": "scott Medicare [MBI] + FB spouse XJJH62710650", "17474290": "short FB VMYH57761517",
+ "20729": "rossiter add SUN01 7415004647 seq2", "12180329": "scott Medicare <MBI-redacted: read it from the chart plan at run time> + FB spouse XJJH62710650", "17474290": "short FB VMYH57761517",
  "17477842": "jarvis placeholder chart", "17472416": "jarvis real chart", "17477972": "herring inspector admit", "17477975": "singer inspector admit",
  "17477974": "tisdale pending", "17477933": "smith myrtle F02.80", "17477973": "zane no insurance", "17477777": "lazenby refplan", "17469007": "jacobsen norcott 'mine' 6/23 CCM",
  "17476603": "king lantern",
