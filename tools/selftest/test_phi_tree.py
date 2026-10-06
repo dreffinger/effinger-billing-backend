@@ -25,7 +25,8 @@ r = phi_gate.redact
 check("map name -> pseudonym, AMD caps form too", r("Annika Simcoe / SIMCOE,ANNIKA (pat 1)", names) == "Annika Simcoe / SIMCOE,ANNIKA (pat 1)")
 check("unknown LAST,FIRST in a data file -> [name]", r('"name": "BLAKELY,NORBERT", note THACKERAY,KENDREW D (pat 77) and [name]%', names, code=False) == '"name": "[name]", note [name] (pat 77) and [name]')
 check("billing vocabulary is not a name", r("DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED", names, code=False) == "DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED")
-check("code keeps its tokens (content-detected)", r('import os\nx = "SMYTHE,[first]"\n', names) == 'import os\nx = "SMYTHE,[first]"\n')
+check("code keeps its tokens, string literals and comments are scrubbed", r('import os\nDOS,CPT = 1, 2\nx = "SMYTHE,[first]"  # [name]\n', names) == 'import os\nDOS,CPT = 1, 2\nx = "[name]"  # [name]\n')
+check("a hyphenated pseudonym inside an identifier becomes underscore", r("import medicaid_garland_g_fix\n", {"Garland-G": "Garland-G"}) == "import medicaid_garland_g_fix\n")
 check("MBI / SSN / member id / DOB -> placeholders", r("MBI %s ssn %s subscribernum=%s DOB %s" % (MBI_S, SSN_S, MEM_S, DOB_S), names, code=False) == "MBI [MBI] ssn [SSN] subscribernum=[member id] DOB [DOB]")
 check("board slug from a real name -> [name]-<amdid>, pseudonym slug kept", r("id willoughby-cathleen-17477898 and pellam-[first]-17477892", names, code=False) == "id [name]-17477898 and pellam-[first]-17477892")
 

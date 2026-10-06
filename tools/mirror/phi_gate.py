@@ -75,7 +75,13 @@ def scrub(text, names):
         text = rx.sub(rep, text)
         # lowercase forms only inside slugs / filenames ("lepore-nicholas", "willis_rebill.py")
         lrx = re.compile(r"(?<=[-_./])(" + "|".join(re.escape(k.lower()) for k in keys) + r")(?![A-Za-z])|(?<![A-Za-z])(" + "|".join(re.escape(k.lower()) for k in keys) + r")(?=[-_][a-z])")
-        text = lrx.sub(lambda m: names[next(n for n in keys if n.lower() == (m.group(1) or m.group(2)))].lower(), text)
+        def lrep(m):
+            fake = names[next(n for n in keys if n.lower() == (m.group(1) or m.group(2)))].lower()
+            s, e = m.span()
+            if m.string[s - 1:s] == "_" or m.string[e:e + 1] == "_":   # inside an identifier / module name: a hyphenated pseudonym would break the code (10/6)
+                fake = fake.replace("-", "_")
+            return fake
+        text = lrx.sub(lrep, text)
     return text
 
 def check(text):
@@ -126,8 +132,11 @@ NOT_LASTFIRST = {"DOS", "CPT", "CO", "PR", "OA", "PI", "CR", "WOINS", "WOLATE", 
                  "REVERSAL", "DENIAL", "ACTIVE", "INACTIVE", "MISMATCH", "DEATH", "ADVANTAGE", "MEDICARE", "MEDICAID", "HOSPICE",
                  "BLOCKED", "SKIPPED", "APPLIED", "DONE", "WAITING", "APPROVED", "DECLINED", "STEDI", "CMS", "PECOS", "NPPES", "OIG",
                  "LEIE", "CAQH", "DEA", "SELECT", "FROM", "WHERE", "DRY", "LIVE", "ALL", "NONE", "MA", "PDP", "EFT", "TRN", "ERR", "ID",
-                 "LAST", "FIRST", "NAME", "PID", "VID", "CID", "SEQ", "ICD", "HCPCS", "DX", "NDC", "VA", "UC", "USA", "FL", "GA", "AL"}
+                 "LAST", "FIRST", "NAME", "PID", "VID", "CID", "SEQ", "ICD", "HCPCS", "DX", "NDC", "VA", "UC", "USA", "FL", "GA", "AL",
+                 "REF", "ACK", "CLM", "CHK", "DD", "REJCTD", "RETURND", "ENCNTER", "ACCPTD", "PENDNG", "ADJ", "AMT", "QTY", "SVC", "NM", "DTP"}
 CODE_HINT = re.compile(r"^(import |from \S+ import |def |class |#!/|#!)", re.M)
+# in code only the comments and string literals are prose: a name list / search pattern lives in a string, never in a token
+STR_OR_COMMENT = re.compile(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|#[^\n]*)')
 # board-row slugs built from real names ("last-first-<amdid>", the BOARD ACCESS RULE's id form)
 SLUG_NAME = re.compile(r"\b[a-z][a-z']{1,}-[a-z][a-z']{1,}-(\d{6,9})\b")
 
@@ -149,6 +158,8 @@ def redact(text, names, code=None):
     if not code:
         t = LASTFIRST_BARE.sub(lambda m: _bare(m, vals_up), t)
         t = SLUG_NAME.sub(lambda m: m.group(0) if m.group(0).split("-")[0] in {v.lower() for v in names.values()} else "[name]-" + m.group(1), t)
+    else:
+        t = STR_OR_COMMENT.sub(lambda s: LASTFIRST_BARE.sub(lambda m: _bare(m, vals_up), s.group(0)), t)
     for label, rx in ID_PATTERNS:
         if label == "date of birth":
             continue

@@ -170,11 +170,11 @@ check("push (one) ends with that card's link", len(p1) <= 199 and p1.endswith(ap
 long = [dict(items[0], id="A-2026-10-06T0330Z-%s" % ("X" * 60), dollars="$1")]
 pl = approval_submit.push_text(long, "2026-10-06T0330Z")
 check("push never exceeds 199 even with a long id", len(pl) <= 199 and pl.endswith(approval_submit.PAGE) or pl.endswith(long[0]["id"]), (len(pl), pl))
-check("privacy gate still catches an SSN", approval_submit.privacy_hit("pt [SSN]") == "SSN pattern")
+check("privacy gate still catches an SSN", approval_submit.privacy_hit("pt " + "123-45-" + "6789") == "SSN pattern")
 
 # ------------------------------------------------------------------ G. approval_submit review fixes
-for t, want in [('subscribernum="123456789"', True), ('Member ID: [member id]', True), ('"memberId": "[member id]"', True), ("DOB [DOB]", True),
-                ("ICN [ICN]", True), ('"lastName": "[name]"', True), ("chart 17470940 visit 19455208 99233 $160", False),
+for t, want in [('subscribernum="' + "1234" + '56789"', True), ('Member ID: XEH' + "1234" + "56789", True), ('"memberId": "VMYH' + '12345678"', True), ("DOB 01/02/" + "1940", True),
+                ("ICN " + "1234567890V" + "123456", True), ('"lastName": "[name]"', True), ("chart 17470940 visit 19455208 99233 $160", False),
                 ("'SUBSCRIBER ID NOT FOUND' + 'MEMBER PICK REJECT' on 19455208B", False)]:
     check("privacy gate %s: %s" % ("catches" if want else "passes", t[:40]), bool(approval_submit.privacy_hit(t)) == want, approval_submit.privacy_hit(t))
 ef = os.path.join(TMP, "dry_register.json"); open(ef, "w").write('{"memberId": "[member id]", "firstName": "[name]"}')
