@@ -29,3 +29,10 @@ missing ranges. A batch is new when its message id is not there. `python3 fetch_
 3. `bash billing/paper_remits/ocr.sh` from `SCANS_DIR` (skips batches with `ocr/<batch>/.done`), `pdf_salvage.py` for any batch pdftoppm cannot open.
 4. `classify.py → extract.py → assemble.py → plan.py → post_paper.py --dry → post_paper.py → report.py` (billing/paper_remits/README.md).
 5. Board rows for correspondence / holds / cards to key; mirror.
+
+
+## 10/6 additions (parse + plan)
+- `llm_merge.py`: payer-NAME classifier (`PAYER_RULES`) overrides the agent's family hint; Florida Blue always held; card stubs with claims are remittances; LLM record beats a regex record with the same reference when it has more claims or a different amount; one card-keying row per (card, amount).
+- New family **TRI00** (TRICARE East paper checks, car6872) across post_paper / build835 / plan / llm_merge.
+- `build835.norm_cas()` maps payer legend codes (FCC "PC 3", Meritain "Co-Ins", PR-45...) to numeric CARCs.
+- Square reconciliation of virtual cards: `payments.list` since 9/1 by last4 + amount -> `square_payments_sep.json`; cards not in Square = to key.
