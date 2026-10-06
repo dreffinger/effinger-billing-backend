@@ -1,0 +1,26 @@
+{
+ "stamp": "2026-10-06T1141Z",
+ "checkid": "1053007",
+ "checknumber": "819919368",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17477190",
+   "vid": "19455468",
+   "cid": "23366760",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "carrier": "FLO02"
+   },
+   "payid": "24658680",
+   "result": "DRY"
+  }
+ ]
+}

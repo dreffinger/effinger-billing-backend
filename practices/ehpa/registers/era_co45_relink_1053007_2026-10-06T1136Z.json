@@ -1,0 +1,1400 @@
+{
+ "stamp": "2026-10-06T1136Z",
+ "checkid": "1053007",
+ "checknumber": "819919368",
+ "live": true,
+ "lines": [
+  {
+   "pid": "17472784",
+   "vid": "19420555",
+   "cid": "23325534",
+   "cpt": "99307",
+   "paid": 25.47,
+   "co": 36.03,
+   "pr": 6.5,
+   "before": {
+    "fee": 68.0,
+    "paid": 61.5,
+    "insbalance": 0.0,
+    "patbalance": 6.5,
+    "carrier": "HUM01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455446",
+   "cid": "23366738",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24658634",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:36:34\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10165996",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:36:38\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbalance": 0.0,
+    "patbalance": 31.94,
+    "pays": [
+     [
+      "24658660",
+      125.2,
+      "819919368",
+      [
+       [
+        "CO45",
+        150.3
+       ],
+       [
+        "PR2",
+        31.94
+       ],
+       [
+        "CO253",
+        2.56
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      152.86
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455446",
+   "cid": "23366739",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24658635",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:36:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10165998",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:36:45\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbalance": 0.0,
+    "patbalance": 13.35,
+    "pays": [
+     [
+      "24658662",
+      52.33,
+      "819919368",
+      [
+       [
+        "CO45",
+        66.25
+       ],
+       [
+        "PR2",
+        13.35
+       ],
+       [
+        "CO253",
+        1.07
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      67.32
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455445",
+   "cid": "23366737",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24658636",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:36:50\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166000",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:36:53\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658664",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455444",
+   "cid": "23366736",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24658637",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:36:57\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166002",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:37:01\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658666",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17471349",
+   "vid": "19455473",
+   "cid": "23366765",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24658638",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:05\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166004",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:37:08\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbalance": 0.0,
+    "patbalance": 33.1,
+    "pays": [
+     [
+      "24658668",
+      129.74,
+      "819919368",
+      [
+       [
+        "CO45",
+        90.51
+       ],
+       [
+        "PR2",
+        33.1
+       ],
+       [
+        "CO253",
+        2.65
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      93.16
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17471349",
+   "vid": "19455473",
+   "cid": "23366766",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24658639",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:12\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166006",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:37:15\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbalance": 0.0,
+    "patbalance": 13.35,
+    "pays": [
+     [
+      "24658670",
+      52.33,
+      "819919368",
+      [
+       [
+        "CO45",
+        66.25
+       ],
+       [
+        "PR2",
+        13.35
+       ],
+       [
+        "CO253",
+        1.07
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      67.32
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477516",
+   "vid": "19455453",
+   "cid": "23366746",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658640",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:23\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166008",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:37:27\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658672",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19455472",
+   "cid": "23366763",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658641",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:30\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166010",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:37:33\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbalance": 0.0,
+    "patbalance": 33.1,
+    "pays": [
+     [
+      "24658674",
+      129.74,
+      "819919368",
+      [
+       [
+        "CO45",
+        90.51
+       ],
+       [
+        "PR2",
+        33.1
+       ],
+       [
+        "CO253",
+        2.65
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      93.16
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19455472",
+   "cid": "23366764",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658642",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:38\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166012",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:37:41\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbalance": 0.0,
+    "patbalance": 13.35,
+    "pays": [
+     [
+      "24658676",
+      52.33,
+      "819919368",
+      [
+       [
+        "CO45",
+        66.25
+       ],
+       [
+        "PR2",
+        13.35
+       ],
+       [
+        "CO253",
+        1.07
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      67.32
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17474741",
+   "vid": "19455454",
+   "cid": "23366747",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "UNI01"
+   },
+   "payid": "24658643",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:44\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166014",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:37:48\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658678",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477190",
+   "vid": "19455468",
+   "cid": "23366760",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "carrier": "FLO02"
+   },
+   "payid": "24658644",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:37:51\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166016",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:37:55\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "pays": [
+     [
+      "24658680",
+      66.36,
+      "819919368",
+      [
+       [
+        "CO45",
+        56.36
+       ],
+       [
+        "PR2",
+        16.93
+       ],
+       [
+        "CO253",
+        1.35
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   },
+   "result": "posted-unverified"
+  },
+  {
+   "pid": "17470940",
+   "vid": "19455456",
+   "cid": "23366749",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24658645",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:37:58\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166018",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:02\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658682",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "23969",
+   "vid": "19455457",
+   "cid": "23366750",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "CIG09"
+   },
+   "payid": "24658646",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:38:06\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166020",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:10\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658684",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17470950",
+   "vid": "19455459",
+   "cid": "23366751",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24658647",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:38:13\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166022",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:17\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbalance": 0.0,
+    "patbalance": 14.38,
+    "pays": [
+     [
+      "24658686",
+      56.37,
+      "819919368",
+      [
+       [
+        "CO45",
+        39.1
+       ],
+       [
+        "PR2",
+        14.38
+       ],
+       [
+        "CO253",
+        1.15
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      40.25
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17476583",
+   "vid": "19455460",
+   "cid": "23366752",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658648",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:38:20\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166024",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-k5dwp\" lst=\"10/06/2026 04:38:24\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658688",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17475638",
+   "vid": "19455461",
+   "cid": "23366753",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658649",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:38:28\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166026",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:31\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658690",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "22603",
+   "vid": "19454390",
+   "cid": "23365478",
+   "cpt": "99308",
+   "paid": 45.44,
+   "co": 49.97,
+   "pr": 11.59,
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbalance": 61.56,
+    "patbalance": 0.0,
+    "carrier": "CON08"
+   },
+   "payid": "24658650",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:38:35\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166028",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:38\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbalance": 0.0,
+    "patbalance": 11.59,
+    "pays": [
+     [
+      "24658692",
+      45.44,
+      "819919368",
+      [
+       [
+        "CO45",
+        49.04
+       ],
+       [
+        "PR2",
+        11.59
+       ],
+       [
+        "CO253",
+        0.93
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      49.97
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477497",
+   "vid": "19455463",
+   "cid": "23366754",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658651",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:38:42\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166030",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:45\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658694",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477818",
+   "vid": "19455214",
+   "cid": "23366390",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658652",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:38:49\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166032",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:52\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbalance": 0.0,
+    "patbalance": 31.94,
+    "pays": [
+     [
+      "24658696",
+      125.2,
+      "819919368",
+      [
+       [
+        "CO45",
+        150.3
+       ],
+       [
+        "PR2",
+        31.94
+       ],
+       [
+        "CO253",
+        2.56
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      152.86
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477818",
+   "vid": "19455213",
+   "cid": "23366389",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658653",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:38:56\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166034",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:38:59\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbalance": 0.0,
+    "patbalance": 14.38,
+    "pays": [
+     [
+      "24658698",
+      56.37,
+      "819919368",
+      [
+       [
+        "CO45",
+        39.1
+       ],
+       [
+        "PR2",
+        14.38
+       ],
+       [
+        "CO253",
+        1.15
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      40.25
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477557",
+   "vid": "19455450",
+   "cid": "23366743",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24658654",
+   "void": [
+    true,
+    "d-k5dwp\" lst=\"10/06/2026 04:39:02\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166036",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:39:06\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 0.0,
+    "patbalance": 21.8,
+    "pays": [
+     [
+      "24658700",
+      85.46,
+      "819919368",
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      52.74
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477182",
+   "vid": "19455476",
+   "cid": "23366771",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658655",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:39:09\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166038",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:39:13\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbalance": 0.0,
+    "patbalance": 33.1,
+    "pays": [
+     [
+      "24658702",
+      129.74,
+      "819919368",
+      [
+       [
+        "CO45",
+        90.51
+       ],
+       [
+        "PR2",
+        33.1
+       ],
+       [
+        "CO253",
+        2.65
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      93.16
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17477182",
+   "vid": "19455476",
+   "cid": "23366772",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658656",
+   "void": [
+    true,
+    "d-js2tj\" lst=\"10/06/2026 04:39:16\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166040",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-js2tj\" lst=\"10/06/2026 04:39:19\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbalance": 0.0,
+    "patbalance": 13.35,
+    "pays": [
+     [
+      "24658704",
+      52.33,
+      "819919368",
+      [
+       [
+        "CO45",
+        66.25
+       ],
+       [
+        "PR2",
+        13.35
+       ],
+       [
+        "CO253",
+        1.07
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      67.32
+     ]
+    ]
+   },
+   "result": "corrected"
+  }
+ ]
+}

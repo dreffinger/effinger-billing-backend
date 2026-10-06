@@ -1,0 +1,2024 @@
+{
+ "stamp": "2026-10-06T1128Z",
+ "mode": "dry",
+ "results": [
+  {
+   "pid": "17469446",
+   "visit": "19455472",
+   "cid": "23366763",
+   "payid": "24658641",
+   "amount": 129.74,
+   "remit_paid": 129.74,
+   "reasons": [
+    [
+     "CO45",
+     "90.51"
+    ],
+    [
+     "PR2",
+     "33.10"
+    ],
+    [
+     "CO253",
+     "2.65"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17469446",
+   "visit": "19455472",
+   "cid": "23366764",
+   "payid": "24658642",
+   "amount": 52.33,
+   "remit_paid": 52.33,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17470940",
+   "visit": "19455054",
+   "cid": "23366206",
+   "payid": "24658092",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470940",
+   "visit": "19455120",
+   "cid": "23366259",
+   "payid": "24658091",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470940",
+   "visit": "19455208",
+   "cid": "23366384",
+   "payid": "24658201",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470940",
+   "visit": "19455456",
+   "cid": "23366749",
+   "payid": "24658645",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17470950",
+   "visit": "19455050",
+   "cid": "23366202",
+   "payid": "24658106",
+   "amount": 56.37,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "PR2",
+     "14.38"
+    ],
+    [
+     "CO253",
+     "1.15"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470950",
+   "visit": "19455122",
+   "cid": "23366261",
+   "payid": "24658107",
+   "amount": 56.37,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "PR2",
+     "14.38"
+    ],
+    [
+     "CO253",
+     "1.15"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470950",
+   "visit": "19455217",
+   "cid": "23366393",
+   "payid": "24658199",
+   "amount": 56.37,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "PR2",
+     "14.38"
+    ],
+    [
+     "CO253",
+     "1.15"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17470950",
+   "visit": "19455459",
+   "cid": "23366751",
+   "payid": "24658647",
+   "amount": 56.37,
+   "remit_paid": 56.37,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "PR2",
+     "14.38"
+    ],
+    [
+     "CO253",
+     "1.15"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17471349",
+   "visit": "19455473",
+   "cid": "23366765",
+   "payid": "24658638",
+   "amount": 129.74,
+   "remit_paid": 129.74,
+   "reasons": [
+    [
+     "CO45",
+     "90.51"
+    ],
+    [
+     "PR2",
+     "33.10"
+    ],
+    [
+     "CO253",
+     "2.65"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17471349",
+   "visit": "19455473",
+   "cid": "23366766",
+   "payid": "24658639",
+   "amount": 52.33,
+   "remit_paid": 52.33,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17472784",
+   "visit": "19420555",
+   "cid": "23325534",
+   "payid": "24658633",
+   "amount": 25.47,
+   "remit_paid": 25.47,
+   "reasons": [
+    [
+     "CO45",
+     "35.51"
+    ],
+    [
+     "PR2",
+     "6.50"
+    ],
+    [
+     "CO253",
+     "0.52"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19450582",
+   "cid": "23360528",
+   "payid": "24658447",
+   "amount": 31.94,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "OA23",
+     "125.20"
+    ],
+    [
+     "OA253",
+     "2.56"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19450737",
+   "cid": "23360696",
+   "payid": "24658444",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19450755",
+   "cid": "23360714",
+   "payid": "24658445",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19450829",
+   "cid": "23360831",
+   "payid": "24658519",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19450859",
+   "cid": "23360862",
+   "payid": "24658517",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19451291",
+   "cid": "23361334",
+   "payid": "24658442",
+   "amount": 14.38,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "OA23",
+     "56.37"
+    ],
+    [
+     "OA253",
+     "1.15"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19451322",
+   "cid": "23361366",
+   "payid": "24658443",
+   "amount": 14.38,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "OA23",
+     "56.37"
+    ],
+    [
+     "OA253",
+     "1.15"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19451369",
+   "cid": "23361413",
+   "payid": "24658446",
+   "amount": 21.59,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "55.06"
+    ],
+    [
+     "OA23",
+     "84.62"
+    ],
+    [
+     "OA253",
+     "1.73"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19451786",
+   "cid": "23361868",
+   "payid": "24658518",
+   "amount": 33.02,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "111.90"
+    ],
+    [
+     "OA23",
+     "129.44"
+    ],
+    [
+     "OA253",
+     "2.64"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19452060",
+   "cid": "23362174",
+   "payid": "24658527",
+   "amount": 31.94,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "278.06"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19452060",
+   "cid": "23362175",
+   "payid": "24658528",
+   "amount": 13.35,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "119.65"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19452153",
+   "cid": "23362279",
+   "payid": "24658529",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19452160",
+   "cid": "23362286",
+   "payid": "24658530",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19452216",
+   "cid": "23362334",
+   "payid": "24658531",
+   "amount": 21.8,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "OA23",
+     "85.46"
+    ],
+    [
+     "OA253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19455036",
+   "cid": "23366188",
+   "payid": "24658078",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19455118",
+   "cid": "23366257",
+   "payid": "24658071",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19455207",
+   "cid": "23366383",
+   "payid": "24658202",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17474741",
+   "visit": "19455454",
+   "cid": "23366747",
+   "payid": "24658643",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17475638",
+   "visit": "19455055",
+   "cid": "23366207",
+   "payid": "24658099",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17475638",
+   "visit": "19455124",
+   "cid": "23366263",
+   "payid": "24658100",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17475638",
+   "visit": "19455211",
+   "cid": "23366387",
+   "payid": "24658194",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17475638",
+   "visit": "19455461",
+   "cid": "23366753",
+   "payid": "24658649",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455031",
+   "cid": "23366181",
+   "payid": "24658101",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455035",
+   "cid": "23366186",
+   "payid": "24658102",
+   "amount": 125.2,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455035",
+   "cid": "23366187",
+   "payid": "24658103",
+   "amount": 52.33,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455123",
+   "cid": "23366262",
+   "payid": "24658104",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455210",
+   "cid": "23366386",
+   "payid": "24658198",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17476583",
+   "visit": "19455460",
+   "cid": "23366752",
+   "payid": "24658648",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450376",
+   "cid": "23360287",
+   "payid": "24658068",
+   "amount": 31.94,
+   "remit_paid": 0.0,
+   "reasons": [
+    [
+     "OA23",
+     "278.06"
+    ]
+   ],
+   "verdict": "MISMATCH"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450376",
+   "cid": "23360287",
+   "payid": "24658177",
+   "amount": 0.0,
+   "remit_paid": 0.0,
+   "reasons": [
+    [
+     "CR22",
+     "-310.00"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450376",
+   "cid": "23360288",
+   "payid": "24658069",
+   "amount": 13.35,
+   "remit_paid": 0.0,
+   "reasons": [
+    [
+     "OA23",
+     "119.65"
+    ]
+   ],
+   "verdict": "MISMATCH"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450376",
+   "cid": "23360288",
+   "payid": "24658178",
+   "amount": 0.0,
+   "remit_paid": 0.0,
+   "reasons": [
+    [
+     "CR22",
+     "-133.00"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450471",
+   "cid": "23360409",
+   "payid": "24658189",
+   "amount": 160.0,
+   "remit_paid": 21.8,
+   "reasons": [
+    [
+     "PR22",
+     "-160.00"
+    ]
+   ],
+   "verdict": "MISMATCH"
+  },
+  {
+   "pid": "17476868",
+   "visit": "19450490",
+   "cid": "23360429",
+   "payid": "24658191",
+   "amount": 0.0,
+   "remit_paid": 0.0,
+   "reasons": [
+    [
+     "CO226",
+     "160.00"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477182",
+   "visit": "19455476",
+   "cid": "23366771",
+   "payid": "24658655",
+   "amount": 129.74,
+   "remit_paid": 129.74,
+   "reasons": [
+    [
+     "CO45",
+     "90.51"
+    ],
+    [
+     "PR2",
+     "33.10"
+    ],
+    [
+     "CO253",
+     "2.65"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477182",
+   "visit": "19455476",
+   "cid": "23366772",
+   "payid": "24658656",
+   "amount": 52.33,
+   "remit_paid": 52.33,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477190",
+   "visit": "19455468",
+   "cid": "23366760",
+   "payid": "24658644",
+   "amount": 66.36,
+   "remit_paid": 66.36,
+   "reasons": [
+    [
+     "CO45",
+     "56.36"
+    ],
+    [
+     "PR2",
+     "16.93"
+    ],
+    [
+     "CO253",
+     "1.35"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477497",
+   "visit": "19455041",
+   "cid": "23366193",
+   "payid": "24658094",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477497",
+   "visit": "19455128",
+   "cid": "23366267",
+   "payid": "24658095",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477497",
+   "visit": "19455212",
+   "cid": "23366388",
+   "payid": "24658193",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477497",
+   "visit": "19455463",
+   "cid": "23366754",
+   "payid": "24658651",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477516",
+   "visit": "19455044",
+   "cid": "23366196",
+   "payid": "24658075",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477516",
+   "visit": "19455117",
+   "cid": "23366256",
+   "payid": "24658076",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477516",
+   "visit": "19455220",
+   "cid": "23366396",
+   "payid": "24658207",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477516",
+   "visit": "19455453",
+   "cid": "23366746",
+   "payid": "24658640",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477557",
+   "visit": "19455114",
+   "cid": "23366253",
+   "payid": "24658083",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477557",
+   "visit": "19455132",
+   "cid": "23366271",
+   "payid": "24658081",
+   "amount": 125.2,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477557",
+   "visit": "19455132",
+   "cid": "23366272",
+   "payid": "24658082",
+   "amount": 52.33,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477557",
+   "visit": "19455204",
+   "cid": "23366380",
+   "payid": "24658208",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "17477557",
+   "visit": "19455450",
+   "cid": "23366743",
+   "payid": "24658654",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477818",
+   "visit": "19455213",
+   "cid": "23366389",
+   "payid": "24658653",
+   "amount": 56.37,
+   "remit_paid": 56.37,
+   "reasons": [
+    [
+     "CO45",
+     "39.10"
+    ],
+    [
+     "PR2",
+     "14.38"
+    ],
+    [
+     "CO253",
+     "1.15"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "17477818",
+   "visit": "19455214",
+   "cid": "23366390",
+   "payid": "24658652",
+   "amount": 125.2,
+   "remit_paid": 125.2,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "20729",
+   "visit": "19455444",
+   "cid": "23366736",
+   "payid": "24658637",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "20729",
+   "visit": "19455445",
+   "cid": "23366737",
+   "payid": "24658636",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "20729",
+   "visit": "19455446",
+   "cid": "23366738",
+   "payid": "24658634",
+   "amount": 125.2,
+   "remit_paid": 125.2,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "20729",
+   "visit": "19455446",
+   "cid": "23366739",
+   "payid": "24658635",
+   "amount": 52.33,
+   "remit_paid": 52.33,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "22603",
+   "visit": "19417081",
+   "cid": "23320690",
+   "payid": "24658468",
+   "amount": 12.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "94.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19421017",
+   "cid": "23326234",
+   "payid": "24658456",
+   "amount": 17.5,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "188.50"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19421017",
+   "cid": "23326235",
+   "payid": "24658457",
+   "amount": 9.47,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "99.53"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19423552",
+   "cid": "23329130",
+   "payid": "24658466",
+   "amount": 17.5,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "188.50"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19423552",
+   "cid": "23329131",
+   "payid": "24658467",
+   "amount": 9.47,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "99.53"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19426082",
+   "cid": "23332109",
+   "payid": "24658469",
+   "amount": 17.65,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "123.35"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19427244",
+   "cid": "23333616",
+   "payid": "24658470",
+   "amount": 17.5,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "188.50"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19427244",
+   "cid": "23333617",
+   "payid": "24658471",
+   "amount": 9.47,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "99.53"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19438330",
+   "cid": "23345415",
+   "payid": "24658458",
+   "amount": 5.78,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "PR2",
+     "55.76"
+    ],
+    [
+     "OA23",
+     "79.46"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19438506",
+   "cid": "23345612",
+   "payid": "24658459",
+   "amount": 16.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "189.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19438506",
+   "cid": "23345613",
+   "payid": "24658460",
+   "amount": 8.92,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "100.08"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19439539",
+   "cid": "23347031",
+   "payid": "24658461",
+   "amount": 16.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "189.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19439539",
+   "cid": "23347032",
+   "payid": "24658462",
+   "amount": 8.92,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "100.08"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19441404",
+   "cid": "23349262",
+   "payid": "24658463",
+   "amount": 16.93,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "124.07"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19442384",
+   "cid": "23350455",
+   "payid": "24658464",
+   "amount": 16.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "189.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19442384",
+   "cid": "23350456",
+   "payid": "24658465",
+   "amount": 8.92,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "100.08"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19445127",
+   "cid": "23353927",
+   "payid": "24658472",
+   "amount": 11.59,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "95.41"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19446150",
+   "cid": "23355073",
+   "payid": "24658473",
+   "amount": 16.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "189.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19446150",
+   "cid": "23355074",
+   "payid": "24658474",
+   "amount": 8.92,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "100.08"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19448800",
+   "cid": "23358205",
+   "payid": "24658475",
+   "amount": 16.14,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "189.86"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19448800",
+   "cid": "23358206",
+   "payid": "24658476",
+   "amount": 8.92,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "100.08"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19451612",
+   "cid": "23361679",
+   "payid": "24658477",
+   "amount": 16.93,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "OA23",
+     "124.07"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "22603",
+   "visit": "19454390",
+   "cid": "23365478",
+   "payid": "24658650",
+   "amount": 45.44,
+   "remit_paid": 45.44,
+   "reasons": [
+    [
+     "CO45",
+     "49.04"
+    ],
+    [
+     "PR2",
+     "11.59"
+    ],
+    [
+     "CO253",
+     "0.93"
+    ]
+   ],
+   "verdict": "ok"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455038",
+   "cid": "23366190",
+   "payid": "24658108",
+   "amount": 125.2,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455056",
+   "cid": "23366208",
+   "payid": "24658109",
+   "amount": 125.2,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "150.30"
+    ],
+    [
+     "PR2",
+     "31.94"
+    ],
+    [
+     "CO253",
+     "2.56"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455056",
+   "cid": "23366209",
+   "payid": "24658110",
+   "amount": 52.33,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "66.25"
+    ],
+    [
+     "PR2",
+     "13.35"
+    ],
+    [
+     "CO253",
+     "1.07"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455121",
+   "cid": "23366260",
+   "payid": "24658111",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455209",
+   "cid": "23366385",
+   "payid": "24658200",
+   "amount": 85.46,
+   "remit_paid": null,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "no-remit-line"
+  },
+  {
+   "pid": "23969",
+   "visit": "19455457",
+   "cid": "23366750",
+   "payid": "24658646",
+   "amount": 85.46,
+   "remit_paid": 85.46,
+   "reasons": [
+    [
+     "CO45",
+     "51.00"
+    ],
+    [
+     "PR2",
+     "21.80"
+    ],
+    [
+     "CO253",
+     "1.74"
+    ]
+   ],
+   "verdict": "ok"
+  }
+ ]
+}

@@ -1,0 +1,2816 @@
+{
+ "summary": {
+  "stamp": "2026-10-06T1110Z",
+  "checked": 60,
+  "skipped_already_answered": 54,
+  "paid": 17,
+  "tot_paid": 1689.41,
+  "bal_paid": 2775.62,
+  "denied": 31,
+  "bal_denied": 5210.0,
+  "pending": 10,
+  "notonfile": 1,
+  "unknown": 1,
+  "sent": 0,
+  "written_off_timely": 0,
+  "note": "second pass of the v12 5(b2) sweep: --skip-answered claimstatus_prev_0710Z.json (54 visits answered PAID/DENIED/NOT ON FILE at 0710Z skipped), min-age 158 days, max 60, carriers UNI20,BCBS; the one D0 row carries a 2023 payer ICN on the visit -> not sent"
+ },
+ "checks": {
+  "280630179": [
+   [
+    "19417872",
+    "96.2",
+    "2025-09-30",
+    "25R398623700"
+   ]
+  ],
+  "V5475692": [
+   [
+    "19435223",
+    "214.53",
+    "2026-06-29",
+    "04348794"
+   ]
+  ],
+  "213079631": [
+   [
+    "19433138",
+    "0",
+    "2026-04-15",
+    "H100001311947640"
+   ],
+   [
+    "19433138",
+    "103.14",
+    "2026-04-15",
+    "H100001311949069"
+   ],
+   [
+    "19433138",
+    "281.81",
+    "2026-04-15",
+    "H100001311949010"
+   ]
+  ],
+  "213420173": [
+   [
+    "19433138",
+    "0",
+    "2026-09-10",
+    "H100001347263931"
+   ],
+   [
+    "19433138",
+    "0",
+    "2026-09-14",
+    "H100001348232229"
+   ],
+   [
+    "19433138",
+    "0",
+    "2026-09-10",
+    "H100001347267217"
+   ],
+   [
+    "19433138",
+    "0",
+    "2026-09-14",
+    "H100001348230542"
+   ],
+   [
+    "19433138",
+    "0",
+    "2026-09-14",
+    "H100001348231114"
+   ],
+   [
+    "19433138",
+    "0",
+    "2026-09-10",
+    "H100001347266340"
+   ]
+  ],
+  "26028B1000291434": [
+   [
+    "19429034",
+    "228.85",
+    "2026-01-21",
+    "26B120972000"
+   ]
+  ],
+  "60507502": [
+   [
+    "19417877",
+    "71.87",
+    "2025-10-10",
+    "83931334"
+   ]
+  ],
+  "280628985": [
+   [
+    "19416752",
+    "89.83",
+    "2025-09-23",
+    "25Q897054200"
+   ],
+   [
+    "19416875",
+    "89.83",
+    "2025-09-23",
+    "25Q897054200"
+   ]
+  ],
+  "280628694": [
+   [
+    "19416752",
+    "89.83",
+    "2025-09-20",
+    "25Q782730000"
+   ],
+   [
+    "19416875",
+    "89.83",
+    "2025-09-20",
+    "25Q782730000"
+   ]
+  ],
+  "26021B1000308993": [
+   [
+    "19427817",
+    "89.83",
+    "2026-01-13",
+    "RB8091602900"
+   ],
+   [
+    "19427817",
+    "89.83",
+    "2026-01-13",
+    "RB8091841800"
+   ],
+   [
+    "19428152",
+    "89.83",
+    "2026-01-13",
+    "RB8091602900"
+   ],
+   [
+    "19428166",
+    "89.83",
+    "2026-01-13",
+    "RB8091602900"
+   ],
+   [
+    "19428166",
+    "89.83",
+    "2026-01-13",
+    "RB8091841800"
+   ]
+  ],
+  "280634691": [
+   [
+    "19420786",
+    "89.83",
+    "2025-10-30",
+    "25T355110300"
+   ],
+   [
+    "19420786",
+    "89.83",
+    "2025-10-30",
+    "25T355109000"
+   ],
+   [
+    "19420878",
+    "89.83",
+    "2025-10-30",
+    "25T355110300"
+   ],
+   [
+    "19420878",
+    "89.83",
+    "2025-10-30",
+    "25T355109000"
+   ]
+  ],
+  "280637687": [
+   [
+    "19422900",
+    "89.83",
+    "2025-11-14",
+    "RB5056427700"
+   ],
+   [
+    "19422900",
+    "89.83",
+    "2025-11-14",
+    "RB5056983200"
+   ],
+   [
+    "19422901",
+    "89.83",
+    "2025-11-14",
+    "RB5056427700"
+   ],
+   [
+    "19422901",
+    "89.83",
+    "2025-11-14",
+    "RB5056983200"
+   ],
+   [
+    "19422902",
+    "89.83",
+    "2025-11-14",
+    "RB5056983200"
+   ],
+   [
+    "19423060",
+    "89.83",
+    "2025-11-14",
+    "RB5056427700"
+   ],
+   [
+    "19423060",
+    "89.83",
+    "2025-11-14",
+    "RB5056983200"
+   ],
+   [
+    "19423203",
+    "89.83",
+    "2025-11-14",
+    "RB5056427700"
+   ],
+   [
+    "19423203",
+    "89.83",
+    "2025-11-14",
+    "RB5056983200"
+   ]
+  ],
+  "280637173": [
+   [
+    "19422900",
+    "89.83",
+    "2025-11-13",
+    "RB4958205800"
+   ],
+   [
+    "19422900",
+    "89.83",
+    "2025-11-13",
+    "RB4959385900"
+   ],
+   [
+    "19422900",
+    "89.83",
+    "2025-11-13",
+    "RB4959692200"
+   ],
+   [
+    "19422901",
+    "89.83",
+    "2025-11-13",
+    "RB4958205800"
+   ],
+   [
+    "19422901",
+    "89.83",
+    "2025-11-13",
+    "RB4959385900"
+   ],
+   [
+    "19422901",
+    "89.83",
+    "2025-11-13",
+    "RB4959692200"
+   ],
+   [
+    "19422902",
+    "89.83",
+    "2025-11-13",
+    "RB4958205800"
+   ],
+   [
+    "19422902",
+    "89.83",
+    "2025-11-13",
+    "RB4959385900"
+   ],
+   [
+    "19422902",
+    "89.83",
+    "2025-11-13",
+    "RB4959692200"
+   ],
+   [
+    "19423060",
+    "89.83",
+    "2025-11-13",
+    "RB4958205800"
+   ],
+   [
+    "19423060",
+    "89.83",
+    "2025-11-13",
+    "RB4959385900"
+   ],
+   [
+    "19423060",
+    "89.83",
+    "2025-11-13",
+    "RB4959692200"
+   ],
+   [
+    "19423203",
+    "89.83",
+    "2025-11-13",
+    "RB4958205800"
+   ],
+   [
+    "19423203",
+    "89.83",
+    "2025-11-13",
+    "RB4959385900"
+   ]
+  ]
+ },
+ "rows": [
+  {
+   "pid": "23967",
+   "vid": "19420037",
+   "carrier": "UNI20",
+   "dos": "2025-10-16",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P1",
+     "code": "20",
+     "text": "Accepted for processing."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19422019",
+   "carrier": "UNI20",
+   "dos": "2025-11-01",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P1",
+     "code": "20",
+     "text": "Accepted for processing."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "24655",
+   "vid": "19417361",
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "24655",
+   "vid": "19420986",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17471977",
+   "vid": "19424212",
+   "carrier": "BCBS",
+   "dos": "2025-11-19",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P0",
+     "code": "41",
+     "text": "Special handling required at payer site."
+    },
+    {
+     "cat": "P0",
+     "code": "41",
+     "text": "Special handling required at payer site."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17475632",
+   "vid": "19433791",
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "unknown",
+   "action": "UNKNOWN - review",
+   "paid": [],
+   "denied": [],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17473477",
+   "vid": "19420969",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 206.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "07865880"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17471673",
+   "vid": "19421078",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 206.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q477694500"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "24655",
+   "vid": "19417570",
+   "carrier": "UNI20",
+   "dos": "2025-09-18",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "12232248",
+   "vid": "19417751",
+   "carrier": "UNI20",
+   "dos": "2025-09-18",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509602"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    },
+    {
+     "cat": "A7",
+     "code": "21",
+     "text": "Missing or invalid information."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "12232248",
+   "vid": "19424313",
+   "carrier": "UNI20",
+   "dos": "2025-11-19",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509412"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    },
+    {
+     "cat": "A7",
+     "code": "21",
+     "text": "Missing or invalid information."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17473032",
+   "vid": "19418299",
+   "carrier": "UNI20",
+   "dos": "2025-09-25",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509396"
+    }
+   ],
+   "other": [
+    {
+     "cat": "A3",
+     "code": "54",
+     "text": "Duplicate of a previously processed claim/line."
+    },
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17473032",
+   "vid": "19427528",
+   "carrier": "UNI20",
+   "dos": "2025-12-20",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509397"
+    }
+   ],
+   "other": [
+    {
+     "cat": "A3",
+     "code": "54",
+     "text": "Duplicate of a previously processed claim/line."
+    },
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "44954",
+   "vid": "19417872",
+   "carrier": "UNI20",
+   "dos": "2025-09-17",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $96.20 - find/post the ERA (check 26256B1000176953,280630179)",
+   "paid": [
+    {
+     "paid": "96.2",
+     "check": "280630179",
+     "paidDate": "2025-09-30",
+     "payerClaim": "25R398623700"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990026200"
+    }
+   ],
+   "other": [
+    {
+     "cat": "A7",
+     "code": "21",
+     "text": "Missing or invalid information."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17469033",
+   "vid": "19362850",
+   "carrier": "UNI20",
+   "dos": "2023-08-11",
+   "balance": 196.67,
+   "icn": "KLC9659728600",
+   "kind": "notonfile",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "D0",
+     "code": "187",
+     "text": "Date(s) of service."
+    }
+   ],
+   "errors": [],
+   "outcome": "skipped - payer ICN KLC9659728600 already on the visit (adjudicated earlier; D0 'date of service' = search miss, not a never-received claim) - William"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19435223",
+   "carrier": "UNI20",
+   "dos": "2026-03-06",
+   "balance": 174.47,
+   "icn": "KLC0434879400",
+   "kind": "paid",
+   "action": "PAID $214.53 - find/post the ERA (check V5475692)",
+   "paid": [
+    {
+     "paid": "214.53",
+     "check": "V5475692",
+     "paidDate": "2026-06-29",
+     "payerClaim": "04348794"
+    }
+   ],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "3",
+     "text": "Claim has been adjudicated and is awaiting payment cycle."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17475541",
+   "vid": "19433138",
+   "carrier": "BCBS",
+   "dos": "2026-02-18",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $384.95 - find/post the ERA (check 213079631,213420173)",
+   "paid": [
+    {
+     "paid": "0",
+     "check": "213079631",
+     "paidDate": "2026-04-15",
+     "payerClaim": "H100001311947640"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347263931"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-14",
+     "payerClaim": "H100001348232229"
+    },
+    {
+     "paid": "103.14",
+     "check": "213079631",
+     "paidDate": "2026-04-15",
+     "payerClaim": "H100001311949069"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347267217"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-14",
+     "payerClaim": "H100001348230542"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-14",
+     "payerClaim": "H100001348231114"
+    },
+    {
+     "paid": "281.81",
+     "check": "213079631",
+     "paidDate": "2026-04-15",
+     "payerClaim": "H100001311949010"
+    },
+    {
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347266340"
+    }
+   ],
+   "denied": [],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19422912",
+   "carrier": "UNI20",
+   "dos": "2025-11-08",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509441"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19435284",
+   "carrier": "UNI20",
+   "dos": "2026-03-11",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509450"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439702",
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17472977",
+   "vid": "19429034",
+   "carrier": "UNI20",
+   "dos": "2026-01-09",
+   "balance": 160.15,
+   "icn": "26B120972000",
+   "kind": "paid",
+   "action": "PAID $228.85 - find/post the ERA (check 26028B1000291434,26252B1000426598,26256B1000176953)",
+   "paid": [
+    {
+     "paid": "228.85",
+     "check": "26028B1000291434",
+     "paidDate": "2026-01-21",
+     "payerClaim": "26B120972000"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0709566600"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990218600"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17471977",
+   "vid": "19424211",
+   "carrier": "BCBS",
+   "dos": "2025-11-20",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "P0",
+     "code": "41",
+     "text": "Special handling required at payer site."
+    },
+    {
+     "cat": "P0",
+     "code": "41",
+     "text": "Special handling required at payer site."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17473781",
+   "vid": "19417877",
+   "carrier": "UNI20",
+   "dos": "2025-09-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $71.87 - find/post the ERA (check 60507502)",
+   "paid": [
+    {
+     "paid": "71.87",
+     "check": "60507502",
+     "paidDate": "2025-10-10",
+     "payerClaim": "83931334"
+    }
+   ],
+   "denied": [],
+   "other": [
+    {
+     "cat": "A7",
+     "code": "54",
+     "text": "Duplicate of a previously processed claim/line."
+    },
+    {
+     "cat": "A7",
+     "code": "54",
+     "text": "Duplicate of a previously processed claim/line."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17473066",
+   "vid": "19416752",
+   "carrier": "UNI20",
+   "dos": "2025-09-15",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280628694)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280628985",
+     "paidDate": "2025-09-23",
+     "payerClaim": "25Q897054200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280628694",
+     "paidDate": "2025-09-20",
+     "payerClaim": "25Q782730000"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166415300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452701800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166413900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452700200"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17473066",
+   "vid": "19416875",
+   "carrier": "UNI20",
+   "dos": "2025-09-16",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280628694)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280628985",
+     "paidDate": "2025-09-23",
+     "payerClaim": "25Q897054200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280628694",
+     "paidDate": "2025-09-20",
+     "payerClaim": "25Q782730000"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166415300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452701800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166413900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452700200"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19420026",
+   "carrier": "UNI20",
+   "dos": "2025-10-17",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509603"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19420800",
+   "carrier": "UNI20",
+   "dos": "2025-10-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509433"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19422011",
+   "carrier": "UNI20",
+   "dos": "2025-11-02",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509435"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509434"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19422194",
+   "carrier": "UNI20",
+   "dos": "2025-11-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509435"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509434"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19422699",
+   "carrier": "UNI20",
+   "dos": "2025-11-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509440"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433529",
+   "carrier": "UNI20",
+   "dos": "2026-02-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509415"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509416"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433530",
+   "carrier": "UNI20",
+   "dos": "2026-02-22",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509415"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509416"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433531",
+   "carrier": "UNI20",
+   "dos": "2026-02-21",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509415"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509416"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433673",
+   "carrier": "UNI20",
+   "dos": "2026-02-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509415"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509416"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433682",
+   "carrier": "UNI20",
+   "dos": "2026-02-25",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509415"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19433783",
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509414"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434049",
+   "carrier": "UNI20",
+   "dos": "2026-02-27",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509417"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434271",
+   "carrier": "UNI20",
+   "dos": "2026-03-02",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434282",
+   "carrier": "UNI20",
+   "dos": "2026-03-01",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434293",
+   "carrier": "UNI20",
+   "dos": "2026-02-28",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509421"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509420"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509418"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434432",
+   "carrier": "UNI20",
+   "dos": "2026-03-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509424"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434631",
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509423"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434688",
+   "carrier": "UNI20",
+   "dos": "2026-03-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509448"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509449"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434702",
+   "carrier": "UNI20",
+   "dos": "2026-03-06",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509449"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434709",
+   "carrier": "UNI20",
+   "dos": "2026-03-05",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509442"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509425"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509422"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19434930",
+   "carrier": "UNI20",
+   "dos": "2026-03-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509448"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509449"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509446"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19435049",
+   "carrier": "UNI20",
+   "dos": "2026-03-10",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509448"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509449"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "23967",
+   "vid": "19435063",
+   "carrier": "UNI20",
+   "dos": "2026-03-09",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "denied",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "paid": [],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509448"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509449"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509447"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509443"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "17509444"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "12231996",
+   "vid": "19427817",
+   "carrier": "UNI20",
+   "dos": "2026-01-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26017B1000156428,26021B1000308993,26254B1000243083)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "26021B1000308993",
+     "paidDate": "2026-01-13",
+     "payerClaim": "RB8091602900"
+    },
+    {
+     "paid": "89.83",
+     "check": "26021B1000308993",
+     "paidDate": "2026-01-13",
+     "payerClaim": "RB8091841800"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175727900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658097300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166681900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1657905400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175726100"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658099500"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175675900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175674400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RB8091993800"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "12231996",
+   "vid": "19428152",
+   "carrier": "UNI20",
+   "dos": "2026-01-05",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $89.83 - find/post the ERA (check 26021B1000308993,26254B1000243083,26269B1000169351)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "26021B1000308993",
+     "paidDate": "2026-01-13",
+     "payerClaim": "RB8091602900"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175727900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658097300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166681900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1657905400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175726100"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658099500"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175675900"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "12231996",
+   "vid": "19428166",
+   "carrier": "UNI20",
+   "dos": "2026-01-04",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26021B1000308993,26254B1000243083,26269B1000169351)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "26021B1000308993",
+     "paidDate": "2026-01-13",
+     "payerClaim": "RB8091602900"
+    },
+    {
+     "paid": "89.83",
+     "check": "26021B1000308993",
+     "paidDate": "2026-01-13",
+     "payerClaim": "RB8091841800"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175727900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658097300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q166681900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1657905400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175726100"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD1658099500"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175675900"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q175674400"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17474436",
+   "vid": "19420786",
+   "carrier": "UNI20",
+   "dos": "2025-10-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280634691)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280634691",
+     "paidDate": "2025-10-30",
+     "payerClaim": "25T355110300"
+    },
+    {
+     "paid": "89.83",
+     "check": "280634691",
+     "paidDate": "2025-10-30",
+     "payerClaim": "25T355109000"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q165876400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452429400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q165875300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452428200"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17474436",
+   "vid": "19420878",
+   "carrier": "UNI20",
+   "dos": "2025-10-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280634691)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280634691",
+     "paidDate": "2025-10-30",
+     "payerClaim": "25T355110300"
+    },
+    {
+     "paid": "89.83",
+     "check": "280634691",
+     "paidDate": "2025-10-30",
+     "payerClaim": "25T355109000"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q165876400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452429400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q165875300"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "26Q452428200"
+    }
+   ],
+   "other": [],
+   "errors": []
+  },
+  {
+   "pid": "17474611",
+   "vid": "19422900",
+   "carrier": "UNI20",
+   "dos": "2025-11-10",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056427700"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056983200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4958205800"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959385900"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959692200"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990004600"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986658400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986562200"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986405800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0988689800"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17474611",
+   "vid": "19422901",
+   "carrier": "UNI20",
+   "dos": "2025-11-09",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056427700"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056983200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4958205800"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959385900"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959692200"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990004600"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986658400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986562200"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986405800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0988689800"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17474611",
+   "vid": "19422902",
+   "carrier": "UNI20",
+   "dos": "2025-11-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $359.32 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056983200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4958205800"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959385900"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959692200"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986658400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986562200"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986405800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0988689800"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17474611",
+   "vid": "19423060",
+   "carrier": "UNI20",
+   "dos": "2025-11-11",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056427700"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056983200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4958205800"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959385900"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959692200"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990004600"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986658400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986562200"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986405800"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0988689800"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17474611",
+   "vid": "19423203",
+   "carrier": "UNI20",
+   "dos": "2025-11-12",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "paid",
+   "action": "PAID $359.32 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "paid": [
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056427700"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637687",
+     "paidDate": "2025-11-14",
+     "payerClaim": "RB5056983200"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4958205800"
+    },
+    {
+     "paid": "89.83",
+     "check": "280637173",
+     "paidDate": "2025-11-13",
+     "payerClaim": "RB4959385900"
+    }
+   ],
+   "denied": [
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0990004600"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986658400"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986562200"
+    },
+    {
+     "code": "585",
+     "text": "Denied Charge or Non-covered Charge.",
+     "payerClaim": "RD0986405800"
+    }
+   ],
+   "other": [
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    },
+    {
+     "cat": "P5",
+     "code": "46",
+     "text": "Internal review/audit."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437843",
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    }
+   ],
+   "errors": []
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437926",
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "pending",
+   "action": "PENDING at payer - wait",
+   "paid": [],
+   "denied": [],
+   "other": [
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    },
+    {
+     "cat": "A1",
+     "code": "0",
+     "text": "Cannot provide further status electronically."
+    }
+   ],
+   "errors": []
+  }
+ ]
+}

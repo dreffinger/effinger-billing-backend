@@ -1,0 +1,13 @@
+[
+ {
+  "checkid": "1053006",
+  "carrier": "FLO02",
+  "checknumber": "350041718",
+  "amount": 0.0,
+  "reason": "Medicare $0 remit 350041718: both lines are CO97 denial-only (99344 9/25/2026 on v19456319 and v19456320, no money); routed to the Insurance Refresh Board rows medhurst-chester-17477516 / hogarth-charmian-17470940 for William's go on the 99344->99349 recode; nothing postable remains",
+  "result": "dismissed",
+  "gone_from_list": true,
+  "when": "2026-10-06T11:32:26Z",
+  "run": "2026-10-06T1110Z"
+ }
+]
