@@ -1,0 +1,16 @@
+{
+ "stamp": "2026-10-06T0329Z",
+ "live": true,
+ "only": "C",
+ "steps": [
+  "chart 17474493 order before '1,2,3' plan seqs ['1', '2', '3']",
+  "ins_update 17474493 9520723 {'sequence': '3,2'} True d-k5dwp\" lst=\"10/05/2026 20:29:19\"><Results success=\"1\"><patient insorder=\"3,2\" /></Results><Error /></PPMDResults>",
+  "ins_update 17474493 9520723 {'sequence': '3,2'} True d-kqsw8\" lst=\"10/05/2026 20:29:20\"><Results success=\"1\"><patient insorder=\"3,2\" /></Results><Error /></PPMDResults>",
+  "chart 17474493 order after '3,2' (wanted 3,2)",
+  "bryant resave vst19456837 insorder now 3,2 1 live (was 1)",
+  "bryant freq1 19456837 23368495 seq 3 -> freq1 + rebill seq 3 -> 204",
+  "bryant resave vst19456905 insorder now 3,2 1 live (was 1)",
+  "bryant freq1 19456905 23368613 seq 3 -> freq1 + rebill seq 3 -> 204",
+  "bryant 10/3 resave vst19456976 insorder now 3,2 1 live (was 1)"
+ ]
+}

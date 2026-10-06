@@ -1,0 +1,11 @@
+{
+ "stamp": "2026-10-06T0330Z",
+ "live": true,
+ "only": "E",
+ "steps": [
+  "chart 17472143 order before '1,2' plan seqs ['1', '2']",
+  "ins_update 17472143 9511482 {'carrier': 'car6600'} True d-k5dwp\" lst=\"10/05/2026 20:30:31\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+  "ins_update 17472143 9511482 {'sequence': '1,2'} True d-k5dwp\" lst=\"10/05/2026 20:30:32\"><Results success=\"1\"><patient insorder=\"1,2\" /></Results><Error /></PPMDResults>",
+  "chart 17472143 order after '1,2' (wanted 1,2)"
+ ]
+}
