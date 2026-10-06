@@ -10,6 +10,8 @@
 # Rules it uses: live read before every write; full-visit echo on the dx save with read-back verification; --dry first.
 # Never touches: the Medicare payment, balances, any other visit, the Medicare contractual (the 51-line 'repair them' question
 #   is William's, row paper-eob-writeoffs-0923).
+# LESSON 10/6: move_to_ins.move(cid, seq=...) also rebills the FIRST sequence of the new order unless rebill_seq= is passed -
+#   on a paid visit pass rebill_seq=<the secondary> (this run queued a needless Medicare rebill that way).
 import amd, dx_primary_fix as D, move_to_ins, freq7_visit, amdw, resave, json, sys, re, time, datetime
 PID, VID, CID = "17475338", "19431100", "23337644"
 ICN = "H100001347265276"; KEEP = ["dcode1034545247"]; BAD = "dcode1037453494"
@@ -37,7 +39,7 @@ else:
         if r.startswith("FAULT") or det.get("charge" + CID, (None, None))[1] != KEEP:
             L("VERIFY-FAILED - stopping before the resend"); json.dump(log, open("registers/act_%s.json" % STAMP, "w"), indent=1); sys.exit(1)
 order = "%s,%s" % (med_seq, fb_seq)
-r2 = move_to_ins.move(CID, seq=order, dry=DRY); L("insorder %s: %s" % (order, r2))
+r2 = move_to_ins.move(CID, seq=order, dry=DRY, rebill_seq=fb_seq); L("insorder %s: %s" % (order, r2))
 if DRY:
     L("DRY: would send freq7 icn %s to seq %s" % (ICN, fb_seq))
 else:
