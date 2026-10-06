@@ -172,5 +172,23 @@ pl = approval_submit.push_text(long, "2026-10-06T0330Z")
 check("push never exceeds 199 even with a long id", len(pl) <= 199 and pl.endswith(approval_submit.PAGE) or pl.endswith(long[0]["id"]), (len(pl), pl))
 check("privacy gate still catches an SSN", approval_submit.privacy_hit("pt [SSN]") == "SSN pattern")
 
+# ------------------------------------------------------------------ G. approval_submit review fixes
+for t, want in [('subscribernum="123456789"', True), ('Member ID: [member id]', True), ('"memberId": "[member id]"', True), ("DOB [DOB]", True),
+                ("ICN [ICN]", True), ('"lastName": "[name]"', True), ("chart 17470940 visit 19455208 99233 $160", False),
+                ("'SUBSCRIBER ID NOT FOUND' + 'MEMBER PICK REJECT' on 19455208B", False)]:
+    check("privacy gate %s: %s" % ("catches" if want else "passes", t[:40]), bool(approval_submit.privacy_hit(t)) == want, approval_submit.privacy_hit(t))
+ef = os.path.join(TMP, "dry_register.json"); open(ef, "w").write('{"memberId": "[member id]", "firstName": "[name]"}')
+it = approval_submit.build_items([{"letter": "C", "command": "python3 y.py --live --only C", "reason": "r", "what": "MARLOW, PATIENT737 (chart 12232248) six visits",
+                                   "dollars": "$1", "ui": "", "evidence": "dry run: 6 visits to UNI20", "evidence_file": ef}], "2026-10-06T0430Z", TMP)
+check("evidence file is referenced by path, never copied", it[0]["evidence"] == "dry run: 6 visits to UNI20" and "VMYH" not in json.dumps(it), it[0]["evidence"])
+reg = os.path.join(TMP, "reg", "approvals_pending.json")
+approval_submit.register(reg, it, False, scrub=True)
+check("repo copy of the register carries no chart name", "MARLOW" not in open(reg).read() and "[name] (chart 12232248)" in open(reg).read())
+clash = [dict(it[0], cmd="python3 other.py --live")]
+check("same id with a different command = collision", approval_submit.collisions(reg, clash) == [it[0]["id"]] and approval_submit.collisions(reg, it) == [])
+subj, body = approval_submit.email(items, "2026-10-06T0330Z", "nightly cascade")
+check("subject is found by the hourly sync's search and names the run kind", subj.startswith("mandatory approval writes - 2 new to approve (nightly cascade"), subj)
+check("no email-reply approval channel is offered", "APPROVED <id>" not in body and "APPROVED &lt;id&gt;" not in approval_submit.html_email(items, "x", subj), body[:200])
+
 print("\n%d failure(s)" % len(FAILS) + (": " + ", ".join(FAILS) if FAILS else " - all guarantees hold"))
 sys.exit(1 if FAILS else 0)
