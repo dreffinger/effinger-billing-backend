@@ -5,3 +5,5 @@
 {"at": "2026-10-06T13:34:19Z", "visit": "19419622", "charge": "23324573", "seq": 1, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-06T13:34:29Z", "visit": "19420346", "charge": "23325329", "seq": 1, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-06T13:34:41Z", "visit": "19422181", "charge": "23327538", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-06T15:34:05Z", "visit": "19442989", "charge": "23351258", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-06T15:37:12Z", "visit": "19422683", "charge": "23328012", "seq": 2, "status": 204, "by": "freq1_visit.py"}
