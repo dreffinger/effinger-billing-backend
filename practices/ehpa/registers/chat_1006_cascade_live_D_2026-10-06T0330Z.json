@@ -1,0 +1,12 @@
+{
+ "stamp": "2026-10-06T0330Z",
+ "live": true,
+ "only": "D",
+ "steps": [
+  "kirkbride contractual True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-kqsw8\" lst=\"10/05/2026 20:30:14\"><Results success=\"1\" paym",
+  "chart 17475338 order before '1,2' plan seqs ['1', '2']",
+  "ins_update 17475338 9519275 {'sequence': '2,1'} True d-kqsw8\" lst=\"10/05/2026 20:30:16\"><Results success=\"1\"><patient insorder=\"2,1\" /></Results><Error /></PPMDResults>",
+  "ins_update 17475338 9519275 {'sequence': '2,1'} True d-k5dwp\" lst=\"10/05/2026 20:30:17\"><Results success=\"1\"><patient insorder=\"2,1\" /></Results><Error /></PPMDResults>",
+  "chart 17475338 order after '2,1' (wanted 2,1)"
+ ]
+}

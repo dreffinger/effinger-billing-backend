@@ -181,8 +181,8 @@
    "evidence_file": "registers/hospice_humana_b9_plan_2026-10-05T1710Z.json",
    "evidence": "",
    "ui": "Patient 17472396 > Insurance: clear the End Date on the Medicare plan (seq 1) and set the order Medicare first; Charges: open each of the 5 visits (6/5, 7/3, 6/25, 5/7, 5/17/2026), set Insurance Order = 1 (Medicare), Save; Claims > rebill each as frequency 1 (original) to Medicare; then ERA Center: dismiss check 1052967.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z recorded on William's page approval: already applied by run 2026-10-05T2110Z (Medicare plan end date cleared, order 1,2, 5 visits insorder 1 + freq-1 rebill -> 204 x5, $946); not re-run. That run used the pre-fix script - each visit may carry 2 rebills, flagged to William."
   },
   {
    "id": "A-2026-10-06T0137Z-A",
@@ -195,8 +195,8 @@
    "evidence_file": null,
    "evidence": "AMD 271 (plan ins9510183 at UHC 87726): 'AARP SUPPLEMENTAL PLANS INS BY UNITEDHEALTHCARE', UNKNOWN; exclusion run 1700265 errors 'PA ACK - SUBSCRIBER AND SUBSCRIBER ID NOT FOUND' + 'MEMBER PICK REJECT' on 19455208B; gettxhistory v19455208: Medicare paid 85.46 on 10/03/2026 (check 819910096), insbal 21.80; chart order read 02:1xZ = 1,2. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 17470940 > Insurance > edit the seq-2 plan > Carrier: UNITED HEALTHCARE -> AARP (AAR01), save (no group number), check the patient order still reads Medicare 1 / AARP 2; Claims Center > Exclusions > run 1700265 > 19455208B > Complete.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: ins9510183 -> AAR01 (car6600), order 1,2, 19455208B hidden off run 1700265; $21.80 rides the crossover"
   },
   {
    "id": "A-2026-10-06T0137Z-B",
@@ -209,8 +209,8 @@
    "evidence_file": null,
    "evidence": "AMD 271 10/6: Florida Blue ins6029665 REJECTED AAA 75; UNI20 ins9517757 ACTIVE (AARP Medicare Advantage HMO-POS); gettxhistory v19455716: carrier UNI20, billed 09/30/2026, FB $0 posting 2609300549; 2025 patient balances $1,656 on charges 23321127/8, 23321504, 23326170/1, 23330068, 23330503/4, 23333440/1 (no payments on any of them); chart order read 02:1xZ = 2,1. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 12232248 > Insurance: Florida Blue plan End date 06/21/2025, keep UHC (AARP MA) as primary; Charges: for each 2025 visit with a patient balance, transfer the balance back to insurance (no rebill).",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: ins6029665 end 06/21/2025, order 2,1 (one retry via ins9517757), $1,656 of 2025 patient balances -> insurance, no rebill"
   },
   {
    "id": "A-2026-10-06T0137Z-C",
@@ -223,8 +223,8 @@
    "evidence_file": null,
    "evidence": "precheck.py --days 14 (10/6): FLO02 pair flagged 'ADVANTAGE PLAN on DOS: CARE IMPROVEMENT PLUS SOUTH CENTRAL INSURANCE CO. (COB 20260101)'; Stedi 87726 on ins9520723: ACTIVE, FL UNITEDHEALTHCARE DUAL COMPLETE LPPO 20260101-20261231; gettxhistory: v19456837 $310 FLO02 billed 10/03, v19456905 $160 FLO02 billed 10/04, v19456833 $160 UNI20, v19456976 $160 unbilled; visit orders read 02:1xZ = 1,2 / 1,2,3 / 1,2,3. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 17474493 > Insurance > order: UHC Dual Complete primary, Sunshine secondary (Medicare stays, not billed); visits 9/30 and 10/1 > set insurance order UHC then Sunshine > Claims > Rebill as original (frequency 1) to the UHC plan; visit 10/3 > set the same order, no rebill.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: order 3,2; v19456837 + v19456905 insorder 3,2 + one freq-1 rebill each to UHC -> 204 x2 ($470); v19456976 insorder 3,2, no rebill"
   },
   {
    "id": "A-2026-10-06T0137Z-D",
@@ -237,8 +237,8 @@
    "evidence_file": null,
    "evidence": "gettxhistory v19431100 (02:1xZ): fee 310.00, paid 125.20 (pay 24650412 check 819814877(0) FLO02 09/19/2026), insbal 184.80; run digest 2026-10-06T0110Z: M86.8X8 deleted, visit insorder 2,1, freq 7 + origrefnum H100001347265276 rebilled to Florida Blue -> 204; chart plans read 02:1xZ: FB ins9516386 seq 1, Medicare ins9519275 seq 2, order 1,2; dry manual_post: bal 184.80 -> pay 0.00 wo 153.50 OK. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 17475338 > Payment Entry: carrier FLORIDA MEDICARE, check 819814877 dated 09/19/2026, payment 0.00, write-off code WOINS 153.50 on the 1/27/2026 99223; Patient > Insurance > order: Medicare primary, Florida Blue secondary.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: WOINS 153.50 on c23337644 (chk 819814877), ins balance 184.80 -> 31.30, order 2,1"
   },
   {
    "id": "A-2026-10-06T0137Z-E",
@@ -251,8 +251,8 @@
    "evidence_file": null,
    "evidence": "AMD 271 10/6 on ins9511482: 'AARP SUPPLEMENTAL PLANS INS BY UNITEDHEALTHCARE', UNKNOWN; Medicare plan ACTIVE (A 1/2018, B 11/2018); gettxhistory: UMR-letter visits 19390052/19390152/19390261 insbal 0 patbal 0; chart order read 02:1xZ = 1,2. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 17472143 > Insurance > edit the seq-2 plan > Carrier: UNITED HEALTHCARE -> AARP (AAR01), save; confirm the patient order still reads Medicare 1 / AARP 2.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: ins9511482 -> AAR01 (car6600), order 1,2"
   },
   {
    "id": "A-2026-10-06T0137Z-F",
@@ -265,8 +265,8 @@
    "evidence_file": null,
    "evidence": "AMD 271 10/6 on ins9513920: 'AARP SUPPLEMENTAL PLANS INS BY UNITEDHEALTHCARE', UNKNOWN; Medicare plan ACTIVE (A/B 5/2013); gettxhistory: visits 19406652/19406717 insbal 0 patbal 0; chart order read 02:1xZ = 1,2. Script: Drive 'workspace mirror' > chat_1006_cascade.py (file id 1rmX2cbo364pNmlEGkWulW7Ai94Cpj0GJ, final 02:16Z) - the apply session copies it into /home/claude/unbilled first; dry register chat_1006_cascade_dry_ABCDEF.json (02:1xZ, every write DRY, no faults).",
    "ui": "Patient 17473335 > Insurance > edit the seq-2 plan > Carrier: UNITED HEALTHCARE -> AARP (AAR01), save; confirm the patient order still reads Medicare 1 / AARP 2.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-06T0330Z applied on William's page approval: ins9513920 -> AAR01 (car6600), order 1,2"
   }
  ]
 }

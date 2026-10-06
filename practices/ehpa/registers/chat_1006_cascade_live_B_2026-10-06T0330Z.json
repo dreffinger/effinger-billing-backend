@@ -1,0 +1,21 @@
+{
+ "stamp": "2026-10-06T0327Z",
+ "live": true,
+ "only": "B",
+ "steps": [
+  "chart 12232248 order before '2,1' plan seqs ['1', '2']",
+  "ins_update 12232248 6029665 {'enddate': '06/21/2025'} True d-kqsw8\" lst=\"10/05/2026 20:27:57\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+  "ins_update 12232248 6029665 {'sequence': '2,1'} True d-kqsw8\" lst=\"10/05/2026 20:27:59\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+  "chart 12232248 order after '' (wanted 2,1)",
+  "marlow move_to_ins 23321127 09/21/2025 99487 $206.00 -> moved 315.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'}",
+  "marlow move_to_ins 23321128 09/21/2025 99489 $109.00 -> nothing to move",
+  "marlow move_to_ins 23321504 09/18/2025 99349 $198.00 -> moved 198.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '2'}",
+  "marlow move_to_ins 23326170 10/25/2025 99487 $206.00 -> moved 315.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'}",
+  "marlow move_to_ins 23326171 10/25/2025 99489 $109.00 -> nothing to move",
+  "marlow move_to_ins 23330068 11/19/2025 99349 $198.00 -> moved 198.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '2'}",
+  "marlow move_to_ins 23330503 11/25/2025 99487 $206.00 -> moved 315.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'}",
+  "marlow move_to_ins 23330504 11/25/2025 99489 $109.00 -> nothing to move",
+  "marlow move_to_ins 23333440 12/22/2025 99487 $206.00 -> moved 315.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'}",
+  "marlow move_to_ins 23333441 12/22/2025 99489 $109.00 -> nothing to move"
+ ]
+}
