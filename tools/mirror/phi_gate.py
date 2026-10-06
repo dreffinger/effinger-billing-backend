@@ -23,7 +23,13 @@ MAP_CANDIDATES = [os.path.join(ROOT, "secrets", "pseudonyms.json"),
 FAKE = ["Ashby", "Bexley", "Calder", "Ellery", "Fenwick", "Garrow", "Hollis", "Jarrell", "Kestrel", "Lowry",
         "Norcott", "Orme", "Pellam", "Quill", "Rowantree", "Selby", "Ulverston", "Varley", "Yardley", "Zell",
         "Abernathy", "Corvin", "Dalloway", "Eskdale", "Greaves", "Harlow", "Trent", "Winslow", "Bastable",
-        "Cotterell", "Denholm", "Farrant", "Gillam", "Hexham", "Inchbold", "Kirkbride", "Lisle", "Marlow", "Oakes"]
+        "Cotterell", "Denholm", "Farrant", "Gillam", "Hexham", "Inchbold", "Kirkbride", "Lisle", "Marlow", "Oakes",
+        # 10/6 afternoon: the first 40 were used up (nine names fell through to Patient%02d, two of them colliding)
+        "Blakeney", "Carraway", "Elmsley", "Farrow", "Glenister", "Ivens", "Jessop", "Kendal", "Lydgate", "Nettleford",
+        "Oswin", "Penrose", "Quarles", "Ransome", "Stillwater", "Thorney", "Wainfleet", "Yelverton", "Ashcombe", "Brackley",
+        "Culverhouse", "Dovedale", "Everleigh", "Fairweather", "Gainsford", "Ingleby", "Kettering", "Langdale", "Moresby",
+        "Northcote", "Overbury", "Rookwood", "Tavistock", "Underhill", "Wetherby", "Thistlewood", "Ravenscar", "Coldharbour",
+        "Ambleside", "Buttermere", "Grasmere", "Haverthwaite"]
 
 def load_map():
     env = os.environ.get("PHI_MAP")                       # a self-test's stand-in map; never set in a run
@@ -39,7 +45,11 @@ def pseudonym(real, taken):
         cand = FAKE[(h + i) % len(FAKE)]
         if cand not in taken:
             return cand
-    return "Patient%02d" % (h % 100)
+    for i in range(1000):                                  # never two real names behind one pseudonym
+        cand = "Patient%03d" % ((h + i) % 1000)
+        if cand not in taken:
+            return cand
+    raise RuntimeError("pseudonym list exhausted")
 
 ID_PATTERNS = [
     ("MBI", re.compile(r"\b[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-RT-Y]{2}\d{2}\b")),
