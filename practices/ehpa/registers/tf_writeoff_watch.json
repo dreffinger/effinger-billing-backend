@@ -156,7 +156,7 @@
      "insbal": 141.0,
      "order": "2",
      "seq": 2,
-     "outcome": "sending 2026-10-06T1310Z"
+     "outcome": "sent 2026-10-06T1310Z"
     },
     {
      "pid": "17474258",
@@ -169,7 +169,7 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sending 2026-10-06T1310Z"
+     "outcome": "sent 2026-10-06T1310Z"
     },
     {
      "pid": "17474258",
@@ -182,7 +182,7 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sending 2026-10-06T1310Z"
+     "outcome": "sent 2026-10-06T1310Z"
     },
     {
      "pid": "17474258",
@@ -195,11 +195,12 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sending 2026-10-06T1310Z"
+     "outcome": "sent 2026-10-06T1310Z"
     }
    ],
    "total": 564.0,
-   "claimed": "2026-10-06T1310Z"
+   "claimed": "2026-10-06T1310Z",
+   "sent": "2026-10-06 13:34Z (freq1_visit.py reroute, visit insorder already right - no resave; ONE frequency-1 reset + ONE chargerebill per visit, 204 x4)"
   }
  ]
 }
