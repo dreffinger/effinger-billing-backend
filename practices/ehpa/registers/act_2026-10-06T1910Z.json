@@ -1,0 +1,194 @@
+{
+ "stamp": "2026-10-06T1910Z",
+ "dry": false,
+ "steps": [
+  "A pat17477516 v19457072 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 10/03/2026",
+  "  updextrainsinfo 99233 10/03/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1,2 hospfrom=10/03/2026",
+  "A pat17477557 v19457073 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1 onhcfa 0 hospfrom-now None -> admission 09/30/2026",
+  "  updextrainsinfo 99233 09/30/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1 hospfrom=09/30/2026",
+  "A pat17472228 v19457074 dos 10/04/2026 cpts ['99233'] mods [''] insorder 3,1 onhcfa 0 hospfrom-now None -> admission 10/01/2026",
+  "  updextrainsinfo 99233 10/01/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=3,1 hospfrom=10/01/2026",
+  "A pat17476869 v19457075 dos 10/04/2026 cpts ['99233'] mods [''] insorder 2 onhcfa 0 hospfrom-now None -> admission 10/01/2026",
+  "  updextrainsinfo 99233 10/01/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=2 hospfrom=10/01/2026",
+  "A pat17477640 v19457076 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1 onhcfa 0 hospfrom-now None -> admission 09/29/2026",
+  "  updextrainsinfo 99233 09/29/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1 hospfrom=09/29/2026",
+  "A pat17472703 v19457077 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1 onhcfa 0 hospfrom-now None -> admission 09/05/2026",
+  "  updextrainsinfo 99233 09/05/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1 hospfrom=09/05/2026",
+  "A pat17477899 v19457079 dos 10/04/2026 cpts ['99232'] mods [''] insorder 1 onhcfa 0 hospfrom-now None -> admission 09/22/2026",
+  "  updextrainsinfo 99232 09/22/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1 hospfrom=09/22/2026",
+  "A pat17474741 v19457080 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 09/15/2026",
+  "  updextrainsinfo 99233 09/15/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1,2 hospfrom=09/15/2026",
+  "A pat20863 v19457081 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 09/30/2026",
+  "  updextrainsinfo 99233 09/30/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1,2 hospfrom=09/30/2026",
+  "A pat17471741 v19457082 dos 10/04/2026 cpts ['99232'] mods [''] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 10/02/2026",
+  "  updextrainsinfo 99232 10/02/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1,2 hospfrom=10/02/2026",
+  "A pat17471916 v19457083 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1 onhcfa 0 hospfrom-now None -> admission 09/16/2026",
+  "  updextrainsinfo 99233 09/16/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1 hospfrom=09/16/2026",
+  "A pat23159 v19457084 dos 10/04/2026 cpts ['99233'] mods [''] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 09/22/2026",
+  "  updextrainsinfo 99233 09/22/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=1,2 hospfrom=09/22/2026",
+  "A pat17474493 v19457085 dos 10/04/2026 cpts ['99233'] mods [''] insorder 3,2 onhcfa 0 hospfrom-now None -> admission 09/30/2026",
+  "  updextrainsinfo 99233 09/30/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=3,2 hospfrom=09/30/2026",
+  "A pat17477516 v19457086 dos 10/03/2026 cpts ['99223', '99497'] mods ['', 'mcode7'] insorder 1,2 onhcfa 0 hospfrom-now None -> admission 10/03/2026",
+  "  updextrainsinfo 99223 10/03/2026 -> ok",
+  "  updextrainsinfo 99497 10/03/2026 -> ok",
+  "  resave: saved live=2/2 onhcfa=1 insorder=1,2 hospfrom=10/03/2026",
+  "B v19457087 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457088 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457089 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457090 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457091 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457092 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000013 '] -> ok",
+  "B v19457093 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457094 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457095 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457096 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457097 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457098 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457099 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok",
+  "B v19457100 bypass advisories ['Pattern 4310 This patient received care by provider 152563-0000000015 '] -> ok"
+ ],
+ "hold": [],
+ "done": [
+  {
+   "pid": "17477516",
+   "vid": "19457072",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 10/03/2026, onhcfa=1"
+  },
+  {
+   "pid": "17477557",
+   "vid": "19457073",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/30/2026, onhcfa=1"
+  },
+  {
+   "pid": "17472228",
+   "vid": "19457074",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 10/01/2026, onhcfa=1"
+  },
+  {
+   "pid": "17476869",
+   "vid": "19457075",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 10/01/2026, onhcfa=1"
+  },
+  {
+   "pid": "17477640",
+   "vid": "19457076",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/29/2026, onhcfa=1"
+  },
+  {
+   "pid": "17472703",
+   "vid": "19457077",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/05/2026, onhcfa=1"
+  },
+  {
+   "pid": "17477899",
+   "vid": "19457079",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99232"
+   ],
+   "action": "admission 09/22/2026, onhcfa=1"
+  },
+  {
+   "pid": "17474741",
+   "vid": "19457080",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/15/2026, onhcfa=1"
+  },
+  {
+   "pid": "20863",
+   "vid": "19457081",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/30/2026, onhcfa=1"
+  },
+  {
+   "pid": "17471741",
+   "vid": "19457082",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99232"
+   ],
+   "action": "admission 10/02/2026, onhcfa=1"
+  },
+  {
+   "pid": "17471916",
+   "vid": "19457083",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/16/2026, onhcfa=1"
+  },
+  {
+   "pid": "23159",
+   "vid": "19457084",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/22/2026, onhcfa=1"
+  },
+  {
+   "pid": "17474493",
+   "vid": "19457085",
+   "dos": "10/04/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 09/30/2026, onhcfa=1"
+  },
+  {
+   "pid": "17477516",
+   "vid": "19457086",
+   "dos": "10/03/2026",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "action": "admission 10/03/2026, onhcfa=1"
+  }
+ ],
+ "left_127882": []
+}
