@@ -13,6 +13,10 @@ def save(name, txt):
     open(os.path.join(OUT, "%s_%s.xml" % (name, tag)), "w").write(txt)
 
 summary = {"tag": tag, "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+NAMEKEY = re.compile(r"(?i)patientname|firstname|lastname|^name$|subscriber|member|dob|birth|ssn")
+def attrs(el):
+    """Every attribute of an element EXCEPT patient identifiers (10/6/2026: the summaries reach GitHub - chart id + visit id only)."""
+    return {k: el.get(k) for k in el.keys() if not NAMEKEY.search(k)}
 
 # 1. overview
 ov = amd.post(amd.msg("getclaimcenteroverview", "claimsreports", {"nocookie": "1"}), timeout=120); save("overview", ov)
@@ -28,7 +32,7 @@ crv = []
 try:
     root = ET.fromstring(cr)
     for v in root.iter("visit"):
-        crv.append({"vid": v.get("id"), "pid": v.get("patientid") or "", "name": v.get("patientname") or "",
+        crv.append({"vid": v.get("id"), "pid": v.get("patientid") or "", "name": "",
                     "charges": [(c.get("id"), c.get("proccode"), c.get("modcodes") or "", c.get("begindate") or c.get("dos") or "") for c in v.iter("charge")]})
 except ET.ParseError as e:
     print("chargereview parse error:", e, cr[:300])
@@ -48,7 +52,7 @@ for bid in bids:
         root = ET.fromstring(t)
         for v in root.iter("visit"):
             errs = [(e.get("id"), re.sub(r"\s+", " ", (e.text or "") + "".join((c.text or "") for c in e.iter()))[:200], e.get("number") or "") for e in v.iter("error")]
-            vs.append({"vid": v.get("id"), "pid": v.get("patientid") or "", "name": v.get("patientname") or "", "status": v.get("claimstatus") or "",
+            vs.append({"vid": v.get("id"), "pid": v.get("patientid") or "", "name": "", "status": v.get("claimstatus") or "",
                        "errs": errs, "chgs": [(c.get("id"), c.get("proccode")) for c in v.iter("charge")]})
     except ET.ParseError as e:
         print("insp parse error", bid, e)
@@ -67,15 +71,15 @@ try:
     summary["unbilled_totalcount"] = res.get("totalcount") if res is not None else None
     summary["unbilled_totalamount"] = res.get("totalamount") if res is not None else None
     for v in root.iter("visit"):
-        row = {k: v.get(k) for k in v.keys()}
+        row = attrs(v)
         row["_errs"] = [e.get("name") or (e.text or "") for e in v.iter("error")]
-        row["_chgs"] = [{k: c.get(k) for k in c.keys()} for c in v.iter("charge")]
+        row["_chgs"] = [attrs(c) for c in v.iter("charge")]
         ubrows.append(row)
 except ET.ParseError as e:
     print("unbilled parse error", e, ub[:300])
 summary["unbilled"] = ubrows
 print("UNBILLED totalcount:", summary.get("unbilled_totalcount"), "rows:", len(ubrows), flush=True)
-for r in ubrows: print("  ", r.get("id"), r.get("patientid"), r.get("patientname"), r.get("carriercode"), r["_errs"][:2])
+for r in ubrows: print("  ", r.get("id"), r.get("patientid"), r.get("carriercode"), r["_errs"][:2])
 
 # 5. exclusions
 rs = amd.post(amd.msg("getclaimrunstatus", "claimsreports", {"nocookie": "1"}), timeout=120); save("runstatus", rs)
@@ -89,9 +93,9 @@ for a in exruns:
     try:
         root = ET.fromstring(x)
         for v in root.iter("visit"):
-            row = {k: v.get(k) for k in v.keys()}
+            row = attrs(v)
             row["_errs"] = [{k: e.get(k) for k in e.keys()} | ({"text": (e.text or "").strip()} if (e.text or "").strip() else {}) for e in v.iter("error")]
-            row["_chgs"] = [{k: c.get(k) for k in c.keys()} for c in v.iter("charge")]
+            row["_chgs"] = [attrs(c) for c in v.iter("charge")]
             rows.append(row)
     except ET.ParseError as e:
         print("excl parse error", a["id"], e)

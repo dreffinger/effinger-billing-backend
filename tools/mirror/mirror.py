@@ -4,7 +4,10 @@
 #   1. registry  - workspace captured_calls.md (+ any captured_calls_additions_*.md pulled from Drive)
 #                  -> merged, PHI-gated -> docs/captured_calls.md
 #   2. helpers   - every *.py / carriers.json / facilities.json in the workspace that is newer than
-#                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore)
+#                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore);
+#                  a stale Drive-overlaid copy of the seven protected helpers never overwrites the repo's
+#   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
+#                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
 #   4. git       - commit, push main AND the project's synced branch; if the proxy says 403
 #                  ("not in this session's authorized repository set") write a bundle to
@@ -95,6 +98,12 @@ def union_prior_record(dst, prior):
 # ---- 2. helpers ---------------------------------------------------------------------------------
 HELPER_GLOBS = ["*.py", "*.sh", "carriers.json", "facilities.json"]
 SKIP = {"vocab_seed.json"}
+# 10/6/2026: the repository is the record for these seven. A workspace copy overlaid from Drive carries a fresh
+# mtime but can be OLDER code (the pre-10/6 move_to_ins ignores --no-rebill; the old freq1_visit has no reroute);
+# a copy that lacks its marker never overwrites scripts/helpers/, whatever its mtime says.
+PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visit.py": "def reroute",
+             "move_to_ins.py": "--no-rebill", "ins_update.py": "_set_order", "dx_primary_fix.py": "--visits",
+             "approval_submit.py": "LASTFIRST", "payreasons.py": "10/6: no patient name", "columns_scan.py": "NAMEKEY"}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
@@ -107,8 +116,23 @@ def sync_helpers():
             dst = os.path.join(dst_dir, name)
             if os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src):
                 continue
+            marker = PROTECTED.get(name)
+            if marker and os.path.exists(dst) and marker not in open(src, errors="replace").read():
+                print("helpers: STALE workspace copy of %s skipped (no '%s' - the repo copy is newer code); copy the repo's back over the workspace" % (name, marker))
+                continue
             gate(src, dst); n += 1
     print("helpers: %d file(s) refreshed into scripts/helpers/" % n)
+
+def gate_tree():
+    """10/6/2026: everything `git add -A` would commit passes through phi_gate's tree mode first - registers,
+    scan summaries and run artifacts under practices/ and nightly/runs/ were reaching GitHub with patient
+    names in them. Names -> pseudonym or [name]; identifiers -> [MBI]/[SSN]/[member id]; a run digest, needs
+    list / needs section or run report never enters the tree (Drive carries those)."""
+    r = subprocess.run([sys.executable, GATE, "tree", "."], capture_output=True, text=True, cwd=ROOT)
+    sys.stdout.write(r.stdout)
+    if r.returncode:
+        sys.stdout.write(r.stderr)
+        raise SystemExit("phi_gate tree FAILED - nothing committed; fix the source and rerun")
 
 # ---- 3. postman ---------------------------------------------------------------------------------
 def build_postman():
@@ -125,6 +149,7 @@ def token():
     return None
 
 def commit_and_push(message):
+    gate_tree()
     sh("git add -A")
     st = sh("git status --porcelain").stdout.strip()
     if not st:

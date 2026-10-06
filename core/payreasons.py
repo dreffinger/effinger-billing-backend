@@ -50,7 +50,7 @@ def unbilled_rows(all_rows=False):
     for blk in re.findall(r"<visit\b[^>]*>.*?</visit>", r, flags=re.S):
         head = dict(re.findall(r'(\w+)="([^"]*)"', re.match(r"<visit\b[^>]*>", blk).group(0)))
         errs = re.findall(r'<error\b[^>]*\bname="([^"]*)"', blk)
-        row = {"visitid": num(head.get("id")), "pid": num(head.get("patientid")), "name": head.get("patientname", ""), "next_carrier": head.get("carriercode", ""),
+        row = {"visitid": num(head.get("id")), "pid": num(head.get("patientid")), "name": "", "next_carrier": head.get("carriercode", ""),   # 10/6: no patient name in any register (chart id is enough; the registers reach GitHub)
                "errors": " | ".join(dict.fromkeys(e for e in errs if e)), "reason_row": "payment reason codes" in blk.lower(),
                "charges": [dict(re.findall(r'(\w+)="([^"]*)"', c)) for c in re.findall(r"<charge\b[^>]*/>", blk)]}
         if all_rows or row["reason_row"]: out.append(row)
@@ -255,11 +255,11 @@ def repair_row(row, live=False, release=True, keep_restored=False):
     pid, vid = row["pid"], row["visitid"]
     st = visit_state(pid, vid); cl = codeless(st)
     checkid, chk, v = era_line(vid, st, allow_restore=live)
-    rec = {"visitid": vid, "pid": pid, "name": row.get("name", ""), "next_carrier": row.get("next_carrier", ""), "checkid": checkid,
+    rec = {"visitid": vid, "pid": pid, "name": "", "next_carrier": row.get("next_carrier", ""), "checkid": checkid,
            "codeless": [(c["cid"], p["id"], p["amount"], p["checkno"]) for c, p in cl], "steps": []}
     wos = [(c["cid"], w["id"], w["amount"], w["code"]) for c, p in cl for w in c["wos"] if w["void"] != "1" and w["createtime"][:19] == p["createtime"][:19]]
     rec["wos_to_void"] = wos
-    L("== visit %s pat%s %s -> %s: code-less %s; write-offs %s; check %s" % (vid, pid, rec["name"], rec["next_carrier"], rec["codeless"], wos, checkid))
+    L("== visit %s pat%s -> %s: code-less %s; write-offs %s; check %s" % (vid, pid, rec["next_carrier"], rec["codeless"], wos, checkid))
     if balanced(st) and not cl: rec["outcome"] = "already-balanced"
     elif not v: rec["outcome"] = "no-era-line"
     else:
