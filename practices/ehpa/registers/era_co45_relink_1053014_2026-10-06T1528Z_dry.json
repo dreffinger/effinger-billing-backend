@@ -1,0 +1,76 @@
+{
+ "stamp": "2026-10-06T1528Z",
+ "checkid": "1053014",
+ "checknumber": "823413149",
+ "live": false,
+ "lines": [
+  {
+   "pid": "12182505",
+   "vid": "19448729",
+   "cid": "23358048",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbalance": 28.6,
+    "patbalance": 0.0,
+    "carrier": "RET01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "12182505",
+   "vid": "19448729",
+   "cid": "23358049",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbalance": 15.49,
+    "patbalance": 0.0,
+    "carrier": "RET01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "12182505",
+   "vid": "19439508",
+   "cid": "23346974",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbalance": 28.6,
+    "patbalance": 0.0,
+    "carrier": "RET01"
+   },
+   "result": "already corrected"
+  },
+  {
+   "pid": "12182505",
+   "vid": "19439508",
+   "cid": "23346975",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbalance": 15.49,
+    "patbalance": 0.0,
+    "carrier": "RET01"
+   },
+   "result": "already corrected"
+  }
+ ]
+}

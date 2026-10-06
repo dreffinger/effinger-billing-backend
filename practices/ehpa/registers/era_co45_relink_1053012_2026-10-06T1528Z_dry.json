@@ -1,0 +1,161 @@
+{
+ "stamp": "2026-10-06T1528Z",
+ "checkid": "1053012",
+ "checknumber": "0010029052ER7",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17475392",
+   "vid": "19447741",
+   "cid": "23356969",
+   "cpt": "99349",
+   "paid": 45.21,
+   "co": 96.28,
+   "pr": 56.51,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbalance": 198.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19444154",
+   "cid": "23352828",
+   "cpt": "99349",
+   "paid": 45.21,
+   "co": 96.28,
+   "pr": 56.51,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbalance": 198.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19433861",
+   "cid": "23340621",
+   "cpt": "99487",
+   "paid": 64.74,
+   "co": 76.52,
+   "pr": 64.74,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbalance": 206.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19434250",
+   "cid": "23341227",
+   "cpt": "99349",
+   "paid": 41.72,
+   "co": 104.14,
+   "pr": 52.14,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbalance": 198.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19443845",
+   "cid": "23352364",
+   "cpt": "99349",
+   "paid": 45.21,
+   "co": 96.28,
+   "pr": 56.51,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbalance": 198.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19448744",
+   "cid": "23358093",
+   "cpt": "99487",
+   "paid": 71.49,
+   "co": 63.02,
+   "pr": 71.49,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbalance": 206.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19448744",
+   "cid": "23358094",
+   "cpt": "99489",
+   "paid": 38.74,
+   "co": 31.53,
+   "pr": 38.73,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbalance": 109.0,
+    "patbalance": 0.0,
+    "carrier": "TRI00"
+   },
+   "result": "no payment with check 0010029052ER7 on the charge - left"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19455620",
+   "cid": "23366972",
+   "cpt": "99487",
+   "paid": 71.49,
+   "co": 63.02,
+   "pr": 71.49,
+   "before": {
+    "fee": 206.0,
+    "paid": 134.51,
+    "insbalance": 0.0,
+    "patbalance": 71.49,
+    "carrier": "TRI00"
+   },
+   "result": "payment 71.49 / remainder 71.49 do not match the remit (paid 71.49, fee 206.00) - left for review"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19455620",
+   "cid": "23366973",
+   "cpt": "99489",
+   "paid": 38.74,
+   "co": 31.53,
+   "pr": 38.73,
+   "before": {
+    "fee": 109.0,
+    "paid": 70.27,
+    "insbalance": 0.0,
+    "patbalance": 38.73,
+    "carrier": "TRI00"
+   },
+   "result": "payment 38.74 / remainder 38.73 do not match the remit (paid 38.74, fee 109.00) - left for review"
+  }
+ ]
+}

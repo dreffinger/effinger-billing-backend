@@ -1,0 +1,25 @@
+{
+ "stamp": "2026-10-06T1528Z",
+ "checkid": "1053013",
+ "checknumber": "W0811512",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17476191",
+   "vid": "19453945",
+   "cid": "23364859",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "result": "already corrected"
+  }
+ ]
+}
