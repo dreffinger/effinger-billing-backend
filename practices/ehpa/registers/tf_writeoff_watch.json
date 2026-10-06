@@ -83,7 +83,7 @@
    "order": "William 10/6/2026 (v12 step 5b2): UNI20/BCBS visits before 5/1/2026 answered NOT ON FILE by the payer's 277 are sent once; written off WOLATE only on the payer's timely-filing answer",
    "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS (2026-10-06 07:3xZ): 60 checked - 30 PAID in 2025 (remits never reached AMD), 20 DENIED (585 on the 9/2026 re-sends), 5 PENDING, 4 NOT ON FILE, 1 UNKNOWN",
    "status": "open",
-   "sent": "",
+   "sent": "2026-10-06 07:33Z (freq1_visit.py reroute, visit insorder already right - no resave; ONE frequency-1 rebill each, chargerebill 204 x3)",
    "visits": [
     {
      "pid": "20336",
@@ -97,7 +97,7 @@
      "insbal": 315.0,
      "plan_order": "2",
      "lookup": "Stedi MBI lookup at DOS: MA = Care Improvement Plus South Central (UHC) COB 10/1/2024-4/30/2026, QMB; AMD UNI20 plan seq 2 (ended 5/16/2026); DOD [DOB] after the DOS",
-     "outcome": "sending 2026-10-06T0710Z"
+     "outcome": "sent 2026-10-06T0710Z"
     },
     {
      "pid": "20336",
@@ -111,7 +111,7 @@
      "insbal": 315.0,
      "plan_order": "2",
      "lookup": "same as 19416179",
-     "outcome": "sending 2026-10-06T0710Z"
+     "outcome": "sent 2026-10-06T0710Z"
     },
     {
      "pid": "17474258",
@@ -124,7 +124,7 @@
      "insbal": 256.0,
      "plan_order": "1",
      "lookup": "Stedi MBI lookup at DOS: MA = UnitedHealthcare of Florida HMO since 1/1/2025, QMB; AMD UNI20 plan seq 1",
-     "outcome": "sending 2026-10-06T0710Z"
+     "outcome": "sent 2026-10-06T0710Z"
     }
    ],
    "skipped": [
