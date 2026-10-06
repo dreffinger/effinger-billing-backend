@@ -1,0 +1,3905 @@
+{
+ "summary": {
+  "PENDING": 10,
+  "UNKNOWN": 1,
+  "DENIED": 31,
+  "PAID": 17,
+  "NOTONFILE": 1,
+  "open_total": 11159.29,
+  "paid_open": 2775.62,
+  "denied_open": 5210.0,
+  "pending_open": 2667.0,
+  "sent": 0,
+  "note": "pass 5; the one D0 row (v19362850, 2023) carries a payer ICN = search miss, not sent (TRAP 1140Z); 1 UNKNOWN re-ask (v19433791)"
+ },
+ "stamp": "2026-10-06T1710Z",
+ "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS --skip-answered (4 registers, 54 visits skipped)",
+ "rows": [
+  {
+   "pid": 23967,
+   "vid": "19420037",
+   "carrier": "UNI20",
+   "dos": "2025-10-16",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "18608245"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422019",
+   "carrier": "UNI20",
+   "dos": "2025-11-01",
+   "balance": 443.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "18608246"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19417361",
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890698"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19420986",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890712"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17471977,
+   "vid": "19424212",
+   "carrier": "BCBS",
+   "dos": "2025-11-19",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "H100001353814125",
+    "H100001353814274"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17475632,
+   "vid": "19433791",
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "icn": null,
+   "kind": "UNKNOWN",
+   "action": "UNKNOWN - review",
+   "cats": [],
+   "paid": [],
+   "checks": [],
+   "paidDates": [],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17473477,
+   "vid": "19420969",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 206.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0616257"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-25"
+   ],
+   "payerClaims": [
+    "07865880",
+    "08481054"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17471673,
+   "vid": "19421078",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 206.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "26259B1000319208"
+   ],
+   "paidDates": [
+    "2026-09-12"
+   ],
+   "payerClaims": [
+    "26Q477694500"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 24655,
+   "vid": "19417570",
+   "carrier": "UNI20",
+   "dos": "2025-09-18",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17890699"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12232248,
+   "vid": "19417751",
+   "carrier": "UNI20",
+   "dos": "2025-09-18",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ],
+    [
+     "A7",
+     "21",
+     "Missing or invalid information."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-10-01",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "17509602",
+    "17900275",
+    "920262791663700"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12232248,
+   "vid": "19424313",
+   "carrier": "UNI20",
+   "dos": "2025-11-19",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ],
+    [
+     "A7",
+     "21",
+     "Missing or invalid information."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-10-01",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "17509412",
+    "17890719",
+    "920262791663800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473032,
+   "vid": "19418299",
+   "carrier": "UNI20",
+   "dos": "2025-09-25",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "A3",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-09-07",
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17509396",
+    "921262503798400",
+    "17900279"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473032,
+   "vid": "19427528",
+   "carrier": "UNI20",
+   "dos": "2025-12-20",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "A3",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-09-07",
+    "2026-10-01"
+   ],
+   "payerClaims": [
+    "17509397",
+    "921262503804500",
+    "17890630"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 44954,
+   "vid": "19417872",
+   "carrier": "UNI20",
+   "dos": "2025-09-17",
+   "balance": 198.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $96.20 - find/post the ERA (check 26256B1000176953,280630179)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "A7",
+     "21",
+     "Missing or invalid information."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "96.2",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280630179",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-09-30",
+    "2026-09-04",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "25R398623700",
+    "920262478185600",
+    "RD0990026200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17469033,
+   "vid": "19362850",
+   "carrier": "UNI20",
+   "dos": "2023-08-11",
+   "balance": 196.67,
+   "icn": "KLC9659728600",
+   "kind": "NOTONFILE",
+   "action": "NOT ON FILE / rejected - resend as original",
+   "cats": [
+    [
+     "D0",
+     "187",
+     "Date(s) of service."
+    ]
+   ],
+   "paid": [
+    null
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [],
+   "errors": []
+  },
+  {
+   "pid": 17475777,
+   "vid": "19435223",
+   "carrier": "UNI20",
+   "dos": "2026-03-06",
+   "balance": 174.47,
+   "icn": "KLC0434879400",
+   "kind": "PAID",
+   "action": "PAID $214.53 - find/post the ERA (check V5475692)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provisions that exist between the Health Plan and the Consumer or Patient)."
+    ],
+    [
+     "P5",
+     "3",
+     "Claim has been adjudicated and is awaiting payment cycle."
+    ]
+   ],
+   "paid": [
+    "214.53",
+    "0"
+   ],
+   "checks": [
+    "V5475692"
+   ],
+   "paidDates": [
+    "2026-06-29",
+    "2026-09-21"
+   ],
+   "payerClaims": [
+    "04348794",
+    "17890631"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17475541,
+   "vid": "19433138",
+   "carrier": "BCBS",
+   "dos": "2026-02-18",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $384.95 - find/post the ERA (check 213079631,213420173)",
+   "cats": [
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ],
+    [
+     "F0",
+     "38",
+     "Awaiting next periodic adjudication cycle."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "103.14",
+    "0",
+    "0",
+    "0",
+    "281.81",
+    "0"
+   ],
+   "checks": [
+    "213079631",
+    "213420173",
+    "213420173",
+    "213079631",
+    "213420173",
+    "213420173",
+    "213420173",
+    "213079631",
+    "213420173"
+   ],
+   "paidDates": [
+    "2026-04-15",
+    "2026-09-10",
+    "2026-09-14",
+    "2026-04-15",
+    "2026-09-10",
+    "2026-09-14",
+    "2026-09-14",
+    "2026-04-15",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "H100001311947640",
+    "H100001347263931",
+    "H100001348232229",
+    "H100001311949069",
+    "H100001347267217",
+    "H100001348230542",
+    "H100001348231114",
+    "H100001311949010",
+    "H100001347266340"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422912",
+   "carrier": "UNI20",
+   "dos": "2025-11-08",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509441"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19435284",
+   "carrier": "UNI20",
+   "dos": "2026-03-11",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509450"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19439702",
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "86.35"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "18251532"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472977,
+   "vid": "19429034",
+   "carrier": "UNI20",
+   "dos": "2026-01-09",
+   "balance": 160.15,
+   "icn": "26B120972000",
+   "kind": "PAID",
+   "action": "PAID $228.85 - find/post the ERA (check 26028B1000291434,26252B1000426598,26256B1000176953)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "228.85",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26028B1000291434",
+    "26252B1000426598",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2026-01-21",
+    "2026-09-04",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "26B120972000",
+    "RD0709566600",
+    "RD0990218600"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17471977,
+   "vid": "19424211",
+   "carrier": "BCBS",
+   "dos": "2025-11-20",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ],
+    [
+     "P0",
+     "41",
+     "Special handling required at payer site."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "H100001353814125",
+    "H100001353814274"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473781,
+   "vid": "19417877",
+   "carrier": "UNI20",
+   "dos": "2025-09-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $71.87 - find/post the ERA (check 60507502)",
+   "cats": [
+    [
+     "F1",
+     "104",
+     "Processed according to plan provisions (Plan refers to provisions that exist between the Health Plan and the Consumer or Patient)."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ],
+    [
+     "A7",
+     "54",
+     "Duplicate of a previously processed claim/line."
+    ]
+   ],
+   "paid": [
+    "71.87",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "60507502"
+   ],
+   "paidDates": [
+    "2025-10-10",
+    "2026-09-05",
+    "2026-09-10"
+   ],
+   "payerClaims": [
+    "83931334",
+    "920262485355000",
+    "932262538645800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473066,
+   "vid": "19416752",
+   "carrier": "UNI20",
+   "dos": "2025-09-15",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280628694)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280628985",
+    "26254B1000243083",
+    "26259B1000319208",
+    "280628694",
+    "26254B1000243083",
+    "26259B1000319208"
+   ],
+   "paidDates": [
+    "2025-09-23",
+    "2026-09-09",
+    "2026-09-12",
+    "2025-09-20",
+    "2026-09-09",
+    "2026-09-12"
+   ],
+   "payerClaims": [
+    "25Q897054200",
+    "26Q166415300",
+    "26Q452701800",
+    "25Q782730000",
+    "26Q166413900",
+    "26Q452700200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17473066,
+   "vid": "19416875",
+   "carrier": "UNI20",
+   "dos": "2025-09-16",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280628694)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280628985",
+    "26254B1000243083",
+    "26259B1000319208",
+    "280628694",
+    "26254B1000243083",
+    "26259B1000319208"
+   ],
+   "paidDates": [
+    "2025-09-23",
+    "2026-09-09",
+    "2026-09-12",
+    "2025-09-20",
+    "2026-09-09",
+    "2026-09-12"
+   ],
+   "payerClaims": [
+    "25Q897054200",
+    "26Q166415300",
+    "26Q452701800",
+    "25Q782730000",
+    "26Q166413900",
+    "26Q452700200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19420026",
+   "carrier": "UNI20",
+   "dos": "2025-10-17",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509603"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19420800",
+   "carrier": "UNI20",
+   "dos": "2025-10-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509433"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422011",
+   "carrier": "UNI20",
+   "dos": "2025-11-02",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509435",
+    "17509434"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422194",
+   "carrier": "UNI20",
+   "dos": "2025-11-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28",
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509435",
+    "17509434"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19422699",
+   "carrier": "UNI20",
+   "dos": "2025-11-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0"
+   ],
+   "checks": [
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-28"
+   ],
+   "payerClaims": [
+    "17509440"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433529",
+   "carrier": "UNI20",
+   "dos": "2026-02-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509420",
+    "17509418",
+    "17509417",
+    "17509414",
+    "17509415",
+    "17509416"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433530",
+   "carrier": "UNI20",
+   "dos": "2026-02-22",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509418",
+    "17509417",
+    "17509414",
+    "17509415",
+    "17509416"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433531",
+   "carrier": "UNI20",
+   "dos": "2026-02-21",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509417",
+    "17509414",
+    "17509415",
+    "17509416"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433673",
+   "carrier": "UNI20",
+   "dos": "2026-02-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509421",
+    "17509420",
+    "17509418",
+    "17509417",
+    "17509414",
+    "17509415",
+    "17509416"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433682",
+   "carrier": "UNI20",
+   "dos": "2026-02-25",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509424",
+    "17509421",
+    "17509420",
+    "17509418",
+    "17509417",
+    "17509414",
+    "17509415"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19433783",
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509423",
+    "17509424",
+    "17509421",
+    "17509420",
+    "17509418",
+    "17509417",
+    "17509414"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434049",
+   "carrier": "UNI20",
+   "dos": "2026-02-27",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509422",
+    "17509423",
+    "17509424",
+    "17509421",
+    "17509420",
+    "17509418",
+    "17509417"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434271",
+   "carrier": "UNI20",
+   "dos": "2026-03-02",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509446",
+    "17509442",
+    "17509425",
+    "17509422",
+    "17509423",
+    "17509424",
+    "17509421"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434282",
+   "carrier": "UNI20",
+   "dos": "2026-03-01",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509442",
+    "17509425",
+    "17509422",
+    "17509423",
+    "17509424",
+    "17509421",
+    "17509420"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434293",
+   "carrier": "UNI20",
+   "dos": "2026-02-28",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509425",
+    "17509422",
+    "17509423",
+    "17509424",
+    "17509421",
+    "17509420",
+    "17509418"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434432",
+   "carrier": "UNI20",
+   "dos": "2026-03-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509444",
+    "17509446",
+    "17509442",
+    "17509425",
+    "17509422",
+    "17509423",
+    "17509424"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434631",
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509443",
+    "17509444",
+    "17509446",
+    "17509442",
+    "17509425",
+    "17509422",
+    "17509423"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434688",
+   "carrier": "UNI20",
+   "dos": "2026-03-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509448",
+    "17509449",
+    "17509447",
+    "17509443",
+    "17509444",
+    "17509446",
+    "17509442"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434702",
+   "carrier": "UNI20",
+   "dos": "2026-03-06",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509449",
+    "17509447",
+    "17509443",
+    "17509444",
+    "17509446",
+    "17509442",
+    "17509425"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434709",
+   "carrier": "UNI20",
+   "dos": "2026-03-05",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509447",
+    "17509443",
+    "17509444",
+    "17509446",
+    "17509442",
+    "17509425",
+    "17509422"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19434930",
+   "carrier": "UNI20",
+   "dos": "2026-03-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509448",
+    "17509449",
+    "17509447",
+    "17509443",
+    "17509444",
+    "17509446"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19435049",
+   "carrier": "UNI20",
+   "dos": "2026-03-10",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509448",
+    "17509449",
+    "17509447",
+    "17509443"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 23967,
+   "vid": "19435063",
+   "carrier": "UNI20",
+   "dos": "2026-03-09",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "DENIED",
+   "action": "DENIED/REVISED - run the denial cascade",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193",
+    "W0686193"
+   ],
+   "paidDates": [
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18",
+    "2026-09-18"
+   ],
+   "payerClaims": [
+    "17509448",
+    "17509449",
+    "17509447",
+    "17509443",
+    "17509444"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12231996,
+   "vid": "19427817",
+   "carrier": "UNI20",
+   "dos": "2026-01-03",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26017B1000156428,26021B1000308993,26254B1000243083)",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26021B1000308993",
+    "26254B1000243083",
+    "26021B1000308993",
+    "26254B1000243083",
+    "26017B1000156428"
+   ],
+   "paidDates": [
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-01-13",
+    "2026-09-09",
+    "2026-01-13",
+    "2026-09-09",
+    "2026-01-15"
+   ],
+   "payerClaims": [
+    "26Q175727900",
+    "RD1658097300",
+    "26Q166681900",
+    "RD1657905400",
+    "26Q175726100",
+    "RD1658099500",
+    "RB8091602900",
+    "26Q175675900",
+    "RB8091841800",
+    "26Q175674400",
+    "RB8091993800"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12231996,
+   "vid": "19428152",
+   "carrier": "UNI20",
+   "dos": "2026-01-05",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $89.83 - find/post the ERA (check 26021B1000308993,26254B1000243083,26269B1000169351)",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "89.83",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26021B1000308993",
+    "26254B1000243083"
+   ],
+   "paidDates": [
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-01-13",
+    "2026-09-09"
+   ],
+   "payerClaims": [
+    "26Q175727900",
+    "RD1658097300",
+    "26Q166681900",
+    "RD1657905400",
+    "26Q175726100",
+    "RD1658099500",
+    "RB8091602900",
+    "26Q175675900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 12231996,
+   "vid": "19428166",
+   "carrier": "UNI20",
+   "dos": "2026-01-04",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26021B1000308993,26254B1000243083,26269B1000169351)",
+   "cats": [
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "89.83",
+    "0"
+   ],
+   "checks": [
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26254B1000243083",
+    "26269B1000169351",
+    "26021B1000308993",
+    "26254B1000243083",
+    "26021B1000308993",
+    "26254B1000243083"
+   ],
+   "paidDates": [
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-09-09",
+    "2026-09-23",
+    "2026-01-13",
+    "2026-09-09",
+    "2026-01-13",
+    "2026-09-09"
+   ],
+   "payerClaims": [
+    "26Q175727900",
+    "RD1658097300",
+    "26Q166681900",
+    "RD1657905400",
+    "26Q175726100",
+    "RD1658099500",
+    "RB8091602900",
+    "26Q175675900",
+    "RB8091841800",
+    "26Q175674400"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474436,
+   "vid": "19420786",
+   "carrier": "UNI20",
+   "dos": "2025-10-23",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280634691)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280634691",
+    "26254B1000243083",
+    "26259B1000319208",
+    "280634691",
+    "26254B1000243083",
+    "26259B1000319208"
+   ],
+   "paidDates": [
+    "2025-10-30",
+    "2026-09-09",
+    "2026-09-12",
+    "2025-10-30",
+    "2026-09-09",
+    "2026-09-12"
+   ],
+   "payerClaims": [
+    "25T355110300",
+    "26Q165876400",
+    "26Q452429400",
+    "25T355109000",
+    "26Q165875300",
+    "26Q452428200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474436,
+   "vid": "19420878",
+   "carrier": "UNI20",
+   "dos": "2025-10-24",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $179.66 - find/post the ERA (check 26254B1000243083,26259B1000319208,280634691)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280634691",
+    "26254B1000243083",
+    "26259B1000319208",
+    "280634691",
+    "26254B1000243083",
+    "26259B1000319208"
+   ],
+   "paidDates": [
+    "2025-10-30",
+    "2026-09-09",
+    "2026-09-12",
+    "2025-10-30",
+    "2026-09-09",
+    "2026-09-12"
+   ],
+   "payerClaims": [
+    "25T355110300",
+    "26Q165876400",
+    "26Q452429400",
+    "25T355109000",
+    "26Q165875300",
+    "26Q452428200"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474611,
+   "vid": "19422900",
+   "carrier": "UNI20",
+   "dos": "2025-11-10",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280637687",
+    "26256B1000176953",
+    "280637687",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05"
+   ],
+   "payerClaims": [
+    "RB5056427700",
+    "RD0990004600",
+    "RD2308038500",
+    "RB5056983200",
+    "RD0986658400",
+    "RD2308685500",
+    "RB4958205800",
+    "RD0986562200",
+    "RD2307924500",
+    "RB4959385900",
+    "RD0986405800",
+    "RD2308411300",
+    "RB4959692200",
+    "RD0988689800",
+    "RD2309450900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474611,
+   "vid": "19422901",
+   "carrier": "UNI20",
+   "dos": "2025-11-09",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280637687",
+    "26256B1000176953",
+    "280637687",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05"
+   ],
+   "payerClaims": [
+    "RB5056427700",
+    "RD0990004600",
+    "RD2308038500",
+    "RB5056983200",
+    "RD0986658400",
+    "RD2308685500",
+    "RB4958205800",
+    "RD0986562200",
+    "RD2307924500",
+    "RB4959385900",
+    "RD0986405800",
+    "RD2308411300",
+    "RB4959692200",
+    "RD0988689800",
+    "RD2309450900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474611,
+   "vid": "19422902",
+   "carrier": "UNI20",
+   "dos": "2025-11-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $359.32 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280637687",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05"
+   ],
+   "payerClaims": [
+    "RB5056983200",
+    "RD0986658400",
+    "RD2308685500",
+    "RB4958205800",
+    "RD0986562200",
+    "RD2307924500",
+    "RB4959385900",
+    "RD0986405800",
+    "RD2308411300",
+    "RB4959692200",
+    "RD0988689800",
+    "RD2309450900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474611,
+   "vid": "19423060",
+   "carrier": "UNI20",
+   "dos": "2025-11-11",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $449.15 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280637687",
+    "26256B1000176953",
+    "280637687",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05"
+   ],
+   "payerClaims": [
+    "RB5056427700",
+    "RD0990004600",
+    "RD2308038500",
+    "RB5056983200",
+    "RD0986658400",
+    "RD2308685500",
+    "RB4958205800",
+    "RD0986562200",
+    "RD2307924500",
+    "RB4959385900",
+    "RD0986405800",
+    "RD2308411300",
+    "RB4959692200",
+    "RD0988689800",
+    "RD2309450900"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17474611,
+   "vid": "19423203",
+   "carrier": "UNI20",
+   "dos": "2025-11-12",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PAID",
+   "action": "PAID $359.32 - find/post the ERA (check 26256B1000176953,280637173,280637687)",
+   "cats": [
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ],
+    [
+     "F1",
+     "65",
+     "Claim/line has been paid."
+    ],
+    [
+     "F2",
+     "585",
+     "Denied Charge or Non-covered Charge."
+    ],
+    [
+     "P5",
+     "46",
+     "Internal review/audit."
+    ]
+   ],
+   "paid": [
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0",
+    "89.83",
+    "0",
+    "0"
+   ],
+   "checks": [
+    "280637687",
+    "26256B1000176953",
+    "280637687",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953",
+    "280637173",
+    "26256B1000176953"
+   ],
+   "paidDates": [
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-14",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05",
+    "2025-11-13",
+    "2026-09-10",
+    "2026-10-05"
+   ],
+   "payerClaims": [
+    "RB5056427700",
+    "RD0990004600",
+    "RD2308038500",
+    "RB5056983200",
+    "RD0986658400",
+    "RD2308685500",
+    "RB4958205800",
+    "RD0986562200",
+    "RD2307924500",
+    "RB4959385900",
+    "RD0986405800",
+    "RD2308411300"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19437843",
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "87.2",
+    "87.2",
+    "87.2",
+    "87.2"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06",
+    "2026-10-06",
+    "2026-10-06",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "18251521",
+    "18251520",
+    "18251519",
+    "18251518"
+   ],
+   "errors": []
+  },
+  {
+   "pid": 17472874,
+   "vid": "19437926",
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "icn": null,
+   "kind": "PENDING",
+   "action": "PENDING at payer - wait",
+   "cats": [
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ],
+    [
+     "P1",
+     "20",
+     "Accepted for processing."
+    ]
+   ],
+   "paid": [
+    "87.2",
+    "87.2",
+    "87.2",
+    "87.2",
+    "87.2"
+   ],
+   "checks": [],
+   "paidDates": [
+    "2026-10-06",
+    "2026-10-06",
+    "2026-10-06",
+    "2026-10-06",
+    "2026-10-06"
+   ],
+   "payerClaims": [
+    "18251523",
+    "18251521",
+    "18251520",
+    "18251519",
+    "18251518"
+   ],
+   "errors": []
+  }
+ ]
+}
