@@ -8,7 +8,7 @@ Reads the unpaid list (POST /claim/massrebillsearch), keeps visits with DOS in t
 asks Stedi whether that plan was active on the DOS.  Inactive -> MBI lookup / discovery to find the real payer.  Writes
 precheck_YYYYMMDD.json and prints a summary.  Cache: precheck_cache.json keyed patient|payer|yyyymm."""
 import amd, era_post, stedi, requests, json, re, sys, datetime, time, os
-CAR2STEDI = {"FLO02": "MEDICARE", "RET01": "MEDICARE", "UNI20": "87726", "UHCMA": "87726", "AAR01": "87726", "HUM01": "61101", "AET07": "60054",
+CAR2STEDI = {"FLO02": "MEDICARE", "RET01": "MEDICARE", "UNI20": "87726", "UHCMA": "87726", "AAR01": "87726", "UMR": "87726", "CIPSC": "87726", "HUM01": "61101", "AET07": "60054",
              "CIG09": "62308", "CIG13": "63092", "BCBS": "BCBSF", "SUN01": "68069", "WEL04": "14163", "AMB03": "68069", "SIM01": "SMPLY",
              "CAP07": "95112", "MCAD": "77027", "TRI00": "99727", "TRI05": "99727", "VACCN": "VACCN", "FLO99": None, "PHI01": None}
 _cj = json.load(open("carriers.json"))
