@@ -123,10 +123,46 @@ def msg(action, cls, attrs=None, children=""):
     return '<ppmdmsg action="%s" class="%s" msgtime="%s" %s>%s</ppmdmsg>' % (
         action, cls, _msgtime(), a, children)
 
-def rebill_charge(chargeid, sequencenumber, dod_guard=True):
+# ONE REBILL PER VISIT (William 10/6/2026: "make this fix to the routine permanent so it doesn't delay billing").
+# chargerebill rebills the WHOLE claim (rebillentireclaim=True), so the guard is per VISIT + plan sequence, and per script run
+# (this process): a second rebill of a visit this run already rebilled successfully is NOT sent - it answers 204 with text
+# "SKIPPED ..." (the claim IS queued, so callers that test for 204 keep working). That stops the move_to_ins.move(cid, seq) +
+# freq1_visit.run double (act_1710_1005, 10/5) and per-charge loops over one visit, and it can never block a LATER run's
+# corrected rebill (after a claim-run rejection is fixed). allow_repeat=True forces a second one. Every 2xx rebill is appended to
+# registers/rebill_log.jsonl - an audit trail only, it never blocks. Fails open: an unreadable visit falls back to the charge id.
+WS_DIR = os.environ.get("BILLING_WORKSPACE", "/home/claude/unbilled")
+REBILL_LOG = os.path.join(WS_DIR, "registers", "rebill_log.jsonl")
+_REBILLED = {}
+
+def _visit_of(chargeid):
+    try:
+        x = post(msg("getchargedetaildataicd10", "demographics", {"chargeid": re.sub(r"\D", "", str(chargeid)), "nocookie": "1"}))
+        m = re.search(r'<visit\s(?:[^>]*?\s)?id="(?:vst)?(\d+)"', x)
+        return m.group(1) if m else None
+    except Exception:
+        return None
+
+def _rebill_log(entry):
+    try:
+        os.makedirs(os.path.dirname(REBILL_LOG), exist_ok=True)
+        with open(REBILL_LOG, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception:
+        pass
+
+def rebill_charge(chargeid, sequencenumber, dod_guard=True, allow_repeat=False, visitid=None):
     """REST rebill — the dialog's Submit. HTTP 204 = success.
+    ONE REBILL PER VISIT (William 10/6/2026): a second rebill of the same VISIT + sequence in this script run is not sent - it
+    answers 204 "SKIPPED ..." (see the note above); pass visitid= when the caller knows it (saves a read); allow_repeat=True forces it.
     DECEASED GUARD (William [DOB]): refuses (HTTP-style 409, nothing sent) when the date of service is after the
     patient's date of death - see core/deceased_guard.py. dod_guard=False only for an explicit, logged override."""
+    cidn = re.sub(r"\D", "", str(chargeid))
+    vid = re.sub(r"\D", "", str(visitid)) if visitid else _visit_of(cidn)
+    key = ("v%s" % vid if vid else "c%s" % cidn) + ":%s" % int(sequencenumber)
+    if key in _REBILLED and not allow_repeat:
+        e = _REBILLED[key]
+        return 204, ("SKIPPED - visit %s already rebilled to seq %s in this run at %s (charge %s, HTTP %s); one rebill per visit - "
+                     "nothing sent (allow_repeat=True forces a second)" % (vid or "?", sequencenumber, e["at"], e["charge"], e["status"]))
     if dod_guard:
         try:
             import deceased_guard
@@ -143,6 +179,10 @@ def rebill_charge(chargeid, sequencenumber, dod_guard=True):
                                  "sequencenumber": int(sequencenumber),
                                  "rebillentireclaim": True, "reason": ""},
                       headers={"Authorization": "Bearer " + tok}, timeout=60)
+    if 200 <= r.status_code < 300:
+        e = {"at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "visit": vid, "charge": cidn,
+             "seq": int(sequencenumber), "status": r.status_code, "by": os.path.basename(sys.argv[0] or "") or "interactive"}
+        _REBILLED[key] = e; _rebill_log(e)
     return r.status_code, r.text[:500]
 
 if __name__ == "__main__":

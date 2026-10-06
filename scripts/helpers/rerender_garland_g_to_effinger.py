@@ -16,7 +16,7 @@ sys.path[:0]=['/home/claude/effinger-billing-backend/core']
 import amd, resave
 import xml.etree.ElementTree as ET
 
-EFFINGER="prof13"; GARLAND-G="prof15"
+EFFINGER="prof13"; GARLAND_G="prof15"
 DRY="--dry" in sys.argv
 targets=json.load(open("/home/claude/unbilled/hold_prof15_garland-g.json"))
 rows=json.load(open("/home/claude/unbilled/medicaid_open.json"))
@@ -70,7 +70,7 @@ for t in targets:
         rt=ET.fromstring(resave.detail(cid0))
         paid=any(float(p.get("amount") or 0)!=0 and p.get("void")!="1" for p in rt.iter("payment"))
     except Exception: pass
-    if prof!=GARLAND-G:
+    if prof!=GARLAND_G:
         L("SKIP v%s profile=%s (not prof15 — already moved or other)"%(vid,prof)); skip+=1; continue
     if paid:
         L("SKIP v%s now-settling (payment posted since scan)"%vid); skip+=1; continue

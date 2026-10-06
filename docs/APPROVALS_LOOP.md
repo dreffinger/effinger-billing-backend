@@ -41,9 +41,24 @@ refused)`) with the card links `https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7w
 and (5) with `--push-main` commits the register and pushes the branch + a fast-forward of `main`. It then prints the three connector
 calls the session makes next: ArtifactData batch (the cards file), Gmail send_message to dreffinger@gmail.com (subject + body files),
 PushNotification (the push file). If the session cannot make them, the hourly "billing approvals sync" picks the waiting items up from
-`main` within the hour. Approval and the re-attempt work exactly as before: William taps Approve on the card (or replies `APPROVED <id>`),
+`main` within the hour. Approval and the re-attempt work exactly as before: William taps Approve on the card (email replies are no longer read - 10/6/2026 review),
 and the next run re-attempts that one command once, citing the id.
 
 Rules for the refused script itself: give every multi-chart action script a `--only <letters>` selector so each card can be approved,
 declined and re-attempted on its own; a session script whose comments carry patient names stays OUT of the repo (phi_gate) - it is
 uploaded to Drive `workspace mirror` (PHI-OK) and the card's command names that file, as the 9/30 `unbilled_repair.py` card did.
+
+## Permanent in the routines (William 10/6/2026: "make this fix to the routine permanent so it doesn't delay billing - use the programs to send emails to link to approval buttons and push notification with link")
+
+The approval loop now lives in the routine prompts themselves (it had only been in repo docs/inserts; the live 2-hourly routine was still v7):
+
+| Routine | What changed |
+|---|---|
+| Backend billing run, every 2 hours (`trig_01QRqT8KB4Q1H9EyYRG4NBKX`) - `nightly/columns_task_prompt_ehpa_cloud_v11.txt` | Step **0g MANDATORY APPROVALS**: (1) it is the ONLY routine that applies approved cards (plus William's own "go"), as the LAST step of its run (one classifier refusal taints every later write of a session), at most ONCE per card (a repeat refusal is noted and only William's "go" applies it after that), each card CLAIMED first (note "applying <stamp>" pushed to main), its charts re-read live (already in place -> recorded done, never re-run), its dry run compared with the card; (2) any write refused during the run goes to William that same minute through `approval_submit.py` - HTML email with an *Open Mandatory Approvals* button and one *Review & Approve* button per package (`page#<id>` opens that card's Approve / Decline buttons), a push whose text ends with the link, the page cards, and the register pushed to `main`. Step **0i** LEARN FROM EACH OTHER, step **5(b2)** UNI20/BCBS before 5/1/2026 (the only sender; a 277 claim-status check first, only NOT ON FILE visits are sent), and in STANDING FLAGS the ONE REBILL PER VISIT rule and the TIMELY-FILING WATCH. File: `nightly/columns_task_prompt_ehpa_cloud_v12.txt` (v12 also folds in the v8/v9 rules of 9/21-9/30 that the live routine never received). |
+| Nightly insurance cascade (`trig_01XVrVN9dpSdvAbB1ZrsAzFU`) - `nightly/insurance_cascade_prompt_v3.txt` | Submits its own refused writes the same way (run kind "nightly cascade"); never applies approved cards and never sends a UNI20/BCBS pre-5/1 visit (it overlaps the 05:10Z billing run) - it posts answers and writes off timely filing; ONE REBILL rule; LEARN step. The total unpaid audit (`nightly/total_unpaid_audit_prompt_v2.txt`) works the same way. |
+| Billing approvals sync, hourly (`trig_01Bqg5n4YZZG55SULBq79JKJ`) - `nightly/approvals_sync_prompt_v2.txt` | Every push ends with the link (one package -> its card, several -> the page); the email's links are styled as buttons; "approved" alerts say the next billing run applies them; a card the run could not apply ("refused again") gets one push + email: say go in the cascade session. |
+| Mandatory approval writes reminder, 8:51 AM/PM ET (`trig_01YUgjTTz71pE9Nh65mMUeGY`) - `nightly/approvals_reminder_prompt_v2.txt` | One alert line (refused again > approved > waiting) ending with its link; on "go" the session CLAIMS each package on main exactly like the billing run (so the two never apply one card twice), re-reads its charts live and skips anything already applied. |
+
+So an approval now costs William one tap: the email or push arrives the minute a write is refused, the link opens the card's Approve button, and the next billing run (at most 2 hours later) applies it after its ERA posting - or the cascade session on "go" if he wants it now (or if the run reports it refused again).
+
+Code made permanent with it (all in `core/` and `scripts/helpers/`, proven offline by `tools/selftest/test_one_rebill_and_approvals.py`): `amd.rebill_charge` one rebill per VISIT + sequence per script run (a repeat answers 204 "SKIPPED", nothing sent; a later run is never blocked; every rebill logged to registers/rebill_log.jsonl), `resave.set_insorder` (visit order, no rebill), `freq1_visit.reroute` (order + ONE freq-1 rebill), `move_to_ins.move(..., rebill=False)`, `ins_update.update` (patient order through an active plan, verified), `approval_submit.py` (HTML buttons + linked push).

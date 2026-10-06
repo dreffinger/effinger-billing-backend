@@ -124,7 +124,7 @@ def workbook(cls):
     ACT = {"1_QMB_WRITEOFF": "write off (QMB code) after confirming Medicaid crossover was billed",
            "1_QMB_NEVER_ADJ": "untimely on a Medicaid patient -> write off (QMB/untimely)",
            "2_UNTIMELY_WRITEOFF": "primary >12mo never paid -> WOINS untimely, dated note",
-           "2b_BACKLOG_HOLD": "UNI20/BCBS never-adjudicated: check for unposted ERA first, never blind write-off",
+           "2b_BACKLOG_HOLD": "UNI20/BCBS never-adjudicated: check for an answer already received (ERA/Availity/UHC export) first; else send ONCE + tf_writeoff_watch; timely filing -> WOLATE (William 10/6/2026: no longer frozen)",
            "3_CASCADE_TIMELY": "still correctable -> rebill / insurance cascade",
            "B_ZERO_DENIAL_TRANSFER": "denial auto-transferred to patient -> move back to insurance (move_to_ins) + find real payer",
            "4_COSTSHARE_MEDICARE": "Medicare 20% coinsurance: bill supplement if on file / Stedi discovery / else patient statement — NOT a write-off",
