@@ -1,0 +1,5 @@
+# captured_calls additions - 2026-10-06 0710 UTC (3 AM ET 10/6 slot, ehpa cloud backend billing run)
+
+No new call shapes this run. Calls used (all registered): login (one), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges, getclaimunbillablecharges, getclaimexclusionclaimruns/charges, GET /api/era/checks, GET /api/era/checkdetails, posterapayments dry build, POST /api/claim/massrebillsearch {} (claim_status_sweep), Stedi claimstatus/v2 x60, checkEligibility (free 271) x4, Stedi MBILUNOSSN x2 (DOS 2025), gettxhistory, getdemographic, updextrainsinfo resubmissioncode=1 + POST /api/claim/chargerebill x3 (freq1_visit.reroute).
+
+Lesson (pat ids only): the Stedi 277 answer for a visit re-sent frequency 1 into an adjudicated claim lists the ORIGINAL F1 payment (check number, paid date, payer claim number) above the F2 585 duplicate denials - so the 277 is the cheapest way to find which pre-5/1/2026 UNI20 claims were paid in 2025 with no 835 in AMD (28 of 60 on 10/6/2026).
