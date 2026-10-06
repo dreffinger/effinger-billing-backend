@@ -41,7 +41,7 @@ refused)`) with the card links `https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7w
 and (5) with `--push-main` commits the register and pushes the branch + a fast-forward of `main`. It then prints the three connector
 calls the session makes next: ArtifactData batch (the cards file), Gmail send_message to dreffinger@gmail.com (subject + body files),
 PushNotification (the push file). If the session cannot make them, the hourly "billing approvals sync" picks the waiting items up from
-`main` within the hour. Approval and the re-attempt work exactly as before: William taps Approve on the card (or replies `APPROVED <id>`),
+`main` within the hour. Approval and the re-attempt work exactly as before: William taps Approve on the card (email replies are no longer read - 10/6/2026 review),
 and the next run re-attempts that one command once, citing the id.
 
 Rules for the refused script itself: give every multi-chart action script a `--only <letters>` selector so each card can be approved,
