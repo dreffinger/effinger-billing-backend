@@ -136,6 +136,70 @@
      "outcome": "skipped answer-found: UNI20 payments 146.50 x2 already on the charges (2023) - adjudicated, residual is not a resend"
     }
    ]
+  },
+  {
+   "id": "uni20-bcbs-pre0501-2026-10-06T1310Z",
+   "carrier": "UNI20",
+   "order": "William 10/6/2026 (v12 step 5b2): UNI20/BCBS visits before 5/1/2026 answered NOT ON FILE (277 D0) by the payer are sent once; written off WOLATE only on the payer's timely-filing answer",
+   "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS --skip-answered (pass 3, 2026-10-06T1310Z): 60 checked - 17 PAID in 2025 (remits never reached AMD), 13 DENIED 585, 23 PENDING, 6 NOT ON FILE (4 x D0 = candidates; 2 x A4 listed, not sent), 1 UNKNOWN",
+   "lookup": "chart 20336: CMS MBI lookup at DOS 10/2/2025 = MA PPO Care Improvement Plus (UHC) 4/1/2024-4/30/2026 -> UNI20 right payer, date of death [DOB] after the DOS; chart 17474258: CMS MBI lookup at DOS 10/8/2025 = UHC of Florida HMO Medicare Risk since 1/1/2025 -> UNI20 right payer (UHC 271 echoes member id [member id] vs the chart's - noted for William)",
+   "status": "open",
+   "visits": [
+    {
+     "pid": "20336",
+     "vid": "19418991",
+     "dos": "10/02/2025",
+     "cpt": "99309",
+     "charges": [
+      "23323901"
+     ],
+     "insbal": 141.0,
+     "order": "2",
+     "seq": 2,
+     "outcome": "sending 2026-10-06T1310Z"
+    },
+    {
+     "pid": "17474258",
+     "vid": "19419622",
+     "dos": "10/08/2025",
+     "cpt": "99309",
+     "charges": [
+      "23324573"
+     ],
+     "insbal": 141.0,
+     "order": "1",
+     "seq": 1,
+     "outcome": "sending 2026-10-06T1310Z"
+    },
+    {
+     "pid": "17474258",
+     "vid": "19420346",
+     "dos": "10/14/2025",
+     "cpt": "99309",
+     "charges": [
+      "23325329"
+     ],
+     "insbal": 141.0,
+     "order": "1",
+     "seq": 1,
+     "outcome": "sending 2026-10-06T1310Z"
+    },
+    {
+     "pid": "17474258",
+     "vid": "19422181",
+     "dos": "10/22/2025",
+     "cpt": "99309",
+     "charges": [
+      "23327538"
+     ],
+     "insbal": 141.0,
+     "order": "1",
+     "seq": 1,
+     "outcome": "sending 2026-10-06T1310Z"
+    }
+   ],
+   "total": 564.0,
+   "claimed": "2026-10-06T1310Z"
   }
  ]
 }
