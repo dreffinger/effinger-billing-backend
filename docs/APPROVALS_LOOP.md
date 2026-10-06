@@ -47,3 +47,18 @@ and the next run re-attempts that one command once, citing the id.
 Rules for the refused script itself: give every multi-chart action script a `--only <letters>` selector so each card can be approved,
 declined and re-attempted on its own; a session script whose comments carry patient names stays OUT of the repo (phi_gate) - it is
 uploaded to Drive `workspace mirror` (PHI-OK) and the card's command names that file, as the 9/30 `unbilled_repair.py` card did.
+
+## Permanent in the routines (William 10/6/2026: "make this fix to the routine permanent so it doesn't delay billing - use the programs to send emails to link to approval buttons and push notification with link")
+
+The approval loop now lives in the routine prompts themselves (it had only been in repo docs/inserts; the live 2-hourly routine was still v7):
+
+| Routine | What changed |
+|---|---|
+| Backend billing run, every 2 hours (`trig_01QRqT8KB4Q1H9EyYRG4NBKX`) - `nightly/columns_task_prompt_ehpa_cloud_v11.txt` | Step **0g MANDATORY APPROVALS**: (1) right after login it applies every card marked *approved* (live re-read first - skip and record anything already applied; dry form, then the exact approved command once; its own bookkeeping commit; a second refusal is noted, never retried); (2) any write refused during the run goes to William that same minute through `approval_submit.py` - HTML email with an *Open Mandatory Approvals* button and one *Review & Approve* button per package (`page#<id>` opens that card's Approve / Decline buttons), a push whose text ends with the link, the page cards, and the register pushed to `main`. Plus the ONE REBILL PER VISIT rule in STANDING FLAGS. |
+| Nightly insurance cascade (`trig_01XVrVN9dpSdvAbB1ZrsAzFU`) - `nightly/insurance_cascade_prompt_v3.txt` | The same MANDATORY APPROVALS step and ONE REBILL rule (run kind "nightly cascade"). |
+| Billing approvals sync, hourly (`trig_01Bqg5n4YZZG55SULBq79JKJ`) - `nightly/approvals_sync_prompt_v2.txt` | Every push ends with the link (one package -> its card, several -> the page); the email's links are styled as buttons; "approved" alerts say the next billing run applies them. |
+| Mandatory approval writes reminder, 8:51 AM/PM ET (`trig_01YUgjTTz71pE9Nh65mMUeGY`) - `nightly/approvals_reminder_prompt_v2.txt` | Push texts carry the page / session link; on "go" every package's charts are re-read live first and anything already applied is recorded done, not re-run. |
+
+So an approval now costs William one tap: the email or push arrives the minute a write is refused, the link opens the card's Approve button, and the next billing run (at most 2 hours later) applies it - or the cascade session on "go" if he wants it now.
+
+Code made permanent with it (all in `core/` and `scripts/helpers/`, proven offline by `tools/selftest/test_one_rebill_and_approvals.py`): `amd.rebill_charge` rebill ledger (one rebill per charge + sequence per 6 hours, 208 = skipped), `resave.set_insorder` (visit order, no rebill), `freq1_visit.reroute` (order + ONE freq-1 rebill), `move_to_ins.move(..., rebill=False)`, `ins_update.update` (patient order through an active plan, verified), `approval_submit.py` (HTML buttons + linked push).

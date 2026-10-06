@@ -91,3 +91,34 @@ def clean_extins(attrs):
     """NEVER send an empty/space date attribute on updextrainsinfo: AMD stores it as 01/01/1900 and the claim rejects.
     Omit blank or 1900 date attrs (omission clears them).  Learned 9/4/2026 on Tillery."""
     return {k: v for k, v in attrs.items() if not (k in DATE_ATTRS and (not str(v).strip() or "1900" in str(v)))}
+
+
+def set_insorder(chargeid, order, dry=False):
+    """Visit insurance order by a FULL-VISIT echo - NO rebill (William 10/6/2026: one frequency-1 rebill per visit; the
+    rebill is freq1_visit.run's job, never move_to_ins's). Echoes every live charge with CHG_FIELDS (omitting one voids
+    it), force=1 and the new insorder; skipped when the visit already has that order. Returns (ok, message): ok is False on
+    a Fault or when the re-read does not show the new order with the same live-charge count - the caller must not rebill."""
+    import time
+    order = str(order).replace(" ", "")
+    vis, pat, allc = visit_charges(re.sub(r"\D", "", str(chargeid)))
+    if (vis.get("insorder") or "").replace(" ", "") == order:
+        return True, "visit %s insorder already %s - resave skipped" % (vis.get("id"), order)
+    chg = ""
+    for c in allc:
+        a = {"id": c.get("id")}
+        for f in CHG_FIELDS:
+            if c.get(f) is not None: a[f] = c.get(f)
+        chg += "<charge %s/>" % " ".join('%s="%s"' % (k, v) for k, v in a.items())
+    va = dict(vis.attrib); va["force"] = "1"; va["insorder"] = order
+    if dry:
+        return True, "DRY resave %s insorder %s -> %s (%d live charges echoed)" % (vis.get("id"), vis.get("insorder"), order, len(allc))
+    r = amd.post(amd.msg("updvisitwithcharges", "chargeentry", {"patientid": pat.get("id"), "episodeid": vis.get("episode"), "approval": "1",
+                 "inspectorenabled": "1", "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"},
+                 "<visit %s><chargelist>%s</chargelist></visit>" % (" ".join('%s="%s"' % (k, v) for k, v in va.items()), chg)))
+    time.sleep(0.8)
+    if "Fault" in r:
+        return False, "resave FAULT visit %s: %s" % (vis.get("id"), re.sub(r"\s+", " ", r[:400]))
+    v2, p2, c2 = visit_charges(re.sub(r"\D", "", str(chargeid)))
+    ok = (v2.get("insorder") or "").replace(" ", "") == order and len(c2) == len(allc)
+    return ok, "resave %s insorder %s -> %s, %d live charges (was %d)%s" % (vis.get("id"), vis.get("insorder"), v2.get("insorder"),
+                                                                          len(c2), len(allc), "" if ok else " - NOT as asked")

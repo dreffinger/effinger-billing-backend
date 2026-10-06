@@ -1,0 +1,147 @@
+#!/usr/bin/env python3
+# PLAIN ENGLISH (self-test, 10/6/2026) - proves offline, with fakes and NO AdvancedMD traffic, the guarantees William asked to make
+#   permanent: ONE rebill per visit (amd.rebill_charge ledger, move_to_ins rebill=False, freq1_visit.reroute), the visit order set
+#   without a rebill (resave.set_insorder), the patient order verified and carried by an active plan (ins_update.update), and the
+#   approval email/push carrying links to the approval buttons (approval_submit). Run: python3 tools/selftest/test_one_rebill_and_approvals.py
+# Never touches: AMD, Gmail, Drive, the page. Writes only to a temp directory.
+import os, sys, json, re, tempfile, time, types
+import xml.etree.ElementTree as ET
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+TMP = tempfile.mkdtemp(prefix="selftest_ws_")
+os.environ["BILLING_WORKSPACE"] = TMP
+sys.path.insert(0, os.path.join(ROOT, "scripts", "helpers")); sys.path.insert(1, os.path.join(ROOT, "core"))
+import amd, resave, freq1_visit, move_to_ins, ins_update, approval_submit
+FAILS = []
+def check(name, cond, extra=""):
+    print(("ok   " if cond else "FAIL ") + name + ("" if cond else "  " + str(extra)))
+    if not cond: FAILS.append(name)
+
+# ------------------------------------------------------------------ A. amd.rebill_charge ledger
+class Resp:
+    def __init__(self, code): self.status_code = code; self.text = ""
+CALLS = []; NEXT = []
+def fake_post(url, json=None, headers=None, timeout=None):
+    CALLS.append(json); return Resp(NEXT.pop(0) if NEXT else 204)
+amd.requests = types.SimpleNamespace(post=fake_post)
+amd.login_cached = lambda psw=None: ("https://web", "tok")
+check("ledger path follows BILLING_WORKSPACE", amd.REBILL_LEDGER.startswith(TMP), amd.REBILL_LEDGER)
+c1 = amd.rebill_charge("charge111", 1, dod_guard=False)
+c2 = amd.rebill_charge("111", 1, dod_guard=False)
+check("first rebill sent (204)", c1[0] == 204 and len(CALLS) == 1, c1)
+check("second rebill same charge+seq NOT sent (208)", c2[0] == 208 and len(CALLS) == 1 and "already rebilled" in c2[1], c2)
+c3 = amd.rebill_charge("111", 2, dod_guard=False)
+check("different sequence is sent", c3[0] == 204 and len(CALLS) == 2, c3)
+c4 = amd.rebill_charge("111", 1, dod_guard=False, allow_repeat=True)
+check("allow_repeat override is sent", c4[0] == 204 and len(CALLS) == 3, c4)
+NEXT[:] = [500]; c5 = amd.rebill_charge("222", 1, dod_guard=False); c6 = amd.rebill_charge("222", 1, dod_guard=False)
+check("a 500 is not recorded - the later rebill still goes", c5[0] == 500 and c6[0] == 204 and len(CALLS) == 5, (c5, c6))
+led = json.load(open(amd.REBILL_LEDGER)); led["222:1"]["ts"] = time.time() - 7 * 3600; json.dump(led, open(amd.REBILL_LEDGER, "w"))
+c7 = amd.rebill_charge("222", 1, dod_guard=False)
+check("outside the 6-hour window it is sent again", c7[0] == 204 and len(CALLS) == 6, c7)
+open(amd.REBILL_LEDGER, "w").write("{not json"); c8 = amd.rebill_charge("333", 1, dod_guard=False)
+check("corrupt ledger fails OPEN (rebill still sent)", c8[0] == 204 and len(CALLS) == 7, c8)
+check("ledger rewritten after a corrupt read", "333:1" in json.load(open(amd.REBILL_LEDGER)))
+import deceased_guard
+deceased_guard.check_charge = lambda cid, seq: (True, "DOS after date of death")
+c9 = amd.rebill_charge("444", 1)
+check("deceased guard still blocks (409) and is not recorded", c9[0] == 409 and "444:1" not in json.load(open(amd.REBILL_LEDGER)), c9)
+
+# ------------------------------------------------------------------ B. resave.set_insorder (no rebill)
+def visit(order, n=2):
+    v = ET.Element("visit", {"id": "vst900", "episode": "ep1", "insorder": order})
+    p = ET.Element("patient", {"id": "pat77"})
+    cs = [ET.Element("charge", {"id": "charge%d" % (500 + k), "proccode": "pcode1", "fee": "100.00", "insbalance": "100.00"}) for k in range(n)]
+    return v, p, cs
+STATE = {"order": "1,2", "n": 2, "fault": False, "posts": []}
+resave.visit_charges = lambda cid: visit(STATE["order"], STATE["n"])
+def r_post(body, timeout=180):
+    STATE["posts"].append(body)
+    if STATE["fault"]: return "<PPMDResults><Error><Fault>boom</Fault></Error></PPMDResults>"
+    m = re.search(r'<visit [^>]*insorder="([^"]*)"', body); STATE["order"] = m.group(1); return '<PPMDResults><Results success="1"/></PPMDResults>'
+amd.post = r_post
+REB = []; amd_rebill_orig = amd.rebill_charge
+amd.rebill_charge = lambda cid, seq, **k: (REB.append((cid, seq)) or (204, ""))
+ok, msg = resave.set_insorder("500", "1,2"); check("same order -> skipped, nothing posted", ok and not STATE["posts"], msg)
+ok, msg = resave.set_insorder("500", "3,2", dry=True); check("dry -> nothing posted", ok and not STATE["posts"] and "DRY" in msg, msg)
+ok, msg = resave.set_insorder("500", "3, 2")
+body = STATE["posts"][-1]
+check("live -> one updvisitwithcharges, every charge echoed, force=1, no rebill",
+      ok and len(STATE["posts"]) == 1 and body.count("<charge ") == 2 and 'force="1"' in body and 'insorder="3,2"' in body and not REB, msg)
+STATE["fault"] = True; ok, msg = resave.set_insorder("500", "1"); STATE["fault"] = False
+check("Fault -> ok False", not ok and "FAULT" in msg, msg)
+
+# ------------------------------------------------------------------ C. freq1_visit.reroute
+RUNS = []; f_run = freq1_visit.run
+freq1_visit.run = lambda vid, cid, seq: (RUNS.append((vid, cid, seq)) or "freq1 + rebill seq %s -> 204" % seq)
+freq1_visit.time = types.SimpleNamespace(sleep=lambda s: None)
+STATE["order"] = "1,2"; r = freq1_visit.reroute("900", "500", "3,2")
+check("reroute = order then ONE freq-1 rebill to the first plan", RUNS == [("900", "500", 3)] and "rebill seq 3" in r, r)
+RUNS.clear(); STATE["fault"] = True; r = freq1_visit.reroute("900", "500", "1"); STATE["fault"] = False
+check("reroute does NOT rebill when the order step fails", not RUNS and r.startswith("NOT rebilled"), r)
+RUNS.clear(); STATE["order"] = "1,2"; r = freq1_visit.reroute("900", "500", "2,1", dry=True)
+check("reroute dry -> no rebill", not RUNS and "DRY" in r, r)
+
+# ------------------------------------------------------------------ D. move_to_ins.move rebill flag
+move_to_ins.time = types.SimpleNamespace(sleep=lambda s: None)
+resave.detail = lambda cid: '<x><visit id="vst900" insorder="%s"/><charge id="charge500" insbalance="100.00" patbalance="0.00"/></x>' % STATE["order"]
+REB.clear(); STATE["order"] = "1,2"; m1 = move_to_ins.move("500", "2,1", rebill=False)
+check("move(..., rebill=False) never rebills", not REB and "no rebill" in m1, m1)
+REB.clear(); m2 = move_to_ins.move("500", "1,2")
+check("move(...) default keeps its single rebill (backward compatible)", REB == [("500", 1)], (REB, m2))
+
+# ------------------------------------------------------------------ E. ins_update.update order carried by an ACTIVE plan + verified
+amd.rebill_charge = amd_rebill_orig
+CH = {"insorder": "1,2", "plans": {"ins10": {"sequence": "1", "enddate": "06/21/2025", "carrier": "car1"},
+                                   "ins20": {"sequence": "2", "enddate": "", "carrier": "car2"}}, "sent": [], "blank_via": set()}
+def demo():
+    pl = "".join('<insplan id="%s" sequence="%s" enddate="%s" carrier="%s"/>' % (k, v["sequence"], v["enddate"], v["carrier"]) for k, v in CH["plans"].items())
+    return '<PPMDResults><Results><patient id="pat5" insorder="%s"/>%s</Results></PPMDResults>' % (CH["insorder"], pl)
+def i_post(body, timeout=180):
+    if 'action="getdemographic"' in body: return demo()
+    m = re.search(r'<insplan id="(ins\d+)" ([^>]*)>', body); a = dict(re.findall(r'(\w+)="([^"]*)"', m.group(2)))
+    CH["sent"].append((m.group(1), a))
+    if "sequence" in a:
+        ended = CH["plans"][m.group(1)]["enddate"] not in ("",) or m.group(1) in CH["blank_via"]
+        CH["insorder"] = "" if ended else a["sequence"]
+    else:
+        CH["insorder"] = ""                                    # 9/21 behaviour: a plain field edit wipes the order
+        for k in ("enddate", "carrier"):
+            if k in a: CH["plans"][m.group(1)][k] = a[k]
+    return '<?xml version="1.0"?><PPMDResults s="x" lst="y"><Results success="1"><patient insorder="%s" /></Results><Error /></PPMDResults>' % CH["insorder"]
+amd.post = i_post; amd._msgtime = lambda: "10/6/2026 3:30:00 AM"
+ok, msg = ins_update.update("5", "ins10", sequence="2,1")        # the 10/6 chart-12232248 case: ins10 = the end-dated plan
+check("order via an END-DATED plan is carried by the active plan and lands", ok and CH["insorder"] == "2,1" and [s[0] for s in CH["sent"]] == ["ins20"], (msg, CH["sent"]))
+CH["sent"].clear(); CH["insorder"] = "1,2"; CH["plans"]["ins10"]["enddate"] = ""
+ok, msg = ins_update.update("5", "10", enddate="06/21/2025", sequence="2,1")
+check("field edit + order = two calls; the field call carries NO sequence; order lands",
+      ok and len(CH["sent"]) == 2 and "sequence" not in CH["sent"][0][1] and CH["sent"][0][0] == "ins10" and CH["sent"][1][0] == "ins20" and CH["insorder"] == "2,1", (msg, CH["sent"]))
+CH["sent"].clear(); CH["insorder"] = "1,2"; CH["plans"]["ins10"]["enddate"] = ""; CH["blank_via"] = {"ins10"}
+ok, msg = ins_update.update("5", "10", sequence="2,1")
+check("a blank answer is re-sent ONCE through another active plan", ok and [s[0] for s in CH["sent"]] == ["ins10", "ins20"] and CH["insorder"] == "2,1", (msg, CH["sent"]))
+CH["sent"].clear(); CH["blank_via"] = {"ins10", "ins20"}; CH["insorder"] = "1,2"
+ok, msg = ins_update.update("5", "10", sequence="2,1")
+check("never more than two order calls; reports NOT set", not ok and len(CH["sent"]) == 2 and "NOT set" in msg, (msg, CH["sent"]))
+ok, msg = ins_update.update("5", "99", sequence="1")
+check("unknown plan -> insplan not found", not ok and msg == "insplan not found", msg)
+ok, msg = ins_update.update("5", "10")
+check("nothing to change -> no write", not ok and msg == "nothing to change", msg)
+
+# ------------------------------------------------------------------ F. approval email + push carry the links
+items = approval_submit.build_items([{"letter": "A", "command": "cd /home/claude/unbilled && python3 x.py --live --only A", "reason": "classifier <refused>",
+                                       "what": "chart 17470940 AARP carrier fix & exclusion", "dollars": "$21.80", "ui": "Patient > Insurance"},
+                                      {"letter": "B", "command": "python3 x.py --live --only B", "reason": "r", "what": "chart 12232248", "dollars": "$1,656.00", "ui": ""}],
+                                     "2026-10-06T0330Z", TMP)
+h = approval_submit.html_email(items, "2026-10-06T0330Z", "APPROVAL NEEDED - test")
+check("html: page button + one Review & Approve button per card", h.count("Review &amp; Approve") == 2 and approval_submit.PAGE + '"' in h
+      and all(approval_submit.PAGE + "#" + i["id"] in h for i in items), h[:300])
+check("html escapes item text", "&lt;refused&gt;" in h and "<refused>" not in h)
+p2 = approval_submit.push_text(items, "2026-10-06T0330Z"); p1 = approval_submit.push_text(items[:1], "2026-10-06T0330Z")
+check("push (several) <= 199 chars and ends with the page link", len(p2) <= 199 and p2.endswith(approval_submit.PAGE), p2)
+check("push (one) ends with that card's link", len(p1) <= 199 and p1.endswith(approval_submit.PAGE + "#" + items[0]["id"]), p1)
+long = [dict(items[0], id="A-2026-10-06T0330Z-%s" % ("X" * 60), dollars="$1")]
+pl = approval_submit.push_text(long, "2026-10-06T0330Z")
+check("push never exceeds 199 even with a long id", len(pl) <= 199 and pl.endswith(approval_submit.PAGE) or pl.endswith(long[0]["id"]), (len(pl), pl))
+check("privacy gate still catches an SSN", approval_submit.privacy_hit("pt 123-45-6789") == "SSN pattern")
+
+print("\n%d failure(s)" % len(FAILS) + (": " + ", ".join(FAILS) if FAILS else " - all guarantees hold"))
+sys.exit(1 if FAILS else 0)
