@@ -7,10 +7,11 @@ import json, re, os, datetime, collections
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
-D = os.environ.get("SCANS_DIR", "/home/claude/scans") + ""; OUT = "/mnt/user-data/outputs"; os.makedirs(OUT, exist_ok=True)
+D = os.environ.get("SCANS_DIR", "/home/claude/scans") + ""; OUT = os.environ.get("REPORT_OUT", D + "/outputs"); os.makedirs(OUT, exist_ok=True)   # 10/5/2026: output dir from the environment (the 9/22 /mnt path is not on every container)
 STAMP = datetime.date.today().strftime("%Y-%m-%d")
 P = json.load(open(D + "/plan.json")); REG = json.load(open(D + "/post_register.json")); PAGES = json.load(open(D + "/pages.json"))
-R = json.load(open(D + "/remits.json")); STUBS = json.load(open(D + "/vcc_stubs.json"))
+R = json.load(open(D + "/remits.json")); STUBS = json.load(open(D + "/vcc_stubs.json")) if os.path.exists(D + "/vcc_stubs.json") else []
+REGF = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "practices", "ehpa", "registers", "scan_batches.json"); BATCHES = json.load(open(REGF)) if os.path.exists(REGF) else []
 PAYER = {"UA": "United American Insurance Co (Globe Life) - Medigap", "WN": "Washington National / Bankers Life - Medigap", "AET12": "Aetna Senior Supplemental (American Continental) - Medigap",
          "MUT01": "United of Omaha (Mutual of Omaha) - Medigap", "ECHO": "Physicians Life Insurance Co (via ECHO/EPC) - Medigap", "SIM01": "Simply Healthcare LTSS/MMA (Medicaid, via Zelis)",
          "FLO99": "Florida Community Care (Medicaid SMMC) - paper check", "USAA": "USAA Life - Medigap (via Zelis)", "CHAMPVA": "CHAMPVA (EFT - no 835 reaches AMD; posted from the paper EOB)", "BCBS": "Florida Blue (EFT, already electronic)"}
@@ -62,10 +63,10 @@ pc = [x for x in R if x.get("is_physical_check")]
 sheet("Physical checks", ["Payer family", "Payer", "Check number", "Amount", "Date", "ICN printed", "Linked to remit", "Linked by amount to accts", "Page"],
       [[x["family"], x.get("payer"), x.get("check_number"), x.get("amount"), x.get("date"), x.get("icn"), x.get("linked_to"), ", ".join(x.get("linked_by_amount") or []), pg(x["pages"])] for x in pc])
 # 7 correspondence
-CORR = json.load(open(D + "/correspondence.json"))   # the correspondence/action list (PHI) lives beside the scans, not in the repo
+CORR = json.load(open(D + "/correspondence.json")) if os.path.exists(D + "/correspondence.json") else []   # the correspondence/action list (PHI) lives beside the scans, not in the repo
 sheet("Correspondence & actions", ["Item", "Who / what", "Action", "Pages"], CORR, {"Item": 70, "Who / what": 50, "Action": 80, "Pages": 30})
 # 8 page inventory
-sheet("Page inventory (502)", ["Batch (Gmail attachment)", "Page", "Type", "Payer", "Amount", "Card / payment id", "First line"],
+sheet("Page inventory (%d)" % len(PAGES), ["Batch (Gmail attachment)", "Page", "Type", "Payer", "Amount", "Card / payment id", "First line"],
       [[p["batch"], p["page"], p["type"], p.get("payer", ""), p.get("amount", ""), p.get("card") or p.get("payment_id") or "", p["head"][:100]] for p in PAGES], {"Batch (Gmail attachment)": 34, "First line": 90})
 fn = os.path.join(OUT, "paper_remits_posting_workbook_%s.xlsx" % STAMP); wb.save(fn)
 # summary
@@ -76,14 +77,14 @@ base_groups = [g for g in P["groups"] if not g.get("trn_suffix")]   # re-filed g
 plan_total = round(sum(g["claims_total"] for g in base_groups), 2)
 holds_c = collections.Counter(h["why"] for h in P["holds"])
 md = ["# Paper / virtual-card remittances — posted into AdvancedMD %s" % STAMP, "",
-      "**Scanned:** 13 ScanSnap batches from Gmail, 502 pages OCR'd and categorized (workbook sheet 'Page inventory'). 9/23: + the 9 Simply claims the parser missed, 2 FCC checks (OCR misreads / re-entered visit) and the CHAMPVA EFT payments that never reached AMD.", "",
+      "**Scanned:** %d ScanSnap batches from Gmail (%s), %d pages OCR'd and categorized (workbook sheet 'Page inventory'); originals filed in Drive 'eras scanned'." % (len(BATCHES) or len({p["batch"] for p in PAGES}), ", ".join(sorted({(b.get("sent") or "")[:10] for b in BATCHES if b.get("sent")})) or STAMP, len(PAGES)), "",
       "**Posting plan:** %d checks/cards, %d claims, $%.2f on the EOBs (sheet 'Checks (groups)'; re-filed groups at the bottom repeat claims whose EOB lines needed AMD's own CPTs)." % (len(base_groups), sum(len(g["claims"]) for g in base_groups), plan_total), "",
       "**Posted in AMD:** %d lines, **$%.2f** payments + $%.2f write-offs (WOMCAD/WOCAID2ND/WOINS), every line through the ERA Center with its reason codes, under the payer's own carrier (sheet 'Posted in AMD')." % (len(posted), tot_posted, tot_wo), ""]
 md += ["| Payer | Lines | Posted |", "|---|---|---|"] + ["| %s | %d | $%.2f |" % (PAYER.get(f, f), n, a) for f, (n, a) in sorted(byfam.items(), key=lambda kv: -kv[1][1])]
 md += ["", "**Held / to decide:** %d lines (sheet 'Holds & errors'): %s" % (len(other), "; ".join("%s x%d" % (k, v) for k, v in collections.Counter(r["status"] for r in other).items())), ""]
 md += ["**Not posted by design (sheet 'Not posted (by design)'):** " + "; ".join("%s: %d" % (k.split(" - ")[0].split(" (")[0], v) for k, v in holds_c.items()), ""]
 keyable = [s for s in STUBS if not s.get("warning")]; twins = [s for s in STUBS if s.get("warning")]
-md += ["**Virtual cards to key in Square:** %d stubs in the pile, $%.2f; none run yet (Square 5/1–9/22 history checked). %d of them ($%.2f) are duplicated by a PHYSICAL CHECK of the same amount in the same pile (the payer re-issued the card as a check) — deposit the check, do not key those. That leaves **%d cards, $%.2f to key**; %d of those ($%.2f) say Valid Thru 09/26 and expire within days." % (len(STUBS), sum(s["amount"] for s in STUBS), len(twins), sum(s["amount"] for s in twins), len(keyable), sum(s["amount"] for s in keyable), sum(1 for s in keyable if s.get("exp") == "09/26"), sum(s["amount"] for s in keyable if s.get("exp") == "09/26")), ""]
-md += ["**Correspondence needing action** (sheet 'Correspondence & actions'): Optum/WellCare records requests x2 (Camacho DOS 6/22/2026, Catledge DOS 8/28/2025), UHC 'additional information' on Betteridge 7/28/2026, Cigna/Evernorth termination 8/31/2026 (recredentialing), WellCare non-contracted dispute notices.", ""]
+md += ["**Virtual cards to key in Square:** %d in the pile, $%.2f (sheet 'Virtual cards to key' carries each card's Square status). %d ($%.2f) are duplicated by a PHYSICAL CHECK of the same amount in the same pile (the payer re-issued the card as a check) — deposit the check, do not key those. That leaves **%d cards, $%.2f to key**." % (len(STUBS), sum(s["amount"] or 0 for s in STUBS), len(twins), sum(s["amount"] or 0 for s in twins), len(keyable), sum(s["amount"] or 0 for s in keyable)), ""]
+md += ["**Correspondence needing action** (sheet 'Correspondence & actions'): %d items - " % len(CORR) + "; ".join(str(c[0])[:90] for c in CORR[:12]), ""]
 open(os.path.join(OUT, "paper_remits_summary_%s.md" % STAMP), "w").write("\n".join(md))
 print("\n".join(md)); print("wrote", fn)
