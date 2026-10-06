@@ -1,0 +1,42 @@
+{
+ "stamp": "2026-10-06T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053020",
+   "checkclaimid": 15444205,
+   "visitid": "19455115",
+   "pid": "17477640",
+   "chargedetailid": "23366254",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 106.82,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N16"
+   ],
+   "when": "2026-10-06T2110Z",
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "HUM01"
+   },
+   "pay": 106.82,
+   "wo": 53.18,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "outcome": "posted",
+   "paymentid": "10166133",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-5b66dd6f6d-cgd55\" lst=\"10/06/2026 14:33:16\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}

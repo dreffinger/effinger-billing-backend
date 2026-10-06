@@ -1,0 +1,42 @@
+[
+ {
+  "id": 1052906,
+  "licensekey": 152563,
+  "receiveddate": "2026-09-30T08:57:59.263",
+  "depositdate": "2026-09-30T00:00:00",
+  "eracarrierid": "1414",
+  "eracarriername": "FLORIDA BLUE",
+  "hasnote": false,
+  "systemcarrierid": 6062,
+  "systemcarriercode": "BCBS",
+  "systemcarriername": "FLORIDA BLUE",
+  "paymentnumber": "213453023",
+  "paymentamount": 1814.2,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 1814.2,
+  "unpostedamount": 104.19,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ },
+ {
+  "id": 1053020,
+  "licensekey": 152563,
+  "receiveddate": "2026-10-06T14:27:44.253",
+  "depositdate": "2026-10-05T00:00:00",
+  "eracarrierid": "2449",
+  "eracarriername": "HUMANA INC.",
+  "hasnote": false,
+  "systemcarrierid": 6285,
+  "systemcarriercode": "HUM01",
+  "systemcarriername": "HUMANA",
+  "paymentnumber": "202336236261006",
+  "paymentamount": 106.82,
+  "paymentcode": "ACH",
+  "paymentdescription": "",
+  "calculatedamount": 106.82,
+  "unpostedamount": 106.82,
+  "checkstatusid": 1,
+  "providerleveladjustment": []
+ }
+]
