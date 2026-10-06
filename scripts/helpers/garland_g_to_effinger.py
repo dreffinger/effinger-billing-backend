@@ -16,7 +16,7 @@ sys.path[:0]=['/home/claude/effinger-billing-backend/core']
 import amd, resave
 import xml.etree.ElementTree as ET
 
-EFFINGER="prof13"; GARLAND-G="prof15"
+EFFINGER="prof13"; GARLAND_G="prof15"
 DRY="--dry" in sys.argv
 targets=json.load(open("/home/claude/unbilled/hold_prof15_garland-g.json"))
 rows=json.load(open("/home/claude/unbilled/medicaid_open.json"))

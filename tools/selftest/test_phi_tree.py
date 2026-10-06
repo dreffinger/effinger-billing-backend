@@ -2,8 +2,11 @@
 # PLAIN ENGLISH (offline self-test of the PHI tree gate, 10/6/2026)
 # Decides: nothing. Builds a throwaway git checkout with sample PHI in registers, a digest and code, runs
 #   `phi_gate.py tree .` the way mirror.py does before `git add -A`, and asserts: names -> pseudonym or [name],
-#   identifiers -> placeholders, a digest / needs section never enters the tree, code keeps its tokens,
-#   billing vocabulary (DOS,CPT / LAST,FIRST / WOINS,WOLATE) is left alone. No AMD, no network.
+#   identifiers -> placeholders, a digest / needs section never enters the tree, code keeps its tokens and still
+#   compiles, billing vocabulary (DOS,CPT / LAST,FIRST / WOINS,WOLATE) is left alone. No AMD, no network.
+#   Every sample name here is invented (none is in the practice's map) - the 10/6 afternoon lesson: the first
+#   version of this test used real surnames as samples. Every LAST,FIRST sample is assembled at run time (lf)
+#   so the tree gate, which scrubs this file like any other before a commit, leaves the test alone.
 # Run: python3 tools/selftest/test_phi_tree.py   (exit 1 on any failure)
 import os, sys, json, subprocess, tempfile, shutil
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -12,23 +15,43 @@ sys.path.insert(0, os.path.join(ROOT, "tools", "mirror")); import phi_gate
 FAILS = []
 # sample identifiers are assembled at run time so no identifier-shaped literal sits in the repository
 MBI_S = "1EG4" + "TE5MK73"; SSN_S = "123-45-" + "6789"; MEM_S = "1234" + "56789"; MCD_S = "7452" + "486960"; DOB_S = "01/02/" + "1950"
+def lf(last, first): return last + "," + first          # AMD's LAST,FIRST form, built so no literal sits here
 def check(name, cond, extra=""):
     print(("ok   " if cond else "FAIL ") + name + (("  " + extra) if extra and not cond else ""))
     if not cond: FAILS.append(name)
+def compiles(src):
+    try: compile(src, "<sample>", "exec"); return True
+    except SyntaxError: return False
 
-names = {"Simcoe": "Simcoe", "Annika": "Annika", "Pignone": "Pellam"}      # a stand-in map (the real one is PHI, Drive only)
+names = {"Zorbaz": "Simcoe", "Annika": "Annika", "Pignone": "Pellam"}      # a stand-in map (the real one is PHI, Drive only)
 fake_map = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False); json.dump({"names": names}, fake_map); fake_map.close()
 phi_gate.MAP_CANDIDATES[:] = [fake_map.name]
 
 # --- redact() unit checks ---
 r = phi_gate.redact
-check("map name -> pseudonym, AMD caps form too", r("Annika Simcoe / SIMCOE,ANNIKA (pat 1)", names) == "Annika Simcoe / SIMCOE,ANNIKA (pat 1)")
-check("unknown LAST,FIRST in a data file -> [name]", r('"name": "BLAKELY,NORBERT", note THACKERAY,KENDREW D (pat 77) and [name]%', names, code=False) == '"name": "[name]", note [name] (pat 77) and [name]')
+check("map name -> pseudonym, AMD caps form too", r("Annika Zorbaz / %s (pat 1)" % lf("ZORBAZ", "ANNIKA"), names) == "Annika Simcoe / %s (pat 1)" % lf("SIMCOE", "ANNIKA"))
+check("unknown LAST,FIRST in a data file -> [name], the AMD % wildcard stays", r('"name": "%s", note %s D (pat 77) and %s%%' % (lf("VANTABLE", "OTTO"), lf("QUARREL", "KENDREW"), lf("XANTHER", "RUFFORD")), names, code=False) == '"name": "[name]", note [name] (pat 77) and [name]%')
 check("billing vocabulary is not a name", r("DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED", names, code=False) == "DOS,CPT WOINS,WOLATE UNI20,BCBS LAST,FIRST FINALIZED,DENIED")
-check("code keeps its tokens, string literals and comments are scrubbed", r('import os\nDOS,CPT = 1, 2\nx = "SMYTHE,[first]"  # [name]\n', names) == 'import os\nDOS,CPT = 1, 2\nx = "[name]"  # [name]\n')
-check("a hyphenated pseudonym inside an identifier becomes underscore", r("import medicaid_garland_g_fix\n", {"Garland-G": "Garland-G"}) == "import medicaid_garland_g_fix\n")
+check("code keeps its tokens, string literals and comments are scrubbed", r('import os\nDOS,CPT = 1, 2\nx = "%s"  # %s\n' % (lf("XANTHER", "JOHN"), lf("KIRBY", "ANN")), names) == 'import os\nDOS,CPT = 1, 2\nx = "[name]"  # [name]\n')
+check("a hyphenated pseudonym inside a module name becomes underscore", r("import medicaid_quenby_fix\n", {"Quenby": "Garland-G"}) == "import medicaid_garland_g_fix\n")
 check("MBI / SSN / member id / DOB -> placeholders", r("MBI %s ssn %s subscribernum=%s DOB %s" % (MBI_S, SSN_S, MEM_S, DOB_S), names, code=False) == "MBI [MBI] ssn [SSN] subscribernum=[member id] DOB [DOB]")
-check("board slug from a real name -> [name]-<amdid>, pseudonym slug kept", r("id willoughby-cathleen-17477898 and pellam-[first]-17477892", names, code=False) == "id [name]-17477898 and pellam-[first]-17477892")
+check("board slug from a real name -> [name]-<amdid>, pseudonym slug kept", r("id [name]-10000001 and pellam-[first]-10000002", names, code=False) == "id [name]-10000001 and pellam-[first]-10000002")
+
+# --- the 10/6 afternoon lessons (what the history rewrite exposed) ---
+names2 = {"Quenby": "Garland-G", "Field": "Fenwick", "Vantable": "Lowry"}
+src = 'import amd\nQUENBY_RPROV = "x"; QUENBY = "prof15"  # (Quenby) QUENBY\nL("not Quenby")\n'
+out = r(src, names2)
+check("UPPERCASE hyphenated pseudonym: underscore in identifiers, hyphen in strings and comments", out == 'import amd\nGARLAND_G_RPROV = "x"; GARLAND_G = "prof15"  # (Garland-G) GARLAND-G\nL("not Garland-G")\n', out)
+check("...and it compiles", compiles(out))
+src = 'import amd\nsh("git rev-parse --field HEAD"); field_list = []; f = "vantable_rebill.py"; k = {"vantable": 1, "field": 2}; t = "Field FIELD"\n'
+out = r(src, names2)
+check("ordinary-word surname: lowercase stays a word (--field, field_list) except as a whole dict key; Title/CAPS map; other surnames map in slugs and keys", out == 'import amd\nsh("git rev-parse --field HEAD"); field_list = []; f = "lowry_rebill.py"; k = {"lowry": 1, "fenwick": 2}; t = "Fenwick FENWICK"\n', out)
+src = "import amd\ntargets={'1':('%s',CUT),'2':('%s',CUT)}\nq='name=\"%s%%%%\"' %% t\n" % (lf("VANTABLE", "MIRA"), lf("XANTHER", "OTTO"), lf("XANTHER", "OTTO"))
+out = r(src, names2)
+check("LAST,FIRST in a quoted literal keeps its closing quote and the %% format escape", out == "import amd\ntargets={'1':('%s',CUT),'2':('[name]',CUT)}\nq='name=\"[name]%%%%\"' %% t\n" % lf("LOWRY", "MIRA"), out)
+check("...and it compiles", compiles(out))
+check("apostrophe inside a name is kept, a trailing one is not swallowed", r("%s (pat 5); '%s'" % (lf("O'HARE", "MARISA-ANN"), lf("XANTHER", "JOE")), names, code=False) == "[name] (pat 5); '[name]'")
+check("a path with a lowercase surname is mapped, underscore-safe", r("scripts/helpers/vantable_check_0510.py nightly/quenby_fix.py", names2, code=False) == "scripts/helpers/lowry_check_0510.py nightly/garland_g_fix.py")
 
 # --- tree mode on a throwaway checkout ---
 d = tempfile.mkdtemp(prefix="phi_tree_")
@@ -36,18 +59,18 @@ def sh(c): return subprocess.run(c, shell=True, cwd=d, capture_output=True, text
 sh("git init -q . && git config user.email t@t && git config user.name t")
 os.makedirs(os.path.join(d, "practices/ehpa/registers")); os.makedirs(os.path.join(d, "nightly/runs/2026-10-06T0710Z")); os.makedirs(os.path.join(d, "scripts/helpers"))
 W = lambda rel, txt: open(os.path.join(d, rel), "w").write(txt)
-W("practices/ehpa/registers/old.json", '{"name": "SIMCOE,ANNIKA", "pid": "1"}\n')
+W("practices/ehpa/registers/old.json", '{"name": "%s", "pid": "1"}\n' % lf("ZORBAZ", "ANNIKA"))
 sh("git add -A && git commit -qm init")
-W("practices/ehpa/registers/old.json", '{"name": "SIMCOE,ANNIKA", "pid": "1", "x": 2}\n')                       # modified, tracked
-W("practices/ehpa/registers/new.json", '{"patient": "GARROW,CERYS", "subscribernum": "%s", "pid": "2"}\n' % MCD_S)   # untracked
-W("nightly/runs/2026-10-06T0710Z/run digest.md", "# digest\nJONES,ISA (pat 3)\nRUN COMPLETE\n")              # Drive only
-W("nightly/runs/2026-10-06T0710Z/needs_facesheet_list_section.md", "needs: WHITBY,EDWIN\n")                 # Drive only
+W("practices/ehpa/registers/old.json", '{"name": "%s", "pid": "1", "x": 2}\n' % lf("ZORBAZ", "ANNIKA"))                       # modified, tracked
+W("practices/ehpa/registers/new.json", '{"patient": "%s", "subscribernum": "%s", "pid": "2"}\n' % (lf("PRATCHETT", "CERYS"), MCD_S))   # untracked
+W("nightly/runs/2026-10-06T0710Z/run digest.md", "# digest\n%s (pat 3)\nRUN COMPLETE\n" % lf("XANTHER", "ISA"))              # Drive only
+W("nightly/runs/2026-10-06T0710Z/needs_facesheet_list_section.md", "needs: %s\n" % lf("UMBERFIELD", "EDWIN"))             # Drive only
 W("nightly/runs/2026-10-06T0710Z/run_report_0710.py", 'import os\nX = "DOS,CPT"\n')                           # code, kept
 W("scripts/helpers/h.py", 'import amd\nMBI = "%s"\n' % MBI_S)
 r = subprocess.run([sys.executable, GATE, "tree", ".", "--cwd"], cwd=d, capture_output=True, text=True, env=dict(os.environ, PHI_MAP=fake_map.name))
 out = r.stdout
 check("tree exits 0", r.returncode == 0, r.stderr[-300:])
-check("tracked modified register scrubbed (map)", open(os.path.join(d, "practices/ehpa/registers/old.json")).read() == '{"name": "SIMCOE,ANNIKA", "pid": "1", "x": 2}\n')
+check("tracked modified register scrubbed (map)", open(os.path.join(d, "practices/ehpa/registers/old.json")).read() == '{"name": "%s", "pid": "1", "x": 2}\n' % lf("SIMCOE", "ANNIKA"))
 check("untracked register: unknown name -> [name], member id -> placeholder", open(os.path.join(d, "practices/ehpa/registers/new.json")).read() == '{"patient": "[name]", "subscribernum": "[member id]", "pid": "2"}\n')
 check("digest taken out of the tree", not os.path.exists(os.path.join(d, "nightly/runs/2026-10-06T0710Z/run digest.md")) and "DRIVE ONLY" in out)
 check("needs section taken out of the tree", not os.path.exists(os.path.join(d, "nightly/runs/2026-10-06T0710Z/needs_facesheet_list_section.md")))

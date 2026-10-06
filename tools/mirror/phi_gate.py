@@ -61,28 +61,88 @@ NOT_NAMES = {"Charge Review", "Claim Inspector", "Claims Center", "Mass Rebill",
              "Payment Entry", "Process Accepted", "Florida Blue", "Cigna Health", "William", "Pam Garcia",
              "Report Center", "Edit address", "Post button"}
 
-def scrub(text, names):
-    if names:
-        keys = sorted(names, key=len, reverse=True)
-        # exact case or ALL CAPS only - a lowercase common word ("bell") is never a name
-        alts = [re.escape(k) for k in keys] + [re.escape(k.upper()) for k in keys]
-        rx = re.compile(r"(?<![A-Za-z])(" + "|".join(alts) + r")(?![A-Za-z])")
+# Surnames that are ordinary English words: in lowercase they are words, never names ("--short", "white_list",
+# "spring"), so the lowercase rules below skip them; the exact-case and ALL-CAPS forms are still mapped.
+COMMON_WORDS = set("""
+able abbot active alley amber apple arch archer arms ash ashes bacon badger bail baker ball band bank banks bar bare
+barn barrow bass bay beach beam bean bear beck bell bells belt bench bend berry best bill bills bird bishop black blake
+blank bland bliss block bloom blood blue blunt board bold bolt bond bone book boon booth bound bow bowl box boyd branch
+brand brass bray bread bridge bright brook brooks broom brown buck bull bunch burn burns bush butler cable cage cake
+camp cane cannon cap cape card carpenter carr carter case cash castle catch cave chalk chance chapel chase cheek cherry
+chief child chin church city clay clear cliff clock close cloud club coach coal coat cobb cock coin cole cook cooper
+cope copper corn cost court cox crane crew crisp crook cross crow crown cup curry cut dale dance dark date day deal
+dean deer dice dike dock dodge dole door dove down drake draper drew drum dry duke dunn dust dyer earl early east
+edge elder ember end even fair faith fall fare farmer fast fawn fay fear fee fell fern few field fields finch fine
+fire fish fisher flag flat fleet flint flood flower fly foot ford forest fork fox frame frank free freeze friend frost
+fry full fuller gain gale gall game garden gate gay gentle gill glass glen glove gold golden good goose gore grace
+grant grass gray graves green greene grey grill grove guest gum gun hail hair hale hall ham hand hard hare harp
+hart hatch hawk hay hays head heart heath hedge herring hill hills hind hogg hold holiday holland holly home hood hook
+hope horn house howl hunt hunter hurst ice ink iron ivy jack jay jewel joy judge jump just keen keep kemp key kid
+kind king kirk kitchen knight lace lake lamb lamp lance land lane large lark last late law lawn lay leaf lean lee
+light lily lime line link lion little lock lodge long lord love low lowe lucky lynch mace main major mallet man
+manly march mark marks marsh mason masters match may mead meadow meek merry mild mill miller mills mine mint miss
+monk moody moon moore moss moth mount mud myrtle nail nash neal new newman nice night noble noon north nurse oak oaks
+oat odd oil olive orange order organ otter oven over owen owl pace pack page paine pale palm park parker parks parr
+parrot parsons part pass pate patch pay peach peacock pearl peck peel pell penny pepper perry pike pine pink pitt
+place plant plum pool pope port post pound powell power price pride prince prior pure quick quill rain ram rand
+ray read reed reel rhodes rice rich ride ridge ring rivers road robin rock roe rose rowe royal rudd rush rust rye
+sage sail salt sand sands savage saw scott screws seal seed self sharp shaw sheen shelley sheppard shield shore short
+silver simple sing skinner slate slick slow small smart smith snow snyder song south spark sparks spear speed spring
+square stack stalk stamp star stark steel stern still stock stone storm stout street string strong sugar summer
+sun swan sweet swift tailor tall tan tate taylor temple thorn tidy till toll tower town trade trent trim true
+trust tuck tune turner twig vale vane vest vine wade wages wall walker ward ware warren water waters way weaver
+web weed weeks well wells west wheeler white wild will winter wise wolf wood woods wool wren wright yard yates young
+""".split())
+
+def _ident_safe(fake, m, ident):
+    """A hyphenated pseudonym (Garland-G) next to an identifier character, or anywhere in code outside a
+    string / comment, is written with an underscore: GARLAND-G_RPROV / GARLAND-G = "prof15" do not compile
+    (the 9/24 and 10/6 breakage of the two re-render helpers on main)."""
+    s, e = m.span()
+    before, after = m.string[s - 1:s], m.string[e:e + 1]
+    if ident or before == "_" or after == "_" or before.isdigit() or after.isdigit():
+        return fake.replace("-", "_")
+    return fake
+
+def scrub(text, names, code=False):
+    """Map every real name to its pseudonym. Exact case or ALL CAPS anywhere; lowercase only (a) inside slugs and
+    file names ("<surname>-<first>-<amdid>", "<surname>_rebill.py" - never after "--", a CLI flag) and (b) as a
+    whole word (a dict key "<surname>", a lowercase note) - both skipped for a surname that is an ordinary word.
+    code=True: tokens outside string literals / comments are identifiers and get an underscore-safe pseudonym."""
+    if not names:
+        return text
+    keys = sorted(names, key=len, reverse=True)
+    alts = [re.escape(k) for k in keys] + [re.escape(k.upper()) for k in keys]
+    rx = re.compile(r"(?<![A-Za-z])(" + "|".join(alts) + r")(?![A-Za-z])")
+    lows = [re.escape(k.lower()) for k in keys if k.lower() not in COMMON_WORDS and len(k) >= 4]
+    lrx = re.compile(r"(?<![A-Za-z])(?<!--)(" + "|".join(lows) + r")(?![A-Za-z])") if lows else None
+    def run(seg, ident):
         def rep(m):
             k = m.group(1)
             real = k if k in names else next(n for n in keys if n.upper() == k)
             fake = names[real]
-            return fake.upper() if k.isupper() and len(k) > 1 else fake
-        text = rx.sub(rep, text)
-        # lowercase forms only inside slugs / filenames ("lepore-nicholas", "willis_rebill.py")
-        lrx = re.compile(r"(?<=[-_./])(" + "|".join(re.escape(k.lower()) for k in keys) + r")(?![A-Za-z])|(?<![A-Za-z])(" + "|".join(re.escape(k.lower()) for k in keys) + r")(?=[-_][a-z])")
-        def lrep(m):
-            fake = names[next(n for n in keys if n.lower() == (m.group(1) or m.group(2)))].lower()
-            s, e = m.span()
-            if m.string[s - 1:s] == "_" or m.string[e:e + 1] == "_":   # inside an identifier / module name: a hyphenated pseudonym would break the code (10/6)
-                fake = fake.replace("-", "_")
-            return fake
-        text = lrx.sub(lrep, text)
-    return text
+            fake = fake.upper() if k.isupper() and len(k) > 1 else fake
+            return _ident_safe(fake, m, ident)
+        seg = rx.sub(rep, seg)
+        if lrx:
+            seg = lrx.sub(lambda m: _ident_safe(names[next(n for n in keys if n.lower() == m.group(1))].lower(), m, ident), seg)
+        return seg
+    if not code:
+        return run(text, False)
+    lowmap = {k.lower(): v.lower() for k, v in names.items()}
+    def literal(s):
+        # a string literal that IS a lowercase surname ("short": item_x, the 10/4 chat script's dict keys) is a
+        # name key even when the word is ordinary - paired with a pseudonymized function it would be a real ->
+        # pseudonym table; an identifier-safe form keeps a dict key and its function name consistent
+        m = re.fullmatch(r"(['\"])([a-z]+)\1", s)
+        if m and m.group(2) in lowmap:
+            return m.group(1) + lowmap[m.group(2)].replace("-", "_") + m.group(1)
+        return run(s, False)
+    out, pos = [], 0
+    for s in STR_OR_COMMENT.finditer(text):      # code: identifiers between the literals, prose inside them
+        out.append(run(text[pos:s.start()], True)); out.append(literal(s.group(0))); pos = s.end()
+    out.append(run(text[pos:], True))
+    return "".join(out)
 
 def check(text):
     hits = []
@@ -112,7 +172,10 @@ def warn_names(text, names):
 # to HEAD) and named in the output. mirror.py runs this on "." before `git add -A`; the 10/6 lesson:
 # the 9/30 payreason registers and the 10/3 digest reached GitHub with patient names in them.
 JSON_NAME = re.compile(r'("(?:patient|name|patname|patientname|pt|pat_name|patient_name|lastfirst)"\s*:\s*")([A-Z][A-Z\'\-]+,\s?[A-Z][A-Z\'\- ]*)(")')
-PROSE_NAME = re.compile(r"\b([A-Z][A-Z'\-]{2,}),\s?([A-Z][A-Z'\-]{1,})((?: [A-Z]\.?)?)(?=\s*\((?:pat|chart|amd|id)\s*\d)")
+# a name part: letters, with ' or - only BETWEEN letters (O'BRIEN, SMITH-JONES) - never a closing quote (10/6:
+# 'CHADWICK,SELINA' lost its quote and the file no longer compiled)
+_NP = r"[A-Z](?:[A-Z]|['\-](?=[A-Z]))"
+PROSE_NAME = re.compile(r"\b(" + _NP + r"{2,}),\s?(" + _NP + r"{1,})((?: [A-Z]\.?)?)(?=\s*\((?:pat|chart|amd|id)\s*\d)")
 DOB_SUB = re.compile(r"(\b(?:DOB|dob|birth|Birth|BIRTH)\b[^\n]{0,12}?)((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}\b|\b\d{1,2}/\d{1,2}/(?:19|20)\d{2}\b)")
 MEMBER_SUB = re.compile(r"(?i)((?:subscribernum|member\s*(?:id|#|number)|medicaid\s*(?:id|#|number)?|membernum)\W{0,4})\d{8,11}\b")
 DRIVE_ONLY = re.compile(r"(?i)(digest|needs_facesheet|run[ _]report|facesheets?[ _]needed|_run report)")
@@ -122,7 +185,8 @@ SKIP_DIRS = {".git", "secrets", "__pycache__", "node_modules"}
 
 # AMD's own LAST,FIRST form (no space after the comma) anywhere in a DATA file - a needs list, a digest, a CSV,
 # a register note. Billing vocabulary that happens to look like it (DOS,CPT / WOINS,WOLATE) is allow-listed.
-LASTFIRST_BARE = re.compile(r"\b([A-Z][A-Z'\-]{2,}),([A-Z][A-Z'\-]{1,})((?: [A-Z]\.?)?)%?(?![A-Za-z0-9=_])")
+# (the AMD lookup wildcard "%" after the name is left where it is: "[name]%" and "[name]%%" keep a %-format valid)
+LASTFIRST_BARE = re.compile(r"\b(" + _NP + r"{2,}),(" + _NP + r"{1,})((?: [A-Z]\.?)?)(?![A-Za-z0-9=_])")
 NOT_LASTFIRST = {"DOS", "CPT", "CO", "PR", "OA", "PI", "CR", "WOINS", "WOLATE", "WONCS", "WOPAT", "ERA", "ICN", "MBI", "NPI", "SSN",
                  "DOB", "UNI", "BCBS", "HUM", "AET", "SUN", "WEL", "CAP", "SIM", "TRI", "VACCN", "CCN", "RARC", "CARC", "JSON", "CSV",
                  "PDF", "XML", "API", "AMD", "UHC", "AARP", "HMO", "PPO", "POS", "FFS", "LTC", "SNF", "ALF", "HCA", "CCM", "TCM", "PAID",
@@ -152,7 +216,7 @@ def redact(text, names, code=None):
     vals_up = {v.upper() for v in names.values()}
     if code is None:
         code = bool(CODE_HINT.search(text))
-    t = scrub(text, names)
+    t = scrub(text, names, code=code)
     t = JSON_NAME.sub(lambda m: m.group(1) + ("[name]" if m.group(2).split(",")[0].strip() not in vals_up else m.group(2)) + m.group(3), t)
     t = PROSE_NAME.sub(lambda m: m.group(0) if m.group(1) in vals_up else "[name]", t)
     if not code:
