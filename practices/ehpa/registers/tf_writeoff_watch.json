@@ -10,14 +10,132 @@
    "sent": "2026-10-06 (united_send_1006.py --live: visit insorder 2 + ONE frequency-1 rebill to seq 2 per visit, chargerebill 204 x6)",
    "status": "open",
    "visits": [
-    {"vid": "19417751", "dos": "09/18/2025", "cpt": "99349", "charges": ["23321504"], "insbal": 198.00, "outcome": "sent"},
-    {"vid": "19417390", "dos": "09/21/2025", "cpt": "99487+99489", "charges": ["23321127", "23321128"], "insbal": 315.00, "outcome": "sent"},
-    {"vid": "19420985", "dos": "10/25/2025", "cpt": "99487+99489", "charges": ["23326170", "23326171"], "insbal": 315.00, "outcome": "sent"},
-    {"vid": "19424313", "dos": "11/19/2025", "cpt": "99349", "charges": ["23330068"], "insbal": 198.00, "outcome": "sent"},
-    {"vid": "19424662", "dos": "11/25/2025", "cpt": "99487+99489", "charges": ["23330503", "23330504"], "insbal": 315.00, "outcome": "sent"},
-    {"vid": "19427156", "dos": "12/22/2025", "cpt": "99487+99489", "charges": ["23333440", "23333441"], "insbal": 315.00, "outcome": "sent"}
+    {
+     "vid": "19417751",
+     "dos": "09/18/2025",
+     "cpt": "99349",
+     "charges": [
+      "23321504"
+     ],
+     "insbal": 198.0,
+     "outcome": "sent"
+    },
+    {
+     "vid": "19417390",
+     "dos": "09/21/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23321127",
+      "23321128"
+     ],
+     "insbal": 315.0,
+     "outcome": "sent"
+    },
+    {
+     "vid": "19420985",
+     "dos": "10/25/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23326170",
+      "23326171"
+     ],
+     "insbal": 315.0,
+     "outcome": "sent"
+    },
+    {
+     "vid": "19424313",
+     "dos": "11/19/2025",
+     "cpt": "99349",
+     "charges": [
+      "23330068"
+     ],
+     "insbal": 198.0,
+     "outcome": "sent"
+    },
+    {
+     "vid": "19424662",
+     "dos": "11/25/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23330503",
+      "23330504"
+     ],
+     "insbal": 315.0,
+     "outcome": "sent"
+    },
+    {
+     "vid": "19427156",
+     "dos": "12/22/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23333440",
+      "23333441"
+     ],
+     "insbal": 315.0,
+     "outcome": "sent"
+    }
    ],
-   "total": 1656.00
+   "total": 1656.0
+  },
+  {
+   "id": "uni20-bcbs-pre0501-2026-10-06T0710Z",
+   "carrier": "UNI20",
+   "order": "William 10/6/2026 (v12 step 5b2): UNI20/BCBS visits before 5/1/2026 answered NOT ON FILE by the payer's 277 are sent once; written off WOLATE only on the payer's timely-filing answer",
+   "sweep": "claim_status_sweep.py --min-age 158 --max 60 --carriers UNI20,BCBS (2026-10-06 07:3xZ): 60 checked - 30 PAID in 2025 (remits never reached AMD), 20 DENIED (585 on the 9/2026 re-sends), 5 PENDING, 4 NOT ON FILE, 1 UNKNOWN",
+   "status": "open",
+   "sent": "",
+   "visits": [
+    {
+     "pid": "20336",
+     "vid": "19416179",
+     "dos": "09/08/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23319751",
+      "23319752"
+     ],
+     "insbal": 315.0,
+     "plan_order": "2",
+     "lookup": "Stedi MBI lookup at DOS: MA = Care Improvement Plus South Central (UHC) COB 10/1/2024-4/30/2026, QMB; AMD UNI20 plan seq 2 (ended 5/16/2026); DOD [DOB] after the DOS",
+     "outcome": "sending 2026-10-06T0710Z"
+    },
+    {
+     "pid": "20336",
+     "vid": "19420949",
+     "dos": "10/25/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23326098",
+      "23326099"
+     ],
+     "insbal": 315.0,
+     "plan_order": "2",
+     "lookup": "same as 19416179",
+     "outcome": "sending 2026-10-06T0710Z"
+    },
+    {
+     "pid": "17474258",
+     "vid": "19419032",
+     "dos": "10/01/2025",
+     "cpt": "99306",
+     "charges": [
+      "23323956"
+     ],
+     "insbal": 256.0,
+     "plan_order": "1",
+     "lookup": "Stedi MBI lookup at DOS: MA = UnitedHealthcare of Florida HMO since 1/1/2025, QMB; AMD UNI20 plan seq 1",
+     "outcome": "sending 2026-10-06T0710Z"
+    }
+   ],
+   "skipped": [
+    {
+     "pid": "46250",
+     "vid": "14013956",
+     "dos": "05/15/2023",
+     "insbal": 211.44,
+     "outcome": "skipped answer-found: UNI20 payments 146.50 x2 already on the charges (2023) - adjudicated, residual is not a resend"
+    }
+   ]
   }
  ]
 }
