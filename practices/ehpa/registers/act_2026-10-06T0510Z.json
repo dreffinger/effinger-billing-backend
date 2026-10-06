@@ -1,0 +1,36 @@
+{
+ "stamp": "2026-10-06T0510Z",
+ "dry": false,
+ "steps": [
+  "A pat17476358 v19456968 dos 10/03/2026 cpts ['99233'] insorder 2,3 onhcfa 1 hospfrom-now None -> admission 10/01/2026",
+  "  updextrainsinfo 99233 10/01/2026 -> ok",
+  "  resave: saved live=1/1 onhcfa=1 insorder=2,3 hospfrom=10/01/2026",
+  "A pat17477980 v19456977 dos 10/03/2026 cpts ['99223', '99497'] insorder 1 onhcfa 1 hospfrom-now None -> admission 10/03/2026",
+  "  updextrainsinfo 99223 10/03/2026 -> ok",
+  "  updextrainsinfo 99497 10/03/2026 -> ok",
+  "  resave: saved live=2/2 onhcfa=1 insorder=1 hospfrom=10/03/2026"
+ ],
+ "hold": [],
+ "done": [
+  {
+   "pid": "17476358",
+   "vid": "19456968",
+   "dos": "10/03/2026",
+   "cpts": [
+    "99233"
+   ],
+   "action": "admission 10/01/2026, onhcfa=1"
+  },
+  {
+   "pid": "17477980",
+   "vid": "19456977",
+   "dos": "10/03/2026",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "action": "admission 10/03/2026, onhcfa=1"
+  }
+ ],
+ "left_127873": []
+}

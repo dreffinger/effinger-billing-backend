@@ -104,7 +104,10 @@ PY
     if ! command -v tesseract >/dev/null 2>&1 || ! command -v pdftoppm >/dev/null 2>&1; then
       (apt-get update -q >/dev/null 2>&1 && apt-get install -y -q tesseract-ocr poppler-utils >/dev/null 2>&1) && echo "layout: OCR tools installed (tesseract, poppler-utils)" || echo "layout: WARN could not install tesseract/poppler (apt blocked?) - scanned PDFs cannot be OCRed this run"
     fi
-    python3 -c "import pymupdf" 2>/dev/null || pip install -q pymupdf >/dev/null 2>&1 || true
+    # 8) python deps the fresh image lacks (10/6/2026: /usr/local python3.11 had no `requests`; `pip` is the 3.13 one - use python3 -m pip)
+    python3 -c "import requests" 2>/dev/null || python3 -m pip install -q requests >/dev/null 2>&1 || echo "layout: WARN could not pip-install requests - amd.py will not import"
+    python3 -c "import pymupdf" 2>/dev/null || python3 -m pip install -q pymupdf >/dev/null 2>&1 || true
+    python3 -c "import openpyxl, pypdf" 2>/dev/null || python3 -m pip install -q openpyxl pypdf >/dev/null 2>&1 || true
     chmod +x "$WS"/*.sh "$WS"/tools/*.sh 2>/dev/null
     echo "layout: copied/refreshed $n helper files into $WS"
     exit 0

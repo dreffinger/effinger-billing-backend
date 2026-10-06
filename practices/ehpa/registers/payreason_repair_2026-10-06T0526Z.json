@@ -1,0 +1,149 @@
+{
+ "stamp": "2026-10-06T0526Z",
+ "mode": "dry",
+ "results": [
+  {
+   "visitid": "19430028",
+   "pid": "12232001",
+   "name": "QUILL,NORCOTT",
+   "next_carrier": "FLO99",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336444",
+     "24570052",
+     0.0,
+     "072457328"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19431100",
+   "pid": "17475338",
+   "name": "KIRKBRIDE,DAVIN",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23337644",
+     "24658616",
+     0.0,
+     "819814877"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23337644",
+     "22497141",
+     153.5,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19436591",
+   "pid": "12180329",
+   "name": "SAYER III,RUPERT N",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23343643",
+     "24656991",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23343643",
+     "22496078",
+     152.86,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19436827",
+   "pid": "12180329",
+   "name": "SAYER III,RUPERT N",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23343875",
+     "24656990",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23343875",
+     "22496077",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454656",
+   "pid": "17475638",
+   "name": "FOSDYKE,CARLOTTA L",
+   "next_carrier": "HUM01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365734",
+     "24657014",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365734",
+     "22496101",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454663",
+   "pid": "17471688",
+   "name": "JARRELL,[first] LOVE",
+   "next_carrier": "FLO99",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365741",
+     "24656994",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365741",
+     "22496081",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  }
+ ]
+}
