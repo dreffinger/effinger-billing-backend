@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-10-05, 57 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-10-06, 60 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1529,6 +1529,65 @@
       ],
       "url": "https://healthcare.us.stedi.com/2024-04-01/payers/search?query={{payername}}",
       "description": "items[].payer{displayName, stediId, aliases[]}; aliases = the Change CPID list (used to fix the AET12 / Highmark payer ids).\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Inputs & scans",
+   "item": [
+    {
+     "name": "ScanSnap batch -> container: the size ladder (Gmail RAW <=1 MB, Drive connector <=10 MB, Zapier byte-range slices above) - data route, no single HTTP call",
+     "request": {
+      "method": "GET",
+      "header": [],
+      "url": "{{gmail}}/Scans|Scan from dreffinger@gmail.com -> raw/<YYYYMMDDHHMMSS>.pdf",
+      "description": "How the paper pile gets from the ScanSnap's Gmail messages into SCANS_DIR/raw/ whatever the attachment size, and where the originals are filed (Drive 'eras scanned'). The three transport limits are the connectors', not Gmail's.\n\nHelper: billing/era_input/fetch_scans.py, billing/era_input/pdf_salvage.py, billing/paper_remits/ocr.sh\nCaptured: 2026-10-05",
+      "body": {
+       "mode": "raw",
+       "raw": "<!-- 10/5/2026 measurements (Claude cloud session, 11 batches / 106 MB):\n1. Gmail connector get_message RAW works to ~1 MB of PDF (MIME JSON persisted to a tool-results file) -> billing/era_input/fetch_scans.py gmail-raw. 5-7 MB attachments close the Gmail MCP connection.\n2. Zapier Gmail 'Get Attachment by Filename' (message_id, attachment_filename) -> hydrate URL -> Zapier Google Drive 'Upload File' (file=<hydrate URL>, folder=1Fz90JGLa-s_QTw0RSuUdGnvQznxyGEHO 'eras scanned', convert=false, no new_name) -> Google Drive connector download_file_content (hard limit 10 MB) -> fetch_scans.py drive.\n3. > 10 MB: Zapier code action google_drive_get_file_byte_range_base64 (file_id, start, length<=4000000) per 4 MB slice (5.3 MB JSON each, persisted) -> fetch_scans.py chunks (joins, checks Drive's md5).\nBlocked: container proxy CONNECT 403 to zapier.com and drive.google.com; Zapier's code sandbox cannot resolve zapier.com (upload_urls_to_folder fails on hydrate URLs). One Zapier task per call: ~45 tasks for the 10/5 pile; the account's monthly limit ran out one slice short (William upgraded the plan the same night). Register: practices/ehpa/registers/scan_batches.json (Gmail message id, md5, pages, route). -->",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Zapier: Gmail attachment -> hydrate URL -> Google Drive 'Upload File' (native hydration, any size)",
+     "request": {
+      "method": "POST",
+      "header": [],
+      "url": "zapier://GoogleMailV2CLIAPI/attachment (gmail_get_attachment_by_filename) -> zapier://GoogleDriveCLIAPI/file (google_drive_upload_file)",
+      "description": "Proven 10/5/2026 on 11 attachments 150 KB - 20.8 MB: Zapier hydrates its own URL server-side, so size does not matter. Pass NO new_name (Zapier appends the extension again -> 'x.pdf.pdf'); a 'File Lookup Error' means the hydrate URL aged out - fetch a fresh one with step 1 and retry. Reply carries the Drive file id, fileSize and md5Checksum (verify the local copy against it).\n\nHelper: (connector calls) -> billing/era_input/fetch_scans.py drive\nCaptured: 2026-10-05",
+      "body": {
+       "mode": "raw",
+       "raw": "{\"step1\": {\"tool\": \"execute_zapier_read_action\", \"selected_api\": \"GoogleMailV2CLIAPI\", \"action\": \"attachment\", \"params\": {\"message_id\": \"{{gmail_message_id}}\", \"attachment_filename\": \"{{filename}}\"}}, \"step2\": {\"tool\": \"execute_zapier_write_action\", \"selected_api\": \"GoogleDriveCLIAPI\", \"action\": \"file\", \"params\": {\"file\": \"<results[0].attachment hydrate URL from step 1>\", \"folder\": \"1Fz90JGLa-s_QTw0RSuUdGnvQznxyGEHO\", \"convert\": \"false\"}}}",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Zapier code action: Google Drive file byte range as base64 (files over the Drive connector's 10 MB limit)",
+     "request": {
+      "method": "POST",
+      "header": [],
+      "url": "zapier://GoogleDriveCLIAPI/code_action_googledrivecliapi__get_file_byte_range_base64 (tool_name google_drive_get_file_byte_range_base64)",
+      "description": "Created with write_code_action 10/5/2026 (GET https://www.googleapis.com/drive/v3/files/{id}?alt=media with a Range header, plus the metadata call). 4,000,000-byte slices -> 5.33 MB tool results, persisted to disk and joined locally; 21 slices for five 14.7-20.8 MB batches. A 6 MB slice was never tested (the Drive connector choked at 9.6 MB of JSON, so stay at 4 MB). Each call is one Zapier task.\n\nHelper: billing/era_input/fetch_scans.py chunks <persisted tool-result files...>\nCaptured: 2026-10-05",
+      "body": {
+       "mode": "raw",
+       "raw": "{\"file_id\": \"{{drive_file_id}}\", \"start\": \"{{byte_offset}}\", \"length\": \"4000000\"}  -> results.data.data {name, size, md5Checksum, start, length_returned, chunk_sha256, eof, data(base64)}",
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
      }
     }
    ]

@@ -21,8 +21,12 @@ import build835, amd, era_post, era_upload, txh, resave, add_ins, void_tx, payre
 from payreasons import f, num, L
 
 PLAN = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/plan.json"; OUT = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/out835"; REG = os.environ.get("SCANS_DIR", "/home/claude/scans") + "/post_register.json"
-CAR = {"UA": "42005", "WN": "41999", "AET12": "42009", "MUT01": "42012", "ECHO": "302810", "SIM01": "42019", "FLO99": "42008", "USAA": "303211", "CHAMPVA": "6447"}
-CARCODE = {"UA": "UNI01", "WN": "BAN07", "AET12": "AET12", "MUT01": "MUT01", "ECHO": "PHY10", "SIM01": "SIM01", "FLO99": "FLO99", "USAA": "USAA", "CHAMPVA": "CHA03"}
+CAR = {"UA": "42005", "WN": "41999", "AET12": "42009", "MUT01": "42012", "ECHO": "302810", "SIM01": "42019", "FLO99": "42008", "USAA": "303211", "CHAMPVA": "6447",
+       "MER01": "6135",                                   # Meritain Health (TPA, pays by ECHO QuicRemit card) - 10/5/2026
+       "BLUE": ["6062", "6515", "303217"]}                # a Blue plan paying by PAPER CHECK / card (BCBS of Alabama 10/1/2026): whichever Blue carrier the chart already carries (FLORIDA BLUE, ANTHEM, FLORIDABLUE MEDICARE), else FLORIDA BLUE
+CARCODE = {"UA": "UNI01", "WN": "BAN07", "AET12": "AET12", "MUT01": "MUT01", "ECHO": "PHY10", "SIM01": "SIM01", "FLO99": "FLO99", "USAA": "USAA", "CHAMPVA": "CHA03", "MER01": "MER01", "BLUE": "BCBS"}
+CARCODE_BY_ID = {"6062": "BCBS", "6515": "ANT05", "303217": "BCBS1"}
+def car_ids(fam): v = CAR[fam]; return v if isinstance(v, list) else [v]
 REUSE = {"1370764627": "1051743"}          # checks already in the Center from the 9/22 import tests (TRN suffixed 'T'; posted with the clean number)
 WO_HOLD = {"FLO99"}                        # never write off from this engine
 os.makedirs(OUT, exist_ok=True)
@@ -43,13 +47,15 @@ def plans(pid):
     return pl, (dead.group(1) if dead else "")
 def ensure_plan(pid, fam, member, dry):
     """the payer's carrier on the chart (any sequence, any dates) -> numeric carrier id; adds the plan when missing (no group number)."""
-    pl, _ = plans(pid)
-    for p in pl:
-        if num(p.get("carrier")) == CAR[fam]: return CAR[fam], p.get("id"), "on chart seq %s" % p.get("sequence")
-    if dry: return CAR[fam], None, "MISSING on chart (would add %s member %s)" % (CARCODE[fam], member or "?")
+    pl, _ = plans(pid); ids = car_ids(fam)
+    for cid_ in ids:                                                   # 10/5/2026: a family may map to several carriers (the Blues) - take the one already on the chart
+        for p in pl:
+            if num(p.get("carrier")) == cid_: return cid_, p.get("id"), "on chart seq %s (%s)" % (p.get("sequence"), CARCODE_BY_ID.get(cid_, CARCODE[fam]))
+    first = ids[0]
+    if dry: return first, None, "MISSING on chart (would add %s member %s)" % (CARCODE[fam], member or "?")
     if not member: return None, None, "plan missing and no member id on the EOB"
-    insid, seq = add_ins.add(pid, "car" + CAR[fam], member)
-    if insid: return CAR[fam], insid, "ADDED %s as %s seq %s (member %s, no group)" % (CARCODE[fam], insid, seq, member)
+    insid, seq = add_ins.add(pid, "car" + first, member)
+    if insid: return first, insid, "ADDED %s as %s seq %s (member %s, no group)" % (CARCODE[fam], insid, seq, member)
     return None, None, "addinsurance failed: %s" % seq
 
 def find_check(trace, since="2026-09-22"):
@@ -161,14 +167,14 @@ def process_group(g, a, ctrl):
             rec(status="HOLD", family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, checkid=chk["id"], paid=claim["paid"] if claim else None, note="no matched money line: %s charges=%s" % (errs or "-", codes)); continue
         carid, insid, pnote = ensure_plan(pid, fam, (claim or {}).get("member"), False)
         if not carid: rec(status="HOLD", family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, checkid=chk["id"], note=pnote); continue
-        chk3 = dict(chk2); chk3["systemcarrierid"] = carid; chk3["systemcarriercode"] = CARCODE[fam]
+        chk3 = dict(chk2); chk3["systemcarrierid"] = carid; chk3["systemcarriercode"] = CARCODE_BY_ID.get(str(carid), CARCODE[fam])
         live = {c["cid"]: c for c in live_lines(pid, vid)}
         for ch in matched:
             cid = str(ch["chargedetailid"]); lv = live.get(cid)
             if not lv: rec(status="HOLD", family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, cid=cid, cpt=ch.get("chargecode"), checkid=chk["id"], note="ERA line charge %s not on the live chart" % cid); continue
             if done_key(fam, ref, claim["acct"] if claim else vid, lv["cpt"]): continue
             lp = line_plan(fam, seq, ch, lv, ref)
-            base = dict(family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, cid=cid, cpt=lv["cpt"], dos=lv["dos"], fee=lv["fee"], eob_paid=f(ch.get("paymentamount")), checkid=chk["id"], carrier=CARCODE[fam], plan=pnote)
+            base = dict(family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, cid=cid, cpt=lv["cpt"], dos=lv["dos"], fee=lv["fee"], eob_paid=f(ch.get("paymentamount")), checkid=chk["id"], carrier=CARCODE_BY_ID.get(str(carid), CARCODE[fam]), plan=pnote)
             if lp["action"] != "POST": rec(status=lp["action"], note=lp["note"], **base); continue
             for w in lp["void_wos"]:
                 ok, t = void_tx.void_writeoff(pid, cid, w["id"]); L("   void write-off %s %s $%.2f on %s -> %s %s" % (w["code"], w["id"], w["amount"], cid, ok, t[:80]))
@@ -211,7 +217,7 @@ def process_group(g, a, ctrl):
                     matched = [ch for ch in v.get("charges", []) if int(ch.get("chargedetailid") or -1) > 0 and f(ch.get("paymentamount")) > 0]
                     carid, insid, pnote = ensure_plan(pid, fam, (claim or {}).get("member"), False)
                     if not carid or not matched: rec(status="HOLD", family=fam, ref=ref, acct=claim["acct"] if claim else vid, pid=pid, vid=vid, checkid=chkL["id"], note=pnote if not carid else "second file: no matched money line: %s" % "; ".join(e.get("description", "") for e in v.get("errors", []))); continue
-                    chk3 = dict(chkL2); chk3["systemcarrierid"] = carid; chk3["systemcarriercode"] = CARCODE[fam]
+                    chk3 = dict(chkL2); chk3["systemcarrierid"] = carid; chk3["systemcarriercode"] = CARCODE_BY_ID.get(str(carid), CARCODE[fam])
                     live = {c["cid"]: c for c in live_lines(pid, vid)}
                     for ch in matched:
                         cid = str(ch["chargedetailid"]); lv = live.get(cid)
