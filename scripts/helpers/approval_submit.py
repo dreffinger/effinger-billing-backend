@@ -36,7 +36,8 @@ IDWORD2 = re.compile(r"(member\s*(?:id|number|no\.?|#)?|memberid|subscriber\s*(?
 DOB = re.compile(r"(\bdob|date\s*of\s*birth|dateofbirth|birth\s*date|birthdate)\W{0,12}(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{8})", re.I)
 VAICN = re.compile(r"\b\d{10}V\d{6}\b")
 NAMEFIELD = re.compile(r'"(?:first|last|middle)_?name"\s*:\s*"[A-Za-z]', re.I)
-LASTFIRST = re.compile(r"\b[A-Z][A-Z'\-]{1,}, [A-Z][A-Z'\-]{1,}(?: [A-Z]\.?(?=[\s(.,;]|$))?")   # AMD's "LAST, FIRST" chart-name form
+LASTFIRST = re.compile(r"\b[A-Z][A-Z'\-]{1,},\s?[A-Z][A-Z'\-]{1,}(?: [A-Z]\.?(?=[\s(.,;]|$))?")   # AMD's "LAST, FIRST" / "LAST,FIRST" chart-name forms
+ADDINS = re.compile(r"add_ins\.py\s+\d+\s+car\d+\s+\S{6,}")   # a plan add carries the member number as its third argument
 
 def now(): return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -47,6 +48,7 @@ def privacy_hit(text):
     if DOB.search(text): return "date of birth"
     if VAICN.search(text): return "VA ICN"
     if NAMEFIELD.search(text): return "patient name field"
+    if ADDINS.search(text): return "member number in an add_ins command (write a pid-only wrapper)"
     for tok in re.findall(r"[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?", text):   # dashed display form too
         if MBI.match(tok.replace("-", "")): return "MBI token %s" % tok
     return None
@@ -78,7 +80,7 @@ def register(path, items, dry, scrub=False):
     new = [i for i in items if i["id"] not in have]
     if new and not dry:
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        d["items"] += [dict(i, what=repo_safe(i["what"]), ui=repo_safe(i["ui"]), evidence=repo_safe(i["evidence"])) if scrub else i for i in new]
+        d["items"] += [dict(i, what=repo_safe(i["what"]), ui=repo_safe(i["ui"]), evidence=repo_safe(i["evidence"]), cmd=repo_safe(i["cmd"]), reason=repo_safe(i["reason"])) if scrub else i for i in new]
         json.dump(d, open(path, "w"), indent=1)
     print("%sregister %s: +%d new, %d already present" % ("DRY " if dry else "", path, len(new), len(items) - len(new)))
     return [have.get(i["id"], i) for i in items]            # stored copy wins: keeps 'at' and any answer already given
@@ -167,7 +169,16 @@ def put(path, text, dry):
     if dry: print("DRY would write %s (%d chars)" % (path, len(text))); return
     os.makedirs(os.path.dirname(path), exist_ok=True); open(path, "w").write(text); print("wrote", path)
 
+def gate(repo, regpath):
+    """tools/mirror/phi_gate.py on the repo register before it is staged: names -> pseudonyms, an identifier = no push (review 10/6/2026)."""
+    g = os.path.join(repo, "tools", "mirror", "phi_gate.py")
+    if not os.path.exists(g): print("WARN phi_gate.py not in the repo - register not gated"); return True
+    r = subprocess.run([sys.executable, g, regpath, regpath], capture_output=True, text=True)
+    print(("ok   " if r.returncode == 0 else "FAIL ") + "phi_gate: " + (r.stdout + r.stderr).strip().replace("\n", " | ")[-300:])
+    return r.returncode == 0
+
 def git_step(repo, regpath, n, stamp, trailers, push_main, dry):
+    if not dry and not gate(repo, regpath): print("register NOT pushed - an identifier is in it; fix the item and run again"); return
     msg = "approvals: %s %d package(s) waiting" % (stamp, n) + ("\n\n" + "\n".join(trailers) if trailers else "")
     cmds = [["git", "-C", repo, "add", os.path.relpath(regpath, repo)], ["git", "-C", repo, "commit", "-m", msg],
             ["git", "-C", repo, "push", "origin", "HEAD"], ["git", "-C", repo, "push", "origin", "HEAD:main"]]
@@ -182,7 +193,7 @@ def git_step(repo, regpath, n, stamp, trailers, push_main, dry):
         r = subprocess.run(c, capture_output=True, text=True)
         print("%s git %s: %s" % ("ok  " if r.returncode == 0 else "FAIL", " ".join(c[3:]), (r.stdout + r.stderr).strip()[-300:]))
         if r.returncode and c[-1] != "HEAD:main": print("git step stopped here (nothing forced)"); return
-    if r is not None and r.returncode: print("push to main refused (not fast-forward or protected) - left as is, never forced; the branch push above still carries the register")
+    if r is not None and r.returncode: print("push to main refused (not fast-forward or protected) - left as is, never forced; the branch push above still carries the register - run `git pull --rebase --autostash origin main` then `git push origin HEAD:main` once")
 
 def checklist(ob, stamp):
     print("\nNEXT - this session makes these three MCP calls now:")

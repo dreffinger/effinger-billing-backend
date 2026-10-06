@@ -190,5 +190,8 @@ subj, body = approval_submit.email(items, "2026-10-06T0330Z", "nightly cascade")
 check("subject is found by the hourly sync's search and names the run kind", subj.startswith("mandatory approval writes - 2 new to approve (nightly cascade"), subj)
 check("no email-reply approval channel is offered", "APPROVED <id>" not in body and "APPROVED &lt;id&gt;" not in approval_submit.html_email(items, "x", subj), body[:200])
 
+check("gate catches a member number inside an add_ins command", approval_submit.privacy_hit("cd /home/claude/unbilled && python3 add_ins.py 17477638 car6404 912345678") is not None)
+check("repo copy also scrubs AMD's no-space LAST,FIRST form and the command", approval_submit.repo_safe("THISTLEWOOD,PATIENT241 pat17477638 via x.py --only A") == "[name] pat17477638 via x.py --only A")
+
 print("\n%d failure(s)" % len(FAILS) + (": " + ", ".join(FAILS) if FAILS else " - all guarantees hold"))
 sys.exit(1 if FAILS else 0)

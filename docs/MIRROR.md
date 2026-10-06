@@ -12,6 +12,10 @@ The project's memory lives in three places that are kept identical at the end of
 
 `docs/api_vocabulary.json` is the machine-readable list of every captured call — folder, name, method, URL, headers, body template, the helper that wraps it, the date it was captured, and notes. **Add a call there** (one entry, `id` = `folder/slug`) and `tools/mirror/postman_build.py` regenerates the Postman collection; never hand-edit the collection. `docs/captured_calls.md` stays the narrative registry (dated sections, what was learned, what failed). A call is captured when it is in both.
 
+## Shared registers and the lessons file (10/6/2026)
+
+`practices/ehpa/registers/approvals_pending.json` and `practices/ehpa/registers/tf_writeoff_watch.json` are edited by several routines between mirrors: change them only in the `main` checkout right after `git pull --rebase --autostash origin main`, commit each change alone and push at once - never copy a workspace copy over them. `docs/SHARED_LESSONS.md` is append-only and merges with `merge=union` (`.gitattributes`, and apply_bundle.py's UNION list); run `python3 tools/mirror/phi_gate.py docs/SHARED_LESSONS.md docs/SHARED_LESSONS.md` before committing it. Every mirror commit is preceded by `git fetch -q origin main && git rebase --autostash origin/main` as its own command.
+
 ## Order of operations at the end of a run
 
 ```

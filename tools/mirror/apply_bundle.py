@@ -11,7 +11,8 @@ Exit 0 = applied (or already applied), 2 = verification failed, 3 = merge confli
 import sys, os, json, base64, hashlib, subprocess, datetime, re, tempfile
 def sh(*a, **k):
     r = subprocess.run(a, capture_output=True, text=True, **k); return r.returncode, (r.stdout + r.stderr).strip()
-UNION = ["docs/captured_calls.md merge=union", "docs/captured_calls_additions_*.md merge=union", "practices/ehpa/rules.md merge=union", "needs_facesheet_list.md merge=union"]
+UNION = ["docs/captured_calls.md merge=union", "docs/captured_calls_additions_*.md merge=union", "practices/ehpa/rules.md merge=union", "needs_facesheet_list.md merge=union",
+         "docs/SHARED_LESSONS.md merge=union"]
 def union_rules():
     """Repo-local merge driver (.git/info/attributes, not committed): registry / rules / facesheet list are append-only text, so a
     merge keeps both sides instead of stopping on a conflict. Idempotent."""
