@@ -281,6 +281,22 @@
    "ui": "No hand steps: Approve = the next 2-hourly billing run re-runs the correction (void + ERA-linked re-post with the remit's reason codes) on the remaining 299 lines of check 1053023, then clears the check from the ERA Center.",
    "status": "waiting",
    "answer": null
+  },
+  {
+   "id": "A-2026-10-07T1310Z-A",
+   "stamp": "2026-10-07T1310Z",
+   "at": "2026-10-07T14:02:00Z",
+   "run": "backend billing run 2026-10-07T1310Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_1053024_1310.py --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (first AdvancedMD write of the run, after a clean dry run; not retried)",
+   "what": "ERA check 1053024 (Medicare $0 remit 350045840) hospice CO-B9 lines: WONCS ERA-linked on 4 CCM claims (chart 17476032 v19455831, chart 12183032 v19455709, chart 17473245 v19455668, chart 22603 v19455956 - 99487 $206 + 99489 $109 each, 9/20/2026) and GV + frequency-1 rebill to Medicare seq 2 on 2 x 99308 (chart 12182946 v19456187 9/21/2026 charge 23367811; chart 44987 v19456215 9/24/2026 charge 23367839). Record only: v19456208 Poynor flag, v19456837 CO-109, 26 CO-151/CO-234 CCM claims (board rows).",
+   "dollars": "$1,260.00 WONCS + $214.00 re-sent with GV",
+   "ui": "No hand steps: Approve = the next 2-hourly billing run (or 'go' in the cascade session) runs era_1053024_1310.py --live, then clears check 1053024.",
+   "evidence": "dry run 13:56Z 10/7: 8 CCM lines + 2 GV rebills planned, 0 errors",
+   "evidence_file": "registers/era_1053024_2026-10-07T1310Z_dry.json",
+   "status": "waiting",
+   "answer": null,
+   "note": null
   }
  ]
 }
