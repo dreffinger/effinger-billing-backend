@@ -3815,3 +3815,6 @@ Observation (not a new shape): a Centene 835 that AMD files under WEL04 (WellCar
 No new call shapes this run (ONE login 23:17Z; reads only: getclaimcenteroverview + the four list calls via columns_scan.py, GET /api/era/checks, GET /api/era/checkdetails?checkid=1052906, massrebillsearch + 21 Stedi 277 claim-status checks via claim_status_sweep.py, precheck.py eligibility reads).
 
 Lesson (TRAP, operational): `python3 era_post.py --help` is not a help flag - era_post.py parses sys.argv for --dry / --carrier / --visits / --all-unposted only, so any other flag runs a LIVE Post pass over the unposted list ("0 checks, dry=False" this run, nothing posted). Learn its options from the header or `grep sys.argv era_post.py`; never probe it with an unknown flag.
+
+# captured_calls additions - backend billing run 2026-10-07T0110Z (9 PM ET 10/6 slot, ehpa cloud)
+No new call shapes this run. Reads only: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges (batch 127783), getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (run 1700266), GET /api/era/checks (1 check), GET /api/era/checkdetails?checkid=1052906, POST /api/claim/massrebillsearch {} + Stedi 276/277 x21 (claim_status_sweep.py pass 9). No AdvancedMD writes.

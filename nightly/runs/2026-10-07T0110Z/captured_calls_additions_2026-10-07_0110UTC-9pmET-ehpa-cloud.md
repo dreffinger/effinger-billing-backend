@@ -1,0 +1,2 @@
+# captured_calls additions - backend billing run 2026-10-07T0110Z (9 PM ET 10/6 slot, ehpa cloud)
+No new call shapes this run. Reads only: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges (batch 127783), getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (run 1700266), GET /api/era/checks (1 check), GET /api/era/checkdetails?checkid=1052906, POST /api/claim/massrebillsearch {} + Stedi 276/277 x21 (claim_status_sweep.py pass 9). No AdvancedMD writes.
