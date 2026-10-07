@@ -115,7 +115,10 @@
      "insbal": 315.0,
      "plan_order": "2",
      "lookup": "Stedi MBI lookup at DOS: MA = Care Improvement Plus South Central (UHC) COB 10/1/2024-4/30/2026, QMB; AMD UNI20 plan seq 2 (ended 5/16/2026); DOD [DOB] after the DOS",
-     "outcome": "sent 2026-10-06T0710Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95622402 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95622402 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     },
     {
      "pid": "20336",
@@ -129,7 +132,10 @@
      "insbal": 315.0,
      "plan_order": "2",
      "lookup": "same as 19416179",
-     "outcome": "sent 2026-10-06T0710Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95619573 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95619573 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     },
     {
      "pid": "17474258",
@@ -142,7 +148,10 @@
      "insbal": 256.0,
      "plan_order": "1",
      "lookup": "Stedi MBI lookup at DOS: MA = UnitedHealthcare of Florida HMO since 1/1/2025, QMB; AMD UNI20 plan seq 1",
-     "outcome": "sent 2026-10-06T0710Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95622412 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95622412 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     }
    ],
    "skipped": [
@@ -187,7 +196,10 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sent 2026-10-06T1310Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95622414 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95622414 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     },
     {
      "pid": "17474258",
@@ -200,7 +212,10 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sent 2026-10-06T1310Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95619569 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95619569 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     },
     {
      "pid": "17474258",
@@ -213,7 +228,10 @@
      "insbal": 141.0,
      "order": "1",
      "seq": 1,
-     "outcome": "sent 2026-10-06T1310Z"
+     "outcome": "denied duplicate - UHC front end (claim run 1700276, SmartEdit UDCP3): duplicate of UHC claim FX95619575 received 9/7/2026; original pending at UHC, exclusion completed 2026-10-07T1910Z, nothing resent",
+     "answers": [
+      "Exclusions 2026-10-07T1910Z: PA ACK REJCTD + P4999UDCP3 duplicate of previously submitted claim FX95619575 received 09/07/2026 (the 9/6-9/7 frequency-1 send reached UHC although the 10/6 277 answered D0) - standing duplicate rule, no resend"
+     ]
     }
    ],
    "total": 564.0,
