@@ -1,0 +1,96 @@
+# PLAIN ENGLISH (new ERA checks of the 1 PM ET 10/7/2026 slot, run 2026-10-07T1710Z - copy of era_new_1006_2110.py with four additions):
+#   Florida Blue ACH 213469446 (ERA 1053035, $1,355.17, 73 claims: Medigap-secondary coinsurance lines OA-23, MA-primary lines CO-45 + PR-2,
+#   reversal pairs of earlier $0 PR-177 / PR-22 denials, CO-163 / CO-32 / CO-226 / PR-27 $0 denials, one PR-1 deductible claim) and
+#   Florida Blue ACH 423816565 (ERA 1053037, $461.57, 23 Medigap-secondary coinsurance claims) which AMD filed under FLORIDA MEDICARE
+#   (eracarrierid 1448 -> systemcarrier 6085 FLO02) although eracarriername says FLORIDA BLUE - so every line of it is posted under the
+#   BCBS carrier (car6062), never as a Medicare payment; same for the $0 check 2610070965 (ERA 1053036, 3 CO-29 secondary denials - held).
+# Decides, per money line, through the ERA-linked Payment Entry shape (payreasons.post_line): pay = min(remit paid, open insurance balance),
+#   WOINS = the CO/OA contractual capped so pay + wo <= that balance; PR amounts are never written off.
+#   NEW 1: a line whose insurance balance is 0 but whose PATIENT balance holds the coinsurance the payer now pays (the Medicare Post button
+#   had moved PR-2 to the patient before the Medigap answered) is moved back to insurance first (move_to_ins.move, no rebill) and then posted.
+#   NEW 2: a $0 line that carries only PR-1/PR-2/PR-3 + CO-45/CO-253 (a deductible / coinsurance answer, not a denial) posts pay 0 + WOINS
+#   of the contractual; the PR amount stays for the patient / secondary.
+#   NEW 3: a reversal line (claimstatus 3 / negative charge) is recorded, never posted (no takeback rule).
+#   NEW 4: --only <checkid,...> and --first-only (one live post, then stop) for verification.
+#   Every other $0 line (CO-163, CO-32, CO-226, PR-27, CO-29, PR-22) is HELD and listed for the board / report; OA-18 = duplicate, nothing posted.
+# --dry = read only (default is dry unless --live). 3 consecutive addpayments faults stop the run.
+# Register: registers/era_new_2026-10-07T1710Z[_dry].json; settled lines appended to registers/era_manual_register.json.
+# Never touches: the ERA Center Post button, the held Florida Blue check 1052906, the Medicare checks 1053023 / 1053024 (approval cards), plans, claims.
+import amd, txh, payreasons, move_to_ins, json, sys, time, datetime
+a = sys.argv; DRY = "--live" not in a; FIRST = "--first-only" in a; S = "2026-10-07T1710Z"
+ONLY = a[a.index("--only") + 1].split(",") if "--only" in a else ["1053035", "1053037", "1053036"]
+amd.login_cached()
+chks = {str(c["id"]): c for c in json.load(open("registers/era_checks_before_2026-10-07T1710Z.json"))}
+def L(m): print(m, flush=True)
+def live(pid, vid):
+    root = txh.fetch_visit(pid, vid); res = {}
+    for c in root.iter("charge"):
+        if c.get("void") == "1" or c.get("visit") != str(vid): continue
+        res[c.get("id").replace("charge", "")] = {"fee": float(c.get("fee") or 0), "paid": float(c.get("paid") or 0), "patbal": float(c.get("patbal") or 0), "insbal": float(c.get("insbal") or 0), "carrier": c.get("carrier"), "cpt": c.get("proccode"), "dos": c.get("dos"),
+            "pays": [(float(p.get("amount") or 0), (p.get("checknumber") or "").strip(), p.get("carrier"), p.get("void")) for p in c.iter("payment")]}
+    return res
+REGF = "registers/era_manual_register.json"; reg = json.load(open(REGF))
+out = {"stamp": S, "dry": DRY, "lines": []}; faults = 0; posted_once = False
+for CID in ONLY:
+    chk = dict(chks[CID]); det = json.load(open("era_details/%s.json" % CID))["eracheckdetails"]; done = set()
+    if (chk.get("eracarriername") or "").upper() == "FLORIDA BLUE" and chk.get("systemcarriercode") != "BCBS":
+        L("check %s: AMD filed this FLORIDA BLUE remit under %s (car%s) - posting under BCBS car6062" % (CID, chk.get("systemcarriercode"), chk.get("systemcarrierid")))
+        chk["systemcarriercode"] = "BCBS"; chk["systemcarrierid"] = 6062; chk["carrier_fixed"] = True
+    L("=== check %s %s %s $%s" % (CID, chk["systemcarriercode"], chk["paymentnumber"], chk["paymentamount"]))
+    for v in det:
+        pid = str(v["patientid"]); vid = str(v["visitid"]); st = None
+        for ch in v.get("charges") or []:
+            cid = str(ch["chargedetailid"]); paid = float(ch.get("paymentamount") or 0)
+            carcs = ["%s" % x["reasoncode"] for x in ch.get("carc") or []]; rarcs = [r["remarkcode"] for r in ch.get("rarc") or [] if r["remarkcode"] != "#AM"]
+            co = sum(float(x["reasonamt"] or 0) for x in ch.get("carc") or [] if x["payreasongroup"] in ("CO", "OA", "PI"))
+            pr = sum(float(x["reasonamt"] or 0) for x in ch.get("carc") or [] if x["payreasongroup"] == "PR")
+            r = {"checkid": CID, "checkclaimid": v["checkclaimid"], "visitid": vid, "pid": pid, "chargedetailid": cid, "cpt": ch["chargecode"], "dos": ch["dos"][:10], "paid": paid, "carcs": carcs, "rarcs": rarcs, "claimstatus": v.get("claimstatus"), "when": S}
+            if faults >= 3: r["outcome"] = "not attempted - 3 consecutive addpayments faults"; out["lines"].append(r); continue
+            if FIRST and posted_once: r["outcome"] = "not attempted - --first-only"; out["lines"].append(r); continue
+            if str(v.get("claimstatus")) == "3" or float(ch.get("claimamount") or 0) < 0:
+                r["outcome"] = "reversal of an earlier $0 denial (%s) - recorded, nothing posted" % "+".join(carcs); out["lines"].append(r); L("v%s c%s reversal %s" % (vid, cid, carcs)); continue
+            if int(ch.get("chargedetailid") or -1) <= 0: r["outcome"] = "orphan - no AMD charge on the line"; out["lines"].append(r); L("v%s ORPHAN" % vid); continue
+            if (cid, paid) in done: r["outcome"] = "skip - charge already handled on this check (repeated claim)"; out["lines"].append(r); continue
+            done.add((cid, paid))
+            if st is None: st = live(pid, vid); time.sleep(0.3)
+            s = st.get(cid)
+            if not s: r["outcome"] = "skip - charge not live"; out["lines"].append(r); L("v%s c%s not live" % (vid, cid)); continue
+            r["before"] = {k: s[k] for k in ("fee", "paid", "insbal", "patbal", "carrier")}
+            if any(p[1] == chk["paymentnumber"] and p[3] != "1" for p in s["pays"]): r["outcome"] = "already-posted"; out["lines"].append(r); L("v%s c%s already posted" % (vid, cid)); continue
+            bal = s["insbal"]; moved = None
+            if paid > 0 and bal <= 0 and s["patbal"] >= paid - 0.011:
+                # NEW 1: the payer pays coinsurance that AMD had moved to the patient - bring it back to insurance, then post
+                if DRY: r["note"] = "would move %.2f patient balance back to insurance first" % s["patbal"]; bal = s["patbal"]
+                else:
+                    mv = move_to_ins.move(cid, rebill=False); r["moved"] = mv; L("v%s c%s move back: %s" % (vid, cid, mv))
+                    if not str(mv).startswith("moved"): r["outcome"] = "HOLD - move back failed: %s" % mv; out["lines"].append(r); continue
+                    time.sleep(0.6); st = live(pid, vid); s = st.get(cid); bal = s["insbal"]; r["before_after_move"] = {"insbal": bal, "patbal": s["patbal"]}
+            if bal <= 0: r["outcome"] = ("residual %.2f" % paid) if paid > 0 else "skip - insurance balance already 0"; out["lines"].append(r); L("v%s c%s %s bal 0 -> %s" % (vid, cid, ch["chargecode"], r["outcome"])); continue
+            if paid > 0:
+                pay = min(paid, bal); wo = max(0.0, min(round(co, 2), round(bal - pay, 2))); code = "WOINS"
+            else:
+                denial = [c for c in carcs if c not in ("CO45", "45", "CO253", "253")]
+                if any(c in ("OA18", "18") for c in carcs): r["outcome"] = "duplicate OA-18 - original adjudication stands, nothing posted"; out["lines"].append(r); continue
+                if pr > 0 and not any(c.startswith(("CO", "OA", "PI")) for c in denial) and all(c in ("PR1", "PR2", "PR3", "1", "2", "3") for c in denial):
+                    code = "WOINS"; pay = 0.0; wo = round(min(bal, co), 2); r["why"] = "deductible / coinsurance answer (%s): contractual WOINS, PR %.2f stays for the patient / secondary" % ("+".join(carcs), pr)
+                    if wo <= 0: r["outcome"] = "skip - deductible line with no contractual to write off (PR %.2f stays)" % pr; out["lines"].append(r); continue
+                else:
+                    r["outcome"] = "HOLD - $0 answer %s %s (denial handling / board)" % (carcs, rarcs); out["lines"].append(r); L("v%s c%s HOLD %s" % (vid, cid, carcs)); continue
+            r.update(pay=round(pay, 2), wo=round(wo, 2), wocode=code, residual=round(paid - pay, 2), carrier=chk["systemcarriercode"])
+            if DRY: r["outcome"] = "DRY would post pay %.2f + %s %.2f (bal %.2f)" % (pay, code, wo, bal); out["lines"].append(r); L("v%s pat%s c%s %s %s paid %.2f bal %.2f -> %s" % (vid, pid, cid, ch["chargecode"], "+".join(carcs), paid, bal, r["outcome"])); continue
+            ok, payid, resp = payreasons.post_line(pid, vid, chk, v, cid, ch, pay=round(pay, 2), wo=round(wo, 2), wocode=code)
+            posted_once = True
+            time.sleep(0.7); st = live(pid, vid); s2 = st.get(cid) or {}
+            r.update(outcome="posted" if ok else "FAULT", paymentid=payid, resp=resp[:160], after={"insbal": s2.get("insbal"), "patbal": s2.get("patbal")})
+            faults = 0 if ok else faults + 1
+            L("v%s pat%s c%s %s paid %.2f bal %.2f -> pay %.2f %s %.2f ok=%s after ins %s pat %s" % (vid, pid, cid, ch["chargecode"], paid, bal, pay, code, wo, ok, s2.get("insbal"), s2.get("patbal")))
+            out["lines"].append(r); time.sleep(0.4)
+json.dump(out, open("registers/era_new_%s%s.json" % (S, "_dry" if DRY else ""), "w"), indent=1)
+if not DRY:
+    for r in out["lines"]:
+        if r.get("outcome", "").startswith(("posted", "already", "residual")):
+            reg.append({"checkid": r["checkid"], "checkclaimid": r["checkclaimid"], "visitid": r["visitid"], "chargedetailid": r["chargedetailid"], "cpt": r["cpt"], "outcome": r["outcome"].split()[0], "pay": r.get("pay"), "wo": r.get("wo"), "wocode": r.get("wocode"), "when": S})
+    json.dump(reg, open(REGF, "w"), indent=1)
+from collections import Counter
+L(str(Counter(r["outcome"].split(" (")[0][:34] for r in out["lines"])))
+L("pay $%.2f  WOINS $%.2f  residual $%.2f" % (sum(r.get("pay", 0) for r in out["lines"] if r["outcome"].startswith(("posted", "DRY"))), sum(r.get("wo", 0) for r in out["lines"] if r.get("wocode") == "WOINS" and r["outcome"].startswith(("posted", "DRY"))), sum(r.get("residual", 0) for r in out["lines"] if r["outcome"].startswith(("posted", "DRY")))))
