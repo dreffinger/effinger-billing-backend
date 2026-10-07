@@ -280,7 +280,8 @@
    "evidence": "dry run 11:29Z 10/7 planned 296 corrections + 4 review on check 1053023; the --first-only live run at 11:35Z corrected and verified one line; the full --live run was refused by the classifier.",
    "ui": "No hand steps: Approve = the next 2-hourly billing run re-runs the correction (void + ERA-linked re-post with the remit's reason codes) on the remaining 299 lines of check 1053023, then clears the check from the ERA Center.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-07T1310Z"
   },
   {
    "id": "A-2026-10-07T1310Z-A",
