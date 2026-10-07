@@ -1,0 +1,79 @@
+{
+ "stamp": "2026-10-07T1135Z",
+ "checkid": "1053023",
+ "checknumber": "819928855",
+ "live": true,
+ "lines": [
+  {
+   "pid": "17476868",
+   "vid": "19445442",
+   "cid": "23354307",
+   "cpt": "99344",
+   "paid": 115.5,
+   "co": 155.04,
+   "pr": 29.46,
+   "before": {
+    "fee": 300.0,
+    "paid": 115.5,
+    "insbalance": 184.5,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658997",
+   "void": [
+    true,
+    "f-w27fc\" lst=\"10/07/2026 04:35:57\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "post": [
+    true,
+    "10166474",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-w27fc\" lst=\"10/07/2026 04:36:01\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 300.0,
+    "paid": 270.54,
+    "insbalance": 0.0,
+    "patbalance": 29.46,
+    "pays": [
+     [
+      "24647213",
+      0.0,
+      "213420173",
+      [
+       [
+        "PR22",
+        300.0
+       ]
+      ]
+     ],
+     [
+      "24659294",
+      115.5,
+      "819928855",
+      [
+       [
+        "CO45",
+        152.68
+       ],
+       [
+        "PR2",
+        29.46
+       ],
+       [
+        "CO253",
+        2.36
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      155.04
+     ]
+    ]
+   },
+   "result": "corrected"
+  }
+ ]
+}
