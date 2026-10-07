@@ -1,0 +1,59 @@
+[
+ {
+  "checkid": "1053025",
+  "stamp": "2026-10-07T1510Z",
+  "live": false,
+  "holds": [],
+  "lines": [
+   {
+    "visitid": "19456186",
+    "chargedetailid": "23367810",
+    "cpt": "99309",
+    "dos": "2026-09-24",
+    "remit_paid": 0.0,
+    "remit_adj": 141.0,
+    "carc": [
+     [
+      "CO",
+      "CO23",
+      56.36
+     ],
+     [
+      "OA",
+      "OA23",
+      84.64
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 0.0,
+    "live_carrier": "WEL04"
+   },
+   {
+    "visitid": "19456199",
+    "chargedetailid": "23367823",
+    "cpt": "99309",
+    "dos": "2026-09-24",
+    "remit_paid": 0.0,
+    "remit_adj": 141.0,
+    "carc": [
+     [
+      "CO",
+      "CO23",
+      56.36
+     ],
+     [
+      "OA",
+      "OA23",
+      84.64
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 0.0,
+    "live_carrier": "WEL04"
+   }
+  ],
+  "outcome": "dry - would dismiss",
+  "carrier": "WEL04",
+  "paymentnumber": "1003569030"
+ }
+]

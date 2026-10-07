@@ -3867,3 +3867,11 @@ RUN BLOCKED — NO EGRESS TO ADVANCEDMD / STEDI / GITHUB from this run's environ
 No new call shapes this run. Calls used (all registered): login (one), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges, getclaimunbillablecharges, getclaimexclusionclaimruns/charges (columns_scan.py before/after), GET /api/era/checks + GET /api/era/checkdetails + posterapayments dry build (era_post.py --all-unposted --dry).
 
 Lessons (no chart data): (1) the auto-mode classifier refuses extracting Drive package parts from the session transcript ([Untrusted Code Integration]) - the GitHub-inbox packages still need William's machine; (2) a batched `sed`/`grep` over several helper headers is refused as [Sensitive-Source Provenance] - run a helper by name (`--dry`) to learn its behaviour instead; (3) `claim_status_sweep.py --help` prints no usage within 120 s (stopped) - give it its real arguments or nothing.
+
+## 2026-10-07 11 AM ET run (2026-10-07T1510Z, ehpa cloud) - additions
+
+No new call shapes this run. Calls used (all previously captured): login (one attempt, AMD_PSW env credential), getclaimcenteroverview + the four list calls (columns_scan.py before/after), GET /api/era/checks, GET /api/era/checkdetails (4 checks cached), POST /api/claim/massrebillsearch + Stedi claimstatus/v2 (claim_status_sweep.py, 21 x 277), gettxhistory visitid= (txh.fetch_visit), POST /api/era/checks/dismiss (check 1053025).
+
+NEW HELPER: era_dismiss_zero.py <checkid> [--live] [--stamp] - dismisses ONE $0 ERA check whose every claim line is $0 paid, validated, and whose every named charge is at $0 insurance balance on the LIVE chart (gettxhistory visitid=); otherwise HOLD, nothing written. Register registers/era_dismiss_<stamp>[_dry].json. Fills the gap era_clear.py leaves on purpose ('denial with write-off (cascade handles)' holds a $0 check even after the cascade is done with it). Proven 10/7 1510Z on check 1053025 (WellCare 1003569030): HTTP 200 {"issuccess":true,"id":1053025,"actionname":1}, check gone from GET /api/era/checks.
+
+claim_status_sweep.py --skip-answered takes a comma-separated list of the earlier sweep registers (registers/uni20_bcbs_pre0501_sweep_*.json, shape {about, stamp, rows}); the bare flag without a file list fails with IndexError (seen this run, re-run with the list).
