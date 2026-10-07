@@ -1,0 +1,130 @@
+{
+ "stamp": "2026-10-07T2110Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444656,
+   "visitid": "19439617",
+   "pid": "17471238",
+   "chargedetailid": "23347188",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 16.14 (bal 16.14)"
+  },
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444657,
+   "visitid": "19442401",
+   "pid": "17471238",
+   "chargedetailid": "23350486",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 16.14 (bal 16.14)"
+  },
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444658,
+   "visitid": "19438592",
+   "pid": "17471238",
+   "chargedetailid": "23345778",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 16.14 (bal 16.14)"
+  },
+  {
+   "checkid": "1053046",
+   "checkclaimid": 15444659,
+   "visitid": "19456581",
+   "pid": "17473669",
+   "chargedetailid": "23368262",
+   "cpt": "99309",
+   "dos": "2026-09-28",
+   "paid": 84.64,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "AMB03",
+    "billdate": "10/01/2026"
+   },
+   "pay": 84.64,
+   "wo": 56.36,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "AMB03",
+   "outcome": "DRY would post pay 84.64 + WOINS 56.36 (bal 141.00)"
+  }
+ ],
+ "wolate": []
+}
