@@ -279,9 +279,9 @@
    "evidence_file": "registers/era_co45_relink_1053023_2026-10-07T1129Z_dry.json",
    "evidence": "dry run 11:29Z 10/7 planned 296 corrections + 4 review on check 1053023; the --first-only live run at 11:35Z corrected and verified one line; the full --live run was refused by the classifier.",
    "ui": "No hand steps: Approve = the next 2-hourly billing run re-runs the correction (void + ERA-linked re-post with the remit's reason codes) on the remaining 299 lines of check 1053023, then clears the check from the ERA Center.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-07T1310Z"
+   "status": "done",
+   "answer": "superseded by A-2026-10-07T1310Z-B",
+   "note": "2026-10-07T1413Z backend billing run 1310Z: claimed and dry-run; checkdetails for 1053023 now answers only the 4 unposted claims (the 208 posted claims dropped out after the Post button) - era_co45_relink.py sees 0 of the 299 lines, so the approved command cannot do the work; not run live. Superseded by A-2026-10-07T1310Z-B (write-off recipe from the 1129Z dry register: 257 lines / $20,179.20 WOINS planned, 38 patient-side lines / $2,874.98 for review)."
   },
   {
    "id": "A-2026-10-07T1310Z-A",
