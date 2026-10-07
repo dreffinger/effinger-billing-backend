@@ -1,0 +1,98 @@
+[
+ {
+  "section": "A",
+  "pid": "17476748",
+  "vid": "19453702",
+  "cid": "23364586",
+  "before": {
+   "fee": 198.0,
+   "paid": 198.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "wos": [
+   [
+    -198.0,
+    "WOINS",
+    "0",
+    "22480287",
+    "09/10/2026"
+   ]
+  ],
+  "pays": [
+   [
+    0.0,
+    "349929519",
+    "0",
+    "24638415"
+   ]
+  ],
+  "void": [
+   true,
+   "f-g4xbm\" lst=\"10/07/2026 16:26:27\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  "after_void": {
+   "insbal": 198.0,
+   "patbal": 0.0
+  },
+  "outcome": "posted",
+  "pay": 104.25,
+  "wo": 93.75,
+  "wocode": "WOINS",
+  "paymentid": "10167180",
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 16:26:30\"><Results success=\"1\" paym",
+  "after": {
+   "insbal": 0.0,
+   "patbal": 0.0
+  }
+ },
+ {
+  "section": "B",
+  "pid": "17475777",
+  "vid": "19435223",
+  "cid": "23342218",
+  "before": {
+   "fee": 256.0,
+   "paid": 162.19,
+   "insbal": 93.81,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "orig_check": "V5475692",
+  "icn": "KLC0434879400",
+  "shape": "write-off-only",
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-5mj6x\" lst=\"10/07/2026 16:26:34\"><Results success=\"1\" paymentid=\"10167181\" /><Error /></PPMDResult",
+  "outcome": "posted",
+  "wo": 93.81,
+  "wocode": "WOINS",
+  "after": {
+   "insbal": 0.0,
+   "patbal": 0.0
+  }
+ },
+ {
+  "section": "B",
+  "pid": "17475777",
+  "vid": "19435223",
+  "cid": "23342219",
+  "before": {
+   "fee": 133.0,
+   "paid": 52.34,
+   "insbal": 80.66,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "orig_check": "V5475692",
+  "icn": "KLC0434879400",
+  "shape": "write-off-only",
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:26:37\"><Results success=\"1\" paymentid=\"10167182\" /><Error /></PPMDResult",
+  "outcome": "posted",
+  "wo": 80.66,
+  "wocode": "WOINS",
+  "after": {
+   "insbal": 0.0,
+   "patbal": 0.0
+  }
+ }
+]

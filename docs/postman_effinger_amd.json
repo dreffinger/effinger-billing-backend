@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-10-07, 61 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-10-07, 62 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1337,6 +1337,29 @@
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"\" amount=\"{{amount}}\" paycode=\"PE\" woamount=\"0.00\" paymethod=\"11\" carrierid=\"car{{carrierid}}\" depositdate=\"{{depositdate}}\" case_note=\"{{note}}\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist><payment source=\"2\" profile=\"prof{{profileid}}\" amount=\"{{amount}}\" carrier=\"car{{carrierid}}\"/></unappliedpaymentlist><unappliedwriteofflist/><chargelist/></patient></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "Write-off only Payment Entry (addpayments, empty paymentlist - no $0 payment line)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "A bare contractual / timely / non-covered write-off on one charge under a check number and deposit date that creates NO $0 code-less payment line (the line that puts a visit in Unbilled 'Payment reason codes are missing or do not balance' once a next-payer claim is built). Proven 10/7/2026 23:3xZ on two charges (WOINS 93.81 + 80.66 under the original UHC check V5475692 - the OA-18 duplicate rule: settle the original adjudication's contractual, never rebill). Response success=\"1\"; the charge's insurance balance drops by the write-off. Use for every bare write-off; a line whose 835 is in the ERA Center still goes through the ERA-linked addpayments postingmethod=era shape so its CARCs stay on the payment.\n\nHelper: era_1053047_fix_2310.py (section B); manual_post.post is the same shape WITH a <payment amount=\"0.00\"/> element\nCaptured: 2026-10-07",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"addpayments\" class=\"paymententry\" msgtime=\"{{msgtime}}\" useopenedge=\"1\" checkout=\"0\" date=\"\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient patientid=\"pat{{patientid}}\" paysource=\"2\" postingmethod=\"\" amount=\"0.00\" paycode=\"PE\" woamount=\"{{wo}}\" paymethod=\"9\" carrierid=\"{{carrierid}}\" depositdate=\"{{depositdate}}\" case_note=\"{{note}}\" checknumber=\"{{checknumber}}\" inclstmt=\"0\" postedby=\"POI0712\" batch=\"\"><unappliedpaymentlist/><unappliedwriteofflist/><chargelist><charge id=\"charge{{chargeid}}\" allowed=\"0.00\" insportion=\"{{insportion}}\" patportion=\"{{patportion}}\" insbalance=\"{{insbalance}}\" patbalance=\"{{patbalance}}\" profile=\"{{profile}}\"><paymentlist/><writeofflist><writeoff id=\"\" risk=\"0\" amount=\"{{wo}}\" code=\"{{wocode}}\" status=\"B\"/></writeofflist></charge></chargelist></patient></ppmdmsg>",
        "options": {
         "raw": {
          "language": "xml"
