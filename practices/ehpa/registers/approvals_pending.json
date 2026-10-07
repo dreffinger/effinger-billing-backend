@@ -297,7 +297,7 @@
    "evidence_file": "registers/era_1053024_2026-10-07T1310Z_dry.json",
    "status": "waiting",
    "answer": null,
-   "note": null
+   "note": "applying 2026-10-07T1910Z"
   },
   {
    "id": "A-2026-10-07T1310Z-B",
@@ -313,7 +313,7 @@
    "evidence_file": "registers/era_1053023_wo_2026-10-07T1310Z_dry.json",
    "status": "waiting",
    "answer": null,
-   "note": null
+   "note": "applying 2026-10-07T1910Z"
   }
  ]
 }
