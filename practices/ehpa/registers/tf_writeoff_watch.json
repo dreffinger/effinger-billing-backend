@@ -18,7 +18,10 @@
       "23321504"
      ],
      "insbal": 198.0,
-     "outcome": "sent"
+     "outcome": "written-off 2026-10-07T1910Z",
+     "answers": [
+      "UHC 835 W0686193 (ERA 1053038, 10/6/2026): CARC CO-29 time limit expired -> WOLATE 198.00 ERA-linked, balance 0"
+     ]
     },
     {
      "vid": "19417390",
@@ -56,7 +59,10 @@
       "23330068"
      ],
      "insbal": 198.0,
-     "outcome": "sent"
+     "outcome": "written-off 2026-10-07T1910Z",
+     "answers": [
+      "UHC 835 W0686193 (ERA 1053038, 10/6/2026): CARC CO-29 time limit expired -> WOLATE 198.00 ERA-linked, balance 0"
+     ]
     },
     {
      "vid": "19424662",
@@ -237,6 +243,406 @@
     }
    ],
    "total": 107.0
+  },
+  {
+   "id": "uhc-co29-answers-2026-10-07T1910Z",
+   "carrier": "UNI20",
+   "status": "closed",
+   "order": "William 10/6/2026 (v12 STANDING FLAGS, UNI20/BCBS BEFORE 5/1/2026): a CARC 29 on the payer's own 835 for a UNI20/BCBS pre-5/1/2026 PRIMARY claim is written off WOLATE",
+   "answer": "UHC 835 W0686193 (ERA 1053038, deposit 10/6/2026) answered CO-29 on these UNI20-primary claims (AARP / UHC Medicare Advantage in force on the DOS per the 9/6-9/7 Stedi cascade; re-sent frequency 1 on 9/6 and 9/10/2026)",
+   "charts": {
+    "17473032": {
+     "visits": [
+      {
+       "vid": "19418299",
+       "dos": "2025-09-25",
+       "cpt": "99349",
+       "charges": [
+        "23322143"
+       ],
+       "wolate": 198.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19427253",
+       "dos": "2025-12-21",
+       "cpt": "99487",
+       "charges": [
+        "23333634"
+       ],
+       "wolate": 206.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19427253",
+       "dos": "2025-12-21",
+       "cpt": "99489",
+       "charges": [
+        "23333635"
+       ],
+       "wolate": 109.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19427528",
+       "dos": "2025-12-20",
+       "cpt": "99349",
+       "charges": [
+        "23334018"
+       ],
+       "wolate": 198.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      }
+     ],
+     "total": 711.0
+    },
+    "23967": {
+     "visits": [
+      {
+       "vid": "19433673",
+       "dos": "2026-02-24",
+       "cpt": "99233",
+       "charges": [
+        "23340403"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433682",
+       "dos": "2026-02-25",
+       "cpt": "99233",
+       "charges": [
+        "23340412"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433749",
+       "dos": "2026-02-20",
+       "cpt": "99223",
+       "charges": [
+        "23340450"
+       ],
+       "wolate": 310.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434271",
+       "dos": "2026-03-02",
+       "cpt": "99233",
+       "charges": [
+        "23341247"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434282",
+       "dos": "2026-03-01",
+       "cpt": "99233",
+       "charges": [
+        "23341258"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420565",
+       "dos": "2025-10-21",
+       "cpt": "99232",
+       "charges": [
+        "23325544"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422011",
+       "dos": "2025-11-02",
+       "cpt": "99233",
+       "charges": [
+        "23327367"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420800",
+       "dos": "2025-10-23",
+       "cpt": "99233",
+       "charges": [
+        "23325878"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422366",
+       "dos": "2025-11-04",
+       "cpt": "99232",
+       "charges": [
+        "23327707"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422194",
+       "dos": "2025-11-03",
+       "cpt": "99233",
+       "charges": [
+        "23327552"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433530",
+       "dos": "2026-02-22",
+       "cpt": "99233",
+       "charges": [
+        "23340247"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422699",
+       "dos": "2025-11-07",
+       "cpt": "99233",
+       "charges": [
+        "23328028"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434688",
+       "dos": "2026-03-07",
+       "cpt": "99233",
+       "charges": [
+        "23341708"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434702",
+       "dos": "2026-03-06",
+       "cpt": "99233",
+       "charges": [
+        "23341723"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434709",
+       "dos": "2026-03-05",
+       "cpt": "99233",
+       "charges": [
+        "23341730"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19435063",
+       "dos": "2026-03-09",
+       "cpt": "99233",
+       "charges": [
+        "23342040"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420026",
+       "dos": "2025-10-17",
+       "cpt": "99233",
+       "charges": [
+        "23324992"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420318",
+       "dos": "2025-10-19",
+       "cpt": "99232",
+       "charges": [
+        "23325301"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420320",
+       "dos": "2025-10-20",
+       "cpt": "99232",
+       "charges": [
+        "23325303"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434631",
+       "dos": "2026-03-04",
+       "cpt": "99233",
+       "charges": [
+        "23341611"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433531",
+       "dos": "2026-02-21",
+       "cpt": "99233",
+       "charges": [
+        "23340248"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434049",
+       "dos": "2026-02-27",
+       "cpt": "99233",
+       "charges": [
+        "23340944"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433783",
+       "dos": "2026-02-26",
+       "cpt": "99233",
+       "charges": [
+        "23340502"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434293",
+       "dos": "2026-02-28",
+       "cpt": "99233",
+       "charges": [
+        "23341269"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434432",
+       "dos": "2026-03-03",
+       "cpt": "99233",
+       "charges": [
+        "23341425"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420708",
+       "dos": "2025-10-22",
+       "cpt": "99232",
+       "charges": [
+        "23325796"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422498",
+       "dos": "2025-11-05",
+       "cpt": "99232",
+       "charges": [
+        "23327831"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422583",
+       "dos": "2025-11-06",
+       "cpt": "99232",
+       "charges": [
+        "23327919"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19422912",
+       "dos": "2025-11-08",
+       "cpt": "99239",
+       "charges": [
+        "23328261"
+       ],
+       "wolate": 163.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19434930",
+       "dos": "2026-03-08",
+       "cpt": "99233",
+       "charges": [
+        "23341909"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19433529",
+       "dos": "2026-02-23",
+       "cpt": "99233",
+       "charges": [
+        "23340246"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19435049",
+       "dos": "2026-03-10",
+       "cpt": "99233",
+       "charges": [
+        "23342026"
+       ],
+       "wolate": 160.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19420319",
+       "dos": "2025-10-18",
+       "cpt": "99232",
+       "charges": [
+        "23325302"
+       ],
+       "wolate": 111.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      },
+      {
+       "vid": "19435284",
+       "dos": "2026-03-11",
+       "cpt": "99239",
+       "charges": [
+        "23342289"
+       ],
+       "wolate": 163.0,
+       "outcome": "written-off 2026-10-07T1910Z"
+      }
+     ],
+     "total": 5204.0
+    }
+   },
+   "total": 5915.0
   }
  ]
 }
