@@ -3818,3 +3818,6 @@ Lesson (TRAP, operational): `python3 era_post.py --help` is not a help flag - er
 
 # captured_calls additions - backend billing run 2026-10-07T0110Z (9 PM ET 10/6 slot, ehpa cloud)
 No new call shapes this run. Reads only: getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges (batch 127783), getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (run 1700266), GET /api/era/checks (1 check), GET /api/era/checkdetails?checkid=1052906, POST /api/claim/massrebillsearch {} + Stedi 276/277 x21 (claim_status_sweep.py pass 9). No AdvancedMD writes.
+
+# captured_calls additions - backend billing run 2026-10-07T0310Z (11 PM ET 10/6 slot, ehpa cloud)
+No new call shapes this run. The ONE AMD login attempt (03:21Z) was refused by AMD's own maintenance fault -2147220476 (class Login, method LoginUserAsync: "Pardon the interruption while we upgrade your system. Your key will be temporarily unavailable during the upgrade process. Please try again later.") - not a credential failure; no retry; no AMD reads or writes this run. Reads only: Drive (workspace mirror, chat history, board inbox, github mirror, Drive-wide recent files), Gmail (Pam sweep), the two boards and the approvals page via the artifact db.
