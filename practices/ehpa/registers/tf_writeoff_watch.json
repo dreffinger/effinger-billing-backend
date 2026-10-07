@@ -29,7 +29,10 @@
       "23321128"
      ],
      "insbal": 315.0,
-     "outcome": "sent"
+     "outcome": "sent",
+     "answers": [
+      "277 10/7 05:2xZ: F2 585 (UHC checks W0686193 9/28, W0904074 10/1 - pre-send answers) + A7 21 'Missing or invalid information' dated 10/6 (rejected before adjudication, not CARC 29) - William's call"
+     ]
     },
     {
      "vid": "19420985",
@@ -40,7 +43,10 @@
       "23326171"
      ],
      "insbal": 315.0,
-     "outcome": "sent"
+     "outcome": "sent",
+     "answers": [
+      "277 10/7 05:2xZ: D0 153 'Entity's ID number' (search miss, no ICN) - not timely filing, not resent (watch)"
+     ]
     },
     {
      "vid": "19424313",
@@ -61,7 +67,10 @@
       "23330504"
      ],
      "insbal": 315.0,
-     "outcome": "sent"
+     "outcome": "sent",
+     "answers": [
+      "277 10/7 05:2xZ: D0 187 'Date(s) of service' (search miss) - not timely filing, not resent (watch)"
+     ]
     },
     {
      "vid": "19427156",
@@ -72,7 +81,10 @@
       "23333441"
      ],
      "insbal": 315.0,
-     "outcome": "sent"
+     "outcome": "sent",
+     "answers": [
+      "277 10/7 05:2xZ: D0 187 'Date(s) of service' (search miss) - not timely filing, not resent (watch)"
+     ]
     }
    ],
    "total": 1656.0
