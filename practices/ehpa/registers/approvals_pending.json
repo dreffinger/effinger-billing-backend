@@ -295,9 +295,9 @@
    "ui": "No hand steps: Approve = the next 2-hourly billing run (or 'go' in the cascade session) runs era_1053024_1310.py --live, then clears check 1053024.",
    "evidence": "dry run 13:56Z 10/7: 8 CCM lines + 2 GV rebills planned, 0 errors",
    "evidence_file": "registers/era_1053024_2026-10-07T1310Z_dry.json",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-07T1910Z"
+   "status": "done",
+   "answer": "2026-10-07T1955Z applied by backend billing run 2026-10-07T1910Z on William's page approval: era_1053024_1310.py --live - 8 hospice CCM lines WONCS ERA-linked $1,260.00 (charts 17476032 / 12183032 / 17473245 / 22603, balances 0, balanced); GV (mcode713) added on v19456187 and v19456215 and each sent ONCE frequency-1 to Medicare seq 2 (204 x2; the helper's post-GV check read modifier ids, so the rebills were run by name after it). Check 1053024 stays on the unposted list: the 26 CO-151/CO-234 CCM claims still carry open balances (board rows on William's turn).",
+   "note": null
   },
   {
    "id": "A-2026-10-07T1310Z-B",
@@ -311,9 +311,9 @@
    "ui": "No hand steps: Approve = the next 2-hourly billing run (or 'go' in the cascade session) runs era_1053023_wo_1310.py --live (257 WOINS lines + voids, verified line by line, stops after 3 faults), then clears check 1053023 from the ERA Center.",
    "evidence": "dry run 14:25Z 10/7 over the live charts: planned 257 / CO $20,179.20; review 38 / CO $2,874.98 (patient-side); already corrected 0; skipped 0",
    "evidence_file": "registers/era_1053023_wo_2026-10-07T1310Z_dry.json",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-07T1910Z"
+   "status": "done",
+   "answer": "2026-10-07T2030Z applied by backend billing run 2026-10-07T1910Z on William's page approval: era_1053023_wo_1310.py --live - 257 lines corrected (WOINS $20,179.20 with check 819928855 / deposit 10/08/2026, code-less payment voided, verified balanced per line), 0 faults; the 38 patient-side lines ($2,874.98) listed for review, not written (registers/era_1053023_wo_2026-10-07T1310Z.json).",
+   "note": null
   }
  ]
 }
