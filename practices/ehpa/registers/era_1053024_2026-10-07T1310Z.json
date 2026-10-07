@@ -1,0 +1,330 @@
+{
+ "stamp": "2026-10-07T1310Z",
+ "check": "1053024",
+ "live": true,
+ "at": "2026-10-07T19:47:53Z",
+ "ccm_woncs": [
+  {
+   "pid": "17476032",
+   "vid": "19455831",
+   "cid": "23367291",
+   "cpt": "99487",
+   "adj": 206.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 206.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166615",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 12:47:59\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476032",
+   "vid": "19455831",
+   "cid": "23367292",
+   "cpt": "99489",
+   "adj": 109.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 109.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166616",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 12:48:02\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476032",
+   "vid": "19455831",
+   "after": [
+    [
+     "23367291",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       206.0
+      ]
+     ]
+    ],
+    [
+     "23367292",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       109.0
+      ]
+     ]
+    ]
+   ],
+   "balanced": true
+  },
+  {
+   "pid": "12183032",
+   "vid": "19455709",
+   "cid": "23367097",
+   "cpt": "99487",
+   "adj": 206.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 206.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166617",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 12:48:07\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "12183032",
+   "vid": "19455709",
+   "cid": "23367098",
+   "cpt": "99489",
+   "adj": 109.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 109.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166618",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 12:48:10\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "12183032",
+   "vid": "19455709",
+   "after": [
+    [
+     "23367097",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       206.0
+      ]
+     ]
+    ],
+    [
+     "23367098",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       109.0
+      ]
+     ]
+    ]
+   ],
+   "balanced": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19455668",
+   "cid": "23367039",
+   "cpt": "99487",
+   "adj": 206.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 206.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166619",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 12:48:14\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19455668",
+   "cid": "23367040",
+   "cpt": "99489",
+   "adj": 109.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 109.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166620",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 12:48:16\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19455668",
+   "after": [
+    [
+     "23367039",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       206.0
+      ]
+     ]
+    ],
+    [
+     "23367040",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       109.0
+      ]
+     ]
+    ]
+   ],
+   "balanced": true
+  },
+  {
+   "pid": "22603",
+   "vid": "19455956",
+   "cid": "23367449",
+   "cpt": "99487",
+   "adj": 206.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 206.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166621",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 12:48:21\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "22603",
+   "vid": "19455956",
+   "cid": "23367450",
+   "cpt": "99489",
+   "adj": 109.0,
+   "carc": [
+    "COB9"
+   ],
+   "insbalance": 109.0,
+   "patbalance": 0.0,
+   "result": "posted",
+   "paymentid": "10166622",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 12:48:23\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "22603",
+   "vid": "19455956",
+   "after": [
+    [
+     "23367449",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       206.0
+      ]
+     ]
+    ],
+    [
+     "23367450",
+     0.0,
+     0.0,
+     [
+      [
+       "WONCS",
+       109.0
+      ]
+     ]
+    ]
+   ],
+   "balanced": true
+  }
+ ],
+ "hospice_gv": [
+  {
+   "pid": "12182946",
+   "vid": "19456187",
+   "cid": "23367811",
+   "seq": "2",
+   "live": [
+    [
+     "23367811",
+     "99308",
+     107.0
+    ]
+   ],
+   "result": "ERROR GV not on the charge after add_gv: []"
+  },
+  {
+   "pid": "44987",
+   "vid": "19456215",
+   "cid": "23367839",
+   "seq": "2",
+   "live": [
+    [
+     "23367839",
+     "99308",
+     107.0
+    ]
+   ],
+   "result": "ERROR GV not on the charge after add_gv: []"
+  }
+ ],
+ "record_only": [
+  {
+   "pid": "17477313",
+   "vid": "19456208",
+   "cpt": "99308",
+   "dos": "09/21/2026",
+   "amount": 107.0,
+   "carc": "COB9",
+   "result": "POYNOR standing flag - board row [name]-17477313 on William's turn (GV or GW); nothing written"
+  },
+  {
+   "pid": "17474493",
+   "vid": "19456837",
+   "cpt": "99223",
+   "dos": "09/30/2026",
+   "amount": 310.0,
+   "carc": "CO109",
+   "result": "Medicare's answer to the pre-re-route claim; UHC Dual Complete rebill out 10/6 - nothing written"
+  },
+  {
+   "cluster": "CO151+CO234 CCM",
+   "claims": [
+    "19416157",
+    "19420909",
+    "19420934",
+    "19420942",
+    "19420961",
+    "19423597",
+    "19427570",
+    "19427571",
+    "19427585",
+    "19427594",
+    "19430698",
+    "19430703",
+    "19430720",
+    "19430729",
+    "19433897",
+    "19433914",
+    "19438521",
+    "19438525",
+    "19438539",
+    "19439547",
+    "19439551",
+    "19439565",
+    "19446197",
+    "19446198",
+    "19448837",
+    "19448849"
+   ],
+   "result": "board rows on William's turn (7 AM ET 10/7 run) - appeal or WONCS; nothing written"
+  }
+ ],
+ "errors": [
+  "ERROR GV not on the charge after add_gv: []",
+  "ERROR GV not on the charge after add_gv: []"
+ ]
+}

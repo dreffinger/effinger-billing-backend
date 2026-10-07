@@ -1,0 +1,1074 @@
+[
+ {
+  "checkid": "1053024",
+  "stamp": "2026-10-07T1953Z",
+  "live": false,
+  "holds": [
+   "visit 19456837 charge 23368495 open insurance balance 310.00",
+   "visit 19433897 charge 23340682 open insurance balance 206.00",
+   "visit 19433897 charge 23340683 open insurance balance 109.00",
+   "visit 19439547 charge 23347047 open insurance balance 206.00",
+   "visit 19439547 charge 23347048 open insurance balance 109.00",
+   "visit 19438521 charge 23345640 open insurance balance 206.00",
+   "visit 19438521 charge 23345641 open insurance balance 109.00",
+   "visit 19420909 charge 23326018 open insurance balance 206.00",
+   "visit 19420909 charge 23326019 open insurance balance 109.00",
+   "visit 19423597 charge 23329214 open insurance balance 206.00",
+   "visit 19423597 charge 23329215 open insurance balance 109.00",
+   "visit 19439551 charge 23347055 open insurance balance 206.00",
+   "visit 19439551 charge 23347056 open insurance balance 109.00",
+   "visit 19438525 charge 23345648 open insurance balance 206.00",
+   "visit 19438525 charge 23345649 open insurance balance 109.00",
+   "visit 19430703 charge 23337144 open insurance balance 206.00",
+   "visit 19430703 charge 23337145 open insurance balance 109.00",
+   "visit 19427570 charge 23334087 open insurance balance 206.00",
+   "visit 19427570 charge 23334088 open insurance balance 109.00",
+   "visit 19448837 charge 23358279 open insurance balance 206.00",
+   "visit 19448837 charge 23358280 open insurance balance 109.00",
+   "visit 19456208 charge 23367832 open insurance balance 107.00",
+   "visit 19456187 charge 23367811 open insurance balance 107.00",
+   "visit 19420961 charge 23326122 open insurance balance 206.00",
+   "visit 19420961 charge 23326123 open insurance balance 109.00",
+   "visit 19427571 charge 23334089 open insurance balance 206.00",
+   "visit 19427571 charge 23334090 open insurance balance 109.00",
+   "visit 19427585 charge 23334117 open insurance balance 206.00",
+   "visit 19427585 charge 23334118 open insurance balance 109.00",
+   "visit 19430729 charge 23337196 open insurance balance 206.00",
+   "visit 19430729 charge 23337197 open insurance balance 109.00",
+   "visit 19456215 charge 23367839 open insurance balance 107.00",
+   "visit 19430698 charge 23337134 open insurance balance 206.00",
+   "visit 19430698 charge 23337135 open insurance balance 109.00",
+   "visit 19446198 charge 23355167 open insurance balance 206.00",
+   "visit 19446198 charge 23355168 open insurance balance 109.00",
+   "visit 19448849 charge 23358303 open insurance balance 206.00",
+   "visit 19448849 charge 23358304 open insurance balance 109.00",
+   "visit 19420934 charge 23326068 open insurance balance 206.00",
+   "visit 19420934 charge 23326069 open insurance balance 109.00",
+   "visit 19438539 charge 23345676 open insurance balance 206.00",
+   "visit 19438539 charge 23345677 open insurance balance 109.00",
+   "visit 19439565 charge 23347083 open insurance balance 206.00",
+   "visit 19439565 charge 23347084 open insurance balance 109.00",
+   "visit 19433914 charge 23340712 open insurance balance 206.00",
+   "visit 19433914 charge 23340713 open insurance balance 109.00",
+   "visit 19430720 charge 23337178 open insurance balance 206.00",
+   "visit 19430720 charge 23337179 open insurance balance 109.00",
+   "visit 19446197 charge 23355165 open insurance balance 206.00",
+   "visit 19446197 charge 23355166 open insurance balance 109.00",
+   "visit 19427594 charge 23334135 open insurance balance 206.00",
+   "visit 19427594 charge 23334136 open insurance balance 109.00"
+  ],
+  "lines": [
+   {
+    "visitid": "19456837",
+    "chargedetailid": "23368495",
+    "cpt": "99223",
+    "dos": "2026-09-30",
+    "remit_paid": 0.0,
+    "remit_adj": 310.0,
+    "carc": [
+     [
+      "CO",
+      "CO109",
+      310.0
+     ]
+    ],
+    "live_insbal": 310.0,
+    "live_patbal": 0.0,
+    "live_carrier": "UNI20"
+   },
+   {
+    "visitid": "19433897",
+    "chargedetailid": "23340682",
+    "cpt": "99487",
+    "dos": "2026-02-26",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19433897",
+    "chargedetailid": "23340683",
+    "cpt": "99489",
+    "dos": "2026-02-26",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439547",
+    "chargedetailid": "23347047",
+    "cpt": "99487",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439547",
+    "chargedetailid": "23347048",
+    "cpt": "99489",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438521",
+    "chargedetailid": "23345640",
+    "cpt": "99487",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438521",
+    "chargedetailid": "23345641",
+    "cpt": "99489",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420909",
+    "chargedetailid": "23326018",
+    "cpt": "99487",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420909",
+    "chargedetailid": "23326019",
+    "cpt": "99489",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19423597",
+    "chargedetailid": "23329214",
+    "cpt": "99487",
+    "dos": "2025-11-15",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19423597",
+    "chargedetailid": "23329215",
+    "cpt": "99489",
+    "dos": "2025-11-15",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439551",
+    "chargedetailid": "23347055",
+    "cpt": "99487",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439551",
+    "chargedetailid": "23347056",
+    "cpt": "99489",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438525",
+    "chargedetailid": "23345648",
+    "cpt": "99487",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438525",
+    "chargedetailid": "23345649",
+    "cpt": "99489",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430703",
+    "chargedetailid": "23337144",
+    "cpt": "99487",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430703",
+    "chargedetailid": "23337145",
+    "cpt": "99489",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427570",
+    "chargedetailid": "23334087",
+    "cpt": "99487",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427570",
+    "chargedetailid": "23334088",
+    "cpt": "99489",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19448837",
+    "chargedetailid": "23358279",
+    "cpt": "99487",
+    "dos": "2026-07-17",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19448837",
+    "chargedetailid": "23358280",
+    "cpt": "99489",
+    "dos": "2026-07-17",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19416157",
+    "chargedetailid": "23319707",
+    "cpt": "99487",
+    "dos": "2025-09-08",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 206.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19416157",
+    "chargedetailid": "23319708",
+    "cpt": "99489",
+    "dos": "2025-09-08",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 109.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19456208",
+    "chargedetailid": "23367832",
+    "cpt": "99308",
+    "dos": "2026-09-21",
+    "remit_paid": 0.0,
+    "remit_adj": 107.0,
+    "carc": [
+     [
+      "CO",
+      "COB9",
+      107.0
+     ]
+    ],
+    "live_insbal": 107.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19456187",
+    "chargedetailid": "23367811",
+    "cpt": "99308",
+    "dos": "2026-09-21",
+    "remit_paid": 0.0,
+    "remit_adj": 107.0,
+    "carc": [
+     [
+      "CO",
+      "COB9",
+      107.0
+     ]
+    ],
+    "live_insbal": 107.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420961",
+    "chargedetailid": "23326122",
+    "cpt": "99487",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420961",
+    "chargedetailid": "23326123",
+    "cpt": "99489",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427571",
+    "chargedetailid": "23334089",
+    "cpt": "99487",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427571",
+    "chargedetailid": "23334090",
+    "cpt": "99489",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420942",
+    "chargedetailid": "23326084",
+    "cpt": "99487",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19420942",
+    "chargedetailid": "23326085",
+    "cpt": "99489",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 0.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19427585",
+    "chargedetailid": "23334117",
+    "cpt": "99487",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19427585",
+    "chargedetailid": "23334118",
+    "cpt": "99489",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19430729",
+    "chargedetailid": "23337196",
+    "cpt": "99487",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19430729",
+    "chargedetailid": "23337197",
+    "cpt": "99489",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "HUM01"
+   },
+   {
+    "visitid": "19456215",
+    "chargedetailid": "23367839",
+    "cpt": "99308",
+    "dos": "2026-09-24",
+    "remit_paid": 0.0,
+    "remit_adj": 107.0,
+    "carc": [
+     [
+      "CO",
+      "COB9",
+      107.0
+     ]
+    ],
+    "live_insbal": 107.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430698",
+    "chargedetailid": "23337134",
+    "cpt": "99487",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430698",
+    "chargedetailid": "23337135",
+    "cpt": "99489",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19446198",
+    "chargedetailid": "23355167",
+    "cpt": "99487",
+    "dos": "2026-06-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19446198",
+    "chargedetailid": "23355168",
+    "cpt": "99489",
+    "dos": "2026-06-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19448849",
+    "chargedetailid": "23358303",
+    "cpt": "99487",
+    "dos": "2026-07-17",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19448849",
+    "chargedetailid": "23358304",
+    "cpt": "99489",
+    "dos": "2026-07-17",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420934",
+    "chargedetailid": "23326068",
+    "cpt": "99487",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19420934",
+    "chargedetailid": "23326069",
+    "cpt": "99489",
+    "dos": "2025-10-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438539",
+    "chargedetailid": "23345676",
+    "cpt": "99487",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19438539",
+    "chargedetailid": "23345677",
+    "cpt": "99489",
+    "dos": "2026-03-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439565",
+    "chargedetailid": "23347083",
+    "cpt": "99487",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19439565",
+    "chargedetailid": "23347084",
+    "cpt": "99489",
+    "dos": "2026-04-20",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19433914",
+    "chargedetailid": "23340712",
+    "cpt": "99487",
+    "dos": "2026-02-26",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19433914",
+    "chargedetailid": "23340713",
+    "cpt": "99489",
+    "dos": "2026-02-26",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430720",
+    "chargedetailid": "23337178",
+    "cpt": "99487",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19430720",
+    "chargedetailid": "23337179",
+    "cpt": "99489",
+    "dos": "2026-01-27",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19446197",
+    "chargedetailid": "23355165",
+    "cpt": "99487",
+    "dos": "2026-06-25",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19446197",
+    "chargedetailid": "23355166",
+    "cpt": "99489",
+    "dos": "2026-06-25",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427594",
+    "chargedetailid": "23334135",
+    "cpt": "99487",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 206.0,
+    "carc": [
+     [
+      "CO",
+      "CO151",
+      206.0
+     ]
+    ],
+    "live_insbal": 206.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   },
+   {
+    "visitid": "19427594",
+    "chargedetailid": "23334136",
+    "cpt": "99489",
+    "dos": "2025-12-28",
+    "remit_paid": 0.0,
+    "remit_adj": 109.0,
+    "carc": [
+     [
+      "CO",
+      "CO234",
+      109.0
+     ]
+    ],
+    "live_insbal": 109.0,
+    "live_patbal": 0.0,
+    "live_carrier": "FLO02"
+   }
+  ],
+  "outcome": "hold",
+  "carrier": "FLO02",
+  "paymentnumber": "350045840"
+ }
+]
