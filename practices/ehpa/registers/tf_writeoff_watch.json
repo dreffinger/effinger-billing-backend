@@ -661,6 +661,72 @@
     }
    },
    "total": 5915.0
+  },
+  {
+   "id": "uhc-co29-answers-2026-10-07T2310Z",
+   "carrier": "UNI20",
+   "status": "closed",
+   "order": "William 10/6/2026 (v12 STANDING FLAGS, UNI20/BCBS BEFORE 5/1/2026): a CARC 29 on the payer's own 835 for a UNI20/BCBS pre-5/1/2026 PRIMARY claim is written off WOLATE",
+   "answer": "UHC 835 W0904074 (ERA 1053047, deposit 10/9/2026) answered CO-29 on these UNI20-primary 2025 claims (re-sent frequency 1 on 9/10/2026)",
+   "charts": {
+    "24655": {
+     "visits": [
+      {
+       "vid": "19420986",
+       "dos": "2025-10-25",
+       "cpt": "99487",
+       "charges": [
+        "23326172"
+       ],
+       "wolate": 206.0,
+       "outcome": "written-off 2026-10-07T2310Z"
+      },
+      {
+       "vid": "19420986",
+       "dos": "2025-10-25",
+       "cpt": "99489",
+       "charges": [
+        "23326173"
+       ],
+       "wolate": 109.0,
+       "outcome": "written-off 2026-10-07T2310Z"
+      },
+      {
+       "vid": "19417361",
+       "dos": "2025-09-21",
+       "cpt": "99487",
+       "charges": [
+        "23321071"
+       ],
+       "wolate": 206.0,
+       "outcome": "written-off 2026-10-07T2310Z"
+      },
+      {
+       "vid": "19417361",
+       "dos": "2025-09-21",
+       "cpt": "99489",
+       "charges": [
+        "23321072"
+       ],
+       "wolate": 109.0,
+       "outcome": "written-off 2026-10-07T2310Z"
+      },
+      {
+       "vid": "19417570",
+       "dos": "2025-09-18",
+       "cpt": "99349",
+       "charges": [
+        "23321305"
+       ],
+       "wolate": 198.0,
+       "outcome": "written-off 2026-10-07T2310Z"
+      }
+     ],
+     "total": 828.0
+    }
+   },
+   "recorded": "2026-10-07T2310Z",
+   "register": "registers/era_new_2026-10-07T2310Z.json"
   }
  ]
 }
