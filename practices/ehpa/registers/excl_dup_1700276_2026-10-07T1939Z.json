@@ -1,0 +1,192 @@
+{
+ "stamp": "2026-10-07T1939Z",
+ "run": "1700276",
+ "pid": null,
+ "live": true,
+ "rows": [
+  {
+   "visit": "19416179",
+   "claimid": "19416179D",
+   "carrier": "UNI20",
+   "dos": [
+    "09/08/2025",
+    "09/08/2025"
+   ],
+   "cpt": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23319751",
+     "cpt": "99487",
+     "dos": "09/08/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    },
+    {
+     "cid": "23319752",
+     "cpt": "99489",
+     "dos": "09/08/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19419032",
+   "claimid": "19419032E",
+   "carrier": "UNI20",
+   "dos": [
+    "10/01/2025"
+   ],
+   "cpt": [
+    "99306"
+   ],
+   "fee": 256.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23323956",
+     "cpt": "99306",
+     "dos": "10/01/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "256.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19419622",
+   "claimid": "19419622E",
+   "carrier": "UNI20",
+   "dos": [
+    "10/08/2025"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23324573",
+     "cpt": "99309",
+     "dos": "10/08/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19420346",
+   "claimid": "19420346E",
+   "carrier": "UNI20",
+   "dos": [
+    "10/14/2025"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23325329",
+     "cpt": "99309",
+     "dos": "10/14/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19420949",
+   "claimid": "19420949D",
+   "carrier": "UNI20",
+   "dos": [
+    "10/25/2025",
+    "10/25/2025"
+   ],
+   "cpt": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23326098",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    },
+    {
+     "cid": "23326099",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19422181",
+   "claimid": "19422181E",
+   "carrier": "UNI20",
+   "dos": [
+    "10/22/2025"
+   ],
+   "cpt": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "error": "PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS SPCFIED IN STATUS DTAILS AND BEEN REJCTD.:MISSING OR INVALID INFORMATION",
+   "live": [
+    {
+     "cid": "23327538",
+     "cpt": "99309",
+     "dos": "10/22/2025",
+     "carrier": "UNI20",
+     "billdate": "10/06/2026",
+     "insbal": "141.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 12:39:45\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": []
+}

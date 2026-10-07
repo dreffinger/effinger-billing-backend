@@ -1,0 +1,402 @@
+[
+ {
+  "pid": "17473032",
+  "vid": "19418299",
+  "cid": "23322143",
+  "dos": "2025-09-25",
+  "cpt": "99349",
+  "wo": 198.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433673",
+  "cid": "23340403",
+  "dos": "2026-02-24",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433682",
+  "cid": "23340412",
+  "dos": "2026-02-25",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433749",
+  "cid": "23340450",
+  "dos": "2026-02-20",
+  "cpt": "99223",
+  "wo": 310.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434271",
+  "cid": "23341247",
+  "dos": "2026-03-02",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434282",
+  "cid": "23341258",
+  "dos": "2026-03-01",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420565",
+  "cid": "23325544",
+  "dos": "2025-10-21",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422011",
+  "cid": "23327367",
+  "dos": "2025-11-02",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420800",
+  "cid": "23325878",
+  "dos": "2025-10-23",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422366",
+  "cid": "23327707",
+  "dos": "2025-11-04",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422194",
+  "cid": "23327552",
+  "dos": "2025-11-03",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433530",
+  "cid": "23340247",
+  "dos": "2026-02-22",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422699",
+  "cid": "23328028",
+  "dos": "2025-11-07",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434688",
+  "cid": "23341708",
+  "dos": "2026-03-07",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434702",
+  "cid": "23341723",
+  "dos": "2026-03-06",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434709",
+  "cid": "23341730",
+  "dos": "2026-03-05",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19435063",
+  "cid": "23342040",
+  "dos": "2026-03-09",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420026",
+  "cid": "23324992",
+  "dos": "2025-10-17",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420318",
+  "cid": "23325301",
+  "dos": "2025-10-19",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420320",
+  "cid": "23325303",
+  "dos": "2025-10-20",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "17473032",
+  "vid": "19427253",
+  "cid": "23333634",
+  "dos": "2025-12-21",
+  "cpt": "99487",
+  "wo": 206.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "17473032",
+  "vid": "19427253",
+  "cid": "23333635",
+  "dos": "2025-12-21",
+  "cpt": "99489",
+  "wo": 109.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434631",
+  "cid": "23341611",
+  "dos": "2026-03-04",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433531",
+  "cid": "23340248",
+  "dos": "2026-02-21",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434049",
+  "cid": "23340944",
+  "dos": "2026-02-27",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433783",
+  "cid": "23340502",
+  "dos": "2026-02-26",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434293",
+  "cid": "23341269",
+  "dos": "2026-02-28",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434432",
+  "cid": "23341425",
+  "dos": "2026-03-03",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420708",
+  "cid": "23325796",
+  "dos": "2025-10-22",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422498",
+  "cid": "23327831",
+  "dos": "2025-11-05",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422583",
+  "cid": "23327919",
+  "dos": "2025-11-06",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19422912",
+  "cid": "23328261",
+  "dos": "2025-11-08",
+  "cpt": "99239",
+  "wo": 163.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19434930",
+  "cid": "23341909",
+  "dos": "2026-03-08",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19433529",
+  "cid": "23340246",
+  "dos": "2026-02-23",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19435049",
+  "cid": "23342026",
+  "dos": "2026-03-10",
+  "cpt": "99233",
+  "wo": 160.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19420319",
+  "cid": "23325302",
+  "dos": "2025-10-18",
+  "cpt": "99232",
+  "wo": 111.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "12232248",
+  "vid": "19424313",
+  "cid": "23330068",
+  "dos": "2025-11-19",
+  "cpt": "99349",
+  "wo": 198.0,
+  "watch": "united-12232248-2025",
+  "outcome": "posted"
+ },
+ {
+  "pid": "12232248",
+  "vid": "19417751",
+  "cid": "23321504",
+  "dos": "2025-09-18",
+  "cpt": "99349",
+  "wo": 198.0,
+  "watch": "united-12232248-2025",
+  "outcome": "posted"
+ },
+ {
+  "pid": "17473032",
+  "vid": "19427528",
+  "cid": "23334018",
+  "dos": "2025-12-20",
+  "cpt": "99349",
+  "wo": 198.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ },
+ {
+  "pid": "23967",
+  "vid": "19435284",
+  "cid": "23342289",
+  "dos": "2026-03-11",
+  "cpt": "99239",
+  "wo": 163.0,
+  "watch": "uni20-bcbs-pre0501 (not in an item)",
+  "outcome": "posted"
+ }
+]
