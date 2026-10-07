@@ -298,6 +298,22 @@
    "status": "waiting",
    "answer": null,
    "note": null
+  },
+  {
+   "id": "A-2026-10-07T1310Z-B",
+   "stamp": "2026-10-07T1310Z",
+   "at": "2026-10-07T14:30:00Z",
+   "run": "backend billing run 2026-10-07T1310Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_1053023_wo_1310.py --live",
+   "reason": "Successor of A-2026-10-07T1110Z-A (approved 13:13Z, superseded): the approved void + ERA-linked re-post needs the remit detail, and AdvancedMD's check detail for 1053023 now answers only the 4 unposted claims; no AdvancedMD write is attempted after the first refusal of a run (era_1053024_1310.py --live was refused [Real-World Transactions] at 13:57Z), so the write-off recipe goes to the page for one tap.",
+   "what": "Medicare ERA check 1053023 (payment 819928855, $22,072.54, deposit 10/8/2026) - the CO-45 / CO-253 contractual the Post button left on the balances: 257 lines on 136 charts corrected by the write-off recipe (manual_post WOINS = the remit CO amount with check number 819928855 and deposit date 10/08/2026, then the $0 code-less payment voided, then verified: WOINS live, no code-less payment, balanced, insurance + patient balance = PR). 38 lines ($2,874.98 CO) where the Post button parked the contractual on the PATIENT side of no-secondary charts are LISTED for review, not written (they need the void + ERA-linked re-post or William's word). Line list = registers/era_co45_relink_1053023_2026-10-07T1129Z_dry.json (on main); the live chart is re-read before every line; a line already carrying a WOINS is skipped.",
+   "dollars": "$20,179.20 WOINS across 257 lines (38 lines / $2,874.98 listed for review, not written)",
+   "ui": "No hand steps: Approve = the next 2-hourly billing run (or 'go' in the cascade session) runs era_1053023_wo_1310.py --live (257 WOINS lines + voids, verified line by line, stops after 3 faults), then clears check 1053023 from the ERA Center.",
+   "evidence": "dry run 14:25Z 10/7 over the live charts: planned 257 / CO $20,179.20; review 38 / CO $2,874.98 (patient-side); already corrected 0; skipped 0",
+   "evidence_file": "registers/era_1053023_wo_2026-10-07T1310Z_dry.json",
+   "status": "waiting",
+   "answer": null,
+   "note": null
   }
  ]
 }
