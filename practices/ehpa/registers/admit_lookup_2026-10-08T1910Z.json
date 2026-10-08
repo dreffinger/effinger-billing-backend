@@ -1,0 +1,400 @@
+{
+ "stamp": "2026-10-08T1910Z",
+ "admits": [
+  {
+   "label": "flaxley-admit-1006",
+   "lookup": [],
+   "charts": {},
+   "stedi": {
+    "mbi:": {
+     "mbi": null,
+     "name": "FLAXLEY, ONSLOW",
+     "dob": "[DOB]",
+     "death": null,
+     "address": null,
+     "errors": [
+      "72 Invalid/Missing Subscriber/Insured ID"
+     ],
+     "partA": null,
+     "partB": null,
+     "other": []
+    },
+    "elig:95112": {
+     "errors": [],
+     "plans": [
+      [
+       "1",
+       null,
+       null,
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "HN",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       null,
+       [
+        "AL"
+       ]
+      ]
+     ],
+     "planDates": {
+      "planBegin": "20240101"
+     },
+     "planStatus": [
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "planDetails": "MEDICARE RISK",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "AL"
+       ]
+      }
+     ]
+    },
+    "disc:": {
+     "found": 0,
+     "items": [],
+     "errors": null
+    }
+   }
+  },
+  {
+   "label": "hatherley-readmit-1006",
+   "lookup": [
+    {
+     "id": "pat20863",
+     "dob": "[DOB]",
+     "chart": "HF387285538"
+    }
+   ],
+   "charts": {
+    "20863": {
+     "insorder": "1,2",
+     "plans": [
+      {
+       "id": "ins7630",
+       "sequence": "1",
+       "carrier": "car6085",
+       "subscribernum": "[MBI]",
+       "begindate": "02/01/2010",
+       "enddate": "",
+       "finclass": null
+      },
+      {
+       "id": "ins9506993",
+       "sequence": "2",
+       "carrier": "car42008",
+       "subscribernum": "[member id]",
+       "begindate": "",
+       "enddate": "",
+       "finclass": null
+      }
+     ],
+     "elig": {
+      "ins7630": "ACTIVE | plan 20100201 | A 20100201 B 20100201 | others QM FL QMB Plan ; OT  18:S4802 N6:083 WELLCARE PRESCRIPTION INSURANCE, INC.: | death - | addr [address] MONTICELLO FL 323442939 | aaa []",
+      "ins9506993": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': 'T4', 'FollowUpActionCode': 'R'}]"
+     }
+    }
+   },
+   "stedi": {
+    "elig:CMS": {
+     "mbi": "[MBI]",
+     "name": "HATHERLEY, DAHLIA",
+     "dob": "[DOB]",
+     "death": null,
+     "address": {
+      "address1": "[address]",
+      "city": "MONTICELLO",
+      "state": "FL",
+      "postalCode": "323442939"
+     },
+     "errors": [],
+     "partA": "20100201",
+     "partB": "20100201",
+     "other": [
+      {
+       "code": "R",
+       "type": "QM",
+       "typeName": "Qualified Medicare Beneficiary",
+       "plan": "FL QMB Plan",
+       "dates": {
+        "coordinationOfBenefits": "20240801"
+       },
+       "entity": []
+      },
+      {
+       "code": "1",
+       "type": "MA",
+       "typeName": "Medicare Part A",
+       "plan": null,
+       "dates": {
+        "plan": "20100201"
+       },
+       "entity": []
+      },
+      {
+       "code": "R",
+       "type": "OT",
+       "typeName": "Other",
+       "plan": null,
+       "dates": {
+        "benefit": "20240101"
+       },
+       "entity": [
+        [
+         "WELLCARE PRESCRIPTION INSURANCE, INC.",
+         null
+        ]
+       ]
+      }
+     ]
+    },
+    "elig:77027": {
+     "errors": [],
+     "plans": [
+      [
+       "1",
+       null,
+       "MC",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "QM",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "MA",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "MB",
+       [
+        "30"
+       ]
+      ]
+     ],
+     "planDates": {
+      "plan": "20261006"
+     },
+     "planStatus": [
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "planDetails": "MI I| Full Medicaid",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "planDetails": "QMB | Ltd to Mcare premiums, deductibls and CoIns",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "label": "elderton-admit-1007",
+   "lookup": [
+    {
+     "id": "pat21692",
+     "dob": "[DOB]",
+     "chart": "HF383303310"
+    }
+   ],
+   "charts": {
+    "21692": {
+     "insorder": "1,2",
+     "plans": [
+      {
+       "id": "ins5549",
+       "sequence": "1",
+       "carrier": "car41826",
+       "subscribernum": "[member id]",
+       "begindate": "07/21/2020",
+       "enddate": "",
+       "finclass": null
+      },
+      {
+       "id": "ins1841",
+       "sequence": "2",
+       "carrier": "car6113",
+       "subscribernum": "[member id]",
+       "begindate": "07/14/2019",
+       "enddate": "",
+       "finclass": null
+      }
+     ],
+     "elig": {
+      "ins5549": "REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'Y', 'RejectReasonCode': '75', 'FollowUpActionCode': 'C'}]",
+      "ins1841": "ACTIVE | plan 20261008-20261008 | A 20261008-20261008 B 20261008-20261008 | others MC MI I| Full Medicaid ; MC SMMC Long-Term Care (LTCC) HUMANA MEDICAL PLAN INC:; MC SMMC MMA Capitated HUMANA MEDICAL PLAN INC:; MC SMMC DENTAL LIBERTY DENTAL P | death - | addr  | aaa []"
+     }
+    }
+   },
+   "stedi": {
+    "elig:CMS": {
+     "mbi": "[MBI]",
+     "name": "ELDERTON, PATRICE",
+     "dob": "[DOB]",
+     "death": null,
+     "address": {
+      "address1": "[address]",
+      "city": "MONTICELLO",
+      "state": "FL",
+      "postalCode": "323451204"
+     },
+     "errors": [],
+     "partA": "20120301",
+     "partB": "20120301",
+     "other": [
+      {
+       "code": "1",
+       "type": "MA",
+       "typeName": "Medicare Part A",
+       "plan": null,
+       "dates": {
+        "plan": "20120301"
+       },
+       "entity": []
+      },
+      {
+       "code": "C",
+       "type": "MA",
+       "typeName": "Medicare Part A",
+       "plan": null,
+       "dates": {
+        "benefit": "20260101-20261231"
+       },
+       "entity": []
+      },
+      {
+       "code": "R",
+       "type": "OT",
+       "typeName": "Other",
+       "plan": null,
+       "dates": {
+        "benefit": "20250101"
+       },
+       "entity": [
+        [
+         "WELLCARE PRESCRIPTION INSURANCE, INC.",
+         null
+        ]
+       ]
+      }
+     ]
+    },
+    "elig:77027": {
+     "errors": [],
+     "plans": [
+      [
+       "1",
+       null,
+       "MC",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "MA",
+       [
+        "30"
+       ]
+      ],
+      [
+       "1",
+       null,
+       "MB",
+       [
+        "30"
+       ]
+      ]
+     ],
+     "planDates": {
+      "plan": "20261007"
+     },
+     "planStatus": [
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "planDetails": "MI I| Full Medicaid",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      },
+      {
+       "statusCode": "1",
+       "status": "Active Coverage",
+       "serviceTypeCodes": [
+        "30"
+       ]
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

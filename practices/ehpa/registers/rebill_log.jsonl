@@ -14,3 +14,4 @@
 {"at": "2026-10-08T11:34:10Z", "visit": "19422654", "charge": "23327980", "seq": 2, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-08T11:34:54Z", "visit": "19443011", "charge": "23351281", "seq": 3, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-08T11:35:09Z", "visit": "19443859", "charge": "23352380", "seq": 3, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-08T19:34:29Z", "visit": "19457346", "charge": "23369203", "seq": 2, "status": 204, "by": "insp_1008_1910.py"}
