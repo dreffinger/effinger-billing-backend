@@ -1,0 +1,83 @@
+{
+ "run": "2026-10-08T0520Z",
+ "live": false,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455671",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455823",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455824",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455845",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455908",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455925",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": "dry: would release"
+  }
+ ],
+ "left": []
+}
