@@ -1,0 +1,69 @@
+{
+ "stamp": "2026-10-08T1510Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053052",
+   "checkclaimid": 15444770,
+   "visitid": "19456584",
+   "pid": "17477946",
+   "chargedetailid": "23368267",
+   "cpt": "99306",
+   "dos": "2026-09-28",
+   "paid": 124.12,
+   "carcs": [
+    "CO45",
+    "PR2"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "TRI00",
+    "billdate": "10/04/2026"
+   },
+   "pay": 124.12,
+   "wo": 90.51,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "TRI00",
+   "outcome": "DRY would post pay 124.12 + WOINS 90.51 (bal 256.00)"
+  },
+  {
+   "checkid": "1053052",
+   "checkclaimid": 15444770,
+   "visitid": "19456584",
+   "pid": "17477946",
+   "chargedetailid": "23368268",
+   "cpt": "99497",
+   "dos": "2026-09-28",
+   "paid": 50.06,
+   "carcs": [
+    "CO45",
+    "PR2"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "TRI00",
+    "billdate": "10/04/2026"
+   },
+   "pay": 50.06,
+   "wo": 66.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "TRI00",
+   "outcome": "DRY would post pay 50.06 + WOINS 66.25 (bal 133.00)"
+  }
+ ],
+ "wolate": []
+}
