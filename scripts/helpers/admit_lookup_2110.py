@@ -4,7 +4,7 @@
 #   at the last run. Writes registers/admit_lookup_<stamp>.json (chart ids only, no names). No AMD write of any kind.
 # Usage: python3 admit_lookup_2110.py "[name]%" "FLAXLEY,[first]%"
 import amd, re, json, sys, time
-STAMP = "2026-10-08T2110Z"; amd.login_cached(); out = {"stamp": STAMP, "lookups": []}
+STAMP = "2026-10-08T2310Z"; amd.login_cached(); out = {"stamp": STAMP, "lookups": []}
 for pat in sys.argv[1:]:
     r = amd.post(amd.msg("lookuppatient", "lookup", {"name": pat, "nocookie": "1"}))
     rows = [dict(re.findall(r'(\w+)="([^"]*)"', x)) for x in re.findall(r'<patient [^>]*/?>', r)]
