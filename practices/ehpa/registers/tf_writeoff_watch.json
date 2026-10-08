@@ -727,6 +727,45 @@
    },
    "recorded": "2026-10-07T2310Z",
    "register": "registers/era_new_2026-10-07T2310Z.json"
+  },
+  {
+   "id": "uhcma-25160-2025-2026-10-08T1110Z",
+   "pid": "25160",
+   "carrier": "UHCMA",
+   "plan": "ins9520774 (seq 2, UnitedHealthcare Dual Complete HMO-POS, member from Stedi discovery; Stedi CMS 271 at DOS: UHC of Florida HMO Medicare Risk 6/1-11/30/2025; plan end-dated 11/30/2025)",
+   "order": "v12 STANDING FLAGS UNI20/BCBS before 5/1/2026 - worked now: Medicare $0 remit 350052809 (ERA 1053048, 10/8/2026) answered CO-109/N418 'not this payer' on both visits; the payer on those dates was UHC Dual Complete -> sent once, written off only on the payer's CARC 29",
+   "sent": "2026-10-08T1110Z (freq1_visit.py reroute: visit insorder 1 -> 2 + ONE frequency-1 rebill to seq 2 per visit, chargerebill 204 x2)",
+   "status": "open",
+   "visits": [
+    {
+     "vid": "19417357",
+     "dos": "09/21/2025",
+     "cpt": "99487+99489",
+     "charges": [
+      "23321063",
+      "23321064"
+     ],
+     "insbal": 315.0,
+     "outcome": "sent",
+     "answers": [
+      "Medicare 350052809 (ERA 1053048, 10/8/2026): CO-109 N418 not this payer"
+     ]
+    },
+    {
+     "vid": "19422654",
+     "dos": "11/05/2025",
+     "cpt": "99309",
+     "charges": [
+      "23327980"
+     ],
+     "insbal": 141.0,
+     "outcome": "sent",
+     "answers": [
+      "Medicare 350052809 (ERA 1053048, 10/8/2026): CO-109 N418 not this payer"
+     ]
+    }
+   ],
+   "total": 456.0
   }
  ]
 }
