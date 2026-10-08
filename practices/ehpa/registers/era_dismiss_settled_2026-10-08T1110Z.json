@@ -1,0 +1,21 @@
+[
+ {
+  "checkid": "1053048",
+  "stamp": "2026-10-08T1110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 18
+  },
+  "unsettled": [],
+  "carrier": "FLO02",
+  "eracarrier": "MEDICARE PART B",
+  "paymentnumber": "350052809",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053048,\"actionname\":1}",
+  "outcome": "dismissed"
+ }
+]
