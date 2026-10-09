@@ -328,7 +328,7 @@
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K",
@@ -343,7 +343,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J",
@@ -358,7 +358,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J-dec",
@@ -373,7 +373,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K-dec",
@@ -388,7 +388,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-D",
@@ -403,7 +403,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-A",
@@ -418,7 +418,7 @@
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - the session's first approved command (A-2026-10-09T0910Z-A) was refused by the classifier and a refusal taints every later write of a session; left approved, untouched, for the next run's single attempt"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0910Z-A",
@@ -433,7 +433,7 @@
    "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
    "status": "waiting",
    "answer": null,
-   "note": "2026-10-09T2110Z: approved, refused again by the environment (classifier: Real-World Transactions) - William's go in the cascade session applies it"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0910Z-B",
@@ -448,7 +448,7 @@
    "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
    "status": "waiting",
    "answer": null,
-   "note": "not attempted 2026-10-09T2110Z - depends on card A, which the environment refused again; left approved for the next run"
+   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   }
  ]
 }
