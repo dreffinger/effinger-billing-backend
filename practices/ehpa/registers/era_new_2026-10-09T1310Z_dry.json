@@ -1,0 +1,2807 @@
+{
+ "stamp": "2026-10-09T1310Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444803,
+   "visitid": "19456201",
+   "pid": "24330",
+   "chargedetailid": "23367825",
+   "cpt": "99308",
+   "dos": "2026-09-24",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 45.44,
+   "wo": 49.97,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 45.44 + WOINS 49.97 (bal 107.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444804,
+   "visitid": "19456319",
+   "pid": "17477516",
+   "chargedetailid": "23367955",
+   "cpt": "99497",
+   "dos": "2026-09-25",
+   "paid": 68.11,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA15"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 68.11,
+   "wo": 47.52,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 68.11 + WOINS 47.52 (bal 133.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444805,
+   "visitid": "19456272",
+   "pid": "17477516",
+   "chargedetailid": "23367896",
+   "cpt": "99239",
+   "dos": "2026-09-23",
+   "paid": 84.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 0.0,
+    "insbal": 163.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 84.62,
+   "wo": 56.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 84.62 + WOINS 56.79 (bal 163.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444806,
+   "visitid": "19456176",
+   "pid": "17477830",
+   "chargedetailid": "23367800",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444807,
+   "visitid": "19456175",
+   "pid": "17477830",
+   "chargedetailid": "23367799",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444808,
+   "visitid": "19456274",
+   "pid": "17477719",
+   "chargedetailid": "23367898",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444809,
+   "visitid": "19456255",
+   "pid": "17477719",
+   "chargedetailid": "23367879",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444810,
+   "visitid": "19456213",
+   "pid": "17476975",
+   "chargedetailid": "23367837",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444811,
+   "visitid": "19456188",
+   "pid": "17469446",
+   "chargedetailid": "23367812",
+   "cpt": "99308",
+   "dos": "2026-09-24",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 45.44,
+   "wo": 49.97,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 45.44 + WOINS 49.97 (bal 107.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444812,
+   "visitid": "19456256",
+   "pid": "17474741",
+   "chargedetailid": "23367880",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444813,
+   "visitid": "19456189",
+   "pid": "45008",
+   "chargedetailid": "23367813",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444814,
+   "visitid": "19456190",
+   "pid": "12232001",
+   "chargedetailid": "23367814",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444815,
+   "visitid": "19456214",
+   "pid": "25869",
+   "chargedetailid": "23367838",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444816,
+   "visitid": "19456191",
+   "pid": "21172",
+   "chargedetailid": "23367815",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444817,
+   "visitid": "19456276",
+   "pid": "17477849",
+   "chargedetailid": "23367900",
+   "cpt": "99232",
+   "dos": "2026-09-23",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444818,
+   "visitid": "19456266",
+   "pid": "17474741",
+   "chargedetailid": "23367890",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444819,
+   "visitid": "19456259",
+   "pid": "17477849",
+   "chargedetailid": "23367883",
+   "cpt": "99232",
+   "dos": "2026-09-24",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444820,
+   "visitid": "19456246",
+   "pid": "17477901",
+   "chargedetailid": "23367870",
+   "cpt": "99223",
+   "dos": "2026-09-23",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444821,
+   "visitid": "19456254",
+   "pid": "17474911",
+   "chargedetailid": "23367878",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444822,
+   "visitid": "19456204",
+   "pid": "21378",
+   "chargedetailid": "23367828",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444823,
+   "visitid": "19456205",
+   "pid": "17473568",
+   "chargedetailid": "23367829",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444824,
+   "visitid": "19456183",
+   "pid": "17472594",
+   "chargedetailid": "23367807",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444825,
+   "visitid": "19456268",
+   "pid": "17477557",
+   "chargedetailid": "23367892",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444826,
+   "visitid": "19456248",
+   "pid": "17477557",
+   "chargedetailid": "23367872",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444827,
+   "visitid": "19456184",
+   "pid": "47039",
+   "chargedetailid": "23367808",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444828,
+   "visitid": "19456247",
+   "pid": "17477901",
+   "chargedetailid": "23367871",
+   "cpt": "99232",
+   "dos": "2026-09-24",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444829,
+   "visitid": "19456172",
+   "pid": "17476264",
+   "chargedetailid": "23367796",
+   "cpt": "99349",
+   "dos": "2026-09-23",
+   "paid": 88.61,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N89"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 88.61,
+   "wo": 86.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 88.61 + WOINS 86.79 (bal 198.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444830,
+   "visitid": "19456249",
+   "pid": "20729",
+   "chargedetailid": "23367873",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444831,
+   "visitid": "19456185",
+   "pid": "17477010",
+   "chargedetailid": "23367809",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444832,
+   "visitid": "19456318",
+   "pid": "17477843",
+   "chargedetailid": "23367952",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 110.29,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 110.29,
+   "wo": 117.58,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 110.29 + WOINS 117.58 (bal 256.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444832,
+   "visitid": "19456318",
+   "pid": "17477843",
+   "chargedetailid": "23367953",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 44.48,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 44.48,
+   "wo": 77.17,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 44.48 + WOINS 77.17 (bal 133.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444833,
+   "visitid": "19456292",
+   "pid": "17477900",
+   "chargedetailid": "23367917",
+   "cpt": "99223",
+   "dos": "2026-09-23",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444834,
+   "visitid": "19456244",
+   "pid": "17477900",
+   "chargedetailid": "23367868",
+   "cpt": "99232",
+   "dos": "2026-09-24",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444835,
+   "visitid": "19456271",
+   "pid": "17474911",
+   "chargedetailid": "23367895",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444836,
+   "visitid": "19456269",
+   "pid": "20729",
+   "chargedetailid": "23367893",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444837,
+   "visitid": "19456202",
+   "pid": "23721",
+   "chargedetailid": "23367826",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444838,
+   "visitid": "19456320",
+   "pid": "17470940",
+   "chargedetailid": "23367957",
+   "cpt": "99497",
+   "dos": "2026-09-25",
+   "paid": 68.11,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA15"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 68.11,
+   "wo": 47.52,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 68.11 + WOINS 47.52 (bal 133.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444839,
+   "visitid": "19456260",
+   "pid": "17470940",
+   "chargedetailid": "23367884",
+   "cpt": "99239",
+   "dos": "2026-09-24",
+   "paid": 84.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 0.0,
+    "insbal": 163.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 84.62,
+   "wo": 56.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 84.62 + WOINS 56.79 (bal 163.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444840,
+   "visitid": "19456262",
+   "pid": "17475638",
+   "chargedetailid": "23367886",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444841,
+   "visitid": "19456286",
+   "pid": "17477497",
+   "chargedetailid": "23367910",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444842,
+   "visitid": "19456285",
+   "pid": "17477497",
+   "chargedetailid": "23367909",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444843,
+   "visitid": "19456220",
+   "pid": "17470875",
+   "chargedetailid": "23367844",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444844,
+   "visitid": "19456195",
+   "pid": "21308",
+   "chargedetailid": "23367819",
+   "cpt": "99308",
+   "dos": "2026-09-24",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 45.44,
+   "wo": 49.97,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 45.44 + WOINS 49.97 (bal 107.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444845,
+   "visitid": "19456287",
+   "pid": "46692",
+   "chargedetailid": "23367911",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444846,
+   "visitid": "19456280",
+   "pid": "17475638",
+   "chargedetailid": "23367904",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444847,
+   "visitid": "19456263",
+   "pid": "46692",
+   "chargedetailid": "23367887",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444848,
+   "visitid": "19456315",
+   "pid": "17472285",
+   "chargedetailid": "23367949",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444849,
+   "visitid": "19456222",
+   "pid": "12179706",
+   "chargedetailid": "23367846",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444850,
+   "visitid": "19456304",
+   "pid": "23159",
+   "chargedetailid": "23367937",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444851,
+   "visitid": "19456291",
+   "pid": "23159",
+   "chargedetailid": "23367916",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444852,
+   "visitid": "19456197",
+   "pid": "20716",
+   "chargedetailid": "23367821",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444853,
+   "visitid": "19456224",
+   "pid": "22758",
+   "chargedetailid": "23367848",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444854,
+   "visitid": "19456221",
+   "pid": "17473222",
+   "chargedetailid": "23367845",
+   "cpt": "99308",
+   "dos": "2026-09-21",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 45.44,
+   "wo": 49.97,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 45.44 + WOINS 49.97 (bal 107.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444855,
+   "visitid": "19456277",
+   "pid": "17470940",
+   "chargedetailid": "23367901",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444856,
+   "visitid": "19456193",
+   "pid": "17470743",
+   "chargedetailid": "23367817",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444857,
+   "visitid": "19456180",
+   "pid": "17476036",
+   "chargedetailid": "23367804",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444858,
+   "visitid": "19456179",
+   "pid": "17472124",
+   "chargedetailid": "23367803",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/26/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444859,
+   "visitid": "19456278",
+   "pid": "23969",
+   "chargedetailid": "23367902",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N89"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444860,
+   "visitid": "19456261",
+   "pid": "23969",
+   "chargedetailid": "23367885",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N89"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444861,
+   "visitid": "19456306",
+   "pid": "17477896",
+   "chargedetailid": "23367940",
+   "cpt": "99223",
+   "dos": "2026-09-22",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444862,
+   "visitid": "19456235",
+   "pid": "17477896",
+   "chargedetailid": "23367859",
+   "cpt": "99232",
+   "dos": "2026-09-23",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444863,
+   "visitid": "19456279",
+   "pid": "17470950",
+   "chargedetailid": "23367903",
+   "cpt": "99223",
+   "dos": "2026-09-25",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444864,
+   "visitid": "19456219",
+   "pid": "25266",
+   "chargedetailid": "23367843",
+   "cpt": "99309",
+   "dos": "2026-09-21",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 66.36,
+   "wo": 57.71,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 66.36 + WOINS 57.71 (bal 141.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444865,
+   "visitid": "19456290",
+   "pid": "20863",
+   "chargedetailid": "23367914",
+   "cpt": "99223",
+   "dos": "2026-09-22",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444865,
+   "visitid": "19456290",
+   "pid": "20863",
+   "chargedetailid": "23367915",
+   "cpt": "99497",
+   "dos": "2026-09-22",
+   "paid": 52.33,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 52.33,
+   "wo": 67.32,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 52.33 + WOINS 67.32 (bal 133.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444866,
+   "visitid": "19456288",
+   "pid": "20863",
+   "chargedetailid": "23367912",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444867,
+   "visitid": "19456308",
+   "pid": "17477897",
+   "chargedetailid": "23367942",
+   "cpt": "99223",
+   "dos": "2026-09-22",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444868,
+   "visitid": "19456236",
+   "pid": "17477897",
+   "chargedetailid": "23367860",
+   "cpt": "99232",
+   "dos": "2026-09-23",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 56.37,
+   "wo": 40.25,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 56.37 + WOINS 40.25 (bal 111.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444869,
+   "visitid": "19456242",
+   "pid": "17476583",
+   "chargedetailid": "23367866",
+   "cpt": "99223",
+   "dos": "2026-09-22",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 125.2,
+   "wo": 152.86,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 125.20 + WOINS 152.86 (bal 310.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444870,
+   "visitid": "19456241",
+   "pid": "17476583",
+   "chargedetailid": "23367865",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444871,
+   "visitid": "19456240",
+   "pid": "17476583",
+   "chargedetailid": "23367864",
+   "cpt": "99233",
+   "dos": "2026-09-24",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444872,
+   "visitid": "19456289",
+   "pid": "20863",
+   "chargedetailid": "23367913",
+   "cpt": "99233",
+   "dos": "2026-09-23",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/28/2026"
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444873,
+   "visitid": "19456057",
+   "pid": "17476042",
+   "chargedetailid": "23367538",
+   "cpt": "99306",
+   "dos": "2026-09-22",
+   "paid": 129.74,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/25/2026"
+   },
+   "pay": 129.74,
+   "wo": 93.16,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 129.74 + WOINS 93.16 (bal 256.00)"
+  },
+  {
+   "checkid": "1053061",
+   "checkclaimid": 15444873,
+   "visitid": "19456057",
+   "pid": "17476042",
+   "chargedetailid": "23367539",
+   "cpt": "99497",
+   "dos": "2026-09-22",
+   "paid": 52.33,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/25/2026"
+   },
+   "pay": 52.33,
+   "wo": 67.32,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 52.33 + WOINS 67.32 (bal 133.00)"
+  },
+  {
+   "checkid": "1053063",
+   "checkclaimid": 15444880,
+   "visitid": "19456900",
+   "pid": "17477975",
+   "chargedetailid": "23368567",
+   "cpt": "99223",
+   "dos": "2026-09-28",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "PI253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/04/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "WEL04",
+   "outcome": "DRY would post pay 156.51 + WOINS 153.49 (bal 310.00)"
+  },
+  {
+   "checkid": "1053063",
+   "checkclaimid": 15444881,
+   "visitid": "19456870",
+   "pid": "17477975",
+   "chargedetailid": "23368531",
+   "cpt": "99232",
+   "dos": "2026-09-30",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "PI253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/04/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "WEL04",
+   "outcome": "DRY would post pay 70.46 + WOINS 40.54 (bal 111.00)"
+  },
+  {
+   "checkid": "1053063",
+   "checkclaimid": 15444882,
+   "visitid": "19456869",
+   "pid": "17477975",
+   "chargedetailid": "23368530",
+   "cpt": "99232",
+   "dos": "2026-09-29",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "PI253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/04/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "WEL04",
+   "outcome": "DRY would post pay 70.46 + WOINS 40.54 (bal 111.00)"
+  },
+  {
+   "checkid": "1053064",
+   "checkclaimid": 15444883,
+   "visitid": "19416165",
+   "pid": "17472517",
+   "chargedetailid": "23319724",
+   "cpt": "99487",
+   "dos": "2025-09-30",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [
+    "MA01",
+    "N211"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO29'] ['MA01', 'N211'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053064",
+   "checkclaimid": 15444883,
+   "visitid": "19416165",
+   "pid": "17472517",
+   "chargedetailid": "23319725",
+   "cpt": "99489",
+   "dos": "2025-09-30",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [
+    "MA01",
+    "N211"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO29'] ['MA01', 'N211'] (denial handling / board)"
+  }
+ ],
+ "wolate": []
+}
