@@ -4091,3 +4091,11 @@ charts still carry zero plans), lookuppatient (admit_lookup_1910.py: two of the 
 (claim_status_sweep.py pass 38, 21 asked: 20 PENDING, 1 UNKNOWN, 0 sent).
 AdvancedMD writes this run: 3 visits of chart pat17474046 (admission date + resave). Helpers this run (stamp copies, PLAIN ENGLISH headers):
 insp_1009_1910.py (from insp_1008_1910.py), admit_lookup_1910.py.
+
+# captured_calls additions - 2026-10-09 2110 UTC (5 PM ET) backend billing run, ehpa cloud
+
+No new call shapes this run. Calls used (all previously captured): login (one), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus / getclaimexclusioncharges (columns_scan.py before/after); lookuppatient (admit_lookup_2110.py - two 10/8 Brynwood admits still without a chart); getdemographic via amdw.plans (chart_plans_2110.py - six Claimocity charts still zero plans, pat17473087 still UNI20 only); GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after, 4 -> 3 checks, new WellCare $0 check 1053073 cached); posterapayments dry (era_post.py --all-unposted --dry, nothing posted); gettxhistory visitid= (txh.fetch_visit / payreasons.visit_state - both 1053073 lines already paid by WellCare 10/2, balances $0); POST /api/era/checks/dismiss 1053073 (era_dismiss_settled_2110.py --live, HTTP 200 issuccess true); POST /api/claim/massrebillsearch + Stedi 276/277 (claim_status_sweep.py pass 39: 21 asked, 20 pending, 1 unknown, 0 sent).
+
+Helpers this run (stamp copies, in scripts/helpers on main and Drive workspace mirror): era_new_1009_2110.py (check 1053073 only), era_dismiss_settled_2110.py (NEVER = 1052906 / 1053058 / 1053059), chart_plans_2110.py, admit_lookup_2110.py.
+
+Lesson: a Centene/WellCare 835 filed under WEL04 can carry a $0 CO-16/M56 answer to a SECONDARY (claimstatus 2) submission of a line the same payer already paid as primary - the remit-stored and live insurance balances are both 0, so it is a record-only line and the check is dismissed; nothing to resend, no board row on William's turn.

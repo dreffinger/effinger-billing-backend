@@ -1,0 +1,21 @@
+[
+ {
+  "checkid": "1053073",
+  "stamp": "2026-10-09T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 2
+  },
+  "unsettled": [],
+  "carrier": "WEL04",
+  "eracarrier": "SUNSHINE HEALTH",
+  "paymentnumber": "X319765706",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053073,\"actionname\":1}",
+  "outcome": "dismissed"
+ }
+]
