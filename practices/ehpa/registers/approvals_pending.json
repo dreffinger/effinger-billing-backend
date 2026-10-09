@@ -327,7 +327,8 @@
    "evidence": "dry run 1009: 45 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K",
@@ -341,7 +342,8 @@
    "evidence": "dry run 1009: 142 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J",
@@ -355,7 +357,8 @@
    "evidence": "dry run 1009: 313 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J-dec",
@@ -369,7 +372,8 @@
    "evidence": "dry run 1009: 70 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K-dec",
@@ -383,7 +387,8 @@
    "evidence": "dry run 1009: 16 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-D",
@@ -397,7 +402,8 @@
    "evidence": "dry run 1009: 10 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0600Z-A",
@@ -411,7 +417,8 @@
    "evidence": "dry run 1009: 108 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0910Z-A",
@@ -425,7 +432,8 @@
    "evidence": "era_new_1009_0910.py --dry 09:3xZ: 2 money lines 'would post pay 106.82 + WOINS 53.18 (bal 160.00)', 4 lines 'would post pay 0.00 + WOCAID2ND 21.80 (bal 21.80)'; residual $0, no PR, no holds.",
    "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   },
   {
    "id": "A-2026-10-09T0910Z-B",
@@ -439,7 +447,8 @@
    "evidence": "era_dismiss_settled_1009.py is the 10/7 dismiss helper with this run's stamp; its dry run was not reached (same refused command).",
    "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-09T2110Z"
   }
  ]
 }
