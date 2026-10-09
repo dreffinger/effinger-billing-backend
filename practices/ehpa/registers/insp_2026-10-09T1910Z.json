@@ -1,0 +1,66 @@
+{
+ "stamp": "2026-10-09T1910Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19457308",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-07 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369165', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369165', '', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  },
+  {
+   "vid": "19457309",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-06 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369166', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369166', '', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  },
+  {
+   "vid": "19457421",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-05 cpts ['99223', '99497'] pos 21 insorder 2 onhcfa 0 charges [('charge23369313', '99223', '', '310.00', '310.00'), ('charge23369314', '99497', 'mcode7', '133.00', '133.00')]",
+    "99223 dx ['N10'] never_primary(first)=False",
+    "99497 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (own 99223)",
+    "updextrainsinfo 99223 10/05/2026 -> ok",
+    "updextrainsinfo 99497 10/05/2026 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369313', '', 'dcode1034545448'), ('charge23369314', 'mcode7', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "127783",
+   "19455936",
+   "20863",
+   [
+    [
+     "395153",
+     "Pattern 24078 Per Medicare CCI  Guidelines, history procedure code 99233 on history line I"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [],
+ "pending_left": 0
+}
