@@ -416,9 +416,9 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 108 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T22:52Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only A --stamp 1009 - 108 payments $8,510.15 (the UHC family's own 277 paid amounts, check numbers and paid dates) + 83 write-offs $7,118.91 (WOINS / WOCAID2ND) on 89 visits / 33 charts (UNI20, UHCMA), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T2252Z (go)"
   },
   {
    "id": "A-2026-10-09T0910Z-A",
