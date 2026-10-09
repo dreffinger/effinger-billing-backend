@@ -446,9 +446,9 @@
    "evidence_file": "",
    "evidence": "era_dismiss_settled_1009.py is the 10/7 dismiss helper with this run's stamp; its dry run was not reached (same refused command).",
    "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T23:13Z applied in the cascade session on William's go (page approval 19:16Z): era_dismiss_settled_1009.py 1053058 1053059 --live - nothing to dismiss: both Humana checks had already left the ERA Center unposted list on their own when card A's ERA-linked posts completed (postingmethod=era marks the check posted); the unposted list is now only the held Florida Blue check 1052906; registers/era_dismiss_settled_2026-10-09T0910Z.json. All nine 10/9 cards applied: $43,048.76, 0 faults",
+   "note": "applied 2026-10-09T2313Z (go) - no-op"
   },
   {
    "id": "A-2026-10-07T0510Z-A",
