@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-10-09, 62 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-10-09, 63 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1575,6 +1575,57 @@
       ],
       "url": "https://healthcare.us.stedi.com/2024-04-01/payers/search?query={{payername}}",
       "description": "items[].payer{displayName, stediId, aliases[]}; aliases = the Change CPID list (used to fix the AET12 / Highmark payer ids).\n\nHelper: inline\nCaptured: 9/8/2026\nStatus: proven"
+     }
+    },
+    {
+     "name": "Eligibility v3 - dependent shape (subscriber + dependents[])",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "{{stedi_key}}"
+       }
+      ],
+      "url": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/eligibility/v3",
+      "description": "Eligibility for a chart patient who is a DEPENDENT on someone else's policy (spouse/child plans). Florida Blue answers AAA 73 at the subscriber level when the policyholder name is not on its file; a clean answer carries the dependent's planStatus/benefits.\n\nHelper: stedi._post (no named helper yet)\nCaptured: 2026-10-09",
+      "body": {
+       "mode": "raw",
+       "raw": {
+        "tradingPartnerServiceId": "{{payer_id}}",
+        "provider": {
+         "organizationName": "EFFINGER HEALTH PA",
+         "npi": "1629515325"
+        },
+        "subscriber": {
+         "firstName": "[name]",
+         "lastName": "[name]",
+         "memberId": "{{member_id}}"
+        },
+        "dependents": [
+         {
+          "firstName": "[name]",
+          "lastName": "[name]",
+          "dateOfBirth": "{{patient_dob_yyyymmdd}}"
+         }
+        ],
+        "encounter": {
+         "dateOfService": "{{dos_yyyymmdd}}",
+         "serviceTypeCodes": [
+          "30"
+         ]
+        }
+       },
+       "options": {
+        "raw": {
+         "language": "text"
+        }
+       }
+      }
      }
     }
    ]
