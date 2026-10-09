@@ -91,7 +91,7 @@
    "at": "2026-10-01T11:34:56Z",
    "cmd": "cd /home/claude/unbilled && python3 era_denials_1052921_1110.py --live",
    "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: Blocked by classifier.",
-   "what": "UHC ERA check 1052921 (W0616257) CO-29 'time limit for filing has expired' on pat17475602 (DOD [DOB]) 2/20/2026 99306+99497 (v19433580, $389) and 2/26/2026 99309 (v19434260, $141) - first filed to UHC 9/4/2026 after Medicare answered $0 in May; and on pat21263 8/17/2025 99487+99489 (v19413646, $105.76 open after UHC paid then recouped; 13 months from DOS = the 12-month rule). Standing rule: CO-29 -> WOLATE, pay 0 + write-off = live balance, check number W0616257, deposit 10/02/2026, dated note. Dry run clean: registers/era_denials_1052921_2026-10-01T1110Z_dry.json.",
+   "what": "UHC ERA check 1052921 (W0616257) CO-29 'time limit for filing has expired' on pat17475602 (deceased) [DOB] 99306+99497 (v19433580, $389) and 2/26/2026 99309 (v19434260, $141) - first filed to UHC 9/4/2026 after Medicare answered $0 in May; and on pat21263 8/17/2025 99487+99489 (v19413646, $105.76 open after UHC paid then recouped; 13 months from DOS = the 12-month rule). Standing rule: CO-29 -> WOLATE, pay 0 + write-off = live balance, check number W0616257, deposit 10/02/2026, dated note. Dry run clean: registers/era_denials_1052921_2026-10-01T1110Z_dry.json.",
    "dollars": "$635.76 WOLATE write-offs",
    "evidence_file": "registers/era_denials_1052921_2026-10-01T1110Z_dry.json",
    "evidence": "[\n {\n  \"pid\": \"17475602\",\n  \"vid\": \"19433580\",\n  \"cid\": \"23340303\",\n  \"cpt\": \"99306\",\n  \"dos\": \"02/20/2026\",\n  \"amount\": 256.0,\n  \"why\": \"CO-29 untimely (UHC W0616257)\",\n  \"code\": \"WOLATE\",\n  \"ok\": true,\n  \"msg\": \"DRY bal 256.00 prof prof13 pid 17475602 -> pay 0.00 wo 256.00\",\n  \"insbalance_after\": null,\n  \"when\": \"2026-10-01T11:30:34Z\",\n  \"dry\": true\n },\n {\n  \"pid\": \"17475602\",\n  \"vid\": \"19433580\",\n  \"cid\": \"23340304\",\n  \"cpt\": \"99497\",\n  \"dos\": \"02/20/2026\",\n  \"amount\": 133.0,\n  \"why\": \"CO-29 untimely (UHC W0616257)\",\n  \"code\": \"WOLATE\",\n  \"ok\": true,\n  \"msg\": \"DRY bal 133.00 prof prof13 pid 17475602 -> pay 0.00 wo 133.00\",\n  \"insbalance_after\": null,\n  \"when\": \"2026-10-01T11:30:34Z\",\n  \"dry\": true\n },\n {\n  \"pid\": \"17475602\",\n  \"vid\": \"19434260\",\n  \"cid\": \"23341236\",\n  \"cpt\": \"99309\",\n  \"dos\": \"02/26/2026\",\n  \"amount\": 141.0,\n  \"why\": \"CO-29 untimely (UHC W0616257)\",\n  \"code\": \"WOLATE\",\n  \"ok\": true,\n  \"msg\": \"DRY bal 141.00 prof prof15 pid 17475602 -> pay 0.00 wo 141.00\",\n  \"insbalance_after\": null,\n  \"when\": \"2026-10-01T11:30:34Z\",\n  \"dry\": true\n },\n {\n  \"pid\": \"21263\",\n  \"vid\": \"19413646\",\n  \"cid\": \"23316734\",\n  \"cpt\": \"99487\",\n  \"dos\": \"08/17/2025\",\n  \"amount\": 68.62,\n  \"why\": \"CO-29 untimely + 12-month rule (UHC W0616257, paid 9/4/2026 then recouped)\",\n  \"code\": \"WOLATE\",\n  \"ok\": true,\n  \"msg\": \"DRY bal 68.62 prof prof13 pid 21263 -> pay 0.00 wo 68.62\",\n  \"insbalance_after\": null,\n  \"when\": \"2026-10-01T11:30:34Z\",\n  \"dry\": true\n },\n {\n  \"pid\": \"21263\",\n  \"vid\": \"19413646\",\n  \"cid\": \"23316735\",\n  \"cpt\": \"99489\",\n  \"dos\": \"08/17/2025\",\n  \"amount\": 37.14,\n  \"why\": \"CO-29 untimely + 12-month rule (UHC W0616257, paid 9/4/2026 then recouped)\",\n  \"code\": \"WOLATE\",\n  \"ok\": true,\n  \"msg\": \"DRY bal 37.14 prof prof13 pid 21263 -> pay 0.00 wo 37.14\",\n  \"insbalance_after\": null,\n  \"when\": \"2026-10-01T11:30:34Z\",\n  \"dry\": true\n }\n]",
@@ -410,6 +410,34 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 108 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-09T0910Z-A",
+   "stamp": "2026-10-09T0910Z",
+   "at": "2026-10-09T09:30:18Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_new_1009_0910.py --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Modify Shared Resources].",
+   "what": "ERA-linked posts for the two Humana checks that reached the ERA Center 10/8-10/9: check 1053058 (Humana 202551106261008, $213.64) chart 17477640 v19455878 99233 09/21/2026 and v19455854 99233 09/22/2026 - pay 106.82 + WOINS 53.18 each (CO-45 51.00 + CO-253 2.18), balances 160.00 -> 0; check 1053059 (Humana NO-PAY-202610070006735, $0) chart 17475638 v19454307 09/09, v19454278 09/10, v19454457 09/11, v19454436 09/12/2026 99233 - $0 OA-23 answers from Humana as the Medicaid-MMA secondary on Medicare-paid lines: WOCAID2ND 21.80 each (dual crossover residual rule 9/20, 10/4, 10/6, 10/7), balances 21.80 -> 0. Posting shape = payreasons.post_line (addpayments postingmethod era with the remit reasonlist), the same helper pattern the 10/8 runs used for checks 1053049/1053052/1053054.",
+   "dollars": "$213.64 paid + $106.36 WOINS + $87.20 WOCAID2ND",
+   "evidence_file": "/home/claude/unbilled/registers/era_new_2026-10-09T0910Z_dry.json",
+   "evidence": "era_new_1009_0910.py --dry 09:3xZ: 2 money lines 'would post pay 106.82 + WOINS 53.18 (bal 160.00)', 4 lines 'would post pay 0.00 + WOCAID2ND 21.80 (bal 21.80)'; residual $0, no PR, no holds.",
+   "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-09T0910Z-B",
+   "stamp": "2026-10-09T0910Z",
+   "at": "2026-10-09T09:30:18Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_dismiss_settled_1009.py 1053058 1053059 --live",
+   "reason": "Not attempted: it was the second command of the refused compound command (classifier: Modify Shared Resources) and depends on card A having posted every line.",
+   "what": "Dismiss ERA checks 1053058 and 1053059 from the ERA Center unposted list once every line carries its payment / write-off (the helper re-reads the live charts and HOLDS if any money line is still open). Run only after card A.",
+   "dollars": "$0 (housekeeping - the money is posted by card A)",
+   "evidence_file": "",
+   "evidence": "era_dismiss_settled_1009.py is the 10/7 dismiss helper with this run's stamp; its dry run was not reached (same refused command).",
+   "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
    "status": "waiting",
    "answer": null
   }
