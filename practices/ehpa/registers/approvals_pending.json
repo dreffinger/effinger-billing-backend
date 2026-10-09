@@ -386,9 +386,9 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 16 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T23:11Z applied in the cascade session on William's go (page approval 19:17Z): old_claims_apply.py --live --only K-dec --stamp 1009 - 44 WOCAID2ND/WOINS write-offs $662.88 on 34 dual visits on deceased-flag charts (crossover skipped), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx. All seven old-claims cards (A/C/D/J/J-dec/K/K-dec) applied: 993 posted actions, $42,835.12, 0 faults",
+   "note": "applied 2026-10-09T23Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-D",
