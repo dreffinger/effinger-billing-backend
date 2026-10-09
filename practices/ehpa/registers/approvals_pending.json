@@ -357,8 +357,8 @@
    "evidence": "dry run 1009: 313 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "done",
-   "answer": "2026-10-09T22:46Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only J --stamp 1009 - 358 WOCAID2ND/WOINS write-offs $7,138.43 on 265 dual visits (Medicare/MA paid, Medicaid-family plan answered $0), 0 faults; 2 two-code charges (22477963, 22477950) needed their WOINS $119.88 posted after moving the remainder back from the patient balance (AMD had shifted it there after the first write-off), both verified insurance 0 / patient 0; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
-   "note": "applied 2026-10-09T2246Z (go)"
+   "answer": "2026-10-09T22:40Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only J --stamp 1009 - 358 WOCAID2ND/WOINS write-offs $7,138.43 on 265 dual visits (Medicare/MA paid, Medicaid-family plan answered $0), 0 faults; 2 two-code charges (22477963, 22477950) needed their WOINS $119.88 posted after moving the remainder back from the patient balance (AMD had shifted it there after the first write-off), both verified insurance 0 / patient 0; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T22Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-J-dec",
@@ -371,9 +371,9 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 70 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T22:44Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only J-dec --stamp 1009 - 70 WOCAID2ND/WOINS write-offs $1,390.66 on 58 dual visits on deceased-flag charts, 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T22Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-K-dec",
