@@ -327,8 +327,8 @@
    "evidence": "dry run 1009: 45 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "done",
-   "answer": "2026-10-09T22:41Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only C --stamp 1009 - 44 payments $4,621.60 from the payers' own 277 figures + 37 write-offs $2,349.40 (WOINS/WOCAID2ND) on 43 visits / 8 charts (AET07, SIM01, CIG13), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
-   "note": "applied 2026-10-09T2241Z (go)"
+   "answer": "2026-10-09T22:16Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only C --stamp 1009 - 44 payments $4,621.60 from the payers' own 277 figures + 37 write-offs $2,349.40 (WOINS/WOCAID2ND) on 43 visits / 8 charts (AET07, SIM01, CIG13), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T22Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-K",
@@ -343,7 +343,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J",
@@ -358,7 +358,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J-dec",
@@ -373,7 +373,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K-dec",
@@ -388,7 +388,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-D",
@@ -402,8 +402,8 @@
    "evidence": "dry run 1009: 10 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "done",
-   "answer": "2026-10-09T22:33Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only D --stamp 1009 - 10 WOLATE write-offs $1,500.00 on 6 untimely Medicare (FLO02) visits, 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
-   "note": "applied 2026-10-09T2233Z (go)"
+   "answer": "2026-10-09T22:14Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only D --stamp 1009 - 10 WOLATE write-offs $1,500.00 on 6 untimely Medicare (FLO02) visits, 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T22Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-A",
@@ -417,8 +417,8 @@
    "evidence": "dry run 1009: 108 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
    "status": "done",
-   "answer": "2026-10-09T22:52Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only A --stamp 1009 - 108 payments $8,510.15 (the UHC family's own 277 paid amounts, check numbers and paid dates) + 83 write-offs $7,118.91 (WOINS / WOCAID2ND) on 89 visits / 33 charts (UNI20, UHCMA), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
-   "note": "applied 2026-10-09T2252Z (go)"
+   "answer": "2026-10-09T22:22Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only A --stamp 1009 - 108 payments $8,510.15 (the UHC family's own 277 paid amounts, check numbers and paid dates) + 83 write-offs $7,118.91 (WOINS / WOCAID2ND) on 89 visits / 33 charts (UNI20, UHCMA), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T22Z (go)"
   },
   {
    "id": "A-2026-10-09T0910Z-A",
@@ -433,7 +433,7 @@
    "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0910Z-B",
@@ -448,7 +448,7 @@
    "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-07T0510Z-A",
