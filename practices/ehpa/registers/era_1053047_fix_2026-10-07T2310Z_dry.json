@@ -1,0 +1,65 @@
+[
+ {
+  "section": "A",
+  "pid": "17476748",
+  "vid": "19453702",
+  "cid": "23364586",
+  "before": {
+   "fee": 198.0,
+   "paid": 198.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "wos": [
+   [
+    -198.0,
+    "WOINS",
+    "0",
+    "22480287",
+    "09/10/2026"
+   ]
+  ],
+  "pays": [
+   [
+    0.0,
+    "349929519",
+    "0",
+    "24638415"
+   ]
+  ],
+  "outcome": "DRY would void write-off 22480287 (-198.00), move any patient balance back, then post pay 104.25 + WOINS 93.75 ERA-linked"
+ },
+ {
+  "section": "B",
+  "pid": "17475777",
+  "vid": "19435223",
+  "cid": "23342218",
+  "before": {
+   "fee": 256.0,
+   "paid": 162.19,
+   "insbal": 93.81,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "orig_check": "V5475692",
+  "icn": "KLC0434879400",
+  "outcome": "DRY would write off 93.81 WOINS under V5475692 (write-off-only shape, manual_post fallback)"
+ },
+ {
+  "section": "B",
+  "pid": "17475777",
+  "vid": "19435223",
+  "cid": "23342219",
+  "before": {
+   "fee": 133.0,
+   "paid": 52.34,
+   "insbal": 80.66,
+   "patbal": 0.0,
+   "carrier": "UNI20"
+  },
+  "orig_check": "V5475692",
+  "icn": "KLC0434879400",
+  "outcome": "DRY would write off 80.66 WOINS under V5475692 (write-off-only shape, manual_post fallback)"
+ }
+]

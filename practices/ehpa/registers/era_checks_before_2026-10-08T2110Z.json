@@ -1,0 +1,48 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-08T2110Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1052906,
+   "licensekey": 152563,
+   "receiveddate": "2026-09-30T08:57:59.263",
+   "depositdate": "2026-09-30T00:00:00",
+   "eracarrierid": "1414",
+   "eracarriername": "FLORIDA BLUE",
+   "hasnote": false,
+   "systemcarrierid": 6062,
+   "systemcarriercode": "BCBS",
+   "systemcarriername": "FLORIDA BLUE",
+   "paymentnumber": "213453023",
+   "paymentamount": 1814.2,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1814.2,
+   "unpostedamount": 104.19,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053054,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-08T13:05:06",
+   "depositdate": "2026-10-13T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "UNITED HEALTHCARE INSURANCE COMPANY",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "W0972983",
+   "paymentamount": 586.42,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 586.42,
+   "unpostedamount": 586.42,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

@@ -1,0 +1,227 @@
+{
+ "stamp": "2026-10-08T2110Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444777,
+   "visitid": "19454445",
+   "pid": "17477716",
+   "chargedetailid": "23365533",
+   "cpt": "99233",
+   "dos": "2026-09-11",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/13/2026"
+   },
+   "pay": 85.46,
+   "wo": 74.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 85.46 + WOINS 74.54 (bal 160.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444778,
+   "visitid": "19454277",
+   "pid": "17477707",
+   "chargedetailid": "23365349",
+   "cpt": "99232",
+   "dos": "2026-09-10",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UHCMA",
+    "billdate": "09/12/2026"
+   },
+   "carrier_override": "UHCMA",
+   "pay": 56.37,
+   "wo": 54.63,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UHCMA",
+   "outcome": "DRY would post pay 56.37 + WOINS 54.63 (bal 111.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444779,
+   "visitid": "19454315",
+   "pid": "17477707",
+   "chargedetailid": "23365388",
+   "cpt": "99223",
+   "dos": "2026-09-08",
+   "paid": 125.21,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "UHCMA",
+    "billdate": "09/12/2026"
+   },
+   "carrier_override": "UHCMA",
+   "pay": 125.21,
+   "wo": 184.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UHCMA",
+   "outcome": "DRY would post pay 125.21 + WOINS 184.79 (bal 310.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444780,
+   "visitid": "19454285",
+   "pid": "17477707",
+   "chargedetailid": "23365357",
+   "cpt": "99232",
+   "dos": "2026-09-09",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UHCMA",
+    "billdate": "09/12/2026"
+   },
+   "carrier_override": "UHCMA",
+   "pay": 56.37,
+   "wo": 54.63,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UHCMA",
+   "outcome": "DRY would post pay 56.37 + WOINS 54.63 (bal 111.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444781,
+   "visitid": "19454376",
+   "pid": "17477716",
+   "chargedetailid": "23365456",
+   "cpt": "99223",
+   "dos": "2026-09-10",
+   "paid": 125.21,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/13/2026"
+   },
+   "pay": 125.21,
+   "wo": 184.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 125.21 + WOINS 184.79 (bal 310.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444781,
+   "visitid": "19454376",
+   "pid": "17477716",
+   "chargedetailid": "23365457",
+   "cpt": "99497",
+   "dos": "2026-09-10",
+   "paid": 52.34,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/13/2026"
+   },
+   "pay": 52.34,
+   "wo": 80.66,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 52.34 + WOINS 80.66 (bal 133.00)"
+  },
+  {
+   "checkid": "1053054",
+   "checkclaimid": 15444782,
+   "visitid": "19454429",
+   "pid": "17477716",
+   "chargedetailid": "23365517",
+   "cpt": "99233",
+   "dos": "2026-09-12",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/13/2026"
+   },
+   "pay": 85.46,
+   "wo": 74.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 85.46 + WOINS 74.54 (bal 160.00)"
+  }
+ ],
+ "wolate": []
+}

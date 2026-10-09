@@ -1,0 +1,76 @@
+{
+ "stamp": "2026-10-07T1412Z",
+ "checkid": "1053023",
+ "checknumber": "819928855",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17476042",
+   "vid": "19453207",
+   "cid": "23363769",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453499",
+   "cid": "23364196",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453703",
+   "cid": "23364587",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453717",
+   "cid": "23364600",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  }
+ ]
+}

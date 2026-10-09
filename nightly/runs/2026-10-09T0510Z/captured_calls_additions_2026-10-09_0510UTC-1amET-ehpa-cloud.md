@@ -1,0 +1,5 @@
+# captured_calls additions - 2026-10-09T0510Z (1 AM ET 10/9/2026, ehpa cloud backend billing run)
+
+No new call shapes this run. Calls used (all previously captured): login (one attempt, AMD_PSW env credential), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/getclaiminspectorcharges, getclaimunbillablecharges, getclaimexclusionclaimruns/getclaimexclusioncharges (columns_scan.py before/after), GET /api/era/checks + checkdetails (era_list.py), posterapayments dry (era_post.py --dry, 0 posts), lookuppatient (admit_lookup_0510.py), getdemographic, AMD 271 checkEligibility (elig_amd.py), Stedi MBILU / MBILUNOSSN / insurance-discovery / direct payer 271 (87726, 61101, 77027), addinsurance (add_ins.add x3, no group), updateinsurance sequence (ins_update.update), updextrainsinfo hospitalizationfrom (x8), updvisitwithnewcharges full-visit resave (x9), updvisitwithcharges patient-balance move (x1), PATCH demographics address line 1 (addr_line1_fix x8), hideunbillablevisits hide=-1 (25 visits).
+
+Columns 0/3/36/1 -> 0/3/11/1. ERA 1 check $104.19 (1052906 held) before and after. Vocabulary entries added: 0.

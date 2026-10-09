@@ -1,0 +1,83 @@
+[
+ {
+  "checkid": "1053040",
+  "stamp": "2026-10-07T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 18,
+   "money-residual": 4,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "carrier": "FLO02",
+  "eracarrier": "AARP SUPPLEMENTAL HEALTH PLANS FROM UNITEDHEALTHCARE",
+  "paymentnumber": "00148133556",
+  "paymentamount": 469.97,
+  "unposted": 69.15,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053040,\"actionname\":1}",
+  "outcome": "dismissed"
+ },
+ {
+  "checkid": "1053044",
+  "stamp": "2026-10-07T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 5,
+   "money-residual": 0,
+   "zero-recorded": 2
+  },
+  "unsettled": [],
+  "carrier": "HUM01",
+  "eracarrier": "HUMANA INC.",
+  "paymentnumber": "202459561261007",
+  "paymentamount": 519.71,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053044,\"actionname\":1}",
+  "outcome": "dismissed"
+ },
+ {
+  "checkid": "1053024",
+  "stamp": "2026-10-07T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 56
+  },
+  "unsettled": [],
+  "carrier": "FLO02",
+  "eracarrier": "MEDICARE PART B",
+  "paymentnumber": "350045840",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053024,\"actionname\":1}",
+  "outcome": "dismissed"
+ },
+ {
+  "checkid": "1053045",
+  "stamp": "2026-10-07T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "outcome": "not on the unposted list"
+ },
+ {
+  "checkid": "1053046",
+  "stamp": "2026-10-07T2110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "outcome": "not on the unposted list"
+ }
+]

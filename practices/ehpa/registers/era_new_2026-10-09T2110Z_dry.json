@@ -1,0 +1,61 @@
+{
+ "stamp": "2026-10-09T2110Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053073",
+   "checkclaimid": 15444928,
+   "visitid": "19456186",
+   "pid": "17476739",
+   "chargedetailid": "23367810",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "09/26/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053073",
+   "checkclaimid": 15444929,
+   "visitid": "19456199",
+   "pid": "12182947",
+   "chargedetailid": "23367823",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "09/26/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  }
+ ],
+ "wolate": []
+}

@@ -1,0 +1,10 @@
+# captured_calls additions - backend billing run 2026-10-08T2110Z (5 PM ET 10/8/2026, ehpa cloud)
+
+Calls exercised (already in the registry): login (one, 21:17Z), getclaimcenteroverview + the four Claims Center list calls (columns_scan.py before/after), GET /api/era/checks x2 + GET /api/era/checkdetails (era_list.py before/after, check 1053054 cached), gettxhistory visitid= (txh.fetch_visit, live balances before/after each post), addpayments postingmethod=era eraclaimid/erareportid + reasonlist (payreasons.post_line inside era_new_1008_2110.py: 7 lines, 0 faults), gettxhistory typefilter=0 (txh.py, chart pat17474046 anchor re-read), lookuppatient name wildcard x2 (admit_lookup_2110.py, read-only), POST /api/claim/massrebillsearch + Stedi 276/277 x21 (claim_status_sweep.py pass 28).
+
+- **No new call shape this run.** Helpers this run: era_new_1008_2110.py (stamp copy of era_new_1008_1510.py for check 1053054), admit_lookup_2110.py (new, READ-ONLY: lookuppatient for pending admits, chart ids only in its register).
+- ERA 2 checks $690.61 -> 1 / $104.19: UHC W0972983 (1053054, $586.42, 6 claims / 7 lines, charts pat17477716 + pat17477707, DOS 9/8-9/12/2026) posted ERA-linked pay $586.42 + WOINS $708.58; the three claims AMD filed under UHCMA (car302853) posted under that live carrier through the UNI20/UHCMA alias (check meta systemcarrierid override) - the check dropped off GET /api/era/checks by itself. 1052906 held (William).
+- Columns 0/3/0/1 unchanged (standing holds: pat20863 CCI, pat17474046 x2 no 99223 anchor, pat17473087 UNI20 'Medicare is primary').
+- UNI20/BCBS pre-5/1 pass 28 (--carriers UNI20,BCBS, --skip-answered passes 1-27: 266 skipped, 21 asked): 20 PENDING, 1 UNKNOWN, 0 candidates, 0 sent.
+- TRAP: `--skip-answered "$(ls registers/uni20_bcbs_pre0501_sweep_*.json | tr '\n' ',')"` leaves a trailing empty file name and claim_status_sweep.py dies FileNotFoundError('') before any AMD or Stedi call - join the list with `paste -sd,` instead.
+- AMD writes this run: 7 addpayments (ERA-linked). No classifier refusal.

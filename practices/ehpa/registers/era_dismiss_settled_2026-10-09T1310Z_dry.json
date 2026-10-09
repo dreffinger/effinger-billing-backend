@@ -1,0 +1,43 @@
+[
+ {
+  "checkid": "1053061",
+  "stamp": "2026-10-09T1310Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "outcome": "not on the unposted list"
+ },
+ {
+  "checkid": "1053063",
+  "stamp": "2026-10-09T1310Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "outcome": "not on the unposted list"
+ },
+ {
+  "checkid": "1053064",
+  "stamp": "2026-10-09T1310Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 2
+  },
+  "unsettled": [],
+  "carrier": "FLO02",
+  "eracarrier": "MEDICARE PART B",
+  "paymentnumber": "350058146",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "outcome": "dry - would dismiss"
+ }
+]

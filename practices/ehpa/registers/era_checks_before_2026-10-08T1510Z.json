@@ -1,0 +1,48 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-08T1510Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1052906,
+   "licensekey": 152563,
+   "receiveddate": "2026-09-30T08:57:59.263",
+   "depositdate": "2026-09-30T00:00:00",
+   "eracarrierid": "1414",
+   "eracarriername": "FLORIDA BLUE",
+   "hasnote": false,
+   "systemcarrierid": 6062,
+   "systemcarriercode": "BCBS",
+   "systemcarriername": "FLORIDA BLUE",
+   "paymentnumber": "213453023",
+   "paymentamount": 1814.2,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1814.2,
+   "unpostedamount": 104.19,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053052,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-08T06:25:05.973",
+   "depositdate": "2026-10-07T00:00:00",
+   "eracarrierid": "2872",
+   "eracarriername": "[name]",
+   "hasnote": false,
+   "systemcarrierid": 6872,
+   "systemcarriercode": "TRI00",
+   "systemcarriername": "TRICARE EAST",
+   "paymentnumber": "0010047450ER7",
+   "paymentamount": 174.18,
+   "paymentcode": "CHK",
+   "paymentdescription": "",
+   "calculatedamount": 174.18,
+   "unpostedamount": 174.18,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

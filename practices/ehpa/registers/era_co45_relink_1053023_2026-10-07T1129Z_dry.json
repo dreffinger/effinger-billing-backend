@@ -1,0 +1,5404 @@
+{
+ "stamp": "2026-10-07T1129Z",
+ "checkid": "1053023",
+ "checknumber": "819928855",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17476868",
+   "vid": "19445442",
+   "cid": "23354307",
+   "cpt": "99344",
+   "paid": 115.5,
+   "co": 155.04,
+   "pr": 29.46,
+   "before": {
+    "fee": 300.0,
+    "paid": 115.5,
+    "insbalance": 184.5,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658997",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476868",
+   "vid": "19445442",
+   "cid": "23354308",
+   "cpt": "99497",
+   "paid": 68.11,
+   "co": 47.52,
+   "pr": 17.37,
+   "before": {
+    "fee": 133.0,
+    "paid": 68.11,
+    "insbalance": 64.89,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24658998",
+   "result": "DRY"
+  },
+  {
+   "pid": "22880",
+   "vid": "19455945",
+   "cid": "23367427",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24658999",
+   "result": "DRY"
+  },
+  {
+   "pid": "22880",
+   "vid": "19455945",
+   "cid": "23367428",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659000",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476566",
+   "vid": "19455632",
+   "cid": "23366988",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659001",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476566",
+   "vid": "19455632",
+   "cid": "23366989",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659002",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473346",
+   "vid": "19455943",
+   "cid": "23367423",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659003",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473346",
+   "vid": "19455943",
+   "cid": "23367424",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659004",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476874",
+   "vid": "19455942",
+   "cid": "23367421",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659005",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476874",
+   "vid": "19455942",
+   "cid": "23367422",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659006",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476869",
+   "vid": "19452593",
+   "cid": "23362912",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659007",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476869",
+   "vid": "19452593",
+   "cid": "23362913",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659008",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476869",
+   "vid": "19455631",
+   "cid": "23366987",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659009",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471349",
+   "vid": "19455830",
+   "cid": "23367289",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659010",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471349",
+   "vid": "19455830",
+   "cid": "23367290",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659011",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475536",
+   "vid": "19455941",
+   "cid": "23367419",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659012",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475536",
+   "vid": "19455941",
+   "cid": "23367420",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659013",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19422202",
+   "cid": "23327562",
+   "cpt": "99344",
+   "paid": 107.34,
+   "co": 165.28,
+   "pr": 27.38,
+   "before": {
+    "fee": 300.0,
+    "paid": 107.34,
+    "insbalance": 192.66,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659014",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19422202",
+   "cid": "23327563",
+   "cpt": "99497",
+   "paid": 62.26,
+   "co": 54.86,
+   "pr": 15.88,
+   "before": {
+    "fee": 133.0,
+    "paid": 62.26,
+    "insbalance": 70.74,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659015",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19423559",
+   "cid": "23329144",
+   "cpt": "99487",
+   "paid": 101.51,
+   "co": 78.59,
+   "pr": 25.9,
+   "before": {
+    "fee": 206.0,
+    "paid": 101.51,
+    "insbalance": 104.49,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659016",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19423559",
+   "cid": "23329145",
+   "cpt": "99489",
+   "paid": 54.29,
+   "co": 40.86,
+   "pr": 13.85,
+   "before": {
+    "fee": 109.0,
+    "paid": 54.29,
+    "insbalance": 54.71,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659017",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477010",
+   "vid": "19455775",
+   "cid": "23367217",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659018",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19442285",
+   "cid": "23350288",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659019",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19442285",
+   "cid": "23350289",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659020",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19452591",
+   "cid": "23362908",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659021",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19452591",
+   "cid": "23362909",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659022",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19455629",
+   "cid": "23366985",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659023",
+   "result": "DRY"
+  },
+  {
+   "pid": "25160",
+   "vid": "19455659",
+   "cid": "23367023",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659024",
+   "result": "DRY"
+  },
+  {
+   "pid": "25160",
+   "vid": "19455659",
+   "cid": "23367024",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659025",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472834",
+   "vid": "19455658",
+   "cid": "23367021",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659026",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472834",
+   "vid": "19455658",
+   "cid": "23367022",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659027",
+   "result": "DRY"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455852",
+   "cid": "23367317",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659028",
+   "result": "DRY"
+  },
+  {
+   "pid": "20729",
+   "vid": "19455877",
+   "cid": "23367343",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659029",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476264",
+   "vid": "19455628",
+   "cid": "23366984",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659030",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476458",
+   "vid": "19455701",
+   "cid": "23367081",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659031",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476458",
+   "vid": "19455701",
+   "cid": "23367082",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659032",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476348",
+   "vid": "19455727",
+   "cid": "23367132",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659033",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476348",
+   "vid": "19455727",
+   "cid": "23367133",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659034",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19447742",
+   "cid": "23356970",
+   "cpt": "99344",
+   "paid": 98.18,
+   "co": 176.78,
+   "pr": 25.04,
+   "before": {
+    "fee": 300.0,
+    "paid": 98.18,
+    "insbalance": 0.0,
+    "patbalance": 201.82,
+    "carrier": "FLO02"
+   },
+   "payid": "24659035",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474541",
+   "vid": "19450201",
+   "cid": "23360087",
+   "cpt": "99349",
+   "paid": 88.61,
+   "co": 86.79,
+   "pr": 22.6,
+   "before": {
+    "fee": 198.0,
+    "paid": 88.61,
+    "insbalance": 109.39,
+    "patbalance": 0.0,
+    "carrier": "PHI01"
+   },
+   "payid": "24659036",
+   "result": "DRY"
+  },
+  {
+   "pid": "17469525",
+   "vid": "19455728",
+   "cid": "23367134",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659037",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470802",
+   "vid": "19452832",
+   "cid": "23363207",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659038",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470802",
+   "vid": "19452694",
+   "cid": "23363073",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659039",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470802",
+   "vid": "19452694",
+   "cid": "23363074",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659040",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477830",
+   "vid": "19455784",
+   "cid": "23367228",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659041",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477830",
+   "vid": "19455784",
+   "cid": "23367229",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659042",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477830",
+   "vid": "19455479",
+   "cid": "23366777",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 0.0,
+    "patbalance": 126.26,
+    "carrier": "FLO02"
+   },
+   "payid": "24659043",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477830",
+   "vid": "19455479",
+   "cid": "23366778",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 0.0,
+    "patbalance": 80.67,
+    "carrier": "FLO02"
+   },
+   "payid": "24659044",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477516",
+   "vid": "19455858",
+   "cid": "23367323",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659045",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477516",
+   "vid": "19455881",
+   "cid": "23367346",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659046",
+   "result": "DRY"
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "cid": "23367407",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659047",
+   "result": "DRY"
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "cid": "23367408",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659048",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476975",
+   "vid": "19455783",
+   "cid": "23367226",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659049",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476975",
+   "vid": "19455783",
+   "cid": "23367227",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659050",
+   "result": "DRY"
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "cid": "23366650",
+   "cpt": "99308",
+   "paid": 53.46,
+   "co": 39.9,
+   "pr": 13.64,
+   "before": {
+    "fee": 107.0,
+    "paid": 53.46,
+    "insbalance": 53.54,
+    "patbalance": 0.0,
+    "carrier": "STA03"
+   },
+   "payid": "24659051",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472436",
+   "vid": "19455731",
+   "cid": "23367139",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659052",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472436",
+   "vid": "19455731",
+   "cid": "23367140",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659053",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474911",
+   "vid": "19455850",
+   "cid": "23367315",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659054",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474911",
+   "vid": "19455873",
+   "cid": "23367338",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659055",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474911",
+   "vid": "19455873",
+   "cid": "23367339",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659056",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474911",
+   "vid": "19455635",
+   "cid": "23366993",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659057",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474911",
+   "vid": "19455635",
+   "cid": "23366994",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659058",
+   "result": "DRY"
+  },
+  {
+   "pid": "24560",
+   "vid": "19455729",
+   "cid": "23367135",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659059",
+   "result": "DRY"
+  },
+  {
+   "pid": "24560",
+   "vid": "19455729",
+   "cid": "23367136",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659060",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473883",
+   "vid": "19455706",
+   "cid": "23367091",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659061",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473883",
+   "vid": "19455706",
+   "cid": "23367092",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659062",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19448360",
+   "cid": "23357660",
+   "cpt": "G0439",
+   "paid": 134.01,
+   "co": 69.99,
+   "pr": 0,
+   "before": {
+    "fee": 204.0,
+    "paid": 134.01,
+    "insbalance": 69.99,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659063",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19431396",
+   "cid": "23338014",
+   "cpt": "99344",
+   "paid": 115.5,
+   "co": 155.04,
+   "pr": 29.46,
+   "before": {
+    "fee": 300.0,
+    "paid": 115.5,
+    "insbalance": 184.5,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659064",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19431396",
+   "cid": "23338015",
+   "cpt": "99497",
+   "paid": 68.11,
+   "co": 47.52,
+   "pr": 17.37,
+   "before": {
+    "fee": 133.0,
+    "paid": 68.11,
+    "insbalance": 64.89,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659065",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19433866",
+   "cid": "23340631",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659066",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19433866",
+   "cid": "23340632",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659067",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19437307",
+   "cid": "23344396",
+   "cpt": "99349",
+   "paid": 88.61,
+   "co": 86.79,
+   "pr": 22.6,
+   "before": {
+    "fee": 198.0,
+    "paid": 88.61,
+    "insbalance": 109.39,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659068",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19442527",
+   "cid": "23350705",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659069",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19442527",
+   "cid": "23350706",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659070",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19448725",
+   "cid": "23358042",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659071",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19452649",
+   "cid": "23363016",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659072",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475365",
+   "vid": "19452649",
+   "cid": "23363017",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659073",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471968",
+   "vid": "19431880",
+   "cid": "23338519",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659074",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471968",
+   "vid": "19431880",
+   "cid": "23338520",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659075",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471968",
+   "vid": "19455688",
+   "cid": "23367065",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659076",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471688",
+   "vid": "19455661",
+   "cid": "23367027",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659077",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471688",
+   "vid": "19455661",
+   "cid": "23367028",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659078",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19448599",
+   "cid": "23357903",
+   "cpt": "G0439",
+   "paid": 134.01,
+   "co": 69.99,
+   "pr": 0,
+   "before": {
+    "fee": 204.0,
+    "paid": 134.01,
+    "insbalance": 0.0,
+    "patbalance": 69.99,
+    "carrier": "FLO02"
+   },
+   "payid": "24659079",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477719",
+   "vid": "19455882",
+   "cid": "23367347",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659080",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19448747",
+   "cid": "23358099",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659081",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19448747",
+   "cid": "23358100",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 0.0,
+    "patbalance": 48.26,
+    "carrier": "FLO02"
+   },
+   "payid": "24659082",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19455627",
+   "cid": "23366983",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659083",
+   "result": "DRY"
+  },
+  {
+   "pid": "23721",
+   "vid": "19455761",
+   "cid": "23367200",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659084",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470881",
+   "vid": "19455655",
+   "cid": "23367017",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659085",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453101",
+   "cid": "23363601",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659086",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453127",
+   "cid": "23363629",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 0.0,
+    "patbalance": 184.8,
+    "carrier": "FLO02"
+   },
+   "payid": "24659087",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453207",
+   "cid": "23363769",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453367",
+   "cid": "23363912",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659088",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453387",
+   "cid": "23363934",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659089",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453499",
+   "cid": "23364196",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453703",
+   "cid": "23364587",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453717",
+   "cid": "23364600",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 160.0,
+    "carrier": "FLO02"
+   },
+   "result": "no payment with check 819928855 on the charge - left"
+  },
+  {
+   "pid": "17473440",
+   "vid": "19455673",
+   "cid": "23367046",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659090",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473440",
+   "vid": "19455673",
+   "cid": "23367047",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 0.0,
+    "patbalance": 48.26,
+    "carrier": "FLO02"
+   },
+   "payid": "24659091",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453748",
+   "cid": "23364641",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659092",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19451545",
+   "cid": "23361594",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "carrier": "FLO02"
+   },
+   "payid": "24659093",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19452616",
+   "cid": "23362956",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659094",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19452616",
+   "cid": "23362957",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659095",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19452859",
+   "cid": "23363232",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "carrier": "FLO02"
+   },
+   "payid": "24659096",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453092",
+   "cid": "23363592",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659097",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476917",
+   "vid": "19455938",
+   "cid": "23367413",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659098",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476917",
+   "vid": "19455938",
+   "cid": "23367414",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659099",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474081",
+   "vid": "19455825",
+   "cid": "23367283",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659100",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474081",
+   "vid": "19455909",
+   "cid": "23367378",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659101",
+   "result": "DRY"
+  },
+  {
+   "pid": "20728",
+   "vid": "19455760",
+   "cid": "23367199",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659102",
+   "result": "DRY"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455824",
+   "cid": "23367282",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659103",
+   "result": "DRY"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455908",
+   "cid": "23367377",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659104",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476042",
+   "vid": "19453848",
+   "cid": "23364767",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "FLO02"
+   },
+   "payid": "24659105",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474446",
+   "vid": "19455717",
+   "cid": "23367113",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659106",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474446",
+   "vid": "19455717",
+   "cid": "23367114",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659107",
+   "result": "DRY"
+  },
+  {
+   "pid": "25827",
+   "vid": "19455698",
+   "cid": "23367076",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659108",
+   "result": "DRY"
+  },
+  {
+   "pid": "25827",
+   "vid": "19455698",
+   "cid": "23367077",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659109",
+   "result": "DRY"
+  },
+  {
+   "pid": "17469426",
+   "vid": "19455674",
+   "cid": "23367048",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659110",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477499",
+   "vid": "19455603",
+   "cid": "23366943",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659111",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472286",
+   "vid": "19455774",
+   "cid": "23367215",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659112",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472286",
+   "vid": "19455774",
+   "cid": "23367216",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659113",
+   "result": "DRY"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436536",
+   "cid": "23343591",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659114",
+   "result": "DRY"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436825",
+   "cid": "23343873",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659115",
+   "result": "DRY"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436828",
+   "cid": "23343876",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659116",
+   "result": "DRY"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436829",
+   "cid": "23343877",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659117",
+   "result": "DRY"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19437116",
+   "cid": "23344191",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659118",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474862",
+   "vid": "19455626",
+   "cid": "23366982",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659119",
+   "result": "DRY"
+  },
+  {
+   "pid": "47039",
+   "vid": "19455770",
+   "cid": "23367212",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659120",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470939",
+   "vid": "19455700",
+   "cid": "23367079",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659121",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470939",
+   "vid": "19455700",
+   "cid": "23367080",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659122",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477557",
+   "vid": "19455851",
+   "cid": "23367316",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659123",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477557",
+   "vid": "19455876",
+   "cid": "23367342",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659124",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473477",
+   "vid": "19452587",
+   "cid": "23362901",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659125",
+   "result": "DRY"
+  },
+  {
+   "pid": "21798",
+   "vid": "19455769",
+   "cid": "23367210",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659126",
+   "result": "DRY"
+  },
+  {
+   "pid": "21798",
+   "vid": "19455769",
+   "cid": "23367211",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659127",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473460",
+   "vid": "19455656",
+   "cid": "23367018",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659128",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473460",
+   "vid": "19455656",
+   "cid": "23367019",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659129",
+   "result": "DRY"
+  },
+  {
+   "pid": "25592",
+   "vid": "19455600",
+   "cid": "23366939",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659130",
+   "result": "DRY"
+  },
+  {
+   "pid": "25592",
+   "vid": "19455600",
+   "cid": "23366940",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 0.0,
+    "patbalance": 48.26,
+    "carrier": "FLO02"
+   },
+   "payid": "24659131",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472594",
+   "vid": "19455768",
+   "cid": "23367209",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659132",
+   "result": "DRY"
+  },
+  {
+   "pid": "24368",
+   "vid": "19455828",
+   "cid": "23367286",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659133",
+   "result": "DRY"
+  },
+  {
+   "pid": "24368",
+   "vid": "19455828",
+   "cid": "23367287",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659134",
+   "result": "DRY"
+  },
+  {
+   "pid": "46673",
+   "vid": "19455725",
+   "cid": "23367128",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659135",
+   "result": "DRY"
+  },
+  {
+   "pid": "46673",
+   "vid": "19455725",
+   "cid": "23367129",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659136",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471495",
+   "vid": "19455686",
+   "cid": "23367063",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659137",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471172",
+   "vid": "19455766",
+   "cid": "23367206",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659138",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472931",
+   "vid": "19455624",
+   "cid": "23366979",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659139",
+   "result": "DRY"
+  },
+  {
+   "pid": "24214",
+   "vid": "19455722",
+   "cid": "23367122",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659140",
+   "result": "DRY"
+  },
+  {
+   "pid": "24214",
+   "vid": "19455722",
+   "cid": "23367123",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659141",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19450200",
+   "cid": "23360086",
+   "cpt": "99349",
+   "paid": 88.61,
+   "co": 86.79,
+   "pr": 22.6,
+   "before": {
+    "fee": 198.0,
+    "paid": 88.61,
+    "insbalance": 0.0,
+    "patbalance": 109.39,
+    "carrier": "FLO02"
+   },
+   "payid": "24659142",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477719",
+   "vid": "19455859",
+   "cid": "23367324",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659143",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474082",
+   "vid": "19455637",
+   "cid": "23366997",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659144",
+   "result": "DRY"
+  },
+  {
+   "pid": "12235552",
+   "vid": "19455678",
+   "cid": "23367052",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659145",
+   "result": "DRY"
+  },
+  {
+   "pid": "21308",
+   "vid": "19455809",
+   "cid": "23367265",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659146",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470899",
+   "vid": "19455924",
+   "cid": "23367393",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659147",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470899",
+   "vid": "19455844",
+   "cid": "23367307",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659148",
+   "result": "DRY"
+  },
+  {
+   "pid": "45010",
+   "vid": "19455594",
+   "cid": "23366927",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659149",
+   "result": "DRY"
+  },
+  {
+   "pid": "45010",
+   "vid": "19455594",
+   "cid": "23366928",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659150",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470875",
+   "vid": "19455808",
+   "cid": "23367264",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659151",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472195",
+   "vid": "19455713",
+   "cid": "23367105",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659152",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472195",
+   "vid": "19455713",
+   "cid": "23367106",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659153",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477533",
+   "vid": "19455681",
+   "cid": "23367055",
+   "cpt": "99487",
+   "paid": 73.83,
+   "co": 64.53,
+   "pr": 67.64,
+   "before": {
+    "fee": 206.0,
+    "paid": 73.83,
+    "insbalance": 132.17,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659154",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477533",
+   "vid": "19455681",
+   "cid": "23367056",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659155",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477497",
+   "vid": "19455871",
+   "cid": "23367336",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659156",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477497",
+   "vid": "19455891",
+   "cid": "23367356",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659157",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19444531",
+   "cid": "23353219",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659158",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19444531",
+   "cid": "23353220",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659159",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19446208",
+   "cid": "23355187",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659160",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19446208",
+   "cid": "23355188",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659161",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19445000",
+   "cid": "23353783",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659162",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19447311",
+   "cid": "23356494",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659163",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19449458",
+   "cid": "23359095",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659164",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477651",
+   "vid": "19455806",
+   "cid": "23367260",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659165",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477651",
+   "vid": "19455806",
+   "cid": "23367261",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659166",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477651",
+   "vid": "19455904",
+   "cid": "23367373",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 0.0,
+    "patbalance": 74.64,
+    "carrier": "FLO02"
+   },
+   "payid": "24659167",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477225",
+   "vid": "19455593",
+   "cid": "23366925",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659168",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477225",
+   "vid": "19455593",
+   "cid": "23366926",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659169",
+   "result": "DRY"
+  },
+  {
+   "pid": "45520",
+   "vid": "19455592",
+   "cid": "23366923",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659170",
+   "result": "DRY"
+  },
+  {
+   "pid": "45520",
+   "vid": "19455592",
+   "cid": "23366924",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659171",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475363",
+   "vid": "19455712",
+   "cid": "23367103",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI01"
+   },
+   "payid": "24659172",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475363",
+   "vid": "19455712",
+   "cid": "23367104",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "UNI01"
+   },
+   "payid": "24659173",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471388",
+   "vid": "19455695",
+   "cid": "23367073",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659174",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471174",
+   "vid": "19455646",
+   "cid": "23367007",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659175",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471174",
+   "vid": "19455646",
+   "cid": "23367008",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 0.0,
+    "patbalance": 48.26,
+    "carrier": "FLO02"
+   },
+   "payid": "24659176",
+   "result": "DRY"
+  },
+  {
+   "pid": "12179688",
+   "vid": "19455612",
+   "cid": "23366958",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659177",
+   "result": "DRY"
+  },
+  {
+   "pid": "12179688",
+   "vid": "19455612",
+   "cid": "23366959",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659178",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19446131",
+   "cid": "23355037",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659179",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19455752",
+   "cid": "23367183",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659180",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19455752",
+   "cid": "23367184",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659181",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476094",
+   "vid": "19455670",
+   "cid": "23367042",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659182",
+   "result": "DRY"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "cid": "23367361",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659183",
+   "result": "DRY"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "cid": "23367362",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659184",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476868",
+   "vid": "19446238",
+   "cid": "23355244",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659185",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476868",
+   "vid": "19446238",
+   "cid": "23355245",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659186",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476868",
+   "vid": "19450196",
+   "cid": "23360082",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659187",
+   "result": "DRY"
+  },
+  {
+   "pid": "24330",
+   "vid": "19455822",
+   "cid": "23367280",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659188",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477184",
+   "vid": "19455906",
+   "cid": "23367375",
+   "cpt": "99316",
+   "paid": 79.42,
+   "co": 60.32,
+   "pr": 20.26,
+   "before": {
+    "fee": 160.0,
+    "paid": 79.42,
+    "insbalance": 80.58,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659189",
+   "result": "DRY"
+  },
+  {
+   "pid": "22758",
+   "vid": "19455819",
+   "cid": "23367276",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659190",
+   "result": "DRY"
+  },
+  {
+   "pid": "20937",
+   "vid": "19455848",
+   "cid": "23367312",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659191",
+   "result": "DRY"
+  },
+  {
+   "pid": "20937",
+   "vid": "19455848",
+   "cid": "23367313",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659192",
+   "result": "DRY"
+  },
+  {
+   "pid": "20937",
+   "vid": "19455927",
+   "cid": "23367396",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659193",
+   "result": "DRY"
+  },
+  {
+   "pid": "20716",
+   "vid": "19455816",
+   "cid": "23367273",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659194",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476855",
+   "vid": "19455617",
+   "cid": "23366967",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659195",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476855",
+   "vid": "19455617",
+   "cid": "23366968",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659196",
+   "result": "DRY"
+  },
+  {
+   "pid": "23745",
+   "vid": "19455715",
+   "cid": "23367109",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659197",
+   "result": "DRY"
+  },
+  {
+   "pid": "23745",
+   "vid": "19455715",
+   "cid": "23367110",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659198",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476438",
+   "vid": "19455616",
+   "cid": "23366965",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659199",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476438",
+   "vid": "19455616",
+   "cid": "23366966",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659200",
+   "result": "DRY"
+  },
+  {
+   "pid": "23159",
+   "vid": "19455755",
+   "cid": "23367189",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659201",
+   "result": "DRY"
+  },
+  {
+   "pid": "23159",
+   "vid": "19455755",
+   "cid": "23367190",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659202",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471451",
+   "vid": "19455684",
+   "cid": "23367061",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659203",
+   "result": "DRY"
+  },
+  {
+   "pid": "45052",
+   "vid": "19455595",
+   "cid": "23366931",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659204",
+   "result": "DRY"
+  },
+  {
+   "pid": "45052",
+   "vid": "19455595",
+   "cid": "23366932",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659205",
+   "result": "DRY"
+  },
+  {
+   "pid": "12179706",
+   "vid": "19455813",
+   "cid": "23367269",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659206",
+   "result": "DRY"
+  },
+  {
+   "pid": "12182776",
+   "vid": "19455846",
+   "cid": "23367309",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659207",
+   "result": "DRY"
+  },
+  {
+   "pid": "12182776",
+   "vid": "19455846",
+   "cid": "23367310",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659208",
+   "result": "DRY"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455845",
+   "cid": "23367308",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659209",
+   "result": "DRY"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455925",
+   "cid": "23367394",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659210",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472285",
+   "vid": "19455812",
+   "cid": "23367268",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659211",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473222",
+   "vid": "19455811",
+   "cid": "23367267",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659212",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473269",
+   "vid": "19455649",
+   "cid": "23367012",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659213",
+   "result": "DRY"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455671",
+   "cid": "23367043",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659214",
+   "result": "DRY"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "cid": "23367337",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659215",
+   "result": "DRY"
+  },
+  {
+   "pid": "20379",
+   "vid": "19455932",
+   "cid": "23367401",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659216",
+   "result": "DRY"
+  },
+  {
+   "pid": "20379",
+   "vid": "19455932",
+   "cid": "23367402",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "payid": "24659217",
+   "result": "DRY"
+  },
+  {
+   "pid": "45108",
+   "vid": "19455645",
+   "cid": "23367006",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659218",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474542",
+   "vid": "19455644",
+   "cid": "23367005",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 0.0,
+    "patbalance": 93.91,
+    "carrier": "FLO02"
+   },
+   "payid": "24659219",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473432",
+   "vid": "19455934",
+   "cid": "23367405",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659220",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473432",
+   "vid": "19455934",
+   "cid": "23367406",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659221",
+   "result": "DRY"
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "cid": "23367439",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659222",
+   "result": "DRY"
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "cid": "23367440",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659223",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477190",
+   "vid": "19455738",
+   "cid": "23367153",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "FLO02"
+   },
+   "payid": "24659224",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477190",
+   "vid": "19455738",
+   "cid": "23367154",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "FLO02"
+   },
+   "payid": "24659225",
+   "result": "DRY"
+  },
+  {
+   "pid": "24039",
+   "vid": "19455474",
+   "cid": "23366767",
+   "cpt": "99306",
+   "paid": 129.74,
+   "co": 93.16,
+   "pr": 33.1,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbalance": 126.26,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659226",
+   "result": "DRY"
+  },
+  {
+   "pid": "24039",
+   "vid": "19455474",
+   "cid": "23366768",
+   "cpt": "99497",
+   "paid": 52.33,
+   "co": 67.32,
+   "pr": 13.35,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbalance": 80.67,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659227",
+   "result": "DRY"
+  },
+  {
+   "pid": "42092",
+   "vid": "19455949",
+   "cid": "23367435",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659228",
+   "result": "DRY"
+  },
+  {
+   "pid": "42092",
+   "vid": "19455949",
+   "cid": "23367436",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659229",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477566",
+   "vid": "19455901",
+   "cid": "23367370",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659230",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477566",
+   "vid": "19455950",
+   "cid": "23367437",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659231",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477566",
+   "vid": "19455950",
+   "cid": "23367438",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659232",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472732",
+   "vid": "19455710",
+   "cid": "23367099",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659233",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472732",
+   "vid": "19455710",
+   "cid": "23367100",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659234",
+   "result": "DRY"
+  },
+  {
+   "pid": "21411",
+   "vid": "19455948",
+   "cid": "23367433",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659235",
+   "result": "DRY"
+  },
+  {
+   "pid": "21411",
+   "vid": "19455948",
+   "cid": "23367434",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659236",
+   "result": "DRY"
+  },
+  {
+   "pid": "25869",
+   "vid": "19455791",
+   "cid": "23367240",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659237",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451595",
+   "cid": "23361650",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659238",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451903",
+   "cid": "23361993",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659239",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451913",
+   "cid": "23362003",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659240",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451923",
+   "cid": "23362013",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659241",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451365",
+   "cid": "23361409",
+   "cpt": "99223",
+   "paid": 125.2,
+   "co": 152.86,
+   "pr": 31.94,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbalance": 184.8,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659242",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451388",
+   "cid": "23361432",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659243",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451470",
+   "cid": "23361518",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659244",
+   "result": "DRY"
+  },
+  {
+   "pid": "21593",
+   "vid": "19452055",
+   "cid": "23362168",
+   "cpt": "99239",
+   "paid": 84.62,
+   "co": 56.79,
+   "pr": 21.59,
+   "before": {
+    "fee": 163.0,
+    "paid": 84.62,
+    "insbalance": 78.38,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659245",
+   "result": "DRY"
+  },
+  {
+   "pid": "12232001",
+   "vid": "19455790",
+   "cid": "23367238",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659246",
+   "result": "DRY"
+  },
+  {
+   "pid": "12232001",
+   "vid": "19455790",
+   "cid": "23367239",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659247",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473663",
+   "vid": "19455664",
+   "cid": "23367032",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659248",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475697",
+   "vid": "19455788",
+   "cid": "23367235",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659249",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474741",
+   "vid": "19455860",
+   "cid": "23367325",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "UNI01"
+   },
+   "payid": "24659250",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474741",
+   "vid": "19455883",
+   "cid": "23367348",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "UNI01"
+   },
+   "payid": "24659251",
+   "result": "DRY"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19455785",
+   "cid": "23367230",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659252",
+   "result": "DRY"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19455785",
+   "cid": "23367231",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659253",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473962",
+   "vid": "19455839",
+   "cid": "23367301",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659254",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473962",
+   "vid": "19455839",
+   "cid": "23367302",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659255",
+   "result": "DRY"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455823",
+   "cid": "23367281",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659256",
+   "result": "DRY"
+  },
+  {
+   "pid": "21172",
+   "vid": "19455793",
+   "cid": "23367243",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659257",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470940",
+   "vid": "19455865",
+   "cid": "23367330",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659258",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473432",
+   "vid": "19455955",
+   "cid": "23367447",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659259",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473432",
+   "vid": "19455955",
+   "cid": "23367448",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24659260",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475638",
+   "vid": "19455869",
+   "cid": "23367334",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659261",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475638",
+   "vid": "19455889",
+   "cid": "23367354",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659262",
+   "result": "DRY"
+  },
+  {
+   "pid": "45447",
+   "vid": "19455954",
+   "cid": "23367445",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659263",
+   "result": "DRY"
+  },
+  {
+   "pid": "45447",
+   "vid": "19455954",
+   "cid": "23367446",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659264",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477052",
+   "vid": "19455596",
+   "cid": "23366933",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659265",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477052",
+   "vid": "19455596",
+   "cid": "23366934",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "BCBS"
+   },
+   "payid": "24659266",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470743",
+   "vid": "19455803",
+   "cid": "23367257",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659267",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473661",
+   "vid": "19455745",
+   "cid": "23367169",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659268",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473661",
+   "vid": "19455745",
+   "cid": "23367170",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659269",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473661",
+   "vid": "19453814",
+   "cid": "23364723",
+   "cpt": "99308",
+   "paid": 45.44,
+   "co": 49.97,
+   "pr": 11.59,
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbalance": 61.56,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659270",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473661",
+   "vid": "19455470",
+   "cid": "23366761",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659271",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476583",
+   "vid": "19455888",
+   "cid": "23367353",
+   "cpt": "99239",
+   "paid": 84.62,
+   "co": 56.79,
+   "pr": 21.59,
+   "before": {
+    "fee": 163.0,
+    "paid": 84.62,
+    "insbalance": 78.38,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659272",
+   "result": "DRY"
+  },
+  {
+   "pid": "17469028",
+   "vid": "19455679",
+   "cid": "23367053",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "FLO02"
+   },
+   "payid": "24659273",
+   "result": "DRY"
+  },
+  {
+   "pid": "25561",
+   "vid": "19455744",
+   "cid": "23367167",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659274",
+   "result": "DRY"
+  },
+  {
+   "pid": "25561",
+   "vid": "19455744",
+   "cid": "23367168",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "payid": "24659275",
+   "result": "DRY"
+  },
+  {
+   "pid": "24537",
+   "vid": "19455609",
+   "cid": "23366952",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659276",
+   "result": "DRY"
+  },
+  {
+   "pid": "24537",
+   "vid": "19455609",
+   "cid": "23366953",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "TRI05"
+   },
+   "payid": "24659277",
+   "result": "DRY"
+  },
+  {
+   "pid": "20863",
+   "vid": "19455796",
+   "cid": "23367247",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659278",
+   "result": "DRY"
+  },
+  {
+   "pid": "20863",
+   "vid": "19455796",
+   "cid": "23367248",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "FLO99"
+   },
+   "payid": "24659279",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470950",
+   "vid": "19455867",
+   "cid": "23367332",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659280",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470950",
+   "vid": "19455887",
+   "cid": "23367352",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 40.25,
+   "pr": 14.38,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659281",
+   "result": "DRY"
+  },
+  {
+   "pid": "24750",
+   "vid": "19455937",
+   "cid": "23367411",
+   "cpt": "99487",
+   "paid": 112.09,
+   "co": 65.31,
+   "pr": 28.6,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.09,
+    "insbalance": 93.91,
+    "patbalance": 0.0,
+    "carrier": "AET12"
+   },
+   "payid": "24659282",
+   "result": "DRY"
+  },
+  {
+   "pid": "24750",
+   "vid": "19455937",
+   "cid": "23367412",
+   "cpt": "99489",
+   "paid": 60.74,
+   "co": 32.77,
+   "pr": 15.49,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.74,
+    "insbalance": 48.26,
+    "patbalance": 0.0,
+    "carrier": "AET12"
+   },
+   "payid": "24659283",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471131",
+   "vid": "19455952",
+   "cid": "23367441",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "CAP07"
+   },
+   "payid": "24659284",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471131",
+   "vid": "19455952",
+   "cid": "23367442",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 65.13,
+   "pr": 8.92,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "CAP07"
+   },
+   "payid": "24659285",
+   "result": "DRY"
+  },
+  {
+   "pid": "23969",
+   "vid": "19455866",
+   "cid": "23367331",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "CIG09"
+   },
+   "payid": "24659286",
+   "result": "DRY"
+  },
+  {
+   "pid": "23969",
+   "vid": "19455886",
+   "cid": "23367351",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "CIG09"
+   },
+   "payid": "24659287",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472124",
+   "vid": "19455794",
+   "cid": "23367244",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 126.58,
+   "pr": 16.14,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659288",
+   "result": "DRY"
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "cid": "23364440",
+   "cpt": "99309",
+   "paid": 78.07,
+   "co": 43.01,
+   "pr": 19.92,
+   "before": {
+    "fee": 141.0,
+    "paid": 78.07,
+    "insbalance": 62.93,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659289",
+   "result": "DRY"
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "cid": "23366628",
+   "cpt": "99309",
+   "paid": 78.07,
+   "co": 43.01,
+   "pr": 19.92,
+   "before": {
+    "fee": 141.0,
+    "paid": 78.07,
+    "insbalance": 62.93,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659290",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470940",
+   "vid": "19455885",
+   "cid": "23367350",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 52.74,
+   "pr": 21.8,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 74.54,
+    "patbalance": 0.0,
+    "carrier": "AAR01"
+   },
+   "payid": "24659291",
+   "result": "DRY"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "cid": "23367376",
+   "cpt": "99309",
+   "paid": 66.36,
+   "co": 57.71,
+   "pr": 16.93,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "payid": "24659292",
+   "result": "DRY"
+  }
+ ]
+}

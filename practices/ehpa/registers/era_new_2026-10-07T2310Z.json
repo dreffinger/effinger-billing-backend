@@ -1,0 +1,1165 @@
+{
+ "stamp": "2026-10-07T2310Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444660,
+   "visitid": "19442357",
+   "pid": "17473477",
+   "chargedetailid": "23350410",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "HOLD - $0 answer ['COB9'] [] from UNI20 but the live claim is at FLO02 (billed 10/01/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444661,
+   "visitid": "19453945",
+   "pid": "17476191",
+   "chargedetailid": "23364859",
+   "cpt": "99233",
+   "dos": "2026-09-07",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444662,
+   "visitid": "19453842",
+   "pid": "17476191",
+   "chargedetailid": "23364760",
+   "cpt": "99233",
+   "dos": "2026-09-05",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444663,
+   "visitid": "19453847",
+   "pid": "17476191",
+   "chargedetailid": "23364765",
+   "cpt": "99223",
+   "dos": "2026-08-31",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444663,
+   "visitid": "19453847",
+   "pid": "17476191",
+   "chargedetailid": "23364766",
+   "cpt": "99497",
+   "dos": "2026-08-31",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 133.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444664,
+   "visitid": "19453846",
+   "pid": "17476191",
+   "chargedetailid": "23364764",
+   "cpt": "99233",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444665,
+   "visitid": "19453845",
+   "pid": "17476191",
+   "chargedetailid": "23364763",
+   "cpt": "99233",
+   "dos": "2026-09-02",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444666,
+   "visitid": "19453841",
+   "pid": "17476191",
+   "chargedetailid": "23364759",
+   "cpt": "99233",
+   "dos": "2026-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444667,
+   "visitid": "19453843",
+   "pid": "17476191",
+   "chargedetailid": "23364761",
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444668,
+   "visitid": "19454083",
+   "pid": "17476191",
+   "chargedetailid": "23365053",
+   "cpt": "99233",
+   "dos": "2026-09-08",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "pay": 85.46,
+   "wo": 74.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167173",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-5mj6x\" lst=\"10/07/2026 16:22:31\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444669,
+   "visitid": "19452563",
+   "pid": "17471216",
+   "chargedetailid": "23362869",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444669,
+   "visitid": "19452563",
+   "pid": "17471216",
+   "chargedetailid": "23362870",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444670,
+   "visitid": "19452660",
+   "pid": "45496",
+   "chargedetailid": "23363038",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444671,
+   "visitid": "19452612",
+   "pid": "17473200",
+   "chargedetailid": "23362948",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444671,
+   "visitid": "19452612",
+   "pid": "17473200",
+   "chargedetailid": "23362949",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444672,
+   "visitid": "19427253",
+   "pid": "17473032",
+   "chargedetailid": "23333634",
+   "cpt": "99487",
+   "dos": "2025-12-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444672,
+   "visitid": "19427253",
+   "pid": "17473032",
+   "chargedetailid": "23333635",
+   "cpt": "99489",
+   "dos": "2025-12-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444673,
+   "visitid": "19430640",
+   "pid": "17473233",
+   "chargedetailid": "23337019",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "PR26"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR26'] [] (denial handling / board)"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444674,
+   "visitid": "19452613",
+   "pid": "17475312",
+   "chargedetailid": "23362950",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444675,
+   "visitid": "19452678",
+   "pid": "12232248",
+   "chargedetailid": "23363057",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444676,
+   "visitid": "19420986",
+   "pid": "24655",
+   "chargedetailid": "23326172",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 206.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167174",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:22:44\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444676,
+   "visitid": "19420986",
+   "pid": "24655",
+   "chargedetailid": "23326173",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 109.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167175",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 16:22:48\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444677,
+   "visitid": "19417361",
+   "pid": "24655",
+   "chargedetailid": "23321071",
+   "cpt": "99487",
+   "dos": "2025-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 206.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167176",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:22:52\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444677,
+   "visitid": "19417361",
+   "pid": "24655",
+   "chargedetailid": "23321072",
+   "cpt": "99489",
+   "dos": "2025-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 109.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167177",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:22:56\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444678,
+   "visitid": "19452587",
+   "pid": "17473477",
+   "chargedetailid": "23362901",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444679,
+   "visitid": "19453615",
+   "pid": "45496",
+   "chargedetailid": "23364329",
+   "cpt": "99349",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444680,
+   "visitid": "19420969",
+   "pid": "17473477",
+   "chargedetailid": "23326138",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444681,
+   "visitid": "19453702",
+   "pid": "17476748",
+   "chargedetailid": "23364586",
+   "cpt": "99349",
+   "dos": "2026-09-02",
+   "paid": 104.25,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "residual 104.25"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444682,
+   "visitid": "19418299",
+   "pid": "17473032",
+   "chargedetailid": "23322143",
+   "cpt": "99349",
+   "dos": "2025-09-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444683,
+   "visitid": "19417751",
+   "pid": "12232248",
+   "chargedetailid": "23321504",
+   "cpt": "99349",
+   "dos": "2025-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444684,
+   "visitid": "19427528",
+   "pid": "17473032",
+   "chargedetailid": "23334018",
+   "cpt": "99349",
+   "dos": "2025-12-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444685,
+   "visitid": "19417570",
+   "pid": "24655",
+   "chargedetailid": "23321305",
+   "cpt": "99349",
+   "dos": "2025-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 198.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167178",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:23:09\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444686,
+   "visitid": "19424313",
+   "pid": "12232248",
+   "chargedetailid": "23330068",
+   "cpt": "99349",
+   "dos": "2025-11-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 198.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444687,
+   "visitid": "19435223",
+   "pid": "17475777",
+   "chargedetailid": "23342218",
+   "cpt": "99306",
+   "dos": "2026-03-06",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 162.19,
+    "insbal": 93.81,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444687,
+   "visitid": "19435223",
+   "pid": "17475777",
+   "chargedetailid": "23342219",
+   "cpt": "99497",
+   "dos": "2026-03-06",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.34,
+    "insbal": 80.66,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444688,
+   "visitid": "19452573",
+   "pid": "17473233",
+   "chargedetailid": "23362884",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444689,
+   "visitid": "19448745",
+   "pid": "17473477",
+   "chargedetailid": "23358095",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "HOLD - $0 answer ['COB9'] [] from UNI20 but the live claim is at FLO02 (billed 10/01/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444690,
+   "visitid": "19453844",
+   "pid": "17476191",
+   "chargedetailid": "23364762",
+   "cpt": "99233",
+   "dos": "2026-09-03",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053047",
+   "checkclaimid": 15444691,
+   "visitid": "19455903",
+   "pid": "17477772",
+   "chargedetailid": "23367372",
+   "cpt": "99309",
+   "dos": "2026-09-17",
+   "paid": 97.59,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "UHCMA",
+    "billdate": "09/23/2026"
+   },
+   "carrier_override": "UHCMA",
+   "pay": 97.59,
+   "wo": 43.41,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UHCMA",
+   "outcome": "posted",
+   "paymentid": "10167179",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 16:23:19\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ],
+ "wolate": [
+  {
+   "pid": "24655",
+   "vid": "19420986",
+   "cid": "23326172",
+   "dos": "2025-10-25",
+   "cpt": "99487",
+   "wo": 206.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "posted"
+  },
+  {
+   "pid": "24655",
+   "vid": "19420986",
+   "cid": "23326173",
+   "dos": "2025-10-25",
+   "cpt": "99489",
+   "wo": 109.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "posted"
+  },
+  {
+   "pid": "24655",
+   "vid": "19417361",
+   "cid": "23321071",
+   "dos": "2025-09-21",
+   "cpt": "99487",
+   "wo": 206.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "posted"
+  },
+  {
+   "pid": "24655",
+   "vid": "19417361",
+   "cid": "23321072",
+   "dos": "2025-09-21",
+   "cpt": "99489",
+   "wo": 109.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "posted"
+  },
+  {
+   "pid": "24655",
+   "vid": "19417570",
+   "cid": "23321305",
+   "dos": "2025-09-18",
+   "cpt": "99349",
+   "wo": 198.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "posted"
+  }
+ ]
+}

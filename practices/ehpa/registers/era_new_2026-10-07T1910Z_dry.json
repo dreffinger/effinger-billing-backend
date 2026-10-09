@@ -1,0 +1,2024 @@
+{
+ "stamp": "2026-10-07T1910Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444572,
+   "visitid": "19418299",
+   "pid": "17473032",
+   "chargedetailid": "23322143",
+   "cpt": "99349",
+   "dos": "2025-09-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 198.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 198.00 (bal 198.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444573,
+   "visitid": "19433673",
+   "pid": "23967",
+   "chargedetailid": "23340403",
+   "cpt": "99233",
+   "dos": "2026-02-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444574,
+   "visitid": "19433682",
+   "pid": "23967",
+   "chargedetailid": "23340412",
+   "cpt": "99233",
+   "dos": "2026-02-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444575,
+   "visitid": "19433749",
+   "pid": "23967",
+   "chargedetailid": "23340450",
+   "cpt": "99223",
+   "dos": "2026-02-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 310.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 310.00 (bal 310.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444576,
+   "visitid": "19434271",
+   "pid": "23967",
+   "chargedetailid": "23341247",
+   "cpt": "99233",
+   "dos": "2026-03-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444577,
+   "visitid": "19434282",
+   "pid": "23967",
+   "chargedetailid": "23341258",
+   "cpt": "99233",
+   "dos": "2026-03-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444578,
+   "visitid": "19420565",
+   "pid": "23967",
+   "chargedetailid": "23325544",
+   "cpt": "99232",
+   "dos": "2025-10-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444579,
+   "visitid": "19422011",
+   "pid": "23967",
+   "chargedetailid": "23327367",
+   "cpt": "99233",
+   "dos": "2025-11-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444580,
+   "visitid": "19420800",
+   "pid": "23967",
+   "chargedetailid": "23325878",
+   "cpt": "99233",
+   "dos": "2025-10-23",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444581,
+   "visitid": "19422366",
+   "pid": "23967",
+   "chargedetailid": "23327707",
+   "cpt": "99232",
+   "dos": "2025-11-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444582,
+   "visitid": "19422194",
+   "pid": "23967",
+   "chargedetailid": "23327552",
+   "cpt": "99233",
+   "dos": "2025-11-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444583,
+   "visitid": "19433530",
+   "pid": "23967",
+   "chargedetailid": "23340247",
+   "cpt": "99233",
+   "dos": "2026-02-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444584,
+   "visitid": "19422699",
+   "pid": "23967",
+   "chargedetailid": "23328028",
+   "cpt": "99233",
+   "dos": "2025-11-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444585,
+   "visitid": "19434688",
+   "pid": "23967",
+   "chargedetailid": "23341708",
+   "cpt": "99233",
+   "dos": "2026-03-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444586,
+   "visitid": "19434702",
+   "pid": "23967",
+   "chargedetailid": "23341723",
+   "cpt": "99233",
+   "dos": "2026-03-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444587,
+   "visitid": "19434709",
+   "pid": "23967",
+   "chargedetailid": "23341730",
+   "cpt": "99233",
+   "dos": "2026-03-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444588,
+   "visitid": "19435063",
+   "pid": "23967",
+   "chargedetailid": "23342040",
+   "cpt": "99233",
+   "dos": "2026-03-09",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444589,
+   "visitid": "19420026",
+   "pid": "23967",
+   "chargedetailid": "23324992",
+   "cpt": "99233",
+   "dos": "2025-10-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444590,
+   "visitid": "19397660",
+   "pid": "17472660",
+   "chargedetailid": "22471032",
+   "cpt": "99232",
+   "dos": "2024-12-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444591,
+   "visitid": "19420318",
+   "pid": "23967",
+   "chargedetailid": "23325301",
+   "cpt": "99232",
+   "dos": "2025-10-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444592,
+   "visitid": "19420320",
+   "pid": "23967",
+   "chargedetailid": "23325303",
+   "cpt": "99232",
+   "dos": "2025-10-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444593,
+   "visitid": "19427253",
+   "pid": "17473032",
+   "chargedetailid": "23333634",
+   "cpt": "99487",
+   "dos": "2025-12-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 206.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 206.00 (bal 206.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444593,
+   "visitid": "19427253",
+   "pid": "17473032",
+   "chargedetailid": "23333635",
+   "cpt": "99489",
+   "dos": "2025-12-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 109.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 109.00 (bal 109.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444594,
+   "visitid": "19408992",
+   "pid": "17473392",
+   "chargedetailid": "22484284",
+   "cpt": "99487",
+   "dos": "2025-07-08",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444594,
+   "visitid": "19408992",
+   "pid": "17473392",
+   "chargedetailid": "22484285",
+   "cpt": "99489",
+   "dos": "2025-07-08",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444595,
+   "visitid": "19434631",
+   "pid": "23967",
+   "chargedetailid": "23341611",
+   "cpt": "99233",
+   "dos": "2026-03-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444596,
+   "visitid": "19401244",
+   "pid": "17472954",
+   "chargedetailid": "22475420",
+   "cpt": "99223",
+   "dos": "2025-02-25",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444597,
+   "visitid": "19433531",
+   "pid": "23967",
+   "chargedetailid": "23340248",
+   "cpt": "99233",
+   "dos": "2026-02-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444598,
+   "visitid": "19424211",
+   "pid": "17471977",
+   "chargedetailid": "23329979",
+   "cpt": "99233",
+   "dos": "2025-11-20",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR27'] [] (denial handling / board) - live claim already at BCBS (billed 10/03/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444599,
+   "visitid": "19447314",
+   "pid": "17475777",
+   "chargedetailid": "23356497",
+   "cpt": "99309",
+   "dos": "2026-07-03",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "N702"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/27/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444600,
+   "visitid": "19434049",
+   "pid": "23967",
+   "chargedetailid": "23340944",
+   "cpt": "99233",
+   "dos": "2026-02-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444601,
+   "visitid": "19433783",
+   "pid": "23967",
+   "chargedetailid": "23340502",
+   "cpt": "99233",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444602,
+   "visitid": "19434293",
+   "pid": "23967",
+   "chargedetailid": "23341269",
+   "cpt": "99233",
+   "dos": "2026-02-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444603,
+   "visitid": "19434432",
+   "pid": "23967",
+   "chargedetailid": "23341425",
+   "cpt": "99233",
+   "dos": "2026-03-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444604,
+   "visitid": "19420708",
+   "pid": "23967",
+   "chargedetailid": "23325796",
+   "cpt": "99232",
+   "dos": "2025-10-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444605,
+   "visitid": "19422498",
+   "pid": "23967",
+   "chargedetailid": "23327831",
+   "cpt": "99232",
+   "dos": "2025-11-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444606,
+   "visitid": "19422583",
+   "pid": "23967",
+   "chargedetailid": "23327919",
+   "cpt": "99232",
+   "dos": "2025-11-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444607,
+   "visitid": "19422912",
+   "pid": "23967",
+   "chargedetailid": "23328261",
+   "cpt": "99239",
+   "dos": "2025-11-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 0.0,
+    "insbal": 163.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 163.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 163.00 (bal 163.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444608,
+   "visitid": "19434930",
+   "pid": "23967",
+   "chargedetailid": "23341909",
+   "cpt": "99233",
+   "dos": "2026-03-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444609,
+   "visitid": "19433529",
+   "pid": "23967",
+   "chargedetailid": "23340246",
+   "cpt": "99233",
+   "dos": "2026-02-23",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444610,
+   "visitid": "19435049",
+   "pid": "23967",
+   "chargedetailid": "23342026",
+   "cpt": "99233",
+   "dos": "2026-03-10",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 160.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 160.00 (bal 160.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444611,
+   "visitid": "19420319",
+   "pid": "23967",
+   "chargedetailid": "23325302",
+   "cpt": "99232",
+   "dos": "2025-10-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 111.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 111.00 (bal 111.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444612,
+   "visitid": "19397661",
+   "pid": "17472660",
+   "chargedetailid": "22471033",
+   "cpt": "99223",
+   "dos": "2024-12-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444613,
+   "visitid": "19401359",
+   "pid": "17472954",
+   "chargedetailid": "22475570",
+   "cpt": "99232",
+   "dos": "2025-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444614,
+   "visitid": "19454878",
+   "pid": "17477772",
+   "chargedetailid": "23366028",
+   "cpt": "99309",
+   "dos": "2026-09-03",
+   "paid": 97.59,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "UHCMA",
+    "billdate": "09/18/2026"
+   },
+   "carrier_override": "UHCMA",
+   "pay": 97.59,
+   "wo": 43.41,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UHCMA",
+   "outcome": "DRY would post pay 97.59 + WOINS 43.41 (bal 141.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444615,
+   "visitid": "19424313",
+   "pid": "12232248",
+   "chargedetailid": "23330068",
+   "cpt": "99349",
+   "dos": "2025-11-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "10/05/2026"
+   },
+   "why": "timely-filing answer CARC 29 on watch item united-12232248-2025 - WOLATE per William 10/6/2026",
+   "watch": "united-12232248-2025",
+   "pay": 0.0,
+   "wo": 198.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 198.00 (bal 198.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444616,
+   "visitid": "19416099",
+   "pid": "20379",
+   "chargedetailid": "23319630",
+   "cpt": "99487",
+   "dos": "2025-09-07",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 206.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 206.00 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444617,
+   "visitid": "19417751",
+   "pid": "12232248",
+   "chargedetailid": "23321504",
+   "cpt": "99349",
+   "dos": "2025-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "10/05/2026"
+   },
+   "why": "timely-filing answer CARC 29 on watch item united-12232248-2025 - WOLATE per William 10/6/2026",
+   "watch": "united-12232248-2025",
+   "pay": 0.0,
+   "wo": 198.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 198.00 (bal 198.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444618,
+   "visitid": "19427528",
+   "pid": "17473032",
+   "chargedetailid": "23334018",
+   "cpt": "99349",
+   "dos": "2025-12-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 198.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 198.00 (bal 198.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444619,
+   "visitid": "19453814",
+   "pid": "17473661",
+   "chargedetailid": "23364723",
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 107.0,
+    "paid": 45.44,
+    "insbal": 61.56,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR27'] [] (denial handling / board) - live claim already at FLO02 (billed 09/23/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444620,
+   "visitid": "19424212",
+   "pid": "17471977",
+   "chargedetailid": "23329980",
+   "cpt": "99223",
+   "dos": "2025-11-19",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR27'] [] (denial handling / board) - live claim already at BCBS (billed 10/03/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444621,
+   "visitid": "19435284",
+   "pid": "23967",
+   "chargedetailid": "23342289",
+   "cpt": "99239",
+   "dos": "2026-03-11",
+   "paid": 0.0,
+   "carcs": [
+    "CO29"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 0.0,
+    "insbal": 163.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/06/2026"
+   },
+   "why": "timely-filing answer CARC 29 on a UNI20/BCBS pre-5/1/2026 primary claim - WOLATE per William 10/6/2026",
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "pay": 0.0,
+   "wo": 163.0,
+   "wocode": "WOLATE",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "DRY would post pay 0.00 + WOLATE 163.00 (bal 163.00)"
+  },
+  {
+   "checkid": "1053038",
+   "checkclaimid": 15444622,
+   "visitid": "19453748",
+   "pid": "17476042",
+   "chargedetailid": "23364641",
+   "cpt": "99233",
+   "dos": "2026-09-04",
+   "paid": 0.0,
+   "carcs": [
+    "PR27"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 0.0,
+    "patbal": 74.54,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 74.54 on this charge (wrong-payer rule: see the run's follow-up)"
+  }
+ ],
+ "wolate": [
+  {
+   "pid": "17473032",
+   "vid": "19418299",
+   "cid": "23322143",
+   "dos": "2025-09-25",
+   "cpt": "99349",
+   "wo": 198.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433673",
+   "cid": "23340403",
+   "dos": "2026-02-24",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433682",
+   "cid": "23340412",
+   "dos": "2026-02-25",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433749",
+   "cid": "23340450",
+   "dos": "2026-02-20",
+   "cpt": "99223",
+   "wo": 310.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434271",
+   "cid": "23341247",
+   "dos": "2026-03-02",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434282",
+   "cid": "23341258",
+   "dos": "2026-03-01",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420565",
+   "cid": "23325544",
+   "dos": "2025-10-21",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422011",
+   "cid": "23327367",
+   "dos": "2025-11-02",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420800",
+   "cid": "23325878",
+   "dos": "2025-10-23",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422366",
+   "cid": "23327707",
+   "dos": "2025-11-04",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422194",
+   "cid": "23327552",
+   "dos": "2025-11-03",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433530",
+   "cid": "23340247",
+   "dos": "2026-02-22",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422699",
+   "cid": "23328028",
+   "dos": "2025-11-07",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434688",
+   "cid": "23341708",
+   "dos": "2026-03-07",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434702",
+   "cid": "23341723",
+   "dos": "2026-03-06",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434709",
+   "cid": "23341730",
+   "dos": "2026-03-05",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19435063",
+   "cid": "23342040",
+   "dos": "2026-03-09",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420026",
+   "cid": "23324992",
+   "dos": "2025-10-17",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420318",
+   "cid": "23325301",
+   "dos": "2025-10-19",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420320",
+   "cid": "23325303",
+   "dos": "2025-10-20",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "17473032",
+   "vid": "19427253",
+   "cid": "23333634",
+   "dos": "2025-12-21",
+   "cpt": "99487",
+   "wo": 206.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "17473032",
+   "vid": "19427253",
+   "cid": "23333635",
+   "dos": "2025-12-21",
+   "cpt": "99489",
+   "wo": 109.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434631",
+   "cid": "23341611",
+   "dos": "2026-03-04",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433531",
+   "cid": "23340248",
+   "dos": "2026-02-21",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434049",
+   "cid": "23340944",
+   "dos": "2026-02-27",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433783",
+   "cid": "23340502",
+   "dos": "2026-02-26",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434293",
+   "cid": "23341269",
+   "dos": "2026-02-28",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434432",
+   "cid": "23341425",
+   "dos": "2026-03-03",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420708",
+   "cid": "23325796",
+   "dos": "2025-10-22",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422498",
+   "cid": "23327831",
+   "dos": "2025-11-05",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422583",
+   "cid": "23327919",
+   "dos": "2025-11-06",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19422912",
+   "cid": "23328261",
+   "dos": "2025-11-08",
+   "cpt": "99239",
+   "wo": 163.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19434930",
+   "cid": "23341909",
+   "dos": "2026-03-08",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19433529",
+   "cid": "23340246",
+   "dos": "2026-02-23",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19435049",
+   "cid": "23342026",
+   "dos": "2026-03-10",
+   "cpt": "99233",
+   "wo": 160.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19420319",
+   "cid": "23325302",
+   "dos": "2025-10-18",
+   "cpt": "99232",
+   "wo": 111.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19424313",
+   "cid": "23330068",
+   "dos": "2025-11-19",
+   "cpt": "99349",
+   "wo": 198.0,
+   "watch": "united-12232248-2025",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19417751",
+   "cid": "23321504",
+   "dos": "2025-09-18",
+   "cpt": "99349",
+   "wo": 198.0,
+   "watch": "united-12232248-2025",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "17473032",
+   "vid": "19427528",
+   "cid": "23334018",
+   "dos": "2025-12-20",
+   "cpt": "99349",
+   "wo": 198.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  },
+  {
+   "pid": "23967",
+   "vid": "19435284",
+   "cid": "23342289",
+   "dos": "2026-03-11",
+   "cpt": "99239",
+   "wo": 163.0,
+   "watch": "uni20-bcbs-pre0501 (not in an item)",
+   "outcome": "DRY"
+  }
+ ]
+}

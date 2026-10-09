@@ -1,0 +1,21 @@
+[
+ {
+  "checkid": "1053038",
+  "stamp": "2026-10-07T1910Z",
+  "live": true,
+  "lines": {
+   "money-posted": 1,
+   "money-residual": 0,
+   "zero-recorded": 52
+  },
+  "unsettled": [],
+  "carrier": "UNI20",
+  "eracarrier": "UNITED HEALTHCARE INSURANCE COMPANY",
+  "paymentnumber": "W0686193",
+  "paymentamount": 97.59,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053038,\"actionname\":1}",
+  "outcome": "dismissed"
+ }
+]

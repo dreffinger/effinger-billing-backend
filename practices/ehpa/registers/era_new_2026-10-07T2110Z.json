@@ -1,0 +1,2384 @@
+{
+ "stamp": "2026-10-07T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444625,
+   "visitid": "19452684",
+   "pid": "17474911",
+   "chargedetailid": "23363063",
+   "cpt": "99349",
+   "dos": "2026-08-19",
+   "paid": 22.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 198.0,
+    "paid": 175.4,
+    "insbal": 22.6,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 22.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167142",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:30:50\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444626,
+   "visitid": "19452635",
+   "pid": "17469426",
+   "chargedetailid": "23362988",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/22/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167143",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:30:55\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444626,
+   "visitid": "19452635",
+   "pid": "17469426",
+   "chargedetailid": "23362989",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/22/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167144",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:30:58\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444627,
+   "visitid": "19452250",
+   "pid": "17477350",
+   "chargedetailid": "23362383",
+   "cpt": "99233",
+   "dos": "2026-08-22",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167145",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:31:03\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444628,
+   "visitid": "19452333",
+   "pid": "17476032",
+   "chargedetailid": "23362506",
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "paid": 16.14,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/02/2026"
+   },
+   "outcome": "residual 16.14"
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444628,
+   "visitid": "19452333",
+   "pid": "17476032",
+   "chargedetailid": "-1",
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "paid": 8.92,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "outcome": "orphan - no AMD charge on the line (0 live candidates)"
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444629,
+   "visitid": "19452646",
+   "pid": "17471495",
+   "chargedetailid": "23363010",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167146",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:31:10\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444629,
+   "visitid": "19452646",
+   "pid": "17471495",
+   "chargedetailid": "23363011",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167147",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:31:13\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444630,
+   "visitid": "19452677",
+   "pid": "23745",
+   "chargedetailid": "23363056",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "09/09/2026"
+   },
+   "carrier_override": "AAR01",
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "AAR01",
+   "outcome": "posted",
+   "paymentid": "10167148",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:31:18\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444631,
+   "visitid": "19452644",
+   "pid": "17471451",
+   "chargedetailid": "23363006",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167149",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:31:22\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444631,
+   "visitid": "19452644",
+   "pid": "17471451",
+   "chargedetailid": "23363007",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167150",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:31:26\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444632,
+   "visitid": "19452597",
+   "pid": "17474911",
+   "chargedetailid": "23362920",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167151",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:31:31\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444632,
+   "visitid": "19452597",
+   "pid": "17474911",
+   "chargedetailid": "23362921",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/09/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167152",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:31:34\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444633,
+   "visitid": "19452606",
+   "pid": "45108",
+   "chargedetailid": "23362936",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/02/2026"
+   },
+   "outcome": "residual 28.60"
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444633,
+   "visitid": "19452606",
+   "pid": "45108",
+   "chargedetailid": "-1",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "outcome": "orphan - no AMD charge on the line (0 live candidates)"
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444634,
+   "visitid": "19452960",
+   "pid": "17477350",
+   "chargedetailid": "23363349",
+   "cpt": "99233",
+   "dos": "2026-08-23",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167153",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:31:40\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444635,
+   "visitid": "19452950",
+   "pid": "17469455",
+   "chargedetailid": "23363340",
+   "cpt": "99223",
+   "dos": "2026-08-25",
+   "paid": 31.94,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 31.94,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/10/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 31.94,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167154",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:31:45\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444636,
+   "visitid": "19452837",
+   "pid": "17476874",
+   "chargedetailid": "23363212",
+   "cpt": "99309",
+   "dos": "2026-08-19",
+   "paid": 16.93,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/10/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 16.93,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167155",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:31:50\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444637,
+   "visitid": "19452842",
+   "pid": "45447",
+   "chargedetailid": "23363217",
+   "cpt": "99309",
+   "dos": "2026-08-19",
+   "paid": 16.93,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/10/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 16.93,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167156",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:31:55\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444638,
+   "visitid": "19452820",
+   "pid": "17477350",
+   "chargedetailid": "23363196",
+   "cpt": "99233",
+   "dos": "2026-08-24",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167157",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:32:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444639,
+   "visitid": "19452844",
+   "pid": "17473799",
+   "chargedetailid": "23363219",
+   "cpt": "99316",
+   "dos": "2026-08-17",
+   "paid": 20.26,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 139.74,
+    "insbal": 20.26,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "pay": 20.26,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167158",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:32:06\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053040",
+   "checkclaimid": 15444640,
+   "visitid": "19452807",
+   "pid": "17477350",
+   "chargedetailid": "23363183",
+   "cpt": "99233",
+   "dos": "2026-08-25",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/10/2026"
+   },
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10167159",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:12\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053041",
+   "checkclaimid": 15444641,
+   "visitid": "19454929",
+   "pid": "17472546",
+   "chargedetailid": "23366081",
+   "cpt": "99233",
+   "dos": "2026-09-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary SUN01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10167160",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:32:18\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053041",
+   "checkclaimid": 15444642,
+   "visitid": "19454887",
+   "pid": "17472546",
+   "chargedetailid": "23366037",
+   "cpt": "99233",
+   "dos": "2026-09-14",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary SUN01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10167161",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:22\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053041",
+   "checkclaimid": 15444643,
+   "visitid": "19454953",
+   "pid": "17472546",
+   "chargedetailid": "23366104",
+   "cpt": "99233",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary SUN01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 21.8,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10167162",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:27\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053042",
+   "checkclaimid": 15444644,
+   "visitid": "19456666",
+   "pid": "47124",
+   "chargedetailid": "23368371",
+   "cpt": "99309",
+   "dos": "2026-09-29",
+   "paid": 97.59,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/01/2026"
+   },
+   "pay": 97.59,
+   "wo": 43.41,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167163",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:32:32\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444650,
+   "visitid": "19441616",
+   "pid": "17472396",
+   "chargedetailid": "23349530",
+   "cpt": "99308",
+   "dos": "2026-05-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "PR1"
+   ],
+   "rarcs": [
+    "N782",
+    "N781"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'PR1'] ['N782', 'N781'] from HUM01 but the live claim is at FLO02 (billed 10/05/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444651,
+   "visitid": "19442523",
+   "pid": "17472396",
+   "chargedetailid": "23350697",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 79.1,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N782",
+    "N781"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/05/2026"
+   },
+   "note": "live claim is at FLO02 (billed 10/05/2026) - this HUM01 answer posts under HUM01; the FLO02 claim's own answer settles the rest",
+   "pay": 79.1,
+   "wo": 126.9,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167164",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:38\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444651,
+   "visitid": "19442523",
+   "pid": "17472396",
+   "chargedetailid": "23350698",
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO4"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO4'] [] from HUM01 but the live claim is at FLO02 (billed 10/05/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444652,
+   "visitid": "19455205",
+   "pid": "17477640",
+   "chargedetailid": "23366381",
+   "cpt": "99233",
+   "dos": "2026-09-19",
+   "paid": 106.82,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N16"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/21/2026"
+   },
+   "pay": 106.82,
+   "wo": 53.18,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167165",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:43\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444653,
+   "visitid": "19455451",
+   "pid": "17477640",
+   "chargedetailid": "23366744",
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 106.82,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [
+    "N16"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/22/2026"
+   },
+   "pay": 106.82,
+   "wo": 53.18,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167166",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-9tgnn\" lst=\"10/07/2026 14:32:48\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444654,
+   "visitid": "19455215",
+   "pid": "17477819",
+   "chargedetailid": "23366391",
+   "cpt": "99232",
+   "dos": "2026-09-19",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/22/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167167",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:32:52\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053044",
+   "checkclaimid": 15444655,
+   "visitid": "19455224",
+   "pid": "17477819",
+   "chargedetailid": "23366401",
+   "cpt": "99223",
+   "dos": "2026-09-18",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/22/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167168",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:32:57\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444420,
+   "visitid": "19456837",
+   "pid": "17474493",
+   "chargedetailid": "23368495",
+   "cpt": "99223",
+   "dos": "2026-09-30",
+   "paid": 0.0,
+   "carcs": [
+    "CO109"
+   ],
+   "rarcs": [
+    "MA01",
+    "N418"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO109 MA01+N418: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444421,
+   "visitid": "19433897",
+   "pid": "17473343",
+   "chargedetailid": "23340682",
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444421,
+   "visitid": "19433897",
+   "pid": "17473343",
+   "chargedetailid": "23340683",
+   "cpt": "99489",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444422,
+   "visitid": "19439547",
+   "pid": "17473343",
+   "chargedetailid": "23347047",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444422,
+   "visitid": "19439547",
+   "pid": "17473343",
+   "chargedetailid": "23347048",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444423,
+   "visitid": "19438521",
+   "pid": "17473343",
+   "chargedetailid": "23345640",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444423,
+   "visitid": "19438521",
+   "pid": "17473343",
+   "chargedetailid": "23345641",
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444424,
+   "visitid": "19420909",
+   "pid": "17473343",
+   "chargedetailid": "23326018",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444424,
+   "visitid": "19420909",
+   "pid": "17473343",
+   "chargedetailid": "23326019",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444425,
+   "visitid": "19423597",
+   "pid": "17473343",
+   "chargedetailid": "23329214",
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444425,
+   "visitid": "19423597",
+   "pid": "17473343",
+   "chargedetailid": "23329215",
+   "cpt": "99489",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444426,
+   "visitid": "19439551",
+   "pid": "46673",
+   "chargedetailid": "23347055",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444426,
+   "visitid": "19439551",
+   "pid": "46673",
+   "chargedetailid": "23347056",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444427,
+   "visitid": "19438525",
+   "pid": "46673",
+   "chargedetailid": "23345648",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444427,
+   "visitid": "19438525",
+   "pid": "46673",
+   "chargedetailid": "23345649",
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444428,
+   "visitid": "19430703",
+   "pid": "46673",
+   "chargedetailid": "23337144",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444428,
+   "visitid": "19430703",
+   "pid": "46673",
+   "chargedetailid": "23337145",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444429,
+   "visitid": "19427570",
+   "pid": "46673",
+   "chargedetailid": "23334087",
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444429,
+   "visitid": "19427570",
+   "pid": "46673",
+   "chargedetailid": "23334088",
+   "cpt": "99489",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444430,
+   "visitid": "19448837",
+   "pid": "46673",
+   "chargedetailid": "23358279",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444430,
+   "visitid": "19448837",
+   "pid": "46673",
+   "chargedetailid": "23358280",
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444431,
+   "visitid": "19416157",
+   "pid": "17473885",
+   "chargedetailid": "23319707",
+   "cpt": "99487",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444431,
+   "visitid": "19416157",
+   "pid": "17473885",
+   "chargedetailid": "23319708",
+   "cpt": "99489",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444433,
+   "visitid": "19456208",
+   "pid": "17477313",
+   "chargedetailid": "23367832",
+   "cpt": "99308",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 COB9 MA01+MA18: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444434,
+   "visitid": "19456187",
+   "pid": "12182946",
+   "chargedetailid": "23367811",
+   "cpt": "99308",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 COB9 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444435,
+   "visitid": "19420961",
+   "pid": "17473086",
+   "chargedetailid": "23326122",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01+MA18: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444435,
+   "visitid": "19420961",
+   "pid": "17473086",
+   "chargedetailid": "23326123",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+MA18+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444437,
+   "visitid": "19427571",
+   "pid": "21885",
+   "chargedetailid": "23334089",
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444437,
+   "visitid": "19427571",
+   "pid": "21885",
+   "chargedetailid": "23334090",
+   "cpt": "99489",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444439,
+   "visitid": "19420942",
+   "pid": "17473383",
+   "chargedetailid": "23326084",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444439,
+   "visitid": "19420942",
+   "pid": "17473383",
+   "chargedetailid": "23326085",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444440,
+   "visitid": "19427585",
+   "pid": "17473383",
+   "chargedetailid": "23334117",
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444440,
+   "visitid": "19427585",
+   "pid": "17473383",
+   "chargedetailid": "23334118",
+   "cpt": "99489",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444441,
+   "visitid": "19430729",
+   "pid": "17473383",
+   "chargedetailid": "23337196",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444441,
+   "visitid": "19430729",
+   "pid": "17473383",
+   "chargedetailid": "23337197",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444443,
+   "visitid": "19456215",
+   "pid": "44987",
+   "chargedetailid": "23367839",
+   "cpt": "99308",
+   "dos": "2026-09-24",
+   "paid": 0.0,
+   "carcs": [
+    "COB9"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 COB9 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444444,
+   "visitid": "19430698",
+   "pid": "17473343",
+   "chargedetailid": "23337134",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444444,
+   "visitid": "19430698",
+   "pid": "17473343",
+   "chargedetailid": "23337135",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444445,
+   "visitid": "19446198",
+   "pid": "17472553",
+   "chargedetailid": "23355167",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444445,
+   "visitid": "19446198",
+   "pid": "17472553",
+   "chargedetailid": "23355168",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444446,
+   "visitid": "19448849",
+   "pid": "21885",
+   "chargedetailid": "23358303",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444446,
+   "visitid": "19448849",
+   "pid": "21885",
+   "chargedetailid": "23358304",
+   "cpt": "99489",
+   "dos": "2026-07-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444447,
+   "visitid": "19420934",
+   "pid": "21885",
+   "chargedetailid": "23326068",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444447,
+   "visitid": "19420934",
+   "pid": "21885",
+   "chargedetailid": "23326069",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444448,
+   "visitid": "19438539",
+   "pid": "21885",
+   "chargedetailid": "23345676",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444448,
+   "visitid": "19438539",
+   "pid": "21885",
+   "chargedetailid": "23345677",
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444449,
+   "visitid": "19439565",
+   "pid": "21885",
+   "chargedetailid": "23347083",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444449,
+   "visitid": "19439565",
+   "pid": "21885",
+   "chargedetailid": "23347084",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444450,
+   "visitid": "19433914",
+   "pid": "21885",
+   "chargedetailid": "23340712",
+   "cpt": "99487",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444450,
+   "visitid": "19433914",
+   "pid": "21885",
+   "chargedetailid": "23340713",
+   "cpt": "99489",
+   "dos": "2026-02-26",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444451,
+   "visitid": "19430720",
+   "pid": "21885",
+   "chargedetailid": "23337178",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444451,
+   "visitid": "19430720",
+   "pid": "21885",
+   "chargedetailid": "23337179",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444452,
+   "visitid": "19446197",
+   "pid": "21885",
+   "chargedetailid": "23355165",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444452,
+   "visitid": "19446197",
+   "pid": "21885",
+   "chargedetailid": "23355166",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444453,
+   "visitid": "19427594",
+   "pid": "17473343",
+   "chargedetailid": "23334135",
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO151"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO151 MA01: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053024",
+   "checkclaimid": 15444453,
+   "visitid": "19427594",
+   "pid": "17473343",
+   "chargedetailid": "23334136",
+   "cpt": "99489",
+   "dos": "2025-12-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO234"
+   ],
+   "rarcs": [
+    "MA01",
+    "N390"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "outcome": "recorded - $0 CO234 MA01+N390: handled earlier - card A-2026-10-07T1310Z-A (hospice CCM WONCS x4 + GV re-sends x2, applied 1910Z), CO-151/CO-234 CCM cluster on the board (William's turn), v19456208 Poynor standing flag, v19456837 CO-109 UHC rebill out 10/6"
+  },
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444656,
+   "visitid": "19439617",
+   "pid": "17471238",
+   "chargedetailid": "23347188",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167169",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:37:23\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444657,
+   "visitid": "19442401",
+   "pid": "17471238",
+   "chargedetailid": "23350486",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167170",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 14:37:29\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053045",
+   "checkclaimid": 15444658,
+   "visitid": "19438592",
+   "pid": "17471238",
+   "chargedetailid": "23345778",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10167171",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:37:33\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053046",
+   "checkclaimid": 15444659,
+   "visitid": "19456581",
+   "pid": "17473669",
+   "chargedetailid": "23368262",
+   "cpt": "99309",
+   "dos": "2026-09-28",
+   "paid": 84.64,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "AMB03",
+    "billdate": "10/01/2026"
+   },
+   "pay": 84.64,
+   "wo": 56.36,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "AMB03",
+   "outcome": "posted",
+   "paymentid": "10167172",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 14:37:38\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ],
+ "wolate": []
+}

@@ -1,0 +1,6 @@
+# captured_calls additions - backend billing run 2026-10-08T0510Z (1 AM ET 10/8/2026, ehpa cloud)
+
+Calls exercised (already in the registry): login (one, 05:14Z), getclaimcenteroverview + the four Claims Center list calls (columns_scan.py before/after), hideunbillablevisits hide=-1 x15 (unbilled_repair.py --live, rule b 'prior payor' releases), gettxhistory x2 (txh.fetch on charts 17473245 / 17469028 - live Medicare payments + PR-2 balances), hideexclusions claimrunid=1700278 hide=-1 x6 + getclaimexclusioncharges re-list (NEW named helper excl_crossover_complete.py --scan --run [--live]: completes Florida Blue Medigap-secondary PREF0283 rows whose every charge carries a non-void Medicare payment and whose open balance equals the PR coinsurance - the 9/20 crossover-wait rule), GET /api/era/checks + checkdetails (era_list.py before/after, 1 check unchanged), posterapayments dry pass (era_post.py --all-unposted --dry: 17 lines skipped, 0 postable), POST /api/claim/massrebillsearch + Stedi 276/277 (claim_status_sweep.py pass 20, 21 asked, 227 skipped).
+
+- No new call shape this run. New helper excl_crossover_complete.py (register registers/excl_crossover_1700278_<stamp>.json).
+- AMD writes this run: 15 hideunbillablevisits, 6 hideexclusions. No rebill, no payment, no plan change.

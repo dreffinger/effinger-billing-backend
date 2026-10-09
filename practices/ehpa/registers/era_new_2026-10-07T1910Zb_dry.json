@@ -1,0 +1,147 @@
+{
+ "stamp": "2026-10-07T1910Zb",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444266,
+   "visitid": "19453207",
+   "pid": "17476042",
+   "chargedetailid": "23363769",
+   "cpt": "99233",
+   "dos": "2026-08-30",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "note": "would move 160.00 patient balance back to insurance first",
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444269,
+   "visitid": "19453499",
+   "pid": "17476042",
+   "chargedetailid": "23364196",
+   "cpt": "99233",
+   "dos": "2026-09-01",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "note": "would move 160.00 patient balance back to insurance first",
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444270,
+   "visitid": "19453703",
+   "pid": "17476042",
+   "chargedetailid": "23364587",
+   "cpt": "99233",
+   "dos": "2026-09-02",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "note": "would move 160.00 patient balance back to insurance first",
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444271,
+   "visitid": "19453717",
+   "pid": "17476042",
+   "chargedetailid": "23364600",
+   "cpt": "99233",
+   "dos": "2026-09-03",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "note": "would move 160.00 patient balance back to insurance first",
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "DRY would post pay 85.46 + WOINS 52.74 (bal 160.00)"
+  }
+ ],
+ "wolate": []
+}

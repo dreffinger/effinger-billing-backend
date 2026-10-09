@@ -1,0 +1,187 @@
+{
+ "stamp": "2026-10-07T1910Zb",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444266,
+   "visitid": "19453207",
+   "pid": "17476042",
+   "chargedetailid": "23363769",
+   "cpt": "99233",
+   "dos": "2026-08-30",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "moved": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "before_after_move": {
+    "insbal": 160.0,
+    "patbal": 0.0
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10167137",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 13:26:47\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 21.8
+   }
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444269,
+   "visitid": "19453499",
+   "pid": "17476042",
+   "chargedetailid": "23364196",
+   "cpt": "99233",
+   "dos": "2026-09-01",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "moved": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "before_after_move": {
+    "insbal": 160.0,
+    "patbal": 0.0
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10167138",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-4vvgc\" lst=\"10/07/2026 13:26:58\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 21.8
+   }
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444270,
+   "visitid": "19453703",
+   "pid": "17476042",
+   "chargedetailid": "23364587",
+   "cpt": "99233",
+   "dos": "2026-09-02",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "moved": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "before_after_move": {
+    "insbal": 160.0,
+    "patbal": 0.0
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10167139",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 13:27:11\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 21.8
+   }
+  },
+  {
+   "checkid": "1053023",
+   "checkclaimid": 15444271,
+   "visitid": "19453717",
+   "pid": "17476042",
+   "chargedetailid": "23364600",
+   "cpt": "99233",
+   "dos": "2026-09-03",
+   "paid": 85.46,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 0.0,
+    "patbal": 160.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "moved": "moved 160.00 -> {'patbalance': '0.00', 'insbalance': '160.00', 'insorder': '2'}",
+   "before_after_move": {
+    "insbal": 160.0,
+    "patbal": 0.0
+   },
+   "pay": 85.46,
+   "wo": 52.74,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10167140",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/07/2026 13:27:23\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 21.8
+   }
+  }
+ ],
+ "wolate": []
+}
