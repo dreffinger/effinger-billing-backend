@@ -343,7 +343,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-J",
@@ -356,9 +356,9 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 313 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T22:46Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only J --stamp 1009 - 358 WOCAID2ND/WOINS write-offs $7,138.43 on 265 dual visits (Medicare/MA paid, Medicaid-family plan answered $0), 0 faults; 2 two-code charges (22477963, 22477950) needed their WOINS $119.88 posted after moving the remainder back from the patient balance (AMD had shifted it there after the first write-off), both verified insurance 0 / patient 0; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T2246Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-J-dec",
@@ -373,7 +373,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-K-dec",
@@ -388,7 +388,7 @@
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0600Z-D",
@@ -433,7 +433,7 @@
    "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   },
   {
    "id": "A-2026-10-09T0910Z-B",
@@ -448,7 +448,7 @@
    "ui": "ERA Center > unposted list > Dismiss on 202551106261008 and NO-PAY-202610070006735 after the posts of card A.",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-09T2210Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
   }
  ]
 }
