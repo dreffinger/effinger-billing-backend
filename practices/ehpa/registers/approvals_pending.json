@@ -431,9 +431,9 @@
    "evidence_file": "/home/claude/unbilled/registers/era_new_2026-10-09T0910Z_dry.json",
    "evidence": "era_new_1009_0910.py --dry 09:3xZ: 2 money lines 'would post pay 106.82 + WOINS 53.18 (bal 160.00)', 4 lines 'would post pay 0.00 + WOCAID2ND 21.80 (bal 21.80)'; residual $0, no PR, no holds.",
    "ui": "AdvancedMD > Billing > ERA Center > unposted list: open check 202551106261008 (Humana, $213.64) and click Post (both 99233 lines validate: pay 106.82, CO-45/CO-253 contractual 53.18 each). Then open NO-PAY-202610070006735 (Humana, $0.00): on each of the four 99233 lines (DOS 9/9-9/12/2026, chart 17475638) post $0 with a 21.80 write-off, code WOCAID2ND, then Dismiss the check.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2213Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T23:12Z applied in the cascade session on William's go (page approval 19:16Z): era_new_1009_0910.py --live - 6 ERA-linked lines posted, 0 faults: check 1053058 (Humana 202551106261008) chart 17477640 v19455878 + v19455854 99233 pay $106.82 + WOINS $53.18 each; check 1053059 (Humana $0, OA-23 Medicaid-MMA secondary) chart 17475638 v19454307/19454278/19454436/19454457 99233 WOCAID2ND $21.80 each; every charge verified insurance 0 / patient 0; registers/era_new_2026-10-09T0910Z.json, era_manual_register.json appended",
+   "note": "applied 2026-10-09T2312Z (go)"
   },
   {
    "id": "A-2026-10-09T0910Z-B",
