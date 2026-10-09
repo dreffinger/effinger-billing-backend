@@ -326,9 +326,9 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1009.log",
    "evidence": "dry run 1009: 45 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1009.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-09T2225Z (go) - William's go in the cascade session (ask mode), page approval 19:16Z"
+   "status": "done",
+   "answer": "2026-10-09T22:41Z applied in the cascade session on William's go (page approval 19:16Z): old_claims_apply.py --live --only C --stamp 1009 - 44 payments $4,621.60 from the payers' own 277 figures + 37 write-offs $2,349.40 (WOINS/WOCAID2ND) on 43 visits / 8 charts (AET07, SIM01, CIG13), 0 faults, 0 skipped; registers/old_claims_apply_1009.json + Writeoff_register_2026-10-09.xlsx",
+   "note": "applied 2026-10-09T2241Z (go)"
   },
   {
    "id": "A-2026-10-09T0600Z-K",
