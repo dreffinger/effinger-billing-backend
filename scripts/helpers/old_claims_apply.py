@@ -23,6 +23,7 @@ if not SRC: sys.exit("no old_claims_disposition_%s.json in the workspace or regi
 D = json.load(open(SRC)); PK = D["packages"]
 sel = [v for v in D["visits"] if v["pkg"] in ONLY and (not VIDS or v["vid"] in VIDS) and v["actions"]][:MX]
 LOGF = "old_claims_apply_%s.log" % STAMP; done = set(l.split()[1] + "|" + l.split()[2] for l in open(LOGF) if l.startswith("DONE ")) if os.path.exists(LOGF) else set()
+# a charge can carry two write-offs (patient-share code + WOINS contractual): the resume key carries the code, the log line too
 LOG = open(LOGF, "a"); REG = "registers/old_claims_apply_%s.json" % STAMP; os.makedirs("registers", exist_ok=True)
 reg = json.load(open(REG)) if os.path.exists(REG) else {"stamp": STAMP, "items": []}
 def L(m): print(m, flush=True); LOG.write(m + "\n"); LOG.flush()
@@ -46,7 +47,7 @@ for v in sel:
     if v["deceased"] and SKIPDEC: L("SKIP v%s deceased flag (--skip-dec)" % v["vid"]); n_skip += 1; continue
     note = "old-claims disposition %s (William 10/9/2026: close old claims from the payer's answer): %s" % (STAMP, "; ".join(v["notes"])[:160])
     for act in v["actions"]:
-        cid = re.sub(r"\D", "", str(act["cid"])); key = cid + "|" + ("send" if "resend_seq" in act else "post")
+        cid = re.sub(r"\D", "", str(act["cid"])); key = cid + "|" + ("send" if "resend_seq" in act else ("post" + (("-" + act["wocode"]) if (act.get("wocode") and not act.get("pay")) else "")))
         if key in done: continue
         if "resend_seq" in act:
             if not LIVE: L("DRY SEND v%s charge%s seq %s (%s %s)" % (v["vid"], cid, act["resend_seq"], v["carrier"], v["dos"])); n_send += 1; continue
@@ -72,7 +73,7 @@ for v in sel:
         if pay <= 0 and wo <= 0: L("SKIP %s nothing to post" % cid); n_skip += 1; continue
         ok, msg = manual_post.post(cid, v["carrier"], round(pay, 2), round(wo, 2), act.get("wocode") or "WOINS", checknumber=chk, depositdate=mdy(act.get("paiddate")), note=note, dry=not LIVE)
         tag = ("DONE" if ok else "FAIL") if LIVE else ("DRY" if ok else "DRY-FAIL")
-        L("%s %s post v%s %s %s %s pay %.2f wo %.2f %s chk %s -> %s" % (tag, cid, v["vid"], v["carrier"], v["dos"], act.get("cpt", ""), pay, wo, act.get("wocode") or "", chk, str(msg)[:90]))
+        L("%s %s %s v%s %s %s %s pay %.2f wo %.2f %s chk %s -> %s" % (tag, cid, key.split("|")[1], v["vid"], v["carrier"], v["dos"], act.get("cpt", ""), pay, wo, act.get("wocode") or "", chk, str(msg)[:90]))
         if ok:
             if pay > 0: n_pay += 1; d_pay += pay
             if wo > 0: n_wo += 1; d_wo += wo; xlrows.append([datetime.date.today().isoformat(), v["patient"], v["carrier"], v["dos"], round(wo, 2), "%s %s" % (act.get("wocode"), note[:200])])

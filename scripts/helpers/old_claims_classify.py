@@ -39,10 +39,11 @@ for p in ("deceased_cache.json", "registers/deceased_cache.json", "/home/user/ef
     if os.path.exists(p):
         try: DEC = {k: v for k, v in json.load(open(p)).items() if v.get("dod")}; break
         except Exception: pass
-MEDICAID = {"MCAD", "FLO99", "SIM01", "SUN01"}
+MEDICAID = {"MCAD", "FLO99", "SIM01", "SUN01", "GEO05"}
+SUPPLEMENT = {"AET12", "AAR01", "TRI05", "CHA03", "UNI01", "BAN07", "MUT01", "USAA", "HIG06", "MAG01", "PHY10"}
 MEDICARE = {"FLO02", "RET01"}
 UHC = {"UNI20", "UHCMA", "AAR01", "UMR"}
-SMALL = 25.0
+SMALL = 25.0; RECENT_SEND = 30; RECENT_ANSWER = 45
 def money(x): return round(float(x or 0) + 1e-9, 2)
 def d8(s):
     s = (s or "").strip()
@@ -112,8 +113,11 @@ def exact_for(v):
     seen = collections.OrderedDict()
     for p in mine: seen.setdefault((p.get("check") or "", "%.2f" % p["amount"]), p)
     mine = list(seen.values())
-    return {"state": "paid", "how": how, "payments": mine, "paid": money(sum(p["amount"] for p in mine)), "checks": [p.get("check") or "" for p in mine], "dates": [p.get("date") or p.get("checkDate") or "" for p in mine],
-            "detail": "exact-date 277 (%s): %s" % (how, "; ".join("$%.2f chk %s %s acct %s" % (p["amount"], p.get("check") or "?", p.get("date") or "", p.get("acct") or "?") for p in mine))}
+    detail = "exact-date 277 (%s): %s" % (how, "; ".join("$%.2f chk %s %s acct %s" % (p["amount"], p.get("check") or "?", p.get("date") or "", p.get("acct") or "?") for p in mine))
+    if len({(p.get("acct") or "")[len(v["vid"]):] for p in mine}) > 1 and len({p.get("check") or "" for p in mine}) > 1:
+        return {"state": "multi", "payments": mine, "detail": "the payer paid this visit more than once (original claim + resends, different checks) - possible duplicate payments; " + detail}
+    # deposit date = the check / EFT issue date when the payer gives one (what the bank deposit carries), else the 277 status date
+    return {"state": "paid", "how": how, "payments": mine, "paid": money(sum(p["amount"] for p in mine)), "checks": [p.get("check") or "" for p in mine], "dates": [p.get("checkDate") or p.get("date") or "" for p in mine], "detail": detail}
 
 def chart_position(v):
     """Where the balance carrier sits in the visit's insurance order, and what other plan the chart carries at the DOS."""
@@ -150,20 +154,45 @@ for v in facts:
     age = v["age"]; car = v["carrier"]; old = age > 365
     tier = None; pkg = None; note = []; acts = []; wocode = None; sub = None
     openbal = money(sum(c["insbal"] for c in live)); patbal = money(sum(c["patbal"] for c in allive))
-    def wo_all(code, chk="OLD%s" % STAMP, date=""):
-        return [{"cid": c["cid"], "cpt": c["cpt"], "insbal": c["insbal"], "patbal": c["patbal"], "pay": 0.0, "wo": c["insbal"], "wocode": code, "check": chk, "paiddate": date} for c in live]
+    def wo_all(code, chk="OLD%s" % STAMP, date="", split_pr=False, pr_code=None):
+        """One write-off per live charge; with split_pr the patient-share part (PR reasons on the payer's own payment) gets pr_code and
+        the rest - an unadjusted contractual (CO45/CO253 never re-posted after the WOINSBANK void) - gets WOINS (William 9/22)."""
+        out = []
+        for c in live:
+            if not split_pr: out.append({"cid": c["cid"], "cpt": c["cpt"], "insbal": c["insbal"], "patbal": c["patbal"], "pay": 0.0, "wo": c["insbal"], "wocode": code, "check": chk, "paiddate": date}); continue
+            pr = money(min(c["insbal"], sum(r[1] for p in c["pays"] if p["void"] != "1" and p["amount"] > 0 for r in p["reasons"] if str(r[0]).startswith("PR"))))
+            co = money(c["insbal"] - pr)
+            if pr > 0.004: out.append({"cid": c["cid"], "cpt": c["cpt"], "insbal": c["insbal"], "patbal": c["patbal"], "pay": 0.0, "wo": pr, "wocode": pr_code or code, "check": chk, "paiddate": date})
+            if co > 0.004: out.append({"cid": c["cid"], "cpt": c["cpt"], "insbal": c["insbal"], "patbal": c["patbal"], "pay": 0.0, "wo": co, "wocode": "WOINS", "check": chk, "paiddate": date, "why": "unadjusted contractual (no PR reason covers it)"})
+        return out
     if not allive or openbal <= 0:
         tier = "SETTLED"; note.append("no open insurance balance on the live chart any more")
     elif v["adjudicated"]:
         pr = v["paid_total"] > 0 or any(r.startswith("PR") for r in v["pay_reasons"])
         if pr:
-            tier = "ADJ-RESIDUAL"; sub = ("PR/" if any(r.startswith("PR") for r in v["pay_reasons"]) else "CO/") + ("dual" if med_sec and not sup_sec else ("supp" if sup_sec else "none"))
+            tier = "ADJ-RESIDUAL"
+            pays = [p for c in allive for p in c["pays"] if p["void"] != "1"]
+            bal_med = car in MEDICAID; bal_supp = car in SUPPLEMENT
+            sec0 = sorted({p["carrier"] for p in pays if p["amount"] == 0 and (p["carrier"] in MEDICAID or p["carrier"] == "HUM01") and any(r[0] in ("OA23", "CO256", "CO170") for r in p["reasons"])})
+            med_answered = sorted({p["carrier"] for p in pays if (p["carrier"] in MEDICAID) or (p["carrier"] == "HUM01" and any(r[0] == "OA23" for r in p["reasons"]))})
+            prim_paid = [p for p in pays if p["amount"] > 0 and p["carrier"] not in MEDICAID]
+            dual = bal_med or (med_sec and not sup_sec) or bool(sec0)
+            sub = ("PR/" if any(r.startswith("PR") for r in v["pay_reasons"]) else "CO/") + ("dual" if dual else ("supp" if (sup_sec or bal_supp) else "none"))
             note.append("payer %s paid $%.2f on %s (%s); open $%.2f is the residual" % ("/".join(v["pay_carriers"]), v["paid_total"], v["last_pay_date"], "/".join(v["pay_reasons"])[:60], openbal))
             if set(v["pay_carriers"]) - {car}: note.append("balance sits at %s" % car)
-            if sub.endswith("dual"): tier, pkg, wocode = "WO-DUAL", "J", "WOCAID2ND"; acts = wo_all(wocode); note.append("dual: Medicaid-family plan %s on the chart - the residual after Medicare/MA is WOCAID2ND (9/11 rule)" % "/".join(med_sec))
-            elif sub.endswith("none") and prnone_by_pid[v["pid"]] <= SMALL: tier, pkg, wocode = "WO-SMALL", "I", "WOSMBAL"; acts = wo_all(wocode); note.append("no other plan on the chart and the patient's whole adjudicated cost-sharing is $%.2f (under $%d) - small-balance write-off (9/11 rule)" % (prnone_by_pid[v["pid"]], SMALL))
+            if car == "AET12": tier = "HOLD-AET12"; note.append("balance sits at Aetna Senior Supplemental - on hold (9/21 rule), worked from the Aetna side")
+            elif dual and prim_paid:
+                hum185 = any(p["carrier"] == "HUM01" and p["amount"] == 0 and any(r[0] in ("CO185", "N767") for r in p["reasons"]) for p in pays)
+                if hum185: med_answered = sorted(set(med_answered) | {"HUM01"})
+                tier, pkg, wocode = "WO-DUAL", ("J" if med_answered else "K"), ("WOINS" if hum185 else "WOCAID2ND"); acts = wo_all(wocode, split_pr=True, pr_code=wocode)
+                note.append("dual: Medicaid-family coverage (%s) and the primary paid $%.2f - the cost-sharing residual is %s, never billed to the patient (9/11 rule%s); %s%s" % ("/".join(sorted(set(([car] if bal_med else []) + med_sec + sec0 + (["HUM01"] if hum185 else [])))), sum(p["amount"] for p in prim_paid),
+                            wocode, "; Humana Medicaid answered CO185 provider-not-enrolled -> WOINS per William 9/20" if hum185 else "",
+                            ("the Medicaid plan already answered on this visit (%s)" % "/".join(med_answered)) if med_answered else "the Medicaid plan has NOT answered on this visit yet - approving K skips the crossover",
+                            "; the part no PR reason covers is an unadjusted contractual -> WOINS" if any(x.get("why") for x in acts) else ""))
+            elif dual: note.append("dual, but the primary paid $0 (deductible) - the Medicaid plan may owe up to its own allowed: bill / crossover it, not a write-off (insurances cleaning task)")
+            elif sub.endswith("none") and prnone_by_pid[v["pid"]] <= SMALL: note.append("no other plan on the chart; the patient's open cost-sharing here is $%.2f - small-balance candidate (WOSMBAL) once the whole account is read (insurances cleaning task)" % prnone_by_pid[v["pid"]])
             elif sub.endswith("none"): note.append("no other plan on the chart; patient cost-sharing $%.2f across the chart - patient statement (insurances cleaning task), not a write-off" % prnone_by_pid[v["pid"]])
-            elif sub.endswith("supp"): note.append("supplement/commercial secondary %s on the chart - bill the secondary (insurances cleaning task)" % "/".join(sup_sec))
+            elif sub.endswith("supp"): note.append("supplement/commercial secondary %s - bill the secondary; timely from the primary's remit (insurances cleaning task)" % "/".join(sorted(set(sup_sec + ([car] if bal_supp else [])))))
             if sub.startswith("CO/"): note.append("no PR reason on the payment: the residual may be an unadjusted contractual (WOINS after an allowed-vs-paid read)")
         else:
             if old and (pos in (0, None)): tier, wocode = "WO-UNTIMELY", "WOLATE"; note.append("$0 denial posted (%s) and over 12 months - untimely" % "/".join(v["pay_reasons"]))
@@ -176,15 +205,18 @@ for v in facts:
         elif ans["kind"] in ("PAID", "PAID-NOAMT") or (ex and ex["state"] == "paid"):
             if ex is None:
                 tier = "REVIEW"; note.append("windowed 277 says %s but no exact-date answer was obtained - not posted on a +/-3-day answer" % ans["action"])
+            elif ex["state"] == "multi":
+                tier = "REVIEW"; note.append(ex["detail"] + " - treasury check (which payments were deposited, which recouped) before anything is posted")
             elif ex["state"] == "paid":
                 tier = "POST-277"; pkg = pkg_for_post(car); paid = min(ex["paid"], openbal)
-                lines = collections.defaultdict(float)
+                lines = collections.defaultdict(float); denied = set()
                 for p in ex["payments"]:
                     for l in (p.get("lines") or []):
                         if l.get("cpt") and l.get("paid"): lines[str(l["cpt"])] += float(l["paid"] or 0)
+                        elif l.get("cpt") and (l.get("cat") in ("F2", "F3", "F4") or not float(l.get("paid") or 0)): denied.add(str(l["cpt"]))
                 alloc = []
-                if lines and all(c["cpt"] in lines for c in live) and abs(sum(lines.values()) - ex["paid"]) < 0.02:
-                    for c in live: alloc.append(money(min(lines[c["cpt"]], c["insbal"])))
+                if lines and all((c["cpt"] in lines or c["cpt"] in denied) for c in live) and abs(sum(lines.values()) - ex["paid"]) < 0.02:
+                    for c in live: alloc.append(money(min(lines.get(c["cpt"], 0.0), c["insbal"])))
                     note.append("per-line amounts from the 277 service details")
                 else:
                     fees = sum(c["fee"] for c in live) or 1.0; left = paid
@@ -194,10 +226,15 @@ for v in facts:
                 chk = ex["checks"][0] if ex["checks"] else "277"; pdate = ex["dates"][0] if ex["dates"] else ""
                 for c, pay in zip(live, alloc):
                     resid = money(c["insbal"] - pay); wo = 0.0; wc = None
+                    if c["cpt"] in denied and pay <= 0:
+                        note.append("line %s shows denied / unpaid on the 277 - left open for the denial cascade, no write-off" % c["cpt"]); continue
                     if resid > 0 and not sec_other: wo, wc = resid, "WOINS"
                     elif resid > 0 and med_sec and not sup_sec: wo, wc = resid, "WOCAID2ND"
                     acts.append({"cid": c["cid"], "cpt": c["cpt"], "insbal": c["insbal"], "patbal": c["patbal"], "pay": pay, "wo": wo, "wocode": wc, "check": chk, "paiddate": pdate})
                 if len(ex["payments"]) > 1: note.append("the payer lists %d separate payments on this claim id - posted as one line under check %s" % (len(ex["payments"]), chk))
+                plans_ = (v.get("chart") or {}).get("plans") or []; myseq = next((int(p["seq"]) for p in plans_ if p["code"] == car and p["seq"].isdigit()), 99)
+                if car not in MEDICARE and any(p["code"] in MEDICARE and p["seq"].isdigit() and int(p["seq"]) < myseq and (d8(p["end"]) is None or d8(p["end"]) >= d8(v["dos"])) for p in plans_):
+                    note.append("a Medicare plan sits ahead of the paying %s plan on the chart - the payer paid as primary, so the MA/commercial plan replaced Medicare on this DOS; the remainder is treated as contractual (if Medicare should have been primary, decline this row)" % car)
                 if sup_sec: note.append("remainder $%.2f left open for the %s secondary (manual post carries no reason codes - the secondary claim will hold in Unbilled)" % (money(openbal - sum(alloc)), "/".join(sup_sec)))
                 if ex["paid"] > openbal + 0.005: note.append("277 paid $%.2f exceeds the open $%.2f - posting the open balance only" % (ex["paid"], openbal))
                 if patbal > 0: note.append("$%.2f sits on the patient balance - moved back to insurance first" % patbal)
@@ -226,12 +263,16 @@ for v in facts:
                     note.append("no Medicare adjudication on the chart %d days after the DOS; %s" % (age, ("last sent %s (claim %s)" % (sent[-1]["billeddate"], sent[-1]["claimid"])) if sent else "NO Medicare claim send on record"))
             elif old: tier, wocode = "WO-UNTIMELY", "WOINS"; note.append("never adjudicated, over 12 months, no payer answer (%s)" % (ans["kind"] if ans["src"] else "no 277 for this payer"))
             else: tier = "NO-ANSWER"; note.append("inside 12 months, no usable payer answer (%s) - next sweep" % (ans["action"] or "no 277 for this payer"))
-        if tier == "RESEND":
-            if not acts: acts.append({"cid": live[0]["cid"], "cpt": live[0]["cpt"], "resend_seq": (order[0] if order else "1")})
-            recent = [c for c in live if (d8(c["billdate"]) or datetime.date(2000, 1, 1)) >= TODAY - datetime.timedelta(days=30)]
-            if recent: tier, pkg, acts = "WAIT", None, []; note.append("last billed %s (inside 30 days) - not resent" % recent[0]["billdate"])
-        if tier == "MEDICARE-UNANSWERED": acts.append({"cid": live[0]["cid"], "cpt": live[0]["cpt"], "resend_seq": (order[0] if order else "1")})
-    if tier == "WO-UNTIMELY": pkg = pkg_for_wo(car); acts = wo_all(wocode)
+        if tier in ("RESEND", "MEDICARE-UNANSWERED"):
+            recent = [c for c in live if (d8(c["billdate"]) or datetime.date(2000, 1, 1)) >= TODAY - datetime.timedelta(days=RECENT_SEND)]
+            sends = [b for b in (v.get("insbills") or []) if (car in MEDICARE and "MEDICARE" in (b.get("carriername") or "").upper()) or (car not in MEDICARE and (b.get("carriername") or "")[:8].upper() == (v.get("carriername") or "")[:8].upper())]
+            if recent: tier, pkg, acts = "WAIT", None, []; note.append("last billed %s (inside %d days) - the answer to that send is still due; not resent" % (recent[0]["billdate"], RECENT_SEND))
+            elif len(sends) >= 2: tier, pkg, acts = "REVIEW", None, []; note.append("already sent %d times to this payer with no answer on the chart (%s) - a plain resend is not the fix; needs the claim-run / 277CA rejection reason" % (len(sends), ", ".join(b.get("billeddate", "") for b in sends)))
+            elif not acts: acts.append({"cid": live[0]["cid"], "cpt": live[0]["cpt"], "resend_seq": (order[0] if order else "1")})
+    if tier == "WO-UNTIMELY":
+        recent = [c for c in live if (d8(c["billdate"]) or datetime.date(2000, 1, 1)) >= TODAY - datetime.timedelta(days=RECENT_ANSWER)]
+        if recent: tier, wocode = "WAIT", None; note.append("sent %s (inside %d days) - the payer's answer to that send is still due; write-off deferred" % (recent[0]["billdate"], RECENT_ANSWER))
+        else: pkg = pkg_for_wo(car); acts = wo_all(wocode)
     if dec and tier not in ("SETTLED",):
         note.append("DECEASED flag on the chart - confirm the DOS is before the date of death (after = VOID, never a write-off)")
         if pkg: pkg = pkg + "-dec"
@@ -255,8 +296,9 @@ PKG = {"A": "POST per 277 - UnitedHealthcare family (UNI20/UHCMA/AARP): post the
        "F": "WRITE OFF untimely - every other carrier, never adjudicated, DOS over 12 months (WOLATE / WOINS as above)",
        "G": "RESEND once as an original claim (freq 1) - payer says NOT ON FILE, inside 12 months (standing Sunday-sweep rule)",
        "H": "Medicare, inside 12 months, no adjudication on the chart - resend once as an original claim (freq 1; deceased guard + one-rebill rule apply)",
-       "I": "SMALL BALANCE - adjudicated cost-sharing, no other plan on the chart, the patient's whole open cost-sharing is under $25 -> WOSMBAL (9/11 rule)",
-       "J": "DUAL - adjudicated cost-sharing with a Medicaid-family plan on the chart (Medicaid / FCC / Simply / Sunshine) -> WOCAID2ND, never billed to the patient (9/11 rule)"}
+       "I": "SMALL BALANCE - adjudicated cost-sharing, no other plan on the chart, the patient's whole open cost-sharing is under $25 -> WOSMBAL (9/11 rule) - not offered tonight (needs the whole account read)",
+       "J": "DUAL, Medicaid plan already answered - Medicare/MA paid, a Medicaid-family plan (Medicaid / FCC / Simply / Sunshine / Georgia Medicaid / Humana Medicaid) has posted its $0 answer on the visit -> the cost-sharing residual is WOCAID2ND, never billed to the patient (9/11 rule)",
+       "K": "DUAL, Medicaid plan not yet answered - same facts but the Medicaid-family plan has no posting on the visit yet: WOCAID2ND now skips the crossover (it would almost always answer $0 - primary paid at or above the Medicaid allowed)"}
 json.dump({"stamp": STAMP, "built": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z", "sweep": SWEEP, "exact": EXACT, "exact_n": len(EX), "packages": PKG, "summary": pkgs, "visits": out}, open("old_claims_disposition_%s.json" % STAMP, "w"), indent=1)
 groups = [{"pid": pid, "patient": rs[0]["patient"], "chart": next((f.get("chart") for f in facts if f["pid"] == pid), None), "visits": rs} for pid, rs in byp.items()]
 json.dump(groups, open("old_claims_review_%s.json" % STAMP, "w"))

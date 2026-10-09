@@ -38,8 +38,9 @@ for L, rows in pkgs.items():
                   "evidence": "dry run %s: %d charge actions verified live (%d skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_%s.json" % (STAMP, ndry, nskip, STAMP),
                   "evidence_file": "/home/claude/unbilled/old_claims_apply_%s.log" % STAMP})
 json.dump(items, open("items_old_claims_%s.json" % STAMP, "w"), indent=1)
-clean = json.loads(json.dumps(D))
-for r in clean["visits"]: r["patient"] = "[name]"
+KEEP = ("vid", "pid", "carrier", "dos", "age", "open", "patbal", "cpts", "tier", "pkg", "wocode", "deceased", "notes", "actions", "pay_total", "wo_total")
+clean = {"stamp": D["stamp"], "built": D["built"], "packages": D["packages"], "summary": D["summary"], "about": "package rows only, chart ids only (names removed) - the apply helper's input in a container that has no workspace copy",
+         "visits": [dict({k: r[k] for k in KEEP}, patient="[name]") for r in V if r["pkg"]]}
 os.makedirs(os.path.join(REPO, "practices", "ehpa", "registers"), exist_ok=True)
 json.dump(clean, open(os.path.join(REPO, "practices", "ehpa", "registers", "old_claims_disposition_%s.json" % STAMP), "w"))
 print("cards: %d -> items_old_claims_%s.json; register copy written (names removed)" % (len(items), STAMP))

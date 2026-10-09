@@ -7,10 +7,12 @@
 import json, sys, os, random, collections, shutil
 a = sys.argv[1:]
 def opt(n, d=None): return a[a.index(n) + 1] if n in a else d
-STAMP = opt("--stamp", "1009"); PER = int(opt("--per", 10)); LS = int(opt("--list-sample", 160))
+STAMP = opt("--stamp", "1009"); PER = int(opt("--per", 10)); LS = int(opt("--list-sample", 160)); SUB = opt("--subdir", "")
 D = json.load(open("old_claims_disposition_%s.json" % STAMP)); V = D["visits"]
+if "--only-vids" in a:   # a second pass over rows that entered a package after the first review (file = JSON list of vids)
+    keep = set(json.load(open(opt("--only-vids")))); V = [r for r in V if r["vid"] in keep]
 F = {v["vid"]: v for v in json.load(open("old_claims_facts_%s.json" % STAMP))["visits"]}
-out = "old_claims_batches/%s" % STAMP; shutil.rmtree(out, ignore_errors=True); os.makedirs(out)
+out = "old_claims_batches/%s%s" % (STAMP, SUB); shutil.rmtree(out, ignore_errors=True); os.makedirs(out)
 def slim(r):
     x = {k: r[k] for k in ("vid", "pid", "patient", "carrier", "dos", "age", "open", "patbal", "cpts", "provider", "tier", "sub", "pkg", "wocode", "position", "order", "other_plans", "deceased", "notes", "actions", "pay_total", "wo_total", "facts")}
     x["answer"] = {k: r["answer"][k] for k in ("src", "kind", "action", "paid", "checks", "dates", "detail")}; x["exact"] = r.get("exact"); return x
