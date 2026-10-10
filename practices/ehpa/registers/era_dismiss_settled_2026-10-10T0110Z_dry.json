@@ -1,0 +1,31 @@
+[
+ {
+  "checkid": "1053074",
+  "stamp": "2026-10-10T0110Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 0
+  },
+  "unsettled": [],
+  "outcome": "not on the unposted list"
+ },
+ {
+  "checkid": "1053075",
+  "stamp": "2026-10-10T0110Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 1
+  },
+  "unsettled": [],
+  "carrier": "HUM01",
+  "eracarrier": "HUMANA INC.",
+  "paymentnumber": "NO-PAY-202610080004210",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "outcome": "dry - would dismiss"
+ }
+]

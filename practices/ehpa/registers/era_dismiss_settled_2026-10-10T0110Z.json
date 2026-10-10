@@ -1,0 +1,21 @@
+[
+ {
+  "checkid": "1053075",
+  "stamp": "2026-10-10T0110Z",
+  "live": true,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 1
+  },
+  "unsettled": [],
+  "carrier": "HUM01",
+  "eracarrier": "HUMANA INC.",
+  "paymentnumber": "NO-PAY-202610080004210",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "dismiss_http": 200,
+  "dismiss_text": "{\"issuccess\":true,\"id\":1053075,\"actionname\":1}",
+  "outcome": "dismissed"
+ }
+]
