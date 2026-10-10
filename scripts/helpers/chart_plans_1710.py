@@ -1,4 +1,4 @@
-# PLAIN ENGLISH (chart plan check, 1 PM ET 10/9/2026 run 2026-10-09T1710Z): READ-ONLY.
+# PLAIN ENGLISH (chart plan check, 1 PM ET 10/10/2026 run 2026-10-10T1710Z): READ-ONLY.
 # Decides: nothing. For each chart id on the command line it reads the demographic record (amdw.plans) and prints how many
 #   insurance plans the chart carries and their carrier codes + sequence - so the run can tell whether William (or a facesheet)
 #   has added insurance to the Unbilled charts since the last run. No AMD write of any kind. Chart ids only, no names.
