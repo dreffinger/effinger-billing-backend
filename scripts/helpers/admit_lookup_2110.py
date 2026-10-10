@@ -1,10 +1,10 @@
-# PLAIN ENGLISH (pending-admit chart check, 5 PM ET 10/9/2026 run 2026-10-09T2110Z): READ-ONLY.
+# PLAIN ENGLISH (pending-admit chart check, 5 PM ET 10/10/2026 run 2026-10-10T2110Z): READ-ONLY.
 # Decides: nothing. For each name pattern given on the command line it runs lookuppatient (LAST,FIR%) and prints the AMD
 #   chart ids + DOBs found, so the run can tell whether the Claimocity feed has created a chart for a Pam admit that had none
 #   at the last run. Writes registers/admit_lookup_<stamp>.json (chart ids only, no names). No AMD write of any kind.
 # Usage: python3 admit_lookup_0110.py "[name]%" "FLAXLEY,[first]%"
 import amd, re, json, sys, time
-STAMP = "2026-10-09T2110Z"; amd.login_cached(); out = {"stamp": STAMP, "lookups": []}
+STAMP = "2026-10-10T2110Z"; amd.login_cached(); out = {"stamp": STAMP, "lookups": []}
 for pat in sys.argv[1:]:
     r = amd.post(amd.msg("lookuppatient", "lookup", {"name": pat, "nocookie": "1"}))
     rows = [dict(re.findall(r'(\w+)="([^"]*)"', x)) for x in re.findall(r'<patient [^>]*/?>', r)]
