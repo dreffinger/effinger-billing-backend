@@ -17,3 +17,14 @@
 {"at": "2026-10-08T19:34:29Z", "visit": "19457346", "charge": "23369203", "seq": 2, "status": 204, "by": "insp_1008_1910.py"}
 {"at": "2026-10-10T17:28:40Z", "visit": "19456254", "charge": "23367878", "seq": 2, "status": 204, "by": "aarp_fix_1010_1710.py"}
 {"at": "2026-10-10T17:28:50Z", "visit": "19456271", "charge": "23367895", "seq": 2, "status": 204, "by": "aarp_fix_1010_1710.py"}
+{"at": "2026-10-10T23:25:54Z", "visit": "19456899", "charge": "23368565", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:26:07Z", "visit": "19456878", "charge": "23368539", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:26:22Z", "visit": "19456859", "charge": "23368520", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:26:36Z", "visit": "19456850", "charge": "23368511", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:26:50Z", "visit": "19456971", "charge": "23368700", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:27:04Z", "visit": "19457173", "charge": "23368987", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:27:17Z", "visit": "19457304", "charge": "23369161", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:27:31Z", "visit": "19457293", "charge": "23369150", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:27:44Z", "visit": "19457272", "charge": "23369129", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:27:57Z", "visit": "19457479", "charge": "23369386", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-10T23:28:10Z", "visit": "19457468", "charge": "23369375", "seq": 2, "status": 204, "by": "freq1_visit.py"}
