@@ -1,0 +1,390 @@
+{
+ "stamp": "2026-10-11T0110Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053084",
+   "checkclaimid": 15444972,
+   "visitid": "19416099",
+   "pid": "20379",
+   "chargedetailid": "23319630",
+   "cpt": "99487",
+   "dos": "2025-09-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M76"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M76'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444973,
+   "visitid": "19438592",
+   "pid": "17471238",
+   "chargedetailid": "23345778",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444974,
+   "visitid": "19442401",
+   "pid": "17471238",
+   "chargedetailid": "23350486",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444975,
+   "visitid": "19439617",
+   "pid": "17471238",
+   "chargedetailid": "23347188",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444976,
+   "visitid": "19455034",
+   "pid": "20379",
+   "chargedetailid": "23366185",
+   "cpt": "99223",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/19/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 (on the chart) on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "note": "live claim is at FLO02 (billed 09/19/2026) - this HUM01 answer posts under HUM01; the FLO02 claim's own answer settles the rest",
+   "pay": 0.0,
+   "wo": 184.8,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 184.80 (bal 184.80)"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444977,
+   "visitid": "19455126",
+   "pid": "20379",
+   "chargedetailid": "23366265",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/20/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 (on the chart) on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "note": "live claim is at FLO02 (billed 09/20/2026) - this HUM01 answer posts under HUM01; the FLO02 claim's own answer settles the rest",
+   "pay": 0.0,
+   "wo": 74.54,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 74.54 (bal 74.54)"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444978,
+   "visitid": "19455112",
+   "pid": "20379",
+   "chargedetailid": "23366251",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/20/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary HUM01 (on the chart) on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "note": "live claim is at FLO02 (billed 09/20/2026) - this HUM01 answer posts under HUM01; the FLO02 claim's own answer settles the rest",
+   "pay": 0.0,
+   "wo": 74.54,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 74.54 (bal 74.54)"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444979,
+   "visitid": "19455209",
+   "pid": "23969",
+   "chargedetailid": "23366385",
+   "cpt": "99233",
+   "dos": "2026-09-19",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "CIG09",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "HOLD - $0 answer ['OA23'] [] from HUM01, which is NOT a plan on this chart (chart plans ['CIG09', 'FLO02']); live claim at CIG09 (billed 10/03/2026) - nothing written, listed for the report"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444980,
+   "visitid": "19455038",
+   "pid": "23969",
+   "chargedetailid": "23366190",
+   "cpt": "99223",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "CIG09",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['OA23'] [] from HUM01, which is NOT a plan on this chart (chart plans ['CIG09', 'FLO02']); live claim at CIG09 (billed 10/02/2026) - nothing written, listed for the report"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444981,
+   "visitid": "19455056",
+   "pid": "23969",
+   "chargedetailid": "23366208",
+   "cpt": "99223",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "CIG09",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['OA23'] [] from HUM01, which is NOT a plan on this chart (chart plans ['CIG09', 'FLO02']); live claim at CIG09 (billed 10/02/2026) - nothing written, listed for the report"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444981,
+   "visitid": "19455056",
+   "pid": "23969",
+   "chargedetailid": "23366209",
+   "cpt": "99497",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbal": 80.67,
+    "patbal": 0.0,
+    "carrier": "CIG09",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['OA23'] [] from HUM01, which is NOT a plan on this chart (chart plans ['CIG09', 'FLO02']); live claim at CIG09 (billed 10/02/2026) - nothing written, listed for the report"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444982,
+   "visitid": "19455121",
+   "pid": "23969",
+   "chargedetailid": "23366260",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "CIG09",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['OA23'] [] from HUM01, which is NOT a plan on this chart (chart plans ['CIG09', 'FLO02']); live claim at CIG09 (billed 10/02/2026) - nothing written, listed for the report"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444983,
+   "visitid": "19455457",
+   "pid": "23969",
+   "chargedetailid": "23366750",
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "CIG09",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053085",
+   "checkclaimid": 15444984,
+   "visitid": "19420555",
+   "pid": "17472784",
+   "chargedetailid": "23325534",
+   "cpt": "99307",
+   "dos": "2025-10-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 68.0,
+    "paid": 61.5,
+    "insbal": 0.0,
+    "patbal": 6.5,
+    "carrier": "HUM01",
+    "billdate": "10/06/2026"
+   },
+   "note": "would move 6.50 patient balance (dual coinsurance residual) back to insurance first, no rebill",
+   "why": "CO-185 N767 $0 from the Humana Medicaid MMA plan on a line already paid by FLO02 - crossover residual WOINS (William 9/20/2026)",
+   "pay": 0.0,
+   "wo": 6.5,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.00 + WOINS 6.50 (bal 6.50)"
+  }
+ ],
+ "wolate": []
+}

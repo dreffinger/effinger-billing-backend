@@ -1,0 +1,36 @@
+[
+ {
+  "checkid": "1053084",
+  "stamp": "2026-10-11T0110Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 1
+  },
+  "unsettled": [],
+  "carrier": "HUM01",
+  "eracarrier": "HUMANA INC.",
+  "paymentnumber": "NO-PAY-202610090008699",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "outcome": "dry - would dismiss"
+ },
+ {
+  "checkid": "1053085",
+  "stamp": "2026-10-11T0110Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 13
+  },
+  "unsettled": [],
+  "carrier": "FLO02",
+  "eracarrier": "HUMANA INC.",
+  "paymentnumber": "NO-PAY-202610090008700",
+  "paymentamount": 0.0,
+  "unposted": 0.0,
+  "outcome": "dry - would dismiss"
+ }
+]
