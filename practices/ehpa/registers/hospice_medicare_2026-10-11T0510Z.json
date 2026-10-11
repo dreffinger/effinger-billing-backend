@@ -1,0 +1,84 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "pid": "17472396",
+ "visits": [
+  {
+   "vid": "19441616",
+   "cid": "23349530",
+   "live_pays": [],
+   "open_ins": 107.0,
+   "gv_missing": [],
+   "visit_insorder": "2,1",
+   "reroute": "resave vst19441616 insorder 2,1 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "action": "done"
+  },
+  {
+   "vid": "19442523",
+   "cid": "23350697",
+   "live_pays": [
+    [
+     "23350697",
+     "HUM01",
+     79.1
+    ]
+   ],
+   "open_ins": 109.0,
+   "action": "SKIP - non-void payment on the visit (never rebill a paid visit)"
+  },
+  {
+   "vid": "19444342",
+   "cid": "23353047",
+   "live_pays": [],
+   "open_ins": 68.0,
+   "gv_missing": [],
+   "visit_insorder": "2,1",
+   "reroute": "resave vst19444342 insorder 2,1 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "action": "done"
+  },
+  {
+   "vid": "19446223",
+   "cid": "23355217",
+   "live_pays": [],
+   "open_ins": 315.0,
+   "gv_missing": [],
+   "visit_insorder": "2,1",
+   "reroute": "resave vst19446223 insorder 2,1 -> 1,2, 2 live charges (was 2) | freq1 + rebill seq 1 -> 204",
+   "action": "done"
+  },
+  {
+   "vid": "19447320",
+   "cid": "23356503",
+   "live_pays": [],
+   "open_ins": 141.0,
+   "gv_missing": [],
+   "visit_insorder": "2,1",
+   "reroute": "resave vst19447320 insorder 2,1 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "action": "done"
+  },
+  {
+   "vid": "19457336",
+   "cid": "23369193",
+   "live_pays": [],
+   "open_ins": 141.0,
+   "gv_missing": [
+    "charge23369193"
+   ],
+   "visit_insorder": "2,1",
+   "add_gv": "GV on 1/1 charges (1 live)",
+   "reroute": "resave vst19457336 insorder 2,1 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 1 -> 204",
+   "action": "done"
+  }
+ ],
+ "release": {
+  "vids": [
+   "19441616",
+   "19444342",
+   "19446223",
+   "19447320",
+   "19457336"
+  ],
+  "ok": true,
+  "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/10/2026 22:31:19\"><Results success=\"1\" /><E"
+ }
+}

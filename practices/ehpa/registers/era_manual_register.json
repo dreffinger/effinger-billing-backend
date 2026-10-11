@@ -30209,5 +30209,50 @@
   "wo": 57.71,
   "wocode": "WOINS",
   "when": "2026-10-10T0710Z"
+ },
+ {
+  "checkid": 1053116,
+  "checkclaimid": 15446117,
+  "visitid": 19421789,
+  "chargeid": 23327117,
+  "outcome": "already-posted (OA-18 duplicate; original UHC check 45076322 posted 10/9/2026 171.84 + WOINS 84.16, balance 0)",
+  "when": "2026-10-11T09:52:30Z",
+  "run": "2026-10-11T0910Z"
+ },
+ {
+  "checkid": 1053116,
+  "checkclaimid": 15446117,
+  "visitid": 19421789,
+  "chargeid": 23327118,
+  "outcome": "already-posted (OA-18 duplicate; original UHC check 45076322 posted 10/9/2026 57.02 + WOINS 75.98, balance 0)",
+  "when": "2026-10-11T09:52:30Z",
+  "run": "2026-10-11T0910Z"
+ },
+ {
+  "checkid": 1053116,
+  "checkclaimid": 15446119,
+  "visitid": 19395670,
+  "chargeid": 22468661,
+  "outcome": "residual 71.00 - UHCMA paid 71.00 on the 6/12/2024 99308 whose charge was written off WOINSBANK 107.00 on 5/31/2026 (open insurance balance 0); posted nothing per the 9/13 rule",
+  "when": "2026-10-11T09:52:30Z",
+  "run": "2026-10-11T0910Z"
+ },
+ {
+  "checkid": 1053116,
+  "checkclaimid": 15446120,
+  "visitid": 19395670,
+  "chargeid": 22468661,
+  "outcome": "reversal CO-29 -107.00 (claimstatus 3) with no matching UHC payment in AMD - takeback has no standing rule; listed for William",
+  "when": "2026-10-11T09:52:30Z",
+  "run": "2026-10-11T0910Z"
+ },
+ {
+  "checkid": 1053096,
+  "checkclaimid": 15445370,
+  "visitid": 19453666,
+  "chargeid": 23364408,
+  "outcome": "held - code-less hand post 24660503 (97.59) on the charge; void + ERA-linked re-post waits on approval card A-2026-10-11T0510Z-A",
+  "when": "2026-10-11T09:52:30Z",
+  "run": "2026-10-11T0910Z"
  }
 ]

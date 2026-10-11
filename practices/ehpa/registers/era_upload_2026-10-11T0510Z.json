@@ -1,0 +1,445 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "unposted_before": 2,
+ "dismissed_known": 1849,
+ "files": [
+  {
+   "file": "00147791770.dat",
+   "trn": "00147791770",
+   "amount": 62.13,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"00147791770.dat\",\"filesize\":1517,\"filemd5checksum\":\"b5e78900-1fc1-fab0-4560-238a00c49918\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "00147861253.dat",
+   "trn": "00147861253",
+   "amount": 387.34,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"00147861253.dat\",\"filesize\":6596,\"filemd5checksum\":\"63e98939-7844-f58d-465a-3e6030d18e18\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "00147939778.dat",
+   "trn": "00147939778",
+   "amount": 140.94,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"00147939778.dat\",\"filesize\":2261,\"filemd5checksum\":\"2dd90a3d-b34e-ca2a-b6d1-607e982307b5\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "00148049016.dat",
+   "trn": "00148049016",
+   "amount": 68.12,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"00148049016.dat\",\"filesize\":1483,\"filemd5checksum\":\"2ec34871-7937-f512-6bdc-c8c49a062276\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "00148133556.dat",
+   "trn": "00148133556",
+   "amount": 469.97,
+   "skip": "already processed/dismissed in the ERA Center (check 1053040)"
+  },
+  {
+   "file": "11498132652.dat",
+   "trn": "11498132652",
+   "amount": 39.53,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"11498132652.dat\",\"filesize\":1235,\"filemd5checksum\":\"c669803e-65ea-8e11-4712-809697a9bbe7\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "11500252793.dat",
+   "trn": "11500252793",
+   "amount": 62.13,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"11500252793.dat\",\"filesize\":1500,\"filemd5checksum\":\"6b934dc7-4a3d-741d-6aa5-736a7397436c\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "11501936685.dat",
+   "trn": "11501936685",
+   "amount": 28.52,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"11501936685.dat\",\"filesize\":1240,\"filemd5checksum\":\"19a2d78c-e580-299d-4c37-4fc65bb92421\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IM"
+   }
+  },
+  {
+   "file": "26248B1000179207.dat",
+   "trn": "26248B1000179207",
+   "amount": 876.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053130)"
+  },
+  {
+   "file": "26249B1000212853.dat",
+   "trn": "26249B1000212853",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053131)"
+  },
+  {
+   "file": "26252B1000426598.dat",
+   "trn": "26252B1000426598",
+   "amount": 2185.92,
+   "skip": "already processed/dismissed in the ERA Center (check 1053086)"
+  },
+  {
+   "file": "26252B1000475469.dat",
+   "trn": "26252B1000475469",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053089)"
+  },
+  {
+   "file": "26253B1000149568.dat",
+   "trn": "26253B1000149568",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053104)"
+  },
+  {
+   "file": "26254B1000243083.dat",
+   "trn": "26254B1000243083",
+   "amount": 85.46,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"26254B1000243083.dat\",\"filesize\":185674,\"filemd5checksum\":\"7e16dc7c-dbb2-a922-9209-f9c4cf4e69ab\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilena"
+   }
+  },
+  {
+   "file": "26255B1000168323.dat",
+   "trn": "26255B1000168323",
+   "amount": 189.7,
+   "skip": "already processed/dismissed in the ERA Center (check 1053103)"
+  },
+  {
+   "file": "26256B1000176953.dat",
+   "trn": "26256B1000176953",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053105)"
+  },
+  {
+   "file": "26259B1000319208.dat",
+   "trn": "26259B1000319208",
+   "amount": 599.98,
+   "skip": "already processed/dismissed in the ERA Center (check 1053088)"
+  },
+  {
+   "file": "26260B1000199165.dat",
+   "trn": "26260B1000199165",
+   "amount": 97.59,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"26260B1000199165.dat\",\"filesize\":1175,\"filemd5checksum\":\"faee6617-2755-e423-687c-729794d591b4\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename"
+   }
+  },
+  {
+   "file": "26261B1000183817.dat",
+   "trn": "26261B1000183817",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053087)"
+  },
+  {
+   "file": "26266B1000318414.dat",
+   "trn": "26266B1000318414",
+   "amount": 419.51,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"26266B1000318414.dat\",\"filesize\":2680,\"filemd5checksum\":\"acf06ec0-a4aa-29ea-82de-fbb0fd4ee84e\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename"
+   }
+  },
+  {
+   "file": "26266B1000365744.dat",
+   "trn": "26266B1000365744",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053101)"
+  },
+  {
+   "file": "26267B1000196230.dat",
+   "trn": "26267B1000196230",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053099)"
+  },
+  {
+   "file": "26268B1000179112.dat",
+   "trn": "26268B1000179112",
+   "amount": 56.37,
+   "skip": "already processed/dismissed in the ERA Center (check 1053097)"
+  },
+  {
+   "file": "26269B1000169351.dat",
+   "trn": "26269B1000169351",
+   "amount": 177.53,
+   "skip": "already processed/dismissed in the ERA Center (check 1053095)"
+  },
+  {
+   "file": "26270B1000120934.dat",
+   "trn": "26270B1000120934",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053100)"
+  },
+  {
+   "file": "26273B1000304719.dat",
+   "trn": "26273B1000304719",
+   "amount": 341.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053129)"
+  },
+  {
+   "file": "26274B1000220792.dat",
+   "trn": "26274B1000220792",
+   "amount": 1783.61,
+   "skip": "already on the unposted list (check 1053096)"
+  },
+  {
+   "file": "26274B1000236985.dat",
+   "trn": "26274B1000236985",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053113)"
+  },
+  {
+   "file": "26277B1000102289.dat",
+   "trn": "26277B1000102289",
+   "amount": 0.0,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"26277B1000102289.dat\",\"filesize\":1072,\"filemd5checksum\":\"3038ded3-f407-5578-f872-7a5298f73e07\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename"
+   }
+  },
+  {
+   "file": "26280B1000341385.dat",
+   "trn": "26280B1000341385",
+   "amount": 585.54,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"26280B1000341385.dat\",\"filesize\":3089,\"filemd5checksum\":\"7cf11d3c-6d7b-3124-d6e1-ac8c941dba32\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename"
+   }
+  },
+  {
+   "file": "3009409468.dat",
+   "trn": "3009409468",
+   "amount": 841.05,
+   "skip": "already processed/dismissed in the ERA Center (check 1053110)"
+  },
+  {
+   "file": "3009416512.dat",
+   "trn": "3009416512",
+   "amount": 109.0,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"3009416512.dat\",\"filesize\":984,\"filemd5checksum\":\"71d331b6-7584-b474-caf1-7473fb364404\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP1"
+   }
+  },
+  {
+   "file": "3009422826.dat",
+   "trn": "3009422826",
+   "amount": 159.7,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"3009422826.dat\",\"filesize\":998,\"filemd5checksum\":\"ef1e50c3-ef30-ae89-dc42-fce489f9d242\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP1"
+   }
+  },
+  {
+   "file": "3009430424.dat",
+   "trn": "3009430424",
+   "amount": 180.9,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"3009430424.dat\",\"filesize\":1196,\"filemd5checksum\":\"dbf44bbc-a2ba-519b-5f18-4f88ffa8600c\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP"
+   }
+  },
+  {
+   "file": "3009437946.dat",
+   "trn": "3009437946",
+   "amount": 143.8,
+   "skip": "already processed/dismissed in the ERA Center (check 1053106)"
+  },
+  {
+   "file": "3009447223.dat",
+   "trn": "3009447223",
+   "amount": 663.0,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"3009447223.dat\",\"filesize\":2476,\"filemd5checksum\":\"5c4a4f21-ef9c-7cad-51e8-53bdf7cb19d3\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP"
+   }
+  },
+  {
+   "file": "3009463800.dat",
+   "trn": "3009463800",
+   "amount": 107.94,
+   "skip": "check number in era_manual_register"
+  },
+  {
+   "file": "3699080174.dat",
+   "trn": "3699080174",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053121)"
+  },
+  {
+   "file": "3699090241.dat",
+   "trn": "3699090241",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053119)"
+  },
+  {
+   "file": "3699100158.dat",
+   "trn": "3699100158",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053118)"
+  },
+  {
+   "file": "3699110156.dat",
+   "trn": "3699110156",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053117)"
+  },
+  {
+   "file": "3699140171.dat",
+   "trn": "3699140171",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053114)"
+  },
+  {
+   "file": "CG45029149869136272779607.dat",
+   "trn": "CG45029149869136272779607",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053124)"
+  },
+  {
+   "file": "CI59811134389376254077508.dat",
+   "trn": "CI59811134389376254077508",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053123)"
+  },
+  {
+   "file": "CJ11215132257516258650643.dat",
+   "trn": "CJ11215132257516258650643",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053125)"
+  },
+  {
+   "file": "CN17409133188316252752977.dat",
+   "trn": "CN17409133188316252752977",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053126)"
+  },
+  {
+   "file": "V8735201.dat",
+   "trn": "V8735201",
+   "amount": 214.39,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"V8735201.dat\",\"filesize\":2727,\"filemd5checksum\":\"b0b49009-bae8-b893-e822-529b9a8ba22f\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP15"
+   }
+  },
+  {
+   "file": "V8962314.dat",
+   "trn": "V8962314",
+   "amount": 690.43,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"V8962314.dat\",\"filesize\":4330,\"filemd5checksum\":\"1e689252-efa6-1aef-5aa2-7d70ba60c035\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP15"
+   }
+  },
+  {
+   "file": "W0000044.dat",
+   "trn": "W0000044",
+   "amount": 240.46,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"W0000044.dat\",\"filesize\":1427,\"filemd5checksum\":\"cf3839d3-e512-61a7-f902-91db0b4523ee\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP15"
+   }
+  },
+  {
+   "file": "W0020208.dat",
+   "trn": "W0020208",
+   "amount": 168.59,
+   "skip": "already on the unposted list (check 1053116)"
+  },
+  {
+   "file": "W0073430.dat",
+   "trn": "W0073430",
+   "amount": 348.47,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"W0073430.dat\",\"filesize\":2658,\"filemd5checksum\":\"6cd96cec-e37d-e047-0f92-dd7091e56906\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP15"
+   }
+  },
+  {
+   "file": "W0299825.dat",
+   "trn": "W0299825",
+   "amount": 2684.15,
+   "skip": "already processed/dismissed in the ERA Center (check 1052824)"
+  },
+  {
+   "file": "W0384723.dat",
+   "trn": "W0384723",
+   "amount": 997.51,
+   "skip": "check number in era_manual_register"
+  },
+  {
+   "file": "W0616257.dat",
+   "trn": "W0616257",
+   "amount": 569.48,
+   "skip": "already processed/dismissed in the ERA Center (check 1052921)"
+  },
+  {
+   "file": "W0739587.dat",
+   "trn": "W0739587",
+   "amount": 690.31,
+   "skip": "already processed/dismissed in the ERA Center (check 1052947)"
+  },
+  {
+   "file": "W0811512.dat",
+   "trn": "W0811512",
+   "amount": 85.46,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"W0811512.dat\",\"filesize\":1086,\"filemd5checksum\":\"fa0d2735-49a6-d809-d9d7-34dd49dda177\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP15"
+   }
+  },
+  {
+   "file": "W0904074.dat",
+   "trn": "W0904074",
+   "amount": 287.3,
+   "skip": "already processed/dismissed in the ERA Center (check 1053047)"
+  },
+  {
+   "file": "W371008409.dat",
+   "trn": "W371008409",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053133)"
+  },
+  {
+   "file": "W371678791.dat",
+   "trn": "W371678791",
+   "amount": 351.72,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"W371678791.dat\",\"filesize\":2215,\"filemd5checksum\":\"d68507a5-e091-0a29-e85c-089aee9fa9b8\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP"
+   }
+  },
+  {
+   "file": "W371678792.dat",
+   "trn": "W371678792",
+   "amount": 0.0,
+   "skip": "already processed/dismissed in the ERA Center (check 1053127)"
+  },
+  {
+   "file": "W373058242.dat",
+   "trn": "W373058242",
+   "amount": 0.0,
+   "upload": {
+    "status": 200,
+    "text": "{\"issuccess\":true,\"errordescription\":null,\"filename\":\"W373058242.dat\",\"filesize\":1870,\"filemd5checksum\":\"3af7a4a6-1025-de50-a16c-c8cad74b950a\",\"lastmethodattempted\":\"CloseStream\",\"stagedfilename\":\"IMP"
+   }
+  }
+ ],
+ "unposted_after": 2,
+ "unposted_after_total": 0.0
+}

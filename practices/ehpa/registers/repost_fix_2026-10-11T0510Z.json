@@ -1,0 +1,40 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": false,
+ "items": [
+  {
+   "pid": "17469645",
+   "vid": "19446193",
+   "checkid": "1053088",
+   "hand_posts": [
+    [
+     "23355157",
+     "24660501",
+     64.57,
+     "26259B1000319208"
+    ],
+    [
+     "23355158",
+     "24660502",
+     35.66,
+     "26259B1000319208"
+    ]
+   ],
+   "outcome": "DRY: void 2 code-less payment(s) then repost_visit"
+  },
+  {
+   "pid": "17469645",
+   "vid": "19453666",
+   "checkid": "1053096",
+   "hand_posts": [
+    [
+     "23364408",
+     "24660503",
+     97.59,
+     "26274B1000220792"
+    ]
+   ],
+   "outcome": "DRY: void 1 code-less payment(s) then repost_visit"
+  }
+ ]
+}

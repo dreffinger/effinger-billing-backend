@@ -1,0 +1,19 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "batch": "127783",
+ "vid": "19455936",
+ "pattern": "24078",
+ "found": true,
+ "pid": "20863",
+ "errs": [
+  [
+   "395153",
+   "Pattern 24078 Per Medicare CCI Guidelines, history procedure code 99233 on history line ID 23366195 and claim ID 152563-0019455043 has an unbundle relationship with procedure code 99306.Pattern 24078 "
+  ]
+ ],
+ "only_pattern": true,
+ "bypassed": true,
+ "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/10/2026 22:31:20\"><Results retval=\"0\" /><Error /></PPMDResults>",
+ "still_listed": false
+}

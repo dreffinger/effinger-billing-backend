@@ -1,0 +1,469 @@
+{
+ "stamp": "2026-10-11T1110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446269,
+   "visitid": "19441368",
+   "pid": "17476358",
+   "chargedetailid": "23349219",
+   "cpt": "99232",
+   "dos": "2026-05-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446270,
+   "visitid": "19456845",
+   "pid": "17472703",
+   "chargedetailid": "23368505",
+   "cpt": "99233",
+   "dos": "2026-10-02",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/03/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168825",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/11/2026 04:26:51\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446271,
+   "visitid": "19456855",
+   "pid": "17472703",
+   "chargedetailid": "23368516",
+   "cpt": "99233",
+   "dos": "2026-10-01",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/03/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168826",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/11/2026 04:26:56\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446272,
+   "visitid": "19456749",
+   "pid": "17477829",
+   "chargedetailid": "23368439",
+   "cpt": "99309",
+   "dos": "2026-09-28",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446273,
+   "visitid": "19440713",
+   "pid": "17476358",
+   "chargedetailid": "23348457",
+   "cpt": "99223",
+   "dos": "2026-05-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446273,
+   "visitid": "19440713",
+   "pid": "17476358",
+   "chargedetailid": "23348458",
+   "cpt": "99497",
+   "dos": "2026-05-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 133.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446274,
+   "visitid": "19440868",
+   "pid": "17476358",
+   "chargedetailid": "23348625",
+   "cpt": "99232",
+   "dos": "2026-05-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446275,
+   "visitid": "19456874",
+   "pid": "17472703",
+   "chargedetailid": "23368535",
+   "cpt": "99233",
+   "dos": "2026-09-30",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/03/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168827",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/11/2026 04:27:05\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446276,
+   "visitid": "19455040",
+   "pid": "17472546",
+   "chargedetailid": "23366192",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/02/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary SUN01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 74.54,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168828",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/11/2026 04:27:09\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446277,
+   "visitid": "19441284",
+   "pid": "17476358",
+   "chargedetailid": "23349134",
+   "cpt": "99232",
+   "dos": "2026-05-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446278,
+   "visitid": "19440883",
+   "pid": "17476358",
+   "chargedetailid": "23348639",
+   "cpt": "99232",
+   "dos": "2026-05-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446279,
+   "visitid": "19456893",
+   "pid": "17472703",
+   "chargedetailid": "23368555",
+   "cpt": "99233",
+   "dos": "2026-09-29",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/03/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168829",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/11/2026 04:27:16\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446280,
+   "visitid": "19455131",
+   "pid": "17472546",
+   "chargedetailid": "23366270",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/02/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary SUN01 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "pay": 0.0,
+   "wo": 74.54,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10168830",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/11/2026 04:27:22\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446281,
+   "visitid": "19441299",
+   "pid": "17476358",
+   "chargedetailid": "23349149",
+   "cpt": "99232",
+   "dos": "2026-05-07",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053134",
+   "checkclaimid": 15446282,
+   "visitid": "19441282",
+   "pid": "17476358",
+   "chargedetailid": "23349132",
+   "cpt": "99232",
+   "dos": "2026-05-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO18"
+   ],
+   "rarcs": [
+    "N522"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 111.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  }
+ ],
+ "wolate": []
+}

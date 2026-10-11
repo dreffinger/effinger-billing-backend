@@ -1,0 +1,19 @@
+[
+ {
+  "checkid": "1053134",
+  "stamp": "2026-10-11T1110Z",
+  "live": false,
+  "lines": {
+   "money-posted": 0,
+   "money-residual": 0,
+   "zero-recorded": 9
+  },
+  "unsettled": [],
+  "carrier": "SUN01",
+  "eracarrier": "SUNSHINE HEALTH",
+  "paymentnumber": "0917881889",
+  "paymentamount": 332.52,
+  "unposted": 0.0,
+  "outcome": "dry - would dismiss"
+ }
+]
