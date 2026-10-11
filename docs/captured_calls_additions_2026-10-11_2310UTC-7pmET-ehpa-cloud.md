@@ -1,0 +1,8 @@
+# captured_calls additions - 2026-10-11 2310 UTC (7 PM ET) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW env), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), bypassclaimedits x1 (insp_bypass_advisories.py), GET /api/era/checks (1 unposted) + GET /api/era/checkdetails?checkid=1053116 (era_post --dry), payreasons.py --list (11 rows no-era-line), gettxhistory (txh.py x3), getdemographic x2, checkEligibility (elig_amd.py x2: pat17478013 no plans, pat17472553 Medicare ACTIVE / FCC T4), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 62), Stedi 270/271 x17 (precheck.py).
+
+Behaviors noted:
+- A WOLATE write-off posted through the write-off-only Payment Entry shape re-queues the visit's claim into the Claim Inspector (pat17472741 v19439544 raised Pattern 35790 after the chat's 23:05Z post, as pat17472784 did on 10/11 0110Z) - the next run bypasses the advisory; the visit's balance is $0 so nothing bills.
+- The Mandatory Approvals page now shows both 10/11 cards 'done' (applied by a chat session at 22:47Z / 23:05Z) while approvals_pending.json on main still reads 'waiting' - the chat's register commit is inside a Drive package whose part01 never landed (manifest + part02 only). A run reads the PAGE for approved cards (none), so nothing was applied twice.
+- Drive 'github mirror' package PACKAGE_effinger-billing-backend_2026-10-11: manifest (sha256 33a6cb5b..., 2 parts, base f587c61 -> head bcb600c) and part02 present, part01 (45,593 chars) absent - apply_bundle.py not run.

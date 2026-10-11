@@ -1,0 +1,22 @@
+{
+ "stamp": "2026-10-11T2320Z",
+ "live": true,
+ "source": "scan_2026-10-11T2310Z/summary_before.json",
+ "held": [],
+ "done": [
+  {
+   "batch": "126725",
+   "vid": "19439544",
+   "pid": "17472741",
+   "errids": [
+    "396116"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/11/2026 16:20:44\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}

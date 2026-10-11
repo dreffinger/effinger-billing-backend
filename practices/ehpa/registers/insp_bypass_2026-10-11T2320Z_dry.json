@@ -1,0 +1,22 @@
+{
+ "stamp": "2026-10-11T2320Z",
+ "live": false,
+ "source": "scan_2026-10-11T2310Z/summary_before.json",
+ "held": [],
+ "done": [],
+ "failed": [],
+ "planned": [
+  {
+   "batch": "126725",
+   "vid": "19439544",
+   "pid": "17472741",
+   "errids": [
+    "396116"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": []
+  }
+ ]
+}
