@@ -1,0 +1,573 @@
+{
+ "stamp": "2026-10-11T0310Z",
+ "at": "2026-10-11T03:24:17Z",
+ "c17474493": {
+  "19456837": [
+   {
+    "cid": "23368495",
+    "cpt": "99223",
+    "dos": "09/30/2026",
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbalance": 310.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "19456905": [
+   {
+    "cid": "23368613",
+    "cpt": "99233",
+    "dos": "10/01/2026",
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 160.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "19456976": [
+   {
+    "cid": "23368705",
+    "cpt": "99233",
+    "dos": "10/03/2026",
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 160.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "19456833": [
+   {
+    "cid": "23368491",
+    "cpt": "99233",
+    "dos": "10/02/2026",
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbalance": 160.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ]
+ },
+ "c12232248": {
+  "19417751": {
+   "watch_outcome": "written-off 2026-10-07T1910Z",
+   "dos": "09/18/2025",
+   "live": [
+    {
+     "cid": "23321504",
+     "cpt": "99349",
+     "dos": "09/18/2025",
+     "fee": 198.0,
+     "paid": 198.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ],
+      [
+       "UNI20",
+       0.0,
+       "W0686193",
+       "10/07/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": [
+      [
+       "WOLATE",
+       198.0,
+       "10/07/2026",
+       "0"
+      ]
+     ]
+    }
+   ]
+  },
+  "19417390": {
+   "watch_outcome": "sent",
+   "dos": "09/21/2025",
+   "live": [
+    {
+     "cid": "23321127",
+     "cpt": "99487",
+     "dos": "09/21/2025",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23321128",
+     "cpt": "99489",
+     "dos": "09/21/2025",
+     "fee": 109.0,
+     "paid": 0.0,
+     "insbalance": 109.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    }
+   ]
+  },
+  "19420985": {
+   "watch_outcome": "sent",
+   "dos": "10/25/2025",
+   "live": [
+    {
+     "cid": "23326170",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23326171",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "paid": 0.0,
+     "insbalance": 109.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    }
+   ]
+  },
+  "19424313": {
+   "watch_outcome": "written-off 2026-10-07T1910Z",
+   "dos": "11/19/2025",
+   "live": [
+    {
+     "cid": "23330068",
+     "cpt": "99349",
+     "dos": "11/19/2025",
+     "fee": 198.0,
+     "paid": 198.0,
+     "insbalance": 0.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ],
+      [
+       "UNI20",
+       0.0,
+       "W0686193",
+       "10/07/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": [
+      [
+       "WOLATE",
+       198.0,
+       "10/07/2026",
+       "0"
+      ]
+     ]
+    }
+   ]
+  },
+  "19424662": {
+   "watch_outcome": "sent",
+   "dos": "11/25/2025",
+   "live": [
+    {
+     "cid": "23330503",
+     "cpt": "99487",
+     "dos": "11/25/2025",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23330504",
+     "cpt": "99489",
+     "dos": "11/25/2025",
+     "fee": 109.0,
+     "paid": 0.0,
+     "insbalance": 109.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    }
+   ]
+  },
+  "19427156": {
+   "watch_outcome": "sent",
+   "dos": "12/22/2025",
+   "live": [
+    {
+     "cid": "23333440",
+     "cpt": "99487",
+     "dos": "12/22/2025",
+     "fee": 206.0,
+     "paid": 0.0,
+     "insbalance": 206.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    },
+    {
+     "cid": "23333441",
+     "cpt": "99489",
+     "dos": "12/22/2025",
+     "fee": 109.0,
+     "paid": 0.0,
+     "insbalance": 109.0,
+     "patbalance": 0.0,
+     "carrier": "UNI20",
+     "pays": [
+      [
+       "BCBS",
+       0.0,
+       "2609160513",
+       "09/16/2026",
+       "0",
+       1
+      ]
+     ],
+     "wos": []
+    }
+   ]
+  }
+ },
+ "thurlow_0131": [
+  {
+   "id": "22443840",
+   "visit": "19375690",
+   "proccode": "99497",
+   "dos": "01/31/2024",
+   "fee": "133.00",
+   "paid": "133.00",
+   "insbal": "0.00",
+   "patbal": "0.00",
+   "carrier": "HUM01",
+   "billdate": "02/13/2024",
+   "attrs": [
+    "agingdate",
+    "approvedat",
+    "approvedby",
+    "b",
+    "billdate",
+    "billgroup",
+    "billprofile",
+    "carrier",
+    "chargeseq",
+    "createtime",
+    "customdatatooltip",
+    "description",
+    "display",
+    "displaypendingera",
+    "dos",
+    "faccode",
+    "facname",
+    "fee",
+    "i",
+    "id",
+    "insbal",
+    "isinstitutional",
+    "isinvoicecharge",
+    "modifiers",
+    "npi",
+    "paid",
+    "partner",
+    "patbal",
+    "patient",
+    "patientid",
+    "payerinfo",
+    "paymentplan",
+    "proccode",
+    "proccodetype",
+    "protected",
+    "provchkdate",
+    "provchknumber",
+    "provchkuser",
+    "provcode",
+    "provinvamount",
+    "provinvdate",
+    "provinvnumber",
+    "provinvuser",
+    "provname",
+    "referenceid",
+    "resppartyid",
+    "resppartyname",
+    "seq",
+    "subcarriercode",
+    "taxid",
+    "taxonomy",
+    "totalvisitcharge",
+    "totbal",
+    "visit",
+    "void"
+   ]
+  }
+ ],
+ "plans_17471172": {
+  "patient_insorder": "2,3",
+  "plans": [
+   {
+    "id": "ins9510357",
+    "carrier": "car6285",
+    "begindate": "09/13/2023",
+    "enddate": "09/30/2025",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924060",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/04/2026 10:53 PM",
+    "eligibilitycreatedat": "10/04/2026 10:53 PM",
+    "eligibilityresponsedate": "10/04/2026 10:53 PM",
+    "claimcount": "23",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9511240",
+    "carrier": "car6085",
+    "begindate": "10/05/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924061",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/04/2026 10:53 PM",
+    "eligibilitycreatedat": "10/04/2026 10:53 PM",
+    "eligibilityresponsedate": "10/04/2026 10:53 PM",
+    "claimcount": "144",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9520735",
+    "carrier": "car42008",
+    "begindate": "01/01/2024",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "2",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "3",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "",
+    "eligibilitystatusid": "",
+    "eligibilitychangedat": "",
+    "eligibilitycreatedat": "",
+    "eligibilityresponsedate": "",
+    "claimcount": "55",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MD",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "inchbold_after_death": [],
+ "repair_scope": {
+  "12232001": [],
+  "17471688": [],
+  "17471172": [],
+  "21564": [],
+  "17476855": []
+ },
+ "era_checks": [
+  {
+   "id": 1052906,
+   "licensekey": 152563,
+   "receiveddate": "2026-09-30T08:57:59.263",
+   "depositdate": "2026-09-30T00:00:00",
+   "eracarrierid": "1414",
+   "hasnote": false,
+   "systemcarrierid": 6062,
+   "systemcarriercode": "BCBS",
+   "paymentnumber": "213453023",
+   "paymentamount": 1814.2,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1814.2,
+   "unpostedamount": 104.19,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053084,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-10T16:33:56.38",
+   "depositdate": "2026-10-09T00:00:00",
+   "eracarrierid": "2449",
+   "hasnote": false,
+   "systemcarrierid": 6285,
+   "systemcarriercode": "HUM01",
+   "paymentnumber": "NO-PAY-202610090008699",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053085,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-10T16:35:11.207",
+   "depositdate": "2026-10-09T00:00:00",
+   "eracarrierid": "1448",
+   "hasnote": false,
+   "systemcarrierid": 6085,
+   "systemcarriercode": "FLO02",
+   "paymentnumber": "NO-PAY-202610090008700",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

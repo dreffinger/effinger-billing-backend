@@ -1,0 +1,460 @@
+{
+ "stamp": "2026-10-10T1910Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19457450",
+   "pid": "17477972",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369356', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369356', '', 'dcode1034545247')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457451",
+   "pid": "17477972",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369357', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369357', '', 'dcode1034545247')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457452",
+   "pid": "17477972",
+   "name": "",
+   "steps": [
+    "dos 2026-10-07 cpts ['99223'] pos 21 insorder 1 onhcfa 0 charges [('charge23369358', '99223', '', '310.00', '310.00')]",
+    "99223 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 10/07/2026 (own 99223)",
+    "updextrainsinfo 99223 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369358', '', 'dcode1034545247')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457454",
+   "pid": "24560",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 4,2 onhcfa 0 charges [('charge23369360', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['I48.91', 'D09.0', 'I35.0', 'I50.20', 'E11.65', 'R29.6', 'I45.10', 'I25.10', 'I10', 'I25.810', 'E78.5', 'N39.0', 'A41.9', 'Y84.4', 'N99.841', 'L21.9', 'S72.142G', 'E56.9', 'M62.81', 'R26.2', 'Z74.1', 'Z23', 'I95.9', 'E87.6'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369360', '', 'dcode1034544976 dcode103745298')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457456",
+   "pid": "17477405",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369362', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['E03.9', 'D64.9', 'I10', 'M06.9', 'M79.7', 'G89.29'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/08/2026 charges=[('charge23369362', '', 'dcode1034544972 dcode103454443')]"
+   ],
+   "admission": "10/08/2026"
+  },
+  {
+   "vid": "19457458",
+   "pid": "24560",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 4,2 onhcfa 0 charges [('charge23369364', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['I48.91', 'D09.0', 'I35.0', 'I50.20', 'E11.65', 'R29.6', 'I45.10', 'I25.10', 'I10', 'I25.810', 'E78.5', 'N39.0', 'A41.9', 'Y84.4', 'N99.841', 'L21.9', 'S72.142G', 'E56.9', 'M62.81', 'R26.2', 'Z74.1', 'Z23', 'I95.9', 'E87.6'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369364', '', 'dcode1034544976 dcode103745298')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457460",
+   "pid": "17477405",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99223', '99497'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369366', '99223', '', '310.00', '310.00'), ('charge23369367', '99497', 'mcode7', '133.00', '133.00')]",
+    "99223 dx ['E03.9', 'D64.9', 'I10', 'M06.9', 'M79.7', 'G89.29'] never_primary(first)=False",
+    "99497 dx ['E03.9', 'D64.9', 'I10', 'M06.9', 'M79.7', 'G89.29'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/08/2026 (own 99223)",
+    "updextrainsinfo 99223 10/08/2026 -> ok",
+    "updextrainsinfo 99497 10/08/2026 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=10/08/2026 charges=[('charge23369366', '', 'dcode1034544972 dcode103454443'), ('charge23369367', 'mcode7', 'dcode1034544972 dcode103454443')]"
+   ],
+   "admission": "10/08/2026"
+  },
+  {
+   "vid": "19457461",
+   "pid": "17471172",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 2,3 onhcfa 0 charges [('charge23369368', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M62.82', 'R26.2', 'I10', 'M62.81', 'Z74.1', 'W19.XXXD'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/04/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/04/2026 charges=[('charge23369368', '', 'dcode1034545117 dcode103454507')]"
+   ],
+   "admission": "10/04/2026"
+  },
+  {
+   "vid": "19457462",
+   "pid": "17477557",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369369', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['J69.0', 'R50.9', 'R06.02'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/30/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/30/2026 charges=[('charge23369369', '', 'dcode1034545149 dcode103745255')]"
+   ],
+   "admission": "09/30/2026"
+  },
+  {
+   "vid": "19457463",
+   "pid": "17477640",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369370', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 09/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/29/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/29/2026 charges=[('charge23369370', '', 'dcode1037452463 dcode103454508')]"
+   ],
+   "admission": "09/29/2026"
+  },
+  {
+   "vid": "19457464",
+   "pid": "17476358",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 2,3 onhcfa 0 charges [('charge23369371', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N18.6', 'E11.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/01/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/01/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/01/2026 charges=[('charge23369371', '', 'dcode1034545005 dcode103454486')]"
+   ],
+   "admission": "10/01/2026"
+  },
+  {
+   "vid": "19457466",
+   "pid": "17477516",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369373', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G93.41', 'F01.50', 'G31.09', 'F02.80', 'R53.1', 'R62.7', 'R29.6', 'G47.33', 'I49.5'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/03/2026 charges=[('charge23369373', '', 'dcode1034544984 dcode103454517')]"
+   ],
+   "admission": "10/03/2026"
+  },
+  {
+   "vid": "19457468",
+   "pid": "17472553",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 3 onhcfa 0 charges [('charge23369375', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['C22.8', 'K76.82', 'F03.C18'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 09/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/29/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/29/2026 charges=[('charge23369375', '', 'dcode1037454345 dcode103491454')]"
+   ],
+   "admission": "09/29/2026"
+  },
+  {
+   "vid": "19457469",
+   "pid": "17471741",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99232'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369376', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FIR07)",
+    "admission 10/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/02/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/02/2026 charges=[('charge23369376', '', 'dcode1034545564')]"
+   ],
+   "admission": "10/02/2026"
+  },
+  {
+   "vid": "19457470",
+   "pid": "17471916",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369377', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M43.16'] never_primary(first)=False",
+    "deceased guard: clear (carrier UNI20)",
+    "admission 09/16/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/16/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/16/2026 charges=[('charge23369377', '', 'dcode1034912518')]"
+   ],
+   "admission": "09/16/2026"
+  },
+  {
+   "vid": "19457472",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369379', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369379', '', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  },
+  {
+   "vid": "19457473",
+   "pid": "23159",
+   "name": "",
+   "steps": [
+    "dos 2026-10-09 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369380', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['D64.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/22/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/22/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23369380', '', 'dcode1034544432')]"
+   ],
+   "admission": "09/22/2026"
+  },
+  {
+   "vid": "19457474",
+   "pid": "23159",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369381', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['D64.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/22/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/22/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/22/2026 charges=[('charge23369381', '', 'dcode1034544432')]"
+   ],
+   "admission": "09/22/2026"
+  },
+  {
+   "vid": "19457475",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369382', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369382', '', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  },
+  {
+   "vid": "19457477",
+   "pid": "17471916",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369384', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M43.16'] never_primary(first)=False",
+    "deceased guard: clear (carrier UNI20)",
+    "admission 09/16/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/16/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/16/2026 charges=[('charge23369384', '', 'dcode1034912518')]"
+   ],
+   "admission": "09/16/2026"
+  },
+  {
+   "vid": "19457478",
+   "pid": "17471741",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99232'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369385', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FIR07)",
+    "admission 10/02/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/02/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/02/2026 charges=[('charge23369385', '', 'dcode1034545564')]"
+   ],
+   "admission": "10/02/2026"
+  },
+  {
+   "vid": "19457479",
+   "pid": "17472553",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 3 onhcfa 0 charges [('charge23369386', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['C22.8', 'K76.82', 'F03.C18'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 09/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/29/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/29/2026 charges=[('charge23369386', '', 'dcode1037454345 dcode103491454')]"
+   ],
+   "admission": "09/29/2026"
+  },
+  {
+   "vid": "19457481",
+   "pid": "17477516",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369388', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['G93.41', 'F01.50', 'G31.09', 'F02.80', 'R53.1', 'R62.7', 'R29.6', 'G47.33', 'I49.5'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/03/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/03/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/03/2026 charges=[('charge23369388', '', 'dcode1034544984 dcode103454517')]"
+   ],
+   "admission": "10/03/2026"
+  },
+  {
+   "vid": "19457483",
+   "pid": "17476358",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 2,3 onhcfa 0 charges [('charge23369390', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N18.6', 'E11.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/01/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/01/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/01/2026 charges=[('charge23369390', '', 'dcode1034545005 dcode103454486')]"
+   ],
+   "admission": "10/01/2026"
+  },
+  {
+   "vid": "19457484",
+   "pid": "17477640",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369391', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 09/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/29/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/29/2026 charges=[('charge23369391', '', 'dcode1037452463 dcode103454508')]"
+   ],
+   "admission": "09/29/2026"
+  },
+  {
+   "vid": "19457485",
+   "pid": "17477557",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369392', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['J69.0', 'R50.9', 'R06.02'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 09/30/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/30/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/30/2026 charges=[('charge23369392', '', 'dcode1034545149 dcode103745255')]"
+   ],
+   "admission": "09/30/2026"
+  },
+  {
+   "vid": "19457486",
+   "pid": "17471172",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99233'] pos 21 insorder 2,3 onhcfa 0 charges [('charge23369393', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M62.82', 'R26.2', 'I10', 'M62.81', 'Z74.1', 'W19.XXXD'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/04/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/04/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/04/2026 charges=[('charge23369393', '', 'dcode1034545117 dcode103454507')]"
+   ],
+   "admission": "10/04/2026"
+  },
+  {
+   "vid": "19457487",
+   "pid": "17472703",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99239'] pos 21 insorder 1 onhcfa 0 charges [('charge23369394', '99239', '', '163.00', '163.00')]",
+    "99239 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier SUN01)",
+    "admission 09/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99239 09/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/05/2026 charges=[('charge23369394', '', 'dcode1034545247')]"
+   ],
+   "admission": "09/05/2026"
+  },
+  {
+   "vid": "19457488",
+   "pid": "17476869",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99239'] pos 21 insorder 2 onhcfa 0 charges [('charge23369395', '99239', '', '163.00', '163.00')]",
+    "99239 dx ['I82.401'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/01/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99239 10/01/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/01/2026 charges=[('charge23369395', '', 'dcode1034545221')]"
+   ],
+   "admission": "10/01/2026"
+  },
+  {
+   "vid": "19457489",
+   "pid": "17474648",
+   "name": "",
+   "steps": [
+    "dos 2026-10-08 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23369396', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M19.011', 'M12.9'] never_primary(first)=False",
+    "deceased guard: clear (carrier CAP07)",
+    "admission 10/06/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/06/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/06/2026 charges=[('charge23369396', '', 'dcode1034546011 dcode103491230')]"
+   ],
+   "admission": "10/06/2026"
+  },
+  {
+   "vid": "19457490",
+   "pid": "24560",
+   "name": "",
+   "steps": [
+    "dos 2026-10-07 cpts ['99223', '99497'] pos 21 insorder 4,2 onhcfa 0 charges [('charge23369397', '99223', '', '310.00', '310.00'), ('charge23369398', '99497', 'mcode7', '133.00', '133.00')]",
+    "99223 dx ['I48.91', 'D09.0', 'I35.0', 'I50.20', 'E11.65', 'R29.6', 'I45.10', 'I25.10', 'I10', 'I25.810', 'E78.5', 'N39.0', 'A41.9', 'Y84.4', 'N99.841', 'L21.9', 'S72.142G', 'E56.9', 'M62.81', 'R26.2', 'Z74.1', 'Z23', 'I95.9', 'E87.6'] never_primary(first)=False",
+    "99497 dx ['I48.91', 'D09.0', 'I35.0', 'I50.20', 'E11.65', 'R29.6', 'I45.10', 'I25.10', 'I10', 'I25.810', 'E78.5', 'N39.0', 'A41.9', 'Y84.4', 'N99.841', 'L21.9', 'S72.142G', 'E56.9', 'M62.81', 'R26.2', 'Z74.1', 'Z23', 'I95.9', 'E87.6'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/07/2026 (own 99223)",
+    "updextrainsinfo 99223 10/07/2026 -> ok",
+    "updextrainsinfo 99497 10/07/2026 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369397', '', 'dcode1034544976 dcode103745298'), ('charge23369398', 'mcode7', 'dcode1034544976 dcode103745298')]"
+   ],
+   "admission": "10/07/2026"
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "127783",
+   "19455936",
+   "20863",
+   [
+    [
+     "395153",
+     "Pattern 24078 Per Medicare CCI  Guidelines, history procedure code 99233 on history line I"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [],
+ "pending_left": 0
+}

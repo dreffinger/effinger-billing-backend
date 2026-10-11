@@ -1170,6 +1170,45 @@
    "helper": "era_1053047_fix_2310.py (section B); manual_post.post is the same shape WITH a <payment amount=\"0.00\"/> element",
    "captured": "2026-10-07",
    "description": "A bare contractual / timely / non-covered write-off on one charge under a check number and deposit date that creates NO $0 code-less payment line (the line that puts a visit in Unbilled 'Payment reason codes are missing or do not balance' once a next-payer claim is built). Proven 10/7/2026 23:3xZ on two charges (WOINS 93.81 + 80.66 under the original UHC check V5475692 - the OA-18 duplicate rule: settle the original adjudication's contractual, never rebill). Response success=\"1\"; the charge's insurance balance drops by the write-off. Use for every bare write-off; a line whose 835 is in the ERA Center still goes through the ERA-linked addpayments postingmethod=era shape so its CARCs stay on the payment."
+  },
+  {
+   "id": "stedi-eligibility-v3-dependent",
+   "folder": "Stedi",
+   "name": "Eligibility v3 - dependent shape (subscriber + dependents[])",
+   "method": "POST",
+   "url": "https://healthcare.us.stedi.com/2024-04-01/change/medicalnetwork/eligibility/v3",
+   "headers": {
+    "Content-Type": "application/json",
+    "Authorization": "{{stedi_key}}"
+   },
+   "body": {
+    "tradingPartnerServiceId": "{{payer_id}}",
+    "provider": {
+     "organizationName": "EFFINGER HEALTH PA",
+     "npi": "1629515325"
+    },
+    "subscriber": {
+     "firstName": "[name]",
+     "lastName": "[name]",
+     "memberId": "{{member_id}}"
+    },
+    "dependents": [
+     {
+      "firstName": "[name]",
+      "lastName": "[name]",
+      "dateOfBirth": "{{patient_dob_yyyymmdd}}"
+     }
+    ],
+    "encounter": {
+     "dateOfService": "{{dos_yyyymmdd}}",
+     "serviceTypeCodes": [
+      "30"
+     ]
+    }
+   },
+   "helper": "stedi._post (no named helper yet)",
+   "captured": "2026-10-09",
+   "description": "Eligibility for a chart patient who is a DEPENDENT on someone else's policy (spouse/child plans). Florida Blue answers AAA 73 at the subscriber level when the policyholder name is not on its file; a clean answer carries the dependent's planStatus/benefits."
   }
  ]
 }

@@ -1,0 +1,16 @@
+{
+ "stamp": "2026-10-10T1710Z",
+ "live": true,
+ "pid": "17474911",
+ "insid": "[member id]",
+ "carrier_from": "car6404",
+ "carrier_to": "car6600",
+ "steps": [
+  "chart 17474911 plans before: [('ins9516403', 'car6085', '1', ''), ('ins9516404', 'car6404', '2', '')] | patient insorder '1,2'",
+  "updateinsurance carrier -> car6600: ok=True f-g4xbm\" lst=\"10/10/2026 10:28:29\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+  "chart plans after: [('ins9516403', 'car6085', '1'), ('ins9516404', 'car6600', '2')] | patient insorder '1,2'",
+  "visit 19456254 charge 23367878 reroute 1,2 seq 2 -> visit vst19456254 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+  "visit 19456271 charge 23367895 reroute 1,2 seq 2 -> visit vst19456271 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+  "hideexclusions run 1700286 ['19456254B', '19456271B'] -> OK f-bnq4n\" lst=\"10/10/2026 10:28:52\"><Results success=\"1\" /><Error /></PPMDResults>"
+ ]
+}

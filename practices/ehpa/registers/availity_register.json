@@ -1955,5 +1955,41 @@
   "outcome": "duplicate-download",
   "of": "1lUPE1NAY5GWs7g90A4KVFKxvF6iZkx2B",
   "run": "2026-09-15T1110Z"
+ },
+ "277-2026-10-09T2310Z-caine": {
+  "outcome": "awaiting-835",
+  "source": "claim_status_sweep pass 40 (277, Stedi) 2026-10-09",
+  "payer": "Florida Blue (BCBSF)",
+  "pid": "17471977",
+  "visits": [
+   {
+    "vid": "19424212",
+    "cid": "23329980",
+    "cpt": "99223",
+    "dos": "2025-11-19",
+    "billed": 310.0
+   },
+   {
+    "vid": "19424211",
+    "cid": "23329979",
+    "cpt": "99233",
+    "dos": "2025-11-20",
+    "billed": 160.0
+   }
+  ],
+  "paid_277": [
+   {
+    "icn": "H100001353814125",
+    "paid": 91.66,
+    "paidDate": "2026-10-08"
+   },
+   {
+    "icn": "H100001353814274",
+    "paid": 135.01,
+    "paidDate": "2026-10-08"
+   }
+  ],
+  "note": "the +/-3-day 277 window lists both payments on both visits; which ICN belongs to which visit is settled by the remit; no 835 in AMD (Florida Blue does not feed the ERA Center) - board row for William when still awaiting on 10/23",
+  "run": "2026-10-09T2310Z"
  }
 }

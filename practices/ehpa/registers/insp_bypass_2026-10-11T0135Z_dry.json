@@ -1,0 +1,31 @@
+{
+ "stamp": "2026-10-11T0135Z",
+ "live": false,
+ "source": "scan_2026-10-11T0110Z/summary_after.json",
+ "held": [
+  {
+   "batch": "127783",
+   "vid": "19455936",
+   "pid": "20863",
+   "patterns": [
+    "24078"
+   ]
+  }
+ ],
+ "done": [],
+ "failed": [],
+ "planned": [
+  {
+   "batch": "125478",
+   "vid": "19420555",
+   "pid": "17472784",
+   "errids": [
+    "396109"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": []
+  }
+ ]
+}

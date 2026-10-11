@@ -1,0 +1,343 @@
+{
+ "run": "2026-10-10T0519Z",
+ "live": false,
+ "reason_rows": [
+  {
+   "pid": "21020",
+   "vid": "19416171",
+   "codeless": [
+    [
+     "23319734",
+     "24660397",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319735",
+     "24660398",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19416185",
+   "codeless": [
+    [
+     "23319763",
+     "24660395",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319764",
+     "24660396",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19417079",
+   "codeless": [
+    [
+     "23320688",
+     "24660436",
+     101.78,
+     "62883522"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19418988",
+   "codeless": [
+    [
+     "23323898",
+     "24660400",
+     101.77,
+     "280632656"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19419273",
+   "codeless": [
+    [
+     "23324213",
+     "24660399",
+     69.96,
+     "280632656"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19420335",
+   "codeless": [
+    [
+     "23325318",
+     "24660469",
+     69.97,
+     "62890149"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19420940",
+   "codeless": [
+    [
+     "23326080",
+     "24660403",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326081",
+     "24660404",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19420954",
+   "codeless": [
+    [
+     "23326108",
+     "24660408",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326109",
+     "24660409",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19421010",
+   "codeless": [
+    [
+     "23326220",
+     "24660476",
+     68.62,
+     "62890149"
+    ],
+    [
+     "23326221",
+     "24660477",
+     37.14,
+     "62890149"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19422686",
+   "codeless": [
+    [
+     "23328015",
+     "24660405",
+     69.96,
+     "280637173"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19422687",
+   "codeless": [
+    [
+     "23328016",
+     "24660406",
+     101.77,
+     "280637173"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  }
+ ],
+ "prior_rows": [
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455671",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455823",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455824",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455845",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21915",
+   "vid": "19455908",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "44955",
+   "vid": "19455925",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": "dry: would release"
+  }
+ ],
+ "left": [
+  {
+   "pid": "17472396",
+   "vid": "19441616",
+   "err": "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance "
+  },
+  {
+   "pid": "17472396",
+   "vid": "19444342",
+   "err": "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance "
+  },
+  {
+   "pid": "17472396",
+   "vid": "19446223",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19447320",
+   "err": "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance "
+  },
+  {
+   "pid": "17478011",
+   "vid": "19457267",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457280",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457281",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478015",
+   "vid": "19457283",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478016",
+   "vid": "19457284",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478011",
+   "vid": "19457317",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478017",
+   "vid": "19457319",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457321",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478015",
+   "vid": "19457323",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478016",
+   "vid": "19457325",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478018",
+   "vid": "19457333",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19457336",
+   "err": "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance "
+  },
+  {
+   "pid": "17478017",
+   "vid": "19457420",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}

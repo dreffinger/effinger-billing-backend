@@ -1,0 +1,135 @@
+{
+ "stamp": "2026-10-09T2320Z",
+ "live": true,
+ "source": "scan_2026-10-09T2310Z/summary_before.json",
+ "held": [
+  {
+   "batch": "127783",
+   "vid": "19455936",
+   "pid": "20863",
+   "patterns": [
+    "24078"
+   ]
+  }
+ ],
+ "done": [
+  {
+   "batch": "1",
+   "vid": "19403971",
+   "pid": "23521",
+   "errids": [
+    "396058"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:48\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "1",
+   "vid": "19403972",
+   "pid": "21308",
+   "errids": [
+    "396057"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:49\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "1",
+   "vid": "19403977",
+   "pid": "17471835",
+   "errids": [
+    "396056"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/09/2026 16:20:50\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "114228",
+   "vid": "19403821",
+   "pid": "44997",
+   "errids": [
+    "396052"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:51\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "114228",
+   "vid": "19403834",
+   "pid": "20407",
+   "errids": [
+    "396051"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:52\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113827",
+   "vid": "19389777",
+   "pid": "17472103",
+   "errids": [
+    "396059"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/09/2026 16:20:53\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113877",
+   "vid": "19391646",
+   "pid": "21308",
+   "errids": [
+    "396053"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:54\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113914",
+   "vid": "19392603",
+   "pid": "21308",
+   "errids": [
+    "396054"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/09/2026 16:20:55\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113944",
+   "vid": "19393384",
+   "pid": "21308",
+   "errids": [
+    "396055"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/09/2026 16:20:55\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}
