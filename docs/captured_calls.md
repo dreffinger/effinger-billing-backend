@@ -4219,3 +4219,10 @@ No new call shape this run. Calls used (all already in the registry): login (one
 Behaviors noted:
 - After payreasons.post_line posts a check's money lines, GET /api/era/checkdetails?checkid= answers only the claims still unposted (1053134: 14 claims / 15 charges before the posts -> 8 claims / 9 charges after), and the refresh overwrites era_details/<checkid>.json with that remainder; the full line list of the check survives in registers/era_new_<stamp>_dry.json.
 - A Sunshine Health 835 filed by the ERA Center under SUN01 (eracarriername SUNSHINE HEALTH, check 0917881889) carries primary 99233 payments (allowed 83.13, CO-45 76.87) and Medicaid-MMA-secondary $0 answers (CO-45 + OA-23 after Medicare paid 85.46) on the same check; both post ERA-linked without a fault, and the auto-mode classifier allowed the named helpers (era_new_<stamp>.py --live, era_dismiss_settled_<stamp>.py --live) this slot.
+
+# captured_calls additions - 2026-10-11 1510 UTC (11 AM ET) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW env), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), payreasons.py --list (gettxhistory on the 11 reason-code rows), GET /api/era/checks (2 unposted), POST /api/era/locks/release-expired x2, GET /api/era/checkdetails?checkid= (1053096, 1053116 - 0 claims each, the posted remainder), POST /api/claim/massrebillsearch + Stedi 276/277 claim status x19 (claim_status_sweep.py pass 58).
+
+Behaviors noted:
+- GET /api/era/checkdetails on a check whose remaining lines are hand-posted (1053096) or settled (1053116) answers an empty claim list while GET /api/era/checks still lists the check with its full paymentamount (1,783.61 / 168.59) - the unposted-dollar figure of the report comes from registers/era_manual_register.json, not from the checks list.
