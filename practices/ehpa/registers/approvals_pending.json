@@ -464,6 +464,20 @@
    "status": "done",
    "answer": "2026-10-11T0344Z applied in the cascade session on William's go (ask mode; the page card still read waiting - his go here was the approval): era_dismiss_settled_1011_0110.py 1053084 1053085 --live - dry run first (every line settled: 1053084 1 $0 line recorded, 1053085 9 $0 lines recorded, the 4 ERA-posted lines already off the remit), then both checks dismissed (POST /api/era/checks/dismiss HTTP 200 issuccess true, 03:44:4xZ) and gone from GET /api/era/checks - the unposted list now holds only the held Florida Blue check 1052906; no money moved.",
    "note": "applied 2026-10-11T0344Z (go)"
+  },
+  {
+   "id": "A-2026-10-11T0510Z-A",
+   "stamp": "2026-10-11T0510Z",
+   "at": "2026-10-11T06:15:27Z",
+   "cmd": "cd /home/claude/unbilled && python3 repost_fix_1011.py --live",
+   "reason": "[Modify Shared Resources] (auto-mode classifier, 2026-10-11 06:2xZ)",
+   "what": "chart 17469645: v19446193 (99487 + 99489 6/25/2026, ERA check 1053088 / 26259B1000319208, $64.57 + $35.66) and v19453666 (99309, ERA check 1053096 / 26274B1000220792, $97.59): void the three code-less payments posted 10/9 from the 277 answers (package A-2026-10-09T0600Z-A) and re-post the same three lines from the 835 William dropped tonight through the ERA-linked Payment Entry shape (payreasons.repost_visit), so the CO-45 reasons sit on the payments and check 1053096 leaves the unposted list; balances unchanged ($0 both visits)",
+   "dollars": "$197.82",
+   "evidence_file": "registers/repost_fix_2026-10-11T0510Z.json",
+   "evidence": "dry run 06:1xZ: three live code-less payments found (ids 24660501 / 24660502 / 24660503) carrying the remit check numbers; the 835 lines are cached in era_details/1053088.json and 1053096.json; AMD's auto-poster refused exactly these visits tonight because of the hand posts",
+   "ui": "Payment Entry > chart 17469645 > visit 19446193: Void payments 24660501 ($64.57) and 24660502 ($35.66) of 10/9/2026 (check 26259B1000319208); visit 19453666: Void payment 24660503 ($97.59, check 26274B1000220792). Then ERA Center > unposted check 26274B1000220792 > Post; for 26259B1000319208 (already processed) ERA Center > Dismissed/Processed > restore the check > Post the 6/25/2026 claim",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
