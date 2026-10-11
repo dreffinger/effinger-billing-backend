@@ -461,9 +461,9 @@
    "evidence_file": "registers/era_dismiss_settled_2026-10-11T0110Z_dry.json",
    "evidence": "dry run 2026-10-11T0135Z: check 1053084 money-posted 0 / money-residual 0 / zero-recorded 1 and check 1053085 money-posted 0 / money-residual 0 / zero-recorded 13 - every line settled, --live would dismiss both",
    "ui": "AdvancedMD > Billing > ERA Center > Unposted list: select check 1053084 ([name]202610090008699) > Dismiss; select check 1053085 (HUMANA INC., NO-PAY-202610090008700, listed under FLORIDA MEDICARE) > Dismiss.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-11T0343Z (go)"
+   "status": "done",
+   "answer": "2026-10-11T0344Z applied in the cascade session on William's go (ask mode; the page card still read waiting - his go here was the approval): era_dismiss_settled_1011_0110.py 1053084 1053085 --live - dry run first (every line settled: 1053084 1 $0 line recorded, 1053085 9 $0 lines recorded, the 4 ERA-posted lines already off the remit), then both checks dismissed (POST /api/era/checks/dismiss HTTP 200 issuccess true, 03:44:4xZ) and gone from GET /api/era/checks - the unposted list now holds only the held Florida Blue check 1052906; no money moved.",
+   "note": "applied 2026-10-11T0344Z (go)"
   }
  ]
 }
