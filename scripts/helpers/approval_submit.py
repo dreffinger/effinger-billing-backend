@@ -140,9 +140,12 @@ def title(i, n=150):
 
 def html_email(items, stamp, subj):
     """The Gmail htmlBody: a button to the page, then one card per package with a 'Review & Approve' button that opens that
-    card's Approve / Decline buttons on the page (page#<id>), then the details. Inline styles only (Gmail drops <style>)."""
+    card's Approve / Decline buttons on the page (page#<id>), then the details. Inline styles only (Gmail drops <style>).
+    10/11/2026 (William: 'the email didn't have the green buttons'): Gmail's sanitizer also STRIPS the `background:` shorthand
+    from inline styles, so every button sent as background:#1b8037 arrived as white text on white - invisible. Only the
+    longhand `background-color:` survives; never use the shorthand in an email."""
     e = lambda s: html.escape(str(s or ""), quote=True)
-    btn = ("display:inline-block;background:%s;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;"
+    btn = ("display:inline-block;background-color:%s;color:#ffffff;padding:12px 20px;border-radius:8px;text-decoration:none;"
            "font:700 15px -apple-system,Segoe UI,Arial,sans-serif")
     H = ['<div style="font:15px -apple-system,Segoe UI,Arial,sans-serif;color:#141413;max-width:640px">',
          '<p style="font-size:17px;font-weight:700;margin:0 0 6px">MANDATORY APPROVAL WRITES: %d new package(s) / $%.2f waiting - tap Approve or Decline</p>'
@@ -150,7 +153,7 @@ def html_email(items, stamp, subj):
          '<p style="margin:0 0 14px;color:#5f6368">%s</p>' % e(subj),
          '<p style="margin:0 0 20px"><a href="%s" style="%s">Open Mandatory Approvals</a></p>' % (e(PAGE), btn % "#0163aa")]
     for i in items:
-        H += ['<div style="border:1px solid #d7d8da;border-radius:12px;padding:14px 16px;margin:0 0 14px;background:#f6f7f8">',
+        H += ['<div style="border:1px solid #d7d8da;border-radius:12px;padding:14px 16px;margin:0 0 14px;background-color:#f6f7f8">',
               '<div style="font:500 12px monospace;color:#5f6368">%s</div>' % e(i["id"]),
               '<div style="font-weight:700;margin:4px 0">%s</div>' % e(i["dollars"] or "n/a"),
               '<div style="margin:0 0 10px">%s</div>' % e(title(i)),

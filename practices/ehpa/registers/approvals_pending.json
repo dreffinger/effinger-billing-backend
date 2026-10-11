@@ -451,6 +451,21 @@
    "note": "applied 2026-10-09T2313Z (go) - no-op"
   },
   {
+   "id": "A-2026-10-11T0110Z-A",
+   "stamp": "2026-10-11T0110Z",
+   "at": "2026-10-11T01:36:23Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_dismiss_settled_1011_0110.py 1053084 1053085 --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions].",
+   "what": "ERA Center: dismiss two Humana NO-PAY ($0) checks whose every line this run settled. 1053084 (NO-PAY-202610090008699): 1 line, chart 20379 v19416099 99487 DOS 09/07/2025, CO-16/M76 $0 answer on an adjudicated claim, held to its board row. 1053085 (NO-PAY-202610090008700, filed by AMD under FLORIDA MEDICARE): 13 lines - chart 20379 v19455034 (99223 09/16/2026), v19455126 (99233 09/18/2026), v19455112 (99233 09/17/2026) OA-23 residuals written off WOCAID2ND $333.88 ERA-linked; chart 17472784 v19420555 (99307 10/07/2025) CO-185/N767 residual $6.50 moved back to insurance and written off WOINS; chart 17471238 v19438592 / v19442401 / v19439617 already at $0; chart 23969 v19455209 / v19455038 / v19455056 / v19455121 / v19455457 OA-23 held (no Humana plan on that chart, Cigna claims pending). No money moves: the dismiss only removes the two $0 checks from the unposted list.",
+   "dollars": "$0.00",
+   "evidence_file": "registers/era_dismiss_settled_2026-10-11T0110Z_dry.json",
+   "evidence": "dry run 2026-10-11T0135Z: check 1053084 money-posted 0 / money-residual 0 / zero-recorded 1 and check 1053085 money-posted 0 / money-residual 0 / zero-recorded 13 - every line settled, --live would dismiss both",
+   "ui": "AdvancedMD > Billing > ERA Center > Unposted list: select check 1053084 ([name]202610090008699) > Dismiss; select check 1053085 (HUMANA INC., NO-PAY-202610090008700, listed under FLORIDA MEDICARE) > Dismiss.",
+   "status": "done",
+   "answer": "2026-10-11T0344Z applied in the cascade session on William's go (ask mode; the page card still read waiting - his go here was the approval): era_dismiss_settled_1011_0110.py 1053084 1053085 --live - dry run first (every line settled: 1053084 1 $0 line recorded, 1053085 9 $0 lines recorded, the 4 ERA-posted lines already off the remit), then both checks dismissed (POST /api/era/checks/dismiss HTTP 200 issuccess true, 03:44:4xZ) and gone from GET /api/era/checks - the unposted list now holds only the held Florida Blue check 1052906; no money moved.",
+   "note": "applied 2026-10-11T0344Z (go)"
+  },
+  {
    "id": "A-2026-10-07T0510Z-A",
    "stamp": "2026-10-07T0510Z",
    "at": "2026-10-07T05:32:00Z",
