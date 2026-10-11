@@ -462,7 +462,8 @@
    "evidence": "dry run 2026-10-11T0135Z: check 1053084 money-posted 0 / money-residual 0 / zero-recorded 1 and check 1053085 money-posted 0 / money-residual 0 / zero-recorded 13 - every line settled, --live would dismiss both",
    "ui": "AdvancedMD > Billing > ERA Center > Unposted list: select check 1053084 ([name]202610090008699) > Dismiss; select check 1053085 (HUMANA INC., NO-PAY-202610090008700, listed under FLORIDA MEDICARE) > Dismiss.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-11T0343Z (go)"
   }
  ]
 }
