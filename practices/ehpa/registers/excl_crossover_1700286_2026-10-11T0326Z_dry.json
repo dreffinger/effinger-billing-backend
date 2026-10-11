@@ -1,0 +1,43 @@
+{
+ "stamp": "2026-10-11T0326Z",
+ "run": "1700286",
+ "live": false,
+ "complete": [],
+ "left": [
+  {
+   "visit": "19456319",
+   "claimid": "19456319B",
+   "pid": "17477516",
+   "fee": 433.0,
+   "coinsurance_open": 317.37,
+   "live": [
+    {
+     "cid": "23367954",
+     "cpt": "99344",
+     "dos": "09/25/2026",
+     "carrier": "FLO02",
+     "billdate": "09/28/2026",
+     "insbal": 300.0,
+     "patbal": 0.0,
+     "medicare_paid": 0,
+     "medicare_checks": [],
+     "pr": 0
+    },
+    {
+     "cid": "23367955",
+     "cpt": "99497",
+     "dos": "09/25/2026",
+     "carrier": "BCBS",
+     "billdate": "10/09/2026",
+     "insbal": 17.37,
+     "patbal": 0.0,
+     "medicare_paid": 68.11,
+     "medicare_checks": [
+      "819948282"
+     ],
+     "pr": 17.37
+    }
+   ]
+  }
+ ]
+}
