@@ -478,7 +478,7 @@
    "ui": "Payment Entry > chart 17469645 > visit 19446193: Void payments 24660501 ($64.57) and 24660502 ($35.66) of 10/9/2026 (check 26259B1000319208); visit 19453666: Void payment 24660503 ($97.59, check 26274B1000220792). Then ERA Center > unposted check 26274B1000220792 > Post; for 26259B1000319208 (already processed) ERA Center > Dismissed/Processed > restore the check > Post the 6/25/2026 claim",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-11T1910Z"
+   "note": "2026-10-11T1910Z: approved on the page 17:37Z, NOT run - precondition missing in this container: repost_fix_1011.py voids first and then calls payreasons.repost_visit, which needs the 835 lines of check 1053088 (26259B1000319208, processed) from era_details/1053088.json; GET checkdetails for that processed check answers 0 claims live and the cache exists only in the 0510Z container (the state bundle has not been packed since 9/18), so the run would void the two code-less payments on v19446193 ($64.57 + $35.66) and then answer no-era-line - money off the visit, nothing re-posted. Dry run 19:2xZ confirmed the three code-less payments (24660501/02/03) still live, chart unchanged. Runnable once era_details/1053088.json is restored or check 26259B1000319208 is restored in the ERA Center (Dismissed/Processed > restore) so checkdetails answers; then William's go in the cascade session. Only the 1053096 half (v19453666) has its ERA line cached."
   },
   {
    "id": "A-2026-10-11T0710Z-A",
