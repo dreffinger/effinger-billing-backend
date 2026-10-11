@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ehpa Billing Button</title>
+<meta name="description" content="One button that runs every billing script in the repository on GitHub - the Claims Center columns, ERA posting, the insurance cascade, the approved packages - with no approval prompts, and shows the report.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* layout: one control (the button + its mode) with the last run beside it, the plan of the run under it, the report and the history below,
+   then the pages of the billing project and how it works; dark-first, the ehpa Midnight tokens from ehpa Home.
+   Source of this page: tools/button/billing_button_page.html in the repository, built by tools/button/build_button_page.py. */
+:root{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--deep:#0f4048;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;--on-accent:#082f35;--accent:#70d6f8;--accent-soft:#1f5a68;--magenta:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;--hero:#041d21;--grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--font:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;--r-md:8px;--r-lg:12px;--r-xl:18px;--pill:999px;color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}}
+:root[data-theme="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-block:18px 120px;padding-inline:16px}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:700}
+h1{font-size:26px;line-height:1.1} h2{font-size:17px;letter-spacing:.01em} h3{font-size:15px}
+a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
+.eyebrow{font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.lockup{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:46px;height:46px;flex:none;border-radius:12px;background:var(--hero);display:grid;place-items:center}
+.mark svg{width:30px;height:30px}
+.brand{font:700 12px/1 var(--font);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:600 13.5px var(--font);padding:9px 14px;border-radius:var(--pill);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--accent)} .btn:focus-visible,.trigger:focus-visible,.seg button:focus-visible,.chk input:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px;align-items:stretch}
+.launch{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;align-self:flex-start}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 13px var(--font);padding:7px 14px;border-radius:var(--pill);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.seg button.live[aria-pressed="true"]{background:var(--magenta);color:#fff}
+.trigger{border:0;border-radius:var(--r-lg);padding:22px 24px;background:var(--grad);color:#082f35;font:700 22px/1.1 var(--font);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 14px 40px rgba(0,0,0,.25);text-align:left}
+.trigger small{display:block;font:500 13px/1.3 var(--font);margin-top:5px;opacity:.85}
+.trigger svg{width:34px;height:34px;flex:none}
+.trigger:hover{filter:brightness(1.05)} .trigger[disabled]{filter:grayscale(.6);cursor:progress}
+.alt-run{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.will{margin:0;color:var(--muted);font-size:14px}
+.confirm{border:1px solid var(--magenta);background:var(--bad-soft);border-radius:var(--r-lg);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.confirm.dry{border-color:var(--accent);background:var(--accent-soft)}
+.confirm .row{display:flex;gap:8px;flex-wrap:wrap}
+.status{font-size:14px;color:var(--muted);min-height:1.5em} .status.err{color:var(--bad)} .status.ok{color:var(--ok)}
+.last{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:20px 22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
+section.block{margin-top:22px}
+.block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
+.plan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)} .chk:first-of-type{border-top:0}
+.chk input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.chk label{cursor:pointer;min-width:0} .chk label small{display:block;color:var(--muted);font-size:12.5px}
+.chk .amt{margin-left:auto;font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--ink-2)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px;min-width:0}
+.tile .eyebrow{margin-bottom:6px} .tile .v{font:700 22px/1.1 var(--mono);font-variant-numeric:tabular-nums} .tile .v small{font:600 12px var(--font);color:var(--muted);margin-left:6px}
+.tile .arrow{color:var(--muted);margin:0 6px;font-weight:500}
+.steps{display:flex;flex-direction:column;gap:8px}
+details.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:0;min-width:0}
+details.step summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:11px 14px;flex-wrap:wrap}
+details.step summary::-webkit-details-marker{display:none}
+details.step summary .name{font-weight:700} details.step summary .sum{color:var(--muted);font-size:13.5px;flex:1 1 240px;min-width:0}
+details.step .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.tbl{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:5px 8px;border-top:1px solid var(--line);vertical-align:top;white-space:nowrap} th{font:600 11px var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);border-top:0}
+td.wrap-cell{white-space:normal;min-width:220px;font-family:var(--font)}
+.errs{color:var(--bad);font-size:13.5px;white-space:pre-wrap;font-family:var(--mono)}
+.hist{display:flex;flex-direction:column;gap:6px}
+.hist a.row{display:grid;grid-template-columns:auto auto 1fr auto;gap:12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:9px 12px;font-size:13.5px}
+.hist a.row:hover{border-color:var(--accent)} .hist .when{font-family:var(--mono)}
+.settings .field{display:flex;flex-direction:column;gap:6px;margin-top:10px} input[type=password],input[type=text]{font:500 14px var(--mono);padding:9px 11px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--bg);color:var(--ink);width:100%}
+.note{color:var(--muted);font-size:13.5px} .note b{color:var(--ink)}
+ol.how{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:14px} ol.how li{margin:4px 0}
+.ex{font:600 11px var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--warn);background:var(--warn-soft);border-radius:var(--pill);padding:2px 9px}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.pages a{display:block;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:11px 12px;min-width:0}
+.pages a:hover{border-color:var(--accent)}
+.pages a .nm{font-weight:700;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.pages a .kd{font:700 9.5px var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);flex:none}
+.pages a .nt{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.35}
+dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;margin:8px 0 0} dl.how dt{font-weight:700;font-family:var(--mono);font-size:12.5px;color:var(--accent)} dl.how dd{margin:0;color:var(--muted)}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:stretch;border-radius:999px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.22);max-width:calc(100vw - 32px)}
+.fab-main{display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 16px;background:var(--accent);color:var(--on-accent);text-decoration:none;font:700 15px/1.15 var(--font);white-space:nowrap}
+.fab-main svg{width:22px;height:22px;flex:none} .fab-main .txt small{display:block;font:400 11.5px/1.2 var(--font);opacity:.88;margin-top:2px}
+.fab-main:hover{filter:brightness(1.07)}
+@media (max-width:820px){.hero,.plan{grid-template-columns:1fr} .trigger{font-size:19px;padding:18px} .fab-main .txt small{display:none} dl.how{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.trigger{transition:transform .12s,filter .12s} .trigger:active{transform:scale(.99)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="lockup">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M55.04 32A23.04 23.04 0 1 0 47.42 49.12" stroke="#70d6f8" stroke-width="5.4" stroke-linecap="round"/><path d="M32 19.84V44.16M19.84 32H44.16" stroke="#f841e0" stroke-width="6.2" stroke-linecap="round"/></svg></div>
+      <div><div class="brand">ehpa</div><h1>Billing Button</h1></div>
+    </div>
+    <div class="tools">
+      <button class="btn" id="theme-btn" type="button" title="Light / dark / system">Theme</button>
+      <a class="btn" id="actions-link" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener">Runs on GitHub</a>
+      <a class="btn" href="https://github.com/dreffinger/effinger-billing-backend/releases" target="_blank" rel="noopener" title="The Windows installer of the desktop app - download ehpa-billing-button-setup.exe from the newest release">Desktop app</a>
+      <button class="btn" id="settings-btn" type="button">Token</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="launch">
+      <div class="seg" role="radiogroup" aria-label="Run mode">
+        <button type="button" data-mode="dry" aria-pressed="true">Dry run</button>
+        <button type="button" data-mode="live" class="live" aria-pressed="false">Live</button>
+      </div>
+      <button class="trigger" id="trigger" type="button">
+        <span>Run all billing<small id="trigger-sub">Dry run · reads everything, writes nothing</small></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>
+      </button>
+      <div class="alt-run"><a class="btn" id="pc-run" href="ehpa-billing://run?mode=dry" title="Opens the installed desktop app (ehpa Billing Button) and starts this run on your PC instead of on GitHub">Run on this PC</a><span class="note">needs the desktop app installed</span></div>
+      <p class="will" id="will">Runs the scripted billing day on GitHub Actions in your repository: the four Claims Center columns, ERA posting, the insurance cascade, resubmits and the packages you tick below. Pressing the button is the approval; nothing else asks. The same engine also runs on its own every two hours and nightly (dry until you flip it to live in the repository settings).</p>
+      <div class="confirm" id="confirm" hidden>
+        <div id="confirm-text"><b>Run live now?</b> This posts payments, releases visits, rebills and writes off exactly by the standing rules in the repository.</div>
+        <div class="row"><button class="btn primary" id="confirm-go" type="button">Run now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+    </div>
+    <aside class="last" id="last">
+      <div class="eyebrow">Last run</div>
+      <div id="last-body" class="note">Save a GitHub token (the Token button) and this card shows the newest run, live, with a link to its log.</div>
+    </aside>
+  </section>
+
+  <section class="block">
+    <h2>What this run will do <span class="eyebrow" id="plan-note">steps · packages</span></h2>
+    <div class="plan">
+      <div class="card">
+        <h3>Steps</h3>
+        <div class="chk"><input type="checkbox" id="s-columns" checked><label for="s-columns">Claims Center columns<small>Scan, Claim Inspector advisory bypasses, Unbilled repairs and releases, ERA-linked reason-code re-posts, duplicate / crossover exclusion completions, rescan</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-era" checked><label for="s-era">ERA posting<small>Post button over every check with money, then era_clear: $0 process-accepted lines, dismiss settled checks, hold money</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-cascade" checked><label for="s-cascade">Insurance cascade<small>Void-on-arrival rules, Stedi pre-claim check over the last 3 days of visits (needs the Stedi key; the chart fixes it flags are listed for a chat session)</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-sweep"><label for="s-sweep">Claim-status sweep (277)<small>UNI20 / BCBS before 5/1/2026. Each claim costs a Stedi 277; off by default</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-packages" checked><label for="s-packages">Approval packages<small>Only the packages ticked on the right. Each runs once, with its own dry run first</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-cred" checked><label for="s-cred">Credentialing check<small>NPPES, Medicare revalidation list, OIG exclusions</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-outstanding" checked><label for="s-outstanding">Outstanding claims summary<small>The unpaid list summed up for the Outstanding Claims page</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-money"><label for="s-money">Money ledger data<small>Ledger rebuild (slow); off by default</small></label></div>
+      </div>
+      <div class="card">
+        <h3>Packages waiting <span class="eyebrow" id="pk-count"></span></h3>
+        <div id="packages" class="note">The packages come from the approvals register on <span class="mono">main</span> once a token is saved.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="report-block">
+    <h2>Report <span class="eyebrow" id="report-stamp"></span></h2>
+    <div id="report"></div>
+  </section>
+
+  <section class="block">
+    <h2>History <span class="eyebrow">newest first</span></h2>
+    <div class="hist" id="history"><div class="note">Past reports appear here from <span class="mono">reports/button/</span> in the repository.</div></div>
+  </section>
+
+  <section class="block">
+    <h2>Pages <span class="eyebrow">the billing project, one tap each</span></h2>
+    <div class="card"><div class="pages" id="pages"></div></div>
+  </section>
+
+  <section class="block settings" id="settings" hidden>
+    <h2>GitHub token</h2>
+    <div class="card">
+      <p class="note">The button talks to GitHub from this browser with a <b>fine-grained personal access token</b> that only reaches this one repository. It is kept in this browser only (localStorage) and is never sent anywhere but api.github.com.</p>
+      <div class="field"><label for="tok">Token</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
+      <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn primary" id="tok-save" type="button">Save in this browser</button><button class="btn" id="tok-test" type="button">Test</button><button class="btn" id="tok-forget" type="button">Forget</button></div>
+      <div class="status" id="tok-status"></div>
+      <ol class="how">
+        <li>GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token.</li>
+        <li>Repository access: <b>Only select repositories</b> → effinger-billing-backend.</li>
+        <li>Permissions: <b>Actions: Read and write</b>, <b>Contents: Read</b> (Metadata is added on its own).</li>
+        <li>Paste it above and press Save. Press Test; it should answer with your GitHub login.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>How it works</h2>
+    <div class="card note">
+      <p style="margin:0 0 8px">The button sends a <span class="mono">workflow_dispatch</span> to <span class="mono">.github/workflows/billing-button.yml</span>. GitHub starts a fresh machine, checks out <span class="mono">main</span>, builds the same workspace the routines use, logs in to AdvancedMD once with the password stored in the repository's secrets, and runs <span class="mono">tools/button/run_all.py</span>. That script chains the helpers in this repository in the standing order, dry first and then live when you chose Live, and writes <span class="mono">reports/button/&lt;stamp&gt;.json</span> back to the repository; this page reads it. No permission classifier sits in that path. One run at a time: a second press while a run is going waits in line.</p>
+      <dl class="how">
+        <dt>on its own</dt><dd>Every two hours at :17 on the odd UTC hours (the columns profile) and at 05:35 UTC (the nightly cascade profile). Scheduled runs are <b>dry</b> until the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> is set to <span class="mono">live</span>; <span class="mono">BUTTON_SCHEDULE_ENABLED=false</span> stops them. When you go live here, pause the Claude 2-hourly routine so two writers never post the same check.</dd>
+        <dt>secrets</dt><dd>Repository → Settings → Secrets and variables → Actions: <span class="mono">AMD_PSW</span> (required) and <span class="mono">STEDI_API_KEY</span> (optional; without it the cascade and the sweep are skipped).</dd>
+        <dt>this PC</dt><dd>The desktop app (Releases → <span class="mono">ehpa-billing-button-setup.exe</span>) runs the same engine on your computer with the password typed into its settings, and the Run button on every billing page can open it (<span class="mono">ehpa-billing://run</span>).</dd>
+        <dt>what it cannot do</dt><dd>A chart fix after a Stedi answer, a dx cascade on a named chart, a hand-post of an unmatched line - those need a judgement and are listed under "Waiting on William or a chat session" in the report.</dd>
+        <dt>privacy</dt><dd>The report carries chart ids, visit ids, check ids and dollars only; the privacy gate checks it before it is committed. Helper logs are scrubbed and kept 14 days as a workflow artifact.</dd>
+      </dl>
+    </div>
+  </section>
+</div>
+
+<div class="fab" id="fab" role="complementary" aria-label="Open a billing chat">
+  <a class="fab-main" id="fab-open" href="https://claude.ai/project/01a083fd-4e9a-75fc-be20-7d5bcd7ddbd9" target="_blank" rel="noopener" title="Opens the ehpa cloud project in a new tab for a billing chat with the repo, the skills and the AMD login.">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>
+    <span class="txt">Open a billing chat<small>ehpa cloud · repo, skills, vocabulary, AMD login</small></span>
+  </a>
+</div>
+
+<script id="example" type="application/json">__EXAMPLE__</script>
+<script>
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s);
+  const REPO='dreffinger/effinger-billing-backend', WF='billing-button.yml', API='https://api.github.com', BRANCH='main';
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const money=n=>{ const v=Number(n)||0; return (v<0?'-':'')+'$'+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?String(iso):d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
+  const ls={get:k=>{try{return localStorage.getItem(k);}catch(e){return null;}}, set:(k,v)=>{try{localStorage.setItem(k,v);}catch(e){}}, del:k=>{try{localStorage.removeItem(k);}catch(e){}}};
+
+  // ---- theme: system -> dark -> light (remembered per browser)
+  const root=document.documentElement; const order=['auto','dark','light']; let theme=ls.get('ehpa-btn-theme')||'auto';
+  function paintTheme(){ if(theme==='auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme',theme); $('#theme-btn').textContent='Theme: '+theme; }
+  $('#theme-btn').addEventListener('click',()=>{ theme=order[(order.indexOf(theme)+1)%order.length]; ls.set('ehpa-btn-theme',theme); paintTheme(); }); paintTheme();
+
+  // ---- the pages of the billing project
+  const PAGES=[
+    ['Outstanding Claims','https://claude.ai/artifact/VNssV7RYwYrMrzvNwQtWwQ','report','Every open insurance balance by payer, age and month; refreshed by each run'],
+    ['Mandatory Approvals','https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR','approve','Writes the Claude routines could not make; Approve / Decline cards'],
+    ['Insurance Refresh Board','https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg','board','Patients whose coverage is being resolved; rows on your turn'],
+    ['Working Denials','https://claude.ai/artifact/HDcGSG4QQHFSwt33g8E5qo','board','Denial triage, live AMD status, command console'],
+    ['Effinger Money Ledger','https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN','report','Billed, outstanding, posted and written off'],
+    ['Treasury Payments','https://claude.ai/artifact/WqPdTgjbFDKwGh4NH1nuSa','report','Regions deposits matched to ERAs by payer'],
+    ['Old Claims Disposition','https://claude.ai/artifact/X7a5aehSHPUyPppSdV1yAp','report','The aged-claim review, batch by batch'],
+    ['Credentialing Board','https://claude.ai/artifact/CmAo5e3hAouWyFEqwbdo4M','board','Payer enrollments, licenses and renewals'],
+    ['October Credentialing Mail','https://claude.ai/artifact/GGG4qyrKZLQodsqaBham6Y','docket','The October letters and what each asks for'],
+    ['Credentialing Foundation','https://claude.ai/artifact/PEG1wg5hUcAXFMbESUJznv','register','What is credentialed where'],
+    ['ehpa Home','https://claude.ai/artifact/R6zTSimdzdGv9ZShvkG5GH','home','Visit, Claims, Treasury, Plan: the home screen'],
+    ['Shared Workspaces','https://claude.ai/artifact/9r5xD5BvFW7CkYfWA35TaB','launcher','Every session, routine, board and folder, one tap each'],
+    ['Effinger Billing Back End','https://claude.ai/artifact/8djmhYeoeqTS4Lzpg7Jxu5','explainer','How the pieces talk to each other; Stedi feature by feature'],
+    ['EHPA Cloud Billing Review','https://claude.ai/artifact/Kh5P2DXCgS8REY7QLAhFST','explainer','How the cloud billing run works'],
+    ['Effinger Programming Lab','https://claude.ai/artifact/2ANx2smzVKi9DBvkUJAq6G','learn','Every script, in plain English'],
+    ['App Build','__APP_BUILD_URL__','learn','How this app is built, file by file, in plain words'],
+    ['Mirror Outbox','https://claude.ai/artifact/QYvE6gTwtV9GHQ75XrSDk3','git','Bundle packages when a push was blocked'],
+    ['effinger-billing-backend on GitHub','https://github.com/dreffinger/effinger-billing-backend','code','The repository: scripts, workflows, reports'],
+  ].filter(p=>!p[1].startsWith('__'));
+  $('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
+
+  // ---- token
+  let tok=ls.get('ehpa-btn-gh-token')||'';
+  const settings=$('#settings');
+  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; if(!settings.hidden) $('#tok').focus(); });
+  $('#tok-save').addEventListener('click',()=>{ tok=$('#tok').value.trim(); if(!tok){ setTok('Paste a token first.',true); return; } ls.set('ehpa-btn-gh-token',tok); setTok('Saved in this browser.'); boot(); });
+  $('#tok-forget').addEventListener('click',()=>{ tok=''; ls.del('ehpa-btn-gh-token'); $('#tok').value=''; setTok('Forgotten.'); });
+  $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok; if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
+  function setTok(m,err){ const s=$('#tok-status'); s.textContent=m; s.className='status'+(err?' err':' ok'); }
+
+  async function gh(path,opt){ opt=opt||{}; const t=opt.token||tok; if(!t) throw new Error('no token saved');
+    const h={'Authorization':'Bearer '+t,'Accept':opt.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    if(opt.body) h['Content-Type']='application/json';
+    const r=await fetch(API+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined,cache:'no-store'});
+    if(r.status===204) return null;
+    if(!r.ok){ let m=r.status+' '+r.statusText; try{ const j=await r.json(); if(j.message) m+=': '+j.message; }catch(e){} throw new Error(m); }
+    return r.json(); }
+
+  // ---- mode + plan
+  let mode='dry';
+  function paintMode(){ document.querySelectorAll('.seg [data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===mode?'true':'false'));
+    $('#trigger-sub').textContent= mode==='live' ? 'Live · posts, releases, rebills and writes off by the standing rules' : 'Dry run · reads everything, writes nothing';
+    $('#confirm').classList.toggle('dry',mode!=='live');
+    $('#pc-run').href='ehpa-billing://run?mode='+mode+'&steps='+encodeURIComponent(steps());
+    $('#confirm-text').innerHTML= mode==='live' ? '<b>Run live now?</b> This posts payments, releases visits, rebills and writes off exactly by the standing rules in the repository, plus the ticked packages.' : '<b>Start the dry run?</b> It logs in once, reads every column and check, and writes a report. Nothing changes in AdvancedMD.'; }
+  const STEPS=['columns','era','cascade','sweep','packages','cred','outstanding','money'];
+  function steps(){ const on=STEPS.filter(k=>$('#s-'+k).checked); return on.length===STEPS.length?'all':on.join(','); }
+  document.querySelectorAll('.seg [data-mode]').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.mode; paintMode(); }));
+  STEPS.forEach(k=>$('#s-'+k).addEventListener('change',paintMode)); paintMode();
+  function packages(){ return Array.from(document.querySelectorAll('#packages input[type=checkbox]:checked')).map(i=>i.value).join(','); }
+
+  // ---- the button
+  const trig=$('#trigger'), confirmBox=$('#confirm'), status=$('#status');
+  function say(m,cls){ status.textContent=m; status.className='status'+(cls?' '+cls:''); }
+  trig.addEventListener('click',()=>{ if(!tok){ settings.hidden=false; $('#tok').focus(); say('Save a GitHub token first (the Token button).','err'); return; } confirmBox.hidden=false; $('#confirm-go').focus(); });
+  $('#confirm-no').addEventListener('click',()=>{ confirmBox.hidden=true; });
+  $('#confirm-go').addEventListener('click',fire);
+  async function fire(){ confirmBox.hidden=true; trig.disabled=true; say('Sending the trigger to GitHub…');
+    const inputs={mode:mode,steps:steps(),packages:$('#s-packages').checked?packages():'',note:'ehpa Billing Button '+new Date().toISOString()};
+    try{ await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{method:'POST',body:{ref:BRANCH,inputs:inputs}});
+      say('Triggered ('+mode+'). GitHub is starting the run; this page follows it.','ok'); ls.set('ehpa-btn-fired',new Date().toISOString()); setTimeout(()=>{ trig.disabled=false; },8000); watch(true); }
+    catch(e){ trig.disabled=false; say('GitHub refused the trigger: '+e.message+'. Check the token scopes (Actions: read and write) and that the workflow file is on main.','err'); } }
+
+  // ---- last run + polling
+  let pollTimer=null, lastSeen='';
+  async function runs(){ const j=await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/runs?per_page=8'); return (j.workflow_runs||[]); }
+  function paintLast(r){ const b=$('#last-body'); if(!r){ b.innerHTML='<span class="note">No run yet. Press the button.</span>'; return; }
+    const st=r.status==='completed'?(r.conclusion==='success'?'ok':(r.conclusion==='cancelled'?'dim':'bad')):'run';
+    const label=r.status==='completed'?(r.conclusion||'done'):r.status.replace('_',' ');
+    const mins=r.updated_at&&r.run_started_at?Math.round((new Date(r.updated_at)-new Date(r.run_started_at))/60000):null;
+    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(r.run_started_at||r.created_at))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'; }
+  async function watch(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
+    let tries=0; const tick=async()=>{ tries++; try{ const rs=await runs(); const r=rs[0]; paintLast(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the run list: '+e.message,'err'); clearInterval(pollTimer); pollTimer=null; } };
+    await tick(); pollTimer=setInterval(tick,15000); }
+
+  // ---- packages from the register on main
+  async function loadPackages(){ const box=$('#packages'); try{ const reg=await gh('/repos/'+REPO+'/contents/practices/ehpa/registers/approvals_pending.json?ref='+BRANCH,{raw:true});
+      const items=(Array.isArray(reg)?reg:(reg.items||[])).filter(i=>i.status!=='done'&&i.status!=='declined');
+      $('#pk-count').textContent=items.length+' open'; if(!items.length){ box.innerHTML='<span class="note">Nothing waiting. Every package in the register is done.</span>'; return; }
+      box.innerHTML=items.map(i=>'<div class="chk"><input type="checkbox" id="pk-'+esc(i.id)+'" value="'+esc(i.id)+'"'+(i.status==='approved'?' checked':'')+'><label for="pk-'+esc(i.id)+'"><span class="mono">'+esc(i.id)+'</span> <span class="pill '+(i.status==='approved'?'ok':'warn')+'">'+esc(i.status)+'</span><small>'+esc(String(i.what||'').slice(0,160))+(String(i.what||'').length>160?'…':'')+(i.note?' · '+esc(String(i.note).slice(0,120)):'')+'</small></label><span class="amt">'+esc(i.dollars||'')+'</span></div>').join('');
+    }catch(e){ box.innerHTML='<span class="note">Could not read the register: '+esc(e.message)+'</span>'; } }
+
+  // ---- report
+  function tile(label,html){ return '<div class="tile"><div class="eyebrow">'+label+'</div><div class="v">'+html+'</div></div>'; }
+  function ba(b,a,fmt){ fmt=fmt||(x=>x); return esc(fmt(b))+'<span class="arrow">→</span>'+esc(fmt(a)); }
+  function renderReport(rep,example){ const box=$('#report'); if(!rep){ box.innerHTML='<div class="card note">No report yet.</div>'; return; }
+    const s=rep.summary||{}, c=s.columns||{}, cb=c.before||{}, ca=c.after||{}, e=s.era||{}, eb=e.before||{}, ea=e.after||{}, p=s.posted||{}, rs=s.resent||{}, wo=s.written_off||{}, pk=s.packages||{}, oc=s.outstanding||{};
+    $('#report-stamp').innerHTML=(example?'<span class="ex">example - the dry run of 10/11/2026 from the build session</span> ':'')+esc((rep.mode||'')+' · '+(rep.stamp||''))+(rep.run_url?' · <a href="'+esc(rep.run_url)+'" target="_blank" rel="noopener">log</a>':'');
+    let h='<div class="tiles">'
+      +tile('Columns · CR / CI / Unb / Exc', ba([cb.charge_review,cb.claim_inspector,cb.unbilled,cb.exclusions].map(x=>x??'–').join('/'),[ca.charge_review,ca.claim_inspector,ca.unbilled,ca.exclusions].map(x=>x??'–').join('/')))
+      +tile('ERA checks · unposted', ba((eb.checks??'–')+' · '+money(eb.unposted||0),(ea.checks??'–')+' · '+money(ea.unposted||0)))
+      +tile('Posted', esc(money(p.pay||0))+'<small>+ WO '+esc(money((p.woins||0)+(p.wocaid2nd||0)+(p.wolate||0)))+'</small>')
+      +tile('Re-sent', esc(String(rs.visits??0))+'<small>'+esc(money(rs.dollars||0))+'</small>')
+      +tile('Written off', esc(money(wo.dollars||0))+'<small>'+esc(String(wo.count??0))+' lines</small>')
+      +tile('Packages', esc(String(pk.applied??0))+'<small>applied · '+esc(String(pk.refused??0))+' refused · '+esc(String(pk.skipped??0))+' skipped</small>')
+      +(oc.total!=null?tile('Outstanding', esc(money(oc.total))+'<small>'+esc(String(oc.visits??''))+' visits</small>'):'')
+      +'</div>';
+    const st=rep.status||'ok'; h+='<p class="note"><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(st)+'</span> '+esc(rep.headline||'')+(rep.note?' · '+esc(rep.note):'')+'</p>';
+    h+='<div class="steps">'+(rep.steps||[]).map(stp=>{ const sc=stp.status==='ok'?'ok':(stp.status==='skipped'?'dim':(stp.status==='failed'?'bad':'warn'));
+      let body='';
+      const counts=Object.entries(stp.counts||{}); const dollars=Object.entries(stp.dollars||{});
+      if(counts.length||dollars.length) body+='<div class="kv">'+counts.map(([k,v])=>'<b>'+esc(k)+'</b><span class="mono">'+esc(String(v))+'</span>').join('')+dollars.map(([k,v])=>'<b>'+esc(k)+'</b><span class="mono">'+esc(money(v))+'</span>').join('')+'</div>';
+      const lines=stp.lines||[]; if(lines.length){ const cols=Object.keys(lines[0]); body+='<div class="tbl"><table><thead><tr>'+cols.map(k=>'<th>'+esc(k)+'</th>').join('')+'</tr></thead><tbody>'+lines.slice(0,200).map(l=>'<tr>'+cols.map(k=>'<td class="'+(String(l[k]??'').length>28?'wrap-cell':'')+'">'+esc(typeof l[k]==='number'&&/amt|pay|wo|dollar|bal|paid|charge|unposted|amount/i.test(k)?money(l[k]):String(l[k]??''))+'</td>').join('')+'</tr>').join('')+'</tbody></table>'+(lines.length>200?'<div class="note">'+(lines.length-200)+' more lines in the JSON report</div>':'')+'</div>'; }
+      if((stp.errors||[]).length) body+='<div class="errs">'+esc(stp.errors.join('\n'))+'</div>';
+      return '<details class="step"'+(stp.status&&stp.status!=='ok'&&stp.status!=='skipped'?' open':'')+'><summary><span class="pill '+sc+'">'+esc(stp.status||'')+'</span><span class="name">'+esc(stp.title||stp.name)+'</span><span class="sum">'+esc(stp.summary||'')+'</span><span class="mono" style="color:var(--dim);font-size:12px">'+esc(when(stp.started))+'</span></summary><div class="body">'+(body||'<span class="note">Nothing to show.</span>')+'</div></details>'; }).join('')+'</div>';
+    if((rep.packages||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Packages</h3><div class="tbl"><table><thead><tr><th>id</th><th>status</th><th>dollars</th><th>result</th></tr></thead><tbody>'+rep.packages.map(q=>'<tr><td>'+esc(q.id)+'</td><td>'+esc(q.status)+'</td><td>'+esc(q.dollars||'')+'</td><td class="wrap-cell">'+esc(q.result||'')+'</td></tr>').join('')+'</tbody></table></div></div>';
+    if((rep.waiting||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Waiting on William or a chat session</h3><ul class="note" style="margin:6px 0 0;padding-left:18px">'+rep.waiting.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul></div>';
+    if((rep.errors||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Errors</h3><div class="errs">'+esc(rep.errors.join('\n'))+'</div></div>';
+    box.innerHTML=h; }
+  async function loadReport(){ try{ const rep=await gh('/repos/'+REPO+'/contents/reports/button/latest.json?ref='+BRANCH,{raw:true}); renderReport(rep,false); }
+    catch(e){ if(/404/.test(e.message)) renderReport(EXAMPLE,true); else $('#report').innerHTML='<div class="card note">Could not read the report: '+esc(e.message)+'</div>'; } }
+  async function loadHistory(){ const box=$('#history'); try{ const list=await gh('/repos/'+REPO+'/contents/reports/button?ref='+BRANCH);
+      const files=(Array.isArray(list)?list:[]).filter(f=>/^\d{4}-\d{2}-\d{2}T\d{4}Z\.json$/.test(f.name)).sort((a,b)=>a.name<b.name?1:-1).slice(0,12);
+      if(!files.length){ box.innerHTML='<div class="note">No reports yet.</div>'; return; }
+      const rows=await Promise.all(files.map(async f=>{ try{ const r=await gh('/repos/'+REPO+'/contents/reports/button/'+f.name+'?ref='+BRANCH,{raw:true}); const s=r.summary||{}, p=s.posted||{}; const st=r.status||'ok';
+        return '<a class="row" href="'+esc(r.run_url||('https://github.com/'+REPO+'/blob/'+BRANCH+'/reports/button/'+f.name))+'" target="_blank" rel="noopener"><span class="when">'+esc(r.stamp||f.name.replace('.json',''))+'</span><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(r.mode||'')+' · '+esc(st)+'</span><span class="note">'+esc(r.headline||'')+'</span><span class="mono">'+esc(money(p.pay||0))+'</span></a>'; }catch(e){ return '<div class="note">'+esc(f.name)+': '+esc(e.message)+'</div>'; } }));
+      box.innerHTML=rows.join(''); }catch(e){ box.innerHTML='<div class="note">'+(/404/.test(e.message)?'No reports yet.':'Could not list reports: '+esc(e.message))+'</div>'; } }
+
+  // ---- the first frame: the real dry run of 10/11/2026 (from the build session) until the first button run reports
+  let EXAMPLE=null; try{ EXAMPLE=JSON.parse(document.getElementById('example').textContent||'null'); }catch(e){ EXAMPLE=null; }
+
+  async function boot(){ if(!tok){ renderReport(EXAMPLE,true); return; } $('#tok').value=tok; await Promise.all([loadPackages(),loadReport(),loadHistory()]); watch(false); }
+  boot();
+  if(location.hash==='#trigger'){ setTimeout(()=>{ $('#trigger').scrollIntoView({block:'center'}); $('#trigger').focus(); if(tok){ confirmBox.hidden=false; $('#confirm-go').focus(); } },300); }
+})();
+</script>
+</body>
+</html>

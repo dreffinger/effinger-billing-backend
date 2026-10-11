@@ -1,0 +1,288 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-11T2329Z",
+ "mode": "dry",
+ "status": "ok",
+ "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00 (dry run - nothing written)",
+ "note": "dry run from the build session (clean engine)",
+ "run_url": "",
+ "started": "2026-10-11T23:29:58Z",
+ "ended": "2026-10-11T23:33:13Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 16,
+    "exclusions": 0
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 16,
+    "exclusions": 0
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 71.0
+   },
+   "after": {
+    "checks": 1,
+    "unposted": 71.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 272170.78,
+   "visits": 2506,
+   "charts": 507,
+   "over_365": {
+    "n": 769,
+    "dollars": 39680.61
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "910 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 910,
+    "registers": 822,
+    "python": "/usr/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-11T23:29:58Z",
+   "ended": "2026-10-11T23:29:59Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 16->16, Exclusions 0->0",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 16,
+    "exclusions": 0,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "unbilled reason-code rows": 11,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 5,
+    "unbilled releasable": 0,
+    "payreasons no-era-line": 11
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "Payment reason codes are missing or do not balance.",
+     "visits": 6,
+     "ids": "v19417079 v19418988 v19419273 v19420335 v19422686 v19422687"
+    },
+    {
+     "column": "unbilled",
+     "kind": "One or more charges within this visit have errors. Charges with errors",
+     "visits": 5,
+     "ids": "v19416171 v19416185 v19420940 v19420954 v19421010"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 5,
+     "ids": "v19457280 v19457281 v19457321 v19457471 v19457476"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-11T23:29:59Z",
+   "ended": "2026-10-11T23:33:01Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 checks / $71.00 -> 1 checks / $71.00 (dry - nothing posted)",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 71.0,
+    "unposted after": 71.0,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053116,
+     "payer": "UNITED HEALTHCARE",
+     "checknumber": "W0020208",
+     "amount": 0.0,
+     "unposted": 71.0,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-11T23:33:01Z",
+   "ended": "2026-10-11T23:33:09Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-11T23:33:09Z",
+   "ended": "2026-10-11T23:33:09Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "NPPES: 3 records, 0 changed | LEIE: {'error': \"HTTPSConnectionPool(host='oig.hhs.gov', port=443): Max retries exceeded with url: /exclusions/downloadables/UPDATED.csv \"} | Reminders due: none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-11T23:33:09Z",
+   "ended": "2026-10-11T23:33:11Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2506 visits on 507 charts, $272170.78 open; 769 over a year ($39680.61)",
+   "counts": {
+    "visits": 2506,
+    "charts": 507,
+    "over 365 days": 769
+   },
+   "dollars": {
+    "open insurance balance": 272170.78,
+    "over 365 days": 39680.61
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1621,
+     "dollars": 155487.01,
+     "oldest_days": 1061
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 197,
+     "dollars": 36758.34,
+     "oldest_days": 1245
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 126,
+     "dollars": 19280.93,
+     "oldest_days": 398
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 91,
+     "dollars": 11255.5,
+     "oldest_days": 1019
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 59,
+     "dollars": 5623.77,
+     "oldest_days": 809
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 52,
+     "dollars": 4744.13,
+     "oldest_days": 586
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 27,
+     "dollars": 4587.97,
+     "oldest_days": 1130
+    },
+    {
+     "carrier": "AET07",
+     "name": "AETNA",
+     "visits": 30,
+     "dollars": 4534.22,
+     "oldest_days": 342
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 25,
+     "dollars": 4185.24,
+     "oldest_days": 758
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 36,
+     "dollars": 3186.73,
+     "oldest_days": 578
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 19,
+     "dollars": 3041.6,
+     "oldest_days": 83
+    },
+    {
+     "carrier": "SIM01",
+     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "visits": 15,
+     "dollars": 2591.12,
+     "oldest_days": 93
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-11T23:33:11Z",
+   "ended": "2026-10-11T23:33:13Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line"
+ ],
+ "errors": []
+}

@@ -1,0 +1,85 @@
+# Builds the Windows installer of the ehpa Billing Button desktop app (desktop/app.py + desktop/ui.html) and publishes it as a
+# GitHub Release, so William downloads one file (ehpa-billing-button-setup.exe), installs it, and gets the app button on the desktop.
+# Runs on every push that touches desktop/ or the engine, and on demand (Actions -> desktop-build -> Run workflow).
+name: desktop-build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["desktop/**", "tools/button/**", ".github/workflows/desktop-build.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build tools and the libraries the helpers import
+        run: python -m pip install --quiet pyinstaller requests openpyxl
+
+      - name: Freeze the app (the bundled Python also runs the helper scripts)
+        shell: pwsh
+        working-directory: desktop
+        run: |
+          pyinstaller --noconfirm --clean --onedir --windowed --name ehpa-billing-button --icon icon.ico `
+            --add-data "ui.html;." `
+            --collect-all requests --collect-all openpyxl --collect-all certifi --collect-all charset_normalizer --collect-all idna --collect-all urllib3 `
+            --hidden-import xml.etree.ElementTree --hidden-import csv --hidden-import glob --hidden-import runpy --hidden-import zipfile `
+            --hidden-import base64 --hidden-import collections --hidden-import datetime --hidden-import argparse --hidden-import traceback `
+            app.py
+          Get-ChildItem dist\ehpa-billing-button | Select-Object -First 5
+
+      - name: Smoke test the frozen interpreter mode
+        shell: pwsh
+        working-directory: desktop
+        run: |
+          Set-Content -Path smoke.py -Value 'import requests, openpyxl, xml.etree.ElementTree, csv, sys; print("frozen python ok", sys.version.split()[0])'
+          # a windowed exe returns to the shell at once; wait for it and read its exit code and output from files
+          $p = Start-Process -FilePath .\dist\ehpa-billing-button\ehpa-billing-button.exe -ArgumentList '--py','smoke.py' `
+            -Wait -PassThru -NoNewWindow -RedirectStandardOutput smoke.out -RedirectStandardError smoke.err
+          Get-Content smoke.out, smoke.err -ErrorAction SilentlyContinue
+          if ($p.ExitCode -ne 0) { throw "the frozen interpreter mode failed with exit code $($p.ExitCode)" }
+
+      - name: Version
+        id: v
+        shell: pwsh
+        run: |
+          $v = "1.0." + $env:GITHUB_RUN_NUMBER
+          "version=$v" >> $env:GITHUB_OUTPUT
+          Write-Host "version $v"
+
+      - name: Installer (Inno Setup)
+        shell: pwsh
+        working-directory: desktop
+        env:
+          APP_VERSION: ${{ steps.v.outputs.version }}
+        run: |
+          & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer.iss
+          Get-ChildItem Output
+
+      - name: Keep the installer as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ehpa-billing-button-setup-${{ steps.v.outputs.version }}
+          path: desktop/Output/ehpa-billing-button-setup.exe
+          retention-days: 90
+
+      - name: Publish the release (the download link William uses)
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          V: ${{ steps.v.outputs.version }}
+        run: |
+          gh release create "desktop-v$env:V" desktop/Output/ehpa-billing-button-setup.exe `
+            --title "ehpa Billing Button $env:V" `
+            --notes "Windows installer of the ehpa Billing Button desktop app. Download ehpa-billing-button-setup.exe, run it, and the Billing Button appears on the desktop. Built from $env:GITHUB_SHA."
+          Write-Host "https://github.com/$env:GITHUB_REPOSITORY/releases/tag/desktop-v$env:V"
