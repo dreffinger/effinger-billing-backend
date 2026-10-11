@@ -1,0 +1,61 @@
+[
+ {
+  "stamp": "2026-10-11T0510Z",
+  "live": false,
+  "batch": "127180",
+  "vid": "19446287",
+  "pattern": "Pattern 11256",
+  "found": true,
+  "pid": "17472124",
+  "errs": [
+   [
+    "396113",
+    "Pattern 11256 The ICD-10-CM code(s) Z89619 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate.Pattern 11256 The ICD-10-CM code(s) Z89619 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code for laterality (right or left). Review documentation to verify whether or not a more specific ICD-10-CM diagnosis code is appropriate."
+   ]
+  ],
+  "charges": [
+   "23355335",
+   "23355336"
+  ],
+  "gate": [
+   {
+    "cid": "23355335",
+    "cpt": "pcode492676",
+    "mods": [],
+    "dx": [
+     "E11.9",
+     "E78.5",
+     "Z89.619",
+     "R26.2",
+     "M62.81",
+     "F03.90",
+     "F51.01",
+     "E05.90"
+    ],
+    "first_never_primary": false
+   },
+   {
+    "cid": "23355336",
+    "cpt": "pcode492677",
+    "mods": [
+     "25"
+    ],
+    "dx": [
+     "E11.9",
+     "E78.5",
+     "Z89.619",
+     "R26.2",
+     "M62.81",
+     "F03.90",
+     "F51.01",
+     "E05.90"
+    ],
+    "first_never_primary": false
+   }
+  ],
+  "only_adv": true,
+  "gate_ok": true,
+  "mod_ok": true,
+  "bypassed": "dry"
+ }
+]

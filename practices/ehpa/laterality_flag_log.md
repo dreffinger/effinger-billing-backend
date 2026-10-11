@@ -12,3 +12,4 @@
 - 2026-10-08 19:34Z run 2026-10-08T1910Z: v19457342 pat17477843 Pattern 11256 unspecified laterality bypassed
 - 2026-10-08 19:34Z run 2026-10-08T1910Z: v19457343 pat17475697 Pattern 11256 unspecified laterality bypassed
 - 2026-10-08 19:34Z run 2026-10-08T1910Z: v19457349 pat17472285 Pattern 11256 unspecified laterality bypassed
+- 2026-10-11 06:15Z run 2026-10-11T0510Z: pat17472124 visit 19446287 charges 23355335,23355336 - Pattern 11256 bypassed as advisory (Pattern 11256 The ICD-10-CM code(s) Z89619 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code ); documentation may support a laterality code (William)

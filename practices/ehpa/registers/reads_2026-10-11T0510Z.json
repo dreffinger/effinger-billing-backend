@@ -1,0 +1,2789 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "at": "2026-10-11T05:20:33Z",
+ "plans_17472396": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins9511768",
+    "carrier": "car6085",
+    "begindate": "09/25/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924421",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/08/2026 10:44 PM",
+    "eligibilitycreatedat": "10/08/2026 10:44 PM",
+    "eligibilityresponsedate": "10/08/2026 10:44 PM",
+    "claimcount": "123",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519354",
+    "carrier": "car6285",
+    "begindate": "05/01/2026",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924422",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/08/2026 10:44 PM",
+    "eligibilitycreatedat": "10/08/2026 10:44 PM",
+    "eligibilityresponsedate": "10/08/2026 10:44 PM",
+    "claimcount": "22",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17472396_19441616": {
+  "state": [
+   {
+    "cid": "23349530",
+    "cpt": "99308",
+    "dos": "05/07/2026",
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbalance": 107.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24560523",
+      "FLO02",
+      0.0,
+      "349457137",
+      "05/26/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        107.0
+       ]
+      ]
+     ],
+     [
+      "24657898",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22376190",
+      "WOINS",
+      107.0,
+      "05/26/2026",
+      "1"
+     ],
+     [
+      "22496738",
+      "WOINS",
+      107.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23349530",
+    "visit": "19441616",
+    "proccode": "99308",
+    "dos": "05/07/2026",
+    "fee": "107.00",
+    "paid": "0.00",
+    "insbal": "107.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "GV"
+   }
+  ]
+ },
+ "17472396_19442523": {
+  "state": [
+   {
+    "cid": "23350697",
+    "cpt": "99487",
+    "dos": "05/17/2026",
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24560521",
+      "FLO02",
+      0.0,
+      "349457137",
+      "05/26/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        206.0
+       ]
+      ]
+     ],
+     [
+      "24657899",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24660001",
+      "HUM01",
+      79.1,
+      "202459561261007",
+      "10/07/2026",
+      "0",
+      2,
+      [
+       [
+        "CO45",
+        125.29
+       ],
+       [
+        "CO253",
+        1.61
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22376188",
+      "WOINS",
+      206.0,
+      "05/26/2026",
+      "1"
+     ],
+     [
+      "22496739",
+      "WOINS",
+      206.0,
+      "09/30/2026",
+      "1"
+     ],
+     [
+      "22497716",
+      "WOINS",
+      126.9,
+      "10/07/2026",
+      "0"
+     ]
+    ]
+   },
+   {
+    "cid": "23350698",
+    "cpt": "99489",
+    "dos": "05/17/2026",
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbalance": 109.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24560522",
+      "FLO02",
+      0.0,
+      "349457137",
+      "05/26/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        109.0
+       ]
+      ]
+     ],
+     [
+      "24657900",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22376189",
+      "WOINS",
+      109.0,
+      "05/26/2026",
+      "1"
+     ],
+     [
+      "22496740",
+      "WOINS",
+      109.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23350697",
+    "visit": "19442523",
+    "proccode": "99487",
+    "dos": "05/17/2026",
+    "fee": "206.00",
+    "paid": "206.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "GV"
+   },
+   {
+    "id": "23350698",
+    "visit": "19442523",
+    "proccode": "99489",
+    "dos": "05/17/2026",
+    "fee": "109.00",
+    "paid": "0.00",
+    "insbal": "109.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "25 GV"
+   }
+  ]
+ },
+ "17472396_19444342": {
+  "state": [
+   {
+    "cid": "23353047",
+    "cpt": "99307",
+    "dos": "06/05/2026",
+    "fee": 68.0,
+    "paid": 0.0,
+    "insbalance": 68.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24582806",
+      "FLO02",
+      0.0,
+      "349565684",
+      "06/19/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        68.0
+       ]
+      ]
+     ],
+     [
+      "24650284",
+      "HUM01",
+      0.0,
+      "NO-PAY-202609110005616",
+      "09/17/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        68.0
+       ]
+      ]
+     ],
+     [
+      "24657902",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24657903",
+      "HUM01",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22490478",
+      "WOINS",
+      68.0,
+      "09/17/2026",
+      "1"
+     ],
+     [
+      "22496742",
+      "WOINS",
+      68.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23353047",
+    "visit": "19444342",
+    "proccode": "99307",
+    "dos": "06/05/2026",
+    "fee": "68.00",
+    "paid": "0.00",
+    "insbal": "68.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "GV"
+   }
+  ]
+ },
+ "17472396_19446223": {
+  "state": [
+   {
+    "cid": "23355217",
+    "cpt": "99487",
+    "dos": "06/25/2026",
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbalance": 206.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24584245",
+      "FLO02",
+      0.0,
+      "349626695",
+      "07/03/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        206.0
+       ]
+      ]
+     ],
+     [
+      "24657904",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22426600",
+      "WOINS",
+      206.0,
+      "07/03/2026",
+      "1"
+     ],
+     [
+      "22496743",
+      "WOINS",
+      206.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   },
+   {
+    "cid": "23355218",
+    "cpt": "99489",
+    "dos": "06/25/2026",
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbalance": 109.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24584246",
+      "FLO02",
+      0.0,
+      "349626695",
+      "07/03/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        109.0
+       ]
+      ]
+     ],
+     [
+      "24657905",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22426601",
+      "WOINS",
+      109.0,
+      "07/03/2026",
+      "1"
+     ],
+     [
+      "22496744",
+      "WOINS",
+      109.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23355217",
+    "visit": "19446223",
+    "proccode": "99487",
+    "dos": "06/25/2026",
+    "fee": "206.00",
+    "paid": "0.00",
+    "insbal": "206.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "GV"
+   },
+   {
+    "id": "23355218",
+    "visit": "19446223",
+    "proccode": "99489",
+    "dos": "06/25/2026",
+    "fee": "109.00",
+    "paid": "0.00",
+    "insbal": "109.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "25 GV"
+   }
+  ]
+ },
+ "17472396_19447320": {
+  "state": [
+   {
+    "cid": "23356503",
+    "cpt": "99309",
+    "dos": "07/03/2026",
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     [
+      "24587532",
+      "FLO02",
+      0.0,
+      "349725031",
+      "07/25/2026",
+      "1",
+      1,
+      [
+       [
+        "COB9",
+        141.0
+       ]
+      ]
+     ],
+     [
+      "24657906",
+      "FLO02",
+      0.0,
+      "",
+      "09/30/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22428156",
+      "WOINS",
+      141.0,
+      "07/25/2026",
+      "1"
+     ],
+     [
+      "22496745",
+      "WOINS",
+      141.0,
+      "09/30/2026",
+      "1"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23356503",
+    "visit": "19447320",
+    "proccode": "99309",
+    "dos": "07/03/2026",
+    "fee": "141.00",
+    "paid": "0.00",
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/05/2026",
+    "modifiers": "GV"
+   }
+  ]
+ },
+ "17472396_19457336": {
+  "state": [
+   {
+    "cid": "23369193",
+    "cpt": "99309",
+    "dos": "10/06/2026",
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23369193",
+    "visit": "19457336",
+    "proccode": "99309",
+    "dos": "10/06/2026",
+    "fee": "141.00",
+    "paid": "0.00",
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "10/08/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17472124": {
+  "patient_insorder": "2,3",
+  "plans": [
+   {
+    "id": "ins9511472",
+    "carrier": "car6062",
+    "begindate": "10/18/2023",
+    "enddate": "06/07/2026",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922594",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/22/2026 11:53 PM",
+    "eligibilitycreatedat": "09/22/2026 11:53 PM",
+    "eligibilityresponsedate": "09/22/2026 11:53 PM",
+    "claimcount": "131",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519273",
+    "carrier": "car6085",
+    "begindate": "01/01/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922595",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/22/2026 11:53 PM",
+    "eligibilitycreatedat": "09/22/2026 11:53 PM",
+    "eligibilityresponsedate": "09/22/2026 11:53 PM",
+    "claimcount": "57",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9520542",
+    "carrier": "car6600",
+    "begindate": "01/01/2026",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "3",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "",
+    "eligibilitystatusid": "",
+    "eligibilitychangedat": "",
+    "eligibilitycreatedat": "",
+    "eligibilityresponsedate": "",
+    "claimcount": "8",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17472124_19445180": {
+  "state": [
+   {
+    "cid": "23353988",
+    "cpt": "99309",
+    "dos": "06/08/2026",
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650767",
+      "FLO02",
+      66.36,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        56.36
+       ],
+       [
+        "PR2",
+        16.93
+       ],
+       [
+        "CO253",
+        1.35
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23353988",
+    "visit": "19445180",
+    "proccode": "99309",
+    "dos": "06/08/2026",
+    "fee": "141.00",
+    "paid": "66.36",
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "17472124_19446287": {
+  "state": [
+   {
+    "cid": "23355335",
+    "cpt": "99487",
+    "dos": "06/25/2026",
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650560",
+      "FLO02",
+      63.28,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        125.29
+       ],
+       [
+        "PR2",
+        16.14
+       ],
+       [
+        "CO253",
+        1.29
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   },
+   {
+    "cid": "23355336",
+    "cpt": "99489",
+    "dos": "06/25/2026",
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650561",
+      "FLO02",
+      34.95,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        64.42
+       ],
+       [
+        "PR2",
+        8.92
+       ],
+       [
+        "CO253",
+        0.71
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23355335",
+    "visit": "19446287",
+    "proccode": "99487",
+    "dos": "06/25/2026",
+    "fee": "206.00",
+    "paid": "63.28",
+    "insbal": "142.72",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": ""
+   },
+   {
+    "id": "23355336",
+    "visit": "19446287",
+    "proccode": "99489",
+    "dos": "06/25/2026",
+    "fee": "109.00",
+    "paid": "34.95",
+    "insbal": "74.05",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "17472124_19448899": {
+  "state": [
+   {
+    "cid": "23358403",
+    "cpt": "99487",
+    "dos": "07/17/2026",
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 142.72,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650786",
+      "FLO02",
+      63.28,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        125.29
+       ],
+       [
+        "PR2",
+        16.14
+       ],
+       [
+        "CO253",
+        1.29
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   },
+   {
+    "cid": "23358404",
+    "cpt": "99489",
+    "dos": "07/17/2026",
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 74.05,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650787",
+      "FLO02",
+      34.95,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        64.42
+       ],
+       [
+        "PR2",
+        8.92
+       ],
+       [
+        "CO253",
+        0.71
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23358403",
+    "visit": "19448899",
+    "proccode": "99487",
+    "dos": "07/17/2026",
+    "fee": "206.00",
+    "paid": "63.28",
+    "insbal": "142.72",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": ""
+   },
+   {
+    "id": "23358404",
+    "visit": "19448899",
+    "proccode": "99489",
+    "dos": "07/17/2026",
+    "fee": "109.00",
+    "paid": "34.95",
+    "insbal": "74.05",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "17472124_19449437": {
+  "state": [
+   {
+    "cid": "23359067",
+    "cpt": "99309",
+    "dos": "07/20/2026",
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbalance": 74.64,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24650768",
+      "FLO02",
+      66.36,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        56.36
+       ],
+       [
+        "PR2",
+        16.93
+       ],
+       [
+        "CO253",
+        1.35
+       ]
+      ]
+     ]
+    ],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23359067",
+    "visit": "19449437",
+    "proccode": "99309",
+    "dos": "07/20/2026",
+    "fee": "141.00",
+    "paid": "66.36",
+    "insbal": "74.64",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "09/23/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17470940": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins9510182",
+    "carrier": "car6085",
+    "begindate": "12/20/2022",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924151",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/05/2026 06:01 PM",
+    "eligibilitycreatedat": "10/05/2026 06:01 PM",
+    "eligibilityresponsedate": "10/05/2026 06:01 PM",
+    "claimcount": "177",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9510183",
+    "carrier": "car6600",
+    "begindate": "03/20/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "2",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924152",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/05/2026 06:01 PM",
+    "eligibilitycreatedat": "10/05/2026 06:01 PM",
+    "eligibilityresponsedate": "10/05/2026 06:01 PM",
+    "claimcount": "6",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17470940_19456320": {
+  "state": [
+   {
+    "cid": "23367956",
+    "cpt": "99344",
+    "dos": "09/25/2026",
+    "fee": 300.0,
+    "paid": 0.0,
+    "insbalance": 300.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [],
+    "wos": []
+   },
+   {
+    "cid": "23367957",
+    "cpt": "99497",
+    "dos": "09/25/2026",
+    "fee": 133.0,
+    "paid": 115.63,
+    "insbalance": 17.37,
+    "patbalance": 0.0,
+    "carrier": "AAR01",
+    "pays": [
+     [
+      "24660220",
+      "FLO02",
+      68.11,
+      "819948282",
+      "10/09/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        46.13
+       ],
+       [
+        "PR2",
+        17.37
+       ],
+       [
+        "CO253",
+        1.39
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22497892",
+      "WOINS",
+      47.52,
+      "10/09/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23367956",
+    "visit": "19456320",
+    "proccode": "99344",
+    "dos": "09/25/2026",
+    "fee": "300.00",
+    "paid": "0.00",
+    "insbal": "300.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "09/28/2026",
+    "modifiers": ""
+   },
+   {
+    "id": "23367957",
+    "visit": "19456320",
+    "proccode": "99497",
+    "dos": "09/25/2026",
+    "fee": "133.00",
+    "paid": "115.63",
+    "insbal": "17.37",
+    "patbal": "0.00",
+    "carrier": "AAR01",
+    "billdate": "10/09/2026",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "17470940_19455208": {
+  "state": [
+   {
+    "cid": "23366384",
+    "cpt": "99233",
+    "dos": "09/19/2026",
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbalance": 21.8,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     [
+      "24658201",
+      "FLO02",
+      85.46,
+      "819910096",
+      "10/03/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22496839",
+      "WOINS",
+      52.74,
+      "10/03/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23366384",
+    "visit": "19455208",
+    "proccode": "99233",
+    "dos": "09/19/2026",
+    "fee": "160.00",
+    "paid": "138.20",
+    "insbal": "21.80",
+    "patbal": "0.00",
+    "carrier": "UNI20",
+    "billdate": "10/03/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17477516": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins9519040",
+    "carrier": "car6085",
+    "begindate": "08/30/2025",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922049",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/16/2026 12:17 PM",
+    "eligibilitycreatedat": "09/16/2026 12:17 PM",
+    "eligibilityresponsedate": "09/16/2026 12:17 PM",
+    "claimcount": "24",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519041",
+    "carrier": "car6062",
+    "begindate": "08/30/2025",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922050",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/16/2026 12:17 PM",
+    "eligibilitycreatedat": "09/16/2026 12:17 PM",
+    "eligibilityresponsedate": "09/16/2026 12:17 PM",
+    "claimcount": "14",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17477516_19456319": {
+  "state": [
+   {
+    "cid": "23367954",
+    "cpt": "99344",
+    "dos": "09/25/2026",
+    "fee": 300.0,
+    "paid": 0.0,
+    "insbalance": 300.0,
+    "patbalance": 0.0,
+    "carrier": "FLO02",
+    "pays": [],
+    "wos": []
+   },
+   {
+    "cid": "23367955",
+    "cpt": "99497",
+    "dos": "09/25/2026",
+    "fee": 133.0,
+    "paid": 115.63,
+    "insbalance": 17.37,
+    "patbalance": 0.0,
+    "carrier": "BCBS",
+    "pays": [
+     [
+      "24660185",
+      "FLO02",
+      68.11,
+      "819948282",
+      "10/09/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        46.13
+       ],
+       [
+        "PR2",
+        17.37
+       ],
+       [
+        "CO253",
+        1.39
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22497857",
+      "WOINS",
+      47.52,
+      "10/09/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23367954",
+    "visit": "19456319",
+    "proccode": "99344",
+    "dos": "09/25/2026",
+    "fee": "300.00",
+    "paid": "0.00",
+    "insbal": "300.00",
+    "patbal": "0.00",
+    "carrier": "FLO02",
+    "billdate": "09/28/2026",
+    "modifiers": ""
+   },
+   {
+    "id": "23367955",
+    "visit": "19456319",
+    "proccode": "99497",
+    "dos": "09/25/2026",
+    "fee": "133.00",
+    "paid": "115.63",
+    "insbal": "17.37",
+    "patbal": "0.00",
+    "carrier": "BCBS",
+    "billdate": "10/09/2026",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "plans_12231996": {
+  "patient_insorder": "3,5",
+  "plans": [
+   {
+    "id": "ins6029444",
+    "carrier": "car6113",
+    "begindate": "",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "2",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922900",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/23/2026 01:10 AM",
+    "eligibilitycreatedat": "09/23/2026 01:10 AM",
+    "eligibilityresponsedate": "09/23/2026 01:10 AM",
+    "claimcount": "512",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MD",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9509581",
+    "carrier": "car6085",
+    "begindate": "01/01/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922901",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/23/2026 01:10 AM",
+    "eligibilitycreatedat": "09/23/2026 01:10 AM",
+    "eligibilityresponsedate": "09/23/2026 01:10 AM",
+    "claimcount": "206",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9516050",
+    "carrier": "car6404",
+    "begindate": "02/13/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "3",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "3",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922902",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/23/2026 01:10 AM",
+    "eligibilitycreatedat": "09/23/2026 01:10 AM",
+    "eligibilityresponsedate": "09/23/2026 01:10 AM",
+    "claimcount": "38",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519204",
+    "carrier": "car6174",
+    "begindate": "08/01/2025",
+    "enddate": "12/31/2025",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "4",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922458",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/21/2026 02:26 PM",
+    "eligibilitycreatedat": "09/21/2026 02:26 PM",
+    "eligibilityresponsedate": "09/21/2026 02:26 PM",
+    "claimcount": "72",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519272",
+    "carrier": "car6194",
+    "begindate": "01/01/2025",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "5",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8922903",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/23/2026 01:10 AM",
+    "eligibilitycreatedat": "09/23/2026 01:10 AM",
+    "eligibilityresponsedate": "09/23/2026 01:10 AM",
+    "claimcount": "0",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MD",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "12231996_19415872": {
+  "state": [
+   {
+    "cid": "23319429",
+    "cpt": "99306",
+    "dos": "09/05/2025",
+    "fee": 256.0,
+    "paid": 256.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "WEL04",
+    "pays": [
+     [
+      "24574757",
+      "FLO02",
+      0.0,
+      "348365024",
+      "06/01/2026",
+      "1",
+      1,
+      [
+       [
+        "CO24",
+        256.0
+       ]
+      ]
+     ],
+     [
+      "24597263",
+      "FLO02",
+      0.0,
+      "",
+      "09/04/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24614496",
+      "WEL04",
+      0.0,
+      "",
+      "09/06/2026",
+      "0",
+      0,
+      []
+     ],
+     [
+      "24639512",
+      "WEL04",
+      0.0,
+      "1008809130",
+      "09/10/2026",
+      "0",
+      1,
+      [
+       [
+        "CO252",
+        256.0
+       ]
+      ]
+     ],
+     [
+      "24647051",
+      "WEL04",
+      0.0,
+      "0917682685",
+      "09/15/2026",
+      "0",
+      1,
+      [
+       [
+        "CO109",
+        256.0
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22419020",
+      "WOINS",
+      256.0,
+      "06/01/2026",
+      "1"
+     ],
+     [
+      "22434698",
+      "WOINS",
+      256.0,
+      "09/04/2026",
+      "1"
+     ],
+     [
+      "22452465",
+      "WOINS",
+      256.0,
+      "09/06/2026",
+      "0"
+     ]
+    ]
+   },
+   {
+    "cid": "23319430",
+    "cpt": "99497",
+    "dos": "09/05/2025",
+    "fee": 133.0,
+    "paid": 133.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "WEL04",
+    "pays": [
+     [
+      "24574758",
+      "FLO02",
+      0.0,
+      "348365024",
+      "06/01/2026",
+      "1",
+      1,
+      [
+       [
+        "CO24",
+        133.0
+       ]
+      ]
+     ],
+     [
+      "24597264",
+      "FLO02",
+      0.0,
+      "",
+      "09/04/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24614497",
+      "WEL04",
+      0.0,
+      "",
+      "09/06/2026",
+      "0",
+      0,
+      []
+     ],
+     [
+      "24639513",
+      "WEL04",
+      0.0,
+      "1008809130",
+      "09/10/2026",
+      "0",
+      1,
+      [
+       [
+        "CO252",
+        133.0
+       ]
+      ]
+     ],
+     [
+      "24647052",
+      "WEL04",
+      0.0,
+      "0917682685",
+      "09/15/2026",
+      "0",
+      1,
+      [
+       [
+        "CO109",
+        133.0
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22419021",
+      "WOINS",
+      133.0,
+      "06/01/2026",
+      "1"
+     ],
+     [
+      "22434699",
+      "WOINS",
+      133.0,
+      "09/04/2026",
+      "1"
+     ],
+     [
+      "22452466",
+      "WOINS",
+      133.0,
+      "09/06/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23319429",
+    "visit": "19415872",
+    "proccode": "99306",
+    "dos": "09/05/2025",
+    "fee": "256.00",
+    "paid": "256.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "WEL04",
+    "billdate": "09/04/2026",
+    "modifiers": ""
+   },
+   {
+    "id": "23319430",
+    "visit": "19415872",
+    "proccode": "99497",
+    "dos": "09/05/2025",
+    "fee": "133.00",
+    "paid": "133.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "WEL04",
+    "billdate": "09/04/2026",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "plans_17476337": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins9517587",
+    "carrier": "car6872",
+    "begindate": "05/07/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8920258",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/09/2026 10:58 PM",
+    "eligibilitycreatedat": "09/09/2026 10:58 PM",
+    "eligibilityresponsedate": "09/09/2026 10:58 PM",
+    "claimcount": "21",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "TC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519087",
+    "carrier": "car6062",
+    "begindate": "09/02/2025",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8920914",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "09/09/2026 11:26 PM",
+    "eligibilitycreatedat": "09/09/2026 11:26 PM",
+    "eligibilityresponsedate": "09/09/2026 11:26 PM",
+    "claimcount": "34",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17476337_19440492": {
+  "state": [
+   {
+    "cid": "23348181",
+    "cpt": "99223",
+    "dos": "04/29/2026",
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "BCBS",
+    "pays": [
+     [
+      "24634390",
+      "BCBS",
+      0.0,
+      "213403769",
+      "09/09/2026",
+      "0",
+      1,
+      [
+       [
+        "OA18",
+        310.0
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22475813",
+      "None",
+      310.0,
+      "09/09/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23348181",
+    "visit": "19440492",
+    "proccode": "99223",
+    "dos": "04/29/2026",
+    "fee": "310.00",
+    "paid": "310.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "BCBS",
+    "billdate": "09/04/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17475338": {
+  "patient_insorder": "2,1",
+  "plans": [
+   {
+    "id": "ins9516386",
+    "carrier": "car6062",
+    "begindate": "02/03/2019",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924162",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/05/2026 06:02 PM",
+    "eligibilitycreatedat": "10/05/2026 06:02 PM",
+    "eligibilityresponsedate": "10/05/2026 06:02 PM",
+    "claimcount": "91",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9519275",
+    "carrier": "car6085",
+    "begindate": "01/01/2023",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924163",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/05/2026 06:02 PM",
+    "eligibilitycreatedat": "10/05/2026 06:02 PM",
+    "eligibilityresponsedate": "10/05/2026 06:02 PM",
+    "claimcount": "17",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17475338_19431100": {
+  "state": [
+   {
+    "cid": "23337644",
+    "cpt": "99223",
+    "dos": "01/27/2026",
+    "fee": 310.0,
+    "paid": 278.7,
+    "insbalance": 31.3,
+    "patbalance": 0.0,
+    "carrier": "BCBS",
+    "pays": [
+     [
+      "24650412",
+      "FLO02",
+      125.2,
+      "819814877(0)",
+      "09/19/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        150.3
+       ],
+       [
+        "PR2",
+        31.94
+       ],
+       [
+        "CO253",
+        2.56
+       ]
+      ]
+     ],
+     [
+      "24658616",
+      "FLO02",
+      0.0,
+      "819814877",
+      "10/05/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24658628",
+      "FLO02",
+      0.0,
+      "",
+      "10/05/2026",
+      "1",
+      0,
+      []
+     ]
+    ],
+    "wos": [
+     [
+      "22497141",
+      "WOINS",
+      153.5,
+      "10/05/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23337644",
+    "visit": "19431100",
+    "proccode": "99223",
+    "dos": "01/27/2026",
+    "fee": "310.00",
+    "paid": "278.70",
+    "insbal": "31.30",
+    "patbal": "0.00",
+    "carrier": "BCBS",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17474258": {
+  "patient_insorder": "1",
+  "plans": [
+   {
+    "id": "ins9515236",
+    "carrier": "car6404",
+    "begindate": "10/28/2019",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924197",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/06/2026 06:29 AM",
+    "eligibilitycreatedat": "10/06/2026 06:29 AM",
+    "eligibilityresponsedate": "10/06/2026 06:29 AM",
+    "claimcount": "22",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "17474258_19419032": {
+  "state": [
+   {
+    "cid": "23323956",
+    "cpt": "99306",
+    "dos": "10/01/2025",
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbalance": 256.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23323956",
+    "visit": "19419032",
+    "proccode": "99306",
+    "dos": "10/01/2025",
+    "fee": "256.00",
+    "paid": "0.00",
+    "insbal": "256.00",
+    "patbal": "0.00",
+    "carrier": "UNI20",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "17474258_19419622": {
+  "state": [
+   {
+    "cid": "23324573",
+    "cpt": "99309",
+    "dos": "10/08/2025",
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23324573",
+    "visit": "19419622",
+    "proccode": "99309",
+    "dos": "10/08/2025",
+    "fee": "141.00",
+    "paid": "0.00",
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "carrier": "UNI20",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "17474258_19420346": {
+  "state": [
+   {
+    "cid": "23325329",
+    "cpt": "99309",
+    "dos": "10/14/2025",
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23325329",
+    "visit": "19420346",
+    "proccode": "99309",
+    "dos": "10/14/2025",
+    "fee": "141.00",
+    "paid": "0.00",
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "carrier": "UNI20",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "17474258_19422181": {
+  "state": [
+   {
+    "cid": "23327538",
+    "cpt": "99309",
+    "dos": "10/22/2025",
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "UNI20",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23327538",
+    "visit": "19422181",
+    "proccode": "99309",
+    "dos": "10/22/2025",
+    "fee": "141.00",
+    "paid": "0.00",
+    "insbal": "141.00",
+    "patbal": "0.00",
+    "carrier": "UNI20",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_12180329": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins6028401",
+    "carrier": "car6085",
+    "begindate": "04/01/2022",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "12",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8923986",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/03/2026 10:25 PM",
+    "eligibilitycreatedat": "10/03/2026 10:25 PM",
+    "eligibilityresponsedate": "10/03/2026 10:25 PM",
+    "claimcount": "9",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins6028402",
+    "carrier": "car6062",
+    "begindate": "03/01/2022",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "2",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8923977",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/03/2026 10:24 PM",
+    "eligibilitycreatedat": "10/03/2026 10:24 PM",
+    "eligibilityresponsedate": "10/03/2026 10:24 PM",
+    "claimcount": "65",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "CC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "12180329_19436591": {
+  "state": [
+   {
+    "cid": "23343643",
+    "cpt": "99223",
+    "dos": "03/24/2026",
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "BCBS",
+    "pays": [
+     [
+      "24655822",
+      "BCBS",
+      0.0,
+      "423802576",
+      "09/23/2026",
+      "0",
+      1,
+      [
+       [
+        "PR22",
+        310.0
+       ]
+      ]
+     ],
+     [
+      "24656949",
+      "FLO02",
+      125.2,
+      "819872046",
+      "09/29/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        150.3
+       ],
+       [
+        "PR2",
+        31.94
+       ],
+       [
+        "CO253",
+        2.56
+       ]
+      ]
+     ],
+     [
+      "24656991",
+      "FLO02",
+      0.0,
+      "819872046",
+      "09/29/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24658629",
+      "FLO02",
+      0.0,
+      "",
+      "10/05/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24659301",
+      "BCBS",
+      31.94,
+      "423816565",
+      "10/07/2026",
+      "0",
+      2,
+      [
+       [
+        "CO45",
+        119.54
+       ],
+       [
+        "OA23",
+        158.52
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22496078",
+      "WOINS",
+      152.86,
+      "09/29/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23343643",
+    "visit": "19436591",
+    "proccode": "99223",
+    "dos": "03/24/2026",
+    "fee": "310.00",
+    "paid": "310.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "BCBS",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "12180329_19436827": {
+  "state": [
+   {
+    "cid": "23343875",
+    "cpt": "99233",
+    "dos": "03/28/2026",
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbalance": 0.0,
+    "patbalance": 0.0,
+    "carrier": "BCBS",
+    "pays": [
+     [
+      "24656948",
+      "FLO02",
+      85.46,
+      "819872046",
+      "09/29/2026",
+      "0",
+      3,
+      [
+       [
+        "CO45",
+        51.0
+       ],
+       [
+        "PR2",
+        21.8
+       ],
+       [
+        "CO253",
+        1.74
+       ]
+      ]
+     ],
+     [
+      "24656990",
+      "FLO02",
+      0.0,
+      "819872046",
+      "09/29/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24658630",
+      "FLO02",
+      0.0,
+      "",
+      "10/05/2026",
+      "1",
+      0,
+      []
+     ],
+     [
+      "24659395",
+      "BCBS",
+      21.8,
+      "423816565",
+      "10/07/2026",
+      "0",
+      2,
+      [
+       [
+        "CO45",
+        62.13
+       ],
+       [
+        "OA23",
+        76.07
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "22496077",
+      "WOINS",
+      52.74,
+      "09/29/2026",
+      "0"
+     ]
+    ]
+   }
+  ],
+  "raw": [
+   {
+    "id": "23343875",
+    "visit": "19436827",
+    "proccode": "99233",
+    "dos": "03/28/2026",
+    "fee": "160.00",
+    "paid": "160.00",
+    "insbal": "0.00",
+    "patbal": "0.00",
+    "carrier": "BCBS",
+    "billdate": "10/06/2026",
+    "modifiers": ""
+   }
+  ]
+ },
+ "plans_17477639": {
+  "patient_insorder": "",
+  "plans": []
+ },
+ "17477639_19455621": {
+  "state": [
+   {
+    "cid": "23366974",
+    "cpt": "99487",
+    "dos": "09/20/2026",
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 206.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   },
+   {
+    "cid": "23366975",
+    "cpt": "99489",
+    "dos": "09/20/2026",
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 109.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23366974",
+    "visit": "19455621",
+    "proccode": "99487",
+    "dos": "09/20/2026",
+    "fee": "206.00",
+    "paid": "0.00",
+    "insbal": "0.00",
+    "patbal": "206.00",
+    "carrier": "",
+    "modifiers": ""
+   },
+   {
+    "id": "23366975",
+    "visit": "19455621",
+    "proccode": "99489",
+    "dos": "09/20/2026",
+    "fee": "109.00",
+    "paid": "0.00",
+    "insbal": "0.00",
+    "patbal": "109.00",
+    "carrier": "",
+    "modifiers": ""
+   }
+  ]
+ },
+ "17477639_19453720": {
+  "state": [
+   {
+    "cid": "23364604",
+    "cpt": "99344",
+    "dos": "09/02/2026",
+    "fee": 300.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 300.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   },
+   {
+    "cid": "23364605",
+    "cpt": "99497",
+    "dos": "09/02/2026",
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbalance": 0.0,
+    "patbalance": 133.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23364604",
+    "visit": "19453720",
+    "proccode": "99344",
+    "dos": "09/02/2026",
+    "fee": "300.00",
+    "paid": "0.00",
+    "insbal": "0.00",
+    "patbal": "300.00",
+    "carrier": "",
+    "modifiers": ""
+   },
+   {
+    "id": "23364605",
+    "visit": "19453720",
+    "proccode": "99497",
+    "dos": "09/02/2026",
+    "fee": "133.00",
+    "paid": "0.00",
+    "insbal": "0.00",
+    "patbal": "133.00",
+    "carrier": "",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "plans_20863": {
+  "patient_insorder": "1,2",
+  "plans": [
+   {
+    "id": "ins7630",
+    "carrier": "car6085",
+    "begindate": "02/01/2010",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "1",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "1",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "",
+    "deductiblemet": "",
+    "yearendmonth": "",
+    "lifetime": "",
+    "eligibilityid": "8924347",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/08/2026 12:24 PM",
+    "eligibilitycreatedat": "10/08/2026 12:24 PM",
+    "eligibilityresponsedate": "10/08/2026 12:24 PM",
+    "claimcount": "193",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MC",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   },
+   {
+    "id": "ins9506993",
+    "carrier": "car42008",
+    "begindate": "",
+    "enddate": "",
+    "copay": "0.00",
+    "copaytype": "$",
+    "coverage": "2",
+    "relationship": "1",
+    "hipaarelationship": "18",
+    "sequence": "2",
+    "grpnum": "",
+    "mspcode": "",
+    "payerid": "",
+    "deductible": "0",
+    "deductiblemet": "0",
+    "yearendmonth": "1",
+    "lifetime": "0",
+    "eligibilityid": "8924348",
+    "eligibilitystatusid": "1",
+    "eligibilitychangedat": "10/08/2026 12:24 PM",
+    "eligibilitycreatedat": "10/08/2026 12:24 PM",
+    "eligibilityresponsedate": "10/08/2026 12:24 PM",
+    "claimcount": "158",
+    "eligibilityvalidation": "",
+    "eligibilityvalidationfollowup": "",
+    "eligibilitystc": "30",
+    "finclasscode": "MD",
+    "frontimagefileid": "",
+    "backimagefilefid": ""
+   }
+  ]
+ },
+ "20863_19455936": {
+  "state": [
+   {
+    "cid": "23367409",
+    "cpt": "99306",
+    "dos": "09/17/2026",
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbalance": 256.0,
+    "patbalance": 0.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   },
+   {
+    "cid": "23367410",
+    "cpt": "99497",
+    "dos": "09/17/2026",
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbalance": 133.0,
+    "patbalance": 0.0,
+    "carrier": "",
+    "pays": [],
+    "wos": []
+   }
+  ],
+  "raw": [
+   {
+    "id": "23367409",
+    "visit": "19455936",
+    "proccode": "99306",
+    "dos": "09/17/2026",
+    "fee": "256.00",
+    "paid": "0.00",
+    "insbal": "256.00",
+    "patbal": "0.00",
+    "carrier": "",
+    "modifiers": ""
+   },
+   {
+    "id": "23367410",
+    "visit": "19455936",
+    "proccode": "99497",
+    "dos": "09/17/2026",
+    "fee": "133.00",
+    "paid": "0.00",
+    "insbal": "133.00",
+    "patbal": "0.00",
+    "carrier": "",
+    "modifiers": "25"
+   }
+  ]
+ },
+ "plans_17478013": {
+  "patient_insorder": "",
+  "plans": []
+ },
+ "plans_17478030": {
+  "patient_insorder": "",
+  "plans": []
+ },
+ "plans_17478031": {
+  "patient_insorder": "",
+  "plans": []
+ }
+}

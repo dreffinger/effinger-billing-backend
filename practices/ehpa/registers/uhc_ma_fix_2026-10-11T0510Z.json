@@ -1,0 +1,14 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "pid": "17478031",
+ "carrier": "car302853",
+ "steps": [
+  "add_ins UHCMA -> ins9520809 seq 2",
+  "271: ACTIVE | plan  | A  B  | others   F6:[mbi];   DBP DENTAL-  WONDERBOX:;   OPTUMRX:;   EFFINGER:1225327380 | death - | addr [redacted] | aaa []",
+  "patient order 2: ok=True insorder 2 via ins9520809 -> '2'",
+  "v19457492 set_insorder 2: ok=True resave vst19457492 insorder 1 -> 2, 2 live charges (was 2)",
+  "v19457459 set_insorder 2: ok=True resave vst19457459 insorder 1 -> 2, 1 live charges (was 1)",
+  "v19457455 set_insorder 2: ok=True resave vst19457455 insorder 1 -> 2, 1 live charges (was 1)"
+ ]
+}

@@ -28,3 +28,14 @@
 {"at": "2026-10-10T23:27:44Z", "visit": "19457272", "charge": "23369129", "seq": 2, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-10T23:27:57Z", "visit": "19457479", "charge": "23369386", "seq": 2, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-10T23:28:10Z", "visit": "19457468", "charge": "23369375", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-11T05:29:56Z", "visit": "19441616", "charge": "23349530", "seq": 1, "status": 204, "by": "hospice_medicare_1011.py"}
+{"at": "2026-10-11T05:30:15Z", "visit": "19444342", "charge": "23353047", "seq": 1, "status": 204, "by": "hospice_medicare_1011.py"}
+{"at": "2026-10-11T05:30:35Z", "visit": "19446223", "charge": "23355217", "seq": 1, "status": 204, "by": "hospice_medicare_1011.py"}
+{"at": "2026-10-11T05:30:53Z", "visit": "19447320", "charge": "23356503", "seq": 1, "status": 204, "by": "hospice_medicare_1011.py"}
+{"at": "2026-10-11T05:31:18Z", "visit": "19457336", "charge": "23369193", "seq": 1, "status": 204, "by": "hospice_medicare_1011.py"}
+{"at": "2026-10-11T05:31:46Z", "visit": "19445180", "charge": "23353988", "seq": 4, "status": 204, "by": "dual_fcc_1011.py"}
+{"at": "2026-10-11T05:32:09Z", "visit": "19446287", "charge": "23355335", "seq": 4, "status": 204, "by": "dual_fcc_1011.py"}
+{"at": "2026-10-11T05:32:27Z", "visit": "19448899", "charge": "23358403", "seq": 4, "status": 204, "by": "dual_fcc_1011.py"}
+{"at": "2026-10-11T05:32:40Z", "visit": "19449437", "charge": "23359067", "seq": 4, "status": 204, "by": "dual_fcc_1011.py"}
+{"at": "2026-10-11T05:33:04Z", "visit": "19456320", "charge": "23367956", "seq": 1, "status": 204, "by": "recode_99349_1011.py"}
+{"at": "2026-10-11T05:33:35Z", "visit": "19456319", "charge": "23367954", "seq": 1, "status": 204, "by": "recode_99349_1011.py"}

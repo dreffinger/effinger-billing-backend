@@ -1,0 +1,92 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "dry": false,
+ "charts": {
+  "17478030": {
+   "steps": [
+    "add_ins FLO02 -> ins9520807 seq 1"
+   ],
+   "elig": "[271 summary redacted - patient_db]",
+   "visits": [
+    {
+     "vid": "19457491",
+     "cid": "23369399",
+     "dx": "dx ok: charge23369399 pcode65084 dx ['M43.16', 'M99.33', 'M47.26'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 1 (was 1)"
+    },
+    {
+     "vid": "19457457",
+     "cid": "23369363",
+     "dx": "dx ok: charge23369363 pcode65089 dx ['M43.16', 'M99.33', 'M47.26'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 1 (was 1)"
+    },
+    {
+     "vid": "19457453",
+     "cid": "23369359",
+     "dx": "dx ok: charge23369359 pcode65089 dx ['M43.16', 'M99.33', 'M47.26'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 1 (was 1)"
+    }
+   ],
+   "release": "ok=True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bnq4n\" lst=\"10/10/"
+  },
+  "17478031": {
+   "steps": [
+    "add_ins FLO02 -> ins9520808 seq 1"
+   ],
+   "elig": "[271 summary redacted - patient_db]",
+   "visits": [
+    {
+     "vid": "19457492",
+     "cid": "23369400",
+     "dx": "dx ok: charge23369400 pcode65084 dx ['M99.33', 'M47.26', 'R29.898'] -> ok; charge23369401 pcode492667 dx ['M99.33', 'M47.26', 'R29.898'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 2 (was 2)"
+    },
+    {
+     "vid": "19457459",
+     "cid": "23369365",
+     "dx": "dx ok: charge23369365 pcode65089 dx ['M99.33', 'M47.26', 'R29.898'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 1 (was 1)"
+    },
+    {
+     "vid": "19457455",
+     "cid": "23369361",
+     "dx": "dx ok: charge23369361 pcode65089 dx ['M99.33', 'M47.26', 'R29.898'] -> ok",
+     "admit": "ok",
+     "resave": "ok insorder=1 onhcfa=1 hospfrom=10/07/2026 live 1 (was 1)"
+    }
+   ],
+   "release": "ok=True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/10/"
+  }
+ },
+ "released": [
+  {
+   "vid": "19457491",
+   "ok": true
+  },
+  {
+   "vid": "19457457",
+   "ok": true
+  },
+  {
+   "vid": "19457453",
+   "ok": true
+  },
+  {
+   "vid": "19457492",
+   "ok": true
+  },
+  {
+   "vid": "19457459",
+   "ok": true
+  },
+  {
+   "vid": "19457455",
+   "ok": true
+  }
+ ]
+}

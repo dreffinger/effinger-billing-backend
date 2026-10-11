@@ -1,0 +1,38 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "items": [
+  {
+   "pid": "17470940",
+   "vid": "19456320",
+   "cid": "23367956",
+   "codes": {
+    "23367956": "pcode601053",
+    "23367957": "pcode492667"
+   },
+   "visit_insorder": "1,2",
+   "result": "1 charges edited; 2 live (was 2) | freq1 + rebill seq 1 -> 204",
+   "action": "done",
+   "after": {
+    "23367956": "pcode65142",
+    "23367957": "pcode492667"
+   }
+  },
+  {
+   "pid": "17477516",
+   "vid": "19456319",
+   "cid": "23367954",
+   "codes": {
+    "23367954": "pcode601053",
+    "23367955": "pcode492667"
+   },
+   "visit_insorder": "1,2",
+   "result": "1 charges edited; 2 live (was 2) | freq1 + rebill seq 1 -> 204",
+   "action": "done",
+   "after": {
+    "23367954": "pcode65142",
+    "23367955": "pcode492667"
+   }
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-10-11T0510Z",
+ "live": true,
+ "pid": "17472124",
+ "steps": [
+  "add_ins -> ins9520806 seq 4",
+  "271 on ins9520806: REJECTED   | plan  | A  B  | others  | death - | addr [redacted] | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': 'T4', 'FollowUpActionCode': 'R'}]",
+  "end-date ins9520542: ok=True f-g4xbm\" lst=\"10/10/2026 22:31:30\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '3,2,4' - WARNING not restored, set it: insorder 3,2,4 wo",
+  "patient order 2,4: ok=True insorder 2,4 via ins9520806 -> '2,4'",
+  "reroute v19445180 c23353988 -> 2,4 seq 4: resave vst19445180 insorder 2,3 -> 2,4, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+  "reroute v19446287 c23355335 -> 2,4 seq 4: resave vst19446287 insorder 2,3 -> 2,4, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+  "reroute v19448899 c23358403 -> 2,4 seq 4: resave vst19448899 insorder 2,3 -> 2,4, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+  "reroute v19449437 c23359067 -> 2,4 seq 4: resave vst19449437 insorder 2,3 -> 2,4, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204"
+ ]
+}
