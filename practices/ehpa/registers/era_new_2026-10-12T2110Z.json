@@ -1,0 +1,4532 @@
+{
+ "stamp": "2026-10-12T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446325,
+   "visitid": "19455213",
+   "pid": "17477818",
+   "chargedetailid": "23366389",
+   "cpt": "99232",
+   "dos": "2026-09-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N45",
+    "N45"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbal": 0.0,
+    "patbal": 14.38,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 14.38 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446326,
+   "visitid": "19455664",
+   "pid": "17473663",
+   "chargedetailid": "23367032",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446327,
+   "visitid": "19403949",
+   "pid": "12232001",
+   "chargedetailid": "22478086",
+   "cpt": "99487",
+   "dos": "2025-04-14",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446328,
+   "visitid": "19392621",
+   "pid": "12232001",
+   "chargedetailid": "22464671",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "COB7",
+    "CO208"
+   ],
+   "rarcs": [
+    "N570",
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446329,
+   "visitid": "19389765",
+   "pid": "12232001",
+   "chargedetailid": "22460710",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "COB7",
+    "CO208"
+   ],
+   "rarcs": [
+    "N570",
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446330,
+   "visitid": "19389571",
+   "pid": "12232001",
+   "chargedetailid": "22460333",
+   "cpt": "99307",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "COB7",
+    "CO208"
+   ],
+   "rarcs": [
+    "N570",
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 68.0,
+    "paid": 68.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446331,
+   "visitid": "19421097",
+   "pid": "12232001",
+   "chargedetailid": "23326394",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446331,
+   "visitid": "19421097",
+   "pid": "12232001",
+   "chargedetailid": "23326395",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446332,
+   "visitid": "19420530",
+   "pid": "12232001",
+   "chargedetailid": "23325507",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446333,
+   "visitid": "19417135",
+   "pid": "12232001",
+   "chargedetailid": "23320747",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446334,
+   "visitid": "19416087",
+   "pid": "12232001",
+   "chargedetailid": "23319617",
+   "cpt": "99487",
+   "dos": "2025-09-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446335,
+   "visitid": "19413647",
+   "pid": "12232001",
+   "chargedetailid": "23316736",
+   "cpt": "99487",
+   "dos": "2025-08-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446335,
+   "visitid": "19413647",
+   "pid": "12232001",
+   "chargedetailid": "23316737",
+   "cpt": "99489",
+   "dos": "2025-08-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446336,
+   "visitid": "19408951",
+   "pid": "12232001",
+   "chargedetailid": "22484205",
+   "cpt": "99487",
+   "dos": "2025-07-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO204"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446336,
+   "visitid": "19408951",
+   "pid": "12232001",
+   "chargedetailid": "22484206",
+   "cpt": "99489",
+   "dos": "2025-07-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO204"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446337,
+   "visitid": "19408688",
+   "pid": "12232001",
+   "chargedetailid": "22483998",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446338,
+   "visitid": "19407979",
+   "pid": "12232001",
+   "chargedetailid": "22483302",
+   "cpt": "99487",
+   "dos": "2025-06-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446339,
+   "visitid": "19455788",
+   "pid": "17475697",
+   "chargedetailid": "23367235",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446340,
+   "visitid": "19407288",
+   "pid": "12232001",
+   "chargedetailid": "22482533",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446341,
+   "visitid": "19405900",
+   "pid": "12232001",
+   "chargedetailid": "22480136",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446342,
+   "visitid": "19403420",
+   "pid": "12232001",
+   "chargedetailid": "22477618",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446343,
+   "visitid": "19401825",
+   "pid": "12232001",
+   "chargedetailid": "22476031",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 61.79,
+    "insbal": 45.21,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['N290'] from FLO02 but the live claim is at MCAD (billed 10/05/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446344,
+   "visitid": "19397900",
+   "pid": "12232001",
+   "chargedetailid": "22471532",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446345,
+   "visitid": "19397818",
+   "pid": "12232001",
+   "chargedetailid": "22471122",
+   "cpt": "99308",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446346,
+   "visitid": "19396628",
+   "pid": "12232001",
+   "chargedetailid": "22470083",
+   "cpt": "99307",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 68.0,
+    "paid": 68.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446347,
+   "visitid": "19455791",
+   "pid": "25869",
+   "chargedetailid": "23367240",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446348,
+   "visitid": "19454875",
+   "pid": "46051",
+   "chargedetailid": "23366025",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/17/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446349,
+   "visitid": "19455474",
+   "pid": "24039",
+   "chargedetailid": "23366767",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 0.0,
+    "patbal": 33.1,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 33.10 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446349,
+   "visitid": "19455474",
+   "pid": "24039",
+   "chargedetailid": "23366768",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 0.0,
+    "patbal": 13.35,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 13.35 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446350,
+   "visitid": "19455951",
+   "pid": "21238",
+   "chargedetailid": "23367439",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "TRI05",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at TRI05 (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446350,
+   "visitid": "19455951",
+   "pid": "21238",
+   "chargedetailid": "23367440",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "TRI05",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at TRI05 (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446351,
+   "visitid": "19455839",
+   "pid": "17473962",
+   "chargedetailid": "23367301",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446351,
+   "visitid": "19455839",
+   "pid": "17473962",
+   "chargedetailid": "23367302",
+   "cpt": "99489",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446352,
+   "visitid": "19455351",
+   "pid": "21885",
+   "chargedetailid": "23366628",
+   "cpt": "99309",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 121.08,
+    "insbal": 19.92,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446353,
+   "visitid": "19453682",
+   "pid": "21885",
+   "chargedetailid": "23364440",
+   "cpt": "99309",
+   "dos": "2026-08-11",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 121.08,
+    "insbal": 19.92,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446354,
+   "visitid": "19406111",
+   "pid": "12232001",
+   "chargedetailid": "22480350",
+   "cpt": "99487",
+   "dos": "2025-05-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446355,
+   "visitid": "19455794",
+   "pid": "17472124",
+   "chargedetailid": "23367244",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at AAR01 (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446356,
+   "visitid": "19455472",
+   "pid": "17469446",
+   "chargedetailid": "23366763",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 0.0,
+    "patbal": 33.1,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 33.10 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446356,
+   "visitid": "19455472",
+   "pid": "17469446",
+   "chargedetailid": "23366764",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 0.0,
+    "patbal": 13.35,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 13.35 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446357,
+   "visitid": "19455935",
+   "pid": "20452",
+   "chargedetailid": "23367407",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 33.1,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446357,
+   "visitid": "19455935",
+   "pid": "20452",
+   "chargedetailid": "23367408",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N130', 'N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446358,
+   "visitid": "19455908",
+   "pid": "21915",
+   "chargedetailid": "23367377",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446359,
+   "visitid": "19455824",
+   "pid": "21915",
+   "chargedetailid": "23367282",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446360,
+   "visitid": "19455760",
+   "pid": "20728",
+   "chargedetailid": "23367199",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446361,
+   "visitid": "19455655",
+   "pid": "17470881",
+   "chargedetailid": "23367017",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446362,
+   "visitid": "19455761",
+   "pid": "23721",
+   "chargedetailid": "23367200",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446363,
+   "visitid": "19455039",
+   "pid": "17472393",
+   "chargedetailid": "23366191",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at HUM01 (billed 10/02/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446364,
+   "visitid": "19454935",
+   "pid": "17472393",
+   "chargedetailid": "23366086",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at HUM01 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446365,
+   "visitid": "19454882",
+   "pid": "17472393",
+   "chargedetailid": "23366032",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at HUM01 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446366,
+   "visitid": "19454924",
+   "pid": "17472393",
+   "chargedetailid": "23366076",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at HUM01 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446367,
+   "visitid": "19455766",
+   "pid": "17471172",
+   "chargedetailid": "23367206",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446368,
+   "visitid": "19455725",
+   "pid": "46673",
+   "chargedetailid": "23367128",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446368,
+   "visitid": "19455725",
+   "pid": "46673",
+   "chargedetailid": "23367129",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446369,
+   "visitid": "19455768",
+   "pid": "17472594",
+   "chargedetailid": "23367209",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446370,
+   "visitid": "19455769",
+   "pid": "21798",
+   "chargedetailid": "23367210",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446370,
+   "visitid": "19455769",
+   "pid": "21798",
+   "chargedetailid": "23367211",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446371,
+   "visitid": "19455785",
+   "pid": "17469446",
+   "chargedetailid": "23367230",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446371,
+   "visitid": "19455785",
+   "pid": "17469446",
+   "chargedetailid": "23367231",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446372,
+   "visitid": "19452587",
+   "pid": "17473477",
+   "chargedetailid": "23362901",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446373,
+   "visitid": "19455727",
+   "pid": "17476348",
+   "chargedetailid": "23367132",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446373,
+   "visitid": "19455727",
+   "pid": "17476348",
+   "chargedetailid": "23367133",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446374,
+   "visitid": "19455628",
+   "pid": "17476264",
+   "chargedetailid": "23366984",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446375,
+   "visitid": "19455659",
+   "pid": "25160",
+   "chargedetailid": "23367023",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446375,
+   "visitid": "19455659",
+   "pid": "25160",
+   "chargedetailid": "23367024",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446376,
+   "visitid": "19455631",
+   "pid": "17476869",
+   "chargedetailid": "23366987",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446377,
+   "visitid": "19452593",
+   "pid": "17476869",
+   "chargedetailid": "23362912",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446377,
+   "visitid": "19452593",
+   "pid": "17476869",
+   "chargedetailid": "23362913",
+   "cpt": "99489",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 0.0,
+    "patbal": 15.49,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 15.49 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446378,
+   "visitid": "19455943",
+   "pid": "17473346",
+   "chargedetailid": "23367423",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446378,
+   "visitid": "19455943",
+   "pid": "17473346",
+   "chargedetailid": "23367424",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446379,
+   "visitid": "19455775",
+   "pid": "17477010",
+   "chargedetailid": "23367217",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446380,
+   "visitid": "19455728",
+   "pid": "17469525",
+   "chargedetailid": "23367134",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446381,
+   "visitid": "19452832",
+   "pid": "17470802",
+   "chargedetailid": "23363207",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 0.0,
+    "patbal": 16.93,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.93 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446382,
+   "visitid": "19452374",
+   "pid": "12182946",
+   "chargedetailid": "23362586",
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbal": 142.72,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/02/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446383,
+   "visitid": "19455661",
+   "pid": "17471688",
+   "chargedetailid": "23367027",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446383,
+   "visitid": "19455661",
+   "pid": "17471688",
+   "chargedetailid": "23367028",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446384,
+   "visitid": "19455731",
+   "pid": "17472436",
+   "chargedetailid": "23367139",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446384,
+   "visitid": "19455731",
+   "pid": "17472436",
+   "chargedetailid": "23367140",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446385,
+   "visitid": "19455362",
+   "pid": "25541",
+   "chargedetailid": "23366650",
+   "cpt": "99308",
+   "dos": "2026-09-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 107.0,
+    "paid": 93.36,
+    "insbal": 13.64,
+    "patbal": 0.0,
+    "carrier": "STA03",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at STA03 (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446386,
+   "visitid": "19455770",
+   "pid": "47039",
+   "chargedetailid": "23367212",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446387,
+   "visitid": "19455823",
+   "pid": "45024",
+   "chargedetailid": "23367281",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446388,
+   "visitid": "19455886",
+   "pid": "23969",
+   "chargedetailid": "23367351",
+   "cpt": "99233",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "CIG09",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446389,
+   "visitid": "19455457",
+   "pid": "23969",
+   "chargedetailid": "23366750",
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446390,
+   "visitid": "19455924",
+   "pid": "17470899",
+   "chargedetailid": "23367393",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446391,
+   "visitid": "19455809",
+   "pid": "21308",
+   "chargedetailid": "23367265",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446392,
+   "visitid": "19455670",
+   "pid": "17476094",
+   "chargedetailid": "23367042",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446393,
+   "visitid": "19455895",
+   "pid": "46692",
+   "chargedetailid": "23367361",
+   "cpt": "99223",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 31.94,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446393,
+   "visitid": "19455895",
+   "pid": "46692",
+   "chargedetailid": "23367362",
+   "cpt": "99497",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N130', 'N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446394,
+   "visitid": "19455872",
+   "pid": "46692",
+   "chargedetailid": "23367337",
+   "cpt": "99233",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446395,
+   "visitid": "19455671",
+   "pid": "46692",
+   "chargedetailid": "23367043",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446396,
+   "visitid": "19455649",
+   "pid": "17473269",
+   "chargedetailid": "23367012",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO208'] ['N286'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446397,
+   "visitid": "19455812",
+   "pid": "17472285",
+   "chargedetailid": "23367268",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446398,
+   "visitid": "19455925",
+   "pid": "44955",
+   "chargedetailid": "23367394",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446399,
+   "visitid": "19455845",
+   "pid": "44955",
+   "chargedetailid": "23367308",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446400,
+   "visitid": "19455846",
+   "pid": "12182776",
+   "chargedetailid": "23367309",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446400,
+   "visitid": "19455846",
+   "pid": "12182776",
+   "chargedetailid": "23367310",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446401,
+   "visitid": "19455813",
+   "pid": "12179706",
+   "chargedetailid": "23367269",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446402,
+   "visitid": "19455755",
+   "pid": "23159",
+   "chargedetailid": "23367189",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446402,
+   "visitid": "19455755",
+   "pid": "23159",
+   "chargedetailid": "23367190",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446403,
+   "visitid": "19455844",
+   "pid": "17470899",
+   "chargedetailid": "23367307",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446404,
+   "visitid": "19455617",
+   "pid": "17476855",
+   "chargedetailid": "23366967",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446404,
+   "visitid": "19455617",
+   "pid": "17476855",
+   "chargedetailid": "23366968",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 0.0,
+    "patbal": 15.49,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 15.49 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446405,
+   "visitid": "19455848",
+   "pid": "20937",
+   "chargedetailid": "23367312",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446405,
+   "visitid": "19455848",
+   "pid": "20937",
+   "chargedetailid": "23367313",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446406,
+   "visitid": "19455131",
+   "pid": "17472546",
+   "chargedetailid": "23366270",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446407,
+   "visitid": "19455040",
+   "pid": "17472546",
+   "chargedetailid": "23366192",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446408,
+   "visitid": "19454953",
+   "pid": "17472546",
+   "chargedetailid": "23366104",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446409,
+   "visitid": "19454887",
+   "pid": "17472546",
+   "chargedetailid": "23366037",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446410,
+   "visitid": "19454929",
+   "pid": "17472546",
+   "chargedetailid": "23366081",
+   "cpt": "99233",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446411,
+   "visitid": "19455819",
+   "pid": "22758",
+   "chargedetailid": "23367276",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446412,
+   "visitid": "19420555",
+   "pid": "17472784",
+   "chargedetailid": "23325534",
+   "cpt": "99307",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 68.0,
+    "paid": 68.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446413,
+   "visitid": "19455906",
+   "pid": "17477184",
+   "chargedetailid": "23367375",
+   "cpt": "99316",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 160.0,
+    "paid": 139.74,
+    "insbal": 20.26,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['N290'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446414,
+   "visitid": "19455822",
+   "pid": "24330",
+   "chargedetailid": "23367280",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446415,
+   "visitid": "19455045",
+   "pid": "17476020",
+   "chargedetailid": "23366197",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N45",
+    "N45"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45'] ['N45', 'N45'] from FLO02 but the live claim is at MCAD (billed 10/02/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446416,
+   "visitid": "19452694",
+   "pid": "17470802",
+   "chargedetailid": "23363073",
+   "cpt": "99306",
+   "dos": "2026-08-20",
+   "paid": 20.41,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N95",
+    "N45",
+    "N45"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 0.0,
+    "patbal": 33.1,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "moved": "moved 46.45 -> {'patbalance': '0.00', 'insbalance': '33.10', 'insorder': '2'}",
+   "before_after_move": {
+    "insbal": 33.1,
+    "patbal": 0.0
+   },
+   "pay": 20.41,
+   "wo": 12.69,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10168970",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-nfg66\" lst=\"10/12/2026 14:24:30\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446416,
+   "visitid": "19452694",
+   "pid": "17470802",
+   "chargedetailid": "23363074",
+   "cpt": "99497",
+   "dos": "2026-08-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95",
+    "N45"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95', 'N45'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446417,
+   "visitid": "19455214",
+   "pid": "17477818",
+   "chargedetailid": "23366390",
+   "cpt": "99223",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N45",
+    "N45"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 0.0,
+    "patbal": 31.94,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 31.94 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446418,
+   "visitid": "19455927",
+   "pid": "20937",
+   "chargedetailid": "23367396",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446419,
+   "visitid": "19455866",
+   "pid": "23969",
+   "chargedetailid": "23367331",
+   "cpt": "99233",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "CIG09",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446420,
+   "visitid": "19455594",
+   "pid": "45010",
+   "chargedetailid": "23366927",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446420,
+   "visitid": "19455594",
+   "pid": "45010",
+   "chargedetailid": "23366928",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446421,
+   "visitid": "19455592",
+   "pid": "45520",
+   "chargedetailid": "23366923",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446421,
+   "visitid": "19455592",
+   "pid": "45520",
+   "chargedetailid": "23366924",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N95', 'N95'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446422,
+   "visitid": "19455209",
+   "pid": "23969",
+   "chargedetailid": "23366385",
+   "cpt": "99233",
+   "dos": "2026-09-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446423,
+   "visitid": "19455121",
+   "pid": "23969",
+   "chargedetailid": "23366260",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446424,
+   "visitid": "19455056",
+   "pid": "23969",
+   "chargedetailid": "23366208",
+   "cpt": "99223",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130', 'N95'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446424,
+   "visitid": "19455056",
+   "pid": "23969",
+   "chargedetailid": "23366209",
+   "cpt": "99497",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbal": 80.67,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO170'] ['N130', 'N95', 'N95'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446425,
+   "visitid": "19455038",
+   "pid": "23969",
+   "chargedetailid": "23366190",
+   "cpt": "99223",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.2,
+    "insbal": 184.8,
+    "patbal": 0.0,
+    "carrier": "AAR01",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at AAR01 (billed 10/11/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446426,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367441",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446426,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367442",
+   "cpt": "99489",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446427,
+   "visitid": "19455796",
+   "pid": "20863",
+   "chargedetailid": "23367247",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446427,
+   "visitid": "19455796",
+   "pid": "20863",
+   "chargedetailid": "23367248",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446428,
+   "visitid": "19455043",
+   "pid": "20863",
+   "chargedetailid": "23368638",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 163.0,
+    "paid": 141.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446429,
+   "visitid": "19454947",
+   "pid": "20863",
+   "chargedetailid": "23366098",
+   "cpt": "99233",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at FLO99 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446430,
+   "visitid": "19454886",
+   "pid": "20863",
+   "chargedetailid": "23366036",
+   "cpt": "99233",
+   "dos": "2026-09-14",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at FLO99 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446431,
+   "visitid": "19454926",
+   "pid": "20863",
+   "chargedetailid": "23366078",
+   "cpt": "99233",
+   "dos": "2026-09-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "09/30/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] from FLO02 but the live claim is at FLO99 (billed 09/30/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446432,
+   "visitid": "19455744",
+   "pid": "25561",
+   "chargedetailid": "23367167",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446432,
+   "visitid": "19455744",
+   "pid": "25561",
+   "chargedetailid": "23367168",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446433,
+   "visitid": "19455803",
+   "pid": "17470743",
+   "chargedetailid": "23367257",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446434,
+   "visitid": "19442401",
+   "pid": "17471238",
+   "chargedetailid": "23350486",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446435,
+   "visitid": "19455808",
+   "pid": "17470875",
+   "chargedetailid": "23367264",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446436,
+   "visitid": "19439617",
+   "pid": "17471238",
+   "chargedetailid": "23347188",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446437,
+   "visitid": "19455889",
+   "pid": "17475638",
+   "chargedetailid": "23367354",
+   "cpt": "99233",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446438,
+   "visitid": "19455869",
+   "pid": "17475638",
+   "chargedetailid": "23367334",
+   "cpt": "99233",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446439,
+   "visitid": "19455461",
+   "pid": "17475638",
+   "chargedetailid": "23366753",
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "FLO02",
+    "billdate": "09/22/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446440,
+   "visitid": "19455211",
+   "pid": "17475638",
+   "chargedetailid": "23366387",
+   "cpt": "99233",
+   "dos": "2026-09-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "FLO02",
+    "billdate": "09/21/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446441,
+   "visitid": "19455124",
+   "pid": "17475638",
+   "chargedetailid": "23366263",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/19/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446442,
+   "visitid": "19455055",
+   "pid": "17475638",
+   "chargedetailid": "23366207",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbal": 74.54,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/18/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446443,
+   "visitid": "19454948",
+   "pid": "17475638",
+   "chargedetailid": "23366099",
+   "cpt": "99233",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/17/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446444,
+   "visitid": "19454899",
+   "pid": "17475638",
+   "chargedetailid": "23366049",
+   "cpt": "99233",
+   "dos": "2026-09-14",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/17/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446445,
+   "visitid": "19454931",
+   "pid": "17475638",
+   "chargedetailid": "23366083",
+   "cpt": "99233",
+   "dos": "2026-09-15",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/17/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO256'] ['N130', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446446,
+   "visitid": "19455932",
+   "pid": "20379",
+   "chargedetailid": "23367401",
+   "cpt": "99306",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 256.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446446,
+   "visitid": "19455932",
+   "pid": "20379",
+   "chargedetailid": "23367402",
+   "cpt": "99497",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO170"
+   ],
+   "rarcs": [
+    "N130",
+    "N95",
+    "N95"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 133.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446447,
+   "visitid": "19455034",
+   "pid": "20379",
+   "chargedetailid": "23366185",
+   "cpt": "99223",
+   "dos": "2026-09-16",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/19/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446448,
+   "visitid": "19455126",
+   "pid": "20379",
+   "chargedetailid": "23366265",
+   "cpt": "99233",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446449,
+   "visitid": "19455112",
+   "pid": "20379",
+   "chargedetailid": "23366251",
+   "cpt": "99233",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO256"
+   ],
+   "rarcs": [
+    "N130",
+    "N130"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446450,
+   "visitid": "19438592",
+   "pid": "17471238",
+   "chargedetailid": "23345778",
+   "cpt": "99487",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO208"
+   ],
+   "rarcs": [
+    "N286"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/03/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446451,
+   "visitid": "19455907",
+   "pid": "45024",
+   "chargedetailid": "23367376",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "N290"
+   ],
+   "claimstatus": 0,
+   "primary": false,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['N290'] from FLO02 but the live claim is at MCAD (billed 10/07/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053143",
+   "checkclaimid": 15446452,
+   "visitid": "19454234",
+   "pid": "20879",
+   "chargedetailid": "23365269",
+   "cpt": "99309",
+   "dos": "1900-01-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO31"
+   ],
+   "rarcs": [],
+   "claimstatus": 0,
+   "primary": true,
+   "matched_by": "cpt+dos (era line had chargedetailid -1)",
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO31'] [] from FLO02 but the live claim is at MCAD (billed 09/20/2026): the old plan's answer - nothing written, listed for the board"
+  }
+ ],
+ "wolate": []
+}
