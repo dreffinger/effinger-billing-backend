@@ -30254,5 +30254,176 @@
   "outcome": "held - code-less hand post 24660503 (97.59) on the charge; void + ERA-linked re-post waits on approval card A-2026-10-11T0510Z-A",
   "when": "2026-10-11T09:52:30Z",
   "run": "2026-10-11T0910Z"
+ },
+ {
+  "checkid": 1053137,
+  "checkclaimid": 15446285,
+  "visitid": 19456294,
+  "chargeid": 23367919,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053137,
+  "checkclaimid": 15446286,
+  "visitid": 19456229,
+  "chargeid": 23367853,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446292,
+  "visitid": 19456879,
+  "chargeid": 23368540,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446293,
+  "visitid": 19456851,
+  "chargeid": 23368512,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446294,
+  "visitid": 19456886,
+  "chargeid": 23368547,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446295,
+  "visitid": 19456860,
+  "chargeid": 23368521,
+  "outcome": "A: corrected",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446300,
+  "visitid": 19455924,
+  "chargeid": 23367393,
+  "outcome": "B: posted",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446301,
+  "visitid": 19455927,
+  "chargeid": 23367396,
+  "outcome": "B: posted",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446302,
+  "visitid": 19455925,
+  "chargeid": 23367394,
+  "outcome": "B: posted",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446303,
+  "visitid": 19455908,
+  "chargeid": 23367377,
+  "outcome": "B: posted",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446296,
+  "visitid": 19455374,
+  "chargeid": 23366674,
+  "outcome": "C: residual 13.64 - line already settled WOCAID2ND 13.64 after the Medicaid $0 crossover, open balance 0; Humana's 13.64 disregarded (William 9/13)",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446297,
+  "visitid": 19455375,
+  "chargeid": 23366676,
+  "outcome": "C: residual 19.92 - line already settled WOCAID2ND 19.92 after the Medicaid $0 crossover, open balance 0; Humana's 19.92 disregarded (William 9/13)",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446298,
+  "visitid": 19455866,
+  "chargeid": 23367331,
+  "outcome": "C: held - OA-23 $0 from Humana Healthy Horizons, no Humana plan on the chart, Cigna secondary claim pending (21.80 coinsurance) - as on 10/11",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446299,
+  "visitid": 19455886,
+  "chargeid": 23367351,
+  "outcome": "C: held - OA-23 $0 from Humana Healthy Horizons, no Humana plan on the chart, Cigna secondary claim pending (21.80 coinsurance) - as on 10/11",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446287,
+  "visitid": 19455628,
+  "chargeid": 23366984,
+  "outcome": "C: held - OA-23 $0 from Humana Healthy Horizons on a CCM 99487 Medicare paid 112.09; the chart carries Medicare only and its 271 names no Medicaid/QMB entity; 28.60 coinsurance on the patient - board row on William's turn",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446288,
+  "visitid": 19455372,
+  "chargeid": 23366670,
+  "outcome": "C: posted (Post button) 19.92 - balance 0",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446291,
+  "visitid": 19455373,
+  "chargeid": 23366672,
+  "outcome": "C: posted (Post button) 19.92 - balance 0",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446289,
+  "visitid": 19455910,
+  "chargeid": 23367379,
+  "outcome": "C: posted (Post button) 16.93 - balance 0",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
+ },
+ {
+  "checkid": 1053138,
+  "checkclaimid": 15446290,
+  "visitid": 19457356,
+  "chargeid": 23369216,
+  "outcome": "D: re-routed Medicare first + freq-1 rebill",
+  "when": "2026-10-12T09:34:22Z",
+  "run": "2026-10-12T0910Z"
  }
 ]
