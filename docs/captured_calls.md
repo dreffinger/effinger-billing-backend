@@ -4251,3 +4251,22 @@ No new call shape this run. Calls used (all already in the registry): login (one
 Behaviors noted:
 - The Drive connector's search_files `modifiedTime >` filter compares the DATE only (files modified earlier the same day are returned) - use list_recent_files orderBy lastModified for 'anything new since the last run'.
 - Both Mandatory Approvals cards were approved on the page at 17:37Z while practices/ehpa/registers/approvals_pending.json on main still said waiting; the approved command of A-2026-10-11T0710Z-A names tf_wolate_1011.py, which was never committed (the 0710Z run wrote no digest and no commit).
+
+# captured_calls additions - 2026-10-11 2310 UTC (7 PM ET) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW env), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), bypassclaimedits x1 (insp_bypass_advisories.py), GET /api/era/checks (1 unposted) + GET /api/era/checkdetails?checkid=1053116 (era_post --dry), payreasons.py --list (11 rows no-era-line), gettxhistory (txh.py x3), getdemographic x2, checkEligibility (elig_amd.py x2: pat17478013 no plans, pat17472553 Medicare ACTIVE / FCC T4), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 62), Stedi 270/271 x17 (precheck.py).
+
+Behaviors noted:
+- A WOLATE write-off posted through the write-off-only Payment Entry shape re-queues the visit's claim into the Claim Inspector (pat17472741 v19439544 raised Pattern 35790 after the chat's 23:05Z post, as pat17472784 did on 10/11 0110Z) - the next run bypasses the advisory; the visit's balance is $0 so nothing bills.
+- The Mandatory Approvals page now shows both 10/11 cards 'done' (applied by a chat session at 22:47Z / 23:05Z) while approvals_pending.json on main still reads 'waiting' - the chat's register commit is inside a Drive package whose part01 never landed (manifest + part02 only). A run reads the PAGE for approved cards (none), so nothing was applied twice.
+- Drive 'github mirror' package PACKAGE_effinger-billing-backend_2026-10-11: manifest (sha256 33a6cb5b..., 2 parts, base f587c61 -> head bcb600c) and part02 present, part01 (45,593 chars) absent - apply_bundle.py not run.
+
+# captured_calls additions - 2026-10-12 0110 UTC (9 PM ET 10/11) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), checkEligibility (elig_amd.py pat17478013: still zero plans, nothing to check), payreasons.py --list (gettxhistory on the 11 reason-code rows: no-era-line x11), GET /api/era/checks (1 unposted) + GET /api/era/checkdetails?checkid=1053116 (era_post.details, cached), posterapayments validate pass (era_post.py --all-unposted --dry: 0 postable, 3 skipped), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 63).
+
+Behaviors noted:
+- era_post.locks("") raises int('') - the helper wants a numeric check id (era_post.locks(<checkid>)); nothing was locked, so the release was not needed this run.
+- Drive 'github mirror' package PACKAGE_effinger-billing-backend_2026-10-11: part01 is now present (uploaded 23:29Z, 45,593 chars = the manifest's count) but its sha256 (5cfcb038...) is not the manifest's (ceecaa1f...); part02 matches. The decoded bundle is 36,621 bytes = the manifest's byte count and `git bundle verify` answers "is okay" (bcb600c refs/heads/main, requires f587c61), yet its sha256 (e055bd4d...) is not the manifest's 33a6cb5b... - the part01 re-upload came from a re-packed bundle the manifest never described. apply_bundle.py refused on the sha256 (rule: mismatch = leave it); package LEFT for the chat to re-upload a manifest that matches the 23:29Z part01.
+- The permission classifier refused writing the AMD password to .amd_cred.json (Credential Leakage) - moot: the environment carries AMD_PSW, amd.login_cached() used it, and bootstrap check reports the credential ok without a file.
+- ws_bundle.py pack --phi-only still writes 90 parts (registers/ holds 15 MB of sweep registers, every one already on main) - the state bundle was not uploaded (connector trap); era_details/1053116.json is re-readable live.

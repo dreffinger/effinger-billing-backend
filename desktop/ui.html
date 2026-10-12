@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ehpa Billing Button</title>
+<style>
+/* layout: the Manual Bill control (mode + button) with the last run beside it; the report and the history below; settings and
+   the cloud panel fold out. Midnight tokens = the ehpa Billing Button page / ehpa Home. Fonts are system fonts so the app works offline. */
+:root{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;--on-accent:#082f35;--accent:#70d6f8;--accent-soft:#1f5a68;--magenta:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;--hero:#041d21;--grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--font:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--mono:ui-monospace,Consolas,Menlo,monospace;--r-md:8px;--r-lg:12px;--r-xl:18px;--pill:999px;color-scheme:dark}
+:root[data-theme="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:18px 16px 60px}
+h1,h2,h3{margin:0;font-weight:700}
+h1{font-size:26px;line-height:1.1} h2{font-size:17px} h3{font-size:15px}
+a{color:var(--accent)}
+.eyebrow{font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.lockup{display:flex;align-items:center;gap:14px}
+.mark{width:46px;height:46px;border-radius:12px;background:var(--hero);display:grid;place-items:center}
+.mark svg{width:30px;height:30px}
+.brand{font:700 12px/1 var(--font);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:600 13.5px var(--font);padding:9px 14px;border-radius:var(--pill);cursor:pointer}
+.btn:hover{border-color:var(--accent)} .btn:focus-visible,.trigger:focus-visible,.seg button:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px}
+.launch{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px;display:flex;flex-direction:column;gap:14px}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;align-self:flex-start}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 13px var(--font);padding:7px 14px;border-radius:var(--pill);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.seg button.live[aria-pressed="true"]{background:var(--magenta);color:#fff}
+.trigger{border:0;border-radius:var(--r-lg);padding:22px 24px;background:var(--grad);color:#082f35;font:700 22px/1.1 var(--font);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 14px 40px rgba(0,0,0,.25);text-align:left}
+.trigger small{display:block;font:500 13px/1.3 var(--font);margin-top:5px;opacity:.85}
+.trigger svg{width:34px;height:34px;flex:none}
+.trigger[disabled]{filter:grayscale(.6);cursor:progress}
+.will{margin:0;color:var(--muted);font-size:14px}
+.confirm{border:1px solid var(--magenta);background:var(--bad-soft);border-radius:var(--r-lg);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.confirm.dry{border-color:var(--accent);background:var(--accent-soft)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.status{font-size:14px;color:var(--muted);min-height:1.5em} .status.err{color:var(--bad)} .status.ok{color:var(--ok)}
+.last{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:20px 22px;display:flex;flex-direction:column;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
+section.block{margin-top:22px}
+.block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px}
+.plan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)} .chk:first-of-type{border-top:0}
+.chk input{margin-top:4px;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.chk label{cursor:pointer} .chk label small{display:block;color:var(--muted);font-size:12.5px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 14px}
+.tile .eyebrow{margin-bottom:6px} .tile .v{font:700 22px/1.1 var(--mono)} .tile .v small{font:600 12px var(--font);color:var(--muted);margin-left:6px}
+.tile .arrow{color:var(--muted);margin:0 6px;font-weight:500}
+.steps{display:flex;flex-direction:column;gap:8px}
+details.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
+details.step summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:11px 14px;flex-wrap:wrap}
+details.step summary::-webkit-details-marker{display:none}
+details.step summary .name{font-weight:700} details.step summary .sum{color:var(--muted);font-size:13.5px;flex:1 1 240px}
+details.step .body{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.tbl{overflow-x:auto} table{border-collapse:collapse;width:100%;font-size:13px;font-family:var(--mono)}
+th,td{text-align:left;padding:5px 8px;border-top:1px solid var(--line);vertical-align:top;white-space:nowrap} th{font:600 11px var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);border-top:0}
+td.wrap-cell{white-space:normal;min-width:220px;font-family:var(--font)}
+.errs{color:var(--bad);font-size:13.5px;white-space:pre-wrap;font-family:var(--mono)}
+.hist{display:flex;flex-direction:column;gap:6px}
+.hist .rowi{display:grid;grid-template-columns:auto auto 1fr auto;gap:12px;align-items:center;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:9px 12px;font-size:13.5px;cursor:pointer}
+.hist .rowi:hover{border-color:var(--accent)}
+.field{display:flex;flex-direction:column;gap:6px;margin-top:10px} input[type=password],input[type=text]{font:500 14px var(--mono);padding:9px 11px;border:1px solid var(--line-strong);border-radius:var(--r-md);background:var(--bg);color:var(--ink);width:100%}
+.note{color:var(--muted);font-size:13.5px} .note b{color:var(--ink)}
+ol.how{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:14px} ol.how li{margin:4px 0}
+pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:12px;font:12.5px/1.45 var(--mono);max-height:260px;overflow:auto;white-space:pre-wrap;margin:0}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.pages a{display:block;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:11px 12px}
+.pages a:hover{border-color:var(--accent)}
+.pages a .nm{font-weight:700;font-size:14px;display:flex;justify-content:space-between;gap:8px}
+.pages a .kd{font:700 9.5px var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.pages a .nt{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.35}
+.ex{font:600 11px var(--font);letter-spacing:.1em;text-transform:uppercase;color:var(--warn);background:var(--warn-soft);border-radius:var(--pill);padding:2px 9px}
+@media (max-width:820px){.hero,.plan{grid-template-columns:1fr} .trigger{font-size:19px;padding:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="lockup">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M55.04 32A23.04 23.04 0 1 0 47.42 49.12" stroke="#70d6f8" stroke-width="5.4" stroke-linecap="round"/><path d="M32 19.84V44.16M19.84 32H44.16" stroke="#f841e0" stroke-width="6.2" stroke-linecap="round"/></svg></div>
+      <div><div class="brand">ehpa</div><h1>Billing Button</h1></div>
+    </div>
+    <div class="tools">
+      <button class="btn" id="theme-btn" type="button">Theme</button>
+      <button class="btn" id="update-btn" type="button" title="Download the newest scripts from GitHub main">Update scripts</button>
+      <button class="btn" id="cloud-btn" type="button">Cloud runs</button>
+      <button class="btn" id="settings-btn" type="button">Settings</button>
+      <button class="btn" id="quit-btn" type="button" title="Close the app">Quit</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="launch">
+      <div class="seg" role="radiogroup" aria-label="Run mode">
+        <button type="button" data-mode="dry" aria-pressed="true">Dry run</button>
+        <button type="button" data-mode="live" class="live" aria-pressed="false">Live</button>
+      </div>
+      <button class="trigger" id="trigger" type="button">
+        <span>Manual Bill<small id="trigger-sub">Dry run · reads everything, writes nothing</small></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>
+      </button>
+      <p class="will">Runs the scripted billing day on this PC with the scripts in the repository: the four Claims Center columns, ERA posting, the insurance cascade, the approved packages and the credentialing check. Pressing the button is the approval; nothing else asks.</p>
+      <div class="confirm" id="confirm" hidden>
+        <div id="confirm-text"></div>
+        <div class="row"><button class="btn primary" id="confirm-go" type="button">Run now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <pre class="log" id="log" hidden></pre>
+    </div>
+    <aside class="last">
+      <div class="eyebrow">Last run on this PC</div>
+      <div id="last-body" class="note">No run yet. Press the button.</div>
+      <div class="eyebrow" style="margin-top:8px">Scripts</div>
+      <div class="note" id="repo-head">not downloaded yet - press Update scripts</div>
+    </aside>
+  </section>
+
+  <section class="block">
+    <h2>What this run will do <span class="eyebrow">steps · packages</span></h2>
+    <div class="plan">
+      <div class="card">
+        <h3>Steps</h3>
+        <div class="chk"><input type="checkbox" id="s-columns" checked><label for="s-columns">Claims Center columns<small>Scan, inspector advisory bypasses, Unbilled repairs and releases, ERA-linked reason-code re-posts, duplicate / crossover exclusion completions, rescan</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-era" checked><label for="s-era">ERA posting<small>835 inbox upload, the Post button over every check with money, era_clear ($0 lines, dismiss settled checks, hold money)</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-cascade" checked><label for="s-cascade">Insurance cascade<small>Void-on-arrival rules, Stedi pre-claim check over the last 3 days of visits (needs the Stedi key; the chart fixes it flags are listed for a chat session)</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-sweep"><label for="s-sweep">Claim-status sweep (277)<small>UNI20 / BCBS before 5/1/2026. Each claim costs a Stedi 277; off by default</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-packages" checked><label for="s-packages">Approval packages<small>Every package marked approved in the register, each with its own dry run first</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-cred" checked><label for="s-cred">Credentialing check<small>NPPES, Medicare revalidation list, OIG exclusions</small></label></div>
+        <div class="chk"><input type="checkbox" id="s-money"><label for="s-money">Money ledger data<small>Ledger rebuild (slow); off by default</small></label></div>
+      </div>
+      <div class="card">
+        <h3>Packages</h3>
+        <p class="note">Package ids to apply (comma list). Leave empty to apply every package marked <b>approved</b> in the register on main.</p>
+        <div class="field"><input type="text" id="packages" placeholder="A-2026-10-11T0510Z-A, …"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="report-block">
+    <h2>Report <span class="eyebrow" id="report-stamp"></span></h2>
+    <div id="report"><div class="card note">No report yet.</div></div>
+  </section>
+
+  <section class="block">
+    <h2>History <span class="eyebrow">newest first · this PC</span></h2>
+    <div class="hist" id="history"><div class="note">Past reports appear here.</div></div>
+  </section>
+
+  <section class="block">
+    <h2>Pages <span class="eyebrow">the billing project, one tap each</span></h2>
+    <div class="card"><div class="pages" id="pages"></div></div>
+  </section>
+
+  <section class="block" id="cloud" hidden>
+    <h2>Cloud runs <span class="eyebrow">GitHub Actions</span></h2>
+    <div class="card">
+      <p class="note">The same engine on GitHub's machines (the schedule runs there every two hours and nightly). Needs the GitHub token in Settings.</p>
+      <div class="row"><button class="btn" id="cloud-dry" type="button">Dry run in the cloud</button><button class="btn primary" id="cloud-live" type="button">Live run in the cloud</button><button class="btn" id="cloud-refresh" type="button">Refresh</button><a class="btn" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener">Open on GitHub</a></div>
+      <div class="status" id="cloud-status"></div>
+      <div id="cloud-runs" class="hist" style="margin-top:10px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="settings" hidden>
+    <h2>Settings</h2>
+    <div class="card">
+      <p class="note">Everything here stays in your Windows profile folder (<span class="mono" id="data-dir"></span>), readable by your Windows account only. Nothing is sent anywhere but AdvancedMD, Stedi and GitHub.</p>
+      <div class="field"><label for="tok">GitHub token <span class="note">(fine-grained, this repository only: Contents read, Actions read and write) · <span id="tok-state"></span></span></label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
+      <div class="field"><label for="psw">AdvancedMD password for API user POI0712 · <span id="psw-state"></span></label><input type="password" id="psw" autocomplete="off"></div>
+      <div class="field"><label for="stedi">Stedi API key <span class="note">(optional - the cascade and the sweep need it) · <span id="stedi-state"></span></span></label><input type="password" id="stedi" autocomplete="off"></div>
+      <div class="chk" style="margin-top:10px"><input type="checkbox" id="auto-update" checked><label for="auto-update">Download the newest scripts from GitHub before every run</label></div>
+      <div class="row" style="margin-top:10px"><button class="btn primary" id="save" type="button">Save</button><button class="btn" id="test" type="button">Test GitHub</button><button class="btn" id="open-data" type="button">Open data folder</button><button class="btn" id="open-ws" type="button">Open workspace</button></div>
+      <div class="status" id="set-status"></div>
+      <ol class="how">
+        <li>GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token; Repository access: only effinger-billing-backend; Permissions: Contents Read, Actions Read and write.</li>
+        <li>The AdvancedMD password is the one the routines use (API user POI0712). One login per run; a failed login trips a lock the app reports.</li>
+        <li>835 files dropped in the workspace folder <span class="mono">inbox\era</span> are uploaded to the ERA Center at the start of the ERA step.</li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s);
+  const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const money=n=>{ const v=Number(n)||0; return (v<0?'-':'')+'$'+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); };
+  const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?String(iso):d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
+  const ls={get:k=>{try{return localStorage.getItem(k);}catch(e){return null;}}, set:(k,v)=>{try{localStorage.setItem(k,v);}catch(e){}}};
+  async function api(path,body){ const r=await fetch(path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||r.statusText); return j; }
+
+  // theme
+  const root=document.documentElement; let theme=ls.get('ehpa-app-theme')||'dark';
+  function paintTheme(){ root.setAttribute('data-theme',theme); $('#theme-btn').textContent='Theme: '+theme; }
+  $('#theme-btn').addEventListener('click',()=>{ theme=theme==='dark'?'light':'dark'; ls.set('ehpa-app-theme',theme); paintTheme(); }); paintTheme();
+
+  // settings
+  let S={};
+  async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; }
+  $('#settings-btn').addEventListener('click',()=>{ $('#settings').hidden=!$('#settings').hidden; });
+  $('#cloud-btn').addEventListener('click',()=>{ $('#cloud').hidden=!$('#cloud').hidden; if(!$('#cloud').hidden) cloudRefresh(); });
+  $('#quit-btn').addEventListener('click',async()=>{ await api('/api/quit',{}); document.body.innerHTML='<p style="padding:40px;font:600 16px system-ui">ehpa Billing Button closed. You can close this window.</p>'; });
+  $('#save').addEventListener('click',async()=>{ try{ await api('/api/settings',{token:$('#tok').value,amd_psw:$('#psw').value,stedi_key:$('#stedi').value,auto_update:$('#auto-update').checked}); $('#tok').value='';$('#psw').value='';$('#stedi').value=''; setStatus('#set-status','Saved.'); await loadSettings(); }catch(e){ setStatus('#set-status','Could not save: '+e.message,true); } });
+  $('#test').addEventListener('click',async()=>{ try{ const r=await api('/api/test',{}); setStatus('#set-status','OK: '+r.login+' can see '+r.repo+(r.push?' (write)':' (read)')); }catch(e){ setStatus('#set-status','GitHub refused: '+e.message,true); } });
+  $('#open-data').addEventListener('click',()=>api('/api/open',{what:'data'}));
+  $('#open-ws').addEventListener('click',()=>api('/api/open',{what:'workspace'}));
+  $('#update-btn').addEventListener('click',async()=>{ $('#update-btn').disabled=true; say('Downloading the newest scripts from GitHub main …'); try{ const r=await api('/api/update',{}); say('Scripts updated: main at '+r.head,'ok'); await loadSettings(); }catch(e){ say('Update failed: '+e.message,'err'); } $('#update-btn').disabled=false; });
+  function setStatus(sel,m,err){ const s=$(sel); s.textContent=m; s.className='status'+(err?' err':' ok'); }
+  function say(m,cls){ const s=$('#status'); s.textContent=m; s.className='status'+(cls?' '+cls:''); }
+
+  // mode + plan
+  let mode='dry';
+  function paintMode(){ document.querySelectorAll('.seg [data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===mode?'true':'false'));
+    $('#trigger-sub').textContent= mode==='live' ? 'Live · posts, releases, rebills and writes off by the standing rules' : 'Dry run · reads everything, writes nothing';
+    $('#confirm').classList.toggle('dry',mode!=='live');
+    $('#confirm-text').innerHTML= mode==='live' ? '<b>Run live now?</b> This posts payments, releases visits, rebills and writes off exactly by the standing rules in the repository, plus the approved packages.' : '<b>Start the dry run?</b> It logs in once, reads every column and check, and writes a report. Nothing changes in AdvancedMD.'; }
+  document.querySelectorAll('.seg [data-mode]').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.mode; paintMode(); })); paintMode();
+  const STEPS=['columns','era','cascade','sweep','packages','cred','money'];
+  function steps(){ const on=STEPS.filter(k=>$('#s-'+k).checked); return on.join(',')||'all'; }
+
+  // the button
+  const trig=$('#trigger');
+  trig.addEventListener('click',()=>{ $('#confirm').hidden=false; $('#confirm-go').focus(); });
+  $('#confirm-no').addEventListener('click',()=>{ $('#confirm').hidden=true; });
+  $('#confirm-go').addEventListener('click',fire);
+  async function fire(){ $('#confirm').hidden=true; try{ await api('/api/run',{mode:mode,steps:steps(),packages:$('#packages').value.trim()}); say('Running ('+mode+') …'); $('#log').hidden=false; }catch(e){ say(e.message,'err'); } }
+
+  // status polling (also the heartbeat that keeps the app alive while the window is open)
+  let wasRunning=false;
+  async function poll(){ try{ const st=await api('/api/status?n=80'); trig.disabled=!!st.running; $('#log').textContent=(st.log||[]).join('\n'); if(st.running){ $('#log').hidden=false; say('Running ('+st.mode+') since '+when(new Date(st.started*1000).toISOString())+' …'); }
+      if(wasRunning&&!st.running){ say(st.last_rc===0?'Run finished.':'Run finished with problems (exit '+st.last_rc+') - see the report and the log.', st.last_rc===0?'ok':'err'); await loadReport(); await loadHistory(); await loadSettings(); }
+      if(st.update) say(st.update);
+      wasRunning=!!st.running; }catch(e){ say('The app behind this window is not answering: '+e.message,'err'); } }
+  setInterval(poll,4000);
+
+  // report
+  function tile(label,html){ return '<div class="tile"><div class="eyebrow">'+label+'</div><div class="v">'+html+'</div></div>'; }
+  function ba(b,a,fmt){ fmt=fmt||(x=>x); return esc(fmt(b))+'<span class="arrow">→</span>'+esc(fmt(a)); }
+  function renderReport(rep,where){ const box=$('#report'); if(!rep){ box.innerHTML='<div class="card note">No report yet.</div>'; return; }
+    const s=rep.summary||{}, c=s.columns||{}, cb=c.before||{}, ca=c.after||{}, e=s.era||{}, eb=e.before||{}, ea=e.after||{}, p=s.posted||{}, rs=s.resent||{}, wo=s.written_off||{}, pk=s.packages||{};
+    $('#report-stamp').innerHTML=(where?'<span class="ex">'+esc(where)+'</span> ':'')+esc((rep.mode||'')+' · '+(rep.stamp||''))+(rep.run_url?' · <a href="'+esc(rep.run_url)+'" target="_blank" rel="noopener">log</a>':'');
+    let h='<div class="tiles">'
+      +tile('Columns · CR / CI / Unb / Exc', ba([cb.charge_review,cb.claim_inspector,cb.unbilled,cb.exclusions].map(x=>x??'–').join('/'),[ca.charge_review,ca.claim_inspector,ca.unbilled,ca.exclusions].map(x=>x??'–').join('/')))
+      +tile('ERA checks · unposted', ba((eb.checks??'–')+' · '+money(eb.unposted||0),(ea.checks??'–')+' · '+money(ea.unposted||0)))
+      +tile('Posted', esc(money(p.pay||0))+'<small>+ WO '+esc(money((p.woins||0)+(p.wocaid2nd||0)+(p.wolate||0)))+'</small>')
+      +tile('Re-sent', esc(String(rs.visits??0))+'<small>'+esc(money(rs.dollars||0))+'</small>')
+      +tile('Written off', esc(money(wo.dollars||0))+'<small>'+esc(String(wo.count??0))+' lines</small>')
+      +tile('Packages', esc(String(pk.applied??0))+'<small>applied · '+esc(String(pk.refused??0))+' refused · '+esc(String(pk.skipped??0))+' skipped</small>')
+      +'</div>';
+    const st=rep.status||'ok'; h+='<p class="note"><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(st)+'</span> '+esc(rep.headline||'')+(rep.note?' · '+esc(rep.note):'')+'</p>';
+    h+='<div class="steps">'+(rep.steps||[]).map(stp=>{ const sc=stp.status==='ok'?'ok':(stp.status==='skipped'?'dim':(stp.status==='failed'?'bad':'warn'));
+      let body=''; const counts=Object.entries(stp.counts||{}); const dollars=Object.entries(stp.dollars||{});
+      if(counts.length||dollars.length) body+='<div class="kv">'+counts.map(([k,v])=>'<b>'+esc(k)+'</b><span class="mono">'+esc(String(v))+'</span>').join('')+dollars.map(([k,v])=>'<b>'+esc(k)+'</b><span class="mono">'+esc(money(v))+'</span>').join('')+'</div>';
+      const lines=stp.lines||[]; if(lines.length){ const cols=Object.keys(lines[0]); body+='<div class="tbl"><table><thead><tr>'+cols.map(k=>'<th>'+esc(k)+'</th>').join('')+'</tr></thead><tbody>'+lines.slice(0,200).map(l=>'<tr>'+cols.map(k=>'<td class="'+(String(l[k]??'').length>28?'wrap-cell':'')+'">'+esc(typeof l[k]==='number'&&/amt|pay|wo|dollar|bal|paid|charge|unposted|amount/i.test(k)?money(l[k]):String(l[k]??''))+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>'; }
+      if((stp.errors||[]).length) body+='<div class="errs">'+esc(stp.errors.join('\n'))+'</div>';
+      return '<details class="step"'+(stp.status&&stp.status!=='ok'&&stp.status!=='skipped'?' open':'')+'><summary><span class="pill '+sc+'">'+esc(stp.status||'')+'</span><span class="name">'+esc(stp.title||stp.name)+'</span><span class="sum">'+esc(stp.summary||'')+'</span><span class="mono" style="color:var(--dim);font-size:12px">'+esc(when(stp.started))+'</span></summary><div class="body">'+(body||'<span class="note">Nothing to show.</span>')+'</div></details>'; }).join('')+'</div>';
+    if((rep.packages||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Packages</h3><div class="tbl"><table><thead><tr><th>id</th><th>status</th><th>dollars</th><th>result</th></tr></thead><tbody>'+rep.packages.map(q=>'<tr><td>'+esc(q.id)+'</td><td>'+esc(q.status)+'</td><td>'+esc(q.dollars||'')+'</td><td class="wrap-cell">'+esc(q.result||'')+'</td></tr>').join('')+'</tbody></table></div></div>';
+    if((rep.waiting||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Waiting on William or a chat session</h3><ul class="note" style="margin:6px 0 0;padding-left:18px">'+rep.waiting.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul></div>';
+    if((rep.errors||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Errors</h3><div class="errs">'+esc(rep.errors.join('\n'))+'</div></div>';
+    box.innerHTML=h; }
+  function paintLast(r){ const b=$('#last-body'); if(!r){ b.innerHTML='<span class="note">No run yet. Press the button.</span>'; return; }
+    const st=r.status==='ok'?'ok':(r.status==='failed'?'bad':'warn');
+    b.innerHTML='<span class="pill '+st+'">'+esc(r.status)+'</span><div class="kv"><b>Started</b><span>'+esc(when(r.started))+'</span><b>Mode</b><span>'+esc(r.mode)+'</span><b>Result</b><span>'+esc(r.headline||'')+'</span></div>'; }
+  async function loadReport(stamp){ try{ const rep=await api('/api/report'+(stamp?'?stamp='+encodeURIComponent(stamp):'')); renderReport(rep,stamp?'':''); if(!stamp) paintLast(rep); }catch(e){ if(!stamp) paintLast(null); } }
+  async function loadHistory(){ const box=$('#history'); try{ const list=await api('/api/history'); if(!list.length){ box.innerHTML='<div class="note">No reports yet.</div>'; return; }
+      box.innerHTML=list.map(r=>'<div class="rowi" data-stamp="'+esc(r.stamp)+'"><span class="mono">'+esc(r.stamp)+'</span><span class="pill '+(r.status==='ok'?'ok':(r.status==='failed'?'bad':'warn'))+'">'+esc(r.mode)+' · '+esc(r.status)+'</span><span class="note">'+esc(r.headline||'')+'</span><span class="mono">'+esc(money(r.pay||0))+'</span></div>').join('');
+      box.querySelectorAll('.rowi').forEach(el=>el.addEventListener('click',()=>loadReport(el.dataset.stamp))); }catch(e){ box.innerHTML='<div class="note">'+esc(e.message)+'</div>'; } }
+
+  // cloud
+  async function cloudRefresh(){ try{ const j=await api('/api/cloud/runs'); const box=$('#cloud-runs');
+      box.innerHTML=(j.runs||[]).map(r=>{ const st=r.status==='completed'?(r.conclusion==='success'?'ok':'bad'):'run'; return '<a class="rowi" href="'+esc(r.url)+'" target="_blank" rel="noopener" style="text-decoration:none"><span class="mono">'+esc(when(r.started))+'</span><span class="pill '+st+'">'+esc(r.status==='completed'?(r.conclusion||'done'):r.status)+'</span><span class="note">'+esc(r.title||'')+'</span><span></span></a>'; }).join('')||'<div class="note">No cloud run yet.</div>';
+      if(j.report){ renderReport(j.report,'cloud'); } setStatus('#cloud-status',''); }catch(e){ setStatus('#cloud-status','Cannot read GitHub: '+e.message,true); } }
+  $('#cloud-refresh').addEventListener('click',cloudRefresh);
+  $('#cloud-dry').addEventListener('click',()=>cloudRun('dry')); $('#cloud-live').addEventListener('click',()=>cloudRun('live'));
+  async function cloudRun(m){ if(m==='live'&&!confirm('Run LIVE in the cloud now? This posts, releases, rebills and writes off by the standing rules.')) return; try{ await api('/api/cloud/run',{mode:m,steps:steps(),packages:$('#packages').value.trim(),note:'desktop app'}); setStatus('#cloud-status','Triggered ('+m+'). GitHub is starting the run; press Refresh in a minute.'); }catch(e){ setStatus('#cloud-status','GitHub refused: '+e.message,true); } }
+
+  // the billing project's pages (the same list the Billing Button page carries)
+  const PAGES=[
+    ['Billing Button','https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ','run','The cloud dashboard: press the button, read the report'],
+    ['Outstanding Claims','https://claude.ai/artifact/VNssV7RYwYrMrzvNwQtWwQ','report','Every open insurance balance by payer, age and month'],
+    ['App Build','https://claude.ai/artifact/DecNZkNsoQ4V2c1gwLLqiq','learn','How the button is built: every file, the languages, how to ask for changes'],
+    ['Mandatory Approvals','https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR','approve','Writes the Claude routines could not make; Approve / Decline cards'],
+    ['Insurance Refresh Board','https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg','board','Patients whose coverage is being resolved; rows on your turn'],
+    ['Working Denials','https://claude.ai/artifact/HDcGSG4QQHFSwt33g8E5qo','board','Denial triage, live AMD status, command console'],
+    ['Effinger Money Ledger','https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN','report','Billed, outstanding, posted and written off'],
+    ['Treasury Payments','https://claude.ai/artifact/WqPdTgjbFDKwGh4NH1nuSa','report','Regions deposits matched to ERAs by payer'],
+    ['Old Claims Disposition','https://claude.ai/artifact/X7a5aehSHPUyPppSdV1yAp','report','The aged-claim review, batch by batch'],
+    ['Credentialing Board','https://claude.ai/artifact/CmAo5e3hAouWyFEqwbdo4M','board','Payer enrollments, licenses and renewals'],
+    ['October Credentialing Mail','https://claude.ai/artifact/GGG4qyrKZLQodsqaBham6Y','docket','The October letters and what each asks for'],
+    ['Credentialing Foundation','https://claude.ai/artifact/PEG1wg5hUcAXFMbESUJznv','register','What is credentialed where'],
+    ['ehpa Home','https://claude.ai/artifact/R6zTSimdzdGv9ZShvkG5GH','home','Visit, Claims, Treasury, Plan: the home screen'],
+    ['Shared Workspaces','https://claude.ai/artifact/9r5xD5BvFW7CkYfWA35TaB','launcher','Every session, routine, board and folder, one tap each'],
+    ['Effinger Billing Back End','https://claude.ai/artifact/8djmhYeoeqTS4Lzpg7Jxu5','explainer','How the pieces talk to each other; Stedi feature by feature'],
+    ['EHPA Cloud Billing Review','https://claude.ai/artifact/Kh5P2DXCgS8REY7QLAhFST','explainer','How the cloud billing run works'],
+    ['Effinger Programming Lab','https://claude.ai/artifact/2ANx2smzVKi9DBvkUJAq6G','learn','Every script, in plain English'],
+    ['Mirror Outbox','https://claude.ai/artifact/QYvE6gTwtV9GHQ75XrSDk3','git','Bundle packages when a push was blocked'],
+    ['effinger-billing-backend on GitHub','https://github.com/dreffinger/effinger-billing-backend','code','The repository: scripts, workflows, reports'],
+  ];
+  $('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
+
+  // heartbeat keeps the app alive while this window is open
+  setInterval(()=>fetch('/api/heartbeat').catch(()=>{}),5000);
+
+  (async function boot(){ await loadSettings(); await loadReport(); await loadHistory(); await poll();
+    if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode(); $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } })();
+})();
+</script>
+</body>
+</html>
