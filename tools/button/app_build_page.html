@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>App Build</title>
+<meta name="description" content="How the ehpa Billing Button is built, in plain words: every file, the languages they are written in, how a run flows, how to read a report, and how to ask for changes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* A reading page: a map of the pieces at the top, then one section per question a builder asks. Dark-first, the ehpa Midnight tokens.
+   Source: tools/button/app_build_page.html in the repository (the two floating buttons are added by tools/button/fab.py). */
+:root{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--deep:#0f4048;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;--on-accent:#082f35;--accent:#70d6f8;--accent-soft:#1f5a68;--magenta:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;--hero:#041d21;--code:#041d21;--grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--font:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;--r-md:8px;--r-lg:12px;--r-xl:18px;--pill:999px;color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--code:#0f2a30;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}}
+:root[data-theme="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--code:#0f2a30;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15.5px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-block:18px 130px;padding-inline:16px}
+h1,h2,h3,h4{margin:0;text-wrap:balance;font-weight:700}
+h1{font-size:28px;line-height:1.1} h2{font-size:21px} h3{font-size:16.5px} h4{font-size:15px}
+a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
+p{margin:0}
+.eyebrow{font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mono,code,kbd{font-family:var(--mono);font-variant-numeric:tabular-nums}
+code{font-size:.92em;background:var(--surface-2);padding:1px 6px;border-radius:5px;color:var(--ink)}
+kbd{font-size:.9em;border:1px solid var(--line-strong);border-radius:5px;padding:1px 6px;background:var(--surface)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.lockup{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:46px;height:46px;flex:none;border-radius:12px;background:var(--hero);display:grid;place-items:center}
+.mark svg{width:30px;height:30px}
+.brand{font:700 12px/1 var(--font);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.sub{color:var(--muted);font-size:14px;margin-top:4px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:600 13.5px var(--font);padding:9px 14px;border-radius:var(--pill);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--accent)} .btn:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.lead{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:22px 24px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.lead p+p{margin-top:10px}
+.lead .big{font-size:17px;color:var(--ink)}
+.toc{background:var(--bg-deep);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px}
+.toc ol{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.toc a{text-decoration:none;color:var(--ink)} .toc a:hover{color:var(--accent)}
+section.block{margin-top:34px;scroll-margin-top:16px}
+.block>h2{margin-bottom:6px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.block>h2 .num{font:700 13px var(--mono);color:var(--on-accent);background:var(--accent);border-radius:var(--pill);padding:3px 10px;align-self:center}
+.block>.intro{color:var(--muted);margin-bottom:14px;max-width:72ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.grid .card h3{margin-bottom:6px}
+.card .why{color:var(--muted);font-size:14px;margin-top:8px}
+/* the map */
+.map{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;align-items:stretch}
+.node{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:12px 13px;min-width:0;display:flex;flex-direction:column;gap:6px;position:relative}
+.node .eyebrow{color:var(--accent)} .node b{font-size:14.5px} .node small{color:var(--muted);font-size:12.5px;line-height:1.4}
+.node.you{border-color:var(--magenta)} .node.out{border-color:var(--ok)}
+.node::after{content:"";position:absolute;right:-8px;top:50%;width:0;height:0;border:6px solid transparent;border-left-color:var(--line-strong)}
+.node:last-child::after{display:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:13px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;border:1px solid var(--line-strong)}
+.legend .m::before{border-color:var(--magenta)} .legend .g::before{border-color:var(--ok)}
+/* file cards */
+.files{display:flex;flex-direction:column;gap:10px}
+.file{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:start}
+.file .path{font:600 13.5px var(--mono);color:var(--accent);word-break:break-all}
+.file .lang{justify-self:end;font:700 11px var(--font);letter-spacing:.08em;text-transform:uppercase;border-radius:var(--pill);padding:3px 9px;white-space:nowrap}
+.lang.py{background:#1f5a68;color:#70d6f8} .lang.yml{background:#3d4020;color:#ffc409} .lang.web{background:#3d1b22;color:#f9a8c9} .lang.iss{background:#164a41;color:#3dd475} .lang.json{background:#2d5057;color:#dee2e6} .lang.md{background:#2d5057;color:#dee2e6} .lang.img{background:#2d5057;color:#dee2e6}
+:root[data-theme="light"] .lang.py,:root:not([data-theme="dark"]) .lang.py{background:#e0f4fd;color:#0054e9}
+.file .what{grid-column:1/-1;font-size:14.5px}
+.file .what b{color:var(--ink)}
+.file .change{grid-column:1/-1;font-size:13.5px;color:var(--muted)} .file .change b{color:var(--muted);font-weight:600}
+.group{margin-top:18px} .group h3{margin-bottom:8px;display:flex;gap:10px;align-items:baseline} .group h3 small{font:500 13px var(--font);color:var(--muted)}
+/* code */
+pre{margin:10px 0 0;background:var(--code);color:#e8f6fb;border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;overflow-x:auto;font:500 12.8px/1.55 var(--mono);tab-size:4}
+pre .c{color:#8fb6c2;font-style:italic} pre .k{color:#f9a8c9} pre .s{color:#b6f2c8} pre .n{color:#ffd96a}
+.note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;font-size:14px;margin-top:12px}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)} .note.bad{border-color:var(--bad);background:var(--bad-soft)}
+/* timeline */
+.tl{display:flex;flex-direction:column;gap:0;margin-top:6px}
+.tl .row{display:grid;grid-template-columns:34px minmax(0,1fr);gap:0 14px;position:relative;padding-bottom:16px}
+.tl .row::before{content:"";position:absolute;left:16px;top:30px;bottom:0;width:2px;background:var(--line)}
+.tl .row:last-child::before{display:none}
+.tl .dot{width:34px;height:34px;border-radius:50%;background:var(--surface);border:2px solid var(--accent);display:grid;place-items:center;font:700 13px var(--mono);color:var(--accent)}
+.tl .body{padding-top:4px} .tl .body b{display:block;font-size:15px} .tl .body p{color:var(--muted);font-size:14px;margin-top:3px}
+.tl .body .where{display:inline-block;margin-top:5px;font:600 12px var(--mono);color:var(--accent)}
+/* tables */
+.tbl{overflow-x:auto;margin-top:8px} table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top} th{font:600 11px var(--font);letter-spacing:.08em;text-transform:uppercase;color:var(--dim);border-top:0}
+td.k{font-family:var(--mono);font-size:13px;white-space:nowrap;color:var(--accent)}
+/* prompts */
+.prompt{background:var(--bg-deep);border:1px dashed var(--line-strong);border-radius:var(--r-md);padding:11px 14px;font-size:14px;margin-top:8px}
+.prompt .eyebrow{display:block;margin-bottom:4px;color:var(--magenta)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:0;margin-top:10px}
+details summary{list-style:none;cursor:pointer;padding:12px 16px;font-weight:700;display:flex;align-items:center;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";font:700 18px/1 var(--mono);color:var(--accent);width:18px}
+details[open] summary::before{content:"\2013"}
+details .body{padding:0 16px 14px;color:var(--ink-2);font-size:14.5px}
+details .body p+p{margin-top:8px}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:14.5px} dt{font-weight:700;color:var(--accent)} dd{margin:0;color:var(--ink-2)}
+ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
+.foot{margin-top:40px;color:var(--dim);font-size:13px;text-align:center}
+@media (max-width:900px){.map{grid-template-columns:repeat(2,minmax(0,1fr))} .node::after{display:none} .lead{grid-template-columns:1fr}}
+@media (max-width:560px){.map{grid-template-columns:1fr} h1{font-size:24px} dl{grid-template-columns:1fr} dd{margin-bottom:6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="lockup">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="9" stroke="#70d6f8" stroke-width="3"/><path d="M15 24h18M24 15v18" stroke="#f841e0" stroke-width="3.5" stroke-linecap="round"/></svg></div>
+      <div>
+        <div class="brand">ehpa · billing</div>
+        <h1>App Build</h1>
+        <div class="sub">How the Billing Button is built, in plain words. Every file, the language it speaks, what it does, and how to ask for changes.</div>
+      </div>
+    </div>
+    <div class="tools">
+      <a class="btn primary" href="https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ" target="_blank" rel="noopener">Open the Billing Button</a>
+      <a class="btn" href="https://github.com/dreffinger/effinger-billing-backend" target="_blank" rel="noopener">Open the repository</a>
+      <button class="btn" type="button" id="theme" aria-label="Switch light and dark">Theme</button>
+    </div>
+  </header>
+
+  <div class="lead">
+    <div>
+      <p class="big">You asked for one button that runs every billing script with no approval prompts, a desktop app that does the same, and the same button on every billing page. That is now five pieces of software that talk to each other. None of them is magic. Each is a text file you can open and read.</p>
+      <p>This page is the owner's tour. It starts with the map, names every file and the language it is written in, walks through what happens in the four minutes after you press the button, shows how to read a report, and ends with the words to use when you want something changed. Nothing here requires you to write code. Knowing the names of the pieces is what makes your instructions land.</p>
+      <p>Everything described here lives in the GitHub repository <code>dreffinger/effinger-billing-backend</code>. The copy you see on GitHub is the copy that runs.</p>
+    </div>
+    <nav class="toc" aria-label="Sections">
+      <div class="eyebrow">On this page</div>
+      <ol>
+        <li><a href="#map">The map: five pieces</a></li>
+        <li><a href="#files">Every file, in plain words</a></li>
+        <li><a href="#languages">The languages</a></li>
+        <li><a href="#run">A run, minute by minute</a></li>
+        <li><a href="#report">Reading a report</a></li>
+        <li><a href="#rules">The safety rules built in</a></li>
+        <li><a href="#ask">How to ask for changes</a></li>
+        <li><a href="#broken">When something breaks</a></li>
+        <li><a href="#learn">Learn by doing</a></li>
+        <li><a href="#glossary">Glossary</a></li>
+      </ol>
+    </nav>
+  </div>
+
+  <!-- 1 -->
+  <section class="block" id="map">
+    <h2><span class="num">1</span>The map: five pieces</h2>
+    <p class="intro">Read it left to right. You press something on the left. Work happens in the middle, on a computer GitHub lends us for the length of the run, or on your own PC. A report comes out on the right, and the pages read that report.</p>
+    <div class="map">
+      <div class="node you"><span class="eyebrow">You press</span><b>A button</b><small>The Billing Button page, the Run button on any billing page, the desktop app's Manual Bill, or the clock (a schedule).</small></div>
+      <div class="node"><span class="eyebrow">GitHub Actions</span><b>The workflow</b><small><span class="mono">billing-button.yml</span>. Borrows a fresh Linux machine, installs Python, hands it the password from the locked secrets, starts the engine.</small></div>
+      <div class="node"><span class="eyebrow">Python</span><b>The engine</b><small><span class="mono">run_all.py</span>. Builds the workspace the routines expect, logs in to AdvancedMD once, runs each helper in the standing order, counts what happened.</small></div>
+      <div class="node"><span class="eyebrow">Python, already in the repo</span><b>The helpers</b><small>The scripts we wrote over the year: the Claims Center columns, ERA posting, the cascade, the approval packages, the credentialing check. Unchanged.</small></div>
+      <div class="node out"><span class="eyebrow">JSON, then HTML</span><b>The report and the pages</b><small><span class="mono">reports/button/latest.json</span> is written back to GitHub. The Billing Button page, the desktop app and Outstanding Claims read it and draw it.</small></div>
+    </div>
+    <div class="legend"><span class="m">where you act</span><span>machines doing work</span><span class="g">what you get back</span></div>
+    <div class="note">The desktop app is a second front door to the same engine. When you press <b>Manual Bill</b> it runs <span class="mono">run_all.py</span> on your own PC with the same helpers, and writes the same kind of report into a folder under your Windows profile. Its <b>Run in the cloud</b> buttons do exactly what the Billing Button page does: ask GitHub to run the workflow.</div>
+  </section>
+
+  <!-- 2 -->
+  <section class="block" id="files">
+    <h2><span class="num">2</span>Every file, in plain words</h2>
+    <p class="intro">Each card names a file by its path inside the repository, the language it is written in, what it does, and the kind of change you would ask for there. Line counts are from the day this page was written and will drift.</p>
+
+    <div class="group"><h3>The engine <small>what actually runs the billing</small></h3>
+      <div class="files">
+        <div class="file"><span class="path">tools/button/run_all.py</span><span class="lang py">Python · 725 lines</span>
+          <p class="what"><b>The conductor.</b> It does not know how to post an ERA or release a claim. It knows the <em>order</em>: scan the columns, bypass the inspector advisories, repair Unbilled, re-post the ERA-linked reason codes, complete the exclusions, rescan; then ERA; then the cascade; then the approved packages; then the credentialing check; then the outstanding-claims snapshot. For each it runs one helper as one plain command, keeps that helper's printout in a log file, reads the helper's own summary line, and adds the counts to the report. In <b>dry</b> mode every helper gets its read-only form. In <b>live</b> mode they write.</p>
+          <p class="change"><b>Ask here for:</b> a new step, a different order, a step that should also run in the nightly profile, a count that should appear on the report, a different timeout.</p>
+        </div>
+        <div class="file"><span class="path">tools/button/outstanding_claims.py</span><span class="lang py">Python · 108 lines</span>
+          <p class="what"><b>The open-balance camera.</b> Read-only. Asks AdvancedMD for every visit that still has an insurance balance, groups them by age, carrier and month, and writes <span class="mono">outstanding_claims.json</span>. The engine copies that to <span class="mono">reports/button/outstanding_latest.json</span>, which the Outstanding Claims page draws.</p>
+          <p class="change"><b>Ask here for:</b> another grouping (by provider, by facility), a different age bucket, more or fewer rows in the "oldest" list.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group"><h3>The cloud runner <small>GitHub does the work on a borrowed machine</small></h3>
+      <div class="files">
+        <div class="file"><span class="path">.github/workflows/billing-button.yml</span><span class="lang yml">YAML · 204 lines</span>
+          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the odd UTC hours for the columns profile, 05:35Z for the cascade profile). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
+          <p class="change"><b>Ask here for:</b> a schedule change, a new input on the button (a new choice), a longer time limit, a different branch, keeping logs longer or shorter.</p>
+        </div>
+        <div class="file"><span class="path">.github/workflows/desktop-build.yml</span><span class="lang yml">YAML · 81 lines</span>
+          <p class="what"><b>The factory for the desktop app.</b> On a borrowed Windows machine it bundles <span class="mono">desktop/app.py</span> and <span class="mono">ui.html</span> into a folder with its own Python (PyInstaller), checks the bundle can still run a helper script, wraps it in an installer (Inno Setup), and publishes <span class="mono">ehpa-billing-button-setup.exe</span> under the repository's Releases. The version number is 1.0 plus the run number, so every build has a new one.</p>
+          <p class="change"><b>Ask here for:</b> a new release after an app change (it also runs by itself when anything under <span class="mono">desktop/</span> changes on main), a different app name or icon.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group"><h3>The desktop app <small>the Billing Button on your Windows desktop</small></h3>
+      <div class="files">
+        <div class="file"><span class="path">desktop/app.py</span><span class="lang py">Python · 386 lines</span>
+          <p class="what"><b>The app's engine room.</b> It is a tiny web server that only your own PC can reach, plus a window. When you double-click the desktop icon it starts the server, opens Edge or Chrome in app mode (no address bar) pointed at it, and shows <span class="mono">ui.html</span>. The Manual Bill button sends <span class="mono">POST /api/run</span>; the app downloads the latest scripts from GitHub's main branch, runs <span class="mono">run_all.py</span> with the password you saved on this PC, and streams the log into the window. It also talks to GitHub to trigger cloud runs and fetch the latest report. One trick worth knowing: the installed program doubles as the Python interpreter for the helpers, so nothing else has to be installed on the PC.</p>
+          <p class="change"><b>Ask here for:</b> a new button that does something on the PC (open a folder, open the latest log), a new setting, a different window size, a scheduled local run.</p>
+        </div>
+        <div class="file"><span class="path">desktop/ui.html</span><span class="lang web">HTML · CSS · JS · 320 lines</span>
+          <p class="what"><b>What you see.</b> The Midnight dashboard: the Manual Bill trigger with its dry / live switch and confirm step, the live log, the last-run card, the step checkboxes, the report renderer (the same drawing code as the Billing Button page), the history, the Pages list with every billing artifact, the cloud runs panel and the settings. It never touches AdvancedMD itself; it only asks <span class="mono">app.py</span>.</p>
+          <p class="change"><b>Ask here for:</b> wording, colours, a new tile, a new page link, moving a control, a bigger log pane.</p>
+        </div>
+        <div class="file"><span class="path">desktop/installer.iss</span><span class="lang iss">Inno Setup · 51 lines</span>
+          <p class="what"><b>The installer recipe.</b> Where to put the program (your user profile, so no administrator prompt), the desktop icon and Start-menu entry, and the registration of the <span class="mono">ehpa-billing://</span> link type so a web page can hand a run to the app.</p>
+          <p class="change"><b>Ask here for:</b> install for all users, no desktop icon by default, a different program-group name.</p>
+        </div>
+        <div class="file"><span class="path">desktop/icon.ico · desktop/icon.png</span><span class="lang img">Images</span>
+          <p class="what"><b>The icon.</b> The ring-and-plus mark on the hero square, in the sizes Windows wants.</p>
+          <p class="change"><b>Ask here for:</b> a different mark, your logo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group"><h3>The pages <small>the artifacts you open in the browser</small></h3>
+      <div class="files">
+        <div class="file"><span class="path">tools/button/billing_button_page.html · build_button_page.py</span><span class="lang web">HTML · CSS · JS + Python</span>
+          <p class="what"><b>The Billing Button page and its builder.</b> The HTML is the page: the trigger, the mode switch, the plan, the report, the history, the Pages grid, the How-it-works. It talks to GitHub's API with the token you save in it, once, in your browser. The small Python builder pastes an example report into the template so the page shows something before a token is saved, and fills in the link to this page.</p>
+          <p class="change"><b>Ask here for:</b> anything you see on the Billing Button page.</p>
+        </div>
+        <div class="file"><span class="path">tools/button/build_outstanding_page.py</span><span class="lang py">Python · 224 lines</span>
+          <p class="what"><b>The Outstanding Claims page builder.</b> Holds the page template inside it, pours the snapshot JSON in, and writes the page. The page refreshes itself from GitHub when a token is saved.</p>
+          <p class="change"><b>Ask here for:</b> anything you see on the Outstanding Claims page.</p>
+        </div>
+        <div class="file"><span class="path">tools/button/fab.py</span><span class="lang py">Python</span>
+          <p class="what"><b>The two floating buttons.</b> Given a saved copy of any billing page, it adds the pair bottom-right: <b>Run all billing</b> (opens the Billing Button page at its trigger) and <b>Open a billing chat</b> (the ehpa cloud project). It is safe to run twice; a page that already has the buttons is left alone. The Insurance Refresh Board already had a chat button in its own bar, so there the Run button is slotted to its left.</p>
+          <p class="change"><b>Ask here for:</b> a third button, different wording, moving the bar.</p>
+        </div>
+        <div class="file"><span class="path">tools/button/app_build_page.html</span><span class="lang web">HTML · CSS</span>
+          <p class="what"><b>This page.</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="group"><h3>The reports and the manual <small>what comes out, and the written rules</small></h3>
+      <div class="files">
+        <div class="file"><span class="path">reports/button/&lt;stamp&gt;.json · latest.json · outstanding_latest.json</span><span class="lang json">JSON</span>
+          <p class="what"><b>The reports.</b> One file per run, named by its UTC time stamp, plus <span class="mono">latest.json</span> which is always a copy of the newest. The pages and the desktop app read these. They carry counts and dollars, chart and visit numbers, never a name.</p>
+        </div>
+        <div class="file"><span class="path">docs/BILLING_BUTTON.md</span><span class="lang md">Markdown</span>
+          <p class="what"><b>The owner's manual.</b> The secrets and variables to set in GitHub, how to make a token, how the desktop app installs, what to pause when scheduled runs go live, the Stedi cost, and what the engine does not try to automate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="block" id="languages">
+    <h2><span class="num">3</span>The languages</h2>
+    <p class="intro">Four languages do the work. You can recognise each by its file ending and its shape. One real excerpt from our own files for each, with the parts named.</p>
+
+    <div class="card">
+      <h3>Python <span class="eyebrow">files ending .py</span></h3>
+      <p class="why">The brains. Python reads top to bottom, and <b>indentation is the grammar</b>: the lines indented under a heading belong to it. <code>def</code> starts a named recipe (a "function"). <code>class</code> bundles recipes that share memory; inside, <code>self</code> means "this run". A line starting with <code>#</code> is a comment for humans and is ignored by the machine.</p>
+      <pre><span class="c"># tools/button/run_all.py - which steps each profile runs, in order</span>
+<span class="n">PROFILES</span> = {
+    <span class="s">"all"</span>:     [<span class="s">"columns"</span>, <span class="s">"era"</span>, <span class="s">"cascade"</span>, <span class="s">"packages"</span>, <span class="s">"cred"</span>, <span class="s">"outstanding"</span>],
+    <span class="s">"columns"</span>: [<span class="s">"columns"</span>, <span class="s">"era"</span>, <span class="s">"packages"</span>, <span class="s">"outstanding"</span>],                 <span class="c"># the 2-hourly backend billing run</span>
+    <span class="s">"cascade"</span>: [<span class="s">"cascade"</span>, <span class="s">"era"</span>, <span class="s">"packages"</span>, <span class="s">"cred"</span>, <span class="s">"money"</span>, <span class="s">"outstanding"</span>],  <span class="c"># the nightly insurance cascade</span>
+}
+
+<span class="k">def</span> <span class="n">helper</span>(self, name, argv, timeout=1800, env=None, cwd=None):
+    <span class="s">"""Run ONE helper as one plain command from the workspace. Output goes to a log file, never to the console."""</span>
+    cmd = self.py + [name] + [str(x) <span class="k">for</span> x <span class="k">in</span> argv]
+    ...
+    p = subprocess.run(cmd, cwd=cwd <span class="k">or</span> self.ws, env=e, stdout=fh, stderr=subprocess.STDOUT, timeout=timeout)</pre>
+      <p class="why">Read it as: "PROFILES is a list of lists. The helper recipe takes a script name and its arguments, glues them into one command, and runs it from the workspace with its printout going to a file." If you ever want a step moved, this <code>PROFILES</code> block is the whole edit.</p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3>YAML <span class="eyebrow">files ending .yml, inside .github/workflows</span></h3>
+      <p class="why">The instruction sheet GitHub Actions reads. It is a list of <b>keys and values</b>, nested by indentation. <code>on:</code> is when to start. <code>jobs:</code> → <code>steps:</code> is what to do, top to bottom. Anything inside <code>${{ }}</code> is filled in by GitHub at run time; <code>secrets.AMD_PSW</code> is a locked value nobody can read back out.</p>
+      <pre><span class="c"># .github/workflows/billing-button.yml - how it starts</span>
+<span class="n">on</span>:
+  <span class="n">workflow_dispatch</span>:            <span class="c"># the button: a page or the app asks GitHub to start it</span>
+    <span class="n">inputs</span>:
+      <span class="n">mode</span>:
+        <span class="n">type</span>: choice
+        <span class="n">options</span>: [dry, live]
+        <span class="n">default</span>: dry
+  <span class="n">schedule</span>:                     <span class="c"># the clock, in UTC: minute hour day month weekday</span>
+    - <span class="n">cron</span>: <span class="s">"17 1,3,5,7,9,11,13,15,17,19,21,23 * * *"</span>
+    - <span class="n">cron</span>: <span class="s">"35 5 * * *"</span>
+
+<span class="n">concurrency</span>:
+  <span class="n">group</span>: billing-button          <span class="c"># one run at a time; a second press waits in line</span></pre>
+      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>35 5 * * *</code> is "05:35 every day". Times are UTC, so 05:35Z is 1:35 AM Eastern in summer and 12:35 AM in winter.</p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3>HTML, CSS and JavaScript <span class="eyebrow">files ending .html, all three live in one file here</span></h3>
+      <p class="why">The pages. <b>HTML</b> is the bones: boxes inside boxes, written as tags like <code>&lt;button&gt;</code>. <b>CSS</b> is the look: rules that say "things with this class are this colour". The Midnight theme is one block of named colours at the top of each page, so a colour change is one line. <b>JavaScript</b> is the behaviour: what happens when you click, and the calls to GitHub.</p>
+      <pre><span class="c">/* CSS - the Midnight tokens every billing page shares; change --accent here and every button follows */</span>
+:root{--bg:#082f35; --surface:#214449; --accent:#70d6f8; --magenta:#f841e0;
+      --grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%)}
+
+<span class="c">// JavaScript - desktop/ui.html: what the Manual Bill button does after you confirm</span>
+<span class="k">async function</span> <span class="n">fire</span>(){
+  <span class="k">await</span> api(<span class="s">'/api/run'</span>, {mode: mode, steps: steps(), packages: $(<span class="s">'#packages'</span>).value.trim()});
+  say(<span class="s">'Running ('</span> + mode + <span class="s">') …'</span>);
+}</pre>
+      <p class="why">Read the JavaScript as: "when fired, send the chosen mode, steps and package ids to the app's <code>/api/run</code> door, then show 'Running'". The Billing Button page does the same thing but its door is GitHub's API.</p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3>Inno Setup script <span class="eyebrow">file ending .iss</span></h3>
+      <p class="why">A recipe for a Windows installer, written in named sections in square brackets. <code>[Setup]</code> is the name and version, <code>[Files]</code> what to copy, <code>[Icons]</code> the shortcuts, <code>[Registry]</code> the <code>ehpa-billing://</code> link registration.</p>
+      <pre><span class="c">; desktop/installer.iss</span>
+[Setup]
+<span class="n">AppName</span>={#MyAppName}                 <span class="c">; "ehpa Billing Button"</span>
+<span class="n">DefaultDirName</span>={autopf}\{#MyAppName}
+<span class="n">OutputBaseFilename</span>=ehpa-billing-button-setup
+<span class="n">PrivilegesRequired</span>=lowest            <span class="c">; installs for you, no administrator prompt</span></pre>
+    </div>
+
+    <div class="two" style="margin-top:12px">
+      <div class="card"><h3>JSON <span class="eyebrow">files ending .json</span></h3><p class="why">Not a programming language, a way to write data that every language can read. Curly braces hold named values, square brackets hold lists. The reports, the carriers file and the approvals register are JSON. Section 5 reads one.</p></div>
+      <div class="card"><h3>Markdown and shell <span class="eyebrow">.md, and the run: lines in the workflow</span></h3><p class="why"><b>Markdown</b> is plain text with light formatting (a <code>#</code> for a heading, a <code>-</code> for a bullet); the docs folder is Markdown. The <code>run:</code> lines in the workflows are <b>shell</b> commands, the same ones you would type into a terminal: on Linux that is bash, on the Windows build machine it is PowerShell.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="block" id="run">
+    <h2><span class="num">4</span>A run, minute by minute</h2>
+    <p class="intro">What happens between the press and the report. The timings are from the first dry run on October 11, 2026; a live run with packages to apply takes longer.</p>
+    <div class="tl">
+      <div class="row"><div class="dot">0</div><div class="body"><b>You press Run on the Billing Button page</b><p>Your browser sends one request to GitHub's API: "start the workflow named billing-button with mode=dry, steps=all". The token you saved in the page is what proves it is you. Nothing is sent to Claude. From the desktop app, Manual Bill skips GitHub entirely and runs the engine on your PC; Run in the cloud sends the same request the page sends.</p><span class="where">page → api.github.com/…/billing-button.yml/dispatches</span></div></div>
+      <div class="row"><div class="dot">1</div><div class="body"><b>GitHub borrows a machine</b><p>Within a minute a clean Ubuntu computer appears, checks out the main branch, installs Python 3.12 and two libraries, and restores last run's cached workspace state (the ERA detail files, the registers, the Stedi pre-check cache). If another run is already going, this one waits in line.</p><span class="where">billing-button.yml → jobs.run.steps</span></div></div>
+      <div class="row"><div class="dot">2</div><div class="body"><b>The engine builds the workspace</b><p><span class="mono">run_all.py</span> copies every helper from the repository into <span class="mono">/home/claude/unbilled</span>, the folder the helpers were written for, puts the carrier and facility files and the registers beside them, writes the Stedi key file if a key was given, and checks that no login lock is present. It has not logged in yet.</p><span class="where">run_all.py → bootstrap()</span></div></div>
+      <div class="row"><div class="dot">3</div><div class="body"><b>One login to AdvancedMD</b><p>The first helper that needs AdvancedMD logs in once, using the password from the secret, and saves the session for the rest of the run. If that login fails, the helper writes <span class="mono">.amd_login_lock</span> and the engine stops every further AdvancedMD step. It never tries a second password, because a second failure locks the API user and breaks the Claimocity feed.</p><span class="where">core/amd.py → login_cached()</span></div></div>
+      <div class="row"><div class="dot">4</div><div class="body"><b>Columns (about two minutes)</b><p>Scan the four Claims Center columns and remember the counts. Plan the inspector advisory bypasses. Repair what Unbilled can be repaired. List the ERA-linked reason-code re-posts. Complete the duplicate and crossover exclusions on the claim runs that actually have rows. Scan again. The before and after counts are the headline.</p><span class="where">columns_scan.py, insp_bypass_advisories.py, unbilled_repair.py, payreasons.py, excl_*_complete.py</span></div></div>
+      <div class="row"><div class="dot">5</div><div class="body"><b>ERA, cascade, packages, credentialing, outstanding</b><p>List the unposted checks, post them (live) or count them (dry), clear what era_clear's rules say. Run the void-on-arrival rules and the Stedi pre-check if a key exists. Apply every approval package marked approved in the register: dry first, then live, then mark it done. Run the NPPES, revalidation and exclusion-list check. Take the open-balance snapshot.</p><span class="where">era_post.py, era_clear.py, void_rules.py, precheck.py, the package scripts, cred_check.py, outstanding_claims.py</span></div></div>
+      <div class="row"><div class="dot">6</div><div class="body"><b>The report</b><p>The engine writes <span class="mono">reports/button/&lt;stamp&gt;.json</span> and copies it to <span class="mono">latest.json</span>. Before writing, it runs the PHI gate over the text; if anything that looks like a name, a date of birth or a member id slipped in, the report falls back to counts only. The workflow commits both files to main, scrubs the helper logs with the same gate, keeps them 14 days, and deletes the session file.</p><span class="where">run_all.py → report(); tools/mirror/phi_gate.py</span></div></div>
+      <div class="row"><div class="dot">7</div><div class="body"><b>The page draws it</b><p>The Billing Button page polls the run until it finishes, fetches <span class="mono">latest.json</span> from GitHub, and draws the tiles, the steps and the waiting list. The desktop app and the Run button on every billing page point at the same file.</p><span class="where">billing_button_page.html → loadLatest()</span></div></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="block" id="report">
+    <h2><span class="num">5</span>Reading a report</h2>
+    <p class="intro">Every report has the same shape, called <code>button-run/1</code>. If you can read this table you can read any run, including one whose page is not working.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Key</th><th>What it holds</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="k">stamp</td><td>When the run started, UTC, also the file name.</td><td class="mono">2026-10-11T2300Z</td></tr>
+        <tr><td class="k">mode</td><td><b>dry</b> read everything, wrote nothing. <b>live</b> wrote by the standing rules.</td><td class="mono">dry</td></tr>
+        <tr><td class="k">status</td><td><b>ok</b> every step clean. <b>warn</b> something was skipped or a helper reported a problem. <b>failed</b> a step could not run at all.</td><td class="mono">warn</td></tr>
+        <tr><td class="k">headline</td><td>One sentence: the column counts before → after and the ERA checks before → after.</td><td>Columns 0/1/16/0 -> 0/1/16/0; ERA 1 checks $71.00 -> 1 checks $71.00</td></tr>
+        <tr><td class="k">summary.columns</td><td>The four Claims Center counts, before and after: charge review, claim inspector, unbilled, exclusions.</td><td class="mono">{"before":{"unbilled":16},"after":{"unbilled":16}}</td></tr>
+        <tr><td class="k">summary.era</td><td>Unposted checks and dollars, before and after.</td><td class="mono">{"before":{"checks":1,"unposted":71.0}}</td></tr>
+        <tr><td class="k">summary.posted / resent / written_off</td><td>What a live run wrote: payments and write-offs posted by code, claims resent, write-offs by count and dollars.</td><td class="mono">{"pay":0.0,"woins":0.0}</td></tr>
+        <tr><td class="k">summary.packages</td><td>Approval packages applied, refused, skipped.</td><td class="mono">{"applied":0,"refused":0,"skipped":0}</td></tr>
+        <tr><td class="k">summary.outstanding</td><td>The open-balance snapshot: visits, charts, dollars, over 365 days.</td><td class="mono">{"visits":2506,"total":272170.78}</td></tr>
+        <tr><td class="k">steps[]</td><td>One entry per step: name, status, a one-line summary, the counts it gathered, and the log file names. Open the step on the page to see them.</td><td class="mono">{"name":"columns","status":"ok","summary":"CR 0->0, CI 1->1, …"}</td></tr>
+        <tr><td class="k">packages[]</td><td>One row per approval package: id, script, dry result, live result.</td><td></td></tr>
+        <tr><td class="k">waiting[]</td><td>What the engine counted but did not decide: a chart that needs a fix after a Stedi answer, a dx cascade on a named chart, a hand-post. These go to a chat session or to you.</td><td></td></tr>
+        <tr><td class="k">errors[]</td><td>Plain sentences, one per thing that went wrong. Empty is the goal.</td><td class="mono">[]</td></tr>
+        <tr><td class="k">run_url</td><td>The GitHub Actions page for the run, where the full job log lives.</td><td></td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">The four column numbers in the headline are always in the same order: <b>charge review / claim inspector / unbilled / exclusions</b>. "0/1/16/0 → 0/1/16/0" on a dry run means the engine saw one claim in the inspector and sixteen in Unbilled and, being dry, changed nothing. On a live run the second set is what was left after the standing rules ran.</div>
+  </section>
+
+  <!-- 6 -->
+  <section class="block" id="rules">
+    <h2><span class="num">6</span>The safety rules built in</h2>
+    <p class="intro">These are not policies written down somewhere; they are lines of code. Each one names the file that enforces it, so you can check it or ask for it to be changed.</p>
+    <div class="grid">
+      <div class="card"><h3>One login per run</h3><p class="why">The engine stops all AdvancedMD steps the moment <span class="mono">.amd_login_lock</span> appears, and never retries a password. A second failed try locks the API user POI0712 and breaks the Claimocity feed. <span class="mono">run_all.py</span> and <span class="mono">core/amd.py</span>.</p></div>
+      <div class="card"><h3>Dry unless you say live</h3><p class="why">The button's default is dry. Scheduled runs are dry until you set the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> to <span class="mono">live</span>. Live from a page or the app asks you to confirm first. <span class="mono">billing-button.yml</span>, both pages, <span class="mono">ui.html</span>.</p></div>
+      <div class="card"><h3>No PHI in GitHub</h3><p class="why">Reports carry chart ids, visit ids, check ids and dollars only. The PHI gate reads every report before it is written and every log before it is kept; a report that fails falls back to counts. <span class="mono">tools/mirror/phi_gate.py</span>, called from <span class="mono">run_all.py</span> and the workflow.</p></div>
+      <div class="card"><h3>Secrets never in the repo</h3><p class="why">The AMD password and the Stedi key live in GitHub's locked secrets (cloud) or in your Windows profile (desktop). The helpers get them through the environment. Helper output goes to log files, never to the job log, so a stray printout cannot leak them. <span class="mono">billing-button.yml</span>, <span class="mono">app.py</span>.</p></div>
+      <div class="card"><h3>One run at a time</h3><p class="why">GitHub's concurrency group <span class="mono">billing-button</span> makes a second press wait for the first to finish rather than run beside it. Two engines posting the same ERA at once cannot happen. <span class="mono">billing-button.yml</span>.</p></div>
+      <div class="card"><h3>A failed helper never stops the others</h3><p class="why">Each helper is its own command with its own time limit. If one crashes, the engine records the error and moves to the next step, so one bad day in ERA does not stop the columns. <span class="mono">run_all.py → helper()</span>.</p></div>
+      <div class="card"><h3>The helpers run as committed</h3><p class="why">The engine copies the helpers out of the repository and runs them unchanged, with the same command lines the routines use. A fix to a helper on main is a fix for the button, the desktop app and the Claude routines at once.</p></div>
+      <div class="card"><h3>Judgement stays with people</h3><p class="why">Anything that needs a decision (a chart fix after a Stedi answer, a dx cascade on a named chart, a hand-post) is counted and listed under <span class="mono">waiting</span>. The engine does not guess.</p></div>
+    </div>
+    <div class="note warn"><b>One rule for you, not the code.</b> When you set scheduled runs to live, pause the Claude 2-hourly backend billing routine first. Both would otherwise write to AdvancedMD in the same hour. The manual button does not have this problem; it is you choosing the moment.</div>
+  </section>
+
+  <!-- 7 -->
+  <section class="block" id="ask">
+    <h2><span class="num">7</span>How to ask for changes</h2>
+    <p class="intro">A change request lands fastest when it names the piece, says what you saw, says what you want instead, and says whether it changes what gets written in AdvancedMD. Here is the vocabulary, then examples you can copy.</p>
+    <div class="two">
+      <div class="card"><h3>The words</h3>
+        <dl>
+          <dt>the engine</dt><dd><span class="mono">run_all.py</span>: order, steps, counts, timeouts.</dd>
+          <dt>a step</dt><dd>one of columns, era, cascade, sweep, packages, cred, money, outstanding.</dd>
+          <dt>a profile</dt><dd>a named set of steps: all, columns (2-hourly), cascade (nightly).</dd>
+          <dt>a helper</dt><dd>one of the existing scripts the engine runs; a change there changes the routines too.</dd>
+          <dt>the workflow</dt><dd><span class="mono">billing-button.yml</span>: schedule, inputs, secrets, what is kept.</dd>
+          <dt>the page</dt><dd>the Billing Button page, the Outstanding Claims page, or a named artifact.</dd>
+          <dt>the desktop app</dt><dd><span class="mono">app.py</span> (what it does) and <span class="mono">ui.html</span> (what you see).</dd>
+          <dt>the installer</dt><dd><span class="mono">installer.iss</span> and the desktop-build workflow.</dd>
+          <dt>the report</dt><dd>the JSON; a new number on a page usually starts with a new key here.</dd>
+          <dt>dry / live</dt><dd>read-only / writes to AdvancedMD. Say which.</dd>
+        </dl>
+      </div>
+      <div class="card"><h3>What to include</h3>
+        <ol>
+          <li><b>The piece.</b> "On the Billing Button page", "in the engine", "in the desktop app".</li>
+          <li><b>What you saw.</b> The run's stamp or its GitHub link, or the page and the tile. "Run 2026-10-11T2300Z, the packages step failed."</li>
+          <li><b>What you want instead.</b> One sentence. Where it should appear if it is a number.</li>
+          <li><b>Dry or live.</b> Whether the change writes anything in AdvancedMD, and whether it should also run on the schedules.</li>
+          <li><b>Done means.</b> "Published and a dry run shows it" or "in the repo, no run needed".</li>
+        </ol>
+        <p class="why" style="margin-top:10px">Things that need no code at all, just a setting in GitHub: making scheduled runs live (<span class="mono">BUTTON_SCHEDULE_MODE</span>), pausing them (<span class="mono">BUTTON_SCHEDULE_ENABLED=false</span>), rotating the password (the <span class="mono">AMD_PSW</span> secret), adding a Stedi key (<span class="mono">STEDI_API_KEY</span>).</p>
+      </div>
+    </div>
+    <h3 style="margin-top:18px">Examples you can copy</h3>
+    <div class="prompt"><span class="eyebrow">A new step</span>In the engine, add a step named <b>denials</b> that runs <span class="mono">denials_scan.py --out denials.json</span> after the era step, in dry and live. Put its row count on the report as <span class="mono">summary.denials.rows</span> and show it as a tile on the Billing Button page. Add it to the columns profile too. Done means a dry run shows the tile.</div>
+    <div class="prompt"><span class="eyebrow">A schedule change</span>In the workflow, move the columns profile from :17 on the odd hours to :45 on the even hours. No other change. Dry stays dry.</div>
+    <div class="prompt"><span class="eyebrow">A page change</span>On the Billing Button page, add a tile under the report that shows written-off dollars from <span class="mono">summary.written_off.dollars</span>, next to the resent tile. Republish.</div>
+    <div class="prompt"><span class="eyebrow">A desktop app change</span>In the desktop app, add a button beside Manual Bill that opens the folder with the latest log files. New release.</div>
+    <div class="prompt"><span class="eyebrow">A fix from a report</span>Run 2026-10-11T2300Z: the columns step counted 19,439,544 inspector bypasses, which is a visit id, not a count. Fix the engine to read the helper's own plan line. Dry run to prove it.</div>
+    <div class="prompt"><span class="eyebrow">A helper change (changes the routines too)</span>In <span class="mono">era_clear.py</span>, hold instead of dismiss when the check is under $5. This changes live behaviour for the button and the nightly cascade; run it dry first and show me the HOLD lines.</div>
+  </section>
+
+  <!-- 8 -->
+  <section class="block" id="broken">
+    <h2><span class="num">8</span>When something breaks</h2>
+    <p class="intro">Where to look, by symptom. Three places hold the evidence: the report's <code>errors</code> list, the GitHub Actions run page (the job log and the kept helper logs), and the desktop app's log pane.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>What you see</th><th>Where to look</th><th>What it usually means</th></tr></thead>
+      <tbody>
+        <tr><td>The page says <b>GitHub refused: 401</b> or <b>403</b></td><td>Settings on the page</td><td>The saved token expired or lacks the Actions read-and-write permission. Make a new fine-grained token and save it.</td></tr>
+        <tr><td>Report status <b>failed</b>, bootstrap says <b>.amd_login_lock exists</b> or <b>AMD_PSW is not set</b></td><td>The report's errors; repository Settings → Secrets</td><td>No password, or a login failed earlier. Check the secret. Do not press again until the password is confirmed; a second bad login locks the API user.</td></tr>
+        <tr><td>A step says <b>skipped: helper missing</b></td><td>The step's summary</td><td>That script is not on the main branch. Either it was never committed or it lives in a workspace only. Ask for it to be added.</td></tr>
+        <tr><td>Status <b>warn</b> with a sentence in errors</td><td>Open the step on the page; the log file names are listed. The full logs are the run's artifact for 14 days.</td><td>A helper reported a problem on its own; the others still ran. Read the sentence first.</td></tr>
+        <tr><td>Pressed Run, nothing for minutes, then it starts</td><td>The Actions page shows "queued"</td><td>Another run was in progress; yours waited in line. Normal.</td></tr>
+        <tr><td>Stedi steps say <b>skipped</b></td><td>bootstrap step</td><td>No <span class="mono">STEDI_API_KEY</span> secret. Add one, or leave it: each pre-check costs money.</td></tr>
+        <tr><td>Desktop app opens in a normal browser tab, not a window</td><td>The PC</td><td>Edge and Chrome were not found; the app falls back to the default browser. Works the same.</td></tr>
+        <tr><td>Desktop app closes by itself</td><td>The PC</td><td>The window was closed and nothing was running; the app quits two minutes after the last heartbeat from the window. Reopen from the desktop icon.</td></tr>
+        <tr><td>The Outstanding Claims page shows an old date</td><td>The page's refresh</td><td>The outstanding step has not run since, or no token is saved on the page. Press Run, or refresh after saving a token.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note bad"><b>The one thing never to do:</b> type the AMD password into a chat, a page, a commit or an issue. It goes into GitHub's secret, or into the desktop app's settings on your PC, and nowhere else.</div>
+  </section>
+
+  <!-- 9 -->
+  <section class="block" id="learn">
+    <h2><span class="num">9</span>Learn by doing</h2>
+    <p class="intro">Three small exercises, each safe, each touching a different language. Do them by asking, or do them yourself on GitHub's web editor and watch what happens.</p>
+    <details open><summary>Exercise 1 · Change a word on a page (HTML)</summary><div class="body">
+      <p>Open <span class="mono">tools/button/billing_button_page.html</span> on GitHub and find the text <code>Run all billing</code> inside the trigger button. Change it to <code>Bill everything</code>. Ask: "rebuild and republish the Billing Button page". The builder <span class="mono">build_button_page.py</span> pastes the latest report in and the page is republished with your words.</p>
+      <p>What you learn: the page is a text file, the words you see are in it verbatim, and publishing is a separate step from editing.</p>
+    </div></details>
+    <details><summary>Exercise 2 · Move a schedule by ten minutes (YAML)</summary><div class="body">
+      <p>In <span class="mono">.github/workflows/billing-button.yml</span>, the line <code>- cron: "35 5 * * *"</code> is the nightly cascade. Change 35 to 45. That is the whole change. GitHub picks it up as soon as it is on main.</p>
+      <p>What you learn: cron's five fields, that the clock is UTC, and that a schedule is one line.</p>
+    </div></details>
+    <details><summary>Exercise 3 · Run the engine on your own PC, read-only, no AdvancedMD (Python)</summary><div class="body">
+      <p>With the desktop app installed, open its window and under Steps tick only <b>cred</b>, then Manual Bill in dry mode. The credentialing check talks to NPPES and the exclusion list, not AdvancedMD, so no login happens. Watch the log pane: bootstrap copies the helpers, one command runs, a report appears in the history. Open the report and find <code>steps[0].summary</code>.</p>
+      <p>What you learn: what the engine does before any billing, what a log looks like, and the report shape from section 5.</p>
+    </div></details>
+    <details><summary>How to read any Python file in this repository in under a minute</summary><div class="body">
+      <p>Every helper starts with a comment block headed <b>PLAIN ENGLISH</b>: who asked for it and when, what it decides, what it never touches, and the command lines to run it. Read that block and you know what the file is for. The code below it follows the same order as the comment. If a file has no such block, that is itself worth asking about.</p>
+    </div></details>
+  </section>
+
+  <!-- 10 -->
+  <section class="block" id="glossary">
+    <h2><span class="num">10</span>Glossary</h2>
+    <dl class="card">
+      <dt>Repository</dt><dd>The folder of files on GitHub that is the single source of everything here. "On main" means on its main branch, the copy that runs.</dd>
+      <dt>Commit</dt><dd>A saved change to the repository with a note saying why. The workflow commits each report.</dd>
+      <dt>Branch, pull request</dt><dd>A branch is a parallel copy for work in progress. A pull request is the request to fold it into main, where it can be read before it lands.</dd>
+      <dt>GitHub Actions, workflow, runner</dt><dd>GitHub's service that runs instruction sheets (workflows) on borrowed machines (runners).</dd>
+      <dt>workflow_dispatch</dt><dd>The kind of workflow start a button can trigger, with inputs.</dd>
+      <dt>Secret, variable</dt><dd>Values stored in the repository's settings. A secret is locked and never shown again (the password); a variable is readable (dry or live).</dd>
+      <dt>Token (PAT)</dt><dd>A password-like string you make in your GitHub settings that lets a page or the app act as you, limited to the permissions you tick. Fine-grained means limited to this one repository.</dd>
+      <dt>Helper</dt><dd>One of the Python scripts in the repository that does one billing job from the command line.</dd>
+      <dt>Workspace</dt><dd>The folder the helpers run from, <span class="mono">/home/claude/unbilled</span>, where the session cache and the registers live.</dd>
+      <dt>Register</dt><dd>A JSON file that remembers decisions between runs: the approvals register, the ERA check registers, the Stedi pre-check cache.</dd>
+      <dt>PHI gate</dt><dd>The script that reads text and refuses it if it finds a name, a date of birth, a member id or similar.</dd>
+      <dt>PyInstaller, Inno Setup</dt><dd>The two tools that turn the Python app into a Windows program and that program into an installer.</dd>
+      <dt>Artifact</dt><dd>Two meanings. A Claude artifact is a published page like this one. A workflow artifact is a file GitHub keeps from a run, like the helper logs.</dd>
+      <dt>Dry, live</dt><dd>Dry reads and counts. Live writes to AdvancedMD by the standing rules.</dd>
+    </dl>
+  </section>
+
+  <p class="foot">Source: tools/button/app_build_page.html · Effinger Health PA · written October 11, 2026</p>
+</div>
+<script>
+(function(){
+  var k='ehpa-theme', r=document.documentElement, b=document.getElementById('theme');
+  try{ var s=localStorage.getItem(k); if(s) r.setAttribute('data-theme',s); }catch(e){}
+  b.addEventListener('click',function(){
+    var cur=r.getAttribute('data-theme')|| (matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    var nx=cur==='dark'?'light':'dark'; r.setAttribute('data-theme',nx);
+    try{ localStorage.setItem(k,nx); }catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

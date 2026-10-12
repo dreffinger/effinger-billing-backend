@@ -1,0 +1,204 @@
+# The Billing Button - William 10/11/2026: "package all the billing routines and the nightly cascade in an automatic run,
+# as they are written in GitHub, with a dashboard where I press the button and get reports - no mandatory-approval blocks".
+#
+# WHAT IT DOES: starts a fresh machine, checks out main, builds the same workspace the routines use, logs in to AdvancedMD
+# once with the password in the repository secrets, and runs tools/button/run_all.py - the helpers of this repository in the
+# standing order (Claims Center columns, ERA posting, insurance cascade, approved packages, credentialing check). It writes
+# reports/button/<stamp>.json + latest.json back to main; the "ehpa Billing Button" page, the desktop app and every billing
+# artifact's Run button read them. No permission classifier sits in this path: pressing the button is the approval.
+#
+# HOW IT STARTS: (1) the button - workflow_dispatch from the Billing Button page, a billing artifact's Run button or the desktop
+# app (inputs: mode dry|live, steps, packages, note); (2) the schedules - every two hours on the odd UTC hours (the backend
+# billing run's cadence, offset to :17 so it never starts at the same minute as the Claude routine) and 05:35Z (the nightly
+# cascade's slot). Scheduled runs use the repository variable BUTTON_SCHEDULE_MODE (dry until William sets it to live) and stop
+# at once when BUTTON_SCHEDULE_ENABLED is "false". One run at a time; a second press waits in line.
+#
+# SECRETS (Settings -> Secrets and variables -> Actions): AMD_PSW (the POI0712 password - required), STEDI_API_KEY (optional - the
+# Authorization header value Stedi shows; without it the Stedi steps are skipped). VARIABLES: BUTTON_SCHEDULE_MODE (dry|live),
+# BUTTON_SCHEDULE_ENABLED (true|false).
+#
+# PRIVACY: helper output never reaches the job log (run_all writes it to files); the report is checked by tools/mirror/phi_gate.py
+# before it is committed; the logs are scrubbed by the same gate before they are kept 14 days as a workflow artifact; the
+# workspace state cached between runs (era_details, precheck cache, registers) stays inside GitHub's private cache for this
+# repository and never carries the AMD session token or the Stedi key.
+name: billing-button
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry = read everything, write nothing in AdvancedMD; live = post, release, rebill and write off by the standing rules"
+        type: choice
+        options: [dry, live]
+        default: dry
+      steps:
+        description: "all, or a comma list of columns,era,cascade,sweep,packages,cred,money"
+        type: string
+        default: all
+      packages:
+        description: "approval package ids to apply (comma list; empty = every package marked approved in the register)"
+        type: string
+        default: ""
+      note:
+        description: "a note for the report"
+        type: string
+        default: ""
+  schedule:
+    - cron: "17 1,3,5,7,9,11,13,15,17,19,21,23 * * *"   # the 2-hourly backend billing run profile (columns, era, packages)
+    - cron: "35 5 * * *"                                 # the nightly insurance cascade profile (cascade, era, packages, cred, money)
+
+concurrency:
+  group: billing-button
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 170
+    env:
+      AMD_PSW: ${{ secrets.AMD_PSW }}
+      STEDI_API_KEY: ${{ secrets.STEDI_API_KEY }}
+    steps:
+      - name: Decide what this run is
+        id: plan
+        shell: bash
+        env:
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          IN_MODE: ${{ inputs.mode }}
+          IN_STEPS: ${{ inputs.steps }}
+          IN_PACKAGES: ${{ inputs.packages }}
+          IN_NOTE: ${{ inputs.note }}
+          VAR_MODE: ${{ vars.BUTTON_SCHEDULE_MODE }}
+          VAR_ENABLED: ${{ vars.BUTTON_SCHEDULE_ENABLED }}
+        run: |
+          set -e
+          if [ "$EVENT" = "schedule" ]; then
+            if [ "${VAR_ENABLED:-true}" = "false" ]; then
+              echo "scheduled runs are switched off (BUTTON_SCHEDULE_ENABLED=false) - nothing to do"
+              echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+            fi
+            MODE="${VAR_MODE:-dry}"; [ "$MODE" = "live" ] || MODE=dry
+            if [ "$SCHEDULE" = "35 5 * * *" ]; then PROFILE=cascade; else PROFILE=columns; fi
+            echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+            echo "args=--profile $PROFILE --note scheduled-$PROFILE" >> "$GITHUB_OUTPUT"
+            echo "label=scheduled $PROFILE ($MODE)" >> "$GITHUB_OUTPUT"
+          else
+            MODE="${IN_MODE:-dry}"
+            echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+            echo "args=--steps ${IN_STEPS:-all} --packages ${IN_PACKAGES:-} --note ${IN_NOTE:-button}" >> "$GITHUB_OUTPUT"
+            echo "label=button ($MODE, ${IN_STEPS:-all})" >> "$GITHUB_OUTPUT"
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Check out main
+        if: steps.plan.outputs.skip != 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Python
+        if: steps.plan.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Helper libraries
+        if: steps.plan.outputs.skip != 'true'
+        run: python -m pip install --quiet requests openpyxl
+
+      - name: Workspace path the helpers expect
+        if: steps.plan.outputs.skip != 'true'
+        run: sudo mkdir -p /home/claude/unbilled && sudo chown -R "$USER" /home/claude
+
+      - name: Restore the workspace state of the previous run (era_details, precheck cache, registers)
+        if: steps.plan.outputs.skip != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            /home/claude/unbilled/era_details
+            /home/claude/unbilled/patient_db
+            /home/claude/unbilled/registers
+            /home/claude/unbilled/precheck_cache.json
+            /home/claude/unbilled/claimstatus_raw
+            /home/claude/unbilled/*.log
+          key: billing-button-ws-${{ github.run_id }}
+          restore-keys: |
+            billing-button-ws-
+
+      - name: Run the billing engine
+        if: steps.plan.outputs.skip != 'true'
+        id: engine
+        shell: bash
+        run: |
+          set +e
+          STAMP=$(date -u +%Y-%m-%dT%H%MZ)
+          echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
+          python3 tools/button/run_all.py --mode "${{ steps.plan.outputs.mode }}" ${{ steps.plan.outputs.args }} \
+            --stamp "$STAMP" --out reports/button \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit the report to main
+        if: steps.plan.outputs.skip != 'true'
+        shell: bash
+        run: |
+          set -e
+          git config user.name "ehpa billing button"
+          git config user.email "billing-button@users.noreply.github.com"
+          git add -f reports/button/*.json
+          git add practices/ehpa/registers/approvals_pending.json || true
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          HEAD=$(python3 -c "import json;print(json.load(open('reports/button/latest.json'))['headline'])" 2>/dev/null | cut -c1-150)
+          git commit -q -m "billing button ${{ steps.engine.outputs.stamp }} (${{ steps.plan.outputs.label }}): ${HEAD:-report}"
+          for i in 1 2 3 4; do
+            git pull -q --rebase origin main && git push -q origin HEAD:main && echo pushed && exit 0
+            sleep $((i * 5))
+          done
+          echo "push to main failed after 4 tries"; exit 1
+
+      - name: Scrub the helper logs before keeping them
+        if: steps.plan.outputs.skip != 'true'
+        shell: bash
+        run: |
+          set -e
+          LOGS=$(ls -d reports/button/logs_* 2>/dev/null | tail -1 || true)
+          if [ -z "$LOGS" ]; then echo "no logs"; exit 0; fi
+          python3 tools/mirror/phi_gate.py tree "$LOGS" --all --cwd || true
+          echo "logs=$LOGS" >> "$GITHUB_ENV"
+
+      - name: Keep the scrubbed logs 14 days
+        if: steps.plan.outputs.skip != 'true' && env.logs != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: billing-button-logs-${{ steps.engine.outputs.stamp }}
+          path: ${{ env.logs }}
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Never cache a token or a key
+        if: always() && steps.plan.outputs.skip != 'true'
+        run: rm -rf /home/claude/unbilled/.session.json /home/claude/unbilled/.amd_cred.json /home/claude/unbilled/secrets || true
+
+      - name: Result
+        if: steps.plan.outputs.skip != 'true'
+        shell: bash
+        run: |
+          python3 - <<'EOF'
+          import json, os
+          p = "reports/button/latest.json"
+          if os.path.exists(p):
+              r = json.load(open(p))
+              print("%s | %s | %s" % (r["stamp"], r["mode"], r["status"]))
+              print(r["headline"])
+              for s in r.get("steps", []):
+                  print(" - %-28s %-7s %s" % (s.get("title"), s.get("status"), (s.get("summary") or "")[:120]))
+          else:
+              print("no report written")
+          EOF
+          test "${{ steps.engine.outputs.rc }}" != "1"
