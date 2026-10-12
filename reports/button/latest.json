@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T2125Z",
+ "stamp": "2026-10-12T2327Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 2 checks $71.00 -> 1 checks $71.00",
+ "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38310473955",
- "started": "2026-10-12T21:25:05Z",
- "ended": "2026-10-12T21:26:59Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38322192303",
+ "started": "2026-10-12T23:27:17Z",
+ "ended": "2026-10-12T23:29:05Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,7 +25,7 @@
   },
   "era": {
    "before": {
-    "checks": 2,
+    "checks": 1,
     "unposted": 71.0
    },
    "after": {
@@ -67,17 +67,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "916 helpers into /home/claude/unbilled",
+   "summary": "917 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 916,
-    "registers": 854,
+    "helpers copied": 917,
+    "registers": 864,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T21:25:05Z",
-   "ended": "2026-10-12T21:25:06Z"
+   "started": "2026-10-12T23:27:17Z",
+   "ended": "2026-10-12T23:27:17Z"
   },
   {
    "name": "columns",
@@ -120,17 +120,17 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T21:25:06Z",
-   "ended": "2026-10-12T21:26:50Z"
+   "started": "2026-10-12T23:27:17Z",
+   "ended": "2026-10-12T23:29:02Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $71.00 -> 1 checks / $71.00",
+   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
    "counts": {
     "era_post lines": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
@@ -146,19 +146,11 @@
      "amount": 0.0,
      "unposted": 71.0,
      "stage": "before"
-    },
-    {
-     "check": 1053143,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "153026823",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-10-12T21:26:50Z",
-   "ended": "2026-10-12T21:26:57Z"
+   "started": "2026-10-12T23:29:02Z",
+   "ended": "2026-10-12T23:29:04Z"
   },
   {
    "name": "packages",
@@ -169,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T21:26:57Z",
-   "ended": "2026-10-12T21:26:57Z"
+   "started": "2026-10-12T23:29:04Z",
+   "ended": "2026-10-12T23:29:04Z"
   },
   {
    "name": "outstanding",
@@ -273,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T21:26:57Z",
-   "ended": "2026-10-12T21:26:59Z"
+   "started": "2026-10-12T23:29:04Z",
+   "ended": "2026-10-12T23:29:05Z"
   }
  ],
  "packages": [],
