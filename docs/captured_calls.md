@@ -4335,3 +4335,11 @@ Behaviors noted:
 - Primary Humana checks 1053140 / 1053142 left the unposted list on their own after their last line posted ERA-linked (no dismiss needed); era_clear then holds 1053116 and dismisses 1053141 (leftover lines = $0 OA-23 answers already settled or held).
 - move_to_ins.move(cid, rebill=False) on a 2-charge CCM visit moves BOTH charges' patient balances (whole visit, William 9/3) - the reply's 'moved 25.06' is the visit total, the charge then shows its own 16.14 / 8.92 on insurance.
 - txh.fetch_visit charge ids come without the 'charge' prefix (compare c.get('id').replace('charge','') == cid).
+
+# captured_calls additions - 2026-10-12 1910 UTC (3 PM ET 10/12) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), gettxhistory typefilter=0 (admission anchors, 12 charts), getchargedetaildataicd10 (resave.detail x20), updextrainsinfo hospitalizationfrom-only x20, updvisitwithnewcharges full-echo resave onhcfa=1 x19 (insp_1012_1910.py, batch 127913), gettxhistory (payreasons.py --list x11), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after), posterapayments dry plan (era_post.py --all-unposted --dry: 0 postable, 3 skipped), era_clear.py --dry (HOLD), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 72).
+
+Behaviors noted:
+- A 19-visit HCA inspector batch (127913) cleared in one pass: every visit found its anchor (own 99223 or the chart's most recent 99223 within 45 days); no advisory re-raised after the resaves, so no bypassclaimedits call was needed and getclaiminspectorbatches answered an empty list 4 s after the last resave.
+- Overview counts still lag the list calls (claiminspectorcount 19 / exclusioncount 5 on the after read while both lists are empty).
