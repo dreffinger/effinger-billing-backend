@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T0343Z",
+ "stamp": "2026-10-12T0536Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38200864744",
- "started": "2026-10-12T03:43:25Z",
- "ended": "2026-10-12T03:45:42Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38208641912",
+ "started": "2026-10-12T05:36:16Z",
+ "ended": "2026-10-12T05:38:03Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 272170.78,
-   "visits": 2506,
-   "charts": 507,
+   "total": 276314.75,
+   "visits": 2529,
+   "charts": 509,
    "over_365": {
     "n": 769,
     "dollars": 39680.61
@@ -70,14 +70,14 @@
    "summary": "910 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 910,
-    "registers": 830,
+    "registers": 834,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T03:43:25Z",
-   "ended": "2026-10-12T03:43:26Z"
+   "started": "2026-10-12T05:36:16Z",
+   "ended": "2026-10-12T05:36:16Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T03:43:26Z",
-   "ended": "2026-10-12T03:45:35Z"
+   "started": "2026-10-12T05:36:16Z",
+   "ended": "2026-10-12T05:37:59Z"
   },
   {
    "name": "era",
@@ -131,7 +131,7 @@
    "counts": {
     "era_post lines": 0,
     "checks dismissed": 0,
-    "checks held": 1
+    "checks held": 0
    },
    "dollars": {
     "unposted before": 71.0,
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T03:45:35Z",
-   "ended": "2026-10-12T03:45:41Z"
+   "started": "2026-10-12T05:37:59Z",
+   "ended": "2026-10-12T05:38:02Z"
   },
   {
    "name": "packages",
@@ -161,29 +161,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T03:45:41Z",
-   "ended": "2026-10-12T03:45:41Z"
+   "started": "2026-10-12T05:38:02Z",
+   "ended": "2026-10-12T05:38:02Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2506 visits on 507 charts, $272170.78 open; 769 over a year ($39680.61)",
+   "summary": "2529 visits on 509 charts, $276314.75 open; 769 over a year ($39680.61)",
    "counts": {
-    "visits": 2506,
-    "charts": 507,
+    "visits": 2529,
+    "charts": 509,
     "over 365 days": 769
    },
    "dollars": {
-    "open insurance balance": 272170.78,
+    "open insurance balance": 276314.75,
     "over 365 days": 39680.61
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1621,
-     "dollars": 155487.01,
+     "visits": 1632,
+     "dollars": 157814.75,
      "oldest_days": 1062
     },
     {
@@ -196,8 +196,8 @@
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
-     "visits": 126,
-     "dollars": 19280.93,
+     "visits": 130,
+     "dollars": 19863.75,
      "oldest_days": 399
     },
     {
@@ -215,18 +215,18 @@
      "oldest_days": 810
     },
     {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 30,
+     "dollars": 5252.97,
+     "oldest_days": 1131
+    },
+    {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 52,
      "dollars": 4744.13,
      "oldest_days": 587
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 27,
-     "dollars": 4587.97,
-     "oldest_days": 1131
     },
     {
      "carrier": "AET07",
@@ -265,14 +265,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T03:45:41Z",
-   "ended": "2026-10-12T03:45:42Z"
+   "started": "2026-10-12T05:38:02Z",
+   "ended": "2026-10-12T05:38:03Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line",
-  "ERA check 1053116 held by era_clear: UNI20 W0020208 $168.59: 0 postable / 0 unrecorded lines - left on the list"
+  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line"
  ],
  "errors": []
 }
