@@ -1,0 +1,234 @@
+{
+ "stamp": "2026-10-12T1321Z",
+ "mode": "dry",
+ "results": [
+  {
+   "visitid": "19416171",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23319734",
+     "24660397",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319735",
+     "24660398",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19416185",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23319763",
+     "24660395",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319764",
+     "24660396",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417079",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320688",
+     "24660436",
+     101.78,
+     "62883522"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19418988",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23323898",
+     "24660400",
+     101.77,
+     "280632656"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19419273",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23324213",
+     "24660399",
+     69.96,
+     "280632656"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420335",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23325318",
+     "24660469",
+     69.97,
+     "62890149"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420940",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326080",
+     "24660403",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326081",
+     "24660404",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420954",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326108",
+     "24660408",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326109",
+     "24660409",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19421010",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326220",
+     "24660476",
+     68.62,
+     "62890149"
+    ],
+    [
+     "23326221",
+     "24660477",
+     37.14,
+     "62890149"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19422686",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23328015",
+     "24660405",
+     69.96,
+     "280637173"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19422687",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23328016",
+     "24660406",
+     101.77,
+     "280637173"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  }
+ ]
+}
