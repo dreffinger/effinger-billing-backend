@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T1347Z",
+ "stamp": "2026-10-12T1530Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38258185466",
- "started": "2026-10-12T13:47:51Z",
- "ended": "2026-10-12T13:50:10Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38270730335",
+ "started": "2026-10-12T15:30:33Z",
+ "ended": "2026-10-12T15:32:44Z",
  "summary": {
   "columns": {
    "before": {
@@ -70,14 +70,14 @@
    "summary": "912 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 912,
-    "registers": 851,
+    "registers": 854,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T13:47:51Z",
-   "ended": "2026-10-12T13:47:51Z"
+   "started": "2026-10-12T15:30:33Z",
+   "ended": "2026-10-12T15:30:34Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T13:47:51Z",
-   "ended": "2026-10-12T13:50:05Z"
+   "started": "2026-10-12T15:30:34Z",
+   "ended": "2026-10-12T15:32:38Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T13:50:05Z",
-   "ended": "2026-10-12T13:50:09Z"
+   "started": "2026-10-12T15:32:38Z",
+   "ended": "2026-10-12T15:32:42Z"
   },
   {
    "name": "packages",
@@ -161,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T13:50:09Z",
-   "ended": "2026-10-12T13:50:09Z"
+   "started": "2026-10-12T15:32:42Z",
+   "ended": "2026-10-12T15:32:42Z"
   },
   {
    "name": "outstanding",
@@ -265,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T13:50:09Z",
-   "ended": "2026-10-12T13:50:10Z"
+   "started": "2026-10-12T15:32:42Z",
+   "ended": "2026-10-12T15:32:44Z"
   }
  ],
  "packages": [],
