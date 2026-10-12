@@ -199,11 +199,17 @@ def stop_engine():
         if platform.system() == "Windows":
             subprocess.run(["taskkill", "/F", "/T", "/PID", str(p.pid)], capture_output=True, creationflags=0x08000000)
         else:
-            os.killpg(os.getpgid(p.pid), signal.SIGTERM)
+            pg = os.getpgid(p.pid)
+            os.killpg(pg, signal.SIGTERM)
             try:
                 p.wait(timeout=8)
             except subprocess.TimeoutExpired:
-                os.killpg(os.getpgid(p.pid), signal.SIGKILL)
+                pass
+            time.sleep(1.5)                       # the helper the engine was on gets a moment to exit on SIGTERM ...
+            try:
+                os.killpg(pg, signal.SIGKILL)     # ... then whatever is left in the group is taken down for certain
+            except ProcessLookupError:
+                pass
     except (OSError, subprocess.SubprocessError) as ex:
         log("stop: %s" % ex)
         try:
