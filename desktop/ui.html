@@ -209,7 +209,11 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   // settings
   let S={};
   async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; }
-  $('#settings-btn').addEventListener('click',()=>{ $('#settings').hidden=!$('#settings').hidden; });
+  // the Settings section sits at the bottom of the page: opening it must also bring it into view and put the cursor in the
+  // first empty field (William 10/12/2026: "when I click the settings button to add the AMD password no settings open")
+  function openSettings(open){ const s=$('#settings'); s.hidden=!open; $('#settings-btn').textContent=open?'Close settings':'Settings'; $('#settings-btn').setAttribute('aria-expanded',open?'true':'false');
+    if(open){ s.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(()=>{ const first=[['#psw',S.amd_psw],['#tok',S.token],['#stedi',S.stedi_key]].find(p=>!p[1]); $(first?first[0]:'#psw').focus(); },450); } }
+  $('#settings-btn').addEventListener('click',()=>{ openSettings($('#settings').hidden); });
   $('#cloud-btn').addEventListener('click',()=>{ $('#cloud').hidden=!$('#cloud').hidden; if(!$('#cloud').hidden) cloudRefresh(); });
   $('#quit-btn').addEventListener('click',async()=>{ await api('/api/quit',{}); document.body.innerHTML='<p style="padding:40px;font:600 16px system-ui">ehpa Billing Button closed. You can close this window.</p>'; });
   $('#save').addEventListener('click',async()=>{ try{ await api('/api/settings',{token:$('#tok').value,amd_psw:$('#psw').value,stedi_key:$('#stedi').value,auto_update:$('#auto-update').checked}); $('#tok').value='';$('#psw').value='';$('#stedi').value=''; setStatus('#set-status','Saved.'); await loadSettings(); }catch(e){ setStatus('#set-status','Could not save: '+e.message,true); } });
@@ -313,7 +317,10 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   // heartbeat keeps the app alive while this window is open
   setInterval(()=>fetch('/api/heartbeat').catch(()=>{}),5000);
 
-  (async function boot(){ await loadSettings(); await loadReport(); await loadHistory(); await poll();
+  (async function boot(){ await loadSettings();
+    // first open on a PC: nothing saved yet, so show the Settings section straight away with a plain note of what goes where
+    if(!S.amd_psw||!S.token){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean).join(' and ');
+      $('#set-status').textContent='Setup: enter '+need+' below and press Save. The Stedi key is optional.'; openSettings(true); } await loadReport(); await loadHistory(); await poll();
     if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode(); $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } })();
 })();
 </script>

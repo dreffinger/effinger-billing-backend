@@ -107,7 +107,7 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
       <button class="btn" id="theme-btn" type="button" title="Light / dark / system">Theme</button>
       <a class="btn" id="actions-link" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener">Runs on GitHub</a>
       <a class="btn" href="https://github.com/dreffinger/effinger-billing-backend/releases" target="_blank" rel="noopener" title="The Windows installer of the desktop app - download ehpa-billing-button-setup.exe from the newest release">Desktop app</a>
-      <button class="btn" id="settings-btn" type="button">Token</button>
+      <button class="btn" id="settings-btn" type="button" aria-controls="settings" aria-expanded="false">Settings</button>
     </div>
   </header>
 
@@ -172,9 +172,10 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   </section>
 
   <section class="block settings" id="settings" hidden>
-    <h2>GitHub token</h2>
+    <h2>Settings</h2>
     <div class="card">
       <p class="note">The button talks to GitHub from this browser with a <b>fine-grained personal access token</b> that only reaches this one repository. It is kept in this browser only (localStorage) and is never sent anywhere but api.github.com.</p>
+      <p class="note" style="margin-top:8px"><b>The AdvancedMD password and the Stedi key are not entered here.</b> This page never holds them. They go into the repository's locked secrets, where the run on GitHub reads them: <a href="https://github.com/dreffinger/effinger-billing-backend/settings/secrets/actions" target="_blank" rel="noopener">Settings → Secrets and variables → Actions</a> → New repository secret → <span class="mono">AMD_PSW</span> (the POI0712 password, required) and <span class="mono">STEDI_API_KEY</span> (optional). The desktop app has its own Settings with all three fields, because it runs the engine on your PC.</p>
       <div class="field"><label for="tok">Token</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
       <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn primary" id="tok-save" type="button">Save in this browser</button><button class="btn" id="tok-test" type="button">Test</button><button class="btn" id="tok-forget" type="button">Forget</button></div>
       <div class="status" id="tok-status"></div>
@@ -251,7 +252,8 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   // ---- token
   let tok=ls.get('ehpa-btn-gh-token')||'';
   const settings=$('#settings');
-  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; if(!settings.hidden) $('#tok').focus(); });
+  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; $('#settings-btn').setAttribute('aria-expanded',settings.hidden?'false':'true'); $('#settings-btn').textContent=settings.hidden?'Settings':'Close settings';
+    if(!settings.hidden){ settings.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(()=>$('#tok').focus({preventScroll:true}),450); } });
   $('#tok-save').addEventListener('click',()=>{ tok=$('#tok').value.trim(); if(!tok){ setTok('Paste a token first.',true); return; } ls.set('ehpa-btn-gh-token',tok); setTok('Saved in this browser.'); boot(); });
   $('#tok-forget').addEventListener('click',()=>{ tok=''; ls.del('ehpa-btn-gh-token'); $('#tok').value=''; setTok('Forgotten.'); });
   $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok; if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
