@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T0754Z",
+ "stamp": "2026-10-12T0946Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38220393386",
- "started": "2026-10-12T07:54:44Z",
- "ended": "2026-10-12T07:56:57Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38231987085",
+ "started": "2026-10-12T09:46:06Z",
+ "ended": "2026-10-12T09:48:21Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 276314.75,
-   "visits": 2529,
-   "charts": 509,
+   "total": 275251.98,
+   "visits": 2519,
+   "charts": 507,
    "over_365": {
     "n": 769,
     "dollars": 39680.61
@@ -67,17 +67,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "910 helpers into /home/claude/unbilled",
+   "summary": "911 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 910,
-    "registers": 837,
+    "helpers copied": 911,
+    "registers": 842,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T07:54:44Z",
-   "ended": "2026-10-12T07:54:45Z"
+   "started": "2026-10-12T09:46:06Z",
+   "ended": "2026-10-12T09:46:06Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T07:54:45Z",
-   "ended": "2026-10-12T07:56:52Z"
+   "started": "2026-10-12T09:46:06Z",
+   "ended": "2026-10-12T09:48:16Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T07:56:52Z",
-   "ended": "2026-10-12T07:56:55Z"
+   "started": "2026-10-12T09:48:16Z",
+   "ended": "2026-10-12T09:48:20Z"
   },
   {
    "name": "packages",
@@ -161,21 +161,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T07:56:55Z",
-   "ended": "2026-10-12T07:56:55Z"
+   "started": "2026-10-12T09:48:20Z",
+   "ended": "2026-10-12T09:48:20Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2529 visits on 509 charts, $276314.75 open; 769 over a year ($39680.61)",
+   "summary": "2519 visits on 507 charts, $275251.98 open; 769 over a year ($39680.61)",
    "counts": {
-    "visits": 2529,
-    "charts": 509,
+    "visits": 2519,
+    "charts": 507,
     "over 365 days": 769
    },
    "dollars": {
-    "open insurance balance": 276314.75,
+    "open insurance balance": 275251.98,
     "over 365 days": 39680.61
    },
    "lines": [
@@ -203,8 +203,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 91,
-     "dollars": 11255.5,
+     "visits": 81,
+     "dollars": 10192.73,
      "oldest_days": 1020
     },
     {
@@ -265,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T07:56:55Z",
-   "ended": "2026-10-12T07:56:57Z"
+   "started": "2026-10-12T09:48:20Z",
+   "ended": "2026-10-12T09:48:21Z"
   }
  ],
  "packages": [],

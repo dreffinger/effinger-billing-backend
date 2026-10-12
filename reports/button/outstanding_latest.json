@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-12T07:56:57Z",
+ "at": "2026-10-12T09:48:21Z",
  "as_of": "2026-10-12",
- "total": 276314.75,
- "visits": 2529,
- "charts": 509,
+ "total": 275251.98,
+ "visits": 2519,
+ "charts": 507,
  "over_365": {
   "n": 769,
   "dollars": 39680.61
  },
  "by_bucket": {
   "0-30": {
-   "n": 572,
-   "dollars": 99747.77
+   "n": 564,
+   "dollars": 98724.84
   },
   "31-60": {
    "n": 176,
@@ -27,8 +27,8 @@
    "dollars": 29749.76
   },
   "181-365": {
-   "n": 563,
-   "dollars": 68611.19
+   "n": 561,
+   "dollars": 68571.35
   },
   "over 365": {
    "n": 769,
@@ -84,14 +84,14 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 91,
-   "dollars": 11255.5,
+   "n": 81,
+   "dollars": 10192.73,
    "buckets": {
-    "0-30": 9050.07,
+    "0-30": 8027.14,
     "31-60": 273.74,
     "61-90": 238.18,
     "91-180": 214.56,
-    "181-365": 234.58,
+    "181-365": 194.74,
     "over 365": 1244.37
    },
    "oldest_days": 1020
@@ -575,8 +575,8 @@
   },
   {
    "month": "2026-01",
-   "n": 111,
-   "dollars": 14079.48
+   "n": 109,
+   "dollars": 14039.64
   },
   {
    "month": "2026-02",
@@ -615,13 +615,13 @@
   },
   {
    "month": "2026-09",
-   "n": 398,
-   "dollars": 61086.32
+   "n": 393,
+   "dollars": 60426.39
   },
   {
    "month": "2026-10",
-   "n": 245,
-   "dollars": 45271.0
+   "n": 242,
+   "dollars": 44908.0
   }
  ],
  "oldest": [
@@ -9414,14 +9414,6 @@
    "dos": "2026-01-02"
   },
   {
-   "visitid": 19455373,
-   "patientid": 24214,
-   "carriercode": "HUM01",
-   "insbalance": 19.92,
-   "days": 283,
-   "dos": "2026-01-02"
-  },
-  {
    "visitid": 19428602,
    "patientid": 17475139,
    "carriercode": "AET12",
@@ -9490,14 +9482,6 @@
    "patientid": 17475139,
    "carriercode": "AET12",
    "insbalance": 31.94,
-   "days": 280,
-   "dos": "2026-01-05"
-  },
-  {
-   "visitid": 19455372,
-   "patientid": 21021,
-   "carriercode": "HUM01",
-   "insbalance": 19.92,
    "days": 280,
    "dos": "2026-01-05"
   },
@@ -17414,14 +17398,6 @@
    "dos": "2026-09-18"
   },
   {
-   "visitid": 19455910,
-   "patientid": 45001,
-   "carriercode": "HUM01",
-   "insbalance": 16.93,
-   "days": 24,
-   "dos": "2026-09-18"
-  },
-  {
    "visitid": 19455470,
    "patientid": 17473661,
    "carriercode": "UNI20",
@@ -18614,14 +18590,6 @@
    "dos": "2026-09-23"
   },
   {
-   "visitid": 19456294,
-   "patientid": 17477893,
-   "carriercode": "HUM01",
-   "insbalance": 310.0,
-   "days": 19,
-   "dos": "2026-09-23"
-  },
-  {
    "visitid": 19456296,
    "patientid": 17477638,
    "carriercode": "UNI20",
@@ -18912,14 +18880,6 @@
   {
    "visitid": 19456230,
    "patientid": 17477894,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
-   "days": 18,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456229,
-   "patientid": 17477893,
    "carriercode": "HUM01",
    "insbalance": 111.0,
    "days": 18,
@@ -19406,14 +19366,6 @@
    "dos": "2026-09-29"
   },
   {
-   "visitid": 19456886,
-   "patientid": 17477972,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
-   "days": 13,
-   "dos": "2026-09-29"
-  },
-  {
    "visitid": 19456885,
    "patientid": 17477899,
    "carriercode": "HUM01",
@@ -19522,14 +19474,6 @@
    "patientid": 17471916,
    "carriercode": "UNI20",
    "insbalance": 160.0,
-   "days": 12,
-   "dos": "2026-09-30"
-  },
-  {
-   "visitid": 19456879,
-   "patientid": 17477972,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
    "days": 12,
    "dos": "2026-09-30"
   },
@@ -19830,14 +19774,6 @@
    "dos": "2026-10-01"
   },
   {
-   "visitid": 19456860,
-   "patientid": 17477972,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
-   "days": 11,
-   "dos": "2026-10-01"
-  },
-  {
    "visitid": 19456856,
    "patientid": 17477899,
    "carriercode": "HUM01",
@@ -20034,14 +19970,6 @@
    "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
-   "days": 10,
-   "dos": "2026-10-02"
-  },
-  {
-   "visitid": 19456851,
-   "patientid": 17477972,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
    "days": 10,
    "dos": "2026-10-02"
   },
@@ -20369,14 +20297,6 @@
    "visitid": 19457362,
    "patientid": 23161,
    "carriercode": "FLO99",
-   "insbalance": 141.0,
-   "days": 8,
-   "dos": "2026-10-04"
-  },
-  {
-   "visitid": 19457356,
-   "patientid": 20407,
-   "carriercode": "HUM01",
    "insbalance": 141.0,
    "days": 8,
    "dos": "2026-10-04"
