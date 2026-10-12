@@ -58,11 +58,17 @@ Settings -> Secrets and variables -> Actions.
 | `BUTTON_SCHEDULE_MODE` | variable | `dry` (default when unset) or `live`. Applies to scheduled runs only; the button always sends its own mode. |
 | `BUTTON_SCHEDULE_ENABLED` | variable | `false` switches the schedules off; anything else leaves them on. |
 
-The token the pages and the desktop app use: a **fine-grained personal access token** limited
-to this repository with **Actions: Read and write** (to start a run and read its status) and
-**Contents: Read** (to read `reports/button/*.json` and, for the desktop app, to download the
-scripts). It is saved in the page's browser storage or in the app's settings on the PC, never in
-the repository.
+**The pages need no token.** Inside claude.ai the Billing Button and Outstanding Claims pages reach
+GitHub through the viewer's GitHub connector, as the viewer (the artifact's `mcp` capability, declared
+at publish: `github` with `actions_run_trigger`, `actions_list`, `get_file_contents`). The artifact
+sandbox blocks a direct call to api.github.com ("Failed to fetch", 10/12/2026), which is why. claude.ai
+asks once whether the page may use the connector. A token on a page is only for a copy opened outside
+claude.ai.
+
+**The desktop app uses a token**: a **fine-grained personal access token** limited to this repository
+with **Actions: Read and write** (to start a cloud run and read its status) and **Contents: Read** (to
+download the scripts and read `reports/button/*.json`). It is saved in the app's settings on the PC,
+never in the repository.
 
 ## Schedules, and the Claude routines
 
@@ -117,7 +123,8 @@ applies it.
 
 | Symptom | Look | Usually |
 |---|---|---|
-| page says GitHub refused 401/403 | the saved token | expired, or missing Actions read-and-write |
+| page says GitHub is not connected / needs reconnecting / was not allowed | claude.ai Settings → Connectors; the page's Permissions menu | add or reconnect the GitHub connector, or allow it for the page, then reload |
+| desktop app says GitHub refused 401/403 | the saved token | expired, or missing Actions read-and-write |
 | bootstrap failed `.amd_login_lock exists` / `AMD_PSW is not set` | report errors; the secret | no password or a failed login - do not press again until the password is confirmed |
 | step `skipped: helper missing` | the step summary | the script is not on main |
 | status `warn` with an error sentence | the step; the run's logs artifact (14 days) | one helper reported a problem; the rest ran |
