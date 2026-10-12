@@ -73,6 +73,16 @@ CLAUDE_ROUTINES = [   # when the Claude routines may write in AdvancedMD (UTC): 
 ]
 LIVE_LEAD_MIN = 25      # a live run may take this long: it must be able to finish before the next window opens
 DRY_FIRST_HOURS = 20    # a live run needs a dry run newer than this ("the dry run first that day")
+AMD_STEPS = ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding")   # the steps that touch AdvancedMD
+
+
+def wanted_steps(a):
+    """The steps a press asks for: a profile, 'all', or a comma list."""
+    if a.profile:
+        return list(PROFILES[a.profile])
+    if not a.steps or a.steps == "all":
+        return list(PROFILES["all"])
+    return [x.strip() for x in a.steps.split(",") if x.strip()]
 
 
 def routine_windows(now):
@@ -111,8 +121,9 @@ def live_guard(now=None, lead=LIVE_LEAD_MIN):
     return why, safe
 
 
-def recent_dry(out, hours=DRY_FIRST_HOURS):
-    """The stamp of the newest dry report in `out` that did not fail and started within `hours`; None when there is none."""
+def recent_dry(out, hours=DRY_FIRST_HOURS, need=()):
+    """The stamp of the newest dry report in `out` that did not fail, started within `hours`, and ran every step in `need`
+    without that step failing; None when there is none (a dry run of cred alone does not stand in for the columns)."""
     best = None
     for f in glob.glob(os.path.join(out, "*.json")):
         if os.path.basename(f) in ("latest.json", "outstanding_latest.json"):
@@ -123,6 +134,9 @@ def recent_dry(out, hours=DRY_FIRST_HOURS):
         except (OSError, ValueError, TypeError):
             continue
         if d.get("schema") != SCHEMA or d.get("mode") != "dry" or d.get("status") in ("failed", "skipped"):
+            continue
+        ran = {s.get("name") for s in d.get("steps", []) if isinstance(s, dict) and s.get("status") != "failed"}
+        if any(n not in ran for n in need):
             continue
         if utcnow() - started <= datetime.timedelta(hours=hours) and (best is None or started > best[1]):
             best = (d.get("stamp"), started)
@@ -808,14 +822,16 @@ def cli(a):
             why, safe = g
             finish(refusal(a, "skipped", "live run not started: %s. Next safe start %s UTC. A dry run is always allowed." % (why, safe.strftime("%H:%M"))))
             return 3
-        if not recent_dry(a.out):
-            print("[guard] no dry run in the last %d hours - running the dry pass first" % DRY_FIRST_HOURS, flush=True)
+        need = [s for s in wanted_steps(a) if s in AMD_STEPS]
+        if not recent_dry(a.out, need=need):
+            print("[guard] no dry run covering %s in the last %d hours - running the dry pass first" % (",".join(need) or "the steps", DRY_FIRST_HOURS), flush=True)
             pre_a = argparse.Namespace(**vars(a))
             pre_a.mode, pre_a.stamp = "dry", a.stamp + "-dry"
             pre_a.note = (a.note + " | " if a.note else "") + "dry pass before the live run"
             pre = finish(Run(pre_a).main())
-            if pre["status"] == "failed":
-                finish(refusal(a, "failed", "live run not started: the dry pass failed - " + pre["headline"]))
+            bad = [s["name"] for s in pre.get("steps", []) if s.get("name") in AMD_STEPS and s.get("status") == "failed"]
+            if pre["status"] == "failed" or bad:
+                finish(refusal(a, "failed", "live run not started: the dry pass failed%s - %s" % (" in " + ", ".join(bad) if bad else "", pre["headline"])))
                 return 1
             g = live_guard()          # the dry pass took time; the next window may now be too close
             if g:

@@ -166,7 +166,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
 
     <div class="group"><h3>The engine <small>what actually runs the billing</small></h3>
       <div class="files">
-        <div class="file"><span class="path">tools/button/run_all.py</span><span class="lang py">Python · 725 lines</span>
+        <div class="file"><span class="path">tools/button/run_all.py</span><span class="lang py">Python · 830 lines</span>
           <p class="what"><b>The conductor.</b> It does not know how to post an ERA or release a claim. It knows the <em>order</em>: scan the columns, bypass the inspector advisories, repair Unbilled, re-post the ERA-linked reason codes, complete the exclusions, rescan; then ERA; then the cascade; then the approved packages; then the credentialing check; then the outstanding-claims snapshot. For each it runs one helper as one plain command, keeps that helper's printout in a log file, reads the helper's own summary line, and adds the counts to the report. In <b>dry</b> mode every helper gets its read-only form. In <b>live</b> mode they write.</p>
           <p class="change"><b>Ask here for:</b> a new step, a different order, a step that should also run in the nightly profile, a count that should appear on the report, a different timeout.</p>
         </div>
@@ -179,11 +179,11 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
 
     <div class="group"><h3>The cloud runner <small>GitHub does the work on a borrowed machine</small></h3>
       <div class="files">
-        <div class="file"><span class="path">.github/workflows/billing-button.yml</span><span class="lang yml">YAML · 204 lines</span>
-          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the even UTC hours for the columns profile, 04:05Z for the cascade profile, so they never share an hour with the Claude routines). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
+        <div class="file"><span class="path">.github/workflows/billing-button.yml</span><span class="lang yml">YAML · 205 lines</span>
+          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the even UTC hours except 06:17 for the columns profile, 04:05Z for the cascade profile, so they never share an hour with the Claude routines). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
           <p class="change"><b>Ask here for:</b> a schedule change, a new input on the button (a new choice), a longer time limit, a different branch, keeping logs longer or shorter.</p>
         </div>
-        <div class="file"><span class="path">.github/workflows/desktop-build.yml</span><span class="lang yml">YAML · 81 lines</span>
+        <div class="file"><span class="path">.github/workflows/desktop-build.yml</span><span class="lang yml">YAML · 85 lines</span>
           <p class="what"><b>The factory for the desktop app.</b> On a borrowed Windows machine it bundles <span class="mono">desktop/app.py</span> and <span class="mono">ui.html</span> into a folder with its own Python (PyInstaller), checks the bundle can still run a helper script, wraps it in an installer (Inno Setup), and publishes <span class="mono">ehpa-billing-button-setup.exe</span> under the repository's Releases. The version number is 1.0 plus the run number, so every build has a new one.</p>
           <p class="change"><b>Ask here for:</b> a new release after an app change (it also runs by itself when anything under <span class="mono">desktop/</span> changes on main), a different app name or icon.</p>
         </div>
@@ -192,11 +192,11 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
 
     <div class="group"><h3>The desktop app <small>the Billing Button on your Windows desktop</small></h3>
       <div class="files">
-        <div class="file"><span class="path">desktop/app.py</span><span class="lang py">Python · 386 lines</span>
+        <div class="file"><span class="path">desktop/app.py</span><span class="lang py">Python · 455 lines</span>
           <p class="what"><b>The app's engine room.</b> It is a tiny web server that only your own PC can reach, plus a window. When you double-click the desktop icon it starts the server, opens Edge or Chrome in app mode (no address bar) pointed at it, and shows <span class="mono">ui.html</span>. The Manual Bill button sends <span class="mono">POST /api/run</span>; the app downloads the latest scripts from GitHub's main branch, runs <span class="mono">run_all.py</span> with the password you saved on this PC, and streams the log into the window. It also talks to GitHub to trigger cloud runs and fetch the latest report. One trick worth knowing: the installed program doubles as the Python interpreter for the helpers, so nothing else has to be installed on the PC.</p>
           <p class="change"><b>Ask here for:</b> a new button that does something on the PC (open a folder, open the latest log), a new setting, a different window size, a scheduled local run.</p>
         </div>
-        <div class="file"><span class="path">desktop/ui.html</span><span class="lang web">HTML · CSS · JS · 320 lines</span>
+        <div class="file"><span class="path">desktop/ui.html</span><span class="lang web">HTML · CSS · JS · 375 lines</span>
           <p class="what"><b>What you see.</b> The Midnight dashboard: the Manual Bill trigger with its dry / live switch and confirm step, the live log, the last-run card, the step checkboxes, the report renderer (the same drawing code as the Billing Button page), the history, the Pages list with every billing artifact, the cloud runs panel and the settings. It never touches AdvancedMD itself; it only asks <span class="mono">app.py</span>.</p>
           <p class="change"><b>Ask here for:</b> wording, colours, a new tile, a new page link, moving a control, a bigger log pane.</p>
         </div>
@@ -217,7 +217,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
           <p class="what"><b>The Billing Button page and its builder.</b> The HTML is the page: the trigger, the mode switch, the plan, the report, the history, the Pages grid, the How-it-works. Inside claude.ai it reaches GitHub through your GitHub connector, as you, so there is nothing to set up; a token is only for a copy of the page opened outside claude.ai. The small Python builder pastes an example report into the template so the page shows something before the first run reports, and fills in the link to this page.</p>
           <p class="change"><b>Ask here for:</b> anything you see on the Billing Button page.</p>
         </div>
-        <div class="file"><span class="path">tools/button/build_outstanding_page.py</span><span class="lang py">Python · 224 lines</span>
+        <div class="file"><span class="path">tools/button/build_outstanding_page.py</span><span class="lang py">Python · 231 lines</span>
           <p class="what"><b>The Outstanding Claims page builder.</b> Holds the page template inside it, pours the snapshot JSON in, and writes the page. The page refreshes itself from GitHub through your connector.</p>
           <p class="change"><b>Ask here for:</b> anything you see on the Outstanding Claims page.</p>
         </div>
@@ -278,12 +278,12 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
         <span class="n">options</span>: [dry, live]
         <span class="n">default</span>: dry
   <span class="n">schedule</span>:                     <span class="c"># the clock, in UTC: minute hour day month weekday</span>
-    - <span class="n">cron</span>: <span class="s">"17 0,2,4,6,8,10,12,14,16,18,20,22 * * *"</span>
+    - <span class="n">cron</span>: <span class="s">"17 0,2,4,8,10,12,14,16,18,20,22 * * *"</span>
     - <span class="n">cron</span>: <span class="s">"5 4 * * *"</span>
 
 <span class="n">concurrency</span>:
   <span class="n">group</span>: billing-button          <span class="c"># one run at a time; a second press waits in line</span></pre>
-      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>5 4 * * *</code> is "04:05 every day". Times are UTC, so 04:05Z is 12:05 AM Eastern in summer and 11:05 PM the evening before in winter. It sits a full hour clear of the Claude run at 05:08, because the engine refuses a live start within 25 minutes of one and GitHub's clock runs a few minutes late. The even hours are the button's and the odd hours are the Claude routines', so the two never run in the same hour.</p>
+      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>5 4 * * *</code> is "04:05 every day". Times are UTC, so 04:05Z is 12:05 AM Eastern in summer and 11:05 PM the evening before in winter. It sits a full hour clear of the Claude run at 05:08, because the engine refuses a live start within 25 minutes of one and GitHub's clock runs a few minutes late. The even hours are the button's and the odd hours are the Claude routines', so the two never run in the same hour; 06 is left out because the Claude cascade is still running then.</p>
     </div>
 
     <div class="card" style="margin-top:12px">

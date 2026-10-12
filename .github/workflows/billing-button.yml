@@ -45,7 +45,7 @@ on:
         type: string
         default: ""
   schedule:
-    - cron: "17 0,2,4,6,8,10,12,14,16,18,20,22 * * *"   # the columns profile, on the EVEN UTC hours: the Claude 2-hourly routine owns the odd ones
+    - cron: "17 0,2,4,8,10,12,14,16,18,20,22 * * *"     # the columns profile, on the EVEN UTC hours: the Claude 2-hourly routine owns the odd ones; no 06:17, which falls inside the Claude cascade (05:30-06:30Z) and the engine's guard would refuse
     - cron: "5 4 * * *"                                  # the nightly cascade profile at 04:05Z: an hour clear of the Claude 2-hourly run at 05:08Z (the engine's guard refuses a live start within 25 min of it) and of the Claude cascade at 05:30Z
 
 concurrency:
@@ -168,10 +168,11 @@ jobs:
         shell: bash
         run: |
           set -e
-          LOGS=$(ls -d reports/button/logs_* 2>/dev/null | tail -1 || true)
+          # every log folder this run made: the live pass's and, on a dry-first day, the dry pass's (logs_<stamp>-dry) too
+          LOGS=$(ls -d reports/button/logs_* 2>/dev/null || true)
           if [ -z "$LOGS" ]; then echo "no logs"; exit 0; fi
-          python3 tools/mirror/phi_gate.py tree "$LOGS" --all --cwd || true
-          echo "logs=$LOGS" >> "$GITHUB_ENV"
+          for d in $LOGS; do python3 tools/mirror/phi_gate.py tree "$d" --all --cwd || true; done
+          echo "logs=reports/button/logs_*" >> "$GITHUB_ENV"
 
       - name: Keep the scrubbed logs 14 days
         if: steps.plan.outputs.skip != 'true' && env.logs != ''
