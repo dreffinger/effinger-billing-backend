@@ -52,6 +52,19 @@ a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
+/* the running bar while a run is going on GitHub: magenta-to-sky orbit, shimmering label, elapsed time, Cancel (William 10/12/2026) */
+.runbar{display:flex;align-items:center;gap:12px;border:1px solid var(--magenta);background:linear-gradient(90deg,rgba(248,65,224,.12),rgba(112,214,248,.12));border-radius:var(--r-lg);padding:10px 14px;margin-top:10px}
+.orbit{position:relative;width:34px;height:34px;flex:none}
+.orbit i{position:absolute;top:50%;left:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px rgba(248,65,224,.6);animation:orbit 1.4s linear infinite}
+.orbit i:nth-child(2){animation-delay:-.47s;background:var(--accent);box-shadow:0 0 10px rgba(112,214,248,.6)} .orbit i:nth-child(3){animation-delay:-.93s;background:#b98cf5;box-shadow:0 0 10px rgba(185,140,245,.6)}
+@keyframes orbit{from{transform:rotate(0deg) translateX(12px) rotate(0deg)}to{transform:rotate(360deg) translateX(12px) rotate(-360deg)}}
+.runtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.runtext b{font-size:14.5px;background:linear-gradient(90deg,var(--ink) 0%,var(--magenta) 40%,var(--accent) 60%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.2s linear infinite}
+.runtext small{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.runtime{color:var(--muted);font-size:13px;white-space:nowrap;font-family:var(--mono)}
+.btn.stop{background:var(--bad);border-color:var(--bad);color:#fff} .btn.stop:hover{filter:brightness(1.08)}
+@media (prefers-reduced-motion:reduce){.orbit i,.runtext b{animation:none} .runtext b{color:var(--ink)}}
 section.block{margin-top:22px}
 .block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
@@ -293,7 +306,7 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
     const h={'Authorization':'Bearer '+t,'Accept':opt.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
     if(opt.body) h['Content-Type']='application/json';
     const r=await fetch(API+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined,cache:'no-store'});
-    if(r.status===204) return null;
+    if(r.status===204||r.status===202) return null;
     if(!r.ok){ let m=r.status+' '+r.statusText; try{ const j=await r.json(); if(j.message) m+=': '+j.message; }catch(e){} throw new Error(m); }
     return r.json(); }
 
@@ -331,7 +344,12 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
     const st=r.status==='completed'?(r.conclusion==='success'?'ok':(r.conclusion==='cancelled'?'dim':'bad')):'run';
     const label=r.status==='completed'?(r.conclusion||'done'):r.status.replace('_',' ');
     const mins=r.updated_at&&r.run_started_at?Math.round((new Date(r.updated_at)-new Date(r.run_started_at))/60000):null;
-    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(r.run_started_at||r.created_at))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'; }
+    const live=r.status!=='completed'; const since=r.run_started_at||r.created_at; const el=since?Math.max(0,Math.round((Date.now()-new Date(since))/1000)):0;
+    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(since))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null&&!live?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'
+      +(live?'<div class="runbar" role="status" aria-live="polite"><span class="orbit" aria-hidden="true"><i></i><i></i><i></i></span><span class="runtext"><b>'+esc(String(r.status).replace('_',' ')==='queued'?'Waiting for a machine on GitHub':'Running on GitHub')+'</b><small>'+esc(r.display_title||'')+'</small></span><span class="runtime">'+Math.floor(el/60)+'m '+String(el%60).padStart(2,'0')+'s</span><button class="btn stop" type="button" id="cancel-run" data-id="'+esc(r.id)+'" title="Cancel this run on GitHub. The step in progress is cut off; nothing more is written.">Cancel</button></div>':''); }
+  $('#last-body').addEventListener('click',async e=>{ const btn=e.target.closest('#cancel-run'); if(!btn) return; if(!confirm('Cancel this run on GitHub? The step in progress is cut off; nothing more is written.')) return; btn.disabled=true;
+    try{ if(mcp) await call('actions_run_trigger',{method:'cancel_workflow_run',run_id:Number(btn.dataset.id)},{cache:false}); else await gh('/repos/'+REPO+'/actions/runs/'+btn.dataset.id+'/cancel',{method:'POST'});
+      say('Cancel sent. GitHub stops the run in a few seconds.','ok'); watch(true); }catch(err){ say('Could not cancel: '+(mcp?ghErr(err):err.message),'err'); btn.disabled=false; } });
   async function watch(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
     let tries=0; const tick=async()=>{ tries++; try{ const rs=await runs(); const r=rs[0]; paintLast(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the run list: '+(mcp?ghErr(e):e.message),'err'); clearInterval(pollTimer); pollTimer=null; } };
     await tick(); pollTimer=setInterval(tick,15000); }

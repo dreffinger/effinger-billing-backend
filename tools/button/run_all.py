@@ -177,6 +177,7 @@ class Run:
         e["PYTHONUNBUFFERED"] = "1"
         if env:
             e.update(env)
+        self.say("running %s %s" % (name, " ".join(str(x) for x in argv)[:60]))   # the desktop app shows this as the current step
         t0 = time.time()
         with open(log, "w", encoding="utf-8", errors="replace") as fh:
             fh.write("$ %s\n(cwd %s, %s)\n\n" % (" ".join(cmd), cwd or self.ws, iso()))

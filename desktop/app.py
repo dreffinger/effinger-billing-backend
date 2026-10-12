@@ -12,7 +12,7 @@
 # Decides: nothing about billing - the engine and the helpers do, by the standing rules in the repository.
 # Never touches: the repository (it only downloads it), the Claude routines, any file outside its data folder and the
 #   workspace folder the helpers expect (C:\home\claude\unbilled on Windows).
-import http.server, json, os, platform, re, shutil, socket, subprocess, sys, threading, time, urllib.parse, urllib.request, webbrowser, zipfile
+import http.server, json, os, platform, re, shutil, signal, socket, subprocess, sys, threading, time, urllib.parse, urllib.request, webbrowser, zipfile
 
 APP = "ehpa Billing Button"
 OWNER, REPO_NAME = "dreffinger", "effinger-billing-backend"
@@ -25,7 +25,8 @@ DATA = os.path.join(os.environ.get("LOCALAPPDATA") or os.path.expanduser("~"), "
 REPO = os.path.join(DATA, "repo")
 REPORTS = os.path.join(DATA, "reports")
 SETTINGS = os.path.join(DATA, "settings.json")
-STATE = {"running": False, "mode": None, "started": None, "log": [], "last_rc": None, "last_report": None, "heartbeat": 0.0, "update": ""}
+STATE = {"running": False, "mode": None, "started": None, "log": [], "last_rc": None, "last_report": None, "heartbeat": 0.0, "update": "",
+         "proc": None, "stopped": False, "stopping": False, "step": ""}   # proc: the engine while it runs; step: the helper it is on
 LOCK = threading.Lock()
 
 
@@ -136,7 +137,7 @@ def engine_cmd(mode, steps, packages):
 def run_engine(mode, steps, packages):
     s = load_settings()
     with LOCK:
-        STATE.update(running=True, mode=mode, started=time.time(), log=[], last_rc=None)
+        STATE.update(running=True, mode=mode, started=time.time(), log=[], last_rc=None, proc=None, stopped=False, stopping=False, step="")
     try:
         if not s.get("amd_psw"):
             raise RuntimeError("no AdvancedMD password saved - open Settings")
@@ -152,15 +153,27 @@ def run_engine(mode, steps, packages):
         env["PYTHONIOENCODING"] = "utf-8"
         os.makedirs(REPORTS, exist_ok=True)
         log("%s run: %s" % (mode, " ".join(os.path.basename(a) if i == 0 else a for i, a in enumerate(argv))))
-        flags = {"creationflags": 0x08000000} if platform.system() == "Windows" else {}   # CREATE_NO_WINDOW
+        # CREATE_NO_WINDOW on Windows; its own process group elsewhere, so Stop can take the engine and its helper down together
+        flags = {"creationflags": 0x08000000} if platform.system() == "Windows" else {"start_new_session": True}
         p = subprocess.Popen(argv, cwd=REPO, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
                              encoding="utf-8", errors="replace", **flags)
+        with LOCK:
+            STATE["proc"] = p
         for line in p.stdout:
-            log(line.rstrip())
+            line = line.rstrip()
+            log(line)
+            m = re.search(r"\] running (\S+)(.*)$", line)           # the engine announces each helper before it starts it
+            if m:
+                with LOCK:
+                    STATE["step"] = (m.group(1) + m.group(2)).strip()[:90]
+            elif re.search(r"\] (report ->|billing button run )", line):
+                with LOCK:
+                    STATE["step"] = "writing the report" if "report ->" in line else "starting"
         rc = p.wait()
         with LOCK:
             STATE["last_rc"] = rc
-        log("engine finished with exit code %s" % rc)
+            stopped = STATE["stopped"]
+        log("stopped by you (exit code %s)" % rc if stopped else "engine finished with exit code %s" % rc)
         latest = os.path.join(REPORTS, "latest.json")
         if os.path.exists(latest):
             with LOCK:
@@ -171,7 +184,40 @@ def run_engine(mode, steps, packages):
             STATE["last_rc"] = 1
     finally:
         with LOCK:
-            STATE["running"] = False
+            STATE.update(running=False, proc=None, stopping=False, step="")
+
+
+def stop_engine():
+    """Stop the run now: the engine and the helper it is on, together. True when something was running."""
+    with LOCK:
+        p = STATE["proc"]
+        if not STATE["running"] or p is None or p.poll() is not None:
+            return False
+        STATE["stopped"], STATE["stopping"] = True, True
+    log("stop requested - cutting the run off")
+    try:
+        if platform.system() == "Windows":
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(p.pid)], capture_output=True, creationflags=0x08000000)
+        else:
+            os.killpg(os.getpgid(p.pid), signal.SIGTERM)
+            try:
+                p.wait(timeout=8)
+            except subprocess.TimeoutExpired:
+                os.killpg(os.getpgid(p.pid), signal.SIGKILL)
+    except (OSError, subprocess.SubprocessError) as ex:
+        log("stop: %s" % ex)
+        try:
+            p.kill()
+        except OSError:
+            pass
+    return True
+
+
+def cloud_cancel(run_id):
+    s = load_settings()
+    if not s.get("token"):
+        raise RuntimeError("no GitHub token saved - open Settings")
+    gh("/repos/%s/%s/actions/runs/%s/cancel" % (OWNER, REPO_NAME, int(run_id)), s["token"], method="POST")
 
 
 def start_run(mode, steps, packages):
@@ -247,7 +293,8 @@ class H(http.server.BaseHTTPRequestHandler):
             with LOCK:
                 STATE["heartbeat"] = time.time()
                 return self._send(200, {"running": STATE["running"], "mode": STATE["mode"], "started": STATE["started"],
-                                        "log": STATE["log"][-int(q.get("n", ["60"])[0]):], "last_rc": STATE["last_rc"], "update": STATE["update"]})
+                                        "log": STATE["log"][-int(q.get("n", ["60"])[0]):], "last_rc": STATE["last_rc"], "update": STATE["update"],
+                                        "step": STATE["step"], "stopping": STATE["stopping"], "stopped": STATE["stopped"]})
         if u.path == "/api/report":
             p = os.path.join(REPORTS, q.get("stamp", ["latest"])[0] + ".json")
             if not os.path.exists(p):
@@ -312,6 +359,12 @@ class H(http.server.BaseHTTPRequestHandler):
                 return self._send(200 if ok else 409, {"ok": ok, "error": None if ok else "a run is already going"})
             if u.path == "/api/cloud/run":
                 cloud_dispatch("live" if b.get("mode") == "live" else "dry", b.get("steps") or "all", b.get("packages") or "", b.get("note"))
+                return self._send(200, {"ok": True})
+            if u.path == "/api/stop":
+                ok = stop_engine()
+                return self._send(200 if ok else 409, {"ok": ok, "error": None if ok else "nothing is running"})
+            if u.path == "/api/cloud/cancel":
+                cloud_cancel(b.get("run_id"))
                 return self._send(200, {"ok": True})
             if u.path == "/api/open":
                 what = b.get("what")
