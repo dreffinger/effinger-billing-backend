@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T1530Z",
+ "stamp": "2026-10-12T1728Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "headline": "Columns 0/0/16/1 -> 0/0/16/1; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38270730335",
- "started": "2026-10-12T15:30:33Z",
- "ended": "2026-10-12T15:32:44Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38284420028",
+ "started": "2026-10-12T17:28:31Z",
+ "ended": "2026-10-12T17:30:48Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 16,
-    "exclusions": 0
+    "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 16,
-    "exclusions": 0
+    "exclusions": 1
    }
   },
   "era": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 275251.98,
-   "visits": 2519,
-   "charts": 507,
+   "total": 274350.77,
+   "visits": 2511,
+   "charts": 505,
    "over_365": {
     "n": 769,
     "dollars": 39680.61
@@ -76,19 +76,19 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T15:30:33Z",
-   "ended": "2026-10-12T15:30:34Z"
+   "started": "2026-10-12T17:28:31Z",
+   "ended": "2026-10-12T17:28:31Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 16->16, Exclusions 0->0",
+   "summary": "CR 0->0, CI 0->0, Unbilled 16->16, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
     "unbilled": 16,
-    "exclusions": 0,
+    "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
@@ -96,7 +96,9 @@
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 5,
     "unbilled released": 0,
-    "payreasons no-era-line": 11
+    "payreasons no-era-line": 11,
+    "exclusions dup run 1700286": 0,
+    "exclusions crossover run 1700286": "see log"
    },
    "dollars": {},
    "lines": [
@@ -117,11 +119,17 @@
      "kind": "Insurance order is missing on visit",
      "visits": 5,
      "ids": "v19457280 v19457281 v19457321 v19457471 v19457476"
+    },
+    {
+     "column": "exclusions run 1700286",
+     "kind": "AAR01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 1,
+     "ids": "v19456179"
     }
    ],
    "errors": [],
-   "started": "2026-10-12T15:30:34Z",
-   "ended": "2026-10-12T15:32:38Z"
+   "started": "2026-10-12T17:28:31Z",
+   "ended": "2026-10-12T17:30:43Z"
   },
   {
    "name": "era",
@@ -149,8 +157,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T15:32:38Z",
-   "ended": "2026-10-12T15:32:42Z"
+   "started": "2026-10-12T17:30:43Z",
+   "ended": "2026-10-12T17:30:46Z"
   },
   {
    "name": "packages",
@@ -161,21 +169,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T15:32:42Z",
-   "ended": "2026-10-12T15:32:42Z"
+   "started": "2026-10-12T17:30:46Z",
+   "ended": "2026-10-12T17:30:46Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2519 visits on 507 charts, $275251.98 open; 769 over a year ($39680.61)",
+   "summary": "2511 visits on 505 charts, $274350.77 open; 769 over a year ($39680.61)",
    "counts": {
-    "visits": 2519,
-    "charts": 507,
+    "visits": 2511,
+    "charts": 505,
     "over 365 days": 769
    },
    "dollars": {
-    "open insurance balance": 275251.98,
+    "open insurance balance": 274350.77,
     "over 365 days": 39680.61
    },
    "lines": [
@@ -203,8 +211,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 81,
-     "dollars": 10192.73,
+     "visits": 73,
+     "dollars": 9291.52,
      "oldest_days": 1020
     },
     {
@@ -265,8 +273,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T15:32:42Z",
-   "ended": "2026-10-12T15:32:44Z"
+   "started": "2026-10-12T17:30:46Z",
+   "ended": "2026-10-12T17:30:48Z"
   }
  ],
  "packages": [],
