@@ -4300,3 +4300,12 @@ Behaviors noted:
 - CO-185 / N767 (Humana Healthy Horizons as the Medicaid MMA secondary: 'rendering provider not enrolled in the member's Medicaid program') on four Medicare-paid 99309 lines: the 16.93 coinsurance residual written off WOINS through payreasons.post_line(pay 0, wo 16.93) - the remit's CO185 141.00 reason equals the fee, so the $0 payment balances; two of the four residuals sat on the patient balance (moved back first), two sat at MCAD (Medicaid FFS claim pending - written off all the same, the SMMC plan has answered).
 - Humana PI-252 / N4 ('primary EOB needed') on a visit that went to the Humana Medicaid plan as the ONLY payer (chart default insorder '3' on a QMB dual with Medicare seq 2): ins_update.update(pid, <Medicare plan>, sequence="2,3") then freq1_visit.reroute(vid, cid, "2,3", 2) -> 204 (same shape as the 10/3 CCM fix on the same chart).
 - No classifier refusal this run; 24 AMD writes, all through named helpers.
+
+# captured_calls additions - 2026-10-12 1110 UTC (7 AM ET 10/12) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), gettxhistory (payreasons.py --list, unbilled_repair.py dry), getdemographic (pat17478013 read - zero insplans), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after), posterapayments dry plan (era_post.py --all-unposted --dry: 0 postable), era_clear.py --dry (HOLD), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 68), Stedi MBILUNOSSN eligibility x1 (ERR 72) and insurance-discovery x1 (HTTP 502).
+
+Behaviors noted:
+- stedi.mbi / stedi.disc take COMPACT dates (dateOfBirth "[DOB]", dateOfService "20261005") exactly as precheck.py passes them; ISO "1949-09-02" draws HTTP 400 Bad Request from /change/medicalnetwork/eligibility/v3.
+- Stedi insurance-discovery /insurance-discovery/check/v1 answered 502 Bad Gateway at 11:38Z (payer-side outage) - retry next run, not an answer.
+- No AMD write this slot; the Drive package PACKAGE_effinger-billing-backend_2026-10-12_weekly-metrics decodes to the manifest's byte counts (15,275 chars / 11,306 bytes) but neither sha256 matches, so apply_bundle.py was not run (left on Drive); the two helpers it carries were taken byte-exact from 'workspace mirror' instead.
