@@ -68,14 +68,24 @@ the repository.
 
 | When (UTC) | Profile | Mode |
 |---|---|---|
-| :17 on the odd hours (01,03,...,23) | `columns` | `BUTTON_SCHEDULE_MODE` |
-| 05:35 | `cascade` | `BUTTON_SCHEDULE_MODE` |
+| :17 on the even hours (00,02,...,22) | `columns` | `BUTTON_SCHEDULE_MODE` |
+| 04:35 | `cascade` | `BUTTON_SCHEDULE_MODE` |
 
-Scheduled runs are **dry until `BUTTON_SCHEDULE_MODE=live`**. Before setting it live, pause the
-Claude 2-hourly backend billing routine (and the nightly cascade routine if the cascade profile
-goes live) so two engines never write to AdvancedMD in the same hour. The :17 offset keeps the
-two from starting at the same minute while both exist. The manual button has no such conflict:
-William chooses the moment.
+The Claude routines own the odd hours (the 2-hourly backend billing run at :08) and 05:30Z (the
+nightly cascade), so a scheduled button run never shares an hour with them (William 10/12/2026).
+Scheduled runs are **dry until `BUTTON_SCHEDULE_MODE=live`**. When they go live, pause the Claude
+routines anyway: two engines doing the same work twice a day is waste.
+
+### The live guard (in the engine, so it covers the button, the app and the schedules)
+
+- A live run **never starts while a Claude routine is running or due within 25 minutes**. It writes a
+  `skipped` report that names the routine and the next safe start (UTC) and exits 3. The windows are
+  `CLAUDE_ROUTINES` at the top of `run_all.py` (:08 on the odd hours for 50 minutes; 05:30Z for 60).
+  Change them there if a routine's schedule changes.
+- A live run **needs a dry run newer than 20 hours** in the reports folder. When there is none, the
+  engine runs the whole dry pass first (report `<stamp>-dry.json`), stops if that pass failed, re-checks
+  the windows, and only then goes live. One press, two reports.
+- Dry runs are always allowed. `--no-guard` switches both checks off and is not for routine use.
 
 ## The desktop app
 

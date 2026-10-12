@@ -180,7 +180,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
     <div class="group"><h3>The cloud runner <small>GitHub does the work on a borrowed machine</small></h3>
       <div class="files">
         <div class="file"><span class="path">.github/workflows/billing-button.yml</span><span class="lang yml">YAML · 204 lines</span>
-          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the odd UTC hours for the columns profile, 05:35Z for the cascade profile). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
+          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the even UTC hours for the columns profile, 04:35Z for the cascade profile, so they never share an hour with the Claude routines). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
           <p class="change"><b>Ask here for:</b> a schedule change, a new input on the button (a new choice), a longer time limit, a different branch, keeping logs longer or shorter.</p>
         </div>
         <div class="file"><span class="path">.github/workflows/desktop-build.yml</span><span class="lang yml">YAML · 81 lines</span>
@@ -278,12 +278,12 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
         <span class="n">options</span>: [dry, live]
         <span class="n">default</span>: dry
   <span class="n">schedule</span>:                     <span class="c"># the clock, in UTC: minute hour day month weekday</span>
-    - <span class="n">cron</span>: <span class="s">"17 1,3,5,7,9,11,13,15,17,19,21,23 * * *"</span>
-    - <span class="n">cron</span>: <span class="s">"35 5 * * *"</span>
+    - <span class="n">cron</span>: <span class="s">"17 0,2,4,6,8,10,12,14,16,18,20,22 * * *"</span>
+    - <span class="n">cron</span>: <span class="s">"35 4 * * *"</span>
 
 <span class="n">concurrency</span>:
   <span class="n">group</span>: billing-button          <span class="c"># one run at a time; a second press waits in line</span></pre>
-      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>35 5 * * *</code> is "05:35 every day". Times are UTC, so 05:35Z is 1:35 AM Eastern in summer and 12:35 AM in winter.</p>
+      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>35 4 * * *</code> is "04:35 every day". Times are UTC, so 04:35Z is 12:35 AM Eastern in summer and 11:35 PM the evening before in winter. The even hours are the button's and the odd hours are the Claude routines', so the two never run in the same hour.</p>
     </div>
 
     <div class="card" style="margin-top:12px">
@@ -366,7 +366,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
     <p class="intro">These are not policies written down somewhere; they are lines of code. Each one names the file that enforces it, so you can check it or ask for it to be changed.</p>
     <div class="grid">
       <div class="card"><h3>One login per run</h3><p class="why">The engine stops all AdvancedMD steps the moment <span class="mono">.amd_login_lock</span> appears, and never retries a password. A second failed try locks the API user POI0712 and breaks the Claimocity feed. <span class="mono">run_all.py</span> and <span class="mono">core/amd.py</span>.</p></div>
-      <div class="card"><h3>Dry unless you say live</h3><p class="why">The button's default is dry. Scheduled runs are dry until you set the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> to <span class="mono">live</span>. Live from a page or the app asks you to confirm first. <span class="mono">billing-button.yml</span>, both pages, <span class="mono">ui.html</span>.</p></div>
+      <div class="card"><h3>Dry unless you say live</h3><p class="why">The button's default is dry. Scheduled runs are dry until you set the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> to <span class="mono">live</span>. Live from a page or the app asks you to confirm first, and the engine itself refuses a live start while a Claude routine is due within 25 minutes, and runs a dry pass first when none ran that day. <span class="mono">billing-button.yml</span>, both pages, <span class="mono">ui.html</span>.</p></div>
       <div class="card"><h3>No PHI in GitHub</h3><p class="why">Reports carry chart ids, visit ids, check ids and dollars only. The PHI gate reads every report before it is written and every log before it is kept; a report that fails falls back to counts. <span class="mono">tools/mirror/phi_gate.py</span>, called from <span class="mono">run_all.py</span> and the workflow.</p></div>
       <div class="card"><h3>Secrets never in the repo</h3><p class="why">The AMD password and the Stedi key live in GitHub's locked secrets (cloud) or in your Windows profile (desktop). The helpers get them through the environment. Helper output goes to log files, never to the job log, so a stray printout cannot leak them. <span class="mono">billing-button.yml</span>, <span class="mono">app.py</span>.</p></div>
       <div class="card"><h3>One run at a time</h3><p class="why">GitHub's concurrency group <span class="mono">billing-button</span> makes a second press wait for the first to finish rather than run beside it. Two engines posting the same ERA at once cannot happen. <span class="mono">billing-button.yml</span>.</p></div>
@@ -374,7 +374,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
       <div class="card"><h3>The helpers run as committed</h3><p class="why">The engine copies the helpers out of the repository and runs them unchanged, with the same command lines the routines use. A fix to a helper on main is a fix for the button, the desktop app and the Claude routines at once.</p></div>
       <div class="card"><h3>Judgement stays with people</h3><p class="why">Anything that needs a decision (a chart fix after a Stedi answer, a dx cascade on a named chart, a hand-post) is counted and listed under <span class="mono">waiting</span>. The engine does not guess.</p></div>
     </div>
-    <div class="note warn"><b>One rule for you, not the code.</b> When you set scheduled runs to live, pause the Claude 2-hourly backend billing routine first. Both would otherwise write to AdvancedMD in the same hour. The manual button does not have this problem; it is you choosing the moment.</div>
+    <div class="note warn"><b>One rule for you, not the code.</b> The button's schedules sit on the even hours and the Claude routines on the odd hours, so they never run in the same hour, and the engine's guard refuses a live press that would. Still, when you set scheduled runs to live, pause the Claude routines: two engines doing the same work twice a day is waste, not harm.</div>
   </section>
 
   <!-- 7 -->
@@ -409,7 +409,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
     </div>
     <h3 style="margin-top:18px">Examples you can copy</h3>
     <div class="prompt"><span class="eyebrow">A new step</span>In the engine, add a step named <b>denials</b> that runs <span class="mono">denials_scan.py --out denials.json</span> after the era step, in dry and live. Put its row count on the report as <span class="mono">summary.denials.rows</span> and show it as a tile on the Billing Button page. Add it to the columns profile too. Done means a dry run shows the tile.</div>
-    <div class="prompt"><span class="eyebrow">A schedule change</span>In the workflow, move the columns profile from :17 on the odd hours to :45 on the even hours. No other change. Dry stays dry.</div>
+    <div class="prompt"><span class="eyebrow">A schedule change</span>In the workflow, move the columns profile from :17 to :45 on the even hours. No other change. Dry stays dry.</div>
     <div class="prompt"><span class="eyebrow">A page change</span>On the Billing Button page, add a tile under the report that shows written-off dollars from <span class="mono">summary.written_off.dollars</span>, next to the resent tile. Republish.</div>
     <div class="prompt"><span class="eyebrow">A desktop app change</span>In the desktop app, add a button beside Manual Bill that opens the folder with the latest log files. New release.</div>
     <div class="prompt"><span class="eyebrow">A fix from a report</span>Run 2026-10-11T2300Z: the columns step counted 19,439,544 inspector bypasses, which is a visit id, not a count. Fix the engine to read the helper's own plan line. Dry run to prove it.</div>
@@ -446,7 +446,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
       <p>What you learn: the page is a text file, the words you see are in it verbatim, and publishing is a separate step from editing.</p>
     </div></details>
     <details><summary>Exercise 2 · Move a schedule by ten minutes (YAML)</summary><div class="body">
-      <p>In <span class="mono">.github/workflows/billing-button.yml</span>, the line <code>- cron: "35 5 * * *"</code> is the nightly cascade. Change 35 to 45. That is the whole change. GitHub picks it up as soon as it is on main.</p>
+      <p>In <span class="mono">.github/workflows/billing-button.yml</span>, the line <code>- cron: "35 4 * * *"</code> is the nightly cascade. Change 35 to 45. That is the whole change. GitHub picks it up as soon as it is on main.</p>
       <p>What you learn: cron's five fields, that the clock is UTC, and that a schedule is one line.</p>
     </div></details>
     <details><summary>Exercise 3 · Run the engine on your own PC, read-only, no AdvancedMD (Python)</summary><div class="body">

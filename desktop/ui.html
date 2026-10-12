@@ -47,6 +47,13 @@ a{color:var(--accent)}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
 section.block{margin-top:22px}
+/* Settings is a panel over the page, not a section at the bottom (William 10/12/2026: "there is no place that the settings button opens") */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(4,29,33,.8);overflow:auto;padding:28px 16px;display:grid;place-items:start center}
+.overlay[hidden]{display:none}
+.panel{width:min(760px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r-xl);padding:20px 22px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.panel h2{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.setup{border:1px solid var(--magenta);background:var(--bad-soft);border-radius:var(--r-lg);padding:12px 16px;margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14.5px}
+.setup[hidden]{display:none}
 .block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px}
 .plan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
@@ -102,6 +109,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   <section class="hero">
     <div class="launch">
+      <div class="setup" id="setup" hidden><span id="setup-text"></span><button class="btn primary" id="setup-open" type="button">Open Settings</button></div>
       <div class="seg" role="radiogroup" aria-label="Run mode">
         <button type="button" data-mode="dry" aria-pressed="true">Dry run</button>
         <button type="button" data-mode="live" class="live" aria-pressed="false">Live</button>
@@ -110,7 +118,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
         <span>Manual Bill<small id="trigger-sub">Dry run · reads everything, writes nothing</small></span>
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>
       </button>
-      <p class="will">Runs the scripted billing day on this PC with the scripts in the repository: the four Claims Center columns, ERA posting, the insurance cascade, the approved packages and the credentialing check. Pressing the button is the approval; nothing else asks.</p>
+      <p class="will">Runs the scripted billing day on this PC with the scripts in the repository: the four Claims Center columns, ERA posting, the insurance cascade, the approved packages and the credentialing check. Pressing the button is the approval; nothing else asks. A live run waits for a safe hour: it refuses to start while a Claude routine is running or due within 25 minutes, and runs a dry pass first when none ran that day.</p>
       <div class="confirm" id="confirm" hidden>
         <div id="confirm-text"></div>
         <div class="row"><button class="btn primary" id="confirm-go" type="button">Run now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
@@ -172,8 +180,9 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
     </div>
   </section>
 
-  <section class="block" id="settings" hidden>
-    <h2>Settings</h2>
+  <div class="overlay" id="settings" hidden role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <section class="panel">
+    <h2 id="settings-title">Settings <button class="btn" id="settings-close" type="button">Close</button></h2>
     <div class="card">
       <p class="note">Everything here stays in your Windows profile folder (<span class="mono" id="data-dir"></span>), readable by your Windows account only. Nothing is sent anywhere but AdvancedMD, Stedi and GitHub.</p>
       <div class="field"><label for="tok">GitHub token <span class="note">(fine-grained, this repository only: Contents read, Actions read and write) · <span id="tok-state"></span></span></label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
@@ -189,6 +198,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
       </ol>
     </div>
   </section>
+  </div>
 </div>
 
 <script>
@@ -208,12 +218,17 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   // settings
   let S={};
-  async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; }
+  async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; paintSetup(); }
   // the Settings section sits at the bottom of the page: opening it must also bring it into view and put the cursor in the
   // first empty field (William 10/12/2026: "when I click the settings button to add the AMD password no settings open")
-  function openSettings(open){ const s=$('#settings'); s.hidden=!open; $('#settings-btn').textContent=open?'Close settings':'Settings'; $('#settings-btn').setAttribute('aria-expanded',open?'true':'false');
-    if(open){ s.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(()=>{ const first=[['#psw',S.amd_psw],['#tok',S.token],['#stedi',S.stedi_key]].find(p=>!p[1]); $(first?first[0]:'#psw').focus(); },450); } }
+  function openSettings(open){ const s=$('#settings'); s.hidden=!open; document.body.style.overflow=open?'hidden':''; $('#settings-btn').textContent=open?'Close settings':'Settings'; $('#settings-btn').setAttribute('aria-expanded',open?'true':'false');
+    if(open){ setTimeout(()=>{ const first=[['#psw',S.amd_psw],['#tok',S.token],['#stedi',S.stedi_key]].find(p=>!p[1]); $(first?first[0]:'#psw').focus(); },60); } }
+  function paintSetup(){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean); const b=$('#setup'); b.hidden=!need.length; if(need.length) $('#setup-text').textContent='Before the first run: enter '+need.join(' and ')+' in Settings and press Save.'; }
   $('#settings-btn').addEventListener('click',()=>{ openSettings($('#settings').hidden); });
+  $('#settings-close').addEventListener('click',()=>openSettings(false));
+  $('#setup-open').addEventListener('click',()=>openSettings(true));
+  $('#settings').addEventListener('click',e=>{ if(e.target===$('#settings')) openSettings(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#settings').hidden) openSettings(false); });
   $('#cloud-btn').addEventListener('click',()=>{ $('#cloud').hidden=!$('#cloud').hidden; if(!$('#cloud').hidden) cloudRefresh(); });
   $('#quit-btn').addEventListener('click',async()=>{ await api('/api/quit',{}); document.body.innerHTML='<p style="padding:40px;font:600 16px system-ui">ehpa Billing Button closed. You can close this window.</p>'; });
   $('#save').addEventListener('click',async()=>{ try{ await api('/api/settings',{token:$('#tok').value,amd_psw:$('#psw').value,stedi_key:$('#stedi').value,auto_update:$('#auto-update').checked}); $('#tok').value='';$('#psw').value='';$('#stedi').value=''; setStatus('#set-status','Saved.'); await loadSettings(); }catch(e){ setStatus('#set-status','Could not save: '+e.message,true); } });
@@ -236,7 +251,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   // the button
   const trig=$('#trigger');
-  trig.addEventListener('click',()=>{ $('#confirm').hidden=false; $('#confirm-go').focus(); });
+  trig.addEventListener('click',()=>{ if(!S.amd_psw){ openSettings(true); $('#set-status').textContent='Save the AdvancedMD password first - the engine cannot log in without it.'; return; } $('#confirm').hidden=false; $('#confirm-go').focus(); });
   $('#confirm-no').addEventListener('click',()=>{ $('#confirm').hidden=true; });
   $('#confirm-go').addEventListener('click',fire);
   async function fire(){ $('#confirm').hidden=true; try{ await api('/api/run',{mode:mode,steps:steps(),packages:$('#packages').value.trim()}); say('Running ('+mode+') …'); $('#log').hidden=false; }catch(e){ say(e.message,'err'); } }
@@ -244,7 +259,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   // status polling (also the heartbeat that keeps the app alive while the window is open)
   let wasRunning=false;
   async function poll(){ try{ const st=await api('/api/status?n=80'); trig.disabled=!!st.running; $('#log').textContent=(st.log||[]).join('\n'); if(st.running){ $('#log').hidden=false; say('Running ('+st.mode+') since '+when(new Date(st.started*1000).toISOString())+' …'); }
-      if(wasRunning&&!st.running){ say(st.last_rc===0?'Run finished.':'Run finished with problems (exit '+st.last_rc+') - see the report and the log.', st.last_rc===0?'ok':'err'); await loadReport(); await loadHistory(); await loadSettings(); }
+      if(wasRunning&&!st.running){ say(st.last_rc===0?'Run finished.':(st.last_rc===3?'Live run not started: a Claude routine is running or due within 25 minutes. The report names the next safe start; a dry run is always allowed.':'Run finished with problems (exit '+st.last_rc+') - see the report and the log.'), st.last_rc===0?'ok':'err'); await loadReport(); await loadHistory(); await loadSettings(); }
       if(st.update) say(st.update);
       wasRunning=!!st.running; }catch(e){ say('The app behind this window is not answering: '+e.message,'err'); } }
   setInterval(poll,4000);
@@ -320,7 +335,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   (async function boot(){ await loadSettings();
     // first open on a PC: nothing saved yet, so show the Settings section straight away with a plain note of what goes where
     if(!S.amd_psw||!S.token){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean).join(' and ');
-      $('#set-status').textContent='Setup: enter '+need+' below and press Save. The Stedi key is optional.'; openSettings(true); } await loadReport(); await loadHistory(); await poll();
+      $('#set-status').textContent='Setup: enter '+need+' above and press Save. The Stedi key is optional.'; openSettings(true); } await loadReport(); await loadHistory(); await poll();
     if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode(); $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } })();
 })();
 </script>
