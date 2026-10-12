@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T0946Z",
+ "stamp": "2026-10-12T1130Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38231987085",
- "started": "2026-10-12T09:46:06Z",
- "ended": "2026-10-12T09:48:21Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38243008154",
+ "started": "2026-10-12T11:30:03Z",
+ "ended": "2026-10-12T11:32:18Z",
  "summary": {
   "columns": {
    "before": {
@@ -76,8 +76,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T09:46:06Z",
-   "ended": "2026-10-12T09:46:06Z"
+   "started": "2026-10-12T11:30:03Z",
+   "ended": "2026-10-12T11:30:03Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T09:46:06Z",
-   "ended": "2026-10-12T09:48:16Z"
+   "started": "2026-10-12T11:30:03Z",
+   "ended": "2026-10-12T11:32:13Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T09:48:16Z",
-   "ended": "2026-10-12T09:48:20Z"
+   "started": "2026-10-12T11:32:13Z",
+   "ended": "2026-10-12T11:32:16Z"
   },
   {
    "name": "packages",
@@ -161,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T09:48:20Z",
-   "ended": "2026-10-12T09:48:20Z"
+   "started": "2026-10-12T11:32:16Z",
+   "ended": "2026-10-12T11:32:16Z"
   },
   {
    "name": "outstanding",
@@ -265,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T09:48:20Z",
-   "ended": "2026-10-12T09:48:21Z"
+   "started": "2026-10-12T11:32:16Z",
+   "ended": "2026-10-12T11:32:18Z"
   }
  ],
  "packages": [],
