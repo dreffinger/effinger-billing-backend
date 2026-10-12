@@ -13,6 +13,10 @@
 #   packages (approved Mandatory Approvals cards: dry first, then live, then recorded done), cred (NPPES / revalidation / LEIE),
 #   money (payments scan when the universe file is present, ledger rebuild). "all" = every step except sweep and money unless named.
 # Modes: --mode dry reads everything and writes nothing in AdvancedMD (every helper gets its dry form); --mode live writes.
+# Live guard (William 10/12/2026): a live run never starts while a Claude routine is running or due within 25 minutes (the
+#   2-hourly backend billing run at :08 on the odd UTC hours, the nightly cascade at 05:30Z) - it writes a "skipped" report
+#   naming the next safe start and exits 3; and when no dry run newer than 20 hours exists it runs the whole dry pass first
+#   (report <stamp>-dry.json) and only then goes live. --no-guard switches both off; not for routine use.
 # Rules it uses: ONE AMD login per run (amd.login_cached; a tripped .amd_login_lock stops the run before any helper runs);
 #   every helper is ONE plain command run from the workspace; a helper that fails never stops the others; no patient name,
 #   member id, MBI or DOB reaches the report - chart ids, visit ids, check ids and dollars only (phi_gate checks the report
@@ -59,6 +63,84 @@ def money(x):
         return round(float(x or 0), 2)
     except (TypeError, ValueError):
         return 0.0
+
+
+# ------------------------------------------------------------------ the live guard (William 10/12/2026: "make sure no Claude backend
+# billing routine is due in the same hour, so two engines never write at once, and do the dry run first that day")
+CLAUDE_ROUTINES = [   # when the Claude routines may write in AdvancedMD (UTC): minute past the hour, the hours, how long they run
+    {"name": "the Claude 2-hourly backend billing run", "minute": 8, "hours": [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23], "minutes": 50},
+    {"name": "the Claude nightly insurance cascade", "minute": 30, "hours": [5], "minutes": 60},
+]
+LIVE_LEAD_MIN = 25      # a live run may take this long: it must be able to finish before the next window opens
+DRY_FIRST_HOURS = 20    # a live run needs a dry run newer than this ("the dry run first that day")
+AMD_STEPS = ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding")   # the steps that touch AdvancedMD
+
+
+def wanted_steps(a):
+    """The steps a press asks for: a profile, 'all', or a comma list."""
+    if a.profile:
+        return list(PROFILES[a.profile])
+    if not a.steps or a.steps == "all":
+        return list(PROFILES["all"])
+    return [x.strip() for x in a.steps.split(",") if x.strip()]
+
+
+def routine_windows(now):
+    """Every (name, start, end) window of the Claude routines from a day before `now` to a day after, UTC, in order."""
+    base = now.replace(minute=0, second=0, microsecond=0) - datetime.timedelta(hours=24)
+    out = []
+    for h in range(0, 49):
+        t = base + datetime.timedelta(hours=h)
+        for r in CLAUDE_ROUTINES:
+            if t.hour in r["hours"]:
+                start = t.replace(minute=r["minute"])
+                out.append((r["name"], start, start + datetime.timedelta(minutes=r["minutes"])))
+    return sorted(out, key=lambda w: w[1])
+
+
+def live_guard(now=None, lead=LIVE_LEAD_MIN):
+    """None when a live run may start now. Otherwise (why, safe): the routine in the way and the first safe start, UTC."""
+    now = now or utcnow()
+    windows = routine_windows(now)
+    why = None
+    for name, start, end in windows:
+        if start <= now < end:
+            why = "%s runs %s-%s UTC" % (name, start.strftime("%H:%M"), end.strftime("%H:%M"))
+            break
+        if now < start <= now + datetime.timedelta(minutes=lead):
+            why = "%s starts at %s UTC, less than %d minutes away" % (name, start.strftime("%H:%M"), lead)
+            break
+    if not why:
+        return None
+    safe, moved = now, True
+    while moved:                    # walk forward until a start leaves `lead` clear minutes before every window
+        moved = False
+        for name, start, end in windows:
+            if start <= safe < end or safe < start <= safe + datetime.timedelta(minutes=lead):
+                safe, moved = end, True
+    return why, safe
+
+
+def recent_dry(out, hours=DRY_FIRST_HOURS, need=()):
+    """The stamp of the newest dry report in `out` that did not fail, started within `hours`, and ran every step in `need`
+    without that step failing; None when there is none (a dry run of cred alone does not stand in for the columns)."""
+    best = None
+    for f in glob.glob(os.path.join(out, "*.json")):
+        if os.path.basename(f) in ("latest.json", "outstanding_latest.json"):
+            continue
+        try:
+            d = json.load(open(f))
+            started = datetime.datetime.strptime(d.get("started", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+        except (OSError, ValueError, TypeError):
+            continue
+        if d.get("schema") != SCHEMA or d.get("mode") != "dry" or d.get("status") in ("failed", "skipped"):
+            continue
+        ran = {s.get("name") for s in d.get("steps", []) if isinstance(s, dict) and s.get("status") != "failed"}
+        if any(n not in ran for n in need):
+            continue
+        if utcnow() - started <= datetime.timedelta(hours=hours) and (best is None or started > best[1]):
+            best = (d.get("stamp"), started)
+    return best[0] if best else None
 
 
 class Run:
@@ -109,6 +191,7 @@ class Run:
         e["PYTHONUNBUFFERED"] = "1"
         if env:
             e.update(env)
+        self.say("running %s %s" % (name, " ".join(str(x) for x in argv)[:60]))   # the desktop app shows this as the current step
         t0 = time.time()
         with open(log, "w", encoding="utf-8", errors="replace") as fh:
             fh.write("$ %s\n(cwd %s, %s)\n\n" % (" ".join(cmd), cwd or self.ws, iso()))
@@ -713,13 +796,51 @@ def parse():
     ap.add_argument("--run-url", default="")
     ap.add_argument("--python", default=None, help="interpreter for the helpers (default: this one)")
     ap.add_argument("--stedi-proxy", action="store_true", help="the environment injects the Stedi key at a proxy (no key file needed)")
+    ap.add_argument("--no-guard", action="store_true", help="live: skip the Claude-routine window check and the dry-first pass (not for routine use)")
     return ap.parse_args()
 
 
-if __name__ == "__main__":
-    a = parse()
-    r = Run(a)
-    final = r.main()
+def finish(final):
     rep = json.load(open(final))
     print(json.dumps({"stamp": rep["stamp"], "mode": rep["mode"], "status": rep["status"], "headline": rep["headline"], "report": final}))
-    sys.exit(0 if rep["status"] != "failed" else 1)
+    return rep
+
+
+def refusal(a, status, headline):
+    """A report with no steps, so the pages and the app show why nothing ran."""
+    r = Run(a)
+    r.started = iso()
+    return r.report(status, headline)
+
+
+def cli(a):
+    """The whole press: the live guard, the dry-first pass, then the run. Returns the exit code (0 ok/warn, 1 failed, 3 refused)."""
+    if a.mode == "live" and not a.no_guard:
+        a.stamp = a.stamp or stamp_now()
+        g = live_guard()
+        if g:
+            why, safe = g
+            finish(refusal(a, "skipped", "live run not started: %s. Next safe start %s UTC. A dry run is always allowed." % (why, safe.strftime("%H:%M"))))
+            return 3
+        need = [s for s in wanted_steps(a) if s in AMD_STEPS]
+        if not recent_dry(a.out, need=need):
+            print("[guard] no dry run covering %s in the last %d hours - running the dry pass first" % (",".join(need) or "the steps", DRY_FIRST_HOURS), flush=True)
+            pre_a = argparse.Namespace(**vars(a))
+            pre_a.mode, pre_a.stamp = "dry", a.stamp + "-dry"
+            pre_a.note = (a.note + " | " if a.note else "") + "dry pass before the live run"
+            pre = finish(Run(pre_a).main())
+            bad = [s["name"] for s in pre.get("steps", []) if s.get("name") in AMD_STEPS and s.get("status") == "failed"]
+            if pre["status"] == "failed" or bad:
+                finish(refusal(a, "failed", "live run not started: the dry pass failed%s - %s" % (" in " + ", ".join(bad) if bad else "", pre["headline"])))
+                return 1
+            g = live_guard()          # the dry pass took time; the next window may now be too close
+            if g:
+                why, safe = g
+                finish(refusal(a, "skipped", "live run not started after the dry pass: %s. Next safe start %s UTC." % (why, safe.strftime("%H:%M"))))
+                return 3
+    rep = finish(Run(a).main())
+    return 0 if rep["status"] != "failed" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(cli(parse()))

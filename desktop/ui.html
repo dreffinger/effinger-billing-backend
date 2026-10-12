@@ -47,6 +47,32 @@ a{color:var(--accent)}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
 section.block{margin-top:22px}
+/* an author display rule (.confirm{display:flex}, .overlay{display:grid}) beats the browser's [hidden]{display:none}; this keeps hidden meaning hidden */
+[hidden]{display:none!important}
+/* Settings is a panel over the page, not a section at the bottom (William 10/12/2026: "there is no place that the settings button opens") */
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(4,29,33,.8);overflow:auto;padding:28px 16px;display:grid;place-items:start center}
+.overlay[hidden]{display:none}
+.panel{width:min(760px,100%);background:var(--surface);border:1px solid var(--line-strong);border-radius:var(--r-xl);padding:20px 22px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.panel h2{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.setup{border:1px solid var(--magenta);background:var(--bad-soft);border-radius:var(--r-lg);padding:12px 16px;margin-bottom:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:14.5px}
+.setup[hidden]{display:none}
+/* the running bar (William 10/12/2026: "a moving running icon ... that shows when it is running and thinking, and a stop button"):
+   a magenta-to-sky orbit, a shimmering label with the step the engine is on, the elapsed time, and Stop */
+.runbar{display:flex;align-items:center;gap:12px;border:1px solid var(--magenta);background:linear-gradient(90deg,rgba(248,65,224,.12),rgba(112,214,248,.12));border-radius:var(--r-lg);padding:10px 14px;margin-top:10px}
+.runbar[hidden]{display:none}
+.orbit{position:relative;width:34px;height:34px;flex:none}
+.orbit i{position:absolute;top:50%;left:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px rgba(248,65,224,.6);animation:orbit 1.4s linear infinite}
+.orbit i:nth-child(2){animation-delay:-.47s;background:var(--accent);box-shadow:0 0 10px rgba(112,214,248,.6)} .orbit i:nth-child(3){animation-delay:-.93s;background:#b98cf5;box-shadow:0 0 10px rgba(185,140,245,.6)}
+.orbit.mini{transform:scale(.62);margin:-7px -4px}
+@keyframes orbit{from{transform:rotate(0deg) translateX(12px) rotate(0deg)}to{transform:rotate(360deg) translateX(12px) rotate(-360deg)}}
+.runtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.runtext b{font-size:14.5px;background:linear-gradient(90deg,var(--ink) 0%,var(--magenta) 40%,var(--accent) 60%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.2s linear infinite}
+.runtext small{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.runtime{color:var(--muted);font-size:13px;white-space:nowrap;font-family:var(--mono)}
+.btn.stop{background:var(--bad);border-color:var(--bad);color:#fff} .btn.stop:hover{filter:brightness(1.08)}
+.rowi .btn.stop{padding:5px 10px;font-size:12.5px}
+@media (prefers-reduced-motion:reduce){.orbit i,.runtext b{animation:none} .runtext b{color:var(--ink)}}
 .block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px}
 .plan{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
@@ -102,6 +128,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   <section class="hero">
     <div class="launch">
+      <div class="setup" id="setup" hidden><span id="setup-text"></span><button class="btn primary" id="setup-open" type="button">Open Settings</button></div>
       <div class="seg" role="radiogroup" aria-label="Run mode">
         <button type="button" data-mode="dry" aria-pressed="true">Dry run</button>
         <button type="button" data-mode="live" class="live" aria-pressed="false">Live</button>
@@ -110,12 +137,13 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
         <span>Manual Bill<small id="trigger-sub">Dry run · reads everything, writes nothing</small></span>
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>
       </button>
-      <p class="will">Runs the scripted billing day on this PC with the scripts in the repository: the four Claims Center columns, ERA posting, the insurance cascade, the approved packages and the credentialing check. Pressing the button is the approval; nothing else asks.</p>
+      <p class="will">Runs the scripted billing day on this PC with the scripts in the repository: the four Claims Center columns, ERA posting, the insurance cascade, the approved packages and the credentialing check. Pressing the button is the approval; nothing else asks. A live run waits for a safe hour: it refuses to start while a Claude routine is running or due within 25 minutes, and runs a dry pass first when none ran that day.</p>
       <div class="confirm" id="confirm" hidden>
         <div id="confirm-text"></div>
         <div class="row"><button class="btn primary" id="confirm-go" type="button">Run now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
       </div>
       <div class="status" id="status" aria-live="polite"></div>
+      <div class="runbar" id="runbar" hidden role="status" aria-live="polite"><span class="orbit" aria-hidden="true"><i></i><i></i><i></i></span><span class="runtext"><b id="run-title">Running</b><small id="run-step">Starting the engine …</small></span><span class="runtime" id="run-time"></span><button class="btn stop" id="stop-btn" type="button" title="Cut the run off now. The script that is working is stopped at once; AdvancedMD keeps whatever it already saved.">Stop</button></div>
       <pre class="log" id="log" hidden></pre>
     </div>
     <aside class="last">
@@ -172,8 +200,9 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
     </div>
   </section>
 
-  <section class="block" id="settings" hidden>
-    <h2>Settings</h2>
+  <div class="overlay" id="settings" hidden role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <section class="panel">
+    <h2 id="settings-title">Settings <button class="btn" id="settings-close" type="button">Close</button></h2>
     <div class="card">
       <p class="note">Everything here stays in your Windows profile folder (<span class="mono" id="data-dir"></span>), readable by your Windows account only. Nothing is sent anywhere but AdvancedMD, Stedi and GitHub.</p>
       <div class="field"><label for="tok">GitHub token <span class="note">(fine-grained, this repository only: Contents read, Actions read and write) · <span id="tok-state"></span></span></label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
@@ -189,6 +218,7 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
       </ol>
     </div>
   </section>
+  </div>
 </div>
 
 <script>
@@ -208,8 +238,19 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   // settings
   let S={};
-  async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; }
-  $('#settings-btn').addEventListener('click',()=>{ $('#settings').hidden=!$('#settings').hidden; });
+  async function loadSettings(){ S=await api('/api/settings'); $('#data-dir').textContent=S.data||''; $('#tok-state').textContent=S.token?'saved':'not saved'; $('#psw-state').textContent=S.amd_psw?'saved':'not saved'; $('#stedi-state').textContent=S.stedi_key?'saved':'not saved'; $('#auto-update').checked=S.auto_update!==false; $('#repo-head').textContent=S.repo_head?('main at '+S.repo_head):'not downloaded yet - press Update scripts'; paintSetup(); }
+  // the Settings section sits at the bottom of the page: opening it must also bring it into view and put the cursor in the
+  // first empty field (William 10/12/2026: "when I click the settings button to add the AMD password no settings open")
+  function openSettings(open){ const s=$('#settings'); s.hidden=!open; document.body.style.overflow=open?'hidden':''; $('#settings-btn').textContent=open?'Close settings':'Settings'; $('#settings-btn').setAttribute('aria-expanded',open?'true':'false');
+    if(open){ setTimeout(()=>{ const first=[['#psw',S.amd_psw],['#tok',S.token],['#stedi',S.stedi_key]].find(p=>!p[1]); $(first?first[0]:'#psw').focus(); },60); } }
+  function paintSetup(){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean); const b=$('#setup'); b.hidden=!need.length; if(need.length) $('#setup-text').textContent='Before the first run: enter '+need.join(' and ')+' in Settings and press Save.'; }
+  $('#settings-btn').addEventListener('click',()=>{ openSettings($('#settings').hidden); });
+  $('#settings-close').addEventListener('click',()=>openSettings(false));
+  $('#setup-open').addEventListener('click',()=>openSettings(true));
+  let downOnBackdrop=false;   // a drag that starts in a field and ends on the backdrop must not close the panel
+  $('#settings').addEventListener('pointerdown',e=>{ downOnBackdrop=(e.target===$('#settings')); });
+  $('#settings').addEventListener('click',e=>{ if(e.target===$('#settings')&&downOnBackdrop) openSettings(false); downOnBackdrop=false; });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#settings').hidden) openSettings(false); });
   $('#cloud-btn').addEventListener('click',()=>{ $('#cloud').hidden=!$('#cloud').hidden; if(!$('#cloud').hidden) cloudRefresh(); });
   $('#quit-btn').addEventListener('click',async()=>{ await api('/api/quit',{}); document.body.innerHTML='<p style="padding:40px;font:600 16px system-ui">ehpa Billing Button closed. You can close this window.</p>'; });
   $('#save').addEventListener('click',async()=>{ try{ await api('/api/settings',{token:$('#tok').value,amd_psw:$('#psw').value,stedi_key:$('#stedi').value,auto_update:$('#auto-update').checked}); $('#tok').value='';$('#psw').value='';$('#stedi').value=''; setStatus('#set-status','Saved.'); await loadSettings(); }catch(e){ setStatus('#set-status','Could not save: '+e.message,true); } });
@@ -232,15 +273,20 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   // the button
   const trig=$('#trigger');
-  trig.addEventListener('click',()=>{ $('#confirm').hidden=false; $('#confirm-go').focus(); });
+  trig.addEventListener('click',()=>{ if(!S.amd_psw){ openSettings(true); $('#set-status').textContent='Save the AdvancedMD password first - the engine cannot log in without it.'; return; } $('#confirm').hidden=false; $('#confirm-go').focus(); });
   $('#confirm-no').addEventListener('click',()=>{ $('#confirm').hidden=true; });
   $('#confirm-go').addEventListener('click',fire);
   async function fire(){ $('#confirm').hidden=true; try{ await api('/api/run',{mode:mode,steps:steps(),packages:$('#packages').value.trim()}); say('Running ('+mode+') …'); $('#log').hidden=false; }catch(e){ say(e.message,'err'); } }
 
   // status polling (also the heartbeat that keeps the app alive while the window is open)
   let wasRunning=false;
-  async function poll(){ try{ const st=await api('/api/status?n=80'); trig.disabled=!!st.running; $('#log').textContent=(st.log||[]).join('\n'); if(st.running){ $('#log').hidden=false; say('Running ('+st.mode+') since '+when(new Date(st.started*1000).toISOString())+' …'); }
-      if(wasRunning&&!st.running){ say(st.last_rc===0?'Run finished.':'Run finished with problems (exit '+st.last_rc+') - see the report and the log.', st.last_rc===0?'ok':'err'); await loadReport(); await loadHistory(); await loadSettings(); }
+  function fmtElapsed(s){ s=Math.max(0,Math.round(s)); return (s>=3600?Math.floor(s/3600)+'h ':'')+Math.floor((s%3600)/60)+'m '+String(s%60).padStart(2,'0')+'s'; }
+  $('#stop-btn').addEventListener('click',async()=>{ if(!confirm('Stop the run now? The script that is working is cut off at once. AdvancedMD keeps whatever it already saved; nothing half-done is undone. No report is written for this run.')) return;
+    $('#stop-btn').disabled=true; try{ await api('/api/stop',{}); $('#run-title').textContent='Stopping …'; }catch(e){ say('Could not stop: '+e.message,'err'); } setTimeout(()=>{ $('#stop-btn').disabled=false; },4000); });
+  async function poll(){ try{ const st=await api('/api/status?n=80'); trig.disabled=!!st.running; $('#log').textContent=(st.log||[]).join('\n');
+      const bar=$('#runbar'); bar.hidden=!st.running;
+      if(st.running){ $('#log').hidden=false; if(!st.stopping) $('#run-title').textContent=(st.mode==='live'?'Live run':'Dry run')+' in progress'; $('#run-step').textContent=st.step?('Working on '+st.step):'Starting the engine …'; $('#run-time').textContent=st.started?fmtElapsed(Date.now()/1000-st.started):''; say(''); }
+      if(wasRunning&&!st.running){ say(st.stopped?'Stopped by you. The script that was working was cut off; no report was written for this run.':(st.last_rc===0?'Run finished.':(st.last_rc===3?'Live run not started: a Claude routine is running or due within 25 minutes. The report names the next safe start; a dry run is always allowed.':'Run finished with problems (exit '+st.last_rc+') - see the report and the log.')), st.last_rc===0?'ok':'err'); await loadReport(); await loadHistory(); await loadSettings(); }
       if(st.update) say(st.update);
       wasRunning=!!st.running; }catch(e){ say('The app behind this window is not answering: '+e.message,'err'); } }
   setInterval(poll,4000);
@@ -280,9 +326,12 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
 
   // cloud
   async function cloudRefresh(){ try{ const j=await api('/api/cloud/runs'); const box=$('#cloud-runs');
-      box.innerHTML=(j.runs||[]).map(r=>{ const st=r.status==='completed'?(r.conclusion==='success'?'ok':'bad'):'run'; return '<a class="rowi" href="'+esc(r.url)+'" target="_blank" rel="noopener" style="text-decoration:none"><span class="mono">'+esc(when(r.started))+'</span><span class="pill '+st+'">'+esc(r.status==='completed'?(r.conclusion||'done'):r.status)+'</span><span class="note">'+esc(r.title||'')+'</span><span></span></a>'; }).join('')||'<div class="note">No cloud run yet.</div>';
+      box.innerHTML=(j.runs||[]).map(r=>{ const live=r.status!=='completed'; const st=live?'run':(r.conclusion==='success'?'ok':(r.conclusion==='cancelled'?'dim':'bad'));
+        return '<div class="rowi"><a class="mono" href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(when(r.started))+'</a><span class="pill '+st+'">'+(live?'<span class="orbit mini" aria-hidden="true"><i></i><i></i><i></i></span> ':'')+esc(r.status==='completed'?(r.conclusion||'done'):String(r.status).replace('_',' '))+'</span><span class="note">'+esc(r.title||'')+'</span>'+(live&&r.id?'<button class="btn stop" type="button" data-cancel="'+esc(r.id)+'">Cancel</button>':'<span></span>')+'</div>'; }).join('')||'<div class="note">No cloud run yet.</div>';
       if(j.report){ renderReport(j.report,'cloud'); } setStatus('#cloud-status',''); }catch(e){ setStatus('#cloud-status','Cannot read GitHub: '+e.message,true); } }
   $('#cloud-refresh').addEventListener('click',cloudRefresh);
+  $('#cloud-runs').addEventListener('click',async e=>{ const b=e.target.closest('[data-cancel]'); if(!b) return; if(!confirm('Cancel this run on GitHub? The step in progress is cut off; nothing more is written.')) return; b.disabled=true;
+    try{ await api('/api/cloud/cancel',{run_id:b.dataset.cancel}); setStatus('#cloud-status','Cancel sent. GitHub stops the run in a few seconds; press Refresh.'); setTimeout(cloudRefresh,5000); }catch(err){ setStatus('#cloud-status','Could not cancel: '+err.message,true); b.disabled=false; } });
   $('#cloud-dry').addEventListener('click',()=>cloudRun('dry')); $('#cloud-live').addEventListener('click',()=>cloudRun('live'));
   async function cloudRun(m){ if(m==='live'&&!confirm('Run LIVE in the cloud now? This posts, releases, rebills and writes off by the standing rules.')) return; try{ await api('/api/cloud/run',{mode:m,steps:steps(),packages:$('#packages').value.trim(),note:'desktop app'}); setStatus('#cloud-status','Triggered ('+m+'). GitHub is starting the run; press Refresh in a minute.'); }catch(e){ setStatus('#cloud-status','GitHub refused: '+e.message,true); } }
 
@@ -313,8 +362,13 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   // heartbeat keeps the app alive while this window is open
   setInterval(()=>fetch('/api/heartbeat').catch(()=>{}),5000);
 
-  (async function boot(){ await loadSettings(); await loadReport(); await loadHistory(); await poll();
-    if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode(); $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } })();
+  (async function boot(){ await loadSettings();
+    // first open on a PC: nothing saved yet, so show the Settings section straight away with a plain note of what goes where
+    if(!S.amd_psw||!S.token){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean).join(' and ');
+      $('#set-status').textContent='Setup: enter '+need+' above and press Save. The Stedi key is optional.'; openSettings(true); } await loadReport(); await loadHistory(); await poll();
+    if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode();
+      if(!S.amd_psw){ say('Opened from a Run button: save the AdvancedMD password in Settings first, then press Manual Bill.','err'); }
+      else{ $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } } })();
 })();
 </script>
 </body>

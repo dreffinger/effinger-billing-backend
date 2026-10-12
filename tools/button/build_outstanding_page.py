@@ -128,9 +128,9 @@ ol.how{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
   </section>
 
   <section class="block settings" id="settings" hidden>
-    <h2>GitHub token</h2>
+    <h2>Settings</h2>
     <div class="card">
-      <p class="note">With a <b>fine-grained personal access token</b> for this one repository (Contents: read), this page pulls <span class="mono">reports/button/outstanding_latest.json</span> from <span class="mono">main</span> - the summary every Billing Button run writes. The token stays in this browser only (localStorage).</p>
+      <p class="note"><b>Inside claude.ai nothing needs to be set up:</b> this page refreshes through your GitHub connector, as you. Outside claude.ai, with a <b>fine-grained personal access token</b> for this one repository (Contents: read), it pulls <span class="mono">reports/button/outstanding_latest.json</span> from <span class="mono">main</span> - the summary every Billing Button run writes. The token stays in this browser only (localStorage).</p>
       <div class="field"><label for="tok">Token</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
       <div class="filters" style="margin-top:10px"><button class="btn primary" id="tok-save" type="button">Save in this browser</button><button class="btn" id="tok-forget" type="button">Forget</button></div>
       <div class="status" id="tok-status"></div>
@@ -157,12 +157,19 @@ ol.how{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
   $('#theme-btn').addEventListener('click',()=>{ theme=order[(order.indexOf(theme)+1)%order.length]; ls.set('ehpa-oc-theme',theme); paintTheme(); }); paintTheme();
 
   let tok=ls.get('ehpa-oc-gh-token')||'';
+  // inside claude.ai the page refreshes through the viewer's GitHub connector (the sandbox blocks direct fetch); the token is for copies opened elsewhere
+  let mcp=null, mcpReady=null;
+  function connector(){ if(mcpReady) return mcpReady; mcpReady=(window.claude&&typeof window.claude.use==='function'?window.claude.use('mcp'):Promise.resolve(null)).then(m=>{ mcp=m||null; return mcp; }).catch(()=>{ mcp=null; return null; }); return mcpReady; }
+  function ghErr(e){ const code=e&&e.code; const m={server_not_connected:'GitHub is not connected to claude.ai yet. Add it under claude.ai Settings, Connectors, then reload.', needs_reauth:'GitHub needs reconnecting in claude.ai Settings, Connectors.', not_in_manifest:'This page is not allowed to use GitHub for you. Open the page Permissions menu and allow GitHub.', approval_required:'The GitHub call was not allowed. Press again and choose Allow.', consent_required:'The GitHub call was not allowed. Press again and choose Allow.', server_unavailable:'GitHub did not answer in time. Try again in a moment.', tool_error:'GitHub reported: '+((e&&e.message)||'an error')}; return m[code]||((e&&e.message)||String(e)); }
+  function unwrap(res){ if(!res) return null; if(res.structuredContent!==undefined) return res.structuredContent; for(const b of (res.content||[])){ const t=(b.resource&&typeof b.resource.text==='string')?b.resource.text:(b.type==='text'?b.text:null); if(t==null) continue; try{ return JSON.parse(t); }catch(err){} } return res.payload!==undefined?res.payload:null; }
+  async function pull(){ if(mcp){ const d=unwrap(await mcp.callTool('github','get_file_contents',{owner:'dreffinger',repo:'effinger-billing-backend',path:'reports/button/outstanding_latest.json',ref:'refs/heads/main'},{cache:false})); if(!d||!d.schema) throw new Error('the snapshot could not be read'); return d; }
+    const r=await fetch('https://api.github.com/repos/'+REPO+'/contents/reports/button/outstanding_latest.json?ref=main',{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github.raw+json','X-GitHub-Api-Version':'2022-11-28'},cache:'no-store'}); if(!r.ok) throw new Error(r.status+' '+r.statusText); return r.json(); }
   $('#settings-btn').addEventListener('click',()=>{ $('#settings').hidden=!$('#settings').hidden; if(!$('#settings').hidden) $('#tok').focus(); });
   $('#tok-save').addEventListener('click',()=>{ tok=$('#tok').value.trim(); if(!tok){ setTok('Paste a token first.',true); return; } ls.set('ehpa-oc-gh-token',tok); setTok('Saved in this browser.'); refresh(); });
   $('#tok-forget').addEventListener('click',()=>{ tok=''; ls.del('ehpa-oc-gh-token'); $('#tok').value=''; setTok('Forgotten.'); });
   function setTok(m,err){ const s=$('#tok-status'); s.textContent=m; s.className='status'+(err?' err':' ok'); }
-  $('#refresh-btn').addEventListener('click',()=>{ if(!tok){ $('#settings').hidden=false; $('#tok').focus(); setTok('Save a token first.',true); return; } refresh(); });
-  async function refresh(){ try{ const r=await fetch('https://api.github.com/repos/'+REPO+'/contents/reports/button/outstanding_latest.json?ref=main',{headers:{'Authorization':'Bearer '+tok,'Accept':'application/vnd.github.raw+json','X-GitHub-Api-Version':'2022-11-28'},cache:'no-store'}); if(!r.ok) throw new Error(r.status+' '+r.statusText); D=await r.json(); render('GitHub main'); $('#refresh-btn').textContent='Refreshed'; setTimeout(()=>{ $('#refresh-btn').textContent='Refresh from GitHub'; },2500); }catch(e){ $('#src').textContent=' · GitHub refresh failed: '+e.message; } }
+  $('#refresh-btn').addEventListener('click',()=>{ if(!mcp&&!tok){ $('#settings').hidden=false; $('#tok').focus(); setTok(mcpReady?'Open this page inside claude.ai (it uses your GitHub connector there) or save a token first.':'Still connecting to claude.ai - try again in a moment.',true); return; } refresh(); });
+  async function refresh(){ try{ D=await pull(); render('GitHub main'); $('#refresh-btn').textContent='Refreshed'; setTimeout(()=>{ $('#refresh-btn').textContent='Refresh from GitHub'; },2500); }catch(e){ $('#src').textContent=' · GitHub refresh failed: '+(mcp?ghErr(e):e.message); } }
 
   // sorting state
   let sortP={k:'dollars',d:-1}, sortR={k:'days',d:-1}, showAll=false;
@@ -203,7 +210,7 @@ ol.how{margin:8px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
   $('#f-all').addEventListener('click',()=>{ showAll=true; renderRows(); });
   document.querySelectorAll('#payers th').forEach(th=>th.addEventListener('click',()=>{ const k=th.dataset.k; sortP= sortP.k===k?{k,d:-sortP.d}:{k,d:(k==='carrier'||k==='name')?1:-1}; render(); }));
   document.querySelectorAll('#rows th').forEach(th=>th.addEventListener('click',()=>{ const k=th.dataset.k; sortR= sortR.k===k?{k,d:-sortR.d}:{k,d:(k==='carriercode'||k==='dos')?1:-1}; renderRows(); }));
-  render(''); if(tok) refresh();
+  render(''); connector().then(()=>{ if(mcp) setTok('Using your GitHub connector in claude.ai. No token needed.'); if(mcp||tok) refresh(); });
 })();
 </script>
 </body>

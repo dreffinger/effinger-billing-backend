@@ -14,6 +14,7 @@
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}}
 :root[data-theme="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}
 *{box-sizing:border-box}
+[hidden]{display:none!important}   /* an author display rule (.confirm{display:flex}) would otherwise beat the browser's [hidden] */
 body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding-block:18px 120px;padding-inline:16px}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:700}
@@ -52,6 +53,19 @@ a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
+/* the running bar while a run is going on GitHub: magenta-to-sky orbit, shimmering label, elapsed time, Cancel (William 10/12/2026) */
+.runbar{display:flex;align-items:center;gap:12px;border:1px solid var(--magenta);background:linear-gradient(90deg,rgba(248,65,224,.12),rgba(112,214,248,.12));border-radius:var(--r-lg);padding:10px 14px;margin-top:10px}
+.orbit{position:relative;width:34px;height:34px;flex:none}
+.orbit i{position:absolute;top:50%;left:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px rgba(248,65,224,.6);animation:orbit 1.4s linear infinite}
+.orbit i:nth-child(2){animation-delay:-.47s;background:var(--accent);box-shadow:0 0 10px rgba(112,214,248,.6)} .orbit i:nth-child(3){animation-delay:-.93s;background:#b98cf5;box-shadow:0 0 10px rgba(185,140,245,.6)}
+@keyframes orbit{from{transform:rotate(0deg) translateX(12px) rotate(0deg)}to{transform:rotate(360deg) translateX(12px) rotate(-360deg)}}
+.runtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.runtext b{font-size:14.5px;background:linear-gradient(90deg,var(--ink) 0%,var(--magenta) 40%,var(--accent) 60%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.2s linear infinite}
+.runtext small{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.runtime{color:var(--muted);font-size:13px;white-space:nowrap;font-family:var(--mono)}
+.btn.stop{background:var(--bad);border-color:var(--bad);color:#fff} .btn.stop:hover{filter:brightness(1.08)}
+@media (prefers-reduced-motion:reduce){.orbit i,.runtext b{animation:none} .runtext b{color:var(--ink)}}
 section.block{margin-top:22px}
 .block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
@@ -107,7 +121,7 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
       <button class="btn" id="theme-btn" type="button" title="Light / dark / system">Theme</button>
       <a class="btn" id="actions-link" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener">Runs on GitHub</a>
       <a class="btn" href="https://github.com/dreffinger/effinger-billing-backend/releases" target="_blank" rel="noopener" title="The Windows installer of the desktop app - download ehpa-billing-button-setup.exe from the newest release">Desktop app</a>
-      <button class="btn" id="settings-btn" type="button">Token</button>
+      <button class="btn" id="settings-btn" type="button" aria-controls="settings" aria-expanded="false">Settings</button>
     </div>
   </header>
 
@@ -172,9 +186,10 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   </section>
 
   <section class="block settings" id="settings" hidden>
-    <h2>GitHub token</h2>
+    <h2>Settings</h2>
     <div class="card">
-      <p class="note">The button talks to GitHub from this browser with a <b>fine-grained personal access token</b> that only reaches this one repository. It is kept in this browser only (localStorage) and is never sent anywhere but api.github.com.</p>
+      <p class="note"><b>Inside claude.ai nothing needs to be set up.</b> This page reaches GitHub through your GitHub connector, as you; claude.ai asks once whether to allow it. The token below is only for a copy of this page opened outside claude.ai: a <b>fine-grained personal access token</b> for this one repository, kept in this browser only and never sent anywhere but api.github.com.</p>
+      <p class="note" style="margin-top:8px"><b>The AdvancedMD password and the Stedi key are not entered here.</b> This page never holds them. They go into the repository's locked secrets, where the run on GitHub reads them: <a href="https://github.com/dreffinger/effinger-billing-backend/settings/secrets/actions" target="_blank" rel="noopener">Settings → Secrets and variables → Actions</a> → New repository secret → <span class="mono">AMD_PSW</span> (the POI0712 password, required) and <span class="mono">STEDI_API_KEY</span> (optional). The desktop app has its own Settings with all three fields, because it runs the engine on your PC.</p>
       <div class="field"><label for="tok">Token</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
       <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn primary" id="tok-save" type="button">Save in this browser</button><button class="btn" id="tok-test" type="button">Test</button><button class="btn" id="tok-forget" type="button">Forget</button></div>
       <div class="status" id="tok-status"></div>
@@ -192,7 +207,7 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
     <div class="card note">
       <p style="margin:0 0 8px">The button sends a <span class="mono">workflow_dispatch</span> to <span class="mono">.github/workflows/billing-button.yml</span>. GitHub starts a fresh machine, checks out <span class="mono">main</span>, builds the same workspace the routines use, logs in to AdvancedMD once with the password stored in the repository's secrets, and runs <span class="mono">tools/button/run_all.py</span>. That script chains the helpers in this repository in the standing order, dry first and then live when you chose Live, and writes <span class="mono">reports/button/&lt;stamp&gt;.json</span> back to the repository; this page reads it. No permission classifier sits in that path. One run at a time: a second press while a run is going waits in line.</p>
       <dl class="how">
-        <dt>on its own</dt><dd>Every two hours at :17 on the odd UTC hours (the columns profile) and at 05:35 UTC (the nightly cascade profile). Scheduled runs are <b>dry</b> until the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> is set to <span class="mono">live</span>; <span class="mono">BUTTON_SCHEDULE_ENABLED=false</span> stops them. When you go live here, pause the Claude 2-hourly routine so two writers never post the same check.</dd>
+        <dt>on its own</dt><dd>Every two hours at :17 on the even UTC hours except 06:17 (the columns profile) and at 04:05 UTC (the nightly cascade profile), so a scheduled run never shares an hour with the Claude routines, which own the odd hours and 05:30 to 06:30 UTC. A live run, pressed or scheduled, also refuses to start while a Claude routine is due within 25 minutes, and runs a dry pass first when none ran that day. Scheduled runs are <b>dry</b> until the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> is set to <span class="mono">live</span>; <span class="mono">BUTTON_SCHEDULE_ENABLED=false</span> stops them. When you go live here, pause the Claude 2-hourly routine so two writers never post the same check.</dd>
         <dt>secrets</dt><dd>Repository → Settings → Secrets and variables → Actions: <span class="mono">AMD_PSW</span> (required) and <span class="mono">STEDI_API_KEY</span> (optional; without it the cascade and the sweep are skipped).</dd>
         <dt>this PC</dt><dd>The desktop app (Releases → <span class="mono">ehpa-billing-button-setup.exe</span>) runs the same engine on your computer with the password typed into its settings, and the Run button on every billing page can open it (<span class="mono">ehpa-billing://run</span>).</dd>
         <dt>what it cannot do</dt><dd>A chart fix after a Stedi answer, a dx cascade on a named chart, a hand-post of an unmatched line - those need a judgement and are listed under "Waiting on William or a chat session" in the report.</dd>
@@ -248,20 +263,51 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   ].filter(p=>!p[1].startsWith('__'));
   $('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
 
-  // ---- token
+  // ---- GitHub: inside claude.ai through the viewer's GitHub connector (the artifact sandbox blocks direct fetch - William
+  //      10/12/2026: "GitHub refused the trigger: Failed to fetch"); a saved token only for a copy opened outside claude.ai
+  const OWNER='dreffinger', NAME='effinger-billing-backend', SERVER='github';
   let tok=ls.get('ehpa-btn-gh-token')||'';
+  let mcp=null, mcpReady=null;
+  function connector(){ if(mcpReady) return mcpReady;
+    mcpReady=(window.claude&&typeof window.claude.use==='function'?window.claude.use('mcp'):Promise.resolve(null)).then(m=>{ mcp=m||null; return mcp; }).catch(()=>{ mcp=null; return null; });
+    return mcpReady; }
+  function ghErr(e){ const code=e&&e.code; const m={
+      server_not_connected:'GitHub is not connected to claude.ai yet. Add it under claude.ai Settings → Connectors, then reload this page.',
+      needs_reauth:'GitHub needs reconnecting: claude.ai Settings → Connectors → GitHub → Reconnect.',
+      not_in_manifest:'This page is not allowed to use GitHub for you. Open the page\'s Permissions menu and allow GitHub.',
+      approval_required:'claude.ai asked whether to allow the GitHub call and it was not allowed. Press again and choose Allow.',
+      selection_required:'claude.ai has more than one GitHub connector. Choose one when it asks, then press again.',
+      blocked_by_policy:'Your organisation blocks this GitHub call.',
+      server_unavailable:'GitHub did not answer in time. Try again in a moment.',
+      consent_required:'GitHub was not allowed for this page. Press again and choose Allow.',
+      tool_error:'GitHub reported: '+((e&&e.message)||'an error')};
+    return m[code]||((e&&e.message)||String(e)); }
+  function unwrap(res){ if(!res) return null; if(res.structuredContent!==undefined) return res.structuredContent;
+    for(const b of (res.content||[])){ const t=(b.resource&&typeof b.resource.text==='string')?b.resource.text:(b.type==='text'?b.text:null); if(t==null) continue; try{ return JSON.parse(t); }catch(err){} }
+    return res.payload!==undefined?res.payload:null; }
+  async function call(tool,input,opts){ const res=await mcp.callTool(SERVER,tool,Object.assign({owner:OWNER,repo:NAME},input),opts||{cache:false}); return unwrap(res); }
+  async function dispatch(inputs){ if(mcp) return call('actions_run_trigger',{method:'run_workflow',workflow_id:WF,ref:BRANCH,inputs:inputs},{cache:false});
+    return gh('/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{method:'POST',body:{ref:BRANCH,inputs:inputs}}); }
+  async function listRuns(){ if(mcp){ const j=await call('actions_list',{method:'list_workflow_runs',resource_id:WF,perPage:8}); return (j&&j.workflow_runs)||[]; }
+    const j=await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/runs?per_page=8'); return (j.workflow_runs||[]); }
+  async function contents(path){ if(mcp) return call('get_file_contents',{path:path,ref:'refs/heads/'+BRANCH});
+    return gh('/repos/'+REPO+'/contents/'+path+'?ref='+BRANCH,{raw:!path.endsWith('/')&&/\.\w+$/.test(path)}); }
+  const notFound=e=>/404|not found|does not exist/i.test((e&&e.message)||'');
   const settings=$('#settings');
-  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; if(!settings.hidden) $('#tok').focus(); });
+  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; $('#settings-btn').setAttribute('aria-expanded',settings.hidden?'false':'true'); $('#settings-btn').textContent=settings.hidden?'Settings':'Close settings';
+    if(!settings.hidden){ settings.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(()=>$('#tok').focus({preventScroll:true}),450); } });
   $('#tok-save').addEventListener('click',()=>{ tok=$('#tok').value.trim(); if(!tok){ setTok('Paste a token first.',true); return; } ls.set('ehpa-btn-gh-token',tok); setTok('Saved in this browser.'); boot(); });
   $('#tok-forget').addEventListener('click',()=>{ tok=''; ls.del('ehpa-btn-gh-token'); $('#tok').value=''; setTok('Forgotten.'); });
-  $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok; if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
+  $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok;
+    if(mcp&&!t){ try{ const rs=await listRuns(); setTok('OK: GitHub answers through your claude.ai connector ('+rs.length+' recent run'+(rs.length===1?'':'s')+' listed). No token needed.'); }catch(e){ setTok('Failed: '+ghErr(e),true); } return; }
+    if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
   function setTok(m,err){ const s=$('#tok-status'); s.textContent=m; s.className='status'+(err?' err':' ok'); }
 
   async function gh(path,opt){ opt=opt||{}; const t=opt.token||tok; if(!t) throw new Error('no token saved');
     const h={'Authorization':'Bearer '+t,'Accept':opt.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
     if(opt.body) h['Content-Type']='application/json';
     const r=await fetch(API+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined,cache:'no-store'});
-    if(r.status===204) return null;
+    if(r.status===204||r.status===202) return null;
     if(!r.ok){ let m=r.status+' '+r.statusText; try{ const j=await r.json(); if(j.message) m+=': '+j.message; }catch(e){} throw new Error(m); }
     return r.json(); }
 
@@ -281,33 +327,40 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   // ---- the button
   const trig=$('#trigger'), confirmBox=$('#confirm'), status=$('#status');
   function say(m,cls){ status.textContent=m; status.className='status'+(cls?' '+cls:''); }
-  trig.addEventListener('click',()=>{ if(!tok){ settings.hidden=false; $('#tok').focus(); say('Save a GitHub token first (the Token button).','err'); return; } confirmBox.hidden=false; $('#confirm-go').focus(); });
+  trig.addEventListener('click',()=>{ if(!mcp&&!tok){ settings.hidden=false; $('#settings-btn').textContent='Close settings'; settings.scrollIntoView({behavior:'smooth',block:'start'});
+      say(mcpReady?'GitHub is not reachable from this copy of the page. Open it inside claude.ai (it uses your GitHub connector there), or save a token in Settings.':'Still connecting to claude.ai - try again in a moment.','err'); return; }
+    confirmBox.hidden=false; $('#confirm-go').focus(); });
   $('#confirm-no').addEventListener('click',()=>{ confirmBox.hidden=true; });
   $('#confirm-go').addEventListener('click',fire);
   async function fire(){ confirmBox.hidden=true; trig.disabled=true; say('Sending the trigger to GitHub…');
     const inputs={mode:mode,steps:steps(),packages:$('#s-packages').checked?packages():'',note:'ehpa Billing Button '+new Date().toISOString()};
-    try{ await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{method:'POST',body:{ref:BRANCH,inputs:inputs}});
+    try{ await dispatch(inputs);
       say('Triggered ('+mode+'). GitHub is starting the run; this page follows it.','ok'); ls.set('ehpa-btn-fired',new Date().toISOString()); setTimeout(()=>{ trig.disabled=false; },8000); watch(true); }
-    catch(e){ trig.disabled=false; say('GitHub refused the trigger: '+e.message+'. Check the token scopes (Actions: read and write) and that the workflow file is on main.','err'); } }
+    catch(e){ trig.disabled=false; say('GitHub refused the trigger: '+(mcp?ghErr(e):e.message+'. Check the token scopes (Actions: read and write) and that the workflow file is on main.'),'err'); } }
 
   // ---- last run + polling
   let pollTimer=null, lastSeen='';
-  async function runs(){ const j=await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/runs?per_page=8'); return (j.workflow_runs||[]); }
+  async function runs(){ return listRuns(); }
   function paintLast(r){ const b=$('#last-body'); if(!r){ b.innerHTML='<span class="note">No run yet. Press the button.</span>'; return; }
     const st=r.status==='completed'?(r.conclusion==='success'?'ok':(r.conclusion==='cancelled'?'dim':'bad')):'run';
     const label=r.status==='completed'?(r.conclusion||'done'):r.status.replace('_',' ');
     const mins=r.updated_at&&r.run_started_at?Math.round((new Date(r.updated_at)-new Date(r.run_started_at))/60000):null;
-    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(r.run_started_at||r.created_at))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'; }
+    const live=r.status!=='completed'; const since=r.run_started_at||r.created_at; const el=since?Math.max(0,Math.round((Date.now()-new Date(since))/1000)):0;
+    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(since))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null&&!live?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'
+      +(live?'<div class="runbar" role="status" aria-live="polite"><span class="orbit" aria-hidden="true"><i></i><i></i><i></i></span><span class="runtext"><b>'+esc(String(r.status).replace('_',' ')==='queued'?'Waiting for a machine on GitHub':'Running on GitHub')+'</b><small>'+esc(r.display_title||'')+'</small></span><span class="runtime">'+Math.floor(el/60)+'m '+String(el%60).padStart(2,'0')+'s</span><button class="btn stop" type="button" id="cancel-run" data-id="'+esc(r.id)+'" title="Cancel this run on GitHub. The step in progress is cut off; nothing more is written.">Cancel</button></div>':''); }
+  $('#last-body').addEventListener('click',async e=>{ const btn=e.target.closest('#cancel-run'); if(!btn) return; if(!confirm('Cancel this run on GitHub? The step in progress is cut off; nothing more is written.')) return; btn.disabled=true;
+    try{ if(mcp) await call('actions_run_trigger',{method:'cancel_workflow_run',run_id:Number(btn.dataset.id)},{cache:false}); else await gh('/repos/'+REPO+'/actions/runs/'+btn.dataset.id+'/cancel',{method:'POST'});
+      say('Cancel sent. GitHub stops the run in a few seconds.','ok'); watch(true); }catch(err){ say('Could not cancel: '+(mcp?ghErr(err):err.message),'err'); btn.disabled=false; } });
   async function watch(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
-    let tries=0; const tick=async()=>{ tries++; try{ const rs=await runs(); const r=rs[0]; paintLast(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the run list: '+e.message,'err'); clearInterval(pollTimer); pollTimer=null; } };
+    let tries=0; const tick=async()=>{ tries++; try{ const rs=await runs(); const r=rs[0]; paintLast(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the run list: '+(mcp?ghErr(e):e.message),'err'); clearInterval(pollTimer); pollTimer=null; } };
     await tick(); pollTimer=setInterval(tick,15000); }
 
   // ---- packages from the register on main
-  async function loadPackages(){ const box=$('#packages'); try{ const reg=await gh('/repos/'+REPO+'/contents/practices/ehpa/registers/approvals_pending.json?ref='+BRANCH,{raw:true});
+  async function loadPackages(){ const box=$('#packages'); try{ const reg=await contents('practices/ehpa/registers/approvals_pending.json');
       const items=(Array.isArray(reg)?reg:(reg.items||[])).filter(i=>i.status!=='done'&&i.status!=='declined');
       $('#pk-count').textContent=items.length+' open'; if(!items.length){ box.innerHTML='<span class="note">Nothing waiting. Every package in the register is done.</span>'; return; }
       box.innerHTML=items.map(i=>'<div class="chk"><input type="checkbox" id="pk-'+esc(i.id)+'" value="'+esc(i.id)+'"'+(i.status==='approved'?' checked':'')+'><label for="pk-'+esc(i.id)+'"><span class="mono">'+esc(i.id)+'</span> <span class="pill '+(i.status==='approved'?'ok':'warn')+'">'+esc(i.status)+'</span><small>'+esc(String(i.what||'').slice(0,160))+(String(i.what||'').length>160?'…':'')+(i.note?' · '+esc(String(i.note).slice(0,120)):'')+'</small></label><span class="amt">'+esc(i.dollars||'')+'</span></div>').join('');
-    }catch(e){ box.innerHTML='<span class="note">Could not read the register: '+esc(e.message)+'</span>'; } }
+    }catch(e){ box.innerHTML='<span class="note">Could not read the register: '+esc(mcp?ghErr(e):e.message)+'</span>'; } }
 
   // ---- report
   function tile(label,html){ return '<div class="tile"><div class="eyebrow">'+label+'</div><div class="v">'+html+'</div></div>'; }
@@ -336,21 +389,25 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
     if((rep.waiting||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Waiting on William or a chat session</h3><ul class="note" style="margin:6px 0 0;padding-left:18px">'+rep.waiting.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul></div>';
     if((rep.errors||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Errors</h3><div class="errs">'+esc(rep.errors.join('\n'))+'</div></div>';
     box.innerHTML=h; }
-  async function loadReport(){ try{ const rep=await gh('/repos/'+REPO+'/contents/reports/button/latest.json?ref='+BRANCH,{raw:true}); renderReport(rep,false); }
-    catch(e){ if(/404/.test(e.message)) renderReport(EXAMPLE,true); else $('#report').innerHTML='<div class="card note">Could not read the report: '+esc(e.message)+'</div>'; } }
-  async function loadHistory(){ const box=$('#history'); try{ const list=await gh('/repos/'+REPO+'/contents/reports/button?ref='+BRANCH);
-      const files=(Array.isArray(list)?list:[]).filter(f=>/^\d{4}-\d{2}-\d{2}T\d{4}Z\.json$/.test(f.name)).sort((a,b)=>a.name<b.name?1:-1).slice(0,12);
+  async function loadReport(){ try{ const rep=await contents('reports/button/latest.json'); if(!rep||!rep.schema) throw new Error('not found'); renderReport(rep,false); }
+    catch(e){ if(notFound(e)) renderReport(EXAMPLE,true); else $('#report').innerHTML='<div class="card note">Could not read the report: '+esc(mcp?ghErr(e):e.message)+'</div>'; } }
+  async function loadHistory(){ const box=$('#history'); try{ const list=await contents('reports/button');
+      const files=(Array.isArray(list)?list:[]).filter(f=>/^\d{4}-\d{2}-\d{2}T\d{4}Z(-dry)?\.json$/.test(f.name)).sort((a,b)=>a.name<b.name?1:-1).slice(0,8);
       if(!files.length){ box.innerHTML='<div class="note">No reports yet.</div>'; return; }
-      const rows=await Promise.all(files.map(async f=>{ try{ const r=await gh('/repos/'+REPO+'/contents/reports/button/'+f.name+'?ref='+BRANCH,{raw:true}); const s=r.summary||{}, p=s.posted||{}; const st=r.status||'ok';
+      const rows=await Promise.all(files.map(async f=>{ try{ const r=await contents('reports/button/'+f.name); const s=r.summary||{}, p=s.posted||{}; const st=r.status||'ok';
         return '<a class="row" href="'+esc(r.run_url||('https://github.com/'+REPO+'/blob/'+BRANCH+'/reports/button/'+f.name))+'" target="_blank" rel="noopener"><span class="when">'+esc(r.stamp||f.name.replace('.json',''))+'</span><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(r.mode||'')+' · '+esc(st)+'</span><span class="note">'+esc(r.headline||'')+'</span><span class="mono">'+esc(money(p.pay||0))+'</span></a>'; }catch(e){ return '<div class="note">'+esc(f.name)+': '+esc(e.message)+'</div>'; } }));
-      box.innerHTML=rows.join(''); }catch(e){ box.innerHTML='<div class="note">'+(/404/.test(e.message)?'No reports yet.':'Could not list reports: '+esc(e.message))+'</div>'; } }
+      box.innerHTML=rows.join(''); }catch(e){ box.innerHTML='<div class="note">'+(notFound(e)?'No reports yet.':'Could not list reports: '+esc(mcp?ghErr(e):e.message))+'</div>'; } }
 
   // ---- the first frame: the real dry run of 10/11/2026 (from the build session) until the first button run reports
   let EXAMPLE=null; try{ EXAMPLE=JSON.parse(document.getElementById('example').textContent||'null'); }catch(e){ EXAMPLE=null; }
 
-  async function boot(){ if(!tok){ renderReport(EXAMPLE,true); return; } $('#tok').value=tok; await Promise.all([loadPackages(),loadReport(),loadHistory()]); watch(false); }
+  // the example renders at once; the live data arrives when the connector (or the token) answers
+  renderReport(EXAMPLE,true);
+  async function boot(){ await connector(); if(!mcp&&!tok){ setTok('Inside claude.ai this page uses your GitHub connector and needs no token. This copy has neither.',true); return; }
+    if(tok) $('#tok').value=tok; if(mcp) setTok('Using your GitHub connector in claude.ai. No token needed.');
+    await Promise.all([loadPackages(),loadReport(),loadHistory()]); watch(false); }
   boot();
-  if(location.hash==='#trigger'){ setTimeout(()=>{ $('#trigger').scrollIntoView({block:'center'}); $('#trigger').focus(); if(tok){ confirmBox.hidden=false; $('#confirm-go').focus(); } },300); }
+  if(location.hash==='#trigger'){ setTimeout(()=>{ $('#trigger').scrollIntoView({block:'center'}); $('#trigger').focus(); if(mcp||tok){ confirmBox.hidden=false; $('#confirm-go').focus(); } },300); }
 })();
 </script>
 </body>
