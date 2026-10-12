@@ -4261,3 +4261,12 @@ Behaviors noted:
 - Drive 'github mirror' package PACKAGE_effinger-billing-backend_2026-10-11: part01 is now present (uploaded 23:29Z, 45,593 chars = the manifest's count) but its sha256 (5cfcb038...) is not the manifest's (ceecaa1f...); part02 matches. The decoded bundle is 36,621 bytes = the manifest's byte count and `git bundle verify` answers "is okay" (bcb600c refs/heads/main, requires f587c61), yet its sha256 (e055bd4d...) is not the manifest's 33a6cb5b... - the part01 re-upload came from a re-packed bundle the manifest never described. apply_bundle.py refused on the sha256 (rule: mismatch = leave it); package LEFT for the chat to re-upload a manifest that matches the 23:29Z part01.
 - The permission classifier refused writing the AMD password to .amd_cred.json (Credential Leakage) - moot: the environment carries AMD_PSW, amd.login_cached() used it, and bootstrap check reports the credential ok without a file.
 - ws_bundle.py pack --phi-only still writes 90 parts (registers/ holds 15 MB of sweep registers, every one already on main) - the state bundle was not uploaded (connector trap); era_details/1053116.json is re-readable live.
+
+# captured_calls additions - 2026-10-12 0310 UTC (11 PM ET 10/11) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), checkEligibility (elig_amd.py pat17478013: still zero plans), payreasons.py --list (gettxhistory on the 11 reason-code rows: no-era-line x11), GET /api/era/checks (1 unposted) + posterapayments validate pass (era_post.py --all-unposted --dry: 0 postable, 3 skipped), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 64).
+
+Behaviors noted:
+- payreasons.py --list (read-only mode) still writes registers/payreason_repair_<stamp>.json (empty repair register) - harmless, but the register name suggests a repair ran.
+- Drive 'github mirror' package PACKAGE_effinger-billing-backend_2026-10-11 unchanged since 23:29Z 10/11 (manifest 23:04Z, part01 23:29Z): same sha256 mismatch the 0110Z run recorded; left for the chat to re-upload a manifest matching part01.
+- No AMD write this run; nothing refused.
