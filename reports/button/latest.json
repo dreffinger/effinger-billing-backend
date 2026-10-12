@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T1130Z",
+ "stamp": "2026-10-12T1347Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38243008154",
- "started": "2026-10-12T11:30:03Z",
- "ended": "2026-10-12T11:32:18Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38258185466",
+ "started": "2026-10-12T13:47:51Z",
+ "ended": "2026-10-12T13:50:10Z",
  "summary": {
   "columns": {
    "before": {
@@ -67,17 +67,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "911 helpers into /home/claude/unbilled",
+   "summary": "912 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 911,
-    "registers": 842,
+    "helpers copied": 912,
+    "registers": 851,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T11:30:03Z",
-   "ended": "2026-10-12T11:30:03Z"
+   "started": "2026-10-12T13:47:51Z",
+   "ended": "2026-10-12T13:47:51Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T11:30:03Z",
-   "ended": "2026-10-12T11:32:13Z"
+   "started": "2026-10-12T13:47:51Z",
+   "ended": "2026-10-12T13:50:05Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T11:32:13Z",
-   "ended": "2026-10-12T11:32:16Z"
+   "started": "2026-10-12T13:50:05Z",
+   "ended": "2026-10-12T13:50:09Z"
   },
   {
    "name": "packages",
@@ -161,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T11:32:16Z",
-   "ended": "2026-10-12T11:32:16Z"
+   "started": "2026-10-12T13:50:09Z",
+   "ended": "2026-10-12T13:50:09Z"
   },
   {
    "name": "outstanding",
@@ -265,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T11:32:16Z",
-   "ended": "2026-10-12T11:32:18Z"
+   "started": "2026-10-12T13:50:09Z",
+   "ended": "2026-10-12T13:50:10Z"
   }
  ],
  "packages": [],
