@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-11T2329Z",
- "mode": "dry",
+ "stamp": "2026-10-12T0343Z",
+ "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00 (dry run - nothing written)",
- "note": "dry run from the build session (clean engine)",
- "run_url": "",
- "started": "2026-10-11T23:29:58Z",
- "ended": "2026-10-11T23:33:13Z",
+ "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38200864744",
+ "started": "2026-10-12T03:43:25Z",
+ "ended": "2026-10-12T03:45:42Z",
  "summary": {
   "columns": {
    "before": {
@@ -70,14 +70,14 @@
    "summary": "910 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 910,
-    "registers": 822,
-    "python": "/usr/bin/python3"
+    "registers": 830,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-11T23:29:58Z",
-   "ended": "2026-10-11T23:29:59Z"
+   "started": "2026-10-12T03:43:25Z",
+   "ended": "2026-10-12T03:43:26Z"
   },
   {
    "name": "columns",
@@ -91,10 +91,11 @@
     "exclusions": 0,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
     "unbilled reason-code rows": 11,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 5,
-    "unbilled releasable": 0,
+    "unbilled released": 0,
     "payreasons no-era-line": 11
    },
    "dollars": {},
@@ -119,18 +120,18 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-11T23:29:59Z",
-   "ended": "2026-10-11T23:33:01Z"
+   "started": "2026-10-12T03:43:26Z",
+   "ended": "2026-10-12T03:45:35Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $71.00 -> 1 checks / $71.00 (dry - nothing posted)",
+   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
    "counts": {
     "era_post lines": 0,
     "checks dismissed": 0,
-    "checks held": 0
+    "checks held": 1
    },
    "dollars": {
     "unposted before": 71.0,
@@ -148,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-11T23:33:01Z",
-   "ended": "2026-10-11T23:33:09Z"
+   "started": "2026-10-12T03:45:35Z",
+   "ended": "2026-10-12T03:45:41Z"
   },
   {
    "name": "packages",
@@ -160,20 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-11T23:33:09Z",
-   "ended": "2026-10-11T23:33:09Z"
-  },
-  {
-   "name": "cred",
-   "title": "Credentialing check",
-   "status": "ok",
-   "summary": "NPPES: 3 records, 0 changed | LEIE: {'error': \"HTTPSConnectionPool(host='oig.hhs.gov', port=443): Max retries exceeded with url: /exclusions/downloadables/UPDATED.csv \"} | Reminders due: none",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-11T23:33:09Z",
-   "ended": "2026-10-11T23:33:11Z"
+   "started": "2026-10-12T03:45:41Z",
+   "ended": "2026-10-12T03:45:41Z"
   },
   {
    "name": "outstanding",
@@ -195,94 +184,95 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1621,
      "dollars": 155487.01,
-     "oldest_days": 1061
+     "oldest_days": 1062
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 197,
      "dollars": 36758.34,
-     "oldest_days": 1245
+     "oldest_days": 1246
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 126,
      "dollars": 19280.93,
-     "oldest_days": 398
+     "oldest_days": 399
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 91,
      "dollars": 11255.5,
-     "oldest_days": 1019
+     "oldest_days": 1020
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 59,
      "dollars": 5623.77,
-     "oldest_days": 809
+     "oldest_days": 810
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 52,
      "dollars": 4744.13,
-     "oldest_days": 586
+     "oldest_days": 587
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 27,
      "dollars": 4587.97,
-     "oldest_days": 1130
+     "oldest_days": 1131
     },
     {
      "carrier": "AET07",
      "name": "AETNA",
      "visits": 30,
      "dollars": 4534.22,
-     "oldest_days": 342
+     "oldest_days": 343
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 25,
      "dollars": 4185.24,
-     "oldest_days": 758
+     "oldest_days": 759
     },
     {
      "carrier": "WEL04",
      "name": "WELLCARE",
      "visits": 36,
      "dollars": 3186.73,
-     "oldest_days": 578
+     "oldest_days": 579
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 19,
      "dollars": 3041.6,
-     "oldest_days": 83
+     "oldest_days": 84
     },
     {
      "carrier": "SIM01",
      "name": "SIMPLY HEALTHCARE MCD PLANS",
      "visits": 15,
      "dollars": 2591.12,
-     "oldest_days": 93
+     "oldest_days": 94
     }
    ],
    "errors": [],
-   "started": "2026-10-11T23:33:11Z",
-   "ended": "2026-10-11T23:33:13Z"
+   "started": "2026-10-12T03:45:41Z",
+   "ended": "2026-10-12T03:45:42Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line"
+  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line",
+  "ERA check 1053116 held by era_clear: UNI20 W0020208 $168.59: 0 postable / 0 unrecorded lines - left on the list"
  ],
  "errors": []
 }
