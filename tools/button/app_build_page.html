@@ -180,7 +180,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
     <div class="group"><h3>The cloud runner <small>GitHub does the work on a borrowed machine</small></h3>
       <div class="files">
         <div class="file"><span class="path">.github/workflows/billing-button.yml</span><span class="lang yml">YAML · 204 lines</span>
-          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the even UTC hours for the columns profile, 04:35Z for the cascade profile, so they never share an hour with the Claude routines). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
+          <p class="what"><b>The instruction sheet GitHub follows.</b> When it starts (the button, or two schedules: every two hours at :17 on the even UTC hours for the columns profile, 04:05Z for the cascade profile, so they never share an hour with the Claude routines). What machine to borrow (Ubuntu). What to install (Python 3.12, two libraries). Where the password comes from (the repository secret <span class="mono">AMD_PSW</span>). The one command that starts the engine. Then: commit the report back to the main branch, scrub the logs for PHI, keep them 14 days, delete the session file.</p>
           <p class="change"><b>Ask here for:</b> a schedule change, a new input on the button (a new choice), a longer time limit, a different branch, keeping logs longer or shorter.</p>
         </div>
         <div class="file"><span class="path">.github/workflows/desktop-build.yml</span><span class="lang yml">YAML · 81 lines</span>
@@ -279,11 +279,11 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
         <span class="n">default</span>: dry
   <span class="n">schedule</span>:                     <span class="c"># the clock, in UTC: minute hour day month weekday</span>
     - <span class="n">cron</span>: <span class="s">"17 0,2,4,6,8,10,12,14,16,18,20,22 * * *"</span>
-    - <span class="n">cron</span>: <span class="s">"35 4 * * *"</span>
+    - <span class="n">cron</span>: <span class="s">"5 4 * * *"</span>
 
 <span class="n">concurrency</span>:
   <span class="n">group</span>: billing-button          <span class="c"># one run at a time; a second press waits in line</span></pre>
-      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>35 4 * * *</code> is "04:35 every day". Times are UTC, so 04:35Z is 12:35 AM Eastern in summer and 11:35 PM the evening before in winter. The even hours are the button's and the odd hours are the Claude routines', so the two never run in the same hour.</p>
+      <p class="why">The five cron fields read <em>minute, hour, day of month, month, day of week</em>. <code>5 4 * * *</code> is "04:05 every day". Times are UTC, so 04:05Z is 12:05 AM Eastern in summer and 11:05 PM the evening before in winter. It sits a full hour clear of the Claude run at 05:08, because the engine refuses a live start within 25 minutes of one and GitHub's clock runs a few minutes late. The even hours are the button's and the odd hours are the Claude routines', so the two never run in the same hour.</p>
     </div>
 
     <div class="card" style="margin-top:12px">
@@ -448,7 +448,7 @@ ul,ol{margin:6px 0 0;padding-left:22px} li+li{margin-top:5px}
       <p>What you learn: the page is a text file, the words you see are in it verbatim, and publishing is a separate step from editing.</p>
     </div></details>
     <details><summary>Exercise 2 · Move a schedule by ten minutes (YAML)</summary><div class="body">
-      <p>In <span class="mono">.github/workflows/billing-button.yml</span>, the line <code>- cron: "35 4 * * *"</code> is the nightly cascade. Change 35 to 45. That is the whole change. GitHub picks it up as soon as it is on main.</p>
+      <p>In <span class="mono">.github/workflows/billing-button.yml</span>, the line <code>- cron: "5 4 * * *"</code> is the nightly cascade. Change 35 to 45. That is the whole change. GitHub picks it up as soon as it is on main.</p>
       <p>What you learn: cron's five fields, that the clock is UTC, and that a schedule is one line.</p>
     </div></details>
     <details><summary>Exercise 3 · Run the engine on your own PC, read-only, no AdvancedMD (Python)</summary><div class="body">

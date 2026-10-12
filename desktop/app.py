@@ -310,7 +310,7 @@ class H(http.server.BaseHTTPRequestHandler):
             os.makedirs(REPORTS, exist_ok=True)
             out = []
             for f in sorted(os.listdir(REPORTS), reverse=True):
-                if re.match(r"^\d{4}-\d{2}-\d{2}T\d{4}Z\.json$", f):
+                if re.match(r"^\d{4}-\d{2}-\d{2}T\d{4}Z(-dry)?\.json$", f):   # the dry pass before a live run is its own report
                     try:
                         r = json.load(open(os.path.join(REPORTS, f), encoding="utf-8"))
                         out.append({"stamp": r.get("stamp"), "mode": r.get("mode"), "status": r.get("status"), "headline": r.get("headline"),

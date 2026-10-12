@@ -75,7 +75,7 @@ never in the repository.
 | When (UTC) | Profile | Mode |
 |---|---|---|
 | :17 on the even hours (00,02,...,22) | `columns` | `BUTTON_SCHEDULE_MODE` |
-| 04:35 | `cascade` | `BUTTON_SCHEDULE_MODE` |
+| 04:05 | `cascade` | `BUTTON_SCHEDULE_MODE` |
 
 The Claude routines own the odd hours (the 2-hourly backend billing run at :08) and 05:30Z (the
 nightly cascade), so a scheduled button run never shares an hour with them (William 10/12/2026).

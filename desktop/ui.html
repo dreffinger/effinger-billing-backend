@@ -47,6 +47,8 @@ a{color:var(--accent)}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
 section.block{margin-top:22px}
+/* an author display rule (.confirm{display:flex}, .overlay{display:grid}) beats the browser's [hidden]{display:none}; this keeps hidden meaning hidden */
+[hidden]{display:none!important}
 /* Settings is a panel over the page, not a section at the bottom (William 10/12/2026: "there is no place that the settings button opens") */
 .overlay{position:fixed;inset:0;z-index:60;background:rgba(4,29,33,.8);overflow:auto;padding:28px 16px;display:grid;place-items:start center}
 .overlay[hidden]{display:none}
@@ -245,7 +247,9 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
   $('#settings-btn').addEventListener('click',()=>{ openSettings($('#settings').hidden); });
   $('#settings-close').addEventListener('click',()=>openSettings(false));
   $('#setup-open').addEventListener('click',()=>openSettings(true));
-  $('#settings').addEventListener('click',e=>{ if(e.target===$('#settings')) openSettings(false); });
+  let downOnBackdrop=false;   // a drag that starts in a field and ends on the backdrop must not close the panel
+  $('#settings').addEventListener('pointerdown',e=>{ downOnBackdrop=(e.target===$('#settings')); });
+  $('#settings').addEventListener('click',e=>{ if(e.target===$('#settings')&&downOnBackdrop) openSettings(false); downOnBackdrop=false; });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#settings').hidden) openSettings(false); });
   $('#cloud-btn').addEventListener('click',()=>{ $('#cloud').hidden=!$('#cloud').hidden; if(!$('#cloud').hidden) cloudRefresh(); });
   $('#quit-btn').addEventListener('click',async()=>{ await api('/api/quit',{}); document.body.innerHTML='<p style="padding:40px;font:600 16px system-ui">ehpa Billing Button closed. You can close this window.</p>'; });
@@ -362,7 +366,9 @@ pre.log{background:var(--hero);color:#cfe8ee;border-radius:var(--r-md);padding:1
     // first open on a PC: nothing saved yet, so show the Settings section straight away with a plain note of what goes where
     if(!S.amd_psw||!S.token){ const need=[!S.amd_psw?'the AdvancedMD password':null,!S.token?'your GitHub token':null].filter(Boolean).join(' and ');
       $('#set-status').textContent='Setup: enter '+need+' above and press Save. The Stedi key is optional.'; openSettings(true); } await loadReport(); await loadHistory(); await poll();
-    if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode(); $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } })();
+    if(S.autorun){ mode=S.autorun.mode==='live'?'live':'dry'; paintMode();
+      if(!S.amd_psw){ say('Opened from a Run button: save the AdvancedMD password in Settings first, then press Manual Bill.','err'); }
+      else{ $('#confirm').hidden=false; $('#confirm-go').focus(); say('Opened from a Run button: '+mode+' run - press Run now to start.'); } } })();
 })();
 </script>
 </body>

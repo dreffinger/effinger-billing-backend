@@ -9,7 +9,7 @@
 #
 # HOW IT STARTS: (1) the button - workflow_dispatch from the Billing Button page, a billing artifact's Run button or the desktop
 # app (inputs: mode dry|live, steps, packages, note); (2) the schedules - :17 on the EVEN UTC hours (the columns profile) and
-# 04:35Z (the cascade profile). The Claude routines own the odd hours (:08) and 05:30Z, so a scheduled run never shares an hour
+# 04:05Z (the cascade profile). The Claude routines own the odd hours (:08) and 05:30Z, so a scheduled run never shares an hour
 # with them (William 10/12/2026). Scheduled runs use the repository variable BUTTON_SCHEDULE_MODE (dry until William sets it to
 # live) and stop at once when BUTTON_SCHEDULE_ENABLED is "false". One run at a time; a second press waits in line. A live run
 # also passes the engine's own guard: no Claude routine due within 25 minutes, and a dry pass first when none ran that day.
@@ -46,7 +46,7 @@ on:
         default: ""
   schedule:
     - cron: "17 0,2,4,6,8,10,12,14,16,18,20,22 * * *"   # the columns profile, on the EVEN UTC hours: the Claude 2-hourly routine owns the odd ones
-    - cron: "35 4 * * *"                                 # the nightly cascade profile at 04:35Z: the Claude cascade owns 05:30Z
+    - cron: "5 4 * * *"                                  # the nightly cascade profile at 04:05Z: an hour clear of the Claude 2-hourly run at 05:08Z (the engine's guard refuses a live start within 25 min of it) and of the Claude cascade at 05:30Z
 
 concurrency:
   group: billing-button
@@ -83,7 +83,7 @@ jobs:
               echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
             fi
             MODE="${VAR_MODE:-dry}"; [ "$MODE" = "live" ] || MODE=dry
-            if [ "$SCHEDULE" = "35 4 * * *" ]; then PROFILE=cascade; else PROFILE=columns; fi
+            if [ "$SCHEDULE" = "5 4 * * *" ]; then PROFILE=cascade; else PROFILE=columns; fi
             echo "mode=$MODE" >> "$GITHUB_OUTPUT"
             echo "args=--profile $PROFILE --note scheduled-$PROFILE" >> "$GITHUB_OUTPUT"
             echo "label=scheduled $PROFILE ($MODE)" >> "$GITHUB_OUTPUT"
