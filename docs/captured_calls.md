@@ -4398,3 +4398,12 @@ No new call shape this run. Calls used (all already in the registry): login (one
 Behaviors noted:
 - Columns 0/0/18/0 unchanged from the 0710Z run: the 11 reason-code rows (no-era-line, charts 21020 / 24208 / 47124) and the 7 chart-17478013 rows (zero plans) are the only Unbilled holds; no prior-payor rows re-listed this slot.
 - No AdvancedMD write this run.
+
+# captured_calls additions - 2026-10-13 1110 UTC (7 AM ET 10/13) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), gettxhistory (unbilled_repair.py dry x11; payreasons.visit_state x3; era_new live re-reads), getdemographic (chart 17478013 - zero insplans), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after, era_post.py --all-unposted --dry, era_clear.py --dry), addpayments postingmethod=era (payreasons.post_line x4 inside era_new_1013_1110.py --live, check 1053144), POST /api/claim/massrebillsearch + Stedi 276/277 x19 (claim_status_sweep.py pass 80).
+
+Behaviors noted:
+- An AARP Supplemental (Medigap) 835 lands in the ERA Center filed under UNI20 (car6404) with every claim at claimstatus 2 (secondary) and OA-23 = Medicare's share; a claim whose live charges still sit at FLO02 (the AARP sequence never billed - crossover) carries carrierid 6085 in checkdetails and posts fine ERA-linked under the check's UNI20 carrier (payreasons.post_line with the check meta) - the check leaves the unposted list by itself after the last line, no dismiss needed (same as the 10/10 1053080 pass).
+- era_post.py --all-unposted --dry showed 1053144 postable=3 through the Post button, but the ERA-linked per-line post was used instead (no sweep risk, reason codes kept).
+- Columns 0/0/18/0 unchanged from the 0910Z run; no prior-payor rows re-listed this slot.
