@@ -1,17 +1,27 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-13T0549Z",
+ "stamp": "2026-10-13T0740Z",
  "mode": "live",
  "status": "ok",
- "headline": "ERA 1 checks $71.00 -> 1 checks $71.00",
- "note": "scheduled-cascade",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38353396470",
- "started": "2026-10-13T05:49:48Z",
- "ended": "2026-10-13T05:50:32Z",
+ "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38364149953",
+ "started": "2026-10-13T07:40:40Z",
+ "ended": "2026-10-13T07:42:33Z",
  "summary": {
   "columns": {
-   "before": {},
-   "after": {}
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0
+   }
   },
   "era": {
    "before": {
@@ -60,14 +70,58 @@
    "summary": "917 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 917,
-    "registers": 878,
+    "registers": 880,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T05:49:48Z",
-   "ended": "2026-10-13T05:49:49Z"
+   "started": "2026-10-13T07:40:40Z",
+   "ended": "2026-10-13T07:40:41Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 18->18, Exclusions 0->0",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 11,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 7,
+    "unbilled released": 0,
+    "payreasons no-era-line": 11
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 7,
+     "ids": "v19457280 v19457281 v19457321 v19457471 v19457476 v19457519 v19457529"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Payment reason codes are missing or do not balance.",
+     "visits": 6,
+     "ids": "v19417079 v19418988 v19419273 v19420335 v19422686 v19422687"
+    },
+    {
+     "column": "unbilled",
+     "kind": "One or more charges within this visit have errors. Charges with errors",
+     "visits": 5,
+     "ids": "v19416171 v19416185 v19420940 v19420954 v19421010"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-13T07:40:41Z",
+   "ended": "2026-10-13T07:42:28Z"
   },
   {
    "name": "era",
@@ -95,23 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T05:49:49Z",
-   "ended": "2026-10-13T05:49:55Z"
-  },
-  {
-   "name": "cascade",
-   "title": "Insurance cascade",
-   "status": "ok",
-   "summary": "void rules: void_rules.json not in this workspace (Drive 'workspace mirror') - skipped; precheck flagged charts: 0",
-   "counts": {
-    "void rules": "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped",
-    "precheck flagged charts": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-13T05:49:55Z",
-   "ended": "2026-10-13T05:50:00Z"
+   "started": "2026-10-13T07:42:28Z",
+   "ended": "2026-10-13T07:42:31Z"
   },
   {
    "name": "packages",
@@ -122,37 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T05:50:00Z",
-   "ended": "2026-10-13T05:50:00Z"
-  },
-  {
-   "name": "cred",
-   "title": "Credentialing check",
-   "status": "ok",
-   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-13T05:50:00Z",
-   "ended": "2026-10-13T05:50:03Z"
-  },
-  {
-   "name": "money",
-   "title": "Money ledger data",
-   "status": "ok",
-   "summary": "money_ledger.html rebuilt: unpaid $275337, era $169, excl 0",
-   "counts": {
-    "payments scan": "patient_universe_0907.json not in this workspace - skipped"
-   },
-   "dollars": {
-    "unpaid total": 275337.26,
-    "era paid": 168.59
-   },
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-13T05:50:03Z",
-   "ended": "2026-10-13T05:50:30Z"
+   "started": "2026-10-13T07:42:31Z",
+   "ended": "2026-10-13T07:42:31Z"
   },
   {
    "name": "outstanding",
@@ -255,11 +265,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T05:50:30Z",
-   "ended": "2026-10-13T05:50:32Z"
+   "started": "2026-10-13T07:42:31Z",
+   "ended": "2026-10-13T07:42:33Z"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line"
+ ],
  "errors": []
 }
