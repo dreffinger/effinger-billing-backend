@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-13T0934Z",
+ "stamp": "2026-10-13T1129Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38377332773",
- "started": "2026-10-13T09:34:59Z",
- "ended": "2026-10-13T09:37:14Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38390501301",
+ "started": "2026-10-13T11:29:06Z",
+ "ended": "2026-10-13T11:30:57Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 275337.26,
-   "visits": 2520,
+   "total": 275290.81,
+   "visits": 2519,
    "charts": 507,
    "over_365": {
     "n": 769,
@@ -76,8 +76,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T09:34:59Z",
-   "ended": "2026-10-13T09:35:00Z"
+   "started": "2026-10-13T11:29:06Z",
+   "ended": "2026-10-13T11:29:06Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T09:35:00Z",
-   "ended": "2026-10-13T09:37:09Z"
+   "started": "2026-10-13T11:29:06Z",
+   "ended": "2026-10-13T11:30:53Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T09:37:09Z",
-   "ended": "2026-10-13T09:37:12Z"
+   "started": "2026-10-13T11:30:53Z",
+   "ended": "2026-10-13T11:30:55Z"
   },
   {
    "name": "packages",
@@ -161,29 +161,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T09:37:12Z",
-   "ended": "2026-10-13T09:37:12Z"
+   "started": "2026-10-13T11:30:55Z",
+   "ended": "2026-10-13T11:30:55Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2520 visits on 507 charts, $275337.26 open; 769 over a year ($39680.61)",
+   "summary": "2519 visits on 507 charts, $275290.81 open; 769 over a year ($39680.61)",
    "counts": {
-    "visits": 2520,
+    "visits": 2519,
     "charts": 507,
     "over 365 days": 769
    },
    "dollars": {
-    "open insurance balance": 275337.26,
+    "open insurance balance": 275290.81,
     "over 365 days": 39680.61
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1628,
-     "dollars": 156726.1,
+     "visits": 1627,
+     "dollars": 156679.65,
      "oldest_days": 1063
     },
     {
@@ -265,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T09:37:12Z",
-   "ended": "2026-10-13T09:37:14Z"
+   "started": "2026-10-13T11:30:55Z",
+   "ended": "2026-10-13T11:30:57Z"
   }
  ],
  "packages": [],
