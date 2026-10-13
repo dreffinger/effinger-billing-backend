@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-12T2327Z",
+ "stamp": "2026-10-13T0151Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/16/0 -> 0/0/16/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38322192303",
- "started": "2026-10-12T23:27:17Z",
- "ended": "2026-10-12T23:29:05Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38334071648",
+ "started": "2026-10-13T01:51:04Z",
+ "ended": "2026-10-13T01:53:14Z",
  "summary": {
   "columns": {
    "before": {
@@ -70,14 +70,14 @@
    "summary": "917 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 917,
-    "registers": 864,
+    "registers": 869,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T23:27:17Z",
-   "ended": "2026-10-12T23:27:17Z"
+   "started": "2026-10-13T01:51:04Z",
+   "ended": "2026-10-13T01:51:05Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T23:27:17Z",
-   "ended": "2026-10-12T23:29:02Z"
+   "started": "2026-10-13T01:51:05Z",
+   "ended": "2026-10-13T01:53:09Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-12T23:29:02Z",
-   "ended": "2026-10-12T23:29:04Z"
+   "started": "2026-10-13T01:53:09Z",
+   "ended": "2026-10-13T01:53:13Z"
   },
   {
    "name": "packages",
@@ -161,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-12T23:29:04Z",
-   "ended": "2026-10-12T23:29:04Z"
+   "started": "2026-10-13T01:53:13Z",
+   "ended": "2026-10-13T01:53:13Z"
   },
   {
    "name": "outstanding",
@@ -184,89 +184,89 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1633,
      "dollars": 157828.1,
-     "oldest_days": 1062
+     "oldest_days": 1063
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 197,
      "dollars": 36758.34,
-     "oldest_days": 1246
+     "oldest_days": 1247
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 130,
      "dollars": 19863.75,
-     "oldest_days": 399
+     "oldest_days": 400
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 73,
      "dollars": 9291.52,
-     "oldest_days": 1020
+     "oldest_days": 1021
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 59,
      "dollars": 5623.77,
-     "oldest_days": 810
+     "oldest_days": 811
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 30,
      "dollars": 5252.97,
-     "oldest_days": 1131
+     "oldest_days": 1132
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 52,
      "dollars": 4744.13,
-     "oldest_days": 587
+     "oldest_days": 588
     },
     {
      "carrier": "AET07",
      "name": "AETNA",
      "visits": 30,
      "dollars": 4534.22,
-     "oldest_days": 343
+     "oldest_days": 344
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 25,
      "dollars": 4185.24,
-     "oldest_days": 759
+     "oldest_days": 760
     },
     {
      "carrier": "WEL04",
      "name": "WELLCARE",
      "visits": 36,
      "dollars": 3186.73,
-     "oldest_days": 579
+     "oldest_days": 580
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 19,
      "dollars": 3041.6,
-     "oldest_days": 84
+     "oldest_days": 85
     },
     {
      "carrier": "SIM01",
      "name": "SIMPLY HEALTHCARE MCD PLANS",
      "visits": 15,
      "dollars": 2591.12,
-     "oldest_days": 94
+     "oldest_days": 95
     }
    ],
    "errors": [],
-   "started": "2026-10-12T23:29:04Z",
-   "ended": "2026-10-12T23:29:05Z"
+   "started": "2026-10-13T01:53:13Z",
+   "ended": "2026-10-13T01:53:14Z"
   }
  ],
  "packages": [],
