@@ -1,8 +1,8 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-13T21:25:31Z",
+ "at": "2026-10-13T23:24:42Z",
  "as_of": "2026-10-13",
- "total": 274859.81,
+ "total": 274726.81,
  "visits": 2516,
  "charts": 507,
  "over_365": {
@@ -24,7 +24,7 @@
   },
   "91-180": {
    "n": 286,
-   "dollars": 29941.83
+   "dollars": 29808.83
   },
   "181-365": {
    "n": 564,
@@ -232,21 +232,6 @@
    "oldest_days": 948
   },
   {
-   "carrier": "SUN01",
-   "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 28,
-   "dollars": 2159.73,
-   "buckets": {
-    "0-30": 1558.53,
-    "31-60": 220.2,
-    "61-90": 0.0,
-    "91-180": 274.0,
-    "181-365": 107.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 244
-  },
-  {
    "carrier": "UMR",
    "name": "UMR CHOICE",
    "n": 14,
@@ -260,6 +245,21 @@
     "over 365": 0.0
    },
    "oldest_days": 41
+  },
+  {
+   "carrier": "SUN01",
+   "name": "SUNSHINE STATE HEALTH PLAN",
+   "n": 28,
+   "dollars": 2026.73,
+   "buckets": {
+    "0-30": 1558.53,
+    "31-60": 220.2,
+    "61-90": 0.0,
+    "91-180": 141.0,
+    "181-365": 107.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 244
   },
   {
    "carrier": "AET12",
@@ -606,7 +606,7 @@
   {
    "month": "2026-07",
    "n": 145,
-   "dollars": 16840.1
+   "dollars": 16707.1
   },
   {
    "month": "2026-08",
@@ -14142,14 +14142,6 @@
    "dos": "2026-07-13"
   },
   {
-   "visitid": 19455292,
-   "patientid": 17471755,
-   "carriercode": "SUN01",
-   "insbalance": 274.0,
-   "days": 92,
-   "dos": "2026-07-13"
-  },
-  {
    "visitid": 19448508,
    "patientid": 25558,
    "carriercode": "FLO02",
@@ -14162,6 +14154,14 @@
    "patientid": 17473799,
    "carriercode": "UNI20",
    "insbalance": 204.0,
+   "days": 92,
+   "dos": "2026-07-13"
+  },
+  {
+   "visitid": 19455292,
+   "patientid": 17471755,
+   "carriercode": "SUN01",
+   "insbalance": 141.0,
    "days": 92,
    "dos": "2026-07-13"
   },
