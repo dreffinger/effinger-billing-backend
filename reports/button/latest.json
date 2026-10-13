@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-13T1924Z",
+ "stamp": "2026-10-13T2123Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 4 checks $321.90 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38454522382",
- "started": "2026-10-13T19:24:13Z",
- "ended": "2026-10-13T19:26:14Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38470143293",
+ "started": "2026-10-13T21:23:00Z",
+ "ended": "2026-10-13T21:25:31Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 71.0
+    "checks": 4,
+    "unposted": 321.9
    },
    "after": {
     "checks": 1,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 250.9,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 275290.81,
-   "visits": 2519,
+   "total": 274859.81,
+   "visits": 2516,
    "charts": 507,
    "over_365": {
     "n": 769,
@@ -67,17 +67,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "918 helpers into /home/claude/unbilled",
+   "summary": "919 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 918,
-    "registers": 905,
+    "helpers copied": 919,
+    "registers": 911,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T19:24:13Z",
-   "ended": "2026-10-13T19:24:17Z"
+   "started": "2026-10-13T21:23:00Z",
+   "ended": "2026-10-13T21:23:00Z"
   },
   {
    "name": "columns",
@@ -120,23 +120,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T19:24:17Z",
-   "ended": "2026-10-13T19:26:10Z"
+   "started": "2026-10-13T21:23:00Z",
+   "ended": "2026-10-13T21:25:05Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
+   "summary": "4 checks / $321.90 -> 1 checks / $71.00",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
+    "era_post lines": 2,
+    "checks dismissed": 2,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 71.0,
+    "unposted before": 321.9,
     "unposted after": 71.0,
-    "posted this run": 0.0
+    "posted this run": 250.9
    },
    "lines": [
     {
@@ -146,11 +146,35 @@
      "amount": 0.0,
      "unposted": 71.0,
      "stage": "before"
+    },
+    {
+     "check": 1053150,
+     "payer": "SUNSHINE STATE HEALTH PLAN",
+     "checknumber": "0917897914",
+     "amount": 0.0,
+     "unposted": 166.26,
+     "stage": "before"
+    },
+    {
+     "check": 1053151,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "203043823261013",
+     "amount": 0.0,
+     "unposted": 14.18,
+     "stage": "before"
+    },
+    {
+     "check": 1053152,
+     "payer": "HUMANA",
+     "checknumber": "203043824261013",
+     "amount": 0.0,
+     "unposted": 70.46,
+     "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-10-13T19:26:10Z",
-   "ended": "2026-10-13T19:26:12Z"
+   "started": "2026-10-13T21:25:05Z",
+   "ended": "2026-10-13T21:25:29Z"
   },
   {
    "name": "packages",
@@ -161,21 +185,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T19:26:12Z",
-   "ended": "2026-10-13T19:26:12Z"
+   "started": "2026-10-13T21:25:29Z",
+   "ended": "2026-10-13T21:25:29Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2519 visits on 507 charts, $275290.81 open; 769 over a year ($39680.61)",
+   "summary": "2516 visits on 507 charts, $274859.81 open; 769 over a year ($39680.61)",
    "counts": {
-    "visits": 2519,
+    "visits": 2516,
     "charts": 507,
     "over 365 days": 769
    },
    "dollars": {
-    "open insurance balance": 275290.81,
+    "open insurance balance": 274859.81,
     "over 365 days": 39680.61
    },
    "lines": [
@@ -203,8 +227,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 77,
-     "dollars": 9931.52,
+     "visits": 76,
+     "dollars": 9820.52,
      "oldest_days": 1021
     },
     {
@@ -265,8 +289,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T19:26:12Z",
-   "ended": "2026-10-13T19:26:14Z"
+   "started": "2026-10-13T21:25:29Z",
+   "ended": "2026-10-13T21:25:31Z"
   }
  ],
  "packages": [],

@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-13T19:26:14Z",
+ "at": "2026-10-13T21:25:31Z",
  "as_of": "2026-10-13",
- "total": 275290.81,
- "visits": 2519,
+ "total": 274859.81,
+ "visits": 2516,
  "charts": 507,
  "over_365": {
   "n": 769,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 563,
-   "dollars": 98722.23
+   "n": 560,
+   "dollars": 98291.23
   },
   "31-60": {
    "n": 170,
@@ -84,10 +84,10 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 77,
-   "dollars": 9931.52,
+   "n": 76,
+   "dollars": 9820.52,
    "buckets": {
-    "0-30": 7765.93,
+    "0-30": 7654.93,
     "31-60": 273.74,
     "61-90": 238.18,
     "91-180": 214.56,
@@ -217,21 +217,6 @@
    "oldest_days": 95
   },
   {
-   "carrier": "SUN01",
-   "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 30,
-   "dollars": 2479.73,
-   "buckets": {
-    "0-30": 1878.53,
-    "31-60": 220.2,
-    "61-90": 0.0,
-    "91-180": 274.0,
-    "181-365": 107.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 244
-  },
-  {
    "carrier": "VACCN",
    "name": "OPTUM VA CCN",
    "n": 13,
@@ -245,6 +230,21 @@
     "over 365": 77.22
    },
    "oldest_days": 948
+  },
+  {
+   "carrier": "SUN01",
+   "name": "SUNSHINE STATE HEALTH PLAN",
+   "n": 28,
+   "dollars": 2159.73,
+   "buckets": {
+    "0-30": 1558.53,
+    "31-60": 220.2,
+    "61-90": 0.0,
+    "91-180": 274.0,
+    "181-365": 107.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 244
   },
   {
    "carrier": "UMR",
@@ -615,13 +615,13 @@
   },
   {
    "month": "2026-09",
-   "n": 384,
-   "dollars": 58938.32
+   "n": 383,
+   "dollars": 58827.32
   },
   {
    "month": "2026-10",
-   "n": 251,
-   "dollars": 46468.0
+   "n": 249,
+   "dollars": 46148.0
   }
  ],
  "oldest": [
@@ -18838,14 +18838,6 @@
    "dos": "2026-09-24"
   },
   {
-   "visitid": 19456243,
-   "patientid": 17477899,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
-   "days": 19,
-   "dos": "2026-09-24"
-  },
-  {
    "visitid": 19456257,
    "patientid": 17477774,
    "carriercode": "UMR",
@@ -19966,14 +19958,6 @@
    "dos": "2026-10-03"
   },
   {
-   "visitid": 19456967,
-   "patientid": 17472703,
-   "carriercode": "SUN01",
-   "insbalance": 160.0,
-   "days": 10,
-   "dos": "2026-10-03"
-  },
-  {
    "visitid": 19456976,
    "patientid": 17474493,
    "carriercode": "UNI20",
@@ -20089,14 +20073,6 @@
    "visitid": 19457076,
    "patientid": 17477640,
    "carriercode": "HUM01",
-   "insbalance": 160.0,
-   "days": 9,
-   "dos": "2026-10-04"
-  },
-  {
-   "visitid": 19457077,
-   "patientid": 17472703,
-   "carriercode": "SUN01",
    "insbalance": 160.0,
    "days": 9,
    "dos": "2026-10-04"
