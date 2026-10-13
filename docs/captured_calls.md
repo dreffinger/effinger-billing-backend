@@ -4416,3 +4416,10 @@ Behaviors noted:
 - GET /api/era/checkdetails?checkid= on a DISMISSED check answers 0 claims (19 checks dismissed 10/8-10/11 read this run) - the ERA Center keeps no readable line detail for a dismissed check, so a payer check number (UHC W1223786, from a 277) cannot be located among dismissed checks from the API; only an unposted check or the era_details/ cache carries lines.
 - The Stedi 277 for a UNI20 primary claim sent 9/16/2026 into DOS 10/2025-11/2025 answers F2 585 with the payer check number, paid date and payer claim number (chart 23967 v19420037 / v19422019) BEFORE the 835 reaches the ERA Center - the register keeps the claim numbers for a frequency-7 correction; the CARC waits on the 835.
 - Columns 0/0/18/0 and ERA 1 check $71.00 unchanged from the 1110Z run; no prior-payor rows re-listed this slot.
+
+# captured_calls additions - 2026-10-13 1510 UTC (11 AM ET 10/13) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), gettxhistory (unbilled_repair.py dry x11; payreasons.py --list x11), getdemographic (chart 17478013 - zero insplans), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after, era_post.py --all-unposted --dry, era_clear.py --dry), POST /api/era/locks/release-expired (era_post.locks(1053116) - nothing locked; the function takes the check id, a bare era_post.locks() raises TypeError), POST /api/claim/massrebillsearch + Stedi 276/277 x17 (claim_status_sweep.py pass 82).
+
+Behaviors noted:
+- Columns 0/0/18/0 and ERA 1 check $71.00 unchanged from the 1310Z run; the Billing Button's :17 live 'columns' run overlapped this slot again (two engines, neither wrote).
