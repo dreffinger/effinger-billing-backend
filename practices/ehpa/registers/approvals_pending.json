@@ -494,6 +494,76 @@
    "status": "done",
    "answer": "2026-10-11T2305Z applied in William's chat session (page card note, appliedBy 'chat session (William: write them off rather than manual appeals)'): tf_wolate_1011.py rebuilt; 64 charges / 17 charts WOLATE $10,213.00 posted from live reads (25 of the morning's 93 lines had been settled by the 1 AM WOINS corrections; the 5/1/2026 DOS cut dropped on William's word - 4 May-June lines included). Held with a balance: 55 payment-bearing UHC residuals $3,732 (contractual WOINS for the ERA pass), 2 CIPSC, 2 secondary. Register registers/tf_wolate_2026-10-11T0710Z.json (in that session's Drive package). Register closed 2026-10-12T0218Z in the cascade session on William's 'just close it out' - the session's own commits (bcb600c, 8938722) stay in PACKAGE_effinger-billing-backend_2026-10-11 on Drive 'github mirror' (sha256 mismatch, not applied).",
    "note": "2026-10-11T1910Z: approved on the page 17:37Z but script missing tf_wolate_1011.py (never committed to main or uploaded to Drive workspace mirror - it existed only in the 0710Z container); not run; a chat session rebuilds the helper from the 0510Z 835s CARC-29 lines, then William says go | closed 2026-10-12T0218Z on William's word (applied 10/11 by his chat session, see answer)"
+  },
+  {
+   "id": "A-2026-10-14T0155Z-C",
+   "stamp": "2026-10-14T0155Z",
+   "at": "2026-10-14T01:53:54Z",
+   "cmd": "cd /home/claude/unbilled && python3 old_claims_apply.py --live --only C --stamp 1013",
+   "reason": "chat session 10/9/2026 - William: 'do it now just as described' = list for approval first; nothing is posted until this card is approved (not a classifier refusal)",
+   "what": "POST per 277 - other carriers answered PAID on the exact date of service (Aetna, Simply, Humana, Cigna, Medicaid ...) - 4 visits on 2 charts (AET07 4), open $1027.00, post $653.49 from the payers' own 277 figures, write off $373.51. Visits: 17474496/19422188 2025-11-03, 17474496/19425226 2025-12-02, 17472859/19438897 2026-04-14, 17472859/19438896 2026-04-15",
+   "dollars": "$1027.00",
+   "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
+   "evidence": "dry run 1013: 5 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
+   "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T0155Z-K-dec",
+   "stamp": "2026-10-14T0155Z",
+   "at": "2026-10-14T01:53:54Z",
+   "cmd": "cd /home/claude/unbilled && python3 old_claims_apply.py --live --only K-dec --stamp 1013",
+   "reason": "chat session 10/9/2026 - William: 'do it now just as described' = list for approval first; nothing is posted until this card is approved (not a classifier refusal)",
+   "what": "DUAL, Medicaid plan not yet answered - same facts but the Medicaid-family plan has no posting on the visit yet: WOCAID2ND now skips the crossover (it would almost always answer $0 - primary paid at or above the Medicaid allowed) - DECEASED-FLAG charts, confirm each DOS is before the date of death first - 2 visits on 1 charts (FLO02 2), open $59.11, write off $59.11. Visits: 44984/19389068 2024-08-23, 44984/19423860 2025-11-07",
+   "dollars": "$59.11",
+   "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
+   "evidence": "dry run 1013: 3 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
+   "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T0155Z-J-dec",
+   "stamp": "2026-10-14T0155Z",
+   "at": "2026-10-14T01:53:54Z",
+   "cmd": "cd /home/claude/unbilled && python3 old_claims_apply.py --live --only J-dec --stamp 1013",
+   "reason": "chat session 10/9/2026 - William: 'do it now just as described' = list for approval first; nothing is posted until this card is approved (not a classifier refusal)",
+   "what": "DUAL, Medicaid plan already answered - Medicare/MA paid, a Medicaid-family plan (Medicaid / FCC / Simply / Sunshine / Georgia Medicaid / Humana Medicaid) has posted its $0 answer on the visit -> the cost-sharing residual is WOCAID2ND, never billed to the patient (9/11 rule) - DECEASED-FLAG charts, confirm each DOS is before the date of death first - 4 visits on 1 charts (FLO02 4), open $69.16, write off $69.16. Visits: 44984/19418039 2025-09-19, 44984/19419573 2025-10-06, 44984/19432957 2026-02-09, 44984/19435816 2026-03-11",
+   "dollars": "$69.16",
+   "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
+   "evidence": "dry run 1013: 4 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
+   "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T0155Z-K",
+   "stamp": "2026-10-14T0155Z",
+   "at": "2026-10-14T01:53:54Z",
+   "cmd": "cd /home/claude/unbilled && python3 old_claims_apply.py --live --only K --stamp 1013",
+   "reason": "chat session 10/9/2026 - William: 'do it now just as described' = list for approval first; nothing is posted until this card is approved (not a classifier refusal)",
+   "what": "DUAL, Medicaid plan not yet answered - same facts but the Medicaid-family plan has no posting on the visit yet: WOCAID2ND now skips the crossover (it would almost always answer $0 - primary paid at or above the Medicaid allowed) - 4 visits on 3 charts (FLO99 2, FLO02 1, MCAD 1), open $254.81, write off $254.81. Visits: 20670/19420291 2025-10-08, 12232001/19433032 2026-02-03, 17472124/19445180 2026-06-08, 12232001/19401825 2025-03-04",
+   "dollars": "$254.81",
+   "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
+   "evidence": "dry run 1013: 6 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
+   "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T0155Z-J",
+   "stamp": "2026-10-14T0155Z",
+   "at": "2026-10-14T01:53:54Z",
+   "cmd": "cd /home/claude/unbilled && python3 old_claims_apply.py --live --only J --stamp 1013",
+   "reason": "chat session 10/9/2026 - William: 'do it now just as described' = list for approval first; nothing is posted until this card is approved (not a classifier refusal)",
+   "what": "DUAL, Medicaid plan already answered - Medicare/MA paid, a Medicaid-family plan (Medicaid / FCC / Simply / Sunshine / Georgia Medicaid / Humana Medicaid) has posted its $0 answer on the visit -> the cost-sharing residual is WOCAID2ND, never billed to the patient (9/11 rule) - 1 visits on 1 charts (HUM01 1), open $111.00, write off $111.00. Visits: 17472067/19389115 2024-09-01",
+   "dollars": "$111.00",
+   "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
+   "evidence": "dry run 1013: 1 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
+   "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
