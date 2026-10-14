@@ -791,6 +791,7 @@
    "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 93.16 after the Post button; remit CO-45 93.16)",
    "ui": "Patient > Transactions > visit 19455138 > the 99306 charge: Transfer the 93.16 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 93.16, check # 620268423, deposit 10/14/2026.",
+   "note": "applying 2026-10-14T1910Z",
    "status": "waiting",
    "answer": null
   },
@@ -805,6 +806,7 @@
    "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 188.79 after the Post button)",
    "ui": "Patient > Transactions > visit 19455133 > the 99349 charge: Transfer the 188.79 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 188.79, check # 423823547, deposit 10/14/2026.",
+   "note": "applying 2026-10-14T1910Z",
    "status": "waiting",
    "answer": null
   },
@@ -819,6 +821,7 @@
    "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 198.00 pat 0; NOW ins 0.00 pat 198.00 car FLO02)",
    "ui": "Patient > Transactions > visit 19440504 > 99349: Transfer the 198.00 patient balance to insurance (FLO02 Medicare).",
+   "note": "applying 2026-10-14T1910Z",
    "status": "waiting",
    "answer": null
   },
@@ -833,6 +836,7 @@
    "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 74.64 pat 0; NOW ins 0.00 pat 74.64)",
    "ui": "Patient > Transactions > visit 19451554 > 99309: Transfer the 74.64 patient balance to insurance (BCBS).",
+   "note": "applying 2026-10-14T1910Z",
    "status": "waiting",
    "answer": null
   },
