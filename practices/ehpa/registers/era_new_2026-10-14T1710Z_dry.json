@@ -1,0 +1,2692 @@
+{
+ "stamp": "2026-10-14T1710Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446601,
+   "visitid": "19424211",
+   "pid": "17471977",
+   "chargedetailid": "23329979",
+   "cpt": "99233",
+   "dos": "2025-11-20",
+   "paid": 91.66,
+   "carcs": [
+    "CO45",
+    "PR2"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/03/2026"
+   },
+   "pay": 91.66,
+   "wo": 45.42,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 91.66 + WOINS 45.42 (bal 160.00)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446602,
+   "visitid": "19451921",
+   "pid": "17477260",
+   "chargedetailid": "23362011",
+   "cpt": "99233",
+   "dos": "2026-08-15",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446603,
+   "visitid": "19452058",
+   "pid": "17477260",
+   "chargedetailid": "23362171",
+   "cpt": "99233",
+   "dos": "2026-08-18",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446604,
+   "visitid": "19452058",
+   "pid": "17477260",
+   "chargedetailid": "23362171",
+   "cpt": "99233",
+   "dos": "2026-08-18",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446605,
+   "visitid": "19452152",
+   "pid": "17477260",
+   "chargedetailid": "23362278",
+   "cpt": "99233",
+   "dos": "2026-08-19",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446606,
+   "visitid": "19452152",
+   "pid": "17477260",
+   "chargedetailid": "23362278",
+   "cpt": "99233",
+   "dos": "2026-08-19",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446607,
+   "visitid": "19452159",
+   "pid": "17477260",
+   "chargedetailid": "23362285",
+   "cpt": "99233",
+   "dos": "2026-08-20",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446608,
+   "visitid": "19452159",
+   "pid": "17477260",
+   "chargedetailid": "23362285",
+   "cpt": "99233",
+   "dos": "2026-08-20",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446609,
+   "visitid": "19454952",
+   "pid": "17476608",
+   "chargedetailid": "23366103",
+   "cpt": "99232",
+   "dos": "2026-09-16",
+   "paid": 71.66,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "09/17/2026"
+   },
+   "pay": 71.66,
+   "wo": 39.34,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 71.66 + WOINS 39.34 (bal 111.00)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446610,
+   "visitid": "19455476",
+   "pid": "17477182",
+   "chargedetailid": "23366771",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 33.1,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 33.1,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 33.1,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 33.10 + WOINS 0.00 (bal 33.10)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446610,
+   "visitid": "19455476",
+   "pid": "17477182",
+   "chargedetailid": "23366772",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 13.35,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 13.35,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 13.35 + WOINS 0.00 (bal 13.35)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446611,
+   "visitid": "19455596",
+   "pid": "17477052",
+   "chargedetailid": "23366933",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446611,
+   "visitid": "19455596",
+   "pid": "17477052",
+   "chargedetailid": "23366934",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446612,
+   "visitid": "19455603",
+   "pid": "17477499",
+   "chargedetailid": "23366943",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 28.60"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446613,
+   "visitid": "19455616",
+   "pid": "17476438",
+   "chargedetailid": "23366965",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446613,
+   "visitid": "19455616",
+   "pid": "17476438",
+   "chargedetailid": "23366966",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446614,
+   "visitid": "19455637",
+   "pid": "17474082",
+   "chargedetailid": "23366997",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446615,
+   "visitid": "19455681",
+   "pid": "17477533",
+   "chargedetailid": "23367055",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 18.83,
+   "carcs": [
+    "OA23",
+    "PR275"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 18.83"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446615,
+   "visitid": "19455681",
+   "pid": "17477533",
+   "chargedetailid": "23367056",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 15.49"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446616,
+   "visitid": "19455698",
+   "pid": "25827",
+   "chargedetailid": "23367076",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446616,
+   "visitid": "19455698",
+   "pid": "25827",
+   "chargedetailid": "23367077",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446617,
+   "visitid": "19455706",
+   "pid": "17473883",
+   "chargedetailid": "23367091",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446617,
+   "visitid": "19455706",
+   "pid": "17473883",
+   "chargedetailid": "23367092",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446618,
+   "visitid": "19455752",
+   "pid": "17476544",
+   "chargedetailid": "23367183",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446618,
+   "visitid": "19455752",
+   "pid": "17476544",
+   "chargedetailid": "23367184",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446619,
+   "visitid": "19451921",
+   "pid": "17477260",
+   "chargedetailid": "23362011",
+   "cpt": "99233",
+   "dos": "2026-08-15",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446620,
+   "visitid": "19451911",
+   "pid": "17477260",
+   "chargedetailid": "23362001",
+   "cpt": "99233",
+   "dos": "2026-08-16",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446621,
+   "visitid": "19451911",
+   "pid": "17477260",
+   "chargedetailid": "23362001",
+   "cpt": "99233",
+   "dos": "2026-08-16",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446622,
+   "visitid": "19451901",
+   "pid": "17477260",
+   "chargedetailid": "23361991",
+   "cpt": "99233",
+   "dos": "2026-08-17",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446623,
+   "visitid": "19424212",
+   "pid": "17471977",
+   "chargedetailid": "23329980",
+   "cpt": "99223",
+   "dos": "2025-11-19",
+   "paid": 135.01,
+   "carcs": [
+    "CO45",
+    "PR2"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/03/2026"
+   },
+   "pay": 135.01,
+   "wo": 141.24,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 135.01 + WOINS 141.24 (bal 310.00)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446624,
+   "visitid": "19440504",
+   "pid": "17475362",
+   "chargedetailid": "23348193",
+   "cpt": "99349",
+   "dos": "2026-04-29",
+   "paid": 0.0,
+   "carcs": [
+    "PR276"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "insbal": 198.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR276'] ['N381'] from BCBS but the live claim is at FLO02 (billed 10/02/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446625,
+   "visitid": "19445442",
+   "pid": "17476868",
+   "chargedetailid": "23354307",
+   "cpt": "99344",
+   "dos": "2026-06-18",
+   "paid": 29.46,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 300.0,
+    "paid": 270.54,
+    "insbal": 29.46,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 29.46,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 29.46 + WOINS 0.00 (bal 29.46)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446625,
+   "visitid": "19445442",
+   "pid": "17476868",
+   "chargedetailid": "23354308",
+   "cpt": "99497",
+   "dos": "2026-06-18",
+   "paid": 17.37,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 115.63,
+    "insbal": 17.37,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 17.37,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 17.37 + WOINS 0.00 (bal 17.37)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446626,
+   "visitid": "19446208",
+   "pid": "17476544",
+   "chargedetailid": "23355187",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446626,
+   "visitid": "19446208",
+   "pid": "17476544",
+   "chargedetailid": "23355188",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446627,
+   "visitid": "19446238",
+   "pid": "17476868",
+   "chargedetailid": "23355244",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 28.6,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446627,
+   "visitid": "19446238",
+   "pid": "17476868",
+   "chargedetailid": "23355245",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 15.49,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446628,
+   "visitid": "19450196",
+   "pid": "17476868",
+   "chargedetailid": "23360082",
+   "cpt": "99309",
+   "dos": "2026-07-28",
+   "paid": 16.93,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "pay": 16.93,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.93 + WOINS 0.00 (bal 16.93)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446629,
+   "visitid": "19451019",
+   "pid": "17476544",
+   "chargedetailid": "23361030",
+   "cpt": "99309",
+   "dos": "2026-08-07",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446630,
+   "visitid": "19451191",
+   "pid": "17476544",
+   "chargedetailid": "23361192",
+   "cpt": "99309",
+   "dos": "2026-08-03",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446631,
+   "visitid": "19456882",
+   "pid": "17477777",
+   "chargedetailid": "23368543",
+   "cpt": "99223",
+   "dos": "2026-09-29",
+   "paid": 200.7,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/03/2026"
+   },
+   "pay": 200.7,
+   "wo": 109.3,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 200.70 + WOINS 109.30 (bal 310.00)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446632,
+   "visitid": "19451353",
+   "pid": "17476544",
+   "chargedetailid": "23361397",
+   "cpt": "99308",
+   "dos": "2026-08-11",
+   "paid": 0.0,
+   "carcs": [
+    "PR177"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446633,
+   "visitid": "19451524",
+   "pid": "17476868",
+   "chargedetailid": "23361573",
+   "cpt": "G0439",
+   "dos": "2026-06-20",
+   "paid": 0.0,
+   "carcs": [
+    "PR22"
+   ],
+   "rarcs": [
+    "N381",
+    "N598"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (PR22) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446634,
+   "visitid": "19451560",
+   "pid": "17477260",
+   "chargedetailid": "23361611",
+   "cpt": "99223",
+   "dos": "2026-08-12",
+   "paid": -31.94,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446635,
+   "visitid": "19451560",
+   "pid": "17477260",
+   "chargedetailid": "23361611",
+   "cpt": "99223",
+   "dos": "2026-08-12",
+   "paid": 31.94,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 310.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 31.94"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446636,
+   "visitid": "19451573",
+   "pid": "17477260",
+   "chargedetailid": "23361627",
+   "cpt": "99233",
+   "dos": "2026-08-13",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446637,
+   "visitid": "19451573",
+   "pid": "17477260",
+   "chargedetailid": "23361627",
+   "cpt": "99233",
+   "dos": "2026-08-13",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446638,
+   "visitid": "19451596",
+   "pid": "17477260",
+   "chargedetailid": "23361651",
+   "cpt": "99233",
+   "dos": "2026-08-14",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446639,
+   "visitid": "19451596",
+   "pid": "17477260",
+   "chargedetailid": "23361651",
+   "cpt": "99233",
+   "dos": "2026-08-14",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "residual 21.80"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446640,
+   "visitid": "19451901",
+   "pid": "17477260",
+   "chargedetailid": "23361991",
+   "cpt": "99233",
+   "dos": "2026-08-17",
+   "paid": -21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446641,
+   "visitid": "19451524",
+   "pid": "17476868",
+   "chargedetailid": "23361573",
+   "cpt": "G0439",
+   "dos": "2026-06-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO226"
+   ],
+   "rarcs": [
+    "N381",
+    "N706"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 204.0,
+    "paid": 134.01,
+    "insbal": 69.99,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO226'] ['N381', 'N706'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053163",
+   "checkclaimid": 15446642,
+   "visitid": "19457089",
+   "pid": "17471326",
+   "chargedetailid": "23368911",
+   "cpt": "99344",
+   "dos": "2026-10-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "PRA1"
+   ],
+   "rarcs": [
+    "N381",
+    "M51",
+    "N58"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 300.0,
+    "paid": 0.0,
+    "insbal": 300.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'PRA1'] ['N381', 'M51', 'N58'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053164",
+   "checkclaimid": 15446643,
+   "visitid": "19455138",
+   "pid": "25994",
+   "chargedetailid": "23366298",
+   "cpt": "99306",
+   "dos": "2026-09-18",
+   "paid": 33.1,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381",
+    "N172"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 129.74,
+    "insbal": 126.26,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/02/2026"
+   },
+   "pay": 33.1,
+   "wo": 93.16,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 33.10 + WOINS 93.16 (bal 126.26)"
+  },
+  {
+   "checkid": "1053164",
+   "checkclaimid": 15446643,
+   "visitid": "19455138",
+   "pid": "25994",
+   "chargedetailid": "23366299",
+   "cpt": "99497",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "PR96"
+   ],
+   "rarcs": [
+    "N381",
+    "N130"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.33,
+    "insbal": 80.67,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR96'] ['N381', 'N130'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446644,
+   "visitid": "19416182",
+   "pid": "23162",
+   "chargedetailid": "23319757",
+   "cpt": "99487",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "PR22"
+   ],
+   "rarcs": [
+    "N381",
+    "N4"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446644,
+   "visitid": "19416182",
+   "pid": "23162",
+   "chargedetailid": "23319758",
+   "cpt": "99489",
+   "dos": "2025-09-08",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446645,
+   "visitid": "19455949",
+   "pid": "42092",
+   "chargedetailid": "23367435",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 16.14,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446645,
+   "visitid": "19455949",
+   "pid": "42092",
+   "chargedetailid": "23367436",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.92,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 8.92,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446646,
+   "visitid": "19455948",
+   "pid": "21411",
+   "chargedetailid": "23367433",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 16.14,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446646,
+   "visitid": "19455948",
+   "pid": "21411",
+   "chargedetailid": "23367434",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.92,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 8.92,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446647,
+   "visitid": "19455941",
+   "pid": "17475536",
+   "chargedetailid": "23367419",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 16.14"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446647,
+   "visitid": "19455941",
+   "pid": "17475536",
+   "chargedetailid": "23367420",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.92,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 8.92"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446648,
+   "visitid": "19455901",
+   "pid": "17477566",
+   "chargedetailid": "23367370",
+   "cpt": "99309",
+   "dos": "2026-09-15",
+   "paid": 16.93,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 16.93,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.93 + WOINS 0.00 (bal 16.93)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446649,
+   "visitid": "19455809",
+   "pid": "21308",
+   "chargedetailid": "23367265",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "residual 16.14"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446650,
+   "visitid": "19455717",
+   "pid": "17474446",
+   "chargedetailid": "23367113",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446650,
+   "visitid": "19455717",
+   "pid": "17474446",
+   "chargedetailid": "23367114",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446651,
+   "visitid": "19455709",
+   "pid": "12183032",
+   "chargedetailid": "23367097",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446651,
+   "visitid": "19455709",
+   "pid": "12183032",
+   "chargedetailid": "23367098",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446652,
+   "visitid": "19455687",
+   "pid": "20933",
+   "chargedetailid": "23367064",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/02/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'OA23'] ['N381'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446653,
+   "visitid": "19455656",
+   "pid": "17473460",
+   "chargedetailid": "23367018",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 16.14"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446653,
+   "visitid": "19455656",
+   "pid": "17473460",
+   "chargedetailid": "23367019",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.92,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "residual 8.92"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446654,
+   "visitid": "19455133",
+   "pid": "17474446",
+   "chargedetailid": "23366273",
+   "cpt": "99349",
+   "dos": "2026-09-17",
+   "paid": 22.6,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 300.0,
+    "paid": 88.61,
+    "insbal": 211.39,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/02/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 22.6,
+   "wo": 188.79,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 22.60 + WOINS 188.79 (bal 211.39)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446655,
+   "visitid": "19451554",
+   "pid": "17473245",
+   "chargedetailid": "23361603",
+   "cpt": "99309",
+   "dos": "2026-08-10",
+   "paid": 0.0,
+   "carcs": [
+    "PR22"
+   ],
+   "rarcs": [
+    "N381",
+    "N598"
+   ],
+   "claimstatus": 3,
+   "primary": false,
+   "outcome": "reversal of an earlier $0 denial (PR22) - recorded, nothing posted"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446656,
+   "visitid": "19451554",
+   "pid": "17473245",
+   "chargedetailid": "23361603",
+   "cpt": "99309",
+   "dos": "2026-08-10",
+   "paid": 0.0,
+   "carcs": [
+    "PR22"
+   ],
+   "rarcs": [
+    "N381",
+    "MA04"
+   ],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "insbal": 74.64,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR22'] ['N381', 'MA04'] (denial handling / board) - live claim already at BCBS (billed 09/20/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446657,
+   "visitid": "19437116",
+   "pid": "12180329",
+   "chargedetailid": "23344191",
+   "cpt": "99233",
+   "dos": "2026-04-01",
+   "paid": 21.8,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446658,
+   "visitid": "19436829",
+   "pid": "12180329",
+   "chargedetailid": "23343877",
+   "cpt": "99233",
+   "dos": "2026-03-26",
+   "paid": 21.8,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446659,
+   "visitid": "19436828",
+   "pid": "12180329",
+   "chargedetailid": "23343876",
+   "cpt": "99233",
+   "dos": "2026-03-27",
+   "paid": 21.8,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446660,
+   "visitid": "19436825",
+   "pid": "12180329",
+   "chargedetailid": "23343873",
+   "cpt": "99233",
+   "dos": "2026-03-30",
+   "paid": 21.8,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446661,
+   "visitid": "19436536",
+   "pid": "12180329",
+   "chargedetailid": "23343591",
+   "cpt": "99232",
+   "dos": "2026-03-25",
+   "paid": 14.38,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbal": 14.38,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 14.38,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 14.38 + WOINS 0.00 (bal 14.38)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446662,
+   "visitid": "19455950",
+   "pid": "17477566",
+   "chargedetailid": "23367437",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.14,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 16.14,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446662,
+   "visitid": "19455950",
+   "pid": "17477566",
+   "chargedetailid": "23367438",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.92,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 8.92,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446663,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367441",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 16.79,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "carrier_override": "BCBS (Florida Blue 835 filed under FLO02)",
+   "pay": 16.14,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.65,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)"
+  },
+  {
+   "checkid": "1053165",
+   "checkclaimid": 15446663,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367442",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 8.27,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "carrier_override": "BCBS (Florida Blue 835 filed under FLO02)",
+   "pay": 8.27,
+   "wo": 0.65,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 8.27 + WOINS 0.65 (bal 8.92)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446664,
+   "visitid": "19420961",
+   "pid": "17473086",
+   "chargedetailid": "23326122",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "CO252"
+   ],
+   "rarcs": [
+    "N381",
+    "N4"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'CO252'] ['N381', 'N4'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446664,
+   "visitid": "19420961",
+   "pid": "17473086",
+   "chargedetailid": "23326123",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'OA23'] ['N381'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446665,
+   "visitid": "19455608",
+   "pid": "17477498",
+   "chargedetailid": "23366951",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "PR204"
+   ],
+   "rarcs": [
+    "N381",
+    "N130"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/04/2026"
+   },
+   "outcome": "HOLD - $0 answer ['PR204'] ['N381', 'N130'] (denial handling / board) - live claim already at BCBS (billed 10/04/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446666,
+   "visitid": "19455617",
+   "pid": "17476855",
+   "chargedetailid": "23366967",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381",
+    "N172"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS (Florida Blue 835 filed under FLO02)",
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446666,
+   "visitid": "19455617",
+   "pid": "17476855",
+   "chargedetailid": "23366968",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381",
+    "N172"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS (Florida Blue 835 filed under FLO02)",
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446667,
+   "visitid": "19455713",
+   "pid": "17472195",
+   "chargedetailid": "23367105",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 28.6,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381",
+    "N172"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 28.6,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446667,
+   "visitid": "19455713",
+   "pid": "17472195",
+   "chargedetailid": "23367106",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 15.49,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [
+    "N381",
+    "N172"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 93.51,
+    "insbal": 15.49,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/13/2026"
+   },
+   "carrier_override": "BCBS",
+   "pay": 15.49,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "BCBS",
+   "outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)"
+  },
+  {
+   "checkid": "1053166",
+   "checkclaimid": 15446668,
+   "visitid": "19457091",
+   "pid": "48449",
+   "chargedetailid": "23368913",
+   "cpt": "99344",
+   "dos": "2026-10-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "COB16"
+   ],
+   "rarcs": [
+    "N381"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 300.0,
+    "paid": 0.0,
+    "insbal": 300.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'COB16'] ['N381'] (denial handling / board) - live claim already at BCBS (billed 10/06/2026), this is the old plan's answer"
+  },
+  {
+   "checkid": "1053167",
+   "checkclaimid": 15446669,
+   "visitid": "19419306",
+   "pid": "17474290",
+   "chargedetailid": "23324249",
+   "cpt": "99222",
+   "dos": "2025-10-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "CO97"
+   ],
+   "rarcs": [
+    "N19",
+    "N830",
+    "N867",
+    "N871",
+    "N884"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'CO97'] ['N19', 'N830', 'N867', 'N871', 'N884'] (denial handling / board)"
+  }
+ ],
+ "wolate": []
+}

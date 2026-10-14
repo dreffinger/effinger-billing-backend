@@ -779,6 +779,62 @@
    "at": "2026-10-14T05:50:00Z",
    "answer": "applied by the 10/14 chat pass: every DOS-outside-coverage row released after its fix (unbilled_rules_1014 / cards_ab_1014 registers)",
    "doneAt": "2026-10-14T06:44:00Z"
+  },
+  {
+   "id": "A-2026-10-14T1710Z-A",
+   "stamp": "2026-10-14T1710Z",
+   "at": "2026-10-14T17:47:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_co45_fix_1710.py --only A",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the live run of era_co45_fix_1710.py, 17:39Z; its --dry pass ran)",
+   "what": "chart 25994 visit 19455138 charge 23366298 99306 9/18/2026: Florida Blue 835 check 1053164 (trace 620268423) paid 33.10 was posted by the ERA Center Post button but its CO-45 contractual 93.16 landed on the PATIENT balance. Fix = move the 93.16 back to insurance (move_to_ins, no rebill) and write it off WOINS with the trace number. No money moves; the patient balance goes to 0.",
+   "dollars": "$93.16 WOINS",
+   "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
+   "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 93.16 after the Post button; remit CO-45 93.16)",
+   "ui": "Patient > Transactions > visit 19455138 > the 99306 charge: Transfer the 93.16 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 93.16, check # 620268423, deposit 10/14/2026.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T1710Z-B",
+   "stamp": "2026-10-14T1710Z",
+   "at": "2026-10-14T17:47:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_co45_fix_1710.py --only B",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the live run of era_co45_fix_1710.py, 17:39Z; its --dry pass ran)",
+   "what": "chart 17474446 visit 19455133 charge 23366273 99349 9/17/2026: Florida Blue 835 check 1053165 (trace 423823547) paid 22.60 was posted by the Post button but the contractual 188.79 (remit CO-45 182.36 + Medicare's never-adjusted 6.43) landed on the PATIENT balance. Fix = move it back to insurance and write it off WOINS with the trace number. Patient balance to 0.",
+   "dollars": "$188.79 WOINS",
+   "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
+   "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 188.79 after the Post button)",
+   "ui": "Patient > Transactions > visit 19455133 > the 99349 charge: Transfer the 188.79 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 188.79, check # 423823547, deposit 10/14/2026.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T1710Z-C",
+   "stamp": "2026-10-14T1710Z",
+   "at": "2026-10-14T17:47:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_co45_fix_1710.py --only C",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the live run of era_co45_fix_1710.py, 17:39Z; its --dry pass ran)",
+   "what": "chart 17475362 visit 19440504 charge 23348193 99349 4/29/2026: Florida Blue's $0 PR-276 answer (the OLD plan's answer - the live claim is at Medicare, sent 9/23) was posted by the Post button under FLORIDA MEDICARE and pushed the whole 198.00 to the PATIENT balance again. Fix = move_to_ins (balance back to insurance, no rebill - the Medicare claim is pending). Wrong-payer denials never stay on the patient balance.",
+   "dollars": "$198.00 move back (no money moves)",
+   "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
+   "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 198.00 pat 0; NOW ins 0.00 pat 198.00 car FLO02)",
+   "ui": "Patient > Transactions > visit 19440504 > 99349: Transfer the 198.00 patient balance to insurance (FLO02 Medicare).",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T1710Z-D",
+   "stamp": "2026-10-14T1710Z",
+   "at": "2026-10-14T17:47:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_co45_fix_1710.py --only D",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the live run of era_co45_fix_1710.py, 17:39Z; its --dry pass ran)",
+   "what": "chart 17473245 visit 19451554 charge 23361603 99309 8/10/2026: Florida Blue's $0 PR-22 / MA04 answer (other payer primary - the secondary claim reached Florida Blue without Medicare's adjudication data) was posted by the Post button and pushed 74.64 to the PATIENT balance. Fix = move_to_ins (back to insurance, no rebill); the COB resend to Florida Blue with Medicare's remit data is the next pass's work.",
+   "dollars": "$74.64 move back (no money moves)",
+   "evidence_file": "/home/claude/unbilled/registers/era_audit_2026-10-14T1710Z.json",
+   "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 74.64 pat 0; NOW ins 0.00 pat 74.64)",
+   "ui": "Patient > Transactions > visit 19451554 > 99309: Transfer the 74.64 patient balance to insurance (BCBS).",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }

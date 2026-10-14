@@ -1,0 +1,3790 @@
+[
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19424211",
+  "pid": "17471977",
+  "cid": "23329979",
+  "cpt": "99233",
+  "dos": "2025-11-20",
+  "paid": 91.66,
+  "carcs": [
+   "CO45",
+   "PR2"
+  ],
+  "dry_outcome": "DRY would post pay 91.66 + WOINS 45.42 (bal 160.00)",
+  "before": {
+   "fee": 160.0,
+   "paid": 0.0,
+   "insbal": 160.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/03/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 137.08,
+   "insbal": 0.0,
+   "patbal": 22.92,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -91.66,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668111"
+   ]
+  ],
+  "wos": [
+   [
+    -45.42,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451921",
+  "pid": "17477260",
+  "cid": "23362011",
+  "cpt": "99233",
+  "dos": "2026-08-15",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452058",
+  "pid": "17477260",
+  "cid": "23362171",
+  "cpt": "99233",
+  "dos": "2026-08-18",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452058",
+  "pid": "17477260",
+  "cid": "23362171",
+  "cpt": "99233",
+  "dos": "2026-08-18",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452152",
+  "pid": "17477260",
+  "cid": "23362278",
+  "cpt": "99233",
+  "dos": "2026-08-19",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452152",
+  "pid": "17477260",
+  "cid": "23362278",
+  "cpt": "99233",
+  "dos": "2026-08-19",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452159",
+  "pid": "17477260",
+  "cid": "23362285",
+  "cpt": "99233",
+  "dos": "2026-08-20",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19452159",
+  "pid": "17477260",
+  "cid": "23362285",
+  "cpt": "99233",
+  "dos": "2026-08-20",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19454952",
+  "pid": "17476608",
+  "cid": "23366103",
+  "cpt": "99232",
+  "dos": "2026-09-16",
+  "paid": 71.66,
+  "carcs": [
+   "CO45"
+  ],
+  "dry_outcome": "DRY would post pay 71.66 + WOINS 39.34 (bal 111.00)",
+  "before": {
+   "fee": 111.0,
+   "paid": 0.0,
+   "insbal": 111.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "09/17/2026"
+  },
+  "now": {
+   "fee": 111.0,
+   "paid": 111.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -71.66,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668112"
+   ]
+  ],
+  "wos": [
+   [
+    -39.34,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455476",
+  "pid": "17477182",
+  "cid": "23366771",
+  "cpt": "99306",
+  "dos": "2026-09-17",
+  "paid": 33.1,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 33.10 + WOINS 0.00 (bal 33.10)",
+  "before": {
+   "fee": 256.0,
+   "paid": 222.9,
+   "insbal": 33.1,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 256.0,
+   "paid": 256.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -33.1,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668114"
+   ]
+  ],
+  "wos": [
+   [
+    -93.16,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455476",
+  "pid": "17477182",
+  "cid": "23366772",
+  "cpt": "99497",
+  "dos": "2026-09-17",
+  "paid": 13.35,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 13.35 + WOINS 0.00 (bal 13.35)",
+  "before": {
+   "fee": 133.0,
+   "paid": 119.65,
+   "insbal": 13.35,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 133.0,
+   "paid": 133.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -13.35,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668115"
+   ]
+  ],
+  "wos": [
+   [
+    -67.32,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455596",
+  "pid": "17477052",
+  "cid": "23366933",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668116"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455596",
+  "pid": "17477052",
+  "cid": "23366934",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668117"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455603",
+  "pid": "17477499",
+  "cid": "23366943",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 28.60",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ],
+   [
+    -28.6,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455616",
+  "pid": "17476438",
+  "cid": "23366965",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668118"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455616",
+  "pid": "17476438",
+  "cid": "23366966",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668119"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455637",
+  "pid": "17474082",
+  "cid": "23366997",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668120"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455681",
+  "pid": "17477533",
+  "cid": "23367055",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 18.83,
+  "carcs": [
+   "OA23",
+   "PR275"
+  ],
+  "dry_outcome": "residual 18.83",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -64.53,
+    "WOINS",
+    "0"
+   ],
+   [
+    -67.64,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455681",
+  "pid": "17477533",
+  "cid": "23367056",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 15.49",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ],
+   [
+    -15.49,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455698",
+  "pid": "25827",
+  "cid": "23367076",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668121"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455698",
+  "pid": "25827",
+  "cid": "23367077",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668122"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455706",
+  "pid": "17473883",
+  "cid": "23367091",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668123"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455706",
+  "pid": "17473883",
+  "cid": "23367092",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668124"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455752",
+  "pid": "17476544",
+  "cid": "23367183",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668154"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.14,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19455752",
+  "pid": "17476544",
+  "cid": "23367184",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668155"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ],
+   [
+    -8.92,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451921",
+  "pid": "17477260",
+  "cid": "23362011",
+  "cpt": "99233",
+  "dos": "2026-08-15",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451911",
+  "pid": "17477260",
+  "cid": "23362001",
+  "cpt": "99233",
+  "dos": "2026-08-16",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451911",
+  "pid": "17477260",
+  "cid": "23362001",
+  "cpt": "99233",
+  "dos": "2026-08-16",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451901",
+  "pid": "17477260",
+  "cid": "23361991",
+  "cpt": "99233",
+  "dos": "2026-08-17",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19424212",
+  "pid": "17471977",
+  "cid": "23329980",
+  "cpt": "99223",
+  "dos": "2025-11-19",
+  "paid": 135.01,
+  "carcs": [
+   "CO45",
+   "PR2"
+  ],
+  "dry_outcome": "DRY would post pay 135.01 + WOINS 141.24 (bal 310.00)",
+  "before": {
+   "fee": 310.0,
+   "paid": 0.0,
+   "insbal": 310.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/03/2026"
+  },
+  "now": {
+   "fee": 310.0,
+   "paid": 276.25,
+   "insbal": 0.0,
+   "patbal": 33.75,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -135.01,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668125"
+   ]
+  ],
+  "wos": [
+   [
+    -141.24,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19440504",
+  "pid": "17475362",
+  "cid": "23348193",
+  "cpt": "99349",
+  "dos": "2026-04-29",
+  "paid": 0.0,
+  "carcs": [
+   "PR276"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['PR276'] ['N381'] from BCBS but the live c",
+  "before": {
+   "fee": 198.0,
+   "paid": 0.0,
+   "insbal": 198.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "10/02/2026"
+  },
+  "now": {
+   "fee": 198.0,
+   "paid": 0.0,
+   "insbal": 0.0,
+   "patbal": 198.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668156"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19445442",
+  "pid": "17476868",
+  "cid": "23354307",
+  "cpt": "99344",
+  "dos": "2026-06-18",
+  "paid": 29.46,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 29.46 + WOINS 0.00 (bal 29.46)",
+  "before": {
+   "fee": 300.0,
+   "paid": 270.54,
+   "insbal": 29.46,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 300.0,
+   "paid": 300.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -29.46,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668126"
+   ]
+  ],
+  "wos": [
+   [
+    -155.04,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19445442",
+  "pid": "17476868",
+  "cid": "23354308",
+  "cpt": "99497",
+  "dos": "2026-06-18",
+  "paid": 17.37,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 17.37 + WOINS 0.00 (bal 17.37)",
+  "before": {
+   "fee": 133.0,
+   "paid": 115.63,
+   "insbal": 17.37,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 133.0,
+   "paid": 133.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -17.37,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668127"
+   ]
+  ],
+  "wos": [
+   [
+    -47.52,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19446208",
+  "pid": "17476544",
+  "cid": "23355187",
+  "cpt": "99487",
+  "dos": "2026-06-25",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668157"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.14,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19446208",
+  "pid": "17476544",
+  "cid": "23355188",
+  "cpt": "99489",
+  "dos": "2026-06-25",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668158"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ],
+   [
+    -8.92,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19446238",
+  "pid": "17476868",
+  "cid": "23355244",
+  "cpt": "99487",
+  "dos": "2026-06-25",
+  "paid": 28.6,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668128"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19446238",
+  "pid": "17476868",
+  "cid": "23355245",
+  "cpt": "99489",
+  "dos": "2026-06-25",
+  "paid": 15.49,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668129"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19450196",
+  "pid": "17476868",
+  "cid": "23360082",
+  "cpt": "99309",
+  "dos": "2026-07-28",
+  "paid": 16.93,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.93 + WOINS 0.00 (bal 16.93)",
+  "before": {
+   "fee": 141.0,
+   "paid": 124.07,
+   "insbal": 16.93,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -16.93,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668130"
+   ]
+  ],
+  "wos": [
+   [
+    -57.71,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451019",
+  "pid": "17476544",
+  "cid": "23361030",
+  "cpt": "99309",
+  "dos": "2026-08-07",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/24/2026"
+  },
+  "now": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668159"
+   ]
+  ],
+  "wos": [
+   [
+    -57.71,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.93,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451191",
+  "pid": "17476544",
+  "cid": "23361192",
+  "cpt": "99309",
+  "dos": "2026-08-03",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/24/2026"
+  },
+  "now": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668160"
+   ]
+  ],
+  "wos": [
+   [
+    -57.71,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.93,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19456882",
+  "pid": "17477777",
+  "cid": "23368543",
+  "cpt": "99223",
+  "dos": "2026-09-29",
+  "paid": 200.7,
+  "carcs": [
+   "CO45"
+  ],
+  "dry_outcome": "DRY would post pay 200.70 + WOINS 109.30 (bal 310.00)",
+  "before": {
+   "fee": 310.0,
+   "paid": 0.0,
+   "insbal": 310.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/03/2026"
+  },
+  "now": {
+   "fee": 310.0,
+   "paid": 310.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -200.7,
+    "213485949",
+    "BCBS",
+    "0",
+    "24668131"
+   ]
+  ],
+  "wos": [
+   [
+    -109.3,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451353",
+  "pid": "17476544",
+  "cid": "23361397",
+  "cpt": "99308",
+  "dos": "2026-08-11",
+  "paid": 0.0,
+  "carcs": [
+   "PR177"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 107.0,
+   "paid": 107.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/24/2026"
+  },
+  "now": {
+   "fee": 107.0,
+   "paid": 107.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "213485949",
+    "FLO02",
+    "0",
+    "24668161"
+   ]
+  ],
+  "wos": [
+   [
+    -49.97,
+    "WOINS",
+    "0"
+   ],
+   [
+    -11.59,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451524",
+  "pid": "17476868",
+  "cid": "23361573",
+  "cpt": "G0439",
+  "dos": "2026-06-20",
+  "paid": 0.0,
+  "carcs": [
+   "PR22"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (PR22) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 204.0,
+   "paid": 134.01,
+   "insbal": 69.99,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451560",
+  "pid": "17477260",
+  "cid": "23361611",
+  "cpt": "99223",
+  "dos": "2026-08-12",
+  "paid": -31.94,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 310.0,
+   "paid": 310.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -152.86,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451560",
+  "pid": "17477260",
+  "cid": "23361611",
+  "cpt": "99223",
+  "dos": "2026-08-12",
+  "paid": 31.94,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 31.94",
+  "before": {
+   "fee": 310.0,
+   "paid": 310.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 310.0,
+   "paid": 310.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -152.86,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451573",
+  "pid": "17477260",
+  "cid": "23361627",
+  "cpt": "99233",
+  "dos": "2026-08-13",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451573",
+  "pid": "17477260",
+  "cid": "23361627",
+  "cpt": "99233",
+  "dos": "2026-08-13",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451596",
+  "pid": "17477260",
+  "cid": "23361651",
+  "cpt": "99233",
+  "dos": "2026-08-14",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451596",
+  "pid": "17477260",
+  "cid": "23361651",
+  "cpt": "99233",
+  "dos": "2026-08-14",
+  "paid": 21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "residual 21.80",
+  "before": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451901",
+  "pid": "17477260",
+  "cid": "23361991",
+  "cpt": "99233",
+  "dos": "2026-08-17",
+  "paid": -21.8,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (OA23) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19451524",
+  "pid": "17476868",
+  "cid": "23361573",
+  "cpt": "G0439",
+  "dos": "2026-06-20",
+  "paid": 0.0,
+  "carcs": [
+   "CO226"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO226'] ['N381', 'N706'] (denial handling",
+  "before": {
+   "fee": 204.0,
+   "paid": 134.01,
+   "insbal": 69.99,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "09/20/2026"
+  },
+  "now": {
+   "fee": 204.0,
+   "paid": 134.01,
+   "insbal": 69.99,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053163",
+  "trace": "213485949",
+  "vid": "19457089",
+  "pid": "17471326",
+  "cid": "23368911",
+  "cpt": "99344",
+  "dos": "2026-10-01",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "PRA1"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'PRA1'] ['N381', 'M51', 'N58'] (de",
+  "before": {
+   "fee": 300.0,
+   "paid": 0.0,
+   "insbal": 300.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/06/2026"
+  },
+  "now": {
+   "fee": 300.0,
+   "paid": 0.0,
+   "insbal": 300.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053164",
+  "trace": "620268423",
+  "vid": "19455138",
+  "pid": "25994",
+  "cid": "23366298",
+  "cpt": "99306",
+  "dos": "2026-09-18",
+  "paid": 33.1,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 33.10 + WOINS 93.16 (bal 126.26)",
+  "before": {
+   "fee": 256.0,
+   "paid": 129.74,
+   "insbal": 126.26,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/02/2026"
+  },
+  "now": {
+   "fee": 256.0,
+   "paid": 162.84,
+   "insbal": 0.0,
+   "patbal": 93.16,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -33.1,
+    "620268423",
+    "BCBS",
+    "0",
+    "24668132"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053164",
+  "trace": "620268423",
+  "vid": "19455138",
+  "pid": "25994",
+  "cid": "23366299",
+  "cpt": "99497",
+  "dos": "2026-09-18",
+  "paid": 0.0,
+  "carcs": [
+   "PR96"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['PR96'] ['N381', 'N130'] (denial handling ",
+  "before": {
+   "fee": 133.0,
+   "paid": 52.33,
+   "insbal": 80.67,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/02/2026"
+  },
+  "now": {
+   "fee": 133.0,
+   "paid": 52.33,
+   "insbal": 0.0,
+   "patbal": 80.67,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "620268423",
+    "BCBS",
+    "0",
+    "24668133"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19416182",
+  "pid": "23162",
+  "cid": "23319757",
+  "cpt": "99487",
+  "dos": "2025-09-08",
+  "paid": 0.0,
+  "carcs": [
+   "PR22"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/06/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -206.0,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19416182",
+  "pid": "23162",
+  "cid": "23319758",
+  "cpt": "99489",
+  "dos": "2025-09-08",
+  "paid": 0.0,
+  "carcs": [
+   "OA23"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/06/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -109.0,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455949",
+  "pid": "42092",
+  "cid": "23367435",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)",
+  "before": {
+   "fee": 206.0,
+   "paid": 189.86,
+   "insbal": 16.14,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -16.14,
+    "423823547",
+    "FLO02",
+    "0",
+    "24668134"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455949",
+  "pid": "42092",
+  "cid": "23367436",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.92,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)",
+  "before": {
+   "fee": 109.0,
+   "paid": 100.08,
+   "insbal": 8.92,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -8.92,
+    "423823547",
+    "FLO02",
+    "0",
+    "24668135"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455948",
+  "pid": "21411",
+  "cid": "23367433",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)",
+  "before": {
+   "fee": 206.0,
+   "paid": 189.86,
+   "insbal": 16.14,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -16.14,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668136"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455948",
+  "pid": "21411",
+  "cid": "23367434",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.92,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)",
+  "before": {
+   "fee": 109.0,
+   "paid": 100.08,
+   "insbal": 8.92,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -8.92,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668137"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455941",
+  "pid": "17475536",
+  "cid": "23367419",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "residual 16.14",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.14,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455941",
+  "pid": "17475536",
+  "cid": "23367420",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.92,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "residual 8.92",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ],
+   [
+    -8.92,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455901",
+  "pid": "17477566",
+  "cid": "23367370",
+  "cpt": "99309",
+  "dos": "2026-09-15",
+  "paid": 16.93,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.93 + WOINS 0.00 (bal 16.93)",
+  "before": {
+   "fee": 141.0,
+   "paid": 124.07,
+   "insbal": 16.93,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 141.0,
+   "paid": 141.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -16.93,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668138"
+   ]
+  ],
+  "wos": [
+   [
+    -57.71,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455809",
+  "pid": "21308",
+  "cid": "23367265",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "residual 16.14",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO99",
+   "billdate": "10/07/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO99"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.14,
+    "WOCAID2ND",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455717",
+  "pid": "17474446",
+  "cid": "23367113",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668139"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455717",
+  "pid": "17474446",
+  "cid": "23367114",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668140"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455709",
+  "pid": "12183032",
+  "cid": "23367097",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -206.0,
+    "WONCS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455709",
+  "pid": "12183032",
+  "cid": "23367098",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "skip - insurance balance already 0",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -109.0,
+    "WONCS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455687",
+  "pid": "20933",
+  "cid": "23367064",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'OA23'] ['N381'] (denial handling ",
+  "before": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 206.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "10/02/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 206.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455656",
+  "pid": "17473460",
+  "cid": "23367018",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "residual 16.14",
+  "before": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ],
+   [
+    -16.14,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455656",
+  "pid": "17473460",
+  "cid": "23367019",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.92,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "residual 8.92",
+  "before": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/23/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ],
+   [
+    -8.92,
+    "WOCLTREQ",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455133",
+  "pid": "17474446",
+  "cid": "23366273",
+  "cpt": "99349",
+  "dos": "2026-09-17",
+  "paid": 22.6,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 22.60 + WOINS 188.79 (bal 211.39)",
+  "before": {
+   "fee": 300.0,
+   "paid": 88.61,
+   "insbal": 211.39,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/02/2026"
+  },
+  "now": {
+   "fee": 300.0,
+   "paid": 111.21,
+   "insbal": 0.0,
+   "patbal": 188.79,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -22.6,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668141"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19451554",
+  "pid": "17473245",
+  "cid": "23361603",
+  "cpt": "99309",
+  "dos": "2026-08-10",
+  "paid": 0.0,
+  "carcs": [
+   "PR22"
+  ],
+  "dry_outcome": "reversal of an earlier $0 denial (PR22) - recorded, nothing ",
+  "before": null,
+  "now": {
+   "fee": 141.0,
+   "paid": 66.36,
+   "insbal": 0.0,
+   "patbal": 74.64,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668163"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19451554",
+  "pid": "17473245",
+  "cid": "23361603",
+  "cpt": "99309",
+  "dos": "2026-08-10",
+  "paid": 0.0,
+  "carcs": [
+   "PR22"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['PR22'] ['N381', 'MA04'] (denial handling ",
+  "before": {
+   "fee": 141.0,
+   "paid": 66.36,
+   "insbal": 74.64,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "09/20/2026"
+  },
+  "now": {
+   "fee": 141.0,
+   "paid": 66.36,
+   "insbal": 0.0,
+   "patbal": 74.64,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668163"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19437116",
+  "pid": "12180329",
+  "cid": "23344191",
+  "cpt": "99233",
+  "dos": "2026-04-01",
+  "paid": 21.8,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)",
+  "before": {
+   "fee": 160.0,
+   "paid": 138.2,
+   "insbal": 21.8,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -21.8,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668142"
+   ]
+  ],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19436829",
+  "pid": "12180329",
+  "cid": "23343877",
+  "cpt": "99233",
+  "dos": "2026-03-26",
+  "paid": 21.8,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)",
+  "before": {
+   "fee": 160.0,
+   "paid": 138.2,
+   "insbal": 21.8,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -21.8,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668143"
+   ]
+  ],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19436828",
+  "pid": "12180329",
+  "cid": "23343876",
+  "cpt": "99233",
+  "dos": "2026-03-27",
+  "paid": 21.8,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)",
+  "before": {
+   "fee": 160.0,
+   "paid": 138.2,
+   "insbal": 21.8,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -21.8,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668144"
+   ]
+  ],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19436825",
+  "pid": "12180329",
+  "cid": "23343873",
+  "cpt": "99233",
+  "dos": "2026-03-30",
+  "paid": 21.8,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 21.80 + WOINS 0.00 (bal 21.80)",
+  "before": {
+   "fee": 160.0,
+   "paid": 138.2,
+   "insbal": 21.8,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 160.0,
+   "paid": 160.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -21.8,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668145"
+   ]
+  ],
+  "wos": [
+   [
+    -52.74,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19436536",
+  "pid": "12180329",
+  "cid": "23343591",
+  "cpt": "99232",
+  "dos": "2026-03-25",
+  "paid": 14.38,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 14.38 + WOINS 0.00 (bal 14.38)",
+  "before": {
+   "fee": 111.0,
+   "paid": 96.62,
+   "insbal": 14.38,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 111.0,
+   "paid": 111.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -14.38,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668146"
+   ]
+  ],
+  "wos": [
+   [
+    -40.25,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455950",
+  "pid": "17477566",
+  "cid": "23367437",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.14,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)",
+  "before": {
+   "fee": 206.0,
+   "paid": 189.86,
+   "insbal": 16.14,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -16.14,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668147"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455950",
+  "pid": "17477566",
+  "cid": "23367438",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.92,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 8.92 + WOINS 0.00 (bal 8.92)",
+  "before": {
+   "fee": 109.0,
+   "paid": 100.08,
+   "insbal": 8.92,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -8.92,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668148"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455952",
+  "pid": "17471131",
+  "cid": "23367441",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 16.79,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 16.14 + WOINS 0.00 (bal 16.14)",
+  "before": {
+   "fee": 206.0,
+   "paid": 189.86,
+   "insbal": 16.14,
+   "patbal": 0.0,
+   "carrier": "CAP07",
+   "billdate": "10/07/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "CAP07"
+  },
+  "this_check_pays": [
+   [
+    -16.14,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668165"
+   ]
+  ],
+  "wos": [
+   [
+    -126.58,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053165",
+  "trace": "423823547",
+  "vid": "19455952",
+  "pid": "17471131",
+  "cid": "23367442",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 8.27,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 8.27 + WOINS 0.65 (bal 8.92)",
+  "before": {
+   "fee": 109.0,
+   "paid": 100.08,
+   "insbal": 8.92,
+   "patbal": 0.0,
+   "carrier": "CAP07",
+   "billdate": "10/07/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "CAP07"
+  },
+  "this_check_pays": [
+   [
+    -8.27,
+    "423823547",
+    "BCBS",
+    "0",
+    "24668166"
+   ]
+  ],
+  "wos": [
+   [
+    -65.13,
+    "WOINS",
+    "0"
+   ],
+   [
+    -0.65,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19420961",
+  "pid": "17473086",
+  "cid": "23326122",
+  "cpt": "99487",
+  "dos": "2025-10-25",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "CO252"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'CO252'] ['N381', 'N4'] (denial ha",
+  "before": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 206.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/10/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 206.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19420961",
+  "pid": "17473086",
+  "cid": "23326123",
+  "cpt": "99489",
+  "dos": "2025-10-25",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'OA23'] ['N381'] (denial handling ",
+  "before": {
+   "fee": 109.0,
+   "paid": 0.0,
+   "insbal": 109.0,
+   "patbal": 0.0,
+   "carrier": "FLO02",
+   "billdate": "09/10/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 0.0,
+   "insbal": 109.0,
+   "patbal": 0.0,
+   "carrier": "FLO02"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19455608",
+  "pid": "17477498",
+  "cid": "23366951",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 0.0,
+  "carcs": [
+   "PR204"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['PR204'] ['N381', 'N130'] (denial handling",
+  "before": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 206.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/04/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 0.0,
+   "insbal": 0.0,
+   "patbal": 206.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    0.0,
+    "190596986",
+    "BCBS",
+    "0",
+    "24668164"
+   ]
+  ],
+  "wos": []
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19455617",
+  "pid": "17476855",
+  "cid": "23366967",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "HUM01",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "HUM01"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "190596986",
+    "FLO02",
+    "0",
+    "24668150"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19455617",
+  "pid": "17476855",
+  "cid": "23366968",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "HUM01",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "HUM01"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "190596986",
+    "FLO02",
+    "0",
+    "24668151"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19455713",
+  "pid": "17472195",
+  "cid": "23367105",
+  "cpt": "99487",
+  "dos": "2026-09-20",
+  "paid": 28.6,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 28.60 + WOINS 0.00 (bal 28.60)",
+  "before": {
+   "fee": 206.0,
+   "paid": 177.4,
+   "insbal": 28.6,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 206.0,
+   "paid": 206.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -28.6,
+    "190596986",
+    "FLO02",
+    "0",
+    "24668152"
+   ]
+  ],
+  "wos": [
+   [
+    -65.31,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19455713",
+  "pid": "17472195",
+  "cid": "23367106",
+  "cpt": "99489",
+  "dos": "2026-09-20",
+  "paid": 15.49,
+  "carcs": [
+   "CO45",
+   "OA23"
+  ],
+  "dry_outcome": "DRY would post pay 15.49 + WOINS 0.00 (bal 15.49)",
+  "before": {
+   "fee": 109.0,
+   "paid": 93.51,
+   "insbal": 15.49,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/13/2026"
+  },
+  "now": {
+   "fee": 109.0,
+   "paid": 109.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [
+   [
+    -15.49,
+    "190596986",
+    "FLO02",
+    "0",
+    "24668153"
+   ]
+  ],
+  "wos": [
+   [
+    -32.77,
+    "WOINS",
+    "0"
+   ]
+  ]
+ },
+ {
+  "checkid": "1053166",
+  "trace": "190596986",
+  "vid": "19457091",
+  "pid": "48449",
+  "cid": "23368913",
+  "cpt": "99344",
+  "dos": "2026-10-01",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "COB16"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'COB16'] ['N381'] (denial handling",
+  "before": {
+   "fee": 300.0,
+   "paid": 0.0,
+   "insbal": 300.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/06/2026"
+  },
+  "now": {
+   "fee": 300.0,
+   "paid": 0.0,
+   "insbal": 300.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": []
+ },
+ {
+  "checkid": "1053167",
+  "trace": "2610140572",
+  "vid": "19419306",
+  "pid": "17474290",
+  "cid": "23324249",
+  "cpt": "99222",
+  "dos": "2025-10-06",
+  "paid": 0.0,
+  "carcs": [
+   "CO45",
+   "CO97"
+  ],
+  "dry_outcome": "HOLD - $0 answer ['CO45', 'CO97'] ['N19', 'N830', 'N867', 'N",
+  "before": {
+   "fee": 310.0,
+   "paid": 0.0,
+   "insbal": 310.0,
+   "patbal": 0.0,
+   "carrier": "BCBS",
+   "billdate": "10/05/2026"
+  },
+  "now": {
+   "fee": 310.0,
+   "paid": 0.0,
+   "insbal": 310.0,
+   "patbal": 0.0,
+   "carrier": "BCBS"
+  },
+  "this_check_pays": [],
+  "wos": []
+ }
+]

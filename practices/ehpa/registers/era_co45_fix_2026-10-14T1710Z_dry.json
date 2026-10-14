@@ -1,0 +1,74 @@
+{
+ "stamp": "2026-10-14T1710Z",
+ "dry": true,
+ "A": [
+  {
+   "pid": "25994",
+   "vid": "19455138",
+   "cid": "23366298",
+   "cpt": "99306",
+   "before": {
+    "fee": 256.0,
+    "paid": 162.84,
+    "patbal": 93.16,
+    "insbal": 0.0,
+    "carrier": "BCBS",
+    "cpt": "99306"
+   },
+   "check": "620268423",
+   "depositdate": "10/14/2026",
+   "wo": 93.16,
+   "result": "DRY"
+  },
+  {
+   "pid": "17474446",
+   "vid": "19455133",
+   "cid": "23366273",
+   "cpt": "99349",
+   "before": {
+    "fee": 300.0,
+    "paid": 111.21,
+    "patbal": 188.79,
+    "insbal": 0.0,
+    "carrier": "BCBS",
+    "cpt": "99349"
+   },
+   "check": "423823547",
+   "depositdate": "10/14/2026",
+   "wo": 188.79,
+   "result": "DRY"
+  }
+ ],
+ "B": [
+  {
+   "pid": "17475362",
+   "vid": "19440504",
+   "cid": "23348193",
+   "cpt": "99349",
+   "before": {
+    "fee": 198.0,
+    "paid": 0.0,
+    "patbal": 198.0,
+    "insbal": 0.0,
+    "carrier": "FLO02",
+    "cpt": "99349"
+   },
+   "result": "DRY - would move 198.00 back to insurance"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19451554",
+   "cid": "23361603",
+   "cpt": "99309",
+   "before": {
+    "fee": 141.0,
+    "paid": 66.36,
+    "patbal": 74.64,
+    "insbal": 0.0,
+    "carrier": "BCBS",
+    "cpt": "99309"
+   },
+   "result": "DRY - would move 74.64 back to insurance"
+  }
+ ]
+}
