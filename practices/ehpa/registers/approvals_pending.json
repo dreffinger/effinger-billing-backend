@@ -506,8 +506,10 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
    "evidence": "dry run 1013: 5 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
    "ui": "Payment Entry > patient > visit > New payment: carrier = the billed plan, check number + deposit date from the 277, amount = the payer's paid amount; write-off line (WOINS / WOCAID2ND) for the remainder; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13 23:47Z (0310Z run, old_claims_apply --only C): AET07 payments $653.49 + WOINS $373.51 on 4 visits; verified live 0710Z, insbal 0.00",
+   "doneAt": "2026-10-14T07:50:00Z",
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
   },
   {
    "id": "A-2026-10-14T0155Z-K-dec",
@@ -520,8 +522,10 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
    "evidence": "dry run 1013: 3 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13 23:48-23:50Z (0310Z run, old_claims_apply --only K-dec): WOCAID2ND + WOINS $59.11 on 2 visits; verified live 0710Z, insbal 0.00",
+   "doneAt": "2026-10-14T07:50:00Z",
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
   },
   {
    "id": "A-2026-10-14T0155Z-J-dec",
@@ -534,8 +538,10 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
    "evidence": "dry run 1013: 4 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13 23:48Z (0310Z run, old_claims_apply --only J-dec): WOINS $69.16 on 4 visits (DOS before the date of death); verified live 0710Z, insbal 0.00",
+   "doneAt": "2026-10-14T07:50:00Z",
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
   },
   {
    "id": "A-2026-10-14T0155Z-K",
@@ -548,8 +554,10 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
    "evidence": "dry run 1013: 6 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13 23:48-23:50Z (0310Z run, old_claims_apply --only K): WOCAID2ND + WOINS $254.81 on 4 visits; verified live 0710Z, insbal 0.00",
+   "doneAt": "2026-10-14T07:50:00Z",
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
   },
   {
    "id": "A-2026-10-14T0155Z-J",
@@ -562,8 +570,10 @@
    "evidence_file": "/home/claude/unbilled/old_claims_apply_1013.log",
    "evidence": "dry run 1013: 1 charge actions verified live (0 skipped as settled/already posted); review page: Old Claims Disposition artifact; facts + 277 answers in old_claims_disposition_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code as on the card (WOINS / WOLATE / WOCAID2ND / WOSMBAL / WOPDEOB), note 'old-claims disposition 10/9/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13 23:48Z (0310Z run, old_claims_apply --only J): WOCAID2ND on v19389115; verified live 0710Z, insbal 0.00",
+   "doneAt": "2026-10-14T07:50:00Z",
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-DUAL",
