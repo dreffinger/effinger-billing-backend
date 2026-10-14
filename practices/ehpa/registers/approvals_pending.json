@@ -792,8 +792,8 @@
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 93.16 after the Post button; remit CO-45 93.16)",
    "ui": "Patient > Transactions > visit 19455138 > the 99306 charge: Transfer the 93.16 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 93.16, check # 620268423, deposit 10/14/2026.",
    "note": "applying 2026-10-14T1910Z",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-14T21:45Z applied by backend billing run 2026-10-14T2110Z on William's page approval (18:05Z): era_co45_fix_1710.py live - A chart 25994 c23366298 moved back 93.16 + WOINS 93.16 (620268423); B chart 17474446 c23366273 moved back 188.79 + WOINS 188.79 (423823547); C chart 17475362 c23348193 198.00 moved back to insurance (FLO02, Medicare claim pending); D chart 17473245 c23361603 74.64 moved back to insurance (BCBS). Patient balances 0 on all four; verified live before (unapplied at 21:3xZ) and after."
   },
   {
    "id": "A-2026-10-14T1710Z-B",
@@ -807,8 +807,8 @@
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (NOW ins 0.00 pat 188.79 after the Post button)",
    "ui": "Patient > Transactions > visit 19455133 > the 99349 charge: Transfer the 188.79 patient balance to insurance (BCBS), then Payment Entry > write-off WOINS 188.79, check # 423823547, deposit 10/14/2026.",
    "note": "applying 2026-10-14T1910Z",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-14T21:45Z applied by backend billing run 2026-10-14T2110Z on William's page approval (18:05Z): era_co45_fix_1710.py live - A chart 25994 c23366298 moved back 93.16 + WOINS 93.16 (620268423); B chart 17474446 c23366273 moved back 188.79 + WOINS 188.79 (423823547); C chart 17475362 c23348193 198.00 moved back to insurance (FLO02, Medicare claim pending); D chart 17473245 c23361603 74.64 moved back to insurance (BCBS). Patient balances 0 on all four; verified live before (unapplied at 21:3xZ) and after."
   },
   {
    "id": "A-2026-10-14T1710Z-C",
@@ -822,8 +822,8 @@
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 198.00 pat 0; NOW ins 0.00 pat 198.00 car FLO02)",
    "ui": "Patient > Transactions > visit 19440504 > 99349: Transfer the 198.00 patient balance to insurance (FLO02 Medicare).",
    "note": "applying 2026-10-14T1910Z",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-14T21:45Z applied by backend billing run 2026-10-14T2110Z on William's page approval (18:05Z): era_co45_fix_1710.py live - A chart 25994 c23366298 moved back 93.16 + WOINS 93.16 (620268423); B chart 17474446 c23366273 moved back 188.79 + WOINS 188.79 (423823547); C chart 17475362 c23348193 198.00 moved back to insurance (FLO02, Medicare claim pending); D chart 17473245 c23361603 74.64 moved back to insurance (BCBS). Patient balances 0 on all four; verified live before (unapplied at 21:3xZ) and after."
   },
   {
    "id": "A-2026-10-14T1710Z-D",
@@ -837,8 +837,8 @@
    "evidence": "registers/era_audit_2026-10-14T1710Z.json (before ins 74.64 pat 0; NOW ins 0.00 pat 74.64)",
    "ui": "Patient > Transactions > visit 19451554 > 99309: Transfer the 74.64 patient balance to insurance (BCBS).",
    "note": "applying 2026-10-14T1910Z",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "2026-10-14T21:45Z applied by backend billing run 2026-10-14T2110Z on William's page approval (18:05Z): era_co45_fix_1710.py live - A chart 25994 c23366298 moved back 93.16 + WOINS 93.16 (620268423); B chart 17474446 c23366273 moved back 188.79 + WOINS 188.79 (423823547); C chart 17475362 c23348193 198.00 moved back to insurance (FLO02, Medicare claim pending); D chart 17473245 c23361603 74.64 moved back to insurance (BCBS). Patient balances 0 on all four; verified live before (unapplied at 21:3xZ) and after."
   },
   {
    "id": "A-2026-10-14T1910Z-A",

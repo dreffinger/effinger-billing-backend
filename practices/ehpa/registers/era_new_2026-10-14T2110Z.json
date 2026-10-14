@@ -1,0 +1,1004 @@
+{
+ "stamp": "2026-10-14T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446689,
+   "visitid": "19455787",
+   "pid": "45008",
+   "chargedetailid": "23367234",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446690,
+   "visitid": "19455764",
+   "pid": "21378",
+   "chargedetailid": "23367204",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446691,
+   "visitid": "19456477",
+   "pid": "20379",
+   "chargedetailid": "23368123",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 16.93,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/10/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446692,
+   "visitid": "19439689",
+   "pid": "17472784",
+   "chargedetailid": "23347328",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175182",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/14/2026 14:29:32\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446692,
+   "visitid": "19439689",
+   "pid": "17472784",
+   "chargedetailid": "23347329",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175183",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j264z\" lst=\"10/14/2026 14:29:36\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446693,
+   "visitid": "19442508",
+   "pid": "17472784",
+   "chargedetailid": "23350669",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175184",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 14:29:40\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446693,
+   "visitid": "19442508",
+   "pid": "17472784",
+   "chargedetailid": "23350670",
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175185",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j264z\" lst=\"10/14/2026 14:29:44\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446694,
+   "visitid": "19421128",
+   "pid": "17472784",
+   "chargedetailid": "23326456",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 17.5,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175186",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/14/2026 14:29:49\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446694,
+   "visitid": "19421128",
+   "pid": "17472784",
+   "chargedetailid": "23326457",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 99.53,
+    "insbal": 9.47,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 9.47,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175187",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 14:29:52\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446695,
+   "visitid": "19446315",
+   "pid": "17472784",
+   "chargedetailid": "23355389",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175188",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 14:29:56\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446695,
+   "visitid": "19446315",
+   "pid": "17472784",
+   "chargedetailid": "23355390",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175189",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 14:30:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446696,
+   "visitid": "19430850",
+   "pid": "17472784",
+   "chargedetailid": "23337436",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175190",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 14:30:05\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446696,
+   "visitid": "19430850",
+   "pid": "17472784",
+   "chargedetailid": "23337437",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175191",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/14/2026 14:30:08\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446697,
+   "visitid": "19423720",
+   "pid": "17472784",
+   "chargedetailid": "23329434",
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 17.5,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175192",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j264z\" lst=\"10/14/2026 14:30:13\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446698,
+   "visitid": "19438666",
+   "pid": "17472784",
+   "chargedetailid": "23345921",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175193",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 14:30:18\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446698,
+   "visitid": "19438666",
+   "pid": "17472784",
+   "chargedetailid": "23345922",
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/13/2026"
+   },
+   "why": "OA-23 $0 from the Medicaid-type secondary FLO02 on a line already paid by FLO02 - dual crossover residual WOCAID2ND (9/20, 10/4, 10/6 rule)",
+   "carrier_override": "HUM01",
+   "pay": 0.0,
+   "wo": 8.92,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "posted",
+   "paymentid": "10175194",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/14/2026 14:30:21\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053173",
+   "checkclaimid": 15446699,
+   "visitid": "19455824",
+   "pid": "21915",
+   "chargedetailid": "23367282",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "MCAD",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446671,
+   "visitid": "19457347",
+   "pid": "17469541",
+   "chargedetailid": "23369207",
+   "cpt": "99309",
+   "dos": "2026-10-05",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446672,
+   "visitid": "19453495",
+   "pid": "17470802",
+   "chargedetailid": "23364192",
+   "cpt": "99309",
+   "dos": "2026-08-31",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446673,
+   "visitid": "19456053",
+   "pid": "17472834",
+   "chargedetailid": "23367534",
+   "cpt": "99309",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446674,
+   "visitid": "19455792",
+   "pid": "24039",
+   "chargedetailid": "23367241",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO96'] ['N448'] from SUN01 but the live claim is at FLO99 (billed 10/08/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446674,
+   "visitid": "19455792",
+   "pid": "24039",
+   "chargedetailid": "23367242",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO96'] ['N448'] from SUN01 but the live claim is at FLO99 (billed 10/08/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446675,
+   "visitid": "19457289",
+   "pid": "17472703",
+   "chargedetailid": "23369146",
+   "cpt": "99233",
+   "dos": "2026-10-06",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446676,
+   "visitid": "19452372",
+   "pid": "17470802",
+   "chargedetailid": "23362582",
+   "cpt": "99487",
+   "dos": "2026-08-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO242"
+   ],
+   "rarcs": [
+    "M115"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 206.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446676,
+   "visitid": "19452372",
+   "pid": "17470802",
+   "chargedetailid": "23362583",
+   "cpt": "99489",
+   "dos": "2026-08-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO242"
+   ],
+   "rarcs": [
+    "M115"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 109.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446677,
+   "visitid": "19457265",
+   "pid": "17472703",
+   "chargedetailid": "23369122",
+   "cpt": "99233",
+   "dos": "2026-10-07",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446678,
+   "visitid": "19455802",
+   "pid": "25266",
+   "chargedetailid": "23367256",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "why": "CO-96/N448 $0 from the Medicaid-type secondary SUN01 on a 99487 line already paid by FLO02 - CCM/ACP never payable by Medicaid -> WOCAID2ND (FCC 14/075 rule)",
+   "pay": 0.0,
+   "wo": 16.14,
+   "wocode": "WOCAID2ND",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "posted",
+   "paymentid": "10175195",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 14:30:35\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446679,
+   "visitid": "19453348",
+   "pid": "17470802",
+   "chargedetailid": "23363893",
+   "cpt": "99309",
+   "dos": "2026-08-27",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446680,
+   "visitid": "19456055",
+   "pid": "17473663",
+   "chargedetailid": "23367536",
+   "cpt": "99309",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446681,
+   "visitid": "19457300",
+   "pid": "17472703",
+   "chargedetailid": "23369157",
+   "cpt": "99233",
+   "dos": "2026-10-05",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 160.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446682,
+   "visitid": "19455802",
+   "pid": "25266",
+   "chargedetailid": "23367256",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "outcome": "skip - charge already handled on this check (repeated claim)"
+  },
+  {
+   "checkid": "1053169",
+   "checkclaimid": 15446683,
+   "visitid": "19454877",
+   "pid": "17470802",
+   "chargedetailid": "23366027",
+   "cpt": "99309",
+   "dos": "2026-09-03",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  }
+ ],
+ "wolate": []
+}
