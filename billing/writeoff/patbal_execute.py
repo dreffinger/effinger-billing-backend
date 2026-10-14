@@ -24,10 +24,14 @@ MEDICAID = {"MCAD", "SUN01", "WEL04", "WEL07", "SIM01", "STA03", "FLO99", "FCC",
 D = json.load(open("patbal_review_%s.json" % STAMP)); scan = json.load(open("patbal_scan_%s.json" % STAMP))["charts"]
 if MODE == "writeoff": rows = [r for r in D["rows"] if r["bucket"] in WO]
 elif MODE == "writeoff-medicare": rows = [r for r in D["rows"] if r["bucket"] == "STATEMENT-MEDICARE"]
+elif MODE == "writeoff-selfpay": rows = [r for r in D["rows"] if r["bucket"] == "SELF-PAY-BAD-DEBT"]
+elif MODE == "writeoff-late": rows = [r for r in D["rows"] if r["bucket"] == "STATEMENT-LATE"]
 elif MODE == "writeoff-statement": rows = [r for r in D["rows"] if r["bucket"] == "STATEMENT"]
 elif MODE == "moveback": rows = [r for r in D["rows"] if r["bucket"] in MOVE]
 elif MODE == "secondary": rows = [r for r in D["rows"] if r["bucket"] == "BILL-SECONDARY"]
 else: raise SystemExit("mode?")
+if "--only-after" in a:
+    _aft = {x["chargedetailid"] for x in json.load(open("mwo_pat_after_20261013.json"))}; rows = [r for r in rows if str(r["cid"]) in _aft]
 LOGF = "patbal_execute_%s_%s.log" % (MODE, STAMP); done = set()
 if os.path.exists(LOGF):
     for l in open(LOGF):
@@ -82,10 +86,10 @@ def do_secondary(r):
     res = move_to_ins.move(cid, seq=seq, rebill_seq=sec["seq"])
     if str(res).startswith("moved"): L("DONE %s v%s %s -> %s : %s" % (cid, r["vid"], prim["code"], sec["code"], res)); n[0] += 1; tot[0] += pat
     else: L("FAIL %s v%s %s" % (cid, r["vid"], str(res)[:140])); failed[0] += 1
-fn = {"writeoff": do_writeoff, "writeoff-medicare": do_writeoff, "writeoff-statement": do_writeoff, "moveback": do_moveback, "secondary": do_secondary}[MODE]
+fn = {"writeoff": do_writeoff, "writeoff-medicare": do_writeoff, "writeoff-statement": do_writeoff, "writeoff-selfpay": do_writeoff, "writeoff-late": do_writeoff, "moveback": do_moveback, "secondary": do_secondary}[MODE]
 todo = [r for r in rows if str(r["cid"]) not in done][:MX]
 seen_visit = set()
-if MODE not in ("writeoff", "writeoff-medicare", "writeoff-statement"):   # one move per VISIT (move_to_ins moves every charge on the visit)
+if MODE not in ("writeoff", "writeoff-medicare", "writeoff-statement", "writeoff-selfpay", "writeoff-late"):   # one move per VISIT (move_to_ins moves every charge on the visit)
     t2 = []
     for r in todo:
         if r["vid"] in seen_visit: continue

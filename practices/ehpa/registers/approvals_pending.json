@@ -576,8 +576,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code WOCAID2ND / WOMCAD / WOLATE, note 'patient-balance review 10/13/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done 10/13-14 chat: patient-side WOCAID2ND/WOMCAD/WOLATE write-offs posted (William: 'anything write off write off now')",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-WPU",
@@ -590,8 +591,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code WOLATE, note 'patient-balance review 10/13/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: WOLATE patient-side write-offs posted",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-DNU",
@@ -604,8 +606,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code WOLATE, note 'patient-balance review 10/13/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: WOLATE patient-side write-offs posted",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-NSU",
@@ -618,8 +621,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code WOLATE, note 'patient-balance review 10/13/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: WOLATE patient-side write-offs posted (WOBAD where no carrier)",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-SMALL",
@@ -632,8 +636,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Payment Entry > patient > visit > write-off only: code WOSMBAL, note 'patient-balance review 10/13/2026'; Save.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: WOSMBAL patient-side write-offs posted",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-WP",
@@ -646,8 +651,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Charge Edit > move the patient balance to insurance (insorder unchanged); the denial cascade / next run re-routes it.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: 131 charges moved back to insurance (move_to_ins, no rebill) - the cascade re-routes them",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-DF",
@@ -660,8 +666,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Charge Edit > move the patient balance to insurance (insorder unchanged); the denial cascade / next run re-routes it.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: moved back to insurance for fix + resubmit",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-NS",
@@ -674,8 +681,9 @@
    "evidence_file": "/home/claude/unbilled/patbal_review_1013.json",
    "evidence": "live chart read tonight (1,128 charts, 0 errors): plans at the DOS, every payment with its CARC reasons, write-offs; page: Patient Balances Remaining artifact; register patbal_review_1013.json",
    "ui": "Charge Edit > move the patient balance to insurance (insorder unchanged); the denial cascade / next run re-routes it.",
-   "status": "waiting",
-   "answer": null
+   "status": "done",
+   "answer": "done: moved back to insurance and on the unpaid list",
+   "doneAt": "2026-10-14T04:22:25+00:00"
   }
  ]
 }
