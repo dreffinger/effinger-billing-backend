@@ -35,10 +35,11 @@ https://claude.ai/artifact/DecNZkNsoQ4V2c1gwLLqiq
 | `cred` | `cred_check.py` (NPPES, revalidation reminders, LEIE) |
 | `money` | `pay_scan.py` when `patient_universe_*.json` exists, then `build_money.py` (only when named) |
 | `outstanding` | `outstanding_claims.py --out outstanding_claims.json` |
+| `denials` | `denials_refresh.py` (read-only, 10/13/2026): every patient on the unpaid list + every chart already on the Working Denials board is re-read with gettxhistory; every posted $0 line with a CARC is triaged with the board's table; each visit's live status (RESOLVED / WRITTEN-OFF / RESUBMITTED / OPEN) comes from payments, write-offs and the last bill date. Writes `reports/button/working_denials_latest.json` (chart + visit ids, no names, PHI-gated). The board's **Refresh from AMD** button dispatches `steps=denials`, watches the run, then pulls that file and re-renders in place; **Load latest snapshot** pulls it without a run. The columns and cascade profiles run it too, so the board is at most ~2 h stale. |
 
-Profiles: `all` = columns, era, cascade, packages, cred, outstanding. `columns` (the 2-hourly
-cadence) = columns, era, packages, outstanding. `cascade` (the nightly slot) = cascade, era,
-packages, cred, money, outstanding.
+Profiles: `all` = columns, era, cascade, packages, cred, outstanding, denials. `columns` (the 2-hourly
+cadence) = columns, era, packages, outstanding, denials. `cascade` (the nightly slot) = cascade, era,
+packages, cred, money, outstanding, denials. `denials` = denials alone (the board's Refresh button).
 
 ```
 python3 tools/button/run_all.py --mode dry --steps all                      # the default button press

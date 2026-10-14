@@ -1,0 +1,178 @@
+#!/usr/bin/env python3
+# PLAIN ENGLISH (Working Denials refresh - the "Refresh from AMD" button on the Working Denials board, William 10/13/2026)
+# Decides: nothing. Reads the live chart (gettxhistory) for every patient on the unpaid list and every patient already on the
+#   Working Denials board, finds every posted $0 payment line that carries a denial reason (CARC), triages each visit with the
+#   same CARC table the board uses (DENIAL_RULES in boards/working_denials.py), and works out the visit's live status:
+#   RESOLVED (a real payment posted since), WRITTEN-OFF (balance gone to a write-off), RESUBMITTED (the charge's last bill date is
+#   after the denial posted), OPEN (still carries a balance, nothing sent since). Writes working_denials_latest.json with chart and
+#   visit ids only - no names - so the Billing Button runner can commit it to GitHub and the board can pull it.
+# Rules it uses: read-only calls only (massrebillsearch, gettxhistory). Contractual / informational reasons (45, 23, 253, 94) and
+#   the PR cost-sharing codes (1, 2, 3) are kept as rows but never counted as actionable, exactly as the board does.
+# Never touches: AMD writes, balances, claims, the board's command queue.
+"""Usage: python3 denials_refresh.py [--prior working_denials_latest.json] [--out working_denials_latest.json] [--threads 3] [--max N]"""
+import json, sys, os, re, datetime, collections, threading, queue, time
+import amd, txh, era_post, requests
+
+a = sys.argv[1:]
+def opt(n, d=None): return a[a.index(n) + 1] if n in a else d
+PRIOR = opt("--prior", "working_denials_latest.json"); OUT = opt("--out", "working_denials_latest.json")
+NT = int(opt("--threads", 3)); MX = int(opt("--max", 10**9)); TODAY = datetime.date.today()
+
+# the board's CARC table lives in boards/working_denials.py (repo) or the workspace copy
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "boards"))
+try:
+    from working_denials import DENIAL_RULES, DISPO_ORDER, ACTIONABLE, norm, triage
+except ImportError:
+    DENIAL_RULES = {}; DISPO_ORDER = ["FIX", "COB", "TIMELY", "CRED", "REVIEW", "PATIENT", "DUPLICATE", "CONTRACTUAL", "INFO", "UNCLASSIFIED"]
+    ACTIONABLE = {"FIX", "COB", "TIMELY", "CRED", "REVIEW"}
+    def norm(c):
+        c = str(c or "").strip().upper()
+        for g in ("CO", "OA", "PR", "PI", "CR"):
+            if c.startswith(g) and len(c) > len(g): return c[len(g):]
+        return c
+    def triage(c): return ("UNCLASSIFIED", "No rule yet for CARC %s" % norm(c))
+NOACTION = {"45", "23", "253", "94"}
+
+def f(x):
+    try: return float(x or 0)
+    except Exception: return 0.0
+def ago(d):
+    try: return (TODAY - datetime.date.fromisoformat(str(d)[:10])).days
+    except Exception: return None
+def mdy(s):
+    """AMD dates come as mm/dd/yyyy or yyyy-mm-dd; return ISO yyyy-mm-dd or ''."""
+    s = str(s or "").strip()
+    m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
+    if m: return "%s-%02d-%02d" % (m.group(3), int(m.group(1)), int(m.group(2)))
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", s)
+    return m.group(0) if m else ""
+
+prior = {}
+if os.path.exists(PRIOR):
+    try: prior = json.load(open(PRIOR))
+    except Exception: prior = {}
+prior_rows = {str(v["visitid"]): v for v in prior.get("visits", [])}
+amd.login_cached()
+unp = requests.post(era_post.API + "/claim/massrebillsearch", headers=era_post.H(), json={}, timeout=180).json()
+pids = sorted({str(v["patientid"]) for v in unp} | {str(v["pid"]) for v in prior.get("visits", []) if v.get("pid")}, key=int)
+pids = pids[:MX]
+print("refresh: %d patients (%d on the unpaid list, %d board rows carried in)" % (len(pids), len({str(v["patientid"]) for v in unp}), len(prior_rows)), flush=True)
+unp_by_visit = {str(v["visitid"]): v for v in unp}
+
+lock = threading.Lock(); lines = []; status = {}; errors = []
+def scan(pid):
+    root = None
+    for i in range(3):
+        try: root = txh.fetch(pid); break
+        except Exception as e:
+            if i == 2: raise
+            time.sleep(2 * (i + 1))
+    seen = set()
+    out_lines = []; vstat = {}
+    for c in root.iter("charge"):
+        if c.get("void") == "1": continue
+        vid = str(c.get("visit") or c.get("visitid") or ""); seen.add(vid)
+        s = vstat.setdefault(vid, {"pays": 0, "paid": 0.0, "wos": 0, "bal": 0.0, "billdate": "", "carrier": c.get("carrier", ""), "denied_on": ""})
+        s["bal"] += f(c.get("insbal") or c.get("insbalance")) + f(c.get("patbal") or c.get("patbalance"))
+        bd = mdy(c.get("billdate"))
+        if bd > s["billdate"]: s["billdate"] = bd
+        for p in c.iter("payment"):
+            if p.get("void") == "1": continue
+            amt = abs(f(p.get("amount")))
+            if amt > 0: s["pays"] += 1; s["paid"] += amt; continue
+            reasons = [(r.get("code", ""), f(r.get("amount")), r.get("description", "") or r.get("reasontext", "")) for r in p.iter("payreason")]
+            for code, ramt, desc in reasons:
+                carc = norm(code); grp = str(code or "")[:2].upper() if str(code or "")[:2].upper() in ("CO", "PR", "OA", "PI", "CR") else ""
+                if not carc: continue
+                pd = mdy(p.get("date"))
+                if pd > s["denied_on"]: s["denied_on"] = pd
+                out_lines.append({"pid": pid, "visitid": vid, "carrier": p.get("carrier") or c.get("carrier", ""), "dos": mdy(c.get("dos") or c.get("dateofservice")),
+                                  "cpt": (c.get("proccode") or "").strip(), "billed": f(c.get("fee") or c.get("amount")), "group": grp, "carc": carc, "reason": desc,
+                                  "check": p.get("checknumber", ""), "amt": abs(ramt), "paid_on": pd})
+        for w in c.iter("writeoff"):
+            if w.get("void") != "1" and f(w.get("amount")) != 0: s["wos"] += 1
+    # board visits this chart's page-1 history did not show (long charts): read them one by one
+    for vid, row in prior_rows.items():
+        if str(row.get("pid")) == pid and vid not in seen:
+            try:
+                r2 = txh.fetch_visit(pid, vid)
+                for c in r2.iter("charge"):
+                    if c.get("void") == "1" or str(c.get("visit") or "") != vid: continue
+                    s = vstat.setdefault(vid, {"pays": 0, "paid": 0.0, "wos": 0, "bal": 0.0, "billdate": "", "carrier": c.get("carrier", ""), "denied_on": ""})
+                    s["bal"] += f(c.get("insbal") or c.get("insbalance")) + f(c.get("patbal") or c.get("patbalance"))
+                    bd = mdy(c.get("billdate")); s["billdate"] = max(s["billdate"], bd)
+                    for p in c.iter("payment"):
+                        if p.get("void") == "1": continue
+                        amt = abs(f(p.get("amount")))
+                        if amt > 0: s["pays"] += 1; s["paid"] += amt
+                        else:
+                            for r in p.iter("payreason"):
+                                carc = norm(r.get("code", ""))
+                                if carc: s["denied_on"] = max(s["denied_on"], mdy(p.get("date")))
+                    for w in c.iter("writeoff"):
+                        if w.get("void") != "1" and f(w.get("amount")) != 0: s["wos"] += 1
+            except Exception as e:
+                errors.append("v%s pat%s: %s" % (vid, pid, str(e)[:80]))
+    with lock:
+        lines.extend(out_lines); status.update({(pid, k): v for k, v in vstat.items()})
+
+q = queue.Queue(); [q.put(p) for p in pids]; n = [0]
+def worker():
+    while True:
+        try: pid = q.get_nowait()
+        except queue.Empty: return
+        try: scan(pid)
+        except Exception as e:
+            with lock: errors.append("pat%s: %s" % (pid, str(e)[:80]))
+        with lock:
+            n[0] += 1
+            if n[0] % 50 == 0: print("  %d charts read, %d denial lines, %d errors" % (n[0], len(lines), len(errors)), flush=True)
+        time.sleep(0.2)
+ts = [threading.Thread(target=worker, daemon=True) for _ in range(NT)]; [t.start() for t in ts]; [t.join() for t in ts]
+
+# roll up to one row per visit: the most actionable line wins, every code listed
+byv = {}
+for r in lines:
+    dispo, action = triage(r["carc"]); rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)
+    key = (r["pid"], r["visitid"]); rec = byv.get(key)
+    if rec is None or rank < rec["_rank"]:
+        byv[key] = {"_rank": rank, "pid": r["pid"], "visitid": r["visitid"], "carrier": r["carrier"], "dos": r["dos"], "cpt": r["cpt"], "billed": r["billed"],
+                    "dispo": dispo, "action": action, "carc": r["carc"], "reason": r["reason"], "check": r["check"], "amt": r["amt"],
+                    "codes": set(), "rarc": set(), "age": ago(r["dos"]), "timely": (ago(r["dos"]) or 9999) <= 365, "denied_on": r["paid_on"]}
+    byv[key]["codes"].add("%s/%s%s" % (r["group"] or "??", r["group"], r["carc"]) if r["group"] else r["carc"])
+# carry prior rows whose chart was read but whose $0 line is gone (voided / re-posted): keep them with the live status
+for vid, row in prior_rows.items():
+    key = (str(row.get("pid")), vid)
+    if key not in byv and key in status:
+        byv[key] = dict(row, _rank=DISPO_ORDER.index(row.get("dispo")) if row.get("dispo") in DISPO_ORDER else 99, codes=set(row.get("codes") or []), rarc=set(row.get("rarc") or []))
+        byv[key].pop("patient", None)
+visits = []
+for (pid, vid), v in byv.items():
+    v["codes"] = sorted(v.pop("codes")); v["rarc"] = sorted(v.pop("rarc")); v.pop("_rank", None)
+    s = status.get((pid, vid))
+    if not s: v["status"] = "UNMATCHED"
+    elif s["pays"]: v["status"] = "RESOLVED"
+    elif s["wos"] and s["bal"] <= 0: v["status"] = "WRITTEN-OFF"
+    elif s["billdate"] and s.get("denied_on") and s["billdate"] > s["denied_on"]: v["status"] = "RESUBMITTED"; v["resubmitted"] = s["billdate"]
+    elif s["bal"] <= 0: v["status"] = "RESOLVED"
+    else: v["status"] = "OPEN"
+    if s: v["open_balance"] = round(s["bal"], 2); v["last_billed"] = s["billdate"]
+    visits.append(v)
+bydispo = collections.defaultdict(lambda: {"visits": 0, "amt": 0.0, "patients": set()})
+for v in visits:
+    d = bydispo[v["dispo"]]; d["visits"] += 1; d["amt"] += v["amt"]; d["patients"].add(v["pid"])
+summary = {k: {"visits": x["visits"], "amt": round(x["amt"], 2), "patients": len(x["patients"])} for k, x in bydispo.items()}
+act = [v for v in visits if v["dispo"] in ACTIONABLE and v.get("status") not in ("RESOLVED", "RESUBMITTED", "WRITTEN-OFF")]
+timely = [v for v in act if v.get("timely")]
+bystatus = collections.Counter(v.get("status") or "n/a" for v in visits)
+out = {"schema": "working-denials-snapshot/1", "asof": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "source": "AMD live chart (gettxhistory) - Billing Button denials step",
+       "charts_read": n[0], "total_lines": len(lines), "total_visits": len(visits), "actionable_visits": len(act), "actionable_amt": round(sum(v["amt"] for v in act), 2),
+       "timely_visits": len(timely), "timely_amt": round(sum(v["amt"] for v in timely), 2), "bystatus": dict(bystatus),
+       "resub_amt": round(sum(v["amt"] for v in visits if v.get("status") == "RESUBMITTED"), 2), "resolved_amt": round(sum(v["amt"] for v in visits if v.get("status") == "RESOLVED"), 2),
+       "summary": summary, "capped": {}, "errors": errors[:50],
+       "visits": sorted(visits, key=lambda v: (DISPO_ORDER.index(v["dispo"]) if v["dispo"] in DISPO_ORDER else 99, -v["amt"]))}
+for v in out["visits"]:   # keep the file small: the board shortens the reason text anyway
+    if v.get("reason"): v["reason"] = str(v["reason"])[:160]
+json.dump(out, open(OUT, "w"), separators=(",", ":"))
+print("done: %d charts, %d denial lines, %d visits (%d actionable $%.2f; %d inside 12 months $%.2f); status %s; %d errors -> %s" % (
+    n[0], len(lines), len(visits), len(act), out["actionable_amt"], len(timely), out["timely_amt"], dict(bystatus), len(errors), OUT), flush=True)

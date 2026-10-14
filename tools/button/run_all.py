@@ -32,13 +32,14 @@ REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 CANON_WS = "/home/claude/unbilled"          # the workspace path every helper was written for (amd.py keeps its session cache here)
 SCHEMA = "button-run/1"
 PROFILES = {
-    "all": ["columns", "era", "cascade", "packages", "cred", "outstanding"],
-    "columns": ["columns", "era", "packages", "outstanding"],                 # the 2-hourly backend billing run
-    "cascade": ["cascade", "era", "packages", "cred", "money", "outstanding"],  # the nightly insurance cascade
+    "all": ["columns", "era", "cascade", "packages", "cred", "outstanding", "denials"],
+    "columns": ["columns", "era", "packages", "outstanding", "denials"],                 # the 2-hourly backend billing run
+    "cascade": ["cascade", "era", "packages", "cred", "money", "outstanding", "denials"],  # the nightly insurance cascade
+    "denials": ["denials"],                                                     # the Working Denials board's Refresh button
 }
 STEP_TITLES = {"columns": "Claims Center columns", "era": "ERA posting", "cascade": "Insurance cascade",
                "sweep": "Claim-status sweep (277)", "packages": "Approval packages", "cred": "Credentialing check",
-               "money": "Money ledger data", "outstanding": "Outstanding claims summary"}
+               "money": "Money ledger data", "outstanding": "Outstanding claims summary", "denials": "Working Denials refresh"}
 ADVISORY_ERR_PATTERNS = ("20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "27261")
 
 
@@ -626,6 +627,45 @@ class Run:
         shutil.copy2(p, os.path.join(self.out, "outstanding_latest.json"))
         s["ended"] = iso()
 
+    def denials(self):
+        """Read-only: the Working Denials board's live rebuild (chart + visit ids only) -> reports/button/working_denials_latest.json.
+        William 10/13/2026: the board's Refresh button runs this step and pulls the file back."""
+        s = self.step("denials")
+        prior = os.path.join(self.out, "working_denials_latest.json")      # the last snapshot carries the board's visit list forward
+        argv = ["--out", "working_denials_latest.json"] + (["--prior", prior] if os.path.exists(prior) else [])
+        rc, text, log = self.helper("denials_refresh.py", argv, timeout=2400)
+        p = os.path.join(self.ws, "working_denials_latest.json")
+        if rc != 0 or not os.path.exists(p):
+            self.fail(s, "denials_refresh rc %s: %s" % (rc, self.tail(text, 3)))
+            s["ended"] = iso()
+            return
+        j = json.load(open(p))
+        s["counts"] = {"charts read": j.get("charts_read"), "denial lines": j.get("total_lines"), "visits": j.get("total_visits"),
+                       "actionable": j.get("actionable_visits"), "inside 12 months": j.get("timely_visits")}
+        s["counts"].update({"status " + k: v for k, v in (j.get("bystatus") or {}).items()})
+        s["dollars"] = {"actionable": j.get("actionable_amt", 0), "inside 12 months": j.get("timely_amt", 0), "resubmitted": j.get("resub_amt", 0), "resolved since": j.get("resolved_amt", 0)}
+        for k, v in sorted((j.get("summary") or {}).items(), key=lambda kv: -kv[1].get("amt", 0)):
+            s["lines"].append({"disposition": k, "visits": v.get("visits"), "dollars": v.get("amt"), "patients": v.get("patients")})
+        if j.get("errors"):
+            self.warn(s, "%d chart reads failed (see the log)" % len(j["errors"]))
+        s["summary"] = "%s denied visits on %s charts; %s actionable $%.2f (%s inside 12 months $%.2f); %s" % (
+            j.get("total_visits"), j.get("charts_read"), j.get("actionable_visits"), j.get("actionable_amt", 0), j.get("timely_visits"), j.get("timely_amt", 0),
+            ", ".join("%s %s" % (k, v) for k, v in (j.get("bystatus") or {}).items()))
+        self.summary["denials"] = {"visits": j.get("total_visits"), "actionable": j.get("actionable_visits"), "actionable_amt": j.get("actionable_amt"), "asof": j.get("asof")}
+        os.makedirs(self.out, exist_ok=True)
+        gate = os.path.join(REPO, "tools", "mirror", "phi_gate.py")
+        dst = os.path.join(self.out, "working_denials_latest.json")
+        if os.path.exists(gate):
+            g = subprocess.run([sys.executable, gate, p, dst], capture_output=True, text=True, cwd=REPO)
+            open(os.path.join(self.logdir, "phi_gate_denials.log"), "w").write(g.stdout + g.stderr)
+            if g.returncode != 0 or not os.path.exists(dst):
+                self.fail(s, "phi_gate refused the denials snapshot (rc %s) - not published" % g.returncode)
+                s["ended"] = iso()
+                return
+        else:
+            shutil.copy2(p, dst)
+        s["ended"] = iso()
+
     # ------------------------------------------------------------------ report
     def report(self, status, headline):
         rep = {"schema": SCHEMA, "stamp": self.stamp, "mode": self.mode, "status": status, "headline": headline,
@@ -667,11 +707,11 @@ class Run:
         self.say("billing button run %s - mode %s - steps %s" % (self.stamp, self.mode, ",".join(want)))
         if not self.bootstrap():
             return self.report("failed", "workspace bootstrap failed: " + "; ".join(self.errors))
-        order = ["columns", "era", "cascade", "sweep", "packages", "cred", "money", "outstanding"]
+        order = ["columns", "era", "cascade", "sweep", "packages", "cred", "money", "outstanding", "denials"]
         for name in order:
             if name not in want:
                 continue
-            if name in ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding") and self.login_locked():
+            if name in ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding", "denials") and self.login_locked():
                 s = self.step(name)
                 self.fail(s, "skipped - the AMD login lock is tripped")
                 s["ended"] = iso()
