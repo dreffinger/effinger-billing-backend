@@ -1,0 +1,131 @@
+{
+ "stamp": "2026-10-14T1510Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446593,
+   "visitid": "19457279",
+   "pid": "17474648",
+   "chargedetailid": "23369136",
+   "cpt": "99223",
+   "dos": "2026-10-06",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "DRY would post pay 156.51 + WOINS 153.49 (bal 310.00)"
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446594,
+   "visitid": "19457318",
+   "pid": "17471683",
+   "chargedetailid": "23369175",
+   "cpt": "99223",
+   "dos": "2026-10-06",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "DRY would post pay 156.51 + WOINS 153.49 (bal 310.00)"
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446595,
+   "visitid": "19457276",
+   "pid": "17471683",
+   "chargedetailid": "23369133",
+   "cpt": "99232",
+   "dos": "2026-10-07",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "DRY would post pay 70.46 + WOINS 40.54 (bal 111.00)"
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446596,
+   "visitid": "19457278",
+   "pid": "17474648",
+   "chargedetailid": "23369135",
+   "cpt": "99232",
+   "dos": "2026-10-07",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "DRY would post pay 70.46 + WOINS 40.54 (bal 111.00)"
+  }
+ ],
+ "wolate": []
+}
