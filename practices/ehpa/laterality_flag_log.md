@@ -13,3 +13,20 @@
 - 2026-10-08 19:34Z run 2026-10-08T1910Z: v19457343 pat17475697 Pattern 11256 unspecified laterality bypassed
 - 2026-10-08 19:34Z run 2026-10-08T1910Z: v19457349 pat17472285 Pattern 11256 unspecified laterality bypassed
 - 2026-10-11 06:15Z run 2026-10-11T0510Z: pat17472124 visit 19446287 charges 23355335,23355336 - Pattern 11256 bypassed as advisory (Pattern 11256 The ICD-10-CM code(s) Z89619 defines an unspecified ICD-10-CM diagnosis code which has an equivalent code ); documentation may support a laterality code (William)
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19427785 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19427786 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19428337 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat17472960 visit 19401291 - Pattern 11256 unspecified laterality C50919 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat12235828 visit 14029135 - Pattern 11256 unspecified laterality M25569 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat17476868 visit 19446238 - Pattern 11256 unspecified laterality H9190 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 26523 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 26640 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat17471968 visit 19455688 - Pattern 11256 unspecified laterality M25559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat21411 visit 19455948 - Pattern 11256 unspecified laterality H6120 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 34005 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 35366 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 37322 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat26003 visit 38238 - Pattern 11256 unspecified laterality L03119 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19426067 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19426988 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19427273 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality

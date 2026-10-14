@@ -1,0 +1,26 @@
+{
+ "stamp": "2026-10-14T0310Z",
+ "live": true,
+ "done": [
+  {
+   "vid": "19409352",
+   "cid": "22484794",
+   "swap": true,
+   "msg": "2 charges edited; 2 live (was 2)",
+   "bypassed": [
+    "396730"
+   ],
+   "left": []
+  },
+  {
+   "vid": "19452645",
+   "cid": "23363008",
+   "swap": true,
+   "msg": "2 charges edited; 2 live (was 2)",
+   "bypassed": [
+    "396731"
+   ],
+   "left": []
+  }
+ ]
+}
