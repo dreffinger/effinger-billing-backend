@@ -1,7 +1,8 @@
 # PLAIN ENGLISH (Deceased-patient guard - William 9/22/2026: "on any straight medicare claims we are never submitting bills on a
 #          medicare deceased person"; check the MBI / Medicare record for a date of death before any claim goes out).
 # Decides: whether a claim may be submitted. BLOCK when the date of service is AFTER the patient's date of death (any payer).
-# Sources, in order: (1) the cache practices/ehpa/registers/deceased_cache.json (pid -> dod / checked date / source),
+# Sources, in order: (1) the cache practices/ehpa/registers/deceased_cache.json (pid -> dod / checked date / source) - the GitHub copy is
+#   PHI-scrubbed ('[DOB]' = unknown, re-looked-up; 10/14/2026), the real dates live in the workspace and Drive 'workspace mirror',
 #          (2) AMD getdemographic 'deceased', (3) a fresh Stedi Medicare lookup (MBILUNOSSN: name + DOB + FL) whose 271
 #          carries the date of death (DTP*442 / dateOfDeath). A fresh lookup runs when the claim goes to straight Medicare
 #          (FLO02 / car6085) or is CCM and the cache is missing or older than 30 days. A lookup that fails does NOT block
@@ -56,6 +57,10 @@ def stedi_lookup(pid, dos_iso):
 def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
     """-> (blocked: bool, reason: str). Blocks only on a known date of death earlier than the DOS."""
     pid = re.sub(r"\D", "", str(pid)); dos = _iso(dos); c = _load(); rec = c.get(pid)
+    # 10/14/2026: a cache restored from GitHub carries the PHI gate's '[DOB]' in place of the date of death (35 charts) - a
+    # non-date dod is UNKNOWN (re-lookup), never compared as a string (which silently let every DOS through).
+    if rec and rec.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(rec.get("dod"))):
+        rec = dict(rec); rec["dod"] = None; rec["checked"] = "2000-01-01"; c[pid] = rec
     stale = rec is None or (datetime.date.today() - datetime.date.fromisoformat(rec.get("checked", "2000-01-01"))).days > MAX_AGE_DAYS
     needs = (carrier in MEDICARE) or ((proc or "") in CCM)
     if allow_lookup and needs and stale and not (rec and rec.get("dod")):

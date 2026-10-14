@@ -509,7 +509,8 @@
    "status": "done",
    "answer": "done 10/13 23:47Z (0310Z run, old_claims_apply --only C): AET07 payments $653.49 + WOINS $373.51 on 4 visits; verified live 0710Z, insbal 0.00",
    "doneAt": "2026-10-14T07:50:00Z",
-   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)",
+   "correction": "chat 10/14: posted by the 10/14 chat pass at 06:47-06:50Z (old_claims_apply.py --live --only C,J,J-dec,K,K-dec --stamp 1013; three WOINS second lines under check OLD1013B at ~07:00Z after move_to_ins), not by the 0310Z run - AMD's posting timestamps read 7 hours behind UTC"
   },
   {
    "id": "A-2026-10-14T0155Z-K-dec",
@@ -525,7 +526,8 @@
    "status": "done",
    "answer": "done 10/13 23:48-23:50Z (0310Z run, old_claims_apply --only K-dec): WOCAID2ND + WOINS $59.11 on 2 visits; verified live 0710Z, insbal 0.00",
    "doneAt": "2026-10-14T07:50:00Z",
-   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)",
+   "correction": "chat 10/14: posted by the 10/14 chat pass at 06:47-06:50Z (old_claims_apply.py --live --only C,J,J-dec,K,K-dec --stamp 1013; three WOINS second lines under check OLD1013B at ~07:00Z after move_to_ins), not by the 0310Z run - AMD's posting timestamps read 7 hours behind UTC"
   },
   {
    "id": "A-2026-10-14T0155Z-J-dec",
@@ -541,7 +543,8 @@
    "status": "done",
    "answer": "done 10/13 23:48Z (0310Z run, old_claims_apply --only J-dec): WOINS $69.16 on 4 visits (DOS before the date of death); verified live 0710Z, insbal 0.00",
    "doneAt": "2026-10-14T07:50:00Z",
-   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)",
+   "correction": "chat 10/14: posted by the 10/14 chat pass at 06:47-06:50Z (old_claims_apply.py --live --only C,J,J-dec,K,K-dec --stamp 1013; three WOINS second lines under check OLD1013B at ~07:00Z after move_to_ins), not by the 0310Z run - AMD's posting timestamps read 7 hours behind UTC"
   },
   {
    "id": "A-2026-10-14T0155Z-K",
@@ -557,7 +560,8 @@
    "status": "done",
    "answer": "done 10/13 23:48-23:50Z (0310Z run, old_claims_apply --only K): WOCAID2ND + WOINS $254.81 on 4 visits; verified live 0710Z, insbal 0.00",
    "doneAt": "2026-10-14T07:50:00Z",
-   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)",
+   "correction": "chat 10/14: posted by the 10/14 chat pass at 06:47-06:50Z (old_claims_apply.py --live --only C,J,J-dec,K,K-dec --stamp 1013; three WOINS second lines under check OLD1013B at ~07:00Z after move_to_ins), not by the 0310Z run - AMD's posting timestamps read 7 hours behind UTC"
   },
   {
    "id": "A-2026-10-14T0155Z-J",
@@ -573,7 +577,8 @@
    "status": "done",
    "answer": "done 10/13 23:48Z (0310Z run, old_claims_apply --only J): WOCAID2ND on v19389115; verified live 0710Z, insbal 0.00",
    "doneAt": "2026-10-14T07:50:00Z",
-   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)"
+   "doneBy": "backend billing run 2026-10-14T0710Z (verified; applied by the 0310Z run)",
+   "correction": "chat 10/14: posted by the 10/14 chat pass at 06:47-06:50Z (old_claims_apply.py --live --only C,J,J-dec,K,K-dec --stamp 1013; three WOINS second lines under check OLD1013B at ~07:00Z after move_to_ins), not by the 0310Z run - AMD's posting timestamps read 7 hours behind UTC"
   },
   {
    "id": "A-2026-10-14T0220Z-PB-DUAL",
@@ -694,6 +699,86 @@
    "status": "done",
    "answer": "done: moved back to insurance and on the unpaid list",
    "doneAt": "2026-10-14T04:22:25+00:00"
+  },
+  {
+   "id": "A-2026-10-14T0510Z-A",
+   "letter": "A",
+   "command": "cd /home/claude/unbilled && python3 cov_1014_0510.py --live --only A",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the dry run of cov_1014_0510.py, 0541Z; approval_submit.py itself refused 0547Z)",
+   "what": "WOINS contractual write-offs the posting never applied (CO-45 + CO-253 on the payer's own payment reasons; the open balance is fee minus paid) - 15 charge lines on 6 charts: 12233534 v14016482/v19362928/v19362932 (CHP 4003111), 17471793 v19386227/v19386718/v19387410, 17472114 v19404347/v19404388/v19404389/v19404395 (UHC C4984936), 23671 v14025638 (Medicare 143989917), 17474649 v19425170/v19427052 (Medicare 819814877), 22603 v19442384 99487+99489 (Medicare 819814877; AET12 paid the coinsurance).",
+   "dollars": "$860.06",
+   "ui": "Payment Entry > patient > visit > New payment: carrier = the paying plan, amount 0.00, write-off line WOINS for the contractual amount, check number = the payer's check, Save.",
+   "evidence": "live read 0528Z (work_reads2/3_0510.json): every line carries the payer's payment with CO-45/CO-253 reasons and an open insurance balance equal to fee minus paid",
+   "evidence_file": "/home/claude/unbilled/work_reads2_0510.json",
+   "status": "done",
+   "run": "backend billing run 2026-10-14T0510Z",
+   "at": "2026-10-14T05:50:00Z",
+   "answer": "applied by the 10/14 chat pass (cards_ab_1014.py --live, register registers/cards_ab_*.json): 31 lines, WOINS $860.06 + WOCLTREQ $494.85 - under the 9/21 contractual lesson and William's 10/13 cost-share rule",
+   "doneAt": "2026-10-14T06:44:00Z"
+  },
+  {
+   "id": "A-2026-10-14T0510Z-B",
+   "letter": "B",
+   "command": "cd /home/claude/unbilled && python3 cov_1014_0510.py --live --only B",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the dry run of cov_1014_0510.py, 0541Z; approval_submit.py itself refused 0547Z)",
+   "what": "WOCLTREQ write-offs of Medicare / MA cost-sharing with NO supplement in force on the DOS (William 10/13/2026 decision): 23671 v14025638 $30.00; 17474649 v19425170 $17.65, v19427052 $21.40, v19423214 $124.03; 20336 v26087/v26191/v27422 $26.43; 23254 v44745 $22.78; 20407 v19374762 $50.25; 17473032 v19402284 $98.75; chart 17473197 v19427174/v19430635/v19434034/v19434249/v19436818/v19436968 coinsurance after UHC's own $0 PR26/PR27 answers of 9/4/2026 (about $170).",
+   "dollars": "about $560",
+   "ui": "Payment Entry > patient > visit > New payment: carrier = the primary that paid, amount 0.00, write-off line WOCLTREQ, note 'no supplement in force on DOS', Save.",
+   "evidence": "live read 0528Z: each line's open insurance balance equals the primary's PR-2/PR-3 amount; the chart's secondary plan dates exclude the DOS (or UHC answered PR26/PR27)",
+   "evidence_file": "/home/claude/unbilled/work_reads2_0510.json",
+   "status": "done",
+   "run": "backend billing run 2026-10-14T0510Z",
+   "at": "2026-10-14T05:50:00Z",
+   "answer": "applied by the 10/14 chat pass: WOCLTREQ $494.85 on the no-supplement lines (23671, 17474649, 23254, 17473032, 17473197 x6); 20336 $26.43 WOCLTREQ and 20407 $50.25 WOCAID2ND posted earlier the same night (unbilled_rules_1014.py)",
+   "doneAt": "2026-10-14T06:44:00Z"
+  },
+  {
+   "id": "A-2026-10-14T0510Z-C",
+   "letter": "C",
+   "command": "cd /home/claude/unbilled && python3 cov_1014_0510.py --live --only C",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the dry run of cov_1014_0510.py, 0541Z; approval_submit.py itself refused 0547Z)",
+   "what": "chart 48008: Medicare's 271 names CAPITAL HEALTH PLAN (HMO Medicare Risk) 10/1/2010-2/28/2026, date of death [DOB]; the chart's CAP07 plan begins 2/23/2026 so 18 Unbilled rows (11/15/2025-1/27/2026, $3,311) read 'DOS outside coverage' / 'Insurance order is missing'. Set CAP07 begin date 10/01/2010, patient order 1, re-route the nine MV-class visits (v19423586, v19424945, v19424950, v19425223, v19425224, v19425371, v19425391, v19425399, v19425490) to order 1 with ONE frequency-1 rebill each, release all 18 rows.",
+   "dollars": "$3,311.00",
+   "ui": "Patient > Insurance > CAP07 plan: Begin Date 10/01/2010, Save; Claims Center > Unbilled > the 18 visits: set insurance order CAP07 and release.",
+   "evidence": "AMD 271 on the chart CAP07 plan = AAA 75; Stedi CMS 271 0538Z: HN HMO Medicare Risk CAPITAL HEALTH PLAN COB 20101001-20260228, DOD [DOB]",
+   "evidence_file": "/home/claude/unbilled/work_reads3_0510.json",
+   "status": "done",
+   "run": "backend billing run 2026-10-14T0510Z",
+   "at": "2026-10-14T05:50:00Z",
+   "answer": "applied by the 10/14 chat pass with the same outcome: CAP07 begin date set 02/23/2025 (one year back, William's 10/14 rule - covers every DOS), patient order 1, 18 visits re-routed to order 1 with one frequency-1 rebill each (deceased guard: every DOS before the 02/03/2026 DOD), all 18 released",
+   "doneAt": "2026-10-14T06:44:00Z"
+  },
+  {
+   "id": "A-2026-10-14T0510Z-D",
+   "letter": "D",
+   "command": "cd /home/claude/unbilled && python3 cov_1014_0510.py --live --only D",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the dry run of cov_1014_0510.py, 0541Z; approval_submit.py itself refused 0547Z)",
+   "what": "chart 22603: AMD 271 says the CON08 plan (car42021, seq 2) is dead (AAA 75) and AET12 Aetna Senior Supplemental (seq 3, begin 10/6/2025) is the live Medigap. End-date CON08 10/05/2025, patient order 1,3; v19454390 visit order 1,3 with NO rebill (AET12 carrier-master hold). No money moves.",
+   "dollars": "$0 (routing)",
+   "ui": "Patient > Insurance > CON08 plan: End Date 10/05/2025, Save; set default order Medicare, AET12; visit 19454390 > insurance order Medicare, AET12.",
+   "evidence": "elig_amd.py 22603 --all 0538Z: seq 1 Medicare ACTIVE, seq 2 CON08 REJECTED AAA 75, seq 3 AET12 ACTIVE",
+   "evidence_file": "/home/claude/unbilled/work_reads2_0510.json",
+   "status": "done",
+   "run": "backend billing run 2026-10-14T0510Z",
+   "at": "2026-10-14T05:50:00Z",
+   "answer": "applied by the 10/14 chat pass: CON08 ins1855 end-dated 10/05/2025, patient order 1,3, visit 19454390 order 1,3 with no rebill",
+   "doneAt": "2026-10-14T06:44:00Z"
+  },
+  {
+   "id": "A-2026-10-14T0510Z-E",
+   "letter": "E",
+   "command": "cd /home/claude/unbilled && python3 cov_1014_0510.py --live --only E",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions] (the dry run of cov_1014_0510.py, 0541Z; approval_submit.py itself refused 0547Z)",
+   "what": "release (hideunbillablevisits) the 23 'DOS outside coverage' Unbilled rows of sections A/B once their insurance balances are $0; rows with a balance left are kept. No money moves.",
+   "dollars": "$0 (releases)",
+   "ui": "Claims Center > Unbilled > select the visits > Release.",
+   "evidence": "rows listed in scan_2026-10-14T0510Z/summary_before.json under 'Date of service is outside insurance coverage effective dates'",
+   "evidence_file": "/home/claude/unbilled/scan_2026-10-14T0510Z/summary_before.json",
+   "status": "done",
+   "run": "backend billing run 2026-10-14T0510Z",
+   "at": "2026-10-14T05:50:00Z",
+   "answer": "applied by the 10/14 chat pass: every DOS-outside-coverage row released after its fix (unbilled_rules_1014 / cards_ab_1014 registers)",
+   "doneAt": "2026-10-14T06:44:00Z"
   }
  ]
 }

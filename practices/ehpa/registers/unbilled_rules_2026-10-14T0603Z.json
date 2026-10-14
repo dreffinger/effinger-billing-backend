@@ -1,0 +1,1502 @@
+{
+ "run": "2026-10-14T0603Z",
+ "live": true,
+ "charts": {
+  "20336": {
+   "pid": "20336",
+   "rows": 3,
+   "actions": []
+  },
+  "23254": {
+   "pid": "23254",
+   "rows": 1,
+   "actions": [
+    "rollback ins9510255 begindate 04/28/2023 -> 04/28/2022: True f-8ns2l\" lst=\"10/13/2026 23:03:40\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  "12233534": {
+   "pid": "12233534",
+   "rows": 3,
+   "actions": [
+    "rollback ins9507138 begindate 08/01/2023 -> 08/01/2022: True f-8ns2l\" lst=\"10/13/2026 23:03:56\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '2' - restored: insorder 2 via ins9507137 -> '2'"
+   ]
+  },
+  "23671": {
+   "pid": "23671",
+   "rows": 1,
+   "actions": [
+    "rollback ins9511516 begindate 06/27/2023 -> 06/27/2022: True f-8ns2l\" lst=\"10/13/2026 23:04:38\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  "20407": {
+   "pid": "20407",
+   "rows": 1,
+   "actions": []
+  },
+  "17473032": {
+   "pid": "17473032",
+   "rows": 1,
+   "actions": []
+  },
+  "17472114": {
+   "pid": "17472114",
+   "rows": 4,
+   "actions": []
+  },
+  "17469549": {
+   "pid": "17469549",
+   "rows": 26,
+   "actions": [
+    "add FLO99 car42008 (member = Medicaid id, begin 10/21/2025): ins9520833 seq 2"
+   ]
+  }
+ },
+ "visits": [
+  {
+   "pid": "20336",
+   "vid": "26087",
+   "dos": "08/02/2022",
+   "cpts": [
+    "99307"
+   ],
+   "fee": 68.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "4747",
+     "99307",
+     7.38,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "20336",
+   "vid": "26191",
+   "dos": "08/05/2022",
+   "cpts": [
+    "99307"
+   ],
+   "fee": 68.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "4889",
+     "99307",
+     7.38,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "20336",
+   "vid": "27422",
+   "dos": "08/23/2022",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates",
+    "Unresolved Claim Inspector errors"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "6282",
+     "99308",
+     11.67,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23254",
+   "vid": "44745",
+   "dos": "12/28/2022",
+   "cpts": [
+    "99336"
+   ],
+   "fee": 208.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst44745 -> charges 1/1, visit {'insorder': '2'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "12233534",
+   "vid": "14016482",
+   "dos": "05/09/2023",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst14016482 -> charges 1/1, visit {'insorder': '3'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     3,
+     "freq1 + rebill seq 3 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "12233534",
+   "vid": "19362932",
+   "dos": "07/24/2023",
+   "cpts": [
+    "99310"
+   ],
+   "fee": 207.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19362932 -> charges 1/1, visit {'insorder': '3'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     3,
+     "freq1 + rebill seq 3 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "12233534",
+   "vid": "19362928",
+   "dos": "07/27/2023",
+   "cpts": [
+    "99316"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19362928 -> charges 1/1, visit {'insorder': '3'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     3,
+     "freq1 + rebill seq 3 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23671",
+   "vid": "14025638",
+   "dos": "05/25/2023",
+   "cpts": [
+    "99316"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst14025638 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "20407",
+   "vid": "19374762",
+   "dos": "01/23/2024",
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fee": 389.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "22442764",
+     "99306",
+     35.53,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "22442765",
+     "99497",
+     14.72,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17473032",
+   "vid": "19402284",
+   "dos": "03/13/2025",
+   "cpts": [
+    "99344",
+    "99497"
+   ],
+   "fee": 433.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19402284 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404388",
+   "dos": "04/18/2025",
+   "cpts": [
+    "99232"
+   ],
+   "fee": 111.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19404388 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404389",
+   "dos": "04/19/2025",
+   "cpts": [
+    "99232"
+   ],
+   "fee": 111.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19404389 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404347",
+   "dos": "04/20/2025",
+   "cpts": [
+    "99232"
+   ],
+   "fee": 111.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19404347 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404395",
+   "dos": "04/21/2025",
+   "cpts": [
+    "99232"
+   ],
+   "fee": 111.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19404395 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420699",
+   "dos": "10/21/2025",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fee": 443.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19420699 -> charges 2/2, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420698",
+   "dos": "10/22/2025",
+   "cpts": [
+    "99232"
+   ],
+   "fee": 111.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19420698 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420791",
+   "dos": "10/23/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19420791 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420881",
+   "dos": "10/24/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19420881 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19421710",
+   "dos": "10/28/2025",
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fee": 389.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19421710 -> charges 2/2, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19424019",
+   "dos": "11/17/2025",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19424019 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19425178",
+   "dos": "12/02/2025",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425178 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19427110",
+   "dos": "12/19/2025",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23333353",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23333354",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430029",
+   "dos": "01/13/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19430029 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430814",
+   "dos": "01/27/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23337366",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23337367",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19433034",
+   "dos": "02/03/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19433034 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19434004",
+   "dos": "02/26/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23340868",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23340869",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19435854",
+   "dos": "03/09/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19435854 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438637",
+   "dos": "03/20/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23345862",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23345863",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438165",
+   "dos": "04/06/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19438165 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19439657",
+   "dos": "04/20/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23347271",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23347272",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19441040",
+   "dos": "05/01/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19441040 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19442480",
+   "dos": "05/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23350615",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23350616",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19444481",
+   "dos": "06/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19444481 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19446295",
+   "dos": "06/25/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23355351",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23355352",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19447164",
+   "dos": "07/02/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19447164 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448419",
+   "dos": "07/10/2026",
+   "cpts": [
+    "G0439"
+   ],
+   "fee": 204.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448419 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448900",
+   "dos": "07/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23358405",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23358406",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19451182",
+   "dos": "08/03/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19451182 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19455795",
+   "dos": "09/20/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "writeoff",
+     "23367245",
+     "99487",
+     206.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "writeoff",
+     "23367246",
+     "99489",
+     109.0,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17469549",
+   "vid": "19456192",
+   "dos": "09/21/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19456192 -> charges 1/1, visit {'insorder': '2'}, charge flags {'billins': ['1'], 'finclasscode': ['MD']}"
+    ],
+    [
+     "rebill",
+     2,
+     "freq1 + rebill seq 2 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  }
+ ],
+ "writeoffs": [
+  {
+   "pid": "20336",
+   "vid": "26087",
+   "cid": "4747",
+   "carrier": "UNI20",
+   "amount": 7.38,
+   "code": "WOCLTREQ",
+   "note": "Medicare coinsurance leftover from 08/2022 with no supplement in force (UHC began 09/01/2022); cost-share with no insurance left to bill -> WOCLTREQ (William 10/13) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:03:31\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20336",
+   "vid": "26191",
+   "cid": "4889",
+   "carrier": "UNI20",
+   "amount": 7.38,
+   "code": "WOCLTREQ",
+   "note": "Medicare coinsurance leftover from 08/2022 with no supplement in force (UHC began 09/01/2022); cost-share with no insurance left to bill -> WOCLTREQ (William 10/13) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:03:34\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20336",
+   "vid": "27422",
+   "cid": "6282",
+   "carrier": "UNI20",
+   "amount": 11.67,
+   "code": "WOCLTREQ",
+   "note": "Medicare coinsurance leftover from 08/2022 with no supplement in force (UHC began 09/01/2022); cost-share with no insurance left to bill -> WOCLTREQ (William 10/13) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:03:37\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20407",
+   "vid": "19374762",
+   "cid": "22442764",
+   "carrier": "MCAD",
+   "amount": 35.53,
+   "code": "WOCAID2ND",
+   "note": "QMB cost-share: Medicare paid 01/23/2024, leftover coinsurance belongs to Medicaid (FL QMB per CMS), no Medicaid plan on chart and past 12 months - WOCAID2ND (dual rule 10/5, 12-month rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:04:59\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20407",
+   "vid": "19374762",
+   "cid": "22442765",
+   "carrier": "MCAD",
+   "amount": 14.72,
+   "code": "WOCAID2ND",
+   "note": "QMB cost-share: Medicare paid 01/23/2024, leftover coinsurance belongs to Medicaid (FL QMB per CMS), no Medicaid plan on chart and past 12 months - WOCAID2ND (dual rule 10/5, 12-month rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:05:02\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19427110",
+   "cid": "23333353",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:08:00\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19427110",
+   "cid": "23333354",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:08:02\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430814",
+   "cid": "23337366",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:08:20\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430814",
+   "cid": "23337367",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:08:22\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19434004",
+   "cid": "23340868",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:08:40\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19434004",
+   "cid": "23340869",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:08:42\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438637",
+   "cid": "23345862",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:09:02\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438637",
+   "cid": "23345863",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:09:04\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19439657",
+   "cid": "23347271",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:09:23\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19439657",
+   "cid": "23347272",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:09:26\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19442480",
+   "cid": "23350615",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:09:44\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19442480",
+   "cid": "23350616",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:09:46\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19446295",
+   "cid": "23355351",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:10:05\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19446295",
+   "cid": "23355352",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:10:07\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448900",
+   "cid": "23358405",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:10:40\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448900",
+   "cid": "23358406",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:10:42\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19455795",
+   "cid": "23367245",
+   "carrier": "MCAD",
+   "amount": 206.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:00\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19455795",
+   "cid": "23367246",
+   "carrier": "MCAD",
+   "amount": 109.0,
+   "code": "WONCS",
+   "note": "CCM never payable by Medicaid / FCC (William 10/13 rule) - chat 10/14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:01\"><Results success=\"1\" paym"
+  }
+ ],
+ "left": []
+}

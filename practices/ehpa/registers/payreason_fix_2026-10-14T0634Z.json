@@ -1,0 +1,1298 @@
+{
+ "run": "2026-10-14T0634Z",
+ "live": true,
+ "visits": [
+  {
+   "pid": "21577",
+   "vid": "13965186",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961024",
+     "cpt": "99307",
+     "dos": "11/14/2022",
+     "fee": 68.0,
+     "insbal": 3.69,
+     "plan": [
+      [
+       "WOSMBAL",
+       3.69,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       3.69,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965302",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961157",
+     "cpt": "99307",
+     "dos": "11/21/2022",
+     "fee": 68.0,
+     "insbal": 3.69,
+     "plan": [
+      [
+       "WOSMBAL",
+       3.69,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       3.69,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965309",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961165",
+     "cpt": "99307",
+     "dos": "11/27/2022",
+     "fee": 68.0,
+     "insbal": 3.69,
+     "plan": [
+      [
+       "WOSMBAL",
+       3.69,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       3.69,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965409",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961279",
+     "cpt": "99307",
+     "dos": "11/28/2022",
+     "fee": 68.0,
+     "insbal": 3.69,
+     "plan": [
+      [
+       "WOSMBAL",
+       3.69,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       3.69,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965457",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961332",
+     "cpt": "99308",
+     "dos": "12/05/2022",
+     "fee": 107.0,
+     "insbal": 5.83,
+     "plan": [
+      [
+       "WOSMBAL",
+       5.83,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       5.83,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965469",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961344",
+     "cpt": "99308",
+     "dos": "12/08/2022",
+     "fee": 107.0,
+     "insbal": 5.83,
+     "plan": [
+      [
+       "WOSMBAL",
+       5.83,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       5.83,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "13965556",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "20961447",
+     "cpt": "99308",
+     "dos": "12/16/2022",
+     "fee": 107.0,
+     "insbal": 5.83,
+     "plan": [
+      [
+       "WOSMBAL",
+       5.83,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       5.83,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21577",
+   "vid": "14016484",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "21338462",
+     "cpt": "99308",
+     "dos": "05/09/2023",
+     "fee": 107.0,
+     "insbal": 6.33,
+     "plan": [
+      [
+       "WOSMBAL",
+       6.33,
+       "2022-23 Medigap leftover under $7 - small balance"
+      ]
+     ],
+     "posted": [
+      [
+       "WOSMBAL",
+       6.33,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "23391",
+   "vid": "19391975",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "22463825",
+     "cpt": "99308",
+     "dos": "10/10/2024",
+     "fee": 107.0,
+     "insbal": 45.41,
+     "plan": [
+      [
+       "WOINS",
+       45.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       45.41,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "22566",
+   "vid": "19393891",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "22466275",
+     "cpt": "99309",
+     "dos": "10/15/2024",
+     "fee": 141.0,
+     "insbal": 51.87,
+     "plan": [
+      [
+       "WOINS",
+       51.87,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       51.87,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "22466276",
+     "cpt": "99497",
+     "dos": "10/15/2024",
+     "fee": 133.0,
+     "insbal": 83.13,
+     "plan": [
+      [
+       "WOINS",
+       70.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.00 of $12.72 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       70.41,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "22566",
+   "vid": "19393968",
+   "next": "BCBS",
+   "charges": [
+    {
+     "cid": "22466372",
+     "cpt": "99308",
+     "dos": "11/01/2024",
+     "fee": 107.0,
+     "insbal": 45.41,
+     "plan": [
+      [
+       "WOINS",
+       45.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       45.41,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "22466373",
+     "cpt": "99497",
+     "dos": "11/01/2024",
+     "fee": 133.0,
+     "insbal": 83.13,
+     "plan": [
+      [
+       "WOINS",
+       70.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.00 of $12.72 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       70.41,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "BCBS",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "44997",
+   "vid": "19396210",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "22469371",
+     "cpt": "99308",
+     "dos": "09/22/2024",
+     "fee": 107.0,
+     "insbal": 45.41,
+     "plan": [
+      [
+       "WOINS",
+       45.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       45.41,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "22469372",
+     "cpt": "99497",
+     "dos": "09/22/2024",
+     "fee": 133.0,
+     "insbal": 83.13,
+     "plan": [
+      [
+       "WOINS",
+       70.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.00 of $12.72 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       70.41,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "44997",
+   "vid": "19396275",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "22469461",
+     "cpt": "99308",
+     "dos": "10/09/2024",
+     "fee": 107.0,
+     "insbal": 45.41,
+     "plan": [
+      [
+       "WOINS",
+       45.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       45.41,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "22469462",
+     "cpt": "99497",
+     "dos": "10/09/2024",
+     "fee": 133.0,
+     "insbal": 83.13,
+     "plan": [
+      [
+       "WOINS",
+       70.41,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.00 of $12.72 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       70.41,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ],
+      [
+       "WOCAID2ND",
+       12.72,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21020",
+   "vid": "19416171",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23319734",
+     "cpt": "99487",
+     "dos": "09/08/2025",
+     "fee": 206.0,
+     "insbal": 135.98,
+     "plan": [
+      [
+       "WOINS",
+       135.98,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       135.98,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23319735",
+     "cpt": "99489",
+     "dos": "09/08/2025",
+     "fee": 109.0,
+     "insbal": 71.11,
+     "plan": [
+      [
+       "WOINS",
+       71.11,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       71.11,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "24208",
+   "vid": "19416185",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23319763",
+     "cpt": "99487",
+     "dos": "09/08/2025",
+     "fee": 206.0,
+     "insbal": 135.98,
+     "plan": [
+      [
+       "WOINS",
+       135.98,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       135.98,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23319764",
+     "cpt": "99489",
+     "dos": "09/08/2025",
+     "fee": 109.0,
+     "insbal": 71.11,
+     "plan": [
+      [
+       "WOINS",
+       71.11,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       71.11,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17471773",
+   "vid": "19416866",
+   "next": "VACCN",
+   "charges": [
+    {
+     "cid": "23320533",
+     "cpt": "99233",
+     "dos": "09/15/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17471773",
+   "vid": "19416870",
+   "next": "VACCN",
+   "charges": [
+    {
+     "cid": "23320536",
+     "cpt": "99233",
+     "dos": "09/16/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (HUM01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417011",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23320659",
+     "cpt": "99233",
+     "dos": "09/17/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "47124",
+   "vid": "19417079",
+   "next": "TRA02",
+   "charges": [
+    {
+     "cid": "23320688",
+     "cpt": "99309",
+     "dos": "09/11/2025",
+     "fee": 141.0,
+     "insbal": 39.22,
+     "plan": [
+      [
+       "WOINS",
+       39.22,
+       "277-posted UNI20 primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       39.22,
+       "UNI20",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417167",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23320780",
+     "cpt": "99233",
+     "dos": "09/18/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417226",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23320848",
+     "cpt": "99233",
+     "dos": "09/19/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417287",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23320984",
+     "cpt": "99233",
+     "dos": "09/20/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21020",
+   "vid": "19418988",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23323898",
+     "cpt": "99309",
+     "dos": "10/02/2025",
+     "fee": 141.0,
+     "insbal": 39.23,
+     "plan": [
+      [
+       "WOINS",
+       39.23,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       39.23,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "24208",
+   "vid": "19419273",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23324213",
+     "cpt": "99308",
+     "dos": "10/02/2025",
+     "fee": 107.0,
+     "insbal": 37.04,
+     "plan": [
+      [
+       "WOINS",
+       37.04,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       37.04,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "47124",
+   "vid": "19420335",
+   "next": "TRA02",
+   "charges": [
+    {
+     "cid": "23325318",
+     "cpt": "99308",
+     "dos": "10/16/2025",
+     "fee": 107.0,
+     "insbal": 37.03,
+     "plan": [
+      [
+       "WOINS",
+       37.03,
+       "277-posted UNI20 primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       37.03,
+       "UNI20",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21020",
+   "vid": "19420940",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23326080",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "insbal": 135.98,
+     "plan": [
+      [
+       "WOINS",
+       135.98,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       135.98,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23326081",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "insbal": 71.11,
+     "plan": [
+      [
+       "WOINS",
+       71.11,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       71.11,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "24208",
+   "vid": "19420954",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23326108",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "insbal": 135.98,
+     "plan": [
+      [
+       "WOINS",
+       135.98,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       135.98,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23326109",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "insbal": 71.11,
+     "plan": [
+      [
+       "WOINS",
+       71.11,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       71.11,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "47124",
+   "vid": "19421010",
+   "next": "TRA02",
+   "charges": [
+    {
+     "cid": "23326220",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "fee": 206.0,
+     "insbal": 137.38,
+     "plan": [
+      [
+       "WOINS",
+       137.38,
+       "277-posted UNI20 primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       137.38,
+       "UNI20",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23326221",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "fee": 109.0,
+     "insbal": 71.86,
+     "plan": [
+      [
+       "WOINS",
+       71.86,
+       "277-posted UNI20 primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       71.86,
+       "UNI20",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19421703",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23327032",
+     "cpt": "99233",
+     "dos": "10/29/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17472910",
+   "vid": "19421870",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23327195",
+     "cpt": "99233",
+     "dos": "10/30/2025",
+     "fee": 160.0,
+     "insbal": 22.88,
+     "plan": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "coinsurance answered by the Medicaid-family plan (SUN01 paid $0.04 of $22.92 PR2) - dual rule 10/5"
+      ]
+     ],
+     "posted": [
+      [
+       "WOCAID2ND",
+       22.88,
+       "FLO02",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "24208",
+   "vid": "19422686",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23328015",
+     "cpt": "99308",
+     "dos": "11/03/2025",
+     "fee": 107.0,
+     "insbal": 37.04,
+     "plan": [
+      [
+       "WOINS",
+       37.04,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       37.04,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "21020",
+   "vid": "19422687",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23328016",
+     "cpt": "99309",
+     "dos": "11/03/2025",
+     "fee": 141.0,
+     "insbal": 39.23,
+     "plan": [
+      [
+       "WOINS",
+       39.23,
+       "277-posted UHCMA primary with no remit; remainder contractual per the 10/9 disposition note - no secondary cost share"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       39.23,
+       "UHCMA",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  },
+  {
+   "pid": "17471725",
+   "vid": "19441991",
+   "next": "UNI20",
+   "charges": [
+    {
+     "cid": "23349947",
+     "cpt": "99306",
+     "dos": "05/14/2026",
+     "fee": 256.0,
+     "insbal": 93.16,
+     "plan": [
+      [
+       "WOINS",
+       93.16,
+       "contractual from the primary's CO45/CO253/CO144 never written off (payreasons 9/21 lesson)"
+      ]
+     ],
+     "posted": [
+      [
+       "WOINS",
+       93.16,
+       "HUM01",
+       true,
+       "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+      ]
+     ]
+    },
+    {
+     "cid": "23349948",
+     "cpt": "99497",
+     "dos": "05/14/2026",
+     "fee": 133.0,
+     "insbal": 0.0,
+     "plan": [
+      [
+       "nothing",
+       "balance already 0"
+      ]
+     ]
+    }
+   ],
+   "released": true
+  }
+ ],
+ "left": []
+}

@@ -1,0 +1,1368 @@
+{
+ "run": "2026-10-14T0613Z",
+ "live": true,
+ "charts": {
+  "23177": {
+   "pid": "23177",
+   "rows": 25,
+   "actions": []
+  },
+  "17474649": {
+   "pid": "17474649",
+   "rows": 3,
+   "actions": []
+  },
+  "48008": {
+   "pid": "48008",
+   "rows": 18,
+   "actions": [
+    "rollback ins9518597 begindate 02/23/2026 -> 02/23/2025: True f-mgvr9\" lst=\"10/13/2026 23:18:39\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  "24716": {
+   "pid": "24716",
+   "rows": 10,
+   "actions": []
+  }
+ },
+ "visits": [
+  {
+   "pid": "23177",
+   "vid": "19433767",
+   "dos": "02/26/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19433767 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19438176",
+   "dos": "03/09/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19438176 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19438668",
+   "dos": "03/20/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19438668 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19438175",
+   "dos": "04/06/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19438175 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19439691",
+   "dos": "04/20/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19439691 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19441035",
+   "dos": "05/01/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19441035 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19442510",
+   "dos": "05/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19442510 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19444492",
+   "dos": "06/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19444492 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19446317",
+   "dos": "06/25/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19446317 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19448707",
+   "dos": "07/02/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448707 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19448445",
+   "dos": "07/10/2026",
+   "cpts": [
+    "G0439"
+   ],
+   "fee": 204.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448445 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19448929",
+   "dos": "07/17/2026",
+   "cpts": [
+    "99489",
+    "99487"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448929 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19451190",
+   "dos": "08/03/2026",
+   "cpts": [
+    "99489",
+    "99309"
+   ],
+   "fee": 250.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19451190 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19452415",
+   "dos": "08/22/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19452415 -> charges 2/2, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19455821",
+   "dos": "09/20/2026",
+   "cpts": [
+    "99487"
+   ],
+   "fee": 206.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19455821 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "23177",
+   "vid": "19456200",
+   "dos": "09/24/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19456200 -> charges 1/1, visit {'insorder': '1,2'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17474649",
+   "vid": "19423214",
+   "dos": "11/11/2025",
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fee": 389.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19423214 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17474649",
+   "vid": "19425170",
+   "dos": "12/02/2025",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425170 -> charges 1/1, visit {'insorder': '3'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     3,
+     "freq1 + rebill seq 3 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "17474649",
+   "vid": "19427052",
+   "dos": "12/05/2025",
+   "cpts": [
+    "99316"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427052 -> charges 1/1, visit {'insorder': '3'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     3,
+     "freq1 + rebill seq 3 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19423586",
+   "dos": "11/15/2025",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19423586 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19424950",
+   "dos": "11/30/2025",
+   "cpts": [
+    "99223",
+    "99497"
+   ],
+   "fee": 443.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19424950 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19424945",
+   "dos": "12/01/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19424945 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425224",
+   "dos": "12/02/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425224 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425223",
+   "dos": "12/03/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425223 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425391",
+   "dos": "12/04/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425391 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425371",
+   "dos": "12/05/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425371 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425399",
+   "dos": "12/06/2025",
+   "cpts": [
+    "99233"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425399 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19425490",
+   "dos": "12/07/2025",
+   "cpts": [
+    "99239"
+   ],
+   "fee": 163.0,
+   "errs": [
+    "Insurance order is missing on visit"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19425490 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19426067",
+   "dos": "12/08/2025",
+   "cpts": [
+    "99306",
+    "99497"
+   ],
+   "fee": 389.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19426067 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19426988",
+   "dos": "12/11/2025",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19426988 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19427535",
+   "dos": "12/15/2025",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427535 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19427273",
+   "dos": "12/20/2025",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427273 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19427786",
+   "dos": "12/22/2025",
+   "cpts": [
+    "99309"
+   ],
+   "fee": 141.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427786 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19427785",
+   "dos": "12/31/2025",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427785 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19428337",
+   "dos": "01/05/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fee": 107.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19428337 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19429872",
+   "dos": "01/07/2026",
+   "cpts": [
+    "99316"
+   ],
+   "fee": 160.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19429872 -> charges 1/1, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "48008",
+   "vid": "19430757",
+   "dos": "01/27/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Date of service is outside insurance coverage effective dates"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19430757 -> charges 2/2, visit {'insorder': '1'}, charge flags {}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19423589",
+   "dos": "11/15/2025",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19423589 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19427203",
+   "dos": "12/21/2025",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19427203 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19430688",
+   "dos": "01/27/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19430688 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19440437",
+   "dos": "04/28/2026",
+   "cpts": [
+    "99349"
+   ],
+   "fee": 198.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19440437 -> charges 1/1, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19442295",
+   "dos": "05/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19442295 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19448566",
+   "dos": "07/15/2026",
+   "cpts": [
+    "G0439"
+   ],
+   "fee": 204.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448566 -> charges 1/1, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19448827",
+   "dos": "07/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19448827 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19450685",
+   "dos": "08/04/2026",
+   "cpts": [
+    "99349"
+   ],
+   "fee": 198.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19450685 -> charges 1/1, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19452642",
+   "dos": "08/23/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19452642 -> charges 2/2, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  },
+  {
+   "pid": "24716",
+   "vid": "19455682",
+   "dos": "09/20/2026",
+   "cpts": [
+    "99487"
+   ],
+   "fee": 206.0,
+   "errs": [
+    "Bill Insurance = \"No\" at charge level and charge has insurance balance"
+   ],
+   "steps": [
+    [
+     "resave",
+     true,
+     "resave vst19455682 -> charges 1/1, visit {'insorder': '1'}, charge flags {'billins': ['1'], 'finclasscode': ['MC']}"
+    ],
+    [
+     "rebill",
+     1,
+     "freq1 + rebill seq 1 -> 204"
+    ],
+    [
+     "release",
+     "released"
+    ]
+   ]
+  }
+ ],
+ "writeoffs": [],
+ "left": []
+}

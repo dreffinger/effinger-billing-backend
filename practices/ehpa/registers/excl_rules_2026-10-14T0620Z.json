@@ -1,0 +1,938 @@
+{
+ "run": "2026-10-14T0620Z",
+ "live": true,
+ "visits": [
+  {
+   "pid": "12179674",
+   "vid": "13966035",
+   "claimid": "13966035B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "01/19/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13967129",
+   "claimid": "13967129B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "01/23/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13967115",
+   "claimid": "13967115B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "01/26/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13971632",
+   "claimid": "13971632B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "01/30/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13971611",
+   "claimid": "13971611B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "02/02/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13971573",
+   "claimid": "13971573B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "02/07/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12179674",
+   "vid": "13972162",
+   "claimid": "13972162B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "02/09/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "14029135",
+   "claimid": "14029135B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/15/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19359757",
+   "claimid": "19359757B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/22/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19360107",
+   "claimid": "19360107B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/23/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19359746",
+   "claimid": "19359746B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/25/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19360044",
+   "claimid": "19360044B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/07/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19360350",
+   "claimid": "19360350B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/10/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "12235828",
+   "vid": "19360684",
+   "claimid": "19360684B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/14/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17468781",
+   "vid": "19358877",
+   "claimid": "19358877B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/12/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17468781",
+   "vid": "19359198",
+   "claimid": "19359198B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/15/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17468781",
+   "vid": "19359648",
+   "claimid": "19359648B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/20/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17468781",
+   "vid": "19359627",
+   "claimid": "19359627B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/23/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17468781",
+   "vid": "19359733",
+   "claimid": "19359733B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/26/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17469037",
+   "vid": "19362846",
+   "claimid": "19362846B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "08/12/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17469037",
+   "vid": "19362827",
+   "claimid": "19362827B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "08/13/2023"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17472305",
+   "vid": "19401011",
+   "claimid": "19401011C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "02/21/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402497",
+   "claimid": "19402497C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "03/20/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402527",
+   "claimid": "19402527C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "03/21/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402572",
+   "claimid": "19402572C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "03/22/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402571",
+   "claimid": "19402571C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "03/23/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19447739",
+   "claimid": "19447739D",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/09/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19448487",
+   "claimid": "19448487D",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/13/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19448870",
+   "claimid": "19448870D",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/17/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19450195",
+   "claimid": "19450195F",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "07/28/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17473245",
+   "vid": "19453351",
+   "claimid": "19453351D",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "08/27/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430108",
+   "claimid": "19430108H",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "01/23/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17475063",
+   "vid": "19427804",
+   "claimid": "19427804D",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "12/30/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "17476544",
+   "vid": "19444049",
+   "claimid": "19444049E",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "06/02/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "20165",
+   "vid": "13965089",
+   "claimid": "13965089B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "11/04/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "23969",
+   "vid": "19455056",
+   "claimid": "19455056B",
+   "run": "1700289",
+   "carrier": "AAR01",
+   "dos": [
+    "09/16/2026"
+   ],
+   "errs": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCR",
+   "steps": [
+    [
+     "reroute 1,2 rebill seq 2 (Cigna)",
+     "resave vst19455056 insorder 1,3 -> 1,2, 2 live charges (was 2) | freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "23969",
+   "vid": "19455038",
+   "claimid": "19455038B",
+   "run": "1700289",
+   "carrier": "AAR01",
+   "dos": [
+    "09/17/2026"
+   ],
+   "errs": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCR",
+   "steps": [
+    [
+     "reroute 1,2 rebill seq 2 (Cigna)",
+     "resave vst19455038 insorder 1,3 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "23969",
+   "vid": "19455121",
+   "claimid": "19455121B",
+   "run": "1700289",
+   "carrier": "AAR01",
+   "dos": [
+    "09/18/2026"
+   ],
+   "errs": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCR",
+   "steps": [
+    [
+     "reroute 1,2 rebill seq 2 (Cigna)",
+     "resave vst19455121 insorder 1,3 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "23969",
+   "vid": "19455209",
+   "claimid": "19455209C",
+   "run": "1700289",
+   "carrier": "AAR01",
+   "dos": [
+    "09/19/2026"
+   ],
+   "errs": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCR",
+   "steps": [
+    [
+     "reroute 1,2 rebill seq 2 (Cigna)",
+     "resave vst19455209 insorder 1,3 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "23969",
+   "vid": "19455457",
+   "claimid": "19455457B",
+   "run": "1700289",
+   "carrier": "AAR01",
+   "dos": [
+    "09/20/2026"
+   ],
+   "errs": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCR",
+   "steps": [
+    [
+     "reroute 1,2 rebill seq 2 (Cigna)",
+     "resave vst19455457 insorder 1,3 -> 1,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "24750",
+   "vid": "19455937",
+   "claimid": "19455937B",
+   "run": "1700294",
+   "carrier": "AET12",
+   "dos": [
+    "09/20/2026"
+   ],
+   "errs": "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941 | CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM",
+   "steps": [
+    [
+     "left",
+     "AET12 carrier CPID record - board row aet12-carrier-cpid"
+    ]
+   ],
+   "done": false
+  },
+  {
+   "pid": "25710",
+   "vid": "19432733",
+   "claimid": "19432733H",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "02/12/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45052",
+   "vid": "19403896",
+   "claimid": "19403896C",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "04/14/2025"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45052",
+   "vid": "19455595",
+   "claimid": "19455595B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "09/20/2026"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 1 (BCBS)",
+     "freq1 + rebill seq 1 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45075",
+   "vid": "27603",
+   "claimid": "27603B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "08/26/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45075",
+   "vid": "43269",
+   "claimid": "43269B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "12/23/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45578",
+   "vid": "30756",
+   "claimid": "30756B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "09/26/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "45693",
+   "vid": "32487",
+   "claimid": "32487B",
+   "run": "1700294",
+   "carrier": "BCBS",
+   "dos": [
+    "09/27/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  },
+  {
+   "pid": "46975",
+   "vid": "35389",
+   "claimid": "35389B",
+   "run": "1700295",
+   "carrier": "BCBS",
+   "dos": [
+    "10/19/2022"
+   ],
+   "errs": "CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+   "steps": [
+    [
+     "freq1 + rebill seq 2 (BCBS)",
+     "freq1 + rebill seq 2 -> 204"
+    ]
+   ],
+   "done": true
+  }
+ ],
+ "writeoffs": [],
+ "hidden": {
+  "1700294": {
+   "n": 16,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:29:12\"><Results success=\"1\" /><E"
+  },
+  "1700295": {
+   "n": 27,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:29:12\"><Results success=\"1\" /><E"
+  },
+  "1700289": {
+   "n": 5,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:29:13\"><Results success=\"1\" /><E"
+  }
+ },
+ "left": [
+  {
+   "pid": "24750",
+   "vid": "19455937",
+   "claimid": "19455937B",
+   "run": "1700294",
+   "carrier": "AET12",
+   "dos": [
+    "09/20/2026"
+   ],
+   "errs": "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941 | CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM",
+   "steps": [
+    [
+     "left",
+     "AET12 carrier CPID record - board row aet12-carrier-cpid"
+    ]
+   ],
+   "done": false
+  }
+ ],
+ "chart_actions": [
+  [
+   "23969 end-date AARP ins9520805 09/15/2026",
+   true,
+   "f-g4xbm\" lst=\"10/13/2026 23:20:36\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '1,3' - restored: insorder 1,3 via ins8012 -> '' | insord"
+  ],
+  [
+   "23969 patient insorder 1,2 via Cigna ins2246",
+   false,
+   "insorder 1,2 via ins2246 -> '1,3' | insorder 1,2 via ins8012 -> '1,3' | insorder 1,2 NOT set - check the chart"
+  ]
+ ]
+}

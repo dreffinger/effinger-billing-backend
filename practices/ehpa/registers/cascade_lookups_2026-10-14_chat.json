@@ -1,0 +1,156 @@
+{
+ "23969": {
+  "pid": "23969",
+  "dob": "[DOB]",
+  "sex": "M",
+  "deceased": "",
+  "plans": [
+   [
+    "ins8012",
+    "car6085",
+    "1",
+    "07/22/2022",
+    "",
+    "*******XG26"
+   ],
+   [
+    "ins2246",
+    "car6687",
+    "2",
+    "07/22/2022",
+    "",
+    "*******8101"
+   ],
+   [
+    "ins9520805",
+    "car6600",
+    "3",
+    "01/01/2025",
+    "",
+    "*****2308"
+   ]
+  ],
+  "amd271": [
+   {
+    "ins": "ins8012",
+    "carrier": "car6085",
+    "http": 200,
+    "active_guess": true,
+    "aaa": [],
+    "len": 42411
+   },
+   {
+    "ins": "ins2246",
+    "carrier": "car6687",
+    "http": 200,
+    "active_guess": true,
+    "aaa": [],
+    "len": 34921
+   },
+   {
+    "ins": "ins9520805",
+    "carrier": "car6600",
+    "http": 200,
+    "active_guess": false,
+    "aaa": [],
+    "len": 5279
+   }
+  ],
+  "mbi_lookup": {
+   "mode": "MBILUNOSSN",
+   "dos": "20260916",
+   "summary": {
+    "mbi": "*******XG26",
+    "name": "<chart>",
+    "dob": "[DOB]",
+    "death": null,
+    "errors": [],
+    "partA": "19981201",
+    "partB": "19990901",
+    "other": [
+     {
+      "code": "1",
+      "type": "MA",
+      "typeName": "Medicare Part A",
+      "plan": null,
+      "dates": {
+       "plan": "19981201"
+      },
+      "entity": []
+     },
+     {
+      "code": "C",
+      "type": "MA",
+      "typeName": "Medicare Part A",
+      "plan": null,
+      "dates": {
+       "benefit": "20260101-20261231"
+      },
+      "entity": []
+     },
+     {
+      "code": "R",
+      "type": "OT",
+      "typeName": "Other",
+      "plan": null,
+      "dates": {
+       "benefit": "20240101"
+      },
+      "entity": [
+       [
+        "WELLCARE PRESCRIPTION INSURANCE, INC.",
+        null
+       ]
+      ]
+     }
+    ]
+   }
+  },
+  "discovery": {
+   "coveragesFound": 5,
+   "items": [
+    {
+     "payer": "UNITEDHEALTHCARE",
+     "payerId": null,
+     "member": "*****2308",
+     "dates": null
+    },
+    {
+     "payer": "UNITEDHEALTHCARE",
+     "payerId": null,
+     "member": "*****2308",
+     "dates": null
+    },
+    {
+     "payer": "WELLCARE HEALTH PLANS",
+     "payerId": null,
+     "member": "****9413",
+     "dates": {
+      "plan": "20260916",
+      "planBegin": "20240101",
+      "eligibilityBegin": "20240101"
+     }
+    },
+    {
+     "payer": "CMS",
+     "payerId": null,
+     "member": "*******XG26",
+     "dates": {
+      "eligibility": "20260916"
+     }
+    },
+    {
+     "payer": "CHLIC",
+     "payerId": null,
+     "member": "*******8101",
+     "dates": {
+      "planBegin": "20260101",
+      "planEnd": "20261231",
+      "eligibilityBegin": "20190101"
+     }
+    }
+   ],
+   "errors": []
+  }
+ }
+}
