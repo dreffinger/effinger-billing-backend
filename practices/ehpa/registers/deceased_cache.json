@@ -90,8 +90,9 @@
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "17469426": {
-  "checked": "2026-10-13",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17469429": {
@@ -214,19 +215,28 @@
   "dod": null,
   "src": "stedi: no death on record"
  },
- "17471451": {
-  "checked": "2026-10-13",
+ "17471414": {
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
+  "src": "stedi: not a Medicare beneficiary"
+ },
+ "17471451": {
+  "checked": "2026-10-14",
+  "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17471495": {
-  "checked": "2026-10-13",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17471496": {
-  "checked": "2026-09-22",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17471688": {
@@ -360,8 +370,9 @@
   "src": "stedi: no death on record"
  },
  "17472732": {
-  "checked": "2026-09-22",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17472741": {
@@ -555,8 +566,9 @@
   "src": "stedi: not a Medicare beneficiary"
  },
  "17473432": {
-  "checked": "2026-10-13",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17473440": {
@@ -880,8 +892,9 @@
   "src": "stedi: no death on record"
  },
  "17476917": {
-  "checked": "2026-10-13",
+  "checked": "2026-10-14",
   "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "17476975": {
@@ -936,6 +949,11 @@
  },
  "17477353": {
   "checked": "2026-09-23",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "17477405": {
+  "checked": "2026-10-14",
   "dod": null,
   "src": "stedi: no death on record"
  },
@@ -1264,6 +1282,12 @@
   "dod": null,
   "src": "stedi: not a Medicare beneficiary"
  },
+ "25416": {
+  "checked": "2026-10-14",
+  "dod": null,
+  "name": null,
+  "src": "stedi: not a Medicare beneficiary"
+ },
  "25541": {
   "checked": "2026-09-22",
   "dod": null,
@@ -1412,6 +1436,12 @@
  "46692": {
   "checked": "2026-09-23",
   "dod": null,
+  "src": "stedi: no death on record"
+ },
+ "47643": {
+  "checked": "2026-10-14",
+  "dod": null,
+  "name": null,
   "src": "stedi: no death on record"
  },
  "48008": {
