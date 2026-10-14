@@ -835,6 +835,48 @@
    "ui": "Patient > Transactions > visit 19451554 > 99309: Transfer the 74.64 patient balance to insurance (BCBS).",
    "status": "waiting",
    "answer": null
+  },
+  {
+   "id": "A-2026-10-14T1910Z-A",
+   "stamp": "2026-10-14T1910Z",
+   "at": "2026-10-14T19:36:21Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1014_1910.py --live --only A",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions]. (the live run of excl_1014_1910.py at 19:4xZ; its dry run ran)",
+   "what": "Exclusions column, claim run 1700297: 13 UNITED HEALTHCARE (UNI20) payer rejections 'DUPLICATE OF A PREVIOUSLY PROCESSED [name] on chart 17469067 - 2023 hospital visits v19365003 / v19365028 / v19365118 / v19365221 / v19365286 (99233 9/11-9/15/2023, $65.82 open each) and v19370156 / v19370183 / v19370929 / v19370958 / v19372497 / v19372509 / v19372523 / v19372541 (99232 11/26-12/13/2023, $48.39 open each), re-sent 10/13/2026 as frequency 1. Each carries a VA CCN $0 answer of 3/10/2024 and an FFVA payment of 9/6/2026; UHC says it already processed them. Action = the standing duplicate rule: hideexclusions on run 1700297 for the 13 claim ids, NO rebill. The $716.22 of open balances stay for the denial handling (the original adjudication is the answer). Result once done: the 13 rows leave the Exclusions column; nothing else changes.",
+   "dollars": "$0.00 (13 exclusion rows completed, $716.22 balances untouched)",
+   "evidence_file": "registers/excl_2026-10-14T1910Z_dry.json",
+   "evidence": "dry run read all 13 visits live: UNI20 last-billed 10/13/2026, VACCN $0 3/10/2024 + FFVA paid 9/6/2026 on every one, patient balance 0",
+   "ui": "Claims Center > Exclusions > claim run 1700297 > select the 13 chart-17469067 rows (claims 19365003G, 19365028G, 19365118G, 19365221G, 19365286G, 19370156E, 19370183E, 19370929F, 19370958F, 19372497F, 19372509F, 19372523F, 19372541F) > Complete.",
+   "status": "done",
+   "answer": "2026-10-14T19:40Z completed outside this run: the 13 chart-17469067 duplicate rows were already gone from the Exclusions list at the 19:36Z re-list (the other engine completed them between 19:19Z and 19:36Z); nothing left to approve - not sent to the page, not emailed"
+  },
+  {
+   "id": "A-2026-10-14T1910Z-B",
+   "stamp": "2026-10-14T1910Z",
+   "at": "2026-10-14T19:36:21Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1014_1910.py --live --only B",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions]. (the live run of excl_1014_1910.py at 19:4xZ; its dry run ran)",
+   "what": "Exclusions column, claim runs 1700296 / 1700297: 8 Medicare-SECONDARY claims rejected by UNITED HEALTHCARE 'SUBSCRIBER AND SUBSCRIBER ID NOT FOUND / MEMBER PICK REJECT' because each chart's AARP MEDICARE SUPPLEMENT plan sits on carrier UNI20 (CPID 3429 = UHC commercial/MA) - AMD's own 271 on every one of these plans names AARP. Charts / visits / open coinsurance after Medicare's 10/7-10/8/2026 payments: 17471451 v19455684 (99487 9/20/2026, $28.60); 17473432 v19455934 (99306+99497 9/15/2026, $46.45) and v19455955 (99487+99489 9/20/2026, $25.06); 17469426 v19455674 ($28.60); 17471495 v19455686 ($28.60); 17472732 v19455710 ($44.09); 17476917 v19455938 ($25.06); 17471496 v19449794 (99349 GV 7/24/2026, $22.60). Action = the fix proven 9/22, 10/6 and 10/10: move each plan to carrier AAR01 (updateinsurance carrier only - member id, dates untouched, patient order re-asserted), ONE re-route per visit (freq1_visit.reroute: visit order Medicare first / Medigap second, frequency-1 reset, one chargerebill to the Medigap sequence), then complete the 8 exclusion rows. Result once done: 8 secondary claims ($249.06) go to AARP Medigap on the next claim run.",
+   "dollars": "$249.06 re-sent (8 secondary claims, no money moves)",
+   "evidence_file": "registers/excl_2026-10-14T1910Z_dry.json",
+   "evidence": "dry run: all 7 plans carry car6404 with 11-digit AARP member ids; AMD 271 files patient_db/<chart>/amd271_<ins>.json name AARP on every plan; every visit has Medicare paid, insurance balance = the coinsurance, patient balance 0",
+   "ui": "Per chart: Patient > Insurance > the AARP plan (now carrier UNI20) > change Carrier to AAR01 (AARP), Save, confirm the patient order stays Medicare first. Then Claims Center > the visit > Rebill (frequency 1) to the AARP sequence; Exclusions > runs 1700296 / 1700297 > Complete the 8 rows.",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-14T1910Z-C",
+   "stamp": "2026-10-14T1910Z",
+   "at": "2026-10-14T19:36:21Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1014_1910.py --live --only C",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions]. (the live run of excl_1014_1910.py at 19:4xZ; its dry run ran)",
+   "what": "Exclusions column, claim runs 1700296 / 1700297: 11 charges on charts 25416 and 47643 - 2022 Medigap-secondary leftovers (Medicare coinsurance after Medicare's remits of 10/26/2022-02/08/2023, UHC $0 answers 02/2023) re-sent 10/13/2026 and rejected again 'SUBSCRIBER ID NOT FOUND'. 25416: v24826 c3205 $14.32, v28053 c6978 $11.67, v29807 c10197 $11.67, v30078 c10506 $15.32, v30916 c11360 $25.58 + c11361 $15.60, v31869 c12293 $11.67 ($105.83); 47643: v39939 c19946 $32.91 + c19947 $15.60, v41664 c21382 $11.67, v41667 c21385 $13.73 ($73.91). The secondary window (12 months from the primary's remit) closed in early 2024 and no plan on either chart answers for the member id. Action = the 10/14 rule for 2022-23 Medigap balances: WOINS write-off of each open insurance balance with a dated note (check number EXCL1014), then complete the 9 exclusion rows. Result once done: $179.74 written off, 9 rows leave the column, nothing on the patient.",
+   "dollars": "$179.74 WOINS",
+   "evidence_file": "registers/excl_2026-10-14T1910Z_dry.json",
+   "evidence": "dry run read every charge live: insurance balance as listed, patient balance 0, last billed UNI20 10/13/2026, Medicare paid 2022-2023",
+   "ui": "Per charge: Patient > Transactions > the charge > Payment Entry > write-off WOINS for the open insurance balance, note 'secondary window closed - Medicare remit <date>', check # EXCL1014. Then Exclusions > runs 1700296 / 1700297 > Complete the 9 chart-25416 / 47643 rows.",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
