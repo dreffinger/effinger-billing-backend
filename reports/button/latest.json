@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-13T2322Z",
+ "stamp": "2026-10-14T0131Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38483860735",
- "started": "2026-10-13T23:22:50Z",
- "ended": "2026-10-13T23:24:42Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38496212354",
+ "started": "2026-10-14T01:31:48Z",
+ "ended": "2026-10-14T01:33:55Z",
  "summary": {
   "columns": {
    "before": {
@@ -70,14 +70,14 @@
    "summary": "921 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 921,
-    "registers": 918,
+    "registers": 927,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T23:22:50Z",
-   "ended": "2026-10-13T23:22:51Z"
+   "started": "2026-10-14T01:31:48Z",
+   "ended": "2026-10-14T01:31:48Z"
   },
   {
    "name": "columns",
@@ -120,8 +120,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T23:22:51Z",
-   "ended": "2026-10-13T23:24:38Z"
+   "started": "2026-10-14T01:31:48Z",
+   "ended": "2026-10-14T01:33:51Z"
   },
   {
    "name": "era",
@@ -149,8 +149,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-13T23:24:38Z",
-   "ended": "2026-10-13T23:24:41Z"
+   "started": "2026-10-14T01:33:51Z",
+   "ended": "2026-10-14T01:33:53Z"
   },
   {
    "name": "packages",
@@ -161,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-13T23:24:41Z",
-   "ended": "2026-10-13T23:24:41Z"
+   "started": "2026-10-14T01:33:53Z",
+   "ended": "2026-10-14T01:33:53Z"
   },
   {
    "name": "outstanding",
@@ -184,89 +184,89 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1627,
      "dollars": 156679.65,
-     "oldest_days": 1063
+     "oldest_days": 1064
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 200,
      "dollars": 37524.34,
-     "oldest_days": 1247
+     "oldest_days": 1248
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 132,
      "dollars": 19896.82,
-     "oldest_days": 400
+     "oldest_days": 401
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 76,
      "dollars": 9820.52,
-     "oldest_days": 1021
+     "oldest_days": 1022
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 59,
      "dollars": 5623.77,
-     "oldest_days": 811
+     "oldest_days": 812
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 31,
      "dollars": 5363.97,
-     "oldest_days": 1132
+     "oldest_days": 1133
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 52,
      "dollars": 4744.13,
-     "oldest_days": 588
+     "oldest_days": 589
     },
     {
      "carrier": "AET07",
      "name": "AETNA",
      "visits": 30,
      "dollars": 4534.22,
-     "oldest_days": 344
+     "oldest_days": 345
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 25,
      "dollars": 4185.24,
-     "oldest_days": 760
+     "oldest_days": 761
     },
     {
      "carrier": "WEL04",
      "name": "WELLCARE",
      "visits": 36,
      "dollars": 3186.73,
-     "oldest_days": 580
+     "oldest_days": 581
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 19,
      "dollars": 3041.6,
-     "oldest_days": 85
+     "oldest_days": 86
     },
     {
      "carrier": "SIM01",
      "name": "SIMPLY HEALTHCARE MCD PLANS",
      "visits": 17,
      "dollars": 2911.12,
-     "oldest_days": 95
+     "oldest_days": 96
     }
    ],
    "errors": [],
-   "started": "2026-10-13T23:24:41Z",
-   "ended": "2026-10-13T23:24:42Z"
+   "started": "2026-10-14T01:33:53Z",
+   "ended": "2026-10-14T01:33:55Z"
   }
  ],
  "packages": [],
