@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-14T1325Z",
+ "stamp": "2026-10-14T1529Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/5/28/1 -> 0/5/28/1; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38571684818",
- "started": "2026-10-14T13:25:49Z",
- "ended": "2026-10-14T13:32:24Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38589717557",
+ "started": "2026-10-14T15:29:30Z",
+ "ended": "2026-10-14T15:37:41Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 315937.45,
-   "visits": 3239,
-   "charts": 602,
+   "total": 315095.45,
+   "visits": 3235,
+   "charts": 601,
    "over_365": {
     "n": 1130,
     "dollars": 49569.54
@@ -65,7 +65,7 @@
    "visits": 7291,
    "actionable": 78,
    "actionable_amt": 14205.0,
-   "asof": "2026-10-14 13:32 UTC"
+   "asof": "2026-10-14 15:37 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "959 helpers into /home/claude/unbilled",
+   "summary": "960 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 959,
-    "registers": 980,
+    "helpers copied": 960,
+    "registers": 982,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T13:25:49Z",
-   "ended": "2026-10-14T13:25:49Z"
+   "started": "2026-10-14T15:29:30Z",
+   "ended": "2026-10-14T15:29:31Z"
   },
   {
    "name": "columns",
@@ -139,8 +139,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T13:25:49Z",
-   "ended": "2026-10-14T13:27:42Z"
+   "started": "2026-10-14T15:29:31Z",
+   "ended": "2026-10-14T15:31:26Z"
   },
   {
    "name": "era",
@@ -168,8 +168,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T13:27:42Z",
-   "ended": "2026-10-14T13:27:46Z"
+   "started": "2026-10-14T15:31:26Z",
+   "ended": "2026-10-14T15:31:31Z"
   },
   {
    "name": "packages",
@@ -180,21 +180,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T13:27:46Z",
-   "ended": "2026-10-14T13:27:46Z"
+   "started": "2026-10-14T15:31:31Z",
+   "ended": "2026-10-14T15:31:31Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3239 visits on 602 charts, $315937.45 open; 1130 over a year ($49569.54)",
+   "summary": "3235 visits on 601 charts, $315095.45 open; 1130 over a year ($49569.54)",
    "counts": {
-    "visits": 3239,
-    "charts": 602,
+    "visits": 3235,
+    "charts": 601,
     "over 365 days": 1130
    },
    "dollars": {
-    "open insurance balance": 315937.45,
+    "open insurance balance": 315095.45,
     "over 365 days": 49569.54
    },
    "lines": [
@@ -236,8 +236,8 @@
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
-     "visits": 41,
-     "dollars": 7789.24,
+     "visits": 37,
+     "dollars": 6947.24,
      "oldest_days": 761
     },
     {
@@ -284,23 +284,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T13:27:46Z",
-   "ended": "2026-10-14T13:27:49Z"
+   "started": "2026-10-14T15:31:31Z",
+   "ended": "2026-10-14T15:31:34Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7291 denied visits on 870 charts; 78 actionable $14205.00 (74 inside 12 months $13485.00); WRITTEN-OFF 2669, RESOLVED 4236, RESUBMITTED 167, OPEN 219",
+   "summary": "7291 denied visits on 869 charts; 78 actionable $14205.00 (74 inside 12 months $13485.00); WRITTEN-OFF 2669, RESUBMITTED 167, RESOLVED 4236, OPEN 219",
    "counts": {
-    "charts read": 870,
+    "charts read": 869,
     "denial lines": 12378,
     "visits": 7291,
     "actionable": 78,
     "inside 12 months": 74,
     "status WRITTEN-OFF": 2669,
-    "status RESOLVED": 4236,
     "status RESUBMITTED": 167,
+    "status RESOLVED": 4236,
     "status OPEN": 219
    },
    "dollars": {
@@ -372,8 +372,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T13:27:49Z",
-   "ended": "2026-10-14T13:32:24Z"
+   "started": "2026-10-14T15:31:34Z",
+   "ended": "2026-10-14T15:37:41Z"
   }
  ],
  "packages": [],
