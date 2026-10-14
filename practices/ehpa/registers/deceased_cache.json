@@ -114,6 +114,11 @@
   "dod": null,
   "src": "stedi: no death on record"
  },
+ "17469549": {
+  "checked": "2026-10-13",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "17469645": {
   "checked": "2026-09-23",
   "dod": null,
@@ -1156,6 +1161,11 @@
   "name": "[name]",
   "src": "stedi: no death on record"
  },
+ "23177": {
+  "checked": "2026-10-13",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "23204": {
   "checked": "2026-09-23",
   "dod": null,
@@ -1201,6 +1211,11 @@
   "dod": null,
   "src": "stedi: no death on record"
  },
+ "24197": {
+  "checked": "2026-10-13",
+  "dod": null,
+  "src": "stedi: no death on record"
+ },
  "24208": {
   "checked": "2026-09-23",
   "dod": null,
@@ -1235,6 +1250,11 @@
   "dod": "[DOB]",
   "name": "[name]",
   "src": "stedi-medicare-271"
+ },
+ "24716": {
+  "checked": "2026-10-13",
+  "dod": null,
+  "src": "stedi: no death on record"
  },
  "24750": {
   "checked": "2026-09-22",
@@ -1334,6 +1354,11 @@
   "checked": "2026-09-22",
   "dod": null,
   "name": "[name]",
+  "src": "stedi: no death on record"
+ },
+ "45011": {
+  "checked": "2026-10-13",
+  "dod": null,
   "src": "stedi: no death on record"
  },
  "45052": {
