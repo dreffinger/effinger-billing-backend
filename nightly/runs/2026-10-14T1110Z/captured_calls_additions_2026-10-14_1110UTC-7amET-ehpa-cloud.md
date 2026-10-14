@@ -1,0 +1,7 @@
+# captured_calls additions - 2026-10-14 1110 UTC (7 AM ET 10/14) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt; AMD_PSW environment credential), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before/after), posterapayments dry (era_post.py --all-unposted --dry), era_clear.py --dry, addpayments postingmethod=era with eraclaimid/erareportid + the remit reasonlist (payreasons.post_line x59 via era_new_1014_1110.py --live), POST /api/era/checks/dismiss (act_1014_1110_dismiss.py --live, 1053153), POST /api/claim/massrebillsearch + Stedi 276/277 x60 (claim_status_sweep.py pass 92), gettxhistory (txh.fetch_visit: 43 ERA visits before/after each post + 23 sweep visits, read-only).
+
+Behaviors noted:
+- Medicare 835 lines on charges that an earlier Medicare $0 denial + WOINS had already taken to $0 (chart 22603 x2, 9/10/2026) come through the remit with insurancebalance 0 - era_post skips them, era_clear holds the check as 'unrecorded payment (reversal pipeline)'; after every other line is settled the check is dismissed by a named helper (act_<mmdd>_<slot>_dismiss.py) that reads the posting register first.
+- claim_status_sweep.py --skip-answered (86 registers) still re-asked 20 DENIED/REVISED (F2 585) UHC rows - the skip list treats only PAID / FINALIZED as final.
