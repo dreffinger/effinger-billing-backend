@@ -178,7 +178,13 @@ def render_html(out, path="working_denials.html"):
     return path
 
 def _template():
-    for p in ("working_denials_template.html", "/home/claude/effinger-billing-backend/boards/templates/working_denials_template.html"):
+    """The board page minus its data line. The live artifact is the source (a 'rerun' regenerates the workspace copy from it); the
+    repo copy boards/templates/working_denials_template.html (v7, 10/13/2026: Refresh-from-AMD strip) is the fallback - found
+    next to this file wherever the repo is checked out. The Drive 'workspace mirror' copy of 9/29 was trashed 10/13 (stale, no
+    Refresh strip) so an old copy can never be picked up first."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for p in ("working_denials_template.html", os.path.join(here, "templates", "working_denials_template.html"),
+              "/home/claude/effinger-billing-backend/boards/templates/working_denials_template.html"):
         if os.path.exists(p): return open(p).read()
     raise FileNotFoundError("working_denials_template.html (Drive 'workspace mirror' / repo boards/templates)")
 
