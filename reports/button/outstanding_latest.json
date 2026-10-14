@@ -1,10 +1,10 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-14T05:37:49Z",
+ "at": "2026-10-14T05:44:40Z",
  "as_of": "2026-10-14",
- "total": 330944.11,
- "visits": 3361,
- "charts": 618,
+ "total": 330839.2,
+ "visits": 3355,
+ "charts": 617,
  "over_365": {
   "n": 1170,
   "dollars": 51544.03
@@ -27,8 +27,8 @@
    "dollars": 42136.88
   },
   "181-365": {
-   "n": 751,
-   "dollars": 89774.31
+   "n": 745,
+   "dollars": 89669.4
   },
   "over 365": {
    "n": 1170,
@@ -129,14 +129,14 @@
   {
    "carrier": "AET07",
    "name": "AETNA",
-   "n": 54,
-   "dollars": 5829.44,
+   "n": 48,
+   "dollars": 5724.53,
    "buckets": {
     "0-30": 0.0,
     "31-60": 0.0,
     "61-90": 555.0,
     "91-180": 1275.22,
-    "181-365": 3511.95,
+    "181-365": 3407.04,
     "over 365": 487.27
    },
    "oldest_days": 1468
@@ -710,13 +710,13 @@
   },
   {
    "month": "2026-01",
-   "n": 141,
-   "dollars": 17507.54
+   "n": 137,
+   "dollars": 17439.82
   },
   {
    "month": "2026-02",
-   "n": 115,
-   "dollars": 14066.05
+   "n": 113,
+   "dollars": 14028.86
   },
   {
    "month": "2026-03",
@@ -13277,14 +13277,6 @@
    "dos": "2026-01-02"
   },
   {
-   "visitid": 19428140,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 16.93,
-   "days": 285,
-   "dos": "2026-01-02"
-  },
-  {
    "visitid": 19427813,
    "patientid": 47127,
    "carriercode": "TRI05",
@@ -13749,28 +13741,12 @@
    "dos": "2026-01-16"
   },
   {
-   "visitid": 19429862,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 16.93,
-   "days": 271,
-   "dos": "2026-01-16"
-  },
-  {
    "visitid": 19430570,
    "patientid": 22603,
    "carriercode": "FLO02",
    "insbalance": 141.0,
    "days": 269,
    "dos": "2026-01-18"
-  },
-  {
-   "visitid": 19430967,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 16.93,
-   "days": 268,
-   "dos": "2026-01-19"
   },
   {
    "visitid": 19430970,
@@ -13913,14 +13889,6 @@
    "patientid": 17475321,
    "carriercode": "HUM01",
    "insbalance": 31.94,
-   "days": 261,
-   "dos": "2026-01-26"
-  },
-  {
-   "visitid": 19430966,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 16.93,
    "days": 261,
    "dos": "2026-01-26"
   },
@@ -14413,14 +14381,6 @@
    "dos": "2026-02-02"
   },
   {
-   "visitid": 19432986,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 16.93,
-   "days": 254,
-   "dos": "2026-02-02"
-  },
-  {
    "visitid": 19432021,
    "patientid": 17473571,
    "carriercode": "UNI20",
@@ -14721,14 +14681,6 @@
    "patientid": 21489,
    "carriercode": "SUN01",
    "insbalance": 107.0,
-   "days": 245,
-   "dos": "2026-02-11"
-  },
-  {
-   "visitid": 19432541,
-   "patientid": 17475064,
-   "carriercode": "AET07",
-   "insbalance": 20.26,
    "days": 245,
    "dos": "2026-02-11"
   },

@@ -1,27 +1,17 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-14T0526Z",
+ "stamp": "2026-10-14T0543Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/4/266/88 -> 0/4/162/88; ERA 1 checks $71.00 -> 1 checks $71.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38516659591",
- "started": "2026-10-14T05:26:48Z",
- "ended": "2026-10-14T05:41:50Z",
+ "headline": "ERA 1 checks $71.00 -> 1 checks $71.00",
+ "note": "scheduled-cascade",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38518185684",
+ "started": "2026-10-14T05:43:54Z",
+ "ended": "2026-10-14T05:48:33Z",
  "summary": {
   "columns": {
-   "before": {
-    "charge_review": 0,
-    "claim_inspector": 4,
-    "unbilled": 266,
-    "exclusions": 88
-   },
-   "after": {
-    "charge_review": 0,
-    "claim_inspector": 4,
-    "unbilled": 162,
-    "exclusions": 88
-   }
+   "before": {},
+   "after": {}
   },
   "era": {
    "before": {
@@ -53,9 +43,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 330944.11,
-   "visits": 3361,
-   "charts": 618,
+   "total": 330839.2,
+   "visits": 3355,
+   "charts": 617,
    "over_365": {
     "n": 1170,
     "dollars": 51544.03
@@ -65,7 +55,7 @@
    "visits": 7291,
    "actionable": 78,
    "actionable_amt": 14205.0,
-   "asof": "2026-10-14 05:41 UTC"
+   "asof": "2026-10-14 05:48 UTC"
   }
  },
  "steps": [
@@ -82,159 +72,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T05:26:48Z",
-   "ended": "2026-10-14T05:26:49Z"
-  },
-  {
-   "name": "columns",
-   "title": "Claims Center columns",
-   "status": "ok",
-   "summary": "CR 0->0, CI 4->4, Unbilled 266->162, Exclusions 88->88",
-   "counts": {
-    "charge review": 0,
-    "claim inspector": 4,
-    "unbilled": 266,
-    "exclusions": 88,
-    "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 4,
-    "inspector bypasses sent": 0,
-    "unbilled reason-code rows": 99,
-    "unbilled prior-payor rows": 33,
-    "unbilled rows left alone": 129,
-    "unbilled released": 0,
-    "payreasons no-era-line": 33,
-    "payreasons repaired": 56,
-    "exclusions dup run 1700289": 0,
-    "exclusions crossover run 1700289": "see log",
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "nothing to complete",
-    "exclusions dup run 1700295": 0,
-    "exclusions crossover run 1700295": "nothing to complete",
-    "exclusions dup run 1700296": 0,
-    "exclusions crossover run 1700296": "see log",
-    "exclusions dup run 1700297": 0,
-    "exclusions crossover run 1700297": "see log"
-   },
-   "dollars": {},
-   "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "missing data / dx",
-     "visits": 4,
-     "ids": "v13979435 v13984519 v19364378 v19395738"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Payment reason codes are missing or do not balance.",
-     "visits": 83,
-     "ids": "v13965186 v13965302 v13965309 v13965409 v13965457 v13965469 v13965556 v13965930 v13965945 v14003195 v14016484 v19391975 v19416866 v19416870 v19417011 v19417079 v19417167 v19417226 v19417287 v19418988 v19419273 v19420335 v19421703 v19421870 v19422686"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Bill Insurance = \"No\" at charge level and charge has insurance balance",
-     "visits": 66,
-     "ids": "v19420698 v19420699 v19420791 v19420881 v19421130 v19421710 v19423401 v19423589 v19423726 v19424019 v19425178 v19425356 v19426013 v19426109 v19426121 v19426209 v19426219 v19426995 v19427110 v19427137 v19427203 v19430015 v19430029 v19430688 v19430814"
-    },
-    {
-     "column": "unbilled",
-     "kind": "A payment from the prior payor is required before another claim can be",
-     "visits": 33,
-     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19386227 v19386718 v19387410 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Date of service is outside insurance coverage effective dates",
-     "visits": 26,
-     "ids": "v26087 v26191 v27422 v44745 v14016482 v14025638 v19362928 v19362932 v19374762 v19402284 v19404347 v19404388 v19404389 v19404395 v19423214 v19425170 v19426067 v19426988 v19427052 v19427273 v19427535 v19427785 v19427786 v19428337 v19429872"
-    },
-    {
-     "column": "unbilled",
-     "kind": "One or more charges within this visit have errors. Charges with errors",
-     "visits": 23,
-     "ids": "v19362172 v19362925 v19364497 v19367114 v19372311 v19372463 v19372604 v19389388 v19393891 v19393968 v19396210 v19396275 v19416171 v19416185 v19420940 v19420954 v19421010 v19425168 v19427548 v19439767 v19441991 v19442618 v19446222"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Insurance order is missing on visit",
-     "visits": 17,
-     "ids": "v19423586 v19424945 v19424950 v19425223 v19425224 v19425371 v19425391 v19425399 v19425490 v19457280 v19457281 v19457321 v19457471 v19457476 v19457519 v19457529 v19457647"
-    },
-    {
-     "column": "unbilled",
-     "kind": "Unresolved Claim Inspector errors",
-     "visits": 13,
-     "ids": "v13965180 v13965198 v13965318 v13965336 v13965408 v13965450 v13965465 v13965480 v13965574 v13979435 v13984519 v19364378 v19395738"
-    },
-    {
-     "column": "unbilled",
-     "kind": "?",
-     "visits": 5,
-     "ids": "v19386227 v19386718 v19387410 v19392347 v19452223"
-    },
-    {
-     "column": "exclusions run 1700289",
-     "kind": "AAR01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
-     "visits": 5,
-     "ids": "v19455038 v19455056 v19455121 v19455209 v19455457"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
-     "visits": 16,
-     "ids": "v32487 v13966035 v13967115 v13967129 v13971573 v13971611 v13971632 v13972162 v19401011 v19402497 v19402527 v19402571 v19402572 v19403896 v19432733 v19455595"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "BCBS CH AM  PREF0201:MISSING ORIGINAL REF NUMBER",
-     "visits": 14,
-     "ids": "v19441277 v19441278 v19441279 v19441312 v19441374 v19441468 v19441482 v19441639 v19444017 v19444026 v19444029 v19444134 v19444168 v19444185"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET07 CH AM  PREF0201:MISSING ORIGINAL REF NUMBER",
-     "visits": 6,
-     "ids": "v19428140 v19429862 v19430966 v19430967 v19432541 v19432986"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "CON08 CH FH  PREF02A8:MISSING PAYER DOC CONTROL NUM",
-     "visits": 3,
-     "ids": "v19438330 v19442384 v19454390"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    },
-    {
-     "column": "exclusions run 1700295",
-     "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
-     "visits": 27,
-     "ids": "v27603 v30756 v35389 v43269 v13965089 v14029135 v19358877 v19359198 v19359627 v19359648 v19359733 v19359746 v19359757 v19360044 v19360107 v19360350 v19360684 v19362827 v19362846 v19427804 v19430108 v19444049 v19447739 v19448487 v19448870"
-    },
-    {
-     "column": "exclusions run 1700296",
-     "kind": "MUT01 CH FI  PSBR0134:INVALID PAYER RESP SEQ NUM CODE  S",
-     "visits": 5,
-     "ids": "v42226 v42854 v42916 v43334 v14004327"
-    },
-    {
-     "column": "exclusions run 1700296",
-     "kind": "HUM01 CH AM  PREF0201:MISSING ORIGINAL REF NUMBER",
-     "visits": 1,
-     "ids": "v19443047"
-    },
-    {
-     "column": "exclusions run 1700297",
-     "kind": "UNI20 CH AM  PREF0201:MISSING ORIGINAL REF NUMBER",
-     "visits": 10,
-     "ids": "v19427174 v19430635 v19434034 v19434249 v19436818 v19436968 v19441608 v19441988 v19442513 v19443856"
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-14T05:26:49Z",
-   "ended": "2026-10-14T05:37:44Z"
+   "started": "2026-10-14T05:43:54Z",
+   "ended": "2026-10-14T05:43:54Z"
   },
   {
    "name": "era",
@@ -262,8 +101,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T05:37:44Z",
-   "ended": "2026-10-14T05:37:47Z"
+   "started": "2026-10-14T05:43:54Z",
+   "ended": "2026-10-14T05:44:00Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Insurance cascade",
+   "status": "ok",
+   "summary": "void rules: void_rules.json not in this workspace (Drive 'workspace mirror') - skipped; precheck flagged charts: 0",
+   "counts": {
+    "void rules": "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped",
+    "precheck flagged charts": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-14T05:44:00Z",
+   "ended": "2026-10-14T05:44:02Z"
   },
   {
    "name": "packages",
@@ -274,21 +128,50 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T05:37:47Z",
-   "ended": "2026-10-14T05:37:47Z"
+   "started": "2026-10-14T05:44:02Z",
+   "ended": "2026-10-14T05:44:02Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-14T05:44:02Z",
+   "ended": "2026-10-14T05:44:09Z"
+  },
+  {
+   "name": "money",
+   "title": "Money ledger data",
+   "status": "ok",
+   "summary": "money_ledger.html rebuilt: unpaid $330839, era $169, excl 82",
+   "counts": {
+    "payments scan": "patient_universe_0907.json not in this workspace - skipped"
+   },
+   "dollars": {
+    "unpaid total": 330839.2,
+    "era paid": 168.59
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-14T05:44:09Z",
+   "ended": "2026-10-14T05:44:38Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3361 visits on 618 charts, $330944.11 open; 1170 over a year ($51544.03)",
+   "summary": "3355 visits on 617 charts, $330839.20 open; 1170 over a year ($51544.03)",
    "counts": {
-    "visits": 3361,
-    "charts": 618,
+    "visits": 3355,
+    "charts": 617,
     "over 365 days": 1170
    },
    "dollars": {
-    "open insurance balance": 330944.11,
+    "open insurance balance": 330839.2,
     "over 365 days": 51544.03
    },
    "lines": [
@@ -337,8 +220,8 @@
     {
      "carrier": "AET07",
      "name": "AETNA",
-     "visits": 54,
-     "dollars": 5829.44,
+     "visits": 48,
+     "dollars": 5724.53,
      "oldest_days": 1468
     },
     {
@@ -378,8 +261,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T05:37:47Z",
-   "ended": "2026-10-14T05:37:49Z"
+   "started": "2026-10-14T05:44:38Z",
+   "ended": "2026-10-14T05:44:40Z"
   },
   {
    "name": "denials",
@@ -466,14 +349,11 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T05:37:49Z",
-   "ended": "2026-10-14T05:41:50Z"
+   "started": "2026-10-14T05:44:40Z",
+   "ended": "2026-10-14T05:48:33Z"
   }
  ],
  "packages": [],
- "waiting": [
-  "Unbilled: 89 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line",
-  "Claim Inspector: 4 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
- ],
+ "waiting": [],
  "errors": []
 }
