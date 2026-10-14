@@ -1,0 +1,1869 @@
+{
+ "run": "2026-10-14T0530Z",
+ "live": false,
+ "reason_rows": [
+  {
+   "pid": "21577",
+   "vid": "13965186",
+   "codeless": [
+    [
+     "20961024",
+     "20568913",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965302",
+   "codeless": [
+    [
+     "20961157",
+     "20568914",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965309",
+   "codeless": [
+    [
+     "20961165",
+     "20568923",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965409",
+   "codeless": [
+    [
+     "20961279",
+     "20568915",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965457",
+   "codeless": [
+    [
+     "20961332",
+     "20568916",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965469",
+   "codeless": [
+    [
+     "20961344",
+     "20568917",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "13965556",
+   "codeless": [
+    [
+     "20961447",
+     "20568918",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21577",
+   "vid": "14016484",
+   "codeless": [
+    [
+     "21338462",
+     "20576667",
+     6.33,
+     "3214581453"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "23391",
+   "vid": "19391975",
+   "codeless": [
+    [
+     "22463825",
+     "24634874",
+     12.52,
+     "145746226241108"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "22566",
+   "vid": "19393891",
+   "codeless": [
+    [
+     "22466275",
+     "24634991",
+     18.12,
+     "148531524241215"
+    ],
+    [
+     "22466276",
+     "24634992",
+     0.0,
+     "148531524241215"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "22566",
+   "vid": "19393968",
+   "codeless": [
+    [
+     "22466372",
+     "24634993",
+     12.52,
+     "148531524241215"
+    ],
+    [
+     "22466373",
+     "24634994",
+     0.0,
+     "148531524241215"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "44997",
+   "vid": "19396210",
+   "codeless": [
+    [
+     "22469371",
+     "24635265",
+     12.52,
+     "156779770250414"
+    ],
+    [
+     "22469372",
+     "24635266",
+     0.0,
+     "156779770250414"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "44997",
+   "vid": "19396275",
+   "codeless": [
+    [
+     "22469461",
+     "24635268",
+     12.52,
+     "156779770250414"
+    ],
+    [
+     "22469462",
+     "24635267",
+     0.0,
+     "156779770250414"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19416171",
+   "codeless": [
+    [
+     "23319734",
+     "24660397",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319735",
+     "24660398",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19416185",
+   "codeless": [
+    [
+     "23319763",
+     "24660395",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319764",
+     "24660396",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17471773",
+   "vid": "19416866",
+   "codeless": [
+    [
+     "23320533",
+     "24627375",
+     0.04,
+     "169545359251009"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17471773",
+   "vid": "19416870",
+   "codeless": [
+    [
+     "23320536",
+     "24627376",
+     0.04,
+     "169545359251009"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417011",
+   "codeless": [
+    [
+     "23320659",
+     "24627377",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19417079",
+   "codeless": [
+    [
+     "23320688",
+     "24660436",
+     101.78,
+     "62883522"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417167",
+   "codeless": [
+    [
+     "23320780",
+     "24627379",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417226",
+   "codeless": [
+    [
+     "23320848",
+     "24627380",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19417287",
+   "codeless": [
+    [
+     "23320984",
+     "24627378",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19418988",
+   "codeless": [
+    [
+     "23323898",
+     "24660400",
+     101.77,
+     "280632656"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19419273",
+   "codeless": [
+    [
+     "23324213",
+     "24660399",
+     69.96,
+     "280632656"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19420335",
+   "codeless": [
+    [
+     "23325318",
+     "24660469",
+     69.97,
+     "62890149"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19420940",
+   "codeless": [
+    [
+     "23326080",
+     "24660403",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326081",
+     "24660404",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19420954",
+   "codeless": [
+    [
+     "23326108",
+     "24660408",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326109",
+     "24660409",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "47124",
+   "vid": "19421010",
+   "codeless": [
+    [
+     "23326220",
+     "24660476",
+     68.62,
+     "62890149"
+    ],
+    [
+     "23326221",
+     "24660477",
+     37.14,
+     "62890149"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19421703",
+   "codeless": [
+    [
+     "23327032",
+     "24627401",
+     0.04,
+     "0915400832"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19421870",
+   "codeless": [
+    [
+     "23327195",
+     "24627402",
+     0.04,
+     "0915400832"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "24208",
+   "vid": "19422686",
+   "codeless": [
+    [
+     "23328015",
+     "24660405",
+     69.96,
+     "280637173"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "21020",
+   "vid": "19422687",
+   "codeless": [
+    [
+     "23328016",
+     "24660406",
+     101.77,
+     "280637173"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19422869",
+   "codeless": [],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19423865",
+   "codeless": [
+    [
+     "23329598",
+     "24651018",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19424538",
+   "codeless": [
+    [
+     "23330304",
+     "24651017",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19424548",
+   "codeless": [
+    [
+     "23330315",
+     "24651016",
+     47.57,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19425639",
+   "codeless": [
+    [
+     "23331666",
+     "24651015",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19427025",
+   "codeless": [
+    [
+     "23333220",
+     "24651007",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19427027",
+   "codeless": [
+    [
+     "23333222",
+     "24651006",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19427548",
+   "codeless": [
+    [
+     "23334043",
+     "24651004",
+     68.62,
+     "819814877(0)"
+    ],
+    [
+     "23334044",
+     "24651005",
+     37.13,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429035",
+   "codeless": [
+    [
+     "23335549",
+     "24651014",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429718",
+   "codeless": [
+    [
+     "23336210",
+     "24651013",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429719",
+   "codeless": [
+    [
+     "23336211",
+     "24651012",
+     125.2,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429861",
+   "codeless": [
+    [
+     "23336334",
+     "24651011",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430040",
+   "codeless": [
+    [
+     "23336456",
+     "24651010",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430055",
+   "codeless": [
+    [
+     "23336471",
+     "24651009",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430125",
+   "codeless": [
+    [
+     "23336543",
+     "24651008",
+     84.62,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19431068",
+   "codeless": [
+    [
+     "23337611",
+     "24651001",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19431081",
+   "codeless": [
+    [
+     "23337624",
+     "24651002",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19431131",
+   "codeless": [
+    [
+     "23337751",
+     "24651000",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19437731",
+   "codeless": [
+    [
+     "23344836",
+     "24650983",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19438960",
+   "codeless": [
+    [
+     "23346278",
+     "24650984",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19439767",
+   "codeless": [
+    [
+     "23347410",
+     "24650970",
+     125.2,
+     "819814877(0)"
+    ],
+    [
+     "23347411",
+     "24650971",
+     52.33,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19439793",
+   "codeless": [
+    [
+     "23347437",
+     "24650972",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19439814",
+   "codeless": [
+    [
+     "23347458",
+     "24650973",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19439885",
+   "codeless": [
+    [
+     "23347511",
+     "24650974",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19439926",
+   "codeless": [
+    [
+     "23347571",
+     "24650975",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440252",
+   "codeless": [
+    [
+     "23347909",
+     "24650976",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440267",
+   "codeless": [
+    [
+     "23347924",
+     "24650977",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440391",
+   "codeless": [
+    [
+     "23348092",
+     "24650978",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440410",
+   "codeless": [
+    [
+     "23348111",
+     "24650979",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440512",
+   "codeless": [
+    [
+     "23348202",
+     "24650980",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440611",
+   "codeless": [
+    [
+     "23348339",
+     "24650981",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440624",
+   "codeless": [
+    [
+     "23348354",
+     "24650985",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440869",
+   "codeless": [
+    [
+     "23348626",
+     "24650982",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19440884",
+   "codeless": [
+    [
+     "23348640",
+     "24650969",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19441172",
+   "codeless": [
+    [
+     "23349010",
+     "24650967",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19441183",
+   "codeless": [
+    [
+     "23349021",
+     "24650965",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19441310",
+   "codeless": [
+    [
+     "23349160",
+     "24650964",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17471725",
+   "vid": "19441991",
+   "codeless": [
+    [
+     "23349947",
+     "24656806",
+     33.1,
+     "201182674260926"
+    ],
+    [
+     "23349948",
+     "24656807",
+     0.0,
+     "201182674260926"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19442592",
+   "codeless": [
+    [
+     "23350788",
+     "24650962",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19442618",
+   "codeless": [
+    [
+     "23350813",
+     "24650960",
+     129.74,
+     "819814877(0)"
+    ],
+    [
+     "23350814",
+     "24650961",
+     52.33,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19442859",
+   "codeless": [
+    [
+     "23351118",
+     "24650959",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443017",
+   "codeless": [
+    [
+     "23351285",
+     "24650995",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443044",
+   "codeless": [
+    [
+     "23351319",
+     "24650996",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443153",
+   "codeless": [
+    [
+     "23351419",
+     "24650997",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443303",
+   "codeless": [
+    [
+     "23351646",
+     "24650999",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443462",
+   "codeless": [
+    [
+     "23351846",
+     "24650993",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443549",
+   "codeless": [
+    [
+     "23351975",
+     "24650992",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443634",
+   "codeless": [
+    [
+     "23352078",
+     "24650991",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443646",
+   "codeless": [
+    [
+     "23352090",
+     "24650990",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443826",
+   "codeless": [
+    [
+     "23352345",
+     "24650989",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19443839",
+   "codeless": [
+    [
+     "23352358",
+     "24650988",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19443842",
+   "codeless": [
+    [
+     "23352361",
+     "24650968",
+     45.44,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19443846",
+   "codeless": [
+    [
+     "23352365",
+     "24650966",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19444007",
+   "codeless": [
+    [
+     "23352595",
+     "24650987",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19444031",
+   "codeless": [
+    [
+     "23352622",
+     "24650994",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  },
+  {
+   "pid": "17470713",
+   "vid": "19444045",
+   "codeless": [
+    [
+     "23352637",
+     "24650963",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "outcome": "held: code-less payment carries money - needs the ERA-linked re-post (payreasons --unbilled --live) when the cache has the line"
+  }
+ ],
+ "prior_rows": [],
+ "left": [
+  {
+   "pid": "20336",
+   "vid": "26087",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "20336",
+   "vid": "26191",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "20336",
+   "vid": "27422",
+   "err": "Date of service is outside insurance coverage effective dates | Unresolved Claim"
+  },
+  {
+   "pid": "23254",
+   "vid": "44745",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965180",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965198",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965318",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965336",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965408",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965450",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965465",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965480",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "22845",
+   "vid": "13965574",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "44983",
+   "vid": "13979435",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "44983",
+   "vid": "13984519",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "12233534",
+   "vid": "14016482",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "23671",
+   "vid": "14025638",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "22845",
+   "vid": "19362172",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "17469045",
+   "vid": "19362925",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "12233534",
+   "vid": "19362928",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "12233534",
+   "vid": "19362932",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "22845",
+   "vid": "19364378",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364497",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "23456",
+   "vid": "19367114",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "21021",
+   "vid": "19372311",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "21021",
+   "vid": "19372463",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "47127",
+   "vid": "19372604",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "20407",
+   "vid": "19374762",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472519",
+   "vid": "19395738",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17473032",
+   "vid": "19402284",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404347",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404388",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404389",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17472114",
+   "vid": "19404395",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420698",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420699",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420791",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19420881",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19421130",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19421710",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17474649",
+   "vid": "19423214",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "23177",
+   "vid": "19423401",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19423586",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "24716",
+   "vid": "19423589",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19423726",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19424019",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19424945",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "48008",
+   "vid": "19424950",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17474649",
+   "vid": "19425170",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19425178",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425223",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425224",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "23177",
+   "vid": "19425356",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425371",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425391",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425399",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "48008",
+   "vid": "19425490",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "24197",
+   "vid": "19426013",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19426067",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "24197",
+   "vid": "19426109",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24197",
+   "vid": "19426121",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24197",
+   "vid": "19426209",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24197",
+   "vid": "19426219",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19426988",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "23177",
+   "vid": "19426995",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17474649",
+   "vid": "19427052",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19427110",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19427137",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19427203",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19427273",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "48008",
+   "vid": "19427535",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "48008",
+   "vid": "19427785",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "48008",
+   "vid": "19427786",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "48008",
+   "vid": "19428337",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "48008",
+   "vid": "19429872",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "23177",
+   "vid": "19430015",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430029",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19430688",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "48008",
+   "vid": "19430757",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19430814",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19430853",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19433008",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19433034",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19433767",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19434004",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19435854",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438165",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19438175",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19438176",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19438637",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19438668",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19439657",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19439691",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19440437",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19441035",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19441040",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19442295",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19442480",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19442510",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19444481",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19444492",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19446295",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19446317",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19447164",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448419",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19448445",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19448566",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19448707",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19448827",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19448900",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19448929",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19450685",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19451182",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19451190",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19452415",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19452642",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "24716",
+   "vid": "19455682",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19455795",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19455821",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17469549",
+   "vid": "19456192",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "23177",
+   "vid": "19456200",
+   "err": "Bill Insurance = &quot;No&quot; at charge level and charge has insurance balance"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457280",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457281",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457321",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457471",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457476",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457519",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457529",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478013",
+   "vid": "19457647",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}

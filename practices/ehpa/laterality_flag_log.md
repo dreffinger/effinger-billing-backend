@@ -30,3 +30,41 @@
 - 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19426067 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
 - 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19426988 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
 - 10/14/2026 run 2026-10-14T0326Z: pat48008 visit 19427273 - Pattern 11256 unspecified laterality M84359A bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19441040 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19442480 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19444481 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19446295 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19447164 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19448419 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19448900 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19451182 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19455795 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 10/14/2026 run 2026-10-14T0611Z: pat17469549 visit 19456192 - Pattern 11256 unspecified laterality M24559 bypassed (billing hold only); William to confirm the laterality
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19441040 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19444481 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19447164 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19448419 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19451182 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19456192 pat17469549 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19424945 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425223 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425224 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425371 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425391 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425399 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425490 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19424945 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425223 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425224 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425371 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425391 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425399 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19425490 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:20Z run 2026-10-14T0510Z: v19426067 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19424945 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425223 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425224 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425371 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425391 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425399 pat48008 Pattern 11256 unspecified laterality bypassed
+- 2026-10-14 06:21Z run 2026-10-14T0510Z: v19425490 pat48008 Pattern 11256 unspecified laterality bypassed

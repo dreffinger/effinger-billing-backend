@@ -1,0 +1,190 @@
+{
+ "stamp": "2026-10-14T0510Z",
+ "dry": true,
+ "visits": [
+  {
+   "vid": "19420698",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-22 cpts ['99232'] pos 21 insorder 2 onhcfa 0 charges [('charge23369605', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=10/21/2025 chg_over={}"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420699",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-21 cpts ['99223', '99497'] pos 21 insorder 2 onhcfa 0 charges [('charge23369601', '99223', '', '310.00', '310.00'), ('charge23369603', '99497', 'mcode7', '133.00', '133.00')]",
+    "99223 dx ['K94.23'] never_primary(first)=False",
+    "99497 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (own 99223)",
+    "DRY: would resave onhcfa=1 admission=10/21/2025 chg_over={}"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420791",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-23 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369607', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=10/21/2025 chg_over={}"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420881",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-24 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369609', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=10/21/2025 chg_over={}"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19430029",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2026-01-13 cpts ['99309'] pos 31 insorder 2 onhcfa 0 charges [('charge23369619', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['R62.7', 'R56.9', 'M24.561', 'M24.562', 'M24.552', 'M24.551', 'R13.10', 'G93.40', 'F32.A', 'Z93.1'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "DRY: would resave onhcfa=1 admission=None chg_over={}"
+   ]
+  },
+  {
+   "vid": "19430688",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2026-01-27 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23337116', '99487', '', '206.00', '206.00'), ('charge23337117', '99489', 'mcode7', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "deceased guard: clear (carrier FLO02)",
+    "DRY: would resave onhcfa=1 admission=None chg_over={}"
+   ]
+  },
+  {
+   "vid": "19423589",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2025-11-15 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23329198', '99487', '', '206.00', '206.00'), ('charge23329199', '99489', '', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "deceased guard: clear (carrier FLO02)",
+    "DRY: would resave onhcfa=1 admission=None chg_over={}"
+   ]
+  },
+  {
+   "vid": "19426013",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-10 cpts ['99223'] pos 21 insorder 1 onhcfa 0 charges [('charge23332036', '99223', '', '310.00', '310.00')]",
+    "99223 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (own 99223)",
+    "DRY: would resave onhcfa=1 admission=12/10/2025 chg_over={}"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426109",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-12 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332137', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=12/10/2025 chg_over={}"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426121",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-11 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332150', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=12/10/2025 chg_over={}"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426209",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-14 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332267', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=12/10/2025 chg_over={}"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426219",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-13 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332277', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "DRY: would resave onhcfa=1 admission=12/10/2025 chg_over={}"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19427203",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2025-12-21 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23333534', '99487', '', '206.00', '206.00'), ('charge23333535', '99489', 'mcode7', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "deceased guard: clear (carrier FLO02)",
+    "DRY: would resave onhcfa=1 admission=None chg_over={}"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "vid": "19395738",
+   "pid": "17472519",
+   "name": "",
+   "steps": [
+    "dos 2024-07-05 cpts ['99309'] pos 31 insorder 2,1 onhcfa 0 charges [('charge22468751', '99309', '', '18.12', '141.00')]",
+    "payment posted on a charge (['71.01']) - HOLD, no resave"
+   ]
+  }
+ ],
+ "left": [],
+ "bypassed": []
+}

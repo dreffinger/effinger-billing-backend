@@ -1,0 +1,396 @@
+{
+ "stamp": "2026-10-14T0611Z",
+ "live": true,
+ "source": "scan_2026-10-14T0510Z/summary_after.json",
+ "held": [
+  {
+   "batch": "1",
+   "vid": "19420698",
+   "pid": "17469549",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19420699",
+   "pid": "17469549",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19420791",
+   "pid": "17469549",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19420881",
+   "pid": "17469549",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "1",
+   "vid": "19430029",
+   "pid": "17469549",
+   "patterns": []
+  },
+  {
+   "batch": "126125",
+   "vid": "19430688",
+   "pid": "24716",
+   "patterns": [
+    "20389"
+   ]
+  },
+  {
+   "batch": "112737",
+   "vid": "13979435",
+   "pid": "44983",
+   "patterns": [
+    "3429",
+    "4852",
+    "35777"
+   ]
+  },
+  {
+   "batch": "112753",
+   "vid": "13984519",
+   "pid": "44983",
+   "patterns": [
+    "3429",
+    "4852",
+    "35777"
+   ]
+  },
+  {
+   "batch": "127476",
+   "vid": "19451190",
+   "pid": "23177",
+   "patterns": [
+    "15775",
+    "24078"
+   ]
+  },
+  {
+   "batch": "113116",
+   "vid": "19364378",
+   "pid": "22845",
+   "patterns": [
+    "4852",
+    "20657",
+    "33799"
+   ]
+  },
+  {
+   "batch": "125686",
+   "vid": "19423589",
+   "pid": "24716",
+   "patterns": [
+    "20389"
+   ]
+  },
+  {
+   "batch": "113964",
+   "vid": "19395738",
+   "pid": "17472519",
+   "patterns": [
+    "20389",
+    "20657"
+   ]
+  },
+  {
+   "batch": "125852",
+   "vid": "19426013",
+   "pid": "24197",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "125855",
+   "vid": "19426109",
+   "pid": "24197",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "125855",
+   "vid": "19426121",
+   "pid": "24197",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "125863",
+   "vid": "19426209",
+   "pid": "24197",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "125863",
+   "vid": "19426219",
+   "pid": "24197",
+   "patterns": [
+    null
+   ]
+  },
+  {
+   "batch": "125929",
+   "vid": "19427203",
+   "pid": "24716",
+   "patterns": [
+    "20389"
+   ]
+  }
+ ],
+ "done": [
+  {
+   "batch": "126125",
+   "vid": "19430814",
+   "pid": "17469549",
+   "errids": [
+    "396769"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:43\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "126369",
+   "vid": "19434004",
+   "pid": "17469549",
+   "errids": [
+    "396770"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:44\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "126671",
+   "vid": "19438637",
+   "pid": "17469549",
+   "errids": [
+    "396771"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:11:45\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "126725",
+   "vid": "19439657",
+   "pid": "17469549",
+   "errids": [
+    "396772"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:46\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "126831",
+   "vid": "19441040",
+   "pid": "17469549",
+   "errids": [
+    "396773"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:47\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "126912",
+   "vid": "19442480",
+   "pid": "17469549",
+   "errids": [
+    "396774",
+    "396775"
+   ],
+   "patterns": [
+    "35790",
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:48\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "112904",
+   "vid": "14025638",
+   "pid": "23671",
+   "errids": [
+    "396789"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:49\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127063",
+   "vid": "19444481",
+   "pid": "17469549",
+   "errids": [
+    "396776"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:11:50\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127180",
+   "vid": "19446295",
+   "pid": "17469549",
+   "errids": [
+    "396777",
+    "396778"
+   ],
+   "patterns": [
+    "35790",
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:51\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127231",
+   "vid": "19447164",
+   "pid": "17469549",
+   "errids": [
+    "396779"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:52\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127298",
+   "vid": "19448419",
+   "pid": "17469549",
+   "errids": [
+    "396780"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 23:11:53\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127304",
+   "vid": "19448900",
+   "pid": "17469549",
+   "errids": [
+    "396781",
+    "396782"
+   ],
+   "patterns": [
+    "35790",
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:54\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127476",
+   "vid": "19451182",
+   "pid": "17469549",
+   "errids": [
+    "396783"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:55\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127783",
+   "vid": "19455795",
+   "pid": "17469549",
+   "errids": [
+    "396786",
+    "396787"
+   ],
+   "patterns": [
+    "35790",
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:56\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127793",
+   "vid": "19456192",
+   "pid": "17469549",
+   "errids": [
+    "396788"
+   ],
+   "patterns": [
+    "11256"
+   ],
+   "lat": [
+    "M24559"
+   ],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 23:11:57\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "125929",
+   "vid": "19427110",
+   "pid": "17469549",
+   "errids": [
+    "396766"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 23:11:58\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}

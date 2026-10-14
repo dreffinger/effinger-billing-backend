@@ -1,0 +1,404 @@
+{
+ "stamp": "2026-10-14T0510Z",
+ "live": true,
+ "done": [
+  [
+   "19420698",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19420699",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19420791",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19420881",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19421130",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19421710",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19423401",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19423589",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19423726",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19424019",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19425178",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19425356",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426013",
+   "24197",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426109",
+   "24197",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426121",
+   "24197",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426209",
+   "24197",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426219",
+   "24197",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19426995",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19427110",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19427137",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19427203",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19430015",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19430029",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19430688",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19430814",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19430853",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19433008",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19433034",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19433767",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19434004",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19435854",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19438165",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19438175",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19438176",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19438637",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19438668",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19439657",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19439691",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19440437",
+   "24716",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19441035",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19441040",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19442295",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19442480",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19442510",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19444481",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19444492",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19446295",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19446317",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19447164",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19448419",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19448445",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19448566",
+   "24716",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19448707",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19448827",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19448900",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19448929",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19450685",
+   "24716",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19451182",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19451190",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19452415",
+   "23177",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19452642",
+   "24716",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19455682",
+   "24716",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19455795",
+   "17469549",
+   "resave 2 charges, billins now ['1', '1']",
+   true
+  ],
+  [
+   "19455821",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19456192",
+   "17469549",
+   "resave 1 charges, billins now ['1']",
+   true
+  ],
+  [
+   "19456200",
+   "23177",
+   "resave 1 charges, billins now ['1']",
+   true
+  ]
+ ],
+ "left": [],
+ "failed": []
+}
