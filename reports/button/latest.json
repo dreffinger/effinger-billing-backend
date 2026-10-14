@@ -1,40 +1,40 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-14T1727Z",
+ "stamp": "2026-10-14T1924Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/5/28/1 -> 0/5/28/1; ERA 6 checks $1465.19 -> 2 checks $162.32",
+ "headline": "Columns 0/12/28/32 -> 0/12/28/19; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38606485766",
- "started": "2026-10-14T17:27:27Z",
- "ended": "2026-10-14T17:34:20Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38623416015",
+ "started": "2026-10-14T19:24:46Z",
+ "ended": "2026-10-14T19:31:53Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 12,
     "unbilled": 28,
-    "exclusions": 1
+    "exclusions": 32
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 5,
+    "claim_inspector": 12,
     "unbilled": 28,
-    "exclusions": 1
+    "exclusions": 19
    }
   },
   "era": {
    "before": {
-    "checks": 6,
-    "unposted": 1465.19
+    "checks": 1,
+    "unposted": 71.0
    },
    "after": {
-    "checks": 2,
-    "unposted": 162.32
+    "checks": 1,
+    "unposted": 71.0
    }
   },
   "posted": {
-   "pay": 1302.87,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7294,
    "actionable": 80,
    "actionable_amt": 14609.0,
-   "asof": "2026-10-14 17:34 UTC"
+   "asof": "2026-10-14 19:31 UTC"
   }
  },
  "steps": [
@@ -73,45 +73,49 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "962 helpers into /home/claude/unbilled",
+   "summary": "967 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 962,
-    "registers": 988,
+    "helpers copied": 967,
+    "registers": 996,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T17:27:27Z",
-   "ended": "2026-10-14T17:27:27Z"
+   "started": "2026-10-14T19:24:46Z",
+   "ended": "2026-10-14T19:24:46Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 5->5, Unbilled 28->28, Exclusions 1->1",
+   "summary": "CR 0->0, CI 12->12, Unbilled 28->28, Exclusions 32->19",
    "counts": {
     "charge review": 0,
-    "claim inspector": 5,
+    "claim inspector": 12,
     "unbilled": 28,
-    "exclusions": 1,
+    "exclusions": 32,
     "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 5,
+    "inspector held (not advisory)": 12,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 28,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700296": 0,
+    "exclusions crossover run 1700296": "see log",
+    "exclusions dup run 1700297": 1,
+    "exclusions crossover run 1700297": "see log"
    },
    "dollars": {},
    "lines": [
     {
      "column": "claim inspector",
      "kind": "missing data / dx",
-     "visits": 5,
-     "ids": "v19451190 v13979435 v13984519 v19364378 v19395738"
+     "visits": 12,
+     "ids": "v19451190 v13979435 v13984519 v19364378 v19457776 v19457777 v19457781 v19457785 v19457786 v19457787 v19457792 v19395738"
     },
     {
      "column": "unbilled",
@@ -136,26 +140,44 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700296",
+     "kind": "UNI20 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 11,
+     "ids": "v24826 v28053 v29807 v30078 v30916 v31869 v19394861 v19449794 v19455684 v19455934 v19455955"
+    },
+    {
+     "column": "exclusions run 1700297",
+     "kind": "UNI20 PA  ACK,REJCTD FOR INVAL INFO-CLAIM,ENCNTR HAS INVAL INFO AS",
+     "visits": 13,
+     "ids": "v19365003 v19365028 v19365118 v19365221 v19365286 v19370156 v19370183 v19370929 v19370958 v19372497 v19372509 v19372523 v19372541"
+    },
+    {
+     "column": "exclusions run 1700297",
+     "kind": "UNI20 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 7,
+     "ids": "v39939 v41664 v41667 v19455674 v19455686 v19455710 v19455938"
     }
    ],
    "errors": [],
-   "started": "2026-10-14T17:27:27Z",
-   "ended": "2026-10-14T17:29:05Z"
+   "started": "2026-10-14T19:24:46Z",
+   "ended": "2026-10-14T19:26:54Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "6 checks / $1465.19 -> 2 checks / $162.32",
+   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
    "counts": {
-    "era_post lines": 4,
-    "checks dismissed": 3,
-    "checks held": 1
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
    },
    "dollars": {
-    "unposted before": 1465.19,
-    "unposted after": 162.32,
-    "posted this run": 1302.87
+    "unposted before": 71.0,
+    "unposted after": 71.0,
+    "posted this run": 0.0
    },
    "lines": [
     {
@@ -165,51 +187,11 @@
      "amount": 0.0,
      "unposted": 71.0,
      "stage": "before"
-    },
-    {
-     "check": 1053163,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "213485949",
-     "amount": 0.0,
-     "unposted": 921.21,
-     "stage": "before"
-    },
-    {
-     "check": 1053164,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "620268423",
-     "amount": 0.0,
-     "unposted": 33.1,
-     "stage": "before"
-    },
-    {
-     "check": 1053165,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "423823547",
-     "amount": 0.0,
-     "unposted": 351.7,
-     "stage": "before"
-    },
-    {
-     "check": 1053166,
-     "payer": "FLORIDA MEDICARE",
-     "checknumber": "190596986",
-     "amount": 0.0,
-     "unposted": 88.18,
-     "stage": "before"
-    },
-    {
-     "check": 1053167,
-     "payer": "FLORIDA BLUE",
-     "checknumber": "2610140572",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-10-14T17:29:05Z",
-   "ended": "2026-10-14T17:30:00Z"
+   "started": "2026-10-14T19:26:54Z",
+   "ended": "2026-10-14T19:26:58Z"
   },
   {
    "name": "packages",
@@ -220,8 +202,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-14T17:30:00Z",
-   "ended": "2026-10-14T17:30:00Z"
+   "started": "2026-10-14T19:26:58Z",
+   "ended": "2026-10-14T19:26:58Z"
   },
   {
    "name": "outstanding",
@@ -324,8 +306,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T17:30:00Z",
-   "ended": "2026-10-14T17:30:02Z"
+   "started": "2026-10-14T19:26:58Z",
+   "ended": "2026-10-14T19:27:00Z"
   },
   {
    "name": "denials",
@@ -412,14 +394,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-14T17:30:02Z",
-   "ended": "2026-10-14T17:34:20Z"
+   "started": "2026-10-14T19:27:00Z",
+   "ended": "2026-10-14T19:31:53Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 5 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
-  "ERA check 1053165 held by era_clear: FLO02 423823547 $351.7: 1 postable / 0 unrecorded lines - left on the list"
+  "Claim Inspector: 12 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
  "errors": []
 }
