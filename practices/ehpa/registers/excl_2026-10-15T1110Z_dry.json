@@ -1,0 +1,2572 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": false,
+ "sections": {
+  "A": {
+   "pid": "23847",
+   "code": "WOCAID2ND",
+   "why": "Humana H54675873 = Medicaid managed care (271 'MC MEDICAID GATE CAP DIR'); Medicare paid 03/2024; Humana answered POLICY CANCELED on the 2023 crossover claims",
+   "visits": [
+    {
+     "vid": "14029112",
+     "claim": "14029112C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "21346989",
+       "cpt": "99223",
+       "insbal": 35.01,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 35.01,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "21346990",
+       "cpt": "99497",
+       "insbal": 15.16,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 15.16,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19359751",
+     "claim": "19359751C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22424803",
+       "cpt": "99239",
+       "insbal": 23.06,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 23.06,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19359762",
+     "claim": "19359762C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22424818",
+       "cpt": "99232",
+       "insbal": 15.97,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 15.97,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19359769",
+     "claim": "19359769C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22424826",
+       "cpt": "99232",
+       "insbal": 15.97,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 15.97,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19359780",
+     "claim": "19359780C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22424837",
+       "cpt": "99233",
+       "insbal": 24.02,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 24.02,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19359790",
+     "claim": "19359790C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22424847",
+       "cpt": "99233",
+       "insbal": 24.02,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 24.02,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 6,
+     "dry": true
+    }
+   }
+  },
+  "B": {
+   "pid": "17475638",
+   "code": "WOCAID2ND",
+   "why": "Humana H65699623 = Medicaid managed care (271 'MC MEDICAID GATE CAP DIR'); Medicare paid 05-06/2026; Humana answered POLICY CANCELED on the 2026 crossover claims",
+   "visits": [
+    {
+     "vid": "19434941",
+     "claim": "19434941B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23341920",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19435825",
+     "claim": "19435825B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342795",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19435848",
+     "claim": "19435848B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342818",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19435855",
+     "claim": "19435855B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342826",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19436812",
+     "claim": "19436812B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23343860",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19436959",
+     "claim": "19436959B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344008",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19437177",
+     "claim": "19437177B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344253",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19437354",
+     "claim": "19437354B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344493",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19438043",
+     "claim": "19438043B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345134",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19438646",
+     "claim": "19438646B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345880",
+       "cpt": "99487",
+       "insbal": 16.14,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.14,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23345881",
+       "cpt": "99489",
+       "insbal": 8.92,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 8.92,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19438697",
+     "claim": "19438697B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345963",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19439036",
+     "claim": "19439036B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23346385",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19439666",
+     "claim": "19439666B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347285",
+       "cpt": "99487",
+       "insbal": 16.14,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.14,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23347286",
+       "cpt": "99489",
+       "insbal": 8.92,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 8.92,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19439721",
+     "claim": "19439721B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347365",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19439914",
+     "claim": "19439914B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347558",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19440285",
+     "claim": "19440285B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347943",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19441019",
+     "claim": "19441019B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23348816",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442003",
+     "claim": "19442003B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349989",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442004",
+     "claim": "19442004B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349990",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442005",
+     "claim": "19442005B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349991",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442156",
+     "claim": "19442156B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350140",
+       "cpt": "99223",
+       "insbal": 31.94,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 31.94,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23350141",
+       "cpt": "99497",
+       "insbal": 13.35,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 13.35,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442738",
+     "claim": "19442738B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350982",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442739",
+     "claim": "19442739B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350983",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442965",
+     "claim": "19442965B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351232",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442983",
+     "claim": "19442983B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351250",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19442995",
+     "claim": "19442995B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351264",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19443020",
+     "claim": "19443020B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351289",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 4,
+     "dry": true
+    },
+    "1700296": {
+     "n": 23,
+     "dry": true
+    }
+   }
+  },
+  "C": {
+   "pid": "24214",
+   "code": "WOCAID2ND",
+   "why": "Humana H06414087 = Medicaid managed care (271 'MC MEDICAID GATE CAP DIR'); Medicare paid 03/2024; Humana answered POLICY CANCELED",
+   "visits": [
+    {
+     "vid": "19369446",
+     "claim": "19369446B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22437615",
+       "cpt": "99308",
+       "insbal": 12.66,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 12.66,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "dry": true
+    }
+   }
+  },
+  "D": {
+   "pid": "17476855",
+   "code": "WOCAID2ND",
+   "why": "visit already at $0 (Medicare 819928855 + Florida Blue 190596986 paid) - exclusion completed only",
+   "visits": [
+    {
+     "vid": "19455617",
+     "claim": "19455617B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23366967",
+       "cpt": "99487",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      },
+      {
+       "cid": "23366968",
+       "cpt": "99489",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 1,
+     "dry": true
+    }
+   }
+  },
+  "E": {
+   "pid": "22182",
+   "code": "WOCLTREQ",
+   "why": "Humana H71485535 INACTIVE (MA plan dead), Medicare MBI answers AAA 73; Medicare paid 2022-2023; no supplement in force",
+   "visits": [
+    {
+     "vid": "26356",
+     "claim": "26356B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "27918",
+       "cpt": "99233",
+       "insbal": 20.56,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 20.56,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "35385",
+     "claim": "35385B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "14699",
+       "cpt": "99308",
+       "insbal": 11.67,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 11.67,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "46317",
+     "claim": "46317C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "25822",
+       "cpt": "99223",
+       "insbal": 39.86,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 39.86,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "46318",
+     "claim": "46318C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "25823",
+       "cpt": "99233",
+       "insbal": 20.56,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 20.56,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "46319",
+     "claim": "46319C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "27920",
+       "cpt": "99233",
+       "insbal": 20.56,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 20.56,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "46321",
+     "claim": "46321C",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "25826",
+       "cpt": "99232",
+       "insbal": 14.32,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 14.32,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "13967961",
+     "claim": "13967961B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "20963586",
+       "cpt": "99307",
+       "insbal": 6.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 6.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "13970765",
+     "claim": "13970765B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "20965356",
+       "cpt": "99307",
+       "insbal": 6.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 6.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 8,
+     "dry": true
+    }
+   }
+  },
+  "F": {
+   "pid": "17468961",
+   "code": "WOCLTREQ",
+   "why": "Humana H53803808 INACTIVE and UHC 981508988 INACTIVE; UHC (MA) paid 2023-2024; MA cost-share, no supplement in force",
+   "visits": [
+    {
+     "vid": "19361599",
+     "claim": "19361599B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22426988",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19361610",
+     "claim": "19361610B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427000",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19361624",
+     "claim": "19361624B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427015",
+       "cpt": "99223",
+       "insbal": 172.78,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 172.78,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22427016",
+       "cpt": "99497",
+       "insbal": 73.55,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 73.55,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362053",
+     "claim": "19362053B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427581",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362130",
+     "claim": "19362130B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427639",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362141",
+     "claim": "19362141B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427652",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362158",
+     "claim": "19362158B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427669",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362184",
+     "claim": "19362184B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427699",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362243",
+     "claim": "19362243B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427768",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362264",
+     "claim": "19362264B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22427792",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362650",
+     "claim": "19362650B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428313",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362656",
+     "claim": "19362656B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428319",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362744",
+     "claim": "19362744B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428614",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362748",
+     "claim": "19362748B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428618",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362752",
+     "claim": "19362752B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428622",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19362816",
+     "claim": "19362816B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22428639",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19363153",
+     "claim": "19363153B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22429058",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19363181",
+     "claim": "19363181B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22429087",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19363318",
+     "claim": "19363318B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22429302",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19363342",
+     "claim": "19363342B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22429328",
+       "cpt": "99233",
+       "insbal": 65.82,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 65.82,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19363879",
+     "claim": "19363879B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22429935",
+       "cpt": "99239",
+       "insbal": 72.6,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 72.6,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 21,
+     "dry": true
+    }
+   }
+  },
+  "G": {
+   "pid": "23456",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare paid 2023-2024 and Humana already answered $0 NO-PAY; no supplement in force",
+   "visits": [
+    {
+     "vid": "19367090",
+     "claim": "19367090B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22433676",
+       "cpt": "99233",
+       "insbal": 24.02,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 24.02,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19367530",
+     "claim": "19367530B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22434237",
+       "cpt": "99233",
+       "insbal": 24.02,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 24.02,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19367548",
+     "claim": "19367548B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22434257",
+       "cpt": "99233",
+       "insbal": 24.02,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 24.02,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19373194",
+     "claim": "19373194B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "22441043",
+       "cpt": "99308",
+       "insbal": 12.66,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.66,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 4,
+     "dry": true
+    }
+   }
+  },
+  "H": {
+   "pid": "20347",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare + Humana paid the 99305, the 99497 residual has no payer left",
+   "visits": [
+    {
+     "vid": "13965169",
+     "claim": "13965169B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "20961003",
+       "cpt": "99305",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      },
+      {
+       "cid": "20961004",
+       "cpt": "99497",
+       "insbal": 15.6,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.6,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "dry": true
+    }
+   }
+  },
+  "I": {
+   "pid": "24205",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare + Humana paid the 99310, the 99497 residual has no payer left",
+   "visits": [
+    {
+     "vid": "13999861",
+     "claim": "13999861B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "21327694",
+       "cpt": "99310",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      },
+      {
+       "cid": "21327695",
+       "cpt": "99497",
+       "insbal": 12.89,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.89,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "dry": true
+    }
+   }
+  },
+  "J": {
+   "pid": "17470785",
+   "code": "WOCLTREQ",
+   "why": "Humana H50198160 INACTIVE; Medicare paid 03/2024; no supplement in force",
+   "visits": [
+    {
+     "vid": "19370769",
+     "claim": "19370769C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22439131",
+       "cpt": "99309",
+       "insbal": 18.07,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.07,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22439132",
+       "cpt": "99497",
+       "insbal": 12.89,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.89,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19372256",
+     "claim": "19372256C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22439889",
+       "cpt": "99309",
+       "insbal": 18.07,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.07,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22439890",
+       "cpt": "99497",
+       "insbal": 12.89,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.89,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19373262",
+     "claim": "19373262C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22441089",
+       "cpt": "99316",
+       "insbal": 22.4,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 22.4,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 3,
+     "dry": true
+    }
+   }
+  },
+  "K": {
+   "pid": "17470977",
+   "code": "WOCLTREQ",
+   "why": "Humana H67602920 INACTIVE and already answered $0 NO-PAY twice; Medicare paid 03/2024; no supplement in force",
+   "visits": [
+    {
+     "vid": "19373024",
+     "claim": "19373024B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22440710",
+       "cpt": "99223",
+       "insbal": 35.01,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 35.01,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "dry": true
+    }
+   }
+  },
+  "L": {
+   "pid": "17471428",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare paid 09/2026; no supplement in force",
+   "visits": [
+    {
+     "vid": "19382146",
+     "claim": "19382146F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450728",
+       "cpt": "99223",
+       "insbal": 34.48,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 34.48,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22450729",
+       "cpt": "99497",
+       "insbal": 14.97,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 14.97,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19382251",
+     "claim": "19382251F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450851",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19382300",
+     "claim": "19382300F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450910",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19382355",
+     "claim": "19382355F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450938",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19382457",
+     "claim": "19382457F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22451013",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19382458",
+     "claim": "19382458F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22451014",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 6,
+     "dry": true
+    }
+   }
+  },
+  "M": {
+   "pid": "17477190",
+   "code": "WOCLTREQ",
+   "why": "Humana H54884335 INACTIVE; Medicare paid 09-10/2026; the never-adjusted Medicare contractual is WOINS, the PR-2 share WOCLTREQ",
+   "visits": [
+    {
+     "vid": "19451201",
+     "claim": "19451201C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23361203",
+       "cpt": "99309",
+       "insbal": 74.64,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 57.71,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19451343",
+     "claim": "19451343E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23361387",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19452437",
+     "claim": "19452437E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23362707",
+       "cpt": "99487",
+       "insbal": 16.14,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.14,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19452685",
+     "claim": "19452685E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23363064",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19452686",
+     "claim": "19452686E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23363065",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19453365",
+     "claim": "19453365B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23363910",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19453807",
+     "claim": "19453807B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23364716",
+       "cpt": "99308",
+       "insbal": 61.56,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 49.97,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 11.59,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19455468",
+     "claim": "19455468B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23366760",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.93,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19455738",
+     "claim": "19455738B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23367153",
+       "cpt": "99487",
+       "insbal": 142.72,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 126.58,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 16.14,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23367154",
+       "cpt": "99489",
+       "insbal": 74.05,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 65.13,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 8.92,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 9,
+     "dry": true
+    }
+   }
+  },
+  "N": {
+   "pid": "17471834",
+   "code": "WOCLTREQ",
+   "why": "VA CCN 'returned to entity' on Medicare-paid 2024 SNF visits (deceased [DOB]); VA CCN is not a Medicare supplement - cost-share written off",
+   "visits": [
+    {
+     "vid": "19385867",
+     "claim": "19385867F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456038",
+       "cpt": "99306",
+       "insbal": 30.71,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 30.71,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22456039",
+       "cpt": "99497",
+       "insbal": 12.72,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.72,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19386226",
+     "claim": "19386226F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456457",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19386717",
+     "claim": "19386717E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456884",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19387411",
+     "claim": "19387411E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22457691",
+       "cpt": "99309",
+       "insbal": 19.65,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 1.92,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 17.73,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19387567",
+     "claim": "19387567E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22457934",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19387984",
+     "claim": "19387984E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22458487",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19388428",
+     "claim": "19388428E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22458894",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19389094",
+     "claim": "19389094D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22459701",
+       "cpt": "99309",
+       "insbal": 69.99,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 51.88,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.11,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19390386",
+     "claim": "19390386D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22461706",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19391178",
+     "claim": "19391178D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22462861",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    },
+    {
+     "vid": "19392888",
+     "claim": "19392888C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22464974",
+       "cpt": "99316",
+       "insbal": 73.36,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 51.26,
+         "dry": true
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 22.1,
+         "dry": true
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": null,
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 11,
+     "dry": true
+    }
+   }
+  }
+ }
+}

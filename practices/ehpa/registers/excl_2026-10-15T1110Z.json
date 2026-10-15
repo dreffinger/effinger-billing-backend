@@ -1,0 +1,88 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "D": {
+   "pid": "17476855",
+   "code": "WOCAID2ND",
+   "why": "visit already at $0 (Medicare 819928855 + Florida Blue 190596986 paid) - exclusion completed only",
+   "visits": [
+    {
+     "vid": "19455617",
+     "claim": "19455617B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23366967",
+       "cpt": "99487",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      },
+      {
+       "cid": "23366968",
+       "cpt": "99489",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      }
+     ],
+     "after": {
+      "23366967": {
+       "cpt": "99487",
+       "fee": 206.0,
+       "paid": 206.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -112.09,
+         "819928855",
+         "FLO02",
+         "0"
+        ],
+        [
+         -28.6,
+         "190596986",
+         "FLO02",
+         "0"
+        ]
+       ]
+      },
+      "23366968": {
+       "cpt": "99489",
+       "fee": 109.0,
+       "paid": 109.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -60.74,
+         "819928855",
+         "FLO02",
+         "0"
+        ],
+        [
+         -15.49,
+         "190596986",
+         "FLO02",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 1,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 04:34:50\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

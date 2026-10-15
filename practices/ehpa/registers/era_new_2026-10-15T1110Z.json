@@ -1,0 +1,1337 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446714,
+   "visitid": "19422657",
+   "pid": "17472396",
+   "chargedetailid": "23327984",
+   "cpt": "99308",
+   "dos": "2025-11-05",
+   "paid": 47.57,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 94.86,
+    "insbal": 12.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446715,
+   "visitid": "19427600",
+   "pid": "22023",
+   "chargedetailid": "23334147",
+   "cpt": "99487",
+   "dos": "2025-12-28",
+   "paid": 68.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446716,
+   "visitid": "19420906",
+   "pid": "22023",
+   "chargedetailid": "23326012",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 68.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446717,
+   "visitid": "19448745",
+   "pid": "17473477",
+   "chargedetailid": "23358095",
+   "cpt": "99487",
+   "dos": "2026-07-17",
+   "paid": 112.09,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446718,
+   "visitid": "19442357",
+   "pid": "17473477",
+   "chargedetailid": "23350410",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 112.09,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 28.6,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446719,
+   "visitid": "19456669",
+   "pid": "20729",
+   "chargedetailid": "23368375",
+   "cpt": "99305",
+   "dos": "2026-09-28",
+   "paid": 95.33,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 199.0,
+    "paid": 174.68,
+    "insbal": 24.32,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446719,
+   "visitid": "19456669",
+   "pid": "20729",
+   "chargedetailid": "23368376",
+   "cpt": "99497",
+   "dos": "2026-09-28",
+   "paid": 52.33,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446720,
+   "visitid": "19456664",
+   "pid": "17471349",
+   "chargedetailid": "23368366",
+   "cpt": "99316",
+   "dos": "2026-09-28",
+   "paid": 79.42,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 139.74,
+    "insbal": 20.26,
+    "patbal": 0.0,
+    "carrier": "TRI05",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446721,
+   "visitid": "19456668",
+   "pid": "17471349",
+   "chargedetailid": "23368374",
+   "cpt": "99309",
+   "dos": "2026-09-24",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "TRI05",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446722,
+   "visitid": "19455899",
+   "pid": "24154",
+   "chargedetailid": "23367367",
+   "cpt": "99223",
+   "dos": "2026-09-21",
+   "paid": 125.2,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 31.94,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446723,
+   "visitid": "19455856",
+   "pid": "24154",
+   "chargedetailid": "23367321",
+   "cpt": "99232",
+   "dos": "2026-09-22",
+   "paid": 56.37,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 96.62,
+    "insbal": 14.38,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446724,
+   "visitid": "19446290",
+   "pid": "21263",
+   "chargedetailid": "23355341",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446724,
+   "visitid": "19446290",
+   "pid": "21263",
+   "chargedetailid": "23364540",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 34.95,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446725,
+   "visitid": "19442472",
+   "pid": "21263",
+   "chargedetailid": "23350599",
+   "cpt": "99487",
+   "dos": "2026-05-17",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446725,
+   "visitid": "19442472",
+   "pid": "21263",
+   "chargedetailid": "23364539",
+   "cpt": "99489",
+   "dos": "2026-05-17",
+   "paid": 34.95,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446726,
+   "visitid": "19430695",
+   "pid": "22023",
+   "chargedetailid": "23337128",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446727,
+   "visitid": "19421096",
+   "pid": "21263",
+   "chargedetailid": "23326392",
+   "cpt": "99487",
+   "dos": "2025-10-25",
+   "paid": 68.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 137.38,
+    "insbal": 68.62,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "pay": 68.62,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10175247",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 04:29:57\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446727,
+   "visitid": "19421096",
+   "pid": "21263",
+   "chargedetailid": "23326393",
+   "cpt": "99489",
+   "dos": "2025-10-25",
+   "paid": 37.13,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 71.86,
+    "insbal": 37.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "pay": 37.13,
+   "wo": 0.01,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "FLO02",
+   "outcome": "posted",
+   "paymentid": "10175248",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 04:30:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446728,
+   "visitid": "19456662",
+   "pid": "17477190",
+   "chargedetailid": "23368364",
+   "cpt": "99309",
+   "dos": "2026-09-28",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 0.0,
+    "patbal": 16.93,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446729,
+   "visitid": "19456670",
+   "pid": "20863",
+   "chargedetailid": "23368377",
+   "cpt": "99306",
+   "dos": "2026-09-28",
+   "paid": 129.74,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 33.1,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446729,
+   "visitid": "19456670",
+   "pid": "20863",
+   "chargedetailid": "23368378",
+   "cpt": "99497",
+   "dos": "2026-09-28",
+   "paid": 52.33,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N782",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "FLO99",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446730,
+   "visitid": "19456667",
+   "pid": "17473661",
+   "chargedetailid": "23368372",
+   "cpt": "99306",
+   "dos": "2026-09-28",
+   "paid": 110.29,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 227.87,
+    "insbal": 28.13,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446730,
+   "visitid": "19456667",
+   "pid": "17473661",
+   "chargedetailid": "23368373",
+   "cpt": "99497",
+   "dos": "2026-09-28",
+   "paid": 44.48,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 121.65,
+    "insbal": 11.35,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446731,
+   "visitid": "19439596",
+   "pid": "17472396",
+   "chargedetailid": "23347146",
+   "cpt": "99487",
+   "dos": "2026-04-20",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446731,
+   "visitid": "19439596",
+   "pid": "17472396",
+   "chargedetailid": "23347147",
+   "cpt": "99489",
+   "dos": "2026-04-20",
+   "paid": 34.95,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446732,
+   "visitid": "19438571",
+   "pid": "17472396",
+   "chargedetailid": "23345738",
+   "cpt": "99487",
+   "dos": "2026-03-20",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446732,
+   "visitid": "19438571",
+   "pid": "17472396",
+   "chargedetailid": "23345739",
+   "cpt": "99489",
+   "dos": "2026-03-20",
+   "paid": 34.95,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446733,
+   "visitid": "19435210",
+   "pid": "17472396",
+   "chargedetailid": "23342204",
+   "cpt": "99308",
+   "dos": "2026-03-06",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 11.59,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446734,
+   "visitid": "19430610",
+   "pid": "17472396",
+   "chargedetailid": "23336957",
+   "cpt": "99487",
+   "dos": "2026-01-27",
+   "paid": 63.28,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446734,
+   "visitid": "19430610",
+   "pid": "17472396",
+   "chargedetailid": "23336958",
+   "cpt": "99489",
+   "dos": "2026-01-27",
+   "paid": 34.95,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446735,
+   "visitid": "19429015",
+   "pid": "17472396",
+   "chargedetailid": "23335526",
+   "cpt": "99308",
+   "dos": "2026-01-09",
+   "paid": 45.44,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 11.59,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446736,
+   "visitid": "19427232",
+   "pid": "17472396",
+   "chargedetailid": "23333592",
+   "cpt": "99487",
+   "dos": "2025-12-21",
+   "paid": 68.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446736,
+   "visitid": "19427232",
+   "pid": "17472396",
+   "chargedetailid": "23333593",
+   "cpt": "99489",
+   "dos": "2025-12-21",
+   "paid": 37.13,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 99.53,
+    "insbal": 9.47,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446737,
+   "visitid": "19425343",
+   "pid": "17472396",
+   "chargedetailid": "23331335",
+   "cpt": "99308",
+   "dos": "2025-12-03",
+   "paid": 47.57,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 94.86,
+    "insbal": 12.14,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446738,
+   "visitid": "19423576",
+   "pid": "17472396",
+   "chargedetailid": "23329178",
+   "cpt": "99487",
+   "dos": "2025-11-15",
+   "paid": 68.62,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 188.5,
+    "insbal": 17.5,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446739,
+   "visitid": "19456665",
+   "pid": "25994",
+   "chargedetailid": "23368367",
+   "cpt": "99309",
+   "dos": "2026-09-28",
+   "paid": 66.36,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "BCBS",
+    "billdate": "10/15/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053177",
+   "checkclaimid": 15446740,
+   "visitid": "19432008",
+   "pid": "22023",
+   "chargedetailid": "23338626",
+   "cpt": "99307",
+   "dos": "2026-02-02",
+   "paid": 24.91,
+   "carcs": [
+    "CO45",
+    "PR2",
+    "CO253"
+   ],
+   "rarcs": [
+    "MA01",
+    "MA18",
+    "MA07",
+    "N535"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 68.0,
+    "paid": 61.64,
+    "insbal": 6.36,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/01/2026"
+   },
+   "outcome": "already-posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446747,
+   "visitid": "19441616",
+   "pid": "17472396",
+   "chargedetailid": "23349530",
+   "cpt": "99308",
+   "dos": "2026-05-07",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 0.0,
+    "insbal": 107.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446748,
+   "visitid": "19444342",
+   "pid": "17472396",
+   "chargedetailid": "23353047",
+   "cpt": "99307",
+   "dos": "2026-06-05",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 68.0,
+    "paid": 0.0,
+    "insbal": 68.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446749,
+   "visitid": "19446223",
+   "pid": "17472396",
+   "chargedetailid": "23355217",
+   "cpt": "99487",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 0.0,
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446749,
+   "visitid": "19446223",
+   "pid": "17472396",
+   "chargedetailid": "23355218",
+   "cpt": "99489",
+   "dos": "2026-06-25",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 109.0,
+    "paid": 0.0,
+    "insbal": 109.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446750,
+   "visitid": "19447320",
+   "pid": "17472396",
+   "chargedetailid": "23356503",
+   "cpt": "99309",
+   "dos": "2026-07-03",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/11/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  },
+  {
+   "checkid": "1053179",
+   "checkclaimid": 15446751,
+   "visitid": "19456866",
+   "pid": "17476042",
+   "chargedetailid": "23368527",
+   "cpt": "99239",
+   "dos": "2026-10-01",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [
+    "MA01"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 0.0,
+    "insbal": 163.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "duplicate OA-18 - original adjudication stands, nothing posted"
+  }
+ ],
+ "wolate": []
+}
