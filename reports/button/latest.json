@@ -1,17 +1,27 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-15T0543Z",
+ "stamp": "2026-10-15T0731Z",
  "mode": "live",
  "status": "ok",
- "headline": "ERA 1 checks $71.00 -> 1 checks $71.00",
- "note": "scheduled-cascade",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38688309809",
- "started": "2026-10-15T05:43:27Z",
- "ended": "2026-10-15T05:48:04Z",
+ "headline": "Columns 0/5/28/42 -> 0/5/28/42; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38699352017",
+ "started": "2026-10-15T07:31:52Z",
+ "ended": "2026-10-15T07:37:52Z",
  "summary": {
   "columns": {
-   "before": {},
-   "after": {}
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 5,
+    "unbilled": 28,
+    "exclusions": 42
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 5,
+    "unbilled": 28,
+    "exclusions": 42
+   }
   },
   "era": {
    "before": {
@@ -55,7 +65,7 @@
    "visits": 7306,
    "actionable": 80,
    "actionable_amt": 14609.0,
-   "asof": "2026-10-15 05:48 UTC"
+   "asof": "2026-10-15 07:37 UTC"
   }
  },
  "steps": [
@@ -63,17 +73,88 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "973 helpers into /home/claude/unbilled",
+   "summary": "977 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 973,
-    "registers": 1018,
+    "helpers copied": 977,
+    "registers": 1023,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T05:43:27Z",
-   "ended": "2026-10-15T05:43:27Z"
+   "started": "2026-10-15T07:31:52Z",
+   "ended": "2026-10-15T07:31:52Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 5->5, Unbilled 28->28, Exclusions 42->42",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 5,
+    "unbilled": 28,
+    "exclusions": 42,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 5,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 28,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700302": 0,
+    "exclusions crossover run 1700302": "nothing to complete"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 5,
+     "ids": "v19451190 v13979435 v13984519 v19364378 v19395738"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 22,
+     "ids": "v19457280 v19457281 v19457321 v19457471 v19457476 v19457519 v19457529 v19457647 v19457775 v19457778 v19457779 v19457782 v19457783 v19457784 v19457788 v19457789 v19457790 v19457791 v19457794 v19457795 v19457796 v19457797"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Unresolved Claim Inspector errors",
+     "visits": 4,
+     "ids": "v13979435 v13984519 v19364378 v19395738"
+    },
+    {
+     "column": "unbilled",
+     "kind": "When billing Medicare as the non-primary carrier, the MSP Code on the ",
+     "visits": 2,
+     "ids": "v19457781 v19457792"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET07 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 13,
+     "ids": "v38462 v47467 v14018620 v14019084 v14028500 v14028705 v19358770 v19365434 v19399931 v19399932 v19399933 v19399934 v19400003"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700302",
+     "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+     "visits": 28,
+     "ids": "v27603 v30756 v32487 v35389 v43269 v13965089 v13966035 v13967115 v13967129 v13971573 v13971611 v13971632 v13972162 v14029135 v19358877 v19359198 v19359627 v19359648 v19359733 v19359746 v19359757 v19360044 v19360107 v19360350 v19360684"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-15T07:31:52Z",
+   "ended": "2026-10-15T07:33:49Z"
   },
   {
    "name": "era",
@@ -101,23 +182,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T05:43:27Z",
-   "ended": "2026-10-15T05:43:36Z"
-  },
-  {
-   "name": "cascade",
-   "title": "Insurance cascade",
-   "status": "ok",
-   "summary": "void rules: void_rules.json not in this workspace (Drive 'workspace mirror') - skipped; precheck flagged charts: 0",
-   "counts": {
-    "void rules": "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped",
-    "precheck flagged charts": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-15T05:43:36Z",
-   "ended": "2026-10-15T05:43:39Z"
+   "started": "2026-10-15T07:33:49Z",
+   "ended": "2026-10-15T07:33:53Z"
   },
   {
    "name": "packages",
@@ -128,37 +194,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T05:43:39Z",
-   "ended": "2026-10-15T05:43:39Z"
-  },
-  {
-   "name": "cred",
-   "title": "Credentialing check",
-   "status": "ok",
-   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-15T05:43:39Z",
-   "ended": "2026-10-15T05:43:40Z"
-  },
-  {
-   "name": "money",
-   "title": "Money ledger data",
-   "status": "ok",
-   "summary": "money_ledger.html rebuilt: unpaid $330534, era $169, excl 59",
-   "counts": {
-    "payments scan": "patient_universe_0907.json not in this workspace - skipped"
-   },
-   "dollars": {
-    "unpaid total": 330534.29,
-    "era paid": 168.59
-   },
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-15T05:43:40Z",
-   "ended": "2026-10-15T05:44:08Z"
+   "started": "2026-10-15T07:33:53Z",
+   "ended": "2026-10-15T07:33:53Z"
   },
   {
    "name": "outstanding",
@@ -261,8 +298,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T05:44:08Z",
-   "ended": "2026-10-15T05:44:10Z"
+   "started": "2026-10-15T07:33:53Z",
+   "ended": "2026-10-15T07:33:55Z"
   },
   {
    "name": "denials",
@@ -349,11 +386,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T05:44:10Z",
-   "ended": "2026-10-15T05:48:03Z"
+   "started": "2026-10-15T07:33:55Z",
+   "ended": "2026-10-15T07:37:52Z"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "Claim Inspector: 5 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+ ],
  "errors": []
 }
