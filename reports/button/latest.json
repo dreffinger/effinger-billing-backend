@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-15T1724Z",
+ "stamp": "2026-10-15T1922Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/5/28/141 -> 0/5/28/141; ERA 1 checks $71.00 -> 1 checks $71.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38777014597",
- "started": "2026-10-15T17:24:17Z",
- "ended": "2026-10-15T17:30:22Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38793392226",
+ "started": "2026-10-15T19:22:55Z",
+ "ended": "2026-10-15T19:28:50Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7306,
    "actionable": 80,
    "actionable_amt": 14609.0,
-   "asof": "2026-10-15 17:30 UTC"
+   "asof": "2026-10-15 19:28 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "986 helpers into /home/claude/unbilled",
+   "summary": "988 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 986,
-    "registers": 1044,
+    "helpers copied": 988,
+    "registers": 1048,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T17:24:17Z",
-   "ended": "2026-10-15T17:24:17Z"
+   "started": "2026-10-15T19:22:55Z",
+   "ended": "2026-10-15T19:22:55Z"
   },
   {
    "name": "columns",
@@ -175,8 +175,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T17:24:17Z",
-   "ended": "2026-10-15T17:26:04Z"
+   "started": "2026-10-15T19:22:55Z",
+   "ended": "2026-10-15T19:24:43Z"
   },
   {
    "name": "era",
@@ -204,8 +204,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T17:26:04Z",
-   "ended": "2026-10-15T17:26:08Z"
+   "started": "2026-10-15T19:24:43Z",
+   "ended": "2026-10-15T19:24:45Z"
   },
   {
    "name": "packages",
@@ -216,8 +216,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T17:26:08Z",
-   "ended": "2026-10-15T17:26:08Z"
+   "started": "2026-10-15T19:24:45Z",
+   "ended": "2026-10-15T19:24:45Z"
   },
   {
    "name": "outstanding",
@@ -320,8 +320,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T17:26:08Z",
-   "ended": "2026-10-15T17:26:10Z"
+   "started": "2026-10-15T19:24:45Z",
+   "ended": "2026-10-15T19:24:47Z"
   },
   {
    "name": "denials",
@@ -408,8 +408,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T17:26:10Z",
-   "ended": "2026-10-15T17:30:22Z"
+   "started": "2026-10-15T19:24:47Z",
+   "ended": "2026-10-15T19:28:50Z"
   }
  ],
  "packages": [],
