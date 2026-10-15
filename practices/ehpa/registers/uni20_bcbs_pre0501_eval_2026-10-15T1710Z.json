@@ -1,0 +1,12 @@
+{
+ "stamp": "2026-10-15T1710Z",
+ "pass": 106,
+ "asked": 17,
+ "by_action": {
+  "UNKNOWN - review": 1,
+  "PENDING at payer - wait": 16
+ },
+ "candidates": 0,
+ "sent": 0,
+ "pending_dollars": 2563.0
+}
