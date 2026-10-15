@@ -911,7 +911,8 @@
    "evidence": "dry run: c23366299 open insurance balance 80.67 under BCBS, pay 0.00 wo 80.67 WONCS",
    "ui": "Patient 25994 > Transactions > visit 19455138 > the 99497 charge > Payment Entry > write-off WONCS 80.67 under Florida Blue, check # 620268423, deposit 10/14/2026",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-B",
@@ -925,7 +926,8 @@
    "evidence": "dry run: c23366951 patient balance 206.00 / insurance 0.00; move 206.00 then WONCS 206.00",
    "ui": "Patient 17477498 > Transactions > visit 19455608 > the 99487 charge: move the 206.00 patient balance to insurance (Florida Blue), then Payment Entry > write-off WONCS 206.00, check # 190596986, deposit 10/14/2026",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-C",
@@ -939,7 +941,8 @@
    "evidence": "dry run: the charge carries dcode1034545006 (I63.9) last of 7 codes; no payment on the charge (UHC $0 10/01/2026 only); visit insorder 4",
    "ui": "Patient 20379 > visit 19416099 > edit the 99487 charge diagnoses: replace I63.9 with I69.30, save; then Claims > rebill the visit to Humana (sequence 4) as frequency 7 with original reference 820262810497584",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-D",
@@ -953,7 +956,8 @@
    "evidence": "dry run: charge pcode601053 (99344), no payment, visit insorder 2; AMD 271 Medicare ACTIVE since 07/01/2007, Florida Blue ACTIVE as a Medigap",
    "ui": "Patient 48449 > visit 19457091 > change the 99344 to 99349, visit insurance order Medicare then Florida Blue, save; Insurance tab: Medicare first; rebill the visit to Medicare as an original claim",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-E",
@@ -967,7 +971,8 @@
    "evidence": "dry run: charge pcode601053 (99344), no payment, visit insorder 1; AMD 271 on the Florida Blue plan answered AAA 42 (payer could not respond) - no verdict",
    "ui": "Patient 17471326 > visit 19457089 > change the 99344 to 99349, save; rebill the visit to Florida Blue as an original claim",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-F",
@@ -981,7 +986,8 @@
    "evidence": "dry run: charge pcode65083 (99222), no payment on the charge, visit insorder 1",
    "ui": "Patient 17474290 > visit 19419306 > change the 99222 to 99232, save; rebill to Florida Blue as frequency 7 with original reference Q100001347267463",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-G",
@@ -995,7 +1001,8 @@
    "evidence": "dry run: chart default order 1,3; plans Medicare seq 1, Cigna seq 2 (active), AARP seq 3 end-dated 09/15/2026",
    "ui": "Patient 23969 > Insurance tab > drag Cigna to 2nd (or add a second Cigna plan with the chart's Cigna number and set the order Medicare, Cigna)",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-H",
@@ -1009,7 +1016,8 @@
    "evidence": "dry run: chart has no insurance plan; 8 visits read live (99223 10/05 + 7 x 99233 10/06-10/12), referral plan rplan18462365 preauth blank",
    "ui": "Patient 17478013 > Insurance tab > add OPTUM VA CCN with the ICN from the facesheet (no group); Referral Plans > Pre-Auth # VA0048867957; each of the 8 visits: hospitalization from 10/05/2026, insurance order VA [name]1500; Claims Center > Unbilled > Complete the 8 rows",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-I",
@@ -1023,7 +1031,8 @@
    "evidence": "dry run: 5 charges 12/10-12/14/2025 read live ($310 + 4 x $111), chart plans: Medicare only (seq 1); CMS record 10/14: CHP HMO Medicare Risk COB since 05/01/2021",
    "ui": "Patient 24197 > Insurance tab > add CAPITAL HEALTH PLAN (Medicare Advantage) with the policy number from the facesheet, no group; each of the 5 visits: Bill Insurance = Yes, insurance order CHP, rebill as original; Claims Center > Unbilled > Complete",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-J",
@@ -1037,7 +1046,8 @@
    "evidence": "dry run: MBILU answered Part A 20180601 / Part B 20180601 active, Part D SILVERSCRIPT only",
    "ui": "Patient 17478060 > Insurance tab > add FLORIDA MEDICARE with the MBI (no group); both visits: hospitalization from 10/12/2026, insurance order Medicare, CMS-1500; Unbilled > Complete",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-K",
@@ -1051,7 +1061,8 @@
    "evidence": "dry run: MBILU answered Part A 20161001 / Part B 20161001 active, Part D WELLCARE only",
    "ui": "Patient 17478062 > Insurance tab > add FLORIDA MEDICARE with the MBI (no group); both visits: hospitalization from 10/12/2026, insurance order Medicare, CMS-1500; Unbilled > Complete",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-L",
@@ -1065,7 +1076,8 @@
    "evidence": "dry run: discovery coveragesFound 3 - UHC AARP MA PPO planBegin 20260201 (x2), Cigna CGLIC ended 20251201",
    "ui": "Patient 17478058 > Insurance tab > add UNITED HEALTHCARE (AARP Medicare Advantage) with the member number from Stedi discovery (patient_db), no group; both visits: hospitalization from 10/12/2026, insurance order [name]1500; Unbilled > Complete",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-M",
@@ -1079,7 +1091,8 @@
    "evidence": "dry run: both plans ACTIVE on AMD's 271 (Florida Blue employer PPO with a group number, Medicare since 05/01/2020), mspcode blank on the Medicare plan",
    "ui": "Patient 17471019 > Insurance tab > Medicare plan > MSP Code = 12 Working Aged; both visits: hospitalization from 10/12/2026, insurance order Florida Blue then Medicare, CMS-1500; Unbilled > Complete",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-N",
@@ -1093,7 +1106,8 @@
    "evidence": "dry run: 603.00 insurance balance to move (443.00 + 160.00); Stedi Medicaid eligibility inactive at 20261012, discovery coveragesFound 0",
    "ui": "Patient 17477183 > visits 19457790 and 19457788 > transfer each charge balance to patient responsibility; Claims Center > Unbilled > Complete the 2 rows",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-O",
@@ -1107,7 +1121,8 @@
    "evidence": "dry run: 28 rows, last primary payment 10/2022-03/2024 on every one, open balances 12.89-185.09 per visit, total 1223.76",
    "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700302 > Complete the 28 rows (list in registers/excl_1015_0510_dry.json)",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T0510Z-P",
@@ -1121,7 +1136,8 @@
    "evidence": "dry run: 8 rows, last primary payment 02/2023-03/2024, open balances 21.76-147.54 per visit, total 338.13",
    "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700294 > Complete the 8 rows",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-A",
@@ -1135,7 +1151,8 @@
    "evidence": "dry run 11:3xZ: 6 visit(s) settle, {\"WOCAID2ND\": 153.21}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-B",
@@ -1149,7 +1166,8 @@
    "evidence": "dry run 11:3xZ: 27 visit(s) settle, {\"WOCAID2ND\": 486.43}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700295/1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-C",
@@ -1163,7 +1181,8 @@
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCAID2ND\": 12.66}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-D",
@@ -1177,7 +1196,8 @@
    "evidence": "dry run 11:3xZ: 8 visit(s) settle, {\"WOCLTREQ\": 140.93}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-E",
@@ -1191,7 +1211,8 @@
    "evidence": "dry run 11:3xZ: 21 visit(s) settle, {\"WOCLTREQ\": 1569.51}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-F",
@@ -1205,7 +1226,8 @@
    "evidence": "dry run 11:3xZ: 4 visit(s) settle, {\"WOCLTREQ\": 84.72}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-G",
@@ -1219,7 +1241,8 @@
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 15.6}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-H",
@@ -1233,7 +1256,8 @@
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 12.89}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-I",
@@ -1247,7 +1271,8 @@
    "evidence": "dry run 11:3xZ: 3 visit(s) settle, {\"WOCLTREQ\": 84.32}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-J",
@@ -1261,7 +1286,8 @@
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 35.01}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-K",
@@ -1275,7 +1301,8 @@
    "evidence": "dry run 11:3xZ: 6 visit(s) settle, {\"WOCLTREQ\": 127.95}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-L",
@@ -1289,7 +1316,8 @@
    "evidence": "dry run 11:3xZ: 9 visit(s) settle, {\"WOINS\": 299.39, \"WOCLTREQ\": 154.37}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOINS/WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   },
   {
    "id": "A-2026-10-15T1110Z-M",
@@ -1303,7 +1331,8 @@
    "evidence": "dry run 11:3xZ: 11 visit(s) settle, {\"WOCLTREQ\": 211.41, \"WOINS\": 105.06}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier VACCN, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ/WOINS, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T2302Z (go)"
   }
  ]
 }
