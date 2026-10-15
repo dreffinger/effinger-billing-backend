@@ -895,8 +895,8 @@
    "evidence_file": "registers/excl_2026-10-15T0310Z_dry.json",
    "evidence": "dry run read the visit live: both charges carry the HUM01 payment of 11/26/2024 (check 147569600241201), insurance balance 105.54 / 70.66, patient balance 0, last billed UNI20 10/13/2026; AMD 271 x3 (HUM01 [name]02 AAA 72, UNI20 INACTIVE), Stedi MBI lookup AAA 72, Stedi discovery 502",
    "ui": "Patient > Transactions > visit 19394861 > the 99306 charge: Payment Entry > write-off WOCLTREQ 105.54, check # EXCL1015, note 'MA cost-share after Humana primary, no supplement on the DOS'; the 99497 charge: write-off WOCLTREQ 70.66 the same way. Then Claims Center > Exclusions > run 1700296 > Complete the chart-17471414 row (claim 19394861B).",
-   "status": "waiting",
-   "answer": null,
+   "status": "done",
+   "answer": "2026-10-15T03:47Z applied in the cascade session on William's go (page approval 03:36Z): excl_1015_0310.py --live - live read matched the 03:2xZ read (HUM01 paid 150.46 + 62.34 on 09/09/2026 check 147569600241201, insbal 105.54 / 70.66, patbal 0); manual_post WOCLTREQ 105.54 on charge 22467665 and 70.66 on charge 22467666 under HUM01 (check EXCL1015, pay 0.00) both success; hideexclusions run 1700296 claim 19394861B OK; after: both charges insbal 0.00 patbal 0.00. Register registers/excl_2026-10-15T0310Z_go.json",
    "note": "applying 2026-10-15T0344Z (go)"
   }
  ]
