@@ -1094,6 +1094,34 @@
    "ui": "Patient 17477183 > visits 19457790 and 19457788 > transfer each charge balance to patient responsibility; Claims Center > Unbilled > Complete the 2 rows",
    "status": "waiting",
    "answer": null
+  },
+  {
+   "id": "A-2026-10-15T0510Z-O",
+   "stamp": "2026-10-15T0510Z",
+   "at": "2026-10-15T06:09:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1015_0510.py --live --only A",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions].",
+   "what": "Exclusions run 1700302 - 28 Florida Blue SECONDARY claims of 2022-2023 (charts 45075 x2, 45578, 45693, 46975, 20165, 12179674 x7, 12235828 x7, 17468781 x5, 17469037 x2, 17469045) rejected again 'PREF0283 MISSING PAYER DOC CONTROL NUM' after the 10/14 resend as originals; every one carries its Medicare / UHC primary payment of 2022-2024 (older than 12 months), so the secondary window is closed: WOINS the open insurance balance on each charge (31 charges, $1,223.76, check UNTIMELY1015, dated note) and complete the 28 exclusion rows - the 10/13 aged-A/R rule and chat rule 9 (the same decision William approved on card A-2026-10-14T1910Z-C for charts 25416 / 47643)",
+   "dollars": "$1223.76",
+   "evidence_file": "registers/excl_1015_0510_dry.json",
+   "evidence": "dry run: 28 rows, last primary payment 10/2022-03/2024 on every one, open balances 12.89-185.09 per visit, total 1223.76",
+   "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700302 > Complete the 28 rows (list in registers/excl_1015_0510_dry.json)",
+   "status": "waiting",
+   "answer": null
+  },
+  {
+   "id": "A-2026-10-15T0510Z-P",
+   "stamp": "2026-10-15T0510Z",
+   "at": "2026-10-15T06:09:44Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1015_0510.py --live --only C",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions].",
+   "what": "Exclusions run 1700294 - 8 Aetna (AET07) SECONDARY claims of 2022-2023 on charts 46253 (x2) and 12233870 (x6) answered by Aetna 'ACK RETURNED AS UNPROCESSABLE - rejected, not entered into adjudication' on the 10/13 resend; the primary (Medicare 02/2023, Humana 12/2023-03/2024) paid more than 12 months ago, secondary window closed: WOINS the open balance on each charge (9 charges, $338.13, check UNTIMELY1015, dated note) and complete the 8 rows",
+   "dollars": "$338.13",
+   "evidence_file": "registers/excl_1015_0510_dry.json",
+   "evidence": "dry run: 8 rows, last primary payment 02/2023-03/2024, open balances 21.76-147.54 per visit, total 338.13",
+   "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700294 > Complete the 8 rows",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
