@@ -866,7 +866,8 @@
    "evidence": "dry run: all 7 plans carry car6404 with 11-digit AARP member ids; AMD 271 files patient_db/<chart>/amd271_<ins>.json name AARP on every plan; every visit has Medicare paid, insurance balance = the coinsurance, patient balance 0",
    "ui": "Per chart: Patient > Insurance > the AARP plan (now carrier UNI20) > change Carrier to AAR01 (AARP), Save, confirm the patient order stays Medicare first. Then Claims Center > the visit > Rebill (frequency 1) to the AARP sequence; Exclusions > runs 1700296 / 1700297 > Complete the 8 rows.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T0339Z (go)"
   },
   {
    "id": "A-2026-10-14T1910Z-C",
