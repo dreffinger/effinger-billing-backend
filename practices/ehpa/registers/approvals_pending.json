@@ -896,7 +896,8 @@
    "evidence": "dry run read the visit live: both charges carry the HUM01 payment of 11/26/2024 (check 147569600241201), insurance balance 105.54 / 70.66, patient balance 0, last billed UNI20 10/13/2026; AMD 271 x3 (HUM01 [name]02 AAA 72, UNI20 INACTIVE), Stedi MBI lookup AAA 72, Stedi discovery 502",
    "ui": "Patient > Transactions > visit 19394861 > the 99306 charge: Payment Entry > write-off WOCLTREQ 105.54, check # EXCL1015, note 'MA cost-share after Humana primary, no supplement on the DOS'; the 99497 charge: write-off WOCLTREQ 70.66 the same way. Then Claims Center > Exclusions > run 1700296 > Complete the chart-17471414 row (claim 19394861B).",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T0344Z (go)"
   }
  ]
 }
