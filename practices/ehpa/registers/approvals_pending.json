@@ -881,6 +881,20 @@
    "ui": "Per charge: Patient > Transactions > the charge > Payment Entry > write-off WOINS for the open insurance balance, note 'secondary window closed - Medicare remit <date>', check # EXCL1014. Then Exclusions > runs 1700296 / 1700297 > Complete the 9 chart-25416 / 47643 rows.",
    "status": "waiting",
    "answer": null
+  },
+  {
+   "id": "A-2026-10-15T0310Z-A",
+   "stamp": "2026-10-15T0310Z",
+   "at": "2026-10-15T03:27:43Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1015_0310.py --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Real-World Transactions]. (the live run of excl_1015_0310.py at 03:3xZ; its dry run ran and matched the live read)",
+   "what": "Exclusions column, claim run 1700296: chart 17471414 visit 19394861 (99306 + 99497, DOS 03/18/2024, claim 19394861B) rejected by UNITED HEALTHCARE 'ACK RETURNED AS UNPROCESSABLE / MEMBER PICK REJECT' - the 10/13 BILL-SECONDARY send. Live read: Humana (HUM01, a Medicare Advantage plan, seq 1) paid the visit as primary on 11/26/2024 (150.46 + 62.34, CO-45 / CO-253); the leftover 105.54 + 70.66 = 176.20 is the MA cost-share. The chart's UNI20 plan answers INACTIVE on AMD's 271 and UHC does not know the member; the Medicare plan answers AAA 72 on AMD's 271 and on the Stedi MBI lookup; Stedi discovery answered 502. No supplement was in force on the DOS (a Medigap never pays MA cost-share). Action = William's 10/13 rule (nothing stays on the patient balance; MA cost-share with no supplement -> WOCLTREQ, the cards_ab_1014 code): manual_post WOCLTREQ 105.54 on charge 22467665 and 70.66 on charge 22467666 under HUM01 (check EXCL1015, pay 0.00), then complete the one exclusion row on run 1700296. No rebill, no plan edit. Result once done: $176.20 written off WOCLTREQ, visit balance 0, the row leaves the Exclusions column.",
+   "dollars": "$176.20 WOCLTREQ",
+   "evidence_file": "registers/excl_2026-10-15T0310Z_dry.json",
+   "evidence": "dry run read the visit live: both charges carry the HUM01 payment of 11/26/2024 (check 147569600241201), insurance balance 105.54 / 70.66, patient balance 0, last billed UNI20 10/13/2026; AMD 271 x3 (HUM01 [name]02 AAA 72, UNI20 INACTIVE), Stedi MBI lookup AAA 72, Stedi discovery 502",
+   "ui": "Patient > Transactions > visit 19394861 > the 99306 charge: Payment Entry > write-off WOCLTREQ 105.54, check # EXCL1015, note 'MA cost-share after Humana primary, no supplement on the DOS'; the 99497 charge: write-off WOCLTREQ 70.66 the same way. Then Claims Center > Exclusions > run 1700296 > Complete the chart-17471414 row (claim 19394861B).",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
