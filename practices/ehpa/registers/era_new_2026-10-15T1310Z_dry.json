@@ -1,0 +1,92 @@
+{
+ "stamp": "2026-10-15T1310Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053182",
+   "checkclaimid": 15446754,
+   "visitid": "19443859",
+   "pid": "23083",
+   "chargedetailid": "23352380",
+   "cpt": "99309",
+   "dos": "2026-05-28",
+   "paid": 82.95,
+   "carcs": [
+    "CO45",
+    "PI253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/08/2026"
+   },
+   "pay": 82.95,
+   "wo": 58.05,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "WEL04",
+   "outcome": "DRY would post pay 82.95 + WOINS 58.05 (bal 141.00)"
+  },
+  {
+   "checkid": "1053182",
+   "checkclaimid": 15446755,
+   "visitid": "19443011",
+   "pid": "23083",
+   "chargedetailid": "23351281",
+   "cpt": "99306",
+   "dos": "2026-05-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO252"
+   ],
+   "rarcs": [
+    "M127"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 0.0,
+    "insbal": 256.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO252'] ['M127'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053182",
+   "checkclaimid": 15446755,
+   "visitid": "19443011",
+   "pid": "23083",
+   "chargedetailid": "23351282",
+   "cpt": "99497",
+   "dos": "2026-05-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO252"
+   ],
+   "rarcs": [
+    "M127"
+   ],
+   "claimstatus": 0,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "WEL04",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO252'] ['M127'] (denial handling / board)"
+  }
+ ],
+ "wolate": []
+}

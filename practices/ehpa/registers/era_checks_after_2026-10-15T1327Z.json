@@ -1,0 +1,48 @@
+{
+ "tag": "after",
+ "stamp": "2026-10-15T1327Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053116,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-10T22:42:41.423",
+   "depositdate": "2026-09-21T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "UNITEDHEALTHCARE SERVICES INC AND ITS AFFILIATES",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "W0020208",
+   "paymentamount": 168.59,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 168.59,
+   "unpostedamount": 71.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053182,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-15T04:59:07.103",
+   "depositdate": "2026-10-14T00:00:00",
+   "eracarrierid": "1844",
+   "eracarriername": "AMERICAN PROGRESSIVE LIFE & HEALTH",
+   "hasnote": false,
+   "systemcarrierid": 6174,
+   "systemcarriercode": "WEL04",
+   "systemcarriername": "WELLCARE",
+   "paymentnumber": "1003843664",
+   "paymentamount": 82.95,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 82.95,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}
