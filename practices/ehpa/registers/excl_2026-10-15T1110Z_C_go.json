@@ -1,0 +1,72 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "C": {
+   "pid": "24214",
+   "code": "WOCAID2ND",
+   "why": "Humana H06414087 = Medicaid managed care (271 'MC MEDICAID GATE CAP DIR'); Medicare paid 03/2024; Humana answered POLICY CANCELED",
+   "visits": [
+    {
+     "vid": "19369446",
+     "claim": "19369446B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22437615",
+       "cpt": "99308",
+       "insbal": 12.66,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 12.66,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:16:16\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22437615": {
+       "cpt": "99308",
+       "fee": 107.0,
+       "paid": 107.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -49.98,
+         "814024477",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "NO-PAY-202312120004543",
+         "HUM01",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:16:18\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

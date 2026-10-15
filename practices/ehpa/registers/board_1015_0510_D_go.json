@@ -1,0 +1,12 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "D": [
+   "visit vst19457091 insorder 2 proccode pcode601053 paid None -> order 1,2 seq 1",
+   "recode saved: changed 1 live now [('charge23368913', 'pcode65142')] insorder 1,2",
+   "freq1 -> freq1 + rebill seq 1 -> 204",
+   "patient order 1,2 -> True insorder 1,2 via ins6005745 -> '1,2'"
+  ]
+ }
+}

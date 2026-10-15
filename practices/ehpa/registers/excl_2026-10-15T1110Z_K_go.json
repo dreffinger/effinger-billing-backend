@@ -1,0 +1,78 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "K": {
+   "pid": "17470977",
+   "code": "WOCLTREQ",
+   "why": "Humana H67602920 INACTIVE and already answered $0 NO-PAY twice; Medicare paid 03/2024; no supplement in force",
+   "visits": [
+    {
+     "vid": "19373024",
+     "claim": "19373024B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22440710",
+       "cpt": "99223",
+       "insbal": 35.01,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 35.01,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:12\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22440710": {
+       "cpt": "99223",
+       "fee": 310.0,
+       "paid": 310.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -138.26,
+         "814345174",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "NO-PAY-202402130004620",
+         "HUM01",
+         "0"
+        ],
+        [
+         0.0,
+         "NO-PAY-202402080006787",
+         "HUM01",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:14\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

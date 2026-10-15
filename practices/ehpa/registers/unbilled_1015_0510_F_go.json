@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "F": [
+   "mspcode 12 on ins9510095 -> True f-hb5kb\" lst=\"10/15/2026 16:09:07\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+   "readback mspcode: ['12'] insorder ['1,2']",
+   "v19457792 ['99223'] -> hospitalizationfrom 10/12/2026 on ['99223']",
+   "v19457792 resave vst19457792 live 1/1 insorder=1,2 onhcfa=1 preauth=None hospfrom=10/12/2026",
+   "v19457781 ['99232'] -> hospitalizationfrom 10/12/2026 on ['99232']",
+   "v19457781 resave vst19457781 live 1/1 insorder=1,2 onhcfa=1 preauth=None hospfrom=10/12/2026",
+   "release -> [('19457792', 'released'), ('19457781', 'released')]"
+  ]
+ }
+}

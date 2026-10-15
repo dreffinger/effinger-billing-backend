@@ -1,0 +1,332 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "L": {
+   "pid": "17471428",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare paid 09/2026; no supplement in force",
+   "visits": [
+    {
+     "vid": "19382146",
+     "claim": "19382146F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450728",
+       "cpt": "99223",
+       "insbal": 34.48,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 34.48,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:21\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22450729",
+       "cpt": "99497",
+       "insbal": 14.97,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 14.97,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:24\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22450728": {
+       "cpt": "99223",
+       "fee": 310.0,
+       "paid": 310.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -135.14,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      },
+      "22450729": {
+       "cpt": "99497",
+       "fee": 133.0,
+       "paid": 133.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -58.67,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19382251",
+     "claim": "19382251F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450851",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:28\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22450851": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.54,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19382300",
+     "claim": "19382300F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450910",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:31\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22450910": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.54,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19382355",
+     "claim": "19382355F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22450938",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:35\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22450938": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.54,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19382457",
+     "claim": "19382457F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22451013",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:39\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22451013": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.54,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19382458",
+     "claim": "19382458F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22451014",
+       "cpt": "99232",
+       "insbal": 15.7,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.7,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:43\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22451014": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.54,
+         "815613467",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 6,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:23:45\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

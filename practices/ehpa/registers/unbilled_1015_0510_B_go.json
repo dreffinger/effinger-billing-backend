@@ -1,0 +1,22 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "B": [
+   "12/2025 charges [('23332036', '19426013', '99223', '12/10/2025', '310.00', '0.00', None), ('23332137', '19426109', '99232', '12/12/2025', '111.00', '0.00', None), ('23332150', '19426121', '99232', '12/11/2025', '111.00', '0.00', None), ('23332267', '19426209', '99232', '12/14/2025', '111.00', '0.00', None), ('23332277', '19426219', '99232', '12/13/2025', '111.00', '0.00', None)]",
+   "add_ins -> ins9520863 2",
+   "patient order 2 -> True insorder 2 via ins9520863 -> '2'",
+   "v19426013 resave vst19426013 live 1/1 insorder=2 onhcfa=1 preauth=None hospfrom=12/10/2025",
+   "v19426013 freq1 -> freq1 + rebill seq 2 -> 204",
+   "v19426109 resave vst19426109 live 1/1 insorder=2 onhcfa=1 preauth=None hospfrom=12/10/2025",
+   "v19426109 freq1 -> freq1 + rebill seq 2 -> 204",
+   "v19426121 resave vst19426121 live 1/1 insorder=2 onhcfa=1 preauth=None hospfrom=12/10/2025",
+   "v19426121 freq1 -> freq1 + rebill seq 2 -> 204",
+   "v19426209 resave vst19426209 live 1/1 insorder=2 onhcfa=1 preauth=None hospfrom=12/10/2025",
+   "v19426209 freq1 -> freq1 + rebill seq 2 -> 204",
+   "v19426219 resave vst19426219 live 1/1 insorder=2 onhcfa=1 preauth=None hospfrom=12/10/2025",
+   "v19426219 freq1 -> freq1 + rebill seq 2 -> 204",
+   "release -> [('19426013', 'released'), ('19426109', 'released'), ('19426121', 'released'), ('19426209', 'released'), ('19426219', 'released')]"
+  ]
+ }
+}

@@ -1,0 +1,10 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "B": [
+   "c23366951 move_to_ins -> moved 206.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '1'}",
+   "c23366951 WONCS 206.00 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:02:51\"><Results success=\"1\" paymentid=\"10175298\" /><Error /></PPMDResult"
+  ]
+ }
+}

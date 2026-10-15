@@ -1,0 +1,11 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "G": [
+   "order 1,2 via ins2246 -> False insorder 1,2 via ins2246 -> '1,3' | insorder 1,2 via ins8012 -> '1,3' | insorder 1,2 NOT set - check the chart",
+   "fourth plan -> ins9520861 4",
+   "order 1,4 via ins9520861 -> True insorder 1,4 via ins9520861 -> '1,4'"
+  ]
+ }
+}

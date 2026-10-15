@@ -1,0 +1,1375 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "B": {
+   "pid": "17475638",
+   "code": "WOCAID2ND",
+   "why": "Humana H65699623 = Medicaid managed care (271 'MC MEDICAID GATE CAP DIR'); Medicare paid 05-06/2026; Humana answered POLICY CANCELED on the 2026 crossover claims",
+   "visits": [
+    {
+     "vid": "19434941",
+     "claim": "19434941B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23341920",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:13:54\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23341920": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19435825",
+     "claim": "19435825B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342795",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:13:57\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23342795": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19435848",
+     "claim": "19435848B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342818",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:04\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23342818": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19435855",
+     "claim": "19435855B",
+     "run": "1700295",
+     "charges": [
+      {
+       "cid": "23342826",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:08\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23342826": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19436812",
+     "claim": "19436812B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23343860",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:13\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23343860": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19436959",
+     "claim": "19436959B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344008",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:14:17\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23344008": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19437177",
+     "claim": "19437177B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344253",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:20\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23344253": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818887480",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19437354",
+     "claim": "19437354B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23344493",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:24\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23344493": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818936469",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19438043",
+     "claim": "19438043B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345134",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:14:28\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23345134": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818936469",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19438646",
+     "claim": "19438646B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345880",
+       "cpt": "99487",
+       "insbal": 16.14,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.14,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:32\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23345881",
+       "cpt": "99489",
+       "insbal": 8.92,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 8.92,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:34\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23345880": {
+       "cpt": "99487",
+       "fee": 206.0,
+       "paid": 206.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -63.28,
+         "818953678",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      },
+      "23345881": {
+       "cpt": "99489",
+       "fee": 109.0,
+       "paid": 109.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -34.95,
+         "818953678",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19438697",
+     "claim": "19438697B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23345963",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:14:38\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23345963": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818953678",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19439036",
+     "claim": "19439036B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23346385",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:41\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23346385": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "818969062",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19439666",
+     "claim": "19439666B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347285",
+       "cpt": "99487",
+       "insbal": 16.14,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.14,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:14:45\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23347286",
+       "cpt": "99489",
+       "insbal": 8.92,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 8.92,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:14:47\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23347285": {
+       "cpt": "99487",
+       "fee": 206.0,
+       "paid": 206.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -63.28,
+         "819006389",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      },
+      "23347286": {
+       "cpt": "99489",
+       "fee": 109.0,
+       "paid": 109.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -34.95,
+         "819006389",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19439721",
+     "claim": "19439721B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347365",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:52\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23347365": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819006389",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19439914",
+     "claim": "19439914B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347558",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:14:56\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23347558": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819034734",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19440285",
+     "claim": "19440285B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23347943",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:15:00\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23347943": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819034734",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19441019",
+     "claim": "19441019B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23348816",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:03\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23348816": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819087561",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442003",
+     "claim": "19442003B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349989",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:15:07\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23349989": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819134653",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442004",
+     "claim": "19442004B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349990",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:11\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23349990": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819134653",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442005",
+     "claim": "19442005B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23349991",
+       "cpt": "99309",
+       "insbal": 16.93,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 16.93,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:15:15\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23349991": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -66.36,
+         "819134653",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442156",
+     "claim": "19442156B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350140",
+       "cpt": "99223",
+       "insbal": 31.94,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 31.94,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:15:19\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "23350141",
+       "cpt": "99497",
+       "insbal": 13.35,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 13.35,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:21\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23350140": {
+       "cpt": "99223",
+       "fee": 310.0,
+       "paid": 310.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -125.2,
+         "819143558",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      },
+      "23350141": {
+       "cpt": "99497",
+       "fee": 133.0,
+       "paid": 133.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -52.33,
+         "819143558",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442738",
+     "claim": "19442738B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350982",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:25\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23350982": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819161479",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442739",
+     "claim": "19442739B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23350983",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:29\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23350983": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819161479",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442965",
+     "claim": "19442965B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351232",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:15:33\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23351232": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819181081",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442983",
+     "claim": "19442983B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351250",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:15:37\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23351250": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819181081",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19442995",
+     "claim": "19442995B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351264",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:15:41\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23351264": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819181081",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19443020",
+     "claim": "19443020B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "23351289",
+       "cpt": "99232",
+       "insbal": 14.38,
+       "steps": [
+        {
+         "code": "WOCAID2ND",
+         "amt": 14.38,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:15:45\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "23351289": {
+       "cpt": "99232",
+       "fee": 111.0,
+       "paid": 111.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -56.37,
+         "819181081",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700295": {
+     "n": 4,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:15:47\"><Results success=\"1\" /><E"
+    },
+    "1700296": {
+     "n": 23,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:15:47\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

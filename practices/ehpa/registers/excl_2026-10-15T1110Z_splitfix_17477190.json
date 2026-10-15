@@ -1,0 +1,80 @@
+{
+ "stamp": "2026-10-15T2327Z go split fix",
+ "pid": "17477190",
+ "live": true,
+ "steps": [
+  {
+   "vid": "19451201",
+   "cid": "23361203",
+   "expect": 16.93,
+   "live_insbal": "0.00",
+   "live_patbal": "16.93",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:27:17\"><Results success=\"1\" paym"
+   ],
+   "result": "settled"
+  },
+  {
+   "vid": "19453807",
+   "cid": "23364716",
+   "expect": 11.59,
+   "live_insbal": "0.00",
+   "live_patbal": "11.59",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:27:21\"><Results success=\"1\" paym"
+   ],
+   "result": "settled"
+  },
+  {
+   "vid": "19455738",
+   "cid": "23367153",
+   "expect": 16.14,
+   "live_insbal": "0.00",
+   "live_patbal": "16.14",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:27:24\"><Results success=\"1\" paym"
+   ],
+   "result": "settled"
+  },
+  {
+   "vid": "19455738",
+   "cid": "23367154",
+   "expect": 8.92,
+   "live_insbal": "0.00",
+   "live_patbal": "8.92",
+   "post": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:27:27\"><Results success=\"1\" paym"
+   ],
+   "result": "settled"
+  }
+ ],
+ "hidden": {
+  "1700296": {
+   "n": 3,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:27:28\"><Results success=\"1\" /><E"
+  }
+ },
+ "after": {
+  "23361203": [
+   "0.00",
+   "0.00"
+  ],
+  "23364716": [
+   "0.00",
+   "0.00"
+  ],
+  "23367153": [
+   "0.00",
+   "0.00"
+  ],
+  "23367154": [
+   "0.00",
+   "0.00"
+  ]
+ }
+}

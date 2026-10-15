@@ -1,0 +1,250 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "A": [],
+ "B": [],
+ "C": [
+  {
+   "run": "1700294",
+   "vid": "38462",
+   "claimid": "38462F",
+   "pid": "46253",
+   "carrier": "AET07",
+   "dos": "11/21/2022",
+   "last_primary_pay": "2023-02-16",
+   "open": 22.78,
+   "steps": [
+    [
+     "18798",
+     "99336",
+     22.78,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "47467",
+   "claimid": "47467F",
+   "pid": "46253",
+   "carrier": "AET07",
+   "dos": "01/13/2023",
+   "last_primary_pay": "2023-02-18",
+   "open": 21.76,
+   "steps": [
+    [
+     "20959900",
+     "99349",
+     21.76,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "14018620",
+   "claimid": "14018620C",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "05/23/2023",
+   "last_primary_pay": "2023-12-02",
+   "open": 147.54,
+   "steps": [
+    [
+     "21339475",
+     "99309",
+     52.44,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/"
+    ],
+    [
+     "21339476",
+     "99497",
+     95.1,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "14019084",
+   "claimid": "14019084C",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "05/26/2023",
+   "last_primary_pay": "2023-12-02",
+   "open": 25.31,
+   "steps": [
+    [
+     "21340068",
+     "99308",
+     25.31,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "14028500",
+   "claimid": "14028500C",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "06/14/2023",
+   "last_primary_pay": "2023-12-02",
+   "open": 25.31,
+   "steps": [
+    [
+     "21346337",
+     "99308",
+     25.31,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "14028705",
+   "claimid": "14028705C",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "06/16/2023",
+   "last_primary_pay": "2023-12-02",
+   "open": 25.31,
+   "steps": [
+    [
+     "21346592",
+     "99308",
+     25.31,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "19358770",
+   "claimid": "19358770C",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "06/20/2023",
+   "last_primary_pay": "2023-12-02",
+   "open": 25.31,
+   "steps": [
+    [
+     "22423386",
+     "99308",
+     25.31,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700294",
+   "vid": "19365434",
+   "claimid": "19365434B",
+   "pid": "12233870",
+   "carrier": "AET07",
+   "dos": "06/22/2023",
+   "last_primary_pay": "2024-03-10",
+   "open": 44.81,
+   "steps": [
+    [
+     "22431510",
+     "99316",
+     44.81,
+     true,
+     "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/"
+    ]
+   ],
+   "hide": true
+  }
+ ],
+ "held": [
+  {
+   "run": "1700294",
+   "vid": "19399931",
+   "claimid": "19399931D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/03/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399932",
+   "claimid": "19399932D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/02/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399933",
+   "claimid": "19399933D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/01/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399934",
+   "claimid": "19399934D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "01/31/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 33.75,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19400003",
+   "claimid": "19400003D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/04/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19455937",
+   "claimid": "19455937B",
+   "pid": "24750",
+   "carrier": "AET12",
+   "dos": "09/20/2026",
+   "last_primary_pay": "2026-10-07",
+   "open": 44.09,
+   "why": "carrier CPID hold"
+  }
+ ],
+ "hidden": {
+  "1700294": {
+   "n": 8,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:21:56\"><Results success=\"1\" /><E"
+  }
+ }
+}

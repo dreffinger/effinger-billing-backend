@@ -97,3 +97,13 @@ William approved A-2026-10-14T1910Z-B, A-2026-10-14T1910Z-C and A-2026-10-15T031
 - **0310Z-A** (f9cfc56 / ddcf2a2): WOCLTREQ 105.54 + 70.66 under HUM01 (check EXCL1015), the one exclusion row hidden; both charges read back at $0.
 
 Registers `practices/ehpa/registers/excl_2026-10-14T1910Z_{B,C}_go.json` (+ `_verify`) and `excl_2026-10-15T0310Z_go.json`; addendum `nightly/runs/2026-10-15T0310Z/go_addendum_2026-10-15T0347Z.md`. Trap met: `excl_1014_1910.py --only B` and `--only C` write the same register file - copy it to a per-card name between runs.
+
+## 10/15 go #2 (cascade session, ask mode, 23:02-23:28Z)
+
+William approved all 29 waiting cards at 21:38-21:39Z and said "go" here. One claim-first commit for all 29 (aca358f, eight minutes
+ahead of the 2310Z run), the card scripts from main one card per call, done on main (01c686f) and on the page: 28 of 29 applied,
+$10,508.02 in 26 minutes. Not applied: A-2026-10-15T0510Z-K (chart 17478062) - the Stedi MBI lookup answered AAA 72 here on every
+variant; its claim was released so the next 2-hourly run applies it from its own lookup file. Two traps and their fixes are in
+`nightly/runs/2026-10-15T1110Z/go_addendum_2026-10-15T2328Z.md`: PHI-gated script inputs (lookup files, read files) must be
+rebuilt in this workspace and dry-run compared before `--live`; split WOINS/WOCLTREQ lines put the PR share on the patient balance,
+settled patient-side with `scripts/helpers/excl_1110_split_fix.py`.
