@@ -881,7 +881,8 @@
    "evidence": "dry run read every charge live: insurance balance as listed, patient balance 0, last billed UNI20 10/13/2026, Medicare paid 2022-2023",
    "ui": "Per charge: Patient > Transactions > the charge > Payment Entry > write-off WOINS for the open insurance balance, note 'secondary window closed - Medicare remit <date>', check # EXCL1014. Then Exclusions > runs 1700296 / 1700297 > Complete the 9 chart-25416 / 47643 rows.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-15T0342Z (go)"
   },
   {
    "id": "A-2026-10-15T0310Z-A",
