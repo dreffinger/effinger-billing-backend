@@ -865,8 +865,8 @@
    "evidence_file": "registers/excl_2026-10-14T1910Z_dry.json",
    "evidence": "dry run: all 7 plans carry car6404 with 11-digit AARP member ids; AMD 271 files patient_db/<chart>/amd271_<ins>.json name AARP on every plan; every visit has Medicare paid, insurance balance = the coinsurance, patient balance 0",
    "ui": "Per chart: Patient > Insurance > the AARP plan (now carrier UNI20) > change Carrier to AAR01 (AARP), Save, confirm the patient order stays Medicare first. Then Claims Center > the visit > Rebill (frequency 1) to the AARP sequence; Exclusions > runs 1700296 / 1700297 > Complete the 8 rows.",
-   "status": "waiting",
-   "answer": null,
+   "status": "done",
+   "answer": "2026-10-15T03:42Z applied in the cascade session on William's go (page approval 03:36Z): excl_1014_1910.py --live --only B - 7 AARP Medigap plans moved car6404 UNI20 -> car6600 AAR01 (updateinsurance carrier only), 8 visits re-routed Medicare first / Medigap second with ONE frequency-1 rebill each (chargerebill 204 x8: v19455684, v19455934, v19455955, v19455674, v19455686, v19455710, v19455938, v19449794), hideexclusions runs 1700296 (4) + 1700297 (4) OK; verified live after: 17471451 car6600 order '1,2' (was '1,2'); 17473432 car6600 order '1,2' (was '1,2'); 17469426 car6600 order '1,2' (was '1,2'); 17471495 car6600 order '1,2' (was '1,2'); 17472732 car6600 order '1' (was '1'); 17476917 car6600 order '1' (was '1'); 17471496 car6600 order '2,1' (was '2,1'). Register registers/excl_2026-10-14T1910Z_B_go.json",
    "note": "applying 2026-10-15T0339Z (go)"
   },
   {
