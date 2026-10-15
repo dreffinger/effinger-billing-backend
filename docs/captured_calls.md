@@ -4668,3 +4668,15 @@ No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 - Boards: drops 0, Working Denials queue 0, Mandatory Approvals 0 approved / 29 waiting. board_updates_2026-10-15T1310Z.json (2 ops) -> board inbox; registry 'applied' map unchanged since 9/20 - nothing trashed.
 - Permission classifier: no refusal this run (era_new_1015_1310.py --live allowed; no other AMD write attempted).
 - Calls: no new call shape (login, columns scan, gettxhistory, getdemographic, GET /api/era/checks + checkdetails, addpayments postingmethod=era, 276/277 via Stedi). Helper added: era_new_1015_1310.py (stamp copy of era_new_1015_1110.py).
+
+# captured_calls additions - 2026-10-15 1510 UTC (11 AM ET) backend billing run, ehpa cloud (repo attached)
+
+No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+## Run notes
+- Columns (list calls) 0/5/28/141 -> 0/5/28/141; ERA Center 1 check $71.00 unposted before and after (1053116 held for William's takeback decision). No AMD write this slot.
+- Charge Review 0. Claim Inspector 5 standing holds unchanged. Unbilled 28 unchanged (cards H/J/K/L/M/N waiting; pat17478059 / pat17478064 CHP ids and pat17478063 facesheet on William's turn - the four zero-plan charts re-read live, still no plan). Exclusions 141 unchanged: 99 Humana / VA CCN rows on cards A-2026-10-15T1110Z-A..M, 28 BCBS PREF0283 (card O), 8 AET07 (card P), 5 AET07 pat17472859 held, 1 AET12 pat24750 held. No new claim run since 1700302.
+- ERA: no new 835, no Availity file; nothing posted or cleared. UNI20/BCBS pre-5/1 sweep pass 105: 17 asked - 16 PENDING (pat17472874 $2,563), 1 UNKNOWN (pat17475632 v19433791); 0 candidates, 0 sent.
+- Boards: drops 0, Working Denials queue 0, Mandatory Approvals 0 approved / 29 waiting. board_updates_2026-10-15T1510Z.json (1 op) -> board inbox; registry 'applied' map unchanged since 9/20 - nothing trashed.
+- Permission classifier: no AMD write attempted, no refusal.
+- Calls: no new call shape (login, columns scan, getdemographic, GET /api/era/checks, 276/277 via Stedi). Helpers added: report_1015_1510.py (read-only report builder), sweep_eval_1015_1510.py (stamp copy of sweep_eval_1014_1910.py).
