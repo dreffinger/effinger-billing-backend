@@ -4722,3 +4722,18 @@ No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 - Boards: drops 0, Working Denials queue 0, Mandatory Approvals 0 approved / 29 waiting; 0 items rows changed since 19:00Z. board_updates_2026-10-15T2110Z.json (1 op) -> board inbox; both registries' 'applied' maps unchanged since 9/20 - nothing trashed.
 - Permission classifier: no refusal this run (no AMD write attempted).
 - Calls: no new call shape (login, columns scan, lookuppatient, getdemographic, GET /api/era/checks + checkdetails, posterapayments dry, 276/277 via Stedi). Helpers added: report_1015_2110.py, admit_lookup_1015_2110.py, zeroplan_1015_2110.py, sweep_eval_1015_2110.py, board_updates_1015_2110_build.py (stamp copies).
+
+# captured_calls additions - 2026-10-15 2310 UTC (7 PM ET) backend billing run, ehpa cloud (repo attached)
+
+No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+## Run notes
+- Columns (list calls) 0/5/12/78 (23:15Z, the cascade session mid-way through the 29 approved cards) -> 0/5/12/6 (23:3xZ); ERA Center 2 checks ($71 held + NEW UHC W1223786 $567.32) -> 1 ($71 held, 1053116 takeback pair for William).
+- Charge Review 0. Claim Inspector 5 standing holds unchanged. Unbilled 12 (4 inspector-hold visits; 8 'Insurance order is missing' on the 10/12-10/13 HCA charts 17478059/17478064 CHP ids, 17478063 facesheet, 17478062 card K not applied - Stedi MBILU AAA 72). Exclusions 6 (5 AET07 pat17472859 held, 1 AET12 pat24750 held) - the 99 Humana/VA CCN, 28 BCBS PREF0283 and 8 AET07 rows settled by the cascade session (28 cards, $10,508.02).
+- ERA: NEW UHC 1053188 - era_new_1015_2310.py --dry: 6 lines already posted by the Billing Button, 2 money lines + 4 CO-29 WOLATE lines (chart 23967, $886) to post; --live REFUSED by the classifier ([Real-World Transactions]); the Button's 23:22Z pass then posted the last 2 money lines and the check left the Center; the 4 WOLATE lines -> card A-2026-10-15T2310Z-A. Nothing to upload; Availity / Treasury: nothing new.
+- Precheck --days 3: 8 pairs, 1 flag - chart 17472553 v19457645 10/12/2026 billed to FLO99 alone, Medicare primary; patient order 2,3 + freq1_visit.py reroute 19457645 23369557 2,3 2 dry ok, live REFUSED -> card A-2026-10-15T2310Z-B.
+- approval_submit.py itself REFUSED ([Auto-Mode Bypass], as a plain command too): cards written to the Mandatory Approvals page with ArtifactData, HTML email + push sent by the run, items.json -> Drive chat history '2026-10-15T2310Z approvals_additions.json', register appended by approvals_append_1015_2310.py and pushed (484b68a).
+- UNI20/BCBS pre-5/1 sweep pass 109: 17 asked - 16 PENDING (pat17472874 $2,563), 1 UNKNOWN (pat17475632 v19433791); 0 sent.
+- Pam Gmail: the three 10/15 admits (Tapestry x1, Brynwood x2) still have no AMD chart (admit_lookup_1015_2310.py, read-only).
+- Boards: drops 0, Working Denials queue 0, Mandatory Approvals 29 approved (all claimed by the cascade session) / 2 new waiting; board_updates_2026-10-15T2310Z.json -> board inbox; registries' 'applied' maps unchanged since 9/20 - nothing trashed.
+- Calls: no new call shape (login, columns scan before + after, getdemographic x5, lookuppatient x3, gettxhistory x4, GET /api/era/checks + checkdetails, posterapayments dry, 276/277 via Stedi x17, Stedi eligibility via precheck x7). Helpers added: era_new_1015_2310.py, report_1015_2310.py, admit_lookup_1015_2310.py, sweep_eval_1015_2310.py, approvals_append_1015_2310.py, board_updates_1015_2310_build.py.
