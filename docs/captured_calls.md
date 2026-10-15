@@ -4636,3 +4636,7 @@ Lessons (reads only):
 - pat17472859 (held AET07 2025 secondaries): Florida Medicaid 77027 (10/5 shape) at DOS 20250203 -> AAA 62 Date of Service Not Within Allowable Inquiry Period (the 12-month lookback); at 20251101 -> AAA 73 name mismatch. The 2025 Medicaid status is not readable through the 271 from here.
 - UNI20/BCBS pre-5/1 pass 101: 19 asked (583 skipped by --skip-answered), 16 PENDING, 1 UNKNOWN, 1 FINALIZED $0 (F0/38), 1 E0/187 - 0 candidates, 0 sent.
 - Helpers added (workspace -> scripts/helpers via mirror.py): elig_1015_0710.py (read-only: Humana 61101 with the discovery member id read from patient_db at run time; Medicaid 77027 10/5 shape), medicaid271_1015_0710.py <pid> <dos> (read-only Medicaid 271, 10/5 shape, reusable), unbilled_1015_0710.py (chart 17478061 insure + admission + release, --dry default, --live).
+
+# captured_calls additions - 2026-10-15 0910 UTC (5 AM ET backend billing run, ehpa cloud)
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt, cached token), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus / getclaimexclusioncharges (columns_scan.py before + after), GET /api/era/checks + /api/era/checkdetails (era_list.py), Stedi 276/277 claim status (claim_status_sweep.py, 17 claims). No AdvancedMD write attempted.
