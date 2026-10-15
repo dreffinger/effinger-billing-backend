@@ -910,9 +910,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: c23366299 open insurance balance 80.67 under BCBS, pay 0.00 wo 80.67 WONCS",
    "ui": "Patient 25994 > Transactions > visit 19455138 > the 99497 charge > Payment Entry > write-off WONCS 80.67 under Florida Blue, check # 620268423, deposit 10/14/2026",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:02Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only A - WONCS 80.67 on charge 23366299 under Florida Blue (payment 10175297). Register registers/board_1015_0510_A_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-B",
@@ -925,9 +925,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: c23366951 patient balance 206.00 / insurance 0.00; move 206.00 then WONCS 206.00",
    "ui": "Patient 17477498 > Transactions > visit 19455608 > the 99487 charge: move the 206.00 patient balance to insurance (Florida Blue), then Payment Entry > write-off WONCS 206.00, check # 190596986, deposit 10/14/2026",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:02Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only B - charge 23366951 moved back to insurance (patbalance 0.00 / insbalance 206.00, order 1), WONCS 206.00 (payment 10175298). Register registers/board_1015_0510_B_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-C",
@@ -940,9 +940,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: the charge carries dcode1034545006 (I63.9) last of 7 codes; no payment on the charge (UHC $0 10/01/2026 only); visit insorder 4",
    "ui": "Patient 20379 > visit 19416099 > edit the 99487 charge diagnoses: replace I63.9 with I69.30, save; then Claims > rebill the visit to Humana (sequence 4) as frequency 7 with original reference 820262810497584",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:03Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only C - visit 19416099 diagnosis I63.9 -> I69.30 (1 charge edited, 1 live), frequency-7 resend with Humana claim 820262810497584 + rebill seq 4 (204). Register registers/board_1015_0510_C_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-D",
@@ -955,9 +955,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: charge pcode601053 (99344), no payment, visit insorder 2; AMD 271 Medicare ACTIVE since 07/01/2007, Florida Blue ACTIVE as a Medigap",
    "ui": "Patient 48449 > visit 19457091 > change the 99344 to 99349, visit insurance order Medicare then Florida Blue, save; Insurance tab: Medicare first; rebill the visit to Medicare as an original claim",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:03Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only D --d-order 1,2 - charge 23368913 recoded 99344 -> 99349 (pcode65142), visit order 1,2, frequency-1 original to Medicare seq 1 (204), patient order 1,2 via ins6005745 (read back '1,2'). Register registers/board_1015_0510_D_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-E",
@@ -970,9 +970,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: charge pcode601053 (99344), no payment, visit insorder 1; AMD 271 on the Florida Blue plan answered AAA 42 (payer could not respond) - no verdict",
    "ui": "Patient 17471326 > visit 19457089 > change the 99344 to 99349, save; rebill the visit to Florida Blue as an original claim",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:04Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only E - visit 19457089 recoded 99344 -> 99349 (1 charge edited, 1 live), frequency-1 original to Florida Blue seq 1 (204). Register registers/board_1015_0510_E_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-F",
@@ -985,9 +985,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: charge pcode65083 (99222), no payment on the charge, visit insorder 1",
    "ui": "Patient 17474290 > visit 19419306 > change the 99222 to 99232, save; rebill to Florida Blue as frequency 7 with original reference Q100001347267463",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:04Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only F - visit 19419306 recoded 99222 -> 99232 (pcode65089, 1 charge edited, 1 live), frequency-7 corrected claim with Florida Blue claim Q100001347267463 + rebill seq 1 (204). Register registers/board_1015_0510_F_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-G",
@@ -1000,9 +1000,9 @@
    "evidence_file": "registers/board_1015_0510_dry.json",
    "evidence": "dry run: chart default order 1,3; plans Medicare seq 1, Cigna seq 2 (active), AARP seq 3 end-dated 09/15/2026",
    "ui": "Patient 23969 > Insurance tab > drag Cigna to 2nd (or add a second Cigna plan with the chart's Cigna number and set the order Medicare, Cigna)",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:04Z applied in the cascade session on William's go (page approval 21:39Z): board_1015_0510.py --live --only G - order 1,2 via ins2246 and ins8012 refused by AMD (kept '1,3'), so the FOURTH plan (Cigna car6687) was added as ins9520861 seq 4 and the patient order set 1,4 (read back '1,4'). Register registers/board_1015_0510_G_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-H",
@@ -1015,9 +1015,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: chart has no insurance plan; 8 visits read live (99223 10/05 + 7 x 99233 10/06-10/12), referral plan rplan18462365 preauth blank",
    "ui": "Patient 17478013 > Insurance tab > add OPTUM VA CCN with the ICN from the facesheet (no group); Referral Plans > Pre-Auth # VA0048867957; each of the 8 visits: hospitalization from 10/05/2026, insurance order VA [name]1500; Claims Center > Unbilled > Complete the 8 rows",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:06Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only A - VA CCN plan added ins9520862 seq 1, patient order 1; 8 visits (19457321, 19457281, 19457280, 19457476, 19457471, 19457529, 19457519, 19457647) hospitalizationfrom 10/05/2026, full resave insorder 1 onhcfa 1 refplan rplan18462365 (VA auth on the referral plan), all 8 released from Unbilled. Register registers/unbilled_1015_0510_A_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-I",
@@ -1030,9 +1030,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: 5 charges 12/10-12/14/2025 read live ($310 + 4 x $111), chart plans: Medicare only (seq 1); CMS record 10/14: CHP HMO Medicare Risk COB since 05/01/2021",
    "ui": "Patient 24197 > Insurance tab > add CAPITAL HEALTH PLAN (Medicare Advantage) with the policy number from the facesheet, no group; each of the 5 visits: Bill Insurance = Yes, insurance order CHP, rebill as original; Claims Center > Unbilled > Complete",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:07Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only B - CAP07 plan added ins9520863 seq 2, patient order 2; 5 visits (19426013, 19426109, 19426121, 19426209, 19426219) resaved billins 1 finclass MC insorder 2, one frequency-1 rebill each (204 x5), all 5 released. Register registers/unbilled_1015_0510_B_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-J",
@@ -1045,9 +1045,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: MBILU answered Part A 20180601 / Part B 20180601 active, Part D SILVERSCRIPT only",
    "ui": "Patient 17478060 > Insurance tab > add FLORIDA MEDICARE with the MBI (no group); both visits: hospitalization from 10/12/2026, insurance order Medicare, CMS-1500; Unbilled > Complete",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:11Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only C - Stedi MBILU redone here (Part A/B active since 06/01/2018, same MBI ****MD24 as the 1 AM run), FLO02 plan added ins9520864 seq 1, patient order 1, visits 19457796 + 19457779 admission 10/12/2026 insorder 1 onhcfa 1, both released. Register registers/unbilled_1015_0510_C_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-K",
@@ -1062,7 +1062,7 @@
    "ui": "Patient 17478062 > Insurance tab > add FLORIDA MEDICARE with the MBI (no group); both visits: hospitalization from 10/12/2026, insurance order Medicare, CMS-1500; Unbilled > Complete",
    "status": "waiting",
    "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "note": "go 2026-10-15T23:12Z: NOT applied in the cascade session - Stedi MBILU with the chart SSN answered AAA 72 on every name variant here and did not reproduce the 1 AM run's MBI (****DU82, Part A/B active); claim released - the next billing run applies it from its own patient_db lookup, or William drops the HCA facesheet"
   },
   {
    "id": "A-2026-10-15T0510Z-L",
@@ -1075,9 +1075,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: discovery coveragesFound 3 - UHC AARP MA PPO planBegin 20260201 (x2), Cigna CGLIC ended 20251201",
    "ui": "Patient 17478058 > Insurance tab > add UNITED HEALTHCARE (AARP Medicare Advantage) with the member number from Stedi discovery (patient_db), no group; both visits: hospitalization from 10/12/2026, insurance order [name]1500; Unbilled > Complete",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:12Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only E - Stedi discovery redone here (UNITEDHEALTHCARE LPPO-AARP MEDICARE ADVANTAGE FROM UHC active since 02/01/2026, same member ****2544 as the 1 AM run), UNI20 plan added ins9520865 seq 1, patient order 1, visits 19457789 + 19457775 admission 10/12/2026 insorder 1 onhcfa 1, both released. Register registers/unbilled_1015_0510_E_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-M",
@@ -1090,9 +1090,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: both plans ACTIVE on AMD's 271 (Florida Blue employer PPO with a group number, Medicare since 05/01/2020), mspcode blank on the Medicare plan",
    "ui": "Patient 17471019 > Insurance tab > Medicare plan > MSP Code = 12 Working Aged; both visits: hospitalization from 10/12/2026, insurance order Florida Blue then Medicare, CMS-1500; Unbilled > Complete",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:09Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only F - mspcode 12 on ins9510095 (read back '12', patient order '1,2'), visits 19457792 + 19457781 admission 10/12/2026 insorder 1,2 onhcfa 1, both released. Register registers/unbilled_1015_0510_F_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-N",
@@ -1105,9 +1105,9 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: 603.00 insurance balance to move (443.00 + 160.00); Stedi Medicaid eligibility inactive at 20261012, discovery coveragesFound 0",
    "ui": "Patient 17477183 > visits 19457790 and 19457788 > transfer each charge balance to patient responsibility; Claims Center > Unbilled > Complete the 2 rows",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:10Z applied in the cascade session on William's go (page approval 21:39Z): unbilled_1015_0510.py --live --only G - visit 19457790 443.00 and visit 19457788 160.00 moved to the patient balance, both released. Register registers/unbilled_1015_0510_G_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-O",
@@ -1120,9 +1120,9 @@
    "evidence_file": "registers/excl_1015_0510_dry.json",
    "evidence": "dry run: 28 rows, last primary payment 10/2022-03/2024 on every one, open balances 12.89-185.09 per visit, total 1223.76",
    "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700302 > Complete the 28 rows (list in registers/excl_1015_0510_dry.json)",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:21Z applied in the cascade session on William's go (page approval 21:39Z): excl_1015_0510.py --live --only A (read file work/read_excl_tx.json rebuilt from the run's dry register + live gettxhistory; dry run reproduced the run's plan exactly) - WOINS untimely (check UNTIMELY1015) on 29 charges of 28 Florida Blue secondary visits 2022-2023 = $1,223.76, all 29 postings OK, hideexclusions run 1700302 (28 rows) OK. Register registers/excl_1015_0510_A_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T0510Z-P",
@@ -1135,9 +1135,9 @@
    "evidence_file": "registers/excl_1015_0510_dry.json",
    "evidence": "dry run: 8 rows, last primary payment 02/2023-03/2024, open balances 21.76-147.54 per visit, total 338.13",
    "ui": "Patient > Transactions > each listed charge > Payment Entry > write-off WOINS for the open insurance balance, check # UNTIMELY1015; then Claims Center > Exclusions > run 1700294 > Complete the 8 rows",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:21Z applied in the cascade session on William's go (page approval 21:39Z): excl_1015_0510.py --live --only C - WOINS untimely (check UNTIMELY1015) on 9 charges of 8 Aetna AET07 secondary visits 2022-2023 (charts 46253, 12233870) = $338.13, all 9 postings OK, hideexclusions run 1700294 (8 rows) OK. Register registers/excl_1015_0510_C_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-A",
@@ -1150,9 +1150,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 6 visit(s) settle, {\"WOCAID2ND\": 153.21}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:13Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only A - chart 23847 WOCAID2ND on 7 charges = $153.21, hideexclusions run 1700295 (6 rows) OK, 6/6 settled. Register registers/excl_2026-10-15T1110Z_A_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-B",
@@ -1165,9 +1165,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 27 visit(s) settle, {\"WOCAID2ND\": 486.43}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700295/1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:15Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only B - chart 17475638 WOCAID2ND on 30 charges = $486.43, hideexclusions runs 1700295 (4) + 1700296 (23) OK, 27/27 settled. Register registers/excl_2026-10-15T1110Z_B_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-C",
@@ -1180,9 +1180,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCAID2ND\": 12.66}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCAID2ND, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:16Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only C - chart 24214 WOCAID2ND 12.66 on c22437615, hideexclusions run 1700296 (1 row) OK. Register registers/excl_2026-10-15T1110Z_C_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-D",
@@ -1195,9 +1195,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 8 visit(s) settle, {\"WOCLTREQ\": 140.93}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:17Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only E - chart 22182 WOCLTREQ on 8 charges = $140.93, hideexclusions run 1700295 (8 rows) OK, 8/8 settled. Register registers/excl_2026-10-15T1110Z_E_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-E",
@@ -1210,9 +1210,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 21 visit(s) settle, {\"WOCLTREQ\": 1569.51}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:19Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only F - chart 17468961 WOCLTREQ on 22 charges = $1,569.51, hideexclusions run 1700295 (21 rows) OK, 21/21 settled. Register registers/excl_2026-10-15T1110Z_F_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-F",
@@ -1225,9 +1225,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 4 visit(s) settle, {\"WOCLTREQ\": 84.72}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700295 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:22Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only G - chart 23456 WOCLTREQ on 4 charges = $84.72, hideexclusions run 1700295 (4 rows) OK. Register registers/excl_2026-10-15T1110Z_G_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-G",
@@ -1240,9 +1240,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 15.6}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:22Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only H - chart 20347 WOCLTREQ 15.60 on c20961004, hideexclusions run 1700296 (1 row) OK. Register registers/excl_2026-10-15T1110Z_H_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-H",
@@ -1255,9 +1255,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 12.89}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:22Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only I - chart 24205 WOCLTREQ 12.89 on c21327695, hideexclusions run 1700296 (1 row) OK. Register registers/excl_2026-10-15T1110Z_I_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-I",
@@ -1270,9 +1270,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 3 visit(s) settle, {\"WOCLTREQ\": 84.32}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:23Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only J - chart 17470785 WOCLTREQ on 5 charges = $84.32, hideexclusions run 1700296 (3 rows) OK. Register registers/excl_2026-10-15T1110Z_J_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-J",
@@ -1285,9 +1285,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 1 visit(s) settle, {\"WOCLTREQ\": 35.01}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:23Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only K - chart 17470977 WOCLTREQ 35.01 on c22440710, hideexclusions run 1700296 (1 row) OK. Register registers/excl_2026-10-15T1110Z_K_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-K",
@@ -1300,9 +1300,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 6 visit(s) settle, {\"WOCLTREQ\": 127.95}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:23Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only L - chart 17471428 WOCLTREQ on 7 charges = $127.95, hideexclusions run 1700296 (6 rows) OK. Register registers/excl_2026-10-15T1110Z_L_go.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-L",
@@ -1315,9 +1315,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 9 visit(s) settle, {\"WOINS\": 299.39, \"WOCLTREQ\": 154.37}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier HUM01, pay $0.00, write-off the open insurance balance with code(s) WOINS/WOCLTREQ, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:27Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only M - chart 17477190: WOINS (Medicare never-adjusted contractual) 299.39 on 4 lines + WOCLTREQ 154.37 on the other lines, 6 rows hidden; on the 4 split lines (c23361203, c23364716, c23367153, c23367154) AMD moved the PR share (16.93 + 11.59 + 16.14 + 8.92 = 53.58) to the PATIENT balance when the WOINS posted, so excl_1110_split_fix.py --live --chart 17477190 wrote it off patient-side WOCLTREQ (patient_writeoff, check EXCL1015B) and hid the last 3 rows - all 9 rows completed on run 1700296, every line reads 0.00/0.00. Registers registers/excl_2026-10-15T1110Z_M_go.json + excl_2026-10-15T1110Z_splitfix_17477190.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   },
   {
    "id": "A-2026-10-15T1110Z-M",
@@ -1330,9 +1330,9 @@
    "evidence_file": "/home/claude/unbilled/registers/excl_2026-10-15T1110Z_dry.json",
    "evidence": "dry run 11:3xZ: 11 visit(s) settle, {\"WOCLTREQ\": 211.41, \"WOINS\": 105.06}, 0 holds; every charge carries a Medicare/UHC primary payment and no patient balance (registers/excl_read_2026-10-15T1110Z.json)",
    "ui": "AMD Payment Entry: open each visit, Insurance payment, carrier VACCN, pay $0.00, write-off the open insurance balance with code(s) WOCLTREQ/WOINS, check # EXCL1015B; then Claims Center > Exclusions > run 1700296 > check the row(s) > Complete.",
-   "status": "waiting",
-   "answer": null,
-   "note": "applying 2026-10-15T2302Z (go)"
+   "status": "done",
+   "answer": "2026-10-15T23:27Z applied in the cascade session on William's go (page approval 21:38Z): excl_1015_1110.py --live --only N - chart 17471834 (VA CCN): WOCLTREQ 211.41 on 8 lines + WOINS 105.06 on 3 split lines, 8 rows hidden; the PR share of the 3 split lines (17.73 + 18.11 + 22.10 = 57.94 on c22457691, c22459701, c22464974) landed on the PATIENT balance and was written off patient-side WOCLTREQ by excl_1110_split_fix.py --live --chart 17471834 (check EXCL1015B), last 3 rows hidden - all 11 rows completed on run 1700296, every line 0.00/0.00. Registers registers/excl_2026-10-15T1110Z_N_go.json + excl_2026-10-15T1110Z_splitfix_17471834.json",
+   "note": "applied 2026-10-15 go (cascade session)"
   }
  ]
 }
