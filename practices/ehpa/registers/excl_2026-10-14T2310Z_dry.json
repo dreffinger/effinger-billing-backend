@@ -1,0 +1,92 @@
+{
+ "stamp": "2026-10-14T2310Z",
+ "live": false,
+ "pid": "17471600",
+ "steps": [
+  {
+   "vid": "19451930",
+   "cid": "23362020",
+   "claimid": "19451930C",
+   "before": {
+    "23362020": {
+     "cpt": "99223",
+     "dos": "08/17/2026",
+     "fee": 310.0,
+     "paid": 230.1,
+     "insbal": 79.9,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "billdate": "10/13/2026",
+     "pays": [
+      [
+       "10/05/2026",
+       "MER01",
+       "-230.10",
+       "415094527"
+      ]
+     ]
+    }
+   },
+   "woins": "DRY - would WOINS 22.37 under MER01 check 415094527",
+   "result": "settled (primary paid) - hide"
+  },
+  {
+   "vid": "19452051",
+   "cid": "23362164",
+   "claimid": "19452051C",
+   "before": {
+    "23362164": {
+     "cpt": "99232",
+     "dos": "08/18/2026",
+     "fee": 111.0,
+     "paid": 88.8,
+     "insbal": 22.2,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "billdate": "10/13/2026",
+     "pays": [
+      [
+       "10/05/2026",
+       "MER01",
+       "-88.80",
+       "415094527"
+      ]
+     ]
+    }
+   },
+   "result": "settled (primary paid) - hide"
+  }
+ ],
+ "hidden": {},
+ "plans_before": [
+  [
+   "ins9510889",
+   "car6404",
+   "1",
+   "06/21/2023",
+   ""
+  ],
+  [
+   "ins9519033",
+   "car6135",
+   "2",
+   "08/29/2025",
+   ""
+  ]
+ ],
+ "porder_before": "1,2",
+ "would": {
+  "enddate": "UNI20 ins9510889 enddate 08/16/2026, patient order -> 2",
+  "insorder": "both visits insorder 2 (no rebill)",
+  "hide": [
+   [
+    "19451930",
+    "19451930C"
+   ],
+   [
+    "19452051",
+    "19452051C"
+   ]
+  ]
+ }
+}

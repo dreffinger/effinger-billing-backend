@@ -1,0 +1,28 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-12T1110Z",
+ "count": 1,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053116,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-10T22:42:41.423",
+   "depositdate": "2026-09-21T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "UNITEDHEALTHCARE SERVICES INC AND ITS AFFILIATES",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "W0020208",
+   "paymentamount": 168.59,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 168.59,
+   "unpostedamount": 71.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

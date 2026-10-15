@@ -1,0 +1,69 @@
+{
+ "stamp": "2026-10-15T0310Z",
+ "live": false,
+ "pid": "17471414",
+ "steps": [
+  {
+   "cid": "22467665",
+   "cpt": "99306",
+   "expect": 105.54,
+   "wocltreq": "DRY - would WOCLTREQ 105.54 under HUM01 check EXCL1015",
+   "result": "settled (primary paid, cost-share written off)"
+  },
+  {
+   "cid": "22467666",
+   "cpt": "99497",
+   "expect": 70.66,
+   "wocltreq": "DRY - would WOCLTREQ 70.66 under HUM01 check EXCL1015",
+   "result": "settled (primary paid, cost-share written off)"
+  }
+ ],
+ "hidden": {},
+ "before": {
+  "22467665": {
+   "cpt": "99306",
+   "dos": "03/18/2024",
+   "fee": 256.0,
+   "paid": 150.46,
+   "insbal": 105.54,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-150.46",
+     "147569600241201"
+    ]
+   ]
+  },
+  "22467666": {
+   "cpt": "99497",
+   "dos": "03/18/2024",
+   "fee": 133.0,
+   "paid": 62.34,
+   "insbal": 70.66,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-62.34",
+     "147569600241201"
+    ]
+   ]
+  }
+ },
+ "would": {
+  "hide": [
+   [
+    "19394861",
+    "19394861B"
+   ]
+  ],
+  "settled": 2
+ }
+}

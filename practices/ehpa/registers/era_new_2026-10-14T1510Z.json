@@ -1,0 +1,155 @@
+{
+ "stamp": "2026-10-14T1510Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446593,
+   "visitid": "19457279",
+   "pid": "17474648",
+   "chargedetailid": "23369136",
+   "cpt": "99223",
+   "dos": "2026-10-06",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "posted",
+   "paymentid": "10175060",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 08:22:33\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446594,
+   "visitid": "19457318",
+   "pid": "17471683",
+   "chargedetailid": "23369175",
+   "cpt": "99223",
+   "dos": "2026-10-06",
+   "paid": 156.51,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 0.0,
+    "insbal": 310.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 156.51,
+   "wo": 153.49,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "posted",
+   "paymentid": "10175061",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 08:22:38\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446595,
+   "visitid": "19457276",
+   "pid": "17471683",
+   "chargedetailid": "23369133",
+   "cpt": "99232",
+   "dos": "2026-10-07",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "posted",
+   "paymentid": "10175062",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j264z\" lst=\"10/14/2026 08:22:43\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053160",
+   "checkclaimid": 15446596,
+   "visitid": "19457278",
+   "pid": "17474648",
+   "chargedetailid": "23369135",
+   "cpt": "99232",
+   "dos": "2026-10-07",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "CAP07",
+    "billdate": "10/08/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "CAP07",
+   "outcome": "posted",
+   "paymentid": "10175063",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/14/2026 08:22:50\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ],
+ "wolate": []
+}

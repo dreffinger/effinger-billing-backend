@@ -1,0 +1,2341 @@
+{
+ "stamp": "2026-10-14T0522Z",
+ "mode": "dry",
+ "results": [
+  {
+   "visitid": "13965186",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961024",
+     "20568913",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965302",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961157",
+     "20568914",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965309",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961165",
+     "20568923",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965409",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961279",
+     "20568915",
+     3.69,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965457",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961332",
+     "20568916",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965469",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961344",
+     "20568917",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965556",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961447",
+     "20568918",
+     5.84,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965930",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "20961858",
+     "20568922",
+     0.0,
+     "3204486518"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "13965945",
+   "pid": "46253",
+   "name": "",
+   "next_carrier": "AET07",
+   "checkid": null,
+   "codeless": [
+    [
+     "20964737",
+     "20569778",
+     0.0,
+     ""
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "14003195",
+   "pid": "20804",
+   "name": "",
+   "next_carrier": "AET07",
+   "checkid": null,
+   "codeless": [
+    [
+     "21330142",
+     "20572378",
+     0.0,
+     ""
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "14016484",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "21338462",
+     "20576667",
+     6.33,
+     "3214581453"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19389388",
+   "pid": "21577",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "22460604",
+     "24643806",
+     58.67,
+     "815613467"
+    ],
+    [
+     "22460605",
+     "24643805",
+     135.14,
+     "815613467"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "22460604",
+     "22485289",
+     59.36,
+     "WOINS"
+    ],
+    [
+     "22460605",
+     "22485288",
+     140.38,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19391975",
+   "pid": "23391",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "22463825",
+     "24634874",
+     12.52,
+     "145746226241108"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19393891",
+   "pid": "22566",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "22466275",
+     "24634991",
+     18.12,
+     "148531524241215"
+    ],
+    [
+     "22466276",
+     "24634992",
+     0.0,
+     "148531524241215"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19393968",
+   "pid": "22566",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "22466372",
+     "24634993",
+     12.52,
+     "148531524241215"
+    ],
+    [
+     "22466373",
+     "24634994",
+     0.0,
+     "148531524241215"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19396210",
+   "pid": "44997",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "22469371",
+     "24635265",
+     12.52,
+     "156779770250414"
+    ],
+    [
+     "22469372",
+     "24635266",
+     0.0,
+     "156779770250414"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19396275",
+   "pid": "44997",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "22469461",
+     "24635268",
+     12.52,
+     "156779770250414"
+    ],
+    [
+     "22469462",
+     "24635267",
+     0.0,
+     "156779770250414"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19416171",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23319734",
+     "24660397",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319735",
+     "24660398",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19416185",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23319763",
+     "24660395",
+     70.02,
+     "280627980"
+    ],
+    [
+     "23319764",
+     "24660396",
+     37.89,
+     "280627980"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19416866",
+   "pid": "17471773",
+   "name": "",
+   "next_carrier": "VACCN",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320533",
+     "24627375",
+     0.04,
+     "169545359251009"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19416870",
+   "pid": "17471773",
+   "name": "",
+   "next_carrier": "VACCN",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320536",
+     "24627376",
+     0.04,
+     "169545359251009"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417011",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320659",
+     "24627377",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417079",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320688",
+     "24660436",
+     101.78,
+     "62883522"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417167",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320780",
+     "24627379",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417226",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320848",
+     "24627380",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19417287",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23320984",
+     "24627378",
+     0.04,
+     "X317107567"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19418988",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23323898",
+     "24660400",
+     101.77,
+     "280632656"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19419273",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23324213",
+     "24660399",
+     69.96,
+     "280632656"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420335",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23325318",
+     "24660469",
+     69.97,
+     "62890149"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420940",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326080",
+     "24660403",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326081",
+     "24660404",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19420954",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326108",
+     "24660408",
+     70.02,
+     "280634691"
+    ],
+    [
+     "23326109",
+     "24660409",
+     37.89,
+     "280634691"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19421010",
+   "pid": "47124",
+   "name": "",
+   "next_carrier": "TRA02",
+   "checkid": null,
+   "codeless": [
+    [
+     "23326220",
+     "24660476",
+     68.62,
+     "62890149"
+    ],
+    [
+     "23326221",
+     "24660477",
+     37.14,
+     "62890149"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19421703",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23327032",
+     "24627401",
+     0.04,
+     "0915400832"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19421870",
+   "pid": "17472910",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23327195",
+     "24627402",
+     0.04,
+     "0915400832"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19422686",
+   "pid": "24208",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23328015",
+     "24660405",
+     69.96,
+     "280637173"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19422687",
+   "pid": "21020",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23328016",
+     "24660406",
+     101.77,
+     "280637173"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19422869",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23328219",
+     "24651019",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23328219",
+     "22490703",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19423865",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23329598",
+     "24651018",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23329598",
+     "22490702",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19424538",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23330304",
+     "24651017",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23330304",
+     "22490701",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19424548",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23330315",
+     "24651016",
+     47.57,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23330315",
+     "22490700",
+     47.29,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19425168",
+   "pid": "20937",
+   "name": "",
+   "next_carrier": "HUM01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23331133",
+     "24570365",
+     0.0,
+     "072350607"
+    ],
+    [
+     "23331134",
+     "24570366",
+     0.0,
+     "072350607"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19425635",
+   "pid": "20407",
+   "name": "",
+   "next_carrier": "HUM01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23331662",
+     "24570372",
+     0.0,
+     "072350607"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19425639",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23331666",
+     "24651015",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23331666",
+     "22490699",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19427025",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23333220",
+     "24651007",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23333220",
+     "22490691",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19427027",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23333222",
+     "24651006",
+     69.21,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23333222",
+     "22490690",
+     54.14,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19427548",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23334043",
+     "24651004",
+     68.62,
+     "819814877(0)"
+    ],
+    [
+     "23334044",
+     "24651005",
+     37.13,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23334043",
+     "22490688",
+     119.88,
+     "WOINS"
+    ],
+    [
+     "23334044",
+     "22490689",
+     62.4,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19429035",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23335549",
+     "24651014",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23335549",
+     "22490698",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19429718",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336210",
+     "24651013",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336210",
+     "22490697",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19429719",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336211",
+     "24651012",
+     125.2,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336211",
+     "22490696",
+     152.86,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19429861",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336334",
+     "24651011",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336334",
+     "22490695",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19430040",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336456",
+     "24651010",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336456",
+     "22490694",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19430055",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336471",
+     "24651009",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336471",
+     "22490693",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19430125",
+   "pid": "17474516",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23336543",
+     "24651008",
+     84.62,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23336543",
+     "22490692",
+     56.79,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19431068",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23337611",
+     "24651001",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23337611",
+     "22490685",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19431081",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23337624",
+     "24651002",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23337624",
+     "22490686",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19431131",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23337751",
+     "24651000",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23337751",
+     "22490684",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19432731",
+   "pid": "25710",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23339379",
+     "24657021",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23339379",
+     "22496108",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19437731",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23344836",
+     "24650983",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23344836",
+     "22490667",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19438960",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23346278",
+     "24650984",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23346278",
+     "22490668",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19439767",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347410",
+     "24650970",
+     125.2,
+     "819814877(0)"
+    ],
+    [
+     "23347411",
+     "24650971",
+     52.33,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347410",
+     "22490654",
+     152.86,
+     "WOINS"
+    ],
+    [
+     "23347411",
+     "22490655",
+     67.32,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19439793",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347437",
+     "24650972",
+     85.46,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347437",
+     "22490656",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19439814",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347458",
+     "24650973",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347458",
+     "22490657",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19439885",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347511",
+     "24650974",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347511",
+     "22490658",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19439926",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347571",
+     "24650975",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347571",
+     "22490659",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440252",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347909",
+     "24650976",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347909",
+     "22490660",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440267",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23347924",
+     "24650977",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23347924",
+     "22490661",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440391",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348092",
+     "24650978",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348092",
+     "22490662",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440410",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348111",
+     "24650979",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348111",
+     "22490663",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440512",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348202",
+     "24650980",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348202",
+     "22490664",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440611",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348339",
+     "24650981",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348339",
+     "22490665",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440624",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348354",
+     "24650985",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348354",
+     "22490669",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440869",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348626",
+     "24650982",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348626",
+     "22490666",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19440884",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23348640",
+     "24650969",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23348640",
+     "22490653",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19441172",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23349010",
+     "24650967",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23349010",
+     "22490651",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19441183",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23349021",
+     "24650965",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23349021",
+     "22490649",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19441310",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23349160",
+     "24650964",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23349160",
+     "22490648",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19441991",
+   "pid": "17471725",
+   "name": "",
+   "next_carrier": "UNI20",
+   "checkid": null,
+   "codeless": [
+    [
+     "23349947",
+     "24656806",
+     33.1,
+     "201182674260926"
+    ],
+    [
+     "23349948",
+     "24656807",
+     0.0,
+     "201182674260926"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19442592",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23350788",
+     "24650962",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23350788",
+     "22490646",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19442618",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23350813",
+     "24650960",
+     129.74,
+     "819814877(0)"
+    ],
+    [
+     "23350814",
+     "24650961",
+     52.33,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23350813",
+     "22490644",
+     93.16,
+     "WOINS"
+    ],
+    [
+     "23350814",
+     "22490645",
+     67.32,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19442859",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351118",
+     "24650959",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351118",
+     "22490643",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443017",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351285",
+     "24650995",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351285",
+     "22490679",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443044",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351319",
+     "24650996",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351319",
+     "22490680",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443153",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351419",
+     "24650997",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351419",
+     "22490681",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443303",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351646",
+     "24650999",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351646",
+     "22490683",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443462",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351846",
+     "24650993",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351846",
+     "22490677",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443549",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23351975",
+     "24650992",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23351975",
+     "22490676",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443634",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352078",
+     "24650991",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352078",
+     "22490675",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443646",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352090",
+     "24650990",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352090",
+     "22490674",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443826",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352345",
+     "24650989",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352345",
+     "22490673",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443839",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352358",
+     "24650988",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352358",
+     "22490672",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443842",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352361",
+     "24650968",
+     45.44,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352361",
+     "22490652",
+     49.97,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19443846",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352365",
+     "24650966",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352365",
+     "22490650",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19444007",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352595",
+     "24650987",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352595",
+     "22490671",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19444031",
+   "pid": "17475338",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352622",
+     "24650994",
+     56.37,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352622",
+     "22490678",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19444045",
+   "pid": "17470713",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23352637",
+     "24650963",
+     66.36,
+     "819814877(0)"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23352637",
+     "22490647",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19445474",
+   "pid": "17473245",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23354349",
+     "24657019",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23354349",
+     "22496106",
+     57.71,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19446222",
+   "pid": "17473245",
+   "name": "",
+   "next_carrier": "BCBS",
+   "checkid": null,
+   "codeless": [
+    [
+     "23355215",
+     "24657017",
+     0.0,
+     "819872046"
+    ],
+    [
+     "23355216",
+     "24657018",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23355215",
+     "22496104",
+     126.58,
+     "WOINS"
+    ],
+    [
+     "23355216",
+     "22496105",
+     65.13,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454652",
+   "pid": "17470940",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365730",
+     "24657000",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365730",
+     "22496087",
+     52.74,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  },
+  {
+   "visitid": "19454653",
+   "pid": "17470950",
+   "name": "",
+   "next_carrier": "AAR01",
+   "checkid": null,
+   "codeless": [
+    [
+     "23365731",
+     "24657001",
+     0.0,
+     "819872046"
+    ]
+   ],
+   "steps": [],
+   "wos_to_void": [
+    [
+     "23365731",
+     "22496088",
+     40.25,
+     "WOINS"
+    ]
+   ],
+   "outcome": "no-era-line"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+# captured_calls additions - 2026-10-14 0910 UTC (5 AM ET 10/14) backend billing run, ehpa cloud
+
+No new call shape this run. Calls used (all already in the registry): login (one attempt; AMD_PSW environment credential, no credential file), getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (columns_scan.py before/after), GET /api/era/checks + GET /api/era/checkdetails (era_list.py before), posterapayments dry (era_post.py --all-unposted --dry: 1053116 0 postable / 3 skipped), era_clear.py --dry (1 held), POST /api/claim/massrebillsearch + Stedi 276/277 x60 (claim_status_sweep.py pass 91), gettxhistory (txh.fetch + payreasons.visit_state, 16 charts read-only).
+
+Behaviors noted:
+- The 28 NOT-ON-FILE (D0 / E0) rows of the UNI20/BCBS pre-5/1 pool all carry billdate 10/13/2026: they are the 10/13 patient-balance execution's BILL-SECONDARY sends (Medicare paid ~80%%, the coinsurance went to the Florida Blue / UHC secondary on 10/13). The payer has not indexed them yet; the 30-day billdate rule keeps them out of the candidate list until 11/12/2026. A D0 answer within 30 days of the billdate is 'not yet on file', not 'never received'.
+- The pass-90 sweep register (0710Z) is not on main (that run's mirror commit carried only 5 files), so this pass re-asked the same 60 visits - 60 Stedi 277 calls that --skip-answered would have saved. Commit every run's sweep register (practices/ehpa/registers) so the next pass skips it.
+- No AMD write, no classifier refusal this slot.

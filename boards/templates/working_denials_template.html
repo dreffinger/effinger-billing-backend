@@ -1,0 +1,735 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Working Denials</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap&family=Quicksand:wght@300..700">
+<style>
+/* ===== default palette: Indigo Night ===== */
+:root{
+  --bg:#F3F6FB; --surface:#FFFFFF; --surface2:#EEF2F9; --line:#DDE3EE; --ink:#0B1222; --muted:#5B6579;
+  --hero:#0B1222; --hero2:#12213F; --hero-g1:#1D4ED8; --hero-g2:#7C3AED; --hero-ink:#F4F7FF; --hero-muted:#9DB0D3;
+  --accent:#2563EB; --lime:#84CC16; --lime-s:#ECFCCB;
+  --fix:#16A34A; --fix-s:#DCFCE7; --cob:#2563EB; --cob-s:#DBEAFE; --timely:#F59E0B; --timely-s:#FEF3C7;
+  --cred:#7C3AED; --cred-s:#EDE9FE; --review:#F43F5E; --review-s:#FFE4E6; --patient:#0EA5E9; --patient-s:#E0F2FE;
+  --none:#64748B; --none-s:#E2E8F0;
+  --disp:'Outfit',system-ui,sans-serif; --sans:'Manrope',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --shadow:0 10px 30px -18px rgba(11,18,34,.35);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B1222; --surface:#131C2E; --surface2:#1A2539; --line:#27334B; --ink:#E9EEF8; --muted:#9AA7BF;
+  --hero:#050A16; --hero2:#0F1B33; --hero-g1:#1D4ED8; --hero-g2:#7C3AED; --hero-ink:#F4F7FF; --hero-muted:#8FA3C8;
+  --accent:#60A5FA; --lime:#A3E635; --lime-s:#1F2E0B;
+  --fix:#4ADE80; --fix-s:#0F2A1A; --cob:#60A5FA; --cob-s:#12213F; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#A78BFA; --cred-s:#241B3D; --review:#FB7185; --review-s:#3A1620; --patient:#38BDF8; --patient-s:#0F2536;
+  --none:#94A3B8; --none-s:#1E293B; --shadow:none;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B1222; --surface:#131C2E; --surface2:#1A2539; --line:#27334B; --ink:#E9EEF8; --muted:#9AA7BF;
+  --hero:#050A16; --hero2:#0F1B33; --hero-g1:#1D4ED8; --hero-g2:#7C3AED; --hero-ink:#F4F7FF; --hero-muted:#8FA3C8;
+  --accent:#60A5FA; --lime:#A3E635; --lime-s:#1F2E0B;
+  --fix:#4ADE80; --fix-s:#0F2A1A; --cob:#60A5FA; --cob-s:#12213F; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#A78BFA; --cred-s:#241B3D; --review:#FB7185; --review-s:#3A1620; --patient:#38BDF8; --patient-s:#0F2536;
+  --none:#94A3B8; --none-s:#1E293B; --shadow:none;
+}
+/* ===== palette: Copper & Sage ===== */
+:root[data-palette="copper"]{
+  --bg:#F5F3EF; --surface:#FFFFFF; --surface2:#EEEAE2; --line:#DED7CB; --ink:#22252A; --muted:#6B6F76;
+  --hero:#1C1A17; --hero2:#2A2620; --hero-g1:#C2703D; --hero-g2:#6FA287; --hero-ink:#F6F2EA; --hero-muted:#BBB1A0;
+  --accent:#B5552C; --lime:#86A34F; --lime-s:#E9EFD6;
+  --fix:#2F7A4E; --fix-s:#DDF0E3; --cob:#3E6FA0; --cob-s:#E1ECF6; --timely:#B07A16; --timely-s:#F6EBCF;
+  --cred:#8A5A9B; --cred-s:#EFE2F3; --review:#B04A3A; --review-s:#F6E0DB; --patient:#3E8FA3; --patient-s:#DDF0F4;
+  --none:#7A7468; --none-s:#E7E2D8;
+}
+@media (prefers-color-scheme:dark){:root[data-palette="copper"]:not([data-theme="light"]){
+  --bg:#16130F; --surface:#201C17; --line:#342E25; --surface2:#2A2017; --ink:#ECE6DB; --muted:#A99E8C;
+  --hero:#100D0A; --hero2:#241B12; --hero-g1:#C2703D; --hero-g2:#6FA287; --hero-ink:#F6F2EA; --hero-muted:#B6A892;
+  --accent:#E0855A; --lime:#AECB6C; --lime-s:#27310F;
+  --fix:#6FC791; --fix-s:#16301F; --cob:#7FA8D6; --cob-s:#172638; --timely:#E2B25C; --timely-s:#332811;
+  --cred:#C49AD4; --cred-s:#2C1E33; --review:#E38A7A; --review-s:#331C17; --patient:#6FC0D0; --patient-s:#13303a;
+  --none:#9A9080; --none-s:#241E16;
+}}
+:root[data-palette="copper"][data-theme="dark"]{
+  --bg:#16130F; --surface:#201C17; --line:#342E25; --surface2:#2A2017; --ink:#ECE6DB; --muted:#A99E8C;
+  --hero:#100D0A; --hero2:#241B12; --hero-g1:#C2703D; --hero-g2:#6FA287; --hero-ink:#F6F2EA; --hero-muted:#B6A892;
+  --accent:#E0855A; --lime:#AECB6C; --lime-s:#27310F;
+  --fix:#6FC791; --fix-s:#16301F; --cob:#7FA8D6; --cob-s:#172638; --timely:#E2B25C; --timely-s:#332811;
+  --cred:#C49AD4; --cred-s:#2C1E33; --review:#E38A7A; --review-s:#331C17; --patient:#6FC0D0; --patient-s:#13303a;
+  --none:#9A9080; --none-s:#241E16;
+}
+/* ===== palette: Emerald ===== */
+:root[data-palette="emerald"]{
+  --bg:#F0F6F2; --surface:#FFFFFF; --surface2:#E6F0EA; --line:#D3E3D8; --ink:#10231A; --muted:#4E6458;
+  --hero:#06140F; --hero2:#0D2A1F; --hero-g1:#10B981; --hero-g2:#0EA5A5; --hero-ink:#ECFDF5; --hero-muted:#8FC9AE;
+  --accent:#0E9F6E; --lime:#65A30D; --lime-s:#E7F3CF;
+  --fix:#059669; --fix-s:#D1FAE5; --cob:#0E7490; --cob-s:#CFF0F5; --timely:#CA8A04; --timely-s:#FBF0CC;
+  --cred:#7C3AED; --cred-s:#EAE2FB; --review:#DC2626; --review-s:#FBDCDC; --patient:#0891B2; --patient-s:#D6F0F6;
+  --none:#5E7268; --none-s:#DCE8E1;
+}
+@media (prefers-color-scheme:dark){:root[data-palette="emerald"]:not([data-theme="light"]){
+  --bg:#07130E; --surface:#0F1F18; --surface2:#142A20; --line:#22352B; --ink:#E3F3EA; --muted:#8AA699;
+  --hero:#030D09; --hero2:#0B241A; --hero-g1:#10B981; --hero-g2:#22D3EE; --hero-ink:#ECFDF5; --hero-muted:#84C3AB;
+  --accent:#34D399; --lime:#A3E635; --lime-s:#1C2E0B;
+  --fix:#34D399; --fix-s:#0E2A1D; --cob:#38BDF8; --cob-s:#0C2A33; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#A78BFA; --cred-s:#241B3D; --review:#FB7185; --review-s:#3A1620; --patient:#22D3EE; --patient-s:#0B2A30;
+  --none:#8AA699; --none-s:#16261E;
+}}
+:root[data-palette="emerald"][data-theme="dark"]{
+  --bg:#07130E; --surface:#0F1F18; --surface2:#142A20; --line:#22352B; --ink:#E3F3EA; --muted:#8AA699;
+  --hero:#030D09; --hero2:#0B241A; --hero-g1:#10B981; --hero-g2:#22D3EE; --hero-ink:#ECFDF5; --hero-muted:#84C3AB;
+  --accent:#34D399; --lime:#A3E635; --lime-s:#1C2E0B;
+  --fix:#34D399; --fix-s:#0E2A1D; --cob:#38BDF8; --cob-s:#0C2A33; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#A78BFA; --cred-s:#241B3D; --review:#FB7185; --review-s:#3A1620; --patient:#22D3EE; --patient-s:#0B2A30;
+  --none:#8AA699; --none-s:#16261E;
+}
+/* ===== palette: Royal Violet ===== */
+:root[data-palette="royal"]{
+  --bg:#F5F3FB; --surface:#FFFFFF; --surface2:#ECE8F7; --line:#DED7EE; --ink:#1A1430; --muted:#615A79;
+  --hero:#160C2E; --hero2:#271048; --hero-g1:#8B5CF6; --hero-g2:#EC4899; --hero-ink:#F6F2FF; --hero-muted:#B8A6E0;
+  --accent:#7C3AED; --lime:#A855F7; --lime-s:#F0E2FB;
+  --fix:#16A34A; --fix-s:#DCFCE7; --cob:#4F46E5; --cob-s:#E0E0FB; --timely:#D97706; --timely-s:#FBEBCF;
+  --cred:#9333EA; --cred-s:#F0E0FB; --review:#E11D62; --review-s:#FBDCE8; --patient:#0EA5E9; --patient-s:#E0F2FE;
+  --none:#6B6484; --none-s:#E5E1F0;
+}
+@media (prefers-color-scheme:dark){:root[data-palette="royal"]:not([data-theme="light"]){
+  --bg:#120A22; --surface:#1C1338; --surface2:#241847; --line:#34285A; --ink:#EDE7FB; --muted:#A89AC8;
+  --hero:#0A0518; --hero2:#1E0F3E; --hero-g1:#A855F7; --hero-g2:#F472B6; --hero-ink:#F6F2FF; --hero-muted:#B3A2DE;
+  --accent:#A78BFA; --lime:#C084FC; --lime-s:#2A1640;
+  --fix:#4ADE80; --fix-s:#0F2A1A; --cob:#818CF8; --cob-s:#1E1B47; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#C084FC; --cred-s:#2A1640; --review:#FB7185; --review-s:#3A1620; --patient:#38BDF8; --patient-s:#0F2536;
+  --none:#A89AC8; --none-s:#241A3B;
+}}
+:root[data-palette="royal"][data-theme="dark"]{
+  --bg:#120A22; --surface:#1C1338; --surface2:#241847; --line:#34285A; --ink:#EDE7FB; --muted:#A89AC8;
+  --hero:#0A0518; --hero2:#1E0F3E; --hero-g1:#A855F7; --hero-g2:#F472B6; --hero-ink:#F6F2FF; --hero-muted:#B3A2DE;
+  --accent:#A78BFA; --lime:#C084FC; --lime-s:#2A1640;
+  --fix:#4ADE80; --fix-s:#0F2A1A; --cob:#818CF8; --cob-s:#1E1B47; --timely:#FBBF24; --timely-s:#2F2409;
+  --cred:#C084FC; --cred-s:#2A1640; --review:#FB7185; --review-s:#3A1620; --patient:#38BDF8; --patient-s:#0F2536;
+  --none:#A89AC8; --none-s:#241A3B;
+}
+/* ===== palette: Graphite (low-chroma focus) ===== */
+:root[data-palette="graphite"]{
+  --bg:#F4F5F7; --surface:#FFFFFF; --surface2:#EBEDF1; --line:#D9DDE3; --ink:#1B1F27; --muted:#626B78;
+  --hero:#191C22; --hero2:#272C35; --hero-g1:#64748B; --hero-g2:#0EA5E9; --hero-ink:#F3F5F8; --hero-muted:#A7AFBC;
+  --accent:#0F766E; --lime:#0D9488; --lime-s:#D3EEEB;
+  --fix:#2F7D54; --fix-s:#DCEEE3; --cob:#3B6EA5; --cob-s:#DEEAF5; --timely:#B07A16; --timely-s:#F4EBD2;
+  --cred:#6D5AA8; --cred-s:#E6E2F1; --review:#AC4A4A; --review-s:#F3DEDE; --patient:#3E8799; --patient-s:#DCEEF2;
+  --none:#6B7380; --none-s:#E2E5EA;
+}
+@media (prefers-color-scheme:dark){:root[data-palette="graphite"]:not([data-theme="light"]){
+  --bg:#101317; --surface:#191D23; --surface2:#212630; --line:#2E343E; --ink:#E6E9EE; --muted:#98A1AE;
+  --hero:#0A0D11; --hero2:#1A1F27; --hero-g1:#64748B; --hero-g2:#38BDF8; --hero-ink:#F3F5F8; --hero-muted:#9AA3B1;
+  --accent:#2DD4BF; --lime:#2DD4BF; --lime-s:#0E2E2A;
+  --fix:#5DC98C; --fix-s:#15301F; --cob:#7FA8D6; --cob-s:#16243a; --timely:#E2B25C; --timely-s:#2F2811;
+  --cred:#A896DC; --cred-s:#221C35; --review:#E08585; --review-s:#331C1C; --patient:#63BBD0; --patient-s:#122b31;
+  --none:#98A1AE; --none-s:#1C222B;
+}}
+:root[data-palette="graphite"][data-theme="dark"]{
+  --bg:#101317; --surface:#191D23; --surface2:#212630; --line:#2E343E; --ink:#E6E9EE; --muted:#98A1AE;
+  --hero:#0A0D11; --hero2:#1A1F27; --hero-g1:#64748B; --hero-g2:#38BDF8; --hero-ink:#F3F5F8; --hero-muted:#9AA3B1;
+  --accent:#2DD4BF; --lime:#2DD4BF; --lime-s:#0E2E2A;
+  --fix:#5DC98C; --fix-s:#15301F; --cob:#7FA8D6; --cob-s:#16243a; --timely:#E2B25C; --timely-s:#2F2811;
+  --cred:#A896DC; --cred-s:#221C35; --review:#E08585; --review-s:#331C1C; --patient:#63BBD0; --patient-s:#122b31;
+  --none:#98A1AE; --none-s:#1C222B;
+}
+/* ===== palette: ehpa (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="ehpa"]{--bg:#ffffff;--surface:#ffffff;--surface2:#f2f2f2;--line:#d7d8da;--ink:#082f35;--muted:#636469;--hero:#082f35;--hero2:#253e59;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#0054e9;--lime:#70d6f8;--lime-s:#e0f4fd;--fix:#1b8037;--fix-s:#dcfae6;--cob:#0163aa;--cob-s:#e0ecf6;--timely:#917005;--timely-s:#fff3c4;--cred:#6030ff;--cred-s:#ebe6ff;--review:#c5000f;--review-s:#fbdcdf;--patient:#0b7f9b;--patient-s:#dcf1f6;--none:#636469;--none-s:#f2f2f2;--shadow:0 10px 30px -18px rgba(8,47,53,.35);}
+@media (prefers-color-scheme:dark){:root[data-palette="ehpa"]:not([data-theme="light"]){--bg:#253e59;--surface:#304861;--surface2:#3b516a;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--hero:#082f35;--hero2:#253e59;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#70d6f8;--lime:#70d6f8;--lime-s:#2a4f68;--fix:#3dd475;--fix-s:#1f4a3c;--cob:#6cb1cc;--cob-s:#1f3f5c;--timely:#ffc409;--timely-s:#4a4020;--cred:#b3a0ff;--cred-s:#2e2a55;--review:#e58f95;--review-s:#4d1f2a;--patient:#70d6f8;--patient-s:#1f4557;--none:#cacaca;--none-s:#21374e;--shadow:none;}}
+:root[data-palette="ehpa"][data-theme="dark"]{--bg:#253e59;--surface:#304861;--surface2:#3b516a;--line:#07292f;--ink:#ffffff;--muted:#cacaca;--hero:#082f35;--hero2:#253e59;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#70d6f8;--lime:#70d6f8;--lime-s:#2a4f68;--fix:#3dd475;--fix-s:#1f4a3c;--cob:#6cb1cc;--cob-s:#1f3f5c;--timely:#ffc409;--timely-s:#4a4020;--cred:#b3a0ff;--cred-s:#2e2a55;--review:#e58f95;--review-s:#4d1f2a;--patient:#70d6f8;--patient-s:#1f4557;--none:#cacaca;--none-s:#21374e;--shadow:none;}
+/* ===== palette: Midnight (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="midnight"]{--bg:#ffffff;--surface:#ffffff;--surface2:#f2f2f2;--line:#d7d8da;--ink:#082f35;--muted:#636469;--hero:#082f35;--hero2:#253e59;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#0054e9;--lime:#70d6f8;--lime-s:#e0f4fd;--fix:#1b8037;--fix-s:#dcfae6;--cob:#0163aa;--cob-s:#e0ecf6;--timely:#917005;--timely-s:#fff3c4;--cred:#6030ff;--cred-s:#ebe6ff;--review:#c5000f;--review-s:#fbdcdf;--patient:#0b7f9b;--patient-s:#dcf1f6;--none:#636469;--none-s:#f2f2f2;--shadow:0 10px 30px -18px rgba(8,47,53,.35);}
+@media (prefers-color-scheme:dark){:root[data-palette="midnight"]:not([data-theme="light"]){--bg:#082f35;--surface:#214449;--surface2:#2d5057;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--hero:#041d21;--hero2:#0f4048;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#70d6f8;--lime:#70d6f8;--lime-s:#1f5a68;--fix:#3dd475;--fix-s:#164a41;--cob:#6cb1cc;--cob-s:#123c4a;--timely:#ffc409;--timely-s:#3d4020;--cred:#b3a0ff;--cred-s:#2a2a52;--review:#df7079;--review-s:#3d1b22;--patient:#70d6f8;--patient-s:#164650;--none:#cacaca;--none-s:#07292f;--shadow:none;}}
+:root[data-palette="midnight"][data-theme="dark"]{--bg:#082f35;--surface:#214449;--surface2:#2d5057;--line:#1d4b53;--ink:#f4f5f7;--muted:#cacaca;--hero:#041d21;--hero2:#0f4048;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#70d6f8;--lime:#70d6f8;--lime-s:#1f5a68;--fix:#3dd475;--fix-s:#164a41;--cob:#6cb1cc;--cob-s:#123c4a;--timely:#ffc409;--timely-s:#3d4020;--cred:#b3a0ff;--cred-s:#2a2a52;--review:#df7079;--review-s:#3d1b22;--patient:#70d6f8;--patient-s:#164650;--none:#cacaca;--none-s:#07292f;--shadow:none;}
+/* ===== palette: Plum (ehpa brand, Claimocity-derived) ===== */
+:root[data-palette="plum"]{--bg:#ffffff;--surface:#ffffff;--surface2:#f2f2f2;--line:#d7d8da;--ink:#082f35;--muted:#636469;--hero:#082f35;--hero2:#253e59;--hero-g1:#70d6f8;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#9da8b4;--accent:#0054e9;--lime:#70d6f8;--lime-s:#e0f4fd;--fix:#1b8037;--fix-s:#dcfae6;--cob:#0163aa;--cob-s:#e0ecf6;--timely:#917005;--timely-s:#fff3c4;--cred:#6030ff;--cred-s:#ebe6ff;--review:#c5000f;--review-s:#fbdcdf;--patient:#0b7f9b;--patient-s:#dcf1f6;--none:#636469;--none-s:#f2f2f2;--shadow:0 10px 30px -18px rgba(8,47,53,.35);}
+@media (prefers-color-scheme:dark){:root[data-palette="plum"]:not([data-theme="light"]){--bg:#181924;--surface:#2c2933;--surface2:#232529;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--hero:#14082c;--hero2:#1d122e;--hero-g1:#9be8e2;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#77787a;--accent:#9be8e2;--lime:#9be8e2;--lime-s:#243a3f;--fix:#50ef73;--fix-s:#173a1d;--cob:#8aa9bf;--cob-s:#25303c;--timely:#ffd442;--timely-s:#3d3616;--cred:#b3a0ff;--cred-s:#2e2748;--review:#ff877a;--review-s:#3f1f22;--patient:#9be8e2;--patient-s:#1f3a3c;--none:#adaeaf;--none-s:#1d122e;--shadow:none;}}
+:root[data-palette="plum"][data-theme="dark"]{--bg:#181924;--surface:#2c2933;--surface2:#232529;--line:#3c3941;--ink:#ffffff;--muted:#adaeaf;--hero:#14082c;--hero2:#1d122e;--hero-g1:#9be8e2;--hero-g2:#f841e0;--hero-ink:#ffffff;--hero-muted:#77787a;--accent:#9be8e2;--lime:#9be8e2;--lime-s:#243a3f;--fix:#50ef73;--fix-s:#173a1d;--cob:#8aa9bf;--cob-s:#25303c;--timely:#ffd442;--timely-s:#3d3616;--cred:#b3a0ff;--cred-s:#2e2748;--review:#ff877a;--review-s:#3f1f22;--patient:#9be8e2;--patient-s:#1f3a3c;--none:#adaeaf;--none-s:#1d122e;--shadow:none;}
+:root[data-palette="ehpa"],:root[data-palette="midnight"],:root[data-palette="plum"]{--disp:'Quicksand',system-ui,sans-serif;--sans:'Quicksand',system-ui,sans-serif;}
+
+.rf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:12px}
+.rfbtn{font:700 13px var(--sans);padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--hero-ink) 35%,transparent);background:color-mix(in srgb,var(--hero-ink) 10%,transparent);color:var(--hero-ink);cursor:pointer}
+.rfbtn.primary{background:linear-gradient(135deg,var(--hero-g1),var(--hero-g2));border-color:transparent;color:#fff}
+.rfbtn:hover{filter:brightness(1.1)} .rfbtn:focus-visible{outline:3px solid var(--lime);outline-offset:2px} .rfbtn[disabled]{opacity:.55;cursor:wait}
+.rfst{font:500 13px var(--sans);color:var(--hero-muted);min-height:1.4em} .rfst.ok{color:var(--lime)} .rfst.err{color:#ff9b9b}
+.rftok{display:flex;gap:6px;flex-basis:100%;align-items:center} .rftok input{flex:1 1 260px;max-width:420px;font:500 13px var(--mono);padding:7px 10px;border-radius:8px;border:1px solid color-mix(in srgb,var(--hero-ink) 35%,transparent);background:color-mix(in srgb,var(--hero-ink) 10%,transparent);color:var(--hero-ink)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+.hero{background:radial-gradient(1200px 380px at 12% -20%,var(--hero-g1) 0%,transparent 60%),radial-gradient(900px 320px at 95% 0%,color-mix(in srgb,var(--hero-g2) 33%,transparent) 0%,transparent 55%),linear-gradient(135deg,var(--hero) 0%,var(--hero2) 100%);color:var(--hero-ink)}
+.hero .in{max-width:1220px;margin:0 auto;padding-block:30px 30px;padding-inline:22px}
+.herotop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px color-mix(in srgb,var(--lime) 25%,transparent)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4.6vw,46px);letter-spacing:-.02em;margin:10px 0 6px;line-height:1;text-wrap:balance}
+.asof{font:600 12.5px var(--mono);color:var(--hero-muted)}
+.lede{font-size:16px;max-width:74ch;margin:14px 0 20px;color:color-mix(in srgb,var(--hero-ink) 82%,var(--hero-muted));line-height:1.55}
+.lede b{color:#fff;background:linear-gradient(90deg,var(--hero-g1),var(--hero-g2));padding:1px 8px;border-radius:7px;white-space:nowrap}
+.dist{display:flex;height:16px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.08);gap:2px}
+.dist i{display:block;height:100%;min-width:3px}
+.distleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font:600 12px var(--sans);color:var(--hero-muted)}
+.distleg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+/* palette picker */
+.pal{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.pal .lbl{font:700 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--hero-muted)}
+.pal .row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:360px}
+.pal button{font:600 12px var(--sans);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--hero-ink);border-radius:999px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:border-color .15s,background .15s}
+.pal button:hover{border-color:rgba(255,255,255,.5)}
+.pal button[aria-pressed="true"]{border-color:var(--lime);background:rgba(255,255,255,.14)}
+.pal .sw{display:inline-flex;gap:2px}
+.pal .sw i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pal .trow button[aria-pressed="true"]{border-color:var(--hero-ink)}
+.wrap{max-width:1220px;margin:0 auto;padding-block:22px 80px;padding-inline:22px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:-46px 0 20px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 17px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.kpi::after{content:"";position:absolute;inset:auto -30px -30px auto;width:110px;height:110px;border-radius:50%;background:var(--tint);opacity:.55}
+.kpi .l{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font:700 30px var(--mono);font-variant-numeric:tabular-nums;line-height:1.1;margin-top:6px;color:var(--c)}
+.kpi .s{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35;position:relative}
+/* command console */
+.cmd{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden}
+.cmd .ch{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.cmd .ch .t{font-family:var(--disp);font-weight:700;font-size:17px}
+.cmd .ch .live{margin-left:auto;font:600 11.5px var(--mono);color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.cmd .ch .live i{width:7px;height:7px;border-radius:50%;background:var(--none)}
+.cmd .ch .live.on i{background:var(--fix);box-shadow:0 0 0 3px var(--fix-s)}
+.cmd .body{padding:14px 18px;display:flex;flex-direction:column;gap:12px}
+.cmd .target{font-size:13.5px;color:var(--muted)}
+.cmd .target b{color:var(--ink);font-weight:700}
+.cmd .target .clear{font:600 12px var(--sans);color:var(--accent);background:none;border:none;cursor:pointer;margin-left:8px}
+.qbtns{display:flex;flex-wrap:wrap;gap:8px}
+.qbtn{font:700 12.5px var(--sans);border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:999px;padding:7px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:transform .12s,border-color .12s}
+.qbtn:hover{transform:translateY(-1px)}
+.qbtn[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface))}
+.qbtn .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.qbtn.board{border-style:dashed}
+.cmd textarea{width:100%;font:14px var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;min-height:42px}
+.cmd .send{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{font:700 13px var(--sans);border-radius:9px;padding:9px 15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--lime);color:#10200a;border-color:var(--lime)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn:disabled{opacity:.5;cursor:default}
+.cmd .hint{font-size:12px;color:var(--muted)}
+.cmd .ro{font-size:13px;color:var(--muted);padding:2px 0}
+/* run results from Drive: the billing run's denials_updates files, applied by this page */
+.cmdsync{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;border-top:1px solid var(--line);padding:11px 18px;font-size:12.5px;background:var(--surface2)}
+.cmdsync .sl{font:800 10.5px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--cob);white-space:nowrap}
+.cmdsync .st{color:var(--muted);flex:1 1 240px;min-width:0}
+.cmdsync .st.ok{color:var(--fix)} .cmdsync .st.err{color:var(--review)} .cmdsync .st.busy{color:var(--ink)}
+.cmdsync .btn{padding:6px 11px;font-size:12px}
+.cmdsync details{flex:1 1 100%;margin:0}
+.cmdsync summary{cursor:pointer;color:var(--muted);font-size:12px}
+.cmdsync .slog{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px;font:500 11.5px var(--mono);color:var(--muted)}
+.cmdsync .slog li b{font-weight:600;color:var(--ink)}
+.cmdsync .slog li .e{color:var(--review)}
+.queue{display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--line);padding:12px 18px;max-height:320px;overflow:auto}
+.queue .qh{font:700 11px var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.qc{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;font-size:13px;padding:7px 0;border-bottom:1px solid var(--surface2)}
+.qc:last-child{border-bottom:none}
+.qc .st{font:700 10px var(--mono);padding:3px 7px;border-radius:999px;white-space:nowrap}
+.qc .st.queued{background:var(--timely-s);color:var(--timely)} .qc .st.done{background:var(--fix-s);color:var(--fix)} .qc .st.working{background:var(--cob-s);color:var(--cob)}
+.qc .qmain .cmdname{font-weight:700;text-transform:capitalize}
+.qc .qmain .who{color:var(--muted);font-size:12px}
+.qc .qmain .note{color:var(--ink);margin-top:2px}
+.qc .qmain .res{color:var(--fix);margin-top:2px;font-size:12.5px}
+.qc .at{font:500 11px var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+.leg{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.leg span{font:700 11.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:999px;background:var(--s);color:var(--c)}
+.grp{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow)}
+.grp>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:16px 20px;border-left:7px solid var(--c)}
+.grp>summary::-webkit-details-marker{display:none}
+.grp .tag{display:inline-block;font:800 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--s);color:var(--c)}
+.grp .name{font-family:var(--disp);font-weight:700;font-size:22px;margin-top:6px;letter-spacing:-.01em}
+.grp .act{font-size:13.5px;color:var(--muted);max-width:76ch;line-height:1.45;margin-top:2px}
+.grp .amt{font:700 26px var(--mono);font-variant-numeric:tabular-nums;text-align:right;color:var(--c)}
+.grp .cnt{font:600 12px var(--sans);color:var(--muted);text-align:right}
+.bar{height:6px;background:var(--surface2);margin:0 20px 0 27px;border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--c);border-radius:999px}
+.tw{overflow-x:auto;margin-top:12px;border-top:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{font:800 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface)}
+tbody tr:hover td{background:var(--surface2)}
+td.n{text-align:right;font:600 12.5px var(--mono);font-variant-numeric:tabular-nums}
+td.pt{font-weight:700;white-space:normal;min-width:150px}
+td.rsn{white-space:normal;color:var(--muted);min-width:230px;max-width:360px;font-size:12px;line-height:1.35}
+.pill{display:inline-block;font:700 10.5px var(--mono);padding:3px 8px;border-radius:999px;letter-spacing:.02em}
+.pill.ok{background:var(--fix-s);color:var(--fix)} .pill.old{background:var(--none-s);color:var(--muted)}
+.st{display:inline-flex;align-items:center;gap:5px;font:800 10.5px var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:8px}
+.st.RESUBMITTED{background:var(--lime-s);color:#4D7C0F} .st.RESOLVED{background:var(--fix-s);color:var(--fix)} .st.OPEN{background:var(--timely-s);color:#B45309}
+.st.WRITTEN-OFF{background:var(--none-s);color:var(--muted)} .st.UNMATCHED,.st.UNKNOWN,.st.na{background:var(--surface2);color:var(--muted)}
+:root[data-theme="dark"] .st.RESUBMITTED,:root:not([data-theme="light"]) .st.RESUBMITTED{color:var(--lime)}
+.code{display:inline-block;font:700 11px var(--mono);padding:2px 7px;border-radius:6px;background:var(--surface2);color:var(--ink);margin:1px 3px 1px 0;border:1px solid var(--line)}
+.rowcmd{border:1px solid var(--line);background:var(--surface2);color:var(--accent);border-radius:7px;font:700 11px var(--sans);padding:4px 9px;cursor:pointer;white-space:nowrap}
+.rowcmd:hover{border-color:var(--accent)}
+.qd{display:inline-block;font:700 9.5px var(--mono);padding:2px 6px;border-radius:999px;background:var(--timely-s);color:var(--timely);margin-left:6px;vertical-align:1px}
+tr:last-child td{border-bottom:0}
+.more{padding:10px 20px;font-size:12.5px;color:var(--muted)}
+.note{color:var(--muted);font-size:13px;max-width:80ch;margin:20px 0 0;line-height:1.55}
+summary:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:680px){h1{font-size:32px}.kpis{margin-top:-30px}.grp>summary{grid-template-columns:1fr}.grp .amt{text-align:left}.pal{align-items:flex-start;width:100%}.pal .row{justify-content:flex-start}}
+@media (prefers-reduced-motion:no-preference){.kpi,.grp{transition:transform .15s ease}.kpi:hover{transform:translateY(-2px)}}
+</style>
+
+<div class="hero"><div class="in">
+  <div class="herotop">
+    <div>
+      <div class="eyebrow"><i></i>Working Denials · nightly triage + live AMD status</div>
+      <h1>Nothing gets written off in the dark.</h1>
+      <div class="asof" id="asof"></div>
+      <div class="rf" id="rf" aria-label="Refresh from AdvancedMD">
+        <button class="rfbtn primary" id="rf-go" title="Starts the Billing Button's 'denials' step on GitHub: it logs in to AdvancedMD, re-reads every denied visit's live chart (payments, write-offs, last bill date), rebuilds the triage and brings the result back to this page. Read-only - nothing is written in AMD.">⟳ Refresh from AMD</button>
+        <button class="rfbtn" id="rf-load" title="Pulls the newest denials snapshot the last Billing Button run left on GitHub main, without starting a run.">Load latest snapshot</button>
+        <button class="rfbtn" id="rf-tok" title="The fine-grained GitHub token for the effinger-billing-backend repository (Actions: read and write, Contents: read). Saved in this browser only.">GitHub token</button>
+        <span class="rfst" id="rf-st"></span>
+        <div class="rftok" id="rf-tokbox" hidden><input type="password" id="rf-tokin" placeholder="github_pat_…" autocomplete="off"><button class="rfbtn" id="rf-toksave">Save</button><button class="rfbtn" id="rf-tokclear">Forget</button></div>
+      </div>
+    </div>
+    <div class="pal" aria-label="Color palette and theme">
+      <span class="lbl">Colors</span>
+      <div class="row" id="palrow">
+        <button data-pal="ehpa" aria-pressed="false"><span class="sw"><i style="background:#253e59"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>ehpa</button>
+        <button data-pal="midnight" aria-pressed="true"><span class="sw"><i style="background:#082f35"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>Midnight</button>
+        <button data-pal="plum" aria-pressed="false"><span class="sw"><i style="background:#181924"></i><i style="background:#9be8e2"></i><i style="background:#1d122e"></i></span>Plum</button>
+        <button data-pal="indigo" aria-pressed="false"><span class="sw"><i style="background:#0B1222"></i><i style="background:#1D4ED8"></i><i style="background:#7C3AED"></i></span>Indigo</button>
+        <button data-pal="copper" aria-pressed="false"><span class="sw"><i style="background:#1C1A17"></i><i style="background:#C2703D"></i><i style="background:#6FA287"></i></span>Copper</button>
+        <button data-pal="emerald" aria-pressed="false"><span class="sw"><i style="background:#06140F"></i><i style="background:#10B981"></i><i style="background:#22D3EE"></i></span>Emerald</button>
+        <button data-pal="royal" aria-pressed="false"><span class="sw"><i style="background:#160C2E"></i><i style="background:#8B5CF6"></i><i style="background:#EC4899"></i></span>Royal</button>
+        <button data-pal="graphite" aria-pressed="false"><span class="sw"><i style="background:#191C22"></i><i style="background:#64748B"></i><i style="background:#0EA5E9"></i></span>Graphite</button>
+      </div>
+      <div class="row trow" id="themerow">
+        <button data-theme="auto" aria-pressed="true">Match device</button>
+        <button data-theme="light" aria-pressed="false">Light</button>
+        <button data-theme="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </div>
+  <p class="lede" id="lede"></p>
+  <div class="dist" id="dist"></div><div class="distleg" id="distleg"></div>
+</div></div>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+
+  <section class="cmd" id="console">
+    <div class="ch"><span class="t">⚡ Send a billing command to Claude</span><span class="live" id="live"><i></i><span id="livetxt">connecting…</span></span></div>
+    <div class="body">
+      <div class="target" id="target">Target: <b>the whole board</b>. Pick an action below, add a note if you want, and send — Claude picks these up on the next billing run.</div>
+      <div class="qbtns" id="qbtns"></div>
+      <textarea id="cmdnote" placeholder="Optional note to Claude — e.g. 'I have the timely-filing proof in my email, appeal these' or 'facesheet attached, rebill to the MA plan'"></textarea>
+      <div class="send">
+        <button class="btn primary" id="send">Send to Claude</button>
+        <button class="btn" id="dl" title="Download a worksheet of every row still open and actionable">Download open-work worksheet</button>
+        <span class="hint" id="sendhint"></span>
+      </div>
+    </div>
+    <div class="queue" id="queue" hidden></div>
+    <div class="cmdsync" id="cmdsync" aria-live="polite">
+      <span class="sl">Run results from Drive</span>
+      <span class="st" id="sync-st">Waiting for the board to connect…</span>
+      <button class="btn" id="sync-go" title="Looks in the Drive folder 'board inbox' for new denials_updates files from the billing run and applies them to the queue">Check Drive now</button>
+      <details id="sync-det"><summary>Applied files</summary><ul class="slog" id="sync-log"><li>Nothing applied yet.</li></ul></details>
+    </div>
+  </section>
+
+  <div class="leg" id="leg"></div>
+  <div id="groups"></div>
+  <p class="note" id="foot"></p>
+</div>
+
+<script>
+const D=/*__DATA__*/null;
+(function(){
+ const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const money=n=>'$'+Math.round(n||0).toLocaleString('en-US');
+ const shorten=s=>{s=String(s||''); const m=s.split(/\.\s|\s\(Use only|\sAt least one|\sNote:|\sDo not use/)[0]; return m.length>110?m.slice(0,108)+'…':m;};
+ const when=iso=>{if(!iso)return'';const d=new Date(iso);return isNaN(d)?'':d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'});};
+
+ // ---------- palette / theme picker ----------
+ const root=document.documentElement;
+ function applyPal(p,t){
+   if(p&&p!=='indigo') root.setAttribute('data-palette',p); else root.removeAttribute('data-palette');
+   if(t==='light'||t==='dark') root.setAttribute('data-theme',t); else root.removeAttribute('data-theme');
+   document.querySelectorAll('#palrow [data-pal]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===(p||'midnight')?'true':'false'));
+   document.querySelectorAll('#themerow [data-theme]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===(t||'auto')?'true':'false'));
+   try{localStorage.setItem('wd-pal3',p||'midnight');localStorage.setItem('wd-theme3',t||'auto');}catch(e){}
+ }
+ let pal='midnight',theme='auto';
+ try{pal=localStorage.getItem('wd-pal3')||'midnight';theme=localStorage.getItem('wd-theme3')||'auto';}catch(e){}
+ applyPal(pal,theme);
+ document.querySelectorAll('#palrow [data-pal]').forEach(b=>b.addEventListener('click',()=>{pal=b.dataset.pal;applyPal(pal,theme);}));
+ document.querySelectorAll('#themerow [data-theme]').forEach(b=>b.addEventListener('click',()=>{theme=b.dataset.theme;applyPal(pal,theme);}));
+
+ // ---------- triage data ----------
+ const META={
+  FIX:['fix','FIX','Correctable — the defect is fixed on the claim and it goes back out as an original.'],
+  COB:['cob','WRONG PAYER','Coordination of benefits — find the real payer, correct the chart, re-route the claim.'],
+  TIMELY:['timely','TIMELY FILING','Filing limit passed — appeal with proof of timely submission, otherwise a deliberate, documented write-off.'],
+  CRED:['cred','CREDENTIALING','Provider or network enrollment gap — cleared on the Credentialing Board, then rebilled.'],
+  REVIEW:['review','REVIEW','Needs a human read of the remark — patient responsibility, non-covered, or a recode.'],
+  PATIENT:['patient','PATIENT RESPONSIBILITY','Deductible / coinsurance / copay — moves to the patient or the secondary.'],
+  DUPLICATE:['none','DUPLICATE','Exact-duplicate denials — confirm the original paid, then close. Never rebilled.'],
+  CONTRACTUAL:['none','CONTRACTUAL','Allowed-amount write-downs — normal, no action.'],
+  INFO:['none','INFORMATIONAL','Prior-payer / sequestration notes — no action.'],
+  UNCLASSIFIED:['none','UNCLASSIFIED','No triage rule yet — add the CARC to DENIAL_RULES.']};
+ const ORDER=['FIX','COB','TIMELY','CRED','REVIEW','PATIENT','DUPLICATE','CONTRACTUAL','INFO','UNCLASSIFIED'];
+ let s=D.summary, bs=D.bystatus||{};
+ function renderHead(){
+  s=D.summary; bs=D.bystatus||{};
+ $('#asof').textContent='As of '+D.asof+' · '+D.total_visits.toLocaleString()+' denied visits · '+D.total_lines.toLocaleString()+' CARC/RARC lines · cross-checked against AMD';
+  $('#lede').innerHTML='Every denial the payers sent, sorted by what to do about it. <b>'+money(D.resub_amt)+' resubmitted</b> after correction, <b>'+money(D.resolved_amt)+' already paid</b> by a later payer, and <b>'+money(D.timely_amt)+'</b> still open and inside the filing window.';
+  const tot=ORDER.reduce((a,k)=>a+((s[k]||{}).amt||0),0)||1;
+  $('#dist').innerHTML=ORDER.filter(k=>s[k]).map(k=>`<i style="width:${(100*s[k].amt/tot).toFixed(2)}%;background:var(--${META[k][0]})" title="${k} ${money(s[k].amt)}"></i>`).join('');
+  $('#distleg').innerHTML=ORDER.filter(k=>s[k]).map(k=>`<span style="--c:var(--${META[k][0]})">${esc(META[k][1])} ${money(s[k].amt)}</span>`).join('');
+  $('#kpis').innerHTML=[
+  ['lime','Resubmitted tonight',(bs.RESUBMITTED||0),money(D.resub_amt)+' corrected and back out to the payer'],
+  ['fix','Already paid since',(bs.RESOLVED||0),money(D.resolved_amt)+' — a later payer settled these; closed'],
+  ['timely','Open, inside 12 months',(D.timely_visits||0),money(D.timely_amt)+' still recoverable — on the list'],
+  ['review','Still actionable, all ages',(D.actionable_visits||0),money(D.actionable_amt)+' across fix / wrong payer / timely / cred / review'],
+  ['none','Duplicates & contractual',(((s.DUPLICATE||{}).visits||0)+((s.CONTRACTUAL||{}).visits||0)).toLocaleString(),'confirm & close — not lost revenue'],
+ ].map(k=>`<div class="kpi" style="--c:var(--${k[0]});--tint:var(--${k[0]}-s)"><div class="l">${k[1]}</div><div class="v">${k[2]}</div><div class="s">${k[3]}</div></div>`).join('');
+  $('#leg').innerHTML=ORDER.filter(k=>s[k]).map(k=>`<span style="--c:var(--${META[k][0]});--s:var(--${META[k][0]}-s)">${esc(META[k][1])}</span>`).join('');
+ }
+ renderHead();
+
+ const byd={}; function rebuildByd(){ Object.keys(byd).forEach(k=>delete byd[k]); ORDER.forEach(d=>byd[d]=[]); D.visits.forEach(v=>{(byd[v.dispo]=byd[v.dispo]||[]).push(v)}); } rebuildByd();
+ const open=new Set(['FIX','COB','TIMELY','CRED','REVIEW']);
+ const rank={RESUBMITTED:0,OPEN:1,'WRITTEN-OFF':2,RESOLVED:3};
+
+ function groupsHTML(){
+  return ORDER.filter(d=>s[d]).map(d=>{
+   const m=META[d], rows=(byd[d]||[]).slice().sort((a,b)=>((rank[a.status]??1.5)-(rank[b.status]??1.5))||((b.timely?1:0)-(a.timely?1:0))||((b.amt||0)-(a.amt||0)));
+   const cap=(D.capped||{})[d]||0;
+   const mx=Math.max(...ORDER.map(k=>(s[k]||{}).amt||0),1);
+   const body=`<div class="tw"><table><thead><tr><th>Status</th><th>Patient</th><th>DOS</th><th>CPT</th><th>Payer</th><th>Window</th><th>Codes</th><th>Reason</th><th style="text-align:right">Amount</th><th></th></tr></thead><tbody>`+
+     rows.map(v=>{const vid=String(v.visitid);const q=qByVisit[vid];
+       return `<tr><td><span class="st ${esc(v.status||'na')}">${esc(v.status||'—')}${v.resubmitted?' '+esc(v.resubmitted):''}</span></td>`+
+       `<td class="pt">${esc(v.patient)}${q?`<span class="qd" title="${esc(q.command)} queued to Claude">⟳ ${esc(q.command)}</span>`:''}</td>`+
+       `<td>${esc(v.dos)}</td><td>${esc(v.cpt||'')}</td><td>${esc(v.carrier||'')}</td>`+
+       `<td>${v.timely?'<span class="pill ok">timely</span>':'<span class="pill old">'+(v.age!=null?Math.round(v.age/30)+' mo':'—')+'</span>'}</td>`+
+       `<td>${(v.codes||[]).map(c=>`<span class="code">${esc(c)}</span>`).join('')}${(v.rarc||[]).slice(0,2).map(c=>`<span class="code">${esc(c)}</span>`).join('')}</td>`+
+       `<td class="rsn" title="${esc(v.reason||'')}">${esc(shorten(v.reason))}</td>`+
+       `<td class="n">${money(v.amt)}</td>`+
+       `<td>${v.pid>0?`<button class="rowcmd" data-cmd-visit="${vid}">⚡ Command</button>`:''}</td></tr>`;
+     }).join('')+
+     `</tbody></table></div>`+(cap?`<div class="more">+ ${cap.toLocaleString()} more ${esc(m[1].toLowerCase())} visits not listed (${rows.length} shown) — full detail in working_denials_&lt;date&gt;.json.</div>`:'');
+   const statusmix=Object.entries((byd[d]||[]).reduce((a,v)=>{a[v.status||'n/a']=(a[v.status||'n/a']||0)+1;return a;},{})).map(([k,n])=>n+' '+k.toLowerCase()).join(' · ');
+   return `<details class="grp" style="--c:var(--${m[0]});--s:var(--${m[0]}-s)" ${open.has(d)?'open':''}><summary><span><span class="tag">${esc(m[1])}</span><div class="name">${s[d].visits.toLocaleString()} visit${s[d].visits==1?'':'s'} · ${s[d].patients} patient${s[d].patients==1?'':'s'}</div><div class="act">${esc(m[2])}</div></span><span><div class="amt">${money(s[d].amt)}</div><div class="cnt">${esc(statusmix)}</div></span></summary><div class="bar"><i style="width:${(100*s[d].amt/mx).toFixed(1)}%"></i></div>${body}</details>`;
+  }).join('');
+ }
+ function renderGroups(){ $('#groups').innerHTML=groupsHTML(); }
+
+ $('#foot').innerHTML='Built each night by working_denials.py (triage, read-only) and worked by the billing run (hospice → GV to Medicare, invalid principal diagnosis → corrected, wrong payer → Stedi cascade → re-routed; records requests and timely-filing calls stay on William’s list). Status is the live AMD state: <b>RESUBMITTED</b> corrected and rebilled, <b>RESOLVED</b> a real payment posted since the denial, <b>WRITTEN-OFF</b> closed without payment, <b>OPEN</b> balance still out. The ⚡ command buttons queue an instruction to Claude’s next billing run — CARC is the payer’s Claim Adjustment Reason Code.';
+
+ // ---------- command console (db capability) ----------
+ const CMDS=[
+  ['writeoff','Write off','fix the chart & document a write-off (untimely / non-covered)','none'],
+  ['appeal','Appeal — I have proof','appeal with proof of timely filing','timely'],
+  ['rebill','Rebill','correct and rebill as an original claim','cob'],
+  ['find','Find insurance','run the Stedi insurance cascade and re-route to the right payer','cred'],
+  ['records','Records/auth sent','I sent the records or auth — resubmit now','review'],
+  ['note','Just a note','read my note and decide','patient'],
+ ];
+ const BOARD=[
+  ['work-timely','Work all timely-filing','find proof and appeal, else document the write-off','timely'],
+  ['writeoff-aged','Write off everything past the window','documented write-offs on rows past every filing window','none'],
+  ['rerun','Re-run the board now','re-scan the ERA remits and refresh the status','cob'],
+ ];
+ let db=null, queue=[], qByVisit={}, sel=null, pick=null;
+ const liveEl=$('#live'), liveTxt=$('#livetxt');
+
+ function renderTarget(){
+  if(sel){ $('#target').innerHTML=`Target: <b>${esc(sel.patient)}</b> · ${esc(sel.carrier||'')} ${esc(sel.cpt||'')} · DOS ${esc(sel.dos)} · <span style="font-family:var(--mono)">CARC ${esc(sel.carc)}</span> · ${money(sel.amt)} <button class="clear" id="clearsel">clear</button>`; }
+  else { $('#target').innerHTML='Target: <b>the whole board</b>. Pick an action below, add a note if you want, and send — Claude picks these up on the next billing run.'; }
+  const c=$('#clearsel'); if(c) c.addEventListener('click',()=>{sel=null;pick=null;renderConsole();});
+ }
+ function renderBtns(){
+  const set=sel?CMDS:CMDS.concat(BOARD.map(b=>[b[0],b[1],b[2],b[3],true]));
+  $('#qbtns').innerHTML=set.map(b=>`<button class="qbtn${b[4]?' board':''}" data-pick="${b[0]}" aria-pressed="${pick===b[0]?'true':'false'}" style="--c:var(--${b[3]})" title="${esc(b[2])}"><span class="dot"></span>${esc(b[1])}</button>`).join('');
+  document.querySelectorAll('#qbtns [data-pick]').forEach(btn=>btn.addEventListener('click',()=>{pick=btn.dataset.pick;renderBtns();}));
+ }
+ function renderConsole(){ renderTarget(); renderBtns(); }
+
+ function renderQueue(){
+  qByVisit={}; queue.forEach(q=>{ if(q.visitid && q.status!=='done') qByVisit[String(q.visitid)]=q; });
+  const q=$('#queue');
+  if(!queue.length){ q.hidden=true; }
+  else{ q.hidden=false;
+   const label=c=>({writeoff:'write off',appeal:'appeal',rebill:'rebill',find:'find insurance',records:'records sent',note:'note','work-timely':'work all timely-filing','writeoff-aged':'write off past-window','rerun':'re-run board'}[c]||c);
+   const nameFor=c=>{ if(c.target==='board') return 'board-wide'; const v=D.visits.find(v=>String(v.visitid)===String(c.visitid)); return v?v.patient:('visit '+esc(c.visitid)); };
+   q.innerHTML='<div class="qh">Command queue — what you’ve sent Claude</div>'+queue.slice().sort((a,b)=>(b.at||'').localeCompare(a.at||'')).map(c=>
+     `<div class="qc"><span class="st ${esc(c.status||'queued')}">${esc(c.status||'queued')}</span><span class="qmain"><span class="cmdname">${esc(label(c.command))}</span> <span class="who">· ${esc(nameFor(c))}</span>${c.note?`<div class="note">“${esc(c.note)}”</div>`:''}${c.result?`<div class="res">✓ ${esc(c.result)}</div>`:''}</span><span class="at">${esc(when(c.at))}</span></div>`).join('');
+  }
+  renderGroups();
+ }
+
+ document.addEventListener('click',e=>{
+  const rc=e.target.closest('[data-cmd-visit]'); if(!rc) return;
+  const vid=rc.dataset.cmdVisit; sel=D.visits.find(v=>String(v.visitid)===vid)||null; pick=null;
+  renderConsole(); $('#console').scrollIntoView({behavior:'smooth',block:'start'}); $('#cmdnote').focus();
+ });
+
+ async function send(){
+  if(!db){ $('#sendhint').textContent='Board storage isn’t available in this view — can’t queue commands here.'; return; }
+  if(!pick){ $('#sendhint').textContent='Pick an action first.'; return; }
+  const note=$('#cmdnote').value.trim();
+  const id='cmd-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,6);
+  const now=new Date().toISOString();
+  // PHI-light: store only ids + claim facts in the shared queue; the patient NAME is never written here,
+  // it is resolved client-side from the page data for display. Claude resolves pid/visitid at action time.
+  const doc={id,command:pick,note,by:'William',at:now,status:'queued',
+    target:sel?'visit':'board',
+    visitid:sel?String(sel.visitid):'', pid:sel?String(sel.pid):'',
+    carrier:sel?sel.carrier:'', cpt:sel?sel.cpt:'', dos:sel?sel.dos:'', carc:sel?sel.carc:'', amt:sel?sel.amt:0};
+  $('#send').disabled=true; $('#sendhint').textContent='Sending…';
+  try{ await db.doc('commands/'+id).set(doc); $('#cmdnote').value=''; pick=null; sel=null; renderConsole();
+       $('#sendhint').textContent='Queued for Claude’s next run.'; setTimeout(()=>{$('#sendhint').textContent='';},3500); }
+  catch(err){ $('#sendhint').textContent='Could not send ('+(err&&err.code||'error')+').'; }
+  $('#send').disabled=false;
+ }
+ $('#send').addEventListener('click',send);
+
+ // download worksheet of open-actionable rows (downloads capability)
+ let downloads=null;
+ $('#dl').addEventListener('click',async()=>{
+  const rows=D.visits.filter(v=>['FIX','COB','TIMELY','CRED','REVIEW'].includes(v.dispo)&&v.status!=='RESOLVED'&&v.status!=='RESUBMITTED'&&v.status!=='WRITTEN-OFF');
+  if(!rows.length){ $('#sendhint').textContent='Nothing open and actionable right now.'; return; }
+  const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const head=['Patient','pid','visitid','DOS','CPT','Payer','CARC','RARC','Age(days)','Amount','Disposition','Status','What to do'];
+  const todo={FIX:'fix & rebill',COB:'route to correct payer',TIMELY:'appeal with proof or write off',CRED:'credentialing then rebill',REVIEW:'human read'};
+  const csv='﻿'+[head.map(q).join(',')].concat(rows.map(v=>[v.patient,v.pid,v.visitid,v.dos,v.cpt,v.carrier,v.carc,(v.rarc||[]).join(' '),v.age,v.amt,v.dispo,v.status||'',todo[v.dispo]||''].map(q).join(','))).join('\r\n');
+  const d=new Date(), fn='Working_denials_open_'+d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')+'.csv';
+  if(!downloads){ $('#sendhint').textContent='Download isn’t available in this view.'; return; }
+  try{ await downloads.save({filename:fn,data:csv}); $('#sendhint').textContent='Worksheet saved ('+rows.length+' rows).'; }
+  catch(err){ $('#sendhint').textContent=(err&&err.code==='cancelled')?'Download cancelled.':'Could not save ('+(err&&err.code||'error')+').'; }
+ });
+
+
+ // ---------- Refresh from AMD (the Billing Button 'denials' step on GitHub) ----------
+ // William 10/13/2026: a refresh button that uses the AMD API on request. The page cannot reach AdvancedMD itself, so it starts
+ // the repository's billing-button workflow with steps=denials (one AMD login on a GitHub machine, read-only: every denied visit's
+ // live chart is re-read, the triage rebuilt) and then pulls reports/button/working_denials_latest.json from main. The snapshot
+ // carries chart and visit ids only - names are kept from this page's own data, new rows show as "chart <id>".
+ const GH_REPO='dreffinger/effinger-billing-backend', GH_WF='billing-button.yml', GH_API='https://api.github.com', GH_BRANCH='main', GH_FILE='reports/button/working_denials_latest.json';
+ let ghTok=''; try{ ghTok=localStorage.getItem('wd-gh-token')||''; }catch(e){}
+ const rfSt=(m,c)=>{ const el=$('#rf-st'); if(el){ el.textContent=m; el.className='rfst'+(c?' '+c:''); } };
+ async function gh(path,o){ o=o||{}; const h={'Authorization':'Bearer '+ghTok,'Accept':o.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  const r=await fetch(GH_API+path,{method:o.method||'GET',headers:Object.assign(h,o.body?{'Content-Type':'application/json'}:{}),body:o.body?JSON.stringify(o.body):undefined,cache:'no-store'});
+  if(!r.ok){ throw new Error(r.status+' '+r.statusText); } if(r.status===204) return null; return o.raw?r.json():r.json(); }
+ function applySnapshot(S0){ let S=S0;
+  if(!S||!Array.isArray(S.visits)) throw new Error('snapshot has no visits');
+  const names={}; D.visits.forEach(v=>{ if(v.patient) names[String(v.visitid)]=v.patient; });
+  const seen={}, capped={}; const vis=[];
+  S.visits.forEach(v=>{ const r=Object.assign({},v,{patient:names[String(v.visitid)]||('chart '+(v.pid||'?'))}); const d=r.dispo; const closed=['RESOLVED','WRITTEN-OFF'].includes(r.status);
+   seen[d]=(seen[d]||0)+1; const lim=closed?100:({PATIENT:60,DUPLICATE:120,CONTRACTUAL:60,INFO:40}[d]||100000);
+   if(seen[d]>lim && (closed || {PATIENT:1,DUPLICATE:1,CONTRACTUAL:1,INFO:1}[d])){ capped[d]=(capped[d]||0)+1; return; } vis.push(r); });
+  S=Object.assign({},S,{capped:capped});
+  for(const k of Object.keys(D)) if(k!=='summary') delete D[k];
+  Object.keys(D.summary).forEach(k=>delete D.summary[k]);
+  Object.assign(D, S, {visits:vis, summary:D.summary}); Object.assign(D.summary, S.summary||{});
+  rebuildByd(); renderHead(); renderQueue();
+  $('#asof').textContent='As of '+D.asof+' · '+(D.total_visits||0).toLocaleString()+' denied visits · '+(D.total_lines||0).toLocaleString()+' CARC/RARC lines · live AMD read'+(S.charts_read?' of '+S.charts_read+' charts':'');
+ }
+ async function loadSnapshot(quiet){
+  if(!ghTok){ $('#rf-tokbox').hidden=false; $('#rf-tokin').focus(); rfSt('Save a GitHub token first (Contents: read).','err'); return false; }
+  try{ const S=await gh('/repos/'+GH_REPO+'/contents/'+GH_FILE+'?ref='+GH_BRANCH,{raw:true});
+   if(S.asof && S.asof===D.asof){ if(!quiet) rfSt('Already showing the newest snapshot ('+S.asof+').','ok'); return true; }
+   applySnapshot(S); rfSt('Loaded the snapshot of '+S.asof+' from GitHub main.','ok'); return true; }
+  catch(e){ rfSt(/404/.test(e.message)?'No snapshot on GitHub yet - press Refresh from AMD.':'Could not read the snapshot: '+e.message,'err'); return false; }
+ }
+ let rfTimer=null;
+ async function refreshFromAMD(){
+  if(!ghTok){ $('#rf-tokbox').hidden=false; $('#rf-tokin').focus(); rfSt('Save a GitHub token first (Actions: read and write, Contents: read).','err'); return; }
+  const go=$('#rf-go'); go.disabled=true; rfSt('Asking GitHub to start the denials refresh…','busy');
+  const t0=Date.now();
+  try{ await gh('/repos/'+GH_REPO+'/actions/workflows/'+GH_WF+'/dispatches',{method:'POST',body:{ref:GH_BRANCH,inputs:{mode:'dry',steps:'denials',packages:'',note:'Working Denials refresh '+new Date().toISOString()}}}); }
+  catch(e){ go.disabled=false; rfSt('GitHub refused the trigger: '+e.message+' (token needs Actions: read and write).','err'); return; }
+  rfSt('Run requested. AdvancedMD is being re-read on GitHub - this usually takes 5-12 minutes; the page keeps watching.','busy');
+  if(rfTimer) clearInterval(rfTimer);
+  const tick=async()=>{ try{ const j=await gh('/repos/'+GH_REPO+'/actions/workflows/'+GH_WF+'/runs?per_page=5&event=workflow_dispatch'); const rs=(j.workflow_runs||[]).filter(r=>new Date(r.created_at).getTime()>t0-120000);
+    const r=rs[0]; const mins=Math.round((Date.now()-t0)/60000);
+    if(!r){ rfSt('Waiting for GitHub to queue the run… ('+mins+' min)','busy'); return; }
+    if(r.status!=='completed'){ rfSt('Refresh '+r.status.replace('_',' ')+' on GitHub ('+mins+' min) - log: '+r.html_url,'busy'); return; }
+    clearInterval(rfTimer); rfTimer=null; go.disabled=false;
+    if(r.conclusion!=='success'){ rfSt('The run ended '+r.conclusion+' - see '+r.html_url,'err'); return; }
+    const ok=await loadSnapshot(true); if(ok) rfSt('Refreshed from AMD - snapshot '+D.asof+' ('+mins+' min).','ok'); }
+   catch(e){ rfSt('Watching the run failed: '+e.message,'err'); clearInterval(rfTimer); rfTimer=null; go.disabled=false; } };
+  rfTimer=setInterval(tick,20000); setTimeout(tick,4000);
+ }
+ $('#rf-go').addEventListener('click',refreshFromAMD);
+ $('#rf-load').addEventListener('click',()=>loadSnapshot(false));
+ $('#rf-tok').addEventListener('click',()=>{ const b=$('#rf-tokbox'); b.hidden=!b.hidden; if(!b.hidden) $('#rf-tokin').focus(); });
+ $('#rf-toksave').addEventListener('click',()=>{ ghTok=$('#rf-tokin').value.trim(); try{ localStorage.setItem('wd-gh-token',ghTok); }catch(e){} $('#rf-tokin').value=''; $('#rf-tokbox').hidden=true; rfSt(ghTok?'Token saved in this browser.':'Token cleared.','ok'); });
+ $('#rf-tokclear').addEventListener('click',()=>{ ghTok=''; try{ localStorage.removeItem('wd-gh-token'); }catch(e){} $('#rf-tokbox').hidden=true; rfSt('Token forgotten.','ok'); });
+ if(ghTok) loadSnapshot(true);
+
+ // ---------- run results from Drive ----------
+ // The billing run cannot write to this board without a human approval (every write_db call prompts), so it
+ // answers commands by dropping denials_updates_<stamp>.json files into the Drive folder "board inbox"
+ // (billing agent project files → board inbox, the same folder the Insurance Refresh Board uses). This page reads
+ // those files through William's Google Drive connector and applies the ops to the `commands` collection itself —
+ // no approval anywhere. Applied file ids are remembered in meta/drive_sync so each file is applied once; the run
+ // trashes the files listed there. File shape: {"schema":"wd-board-updates/1","source":"...","created":"<iso>","ops":[
+ //   {"op":"update","collection":"commands","id":"cmd-...","set":{"status":"done","result":"one line of what was done","doneAt":"<iso>"}},
+ //   {"op":"upsert","collection":"commands","id":"cmd-claude-<stamp>","set":{"command":"note","by":"Claude","target":"board","status":"done","result":"..."}},
+ //   {"op":"delete","collection":"commands","id":"..."} ]}
+ const INBOX_ID='1KRTMWbprth4HBbGpfGYHCEnIgx5Y92J8', DRIVE='Google Drive', REG_PATH='meta/drive_sync', LEASE_PATH='meta/drive_sync_lease', PREFIX='denials_updates_';
+ const COLL_OK=/^commands$/, ID_OK=/^[A-Za-z0-9_\-.~:@+]{1,200}$/;
+ const TAB='tab-'+Math.random().toString(36).slice(2,10);
+ let mcp=null, syncing=false, lastSyncAt=0;
+ const stEl=()=>$('#sync-st'), goEl=()=>$('#sync-go');
+ function setSync(msg, cls){ const el=stEl(); if(!el) return; el.textContent=msg; el.className='st '+(cls||''); }
+ function renderSyncLog(reg){
+  const ul=$('#sync-log'); if(!ul) return;
+  const rows=Object.entries((reg&&reg.applied)||{}).map(([id,v])=>Object.assign({id},v||{})).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,10);
+  ul.innerHTML = rows.length ? rows.map(r=>`<li><b>${esc(r.title||r.id)}</b> — ${esc(when(r.at))} · ${Number(r.ops||0)} change${Number(r.ops)===1?'':'s'}${r.failed?` <span class="e">(${Number(r.failed)} failed)</span>`:''}${r.error?` <span class="e">${esc(r.error)}</span>`:''}</li>`).join('') : '<li>Nothing applied yet.</li>';
+ }
+ async function withRetry(fn){ try{ return await fn(); }catch(e){ if(e&&e.code==='unavailable'){ await new Promise(r=>setTimeout(r,400+Math.random()*600)); return await fn(); } throw e; } }
+ function b64utf8(b64){ const bin=atob(String(b64).replace(/\s/g,'')); const bytes=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i); return new TextDecoder('utf-8').decode(bytes); }
+ const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
+ const same=(a,b)=>{ try{ return JSON.stringify(a)===JSON.stringify(b); }catch(e){ return false; } };
+ function mcpMsg(e){
+  const c=e&&e.code; const m=e&&e.message?(' — '+String(e.message).slice(0,160)):'';
+  if(c==='invalid_argument'||c==='resource_exhausted'||c==='quota_exceeded'||c==='revoked'||c==='unavailable') return 'Board store problem while applying results ('+c+')'+m+' — try Check Drive now in a moment.';
+  switch(c){
+   case 'not_granted': case 'capability_disabled': case 'capability_removed': return 'Drive sync is not available in this view.';
+   case 'server_not_connected': return 'Google Drive is not connected — add it under claude.ai Settings → Connectors, then reload.';
+   case 'needs_reauth': return 'Google Drive needs to be reconnected — claude.ai Settings → Connectors, then reload.';
+   case 'selection_required': return 'More than one Google Drive connector — pick one when claude.ai asks, then Check Drive now.';
+   case 'not_in_manifest': case 'consent_required': return 'Drive access was not allowed for this page — reload and click Allow when asked, so run results can be applied.';
+   case 'blocked_by_policy': case 'approval_required': return 'Your organization blocks or requires approval for this Drive tool, so the board cannot pull run results here.';
+   case 'tool_error': return 'Google Drive returned an error'+m;
+   case 'server_unavailable': case 'upstream_error': return 'Google Drive did not answer'+m+' — will try again later.';
+   case 'cancelled': return 'The Drive call was cancelled.';
+   default: return 'Could not reach Google Drive ('+(c||(e&&e.message)||'error')+').';
+  }
+ }
+ async function drive(tool, input){
+  const opts={cache:false}; try{ if(typeof AbortSignal!=='undefined'&&AbortSignal.timeout) opts.signal=AbortSignal.timeout(90000); }catch(e){}
+  try{ return await mcp.callTool(DRIVE, tool, input, opts); }
+  catch(e){
+   if(e&&e.retryable&&(e.code==='server_unavailable'||e.code==='upstream_error'||e.code==='rate_limited')){
+    await new Promise(r=>setTimeout(r, Math.min(Number(e.retryAfterMs)||0, 60000) + 800 + Math.random()*1200));
+    return await mcp.callTool(DRIVE, tool, input, opts);
+   }
+   throw e;
+  }
+ }
+ async function listInbox(){
+  const r=await drive('search_files',{query:"parentId = '"+INBOX_ID+"' and title contains '"+PREFIX+"'", excludeContentSnippets:true, pageSize:100});
+  const p=r&&r.payload; const files=(p&&Array.isArray(p.files))?p.files:[];
+  return files.filter(f=>f&&f.id&&String(f.title||'').startsWith(PREFIX)&&/\.json$/i.test(String(f.title||''))).sort((a,b)=>String(a.createdTime||'').localeCompare(String(b.createdTime||''))||String(a.title||'').localeCompare(String(b.title||'')));
+ }
+ async function readUpdate(fileId){
+  const r=await drive('download_file_content',{fileId});
+  const p=r&&r.payload; if(!p||typeof p.content!=='string') throw new Error('empty download');
+  return JSON.parse(b64utf8(p.content));
+ }
+ async function loadReg(){ const s=await withRetry(()=>db.doc(REG_PATH).get()); return s.exists?Object.assign({},s.data()):null; }
+ async function saveReg(reg, existed){
+  const applied=isObj(reg.applied)?reg.applied:{}; const ids=Object.keys(applied); let full=!existed;
+  if(ids.length>300){ ids.sort((a,b)=>String((applied[a]||{}).at||'').localeCompare(String((applied[b]||{}).at||''))); ids.slice(0, ids.length-300).forEach(k=>delete applied[k]); full=true; }
+  reg.applied=applied;
+  if(full) await withRetry(()=>db.doc(REG_PATH).set(reg)); else await withRetry(()=>db.doc(REG_PATH).update(reg));
+ }
+ async function applyOp(op, now){
+  if(!isObj(op)) throw new Error('op is not an object');
+  const col=String(op.collection||'commands'), id=String(op.id||''), kind=String(op.op||'upsert').toLowerCase();
+  if(!COLL_OK.test(col)) throw new Error('collection not allowed: '+col);
+  if(!ID_OK.test(id)||id==='.'||id==='..') throw new Error('bad id: '+id);
+  const ref=db.doc(col+'/'+id);
+  if(kind==='delete'){ await withRetry(()=>ref.delete()); return; }
+  if(kind==='replace'){ if(!isObj(op.data)) throw new Error('replace needs data'); await withRetry(()=>ref.set(Object.assign({},op.data))); return; }
+  if(!(kind==='upsert'||kind==='update'||kind==='create'||kind==='merge')) throw new Error('unknown op: '+kind);
+  const set=isObj(op.set)?op.set:(isObj(op.data)?op.data:{}), app=isObj(op.append)?op.append:{};
+  const snap=await withRetry(()=>ref.get()); const cur=snap.exists?snap.data():null;
+  if(!cur && kind==='update') throw new Error('no such command: '+id);
+  const patch=Object.assign({}, set);
+  for(const k of Object.keys(app)){
+   const add=Array.isArray(app[k])?app[k]:[app[k]];
+   const base=Array.isArray(patch[k])?patch[k].slice():(cur&&Array.isArray(cur[k])?cur[k].slice():[]);
+   for(const e of add){ if(!base.some(x=>same(x,e))) base.push(e); }
+   patch[k]=base;
+  }
+  if(cur){ await withRetry(()=>ref.update(patch)); }
+  else{ await withRetry(()=>ref.set(Object.assign({id,command:'note',note:'',by:'Claude',at:now,status:'done',target:'board',visitid:'',pid:'',carrier:'',cpt:'',dos:'',carc:'',amt:0,result:''}, patch))); }
+ }
+ async function runSync(reason){
+  if(!db||!mcp||syncing) return; syncing=true; const go=goEl(); if(go) go.disabled=true;
+  setSync('Checking the Drive inbox…','busy');
+  try{
+   let lease=null; try{ lease=await db.doc(LEASE_PATH).acquire({holder:TAB, ttlMs:120000}); }catch(e){ lease=null; }
+   if(lease && lease.acquired===false){ setSync('Another window is applying run results right now — this one checks again later.'); return; }
+   let reg=await loadReg(); let existed=!!reg; reg=reg||{}; reg.applied=isObj(reg.applied)?reg.applied:{};
+   const files=await listInbox();
+   const todo=files.filter(f=>!reg.applied[f.id]);
+   lastSyncAt=Date.now();
+   if(!todo.length){
+    reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); }catch(e){}
+    renderSyncLog(reg);
+    setSync('Up to date — nothing new from the billing run (checked '+when(reg.lastCheck)+').','ok'); return;
+   }
+   let nFiles=0, nOps=0, nFail=0;
+   for(const f of todo){
+    setSync('Applying '+f.title+' ('+(nFiles+1)+' of '+todo.length+')…','busy');
+    let body=null; const entry={title:f.title, at:new Date().toISOString(), ops:0, failed:0};
+    try{ body=await readUpdate(f.id); }
+    catch(e){ if(e&&e.code) throw e; entry.error='unreadable: '+String(e&&e.message||e).slice(0,120); }
+    if(body){
+     if(!isObj(body)||!String(body.schema||'').startsWith('wd-board-updates/')||!Array.isArray(body.ops)){ entry.error='not a wd-board-updates file'; }
+     else{
+      const now=new Date().toISOString(); const errs=[];
+      for(const op of body.ops){ try{ await applyOp(op, now); entry.ops++; }catch(e){ entry.failed++; if(errs.length<5) errs.push(String(e&&e.message||e&&e.code||e).slice(0,100)); } }
+      if(errs.length) entry.error=errs.join('; ');
+     }
+    }
+    reg.applied[f.id]=entry; nFiles++; nOps+=entry.ops; nFail+=entry.failed;
+    try{ await saveReg(reg, existed); existed=true; }catch(e){}
+   }
+   reg.lastCheck=new Date().toISOString(); try{ await saveReg(reg, existed); }catch(e){}
+   renderSyncLog(reg);
+   setSync('Applied '+nFiles+' file'+(nFiles===1?'':'s')+' from the billing run — '+nOps+' change'+(nOps===1?'':'s')+(nFail?' ('+nFail+' failed — see Applied files)':'')+' at '+when(reg.lastCheck)+'.', nFail?'err':'ok');
+  }catch(e){
+   setSync(mcpMsg(e),'err');
+  }finally{ syncing=false; const g=goEl(); if(g) g.disabled=false; }
+ }
+ async function initSync(){
+  try{ mcp = window.claude && window.claude.use ? await window.claude.use('mcp') : null; }catch(e){ mcp=null; }
+  if(!mcp){ setSync('Drive sync is not available in this view — run results apply when the board is opened in claude.ai.'); const g=goEl(); if(g) g.disabled=true; return; }
+  try{ renderSyncLog(await loadReg()); }catch(e){}
+  goEl().addEventListener('click', ()=>runSync('manual'));
+  runSync('load');
+  setInterval(()=>{ if(document.visibilityState==='visible') runSync('timer'); }, 10*60*1000);
+  document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible' && Date.now()-lastSyncAt>5*60*1000) runSync('visible'); });
+ }
+
+ renderConsole(); renderGroups();
+ (async()=>{
+  try{ downloads = (window.claude&&window.claude.use)?await window.claude.use('downloads'):null; }catch(e){ downloads=null; }
+  let use=null; try{ use=(window.claude&&window.claude.use)?window.claude.use('db'):null; }catch(e){ use=null; }
+  db = use?await use:null;
+  if(!db){ liveEl.classList.remove('on'); liveTxt.textContent='read-only view'; $('#send').disabled=true; setSync('Drive sync needs the board store — not available in this view.'); const g=goEl(); if(g) g.disabled=true; return; }
+  liveEl.classList.add('on'); liveTxt.textContent='live';
+  initSync();
+  db.collection('commands').onSnapshot(snap=>{
+    queue=snap.docs.filter(d=>d.exists).map(d=>Object.assign({id:d.id},d.data()));
+    liveTxt.textContent=(snap.metadata&&snap.metadata.fromCache)?'live (cached)':'live';
+    renderQueue();
+  }, err=>{ liveTxt.textContent='connection lost'; });
+ })();
+})();
+</script>
+
+
+<style id="ehpa-run-fab-css">
+/* the two billing buttons (bottom right): Run all billing + Open a billing chat - Midnight colours, independent of the page's own styles */
+.ehpa-run-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:2147483000;display:flex;align-items:stretch;border-radius:999px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.28);max-width:calc(100vw - 32px);font-family:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif}
+.ehpa-run-fab a{display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 16px;text-decoration:none;font:700 15px/1.15 'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;white-space:nowrap;color:#082f35}
+.ehpa-run-fab a.run{background:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);color:#082f35}
+.ehpa-run-fab a.chat{background:#70d6f8;color:#082f35;border-left:1px solid rgba(8,47,53,.25)}
+.ehpa-run-fab a:hover{filter:brightness(1.07)} .ehpa-run-fab a:focus-visible{outline:3px solid #f841e0;outline-offset:-3px}
+.ehpa-run-fab svg{width:22px;height:22px;flex:none}
+.ehpa-run-fab .txt small{display:block;font:400 11.5px/1.2 'Quicksand',system-ui,sans-serif;opacity:.85;margin-top:2px}
+@media (max-width:760px){.ehpa-run-fab .txt small{display:none} .ehpa-run-fab a{font-size:14px;padding:11px 14px}}
+</style>
+
+<div class="ehpa-run-fab" id="ehpa-run-fab" role="complementary" aria-label="Billing buttons">
+  <a class="run" href="https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ#trigger" target="_blank" rel="noopener" title="Opens the ehpa Billing Button page at its trigger: one tap there runs every billing script on GitHub - the columns, ERA posting, the cascade, the approved packages - with no approval prompts. The report comes back to that page."><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg><span class="txt">Run all billing<small>columns · ERA · cascade · packages</small></span></a>
+  <a class="chat" href="https://claude.ai/project/01a083fd-4e9a-75fc-be20-7d5bcd7ddbd9" target="_blank" rel="noopener" title="Opens the ehpa cloud project in a new tab - a billing chat with the repo, the skills, the captured-calls vocabulary and the AMD login."><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.2-4.2A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg><span class="txt">Open a billing chat<small>ehpa cloud · repo, skills, AMD login</small></span></a>
+</div>
+</body></html>

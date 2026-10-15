@@ -1,0 +1,490 @@
+{
+ "stamp": "2026-10-14T0510Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19420698",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-22 cpts ['99232'] pos 21 insorder 2 onhcfa 0 charges [('charge23369605', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/21/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/21/2025 charges=[('charge23369605', '', 'dcode1034912448')]"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420699",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-21 cpts ['99223', '99497'] pos 21 insorder 2 onhcfa 0 charges [('charge23369601', '99223', '', '310.00', '310.00'), ('charge23369603', '99497', 'mcode7', '133.00', '133.00')]",
+    "99223 dx ['K94.23'] never_primary(first)=False",
+    "99497 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (own 99223)",
+    "updextrainsinfo 99223 10/21/2025 -> ok",
+    "updextrainsinfo 99497 10/21/2025 -> ok",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=10/21/2025 charges=[('charge23369601', '', 'dcode1034912448'), ('charge23369603', 'mcode7', 'dcode1034912448')]"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420791",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-23 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369607', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/21/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/21/2025 charges=[('charge23369607', '', 'dcode1034912448')]"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19420881",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2025-10-24 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369609', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['K94.23'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "admission 10/21/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/21/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/21/2025 charges=[('charge23369609', '', 'dcode1034912448')]"
+   ],
+   "admission": "10/21/2025"
+  },
+  {
+   "vid": "19430029",
+   "pid": "17469549",
+   "name": "",
+   "steps": [
+    "dos 2026-01-13 cpts ['99309'] pos 31 insorder 2 onhcfa 0 charges [('charge23369619', '99309', '', '141.00', '141.00')]",
+    "99309 dx ['R62.7', 'R56.9', 'M24.561', 'M24.562', 'M24.552', 'M24.551', 'R13.10', 'G93.40', 'F32.A', 'Z93.1'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO99)",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=None charges=[('charge23369619', '', 'dcode1034545213 dcode103454599')]"
+   ]
+  },
+  {
+   "vid": "19430688",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2026-01-27 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23337116', '99487', '', '206.00', '206.00'), ('charge23337117', '99489', 'mcode7', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> DELETE v19430688 ['dcode1034544890', 'dcode1037454012', 'dcode1034545127'] -> freq1 + rebill seq 1 -> 204",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> SKIP v19430688: primary dx is ['M54.50'], not F02.80",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=None charges=[('charge23337116', '', 'dcode1034544890 dcode103745401'), ('charge23337117', 'mcode7', 'dcode1034544890 dcode103745401')]"
+   ]
+  },
+  {
+   "vid": "19423589",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2025-11-15 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23329198', '99487', '', '206.00', '206.00'), ('charge23329199', '99489', '', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> DELETE v19423589 ['dcode1034544890', 'dcode1037454012', 'dcode1034545127'] -> freq1 + rebill seq 1 -> 204",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> SKIP v19423589: primary dx is ['M54.50'], not F02.80",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=None charges=[('charge23329198', '', 'dcode1034544890 dcode103745401'), ('charge23329199', '', 'dcode1034544890 dcode103745401')]"
+   ]
+  },
+  {
+   "vid": "19426013",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-10 cpts ['99223'] pos 21 insorder 1 onhcfa 0 charges [('charge23332036', '99223', '', '310.00', '310.00')]",
+    "99223 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (own 99223)",
+    "updextrainsinfo 99223 12/10/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/10/2025 charges=[('charge23332036', '', 'dcode1034545564')]"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426109",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-12 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332137', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 12/10/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/10/2025 charges=[('charge23332137', '', 'dcode1034545564')]"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426121",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-11 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332150', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 12/10/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/10/2025 charges=[('charge23332150', '', 'dcode1034545564')]"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426209",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-14 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332267', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 12/10/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/10/2025 charges=[('charge23332267', '', 'dcode1034545564')]"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19426219",
+   "pid": "24197",
+   "name": "",
+   "steps": [
+    "dos 2025-12-13 cpts ['99232'] pos 21 insorder 1 onhcfa 0 charges [('charge23332277', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M17.11'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 12/10/2025 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 12/10/2025 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=12/10/2025 charges=[('charge23332277', '', 'dcode1034545564')]"
+   ],
+   "admission": "12/10/2025"
+  },
+  {
+   "vid": "19427203",
+   "pid": "24716",
+   "name": "",
+   "steps": [
+    "dos 2025-12-21 cpts ['99487', '99489'] pos 13 insorder 1 onhcfa 0 charges [('charge23333534', '99487', '', '206.00', '206.00'), ('charge23333535', '99489', 'mcode7', '109.00', '109.00')]",
+    "99487 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> DELETE v19427203 ['dcode1034544890', 'dcode1037454012', 'dcode1034545127'] -> freq1 + rebill seq 1 -> 204",
+    "99489 dx ['F02.80', 'M54.50', 'M25.60', 'M19.90'] never_primary(first)=True",
+    "PRIMARY-DX GATE: plan ('delete', ['M54.50', 'M25.60', 'M19.90'])",
+    "fix_visit -> SKIP v19427203: primary dx is ['M54.50'], not F02.80",
+    "deceased guard: clear (carrier FLO02)",
+    "resave: saved live=2/2 onhcfa=1 hospfrom=None charges=[('charge23333534', '', 'dcode1034544890 dcode103745401'), ('charge23333535', 'mcode7', 'dcode1034544890 dcode103745401')]"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "vid": "19395738",
+   "pid": "17472519",
+   "name": "",
+   "steps": [
+    "dos 2024-07-05 cpts ['99309'] pos 31 insorder 2,1 onhcfa 0 charges [('charge22468751', '99309', '', '18.12', '141.00')]",
+    "payment posted on a charge (['71.01']) - HOLD, no resave"
+   ]
+  }
+ ],
+ "left": [
+  [
+   "1",
+   "19451190",
+   "23177",
+   [
+    [
+     "396800",
+     "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primar"
+    ],
+    [
+     "396801",
+     "Pattern 24078 Per Medicare CCI Guidelines, procedure code 99309 has an unbundle relationsh"
+    ]
+   ]
+  ],
+  [
+   "112737",
+   "13979435",
+   "44983",
+   [
+    [
+     "396474",
+     "Pattern 3429 Procedure code 99239 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "396475",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396476",
+     "Pattern 35777 Procedure code 99239 with an allowed daily frequency of 1 has been exceeded "
+    ]
+   ]
+  ],
+  [
+   "112753",
+   "13984519",
+   "44983",
+   [
+    [
+     "396489",
+     "Pattern 3429 Procedure code 99239 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "396490",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396491",
+     "Pattern 35777 Procedure code 99239 with an allowed daily frequency of 1 has been exceeded "
+    ]
+   ]
+  ],
+  [
+   "113116",
+   "19364378",
+   "22845",
+   [
+    [
+     "396435",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396436",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "396437",
+     "Pattern 33799 Per Medicare's Medically Unlikely Edits, the units of service billed for pro"
+    ]
+   ]
+  ],
+  [
+   "125686",
+   "19423586",
+   "48008",
+   [
+    [
+     "396802",
+     "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary pro"
+    ],
+    [
+     "396803",
+     "Pattern 20389 Diagnosis code F0280 describes an external cause, or requires the diagnosis "
+    ]
+   ]
+  ],
+  [
+   "113964",
+   "19395738",
+   "17472519",
+   [
+    [
+     "396646",
+     "Pattern 20389 Diagnosis code S065XAS describes an external cause, or requires the diagnosi"
+    ],
+    [
+     "396647",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ]
+   ]
+  ],
+  [
+   "125789",
+   "19424945",
+   "48008",
+   [
+    [
+     "396805",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396806",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125789",
+   "19424950",
+   "48008",
+   [
+    [
+     "396804",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ]
+   ]
+  ],
+  [
+   "125805",
+   "19425223",
+   "48008",
+   [
+    [
+     "396809",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396810",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125805",
+   "19425224",
+   "48008",
+   [
+    [
+     "396807",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396808",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125813",
+   "19425371",
+   "48008",
+   [
+    [
+     "396813",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396814",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125813",
+   "19425391",
+   "48008",
+   [
+    [
+     "396811",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396812",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125815",
+   "19425399",
+   "48008",
+   [
+    [
+     "396815",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396816",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ],
+  [
+   "125820",
+   "19425490",
+   "48008",
+   [
+    [
+     "396817",
+     "Hospitalization From Date in the Extra Info tab is empty. This is a required field for inp"
+    ],
+    [
+     "396818",
+     "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspecified ICD-10-CM diagnosis cod"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [
+  {
+   "batch": "1",
+   "vid": "19441040",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19444481",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19447164",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19448419",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19451182",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "1",
+   "vid": "19456192",
+   "pid": "17469549",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M24559 and M24569 define"
+   ],
+   "ok": true
+  },
+  {
+   "batch": "125855",
+   "vid": "19426067",
+   "pid": "48008",
+   "errs": [
+    "Pattern 11256 The ICD-10-CM code(s) M84359A defines an unspe"
+   ],
+   "ok": true
+  }
+ ],
+ "pending_left": 0
+}

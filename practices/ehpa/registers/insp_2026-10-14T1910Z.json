@@ -1,0 +1,196 @@
+{
+ "stamp": "2026-10-14T1910Z",
+ "dry": false,
+ "visits": [
+  {
+   "vid": "19457776",
+   "pid": "17477640",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369820', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['R69', 'A41.9', 'R65.20', 'N39.0', 'E78.5', 'D49.2', 'F41.9', 'F32.A'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 09/29/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 09/29/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=09/29/2026 charges=[('charge23369820', '', 'dcode1037452463 dcode103454508')]"
+   ],
+   "admission": "09/29/2026"
+  },
+  {
+   "vid": "19457777",
+   "pid": "24560",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99233'] pos 21 insorder 4,2 onhcfa 0 charges [('charge23369821', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['I48.91', 'D09.0', 'I35.0', 'I50.20', 'E11.65', 'R29.6', 'I45.10', 'I25.10', 'I10', 'I25.810', 'E78.5', 'N39.0', 'A41.9', 'Y84.4', 'N99.841', 'L21.9', 'S72.142G', 'E56.9', 'M62.81', 'R26.2', 'Z74.1', 'Z23', 'I95.9', 'E87.6'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369821', '', 'dcode1034544976 dcode103745298')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457781",
+   "pid": "17471019",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99232'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369825', '99232', '', '111.00', '111.00')]",
+    "99232 dx ['M19.012'] never_primary(first)=False",
+    "deceased guard: clear (carrier BCBS)",
+    "admission 10/12/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99232 10/12/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/12/2026 charges=[('charge23369825', '', 'dcode1034912659')]"
+   ],
+   "admission": "10/12/2026"
+  },
+  {
+   "vid": "19457785",
+   "pid": "17477972",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99233'] pos 21 insorder 1 onhcfa 0 charges [('charge23369829', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['M86.171'] never_primary(first)=False",
+    "deceased guard: clear (carrier HUM01)",
+    "admission 10/07/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/07/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/07/2026 charges=[('charge23369829', '', 'dcode1034545247')]"
+   ],
+   "admission": "10/07/2026"
+  },
+  {
+   "vid": "19457786",
+   "pid": "17474046",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99233'] pos 21 insorder 2 onhcfa 0 charges [('charge23369830', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['N10'] never_primary(first)=False",
+    "deceased guard: clear (carrier SIM01)",
+    "admission 10/05/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/05/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/05/2026 charges=[('charge23369830', '', 'dcode1034545448')]"
+   ],
+   "admission": "10/05/2026"
+  },
+  {
+   "vid": "19457787",
+   "pid": "17477405",
+   "name": "",
+   "steps": [
+    "dos 2026-10-13 cpts ['99233'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369831', '99233', '', '160.00', '160.00')]",
+    "99233 dx ['E03.9', 'D64.9', 'I10', 'M06.9', 'M79.7', 'G89.29'] never_primary(first)=False",
+    "deceased guard: clear (carrier FLO02)",
+    "admission 10/08/2026 (most recent 99223 within 45d)",
+    "updextrainsinfo 99233 10/08/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/08/2026 charges=[('charge23369831', '', 'dcode1034544972 dcode103454443')]"
+   ],
+   "admission": "10/08/2026"
+  },
+  {
+   "vid": "19457792",
+   "pid": "17471019",
+   "name": "",
+   "steps": [
+    "dos 2026-10-12 cpts ['99223'] pos 21 insorder 1,2 onhcfa 0 charges [('charge23369838', '99223', '', '310.00', '310.00')]",
+    "99223 dx ['M19.012'] never_primary(first)=False",
+    "deceased guard: clear (carrier BCBS)",
+    "admission 10/12/2026 (own 99223)",
+    "updextrainsinfo 99223 10/12/2026 -> ok",
+    "resave: saved live=1/1 onhcfa=1 hospfrom=10/12/2026 charges=[('charge23369838', '', 'dcode1034912659')]"
+   ],
+   "admission": "10/12/2026"
+  }
+ ],
+ "held": [],
+ "left": [
+  [
+   "1",
+   "19451190",
+   "23177",
+   [
+    [
+     "396800",
+     "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primar"
+    ],
+    [
+     "396801",
+     "Pattern 24078 Per Medicare CCI Guidelines, procedure code 99309 has an unbundle relationsh"
+    ]
+   ]
+  ],
+  [
+   "112737",
+   "13979435",
+   "44983",
+   [
+    [
+     "396474",
+     "Pattern 3429 Procedure code 99239 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "396475",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396476",
+     "Pattern 35777 Procedure code 99239 with an allowed daily frequency of 1 has been exceeded "
+    ]
+   ]
+  ],
+  [
+   "112753",
+   "13984519",
+   "44983",
+   [
+    [
+     "396489",
+     "Pattern 3429 Procedure code 99239 is a possible duplicate of the same procedure code found"
+    ],
+    [
+     "396490",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396491",
+     "Pattern 35777 Procedure code 99239 with an allowed daily frequency of 1 has been exceeded "
+    ]
+   ]
+  ],
+  [
+   "113116",
+   "19364378",
+   "22845",
+   [
+    [
+     "396435",
+     "Pattern 4852 Hospital discharge services code 99238 and/or 99239 have been reported more t"
+    ],
+    [
+     "396436",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ],
+    [
+     "396437",
+     "Pattern 33799 Per Medicare's Medically Unlikely Edits, the units of service billed for pro"
+    ]
+   ]
+  ],
+  [
+   "113964",
+   "19395738",
+   "17472519",
+   [
+    [
+     "396646",
+     "Pattern 20389 Diagnosis code S065XAS describes an external cause, or requires the diagnosi"
+    ],
+    [
+     "396647",
+     "Pattern 20657 The beginning date of service occurred more than 12 months from the entry da"
+    ]
+   ]
+  ]
+ ],
+ "bypassed": [],
+ "pending_left": 0
+}

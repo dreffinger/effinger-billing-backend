@@ -1,0 +1,9 @@
+{
+ "stamp": "2026-10-14T1110Z",
+ "dry": true,
+ "check": "1053153",
+ "lines": 61,
+ "log": [
+  "DRY dismiss 1053153 (61 lines; outcomes: ['posted', 'residual 47.57', 'residual 55.97'])"
+ ]
+}

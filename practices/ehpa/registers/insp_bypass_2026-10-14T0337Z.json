@@ -1,0 +1,61 @@
+{
+ "stamp": "2026-10-14T0337Z",
+ "live": true,
+ "source": "scan_2026-10-14T0310Z/summary_after_resend.json",
+ "held": [],
+ "done": [
+  {
+   "batch": "114383",
+   "vid": "19408930",
+   "pid": "44983",
+   "errids": [
+    "396735"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 20:37:47\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "125006",
+   "vid": "19413624",
+   "pid": "44983",
+   "errids": [
+    "396736"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 20:37:48\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113900",
+   "vid": "19392256",
+   "pid": "21839",
+   "errids": [
+    "396732"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 20:37:49\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "113938",
+   "vid": "19393167",
+   "pid": "20534",
+   "errids": [
+    "396728"
+   ],
+   "patterns": [
+    "20657"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 20:37:50\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}

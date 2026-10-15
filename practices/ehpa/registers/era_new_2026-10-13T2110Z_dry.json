@@ -1,0 +1,1577 @@
+{
+ "stamp": "2026-10-13T2110Z",
+ "dry": true,
+ "lines": [
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446465,
+   "visitid": "19455808",
+   "pid": "17470875",
+   "chargedetailid": "23367264",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446466,
+   "visitid": "19455852",
+   "pid": "20729",
+   "chargedetailid": "23367317",
+   "cpt": "99233",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446467,
+   "visitid": "19455445",
+   "pid": "20729",
+   "chargedetailid": "23366737",
+   "cpt": "99233",
+   "dos": "2026-09-19",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "SUN01",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446468,
+   "visitid": "19455943",
+   "pid": "17473346",
+   "chargedetailid": "23367423",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446468,
+   "visitid": "19455943",
+   "pid": "17473346",
+   "chargedetailid": "23367424",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446469,
+   "visitid": "19452694",
+   "pid": "17470802",
+   "chargedetailid": "23363073",
+   "cpt": "99306",
+   "dos": "2026-08-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO242"
+   ],
+   "rarcs": [
+    "M115"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 256.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446469,
+   "visitid": "19452694",
+   "pid": "17470802",
+   "chargedetailid": "23363074",
+   "cpt": "99497",
+   "dos": "2026-08-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO242"
+   ],
+   "rarcs": [
+    "M115"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO242'] ['M115'] from SUN01 but the live claim is at FLO02 (billed 09/23/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446470,
+   "visitid": "19456055",
+   "pid": "17473663",
+   "chargedetailid": "23367536",
+   "cpt": "99309",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446471,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367441",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446471,
+   "visitid": "19455952",
+   "pid": "17471131",
+   "chargedetailid": "23367442",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "CAP07",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446472,
+   "visitid": "19455813",
+   "pid": "12179706",
+   "chargedetailid": "23367269",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446473,
+   "visitid": "19455769",
+   "pid": "21798",
+   "chargedetailid": "23367210",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446473,
+   "visitid": "19455769",
+   "pid": "21798",
+   "chargedetailid": "23367211",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446474,
+   "visitid": "19455877",
+   "pid": "20729",
+   "chargedetailid": "23367343",
+   "cpt": "99233",
+   "dos": "2026-09-21",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446475,
+   "visitid": "19455446",
+   "pid": "20729",
+   "chargedetailid": "23366738",
+   "cpt": "99223",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 310.0,
+    "paid": 278.06,
+    "insbal": 0.0,
+    "patbal": 31.94,
+    "carrier": "SUN01",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 31.94 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446475,
+   "visitid": "19455446",
+   "pid": "20729",
+   "chargedetailid": "23366739",
+   "cpt": "99497",
+   "dos": "2026-09-18",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 0.0,
+    "patbal": 13.35,
+    "carrier": "SUN01",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 13.35 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446476,
+   "visitid": "19452587",
+   "pid": "17473477",
+   "chargedetailid": "23362901",
+   "cpt": "99487",
+   "dos": "2026-08-23",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 177.4,
+    "insbal": 0.0,
+    "patbal": 28.6,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 28.60 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446477,
+   "visitid": "19455658",
+   "pid": "17472834",
+   "chargedetailid": "23367021",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446477,
+   "visitid": "19455658",
+   "pid": "17472834",
+   "chargedetailid": "23367022",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446478,
+   "visitid": "19420291",
+   "pid": "20670",
+   "chargedetailid": "23325277",
+   "cpt": "99309",
+   "dos": "2025-10-08",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 81.42,
+    "insbal": 59.58,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/20/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO45', 'OA23'] [] from SUN01 but the live claim is at FLO02 (billed 09/20/2026): the old plan's answer - nothing written, listed for the board"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446479,
+   "visitid": "19455474",
+   "pid": "24039",
+   "chargedetailid": "23366767",
+   "cpt": "99306",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 0.0,
+    "patbal": 33.1,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 33.10 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446479,
+   "visitid": "19455474",
+   "pid": "24039",
+   "chargedetailid": "23366768",
+   "cpt": "99497",
+   "dos": "2026-09-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO26"
+   ],
+   "rarcs": [
+    "N650"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 0.0,
+    "patbal": 13.35,
+    "carrier": "FLO99",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 13.35 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446480,
+   "visitid": "19455670",
+   "pid": "17476094",
+   "chargedetailid": "23367042",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446481,
+   "visitid": "19455292",
+   "pid": "17471755",
+   "chargedetailid": "23368640",
+   "cpt": "99309",
+   "dos": "2026-07-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO222"
+   ],
+   "rarcs": [
+    "N640"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbal": 141.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO222'] ['N640'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446481,
+   "visitid": "19455292",
+   "pid": "17471755",
+   "chargedetailid": "23368642",
+   "cpt": "99497",
+   "dos": "2026-07-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbal": 133.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO96'] ['N448'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446482,
+   "visitid": "19455774",
+   "pid": "17472286",
+   "chargedetailid": "23367215",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446482,
+   "visitid": "19455774",
+   "pid": "17472286",
+   "chargedetailid": "23367216",
+   "cpt": "99489",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 109.0,
+    "paid": 100.08,
+    "insbal": 0.0,
+    "patbal": 8.92,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 8.92 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446483,
+   "visitid": "19455444",
+   "pid": "20729",
+   "chargedetailid": "23366736",
+   "cpt": "99233",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO45",
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 0.0,
+    "patbal": 21.8,
+    "carrier": "SUN01",
+    "billdate": "10/06/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 21.80 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446484,
+   "visitid": "19456053",
+   "pid": "17472834",
+   "chargedetailid": "23367534",
+   "cpt": "99309",
+   "dos": "2026-09-22",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 16.93,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "HOLD - $0 answer ['CO16'] ['M56'] (denial handling / board)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446485,
+   "visitid": "19457077",
+   "pid": "17472703",
+   "chargedetailid": "23368898",
+   "cpt": "99233",
+   "dos": "2026-10-04",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/06/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "DRY would post pay 83.13 + WOINS 76.87 (bal 160.00)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446486,
+   "visitid": "19452832",
+   "pid": "17470802",
+   "chargedetailid": "23363207",
+   "cpt": "99309",
+   "dos": "2026-08-24",
+   "paid": 0.0,
+   "carcs": [
+    "CO16"
+   ],
+   "rarcs": [
+    "M56"
+   ],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbal": 0.0,
+    "patbal": 16.93,
+    "carrier": "FLO02",
+    "billdate": "09/23/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.93 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446487,
+   "visitid": "19455664",
+   "pid": "17473663",
+   "chargedetailid": "23367032",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446488,
+   "visitid": "19456967",
+   "pid": "17472703",
+   "chargedetailid": "23368696",
+   "cpt": "99233",
+   "dos": "2026-10-03",
+   "paid": 83.13,
+   "carcs": [
+    "CO45"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 0.0,
+    "insbal": 160.0,
+    "patbal": 0.0,
+    "carrier": "SUN01",
+    "billdate": "10/05/2026"
+   },
+   "pay": 83.13,
+   "wo": 76.87,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "SUN01",
+   "outcome": "DRY would post pay 83.13 + WOINS 76.87 (bal 160.00)"
+  },
+  {
+   "checkid": "1053150",
+   "checkclaimid": 15446489,
+   "visitid": "19455760",
+   "pid": "20728",
+   "chargedetailid": "23367199",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "paid": 0.0,
+   "carcs": [
+    "CO96"
+   ],
+   "rarcs": [
+    "N448"
+   ],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 206.0,
+    "paid": 189.86,
+    "insbal": 0.0,
+    "patbal": 16.14,
+    "carrier": "SUN01",
+    "billdate": "10/07/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 16.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446490,
+   "visitid": "19455372",
+   "pid": "21021",
+   "chargedetailid": "23366670",
+   "cpt": "99309",
+   "dos": "2026-01-05",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446491,
+   "visitid": "19455373",
+   "pid": "24214",
+   "chargedetailid": "23366672",
+   "cpt": "99309",
+   "dos": "2026-01-02",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446492,
+   "visitid": "19426216",
+   "pid": "17472784",
+   "chargedetailid": "23332273",
+   "cpt": "99233",
+   "dos": "2025-12-14",
+   "paid": 0.04,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 137.08,
+    "insbal": 0.0,
+    "patbal": 22.92,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 22.92 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 0.04,
+   "wo": 22.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.04 + WOINS 22.88 (bal 22.92)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446493,
+   "visitid": "19426378",
+   "pid": "17472784",
+   "chargedetailid": "23332414",
+   "cpt": "99233",
+   "dos": "2025-12-15",
+   "paid": 0.04,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 137.08,
+    "insbal": 0.0,
+    "patbal": 22.92,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 22.92 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 0.04,
+   "wo": 22.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.04 + WOINS 22.88 (bal 22.92)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446494,
+   "visitid": "19426217",
+   "pid": "17472784",
+   "chargedetailid": "23332274",
+   "cpt": "99233",
+   "dos": "2025-12-13",
+   "paid": 0.04,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 137.08,
+    "insbal": 0.0,
+    "patbal": 22.92,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 22.92 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 0.04,
+   "wo": 22.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.04 + WOINS 22.88 (bal 22.92)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446495,
+   "visitid": "19426635",
+   "pid": "17472784",
+   "chargedetailid": "23332743",
+   "cpt": "99233",
+   "dos": "2025-12-16",
+   "paid": 0.04,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 160.0,
+    "paid": 137.08,
+    "insbal": 0.0,
+    "patbal": 22.92,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 22.92 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 0.04,
+   "wo": 22.88,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.04 + WOINS 22.88 (bal 22.92)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446496,
+   "visitid": "19426363",
+   "pid": "17472784",
+   "chargedetailid": "23332397",
+   "cpt": "99223",
+   "dos": "2025-12-12",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 310.0,
+    "paid": 276.25,
+    "insbal": 0.0,
+    "patbal": 33.75,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 33.75 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446496,
+   "visitid": "19426363",
+   "pid": "17472784",
+   "chargedetailid": "23332398",
+   "cpt": "99497",
+   "dos": "2025-12-12",
+   "paid": 0.0,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 118.46,
+    "insbal": 0.0,
+    "patbal": 14.54,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 14.54 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446497,
+   "visitid": "19426634",
+   "pid": "17472784",
+   "chargedetailid": "23332742",
+   "cpt": "99239",
+   "dos": "2025-12-17",
+   "paid": 0.38,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 163.0,
+    "paid": 140.82,
+    "insbal": 0.0,
+    "patbal": 22.18,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 22.18 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 0.38,
+   "wo": 21.8,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 0.38 + WOINS 21.80 (bal 22.18)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446498,
+   "visitid": "19455374",
+   "pid": "21915",
+   "chargedetailid": "23366674",
+   "cpt": "99308",
+   "dos": "2026-01-12",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 107.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446499,
+   "visitid": "19455375",
+   "pid": "21915",
+   "chargedetailid": "23366676",
+   "cpt": "99309",
+   "dos": "2026-02-09",
+   "paid": 0.0,
+   "carcs": [
+    "OA18"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 141.0,
+    "paid": 141.0,
+    "insbal": 0.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "10/08/2026"
+   },
+   "outcome": "skip - insurance balance already 0"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446500,
+   "visitid": "19455371",
+   "pid": "45049",
+   "chargedetailid": "23366668",
+   "cpt": "99308",
+   "dos": "2026-01-05",
+   "paid": 13.64,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 93.36,
+    "insbal": 0.0,
+    "patbal": 13.64,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "note": "would move 13.64 patient balance back to insurance first",
+   "carrier_override": "HUM01 (Humana 835 filed under FLO02)",
+   "pay": 13.64,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 13.64 + WOINS 0.00 (bal 13.64)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446501,
+   "visitid": "19441043",
+   "pid": "17472784",
+   "chargedetailid": "23348841",
+   "cpt": "99308",
+   "dos": "2026-05-01",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446502,
+   "visitid": "19433041",
+   "pid": "17472784",
+   "chargedetailid": "23339661",
+   "cpt": "99308",
+   "dos": "2026-02-10",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446503,
+   "visitid": "19424026",
+   "pid": "17472784",
+   "chargedetailid": "23329791",
+   "cpt": "99307",
+   "dos": "2025-11-17",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 68.0,
+    "paid": 61.5,
+    "insbal": 0.0,
+    "patbal": 6.5,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 6.50 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446504,
+   "visitid": "19435638",
+   "pid": "17472784",
+   "chargedetailid": "23342656",
+   "cpt": "99308",
+   "dos": "2026-03-09",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446505,
+   "visitid": "19425184",
+   "pid": "17472784",
+   "chargedetailid": "23331149",
+   "cpt": "99308",
+   "dos": "2025-12-02",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 94.86,
+    "insbal": 0.0,
+    "patbal": 12.14,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 12.14 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446506,
+   "visitid": "19447374",
+   "pid": "17472784",
+   "chargedetailid": "23356560",
+   "cpt": "99308",
+   "dos": "2026-07-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446507,
+   "visitid": "19430035",
+   "pid": "17472784",
+   "chargedetailid": "23336451",
+   "cpt": "99307",
+   "dos": "2026-01-13",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 68.0,
+    "paid": 61.64,
+    "insbal": 0.0,
+    "patbal": 6.36,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 6.36 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446508,
+   "visitid": "19438174",
+   "pid": "17472784",
+   "chargedetailid": "23345266",
+   "cpt": "99308",
+   "dos": "2026-04-06",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053151",
+   "checkclaimid": 15446509,
+   "visitid": "19444489",
+   "pid": "17472784",
+   "chargedetailid": "23353177",
+   "cpt": "99308",
+   "dos": "2026-06-04",
+   "paid": 0.0,
+   "carcs": [
+    "CO185"
+   ],
+   "rarcs": [
+    "N767"
+   ],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 107.0,
+    "paid": 95.41,
+    "insbal": 0.0,
+    "patbal": 11.59,
+    "carrier": "FLO02",
+    "billdate": "09/24/2026"
+   },
+   "outcome": "skip - insurance balance already 0",
+   "note": "patient balance 11.59 on this charge (wrong-payer rule: see the run's follow-up)"
+  },
+  {
+   "checkid": "1053152",
+   "checkclaimid": 15446510,
+   "visitid": "19456243",
+   "pid": "17477899",
+   "chargedetailid": "23367867",
+   "cpt": "99232",
+   "dos": "2026-09-24",
+   "paid": 70.46,
+   "carcs": [
+    "CO45",
+    "CO253"
+   ],
+   "rarcs": [],
+   "claimstatus": 1,
+   "primary": true,
+   "before": {
+    "fee": 111.0,
+    "paid": 0.0,
+    "insbal": 111.0,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "billdate": "09/28/2026"
+   },
+   "pay": 70.46,
+   "wo": 40.54,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "HUM01",
+   "outcome": "DRY would post pay 70.46 + WOINS 40.54 (bal 111.00)"
+  }
+ ],
+ "wolate": []
+}

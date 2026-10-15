@@ -1,0 +1,14 @@
+{
+ "at": "2026-10-14T12:37:39.648606",
+ "final_insorder": "1,3",
+ "attempts": {
+  "1,2,3 via Medicare": [
+   false,
+   "insorder 1,2,3 via ins8012 -> '1,3' | insorder 1,2,3 via ins2246 -> '1,3' | insorder 1,2,3 NOT set - check the chart"
+  ],
+  "1,2 via Medicare": [
+   false,
+   "insorder 1,2 via ins8012 -> '1,3' | insorder 1,2 via ins2246 -> '1,3' | insorder 1,2 NOT set - check the chart"
+  ]
+ }
+}

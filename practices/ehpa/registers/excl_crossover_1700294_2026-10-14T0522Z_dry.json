@@ -1,0 +1,3547 @@
+{
+ "stamp": "2026-10-14T0522Z",
+ "run": "1700294",
+ "live": false,
+ "complete": [
+  {
+   "visit": "19372724",
+   "claimid": "19372724E",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.66,
+   "live": [
+    {
+     "cid": "22440359",
+     "cpt": "99308",
+     "dos": "12/18/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.66,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "19373718",
+   "claimid": "19373718F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.31,
+   "live": [
+    {
+     "cid": "22441588",
+     "cpt": "99308",
+     "dos": "01/04/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.31,
+     "patbal": 0.0,
+     "medicare_paid": 48.27,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.31
+    }
+   ]
+  },
+  {
+   "visit": "19375457",
+   "claimid": "19375457F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.31,
+   "live": [
+    {
+     "cid": "22443629",
+     "cpt": "99308",
+     "dos": "02/01/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.31,
+     "patbal": 0.0,
+     "medicare_paid": 48.27,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.31
+    }
+   ]
+  },
+  {
+   "visit": "19376693",
+   "claimid": "19376693F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.31,
+   "live": [
+    {
+     "cid": "22444898",
+     "cpt": "99308",
+     "dos": "02/19/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.31,
+     "patbal": 0.0,
+     "medicare_paid": 48.27,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.31
+    }
+   ]
+  },
+  {
+   "visit": "19378135",
+   "claimid": "19378135F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22446425",
+     "cpt": "99308",
+     "dos": "03/14/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19379097",
+   "claimid": "19379097F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 14.73,
+   "live": [
+    {
+     "cid": "22447472",
+     "cpt": "99308",
+     "dos": "03/27/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.73,
+     "patbal": 0.0,
+     "medicare_paid": 57.73,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 14.73
+    }
+   ]
+  },
+  {
+   "visit": "19380381",
+   "claimid": "19380381F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22448819",
+     "cpt": "99308",
+     "dos": "04/04/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19382290",
+   "claimid": "19382290F",
+   "pid": "45052",
+   "fee": 274.0,
+   "coinsurance_open": 30.84,
+   "live": [
+    {
+     "cid": "22450897",
+     "cpt": "99309",
+     "dos": "05/02/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 18.12
+    },
+    {
+     "cid": "22450898",
+     "cpt": "99497",
+     "dos": "05/02/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.72,
+     "patbal": 0.0,
+     "medicare_paid": 49.87,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.72
+    }
+   ]
+  },
+  {
+   "visit": "19382989",
+   "claimid": "19382989F",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 18.12,
+   "live": [
+    {
+     "cid": "22451604",
+     "cpt": "99309",
+     "dos": "05/16/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 18.12
+    }
+   ]
+  },
+  {
+   "visit": "19386554",
+   "claimid": "19386554F",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22456723",
+     "cpt": "99308",
+     "dos": "07/11/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19387595",
+   "claimid": "19387595E",
+   "pid": "17471979",
+   "fee": 443.0,
+   "coinsurance_open": 49.45,
+   "live": [
+    {
+     "cid": "22458007",
+     "cpt": "99223",
+     "dos": "08/09/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 34.48,
+     "patbal": 0.0,
+     "medicare_paid": 135.14,
+     "medicare_checks": [
+      "815432154"
+     ],
+     "pr": 34.48
+    },
+    {
+     "cid": "22458008",
+     "cpt": "99497",
+     "dos": "08/09/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.97,
+     "patbal": 0.0,
+     "medicare_paid": 58.67,
+     "medicare_checks": [
+      "815432154"
+     ],
+     "pr": 14.97
+    }
+   ]
+  },
+  {
+   "visit": "19387655",
+   "claimid": "19387655E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458019",
+     "cpt": "99232",
+     "dos": "08/10/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815432154"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19387656",
+   "claimid": "19387656E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458020",
+     "cpt": "99232",
+     "dos": "08/11/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815432154"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19387752",
+   "claimid": "19387752E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458146",
+     "cpt": "99232",
+     "dos": "08/12/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815441210"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19387876",
+   "claimid": "19387876E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458351",
+     "cpt": "99232",
+     "dos": "08/13/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815449426"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19387938",
+   "claimid": "19387938E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458453",
+     "cpt": "99232",
+     "dos": "08/14/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815458384"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388017",
+   "claimid": "19388017E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458523",
+     "cpt": "99232",
+     "dos": "08/15/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815458384"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388063",
+   "claimid": "19388063E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458602",
+     "cpt": "99232",
+     "dos": "08/16/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815458384"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388203",
+   "claimid": "19388203E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458679",
+     "cpt": "99232",
+     "dos": "08/18/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815478637"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388204",
+   "claimid": "19388204E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458680",
+     "cpt": "99232",
+     "dos": "08/17/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815478637"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388274",
+   "claimid": "19388274E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458732",
+     "cpt": "99232",
+     "dos": "08/20/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815504904"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388358",
+   "claimid": "19388358E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458803",
+     "cpt": "99232",
+     "dos": "08/21/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815504904"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388448",
+   "claimid": "19388448E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458915",
+     "cpt": "99232",
+     "dos": "08/22/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815504904"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388469",
+   "claimid": "19388469E",
+   "pid": "17471979",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22458951",
+     "cpt": "99232",
+     "dos": "08/23/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "815504904"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19388556",
+   "claimid": "19388556F",
+   "pid": "45052",
+   "fee": 274.0,
+   "coinsurance_open": 30.84,
+   "live": [
+    {
+     "cid": "22458996",
+     "cpt": "99309",
+     "dos": "08/21/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 18.12
+    },
+    {
+     "cid": "22458997",
+     "cpt": "99497",
+     "dos": "08/21/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.72,
+     "patbal": 0.0,
+     "medicare_paid": 49.87,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.72
+    }
+   ]
+  },
+  {
+   "visit": "19389369",
+   "claimid": "19389369E",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22460012",
+     "cpt": "99308",
+     "dos": "09/05/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19391985",
+   "claimid": "19391985E",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 18.12,
+   "live": [
+    {
+     "cid": "22463836",
+     "cpt": "99309",
+     "dos": "10/10/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 18.12
+    }
+   ]
+  },
+  {
+   "visit": "19393290",
+   "claimid": "19393290D",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22465594",
+     "cpt": "99308",
+     "dos": "11/07/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19393939",
+   "claimid": "19393939D",
+   "pid": "17472305",
+   "fee": 141.0,
+   "coinsurance_open": 18.12,
+   "live": [
+    {
+     "cid": "22466335",
+     "cpt": "99309",
+     "dos": "11/01/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 18.12
+    }
+   ]
+  },
+  {
+   "visit": "19393940",
+   "claimid": "19393940D",
+   "pid": "17472305",
+   "fee": 274.0,
+   "coinsurance_open": 30.84,
+   "live": [
+    {
+     "cid": "22466336",
+     "cpt": "99309",
+     "dos": "10/28/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 18.12
+    },
+    {
+     "cid": "22466337",
+     "cpt": "99497",
+     "dos": "10/28/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.72,
+     "patbal": 0.0,
+     "medicare_paid": 49.87,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 12.72
+    }
+   ]
+  },
+  {
+   "visit": "19393947",
+   "claimid": "19393947D",
+   "pid": "17472305",
+   "fee": 389.0,
+   "coinsurance_open": 43.43,
+   "live": [
+    {
+     "cid": "22466344",
+     "cpt": "99306",
+     "dos": "10/23/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 30.71,
+     "patbal": 0.0,
+     "medicare_paid": 120.36,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 30.71
+    },
+    {
+     "cid": "22466345",
+     "cpt": "99497",
+     "dos": "10/23/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.72,
+     "patbal": 0.0,
+     "medicare_paid": 49.87,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 12.72
+    }
+   ]
+  },
+  {
+   "visit": "19396895",
+   "claimid": "19396895C",
+   "pid": "45052",
+   "fee": 443.0,
+   "coinsurance_open": 49.45,
+   "live": [
+    {
+     "cid": "22470453",
+     "cpt": "99223",
+     "dos": "12/04/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 34.48,
+     "patbal": 0.0,
+     "medicare_paid": 135.14,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 34.48
+    },
+    {
+     "cid": "22470454",
+     "cpt": "99497",
+     "dos": "12/04/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.97,
+     "patbal": 0.0,
+     "medicare_paid": 58.67,
+     "medicare_checks": [
+      "816111961"
+     ],
+     "pr": 14.97
+    }
+   ]
+  },
+  {
+   "visit": "19396948",
+   "claimid": "19396948C",
+   "pid": "45052",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22470502",
+     "cpt": "99232",
+     "dos": "12/05/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "816131469"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19396973",
+   "claimid": "19396973C",
+   "pid": "45052",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22470571",
+     "cpt": "99232",
+     "dos": "12/06/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "816131469"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19397072",
+   "claimid": "19397072C",
+   "pid": "45052",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22470674",
+     "cpt": "99232",
+     "dos": "12/07/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "816131469"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19397073",
+   "claimid": "19397073C",
+   "pid": "45052",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22470675",
+     "cpt": "99232",
+     "dos": "12/08/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "816131469"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19397131",
+   "claimid": "19397131C",
+   "pid": "45052",
+   "fee": 111.0,
+   "coinsurance_open": 15.7,
+   "live": [
+    {
+     "cid": "22470705",
+     "cpt": "99232",
+     "dos": "12/09/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.7,
+     "patbal": 0.0,
+     "medicare_paid": 61.54,
+     "medicare_checks": [
+      "816144203"
+     ],
+     "pr": 15.7
+    }
+   ]
+  },
+  {
+   "visit": "19397322",
+   "claimid": "19397322D",
+   "pid": "17472305",
+   "fee": 107.0,
+   "coinsurance_open": 12.52,
+   "live": [
+    {
+     "cid": "22470790",
+     "cpt": "99308",
+     "dos": "12/09/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.52,
+     "patbal": 0.0,
+     "medicare_paid": 49.07,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 12.52
+    }
+   ]
+  },
+  {
+   "visit": "19397563",
+   "claimid": "19397563C",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 18.12,
+   "live": [
+    {
+     "cid": "22470973",
+     "cpt": "99309",
+     "dos": "12/12/2024",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 18.12,
+     "patbal": 0.0,
+     "medicare_paid": 71.01,
+     "medicare_checks": [
+      "816172621"
+     ],
+     "pr": 18.12
+    }
+   ]
+  },
+  {
+   "visit": "19399981",
+   "claimid": "19399981D",
+   "pid": "17472305",
+   "fee": 389.0,
+   "coinsurance_open": 42.17,
+   "live": [
+    {
+     "cid": "22473963",
+     "cpt": "99306",
+     "dos": "01/30/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 29.81,
+     "patbal": 0.0,
+     "medicare_paid": 116.85,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 29.81
+    },
+    {
+     "cid": "22473964",
+     "cpt": "99497",
+     "dos": "01/30/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.36,
+     "patbal": 0.0,
+     "medicare_paid": 48.46,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 12.36
+    }
+   ]
+  },
+  {
+   "visit": "19400005",
+   "claimid": "19400005D",
+   "pid": "17472305",
+   "fee": 443.0,
+   "coinsurance_open": 48.29,
+   "live": [
+    {
+     "cid": "22473992",
+     "cpt": "99223",
+     "dos": "02/04/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 33.75,
+     "patbal": 0.0,
+     "medicare_paid": 132.31,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 33.75
+    },
+    {
+     "cid": "22473993",
+     "cpt": "99497",
+     "dos": "02/04/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.54,
+     "patbal": 0.0,
+     "medicare_paid": 57.02,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 14.54
+    }
+   ]
+  },
+  {
+   "visit": "19400039",
+   "claimid": "19400039D",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474055",
+     "cpt": "99232",
+     "dos": "02/05/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400122",
+   "claimid": "19400122C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474128",
+     "cpt": "99232",
+     "dos": "02/06/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400128",
+   "claimid": "19400128C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474135",
+     "cpt": "99232",
+     "dos": "02/07/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400192",
+   "claimid": "19400192C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474184",
+     "cpt": "99232",
+     "dos": "02/09/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400193",
+   "claimid": "19400193C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474185",
+     "cpt": "99232",
+     "dos": "02/08/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816449370"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400290",
+   "claimid": "19400290C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474289",
+     "cpt": "99232",
+     "dos": "02/10/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816466041"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400348",
+   "claimid": "19400348C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474354",
+     "cpt": "99232",
+     "dos": "02/11/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816486553"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400521",
+   "claimid": "19400521C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474560",
+     "cpt": "99232",
+     "dos": "02/12/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816486553"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400524",
+   "claimid": "19400524C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474564",
+     "cpt": "99232",
+     "dos": "02/13/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816486553"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400633",
+   "claimid": "19400633C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474724",
+     "cpt": "99232",
+     "dos": "02/14/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816486553"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400736",
+   "claimid": "19400736C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474802",
+     "cpt": "99232",
+     "dos": "02/17/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816514677"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400737",
+   "claimid": "19400737C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474803",
+     "cpt": "99232",
+     "dos": "02/16/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816514677"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400738",
+   "claimid": "19400738C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474804",
+     "cpt": "99232",
+     "dos": "02/15/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816514677"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400796",
+   "claimid": "19400796C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474881",
+     "cpt": "99232",
+     "dos": "02/18/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816523090"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400846",
+   "claimid": "19400846C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22474975",
+     "cpt": "99232",
+     "dos": "02/19/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816523090"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19400920",
+   "claimid": "19400920C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22475072",
+     "cpt": "99232",
+     "dos": "02/20/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816523090"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19401800",
+   "claimid": "19401800C",
+   "pid": "17472305",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22475999",
+     "cpt": "99309",
+     "dos": "03/03/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "816618028"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19402079",
+   "claimid": "19402079C",
+   "pid": "17472305",
+   "fee": 443.0,
+   "coinsurance_open": 48.29,
+   "live": [
+    {
+     "cid": "22476293",
+     "cpt": "99223",
+     "dos": "03/13/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 33.75,
+     "patbal": 0.0,
+     "medicare_paid": 132.31,
+     "medicare_checks": [
+      "816662477"
+     ],
+     "pr": 33.75
+    },
+    {
+     "cid": "22476294",
+     "cpt": "99497",
+     "dos": "03/13/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.54,
+     "patbal": 0.0,
+     "medicare_paid": 57.02,
+     "medicare_checks": [
+      "816662477"
+     ],
+     "pr": 14.54
+    }
+   ]
+  },
+  {
+   "visit": "19402147",
+   "claimid": "19402147C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476393",
+     "cpt": "99232",
+     "dos": "03/14/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816662477"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402297",
+   "claimid": "19402297C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476492",
+     "cpt": "99232",
+     "dos": "03/17/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816688343"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402298",
+   "claimid": "19402298C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476493",
+     "cpt": "99232",
+     "dos": "03/16/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816688343"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402299",
+   "claimid": "19402299C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476494",
+     "cpt": "99232",
+     "dos": "03/15/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816688343"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402346",
+   "claimid": "19402346C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476516",
+     "cpt": "99232",
+     "dos": "03/18/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816688343"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402420",
+   "claimid": "19402420C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476670",
+     "cpt": "99232",
+     "dos": "03/19/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816688343"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402660",
+   "claimid": "19402660C",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.14,
+   "live": [
+    {
+     "cid": "22476823",
+     "cpt": "99308",
+     "dos": "03/12/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.14,
+     "patbal": 0.0,
+     "medicare_paid": 47.57,
+     "medicare_checks": [
+      "816714558"
+     ],
+     "pr": 12.14
+    }
+   ]
+  },
+  {
+   "visit": "19402681",
+   "claimid": "19402681C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 15.41,
+   "live": [
+    {
+     "cid": "22476853",
+     "cpt": "99232",
+     "dos": "03/24/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.41,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816714558"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402901",
+   "claimid": "19402901C",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22477093",
+     "cpt": "99309",
+     "dos": "03/19/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "816740529"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19402906",
+   "claimid": "19402906C",
+   "pid": "17472305",
+   "fee": 389.0,
+   "coinsurance_open": 42.17,
+   "live": [
+    {
+     "cid": "22477102",
+     "cpt": "99306",
+     "dos": "03/25/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 29.81,
+     "patbal": 0.0,
+     "medicare_paid": 116.85,
+     "medicare_checks": [
+      "816740529"
+     ],
+     "pr": 29.81
+    },
+    {
+     "cid": "22477103",
+     "cpt": "99497",
+     "dos": "03/25/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.36,
+     "patbal": 0.0,
+     "medicare_paid": 48.46,
+     "medicare_checks": [
+      "816740529"
+     ],
+     "pr": 12.36
+    }
+   ]
+  },
+  {
+   "visit": "19404172",
+   "claimid": "19404172C",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22478384",
+     "cpt": "99309",
+     "dos": "04/10/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "816867379"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19405928",
+   "claimid": "19405928B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22480164",
+     "cpt": "99309",
+     "dos": "05/06/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "817038677"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19406008",
+   "claimid": "19406008B",
+   "pid": "45052",
+   "fee": 206.0,
+   "coinsurance_open": 17.5,
+   "live": [
+    {
+     "cid": "22480246",
+     "cpt": "99487",
+     "dos": "05/16/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "817038677"
+     ],
+     "pr": 17.5
+    }
+   ]
+  },
+  {
+   "visit": "19407689",
+   "claimid": "19407689B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22482977",
+     "cpt": "99309",
+     "dos": "06/05/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "817231370"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19408164",
+   "claimid": "19408164B",
+   "pid": "45052",
+   "fee": 206.0,
+   "coinsurance_open": 17.5,
+   "live": [
+    {
+     "cid": "22483482",
+     "cpt": "99487",
+     "dos": "06/21/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "817252761"
+     ],
+     "pr": 17.5
+    }
+   ]
+  },
+  {
+   "visit": "19409225",
+   "claimid": "19409225B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "22484665",
+     "cpt": "99309",
+     "dos": "07/10/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "817377344"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19409352",
+   "claimid": "19409352B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 26.97,
+   "live": [
+    {
+     "cid": "22484794",
+     "cpt": "99487",
+     "dos": "07/14/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "817377344"
+     ],
+     "pr": 17.5
+    },
+    {
+     "cid": "22484795",
+     "cpt": "99489",
+     "dos": "07/14/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 9.47,
+     "patbal": 0.0,
+     "medicare_paid": 37.13,
+     "medicare_checks": [
+      "817377344"
+     ],
+     "pr": 9.47
+    }
+   ]
+  },
+  {
+   "visit": "19415407",
+   "claimid": "19415407B",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.14,
+   "live": [
+    {
+     "cid": "23318826",
+     "cpt": "99308",
+     "dos": "08/29/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.14,
+     "patbal": 0.0,
+     "medicare_paid": 47.57,
+     "medicare_checks": [
+      "817684268"
+     ],
+     "pr": 12.14
+    }
+   ]
+  },
+  {
+   "visit": "19416049",
+   "claimid": "19416049B",
+   "pid": "45052",
+   "fee": 206.0,
+   "coinsurance_open": 17.5,
+   "live": [
+    {
+     "cid": "23319584",
+     "cpt": "99487",
+     "dos": "09/06/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "817730611"
+     ],
+     "pr": 17.5
+    }
+   ]
+  },
+  {
+   "visit": "19417113",
+   "claimid": "19417113B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 17.65,
+   "live": [
+    {
+     "cid": "23320724",
+     "cpt": "99309",
+     "dos": "09/11/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.65,
+     "patbal": 0.0,
+     "medicare_paid": 69.21,
+     "medicare_checks": [
+      "817795550"
+     ],
+     "pr": 17.65
+    }
+   ]
+  },
+  {
+   "visit": "19420340",
+   "claimid": "19420340B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 20.77,
+   "live": [
+    {
+     "cid": "23325323",
+     "cpt": "99309",
+     "dos": "10/16/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 20.77,
+     "patbal": 0.0,
+     "medicare_paid": 81.42,
+     "medicare_checks": [
+      "817985386"
+     ],
+     "pr": 20.77
+    }
+   ]
+  },
+  {
+   "visit": "19421021",
+   "claimid": "19421021B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 26.97,
+   "live": [
+    {
+     "cid": "23326242",
+     "cpt": "99487",
+     "dos": "10/25/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "817985386"
+     ],
+     "pr": 17.5
+    },
+    {
+     "cid": "23326243",
+     "cpt": "99489",
+     "dos": "10/25/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 9.47,
+     "patbal": 0.0,
+     "medicare_paid": 37.13,
+     "medicare_checks": [
+      "817985386"
+     ],
+     "pr": 9.47
+    }
+   ]
+  },
+  {
+   "visit": "19422865",
+   "claimid": "19422865B",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.14,
+   "live": [
+    {
+     "cid": "23328215",
+     "cpt": "99308",
+     "dos": "11/06/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.14,
+     "patbal": 0.0,
+     "medicare_paid": 47.57,
+     "medicare_checks": [
+      "818100498"
+     ],
+     "pr": 12.14
+    }
+   ]
+  },
+  {
+   "visit": "19423555",
+   "claimid": "19423555B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 26.97,
+   "live": [
+    {
+     "cid": "23329136",
+     "cpt": "99487",
+     "dos": "11/15/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "818120040"
+     ],
+     "pr": 17.5
+    },
+    {
+     "cid": "23329137",
+     "cpt": "99489",
+     "dos": "11/15/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 9.47,
+     "patbal": 0.0,
+     "medicare_paid": 37.13,
+     "medicare_checks": [
+      "818120040"
+     ],
+     "pr": 9.47
+    }
+   ]
+  },
+  {
+   "visit": "19426085",
+   "claimid": "19426085B",
+   "pid": "45052",
+   "fee": 107.0,
+   "coinsurance_open": 12.14,
+   "live": [
+    {
+     "cid": "23332112",
+     "cpt": "99308",
+     "dos": "12/10/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 12.14,
+     "patbal": 0.0,
+     "medicare_paid": 47.57,
+     "medicare_checks": [
+      "818269463"
+     ],
+     "pr": 12.14
+    }
+   ]
+  },
+  {
+   "visit": "19427243",
+   "claimid": "19427243B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 26.97,
+   "live": [
+    {
+     "cid": "23333614",
+     "cpt": "99487",
+     "dos": "12/21/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.5,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "818359061"
+     ],
+     "pr": 17.5
+    },
+    {
+     "cid": "23333615",
+     "cpt": "99489",
+     "dos": "12/21/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 9.47,
+     "patbal": 0.0,
+     "medicare_paid": 37.13,
+     "medicare_checks": [
+      "818359061"
+     ],
+     "pr": 9.47
+    }
+   ]
+  },
+  {
+   "visit": "19433563",
+   "claimid": "19433563B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23340284",
+     "cpt": "99309",
+     "dos": "02/05/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "818678905"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19433858",
+   "claimid": "19433858B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 25.06,
+   "live": [
+    {
+     "cid": "23340616",
+     "cpt": "99487",
+     "dos": "02/26/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.14,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "818678905"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23340617",
+     "cpt": "99489",
+     "dos": "02/26/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 8.92,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "818678905"
+     ],
+     "pr": 8.92
+    }
+   ]
+  },
+  {
+   "visit": "19435654",
+   "claimid": "19435654B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23342672",
+     "cpt": "99309",
+     "dos": "03/10/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "818803750"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19436799",
+   "claimid": "19436799B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23343847",
+     "cpt": "99309",
+     "dos": "03/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "818887480"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19437317",
+   "claimid": "19437317B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23344406",
+     "cpt": "99309",
+     "dos": "04/02/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "818936469"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19438509",
+   "claimid": "19438509B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 25.06,
+   "live": [
+    {
+     "cid": "23345618",
+     "cpt": "99487",
+     "dos": "03/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.14,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "818953678"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23345619",
+     "cpt": "99489",
+     "dos": "03/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 8.92,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "818953678"
+     ],
+     "pr": 8.92
+    }
+   ]
+  },
+  {
+   "visit": "19439542",
+   "claimid": "19439542B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 25.06,
+   "live": [
+    {
+     "cid": "23347037",
+     "cpt": "99487",
+     "dos": "04/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.14,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "819006389"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23347038",
+     "cpt": "99489",
+     "dos": "04/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 8.92,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "819006389"
+     ],
+     "pr": 8.92
+    }
+   ]
+  },
+  {
+   "visit": "19441399",
+   "claimid": "19441399B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23349257",
+     "cpt": "99309",
+     "dos": "05/07/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819096721"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19442387",
+   "claimid": "19442387B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 25.06,
+   "live": [
+    {
+     "cid": "23350461",
+     "cpt": "99487",
+     "dos": "05/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.14,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "819152633"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23350462",
+     "cpt": "99489",
+     "dos": "05/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 8.92,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "819152633"
+     ],
+     "pr": 8.92
+    }
+   ]
+  },
+  {
+   "visit": "19444317",
+   "claimid": "19444317B",
+   "pid": "17473476",
+   "fee": 163.0,
+   "coinsurance_open": 21.59,
+   "live": [
+    {
+     "cid": "23353022",
+     "cpt": "99239",
+     "dos": "06/07/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.59,
+     "patbal": 0.0,
+     "medicare_paid": 84.62,
+     "medicare_checks": [
+      "819325253"
+     ],
+     "pr": 21.59
+    }
+   ]
+  },
+  {
+   "visit": "19444988",
+   "claimid": "19444988B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23353772",
+     "cpt": "99309",
+     "dos": "06/10/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819325253"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19445442",
+   "claimid": "19445442D",
+   "pid": "17476868",
+   "fee": 433.0,
+   "coinsurance_open": 46.83,
+   "live": [
+    {
+     "cid": "23354307",
+     "cpt": "99344",
+     "dos": "06/18/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 29.46,
+     "patbal": 0.0,
+     "medicare_paid": 115.5,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 29.46
+    },
+    {
+     "cid": "23354308",
+     "cpt": "99497",
+     "dos": "06/18/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 17.37,
+     "patbal": 0.0,
+     "medicare_paid": 68.11,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 17.37
+    }
+   ]
+  },
+  {
+   "visit": "19445467",
+   "claimid": "19445467B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23354342",
+     "cpt": "99309",
+     "dos": "06/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819354424"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19446238",
+   "claimid": "19446238D",
+   "pid": "17476868",
+   "fee": 315.0,
+   "coinsurance_open": 44.09,
+   "live": [
+    {
+     "cid": "23355244",
+     "cpt": "99487",
+     "dos": "06/25/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 28.6,
+     "patbal": 0.0,
+     "medicare_paid": 112.09,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 28.6
+    },
+    {
+     "cid": "23355245",
+     "cpt": "99489",
+     "dos": "06/25/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.49,
+     "patbal": 0.0,
+     "medicare_paid": 60.74,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 15.49
+    }
+   ]
+  },
+  {
+   "visit": "19446741",
+   "claimid": "19446741B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23355848",
+     "cpt": "99309",
+     "dos": "06/26/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819415064"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19447123",
+   "claimid": "19447123C",
+   "pid": "17473476",
+   "fee": 222.0,
+   "coinsurance_open": 28.76,
+   "live": [
+    {
+     "cid": "23356244",
+     "cpt": "99232",
+     "dos": "07/05/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819461551"
+     ],
+     "pr": 14.38
+    },
+    {
+     "cid": "23357641",
+     "cpt": "99232",
+     "dos": "07/06/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447130",
+   "claimid": "19447130B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356250",
+     "cpt": "99232",
+     "dos": "07/04/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819461551"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447146",
+   "claimid": "19447146B",
+   "pid": "17473476",
+   "fee": 443.0,
+   "coinsurance_open": 45.29,
+   "live": [
+    {
+     "cid": "23356265",
+     "cpt": "99223",
+     "dos": "07/03/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 31.94,
+     "patbal": 0.0,
+     "medicare_paid": 125.2,
+     "medicare_checks": [
+      "819461551"
+     ],
+     "pr": 31.94
+    },
+    {
+     "cid": "23356266",
+     "cpt": "99497",
+     "dos": "07/03/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 13.35,
+     "patbal": 0.0,
+     "medicare_paid": 52.33,
+     "medicare_checks": [
+      "819461551"
+     ],
+     "pr": 13.35
+    }
+   ]
+  },
+  {
+   "visit": "19447391",
+   "claimid": "19447391B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23356577",
+     "cpt": "99309",
+     "dos": "07/01/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819461551"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19447667",
+   "claimid": "19447667B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356894",
+     "cpt": "99232",
+     "dos": "07/10/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447668",
+   "claimid": "19447668B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356895",
+     "cpt": "99232",
+     "dos": "07/09/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447669",
+   "claimid": "19447669B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356896",
+     "cpt": "99232",
+     "dos": "07/11/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447679",
+   "claimid": "19447679B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356906",
+     "cpt": "99232",
+     "dos": "07/08/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447690",
+   "claimid": "19447690B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23356918",
+     "cpt": "99232",
+     "dos": "07/07/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19447870",
+   "claimid": "19447870B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23357064",
+     "cpt": "99232",
+     "dos": "07/12/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19448249",
+   "claimid": "19448249B",
+   "pid": "17473476",
+   "fee": 111.0,
+   "coinsurance_open": 14.38,
+   "live": [
+    {
+     "cid": "23357507",
+     "cpt": "99232",
+     "dos": "07/13/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 14.38,
+     "patbal": 0.0,
+     "medicare_paid": 56.37,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 14.38
+    }
+   ]
+  },
+  {
+   "visit": "19448250",
+   "claimid": "19448250B",
+   "pid": "17473476",
+   "fee": 160.0,
+   "coinsurance_open": 21.8,
+   "live": [
+    {
+     "cid": "23357508",
+     "cpt": "99233",
+     "dos": "07/14/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.8,
+     "patbal": 0.0,
+     "medicare_paid": 85.46,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 21.8
+    }
+   ]
+  },
+  {
+   "visit": "19448582",
+   "claimid": "19448582B",
+   "pid": "17473476",
+   "fee": 163.0,
+   "coinsurance_open": 21.59,
+   "live": [
+    {
+     "cid": "23357885",
+     "cpt": "99239",
+     "dos": "07/15/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.59,
+     "patbal": 0.0,
+     "medicare_paid": 84.62,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 21.59
+    }
+   ]
+  },
+  {
+   "visit": "19448803",
+   "claimid": "19448803B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 25.06,
+   "live": [
+    {
+     "cid": "23358211",
+     "cpt": "99487",
+     "dos": "07/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.14,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23358212",
+     "cpt": "99489",
+     "dos": "07/17/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 8.92,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "819507287"
+     ],
+     "pr": 8.92
+    }
+   ]
+  },
+  {
+   "visit": "19450196",
+   "claimid": "19450196D",
+   "pid": "17476868",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23360082",
+     "cpt": "99309",
+     "dos": "07/28/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19450297",
+   "claimid": "19450297B",
+   "pid": "17473476",
+   "fee": 310.0,
+   "coinsurance_open": 31.94,
+   "live": [
+    {
+     "cid": "23360183",
+     "cpt": "99223",
+     "dos": "07/30/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 31.94,
+     "patbal": 0.0,
+     "medicare_paid": 125.2,
+     "medicare_checks": [
+      "819595342"
+     ],
+     "pr": 31.94
+    }
+   ]
+  },
+  {
+   "visit": "19450299",
+   "claimid": "19450299B",
+   "pid": "17473476",
+   "fee": 160.0,
+   "coinsurance_open": 21.8,
+   "live": [
+    {
+     "cid": "23360185",
+     "cpt": "99233",
+     "dos": "07/31/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.8,
+     "patbal": 0.0,
+     "medicare_paid": 85.46,
+     "medicare_checks": [
+      "819595342"
+     ],
+     "pr": 21.8
+    }
+   ]
+  },
+  {
+   "visit": "19450318",
+   "claimid": "19450318B",
+   "pid": "17473476",
+   "fee": 160.0,
+   "coinsurance_open": 21.8,
+   "live": [
+    {
+     "cid": "23360210",
+     "cpt": "99233",
+     "dos": "08/01/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.8,
+     "patbal": 0.0,
+     "medicare_paid": 85.46,
+     "medicare_checks": [
+      "819595342"
+     ],
+     "pr": 21.8
+    }
+   ]
+  },
+  {
+   "visit": "19450466",
+   "claimid": "19450466B",
+   "pid": "17473476",
+   "fee": 160.0,
+   "coinsurance_open": 21.8,
+   "live": [
+    {
+     "cid": "23360404",
+     "cpt": "99233",
+     "dos": "08/02/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 21.8,
+     "patbal": 0.0,
+     "medicare_paid": 85.46,
+     "medicare_checks": [
+      "819621925"
+     ],
+     "pr": 21.8
+    }
+   ]
+  },
+  {
+   "visit": "19451942",
+   "claimid": "19451942C",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23362032",
+     "cpt": "99309",
+     "dos": "08/12/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819707453"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19454419",
+   "claimid": "19454419B",
+   "pid": "45052",
+   "fee": 141.0,
+   "coinsurance_open": 16.93,
+   "live": [
+    {
+     "cid": "23365507",
+     "cpt": "99309",
+     "dos": "09/02/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 16.93,
+     "patbal": 0.0,
+     "medicare_paid": 66.36,
+     "medicare_checks": [
+      "819853087"
+     ],
+     "pr": 16.93
+    }
+   ]
+  },
+  {
+   "visit": "19455616",
+   "claimid": "19455616B",
+   "pid": "17476438",
+   "fee": 315.0,
+   "coinsurance_open": 44.09,
+   "live": [
+    {
+     "cid": "23366965",
+     "cpt": "99487",
+     "dos": "09/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 28.6,
+     "patbal": 0.0,
+     "medicare_paid": 112.09,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 28.6
+    },
+    {
+     "cid": "23366966",
+     "cpt": "99489",
+     "dos": "09/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.49,
+     "patbal": 0.0,
+     "medicare_paid": 60.74,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 15.49
+    }
+   ]
+  }
+ ],
+ "left": [
+  {
+   "visit": "32487",
+   "claimid": "32487B",
+   "pid": "45693",
+   "fee": 389.0,
+   "coinsurance_open": 15.6,
+   "live": [
+    {
+     "cid": "12776",
+     "cpt": "99306",
+     "dos": "09/27/2022",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 0.0,
+     "patbal": 0.0,
+     "medicare_paid": 129.62,
+     "medicare_checks": [
+      "811637413"
+     ],
+     "pr": 32.91
+    },
+    {
+     "cid": "12777",
+     "cpt": "99497",
+     "dos": "09/27/2022",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 15.6,
+     "patbal": 0.0,
+     "medicare_paid": 61.44,
+     "medicare_checks": [
+      "811637413"
+     ],
+     "pr": 15.6
+    }
+   ]
+  },
+  {
+   "visit": "13966035",
+   "claimid": "13966035B",
+   "pid": "12179674",
+   "fee": 107.0,
+   "coinsurance_open": 57.02,
+   "live": [
+    {
+     "cid": "20961983",
+     "cpt": "99308",
+     "dos": "01/19/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 57.02,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "812364770"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "13967115",
+   "claimid": "13967115B",
+   "pid": "12179674",
+   "fee": 107.0,
+   "coinsurance_open": 57.02,
+   "live": [
+    {
+     "cid": "20963015",
+     "cpt": "99308",
+     "dos": "01/26/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 57.02,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "812364770"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "13967129",
+   "claimid": "13967129B",
+   "pid": "12179674",
+   "fee": 107.0,
+   "coinsurance_open": 57.02,
+   "live": [
+    {
+     "cid": "20963034",
+     "cpt": "99308",
+     "dos": "01/23/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 57.02,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "812364770"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "13971573",
+   "claimid": "13971573B",
+   "pid": "12179674",
+   "fee": 107.0,
+   "coinsurance_open": 57.02,
+   "live": [
+    {
+     "cid": "20965815",
+     "cpt": "99308",
+     "dos": "02/07/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 57.02,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "812412751"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "13971611",
+   "claimid": "13971611B",
+   "pid": "12179674",
+   "fee": 141.0,
+   "coinsurance_open": 69.61,
+   "live": [
+    {
+     "cid": "20965859",
+     "cpt": "99309",
+     "dos": "02/02/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 69.61,
+     "patbal": 0.0,
+     "medicare_paid": 71.39,
+     "medicare_checks": [
+      "812412751"
+     ],
+     "pr": 18.07
+    }
+   ]
+  },
+  {
+   "visit": "13971632",
+   "claimid": "13971632B",
+   "pid": "12179674",
+   "fee": 107.0,
+   "coinsurance_open": 57.02,
+   "live": [
+    {
+     "cid": "20965880",
+     "cpt": "99308",
+     "dos": "01/30/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 57.02,
+     "patbal": 0.0,
+     "medicare_paid": 49.98,
+     "medicare_checks": [
+      "812412751"
+     ],
+     "pr": 12.66
+    }
+   ]
+  },
+  {
+   "visit": "13972162",
+   "claimid": "13972162B",
+   "pid": "12179674",
+   "fee": 160.0,
+   "coinsurance_open": 55.89,
+   "live": [
+    {
+     "cid": "20966098",
+     "cpt": "99316",
+     "dos": "02/09/2023",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 55.89,
+     "patbal": 0.0,
+     "medicare_paid": 104.11,
+     "medicare_checks": [
+      "812422046"
+     ],
+     "pr": 26.36
+    }
+   ]
+  },
+  {
+   "visit": "19401011",
+   "claimid": "19401011C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 50.58,
+   "live": [
+    {
+     "cid": "22475182",
+     "cpt": "99232",
+     "dos": "02/21/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 50.58,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816532358"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402497",
+   "claimid": "19402497C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 50.58,
+   "live": [
+    {
+     "cid": "22476707",
+     "cpt": "99232",
+     "dos": "03/20/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 50.58,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816705526"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402527",
+   "claimid": "19402527C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 50.58,
+   "live": [
+    {
+     "cid": "22476747",
+     "cpt": "99232",
+     "dos": "03/21/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 50.58,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816705526"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402571",
+   "claimid": "19402571C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 50.58,
+   "live": [
+    {
+     "cid": "22476769",
+     "cpt": "99232",
+     "dos": "03/23/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 50.58,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816705526"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19402572",
+   "claimid": "19402572C",
+   "pid": "17472305",
+   "fee": 111.0,
+   "coinsurance_open": 50.58,
+   "live": [
+    {
+     "cid": "22476770",
+     "cpt": "99232",
+     "dos": "03/22/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 50.58,
+     "patbal": 0.0,
+     "medicare_paid": 60.42,
+     "medicare_checks": [
+      "816705526"
+     ],
+     "pr": 15.41
+    }
+   ]
+  },
+  {
+   "visit": "19403896",
+   "claimid": "19403896C",
+   "pid": "45052",
+   "fee": 206.0,
+   "coinsurance_open": 137.38,
+   "live": [
+    {
+     "cid": "22478028",
+     "cpt": "99487",
+     "dos": "04/14/2025",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 137.38,
+     "patbal": 0.0,
+     "medicare_paid": 68.62,
+     "medicare_checks": [
+      "816846022"
+     ],
+     "pr": 17.5
+    }
+   ]
+  },
+  {
+   "visit": "19432733",
+   "claimid": "19432733H",
+   "pid": "25710",
+   "fee": 310.0,
+   "coinsurance_open": 184.8,
+   "live": [
+    {
+     "cid": "23339381",
+     "cpt": "99223",
+     "dos": "02/12/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 184.8,
+     "patbal": 0.0,
+     "medicare_paid": 125.2,
+     "medicare_checks": [
+      "819881170"
+     ],
+     "pr": 31.94
+    }
+   ]
+  },
+  {
+   "visit": "19455595",
+   "claimid": "19455595B",
+   "pid": "45052",
+   "fee": 315.0,
+   "coinsurance_open": 216.77,
+   "live": [
+    {
+     "cid": "23366931",
+     "cpt": "99487",
+     "dos": "09/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 142.72,
+     "patbal": 0.0,
+     "medicare_paid": 63.28,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 16.14
+    },
+    {
+     "cid": "23366932",
+     "cpt": "99489",
+     "dos": "09/20/2026",
+     "carrier": "BCBS",
+     "billdate": "10/13/2026",
+     "insbal": 74.05,
+     "patbal": 0.0,
+     "medicare_paid": 34.95,
+     "medicare_checks": [
+      "819928855"
+     ],
+     "pr": 8.92
+    }
+   ]
+  }
+ ]
+}

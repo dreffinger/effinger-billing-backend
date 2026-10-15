@@ -1,0 +1,154 @@
+{
+ "stamp": "2026-10-14T2310Z",
+ "live": true,
+ "pid": "17471600",
+ "steps": [
+  {
+   "vid": "19451930",
+   "cid": "23362020",
+   "claimid": "19451930C",
+   "before": {
+    "23362020": {
+     "cpt": "99223",
+     "dos": "08/17/2026",
+     "fee": 310.0,
+     "paid": 230.1,
+     "insbal": 79.9,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "billdate": "10/13/2026",
+     "pays": [
+      [
+       "10/05/2026",
+       "MER01",
+       "-230.10",
+       "415094527"
+      ]
+     ]
+    }
+   },
+   "woins": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j264z\" lst=\"10/14/2026 16:27:16\"><Results success=\"1\" paymentid=\"10175202\" /><Error /></PPMDResult"
+   ],
+   "result": "settled (primary paid) - hide"
+  },
+  {
+   "vid": "19452051",
+   "cid": "23362164",
+   "claimid": "19452051C",
+   "before": {
+    "23362164": {
+     "cpt": "99232",
+     "dos": "08/18/2026",
+     "fee": 111.0,
+     "paid": 88.8,
+     "insbal": 22.2,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "billdate": "10/13/2026",
+     "pays": [
+      [
+       "10/05/2026",
+       "MER01",
+       "-88.80",
+       "415094527"
+      ]
+     ]
+    }
+   },
+   "result": "settled (primary paid) - hide"
+  }
+ ],
+ "hidden": {
+  "1700297": {
+   "n": 2,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 16:27:40\"><Results success=\"1\" /><E"
+  }
+ },
+ "plans_before": [
+  [
+   "ins9510889",
+   "car6404",
+   "1",
+   "06/21/2023",
+   ""
+  ],
+  [
+   "ins9519033",
+   "car6135",
+   "2",
+   "08/29/2025",
+   ""
+  ]
+ ],
+ "porder_before": "1,2",
+ "enddate": [
+  true,
+  "f-8ns2l\" lst=\"10/14/2026 16:27:19\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '1,2' - WARNING not restored, set it: insorder 1,2 would lead with end-dated plan ins9510889 (AMD blanks that) - nothing written"
+ ],
+ "porder_after_enddate": "",
+ "order": [
+  true,
+  "insorder 2 via ins9519033 -> '2'"
+ ],
+ "insorder": {
+  "19451930": [
+   true,
+   "resave vst19451930 insorder 2,1 -> 2, 1 live charges (was 1)"
+  ],
+  "19452051": [
+   true,
+   "resave vst19452051 insorder 2,1 -> 2, 1 live charges (was 1)"
+  ]
+ },
+ "after": {
+  "19451930": {
+   "23362020": {
+    "cpt": "99223",
+    "dos": "08/17/2026",
+    "fee": 310.0,
+    "paid": 252.47,
+    "insbal": 0.0,
+    "patbal": 57.53,
+    "carrier": "UNI20",
+    "billdate": "10/13/2026",
+    "pays": [
+     [
+      "10/05/2026",
+      "MER01",
+      "-230.10",
+      "415094527"
+     ],
+     [
+      "10/14/2026",
+      "MER01",
+      "0.00",
+      "415094527"
+     ]
+    ]
+   }
+  },
+  "19452051": {
+   "23362164": {
+    "cpt": "99232",
+    "dos": "08/18/2026",
+    "fee": 111.0,
+    "paid": 88.8,
+    "insbal": 22.2,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "10/13/2026",
+    "pays": [
+     [
+      "10/05/2026",
+      "MER01",
+      "-88.80",
+      "415094527"
+     ]
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,277 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-13T1338Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/18/0 -> 0/0/18/0; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38406523301",
+ "started": "2026-10-13T13:38:03Z",
+ "ended": "2026-10-13T13:40:24Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 71.0
+   },
+   "after": {
+    "checks": 1,
+    "unposted": 71.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 275290.81,
+   "visits": 2519,
+   "charts": 507,
+   "over_365": {
+    "n": 769,
+    "dollars": 39680.61
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "918 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 918,
+    "registers": 895,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-13T13:38:03Z",
+   "ended": "2026-10-13T13:38:04Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 18->18, Exclusions 0->0",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 18,
+    "exclusions": 0,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 11,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 7,
+    "unbilled released": 0,
+    "payreasons no-era-line": 11
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 7,
+     "ids": "v19457280 v19457281 v19457321 v19457471 v19457476 v19457519 v19457529"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Payment reason codes are missing or do not balance.",
+     "visits": 6,
+     "ids": "v19417079 v19418988 v19419273 v19420335 v19422686 v19422687"
+    },
+    {
+     "column": "unbilled",
+     "kind": "One or more charges within this visit have errors. Charges with errors",
+     "visits": 5,
+     "ids": "v19416171 v19416185 v19420940 v19420954 v19421010"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-13T13:38:04Z",
+   "ended": "2026-10-13T13:40:19Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 71.0,
+    "unposted after": 71.0,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053116,
+     "payer": "UNITED HEALTHCARE",
+     "checknumber": "W0020208",
+     "amount": 0.0,
+     "unposted": 71.0,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-13T13:40:19Z",
+   "ended": "2026-10-13T13:40:23Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-13T13:40:23Z",
+   "ended": "2026-10-13T13:40:23Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2519 visits on 507 charts, $275290.81 open; 769 over a year ($39680.61)",
+   "counts": {
+    "visits": 2519,
+    "charts": 507,
+    "over 365 days": 769
+   },
+   "dollars": {
+    "open insurance balance": 275290.81,
+    "over 365 days": 39680.61
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1627,
+     "dollars": 156679.65,
+     "oldest_days": 1063
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 200,
+     "dollars": 37524.34,
+     "oldest_days": 1247
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 132,
+     "dollars": 19896.82,
+     "oldest_days": 400
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 77,
+     "dollars": 9931.52,
+     "oldest_days": 1021
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 59,
+     "dollars": 5623.77,
+     "oldest_days": 811
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 31,
+     "dollars": 5363.97,
+     "oldest_days": 1132
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 52,
+     "dollars": 4744.13,
+     "oldest_days": 588
+    },
+    {
+     "carrier": "AET07",
+     "name": "AETNA",
+     "visits": 30,
+     "dollars": 4534.22,
+     "oldest_days": 344
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 25,
+     "dollars": 4185.24,
+     "oldest_days": 760
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 36,
+     "dollars": 3186.73,
+     "oldest_days": 580
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 19,
+     "dollars": 3041.6,
+     "oldest_days": 85
+    },
+    {
+     "carrier": "SIM01",
+     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "visits": 17,
+     "dollars": 2911.12,
+     "oldest_days": 95
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-13T13:40:23Z",
+   "ended": "2026-10-13T13:40:24Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Unbilled: 11 reason-code row(s) whose code-less payment carries money - the ERA-linked re-post needs the era_details cache line"
+ ],
+ "errors": []
+}

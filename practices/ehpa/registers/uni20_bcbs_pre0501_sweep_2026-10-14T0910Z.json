@@ -1,0 +1,2365 @@
+{
+ "about": "UNI20/BCBS pre-5/1/2026 claim-status sweep pass 91 (claim_status_sweep.py --min-age 159 --max 60 --carriers UNI20,BCBS --skip-answered <passes 1-90>)",
+ "stamp": "2026-10-14T0910Z",
+ "rows": [
+  {
+   "visitid": 19433791,
+   "patientid": 17475632,
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [],
+   "errors": [],
+   "action": "UNKNOWN - review"
+  },
+  {
+   "visitid": 19439702,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251532"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437843,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437926,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437951,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438061,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438356,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-12",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438357,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438358,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-13",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438701,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-14",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438903,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-15",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438993,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-18",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439010,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-17",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439022,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-16",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439233,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-19",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439271,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19455322,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-09",
+     "payerClaim": "20090623"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19419296,
+   "patientid": 17474288,
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": "26Q459634700",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "25305B1000132750",
+     "paidDate": "2025-10-30",
+     "payerClaim": "25T355668600"
+    },
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "26254B1000243083",
+     "paidDate": "2026-09-09",
+     "payerClaim": "26Q176796000"
+    },
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "26259B1000319208",
+     "paidDate": "2026-09-12",
+     "payerClaim": "26Q459634700"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19415865,
+   "patientid": 17473571,
+   "carrier": "UNI20",
+   "dos": "2025-09-05",
+   "balance": 49.61,
+   "member": "[member id]",
+   "icn": "NTL7424916700",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C5966498",
+     "paidDate": "2025-10-02",
+     "payerClaim": "74249167"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19387595,
+   "patientid": 17471979,
+   "carrier": "BCBS",
+   "dos": "2024-08-09",
+   "balance": 49.45,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19396895,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2024-12-04",
+   "balance": 49.45,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 39939,
+   "patientid": 47643,
+   "carrier": "UNI20",
+   "dos": "2022-11-07",
+   "balance": 48.51,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370156,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-11-27",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370183,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-11-26",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370929,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-09",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370958,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-08",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372497,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-13",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372509,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-12",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372523,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-11",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372541,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-10",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19400005,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-02-04",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210359410"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210360230"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19402079,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-13",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19400002,
+   "patientid": 17472046,
+   "carrier": "BCBS",
+   "dos": "2025-02-01",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210359920"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-13",
+     "payerClaim": "Q100001210360069"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210359699"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210360142"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19416744,
+   "patientid": 17472910,
+   "carrier": "UNI20",
+   "dos": "2025-09-14",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": "0925266259010",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C6010992",
+     "paidDate": "2025-10-08",
+     "payerClaim": "74794471"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19401536,
+   "patientid": 17472636,
+   "carrier": "UNI20",
+   "dos": "2025-03-01",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19431880,
+   "patientid": 17471968,
+   "carrier": "BCBS",
+   "dos": "2026-02-06",
+   "balance": 45.29,
+   "member": "[member id]",
+   "icn": "H100001348230496",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-14",
+     "payerClaim": "H100001347265018"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192234"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347267514"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299193355"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192772"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347265539"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347265219"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192819"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213436603",
+     "paidDate": "2026-09-17",
+     "payerClaim": "H100001348230496"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19369897,
+   "patientid": 23391,
+   "carrier": "BCBS",
+   "dos": "2023-11-21",
+   "balance": 43.88,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19393947,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2024-10-23",
+   "balance": 43.43,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "211907303",
+     "paidDate": "2024-11-27",
+     "payerClaim": "Q100001193384437"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19399981,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-01-30",
+   "balance": 42.17,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210359570"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19402906,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-25",
+   "balance": 42.17,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 30916,
+   "patientid": 25416,
+   "carrier": "UNI20",
+   "dos": "2022-09-28",
+   "balance": 41.18,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19388473,
+   "patientid": 17472046,
+   "carrier": "BCBS",
+   "dos": "2024-08-22",
+   "balance": 34.48,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423127948",
+     "paidDate": "2024-09-10",
+     "payerClaim": "Q100001173797964"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187445383"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504576"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423133929",
+     "paidDate": "2024-09-11",
+     "payerClaim": "Q100001173797954"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187447266"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504514"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187446448"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423127948",
+     "paidDate": "2024-09-10",
+     "payerClaim": "Q100001173797955"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504515"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423133929",
+     "paidDate": "2024-09-11",
+     "payerClaim": "Q100001173798026"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187447598"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504973"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19363655,
+   "patientid": 46354,
+   "carrier": "BCBS",
+   "dos": "2023-07-11",
+   "balance": 31.76,
+   "member": "[MBI]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372600,
+   "patientid": 22566,
+   "carrier": "BCBS",
+   "dos": "2023-12-15",
+   "balance": 30.96,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "30.96",
+     "check": "211169256",
+     "paidDate": "2024-01-12",
+     "payerClaim": "Q100001114961321"
+    }
+   ],
+   "errors": [],
+   "action": "PAID $30.96 - find/post the ERA (check 211169256)"
+  },
+  {
+   "visitid": 19393940,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2024-10-28",
+   "balance": 30.84,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "211907303",
+     "paidDate": "2024-11-27",
+     "payerClaim": "Q100001193387042"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19382290,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2024-05-02",
+   "balance": 30.84,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19388556,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2024-08-21",
+   "balance": 30.84,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19409352,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2025-07-14",
+   "balance": 26.97,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19421021,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2025-10-25",
+   "balance": 26.97,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19423555,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2025-11-15",
+   "balance": 26.97,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19427243,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2025-12-21",
+   "balance": 26.97,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19408975,
+   "patientid": 17472910,
+   "carrier": "UNI20",
+   "dos": "2025-07-08",
+   "balance": 26.97,
+   "member": "[member id]",
+   "icn": "0925266258370",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C5523595",
+     "paidDate": "2025-07-31",
+     "payerClaim": "68758100"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 13995444,
+   "patientid": 42092,
+   "carrier": "BCBS",
+   "dos": "2023-04-10",
+   "balance": 26.06,
+   "member": "[member id]",
+   "icn": "Q100001053721945",
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19360885,
+   "patientid": 17468781,
+   "carrier": "BCBS",
+   "dos": "2023-07-06",
+   "balance": 26.06,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433858,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2026-02-26",
+   "balance": 25.06,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19438509,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2026-03-20",
+   "balance": 25.06,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19439542,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2026-04-20",
+   "balance": 25.06,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-14",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19429855,
+   "patientid": 17473571,
+   "carrier": "UNI20",
+   "dos": "2026-01-12",
+   "balance": 24.15,
+   "member": "[member id]",
+   "icn": "NTL0081351900",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "U8202701",
+     "paidDate": "2026-02-13",
+     "payerClaim": "00813519"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19416743,
+   "patientid": 17472910,
+   "carrier": "UNI20",
+   "dos": "2025-09-15",
+   "balance": 22.92,
+   "member": "[member id]",
+   "icn": "0925266258900",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C6019422",
+     "paidDate": "2025-10-09",
+     "payerClaim": "74917351"
+    },
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C6010992",
+     "paidDate": "2025-10-08",
+     "payerClaim": "74794470"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19416882,
+   "patientid": 17472910,
+   "carrier": "UNI20",
+   "dos": "2025-09-16",
+   "balance": 22.92,
+   "member": "[member id]",
+   "icn": "0925266259050",
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C6019422",
+     "paidDate": "2025-10-09",
+     "payerClaim": "74917351"
+    },
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "C6010992",
+     "paidDate": "2025-10-08",
+     "payerClaim": "74794470"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  }
+ ]
+}

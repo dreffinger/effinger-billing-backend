@@ -1,0 +1,84 @@
+{
+ "stamp": "2026-10-13T2110Z",
+ "live": false,
+ "A": [
+  {
+   "checkid": "1053152",
+   "pid": "17477899",
+   "vid": "19456243",
+   "cid": "23367867",
+   "co": 40.54,
+   "before": {
+    "fee": 111.0,
+    "paid": 70.46,
+    "insbalance": 0.0,
+    "patbalance": 40.54,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  }
+ ],
+ "B": [
+  {
+   "checkid": "1053150",
+   "checkclaimid": "15446481",
+   "pid": "17471755",
+   "vid": "19455292",
+   "cid": "23368642",
+   "wo": 133.0,
+   "wocode": "WONCS",
+   "before": {
+    "fee": 133.0,
+    "paid": 0.0,
+    "insbalance": 133.0,
+    "patbalance": 0.0,
+    "carrier": "SUN01"
+   },
+   "outcome": "DRY"
+  }
+ ],
+ "C": [
+  {
+   "checkid": "1053150",
+   "pid": "17471755",
+   "vid": "19455292",
+   "cid": "23368640",
+   "outcome": "held - CO-222/N640 (frequency exceeded) again on the 99309 recoded 10/5 and sent frequency 7 with Sunshine's claim number; $141 at SUN01 primary - William: appeal with records or write off (board row walker-lenox-denials, his turn)"
+  },
+  {
+   "checkid": "1053150",
+   "pid": "17470802",
+   "vid": "19452694",
+   "cid": "23363074",
+   "outcome": "recorded - Sunshine CO-242/M115 $0 on the 8/20/2026 99497; the live claim is at Medicare (FLO02, re-routed 9/23) - the old plan's answer, Medicare's own answer settles it; 99306 on the visit already at $0"
+  },
+  {
+   "checkid": "1053150",
+   "pid": "20670",
+   "vid": "19420291",
+   "cid": "23325277",
+   "outcome": "recorded - Sunshine CO-45/OA-23 $0 on the 10/8/2025 99309; the live claim is at Medicare (FLO02) - the old plan's answer, Medicare's own answer settles it"
+  },
+  {
+   "checkid": "1053150",
+   "pid": "17473663",
+   "vid": "19456055",
+   "cid": "23367536",
+   "outcome": "held - Sunshine CO-16/M56 $0 on the 9/22/2026 99309 (secondary, Medicare paid) - centene-m56-denials-0920 cluster (payer identifier), appended to the board row"
+  },
+  {
+   "checkid": "1053150",
+   "pid": "17472834",
+   "vid": "19456053",
+   "cid": "23367534",
+   "outcome": "held - Sunshine CO-16/M56 $0 on the 9/22/2026 99309 (secondary, Medicare paid) - centene-m56-denials-0920 cluster (payer identifier), appended to the board row"
+  },
+  {
+   "checkid": "1053116",
+   "pid": "22023",
+   "vid": "19395670",
+   "cid": "22468661",
+   "outcome": "held - UHC W0020208 takeback pair, William's decision (unchanged)"
+  }
+ ]
+}

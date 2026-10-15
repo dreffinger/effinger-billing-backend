@@ -9,7 +9,7 @@
 # Never touches: missing-data holds (hospitalization date 117065068, CCI 24078, sequela-first 20389, anything not
 # in the list), paid visits are irrelevant here (bypass changes no money). Register: registers/insp_bypass_<stamp>.json
 import amd, json, re, sys, time, datetime, os
-ADVISORY = {"20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "27261"}
+ADVISORY = {"20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "4311", "27261"}   # 4311 added 10/14 (new-patient-in-history advisory, as insp_1013_1910.py)
 summary_path = [a for a in sys.argv[1:] if not a.startswith("--")]
 if not summary_path:
     print("usage: python3 insp_bypass_advisories.py <scan_dir>/summary_<tag>.json [--live]"); sys.exit(2)

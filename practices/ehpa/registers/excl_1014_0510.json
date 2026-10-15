@@ -1,0 +1,1312 @@
+{
+ "stamp": "2026-10-14T0510Z",
+ "live": true,
+ "rows": [
+  {
+   "run": "1700294",
+   "vid": "19428140",
+   "claimid": "19428140D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23334604",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19429862",
+   "claimid": "19429862D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23336335",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19430966",
+   "claimid": "19430966D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23337522",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19430967",
+   "claimid": "19430967D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23337523",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19432541",
+   "claimid": "19432541D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23339103",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19432986",
+   "claimid": "19432986D",
+   "pid": "17475064",
+   "carrier": "AET07",
+   "cid": "23339606",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700294",
+   "vid": "19438330",
+   "claimid": "19438330D",
+   "pid": "22603",
+   "carrier": "CON08",
+   "cid": "23345415",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF02A8:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "1,2",
+   "resub": "1",
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700294",
+   "vid": "19441277",
+   "claimid": "19441277D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349126",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441278",
+   "claimid": "19441278D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349127",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441279",
+   "claimid": "19441279D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349128",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 2,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441312",
+   "claimid": "19441312D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349162",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441374",
+   "claimid": "19441374D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349225",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441468",
+   "claimid": "19441468D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349370",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441482",
+   "claimid": "19441482D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349384",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19441639",
+   "claimid": "19441639D",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23349553",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19442384",
+   "claimid": "19442384F",
+   "pid": "22603",
+   "carrier": "CON08",
+   "cid": "23350455",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF02A8:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "1,2",
+   "resub": "1",
+   "live_charges": 2,
+   "result": ""
+  },
+  {
+   "run": "1700294",
+   "vid": "19444017",
+   "claimid": "19444017C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352608",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444026",
+   "claimid": "19444026C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352617",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444029",
+   "claimid": "19444029C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352620",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444134",
+   "claimid": "19444134C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352787",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444168",
+   "claimid": "19444168C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352842",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444185",
+   "claimid": "19444185C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23352866",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM",
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19444317",
+   "claimid": "19444317B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23353022",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447123",
+   "claimid": "19447123C",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356244",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 2,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447130",
+   "claimid": "19447130B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356250",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447146",
+   "claimid": "19447146B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356265",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 2,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447667",
+   "claimid": "19447667B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356894",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447668",
+   "claimid": "19447668B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356895",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447669",
+   "claimid": "19447669B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356896",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447679",
+   "claimid": "19447679B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356906",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447690",
+   "claimid": "19447690B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23356918",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19447870",
+   "claimid": "19447870B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23357064",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19448249",
+   "claimid": "19448249B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23357507",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19448250",
+   "claimid": "19448250B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23357508",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19448582",
+   "claimid": "19448582B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23357885",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19450297",
+   "claimid": "19450297B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360183",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19450299",
+   "claimid": "19450299B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360185",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19450318",
+   "claimid": "19450318B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360210",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19450466",
+   "claimid": "19450466B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360404",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700294",
+   "vid": "19454390",
+   "claimid": "19454390C",
+   "pid": "22603",
+   "carrier": "CON08",
+   "cid": "23365478",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF02A8:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "1,2",
+   "resub": "1",
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700295",
+   "vid": "19450488",
+   "claimid": "19450488B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360427",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700295",
+   "vid": "19450666",
+   "claimid": "19450666B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360617",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700295",
+   "vid": "19450742",
+   "claimid": "19450742B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360701",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700295",
+   "vid": "19450760",
+   "claimid": "19450760B",
+   "pid": "17473476",
+   "carrier": "BCBS",
+   "cid": "23360719",
+   "action": "freqreset",
+   "seq": null,
+   "errs": [
+    "CH FH  PREF0283:MISSING PAYER DOC CONTRO"
+   ],
+   "insorder": "2,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq reset ok"
+  },
+  {
+   "run": "1700296",
+   "vid": "42226",
+   "claimid": "42226B",
+   "pid": "21471",
+   "carrier": "MUT01",
+   "cid": "22120",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FI  PSBR0134:INVALID PAYER RESP SEQ N"
+   ],
+   "insorder": "1,2",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700296",
+   "vid": "42854",
+   "claimid": "42854B",
+   "pid": "21471",
+   "carrier": "MUT01",
+   "cid": "22482",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FI  PSBR0134:INVALID PAYER RESP SEQ N"
+   ],
+   "insorder": "1,2",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700296",
+   "vid": "42916",
+   "claimid": "42916B",
+   "pid": "21471",
+   "carrier": "MUT01",
+   "cid": "22564",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FI  PSBR0134:INVALID PAYER RESP SEQ N"
+   ],
+   "insorder": "1,2",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700296",
+   "vid": "43334",
+   "claimid": "43334B",
+   "pid": "21471",
+   "carrier": "MUT01",
+   "cid": "22870",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FI  PSBR0134:INVALID PAYER RESP SEQ N"
+   ],
+   "insorder": "1,2",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700296",
+   "vid": "14004327",
+   "claimid": "14004327B",
+   "pid": "25500",
+   "carrier": "MUT01",
+   "cid": "21330875",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH FI  PSBR0134:INVALID PAYER RESP SEQ N"
+   ],
+   "insorder": "1,2",
+   "resub": "",
+   "live_charges": 2,
+   "result": ""
+  },
+  {
+   "run": "1700296",
+   "vid": "19443047",
+   "claimid": "19443047C",
+   "pid": "17475638",
+   "carrier": "HUM01",
+   "cid": "23351322",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "3,1",
+   "resub": "",
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700297",
+   "vid": "19427174",
+   "claimid": "19427174D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23333476",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 2,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19430635",
+   "claimid": "19430635D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23337007",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 2,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19434034",
+   "claimid": "19434034D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23340929",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19434249",
+   "claimid": "19434249D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23341226",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19436818",
+   "claimid": "19436818D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23343866",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19436968",
+   "claimid": "19436968D",
+   "pid": "17473197",
+   "carrier": "UNI20",
+   "cid": "23344017",
+   "action": "complete",
+   "seq": null,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": ""
+  },
+  {
+   "run": "1700297",
+   "vid": "19441608",
+   "claimid": "19441608D",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "cid": "23349522",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700297",
+   "vid": "19441988",
+   "claimid": "19441988D",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "cid": "23349944",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700297",
+   "vid": "19442513",
+   "claimid": "19442513D",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "cid": "23350679",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 2,
+   "result": "freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "run": "1700297",
+   "vid": "19443856",
+   "claimid": "19443856C",
+   "pid": "17475777",
+   "carrier": "UNI20",
+   "cid": "23352377",
+   "action": "freq1",
+   "seq": 1,
+   "errs": [
+    "CH AM  PREF0201:MISSING ORIGINAL REF NUM"
+   ],
+   "insorder": "2,1",
+   "resub": null,
+   "live_charges": 1,
+   "result": "freq1 + rebill seq 1 -> 204"
+  }
+ ],
+ "complete": {
+  "1700294": [
+   [
+    "19428140",
+    "19428140D"
+   ],
+   [
+    "19429862",
+    "19429862D"
+   ],
+   [
+    "19430966",
+    "19430966D"
+   ],
+   [
+    "19430967",
+    "19430967D"
+   ],
+   [
+    "19432541",
+    "19432541D"
+   ],
+   [
+    "19432986",
+    "19432986D"
+   ],
+   [
+    "19438330",
+    "19438330D"
+   ],
+   [
+    "19441277",
+    "19441277D"
+   ],
+   [
+    "19441278",
+    "19441278D"
+   ],
+   [
+    "19441279",
+    "19441279D"
+   ],
+   [
+    "19441312",
+    "19441312D"
+   ],
+   [
+    "19441374",
+    "19441374D"
+   ],
+   [
+    "19441468",
+    "19441468D"
+   ],
+   [
+    "19441482",
+    "19441482D"
+   ],
+   [
+    "19441639",
+    "19441639D"
+   ],
+   [
+    "19442384",
+    "19442384F"
+   ],
+   [
+    "19444017",
+    "19444017C"
+   ],
+   [
+    "19444026",
+    "19444026C"
+   ],
+   [
+    "19444029",
+    "19444029C"
+   ],
+   [
+    "19444134",
+    "19444134C"
+   ],
+   [
+    "19444168",
+    "19444168C"
+   ],
+   [
+    "19444185",
+    "19444185C"
+   ],
+   [
+    "19444317",
+    "19444317B"
+   ],
+   [
+    "19447123",
+    "19447123C"
+   ],
+   [
+    "19447130",
+    "19447130B"
+   ],
+   [
+    "19447146",
+    "19447146B"
+   ],
+   [
+    "19447667",
+    "19447667B"
+   ],
+   [
+    "19447668",
+    "19447668B"
+   ],
+   [
+    "19447669",
+    "19447669B"
+   ],
+   [
+    "19447679",
+    "19447679B"
+   ],
+   [
+    "19447690",
+    "19447690B"
+   ],
+   [
+    "19447870",
+    "19447870B"
+   ],
+   [
+    "19448249",
+    "19448249B"
+   ],
+   [
+    "19448250",
+    "19448250B"
+   ],
+   [
+    "19448582",
+    "19448582B"
+   ],
+   [
+    "19450297",
+    "19450297B"
+   ],
+   [
+    "19450299",
+    "19450299B"
+   ],
+   [
+    "19450318",
+    "19450318B"
+   ],
+   [
+    "19450466",
+    "19450466B"
+   ],
+   [
+    "19454390",
+    "19454390C"
+   ]
+  ],
+  "1700295": [
+   [
+    "19450488",
+    "19450488B"
+   ],
+   [
+    "19450666",
+    "19450666B"
+   ],
+   [
+    "19450742",
+    "19450742B"
+   ],
+   [
+    "19450760",
+    "19450760B"
+   ]
+  ],
+  "1700296": [
+   [
+    "42226",
+    "42226B"
+   ],
+   [
+    "42854",
+    "42854B"
+   ],
+   [
+    "42916",
+    "42916B"
+   ],
+   [
+    "43334",
+    "43334B"
+   ],
+   [
+    "14004327",
+    "14004327B"
+   ],
+   [
+    "19443047",
+    "19443047C"
+   ]
+  ],
+  "1700297": [
+   [
+    "19427174",
+    "19427174D"
+   ],
+   [
+    "19430635",
+    "19430635D"
+   ],
+   [
+    "19434034",
+    "19434034D"
+   ],
+   [
+    "19434249",
+    "19434249D"
+   ],
+   [
+    "19436818",
+    "19436818D"
+   ],
+   [
+    "19436968",
+    "19436968D"
+   ],
+   [
+    "19441608",
+    "19441608D"
+   ],
+   [
+    "19441988",
+    "19441988D"
+   ],
+   [
+    "19442513",
+    "19442513D"
+   ],
+   [
+    "19443856",
+    "19443856C"
+   ]
+  ]
+ },
+ "results": [
+  [
+   "1700294",
+   40,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 22:47:39\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  [
+   "1700295",
+   4,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 22:47:40\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  [
+   "1700296",
+   6,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/13/2026 22:47:40\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ],
+  [
+   "1700297",
+   10,
+   "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 22:47:41\"><Results success=\"1\" /><Error /></PPMDResults>"
+  ]
+ ]
+}

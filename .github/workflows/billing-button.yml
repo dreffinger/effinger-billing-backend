@@ -32,7 +32,7 @@ on:
         options: [dry, live]
         default: dry
       steps:
-        description: "all, or a comma list of columns,era,cascade,sweep,packages,cred,money"
+        description: "all, or a comma list of columns,era,cascade,sweep,packages,cred,money,outstanding,denials (denials = the Working Denials board refresh, read-only)"
         type: string
         default: all
       packages:

@@ -1,0 +1,153 @@
+{
+ "stamp": "2026-10-13T1110Z",
+ "dry": false,
+ "lines": [
+  {
+   "checkid": "1053144",
+   "checkclaimid": 15446453,
+   "visitid": "19453506",
+   "pid": "17477350",
+   "chargedetailid": "23364203",
+   "cpt": "99233",
+   "dos": "2026-09-01",
+   "paid": 21.8,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 160.0,
+    "paid": 138.2,
+    "insbal": 21.8,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/17/2026"
+   },
+   "pay": 21.8,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10168974",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-nfg66\" lst=\"10/13/2026 04:24:50\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053144",
+   "checkclaimid": 15446454,
+   "visitid": "19420518",
+   "pid": "17470940",
+   "chargedetailid": "23325495",
+   "cpt": "99349",
+   "dos": "2025-10-15",
+   "paid": 20.86,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": false,
+   "before": {
+    "fee": 198.0,
+    "paid": 177.14,
+    "insbal": 20.86,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "billdate": "09/17/2026"
+   },
+   "pay": 20.86,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10168975",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-nfg66\" lst=\"10/13/2026 04:24:55\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053144",
+   "checkclaimid": 15446455,
+   "visitid": "19453509",
+   "pid": "17477557",
+   "chargedetailid": "23364206",
+   "cpt": "99306",
+   "dos": "2026-08-31",
+   "paid": 33.1,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 256.0,
+    "paid": 222.9,
+    "insbal": 33.1,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/10/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 33.1,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10168976",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-mgvr9\" lst=\"10/13/2026 04:25:00\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "checkid": "1053144",
+   "checkclaimid": 15446455,
+   "visitid": "19453509",
+   "pid": "17477557",
+   "chargedetailid": "23364207",
+   "cpt": "99497",
+   "dos": "2026-08-31",
+   "paid": 13.35,
+   "carcs": [
+    "OA23"
+   ],
+   "rarcs": [],
+   "claimstatus": 2,
+   "primary": true,
+   "before": {
+    "fee": 133.0,
+    "paid": 119.65,
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "carrier": "FLO02",
+    "billdate": "09/10/2026"
+   },
+   "note": "live claim is at FLO02 (billed 09/10/2026) - this UNI20 answer posts under UNI20; the FLO02 claim's own answer settles the rest",
+   "pay": 13.35,
+   "wo": 0.0,
+   "wocode": "WOINS",
+   "residual": 0.0,
+   "carrier": "UNI20",
+   "outcome": "posted",
+   "paymentid": "10168977",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/13/2026 04:25:04\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ],
+ "wolate": []
+}

@@ -1,0 +1,263 @@
+{
+ "stamp": "2026-10-12T0910Z",
+ "live": false,
+ "A": [
+  {
+   "checkid": "1053137",
+   "checkclaimid": "15446285",
+   "pid": "17477893",
+   "vid": "19456294",
+   "cid": "23367919",
+   "co": 153.49,
+   "before": {
+    "fee": 310.0,
+    "paid": 156.51,
+    "insbalance": 0.0,
+    "patbalance": 153.49,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053137",
+   "checkclaimid": "15446286",
+   "pid": "17477893",
+   "vid": "19456229",
+   "cid": "23367853",
+   "co": 40.54,
+   "before": {
+    "fee": 111.0,
+    "paid": 70.46,
+    "insbalance": 0.0,
+    "patbalance": 40.54,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446292",
+   "pid": "17477972",
+   "vid": "19456879",
+   "cid": "23368540",
+   "co": 56.19,
+   "before": {
+    "fee": 111.0,
+    "paid": 54.81,
+    "insbalance": 0.0,
+    "patbalance": 56.19,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446293",
+   "pid": "17477972",
+   "vid": "19456851",
+   "cid": "23368512",
+   "co": 56.19,
+   "before": {
+    "fee": 111.0,
+    "paid": 54.81,
+    "insbalance": 0.0,
+    "patbalance": 56.19,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446294",
+   "pid": "17477972",
+   "vid": "19456886",
+   "cid": "23368547",
+   "co": 56.19,
+   "before": {
+    "fee": 111.0,
+    "paid": 54.81,
+    "insbalance": 0.0,
+    "patbalance": 56.19,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446295",
+   "pid": "17477972",
+   "vid": "19456860",
+   "cid": "23368521",
+   "co": 56.19,
+   "before": {
+    "fee": 111.0,
+    "paid": 54.81,
+    "insbalance": 0.0,
+    "patbalance": 56.19,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY"
+  }
+ ],
+ "B": [
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446300",
+   "pid": "17470899",
+   "vid": "19455924",
+   "cid": "23367393",
+   "carcs": [
+    "CO185"
+   ],
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "HUM01"
+   },
+   "wo": 16.93,
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446301",
+   "pid": "20937",
+   "vid": "19455927",
+   "cid": "23367396",
+   "carcs": [
+    "CO185"
+   ],
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 0.0,
+    "patbalance": 16.93,
+    "carrier": "HUM01"
+   },
+   "wo": 16.93,
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446302",
+   "pid": "44955",
+   "vid": "19455925",
+   "cid": "23367394",
+   "carcs": [
+    "CO185"
+   ],
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 16.93,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "wo": 16.93,
+   "outcome": "DRY"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446303",
+   "pid": "21915",
+   "vid": "19455908",
+   "cid": "23367377",
+   "carcs": [
+    "CO185"
+   ],
+   "before": {
+    "fee": 141.0,
+    "paid": 124.07,
+    "insbalance": 16.93,
+    "patbalance": 0.0,
+    "carrier": "MCAD"
+   },
+   "wo": 16.93,
+   "outcome": "DRY"
+  }
+ ],
+ "C": [
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446296",
+   "pid": "21915",
+   "vid": "19455374",
+   "cid": "23366674",
+   "outcome": "residual 13.64 - line already settled WOCAID2ND 13.64 after the Medicaid $0 crossover, open balance 0; Humana's 13.64 disregarded (William 9/13)"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446297",
+   "pid": "21915",
+   "vid": "19455375",
+   "cid": "23366676",
+   "outcome": "residual 19.92 - line already settled WOCAID2ND 19.92 after the Medicaid $0 crossover, open balance 0; Humana's 19.92 disregarded (William 9/13)"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446298",
+   "pid": "23969",
+   "vid": "19455866",
+   "cid": "23367331",
+   "outcome": "held - OA-23 $0 from Humana Healthy Horizons, no Humana plan on the chart, Cigna secondary claim pending (21.80 coinsurance) - as on 10/11"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446299",
+   "pid": "23969",
+   "vid": "19455886",
+   "cid": "23367351",
+   "outcome": "held - OA-23 $0 from Humana Healthy Horizons, no Humana plan on the chart, Cigna secondary claim pending (21.80 coinsurance) - as on 10/11"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446287",
+   "pid": "17476264",
+   "vid": "19455628",
+   "cid": "23366984",
+   "outcome": "held - OA-23 $0 from Humana Healthy Horizons on a CCM 99487 Medicare paid 112.09; the chart carries Medicare only and its 271 names no Medicaid/QMB entity; 28.60 coinsurance on the patient - board row on William's turn"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446288",
+   "pid": "21021",
+   "vid": "19455372",
+   "cid": "23366670",
+   "outcome": "posted (Post button) 19.92 - balance 0"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446291",
+   "pid": "24214",
+   "vid": "19455373",
+   "cid": "23366672",
+   "outcome": "posted (Post button) 19.92 - balance 0"
+  },
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446289",
+   "pid": "45001",
+   "vid": "19455910",
+   "cid": "23367379",
+   "outcome": "posted (Post button) 16.93 - balance 0"
+  }
+ ],
+ "D": [
+  {
+   "checkid": "1053138",
+   "checkclaimid": "15446290",
+   "pid": "20407",
+   "vid": "19457356",
+   "cid": "23369216",
+   "before": {
+    "fee": 141.0,
+    "paid": 0.0,
+    "insbalance": 141.0,
+    "patbalance": 0.0,
+    "carrier": "HUM01"
+   },
+   "outcome": "DRY would set patient order 2,3 + reroute visit 2,3 seq 2 (freq-1 to Medicare)"
+  }
+ ]
+}
