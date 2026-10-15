@@ -1,40 +1,40 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-15T0930Z",
+ "stamp": "2026-10-15T1125Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/5/28/42 -> 0/5/28/42; ERA 1 checks $71.00 -> 1 checks $71.00",
+ "headline": "Columns 0/5/28/142 -> 0/5/28/142; ERA 3 checks $2422.47 -> 2 checks $176.75",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38713378978",
- "started": "2026-10-15T09:30:14Z",
- "ended": "2026-10-15T09:35:29Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38727217666",
+ "started": "2026-10-15T11:25:36Z",
+ "ended": "2026-10-15T11:32:32Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 5,
     "unbilled": 28,
-    "exclusions": 42
+    "exclusions": 142
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 5,
     "unbilled": 28,
-    "exclusions": 42
+    "exclusions": 142
    }
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 71.0
+    "checks": 3,
+    "unposted": 2422.47
    },
    "after": {
-    "checks": 1,
-    "unposted": 71.0
+    "checks": 2,
+    "unposted": 176.75
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 2245.72,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 330534.29,
-   "visits": 3395,
-   "charts": 603,
+   "total": 325176.54,
+   "visits": 3388,
+   "charts": 602,
    "over_365": {
     "n": 1178,
     "dollars": 52235.9
@@ -65,7 +65,7 @@
    "visits": 7306,
    "actionable": 80,
    "actionable_amt": 14609.0,
-   "asof": "2026-10-15 09:35 UTC"
+   "asof": "2026-10-15 11:32 UTC"
   }
  },
  "steps": [
@@ -82,19 +82,19 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T09:30:14Z",
-   "ended": "2026-10-15T09:30:14Z"
+   "started": "2026-10-15T11:25:36Z",
+   "ended": "2026-10-15T11:25:36Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 5->5, Unbilled 28->28, Exclusions 42->42",
+   "summary": "CR 0->0, CI 5->5, Unbilled 28->28, Exclusions 142->142",
    "counts": {
     "charge review": 0,
     "claim inspector": 5,
     "unbilled": 28,
-    "exclusions": 42,
+    "exclusions": 142,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 5,
     "inspector bypasses sent": 0,
@@ -104,6 +104,10 @@
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
     "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700295": 0,
+    "exclusions crossover run 1700295": "see log",
+    "exclusions dup run 1700296": 0,
+    "exclusions crossover run 1700296": "see log",
     "exclusions dup run 1700302": 0,
     "exclusions crossover run 1700302": "nothing to complete"
    },
@@ -146,6 +150,24 @@
      "ids": "v19455937"
     },
     {
+     "column": "exclusions run 1700295",
+     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 44,
+     "ids": "v26356 v35385 v46317 v46318 v46319 v46321 v13967961 v13970765 v14029112 v19359751 v19359762 v19359769 v19359780 v19359790 v19361599 v19361610 v19361624 v19362053 v19362130 v19362141 v19362158 v19362184 v19362243 v19362264 v19362650"
+    },
+    {
+     "column": "exclusions run 1700296",
+     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 45,
+     "ids": "v13965169 v13999861 v19369446 v19370769 v19372256 v19373024 v19373262 v19382146 v19382251 v19382300 v19382355 v19382457 v19382458 v19436812 v19436959 v19437177 v19437354 v19438043 v19438646 v19438697 v19439036 v19439666 v19439721 v19439914 v19440285"
+    },
+    {
+     "column": "exclusions run 1700296",
+     "kind": "VACCN PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 11,
+     "ids": "v19385867 v19386226 v19386717 v19387411 v19387567 v19387984 v19388428 v19389094 v19390386 v19391178 v19392888"
+    },
+    {
      "column": "exclusions run 1700302",
      "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
      "visits": 28,
@@ -153,23 +175,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T09:30:14Z",
-   "ended": "2026-10-15T09:31:53Z"
+   "started": "2026-10-15T11:25:36Z",
+   "ended": "2026-10-15T11:27:45Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $71.00 -> 1 checks / $71.00",
+   "summary": "3 checks / $2422.47 -> 2 checks / $176.75",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
-    "checks held": 0
+    "era_post lines": 1,
+    "checks dismissed": 1,
+    "checks held": 1
    },
    "dollars": {
-    "unposted before": 71.0,
-    "unposted after": 71.0,
-    "posted this run": 0.0
+    "unposted before": 2422.47,
+    "unposted after": 176.75,
+    "posted this run": 2245.72
    },
    "lines": [
     {
@@ -179,11 +201,27 @@
      "amount": 0.0,
      "unposted": 71.0,
      "stage": "before"
+    },
+    {
+     "check": 1053177,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "819979797",
+     "amount": 0.0,
+     "unposted": 2351.47,
+     "stage": "before"
+    },
+    {
+     "check": 1053179,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350075288",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-10-15T09:31:53Z",
-   "ended": "2026-10-15T09:31:56Z"
+   "started": "2026-10-15T11:27:45Z",
+   "ended": "2026-10-15T11:28:08Z"
   },
   {
    "name": "packages",
@@ -194,29 +232,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-15T09:31:56Z",
-   "ended": "2026-10-15T09:31:56Z"
+   "started": "2026-10-15T11:28:08Z",
+   "ended": "2026-10-15T11:28:08Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3395 visits on 603 charts, $330534.29 open; 1178 over a year ($52235.90)",
+   "summary": "3388 visits on 602 charts, $325176.54 open; 1178 over a year ($52235.90)",
    "counts": {
-    "visits": 3395,
-    "charts": 603,
+    "visits": 3388,
+    "charts": 602,
     "over 365 days": 1178
    },
    "dollars": {
-    "open insurance balance": 330534.29,
+    "open insurance balance": 325176.54,
     "over 365 days": 52235.9
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1666,
-     "dollars": 163145.44,
+     "visits": 1659,
+     "dollars": 157787.69,
      "oldest_days": 1065
     },
     {
@@ -298,16 +336,16 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T09:31:56Z",
-   "ended": "2026-10-15T09:31:57Z"
+   "started": "2026-10-15T11:28:08Z",
+   "ended": "2026-10-15T11:28:10Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7306 denied visits on 867 charts; 80 actionable $14609.00 (76 inside 12 months $13889.00); WRITTEN-OFF 2672, RESOLVED 4249, RESUBMITTED 164, OPEN 221",
+   "summary": "7306 denied visits on 866 charts; 80 actionable $14609.00 (76 inside 12 months $13889.00); WRITTEN-OFF 2672, RESOLVED 4249, RESUBMITTED 164, OPEN 221",
    "counts": {
-    "charts read": 867,
+    "charts read": 866,
     "denial lines": 12409,
     "visits": 7306,
     "actionable": 80,
@@ -386,13 +424,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-15T09:31:57Z",
-   "ended": "2026-10-15T09:35:29Z"
+   "started": "2026-10-15T11:28:10Z",
+   "ended": "2026-10-15T11:32:32Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 5 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+  "Claim Inspector: 5 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA check 1053177 held by era_clear: FLO02 819979797 $2351.47: 1 postable / 0 unrecorded lines - left on the list"
  ],
  "errors": []
 }
