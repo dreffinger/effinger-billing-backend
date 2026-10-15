@@ -1,0 +1,73 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": false,
+ "sections": {
+  "A": [
+   "DRY add_ins 17478013 car42025 member ****4863 10/15/2025 1 CC",
+   "v19457321 ['99223'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457321 DRY resave vst19457321 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457281 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457281 DRY resave vst19457281 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457280 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457280 DRY resave vst19457280 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457476 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457476 DRY resave vst19457476 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457471 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457471 DRY resave vst19457471 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457529 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457529 DRY resave vst19457529 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457519 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457519 DRY resave vst19457519 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "v19457647 ['99233'] -> DRY hospitalizationfrom 10/05/2026",
+   "v19457647 DRY resave vst19457647 charges=1 visit_over={'insorder': '99', 'onhcfa': '1', 'preauth': 'VA0048867957', 'refplan': 'rplan18462365'} charge_over=None",
+   "release -> DRY release ['19457321', '19457281', '19457280', '19457476', '19457471', '19457529', '19457519', '19457647']"
+  ],
+  "B": [
+   "12/2025 charges [('23332036', '19426013', '99223', '12/10/2025', '310.00', '0.00', None), ('23332137', '19426109', '99232', '12/12/2025', '111.00', '0.00', None), ('23332150', '19426121', '99232', '12/11/2025', '111.00', '0.00', None), ('23332267', '19426209', '99232', '12/14/2025', '111.00', '0.00', None), ('23332277', '19426219', '99232', '12/13/2025', '111.00', '0.00', None)]",
+   "DRY add_ins 24197 car41826 member ****9196 05/01/2021 1 MC",
+   "v19426013 DRY resave vst19426013 charges=1 visit_over={'insorder': '99'} charge_over={'billins': '1', 'finclasscode': 'MC'}",
+   "v19426109 DRY resave vst19426109 charges=1 visit_over={'insorder': '99'} charge_over={'billins': '1', 'finclasscode': 'MC'}",
+   "v19426121 DRY resave vst19426121 charges=1 visit_over={'insorder': '99'} charge_over={'billins': '1', 'finclasscode': 'MC'}",
+   "v19426209 DRY resave vst19426209 charges=1 visit_over={'insorder': '99'} charge_over={'billins': '1', 'finclasscode': 'MC'}",
+   "v19426219 DRY resave vst19426219 charges=1 visit_over={'insorder': '99'} charge_over={'billins': '1', 'finclasscode': 'MC'}",
+   "release -> DRY release ['19426013', '19426109', '19426121', '19426209', '19426219']"
+  ],
+  "C": [
+   "DRY add_ins 17478060 car6085 member ****MD24 10/12/2025 1 MC",
+   "v19457796 ['99223'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457796 DRY resave vst19457796 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "v19457779 ['99232'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457779 DRY resave vst19457779 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "release -> DRY release ['19457796', '19457779']"
+  ],
+  "D": [
+   "DRY add_ins 17478062 car6085 member ****DU82 10/12/2025 1 MC",
+   "v19457795 ['99223'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457795 DRY resave vst19457795 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "v19457782 ['99232'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457782 DRY resave vst19457782 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "release -> DRY release ['19457795', '19457782']"
+  ],
+  "E": [
+   "DRY add_ins 17478058 car6404 member ****2544 02/01/2026 1 MC",
+   "v19457789 ['99223'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457789 DRY resave vst19457789 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "v19457775 ['99232'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457775 DRY resave vst19457775 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "release -> DRY release ['19457789', '19457775']"
+  ],
+  "F": [
+   "DRY ins_update mspcode=12 on ins9510095 (Medicare seq 2)",
+   "v19457792 ['99223'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457792 DRY resave vst19457792 charges=1 visit_over={'insorder': '1,2', 'onhcfa': '1'} charge_over=None",
+   "v19457781 ['99232'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457781 DRY resave vst19457781 charges=1 visit_over={'insorder': '1,2', 'onhcfa': '1'} charge_over=None",
+   "release -> DRY release ['19457792', '19457781']"
+  ],
+  "G": [
+   "v19457790 DRY move 443.00 to patient",
+   "v19457788 DRY move 160.00 to patient",
+   "release -> DRY release ['19457790', '19457788']"
+  ]
+ }
+}

@@ -1,0 +1,372 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "A": [],
+ "B": [
+  {
+   "run": "1700302",
+   "vid": "19389388",
+   "claimid": "19389388E",
+   "pid": "21577",
+   "carrier": "BCBS",
+   "dos": "09/10/2024",
+   "last_primary_pay": "2026-10-13",
+   "open": 473.35,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     473.35
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19401011",
+   "claimid": "19401011D",
+   "pid": "17472305",
+   "carrier": "BCBS",
+   "dos": "02/21/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 50.58,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     50.58
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19402497",
+   "claimid": "19402497D",
+   "pid": "17472305",
+   "carrier": "BCBS",
+   "dos": "03/20/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 50.58,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     50.58
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19402527",
+   "claimid": "19402527D",
+   "pid": "17472305",
+   "carrier": "BCBS",
+   "dos": "03/21/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 50.58,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     50.58
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19402571",
+   "claimid": "19402571D",
+   "pid": "17472305",
+   "carrier": "BCBS",
+   "dos": "03/23/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 50.58,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     50.58
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19402572",
+   "claimid": "19402572D",
+   "pid": "17472305",
+   "carrier": "BCBS",
+   "dos": "03/22/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 50.58,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     50.58
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19403896",
+   "claimid": "19403896D",
+   "pid": "45052",
+   "carrier": "BCBS",
+   "dos": "04/14/2025",
+   "last_primary_pay": "2026-09-09",
+   "open": 137.38,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     137.38
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19427804",
+   "claimid": "19427804E",
+   "pid": "17475063",
+   "carrier": "BCBS",
+   "dos": "12/30/2025",
+   "last_primary_pay": "2026-09-23",
+   "open": 34.42,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     34.42
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19430108",
+   "claimid": "19430108J",
+   "pid": "17474516",
+   "carrier": "BCBS",
+   "dos": "01/23/2026",
+   "last_primary_pay": "2026-09-19",
+   "open": 74.54,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     74.54
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19432733",
+   "claimid": "19432733J",
+   "pid": "25710",
+   "carrier": "BCBS",
+   "dos": "02/12/2026",
+   "last_primary_pay": "2026-09-30",
+   "open": 184.8,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     184.8
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19444049",
+   "claimid": "19444049F",
+   "pid": "17476544",
+   "carrier": "BCBS",
+   "dos": "06/02/2026",
+   "last_primary_pay": "2026-09-19",
+   "open": 16.93,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     16.93
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19447739",
+   "claimid": "19447739E",
+   "pid": "17473245",
+   "carrier": "BCBS",
+   "dos": "07/09/2026",
+   "last_primary_pay": "2026-09-30",
+   "open": 74.64,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     74.64
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19448487",
+   "claimid": "19448487E",
+   "pid": "17473245",
+   "carrier": "BCBS",
+   "dos": "07/13/2026",
+   "last_primary_pay": "2026-09-30",
+   "open": 69.99,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     69.99
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19448870",
+   "claimid": "19448870E",
+   "pid": "17473245",
+   "carrier": "BCBS",
+   "dos": "07/17/2026",
+   "last_primary_pay": "2026-09-30",
+   "open": 216.77,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     216.77
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19450195",
+   "claimid": "19450195G",
+   "pid": "17473245",
+   "carrier": "BCBS",
+   "dos": "07/28/2026",
+   "last_primary_pay": "2026-09-19",
+   "open": 74.64,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     74.64
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19453351",
+   "claimid": "19453351E",
+   "pid": "17473245",
+   "carrier": "BCBS",
+   "dos": "08/27/2026",
+   "last_primary_pay": "2026-09-30",
+   "open": 74.64,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     74.64
+    ]
+   ],
+   "hide": true
+  },
+  {
+   "run": "1700302",
+   "vid": "19455595",
+   "claimid": "19455595C",
+   "pid": "45052",
+   "carrier": "BCBS",
+   "dos": "09/20/2026",
+   "last_primary_pay": "2026-10-07",
+   "open": 216.77,
+   "steps": [
+    [
+     "crossover-wait: complete, no rebill, no write-off",
+     216.77
+    ]
+   ],
+   "hide": true
+  }
+ ],
+ "C": [],
+ "held": [
+  {
+   "run": "1700294",
+   "vid": "19399931",
+   "claimid": "19399931D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/03/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399932",
+   "claimid": "19399932D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/02/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399933",
+   "claimid": "19399933D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/01/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19399934",
+   "claimid": "19399934D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "01/31/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 33.75,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19400003",
+   "claimid": "19400003D",
+   "pid": "17472859",
+   "carrier": "AET07",
+   "dos": "02/04/2025",
+   "last_primary_pay": "2026-05-31",
+   "open": 15.41,
+   "why": "AET07 secondary, primary remit inside 12 months - held for William"
+  },
+  {
+   "run": "1700294",
+   "vid": "19455937",
+   "claimid": "19455937B",
+   "pid": "24750",
+   "carrier": "AET12",
+   "dos": "09/20/2026",
+   "last_primary_pay": "2026-10-07",
+   "open": 44.09,
+   "why": "carrier CPID hold"
+  }
+ ],
+ "hidden": {
+  "1700302": {
+   "n": 17,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/14/2026 23:04:33\"><Results success=\"1\" /><E"
+  }
+ }
+}

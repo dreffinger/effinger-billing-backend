@@ -1,0 +1,32 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": false,
+ "sections": {
+  "A": [
+   "c23366299 WONCS 80.67 -> True DRY bal 80.67 prof prof13 pid 25994 -> pay 0.00 wo 80.67"
+  ],
+  "B": [
+   "c23366951 move_to_ins -> DRY move 206.00 seq 1",
+   "c23366951 WONCS 206.00 -> False over-apply: pay 0.00 + wo 206.00 > insbalance 0.00"
+  ],
+  "C": [
+   "visit vst19416099 insorder 4 charges 1 diagcodes ['dcode1034544863', 'dcode1034545070', 'dcode1034545072', 'dcode1037453927', 'dcode1034543883', 'dcode1034544892', 'dcode1034545006'] paid None",
+   "DRY: swap dcode1034545006 -> dcode1034545425 by full-visit echo, then freq7_visit.run(19416099, 23319630, 4, 820262810497584)"
+  ],
+  "D": [
+   "visit vst19457091 insorder 2 proccode pcode601053 paid None -> order 2 seq 2",
+   "DRY: recode pcode of 99344 -> pcode65142 (99349) with insorder 2 in the same echo, then freq1 seq 2"
+  ],
+  "E": [
+   "visit vst19457089 insorder 1 proccode pcode601053 paid None",
+   "DRY: recode.swap_proc(23368911, {pcode of 99344: pcode65142}, 1)"
+  ],
+  "F": [
+   "visit vst19419306 insorder 1 proccode pcode65083 paid None icn Q100001347267463",
+   "DRY: recode 99222 -> 99232 (pcode lookup from the visit's own detail), then freq7_visit.run(19419306, <cid>, 1, Q100001347267463)"
+  ],
+  "G": [
+   "DRY: ins_update.update(23969, ins2246, sequence='1,2'); if not landed -> add_ins.add(23969, car6687, <ins2246 member id>, 07/22/2022, coverage 2) then sequence 1,<new>"
+  ]
+ }
+}
