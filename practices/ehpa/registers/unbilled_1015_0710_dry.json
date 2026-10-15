@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-10-15T0710Z",
+ "live": false,
+ "sections": {
+  "A": [
+   "DRY add_ins 17478061 car6285 member ****5306 02/01/2024 1 MC",
+   "visits {'19457793': [('23369839', '99223', '10/12/2026', '310.00', '0.00')], '19457780': [('23369824', '99232', '10/13/2026', '111.00', '0.00')]}",
+   "v19457793 ['99223'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457793 DRY resave vst19457793 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "v19457780 ['99232'] -> DRY hospitalizationfrom 10/12/2026",
+   "v19457780 DRY resave vst19457780 charges=1 visit_over={'insorder': '99', 'onhcfa': '1'} charge_over=None",
+   "release -> DRY release ['19457793', '19457780']"
+  ]
+ }
+}

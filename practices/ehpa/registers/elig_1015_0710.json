@@ -1,0 +1,63 @@
+{
+ "pat17478061": {
+  "humana_61101": {
+   "errors": [],
+   "active_n": 5,
+   "inactive_n": 0,
+   "planDates": {
+    "planBegin": "20240201",
+    "service": "20261012"
+   },
+   "active_plans": [
+    [
+     "PR",
+     "Preferred Provider Organization (PPO)",
+     "HUM Full Ac Giveback",
+     null
+    ],
+    [
+     null,
+     null,
+     null,
+     null
+    ],
+    [
+     "PR",
+     "Preferred Provider Organization (PPO)",
+     null,
+     null
+    ],
+    [
+     "PR",
+     "Preferred Provider Organization (PPO)",
+     null,
+     null
+    ]
+   ],
+   "entities": [
+    "FL GENERIC POD10 EPAN MEDR FFS",
+    "North Florida Family Healthcare"
+   ],
+   "subscriber_member": "*****5306"
+  },
+  "discovery_member": "*****5306",
+  "discovery_mbi": "*******GX59"
+ },
+ "pat17478063": {
+  "medicaid_77027": {
+   "errors": [
+    "73 Invalid/Missing Subscriber/Insured Name"
+   ],
+   "active_n": 0,
+   "inactive_n": 0,
+   "planDates": {
+    "plan": "20261012"
+   },
+   "active_plans": [],
+   "entities": [],
+   "subscriber_member": ""
+  },
+  "http": 200,
+  "shape": "name+dob+gender+ssn"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "stamp": "2026-10-15T0710Z",
+ "live": true,
+ "sections": {
+  "A": [
+   "add_ins -> ins9520849 1",
+   "patient order 1 -> True insorder 1 via ins9520849 -> '1'",
+   "visits {'19457793': [('23369839', '99223', '10/12/2026', '310.00', '0.00')], '19457780': [('23369824', '99232', '10/13/2026', '111.00', '0.00')]}",
+   "v19457793 ['99223'] -> hospitalizationfrom 10/12/2026 on ['99223']",
+   "v19457793 resave vst19457793 live 1/1 insorder=1 onhcfa=1 hospfrom=10/12/2026",
+   "v19457780 ['99232'] -> hospitalizationfrom 10/12/2026 on ['99232']",
+   "v19457780 resave vst19457780 live 1/1 insorder=1 onhcfa=1 hospfrom=10/12/2026",
+   "release -> [('19457793', 'released'), ('19457780', 'released')]"
+  ]
+ }
+}
