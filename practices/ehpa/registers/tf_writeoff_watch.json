@@ -785,6 +785,25 @@
      "outcome": "answer-found - paid 03/10/2024 then recouped 09/08/2026 (R1710425); takeback, William's decision; not sent"
     }
    ]
+  },
+  {
+   "id": "uni20-bcbs-pre0501-2026-10-16T1310Z",
+   "status": "open",
+   "carrier": "UNI20",
+   "created": "2026-10-16T1310Z",
+   "by": "backend billing run 2026-10-16T1310Z",
+   "note": "Medicare $0 remit 1053191 (350080879) answered CO-109/N418 on the 11/05/2025 99309: Stedi UHC 87726 by name/DOB at that DOS = UNITEDHEALTHCARE DUAL COMPLETE LPPO (H1889) ACTIVE 01/01/2025-11/30/2025, member id = the chart's UNI20 plan ins12325 (end-dated 07/02/2026). Visit re-routed to the UHC plan (order 1,2) and sent ONCE frequency 1 under the pre-5/1 UNI20 rule; written off WOLATE only on UHC's own CARC 29.",
+   "visits": [
+    {
+     "vid": "19422652",
+     "cid": "23327978",
+     "pid": "46692",
+     "dos": "2025-11-05",
+     "cpt": "99309",
+     "dollars": 141.0,
+     "outcome": "sending 2026-10-16T1310Z"
+    }
+   ]
   }
  ]
 }
