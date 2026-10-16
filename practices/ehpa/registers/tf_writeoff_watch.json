@@ -766,6 +766,25 @@
     }
    ],
    "total": 456.0
+  },
+  {
+   "id": "uni20-bcbs-pre0501-2026-10-16T0310Z",
+   "status": "open",
+   "carrier": "UNI20",
+   "created": "2026-10-16T0310Z",
+   "by": "backend billing run 2026-10-16T0310Z",
+   "note": "UNI20/BCBS pre-5/1 pass 111: the one 277 candidate (D0 'date of service' not found) was NOT sent - the visit's own payments are the payer's answer: UHC paid 137.22 on 03/10/2024 (check 1960189307, CO45 169.98 / CO253 2.80) and recouped it 09/08/2026 (R1710425, CR45/CR253 reversal); WOCLTREQ 172.78 already posted; insurance balance 137.22 = the takeback. Takeback posting has no standing rule - listed for William; never a frequency-1 send (adjudicated claim, ICN KLC9659728600).",
+   "visits": [
+    {
+     "vid": "19362850",
+     "cid": "22428673",
+     "pid": "17469033",
+     "dos": "2023-08-11",
+     "cpt": "99223",
+     "dollars": 137.22,
+     "outcome": "answer-found - paid 03/10/2024 then recouped 09/08/2026 (R1710425); takeback, William's decision; not sent"
+    }
+   ]
   }
  ]
 }
