@@ -1,32 +1,32 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-16T1525Z",
+ "stamp": "2026-10-16T1722Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/2 -> 0/0/6/2; ERA 1 checks $586.94 -> 0 checks $0.00; packages 1 applied / 0 refused / 0 skipped",
+ "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38923749485",
- "started": "2026-10-16T15:25:11Z",
- "ended": "2026-10-16T15:30:54Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38939216550",
+ "started": "2026-10-16T17:22:54Z",
+ "ended": "2026-10-16T17:29:30Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 2
+    "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 2
+    "exclusions": 1
    }
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 586.94
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 586.94,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -48,13 +48,13 @@
    "dollars": 0.0
   },
   "packages": {
-   "applied": 1,
+   "applied": 0,
    "refused": 0,
    "skipped": 0
   },
   "outstanding": {
-   "total": 309987.66,
-   "visits": 3201,
+   "total": 309510.75,
+   "visits": 3200,
    "charts": 577,
    "over_365": {
     "n": 1079,
@@ -63,9 +63,9 @@
   },
   "denials": {
    "visits": 7317,
-   "actionable": 78,
-   "actionable_amt": 14205.0,
-   "asof": "2026-10-16 15:30 UTC"
+   "actionable": 77,
+   "actionable_amt": 13999.0,
+   "asof": "2026-10-16 17:29 UTC"
   }
  },
  "steps": [
@@ -73,28 +73,28 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1049 helpers into /home/claude/unbilled",
+   "summary": "1053 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1049,
-    "registers": 1092,
+    "helpers copied": 1053,
+    "registers": 1098,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T15:25:11Z",
-   "ended": "2026-10-16T15:25:12Z"
+   "started": "2026-10-16T17:22:54Z",
+   "ended": "2026-10-16T17:22:59Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 2->2",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
     "unbilled": 6,
-    "exclusions": 2,
+    "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
@@ -103,9 +103,7 @@
     "unbilled rows left alone": 6,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log",
-    "exclusions dup run 1700302": 0,
-    "exclusions crossover run 1700302": "see log"
+    "exclusions crossover run 1700294": "see log"
    },
    "dollars": {},
    "lines": [
@@ -120,75 +118,56 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
-    },
-    {
-     "column": "exclusions run 1700302",
-     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
-     "visits": 1,
-     "ids": "v19367114"
     }
    ],
    "errors": [],
-   "started": "2026-10-16T15:25:12Z",
-   "ended": "2026-10-16T15:26:43Z"
+   "started": "2026-10-16T17:22:59Z",
+   "ended": "2026-10-16T17:24:58Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $586.94 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks dismissed": 1,
+    "era_post lines": 0,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 586.94,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 586.94
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053193,
-     "payer": "CAPITAL HEALTH PLAN",
-     "checknumber": "4126382",
-     "amount": 0.0,
-     "unposted": 586.94,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-10-16T15:26:43Z",
-   "ended": "2026-10-16T15:26:52Z"
+   "started": "2026-10-16T17:24:58Z",
+   "ended": "2026-10-16T17:25:00Z"
   },
   {
    "name": "packages",
    "title": "Approval packages",
    "status": "ok",
-   "summary": "1 applied, 0 refused / failed, 0 skipped",
-   "counts": {
-    "applied": 1,
-    "refused": 0,
-    "skipped": 0
-   },
+   "summary": "no approved package in the register",
+   "counts": {},
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T15:26:52Z",
-   "ended": "2026-10-16T15:26:56Z"
+   "started": "2026-10-16T17:25:00Z",
+   "ended": "2026-10-16T17:25:00Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3201 visits on 577 charts, $309987.66 open; 1079 over a year ($48370.15)",
+   "summary": "3200 visits on 577 charts, $309510.75 open; 1079 over a year ($48370.15)",
    "counts": {
-    "visits": 3201,
+    "visits": 3200,
     "charts": 577,
     "over 365 days": 1079
    },
    "dollars": {
-    "open insurance balance": 309987.66,
+    "open insurance balance": 309510.75,
     "over 365 days": 48370.15
    },
    "lines": [
@@ -278,30 +257,30 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T15:26:56Z",
-   "ended": "2026-10-16T15:26:57Z"
+   "started": "2026-10-16T17:25:00Z",
+   "ended": "2026-10-16T17:25:02Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7317 denied visits on 861 charts; 78 actionable $14205.00 (74 inside 12 months $13485.00); WRITTEN-OFF 2682, RESOLVED 4257, RESUBMITTED 159, OPEN 219",
+   "summary": "7317 denied visits on 861 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4259, RESUBMITTED 158, OPEN 218",
    "counts": {
     "charts read": 861,
     "denial lines": 12425,
     "visits": 7317,
-    "actionable": 78,
-    "inside 12 months": 74,
+    "actionable": 77,
+    "inside 12 months": 73,
     "status WRITTEN-OFF": 2682,
-    "status RESOLVED": 4257,
-    "status RESUBMITTED": 159,
-    "status OPEN": 219
+    "status RESOLVED": 4259,
+    "status RESUBMITTED": 158,
+    "status OPEN": 218
    },
    "dollars": {
-    "actionable": 14205.0,
-    "inside 12 months": 13485.0,
-    "resubmitted": 26694.33,
-    "resolved since": 640077.26
+    "actionable": 13999.0,
+    "inside 12 months": 13279.0,
+    "resubmitted": 26488.33,
+    "resolved since": 640489.26
    },
    "lines": [
     {
@@ -366,18 +345,11 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T15:26:57Z",
-   "ended": "2026-10-16T15:30:54Z"
+   "started": "2026-10-16T17:25:02Z",
+   "ended": "2026-10-16T17:29:30Z"
   }
  ],
- "packages": [
-  {
-   "id": "A-2026-10-16T1110Z-A",
-   "status": "done",
-   "dollars": "$15.16",
-   "result": "applied"
-  }
- ],
+ "packages": [],
  "waiting": [],
  "errors": []
 }

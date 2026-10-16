@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-16T15:26:57Z",
+ "at": "2026-10-16T17:25:02Z",
  "as_of": "2026-10-16",
- "total": 309987.66,
- "visits": 3201,
+ "total": 309510.75,
+ "visits": 3200,
  "charts": 577,
  "over_365": {
   "n": 1079,
@@ -11,12 +11,12 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 557,
-   "dollars": 89654.58
+   "n": 556,
+   "dollars": 89448.58
   },
   "31-60": {
    "n": 188,
-   "dollars": 21759.12
+   "dollars": 21488.21
   },
   "61-90": {
    "n": 151,
@@ -367,21 +367,6 @@
    "oldest_days": 315
   },
   {
-   "carrier": "RET01",
-   "name": "RETIRED RAILROAD MEDICARE",
-   "n": 4,
-   "dollars": 609.18,
-   "buckets": {
-    "0-30": 206.0,
-    "31-60": 315.0,
-    "61-90": 0.0,
-    "91-180": 88.18,
-    "181-365": 0.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 177
-  },
-  {
    "carrier": "CHA03",
    "name": "CHAMPVA",
    "n": 29,
@@ -470,6 +455,21 @@
     "over 365": 210.44
    },
    "oldest_days": 1016
+  },
+  {
+   "carrier": "RET01",
+   "name": "RETIRED RAILROAD MEDICARE",
+   "n": 3,
+   "dollars": 132.27,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 44.09,
+    "61-90": 0.0,
+    "91-180": 88.18,
+    "181-365": 0.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 177
   },
   {
    "carrier": "MUT01",
@@ -746,12 +746,12 @@
   {
    "month": "2026-08",
    "n": 192,
-   "dollars": 22202.59
+   "dollars": 21931.68
   },
   {
    "month": "2026-09",
-   "n": 380,
-   "dollars": 48651.22
+   "n": 379,
+   "dollars": 48445.22
   },
   {
    "month": "2026-10",
@@ -21445,14 +21445,6 @@
    "dos": "2026-08-23"
   },
   {
-   "visitid": 19452655,
-   "patientid": 12182505,
-   "carriercode": "RET01",
-   "insbalance": 315.0,
-   "days": 54,
-   "dos": "2026-08-23"
-  },
-  {
    "visitid": 19452629,
    "patientid": 17473245,
    "carriercode": "BCBS",
@@ -21576,6 +21568,14 @@
    "visitid": 19452586,
    "patientid": 17472931,
    "carriercode": "FLO02",
+   "insbalance": 44.09,
+   "days": 54,
+   "dos": "2026-08-23"
+  },
+  {
+   "visitid": 19452655,
+   "patientid": 12182505,
+   "carriercode": "RET01",
    "insbalance": 44.09,
    "days": 54,
    "dos": "2026-08-23"
@@ -23376,14 +23376,6 @@
    "visitid": 19455782,
    "patientid": 17475713,
    "carriercode": "HUM01",
-   "insbalance": 206.0,
-   "days": 26,
-   "dos": "2026-09-20"
-  },
-  {
-   "visitid": 19455694,
-   "patientid": 12182505,
-   "carriercode": "RET01",
    "insbalance": 206.0,
    "days": 26,
    "dos": "2026-09-20"
