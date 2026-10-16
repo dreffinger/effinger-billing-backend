@@ -1412,9 +1412,9 @@
    "evidence_file": "registers/excl_reads_2026-10-16T1110Z.json",
    "evidence": "dry run 11:28Z: 1 visit settles, {\"WOCLTREQ\": 15.16}, 0 holds; the 99497 carries the Medicare primary payment and no patient balance",
    "ui": "AdvancedMD Payment Entry: open visit 19367114 (DOS 10/10/2023), Insurance payment, carrier HUM01, pay $0.00, write off the open insurance balance $15.16 on the 99497 line with code WOCLTREQ, check # EXCL1016A; then Claims Center > Exclusions > run 1700302 > check the row for visit 19367114 (claim 19367114B) > Complete.",
-   "status": "approved",
-   "answer": "approved on the page 2026-10-16T11:44:41Z (answeredBy page)",
-   "note": "applying 2026-10-16T1310Z",
+   "status": "done",
+   "answer": "2026-10-16T15:26:56Z applied by the billing button run 2026-10-16T1525Z (dry run first, then live; log 15_excl_1016_1110.py_--live_--only_A.log)",
+   "note": "applied 2026-10-16T1525Z (billing button)",
    "added_by": "backend billing run 2026-10-16T1310Z (the 1110Z run's register append was refused by the classifier; item re-created from the page card)"
   }
  ]
