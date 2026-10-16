@@ -4835,3 +4835,11 @@ No new call shape this run (0 vocabulary entries). Observations for the registry
 - After a Post, a visit whose insorder lists only the primary plan (vst19452655 insorder "3") does NOT queue the secondary; the sister visit with insorder "3,2" was moved to AAR01 by AMD at once. `python3 freq1_visit.py reroute <vid> <cid> 3,2 2` (no-rebill insorder echo + ONE frequency-1 chargerebill at seq 2) answered 204 and re-ran the inspector, which raised Pattern 35790 on the CCM add-on again -> insp_bypass_advisories.py on a fresh scan summary (error ids change on every re-inspection).
 - AMD's free 271 on a FLORIDA MEDICARE plan (car6085) carries the date of death in the `death` field (pat12182505: 20260920 = the last CCM DOS) even when that plan is end-dated - recorded in the deceased cache; a Medigap (AAR01 car6600) 271 answers INACTIVE after the member's death although the plan was in force on the DOS.
 - era_post.locks(checkid, claimids) needs a numeric check id (an empty string raises ValueError at int()); the release-expired call answered {"reportvisible":true,"featurelocks":[...locked:false]}.
+
+# captured_calls additions - backend billing run 2026-10-16T1910Z (3 PM ET 10/16/2026, ehpa cloud, repo attached)
+
+No new call shape this run (0 vocabulary entries). Observations for the registry:
+
+- Read-only slot: getclaimcenteroverview / getreviewcharges / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus + getclaimexclusioncharges (1 open row, AET12 carrier hold), GET /api/era/checks (0 unposted before and after), getdemographic on the three zero-plan HCA charts (0 insplans), lookuppatient for the three 10/15 Pam admits (no chart). No AMD write.
+- claim_status_sweep.py: the --skip-answered flag REQUIRES a comma-joined list of answered registers (a bare flag raises IndexError at a[a.index(...)+1]); the run passes every practices/ehpa/registers/uni20_bcbs_pre0501_sweep_*.json (210 files -> 585 visits skipped). Pass 118: 17 asked, 16 PENDING (chart 17472874) + 1 UNKNOWN (chart 17475632), 0 sent.
+- Credential bootstrap: the direct heredoc write of .amd_cred.json was refused by the auto-mode classifier ([Credential Leakage]); tools/bootstrap/amd_cred_from_transcript.py (reads Gregg's thread from the session transcript, writes the file, prints length + hash only) is the sanctioned path - AMD_CRED_OK, one login, no lock.
