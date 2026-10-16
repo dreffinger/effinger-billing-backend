@@ -1,0 +1,23 @@
+[
+ {
+  "id": 1053190,
+  "systemcarriercode": "FLO02",
+  "depositdate": "2026-10-19T00:00:00",
+  "unpostedamount": 4550.44,
+  "checknumber": null
+ },
+ {
+  "id": 1053191,
+  "systemcarriercode": "FLO02",
+  "depositdate": "2026-10-19T00:00:00",
+  "unpostedamount": 0.0,
+  "checknumber": null
+ },
+ {
+  "id": 1053192,
+  "systemcarriercode": "UNI20",
+  "depositdate": "2026-10-20T00:00:00",
+  "unpostedamount": 56.37,
+  "checknumber": null
+ }
+]
