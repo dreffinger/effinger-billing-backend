@@ -1,0 +1,359 @@
+<title>ar aging artifact</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap&family=Quicksand:wght@300..700">
+<style>
+/*__PALETTE__*/
+/* ===== AR Aging layout: dark brand hero with the refresh strip, KPI tiles pulled up into the hero's shadow, then three
+   stacked cards (age buckets as to-scale bars, payers as a sortable table with a stacked age bar per row, reasons), then the
+   visit ledger with chips to filter. Every color is a palette token so the eight palettes and both themes carry through. ===== */
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5}
+.hero{background:radial-gradient(1200px 380px at 12% -20%,var(--hero-g1) 0%,transparent 60%),radial-gradient(900px 320px at 95% 0%,color-mix(in srgb,var(--hero-g2) 33%,transparent) 0%,transparent 55%),linear-gradient(135deg,var(--hero) 0%,var(--hero2) 100%);color:var(--hero-ink)}
+.hero .in{max-width:1220px;margin:0 auto;padding-block:30px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.herotop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.herotop>div:first-child{min-width:0;flex:1 1 520px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--hero-muted)}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px color-mix(in srgb,var(--lime) 25%,transparent)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4.6vw,46px);letter-spacing:-.02em;margin:10px 0 6px;line-height:1;text-wrap:balance}
+.asof{font:600 12.5px var(--mono);color:var(--hero-muted)}
+.lede{font-size:16px;max-width:74ch;margin:14px 0 18px;color:color-mix(in srgb,var(--hero-ink) 82%,var(--hero-muted));line-height:1.55}
+.lede b{color:#fff;background:linear-gradient(90deg,var(--hero-g1),var(--hero-g2));padding:1px 8px;border-radius:7px;white-space:nowrap}
+.dist{display:flex;height:16px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.08);gap:2px}
+.dist i{display:block;height:100%;min-width:3px}
+.distleg{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font:600 12px var(--sans);color:var(--hero-muted)}
+.distleg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+.pal{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.pal .lbl{font:700 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--hero-muted)}
+.pal .row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:360px}
+.pal button{font:600 12px var(--sans);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--hero-ink);border-radius:999px;padding:5px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:border-color .15s,background .15s}
+.pal button:hover{border-color:rgba(255,255,255,.5)}
+.pal button[aria-pressed="true"]{border-color:var(--lime);background:rgba(255,255,255,.14)}
+.pal .sw{display:inline-flex;gap:2px}
+.pal .sw i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.pal .trow button[aria-pressed="true"]{border-color:var(--hero-ink)}
+.wrap{max-width:1220px;margin:0 auto;padding-block:0 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:-40px 0 20px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 17px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-width:0;cursor:pointer}
+.kpi::after{content:"";position:absolute;inset:auto -30px -30px auto;width:110px;height:110px;border-radius:50%;background:var(--tint);opacity:.55}
+.kpi .l{font:700 11px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font:700 28px var(--mono);font-variant-numeric:tabular-nums;line-height:1.1;margin-top:6px;color:var(--c)}
+.kpi .s{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.35;position:relative}
+.kpi[aria-pressed="true"]{outline:2px solid var(--c);outline-offset:-2px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow)}
+.card .ch{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.card .ch .t{font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.01em}
+.card .ch .sub{font-size:13px;color:var(--muted);flex:1 1 300px;min-width:0}
+.card .ch .tog{display:inline-flex;gap:6px}
+.chip{font:700 12px var(--sans);border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:transform .12s,border-color .12s}
+.chip:hover{transform:translateY(-1px)}
+.chip[aria-pressed="true"]{border-color:var(--c,var(--accent));background:color-mix(in srgb,var(--c,var(--accent)) 14%,var(--surface))}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--accent))}
+.chip .n{font:600 11px var(--mono);color:var(--muted)}
+.bars{padding:10px 20px 18px;display:grid;grid-template-columns:minmax(78px,auto) minmax(0,1fr) auto;gap:10px 14px;align-items:center}
+.bars .bl{font:700 12px var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.bars .bt{height:26px;background:var(--surface2);border-radius:8px;overflow:hidden;position:relative;min-width:0}
+.bars .bt i{display:block;height:100%;background:var(--c);border-radius:8px;transition:width .4s ease}
+.bars .bt b{position:absolute;top:0;line-height:26px;font:700 12px var(--mono);white-space:nowrap}
+.bars .bv{font:600 12.5px var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);text-align:right;white-space:nowrap}
+.bars .br{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin:-6px 0 4px 0;line-height:1.45}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;vertical-align:top}
+th{font:800 10.5px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--surface);z-index:1}
+th.sortable{cursor:pointer;user-select:none} th.sortable:hover{color:var(--ink)} th .arrow{font-size:9px;margin-left:4px;color:var(--accent)}
+tbody tr:hover td{background:var(--surface2)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td.n{font:600 12.5px var(--mono)}
+td.rsn{white-space:normal;color:var(--muted);min-width:340px;max-width:560px;font-size:12px;line-height:1.35}
+td.payer{font-weight:700;cursor:pointer;color:var(--accent)}
+tr.sel td{background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.stack{display:flex;height:12px;width:220px;max-width:100%;border-radius:6px;overflow:hidden;background:var(--surface2);gap:1px}
+.stack i{display:block;height:100%;background:var(--c)}
+.pill{display:inline-block;font:700 10.5px var(--mono);padding:3px 8px;border-radius:999px;letter-spacing:.02em;white-space:nowrap}
+.pill.wait{background:var(--cob-s);color:var(--cob)} .pill.resend{background:var(--timely-s);color:var(--timely)} .pill.wo{background:var(--review-s);color:var(--review)} .pill.review{background:var(--none-s);color:var(--muted)}
+.pill.b0{background:var(--fix-s);color:var(--fix)} .pill.b1{background:var(--cob-s);color:var(--cob)} .pill.b2{background:var(--timely-s);color:var(--timely)} .pill.b3{background:var(--cred-s);color:var(--cred)} .pill.b4{background:var(--review-s);color:var(--review)} .pill.bu{background:var(--none-s);color:var(--muted)}
+.code{display:inline-block;font:700 10.5px var(--mono);padding:1px 6px;border-radius:6px;background:var(--surface2);color:var(--ink);margin:1px 3px 1px 0;border:1px solid var(--line)}
+.filters{display:flex;flex-wrap:wrap;gap:8px 10px;padding:14px 20px;border-bottom:1px solid var(--line);align-items:center}
+.filters .grp{display:inline-flex;gap:6px;flex-wrap:wrap;align-items:center}
+.filters .lbl{font:700 10.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.filters select,.filters input{font:600 13px var(--sans);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:7px 10px;min-width:0}
+.filters input{width:170px}
+.btn{font:700 13px var(--sans);border-radius:9px;padding:8px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;white-space:nowrap}
+.btn.primary{background:var(--lime);color:#10200a;border-color:var(--lime)} .btn:hover{filter:brightness(1.05)} .btn:disabled{opacity:.5;cursor:default}
+.more{padding:12px 20px;font-size:12.5px;color:var(--muted);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.note{color:var(--muted);font-size:13px;max-width:80ch;margin:20px 0 0;line-height:1.55}
+.note b{color:var(--ink)}
+.empty{padding:22px 20px;color:var(--muted);font-size:13.5px}
+summary:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:680px){h1{font-size:32px}.kpis{margin-top:-26px}.pal{align-items:flex-start;width:100%}.pal .row{justify-content:flex-start}.bars{grid-template-columns:minmax(0,1fr) auto}.bars .bl{grid-column:1/-1}.stack{width:140px}.filters input{width:140px}}
+@media (prefers-reduced-motion:no-preference){.kpi{transition:transform .15s ease}.kpi:hover{transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.bars .bt i{transition:none}}
+</style>
+
+<div class="hero"><div class="in">
+  <div class="herotop">
+    <div>
+      <div class="eyebrow"><i></i>AR Aging · open insurance balances by payer, age and action</div>
+      <h1>AR Aging</h1>
+      <div class="asof" id="asof"></div>
+      <div class="rf" id="rf" aria-label="Refresh from AdvancedMD">
+        <button class="rfbtn primary" id="rf-go" title="Starts the Billing Button's 'aging' step on GitHub: it logs in to AdvancedMD, pulls every open insurance balance, re-reads each chart's live history and plans, re-ages everything by days since the claim was last sent and brings the result back to this page. Read-only - nothing is written in AMD.">⟳ Refresh from AMD</button>
+        <button class="rfbtn" id="rf-load" title="Pulls the newest aging snapshot the last Billing Button run left on GitHub main, without starting a run.">Load latest snapshot</button>
+        <button class="rfbtn" id="rf-tok" title="The fine-grained GitHub token for the effinger-billing-backend repository (Actions: read and write, Contents: read). Saved in this browser only.">GitHub token</button>
+        <span class="rfst" id="rf-st"></span>
+        <div class="rftok" id="rf-tokbox" hidden><input type="password" id="rf-tokin" placeholder="github_pat_…" autocomplete="off"><button class="rfbtn" id="rf-toksave">Save</button><button class="rfbtn" id="rf-tokclear">Forget</button></div>
+      </div>
+    </div>
+    <div class="pal" aria-label="Color palette and theme">
+      <span class="lbl">Colors</span>
+      <div class="row" id="palrow">
+        <button data-pal="ehpa" aria-pressed="false"><span class="sw"><i style="background:#253e59"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>ehpa</button>
+        <button data-pal="midnight" aria-pressed="true"><span class="sw"><i style="background:#082f35"></i><i style="background:#70d6f8"></i><i style="background:#f841e0"></i></span>Midnight</button>
+        <button data-pal="plum" aria-pressed="false"><span class="sw"><i style="background:#181924"></i><i style="background:#9be8e2"></i><i style="background:#1d122e"></i></span>Plum</button>
+        <button data-pal="indigo" aria-pressed="false"><span class="sw"><i style="background:#0B1222"></i><i style="background:#1D4ED8"></i><i style="background:#7C3AED"></i></span>Indigo</button>
+        <button data-pal="copper" aria-pressed="false"><span class="sw"><i style="background:#1C1A17"></i><i style="background:#C2703D"></i><i style="background:#6FA287"></i></span>Copper</button>
+        <button data-pal="emerald" aria-pressed="false"><span class="sw"><i style="background:#06140F"></i><i style="background:#10B981"></i><i style="background:#22D3EE"></i></span>Emerald</button>
+        <button data-pal="royal" aria-pressed="false"><span class="sw"><i style="background:#160C2E"></i><i style="background:#8B5CF6"></i><i style="background:#EC4899"></i></span>Royal</button>
+        <button data-pal="graphite" aria-pressed="false"><span class="sw"><i style="background:#191C22"></i><i style="background:#64748B"></i><i style="background:#0EA5E9"></i></span>Graphite</button>
+      </div>
+      <div class="row trow" id="themerow">
+        <button data-theme="auto" aria-pressed="true">Match device</button>
+        <button data-theme="light" aria-pressed="false">Light</button>
+        <button data-theme="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </div>
+  <p class="lede" id="lede"></p>
+  <div class="dist" id="dist" aria-hidden="true"></div><div class="distleg" id="distleg"></div>
+</div></div>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+
+  <section class="card" id="buckets">
+    <div class="ch"><span class="t">By age</span><span class="sub" id="bsub">Days since the claim was last sent to the payer (the charge's bill date), with the standing rule for each band.</span>
+      <span class="tog"><button class="chip" id="tog-sent" aria-pressed="true">Since last sent</button><button class="chip" id="tog-dos" aria-pressed="false">Since date of service</button></span></div>
+    <div class="bars" id="bars"></div>
+  </section>
+
+  <section class="card" id="payers">
+    <div class="ch"><span class="t">By payer</span><span class="sub">Where each claim sits now (the carrier it was last billed to). Click a payer to filter the ledger; click a column to sort.</span></div>
+    <div class="tw"><table id="ptab"><thead><tr>
+      <th class="sortable" data-k="payer">Payer</th><th class="sortable n" data-k="n">Visits</th><th class="sortable n" data-k="amt">$ open</th><th>Age since sent</th>
+      <th class="sortable n" data-k="b0">0–30</th><th class="sortable n" data-k="b1">31–60</th><th class="sortable n" data-k="b2">61–90</th><th class="sortable n" data-k="b3">91–120</th><th class="sortable n" data-k="b4">&gt;120</th>
+      <th class="sortable n" data-k="wait">Wait</th><th class="sortable n" data-k="resend">Resend</th><th class="sortable n" data-k="wo">Write off</th></tr></thead><tbody id="pbody"></tbody></table></div>
+  </section>
+
+  <section class="card" id="reasons">
+    <div class="ch"><span class="t">Why</span><span class="sub">The rule that decided each recommendation, largest dollars first. Click a reason to filter the ledger.</span></div>
+    <div class="tw"><table id="rtab"><thead><tr><th>Recommendation</th><th>Rule</th><th class="n">Visits</th><th class="n">$ open</th></tr></thead><tbody id="rbody"></tbody></table></div>
+  </section>
+
+  <section class="card" id="ledger">
+    <div class="ch"><span class="t">Visits</span><span class="sub" id="lsub"></span><button class="btn" id="copycsv" title="Copies the filtered rows as CSV text to paste into a spreadsheet">Copy filtered rows as CSV</button></div>
+    <div class="filters">
+      <span class="grp" id="recchips"><span class="lbl">Action</span></span>
+      <span class="grp" id="bchips"><span class="lbl">Age</span></span>
+      <span class="grp"><span class="lbl">Payer</span><select id="fpayer"><option value="">All payers</option></select></span>
+      <span class="grp"><span class="lbl">Find</span><input id="fq" placeholder="chart, visit, CPT or CARC" autocomplete="off"></span>
+      <button class="btn" id="fclear">Clear</button>
+    </div>
+    <div class="tw"><table id="vtab"><thead><tr>
+      <th>Chart</th><th>Visit</th><th>DOS</th><th>CPTs</th><th>Payer</th><th>Last sent</th><th class="n">Days</th><th>Primary paid</th><th>Secondary on chart</th><th>CARCs</th><th class="n">$ open</th><th>Action</th><th>Why</th></tr></thead><tbody id="vbody"></tbody></table></div>
+    <div class="more" id="vmore"></div>
+  </section>
+
+  <p class="note" id="foot"></p>
+</div>
+
+<script>
+const D=/*__DATA__*/null;
+(function(){
+ const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+ const money=n=>'$'+Math.round(n||0).toLocaleString('en-US');
+ const money2=n=>'$'+(Number(n||0)).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const BUCKETS=['0-30','31-60','61-90','91-120','over 120','unknown'];
+ const BLAB={'0-30':'0–30 d','31-60':'31–60 d','61-90':'61–90 d','91-120':'91–120 d','over 120':'over 120 d','unknown':'no bill date'};
+ const BCOL={'0-30':'var(--fix)','31-60':'var(--cob)','61-90':'var(--timely)','91-120':'var(--cred)','over 120':'var(--review)','unknown':'var(--none)'};
+ const BCLS={'0-30':'b0','31-60':'b1','61-90':'b2','91-120':'b3','over 120':'b4','unknown':'bu'};
+ const RULE={'0-30':'WAIT — inside normal adjudication.','31-60':'WAIT and watch — UNI20 / BCBS are never auto-rebilled (ERA backlog); pull the 277 if a claim is still silent at 60.','61-90':'CHECK STATUS — no record at the payer means resend as an original (frequency 1).','91-120':'FIX & RESEND as an original after verifying the plan is live.','over 120':'The 10/13 rule: nothing this old should sit without an adjudication — fix and resend, or write off (a primary unpaid > 12 months from DOS is WOINS untimely; a secondary is timely from the primary\'s remit).','unknown':'The claim never went out — send it.'};
+ const RULE_DOS={'0-30':'Fresh visits — most are still inside their first claim cycle.','31-60':'','61-90':'','91-120':'','over 120':'Primary claims past 12 months from the date of service cannot be resent; secondaries are measured from the primary\'s remit, not the DOS.','unknown':''};
+ const RECS=['WAIT','CORRECT & RESEND','WRITE OFF','REVIEW'];
+ const RCOL={'WAIT':'var(--cob)','CORRECT & RESEND':'var(--timely)','WRITE OFF':'var(--review)','REVIEW':'var(--none)'};
+ const RTINT={'WAIT':'var(--cob-s)','CORRECT & RESEND':'var(--timely-s)','WRITE OFF':'var(--review-s)','REVIEW':'var(--none-s)'};
+ const RCLS={'WAIT':'wait','CORRECT & RESEND':'resend','WRITE OFF':'wo','REVIEW':'review'};
+ const RMEAN={'WAIT':'out and inside its window, or a secondary just sent','CORRECT & RESEND':'retrievable: bill the secondary on the chart, fix a correctable denial, re-route a wrong-payer denial, resend an original','WRITE OFF':'nothing left to bill — each line still needs your word','REVIEW':'read the chart before acting'};
+
+ // ---------- palette / theme picker ----------
+ const root=document.documentElement;
+ function applyPal(p,t){
+   if(p&&p!=='indigo') root.setAttribute('data-palette',p); else root.removeAttribute('data-palette');
+   if(t==='light'||t==='dark') root.setAttribute('data-theme',t); else root.removeAttribute('data-theme');
+   document.querySelectorAll('#palrow [data-pal]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===(p||'midnight')?'true':'false'));
+   document.querySelectorAll('#themerow [data-theme]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===(t||'auto')?'true':'false'));
+   try{localStorage.setItem('ar-pal',p||'midnight');localStorage.setItem('ar-theme',t||'auto');}catch(e){}
+ }
+ let pal='midnight',theme='auto';
+ try{pal=localStorage.getItem('ar-pal')||'midnight';theme=localStorage.getItem('ar-theme')||'auto';}catch(e){}
+ applyPal(pal,theme);
+ document.querySelectorAll('#palrow [data-pal]').forEach(b=>b.addEventListener('click',()=>{pal=b.dataset.pal;applyPal(pal,theme);}));
+ document.querySelectorAll('#themerow [data-theme]').forEach(b=>b.addEventListener('click',()=>{theme=b.dataset.theme;applyPal(pal,theme);}));
+
+ // ---------- state ----------
+ const F={rec:new Set(),b:new Set(),payer:'',q:'',reason:'',limit:200};
+ let ageMode='sent', psort={k:'amt',dir:-1};
+
+ function rows(){ return (D&&D.rows)||[]; }
+ function filtered(){
+  const q=F.q.trim().toLowerCase();
+  return rows().filter(r=>(!F.rec.size||F.rec.has(r.rec))&&(!F.b.size||F.b.has(ageMode==='sent'?r.b_sent:r.b_dos))&&(!F.payer||r.payer===F.payer)
+    &&(!F.reason||reasonKey(r)===F.reason)&&(!q||[r.pid,r.visitid,r.cpts,r.carcs,r.payer,r.secondary].join(' ').toLowerCase().includes(q)));
+ }
+ function reasonKey(r){ return r.rec+' | '+(r.rule||String(r.why||'').split(';')[0]); }
+
+ // ---------- hero ----------
+ function localAsOf(a){ const m=/^(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d) UTC$/.exec(a||''); if(!m) return a||''; const d=new Date(Date.UTC(+m[1],m[2]-1,+m[3],+m[4],+m[5]));
+   try{ return d.toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}); }catch(e){ return a; } }
+ function renderHead(){
+  const t=D.total||0, br=D.by_rec||{};
+  $('#asof').textContent='As of '+localAsOf(D.asof)+' · '+(D.visits||0).toLocaleString()+' visits · '+(D.patients||0).toLocaleString()+' patients · '+(D.charts_read||0).toLocaleString()+' charts read live';
+  $('#lede').innerHTML='Every open insurance balance in AdvancedMD, aged by <b>days since the claim was last sent</b> and filed under the standing rules: wait on it, correct and resend it, or write it off. '+
+    money(t)+' open across '+(D.visits||0).toLocaleString()+' visits — '+money((br['WAIT']||{}).amt)+' waiting, <b>'+money((br['CORRECT & RESEND']||{}).amt)+' retrievable</b>, '+money((br['WRITE OFF']||{}).amt)+' with nothing left to bill.';
+  const dist=$('#dist'), leg=$('#distleg'); dist.innerHTML=''; leg.innerHTML='';
+  RECS.forEach(k=>{ const a=(br[k]||{}).amt||0; if(!a) return; const i=document.createElement('i'); i.style.width=(100*a/(t||1))+'%'; i.style.background=RCOL[k]; i.title=k+' '+money(a); dist.appendChild(i);
+    const s=document.createElement('span'); s.style.setProperty('--c',RCOL[k]); s.textContent=k+' · '+money(a)+' · '+((br[k]||{}).n||0).toLocaleString()+' visits'; leg.appendChild(s); });
+  const over=(D.by_bucket_sent||{})['over 120']||{};
+  const k=$('#kpis'); k.innerHTML='';
+  const tiles=[['Open insurance balance',money(t),(D.visits||0).toLocaleString()+' visits · '+(D.patients||0).toLocaleString()+' patients','var(--accent)','color-mix(in srgb,var(--accent) 18%,transparent)',null],
+   ['Wait',money((br['WAIT']||{}).amt),((br['WAIT']||{}).n||0).toLocaleString()+' visits · '+RMEAN['WAIT'],RCOL['WAIT'],RTINT['WAIT'],'WAIT'],
+   ['Correct & resend',money((br['CORRECT & RESEND']||{}).amt),((br['CORRECT & RESEND']||{}).n||0).toLocaleString()+' visits · '+RMEAN['CORRECT & RESEND'],RCOL['CORRECT & RESEND'],RTINT['CORRECT & RESEND'],'CORRECT & RESEND'],
+   ['Write off',money((br['WRITE OFF']||{}).amt),((br['WRITE OFF']||{}).n||0).toLocaleString()+' visits · '+RMEAN['WRITE OFF'],RCOL['WRITE OFF'],RTINT['WRITE OFF'],'WRITE OFF'],
+   ['Sent over 120 days ago',money(over.amt),(over.n||0).toLocaleString()+' visits with no adjudication on file — the 10/13 rule applies','var(--review)','var(--review-s)','__b4']];
+  tiles.forEach(([l,v,s,c,tint,act])=>{ const d=document.createElement('div'); d.className='kpi'; d.style.setProperty('--c',c); d.style.setProperty('--tint',tint); d.setAttribute('role','button'); d.tabIndex=0;
+    d.innerHTML='<div class="l">'+esc(l)+'</div><div class="v">'+esc(v)+'</div><div class="s">'+esc(s)+'</div>';
+    const on=()=>{ if(act==='__b4'){ F.rec.clear(); F.b=new Set(['over 120']); ageMode='sent'; setAge('sent'); } else if(act){ F.rec=F.rec.has(act)&&F.rec.size===1?new Set():new Set([act]); } else { F.rec.clear(); F.b.clear(); F.payer=''; F.reason=''; F.q=''; $('#fq').value=''; $('#fpayer').value=''; }
+      renderAll(); document.getElementById('ledger').scrollIntoView({behavior:'smooth',block:'start'}); };
+    d.addEventListener('click',on); d.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); on(); } });
+    if(act&&act!=='__b4'&&F.rec.has(act)) d.setAttribute('aria-pressed','true'); k.appendChild(d); });
+ }
+
+ // ---------- age bars ----------
+ function setAge(m){ ageMode=m; $('#tog-sent').setAttribute('aria-pressed',m==='sent'?'true':'false'); $('#tog-dos').setAttribute('aria-pressed',m==='dos'?'true':'false');
+  $('#bsub').textContent=m==='sent'?'Days since the claim was last sent to the payer (the charge\'s bill date), with the standing rule for each band.':'Days since the date of service — the write-off clock for primary claims is 12 months from here.'; }
+ function renderBars(){
+  const src=ageMode==='sent'?(D.by_bucket_sent||{}):(D.by_bucket_dos||{}); const mx=Math.max(1,...BUCKETS.map(b=>(src[b]||{}).amt||0));
+  const el=$('#bars'); el.innerHTML='';
+  BUCKETS.forEach(b=>{ const v=src[b]||{}; if(!v.n) return;
+   const pressed=F.b.has(b);
+   const pct=100*(v.amt||0)/mx, inside=pct>=24;
+   el.insertAdjacentHTML('beforeend','<div class="bl">'+esc(BLAB[b])+'</div><div class="bt" role="button" tabindex="0" data-b="'+esc(b)+'" style="--c:'+BCOL[b]+(pressed?';outline:2px solid var(--c)':'')+'"><i style="width:'+pct+'%"></i><b style="'+(inside?'left:10px;color:#fff':'left:calc('+pct+'% + 8px);color:var(--ink)')+'">'+money(v.amt)+'</b></div><div class="bv">'+(v.n||0).toLocaleString()+' visits</div>'+
+     ((ageMode==='sent'?RULE[b]:RULE_DOS[b])?'<div class="br">'+esc(ageMode==='sent'?RULE[b]:RULE_DOS[b])+'</div>':'')); });
+  el.querySelectorAll('.bt').forEach(x=>{ const on=()=>{ const b=x.dataset.b; if(F.b.has(b)) F.b.delete(b); else F.b=new Set([b]); renderAll(); }; x.addEventListener('click',on); x.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); on(); } }); });
+ }
+
+ // ---------- payers ----------
+ function payerRows(){ return Object.entries(D.by_payer||{}).map(([p,d])=>({payer:p,n:d.n,amt:d.amt,b0:(d.b['0-30']||[0,0])[1],b1:(d.b['31-60']||[0,0])[1],b2:(d.b['61-90']||[0,0])[1],b3:(d.b['91-120']||[0,0])[1],b4:(d.b['over 120']||[0,0])[1],
+   wait:(d.r['WAIT']||[0,0])[1],resend:(d.r['CORRECT & RESEND']||[0,0])[1],wo:(d.r['WRITE OFF']||[0,0])[1],_b:d.b})); }
+ function renderPayers(){
+  const rs=payerRows().sort((a,b)=>{ const k=psort.k; const x=a[k],y=b[k]; return (typeof x==='string'?x.localeCompare(y):(x-y))*psort.dir; });
+  document.querySelectorAll('#ptab th.sortable').forEach(th=>{ th.querySelector('.arrow')?.remove(); if(th.dataset.k===psort.k){ th.insertAdjacentHTML('beforeend','<span class="arrow">'+(psort.dir<0?'▼':'▲')+'</span>'); } });
+  const tb=$('#pbody'); tb.innerHTML='';
+  rs.forEach(r=>{ const tr=document.createElement('tr'); if(F.payer===r.payer) tr.className='sel';
+   const stack='<div class="stack" title="age since sent">'+BUCKETS.slice(0,5).map(b=>{ const a=(r._b[b]||[0,0])[1]; return a?'<i style="--c:'+BCOL[b]+';width:'+(100*a/(r.amt||1))+'%" title="'+esc(BLAB[b])+' '+money(a)+'"></i>':''; }).join('')+'</div>';
+   tr.innerHTML='<td class="payer">'+esc(r.payer)+'</td><td class="n">'+r.n.toLocaleString()+'</td><td class="n">'+money2(r.amt)+'</td><td>'+stack+'</td>'+['b0','b1','b2','b3','b4'].map(k=>'<td class="n">'+(r[k]?money(r[k]):'·')+'</td>').join('')+
+     '<td class="n">'+(r.wait?money(r.wait):'·')+'</td><td class="n">'+(r.resend?money(r.resend):'·')+'</td><td class="n">'+(r.wo?money(r.wo):'·')+'</td>';
+   tr.querySelector('td.payer').addEventListener('click',()=>{ F.payer=F.payer===r.payer?'':r.payer; $('#fpayer').value=F.payer; renderAll(); document.getElementById('ledger').scrollIntoView({behavior:'smooth',block:'start'}); });
+   tb.appendChild(tr); });
+ }
+ document.querySelectorAll('#ptab th.sortable').forEach(th=>th.addEventListener('click',()=>{ const k=th.dataset.k; if(psort.k===k) psort.dir=-psort.dir; else psort={k:k,dir:k==='payer'?1:-1}; renderPayers(); }));
+
+ // ---------- reasons ----------
+ function renderReasons(){
+  const tb=$('#rbody'); tb.innerHTML='';
+  Object.entries(D.by_rec_reason||{}).forEach(([k,v])=>{ const i=k.indexOf(' | '); const rec=k.slice(0,i), rule=k.slice(i+3); const tr=document.createElement('tr'); if(F.reason===k) tr.className='sel';
+   tr.innerHTML='<td><span class="pill '+RCLS[rec]+'">'+esc(rec)+'</span></td><td class="rsn" style="cursor:pointer">'+esc(rule)+'</td><td class="n">'+(v.n||0).toLocaleString()+'</td><td class="n">'+money2(v.amt)+'</td>';
+   tr.querySelector('td.rsn').addEventListener('click',()=>{ F.reason=F.reason===k?'':k; renderAll(); document.getElementById('ledger').scrollIntoView({behavior:'smooth',block:'start'}); }); tb.appendChild(tr); });
+ }
+
+ // ---------- ledger ----------
+ function renderChips(){
+  const rc=$('#recchips'); rc.querySelectorAll('.chip').forEach(x=>x.remove());
+  RECS.forEach(k=>{ const n=((D.by_rec||{})[k]||{}).n||0; if(!n) return; const b=document.createElement('button'); b.className='chip'; b.style.setProperty('--c',RCOL[k]); b.setAttribute('aria-pressed',F.rec.has(k)?'true':'false');
+   b.innerHTML='<span class="dot"></span>'+esc(k)+' <span class="n">'+n.toLocaleString()+'</span>'; b.addEventListener('click',()=>{ if(F.rec.has(k)) F.rec.delete(k); else F.rec.add(k); renderAll(); }); rc.appendChild(b); });
+  const bc=$('#bchips'); bc.querySelectorAll('.chip').forEach(x=>x.remove());
+  const src=ageMode==='sent'?(D.by_bucket_sent||{}):(D.by_bucket_dos||{});
+  BUCKETS.forEach(k=>{ const n=(src[k]||{}).n||0; if(!n) return; const b=document.createElement('button'); b.className='chip'; b.style.setProperty('--c',BCOL[k]); b.setAttribute('aria-pressed',F.b.has(k)?'true':'false');
+   b.innerHTML='<span class="dot"></span>'+esc(BLAB[k])+' <span class="n">'+n.toLocaleString()+'</span>'; b.addEventListener('click',()=>{ if(F.b.has(k)) F.b.delete(k); else F.b.add(k); renderAll(); }); bc.appendChild(b); });
+  const sel=$('#fpayer'); const cur=F.payer; const opts=Object.keys(D.by_payer||{}); sel.innerHTML='<option value="">All payers</option>'+opts.map(p=>'<option value="'+esc(p)+'"'+(p===cur?' selected':'')+'>'+esc(p)+' · '+money((D.by_payer[p]||{}).amt)+'</option>').join('');
+ }
+ function renderLedger(){
+  const fr=filtered(); const tot=fr.reduce((s,r)=>s+(r.bal||0),0);
+  $('#lsub').textContent=fr.length.toLocaleString()+' of '+rows().length.toLocaleString()+' visits · '+money2(tot)+(F.payer?' · '+F.payer:'')+(F.reason?' · '+F.reason.split(' | ')[1].slice(0,60)+'…':'');
+  const tb=$('#vbody'); tb.innerHTML='';
+  if(!fr.length){ tb.innerHTML='<tr><td colspan="13" class="empty">No visits match these filters.</td></tr>'; $('#vmore').textContent=''; return; }
+  const frag=document.createDocumentFragment();
+  fr.slice(0,F.limit).forEach(r=>{ const tr=document.createElement('tr'); const bk=ageMode==='sent'?r.b_sent:r.b_dos; const days=ageMode==='sent'?r.days_sent:r.days_dos;
+   tr.innerHTML='<td>'+esc(r.pid)+'</td><td>'+esc(r.visitid)+'</td><td>'+esc(r.dos)+'</td><td>'+String(r.cpts||'').split(' ').filter(Boolean).map(c=>'<span class="code">'+esc(c)+'</span>').join('')+(r.mods?' <span class="code" title="modifiers">'+esc(r.mods)+'</span>':'')+'</td><td><b>'+esc(r.payer)+'</b></td><td>'+esc(r.sent||'never')+'</td><td class="n"><span class="pill '+BCLS[bk]+'">'+(days==null?'—':days)+'</span></td><td>'+esc(r.paid_by||'')+(r.paid_on?' <span style="color:var(--muted)">'+esc(r.paid_on)+'</span>':'')+'</td><td>'+esc(r.secondary||'')+'</td><td>'+String(r.carcs||'').split(' ').filter(Boolean).map(c=>'<span class="code">'+esc(c)+'</span>').join('')+'</td><td class="n">'+money2(r.bal)+'</td><td><span class="pill '+RCLS[r.rec]+'">'+esc(r.rec)+'</span></td><td class="rsn">'+esc(r.why)+(r.dod?' <b style="color:var(--review)">DOD '+esc(r.dod)+'</b>':'')+'</td>';
+   frag.appendChild(tr); });
+  tb.appendChild(frag);
+  const m=$('#vmore'); m.innerHTML='';
+  if(fr.length>F.limit){ const b=document.createElement('button'); b.className='btn'; b.textContent='Show 200 more ('+(fr.length-F.limit).toLocaleString()+' left)'; b.addEventListener('click',()=>{ F.limit+=200; renderLedger(); }); m.appendChild(b); }
+  else { m.textContent='All '+fr.length.toLocaleString()+' matching visits shown.'; }
+ }
+ $('#fq').addEventListener('input',e=>{ F.q=e.target.value; F.limit=200; renderLedger(); });
+ $('#fpayer').addEventListener('change',e=>{ F.payer=e.target.value; renderAll(); });
+ $('#fclear').addEventListener('click',()=>{ F.rec.clear(); F.b.clear(); F.payer=''; F.q=''; F.reason=''; F.limit=200; $('#fq').value=''; renderAll(); });
+ $('#tog-sent').addEventListener('click',()=>{ setAge('sent'); F.b.clear(); renderAll(); });
+ $('#tog-dos').addEventListener('click',()=>{ setAge('dos'); F.b.clear(); renderAll(); });
+ $('#copycsv').addEventListener('click',async()=>{ const fr=filtered(); const cols=['pid','visitid','dos','cpts','mods','fee','bal','payer','sent','days_sent','b_sent','days_dos','b_dos','paid_by','paid_on','secondary','pr','carcs','denied','dod','rec','rule','why'];
+  const csv=[cols.join(',')].concat(fr.map(r=>cols.map(c=>{ const v=r[c]==null?'':String(r[c]); return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; }).join(','))).join('\n');
+  const b=$('#copycsv'); try{ await navigator.clipboard.writeText(csv); b.textContent='Copied '+fr.length.toLocaleString()+' rows'; }catch(e){ const ta=document.createElement('textarea'); ta.value=csv; ta.style.cssText='position:fixed;left:-9999px'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); b.textContent='Copied '+fr.length.toLocaleString()+' rows'; }catch(e2){ b.textContent='Select the table and copy'; } ta.remove(); }
+  setTimeout(()=>{ b.textContent='Copy filtered rows as CSV'; },2500); });
+
+ function renderAll(){ renderHead(); renderBars(); renderPayers(); renderReasons(); renderChips(); F.limit=200; renderLedger();
+  $('#foot').innerHTML='<b>How this is built.</b> Source: AdvancedMD\'s unpaid list (every open insurance balance, with the carrier each claim was last billed to) joined to each chart\'s live transaction history and insurance plans. A visit is aged from its last bill date; a visit whose last-billed payer already paid it is a settled primary whose leftover is cost-share (to the chart\'s live secondary while the primary remit is under 12 months old, otherwise WOCLTREQ / WOCAID2ND) plus any unwritten contractual (WOINS). Denials follow the Working Denials table; CCM denied on a hospice patient (GV / CO-B9) and CCM billed to straight Medicaid are WONCS; a date of service after a Medicare date of death is a void. Patient balances are not in this list. Nothing here is written in AdvancedMD until William says so — the recommendations are the standing rules applied, not actions taken.'; }
+
+ // ---------- Refresh from AMD (the Billing Button 'aging' step on GitHub) ----------
+ const GH_REPO='dreffinger/effinger-billing-backend', GH_WF='billing-button.yml', GH_API='https://api.github.com', GH_BRANCH='main', GH_FILE='reports/button/aging_latest.json';
+ let ghTok=''; try{ ghTok=localStorage.getItem('ar-gh-token')||localStorage.getItem('wd-gh-token')||''; }catch(e){}
+ const rfSt=(m,c)=>{ const el=$('#rf-st'); if(el){ el.textContent=m; el.className='rfst'+(c?' '+c:''); } };
+ async function gh(path,o){ o=o||{}; const h={'Authorization':'Bearer '+ghTok,'Accept':o.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  const r=await fetch(GH_API+path,{method:o.method||'GET',headers:Object.assign(h,o.body?{'Content-Type':'application/json'}:{}),body:o.body?JSON.stringify(o.body):undefined,cache:'no-store'});
+  if(!r.ok){ throw new Error(r.status+' '+r.statusText); } if(r.status===204) return null; return r.json(); }
+ function applySnapshot(S){ if(!S||!Array.isArray(S.rows)) throw new Error('snapshot has no rows'); for(const k of Object.keys(D)) delete D[k]; Object.assign(D,S); F.rec.clear(); F.b.clear(); F.payer=''; F.reason=''; renderAll(); }
+ async function loadSnapshot(quiet){
+  if(!ghTok){ $('#rf-tokbox').hidden=false; $('#rf-tokin').focus(); rfSt('Save a GitHub token first (Contents: read).','err'); return false; }
+  try{ const S=await gh('/repos/'+GH_REPO+'/contents/'+GH_FILE+'?ref='+GH_BRANCH,{raw:true});
+   if(S.asof && S.asof===D.asof){ if(!quiet) rfSt('Already showing the newest snapshot ('+S.asof+').','ok'); return true; }
+   applySnapshot(S); rfSt('Loaded the snapshot of '+S.asof+' from GitHub main.','ok'); return true; }
+  catch(e){ rfSt(/404/.test(e.message)?'No aging snapshot on GitHub yet - press Refresh from AMD.':'Could not read the snapshot: '+e.message,'err'); return false; }
+ }
+ let rfTimer=null;
+ async function refreshFromAMD(){
+  if(!ghTok){ $('#rf-tokbox').hidden=false; $('#rf-tokin').focus(); rfSt('Save a GitHub token first (Actions: read and write, Contents: read).','err'); return; }
+  const go=$('#rf-go'); go.disabled=true; rfSt('Asking GitHub to start the aging refresh…','busy');
+  const t0=Date.now();
+  try{ await gh('/repos/'+GH_REPO+'/actions/workflows/'+GH_WF+'/dispatches',{method:'POST',body:{ref:GH_BRANCH,inputs:{mode:'dry',steps:'aging',packages:'',note:'AR Aging refresh '+new Date().toISOString()}}}); }
+  catch(e){ go.disabled=false; rfSt('GitHub refused the trigger: '+e.message+' (token needs Actions: read and write).','err'); return; }
+  rfSt('Run requested. Every chart on the unpaid list is being re-read on GitHub - this usually takes 8-15 minutes; the page keeps watching.','busy');
+  if(rfTimer) clearInterval(rfTimer);
+  const tick=async()=>{ try{ const j=await gh('/repos/'+GH_REPO+'/actions/workflows/'+GH_WF+'/runs?per_page=5&event=workflow_dispatch'); const rs=(j.workflow_runs||[]).filter(r=>new Date(r.created_at).getTime()>t0-120000);
+    const r=rs[0]; const mins=Math.round((Date.now()-t0)/60000);
+    if(!r){ rfSt('Waiting for GitHub to queue the run… ('+mins+' min)','busy'); return; }
+    if(r.status!=='completed'){ rfSt('Refresh '+r.status.replace('_',' ')+' on GitHub ('+mins+' min) - log: '+r.html_url,'busy'); return; }
+    clearInterval(rfTimer); rfTimer=null; go.disabled=false;
+    if(r.conclusion!=='success'){ rfSt('The run ended '+r.conclusion+' - see '+r.html_url,'err'); return; }
+    const ok=await loadSnapshot(true); if(ok) rfSt('Refreshed from AMD - snapshot '+D.asof+' ('+mins+' min).','ok'); }
+   catch(e){ rfSt('Watching the run failed: '+e.message,'err'); clearInterval(rfTimer); rfTimer=null; go.disabled=false; } };
+  rfTimer=setInterval(tick,20000); setTimeout(tick,4000);
+ }
+ $('#rf-go').addEventListener('click',refreshFromAMD);
+ $('#rf-load').addEventListener('click',()=>loadSnapshot(false));
+ $('#rf-tok').addEventListener('click',()=>{ const b=$('#rf-tokbox'); b.hidden=!b.hidden; if(!b.hidden) $('#rf-tokin').focus(); });
+ $('#rf-toksave').addEventListener('click',()=>{ ghTok=$('#rf-tokin').value.trim(); try{ localStorage.setItem('ar-gh-token',ghTok); }catch(e){} $('#rf-tokin').value=''; $('#rf-tokbox').hidden=true; rfSt(ghTok?'Token saved in this browser.':'Token cleared.','ok'); });
+ $('#rf-tokclear').addEventListener('click',()=>{ ghTok=''; try{ localStorage.removeItem('ar-gh-token'); }catch(e){} $('#rf-tokbox').hidden=true; rfSt('Token forgotten.','ok'); });
+
+ if(D&&D.rows){ setAge('sent'); renderAll(); if(ghTok) loadSnapshot(true); }
+ else { document.querySelector('.wrap').innerHTML='<p class="empty">No aging snapshot is embedded in this page yet - save a GitHub token and press Load latest snapshot, or Refresh from AMD.</p>'; }
+})();
+</script>

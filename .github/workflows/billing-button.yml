@@ -32,7 +32,7 @@ on:
         options: [dry, live]
         default: dry
       steps:
-        description: "all, or a comma list of columns,era,cascade,sweep,packages,cred,money,outstanding,denials (denials = the Working Denials board refresh, read-only)"
+        description: "all, or a comma list of columns,era,cascade,sweep,packages,cred,money,outstanding,denials,aging (denials = the Working Denials board refresh, aging = the AR Aging page refresh; both read-only)"
         type: string
         default: all
       packages:
@@ -45,7 +45,7 @@ on:
         default: ""
   schedule:
     - cron: "17 1,3,5,7,9,11,13,15,17,19,21,23 * * *"   # the 2-hourly backend billing run profile (columns, era, packages)
-    - cron: "35 5 * * *"                                 # the nightly insurance cascade profile (cascade, era, packages, cred, money)
+    - cron: "35 5 * * *"                                 # the nightly insurance cascade profile (cascade, era, packages, cred, money, denials, aging)
 
 concurrency:
   group: billing-button

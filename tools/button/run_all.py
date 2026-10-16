@@ -32,14 +32,15 @@ REPO = os.path.abspath(os.path.join(HERE, "..", ".."))
 CANON_WS = "/home/claude/unbilled"          # the workspace path every helper was written for (amd.py keeps its session cache here)
 SCHEMA = "button-run/1"
 PROFILES = {
-    "all": ["columns", "era", "cascade", "packages", "cred", "outstanding", "denials"],
+    "all": ["columns", "era", "cascade", "packages", "cred", "outstanding", "denials", "aging"],
     "columns": ["columns", "era", "packages", "outstanding", "denials"],                 # the 2-hourly backend billing run
-    "cascade": ["cascade", "era", "packages", "cred", "money", "outstanding", "denials"],  # the nightly insurance cascade
+    "cascade": ["cascade", "era", "packages", "cred", "money", "outstanding", "denials", "aging"],  # the nightly insurance cascade
     "denials": ["denials"],                                                     # the Working Denials board's Refresh button
+    "aging": ["aging"],                                                         # the AR Aging page's Refresh button (10/15/2026)
 }
 STEP_TITLES = {"columns": "Claims Center columns", "era": "ERA posting", "cascade": "Insurance cascade",
                "sweep": "Claim-status sweep (277)", "packages": "Approval packages", "cred": "Credentialing check",
-               "money": "Money ledger data", "outstanding": "Outstanding claims summary", "denials": "Working Denials refresh"}
+               "money": "Money ledger data", "outstanding": "Outstanding claims summary", "denials": "Working Denials refresh", "aging": "AR aging refresh"}
 ADVISORY_ERR_PATTERNS = ("20657", "11256", "33799", "35790", "7011", "3429", "35777", "4426", "4310", "27261")
 
 
@@ -627,6 +628,33 @@ class Run:
         shutil.copy2(p, os.path.join(self.out, "outstanding_latest.json"))
         s["ended"] = iso()
 
+    def aging(self):
+        """Read-only: A/R aging by payer and days-since-sent with William's standing recommendation per visit (chart + visit ids only)
+        -> reports/button/aging_latest.json. William 10/15/2026: the AR Aging page's Refresh button runs this step and pulls the file back."""
+        s = self.step("aging")
+        rc, text, log = self.helper("aging_refresh.py", ["--out", "aging_latest.json", "--threads", "4"], timeout=3000)
+        p = os.path.join(self.ws, "aging_latest.json")
+        if rc != 0 or not os.path.exists(p):
+            self.fail(s, "aging_refresh rc %s: %s" % (rc, self.tail(text, 3)))
+            s["ended"] = iso()
+            return
+        j = json.load(open(p))
+        s["counts"] = {"visits": j.get("visits"), "patients": j.get("patients"), "charts read": j.get("charts_read")}
+        s["counts"].update({"sent " + k: v.get("n") for k, v in (j.get("by_bucket_sent") or {}).items() if v.get("n")})
+        s["dollars"] = {"open insurance balance": j.get("total", 0)}
+        s["dollars"].update({k: v.get("amt", 0) for k, v in (j.get("by_rec") or {}).items() if v.get("n")})
+        for k, v in list((j.get("by_payer") or {}).items())[:12]:
+            s["lines"].append({"payer": k, "visits": v.get("n"), "dollars": v.get("amt"), "over_120": (v.get("b") or {}).get("over 120", [0, 0])[1]})
+        if j.get("errors"):
+            self.warn(s, "%d chart reads failed (see the log)" % len(j["errors"]))
+        br = j.get("by_rec") or {}
+        s["summary"] = "%s visits / %s charts, $%.2f open: WAIT $%.2f, CORRECT & RESEND $%.2f, WRITE OFF $%.2f" % (
+            j.get("visits"), j.get("patients"), j.get("total", 0), (br.get("WAIT") or {}).get("amt", 0), (br.get("CORRECT & RESEND") or {}).get("amt", 0), (br.get("WRITE OFF") or {}).get("amt", 0))
+        self.summary["aging"] = {"total": j.get("total", 0), "visits": j.get("visits"), "asof": j.get("asof"), "by_rec": br}
+        os.makedirs(self.out, exist_ok=True)
+        shutil.copy2(p, os.path.join(self.out, "aging_latest.json"))
+        s["ended"] = iso()
+
     def denials(self):
         """Read-only: the Working Denials board's live rebuild (chart + visit ids only) -> reports/button/working_denials_latest.json.
         William 10/13/2026: the board's Refresh button runs this step and pulls the file back."""
@@ -707,11 +735,11 @@ class Run:
         self.say("billing button run %s - mode %s - steps %s" % (self.stamp, self.mode, ",".join(want)))
         if not self.bootstrap():
             return self.report("failed", "workspace bootstrap failed: " + "; ".join(self.errors))
-        order = ["columns", "era", "cascade", "sweep", "packages", "cred", "money", "outstanding", "denials"]
+        order = ["columns", "era", "cascade", "sweep", "packages", "cred", "money", "outstanding", "denials", "aging"]
         for name in order:
             if name not in want:
                 continue
-            if name in ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding", "denials") and self.login_locked():
+            if name in ("columns", "era", "cascade", "sweep", "packages", "money", "outstanding", "denials", "aging") and self.login_locked():
                 s = self.step(name)
                 self.fail(s, "skipped - the AMD login lock is tripped")
                 s["ended"] = iso()
