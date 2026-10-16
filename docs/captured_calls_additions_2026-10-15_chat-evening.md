@@ -29,7 +29,13 @@
 - Engine: tools/button/aging_refresh.py (read-only; massrebillsearch + gettxhistory + getdemographic; --offline re-ages saved reads with no AMD;
   --today for a dated re-run), run_all.py step/profile "aging" (in "all" and the nightly "cascade"; NOT in the 2-hourly "columns"),
   builder tools/button/build_aging_page.py (body + the shared palette CSS -> boards/templates/ar_aging_template.html -> page), snapshot schema
-  ar-aging/1 (rows carry rec + rule + why). Commit 065336e; first live test of the step: workflow run 38844191081 (dry, steps=aging).
+  ar-aging/1 (rows carry rec + rule + why). Commits 065336e / fabdb86 / 05367cd.
+- First dispatch (run 38844191081) failed before the engine started: the workflow spliced the inputs unquoted into one args string, so a
+  note with spaces/parentheses (what both Refresh buttons send) broke the shell - no workflow_dispatch had ever run before. Fixed (every
+  input sanitized and passed as its own quoted argument; scheduled runs pass --profile the same way). Second dispatch 38844527793:
+  success in 4 min 18 s - aging step read 3,225 visits / 579 charts / $315,734.95 live from AMD with 0 errors (WAIT $205,604.66 /
+  CORRECT & RESEND $65,430.73 / WRITE OFF $44,699.56), committed reports/button/aging_latest.json to main (1570f73); the page's
+  contents-API read of that file (raw, 1.7 MB) verified; artifact republished with the live 03:18 UTC snapshot (version 2).
 
 ## Lessons
 - Stedi MBILU AAA 72 on the chart SSN is not 'no Medicare' - discovery by name/DOB found the record (17478062), the CMS 271 on that MBI was clean.
