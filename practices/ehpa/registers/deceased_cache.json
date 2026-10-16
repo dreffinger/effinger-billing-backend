@@ -10,9 +10,9 @@
   "src": "stedi-medicare-271 (relearned 10/14 after the gate scrub)"
  },
  "12182505": {
-  "checked": "2026-09-22",
-  "dod": null,
-  "src": "stedi: no death on record"
+  "checked": "2026-10-16",
+  "dod": "[DOB]",
+  "src": "amd-271 car6085 death [DOB] (run 2026-10-16T1710Z)"
  },
  "12182506": {
   "checked": "2026-09-23",

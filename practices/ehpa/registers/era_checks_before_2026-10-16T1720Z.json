@@ -1,0 +1,28 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-16T1720Z",
+ "count": 1,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053194,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-16T08:33:15.487",
+   "depositdate": "2026-10-19T00:00:00",
+   "eracarrierid": "1443",
+   "eracarriername": "PALMETTO GBA - RAILROAD MEDICARE",
+   "hasnote": false,
+   "systemcarrierid": 6080,
+   "systemcarriercode": "RET01",
+   "systemcarriername": "RETIRED RAILROAD MEDICARE",
+   "paymentnumber": "823491468",
+   "paymentamount": 284.92,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 284.92,
+   "unpostedamount": 284.92,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "stamp": "2026-10-16T1710Z",
+ "era_before": {"checks": 1, "unposted": 284.92, "ids": ["1053194"]},
+ "era_after": {"checks": 0, "unposted": 0.0},
+ "checks": [
+  {"checkid": "1053194", "carrier": "RET01", "payer": "PALMETTO GBA - RAILROAD MEDICARE", "trace": "823491468", "amount": 284.92,
+   "method": "era_post.py 1053194 (ERA Center Post button, posterapayments) - HTTP 200, 2 visits posted, no fault; check left the unposted list on its own",
+   "lines": [
+    {"checkclaimid": 15446855, "visitid": "19455694", "pid": "12182505", "chargedetailid": "23367072", "cpt": "99487", "dos": "2026-09-20", "paid": 112.09, "co45": 63.02, "co253": 2.29, "pr2": 28.60, "outcome": "posted (Post button) - live after: paid 177.40 insbal 28.60 patbal 0; visit insorder 3,2 -> secondary queued to AAR01 by AMD"},
+    {"checkclaimid": 15446856, "visitid": "19452655", "pid": "12182505", "chargedetailid": "23363029", "cpt": "99487", "dos": "2026-08-23", "paid": 112.09, "co45": 63.02, "co253": 2.29, "pr2": 28.60, "outcome": "posted (Post button) - live after: paid 177.40 insbal 28.60 patbal 0; visit insorder was 3 only - see reroute"},
+    {"checkclaimid": 15446856, "visitid": "19452655", "pid": "12182505", "chargedetailid": "23363030", "cpt": "99489", "dos": "2026-08-23", "paid": 60.74, "co45": 31.53, "co253": 1.24, "pr2": 15.49, "outcome": "posted (Post button) - live after: paid 93.51 insbal 15.49 patbal 0"}
+   ],
+   "residual_disregarded": 0.0,
+   "manual_posted": 0,
+   "notes": "remit-stored payreasonwoamount on claim 15446856 equalled the charge (206 / 109) - the 10/16 1310Z fault pattern - but the Post button accepted both visits this time; CO-45/CO-253 landed as contractual (patbal 0 on all three charges)"
+  }
+ ],
+ "availity": {"new_files": 0, "skipped": "no PDF or Check/EFT export newer than the registered set in bht Optum era downloads / treasury payments (Drive modifiedTime > 13:00Z 10/16: none)"},
+ "uploads_835": 0
+}

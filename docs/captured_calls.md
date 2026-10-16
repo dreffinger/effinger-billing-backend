@@ -4826,3 +4826,12 @@ No new call shapes this run (0 vocabulary entries). Run summary for the registry
 - 3 CO-22 $0 claims on the same check: pat17474434 v19420783 + v19420782 (CHP paid 10/2025, reversed CR45 6/1/2026, now CO-22): Stedi MBILU ERR 72, discovery 0 -> board row on William's turn; pat17476603 v19442989: the expected 'bundle' answer - visit already at Lantern (LAN seq 2) since 10/06/2026, nothing re-sent.
 - UNI20/BCBS pre-5/1 pass 116: 16 PENDING + 1 UNKNOWN, 0 sent. Pam admits 10/15 x3: still no chart.
 - Helpers written this run (read-only): visit_state_1016_1510.py (live charges + payments per visit), disc_lookup_1016_1510.py (Stedi insurance discovery per pid:DOS), admit_lookup_1016_1510.py / live_read_1016_1510.py (stamped copies).
+
+# captured_calls additions - backend billing run 2026-10-16T1710Z (1 PM ET 10/16/2026, ehpa cloud, repo attached)
+
+No new call shape this run (0 vocabulary entries). Observations for the registry:
+
+- ERA Center Post button (posterapayments via era_post.py) on Railroad Medicare check 1053194 (trace 823491468, RET01 car6080, $284.92, 2 claims / 3 CCM lines on pat12182505): HTTP 200, no fault, although the remit-stored payreasonwoamount on claim 15446856 equalled the charge (206 / 109) - the 10/16 1310Z fault pattern did not recur; CO-45 / CO-253 landed as contractual, PR-2 stayed on the insurance side (patient balance 0), the check left GET /api/era/checks by itself.
+- After a Post, a visit whose insorder lists only the primary plan (vst19452655 insorder "3") does NOT queue the secondary; the sister visit with insorder "3,2" was moved to AAR01 by AMD at once. `python3 freq1_visit.py reroute <vid> <cid> 3,2 2` (no-rebill insorder echo + ONE frequency-1 chargerebill at seq 2) answered 204 and re-ran the inspector, which raised Pattern 35790 on the CCM add-on again -> insp_bypass_advisories.py on a fresh scan summary (error ids change on every re-inspection).
+- AMD's free 271 on a FLORIDA MEDICARE plan (car6085) carries the date of death in the `death` field (pat12182505: 20260920 = the last CCM DOS) even when that plan is end-dated - recorded in the deceased cache; a Medigap (AAR01 car6600) 271 answers INACTIVE after the member's death although the plan was in force on the DOS.
+- era_post.locks(checkid, claimids) needs a numeric check id (an empty string raises ValueError at int()); the release-expired call answered {"reportvisible":true,"featurelocks":[...locked:false]}.
