@@ -4758,3 +4758,80 @@ No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 - Drive: nothing new in the 835 / Availity / treasury / facesheet / Claimocity folders. Boards: drops 0, Working Denials queue 0; approvals 0 approved / 0 waiting.
 - Permission classifier: no refusal this run.
 - State bundle: 519 parts after packing (registers 23 MB) - not uploaded; registers ride the repo.
+
+# captured_calls additions - 2026-10-15 chat pass with William (7:23 PM - ~11 PM ET; "run all the billing and credentialing including the rejected columns now with me manually")
+
+## Rules William gave (also in practices/ehpa/rules.md)
+- "ccm denied with gv modifier write off, ccm isn't covered for hospice patients" -> a CCM line denied after going out with GV, or denied CO-B9, is WONCS, no appeal / no rebill. Code: `working_denials.triage_line(carc, cpt, mods)` (new dispo WRITEOFF; denials_refresh.py now keeps each line's modifiers and calls it). Evidence the same night: Medicare pays CCM-GV (17 of 29 CCM-GV visits on the unpaid list paid in Oct 2026), so only the DENIED ones are written off.
+- "void it" (chart 23177): the stray 8/3/2026 99489 on the 99309 SNF visit (charge 23369701, no 99487 on that claim; August's 99487 is on the 8/22 claim) - voided with `void_tx.void_charge`.
+- "all nine": the live list below.
+
+## No new call shapes (0 vocabulary entries). Calls used: login, getclaimcenteroverview, the four list calls, getclaimrunstatus, massrebillsearch {}, gettxhistory (page 1 + visitid= for long charts), getdemographic, EligibilityDetailsLegacy/checkEligibility (AMD 271), Stedi MBILU / MBILUNOSSN / insurance-discovery / 77027 (ssn+gender) / 95112 / 87726 / 74227 / CMS-by-MBI, addinsurance (add_ins), updateinsurance (ins_update: sequence / begindate / enddate), updextrainsinfo (hospitalizationfrom), updvisitwithcharges (full-visit echo, approval 1), hideunbillablevisits, hideexclusions, bypassclaimedits, getclaiminspectorbatches/charges, chargerebill via freq1_visit, addpayments via manual_post (WOLATE / WOCLTREQ), void (charge), GET /api/era/checks + checkdetails, POST /api/era/checks/dismiss.
+
+## What was done (chart ids / visit ids only)
+- Read-only Billing Button dry run 2332Z (columns, era, outstanding, denials, cred): board 0/5/12/6 after the 7 PM run; ERA 1 check; cred_check no news (NPPES unchanged, LEIE 0, no reminders due).
+- A/R aging by payer for William (AR_aging_by_payer_2026-10-15.xlsx sent in chat; summary JSON practices/ehpa/registers/aging_2026-10-15_summary.json; visits CSV reports/aging/): 3,234 visits / $316,920 / 580 patients. By days since last sent: 0-30 $176.0K (1,584) · 31-60 $84.4K (854) · 61-90 $5.9K (36) · 91-120 $4.2K (35) · >120 $46.4K (725). Recommendations: WAIT $206.6K / CORRECT & RESEND $65.7K / WRITE OFF $44.6K. Biggest retrievable pieces: $17.2K Medicare-paid cost-share owed by a live secondary on the chart (429 visits); $22.4K wrong-payer denials (PR27/26/200/22/204) for the cascade; $8.5K CO-16 correctable. Biggest write-off piece: 721 settled-primary leftovers ($18.3K PR cost-share WOCLTREQ + $12.9K unwritten contractual WOINS from the 9/9 re-posts), $8.8K untimely primaries, $1.3K CCM-hospice denials, one visit dated after a Medicare date of death.
+- Run alerts (getclaimrunstatus): 100 runs 7/11-10/14, $2.30M / 12,026 claims; 82 flagged for >=5% exclusions (September's rebill waves: 4,781 exclusions; October 535), 22 runs 'no payment 45+ days', 3 runs >=7% paper. The 10/13-10/14 runs had 488 exclusions on 886 claims - the routine completes them by rule within hours, so the live column reads 11, but that rate is a watch item (the freq-7 / wrong-carrier re-sends).
+- Cards applied on William's go (register + page marked done, commit bdf13fe): A-2026-10-15T0510Z-K chart 17478062 (CMS 271 on the discovery MBI clean -> FLO02 ins9520867 seq 1, admission 10/12/2026 + CMS-1500 + visit order on v19457795 / v19457782, released); A-2026-10-15T2310Z-A chart 23967 WOLATE 310/133/310/133 on 23325015/23325016/23327375/23327376 (payments 10175464-67, check W1223786, 10/19/2026); A-2026-10-15T2310Z-B chart 17472553 patient order 2,3 + v19457645 re-route to Medicare (204).
+- Rejected column: chart 17472859 (5 AET07 'subscriber not found', run 1700294) - Medicare paid the Jan/Feb-2025 visits; Aetna is an Aetna MEDICARE Individual (GA) plan that did not exist before 05/01/2025 -> WOCLTREQ 15.41 x4 + 33.75 (charges 22473914/15/16/17, 22473990), exclusions completed, Aetna begin 05/01/2025, Medicare end 04/30/2025, order 2,1. Chart 12232248 v19417751 / v19424313 (UHC duplicates of the 9/10 claims already answered CO-29, $0) and chart 17476855 v19445320 (Humana 'patient not found' on a Medicare-paid $0 visit) completed on run 1700271. Chart 17471496 v19452657 (CCM-GV paid by Medicare 10/8, $44.09 PR2): the AARP Medigap sits at seq 1 (AAR01, fixed 10/14) -> freq1_visit.reroute(.., "2,1", 1) rebilled the secondary to AARP (204), UNI20 row completed on run 1700281. Chart 17475632 (UNI20 'subscriber not found', 99223 2/26/2026 $310): UHC StudentResources (74227) ACTIVE 10/01/2025-08/14/2026 - no AMD carrier; board row to William (add the carrier in Master Files). AET12 PREF0288 row left (carrier record). Column: 11 -> 2 rows ($625: 17475632 + AET12).
+- Inspector 5 -> 0: v19451190 99489 voided (99309 reinspected clean); v19364378 chart 22845 PR2 23.06 on a TFL secondary never sent, Medicare remit 10/15/2023 -> WOCLTREQ + released; v13979435 / v13984519 chart 44983 (UNI20 paid 9/6/2026, PR2 11.53 each to GEH04) and v19395738 chart 17472519 (Medicare paid 9/9/2026, PR2 18.12 to HUM01): advisories bypassed AFTER the reinspection (ids change), approved, released - the secondary claims go out. Unbilled 12 -> 6 (the six HCA new-admit visits on charts 17478059 / 17478063 / 17478064 waiting on facesheets - board rows written, status william).
+- ERA Center: 1053116 (UHC W0020208 $71 reversal matching no posted payment) dismissed on William's word (registers/era_dismiss_1053116_1015.json). Center empty.
+- Board (Insurance Refresh): new rows for 17478059 / 17478064 (CHP Medicare Advantage, need the CHP member id from the HCA facesheet) and 17478063 (only a FEDVIP dental plan found - FEHB medical likely; facesheet); 17475632 row reopened (status william: add the StudentResources carrier).
+- Credentialing: cred_check no news; no board rows due tonight.
+
+## AR Aging artifact ("make this chart as an ar aging artifact entitled ar aging artifact with a refresh button at the top or in the hero like the rest of the artifacts")
+- Page: claude.ai artifact "ar aging artifact" (AYpjhfkRFUYXG2bzbod21s) - the Working Denials house style (eight palettes, both themes), hero with
+  the refresh strip (Refresh from AMD / Load latest snapshot / GitHub token), KPI tiles, by-age bars (toggle since-sent / since-DOS, each band with
+  its standing rule), by-payer table (stacked age bar per payer, sortable, click = ledger filter), the 24 rules that decided the
+  recommendations, and the filterable visit ledger (chart + visit ids, CPTs/modifiers, payer, last sent, days, primary paid, secondary on
+  chart, CARCs, $ open, action, why; copy-as-CSV). No names anywhere on the page.
+- Refresh: workflow_dispatch of billing-button.yml {mode: dry, steps: aging} with the fine-grained token saved in the browser (localStorage
+  'ar-gh-token'; falls back to the Working Denials board's 'wd-gh-token'), polls the run, then reads reports/button/aging_latest.json from main.
+- Engine: tools/button/aging_refresh.py (read-only; massrebillsearch + gettxhistory + getdemographic; --offline re-ages saved reads with no AMD;
+  --today for a dated re-run), run_all.py step/profile "aging" (in "all" and the nightly "cascade"; NOT in the 2-hourly "columns"),
+  builder tools/button/build_aging_page.py (body + the shared palette CSS -> boards/templates/ar_aging_template.html -> page), snapshot schema
+  ar-aging/1 (rows carry rec + rule + why). Commits 065336e / fabdb86 / 05367cd.
+- First dispatch (run 38844191081) failed before the engine started: the workflow spliced the inputs unquoted into one args string, so a
+  note with spaces/parentheses (what both Refresh buttons send) broke the shell - no workflow_dispatch had ever run before. Fixed (every
+  input sanitized and passed as its own quoted argument; scheduled runs pass --profile the same way). Second dispatch 38844527793:
+  success in 4 min 18 s - aging step read 3,225 visits / 579 charts / $315,734.95 live from AMD with 0 errors (WAIT $205,604.66 /
+  CORRECT & RESEND $65,430.73 / WRITE OFF $44,699.56), committed reports/button/aging_latest.json to main (1570f73); the page's
+  contents-API read of that file (raw, 1.7 MB) verified; artifact republished with the live 03:18 UTC snapshot (version 2).
+
+## Lessons
+- Stedi MBILU AAA 72 on the chart SSN is not 'no Medicare' - discovery by name/DOB found the record (17478062), the CMS 271 on that MBI was clean.
+- CHP (95112) will not answer by name/DOB or by MBI - the CHP member id has to come from the facesheet.
+- UHC commercial answers EB*U 'contact UHC STUDENT RESOURCES' for a student plan; payer 74227 answers the real eligibility.
+- Bypass after the reinspection, never before: a resave re-raises the advisories with new ids.
+- `import era_clear` runs a live clear pass; dismiss through the REST call directly.
+- The 0510Z helper unbilled_1015_0510.py on main carries a PHI-gated placeholder in mbi_of() ('[name]_[DOB].json') - it cannot run from a clone; card K was applied with go_1015.py instead.
+
+# captured_calls additions - 2026-10-16 0110 UTC (9 PM ET 10/15) backend billing run, ehpa cloud (repo attached)
+
+No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+## Run notes
+- Columns (list calls) 0/5/12/6 -> 0/5/12/6; ERA Center 1 check $71.00 unposted before and after (1053116 UHC W0020208 held for William's takeback decision).
+- Charge Review 0. Claim Inspector 5 standing holds unchanged (pat23177 v19451190 CCI 24078/15775; pat44983 v13979435/v13984519 duplicate 99239 2023; pat22845 v19364378 TRI05; pat17472519 v19395738 S065XAS). Unbilled 12 unchanged (4 inspector-hold visits; 8 'Insurance order is missing' on the zero-plan HCA charts pat17478059/62/63/64, re-read live at 01:2xZ - still 0 plans). Exclusions 6 unchanged (5 AET07 pat17472859 held, 1 AET12 pat24750 carrier CPID held). No new claim run since 1700302. No AMD write this slot.
+- Approvals: card A-2026-10-15T0510Z-K was APPROVED on the Mandatory Approvals page (21:39Z); re-attempted ONCE: the helper's Stedi answer file (patient_db/<pid>/<name>_<dob>.json) exists in the repo only under its PHI-scrubbed name, so the lookup was re-run live - Stedi MBILU (chart SSN, DOS 10/12/2026) AAA 72 with an MBI-shaped id and no benefits; direct CMS 271 on that MBI AAA 72 - plan NOT added, card noted (reattemptResult), board row on William's turn. Cards A-2026-10-15T2310Z-A/-B still waiting.
+- ERA: era_post --dry 0 postable / 3 skipped (OA-18 pair v19421789 settled; CO-29 reversal 'does not match any payments' x2 on v19395670); era_clear --dry HELD. Nothing to upload; Availity / Treasury: nothing new.
+- UNI20/BCBS pre-5/1 sweep pass 110 (--min-age 168 --max 60 --carriers UNI20,BCBS --skip-answered 99 registers, 585 skipped): 17 asked - 16 PENDING (pat17472874 $2,563), 1 UNKNOWN (pat17475632 v19433791 $310); 0 candidates, 0 sent.
+- Pam Gmail: the three 10/15 admit emails (Brynwood x2, Tapestry x1) still have no AMD chart (lookuppatient name wildcard, read-only, admit_lookup_1016_0110.py) - listed, not turned into charts.
+- Boards: drops 0, Working Denials queue 0, 0 items rows changed since 20:00Z. board_updates_2026-10-16T0110Z.json (4 ops) -> board inbox; both registries' 'applied' maps unchanged since 9/20 - nothing trashed.
+- Permission classifier: no refusal this run (no AMD write attempted).
+- Calls: no new call shape (login, columns scan, lookuppatient, getdemographic, GET /api/era/checks + checkdetails, posterapayments dry, Stedi MBILU + CMS 271, 276/277 via Stedi). Helpers added: admit_lookup_1016_0110.py, zeroplan_1016_0110.py, sweep_eval_1016_0110.py, report_1016_0110.py (stamp copies).
+- LESSON: an approved card whose helper reads a patient_db file by name cannot run from a fresh container - the repo copy of the helper carries the PHI-scrubbed path '[name]_[DOB].json' and patient_db/ never leaves the state bundle; re-run the Stedi lookup live and save the answer under the literal scrubbed name (or write pid-only file names in new helpers: patient_db/<pid>/mbilu_<stamp>.json).
+
+# captured_calls additions - 2026-10-16 0910 UTC (5 AM ET 10/16) backend billing run, ehpa cloud (repo attached)
+
+No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+## Run notes
+- Columns (list calls) 0/0/6/1 -> 0/0/6/1 (overview still shows exclusions 2 / $625 - the list call returns 1); ERA Center 0 unposted checks before and after.
+- Charge Review 0. Claim Inspector 0. Unbilled 6 = 'Insurance order is missing' on the three zero-plan HCA charts pat17478059 / pat17478063 / pat17478064 (getdemographic re-read 09:3xZ - still 0 plans; board rows on William's turn since 10/16 02:49Z for the CHP member ids / the HCA facesheet). Exclusions 1 = AET12 pat24750 PREF0288 carrier CPID hold. No new claim run since 1700305.
+- UNI20/BCBS pre-5/1 sweep pass 113 (--min-age 168 --max 60 --carriers UNI20,BCBS --skip-answered 101 registers comma-joined, 585 skipped): 17 asked - 16 PENDING (pat17472874 $2,563; the 3/4/2026 visit 'adjudicated, awaiting payment cycle'), 1 UNKNOWN (pat17475632 v19433791 $310); 0 candidates, 0 sent.
+- Pam Gmail: the three 10/15 admit emails (Tapestry x1, Brynwood x2) still have no AMD chart (lookuppatient 09:3xZ, read-only, admit_lookup_1016_0910.py) - listed, not turned into charts.
+- Drive: nothing new in the 835 / Availity / treasury / facesheet / Claimocity folders since the 10/15 2310Z run's own report CSV. Boards: drops 0, Working Denials queue 0, 0 items rows changed since 05:00Z; Mandatory Approvals 0 approved / 0 waiting (register all 89 done). GitHub inbox: no new PACKAGE manifest (the 10-11 / 10-12 parts still fail their sha256 - left).
+- State restore: Drive 'workspace mirror' lists no workspace_state bundle newer than 2026-09-18 (connector search by title and by manifest) - patient_db/ and era_details/ started empty; registers, needs list and laterality log came from main (468961e) and the Drive deceased_cache.json (07:40Z) was merged into both caches (72 dated entries).
+- Permission classifier: no refusal this run (no AMD write attempted).
+- Calls: no new call shape (login, columns scan, lookuppatient, getdemographic, GET /api/era/checks, 276/277 via Stedi). Helpers added: admit_lookup_1016_0910.py, zeroplan_1016_0910.py, sweep_eval_1016_0910.py (stamp copies).
