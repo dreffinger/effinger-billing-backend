@@ -1,0 +1,183 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-16T0314Z",
+ "mode": "dry",
+ "status": "ok",
+ "headline": "nothing ran (dry run - nothing written)",
+ "note": "AR Aging page refresh test (chat 10/15 11:20 PM ET)",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38844527793",
+ "started": "2026-10-16T03:14:47Z",
+ "ended": "2026-10-16T03:18:21Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "aging": {
+   "total": 315734.95,
+   "visits": 3225,
+   "asof": "2026-10-16 03:18 UTC",
+   "by_rec": {
+    "WAIT": {
+     "n": 1635,
+     "amt": 205604.66
+    },
+    "CORRECT & RESEND": {
+     "n": 714,
+     "amt": 65430.73
+    },
+    "WRITE OFF": {
+     "n": 876,
+     "amt": 44699.56
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0
+    }
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1017 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1017,
+    "registers": 1066,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-16T03:14:47Z",
+   "ended": "2026-10-16T03:14:48Z"
+  },
+  {
+   "name": "aging",
+   "title": "AR aging refresh",
+   "status": "ok",
+   "summary": "3225 visits / 579 charts, $315734.95 open: WAIT $205604.66, CORRECT & RESEND $65430.73, WRITE OFF $44699.56",
+   "counts": {
+    "visits": 3225,
+    "patients": 579,
+    "charts read": 579,
+    "sent 0-30": 1572,
+    "sent 31-60": 857,
+    "sent 61-90": 30,
+    "sent 91-120": 35,
+    "sent over 120": 731
+   },
+   "dollars": {
+    "open insurance balance": 315734.95,
+    "WAIT": 205604.66,
+    "CORRECT & RESEND": 65430.73,
+    "WRITE OFF": 44699.56
+   },
+   "lines": [
+    {
+     "payer": "FLO02",
+     "visits": 1653,
+     "dollars": 156927.93,
+     "over_120": 32500.56
+    },
+    {
+     "payer": "UNI20",
+     "visits": 308,
+     "dollars": 47801.88,
+     "over_120": 9033.96
+    },
+    {
+     "payer": "FLO99",
+     "visits": 147,
+     "dollars": 22696.8,
+     "over_120": 0.0
+    },
+    {
+     "payer": "BCBS",
+     "visits": 316,
+     "dollars": 20017.62,
+     "over_120": 289.67
+    },
+    {
+     "payer": "HUM01",
+     "visits": 155,
+     "dollars": 12548.85,
+     "over_120": 1651.58
+    },
+    {
+     "payer": "CAP07",
+     "visits": 55,
+     "dollars": 10610.24,
+     "over_120": 2442.06
+    },
+    {
+     "payer": "UHCMA",
+     "visits": 29,
+     "dollars": 5081.97,
+     "over_120": 163.37
+    },
+    {
+     "payer": "AET07",
+     "visits": 39,
+     "dollars": 4422.44,
+     "over_120": 118.22
+    },
+    {
+     "payer": "CIG09",
+     "visits": 28,
+     "dollars": 4074.61,
+     "over_120": 0.0
+    },
+    {
+     "payer": "MCAD",
+     "visits": 44,
+     "dollars": 4018.81,
+     "over_120": 0.0
+    },
+    {
+     "payer": "SIM01",
+     "visits": 19,
+     "dollars": 3231.12,
+     "over_120": 0.0
+    },
+    {
+     "payer": "TRI05",
+     "visits": 96,
+     "dollars": 3105.91,
+     "over_120": 15.7
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-16T03:14:48Z",
+   "ended": "2026-10-16T03:18:21Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
