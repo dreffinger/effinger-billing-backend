@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-16T1722Z",
+ "stamp": "2026-10-16T1922Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38939216550",
- "started": "2026-10-16T17:22:54Z",
- "ended": "2026-10-16T17:29:30Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38954454320",
+ "started": "2026-10-16T19:22:48Z",
+ "ended": "2026-10-16T19:29:28Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 309510.75,
-   "visits": 3200,
+   "total": 309466.66,
+   "visits": 3199,
    "charts": 577,
    "over_365": {
     "n": 1079,
@@ -65,7 +65,7 @@
    "visits": 7317,
    "actionable": 77,
    "actionable_amt": 13999.0,
-   "asof": "2026-10-16 17:29 UTC"
+   "asof": "2026-10-16 19:29 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1053 helpers into /home/claude/unbilled",
+   "summary": "1055 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1053,
-    "registers": 1098,
+    "helpers copied": 1055,
+    "registers": 1106,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T17:22:54Z",
-   "ended": "2026-10-16T17:22:59Z"
+   "started": "2026-10-16T19:22:48Z",
+   "ended": "2026-10-16T19:22:48Z"
   },
   {
    "name": "columns",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T17:22:59Z",
-   "ended": "2026-10-16T17:24:58Z"
+   "started": "2026-10-16T19:22:48Z",
+   "ended": "2026-10-16T19:24:46Z"
   },
   {
    "name": "era",
@@ -141,8 +141,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T17:24:58Z",
-   "ended": "2026-10-16T17:25:00Z"
+   "started": "2026-10-16T19:24:46Z",
+   "ended": "2026-10-16T19:24:47Z"
   },
   {
    "name": "packages",
@@ -153,21 +153,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T17:25:00Z",
-   "ended": "2026-10-16T17:25:00Z"
+   "started": "2026-10-16T19:24:47Z",
+   "ended": "2026-10-16T19:24:47Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3200 visits on 577 charts, $309510.75 open; 1079 over a year ($48370.15)",
+   "summary": "3199 visits on 577 charts, $309466.66 open; 1079 over a year ($48370.15)",
    "counts": {
-    "visits": 3200,
+    "visits": 3199,
     "charts": 577,
     "over 365 days": 1079
    },
    "dollars": {
-    "open insurance balance": 309510.75,
+    "open insurance balance": 309466.66,
     "over 365 days": 48370.15
    },
    "lines": [
@@ -257,8 +257,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T17:25:00Z",
-   "ended": "2026-10-16T17:25:02Z"
+   "started": "2026-10-16T19:24:47Z",
+   "ended": "2026-10-16T19:24:49Z"
   },
   {
    "name": "denials",
@@ -345,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T17:25:02Z",
-   "ended": "2026-10-16T17:29:30Z"
+   "started": "2026-10-16T19:24:49Z",
+   "ended": "2026-10-16T19:29:28Z"
   }
  ],
  "packages": [],
