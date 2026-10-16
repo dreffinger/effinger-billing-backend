@@ -1060,9 +1060,11 @@
    "evidence_file": "registers/unbilled_1015_0510_dry.json",
    "evidence": "dry run: MBILU answered Part A 20161001 / Part B 20161001 active, Part D WELLCARE only",
    "ui": "Patient 17478062 > Insurance tab > add FLORIDA MEDICARE with the MBI (no group); both visits: hospitalization from 10/12/2026, insurance order Medicare, CMS-1500; Unbilled > Complete",
-   "status": "approved",
-   "answer": null,
-   "note": "go 2026-10-15T23:12Z: NOT applied in the cascade session - Stedi MBILU with the chart SSN answered AAA 72 on every name variant here and did not reproduce the 1 AM run's MBI (****DU82, Part A/B active); claim released - the next billing run applies it from its own patient_db lookup, or William drops the HCA facesheet"
+   "status": "done",
+   "answer": "applied in chat 10/15 22:3xZ (William: go): CMS 271 on the discovery MBI clean (Part A/B 10/01/2016, no MA, no death) -> FLORIDA MEDICARE ins9520867 added seq 1, patient order 1, admission 10/12/2026 + CMS-1500 + visit order on v19457795 and v19457782, both released from Unbilled",
+   "note": "go 2026-10-15T23:12Z: NOT applied in the cascade session - Stedi MBILU with the chart SSN answered AAA 72 on every name variant here and did not reproduce the 1 AM run's MBI (****DU82, Part A/B active); claim released - the next billing run applies it from its own patient_db lookup, or William drops the HCA facesheet | applied 2026-10-16T02:50:07Z (chat, William go)",
+   "answeredAt": "2026-10-16T02:50:07Z",
+   "answeredBy": "William (chat go 10/15)"
   },
   {
    "id": "A-2026-10-15T0510Z-L",
@@ -1345,9 +1347,11 @@
    "ui": "Patient 23967 > Transactions > visits 19422019 and 19420037 > each charge (99223 310.00, 99497 133.00) > Payment Entry > carrier UNI20, pay 0.00, write-off WOLATE for the open balance, check # W1223786, deposit 10/19/2026, note 'timely filing CARC 29 - William 10/6/2026'",
    "evidence": "dry run 23:2xZ: 4 CO-29 $0 lines DRY would post WOLATE 310.00/133.00 x2 (chart 23967); 2 money lines DRY would post pay 85.46 / 56.37 - posted by the Billing Button at 23:22Z instead (live read 23:4xZ: W1223786 payments on both, balances 0); 6 lines already posted; 1 line skipped balance 0 (registers/era_new_2026-10-15T2310Z_dry.json)",
    "evidence_file": "registers/era_new_2026-10-15T2310Z_dry.json",
-   "status": "waiting",
-   "answer": null,
-   "note": "approval_submit.py refused by the classifier; card written to the page directly by the run"
+   "status": "done",
+   "answer": "applied in chat 10/15 22:3xZ (William: go): WOLATE 310.00/133.00/310.00/133.00 on charges 23325015/23325016/23327375/23327376 (payments 10175464-10175467), check W1223786 deposit 10/19/2026 - manual_post (the processed check's ERA details were empty, so not ERA-linked)",
+   "note": "approval_submit.py refused by the classifier; card written to the page directly by the run | applied 2026-10-16T02:50:07Z (chat, William go)",
+   "answeredAt": "2026-10-16T02:50:07Z",
+   "answeredBy": "William (chat go 10/15)"
   },
   {
    "id": "A-2026-10-15T2310Z-B",
@@ -1360,9 +1364,11 @@
    "ui": "Patient 17472553 > Insurance tab > drag Florida Medicare to 1st and Florida Community Care to 2nd, save; visit 19457645 > insurance order Medicare then FCC, save; Claims > rebill the visit to Medicare as an original claim",
    "evidence": "dry run 23:3xZ: DRY resave vst19457645 insorder 3 -> 2,3 (1 live charges echoed) | DRY freq1 + rebill seq 2; chart plans read live (UNI20 seq 1 ended 05/10/2026, Medicare seq 2, FCC seq 3, patient insorder 3)",
    "evidence_file": "precheck_20261015.json",
-   "status": "waiting",
-   "answer": null,
-   "note": "approval_submit.py refused by the classifier; card written to the page directly by the run"
+   "status": "done",
+   "answer": "applied in chat 10/15 22:3xZ (William: go): patient order 2,3 (ins9519137) -> '2,3'; v19457645 insorder 3 -> 2,3 + freq1 rebill seq 2 -> 204",
+   "note": "approval_submit.py refused by the classifier; card written to the page directly by the run | applied 2026-10-16T02:50:07Z (chat, William go)",
+   "answeredAt": "2026-10-16T02:50:07Z",
+   "answeredBy": "William (chat go 10/15)"
   }
  ]
 }
