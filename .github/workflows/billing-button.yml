@@ -84,13 +84,24 @@ jobs:
             MODE="${VAR_MODE:-dry}"; [ "$MODE" = "live" ] || MODE=dry
             if [ "$SCHEDULE" = "35 5 * * *" ]; then PROFILE=cascade; else PROFILE=columns; fi
             echo "mode=$MODE" >> "$GITHUB_OUTPUT"
-            echo "args=--profile $PROFILE --note scheduled-$PROFILE" >> "$GITHUB_OUTPUT"
+            echo "profile=$PROFILE" >> "$GITHUB_OUTPUT"
+            echo "steps=" >> "$GITHUB_OUTPUT"
+            echo "packages=" >> "$GITHUB_OUTPUT"
+            echo "note=scheduled-$PROFILE" >> "$GITHUB_OUTPUT"
             echo "label=scheduled $PROFILE ($MODE)" >> "$GITHUB_OUTPUT"
           else
-            MODE="${IN_MODE:-dry}"
+            MODE="${IN_MODE:-dry}"; [ "$MODE" = "live" ] || MODE=dry
+            # every value is passed to the engine as its own quoted argument (10/16/2026: a note with spaces or parentheses
+            # used to be spliced unquoted into the command line and broke the shell - the pages' Refresh buttons send such notes)
+            STEPS=$(printf '%s' "${IN_STEPS:-all}" | tr -cd 'a-z,')
+            PKGS=$(printf '%s' "${IN_PACKAGES:-}" | tr -cd 'A-Za-z0-9,:-')
+            NOTE=$(printf '%s' "${IN_NOTE:-button}" | tr -d '\r\n' | cut -c1-200)
             echo "mode=$MODE" >> "$GITHUB_OUTPUT"
-            echo "args=--steps ${IN_STEPS:-all} --packages ${IN_PACKAGES:-} --note ${IN_NOTE:-button}" >> "$GITHUB_OUTPUT"
-            echo "label=button ($MODE, ${IN_STEPS:-all})" >> "$GITHUB_OUTPUT"
+            echo "profile=" >> "$GITHUB_OUTPUT"
+            echo "steps=${STEPS:-all}" >> "$GITHUB_OUTPUT"
+            echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+            echo "note=${NOTE:-button}" >> "$GITHUB_OUTPUT"
+            echo "label=button ($MODE, ${STEPS:-all})" >> "$GITHUB_OUTPUT"
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
@@ -134,13 +145,20 @@ jobs:
         if: steps.plan.outputs.skip != 'true'
         id: engine
         shell: bash
+        env:
+          P_MODE: ${{ steps.plan.outputs.mode }}
+          P_PROFILE: ${{ steps.plan.outputs.profile }}
+          P_STEPS: ${{ steps.plan.outputs.steps }}
+          P_PACKAGES: ${{ steps.plan.outputs.packages }}
+          P_NOTE: ${{ steps.plan.outputs.note }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           set +e
           STAMP=$(date -u +%Y-%m-%dT%H%MZ)
           echo "stamp=$STAMP" >> "$GITHUB_OUTPUT"
-          python3 tools/button/run_all.py --mode "${{ steps.plan.outputs.mode }}" ${{ steps.plan.outputs.args }} \
-            --stamp "$STAMP" --out reports/button \
-            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ -n "$P_PROFILE" ]; then SEL=(--profile "$P_PROFILE"); else SEL=(--steps "${P_STEPS:-all}"); fi
+          python3 tools/button/run_all.py --mode "$P_MODE" "${SEL[@]}" --packages "$P_PACKAGES" --note "$P_NOTE" \
+            --stamp "$STAMP" --out reports/button --run-url "$RUN_URL"
           echo "rc=$?" >> "$GITHUB_OUTPUT"
           exit 0
 

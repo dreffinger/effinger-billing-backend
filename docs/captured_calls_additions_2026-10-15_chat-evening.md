@@ -18,6 +18,19 @@
 - Board (Insurance Refresh): new rows for 17478059 / 17478064 (CHP Medicare Advantage, need the CHP member id from the HCA facesheet) and 17478063 (only a FEDVIP dental plan found - FEHB medical likely; facesheet); 17475632 row reopened (status william: add the StudentResources carrier).
 - Credentialing: cred_check no news; no board rows due tonight.
 
+## AR Aging artifact ("make this chart as an ar aging artifact entitled ar aging artifact with a refresh button at the top or in the hero like the rest of the artifacts")
+- Page: claude.ai artifact "ar aging artifact" (AYpjhfkRFUYXG2bzbod21s) - the Working Denials house style (eight palettes, both themes), hero with
+  the refresh strip (Refresh from AMD / Load latest snapshot / GitHub token), KPI tiles, by-age bars (toggle since-sent / since-DOS, each band with
+  its standing rule), by-payer table (stacked age bar per payer, sortable, click = ledger filter), the 24 rules that decided the
+  recommendations, and the filterable visit ledger (chart + visit ids, CPTs/modifiers, payer, last sent, days, primary paid, secondary on
+  chart, CARCs, $ open, action, why; copy-as-CSV). No names anywhere on the page.
+- Refresh: workflow_dispatch of billing-button.yml {mode: dry, steps: aging} with the fine-grained token saved in the browser (localStorage
+  'ar-gh-token'; falls back to the Working Denials board's 'wd-gh-token'), polls the run, then reads reports/button/aging_latest.json from main.
+- Engine: tools/button/aging_refresh.py (read-only; massrebillsearch + gettxhistory + getdemographic; --offline re-ages saved reads with no AMD;
+  --today for a dated re-run), run_all.py step/profile "aging" (in "all" and the nightly "cascade"; NOT in the 2-hourly "columns"),
+  builder tools/button/build_aging_page.py (body + the shared palette CSS -> boards/templates/ar_aging_template.html -> page), snapshot schema
+  ar-aging/1 (rows carry rec + rule + why). Commit 065336e; first live test of the step: workflow run 38844191081 (dry, steps=aging).
+
 ## Lessons
 - Stedi MBILU AAA 72 on the chart SSN is not 'no Medicare' - discovery by name/DOB found the record (17478062), the CMS 271 on that MBI was clean.
 - CHP (95112) will not answer by name/DOB or by MBI - the CHP member id has to come from the facesheet.
