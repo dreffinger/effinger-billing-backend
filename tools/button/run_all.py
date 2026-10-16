@@ -764,6 +764,11 @@ class Run:
         pk = self.summary["packages"]
         if pk["applied"] or pk["refused"] or pk["skipped"]:
             parts.append("packages %d applied / %d refused / %d skipped" % (pk["applied"], pk["refused"], pk["skipped"]))
+        ag = self.summary.get("aging") or {}
+        if ag.get("visits"):
+            br = ag.get("by_rec") or {}
+            parts.append("Aging %s visits $%.2f open: wait $%.2f / resend $%.2f / write off $%.2f" % (ag["visits"], ag.get("total", 0),
+                         (br.get("WAIT") or {}).get("amt", 0), (br.get("CORRECT & RESEND") or {}).get("amt", 0), (br.get("WRITE OFF") or {}).get("amt", 0)))
         headline = ("; ".join(parts) or "nothing ran") + ("" if self.live else " (dry run - nothing written)")
         return self.report(status, headline)
 
