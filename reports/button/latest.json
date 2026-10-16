@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-16T0928Z",
+ "stamp": "2026-10-16T1125Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/2 -> 0/0/6/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38880711659",
- "started": "2026-10-16T09:28:55Z",
- "ended": "2026-10-16T09:35:14Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38893656070",
+ "started": "2026-10-16T11:25:28Z",
+ "ended": "2026-10-16T11:30:51Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 2
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 2
    }
   },
   "era": {
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 319715.84,
-   "visits": 3242,
+   "total": 319701.46,
+   "visits": 3241,
    "charts": 586,
    "over_365": {
     "n": 1080,
@@ -65,7 +65,7 @@
    "visits": 7317,
    "actionable": 79,
    "actionable_amt": 14403.0,
-   "asof": "2026-10-16 09:35 UTC"
+   "asof": "2026-10-16 11:30 UTC"
   }
  },
  "steps": [
@@ -73,28 +73,28 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1027 helpers into /home/claude/unbilled",
+   "summary": "1030 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1027,
-    "registers": 1076,
+    "helpers copied": 1030,
+    "registers": 1082,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T09:28:55Z",
-   "ended": "2026-10-16T09:28:55Z"
+   "started": "2026-10-16T11:25:28Z",
+   "ended": "2026-10-16T11:25:28Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 2->2",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
     "unbilled": 6,
-    "exclusions": 1,
+    "exclusions": 2,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
@@ -103,7 +103,9 @@
     "unbilled rows left alone": 6,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700302": 0,
+    "exclusions crossover run 1700302": "see log"
    },
    "dollars": {},
    "lines": [
@@ -118,11 +120,17 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700302",
+     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 1,
+     "ids": "v19367114"
     }
    ],
    "errors": [],
-   "started": "2026-10-16T09:28:55Z",
-   "ended": "2026-10-16T09:30:52Z"
+   "started": "2026-10-16T11:25:28Z",
+   "ended": "2026-10-16T11:27:12Z"
   },
   {
    "name": "era",
@@ -141,8 +149,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T09:30:52Z",
-   "ended": "2026-10-16T09:30:53Z"
+   "started": "2026-10-16T11:27:12Z",
+   "ended": "2026-10-16T11:27:14Z"
   },
   {
    "name": "packages",
@@ -153,21 +161,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T09:30:53Z",
-   "ended": "2026-10-16T09:30:53Z"
+   "started": "2026-10-16T11:27:14Z",
+   "ended": "2026-10-16T11:27:14Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3242 visits on 586 charts, $319715.84 open; 1080 over a year ($48385.31)",
+   "summary": "3241 visits on 586 charts, $319701.46 open; 1080 over a year ($48385.31)",
    "counts": {
-    "visits": 3242,
+    "visits": 3241,
     "charts": 586,
     "over 365 days": 1080
    },
    "dollars": {
-    "open insurance balance": 319715.84,
+    "open insurance balance": 319701.46,
     "over 365 days": 48385.31
    },
    "lines": [
@@ -202,8 +210,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 159,
-     "dollars": 13193.97,
+     "visits": 158,
+     "dollars": 13179.59,
      "oldest_days": 1286
     },
     {
@@ -257,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T09:30:53Z",
-   "ended": "2026-10-16T09:30:55Z"
+   "started": "2026-10-16T11:27:14Z",
+   "ended": "2026-10-16T11:27:15Z"
   },
   {
    "name": "denials",
@@ -345,8 +353,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T09:30:55Z",
-   "ended": "2026-10-16T09:35:14Z"
+   "started": "2026-10-16T11:27:15Z",
+   "ended": "2026-10-16T11:30:51Z"
   }
  ],
  "packages": [],
