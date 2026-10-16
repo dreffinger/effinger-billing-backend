@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-16T2123Z",
+ "stamp": "2026-10-16T2322Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 3 checks $447.12 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38968960977",
- "started": "2026-10-16T21:23:02Z",
- "ended": "2026-10-16T21:29:03Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38981075214",
+ "started": "2026-10-16T23:22:34Z",
+ "ended": "2026-10-16T23:28:46Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 3,
-    "unposted": 447.12
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 447.12,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 308677.37,
-   "visits": 3183,
+   "total": 308454.68,
+   "visits": 3174,
    "charts": 576,
    "over_365": {
     "n": 1078,
@@ -62,10 +62,10 @@
    }
   },
   "denials": {
-   "visits": 7318,
+   "visits": 7326,
    "actionable": 77,
    "actionable_amt": 13999.0,
-   "asof": "2026-10-16 21:29 UTC"
+   "asof": "2026-10-16 23:28 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1058 helpers into /home/claude/unbilled",
+   "summary": "1065 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1058,
-    "registers": 1108,
+    "helpers copied": 1065,
+    "registers": 1119,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T21:23:02Z",
-   "ended": "2026-10-16T21:23:02Z"
+   "started": "2026-10-16T23:22:34Z",
+   "ended": "2026-10-16T23:22:39Z"
   },
   {
    "name": "columns",
@@ -121,53 +121,28 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T21:23:02Z",
-   "ended": "2026-10-16T21:24:47Z"
+   "started": "2026-10-16T23:22:39Z",
+   "ended": "2026-10-16T23:24:34Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "3 checks / $447.12 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks dismissed": 3,
+    "era_post lines": 0,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 447.12,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 447.12
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053196,
-     "payer": "HUMANA",
-     "checknumber": "NO-PAY-202610150005875",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053197,
-     "payer": "HUMANA",
-     "checknumber": "203380621261016",
-     "amount": 0.0,
-     "unposted": 447.12,
-     "stage": "before"
-    },
-    {
-     "check": 1053198,
-     "payer": "SUNSHINE STATE HEALTH PLAN",
-     "checknumber": "X319813934",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-10-16T21:24:47Z",
-   "ended": "2026-10-16T21:25:06Z"
+   "started": "2026-10-16T23:24:34Z",
+   "ended": "2026-10-16T23:24:36Z"
   },
   {
    "name": "packages",
@@ -178,21 +153,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T21:25:06Z",
-   "ended": "2026-10-16T21:25:06Z"
+   "started": "2026-10-16T23:24:36Z",
+   "ended": "2026-10-16T23:24:36Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3183 visits on 576 charts, $308677.37 open; 1078 over a year ($48357.63)",
+   "summary": "3174 visits on 576 charts, $308454.68 open; 1078 over a year ($48357.63)",
    "counts": {
-    "visits": 3183,
+    "visits": 3174,
     "charts": 576,
     "over 365 days": 1078
    },
    "dollars": {
-    "open insurance balance": 308677.37,
+    "open insurance balance": 308454.68,
     "over 365 days": 48357.63
    },
    "lines": [
@@ -227,8 +202,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 141,
-     "dollars": 12375.14,
+     "visits": 134,
+     "dollars": 12196.05,
      "oldest_days": 1286
     },
     {
@@ -282,22 +257,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T21:25:06Z",
-   "ended": "2026-10-16T21:25:09Z"
+   "started": "2026-10-16T23:24:36Z",
+   "ended": "2026-10-16T23:24:38Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7318 denied visits on 861 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4260, RESUBMITTED 158, OPEN 218",
+   "summary": "7326 denied visits on 861 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4268, RESUBMITTED 158, OPEN 218",
    "counts": {
     "charts read": 861,
-    "denial lines": 12426,
-    "visits": 7318,
+    "denial lines": 12437,
+    "visits": 7326,
     "actionable": 77,
     "inside 12 months": 73,
     "status WRITTEN-OFF": 2682,
-    "status RESOLVED": 4260,
+    "status RESOLVED": 4268,
     "status RESUBMITTED": 158,
     "status OPEN": 218
    },
@@ -305,7 +280,7 @@
     "actionable": 13999.0,
     "inside 12 months": 13279.0,
     "resubmitted": 26488.33,
-    "resolved since": 640649.26
+    "resolved since": 641908.34
    },
    "lines": [
     {
@@ -334,14 +309,14 @@
     },
     {
      "disposition": "DUPLICATE",
-     "visits": 485,
-     "dollars": 92916.0,
-     "patients": 216
+     "visits": 486,
+     "dollars": 93226.0,
+     "patients": 217
     },
     {
      "disposition": "INFO",
-     "visits": 453,
-     "dollars": 75655.35,
+     "visits": 458,
+     "dollars": 76455.35,
      "patients": 47
     },
     {
@@ -358,8 +333,8 @@
     },
     {
      "disposition": "CONTRACTUAL",
-     "visits": 495,
-     "dollars": 34284.11,
+     "visits": 497,
+     "dollars": 34433.19,
      "patients": 69
     },
     {
@@ -370,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T21:25:09Z",
-   "ended": "2026-10-16T21:29:03Z"
+   "started": "2026-10-16T23:24:38Z",
+   "ended": "2026-10-16T23:28:46Z"
   }
  ],
  "packages": [],

@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-16T21:25:09Z",
+ "at": "2026-10-16T23:24:37Z",
  "as_of": "2026-10-16",
- "total": 308677.37,
- "visits": 3183,
+ "total": 308454.68,
+ "visits": 3174,
  "charts": 576,
  "over_365": {
   "n": 1078,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 553,
-   "dollars": 88818.58
+   "n": 545,
+   "dollars": 88644.18
   },
   "31-60": {
    "n": 187,
@@ -27,8 +27,8 @@
    "dollars": 46459.41
   },
   "181-365": {
-   "n": 741,
-   "dollars": 89032.23
+   "n": 740,
+   "dollars": 88983.94
   },
   "over 365": {
    "n": 1078,
@@ -99,14 +99,14 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 141,
-   "dollars": 12375.14,
+   "n": 134,
+   "dollars": 12196.05,
    "buckets": {
-    "0-30": 7089.79,
+    "0-30": 6958.99,
     "31-60": 273.74,
     "61-90": 361.86,
     "91-180": 1343.88,
-    "181-365": 889.32,
+    "181-365": 841.03,
     "over 365": 2416.55
    },
    "oldest_days": 1286
@@ -324,10 +324,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 24,
-   "dollars": 1530.59,
+   "n": 22,
+   "dollars": 1486.99,
    "buckets": {
-    "0-30": 1062.39,
+    "0-30": 1018.79,
     "31-60": 220.2,
     "61-90": 0.0,
     "91-180": 141.0,
@@ -705,8 +705,8 @@
   },
   {
    "month": "2025-12",
-   "n": 118,
-   "dollars": 16106.69
+   "n": 117,
+   "dollars": 16058.4
   },
   {
    "month": "2026-01",
@@ -750,8 +750,8 @@
   },
   {
    "month": "2026-09",
-   "n": 379,
-   "dollars": 48445.22
+   "n": 371,
+   "dollars": 48270.82
   },
   {
    "month": "2026-10",
@@ -12021,14 +12021,6 @@
    "dos": "2025-12-12"
   },
   {
-   "visitid": 19426363,
-   "patientid": 17472784,
-   "carriercode": "HUM01",
-   "insbalance": 48.29,
-   "days": 308,
-   "dos": "2025-12-12"
-  },
-  {
    "visitid": 19426117,
    "patientid": 17474913,
    "carriercode": "TRI05",
@@ -22789,14 +22781,6 @@
    "dos": "2026-09-19"
   },
   {
-   "visitid": 19455211,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
-   "insbalance": 21.8,
-   "days": 27,
-   "dos": "2026-09-19"
-  },
-  {
    "visitid": 19455208,
    "patientid": 17470940,
    "carriercode": "UNI20",
@@ -23597,14 +23581,6 @@
    "dos": "2026-09-20"
   },
   {
-   "visitid": 19455461,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
-   "insbalance": 21.8,
-   "days": 26,
-   "dos": "2026-09-20"
-  },
-  {
    "visitid": 19455794,
    "patientid": 17472124,
    "carriercode": "FLO99",
@@ -23800,14 +23776,6 @@
    "visitid": 19455886,
    "patientid": 23969,
    "carriercode": "CIG09",
-   "insbalance": 21.8,
-   "days": 25,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19455889,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
    "insbalance": 21.8,
    "days": 25,
    "dos": "2026-09-21"
@@ -24029,14 +23997,6 @@
    "dos": "2026-09-22"
   },
   {
-   "visitid": 19455869,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
-   "insbalance": 21.8,
-   "days": 24,
-   "dos": "2026-09-22"
-  },
-  {
    "visitid": 19456051,
    "patientid": 17470881,
    "carriercode": "MCAD",
@@ -24181,25 +24141,9 @@
    "dos": "2026-09-23"
   },
   {
-   "visitid": 19456280,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
-   "insbalance": 21.8,
-   "days": 23,
-   "dos": "2026-09-23"
-  },
-  {
    "visitid": 19456287,
    "patientid": 46692,
    "carriercode": "MCAD",
-   "insbalance": 21.8,
-   "days": 23,
-   "dos": "2026-09-23"
-  },
-  {
-   "visitid": 19456269,
-   "patientid": 20729,
-   "carriercode": "SUN01",
    "insbalance": 21.8,
    "days": 23,
    "dos": "2026-09-23"
@@ -24365,25 +24309,9 @@
    "dos": "2026-09-24"
   },
   {
-   "visitid": 19456262,
-   "patientid": 17475638,
-   "carriercode": "HUM01",
-   "insbalance": 21.8,
-   "days": 22,
-   "dos": "2026-09-24"
-  },
-  {
    "visitid": 19456263,
    "patientid": 46692,
    "carriercode": "MCAD",
-   "insbalance": 21.8,
-   "days": 22,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456249,
-   "patientid": 20729,
-   "carriercode": "SUN01",
    "insbalance": 21.8,
    "days": 22,
    "dos": "2026-09-24"
