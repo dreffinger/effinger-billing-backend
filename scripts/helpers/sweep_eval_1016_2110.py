@@ -1,9 +1,9 @@
-# PLAIN ENGLISH (UNI20/BCBS pre-5/1 pass 119, run 2026-10-16T2110Z): READ-ONLY evaluation of claimstatus_20261016.json -
+# PLAIN ENGLISH (UNI20/BCBS pre-5/1 pass 120, run 2026-10-16T2110Z): READ-ONLY evaluation of claimstatus_20261016.json -
 # counts the answers, copies them to the pass register, and for every NOT-ON-FILE row reads the charge's live billdate
 # (gettxhistory via txh.fetch_visit) so a D0 inside 30 days of the last send is 'not yet on file', never a candidate.
 # Decides nothing, writes nothing in AdvancedMD. Output: registers/uni20_bcbs_pre0501_sweep_2026-10-16T0310Z.json + a summary.
 import json, datetime, collections, txh, amd
-S="2026-10-16T2110Z"; rows=json.load(open("claimstatus_20261016.json"))
+S="2026-10-16T2310Z"; rows=json.load(open("claimstatus_20261016.json"))
 json.dump(rows, open("registers/uni20_bcbs_pre0501_sweep_%s.json"%S,"w"), indent=1)
 watch=json.load(open("/home/claude/effinger-billing-backend/practices/ehpa/registers/tf_writeoff_watch.json"))
 wv={str(v.get("vid")) for it in watch.get("items",[]) for v in it.get("visits",[])}

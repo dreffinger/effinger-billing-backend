@@ -1,0 +1,2 @@
+## 2026-10-16T2310Z - backend billing run, 7 PM ET 10/16/2026 (ehpa cloud, repo attached) - additions
+- No new call shapes this run. Calls used (all already in the registry): login_cached, getclaimcenteroverview + the four Claims Center list calls (columns_scan.py), getdemographic (live_read), lookuppatient (admit_lookup), getclaimexclusioncharges, GET /api/era/checks (era_list.py before/after), EligibilityDetailsLegacy/checkEligibility (elig_amd.py on one chart), Stedi 270/271 (precheck.py --days 3) and Stedi 276/277 (claim_status_sweep.py pass 120). No AMD write.
