@@ -1399,6 +1399,23 @@
    "status": "done",
    "answer": "2026-10-16T11:55Z superseded - already settled by run 2026-10-16T0710Z (WOCLTREQ 104.91 on the 6 charges, check EXCL1016, rows completed; Aetna secondary dead, patient deceased) before this card was written: the 0510Z session was suspended 05:40-11:48Z. Nothing to approve.",
    "note": "superseded by run 2026-10-16T0710Z (stale card from a suspended session)"
+  },
+  {
+   "id": "A-2026-10-16T1110Z-A",
+   "stamp": "2026-10-16T1110Z",
+   "at": "2026-10-16T11:33:00Z",
+   "run": "backend billing run 2026-10-16T1110Z",
+   "cmd": "cd /home/claude/unbilled && python3 excl_1016_1110.py --live --only A",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Modify Shared Resources]. (excl_1016_1110.py --live --only A, 11:29Z; section B - the same write-off + hideexclusions shape on chart 17475638 - was allowed one minute later)",
+   "what": "Exclusions column, claim run 1700302: chart 23456 v19367114 (99223 + 99497 10/10/2023) - the secondary claim 19367114B that the 10/13 patient-balance execution sent to Humana came back 'ACK, RETURNED AS UNPROCESSABLE - ENTITY NOT FOUND: PATIENT'. Live read: Medicare (FLO02) paid both charges 12/02/2023, the 99223 is at $0, and the 99497 (charge 22433701) holds exactly the Medicare coinsurance $15.16 that Humana already answered $0 NO-PAY on 12/02/2023; no patient balance; Humana is INACTIVE. Write-off WOCLTREQ 15.16 on charge 22433701 under HUM01 (check EXCL1016A, dated note), then hideexclusions run 1700302 for visit 19367114 / claim 19367114B.",
+   "dollars": "$15.16",
+   "evidence_file": "registers/excl_reads_2026-10-16T1110Z.json",
+   "evidence": "dry run 11:28Z: 1 visit settles, {\"WOCLTREQ\": 15.16}, 0 holds; the 99497 carries the Medicare primary payment and no patient balance",
+   "ui": "AdvancedMD Payment Entry: open visit 19367114 (DOS 10/10/2023), Insurance payment, carrier HUM01, pay $0.00, write off the open insurance balance $15.16 on the 99497 line with code WOCLTREQ, check # EXCL1016A; then Claims Center > Exclusions > run 1700302 > check the row for visit 19367114 (claim 19367114B) > Complete.",
+   "status": "approved",
+   "answer": "approved on the page 2026-10-16T11:44:41Z (answeredBy page)",
+   "note": "applying 2026-10-16T1310Z",
+   "added_by": "backend billing run 2026-10-16T1310Z (the 1110Z run's register append was refused by the classifier; item re-created from the page card)"
   }
  ]
 }
