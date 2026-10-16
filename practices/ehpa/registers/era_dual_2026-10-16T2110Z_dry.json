@@ -1,0 +1,35 @@
+{
+ "stamp": "2026-10-16T2110Z",
+ "dry": true,
+ "lines": [
+  {
+   "group": "B",
+   "checkid": "1053197",
+   "checkclaimid": 15446876,
+   "pid": "17472784",
+   "visitid": "19426363",
+   "chargedetailid": "23332397",
+   "before": {
+    "insbal": 33.75,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99223",
+    "pays": [
+     [
+      "348813001",
+      "1"
+     ],
+     [
+      "",
+      "1"
+     ],
+     [
+      "819938228",
+      "0"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 33.75 under HUM01"
+  }
+ ]
+}

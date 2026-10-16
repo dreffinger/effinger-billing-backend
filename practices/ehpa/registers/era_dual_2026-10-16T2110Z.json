@@ -1,0 +1,44 @@
+{
+ "stamp": "2026-10-16T2110Z",
+ "dry": false,
+ "lines": [
+  {
+   "group": "B",
+   "checkid": "1053197",
+   "checkclaimid": 15446876,
+   "pid": "17472784",
+   "visitid": "19426363",
+   "chargedetailid": "23332397",
+   "before": {
+    "insbal": 33.75,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99223",
+    "pays": [
+     [
+      "348813001",
+      "1"
+     ],
+     [
+      "",
+      "1"
+     ],
+     [
+      "819938228",
+      "0"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 33.75,
+   "wocode": "WOCAID2ND",
+   "paymentid": "10175589",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 14:30:19\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "17478059": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17478063": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17478064": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17475638": {
+  "plans": [
+   {
+    "ins": "ins9517113",
+    "carrier": "car6285",
+    "begin": "04/05/2023",
+    "end": "",
+    "seq": "1",
+    "idshape": "mixed len 9",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9517114",
+    "carrier": "car6062",
+    "begin": "04/05/2022",
+    "end": "",
+    "seq": "2",
+    "idshape": "mixed len 12",
+    "coverage": "2"
+   },
+   {
+    "ins": "ins9517115",
+    "carrier": "car6085",
+    "begin": "04/05/2022",
+    "end": "",
+    "seq": "3",
+    "idshape": "MBI-shaped",
+    "coverage": "3"
+   }
+  ],
+  "insorder": "3,1"
+ },
+ "23969": {
+  "plans": [
+   {
+    "ins": "ins8012",
+    "carrier": "car6085",
+    "begin": "07/22/2022",
+    "end": "",
+    "seq": "1",
+    "idshape": "MBI-shaped",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins2246",
+    "carrier": "car6687",
+    "begin": "07/22/2022",
+    "end": "",
+    "seq": "2",
+    "idshape": "mixed len 11",
+    "coverage": "2"
+   },
+   {
+    "ins": "ins9520805",
+    "carrier": "car6600",
+    "begin": "01/01/2025",
+    "end": "09/15/2026",
+    "seq": "3",
+    "idshape": "9digits(SSN-shaped)",
+    "coverage": "2"
+   },
+   {
+    "ins": "ins9520861",
+    "carrier": "car6687",
+    "begin": "07/22/2022",
+    "end": "",
+    "seq": "4",
+    "idshape": "mixed len 11",
+    "coverage": "2"
+   }
+  ],
+  "insorder": "1,4"
+ },
+ "17472784": {
+  "plans": [
+   {
+    "ins": "ins9512252",
+    "carrier": "car6085",
+    "begin": "01/29/2024",
+    "end": "",
+    "seq": "1",
+    "idshape": "MBI-shaped",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9512253",
+    "carrier": "car6285",
+    "begin": "07/29/2024",
+    "end": "",
+    "seq": "2",
+    "idshape": "10digits",
+    "coverage": "2"
+   }
+  ],
+  "insorder": "1,2"
+ },
+ "17475321": {
+  "plans": [
+   {
+    "ins": "ins9516307",
+    "carrier": "car6085",
+    "begin": "02/02/2024",
+    "end": "",
+    "seq": "1",
+    "idshape": "MBI-shaped",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9516308",
+    "carrier": "car6285",
+    "begin": "02/02/2023",
+    "end": "",
+    "seq": "2",
+    "idshape": "mixed len 9",
+    "coverage": "2"
+   }
+  ],
+  "insorder": "1,2"
+ },
+ "20729": {
+  "plans": [
+   {
+    "ins": "ins4580",
+    "carrier": "car6085",
+    "begin": "07/22/2022",
+    "end": "",
+    "seq": "1",
+    "idshape": "MBI-shaped",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9520651",
+    "carrier": "car6194",
+    "begin": "09/01/2026",
+    "end": "",
+    "seq": "2",
+    "idshape": "10digits",
+    "coverage": "1"
+   }
+  ],
+  "insorder": "1,2"
+ },
+ "17477972": {
+  "plans": [
+   {
+    "ins": "ins9520719",
+    "carrier": "car6285",
+    "begin": "03/01/2026",
+    "end": "",
+    "seq": "1",
+    "idshape": "mixed len 9",
+    "coverage": "1"
+   }
+  ],
+  "insorder": "1"
+ }
+}
