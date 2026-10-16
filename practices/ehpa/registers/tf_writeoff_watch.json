@@ -801,7 +801,7 @@
      "dos": "2025-11-05",
      "cpt": "99309",
      "dollars": 141.0,
-     "outcome": "sending 2026-10-16T1310Z"
+     "outcome": "sent 2026-10-16T1310Z (freq1_visit.reroute order 1,2 seq 1 -> 204)"
     }
    ]
   }
