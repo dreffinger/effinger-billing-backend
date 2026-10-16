@@ -19,7 +19,7 @@ DENIAL_RULES = {
  "181": ("FIX",  "Procedure code invalid on DOS - recode, rebill"),
  "197": ("FIX",  "Auth/precert absent - attach the auth (facesheet/VA), rebill; no auth -> hold, do not bill"),
  "288": ("FIX",  "Referral absent - obtain referral, rebill"),
- "B9":  ("FIX",  "Hospice - William 9/12: rebill Medicare with GV modifier (only if DOS within 12 months; older = untimely write-off)"),
+ "B9":  ("FIX",  "Hospice - William 9/12: rebill Medicare with GV modifier (only if DOS within 12 months; older = untimely write-off). CCM codes are the exception: a CCM line denied B9, or denied after going out with GV, is written off WONCS - William 10/15/2026 (see triage_line)"),
  "226": ("FIX",  "Records requested from provider - William follows up from the list (no auto action)"),
  "227": ("FIX",  "Info requested from patient not furnished - follow up"),
  "252": ("FIX",  "Attachment/document required - resubmit with the attachment"),
@@ -54,8 +54,12 @@ DENIAL_RULES = {
  "94":  ("INFO","Processed in excess/duplicate of charges - informational"),
  "253 ":("INFO","Sequestration - informational"),
 }
-DISPO_ORDER = ["FIX","COB","TIMELY","CRED","REVIEW","PATIENT","DUPLICATE","CONTRACTUAL","INFO","UNCLASSIFIED"]
-ACTIONABLE = {"FIX","COB","TIMELY","CRED","REVIEW"}
+DISPO_ORDER = ["FIX","COB","TIMELY","WRITEOFF","CRED","REVIEW","PATIENT","DUPLICATE","CONTRACTUAL","INFO","UNCLASSIFIED"]
+ACTIONABLE = {"FIX","COB","TIMELY","WRITEOFF","CRED","REVIEW"}
+# CCM / care-management codes: a denied CCM line on a hospice patient is never appealed or rebilled (William 10/15/2026:
+# "ccm denied with gv modifier write off, ccm isn't covered for hospice patients"). Evidence the same night: Medicare DOES pay
+# CCM billed with GV (17 of 29 CCM-GV visits on the unpaid list were paid in Oct 2026), so the rule is about the DENIED ones.
+CCM_CODES = {"99490", "99491", "99487", "99489", "99439", "99437", "G0506", "G0511", "99424", "99425", "99426", "99427"}
 
 def norm(carc):
     """AMD reasoncode carries a doubled group prefix: 'CO18'->'18', 'COA1'->'A1', 'PI29'->'29'. Strip one leading group token."""
@@ -72,6 +76,14 @@ def triage(carc):
     code = norm(carc)
     if code in DENIAL_RULES: return DENIAL_RULES[code]
     return ("UNCLASSIFIED", "No rule yet for CARC %s - review and add to DENIAL_RULES" % code)
+
+def triage_line(carc, cpt="", mods=""):
+    """CPT-aware triage (10/15/2026): a CCM line denied CO-B9, or denied (any non-informational, non-cost-share CARC) after it went
+    out carrying the GV hospice modifier, is a WONCS write-off - no appeal, no rebill (William 10/15/2026). Everything else = triage(carc)."""
+    code = norm(carc); c = str(cpt or "").strip().upper(); m = str(mods or "").upper()
+    if c in CCM_CODES and (code == "B9" or ("GV" in m and code not in ("45", "253", "23", "94", "1", "2", "3"))):
+        return ("WRITEOFF", "CCM denied on a hospice patient (%s%s) -> WONCS, no appeal (William 10/15/2026: CCM denied with GV / CO-B9 is written off)" % ("GV, " if "GV" in m else "", code))
+    return triage(carc)
 
 def amd_status(visits):
     """Cross-check each denied visit against AMD: RESOLVED (a real payment posted), WRITTEN-OFF, OPEN. Cached per patient.

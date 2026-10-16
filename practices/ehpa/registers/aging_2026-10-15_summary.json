@@ -1,0 +1,1717 @@
+{
+ "asof": "2026-10-15",
+ "visits": 3234,
+ "total": 316920.43,
+ "patients": 580,
+ "missing_txh": 0,
+ "by_payer": {
+  "FLO02": {
+   "visits": 1653,
+   "amt": 156927.93,
+   "buckets": {
+    "0-30": {
+     "n": 354,
+     "amt": 63432.51
+    },
+    "31-60": {
+     "n": 632,
+     "amt": 52977.99
+    },
+    "61-90": {
+     "n": 25,
+     "amt": 5183.0
+    },
+    "91-120": {
+     "n": 18,
+     "amt": 2833.87
+    },
+    "over 120": {
+     "n": 624,
+     "amt": 32500.56
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 415,
+     "amt": 86439.65
+    },
+    "CORRECT & RESEND": {
+     "n": 519,
+     "amt": 35188.04
+    },
+    "WRITE OFF": {
+     "n": 719,
+     "amt": 35300.24
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "UNI20": {
+   "visits": 311,
+   "amt": 48731.97,
+   "buckets": {
+    "0-30": {
+     "n": 218,
+     "amt": 33442.62
+    },
+    "31-60": {
+     "n": 48,
+     "amt": 5973.39
+    },
+    "61-90": {
+     "n": 1,
+     "amt": 141.0
+    },
+    "91-120": {
+     "n": 5,
+     "amt": 705.0
+    },
+    "over 120": {
+     "n": 39,
+     "amt": 8469.96
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 231,
+     "amt": 34719.1
+    },
+    "CORRECT & RESEND": {
+     "n": 65,
+     "amt": 11351.91
+    },
+    "WRITE OFF": {
+     "n": 15,
+     "amt": 2660.96
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "FLO99": {
+   "visits": 148,
+   "amt": 22856.8,
+   "buckets": {
+    "0-30": {
+     "n": 147,
+     "amt": 22541.8
+    },
+    "31-60": {
+     "n": 1,
+     "amt": 315.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 140,
+     "amt": 21636.8
+    },
+    "CORRECT & RESEND": {
+     "n": 6,
+     "amt": 798.0
+    },
+    "WRITE OFF": {
+     "n": 2,
+     "amt": 422.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "BCBS": {
+   "visits": 316,
+   "amt": 20017.62,
+   "buckets": {
+    "0-30": {
+     "n": 253,
+     "amt": 8863.71
+    },
+    "31-60": {
+     "n": 51,
+     "amt": 10864.24
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 12,
+     "amt": 289.67
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 248,
+     "amt": 9751.61
+    },
+    "CORRECT & RESEND": {
+     "n": 44,
+     "amt": 9607.31
+    },
+    "WRITE OFF": {
+     "n": 24,
+     "amt": 658.7
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "HUM01": {
+   "visits": 155,
+   "amt": 12548.85,
+   "buckets": {
+    "0-30": {
+     "n": 118,
+     "amt": 9511.96
+    },
+    "31-60": {
+     "n": 19,
+     "amt": 1001.99
+    },
+    "61-90": {
+     "n": 4,
+     "amt": 270.3
+    },
+    "91-120": {
+     "n": 1,
+     "amt": 113.02
+    },
+    "over 120": {
+     "n": 13,
+     "amt": 1651.58
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 94,
+     "amt": 8657.22
+    },
+    "CORRECT & RESEND": {
+     "n": 13,
+     "amt": 1443.91
+    },
+    "WRITE OFF": {
+     "n": 48,
+     "amt": 2447.72
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "CAP07": {
+   "visits": 55,
+   "amt": 10610.24,
+   "buckets": {
+    "0-30": {
+     "n": 29,
+     "amt": 5932.18
+    },
+    "31-60": {
+     "n": 8,
+     "amt": 1610.0
+    },
+    "61-90": {
+     "n": 1,
+     "amt": 204.0
+    },
+    "91-120": {
+     "n": 2,
+     "amt": 422.0
+    },
+    "over 120": {
+     "n": 15,
+     "amt": 2442.06
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 30,
+     "amt": 6110.0
+    },
+    "CORRECT & RESEND": {
+     "n": 17,
+     "amt": 3665.34
+    },
+    "WRITE OFF": {
+     "n": 8,
+     "amt": 834.9
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "UHCMA": {
+   "visits": 29,
+   "amt": 5081.97,
+   "buckets": {
+    "0-30": {
+     "n": 21,
+     "amt": 3919.38
+    },
+    "31-60": {
+     "n": 6,
+     "amt": 999.22
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 2,
+     "amt": 163.37
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 21,
+     "amt": 3953.0
+    },
+    "CORRECT & RESEND": {
+     "n": 6,
+     "amt": 741.0
+    },
+    "WRITE OFF": {
+     "n": 2,
+     "amt": 387.97
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "AET07": {
+   "visits": 44,
+   "amt": 4517.83,
+   "buckets": {
+    "0-30": {
+     "n": 31,
+     "amt": 3275.57
+    },
+    "31-60": {
+     "n": 6,
+     "amt": 1124.04
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 7,
+     "amt": 118.22
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 30,
+     "amt": 3589.3
+    },
+    "CORRECT & RESEND": {
+     "n": 11,
+     "amt": 821.26
+    },
+    "WRITE OFF": {
+     "n": 3,
+     "amt": 107.27
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "CIG09": {
+   "visits": 28,
+   "amt": 4074.61,
+   "buckets": {
+    "0-30": {
+     "n": 17,
+     "amt": 2455.61
+    },
+    "31-60": {
+     "n": 11,
+     "amt": 1619.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 26,
+     "amt": 3653.61
+    },
+    "CORRECT & RESEND": {
+     "n": 2,
+     "amt": 421.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "MCAD": {
+   "visits": 44,
+   "amt": 4018.81,
+   "buckets": {
+    "0-30": {
+     "n": 44,
+     "amt": 4018.81
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 43,
+     "amt": 3877.81
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 1,
+     "amt": 141.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "SIM01": {
+   "visits": 19,
+   "amt": 3231.12,
+   "buckets": {
+    "0-30": {
+     "n": 15,
+     "amt": 2465.12
+    },
+    "31-60": {
+     "n": 4,
+     "amt": 766.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 18,
+     "amt": 3098.12
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 1,
+     "amt": 133.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "TRI05": {
+   "visits": 96,
+   "amt": 3105.91,
+   "buckets": {
+    "0-30": {
+     "n": 77,
+     "amt": 2022.93
+    },
+    "31-60": {
+     "n": 18,
+     "amt": 1067.28
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 1,
+     "amt": 15.7
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 62,
+     "amt": 2348.48
+    },
+    "CORRECT & RESEND": {
+     "n": 1,
+     "amt": 15.7
+    },
+    "WRITE OFF": {
+     "n": 33,
+     "amt": 741.73
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "WEL04": {
+   "visits": 35,
+   "amt": 3045.73,
+   "buckets": {
+    "0-30": {
+     "n": 17,
+     "amt": 2645.34
+    },
+    "31-60": {
+     "n": 18,
+     "amt": 400.39
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 35,
+     "amt": 3045.73
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "VACCN": {
+   "visits": 19,
+   "amt": 2618.62,
+   "buckets": {
+    "0-30": {
+     "n": 7,
+     "amt": 319.4
+    },
+    "31-60": {
+     "n": 11,
+     "amt": 2222.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 1,
+     "amt": 77.22
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 15,
+     "amt": 2453.64
+    },
+    "CORRECT & RESEND": {
+     "n": 1,
+     "amt": 77.22
+    },
+    "WRITE OFF": {
+     "n": 3,
+     "amt": 87.76
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "UMR": {
+   "visits": 14,
+   "amt": 2050.0,
+   "buckets": {
+    "0-30": {
+     "n": 11,
+     "amt": 1420.0
+    },
+    "31-60": {
+     "n": 3,
+     "amt": 630.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 14,
+     "amt": 2050.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "AET12": {
+   "visits": 50,
+   "amt": 1854.51,
+   "buckets": {
+    "0-30": {
+     "n": 50,
+     "amt": 1854.51
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 50,
+     "amt": 1854.51
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "TRI00": {
+   "visits": 8,
+   "amt": 1785.0,
+   "buckets": {
+    "0-30": {
+     "n": 1,
+     "amt": 141.0
+    },
+    "31-60": {
+     "n": 7,
+     "amt": 1644.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 8,
+     "amt": 1785.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "AMB03": {
+   "visits": 15,
+   "amt": 1680.2,
+   "buckets": {
+    "0-30": {
+     "n": 8,
+     "amt": 1038.66
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 7,
+     "amt": 641.54
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 8,
+     "amt": 1038.66
+    },
+    "CORRECT & RESEND": {
+     "n": 7,
+     "amt": 641.54
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "AAR01": {
+   "visits": 62,
+   "amt": 1668.2,
+   "buckets": {
+    "0-30": {
+     "n": 62,
+     "amt": 1668.2
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 61,
+     "amt": 1609.24
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 1,
+     "amt": 58.96
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "SUN01": {
+   "visits": 24,
+   "amt": 1530.59,
+   "buckets": {
+    "0-30": {
+     "n": 19,
+     "amt": 1310.39
+    },
+    "31-60": {
+     "n": 5,
+     "amt": 220.2
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 22,
+     "amt": 1256.59
+    },
+    "CORRECT & RESEND": {
+     "n": 1,
+     "amt": 141.0
+    },
+    "WRITE OFF": {
+     "n": 1,
+     "amt": 133.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "FIR07": {
+   "visits": 8,
+   "amt": 1087.0,
+   "buckets": {
+    "0-30": {
+     "n": 8,
+     "amt": 1087.0
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 8,
+     "amt": 1087.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "WEL07": {
+   "visits": 4,
+   "amt": 704.0,
+   "buckets": {
+    "0-30": {
+     "n": 4,
+     "amt": 704.0
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 4,
+     "amt": 704.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "RET01": {
+   "visits": 4,
+   "amt": 609.18,
+   "buckets": {
+    "0-30": {
+     "n": 4,
+     "amt": 609.18
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 1,
+     "amt": 315.0
+    },
+    "CORRECT & RESEND": {
+     "n": 2,
+     "amt": 88.18
+    },
+    "WRITE OFF": {
+     "n": 1,
+     "amt": 206.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "CHA03": {
+   "visits": 29,
+   "amt": 565.05,
+   "buckets": {
+    "0-30": {
+     "n": 9,
+     "amt": 190.04
+    },
+    "31-60": {
+     "n": 2,
+     "amt": 66.69
+    },
+    "61-90": {
+     "n": 5,
+     "amt": 84.21
+    },
+    "91-120": {
+     "n": 9,
+     "amt": 166.59
+    },
+    "over 120": {
+     "n": 4,
+     "amt": 57.52
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 11,
+     "amt": 256.73
+    },
+    "CORRECT & RESEND": {
+     "n": 18,
+     "amt": 308.32
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "HIG06": {
+   "visits": 2,
+   "amt": 470.0,
+   "buckets": {
+    "0-30": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "31-60": {
+     "n": 2,
+     "amt": 470.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 2,
+     "amt": 470.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "GEH04": {
+   "visits": 44,
+   "amt": 447.99,
+   "buckets": {
+    "0-30": {
+     "n": 44,
+     "amt": 447.99
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 44,
+     "amt": 447.99
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "BCBS1": {
+   "visits": 2,
+   "amt": 421.0,
+   "buckets": {
+    "0-30": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "31-60": {
+     "n": 2,
+     "amt": 421.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "CORRECT & RESEND": {
+     "n": 2,
+     "amt": 421.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "LAN": {
+   "visits": 1,
+   "amt": 310.0,
+   "buckets": {
+    "0-30": {
+     "n": 1,
+     "amt": 310.0
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 1,
+     "amt": 310.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "COL07": {
+   "visits": 8,
+   "amt": 210.44,
+   "buckets": {
+    "0-30": {
+     "n": 8,
+     "amt": 210.44
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 8,
+     "amt": 210.44
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "MUT01": {
+   "visits": 5,
+   "amt": 71.91,
+   "buckets": {
+    "0-30": {
+     "n": 5,
+     "amt": 71.91
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 5,
+     "amt": 71.91
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  },
+  "CON08": {
+   "visits": 2,
+   "amt": 67.35,
+   "buckets": {
+    "0-30": {
+     "n": 2,
+     "amt": 67.35
+    },
+    "31-60": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "61-90": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "91-120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "over 120": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "unknown": {
+     "n": 0,
+     "amt": 0.0
+    }
+   },
+   "recs": {
+    "WAIT": {
+     "n": 2,
+     "amt": 67.35
+    },
+    "CORRECT & RESEND": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "WRITE OFF": {
+     "n": 0,
+     "amt": 0.0
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0.0
+    }
+   }
+  }
+ },
+ "by_bucket_sent": {
+  "0-30": {
+   "n": 1584,
+   "amt": 175977.61
+  },
+  "31-60": {
+   "n": 854,
+   "amt": 84392.43
+  },
+  "61-90": {
+   "n": 36,
+   "amt": 5882.51
+  },
+  "91-120": {
+   "n": 35,
+   "amt": 4240.48
+  },
+  "over 120": {
+   "n": 725,
+   "amt": 46427.4
+  },
+  "unknown": {
+   "n": 0,
+   "amt": 0
+  }
+ },
+ "by_bucket_dos": {
+  "0-30": {
+   "n": 582,
+   "amt": 94489.13
+  },
+  "31-60": {
+   "n": 184,
+   "amt": 21718.86
+  },
+  "61-90": {
+   "n": 187,
+   "amt": 19579.85
+  },
+  "91-120": {
+   "n": 144,
+   "amt": 16004.83
+  },
+  "over 120": {
+   "n": 2137,
+   "amt": 165127.76
+  },
+  "unknown": {
+   "n": 0,
+   "amt": 0
+  }
+ },
+ "by_rec": {
+  "WAIT": {
+   "n": 1644,
+   "amt": 206586.14
+  },
+  "CORRECT & RESEND": {
+   "n": 715,
+   "amt": 65730.73
+  },
+  "WRITE OFF": {
+   "n": 875,
+   "amt": 44603.56
+  },
+  "REVIEW": {
+   "n": 0,
+   "amt": 0
+  }
+ },
+ "by_rec_reason": {
+  "WAIT | sent N days ago - inside normal adjudication": {
+   "n": 726,
+   "amt": 142596.6
+  },
+  "WAIT | sent N days ago - watch": {
+   "n": 198,
+   "amt": 40665.1
+  },
+  "WAIT | secondary claim sent N days ago": {
+   "n": 719,
+   "amt": 23183.44
+  },
+  "WRITE OFF | primary paid, no secondary on the chart -> WOCLTREQ cost-share $X": {
+   "n": 162,
+   "amt": 18171.62
+  },
+  "CORRECT & RESEND | primary paid": {
+   "n": 441,
+   "amt": 17219.22
+  },
+  "CORRECT & RESEND | wrong-payer denial (27) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 67,
+   "amt": 13535.04
+  },
+  "WRITE OFF | primary paid, no secondary on the chart -> WOCLTREQ cost-share $X (10/13 rule: nothing stays on the patient)": {
+   "n": 553,
+   "amt": 12610.15
+  },
+  "CORRECT & RESEND | sent N days ago, no adjudication on file (10/13 rule) - verify the plan, fix and resend as original": {
+   "n": 53,
+   "amt": 9187.65
+  },
+  "CORRECT & RESEND | correctable denial (16): fix the flagged data, rebill as an original": {
+   "n": 46,
+   "amt": 8496.0
+  },
+  "WRITE OFF | primary claim unpaid > 12 months from DOS, no adjudication on file -> WOINS untimely (dated note)": {
+   "n": 32,
+   "amt": 6915.0
+  },
+  "CORRECT & RESEND | wrong-payer denial (22) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 11,
+   "amt": 3380.64
+  },
+  "WRITE OFF | secondary / cost-share balance": {
+   "n": 107,
+   "amt": 2569.44
+  },
+  "CORRECT & RESEND | denied (177) with nothing sent since - triage the CARC": {
+   "n": 11,
+   "amt": 2283.0
+  },
+  "WRITE OFF | primary claim unpaid > 12 months from DOS, no adjudication on file -> WOINS untimely (dated note) - backlog pa": {
+   "n": 8,
+   "amt": 1854.0
+  },
+  "CORRECT & RESEND | wrong-payer denial (204) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 6,
+   "amt": 1781.0
+  },
+  "CORRECT & RESEND | wrong-payer denial (26) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 7,
+   "amt": 1764.0
+  },
+  "CORRECT & RESEND | denied (39) with nothing sent since - triage the CARC": {
+   "n": 5,
+   "amt": 1484.0
+  },
+  "CORRECT & RESEND | wrong-payer denial (200) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 6,
+   "amt": 1437.0
+  },
+  "CORRECT & RESEND | denied (227) with nothing sent since - triage the CARC": {
+   "n": 5,
+   "amt": 1019.0
+  },
+  "CORRECT & RESEND | secondary unanswered N days: check status, resend as original (verify the plan is live first)": {
+   "n": 43,
+   "amt": 970.97
+  },
+  "WRITE OFF | CCM denied on a hospice patient (B9) -> WONCS, no appeal (10/15 rule: CCM denied with GV / CO-B9 is written of": {
+   "n": 3,
+   "amt": 945.0
+  },
+  "CORRECT & RESEND | credentialing/enrollment denial (242) - fix enrollment or write off": {
+   "n": 4,
+   "amt": 931.0
+  },
+  "CORRECT & RESEND | wrong-payer denial (204,27) -> insurance cascade (AMD 271 / Stedi), re-route, never patient balance": {
+   "n": 2,
+   "amt": 521.0
+  },
+  "CORRECT & RESEND | sent N days ago, no answer: claim-status check": {
+   "n": 2,
+   "amt": 516.0
+  },
+  "WRITE OFF | denied CO-29 timely filing -> WOLATE unless proof of timely submission exists": {
+   "n": 1,
+   "amt": 433.0
+  },
+  "WRITE OFF | primary paid, no secondary on the chart -> WOCAID2ND cost-share $X": {
+   "n": 3,
+   "amt": 340.33
+  },
+  "WRITE OFF | CCM denied on a hospice patient (GV, B9) -> WONCS, no appeal (10/15 rule: CCM denied with GV / CO-B9 is writte": {
+   "n": 2,
+   "amt": 331.29
+  },
+  "WRITE OFF | date of service is AFTER the date of death on Medicare's record (2026-08-06) - void/write off, never bill": {
+   "n": 1,
+   "amt": 315.0
+  },
+  "CORRECT & RESEND | denied (198) with nothing sent since - triage the CARC": {
+   "n": 1,
+   "amt": 310.0
+  },
+  "CORRECT & RESEND | sent N days ago, no adjudication on file (10/13 rule) - backlog payer: 277 / ConnectCenter check, then resend ": {
+   "n": 1,
+   "amt": 300.0
+  },
+  "CORRECT & RESEND | denied (275) with nothing sent since - triage the CARC": {
+   "n": 1,
+   "amt": 234.19
+  },
+  "CORRECT & RESEND | non-covered / medical-necessity / frequency denial (96): review the RARC": {
+   "n": 1,
+   "amt": 141.0
+  },
+  "WAIT | sent N days ago, no answer: backlog payer - pull the 277 before any rebill": {
+   "n": 1,
+   "amt": 141.0
+  },
+  "CORRECT & RESEND | sent N days ago, no answer - verify the plan, fix and resend as original": {
+   "n": 1,
+   "amt": 113.02
+  },
+  "CORRECT & RESEND | credentialing/enrollment denial (243) - fix enrollment or write off": {
+   "n": 1,
+   "amt": 107.0
+  },
+  "WRITE OFF | primary paid N days ago": {
+   "n": 1,
+   "amt": 72.97
+  },
+  "WRITE OFF | primary paid, no secondary on the chart -> WOCAID2ND cost-share $X (10/13 rule: nothing stays on the patient)": {
+   "n": 2,
+   "amt": 45.76
+  }
+ }
+}

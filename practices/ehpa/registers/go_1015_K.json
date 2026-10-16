@@ -1,0 +1,16 @@
+{
+ "step": "K",
+ "live": true,
+ "at": "2026-10-16T0236Z",
+ "log": [
+  "K CMS 271 re-check: errors [] partA 20161001 partB 20161001 death None MA entities []",
+  "K add_ins -> ins9520867 seq 1",
+  "K patient order 1 -> True insorder 1 via ins9520867 -> '1'",
+  "K v19457795 99223 -> hospitalizationfrom 10/12/2026 on ['99223']",
+  "K v19457795 resave vst19457795 live 1/1 insorder=1 onhcfa=1 hospfrom=10/12/2026",
+  "K v19457782 99232 -> hospitalizationfrom 10/12/2026 on ['99232']",
+  "K v19457782 resave vst19457782 live 1/1 insorder=1 onhcfa=1 hospfrom=10/12/2026",
+  "K release 19457795 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6",
+  "K release 19457782 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6"
+ ]
+}

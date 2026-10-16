@@ -1,0 +1,20 @@
+{
+ "step": "INSP",
+ "live": true,
+ "at": "2026-10-16T0246Z",
+ "log": [
+  "INSP void 23369701 (99489 on v19451190) -> True f-g4xbm\" lst=\"10/15/2026 19:46:14\"><Results success=\"1\" /><Error /></PPMDResults>",
+  "INSP WOCLTREQ 22430391 23.06 -> (True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\"",
+  "INSP inspector rows found: {'19451190': ('1', 2, 'ERROR'), '13979435': ('112737', 3, 'ERROR'), '13984519': ('112753', 3, 'ERROR'), '19364378': ('113116', 3, 'ERROR'), '19395738': ('113964', 2, 'ERROR')}",
+  "INSP bypass 19451190 ['396800', '396801'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/",
+  "INSP bypass 13979435 ['396474', '396475', '396476'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/",
+  "INSP bypass 13984519 ['396489', '396490', '396491'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/",
+  "INSP bypass 19364378 ['396435', '396436', '396437'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/",
+  "INSP bypass 19395738 ['396646', '396647'] -> <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/",
+  "INSP resave/approve 13979435 -> True resave vst13979435 live 1/1 insorder=2,1 onhcfa=0 hospfrom=03/08/2023",
+  "INSP resave/approve 13984519 -> True resave vst13984519 live 1/1 insorder=2,1 onhcfa=0 hospfrom=03/08/2023",
+  "INSP resave/approve 19395738 -> True resave vst19395738 live 1/1 insorder=2,1 onhcfa=0 hospfrom=None",
+  "INSP resave/approve 19451190 -> True resave vst19451190 live 1/1 insorder=1,2 onhcfa=0 hospfrom=None",
+  "INSP release 19364378 -> True"
+ ]
+}

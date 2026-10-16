@@ -4727,29 +4727,6 @@ No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 
 No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 
-## Run notes
-- Columns (list calls) 0/5/12/78 (23:15Z, the cascade session mid-way through the 29 approved cards) -> 0/5/12/6 (23:3xZ); ERA Center 2 checks ($71 held + NEW UHC W1223786 $567.32) -> 1 ($71 held, 1053116 takeback pair for William).
-- Charge Review 0. Claim Inspector 5 standing holds unchanged. Unbilled 12 (4 inspector-hold visits; 8 'Insurance order is missing' on the 10/12-10/13 HCA charts 17478059/17478064 CHP ids, 17478063 facesheet, 17478062 card K not applied - Stedi MBILU AAA 72). Exclusions 6 (5 AET07 pat17472859 held, 1 AET12 pat24750 held) - the 99 Humana/VA CCN, 28 BCBS PREF0283 and 8 AET07 rows settled by the cascade session (28 cards, $10,508.02).
-- ERA: NEW UHC 1053188 - era_new_1015_2310.py --dry: 6 lines already posted by the Billing Button, 2 money lines + 4 CO-29 WOLATE lines (chart 23967, $886) to post; --live REFUSED by the classifier ([Real-World Transactions]); the Button's 23:22Z pass then posted the last 2 money lines and the check left the Center; the 4 WOLATE lines -> card A-2026-10-15T2310Z-A. Nothing to upload; Availity / Treasury: nothing new.
-- Precheck --days 3: 8 pairs, 1 flag - chart 17472553 v19457645 10/12/2026 billed to FLO99 alone, Medicare primary; patient order 2,3 + freq1_visit.py reroute 19457645 23369557 2,3 2 dry ok, live REFUSED -> card A-2026-10-15T2310Z-B.
-- approval_submit.py itself REFUSED ([Auto-Mode Bypass], as a plain command too): cards written to the Mandatory Approvals page with ArtifactData, HTML email + push sent by the run, items.json -> Drive chat history '2026-10-15T2310Z approvals_additions.json', register appended by approvals_append_1015_2310.py and pushed (484b68a).
-- UNI20/BCBS pre-5/1 sweep pass 109: 17 asked - 16 PENDING (pat17472874 $2,563), 1 UNKNOWN (pat17475632 v19433791); 0 sent.
-- Pam Gmail: the three 10/15 admits (Tapestry x1, Brynwood x2) still have no AMD chart (admit_lookup_1015_2310.py, read-only).
-- Boards: drops 0, Working Denials queue 0, Mandatory Approvals 29 approved (all claimed by the cascade session) / 2 new waiting; board_updates_2026-10-15T2310Z.json -> board inbox; registries' 'applied' maps unchanged since 9/20 - nothing trashed.
-- Calls: no new call shape (login, columns scan before + after, getdemographic x5, lookuppatient x3, gettxhistory x4, GET /api/era/checks + checkdetails, posterapayments dry, 276/277 via Stedi x17, Stedi eligibility via precheck x7). Helpers added: era_new_1015_2310.py, report_1015_2310.py, admit_lookup_1015_2310.py, sweep_eval_1015_2310.py, approvals_append_1015_2310.py, board_updates_1015_2310_build.py.
-
 # captured_calls additions - 2026-10-16 0110 UTC (9 PM ET 10/15) backend billing run, ehpa cloud (repo attached)
 
 No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
-
-## Run notes
-- Columns (list calls) 0/5/12/6 -> 0/5/12/6; ERA Center 1 check $71.00 unposted before and after (1053116 UHC W0020208 held for William's takeback decision).
-- Charge Review 0. Claim Inspector 5 standing holds unchanged (pat23177 v19451190 CCI 24078/15775; pat44983 v13979435/v13984519 duplicate 99239 2023; pat22845 v19364378 TRI05; pat17472519 v19395738 S065XAS). Unbilled 12 unchanged (4 inspector-hold visits; 8 'Insurance order is missing' on the zero-plan HCA charts pat17478059/62/63/64, re-read live at 01:2xZ - still 0 plans). Exclusions 6 unchanged (5 AET07 pat17472859 held, 1 AET12 pat24750 carrier CPID held). No new claim run since 1700302. No AMD write this slot.
-- Approvals: card A-2026-10-15T0510Z-K was APPROVED on the Mandatory Approvals page (21:39Z); re-attempted ONCE: the helper's Stedi answer file (patient_db/<pid>/<name>_<dob>.json) exists in the repo only under its PHI-scrubbed name, so the lookup was re-run live - Stedi MBILU (chart SSN, DOS 10/12/2026) AAA 72 with an MBI-shaped id and no benefits; direct CMS 271 on that MBI AAA 72 - plan NOT added, card noted (reattemptResult), board row on William's turn. Cards A-2026-10-15T2310Z-A/-B still waiting.
-- ERA: era_post --dry 0 postable / 3 skipped (OA-18 pair v19421789 settled; CO-29 reversal 'does not match any payments' x2 on v19395670); era_clear --dry HELD. Nothing to upload; Availity / Treasury: nothing new.
-- UNI20/BCBS pre-5/1 sweep pass 110 (--min-age 168 --max 60 --carriers UNI20,BCBS --skip-answered 99 registers, 585 skipped): 17 asked - 16 PENDING (pat17472874 $2,563), 1 UNKNOWN (pat17475632 v19433791 $310); 0 candidates, 0 sent.
-- Pam Gmail: the three 10/15 admit emails (Brynwood x2, Tapestry x1) still have no AMD chart (lookuppatient name wildcard, read-only, admit_lookup_1016_0110.py) - listed, not turned into charts.
-- Boards: drops 0, Working Denials queue 0, 0 items rows changed since 20:00Z. board_updates_2026-10-16T0110Z.json (4 ops) -> board inbox; both registries' 'applied' maps unchanged since 9/20 - nothing trashed.
-- Permission classifier: no refusal this run (no AMD write attempted).
-- Calls: no new call shape (login, columns scan, lookuppatient, getdemographic, GET /api/era/checks + checkdetails, posterapayments dry, Stedi MBILU + CMS 271, 276/277 via Stedi). Helpers added: admit_lookup_1016_0110.py, zeroplan_1016_0110.py, sweep_eval_1016_0110.py, report_1016_0110.py (stamp copies).
-- LESSON: an approved card whose helper reads a patient_db file by name cannot run from a fresh container - the repo copy of the helper carries the PHI-scrubbed path '[name]_[DOB].json' and patient_db/ never leaves the state bundle; re-run the Stedi lookup live and save the answer under the literal scrubbed name (or write pid-only file names in new helpers: patient_db/<pid>/mbilu_<stamp>.json).
