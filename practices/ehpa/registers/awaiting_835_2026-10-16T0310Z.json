@@ -1,0 +1,26 @@
+{
+ "stamp": "2026-10-16T0310Z",
+ "rows": [
+  {
+   "pid": 21577,
+   "vid": 19389388,
+   "carrier": "BCBS",
+   "payer_claims": [
+    "2024272GC0720",
+    "2024277GC4794"
+   ],
+   "paid_per_277": 48.28,
+   "paid_dates": [
+    "2024-09-28",
+    "2024-10-09"
+   ],
+   "charges": [
+    "22460602",
+    "22460606",
+    "22460607"
+   ],
+   "open_ins_balance": 47.1,
+   "outcome": "awaiting-835 - Florida Blue Medigap paid in 2024 per the 277; no 835 in AMD and no Availity row on disk; PR2 15.70 x3 moved from the patient to BCBS seq 2 (no rebill - adjudicated claim)"
+  }
+ ]
+}

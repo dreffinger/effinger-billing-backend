@@ -4730,3 +4730,17 @@ No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
 # captured_calls additions - 2026-10-16 0110 UTC (9 PM ET 10/15) backend billing run, ehpa cloud (repo attached)
 
 No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+# captured_calls additions - 2026-10-16 0310 UTC (11 PM ET 10/15) backend billing run, ehpa cloud (repo attached)
+
+No new AdvancedMD or Stedi call shapes this run (0 vocabulary entries).
+
+## Run notes
+- Columns (list calls) 0/0/6/1 -> 0/0/6/1; ERA Center 0 unposted checks before and after (William's 10/15 evening chat cleared the inspector holds and the $71 UHC check).
+- Charge Review 0. Claim Inspector 0. Unbilled 6 = 'Insurance order is missing' on the three zero-plan HCA charts pat17478059 / pat17478063 / pat17478064 (re-read live 03:2xZ - still 0 plans; board rows on William's turn since 02:49Z: CHP member ids / HCA facesheet). Exclusions 1 = AET12 pat24750 PREF0288 carrier CPID hold. No new claim run since 1700302.
+- UNI20/BCBS pre-5/1 sweep pass 111 (--min-age 168 --max 60): 60 asked (TRAP: --skip-answered got a shell glob = only the first register, so 43 already-answered visits were re-asked - pass the registers comma-joined); 1 candidate v19362850 (pat17469033, 2023-08-11) NOT sent: its own payments are UHC's answer (paid 03/10/2024, recouped 09/08/2026 R1710425) - recorded answer-found in tf_writeoff_watch.json (item uni20-bcbs-pre0501-2026-10-16T0310Z); the takeback is William's decision.
+- Settled from the 277 answers (named helper co45_settle_1016_0310.py, --dry then --live, 5/5 success="1"): pat17472977 v19429034 UHC paid 1/21/2026 with CO45/CO253 never written off -> WOINS 84.17 + 75.98 (visit $0); pat21577 v19389388 Medicare-paid 99232 x3 -> WOINS 33.76 x3; the PR2 15.70 x3 had fallen to the PATIENT (visit insorder 1) while Florida Blue Medigap paid them in 2024 per the 277 -> move_to_ins.py --seq 1,2 --no-rebill (patient 47.10 -> BCBS insurance, no send; awaiting the 835 / Availity row, registers/awaiting_835_2026-10-16T0310Z.json). Total WOINS $261.43.
+- Other 277 answers listed, not acted on: pat17473477 v19420969 UHC 585 denied x2 (9/18, 9/25/2026, nothing posted - denial handling); pat17475541 v19433138 Florida Blue finalized $0 status 38 x3 (checks 213079631 / 213420173 - needs the Availity ClaimDetails).
+- Pam Gmail: the three 10/15 admit emails still have no AMD chart (lookuppatient 03:2xZ, read-only). Drive: nothing new in any watched folder. Boards: drops 0, Working Denials queue 0, 4 rows changed since 20:00Z (all by the 10/15 chat, on William's turn). Mandatory Approvals: 0 approved, 0 waiting (register all 89 done).
+- Permission classifier: ONE refusal - a read-only verification heredoc bundled with columns_scan after was refused [Modify Shared Resources]; re-run as the plain named helpers (columns_scan.py after, era_list.py after, verify_co45_1016_0310.py) - no AMD write was refused.
+- Helpers added (stamp copies / new): co45_settle_1016_0310.py, verify_co45_1016_0310.py, zeroplan_1016_0310.py, admit_lookup_1016_0310.py, sweep_eval_1016_0310.py.
