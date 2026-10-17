@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-16T2322Z",
+ "stamp": "2026-10-17T0130Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38981075214",
- "started": "2026-10-16T23:22:34Z",
- "ended": "2026-10-16T23:28:46Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38991151018",
+ "started": "2026-10-17T01:30:35Z",
+ "ended": "2026-10-17T01:36:16Z",
  "summary": {
   "columns": {
    "before": {
@@ -57,15 +57,15 @@
    "visits": 3174,
    "charts": 576,
    "over_365": {
-    "n": 1078,
-    "dollars": 48357.63
+    "n": 1083,
+    "dollars": 48664.82
    }
   },
   "denials": {
    "visits": 7326,
    "actionable": 77,
    "actionable_amt": 13999.0,
-   "asof": "2026-10-16 23:28 UTC"
+   "asof": "2026-10-17 01:36 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1065 helpers into /home/claude/unbilled",
+   "summary": "1068 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1065,
-    "registers": 1119,
+    "helpers copied": 1068,
+    "registers": 1125,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T23:22:34Z",
-   "ended": "2026-10-16T23:22:39Z"
+   "started": "2026-10-17T01:30:35Z",
+   "ended": "2026-10-17T01:30:36Z"
   },
   {
    "name": "columns",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T23:22:39Z",
-   "ended": "2026-10-16T23:24:34Z"
+   "started": "2026-10-17T01:30:36Z",
+   "ended": "2026-10-17T01:32:18Z"
   },
   {
    "name": "era",
@@ -141,8 +141,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T23:24:34Z",
-   "ended": "2026-10-16T23:24:36Z"
+   "started": "2026-10-17T01:32:18Z",
+   "ended": "2026-10-17T01:32:21Z"
   },
   {
    "name": "packages",
@@ -153,22 +153,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-16T23:24:36Z",
-   "ended": "2026-10-16T23:24:36Z"
+   "started": "2026-10-17T01:32:21Z",
+   "ended": "2026-10-17T01:32:21Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3174 visits on 576 charts, $308454.68 open; 1078 over a year ($48357.63)",
+   "summary": "3174 visits on 576 charts, $308454.68 open; 1083 over a year ($48664.82)",
    "counts": {
     "visits": 3174,
     "charts": 576,
-    "over 365 days": 1078
+    "over 365 days": 1083
    },
    "dollars": {
     "open insurance balance": 308454.68,
-    "over 365 days": 48357.63
+    "over 365 days": 48664.82
    },
    "lines": [
     {
@@ -176,89 +176,89 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1627,
      "dollars": 149736.29,
-     "oldest_days": 1066
+     "oldest_days": 1067
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 309,
      "dollars": 47991.21,
-     "oldest_days": 1250
+     "oldest_days": 1251
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 147,
      "dollars": 22696.8,
-     "oldest_days": 403
+     "oldest_days": 404
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 320,
      "dollars": 20947.34,
-     "oldest_days": 1523
+     "oldest_days": 1524
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 134,
      "dollars": 12196.05,
-     "oldest_days": 1286
+     "oldest_days": 1287
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 55,
      "dollars": 10411.24,
-     "oldest_days": 763
+     "oldest_days": 764
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 29,
      "dollars": 5081.97,
-     "oldest_days": 1135
+     "oldest_days": 1136
     },
     {
      "carrier": "AET07",
      "name": "AETNA",
      "visits": 31,
      "dollars": 4264.01,
-     "oldest_days": 1470
+     "oldest_days": 1471
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 28,
      "dollars": 4074.61,
-     "oldest_days": 151
+     "oldest_days": 152
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 44,
      "dollars": 4018.81,
-     "oldest_days": 379
+     "oldest_days": 380
     },
     {
      "carrier": "SIM01",
      "name": "SIMPLY HEALTHCARE MCD PLANS",
      "visits": 19,
      "dollars": 3231.12,
-     "oldest_days": 98
+     "oldest_days": 99
     },
     {
      "carrier": "TRI05",
      "name": "TRICARE FOR LIFE",
      "visits": 96,
      "dollars": 3105.91,
-     "oldest_days": 1494
+     "oldest_days": 1495
     }
    ],
    "errors": [],
-   "started": "2026-10-16T23:24:36Z",
-   "ended": "2026-10-16T23:24:38Z"
+   "started": "2026-10-17T01:32:21Z",
+   "ended": "2026-10-17T01:32:23Z"
   },
   {
    "name": "denials",
@@ -345,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-16T23:24:38Z",
-   "ended": "2026-10-16T23:28:46Z"
+   "started": "2026-10-17T01:32:23Z",
+   "ended": "2026-10-17T01:36:15Z"
   }
  ],
  "packages": [],
