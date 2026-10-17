@@ -4863,3 +4863,7 @@ Observation (not a new shape): the Billing Button slot at 21:22Z Post-buttoned H
 
 No new call shapes this run. Calls used, all already in the registry: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (clearinghouse=1 payer=1), hideunbillablevisits hide=-1 (30 visits, unbilled_repair.py --live), checkEligibility (AMD free 271 x4 on pat17470713), gettxhistory visitid= (txh.fetch_visit), lookuppatient (admit_lookup), GET /api/era/checks (0), POST /api/era/locks/release-expired, massrebillsearch + Stedi 276/277 claim status x18 (claim_status_sweep.py).
 Observation (not a new shape): the CMS 271 for a Medicare beneficiary with a Medigap plan AMD cannot verify lists NO Medigap / COB entity at all (only the Part D plan and the SNF benefit entities) - Medicare's record cannot supply the supplement member number in that case; the card or an AARP EOB is the only source.
+
+# captured_calls additions - backend billing run 2026-10-17T0710Z (3 AM ET 10/17/2026, ehpa cloud)
+
+No new call shapes this run. Calls used, all already in the registry: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (clearinghouse=1 payer=1), getdemographic (insplan count on three charts), lookuppatient (admit_lookup), GET /api/era/checks (0 checks, twice), massrebillsearch + Stedi 276/277 claim status x17 (claim_status_sweep.py pass 124). No AdvancedMD write.
