@@ -1,0 +1,246 @@
+{
+ "stamp": "2026-10-17T0910Z",
+ "runs": {
+  "1700302": {
+   "rows": [
+    {
+     "vid": "19437731",
+     "claimid": "19437731E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19438960",
+     "claimid": "19438960E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19439767",
+     "claimid": "19439767G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19439793",
+     "claimid": "19439793G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19439814",
+     "claimid": "19439814G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19439885",
+     "claimid": "19439885G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19439926",
+     "claimid": "19439926G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440252",
+     "claimid": "19440252G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440267",
+     "claimid": "19440267G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440391",
+     "claimid": "19440391G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440410",
+     "claimid": "19440410G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440512",
+     "claimid": "19440512G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440611",
+     "claimid": "19440611G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440624",
+     "claimid": "19440624G",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440869",
+     "claimid": "19440869F",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19440884",
+     "claimid": "19440884F",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19441172",
+     "claimid": "19441172F",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19441183",
+     "claimid": "19441183F",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19441310",
+     "claimid": "19441310F",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19442592",
+     "claimid": "19442592E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19442618",
+     "claimid": "19442618E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19442859",
+     "claimid": "19442859E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19443842",
+     "claimid": "19443842E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19443846",
+     "claimid": "19443846E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    },
+    {
+     "vid": "19444045",
+     "claimid": "19444045E",
+     "pid": "17470713",
+     "carrier": "AAR01 5271",
+     "dos": null
+    }
+   ],
+   "errors": [
+    ""
+   ]
+  },
+  "1700305": {
+   "rows": [],
+   "errors": []
+  }
+ },
+ "plans": {
+  "17478059": {
+   "n": 0,
+   "plans": [],
+   "insorder": ""
+  },
+  "17478063": {
+   "n": 0,
+   "plans": [],
+   "insorder": ""
+  },
+  "17478064": {
+   "n": 0,
+   "plans": [],
+   "insorder": ""
+  },
+  "17470713": {
+   "n": 4,
+   "plans": [
+    {
+     "id": "ins9509692",
+     "carrier": "car6062",
+     "begindate": "",
+     "enddate": "12/31/2022",
+     "coverage": "1",
+     "sequence": "1"
+    },
+    {
+     "id": "ins9509722",
+     "carrier": "car303217",
+     "begindate": "01/01/2023",
+     "enddate": "03/31/2026",
+     "coverage": "1",
+     "sequence": "2"
+    },
+    {
+     "id": "ins9519283",
+     "carrier": "car6085",
+     "begindate": "10/01/2013",
+     "enddate": "",
+     "coverage": "1",
+     "sequence": "3"
+    },
+    {
+     "id": "ins9520543",
+     "carrier": "car6600",
+     "begindate": "01/01/2026",
+     "enddate": "",
+     "coverage": "1",
+     "sequence": "4"
+    }
+   ],
+   "insorder": "3,4"
+  }
+ }
+}
