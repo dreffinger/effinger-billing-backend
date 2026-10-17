@@ -801,7 +801,7 @@
      "dos": "2025-11-05",
      "cpt": "99309",
      "dollars": 141.0,
-     "outcome": "sent 2026-10-16T1310Z (freq1_visit.reroute order 1,2 seq 1 -> 204)"
+     "outcome": "answer-found 2026-10-17T0510Z: UHC 277 says PAID 101.77 on check 280637173 (the 11/2025 adjudication) - no 835 in the ERA Center, nothing posted on the charge (insbal 141.00 at UNI20, billdate 10/16/2026); the 10/16 frequency-1 re-send will answer duplicate; needs the 280637173 835 pulled into 'bht Optum era downloads' (board row uhc-2025-remits-unposted-1006); not written off"
     }
    ]
   }
