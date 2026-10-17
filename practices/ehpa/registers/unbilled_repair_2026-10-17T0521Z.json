@@ -1,0 +1,189 @@
+{
+ "run": "2026-10-17T0521Z",
+ "live": false,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "17469423",
+   "vid": "19364723",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364735",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364840",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369676",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369706",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369726",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370060",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370081",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370099",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384132",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384238",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388904",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388905",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17472098",
+   "vid": "19389211",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451903",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451913",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451923",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21593",
+   "vid": "19452055",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "24853",
+   "vid": "19452223",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": "dry: would release"
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": "dry: would release"
+  }
+ ],
+ "left": [
+  {
+   "pid": "17478059",
+   "vid": "19457778",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457783",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457784",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457791",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478059",
+   "vid": "19457794",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457797",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}

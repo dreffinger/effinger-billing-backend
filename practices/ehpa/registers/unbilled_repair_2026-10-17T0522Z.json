@@ -1,0 +1,279 @@
+{
+ "run": "2026-10-17T0522Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "17469423",
+   "vid": "19364723",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:05\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364735",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:06\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364840",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:07\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369676",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:08\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369706",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:09\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369726",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:10\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370060",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:11\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370081",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:12\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370099",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:13\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384132",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:14\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384238",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:15\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388904",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:16\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388905",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:17\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17472098",
+   "vid": "19389211",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:18\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:19\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:20\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:21\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451903",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:22\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451913",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:23\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451923",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:24\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19452055",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:25\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19452223",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:26\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:27\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:28\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:29\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:30\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/16/2026 22:22:31\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:32\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:33\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vnssg\" lst=\"10/16/2026 22:22:34\"><Results success=\"1\" /><E"
+   ]
+  }
+ ],
+ "left": [
+  {
+   "pid": "17478059",
+   "vid": "19457778",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457783",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457784",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457791",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478059",
+   "vid": "19457794",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457797",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}
