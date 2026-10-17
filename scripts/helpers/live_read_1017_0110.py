@@ -4,7 +4,7 @@
 #   patient insorder, so the run can see whether a plan was added since the last slot and whether a VA plan carries an
 #   ICN-shaped id or an SSN-shaped one. No AMD write of any kind. Writes registers/live_read_<stamp>.json (ids only).
 import amd, re, sys, json
-STAMP = "2026-10-17T0110Z"; amd.login_cached(); out = {}
+STAMP = "2026-10-17T1310Z"; amd.login_cached(); out = {}
 def shape(s):
     s = s or ""
     if re.fullmatch(r"\d{10}V\d{6}", s): return "ICN(10V6)"

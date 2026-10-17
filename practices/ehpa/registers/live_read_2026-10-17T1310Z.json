@@ -1,0 +1,55 @@
+{
+ "17478059": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17478063": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17478064": {
+  "plans": [],
+  "insorder": ""
+ },
+ "17470713": {
+  "plans": [
+   {
+    "ins": "ins9509692",
+    "carrier": "car6062",
+    "begin": "",
+    "end": "12/31/2022",
+    "seq": "1",
+    "idshape": "mixed len 12",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9509722",
+    "carrier": "car303217",
+    "begin": "01/01/2023",
+    "end": "03/31/2026",
+    "seq": "2",
+    "idshape": "mixed len 12",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9519283",
+    "carrier": "car6085",
+    "begin": "10/01/2013",
+    "end": "",
+    "seq": "3",
+    "idshape": "MBI-shaped",
+    "coverage": "1"
+   },
+   {
+    "ins": "ins9520543",
+    "carrier": "car6600",
+    "begin": "01/01/2026",
+    "end": "",
+    "seq": "4",
+    "idshape": "9digits(SSN-shaped)",
+    "coverage": "1"
+   }
+  ],
+  "insorder": "3,4"
+ }
+}
