@@ -1,0 +1,3 @@
+# captured_calls additions - backend billing run 2026-10-17T2310Z (7 PM ET 10/17/2026, ehpa cloud)
+
+No new call shapes this run. Calls used, all already in the registry: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges (clearinghouse=1 payer=1; columns_scan.py before/after), getdemographic x3 (live insplan re-check of the zero-plan charts), lookuppatient x3 (admit_lookup_1017_2310.py), GET /api/era/checks (0 checks; era_post.py --all-unposted --dry), precheck.py --days 3 (0 pairs), massrebillsearch + Stedi 276/277 claim status x17 (claim_status_sweep.py pass 132, --skip-answered with the comma-joined sweep registers). No AdvancedMD write.
