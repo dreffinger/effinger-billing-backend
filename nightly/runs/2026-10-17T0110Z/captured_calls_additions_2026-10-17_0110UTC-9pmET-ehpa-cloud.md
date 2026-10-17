@@ -1,0 +1,2 @@
+## 2026-10-17T0110Z - backend billing run, 9 PM ET 10/16/2026 (ehpa cloud, repo attached) - additions
+- No new call shapes this run. Calls used (all already in the registry): login_cached, getclaimcenteroverview + the four Claims Center list calls (columns_scan.py before/after), getdemographic (live_read on the three zero-plan HCA charts), lookuppatient (admit_lookup on Pam's three chart-less admits), GET /api/era/checks (era_list.py: 0 unposted), Stedi 276/277 (claim_status_sweep.py pass 121, --skip-answered 108 registers). No AMD write.
