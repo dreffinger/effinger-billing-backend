@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-17T0327Z",
+ "stamp": "2026-10-17T0524Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/1 -> 0/0/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/38998867977",
- "started": "2026-10-17T03:27:59Z",
- "ended": "2026-10-17T03:33:14Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39006151332",
+ "started": "2026-10-17T05:24:48Z",
+ "ended": "2026-10-17T05:31:00Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 26
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 6,
-    "exclusions": 1
+    "exclusions": 26
    }
   },
   "era": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 308454.68,
-   "visits": 3174,
-   "charts": 576,
+   "total": 310270.21,
+   "visits": 3187,
+   "charts": 577,
    "over_365": {
     "n": 1083,
     "dollars": 48664.82
@@ -65,7 +65,7 @@
    "visits": 7326,
    "actionable": 77,
    "actionable_amt": 13999.0,
-   "asof": "2026-10-17 03:33 UTC"
+   "asof": "2026-10-17 05:30 UTC"
   }
  },
  "steps": [
@@ -82,19 +82,19 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-17T03:27:59Z",
-   "ended": "2026-10-17T03:28:04Z"
+   "started": "2026-10-17T05:24:48Z",
+   "ended": "2026-10-17T05:24:48Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 26->26",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
     "unbilled": 6,
-    "exclusions": 1,
+    "exclusions": 26,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
@@ -103,7 +103,9 @@
     "unbilled rows left alone": 6,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700302": 0,
+    "exclusions crossover run 1700302": "see log"
    },
    "dollars": {},
    "lines": [
@@ -118,11 +120,17 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700302",
+     "kind": "AAR01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 25,
+     "ids": "v19437731 v19438960 v19439767 v19439793 v19439814 v19439885 v19439926 v19440252 v19440267 v19440391 v19440410 v19440512 v19440611 v19440624 v19440869 v19440884 v19441172 v19441183 v19441310 v19442592 v19442618 v19442859 v19443842 v19443846 v19444045"
     }
    ],
    "errors": [],
-   "started": "2026-10-17T03:28:04Z",
-   "ended": "2026-10-17T03:29:39Z"
+   "started": "2026-10-17T05:24:48Z",
+   "ended": "2026-10-17T05:26:42Z"
   },
   {
    "name": "era",
@@ -141,8 +149,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-17T03:29:39Z",
-   "ended": "2026-10-17T03:29:40Z"
+   "started": "2026-10-17T05:26:42Z",
+   "ended": "2026-10-17T05:26:44Z"
   },
   {
    "name": "packages",
@@ -153,21 +161,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-17T03:29:40Z",
-   "ended": "2026-10-17T03:29:40Z"
+   "started": "2026-10-17T05:26:44Z",
+   "ended": "2026-10-17T05:26:44Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3174 visits on 576 charts, $308454.68 open; 1083 over a year ($48664.82)",
+   "summary": "3187 visits on 577 charts, $310270.21 open; 1083 over a year ($48664.82)",
    "counts": {
-    "visits": 3174,
-    "charts": 576,
+    "visits": 3187,
+    "charts": 577,
     "over 365 days": 1083
    },
    "dollars": {
-    "open insurance balance": 308454.68,
+    "open insurance balance": 310270.21,
     "over 365 days": 48664.82
    },
    "lines": [
@@ -181,8 +189,8 @@
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 309,
-     "dollars": 47991.21,
+     "visits": 311,
+     "dollars": 48295.21,
      "oldest_days": 1251
     },
     {
@@ -202,8 +210,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 134,
-     "dollars": 12196.05,
+     "visits": 135,
+     "dollars": 12212.19,
      "oldest_days": 1287
     },
     {
@@ -235,10 +243,17 @@
      "oldest_days": 152
     },
     {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 27,
+     "dollars": 4048.62,
+     "oldest_days": 1335
+    },
+    {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
-     "visits": 44,
-     "dollars": 4018.81,
+     "visits": 45,
+     "dollars": 4040.11,
      "oldest_days": 380
     },
     {
@@ -247,26 +262,19 @@
      "visits": 19,
      "dollars": 3231.12,
      "oldest_days": 99
-    },
-    {
-     "carrier": "TRI05",
-     "name": "TRICARE FOR LIFE",
-     "visits": 96,
-     "dollars": 3105.91,
-     "oldest_days": 1495
     }
    ],
    "errors": [],
-   "started": "2026-10-17T03:29:40Z",
-   "ended": "2026-10-17T03:29:42Z"
+   "started": "2026-10-17T05:26:44Z",
+   "ended": "2026-10-17T05:26:46Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7326 denied visits on 861 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4268, RESUBMITTED 158, OPEN 218",
+   "summary": "7326 denied visits on 862 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4268, RESUBMITTED 158, OPEN 218",
    "counts": {
-    "charts read": 861,
+    "charts read": 862,
     "denial lines": 12437,
     "visits": 7326,
     "actionable": 77,
@@ -345,8 +353,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-17T03:29:42Z",
-   "ended": "2026-10-17T03:33:14Z"
+   "started": "2026-10-17T05:26:46Z",
+   "ended": "2026-10-17T05:31:00Z"
   }
  ],
  "packages": [],
