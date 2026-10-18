@@ -1,0 +1,332 @@
+{
+ "stamp": "2026-10-18T0510Z",
+ "dry": true,
+ "check": "1053206",
+ "lines": [
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446977,
+   "pid": "17472784",
+   "visitid": "19442508",
+   "chargedetailid": "23350669",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446977,
+   "pid": "17472784",
+   "visitid": "19442508",
+   "chargedetailid": "23350670",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446978,
+   "pid": "17472784",
+   "visitid": "19421128",
+   "chargedetailid": "23326456",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446978,
+   "pid": "17472784",
+   "visitid": "19421128",
+   "chargedetailid": "23326457",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446979,
+   "pid": "17472784",
+   "visitid": "19438666",
+   "chargedetailid": "23345921",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446979,
+   "pid": "17472784",
+   "visitid": "19438666",
+   "chargedetailid": "23345922",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446980,
+   "pid": "17472784",
+   "visitid": "19439689",
+   "chargedetailid": "23347328",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446980,
+   "pid": "17472784",
+   "visitid": "19439689",
+   "chargedetailid": "23347329",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446981,
+   "pid": "17472784",
+   "visitid": "19446315",
+   "chargedetailid": "23355389",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446981,
+   "pid": "17472784",
+   "visitid": "19446315",
+   "chargedetailid": "23355390",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446982,
+   "pid": "17472784",
+   "visitid": "19430850",
+   "chargedetailid": "23337436",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446982,
+   "pid": "17472784",
+   "visitid": "19430850",
+   "chargedetailid": "23337437",
+   "cpt": "99489",
+   "era_paid": 0.0,
+   "era_adj": 109.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446983,
+   "pid": "17472784",
+   "visitid": "19423720",
+   "chargedetailid": "23329434",
+   "cpt": "99487",
+   "era_paid": 0.0,
+   "era_adj": 206.0,
+   "carc": [
+    "OA23"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     0.0
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  },
+  {
+   "checkid": "1053206",
+   "checkclaimid": 15446984,
+   "pid": "20379",
+   "visitid": "19456477",
+   "chargedetailid": "23368123",
+   "cpt": "99309",
+   "era_paid": 0.0,
+   "era_adj": 141.0,
+   "carc": [
+    "CO185"
+   ],
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "humana_pays": [
+    [
+     "203180143261014",
+     16.93
+    ]
+   ],
+   "outcome": "already-posted - $0 balances, Humana answer on the charge from check 203180143261014"
+  }
+ ],
+ "log": [
+  "v19442508 c23350669 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19442508 c23350670 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19421128 c23326456 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19421128 c23326457 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19438666 c23345921 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19438666 c23345922 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19439689 c23347328 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19439689 c23347329 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19446315 c23355389 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19446315 c23355390 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19430850 c23337436 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19430850 c23337437 99489 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19423720 c23329434 99487 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "v19456477 c23368123 99309 already-posted - $0 balances, Humana answer on the charge from check 203180143261014",
+  "DRY dismiss 1053206 (14 lines all settled)"
+ ]
+}
