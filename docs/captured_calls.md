@@ -4929,3 +4929,7 @@ No new call shapes this run. Calls used (all already in the registry): login (on
 
 ## 2026-10-18 13:10Z - backend billing run, 9 AM ET 10/18/2026 (ehpa cloud, repo attached)
 No new call shapes this run. Calls used (all already in the registry): login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges (columns_scan.py before/after), getdemographic x4 (pat17478059 / pat17478063 / pat17478064 / pat17470713 - plan reads only), lookuppatient x3 (the 10/15 admits - no chart), GET /api/era/checks x2 (0 -> 0). No AMD write.
+
+## 2026-10-18 15:10Z - backend billing run, 11 AM ET 10/18/2026 (ehpa cloud, repo attached)
+No new call shapes this run. Calls used (all already in the registry): login (one attempt, AMD_PSW environment credential), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges (columns_scan.py before/after), getdemographic x4 (pat17478059 / pat17478063 / pat17478064 / pat17470713 - insplan reads only, plan_check_1018_1510.py), lookuppatient x3 (the 10/15 admits - no chart), GET /api/era/checks x2 (0 -> 0). No AMD write.
+Behavior noted: getdemographic lists plans as <insplan .../> elements (not <insurance>) - a read helper that greps <insurance> counts 0 on every chart.
