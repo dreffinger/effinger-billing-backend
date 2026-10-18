@@ -1,0 +1,363 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-18T0925Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39115241517",
+ "started": "2026-10-18T09:25:11Z",
+ "ended": "2026-10-18T09:31:23Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 6,
+    "exclusions": 26
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 6,
+    "exclusions": 26
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 290370.75,
+   "visits": 3082,
+   "charts": 562,
+   "over_365": {
+    "n": 1082,
+    "dollars": 48646.7
+   }
+  },
+  "denials": {
+   "visits": 7326,
+   "actionable": 77,
+   "actionable_amt": 13999.0,
+   "asof": "2026-10-18 09:31 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1102 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1102,
+    "registers": 1180,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-18T09:25:11Z",
+   "ended": "2026-10-18T09:25:11Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 26->26",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 6,
+    "exclusions": 26,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 6,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700302": 0,
+    "exclusions crossover run 1700302": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 6,
+     "ids": "v19457778 v19457783 v19457784 v19457791 v19457794 v19457797"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700302",
+     "kind": "AAR01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 25,
+     "ids": "v19437731 v19438960 v19439767 v19439793 v19439814 v19439885 v19439926 v19440252 v19440267 v19440391 v19440410 v19440512 v19440611 v19440624 v19440869 v19440884 v19441172 v19441183 v19441310 v19442592 v19442618 v19442859 v19443842 v19443846 v19444045"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-18T09:25:11Z",
+   "ended": "2026-10-18T09:27:07Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-18T09:27:07Z",
+   "ended": "2026-10-18T09:27:09Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-18T09:27:09Z",
+   "ended": "2026-10-18T09:27:09Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "3082 visits on 562 charts, $290370.75 open; 1082 over a year ($48646.70)",
+   "counts": {
+    "visits": 3082,
+    "charts": 562,
+    "over 365 days": 1082
+   },
+   "dollars": {
+    "open insurance balance": 290370.75,
+    "over 365 days": 48646.7
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1590,
+     "dollars": 142227.81,
+     "oldest_days": 1068
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 318,
+     "dollars": 50010.57,
+     "oldest_days": 1252
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 147,
+     "dollars": 22696.8,
+     "oldest_days": 405
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 320,
+     "dollars": 20947.34,
+     "oldest_days": 1525
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 133,
+     "dollars": 12177.14,
+     "oldest_days": 1288
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 29,
+     "dollars": 5081.97,
+     "oldest_days": 1137
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 28,
+     "dollars": 4074.61,
+     "oldest_days": 153
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 27,
+     "dollars": 4048.62,
+     "oldest_days": 1336
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 45,
+     "dollars": 4040.11,
+     "oldest_days": 381
+    },
+    {
+     "carrier": "SIM01",
+     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "visits": 19,
+     "dollars": 3231.12,
+     "oldest_days": 100
+    },
+    {
+     "carrier": "TRI05",
+     "name": "TRICARE FOR LIFE",
+     "visits": 96,
+     "dollars": 3105.91,
+     "oldest_days": 1496
+    },
+    {
+     "carrier": "UMR",
+     "name": "UMR CHOICE",
+     "visits": 14,
+     "dollars": 2050.0,
+     "oldest_days": 46
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-18T09:27:09Z",
+   "ended": "2026-10-18T09:27:11Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7326 denied visits on 855 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4268, RESUBMITTED 158, OPEN 218",
+   "counts": {
+    "charts read": 855,
+    "denial lines": 12437,
+    "visits": 7326,
+    "actionable": 77,
+    "inside 12 months": 73,
+    "status WRITTEN-OFF": 2682,
+    "status RESOLVED": 4268,
+    "status RESUBMITTED": 158,
+    "status OPEN": 218
+   },
+   "dollars": {
+    "actionable": 13999.0,
+    "inside 12 months": 13279.0,
+    "resubmitted": 26488.33,
+    "resolved since": 641908.34
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1816,
+     "dollars": 300392.0,
+     "patients": 207
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1141,
+     "dollars": 177997.72,
+     "patients": 180
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1082,
+     "dollars": 166892.55,
+     "patients": 204
+    },
+    {
+     "disposition": "COB",
+     "visits": 929,
+     "dollars": 152777.61,
+     "patients": 95
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 486,
+     "dollars": 93226.0,
+     "patients": 217
+    },
+    {
+     "disposition": "INFO",
+     "visits": 458,
+     "dollars": 76455.35,
+     "patients": 47
+    },
+    {
+     "disposition": "CRED",
+     "visits": 387,
+     "dollars": 55509.3,
+     "patients": 64
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 222,
+     "dollars": 37399.38,
+     "patients": 94
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 497,
+     "dollars": 34433.19,
+     "patients": 69
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 308,
+     "dollars": 27184.0,
+     "patients": 137
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-18T09:27:11Z",
+   "ended": "2026-10-18T09:31:23Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
