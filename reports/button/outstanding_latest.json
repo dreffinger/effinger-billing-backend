@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-18T11:24:11Z",
+ "at": "2026-10-18T13:24:36Z",
  "as_of": "2026-10-18",
- "total": 289391.05,
- "visits": 3076,
- "charts": 562,
+ "total": 289310.47,
+ "visits": 3073,
+ "charts": 561,
  "over_365": {
   "n": 1082,
   "dollars": 48646.7
  },
  "by_bucket": {
   "0-30": {
-   "n": 503,
-   "dollars": 80901.11
+   "n": 500,
+   "dollars": 80820.53
   },
   "31-60": {
    "n": 195,
@@ -294,10 +294,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 22,
-   "dollars": 1284.08,
+   "n": 20,
+   "dollars": 1251.8,
    "buckets": {
-    "0-30": 922.88,
+    "0-30": 890.6,
     "31-60": 220.2,
     "61-90": 0.0,
     "91-180": 141.0,
@@ -324,10 +324,10 @@
   {
    "carrier": "AMB03",
    "name": "AMBETTER FROM SUNSHINE HEALTH",
-   "n": 10,
-   "dollars": 863.5,
+   "n": 9,
+   "dollars": 815.2,
    "buckets": {
-    "0-30": 159.3,
+    "0-30": 111.0,
     "31-60": 0.0,
     "61-90": 0.0,
     "91-180": 0.0,
@@ -750,13 +750,13 @@
   },
   {
    "month": "2026-09",
-   "n": 370,
-   "dollars": 47835.33
+   "n": 368,
+   "dollars": 47803.05
   },
   {
    "month": "2026-10",
-   "n": 248,
-   "dollars": 44986.99
+   "n": 247,
+   "dollars": 44938.69
   }
  ],
  "oldest": [
@@ -22965,22 +22965,6 @@
    "dos": "2026-09-20"
   },
   {
-   "visitid": 19455778,
-   "patientid": 20670,
-   "carriercode": "SUN01",
-   "insbalance": 16.14,
-   "days": 28,
-   "dos": "2026-09-20"
-  },
-  {
-   "visitid": 19455765,
-   "patientid": 17472429,
-   "carriercode": "SUN01",
-   "insbalance": 16.14,
-   "days": 28,
-   "dos": "2026-09-20"
-  },
-  {
    "visitid": 19455825,
    "patientid": 17474081,
    "carriercode": "TRI05",
@@ -25529,14 +25513,6 @@
    "patientid": 17478031,
    "carriercode": "UHCMA",
    "insbalance": 111.0,
-   "days": 10,
-   "dos": "2026-10-08"
-  },
-  {
-   "visitid": 19457480,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 48.3,
    "days": 10,
    "dos": "2026-10-08"
   },
