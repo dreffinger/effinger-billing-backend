@@ -1,0 +1,1648 @@
+{
+ "tag": "before",
+ "at": "2026-10-18T21:15:06Z",
+ "overview": {
+  "chargereviewcount": "0",
+  "chargereviewamount": "0.00",
+  "claiminspectorcount": "0",
+  "claiminspectoramount": "0.00",
+  "unbillablecount": "6",
+  "unbillableamount": "1263.00",
+  "exclusioncount": "27",
+  "exclusionamount": "4235.00",
+  "claimrunstatuscount": "101",
+  "claimrunstatusamount": "2310013.73"
+ },
+ "chargereview": [],
+ "inspector": {},
+ "unbilled_totalcount": "6",
+ "unbilled_totalamount": "1263.00",
+ "unbilled": [
+  {
+   "id": "19457778",
+   "errorcount": "1",
+   "patientid": "17478059",
+   "patientchart": "4861",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369822",
+     "visit": "19457778",
+     "dos": "10/13/2026 ",
+     "totalfee": "111.00",
+     "diagcode": "M16.12",
+     "chgcode": "99232",
+     "insportion": "111.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "111.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19457783",
+   "errorcount": "1",
+   "patientid": "17478063",
+   "patientchart": "4865",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369827",
+     "visit": "19457783",
+     "dos": "10/13/2026 ",
+     "totalfee": "111.00",
+     "diagcode": "M48.12;G95.29;M50.021;M50.022;M50.023",
+     "chgcode": "99232",
+     "insportion": "111.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "111.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19457784",
+   "errorcount": "1",
+   "patientid": "17478064",
+   "patientchart": "4866",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369828",
+     "visit": "19457784",
+     "dos": "10/13/2026 ",
+     "totalfee": "111.00",
+     "diagcode": "M54.12;M50.20;Z98.890",
+     "chgcode": "99232",
+     "insportion": "111.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "111.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19457791",
+   "errorcount": "1",
+   "patientid": "17478064",
+   "patientchart": "4866",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369837",
+     "visit": "19457791",
+     "dos": "10/12/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M54.12;M50.20;Z98.890",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19457794",
+   "errorcount": "1",
+   "patientid": "17478059",
+   "patientchart": "4861",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369840",
+     "visit": "19457794",
+     "dos": "10/12/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M16.12",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  },
+  {
+   "id": "19457797",
+   "errorcount": "1",
+   "patientid": "17478063",
+   "patientchart": "4865",
+   "provcode": "WEFFI",
+   "provname": "EFFINGER, WILLIAM",
+   "carrierid": "1",
+   "carriercode": "",
+   "carriername": " ",
+   "carrierphone": "",
+   "carrierphoneext": "",
+   "isinstitutional": "0",
+   "_errs": [
+    "Insurance order is missing on visit"
+   ],
+   "_chgs": [
+    {
+     "id": "23369843",
+     "visit": "19457797",
+     "dos": "10/12/2026 ",
+     "totalfee": "310.00",
+     "diagcode": "M48.12;G95.29;M50.021;M50.022;M50.023",
+     "chgcode": "99223",
+     "insportion": "310.00",
+     "patportion": "0.00",
+     "modifiers": "",
+     "billinsurance": "Y",
+     "acceptassign": "Y",
+     "finclassdescrip": "XX - CHANGE THIS!!!!",
+     "fee": "310.00",
+     "batchid": "127923",
+     "dmecharge": "N",
+     "units": "1.0"
+    }
+   ]
+  }
+ ],
+ "exclusions": {
+  "1699931": [],
+  "1699949": [],
+  "1699950": [],
+  "1700009": [],
+  "1700013": [],
+  "1700048": [],
+  "1700060": [],
+  "1700076": [],
+  "1700079": [],
+  "1700080": [],
+  "1700082": [],
+  "1700088": [],
+  "1700090": [],
+  "1700092": [],
+  "1700093": [],
+  "1700094": [],
+  "1700096": [],
+  "1700098": [],
+  "1700099": [],
+  "1700100": [],
+  "1700101": [],
+  "1700102": [],
+  "1700103": [],
+  "1700104": [],
+  "1700105": [],
+  "1700106": [],
+  "1700107": [],
+  "1700108": [],
+  "1700109": [],
+  "1700110": [],
+  "1700111": [],
+  "1700112": [],
+  "1700113": [],
+  "1700114": [],
+  "1700115": [],
+  "1700116": [],
+  "1700118": [],
+  "1700119": [],
+  "1700120": [],
+  "1700121": [],
+  "1700122": [],
+  "1700123": [],
+  "1700129": [],
+  "1700130": [],
+  "1700131": [],
+  "1700132": [],
+  "1700133": [],
+  "1700136": [],
+  "1700139": [],
+  "1700140": [],
+  "1700141": [],
+  "1700142": [],
+  "1700146": [],
+  "1700147": [],
+  "1700151": [],
+  "1700156": [],
+  "1700158": [],
+  "1700166": [],
+  "1700168": [],
+  "1700178": [],
+  "1700179": [],
+  "1700181": [],
+  "1700182": [],
+  "1700183": [],
+  "1700186": [],
+  "1700188": [],
+  "1700192": [],
+  "1700193": [],
+  "1700201": [],
+  "1700202": [],
+  "1700210": [],
+  "1700211": [],
+  "1700216": [],
+  "1700227": [],
+  "1700228": [],
+  "1700229": [],
+  "1700236": [],
+  "1700243": [],
+  "1700250": [],
+  "1700266": [],
+  "1700276": [],
+  "1700278": [],
+  "1700286": [],
+  "1700289": [],
+  "1700294": [
+   {
+    "claimrunid": "1700294",
+    "id": "19455937",
+    "claimid": "19455937B",
+    "errorcount": "2",
+    "patientid": "24750",
+    "patientchart": "HF387131688",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "42009",
+    "carriercode": "AET12 6870",
+    "carriercodeshort": "AET12",
+    "carriercpid": "6870",
+    "carriername": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
+    "carrierphone": "(800) 264-4000",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23977056",
+      "name": "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+      "isexclusion": "1"
+     },
+     {
+      "id": "23977057",
+      "name": "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM",
+      "isexclusion": "1"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23367411",
+      "visit": "19455937",
+      "dos": "09/20/2026 ",
+      "billingdos": "09/20/2026 ",
+      "totalfee": "206.00",
+      "diagcode": "M62.81;F03.90;F48.2;N32.81;Z87.440;M81.0;M06.9",
+      "chgcode": "99487",
+      "insportion": "206.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "206.00",
+      "batchid": "127783",
+      "dmecharge": "N",
+      "units": "1.0"
+     },
+     {
+      "id": "23367412",
+      "visit": "19455937",
+      "dos": "09/20/2026 ",
+      "billingdos": "09/20/2026 ",
+      "totalfee": "109.00",
+      "diagcode": "M62.81;F03.90;F48.2;N32.81;Z87.440;M81.0;M06.9",
+      "chgcode": "99489",
+      "insportion": "109.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "109.00",
+      "batchid": "127783",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   }
+  ],
+  "1700295": [],
+  "1700296": [],
+  "1700297": [],
+  "1700302": [
+   {
+    "claimrunid": "1700302",
+    "id": "19437731",
+    "claimid": "19437731E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978504",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23344836",
+      "visit": "19437731",
+      "dos": "04/03/2026 ",
+      "billingdos": "04/03/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "L89.94;F03.90;I10;G20.C",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "126632",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19438960",
+    "claimid": "19438960E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978505",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23346278",
+      "visit": "19438960",
+      "dos": "04/14/2026 ",
+      "billingdos": "04/14/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "L89.94;F03.90;I10;G20.C",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "126688",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19439767",
+    "claimid": "19439767G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978506",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347410",
+      "visit": "19439767",
+      "dos": "04/21/2026 ",
+      "billingdos": "04/21/2026 ",
+      "totalfee": "310.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99223",
+      "insportion": "310.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "310.00",
+      "batchid": "126734",
+      "dmecharge": "N",
+      "units": "1.0"
+     },
+     {
+      "id": "23347411",
+      "visit": "19439767",
+      "dos": "04/21/2026 ",
+      "billingdos": "04/21/2026 ",
+      "totalfee": "133.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99497",
+      "insportion": "133.00",
+      "patportion": "0.00",
+      "modifiers": "25",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "133.00",
+      "batchid": "126734",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19439793",
+    "claimid": "19439793G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978507",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347437",
+      "visit": "19439793",
+      "dos": "04/22/2026 ",
+      "billingdos": "04/22/2026 ",
+      "totalfee": "160.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99233",
+      "insportion": "160.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "160.00",
+      "batchid": "126734",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19439814",
+    "claimid": "19439814G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978508",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347458",
+      "visit": "19439814",
+      "dos": "04/23/2026 ",
+      "billingdos": "04/23/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126734",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19439885",
+    "claimid": "19439885G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978509",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347511",
+      "visit": "19439885",
+      "dos": "04/24/2026 ",
+      "billingdos": "04/24/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126737",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19439926",
+    "claimid": "19439926G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978510",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347571",
+      "visit": "19439926",
+      "dos": "04/25/2026 ",
+      "billingdos": "04/25/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126739",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440252",
+    "claimid": "19440252G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978511",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347909",
+      "visit": "19440252",
+      "dos": "04/27/2026 ",
+      "billingdos": "04/27/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126763",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440267",
+    "claimid": "19440267G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978512",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23347924",
+      "visit": "19440267",
+      "dos": "04/26/2026 ",
+      "billingdos": "04/26/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126763",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440391",
+    "claimid": "19440391G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978513",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348092",
+      "visit": "19440391",
+      "dos": "04/29/2026 ",
+      "billingdos": "04/29/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126799",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440410",
+    "claimid": "19440410G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978514",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348111",
+      "visit": "19440410",
+      "dos": "04/28/2026 ",
+      "billingdos": "04/28/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126799",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440512",
+    "claimid": "19440512G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978515",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348202",
+      "visit": "19440512",
+      "dos": "04/30/2026 ",
+      "billingdos": "04/30/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126804",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440611",
+    "claimid": "19440611G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978516",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348339",
+      "visit": "19440611",
+      "dos": "05/01/2026 ",
+      "billingdos": "05/01/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126810",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440624",
+    "claimid": "19440624G",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978517",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348354",
+      "visit": "19440624",
+      "dos": "05/02/2026 ",
+      "billingdos": "05/02/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126810",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440869",
+    "claimid": "19440869F",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978518",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348626",
+      "visit": "19440869",
+      "dos": "05/04/2026 ",
+      "billingdos": "05/04/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126820",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19440884",
+    "claimid": "19440884F",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978519",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23348640",
+      "visit": "19440884",
+      "dos": "05/03/2026 ",
+      "billingdos": "05/03/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126820",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19441172",
+    "claimid": "19441172F",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978520",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23349010",
+      "visit": "19441172",
+      "dos": "05/06/2026 ",
+      "billingdos": "05/06/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126842",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19441183",
+    "claimid": "19441183F",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978521",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23349021",
+      "visit": "19441183",
+      "dos": "05/05/2026 ",
+      "billingdos": "05/05/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126842",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19441310",
+    "claimid": "19441310F",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978522",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23349160",
+      "visit": "19441310",
+      "dos": "05/07/2026 ",
+      "billingdos": "05/07/2026 ",
+      "totalfee": "111.00",
+      "diagcode": "S72.002A;R33.9;K59.00;N39.0;F03.90;R69;G20.A1",
+      "chgcode": "99232",
+      "insportion": "111.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "111.00",
+      "batchid": "126850",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19442592",
+    "claimid": "19442592E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978523",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23350788",
+      "visit": "19442592",
+      "dos": "05/15/2026 ",
+      "billingdos": "05/15/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "S72.002A;G20.A1;R33.9;N39.0;F03.90;K59.00",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "126912",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19442618",
+    "claimid": "19442618E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978524",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23350813",
+      "visit": "19442618",
+      "dos": "05/12/2026 ",
+      "billingdos": "05/12/2026 ",
+      "totalfee": "256.00",
+      "diagcode": "S72.002A;G20.A1;R33.9;N39.0;F03.90;K59.00",
+      "chgcode": "99306",
+      "insportion": "256.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "256.00",
+      "batchid": "126912",
+      "dmecharge": "N",
+      "units": "1.0"
+     },
+     {
+      "id": "23350814",
+      "visit": "19442618",
+      "dos": "05/12/2026 ",
+      "billingdos": "05/12/2026 ",
+      "totalfee": "133.00",
+      "diagcode": "S72.002A;G20.A1;R33.9;N39.0;F03.90;K59.00",
+      "chgcode": "99497",
+      "insportion": "133.00",
+      "patportion": "0.00",
+      "modifiers": "25",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "133.00",
+      "batchid": "126912",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19442859",
+    "claimid": "19442859E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978525",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23351118",
+      "visit": "19442859",
+      "dos": "05/19/2026 ",
+      "billingdos": "05/19/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "S72.002A;G20.A1;R33.9;N39.0;F03.90;K59.00",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "126929",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19443842",
+    "claimid": "19443842E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978526",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23352361",
+      "visit": "19443842",
+      "dos": "05/29/2026 ",
+      "billingdos": "05/29/2026 ",
+      "totalfee": "107.00",
+      "diagcode": "S72.002D;G20.A1;F03.90;M86.9",
+      "chgcode": "99308",
+      "insportion": "107.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "107.00",
+      "batchid": "127017",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19443846",
+    "claimid": "19443846E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978527",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23352365",
+      "visit": "19443846",
+      "dos": "05/27/2026 ",
+      "billingdos": "05/27/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "S72.002D;G20.A1;R33.9;N39.0;F03.90;K59.00;M46.28",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "127017",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   },
+   {
+    "claimrunid": "1700302",
+    "id": "19444045",
+    "claimid": "19444045E",
+    "errorcount": "1",
+    "patientid": "17470713",
+    "patientchart": "1855",
+    "provcode": "GARLAND-G",
+    "provname": "GARLAND-G, PAMELA",
+    "carrierid": "6600",
+    "carriercode": "AAR01 5271",
+    "carriercodeshort": "AAR01",
+    "carriercpid": "5271",
+    "carriername": "AARP",
+    "carrierphone": "",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23978528",
+      "name": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:SUBSCRIBER AND SUBSCRIBER ID NOT FOUND.",
+      "isexclusion": "0"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23352637",
+      "visit": "19444045",
+      "dos": "06/02/2026 ",
+      "billingdos": "06/02/2026 ",
+      "totalfee": "141.00",
+      "diagcode": "S72.002D;M46.28;G20.C;R33.9;F03.90;K59.00;N39.0",
+      "chgcode": "99309",
+      "insportion": "141.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "141.00",
+      "batchid": "127034",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   }
+  ],
+  "1700305": []
+ }
+}
