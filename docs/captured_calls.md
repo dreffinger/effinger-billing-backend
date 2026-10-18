@@ -4908,3 +4908,7 @@ No new call shapes this run. Calls used, all already in the registry: login (one
 Behaviors noted:
 - Drive 'workspace mirror' search by parentId + modifiedTime returns the folder in pages of ~5 with a nextPageToken; a title filter ('workspace_state_', 'manifest.json') still lists only the 2026-09-18 bundle manifests - no newer state bundle exists (standing since 10/10).
 - The Insurance Refresh Board items collection answers a where-in query on amdid (4 ids -> 5 rows) in one call; the board's drive_sync 'applied' map still ends 9/20 (page registry not recording), so no inbox file was trashed.
+
+# captured_calls additions - backend billing run 2026-10-18T0310Z (11 PM ET 10/17/2026, ehpa cloud, repo attached)
+
+No new call shape this run. Calls used, all already in the registry: login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges per run (columns_scan.py before/after), getdemographic (live insplan count on charts 17478059 / 17478063 / 17478064), lookuppatient (three 10/15 Pam admits, no chart), GET /api/era/checks (era_list.py before/after, 0 checks), Stedi 276/277 claim status x17 (claim_status_sweep.py pass 134, --skip-answered with the comma-joined sweep registers). No AdvancedMD write.
