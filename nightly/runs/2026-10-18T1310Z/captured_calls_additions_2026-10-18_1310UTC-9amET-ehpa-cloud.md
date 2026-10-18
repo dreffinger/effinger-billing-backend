@@ -1,0 +1,2 @@
+## 2026-10-18 13:10Z - backend billing run, 9 AM ET 10/18/2026 (ehpa cloud, repo attached)
+No new call shapes this run. Calls used (all already in the registry): login (one attempt), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges (columns_scan.py before/after), getdemographic x4 (pat17478059 / pat17478063 / pat17478064 / pat17470713 - plan reads only), lookuppatient x3 (the 10/15 admits - no chart), GET /api/era/checks x2 (0 -> 0). No AMD write.
