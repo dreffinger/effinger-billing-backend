@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-18T0925Z",
+ "stamp": "2026-10-18T1122Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 1 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39115241517",
- "started": "2026-10-18T09:25:11Z",
- "ended": "2026-10-18T09:31:23Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39122962449",
+ "started": "2026-10-18T11:22:31Z",
+ "ended": "2026-10-18T11:27:48Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 0.0
    },
    "after": {
     "checks": 0,
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 290370.75,
-   "visits": 3082,
+   "total": 289391.05,
+   "visits": 3076,
    "charts": 562,
    "over_365": {
     "n": 1082,
@@ -65,7 +65,7 @@
    "visits": 7326,
    "actionable": 77,
    "actionable_amt": 13999.0,
-   "asof": "2026-10-18 09:31 UTC"
+   "asof": "2026-10-18 11:27 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1102 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1102,
-    "registers": 1180,
+    "registers": 1182,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-18T09:25:11Z",
-   "ended": "2026-10-18T09:25:11Z"
+   "started": "2026-10-18T11:22:31Z",
+   "ended": "2026-10-18T11:22:32Z"
   },
   {
    "name": "columns",
@@ -129,28 +129,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-18T09:25:11Z",
-   "ended": "2026-10-18T09:27:07Z"
+   "started": "2026-10-18T11:22:32Z",
+   "ended": "2026-10-18T11:24:05Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 0.0,
     "unposted after": 0,
     "posted this run": 0.0
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053207,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "0917934406",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-18T09:27:07Z",
-   "ended": "2026-10-18T09:27:09Z"
+   "started": "2026-10-18T11:24:05Z",
+   "ended": "2026-10-18T11:24:09Z"
   },
   {
    "name": "packages",
@@ -161,21 +170,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-18T09:27:09Z",
-   "ended": "2026-10-18T09:27:09Z"
+   "started": "2026-10-18T11:24:09Z",
+   "ended": "2026-10-18T11:24:09Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3082 visits on 562 charts, $290370.75 open; 1082 over a year ($48646.70)",
+   "summary": "3076 visits on 562 charts, $289391.05 open; 1082 over a year ($48646.70)",
    "counts": {
-    "visits": 3082,
+    "visits": 3076,
     "charts": 562,
     "over 365 days": 1082
    },
    "dollars": {
-    "open insurance balance": 290370.75,
+    "open insurance balance": 289391.05,
     "over 365 days": 48646.7
    },
    "lines": [
@@ -265,8 +274,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-18T09:27:09Z",
-   "ended": "2026-10-18T09:27:11Z"
+   "started": "2026-10-18T11:24:09Z",
+   "ended": "2026-10-18T11:24:11Z"
   },
   {
    "name": "denials",
@@ -353,8 +362,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-18T09:27:11Z",
-   "ended": "2026-10-18T09:31:23Z"
+   "started": "2026-10-18T11:24:11Z",
+   "ended": "2026-10-18T11:27:48Z"
   }
  ],
  "packages": [],

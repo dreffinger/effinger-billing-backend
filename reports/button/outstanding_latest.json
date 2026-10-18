@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-18T09:27:11Z",
+ "at": "2026-10-18T11:24:11Z",
  "as_of": "2026-10-18",
- "total": 290370.75,
- "visits": 3082,
+ "total": 289391.05,
+ "visits": 3076,
  "charts": 562,
  "over_365": {
   "n": 1082,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 509,
-   "dollars": 81880.81
+   "n": 503,
+   "dollars": 80901.11
   },
   "31-60": {
    "n": 195,
@@ -262,21 +262,6 @@
    "oldest_days": 1243
   },
   {
-   "carrier": "AMB03",
-   "name": "AMBETTER FROM SUNSHINE HEALTH",
-   "n": 15,
-   "dollars": 1680.2,
-   "buckets": {
-    "0-30": 976.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 0.0,
-    "181-365": 641.54,
-    "over 365": 62.66
-   },
-   "oldest_days": 739
-  },
-  {
    "carrier": "WEL04",
    "name": "WELLCARE",
    "n": 25,
@@ -309,10 +294,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 23,
-   "dollars": 1447.08,
+   "n": 22,
+   "dollars": 1284.08,
    "buckets": {
-    "0-30": 1085.88,
+    "0-30": 922.88,
     "31-60": 220.2,
     "61-90": 0.0,
     "91-180": 141.0,
@@ -335,6 +320,21 @@
     "over 365": 0.0
    },
    "oldest_days": 16
+  },
+  {
+   "carrier": "AMB03",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
+   "n": 10,
+   "dollars": 863.5,
+   "buckets": {
+    "0-30": 159.3,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 0.0,
+    "181-365": 641.54,
+    "over 365": 62.66
+   },
+   "oldest_days": 739
   },
   {
    "carrier": "WEL07",
@@ -755,8 +755,8 @@
   },
   {
    "month": "2026-10",
-   "n": 254,
-   "dollars": 45966.69
+   "n": 248,
+   "dollars": 44986.99
   }
  ],
  "oldest": [
@@ -24973,14 +24973,6 @@
    "dos": "2026-10-06"
   },
   {
-   "visitid": 19457319,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 310.0,
-   "days": 12,
-   "dos": "2026-10-06"
-  },
-  {
    "visitid": 19457320,
    "patientid": 17478012,
    "carriercode": "HUM01",
@@ -25373,14 +25365,6 @@
    "dos": "2026-10-07"
   },
   {
-   "visitid": 19457420,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 111.0,
-   "days": 11,
-   "dos": "2026-10-07"
-  },
-  {
    "visitid": 19457269,
    "patientid": 17477971,
    "carriercode": "CIG09",
@@ -25424,14 +25408,6 @@
    "visitid": 19457488,
    "patientid": 17476869,
    "carriercode": "FLO02",
-   "insbalance": 163.0,
-   "days": 10,
-   "dos": "2026-10-08"
-  },
-  {
-   "visitid": 19457487,
-   "patientid": 17472703,
-   "carriercode": "SUN01",
    "insbalance": 163.0,
    "days": 10,
    "dos": "2026-10-08"
@@ -25525,14 +25501,6 @@
    "dos": "2026-10-08"
   },
   {
-   "visitid": 19457480,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 111.0,
-   "days": 10,
-   "dos": "2026-10-08"
-  },
-  {
    "visitid": 19457478,
    "patientid": 17471741,
    "carriercode": "FIR07",
@@ -25561,6 +25529,14 @@
    "patientid": 17478031,
    "carriercode": "UHCMA",
    "insbalance": 111.0,
+   "days": 10,
+   "dos": "2026-10-08"
+  },
+  {
+   "visitid": 19457480,
+   "patientid": 17478017,
+   "carriercode": "AMB03",
+   "insbalance": 48.3,
    "days": 10,
    "dos": "2026-10-08"
   },
@@ -25657,14 +25633,6 @@
    "patientid": 17478013,
    "carriercode": "VACCN",
    "insbalance": 160.0,
-   "days": 9,
-   "dos": "2026-10-09"
-  },
-  {
-   "visitid": 19457467,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 111.0,
    "days": 9,
    "dos": "2026-10-09"
   },
@@ -25781,14 +25749,6 @@
    "dos": "2026-10-10"
   },
   {
-   "visitid": 19457533,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 111.0,
-   "days": 8,
-   "dos": "2026-10-10"
-  },
-  {
    "visitid": 19457526,
    "patientid": 17478031,
    "carriercode": "UHCMA",
@@ -25857,14 +25817,6 @@
    "patientid": 17478013,
    "carriercode": "VACCN",
    "insbalance": 160.0,
-   "days": 7,
-   "dos": "2026-10-11"
-  },
-  {
-   "visitid": 19457516,
-   "patientid": 17478017,
-   "carriercode": "AMB03",
-   "insbalance": 111.0,
    "days": 7,
    "dos": "2026-10-11"
   },
