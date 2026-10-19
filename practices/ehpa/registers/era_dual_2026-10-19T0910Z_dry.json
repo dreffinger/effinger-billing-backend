@@ -1,0 +1,174 @@
+{
+ "stamp": "2026-10-19T0910Z",
+ "dry": true,
+ "lines": [
+  {
+   "group": "A",
+   "checkid": "1053210",
+   "checkclaimid": 15447003,
+   "pid": "17472397",
+   "visitid": "19397335",
+   "chargedetailid": "22470803",
+   "wocode": "WOINS",
+   "before": {
+    "insbal": 50.43,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99309",
+    "fee": "141.00",
+    "pays": [
+     [
+      "0923844014",
+      "0",
+      "-90.57",
+      "AMB03"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOINS 50.43 under HUM01 (live ins 50.43 pat 0.00 cpt 99309 fee 141.00)"
+  },
+  {
+   "group": "B",
+   "checkid": "1053210",
+   "checkclaimid": 15447004,
+   "pid": "17476681",
+   "visitid": "19455801",
+   "chargedetailid": "23367254",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99487",
+    "fee": "206.00",
+    "pays": [
+     [
+      "819970542",
+      "0",
+      "-63.28",
+      "FLO02"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 16.14 under HUM01 (live ins 16.14 pat 0.00 cpt 99487 fee 206.00)"
+  },
+  {
+   "group": "B",
+   "checkid": "1053210",
+   "checkclaimid": 15447004,
+   "pid": "17476681",
+   "visitid": "19455801",
+   "chargedetailid": "23367255",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99489",
+    "fee": "109.00",
+    "pays": [
+     [
+      "819970542",
+      "0",
+      "-34.95",
+      "FLO02"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 8.92 under HUM01 (live ins 8.92 pat 0.00 cpt 99489 fee 109.00)"
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15446999,
+   "pid": "17471773",
+   "visitid": "19417230",
+   "chargedetailid": "23320853",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 22.88 under VACCN (live ins 22.88 pat 0.00 cpt 99233 fee 160.00)"
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15447000,
+   "pid": "17471773",
+   "visitid": "19417014",
+   "chargedetailid": "23320662",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 22.88 under VACCN (live ins 22.88 pat 0.00 cpt 99233 fee 160.00)"
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15447001,
+   "pid": "17471773",
+   "visitid": "19417163",
+   "chargedetailid": "23320775",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 22.88 under VACCN (live ins 22.88 pat 0.00 cpt 99233 fee 160.00)"
+  }
+ ]
+}

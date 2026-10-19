@@ -1,0 +1,222 @@
+{
+ "stamp": "2026-10-19T0910Z",
+ "dry": false,
+ "lines": [
+  {
+   "group": "A",
+   "checkid": "1053210",
+   "checkclaimid": 15447003,
+   "pid": "17472397",
+   "visitid": "19397335",
+   "chargedetailid": "22470803",
+   "wocode": "WOINS",
+   "before": {
+    "insbal": 50.43,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99309",
+    "fee": "141.00",
+    "pays": [
+     [
+      "0923844014",
+      "0",
+      "-90.57",
+      "AMB03"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 50.43,
+   "paymentid": "10175725",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/19/2026 02:25:35\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "group": "B",
+   "checkid": "1053210",
+   "checkclaimid": 15447004,
+   "pid": "17476681",
+   "visitid": "19455801",
+   "chargedetailid": "23367254",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 16.14,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99487",
+    "fee": "206.00",
+    "pays": [
+     [
+      "819970542",
+      "0",
+      "-63.28",
+      "FLO02"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 16.14,
+   "paymentid": "10175726",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-j9ptd\" lst=\"10/19/2026 02:25:40\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "group": "B",
+   "checkid": "1053210",
+   "checkclaimid": 15447004,
+   "pid": "17476681",
+   "visitid": "19455801",
+   "chargedetailid": "23367255",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 8.92,
+    "patbal": 0.0,
+    "carrier": "HUM01",
+    "cpt": "99489",
+    "fee": "109.00",
+    "pays": [
+     [
+      "819970542",
+      "0",
+      "-34.95",
+      "FLO02"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 8.92,
+   "paymentid": "10175727",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-h4rdd\" lst=\"10/19/2026 02:25:44\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15446999,
+   "pid": "17471773",
+   "visitid": "19417230",
+   "chargedetailid": "23320853",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 22.88,
+   "paymentid": "10175728",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/19/2026 02:25:49\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15447000,
+   "pid": "17471773",
+   "visitid": "19417014",
+   "chargedetailid": "23320662",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 22.88,
+   "paymentid": "10175729",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-h4rdd\" lst=\"10/19/2026 02:25:53\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "group": "B",
+   "checkid": "1053209",
+   "checkclaimid": 15447001,
+   "pid": "17471773",
+   "visitid": "19417163",
+   "chargedetailid": "23320775",
+   "wocode": "WOCAID2ND",
+   "before": {
+    "insbal": 22.88,
+    "patbal": 0.0,
+    "carrier": "VACCN",
+    "cpt": "99233",
+    "fee": "160.00",
+    "pays": [
+     [
+      "817795550",
+      "0",
+      "-89.83",
+      "FLO02"
+     ],
+     [
+      "169608144251010",
+      "0",
+      "-0.04",
+      "HUM01"
+     ]
+    ]
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 22.88,
+   "paymentid": "10175730",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/19/2026 02:25:58\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}

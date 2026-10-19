@@ -1,0 +1,48 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-19T0915Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053209,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-19T01:45:35.427",
+   "depositdate": "2026-10-21T00:00:00",
+   "eracarrierid": "8257",
+   "eracarriername": "OPTUM VA CCN REGION 3",
+   "hasnote": false,
+   "systemcarrierid": 42025,
+   "systemcarriercode": "VACCN",
+   "systemcarriername": "OPTUM VA CCN",
+   "paymentnumber": "3680160141",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053210,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-19T02:03:08.633",
+   "depositdate": "2026-10-17T00:00:00",
+   "eracarrierid": "2449",
+   "eracarriername": "HUMANA INC.",
+   "hasnote": false,
+   "systemcarrierid": 6285,
+   "systemcarriercode": "HUM01",
+   "systemcarriername": "HUMANA",
+   "paymentnumber": "203602886261018",
+   "paymentamount": 196.07,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 196.07,
+   "unpostedamount": 196.07,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}
