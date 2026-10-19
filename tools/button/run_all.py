@@ -467,7 +467,14 @@ class Run:
             s["ended"] = iso()
             return
         minage = (datetime.date.today() - datetime.date(2026, 5, 1)).days
-        rc, text, log = self.helper("claim_status_sweep.py", ["--min-age", str(minage), "--max", "60", "--carriers", "UNI20,BCBS"], timeout=2400)
+        # 10/19/2026: the earlier passes' registers feed --skip-answered (answered visits are not asked again) and give the pass number
+        # (the 10/19 0510Z lesson: the literal "button" raised ValueError in sweep_register.py and the answered pool was re-asked).
+        prev = sorted(glob.glob(os.path.join(self.ws, "registers", "uni20_bcbs_pre0501_sweep_*.json")))
+        npass = str(len(prev) + 1)
+        args = ["--min-age", str(minage), "--max", "60", "--carriers", "UNI20,BCBS"]
+        if prev:
+            args += ["--skip-answered", ",".join(prev)]
+        rc, text, log = self.helper("claim_status_sweep.py", args, timeout=2400)
         today = datetime.date.today().strftime("%Y%m%d")
         p = os.path.join(self.ws, "claimstatus_%s.json" % today)
         if os.path.exists(p):
@@ -480,7 +487,7 @@ class Run:
                     s["counts"][a_] = len(vids)
                     s["lines"].append({"action": a_, "visits": len(vids), "ids": " ".join(vids[:25])})
                 if self.exists("sweep_register.py"):
-                    self.helper("sweep_register.py", [p, self.stamp, "button"])
+                    self.helper("sweep_register.py", [p, self.stamp, npass])
             except ValueError:
                 self.warn(s, "claimstatus file unreadable")
         if rc != 0:
