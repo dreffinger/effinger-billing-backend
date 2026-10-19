@@ -1,22 +1,22 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-19T21:27:17Z",
+ "at": "2026-10-19T23:27:23Z",
  "as_of": "2026-10-19",
- "total": 301997.43,
- "visits": 3132,
- "charts": 570,
+ "total": 301367.88,
+ "visits": 3100,
+ "charts": 564,
  "over_365": {
   "n": 1078,
   "dollars": 48522.18
  },
  "by_bucket": {
   "0-30": {
-   "n": 474,
-   "dollars": 77797.43
+   "n": 443,
+   "dollars": 77184.81
   },
   "31-60": {
-   "n": 213,
-   "dollars": 25374.37
+   "n": 212,
+   "dollars": 25357.44
   },
   "61-90": {
    "n": 152,
@@ -69,10 +69,10 @@
   {
    "carrier": "FLO99",
    "name": "FLORIDA COMMUNITY CARE AVAILITY",
-   "n": 147,
-   "dollars": 22696.8,
+   "n": 136,
+   "dollars": 22431.58,
    "buckets": {
-    "0-30": 3807.36,
+    "0-30": 3542.14,
     "31-60": 2377.39,
     "61-90": 174.86,
     "91-180": 2205.44,
@@ -159,10 +159,10 @@
   {
    "carrier": "CIG09",
    "name": "CIGNA HEALTH PLANS HMO/PPO/OTR",
-   "n": 28,
-   "dollars": 4074.61,
+   "n": 26,
+   "dollars": 4031.01,
    "buckets": {
-    "0-30": 1398.8,
+    "0-30": 1355.2,
     "31-60": 1056.81,
     "61-90": 888.0,
     "91-180": 731.0,
@@ -170,21 +170,6 @@
     "over 365": 0.0
    },
    "oldest_days": 154
-  },
-  {
-   "carrier": "MCAD",
-   "name": "FLORIDA MEDICAID",
-   "n": 45,
-   "dollars": 4040.11,
-   "buckets": {
-    "0-30": 257.38,
-    "31-60": 111.73,
-    "61-90": 0.0,
-    "91-180": 141.0,
-    "181-365": 3389.0,
-    "over 365": 141.0
-   },
-   "oldest_days": 382
   },
   {
    "carrier": "VACCN",
@@ -200,6 +185,21 @@
     "over 365": 164.98
    },
    "oldest_days": 1337
+  },
+  {
+   "carrier": "MCAD",
+   "name": "FLORIDA MEDICAID",
+   "n": 30,
+   "dollars": 3787.1,
+   "buckets": {
+    "0-30": 21.3,
+    "31-60": 94.8,
+    "61-90": 0.0,
+    "91-180": 141.0,
+    "181-365": 3389.0,
+    "over 365": 141.0
+   },
+   "oldest_days": 382
   },
   {
    "carrier": "SIM01",
@@ -309,10 +309,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 21,
-   "dollars": 1358.8,
+   "n": 17,
+   "dollars": 1291.08,
    "buckets": {
-    "0-30": 890.6,
+    "0-30": 822.88,
     "31-60": 220.2,
     "61-90": 0.0,
     "91-180": 141.0,
@@ -750,8 +750,8 @@
   },
   {
    "month": "2026-09",
-   "n": 365,
-   "dollars": 47506.99
+   "n": 333,
+   "dollars": 46877.44
   },
   {
    "month": "2026-10",
@@ -22533,14 +22533,6 @@
    "dos": "2026-09-17"
   },
   {
-   "visitid": 19456049,
-   "patientid": 17477184,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 32,
-   "dos": "2026-09-17"
-  },
-  {
    "visitid": 19455467,
    "patientid": 17477828,
    "carriercode": "UNI20",
@@ -23437,14 +23429,6 @@
    "dos": "2026-09-20"
   },
   {
-   "visitid": 19455792,
-   "patientid": 24039,
-   "carriercode": "FLO99",
-   "insbalance": 25.06,
-   "days": 29,
-   "dos": "2026-09-20"
-  },
-  {
    "visitid": 19455830,
    "patientid": 17471349,
    "carriercode": "TRI05",
@@ -23677,54 +23661,6 @@
    "dos": "2026-09-21"
   },
   {
-   "visitid": 19456315,
-   "patientid": 17472285,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456180,
-   "patientid": 17476036,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456214,
-   "patientid": 25869,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456185,
-   "patientid": 17477010,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456205,
-   "patientid": 17473568,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456222,
-   "patientid": 12179706,
-   "carriercode": "SUN01",
-   "insbalance": 16.93,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
    "visitid": 19456219,
    "patientid": 25266,
    "carriercode": "SUN01",
@@ -23737,14 +23673,6 @@
    "patientid": 17470950,
    "carriercode": "AAR01",
    "insbalance": 14.38,
-   "days": 28,
-   "dos": "2026-09-21"
-  },
-  {
-   "visitid": 19456221,
-   "patientid": 17473222,
-   "carriercode": "MCAD",
-   "insbalance": 11.59,
    "days": 28,
    "dos": "2026-09-21"
   },
@@ -23837,22 +23765,6 @@
    "dos": "2026-09-22"
   },
   {
-   "visitid": 19456050,
-   "patientid": 23159,
-   "carriercode": "FLO99",
-   "insbalance": 45.29,
-   "days": 27,
-   "dos": "2026-09-22"
-  },
-  {
-   "visitid": 19456290,
-   "patientid": 20863,
-   "carriercode": "FLO99",
-   "insbalance": 45.29,
-   "days": 27,
-   "dos": "2026-09-22"
-  },
-  {
    "visitid": 19456308,
    "patientid": 17477897,
    "carriercode": "AAR01",
@@ -23889,22 +23801,6 @@
    "patientid": 23969,
    "carriercode": "CIG09",
    "insbalance": 21.8,
-   "days": 27,
-   "dos": "2026-09-22"
-  },
-  {
-   "visitid": 19456051,
-   "patientid": 17470881,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 27,
-   "dos": "2026-09-22"
-  },
-  {
-   "visitid": 19456055,
-   "patientid": 17473663,
-   "carriercode": "SUN01",
-   "insbalance": 16.93,
    "days": 27,
    "dos": "2026-09-22"
   },
@@ -24008,38 +23904,6 @@
    "visitid": 19456271,
    "patientid": 17474911,
    "carriercode": "AAR01",
-   "insbalance": 21.8,
-   "days": 26,
-   "dos": "2026-09-23"
-  },
-  {
-   "visitid": 19456278,
-   "patientid": 23969,
-   "carriercode": "CIG09",
-   "insbalance": 21.8,
-   "days": 26,
-   "dos": "2026-09-23"
-  },
-  {
-   "visitid": 19456304,
-   "patientid": 23159,
-   "carriercode": "FLO99",
-   "insbalance": 21.8,
-   "days": 26,
-   "dos": "2026-09-23"
-  },
-  {
-   "visitid": 19456289,
-   "patientid": 20863,
-   "carriercode": "FLO99",
-   "insbalance": 21.8,
-   "days": 26,
-   "dos": "2026-09-23"
-  },
-  {
-   "visitid": 19456287,
-   "patientid": 46692,
-   "carriercode": "MCAD",
    "insbalance": 21.8,
    "days": 26,
    "dos": "2026-09-23"
@@ -24181,106 +24045,10 @@
    "dos": "2026-09-24"
   },
   {
-   "visitid": 19456261,
-   "patientid": 23969,
-   "carriercode": "CIG09",
-   "insbalance": 21.8,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456291,
-   "patientid": 23159,
-   "carriercode": "FLO99",
-   "insbalance": 21.8,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456288,
-   "patientid": 20863,
-   "carriercode": "FLO99",
-   "insbalance": 21.8,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456263,
-   "patientid": 46692,
-   "carriercode": "MCAD",
-   "insbalance": 21.8,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
    "visitid": 19456260,
    "patientid": 17470940,
    "carriercode": "AAR01",
    "insbalance": 21.59,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456179,
-   "patientid": 17472124,
-   "carriercode": "FLO99",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456475,
-   "patientid": 24039,
-   "carriercode": "FLO99",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456202,
-   "patientid": 23721,
-   "carriercode": "FLO99",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456224,
-   "patientid": 22758,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456193,
-   "patientid": 17470743,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456191,
-   "patientid": 21172,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456184,
-   "patientid": 47039,
-   "carriercode": "MCAD",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456220,
-   "patientid": 17470875,
-   "carriercode": "SUN01",
-   "insbalance": 16.93,
    "days": 25,
    "dos": "2026-09-24"
   },
@@ -24293,34 +24061,10 @@
    "dos": "2026-09-24"
   },
   {
-   "visitid": 19456466,
-   "patientid": 20728,
-   "carriercode": "SUN01",
-   "insbalance": 16.93,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
    "visitid": 19456244,
    "patientid": 17477900,
    "carriercode": "AAR01",
    "insbalance": 14.38,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456195,
-   "patientid": 21308,
-   "carriercode": "FLO99",
-   "insbalance": 11.59,
-   "days": 25,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456201,
-   "patientid": 24330,
-   "carriercode": "MCAD",
-   "insbalance": 11.59,
    "days": 25,
    "dos": "2026-09-24"
   },
