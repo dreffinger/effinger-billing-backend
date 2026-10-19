@@ -1,5 +1,6 @@
 {
  "schema": "button-run/1",
+<<<<<<< Updated upstream
  "stamp": "2026-10-19T1331Z",
  "mode": "live",
  "status": "ok",
@@ -8,6 +9,16 @@
  "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39260795081",
  "started": "2026-10-19T13:31:00Z",
  "ended": "2026-10-19T13:36:57Z",
+=======
+ "stamp": "2026-10-19T1327Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 1 checks $654.26 -> 0 checks $0.00",
+ "note": "backend billing run 2026-10-19T1310Z (9 AM ET)",
+ "run_url": "",
+ "started": "2026-10-19T13:27:47Z",
+ "ended": "2026-10-19T13:32:12Z",
+>>>>>>> Stashed changes
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +36,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 654.26
    },
    "after": {
     "checks": 0,
@@ -34,7 +45,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 654.26,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -82,8 +93,13 @@
    "dollars": {},
    "lines": [],
    "errors": [],
+<<<<<<< Updated upstream
    "started": "2026-10-19T13:31:00Z",
    "ended": "2026-10-19T13:31:01Z"
+=======
+   "started": "2026-10-19T13:27:47Z",
+   "ended": "2026-10-19T13:27:48Z"
+>>>>>>> Stashed changes
   },
   {
    "name": "columns",
@@ -129,28 +145,73 @@
     }
    ],
    "errors": [],
+<<<<<<< Updated upstream
    "started": "2026-10-19T13:31:01Z",
    "ended": "2026-10-19T13:32:36Z"
+=======
+   "started": "2026-10-19T13:27:48Z",
+   "ended": "2026-10-19T13:31:04Z"
+>>>>>>> Stashed changes
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $654.26 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
+    "era_post lines": 1,
     "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 654.26,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 654.26
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053212,
+     "payer": "AARP",
+     "checknumber": "00148578843",
+     "amount": 0.0,
+     "unposted": 654.26,
+     "stage": "before"
+    }
+   ],
    "errors": [],
+<<<<<<< Updated upstream
    "started": "2026-10-19T13:32:36Z",
    "ended": "2026-10-19T13:32:38Z"
+=======
+   "started": "2026-10-19T13:31:04Z",
+   "ended": "2026-10-19T13:31:27Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "UNKNOWN - review: 1; PENDING at payer - wait: 16",
+   "counts": {
+    "UNKNOWN - review": 1,
+    "PENDING at payer - wait": 16
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "UNKNOWN - review",
+     "visits": 1,
+     "ids": "v19433791"
+    },
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 16,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271 v19455322"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-19T13:31:27Z",
+   "ended": "2026-10-19T13:32:12Z"
+>>>>>>> Stashed changes
   },
   {
    "name": "packages",
@@ -161,6 +222,7 @@
    "dollars": {},
    "lines": [],
    "errors": [],
+<<<<<<< Updated upstream
    "started": "2026-10-19T13:32:38Z",
    "ended": "2026-10-19T13:32:38Z"
   },
@@ -181,56 +243,56 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1591,
      "dollars": 142302.45,
      "oldest_days": 1069
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 318,
      "dollars": 50010.57,
      "oldest_days": 1253
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 147,
      "dollars": 22696.8,
      "oldest_days": 406
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 320,
      "dollars": 20947.34,
      "oldest_days": 1526
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 128,
      "dollars": 11739.48,
      "oldest_days": 1289
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 55,
      "dollars": 10411.24,
      "oldest_days": 766
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 29,
      "dollars": 5081.97,
      "oldest_days": 1138
     },
     {
      "carrier": "AET07",
-     "name": "AETNA",
+     "name": "[name]",
      "visits": 31,
      "dollars": 4264.01,
      "oldest_days": 1473
@@ -244,21 +306,21 @@
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 45,
      "dollars": 4040.11,
      "oldest_days": 382
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 24,
      "dollars": 3979.98,
      "oldest_days": 1337
     },
     {
      "carrier": "SIM01",
-     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "name": "[name]",
      "visits": 19,
      "dollars": 3231.12,
      "oldest_days": 101
@@ -355,6 +417,10 @@
    "errors": [],
    "started": "2026-10-19T13:32:39Z",
    "ended": "2026-10-19T13:36:57Z"
+=======
+   "started": "2026-10-19T13:32:12Z",
+   "ended": "2026-10-19T13:32:12Z"
+>>>>>>> Stashed changes
   }
  ],
  "packages": [],
