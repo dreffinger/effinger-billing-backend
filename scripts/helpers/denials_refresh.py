@@ -22,6 +22,10 @@ NT = int(opt("--threads", 3)); MX = int(opt("--max", 10**9)); TODAY = datetime.d
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "boards"))
 try:
     from working_denials import DENIAL_RULES, DISPO_ORDER, ACTIONABLE, norm, triage
+    try:
+        from working_denials import triage_line          # CPT/modifier-aware (CCM + GV / B9 -> WRITEOFF, 10/15/2026)
+    except ImportError:
+        def triage_line(c, cpt="", mods=""): return triage(c)
 except ImportError:
     DENIAL_RULES = {}; DISPO_ORDER = ["FIX", "COB", "TIMELY", "CRED", "REVIEW", "PATIENT", "DUPLICATE", "CONTRACTUAL", "INFO", "UNCLASSIFIED"]
     ACTIONABLE = {"FIX", "COB", "TIMELY", "CRED", "REVIEW"}
@@ -31,6 +35,7 @@ except ImportError:
             if c.startswith(g) and len(c) > len(g): return c[len(g):]
         return c
     def triage(c): return ("UNCLASSIFIED", "No rule yet for CARC %s" % norm(c))
+    def triage_line(c, cpt="", mods=""): return triage(c)
 NOACTION = {"45", "23", "253", "94"}
 
 def f(x):
@@ -87,7 +92,7 @@ def scan(pid):
                 pd = mdy(p.get("date"))
                 if pd > s["denied_on"]: s["denied_on"] = pd
                 out_lines.append({"pid": pid, "visitid": vid, "carrier": p.get("carrier") or c.get("carrier", ""), "dos": mdy(c.get("dos") or c.get("dateofservice")),
-                                  "cpt": (c.get("proccode") or "").strip(), "billed": f(c.get("fee") or c.get("amount")), "group": grp, "carc": carc, "reason": desc,
+                                  "cpt": (c.get("proccode") or "").strip(), "mods": (c.get("modcodes") or c.get("modifiers") or "").strip(), "billed": f(c.get("fee") or c.get("amount")), "group": grp, "carc": carc, "reason": desc,
                                   "check": p.get("checknumber", ""), "amt": abs(ramt), "paid_on": pd})
         for w in c.iter("writeoff"):
             if w.get("void") != "1" and f(w.get("amount")) != 0: s["wos"] += 1
@@ -133,7 +138,7 @@ ts = [threading.Thread(target=worker, daemon=True) for _ in range(NT)]; [t.start
 # roll up to one row per visit: the most actionable line wins, every code listed
 byv = {}
 for r in lines:
-    dispo, action = triage(r["carc"]); rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)
+    dispo, action = triage_line(r["carc"], r.get("cpt"), r.get("mods")); rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)
     key = (r["pid"], r["visitid"]); rec = byv.get(key)
     if rec is None or rank < rec["_rank"]:
         byv[key] = {"_rank": rank, "pid": r["pid"], "visitid": r["visitid"], "carrier": r["carrier"], "dos": r["dos"], "cpt": r["cpt"], "billed": r["billed"],

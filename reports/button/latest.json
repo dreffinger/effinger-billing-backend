@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-19T0333Z",
+ "stamp": "2026-10-19T0510Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/26 -> 0/0/6/26; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39195206010",
- "started": "2026-10-19T03:33:14Z",
- "ended": "2026-10-19T03:38:25Z",
+ "headline": "Columns 0/0/38/26 -> 0/0/6/26; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "backend billing run 2026-10-19T0510Z (routine, 1 AM ET)",
+ "run_url": "",
+ "started": "2026-10-19T05:15:51Z",
+ "ended": "2026-10-19T05:22:09Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 6,
+    "unbilled": 38,
     "exclusions": 26
    },
    "after": {
@@ -51,21 +51,6 @@
    "applied": 0,
    "refused": 0,
    "skipped": 0
-  },
-  "outstanding": {
-   "total": 289310.47,
-   "visits": 3073,
-   "charts": 561,
-   "over_365": {
-    "n": 1083,
-    "dollars": 48662.11
-   }
-  },
-  "denials": {
-   "visits": 7328,
-   "actionable": 77,
-   "actionable_amt": 13999.0,
-   "asof": "2026-10-19 03:38 UTC"
   }
  },
  "steps": [
@@ -77,29 +62,29 @@
    "counts": {
     "helpers copied": 1116,
     "registers": 1207,
-    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-19T03:33:14Z",
-   "ended": "2026-10-19T03:33:15Z"
+   "started": "2026-10-19T05:15:51Z",
+   "ended": "2026-10-19T05:15:51Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 26->26",
+   "summary": "CR 0->0, CI 0->0, Unbilled 38->6, Exclusions 26->26",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 6,
+    "unbilled": 38,
     "exclusions": 26,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 30,
     "unbilled rows left alone": 6,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
@@ -111,9 +96,21 @@
    "lines": [
     {
      "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
      "kind": "Insurance order is missing on visit",
      "visits": 6,
      "ids": "v19457778 v19457783 v19457784 v19457791 v19457794 v19457797"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
     },
     {
      "column": "exclusions run 1700294",
@@ -129,8 +126,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-19T03:33:15Z",
-   "ended": "2026-10-19T03:34:44Z"
+   "started": "2026-10-19T05:15:51Z",
+   "ended": "2026-10-19T05:19:26Z"
   },
   {
    "name": "era",
@@ -149,8 +146,94 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-19T03:34:44Z",
-   "ended": "2026-10-19T03:34:46Z"
+   "started": "2026-10-19T05:19:26Z",
+   "ended": "2026-10-19T05:19:30Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "FINALIZED $0 - denial, run the cascade: 8; NOT ON FILE / rejected - resend as origi: 21; DENIED/REVISED - run the denial cascade: 18; PAID $75.37 - find/post the ERA (check 1: 2; PENDING at payer - wait: 4; PAID $54.40 - find/post the ERA (check 4: 1; PAID $160.89 - find/post the ERA (check : 1; PAID $106.11 - find/post the ERA (check : 1; PAID $84.77 - find/post the ERA (check 2: 1; UNKNOWN - review: 1; PAID $189.33 - find/post the ERA (check : 1; PAID $107.91 - find/post the ERA (check : 1",
+   "counts": {
+    "FINALIZED $0 - denial, run the cascade": 8,
+    "NOT ON FILE / rejected - resend as origi": 21,
+    "DENIED/REVISED - run the denial cascade": 18,
+    "PAID $75.37 - find/post the ERA (check 1": 2,
+    "PENDING at payer - wait": 4,
+    "PAID $54.40 - find/post the ERA (check 4": 1,
+    "PAID $160.89 - find/post the ERA (check ": 1,
+    "PAID $106.11 - find/post the ERA (check ": 1,
+    "PAID $84.77 - find/post the ERA (check 2": 1,
+    "UNKNOWN - review": 1,
+    "PAID $189.33 - find/post the ERA (check ": 1,
+    "PAID $107.91 - find/post the ERA (check ": 1
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "FINALIZED $0 - denial, run the cascade",
+     "visits": 8,
+     "ids": "v19427723 v19431393 v19429263 v19427050 v19433863 v19420993 v19433842 v19424006"
+    },
+    {
+     "action": "NOT ON FILE / rejected - resend as origi",
+     "visits": 21,
+     "ids": "v19437920 v19389388 v19427219 v19430674 v19433887 v19421130 v19423726 v19427137 v19430853 v19416179 v19420949 v19427225 v19430609 v19433941 v19438570 v19439595 v19430668 v19433880 v19365043 v19370971 v14013956"
+    },
+    {
+     "action": "DENIED/REVISED - run the denial cascade",
+     "visits": 18,
+     "ids": "v19419029 v19430611 v19433922 v19421030 v19423645 v19427261 v19430750 v19433950 v19438584 v19439607 v19421508 v19422929 v19439632 v19427080 v19430640 v19416121 v19416149 v19420969"
+    },
+    {
+     "action": "PAID $75.37 - find/post the ERA (check 1",
+     "visits": 2,
+     "ids": "v19427184 v19439517"
+    },
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 4,
+     "ids": "v19417390 v19420985 v19424662 v19427156"
+    },
+    {
+     "action": "PAID $54.40 - find/post the ERA (check 4",
+     "visits": 1,
+     "ids": "v19422378"
+    },
+    {
+     "action": "PAID $160.89 - find/post the ERA (check ",
+     "visits": 1,
+     "ids": "v19437270"
+    },
+    {
+     "action": "PAID $106.11 - find/post the ERA (check ",
+     "visits": 1,
+     "ids": "v19440411"
+    },
+    {
+     "action": "PAID $84.77 - find/post the ERA (check 2",
+     "visits": 1,
+     "ids": "v19419306"
+    },
+    {
+     "action": "UNKNOWN - review",
+     "visits": 1,
+     "ids": "v19433791"
+    },
+    {
+     "action": "PAID $189.33 - find/post the ERA (check ",
+     "visits": 1,
+     "ids": "v19416495"
+    },
+    {
+     "action": "PAID $107.91 - find/post the ERA (check ",
+     "visits": 1,
+     "ids": "v19430608"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-19T05:19:30Z",
+   "ended": "2026-10-19T05:22:09Z"
   },
   {
    "name": "packages",
@@ -161,200 +244,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-19T03:34:46Z",
-   "ended": "2026-10-19T03:34:46Z"
-  },
-  {
-   "name": "outstanding",
-   "title": "Outstanding claims summary",
-   "status": "ok",
-   "summary": "3073 visits on 561 charts, $289310.47 open; 1083 over a year ($48662.11)",
-   "counts": {
-    "visits": 3073,
-    "charts": 561,
-    "over 365 days": 1083
-   },
-   "dollars": {
-    "open insurance balance": 289310.47,
-    "over 365 days": 48662.11
-   },
-   "lines": [
-    {
-     "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
-     "visits": 1590,
-     "dollars": 142227.81,
-     "oldest_days": 1069
-    },
-    {
-     "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
-     "visits": 318,
-     "dollars": 50010.57,
-     "oldest_days": 1253
-    },
-    {
-     "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
-     "visits": 147,
-     "dollars": 22696.8,
-     "oldest_days": 406
-    },
-    {
-     "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
-     "visits": 320,
-     "dollars": 20947.34,
-     "oldest_days": 1526
-    },
-    {
-     "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 133,
-     "dollars": 12177.14,
-     "oldest_days": 1289
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 29,
-     "dollars": 5081.97,
-     "oldest_days": 1138
-    },
-    {
-     "carrier": "CIG09",
-     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
-     "visits": 28,
-     "dollars": 4074.61,
-     "oldest_days": 154
-    },
-    {
-     "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
-     "visits": 27,
-     "dollars": 4048.62,
-     "oldest_days": 1337
-    },
-    {
-     "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
-     "visits": 45,
-     "dollars": 4040.11,
-     "oldest_days": 382
-    },
-    {
-     "carrier": "SIM01",
-     "name": "SIMPLY HEALTHCARE MCD PLANS",
-     "visits": 19,
-     "dollars": 3231.12,
-     "oldest_days": 101
-    },
-    {
-     "carrier": "TRI05",
-     "name": "TRICARE FOR LIFE",
-     "visits": 96,
-     "dollars": 3105.91,
-     "oldest_days": 1497
-    },
-    {
-     "carrier": "UMR",
-     "name": "UMR CHOICE",
-     "visits": 14,
-     "dollars": 2050.0,
-     "oldest_days": 47
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-19T03:34:46Z",
-   "ended": "2026-10-19T03:34:47Z"
-  },
-  {
-   "name": "denials",
-   "title": "Working Denials refresh",
-   "status": "ok",
-   "summary": "7328 denied visits on 855 charts; 77 actionable $13999.00 (73 inside 12 months $13279.00); WRITTEN-OFF 2682, RESOLVED 4270, RESUBMITTED 158, OPEN 218",
-   "counts": {
-    "charts read": 855,
-    "denial lines": 12439,
-    "visits": 7328,
-    "actionable": 77,
-    "inside 12 months": 73,
-    "status WRITTEN-OFF": 2682,
-    "status RESOLVED": 4270,
-    "status RESUBMITTED": 158,
-    "status OPEN": 218
-   },
-   "dollars": {
-    "actionable": 13999.0,
-    "inside 12 months": 13279.0,
-    "resubmitted": 26488.33,
-    "resolved since": 642320.34
-   },
-   "lines": [
-    {
-     "disposition": "UNCLASSIFIED",
-     "visits": 1816,
-     "dollars": 300392.0,
-     "patients": 207
-    },
-    {
-     "disposition": "FIX",
-     "visits": 1141,
-     "dollars": 177997.72,
-     "patients": 180
-    },
-    {
-     "disposition": "REVIEW",
-     "visits": 1084,
-     "dollars": 167304.55,
-     "patients": 204
-    },
-    {
-     "disposition": "COB",
-     "visits": 929,
-     "dollars": 152777.61,
-     "patients": 95
-    },
-    {
-     "disposition": "DUPLICATE",
-     "visits": 486,
-     "dollars": 93226.0,
-     "patients": 217
-    },
-    {
-     "disposition": "INFO",
-     "visits": 458,
-     "dollars": 76455.35,
-     "patients": 47
-    },
-    {
-     "disposition": "CRED",
-     "visits": 387,
-     "dollars": 55509.3,
-     "patients": 64
-    },
-    {
-     "disposition": "TIMELY",
-     "visits": 222,
-     "dollars": 37399.38,
-     "patients": 94
-    },
-    {
-     "disposition": "CONTRACTUAL",
-     "visits": 497,
-     "dollars": 34433.19,
-     "patients": 69
-    },
-    {
-     "disposition": "PATIENT",
-     "visits": 308,
-     "dollars": 27184.0,
-     "patients": 137
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-19T03:34:47Z",
-   "ended": "2026-10-19T03:38:25Z"
+   "started": "2026-10-19T05:22:09Z",
+   "ended": "2026-10-19T05:22:09Z"
   }
  ],
  "packages": [],
