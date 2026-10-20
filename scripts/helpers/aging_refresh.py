@@ -142,16 +142,16 @@ def decide(r, charges, plans, dod):
     elif is_ccm and not real_pays and ("B9" in denial_codes or (has_gv and denial_codes and last_denial and (not last_sent or last_sent <= last_denial))):
         rec_, rule, why = "WRITE OFF", "CCM denied on a hospice patient (GV / CO-B9) -> WONCS, no appeal (10/15 rule)", ["CCM denied on a hospice patient (%s%s) -> WONCS, no appeal (10/15 rule)" % ("GV, " if has_gv else "", ",".join(denial_codes) or "B9")]
     elif settled_primary:
-        primrose_age = (TODAY - first_real).days if first_real else ((TODAY - last_denial).days if last_denial else None)
+        prim_age = (TODAY - first_real).days if first_real else ((TODAY - last_denial).days if last_denial else None)
         contractual_left = round(max(0.0, bal - pr_left), 2) if real_pays else 0.0
         extra = " + WOINS contractual $%.2f (unwritten adjustment)" % contractual_left if contractual_left > 0.01 else ""
         cs = min(bal, pr_left) if pr_left else bal
-        if live_secondary and (primrose_age is None or primrose_age <= 365):
+        if live_secondary and (prim_age is None or prim_age <= 365):
             rec_, rule = "CORRECT & RESEND", "primary paid - cost-share belongs to the live secondary on the chart: move it there and bill"
             why = ["primary paid - cost-share $%.2f belongs to the chart's secondary %s: move it there and bill%s" % (cs, "/".join(live_secondary), extra)]
         elif live_secondary:
             rec_, rule = "WRITE OFF", "primary paid > 12 months ago, the secondary's window is closed -> WOCLTREQ"
-            why = ["primary paid %d days ago; secondary %s window closed -> WOCLTREQ $%.2f%s" % (primrose_age, "/".join(live_secondary), cs, extra)]
+            why = ["primary paid %d days ago; secondary %s window closed -> WOCLTREQ $%.2f%s" % (prim_age, "/".join(live_secondary), cs, extra)]
         else:
             code = "WOCAID2ND" if (set(primary_paid_by) & MEDICAID_FAMILY) else "WOCLTREQ"
             rec_, rule = "WRITE OFF", "primary paid, no secondary on the chart -> %s cost-share (10/13 rule: nothing stays on the patient)" % code
@@ -173,8 +173,8 @@ def decide(r, charges, plans, dod):
             why = ["non-covered / medical-necessity / frequency denial (%s): review the RARC; appeal or write off" % dc]
         else: rec_, rule, why = "CORRECT & RESEND", "denied, nothing sent since -> triage the CARC", ["denied (%s) with nothing sent since - triage the CARC" % dc]
     elif secondary:
-        primrose_age = (TODAY - first_real).days if first_real else None
-        if primrose_age is not None and primrose_age > 365: rec_, rule, why = "WRITE OFF", "secondary balance, primary remit > 12 months old -> WOCLTREQ / WOINS", ["secondary / cost-share balance; primary remit %d days old (> 12 months) -> WOCLTREQ / WOINS" % primrose_age]
+        prim_age = (TODAY - first_real).days if first_real else None
+        if prim_age is not None and prim_age > 365: rec_, rule, why = "WRITE OFF", "secondary balance, primary remit > 12 months old -> WOCLTREQ / WOINS", ["secondary / cost-share balance; primary remit %d days old (> 12 months) -> WOCLTREQ / WOINS" % prim_age]
         elif days_sent is None: rec_, rule, why = "CORRECT & RESEND", "secondary never sent after the primary paid -> bill it now", ["secondary never sent; primary paid %s -> bill the secondary now" % (first_real.isoformat() if first_real else "?")]
         elif days_sent <= 60: rec_, rule, why = "WAIT", "secondary claim sent within 60 days", ["secondary claim sent %d days ago" % days_sent]
         else: rec_, rule, why = "CORRECT & RESEND", "secondary unanswered > 60 days -> check status, resend as original (verify the plan first)", ["secondary unanswered %d days: check status, resend as original (verify the plan is live first)" % days_sent]
