@@ -1,0 +1,34 @@
+{
+ "stamp": "2026-10-20T1510Z",
+ "lookups": [
+  {
+   "pattern_hash": "802809",
+   "charts": []
+  },
+  {
+   "pattern_hash": "320684",
+   "charts": [
+    "pat17474046"
+   ]
+  },
+  {
+   "pattern_hash": "98299",
+   "charts": []
+  },
+  {
+   "pattern_hash": "424609",
+   "charts": []
+  },
+  {
+   "pattern_hash": "767240",
+   "charts": []
+  },
+  {
+   "pattern_hash": "833796",
+   "charts": [
+    "pat17472553",
+    "pat21086"
+   ]
+  }
+ ]
+}

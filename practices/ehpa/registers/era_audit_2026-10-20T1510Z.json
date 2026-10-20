@@ -1,0 +1,1278 @@
+{
+ "stamp": "2026-10-20T1510Z",
+ "rows": [
+  {
+   "check": 1053222,
+   "pid": 17477946,
+   "vid": 19457361,
+   "cid": "23369220",
+   "cpt": null,
+   "dos": "2026-10-04",
+   "remit_charge": null,
+   "remit_allowed": 84.63,
+   "remit_paid": 84.63,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99309",
+    "fee": 141.0,
+    "paid": 141.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "TRI00",
+    "pays": [
+     {
+      "amt": -84.63,
+      "chk": "0010086437ER7",
+      "car": "TRI00",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -56.37,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425399,
+   "cid": "23331395",
+   "cpt": null,
+   "dos": "2025-12-06",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 24197,
+   "vid": 19426121,
+   "cid": "23369991",
+   "cpt": null,
+   "dos": "2025-12-11",
+   "remit_charge": null,
+   "remit_allowed": 75.52,
+   "remit_paid": 75.52,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99232",
+    "fee": 111.0,
+    "paid": 111.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -75.52,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -35.48,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 24197,
+   "vid": 19426109,
+   "cid": "23369989",
+   "cpt": null,
+   "dos": "2025-12-12",
+   "remit_charge": null,
+   "remit_allowed": 75.52,
+   "remit_paid": 75.52,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99232",
+    "fee": 111.0,
+    "paid": 111.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -75.52,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -35.48,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 24197,
+   "vid": 19426013,
+   "cid": "23369987",
+   "cpt": null,
+   "dos": "2025-12-10",
+   "remit_charge": null,
+   "remit_allowed": 165.38,
+   "remit_paid": 165.38,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99223",
+    "fee": 310.0,
+    "paid": 310.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -165.38,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -144.62,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425224,
+   "cid": "23331189",
+   "cpt": null,
+   "dos": "2025-12-02",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19424945,
+   "cid": "23330856",
+   "cpt": null,
+   "dos": "2025-12-01",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19428337,
+   "cid": "23334796",
+   "cpt": null,
+   "dos": "2026-01-05",
+   "remit_charge": null,
+   "remit_allowed": 56.8,
+   "remit_paid": 56.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99308",
+    "fee": 107.0,
+    "paid": 107.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -56.8,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -50.2,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425391,
+   "cid": "23331387",
+   "cpt": null,
+   "dos": "2025-12-04",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425371,
+   "cid": "23331365",
+   "cpt": null,
+   "dos": "2025-12-05",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425490,
+   "cid": "23331520",
+   "cpt": null,
+   "dos": "2025-12-07",
+   "remit_charge": null,
+   "remit_allowed": 108.67,
+   "remit_paid": 108.67,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99239",
+    "fee": 163.0,
+    "paid": 163.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -108.67,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -54.33,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19427273,
+   "cid": "23333674",
+   "cpt": null,
+   "dos": "2025-12-20",
+   "remit_charge": null,
+   "remit_allowed": 85.77,
+   "remit_paid": 85.77,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99487",
+    "fee": 206.0,
+    "paid": 206.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -85.77,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -120.23,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19427273,
+   "cid": "23333675",
+   "cpt": null,
+   "dos": "2025-12-20",
+   "remit_charge": null,
+   "remit_allowed": 46.41,
+   "remit_paid": 46.41,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99489",
+    "fee": 109.0,
+    "paid": 109.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -46.41,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -62.59,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19429872,
+   "cid": "23336346",
+   "cpt": null,
+   "dos": "2026-01-07",
+   "remit_charge": null,
+   "remit_allowed": 99.27,
+   "remit_paid": 99.27,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99316",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -99.27,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -60.73,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19425223,
+   "cid": "23331188",
+   "cpt": null,
+   "dos": "2025-12-03",
+   "remit_charge": null,
+   "remit_allowed": 112.29,
+   "remit_paid": 112.29,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -112.29,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19427785,
+   "cid": "23334357",
+   "cpt": null,
+   "dos": "2025-12-31",
+   "remit_charge": null,
+   "remit_allowed": 59.47,
+   "remit_paid": 59.47,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99308",
+    "fee": 107.0,
+    "paid": 107.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -59.47,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.53,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19426067,
+   "cid": "23332090",
+   "cpt": null,
+   "dos": "2025-12-08",
+   "remit_charge": null,
+   "remit_allowed": 171.83,
+   "remit_paid": 171.83,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99306",
+    "fee": 256.0,
+    "paid": 256.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -171.83,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -84.17,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19426067,
+   "cid": "23332091",
+   "cpt": null,
+   "dos": "2025-12-08",
+   "remit_charge": null,
+   "remit_allowed": 71.27,
+   "remit_paid": 71.27,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99497",
+    "fee": 133.0,
+    "paid": 133.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -71.27,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -61.73,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19424950,
+   "cid": "23330861",
+   "cpt": null,
+   "dos": "2025-11-30",
+   "remit_charge": null,
+   "remit_allowed": 165.38,
+   "remit_paid": 165.38,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99223",
+    "fee": 310.0,
+    "paid": 310.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -165.38,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -144.62,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19424950,
+   "cid": "23330862",
+   "cpt": null,
+   "dos": "2025-11-30",
+   "remit_charge": null,
+   "remit_allowed": 71.27,
+   "remit_paid": 71.27,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99497",
+    "fee": 133.0,
+    "paid": 133.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -71.27,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -61.73,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19427786,
+   "cid": "23334358",
+   "cpt": null,
+   "dos": "2025-12-22",
+   "remit_charge": null,
+   "remit_allowed": 86.5,
+   "remit_paid": 86.5,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99309",
+    "fee": 141.0,
+    "paid": 141.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -86.5,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -54.5,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19430757,
+   "cid": "23337252",
+   "cpt": null,
+   "dos": "2026-01-27",
+   "remit_charge": null,
+   "remit_allowed": 79.1,
+   "remit_paid": 79.1,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99487",
+    "fee": 206.0,
+    "paid": 206.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -79.1,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -126.9,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19430757,
+   "cid": "23337253",
+   "cpt": null,
+   "dos": "2026-01-27",
+   "remit_charge": null,
+   "remit_allowed": 43.69,
+   "remit_paid": 43.69,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99489",
+    "fee": 109.0,
+    "paid": 109.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -43.69,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -65.31,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19426988,
+   "cid": "23333182",
+   "cpt": null,
+   "dos": "2025-12-11",
+   "remit_charge": null,
+   "remit_allowed": 86.5,
+   "remit_paid": 86.5,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99309",
+    "fee": 141.0,
+    "paid": 141.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -86.5,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -54.5,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 48008,
+   "vid": 19427535,
+   "cid": "23334025",
+   "cpt": null,
+   "dos": "2025-12-15",
+   "remit_charge": null,
+   "remit_allowed": 59.47,
+   "remit_paid": 59.47,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99308",
+    "fee": 107.0,
+    "paid": 107.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -59.47,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -47.53,
+      "None",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 24197,
+   "vid": 19426209,
+   "cid": "23369993",
+   "cpt": null,
+   "dos": "2025-12-14",
+   "remit_charge": null,
+   "remit_allowed": 75.52,
+   "remit_paid": 75.52,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99232",
+    "fee": 111.0,
+    "paid": 111.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -75.52,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -35.48,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053223,
+   "pid": 24197,
+   "vid": 19426219,
+   "cid": "23369995",
+   "cpt": null,
+   "dos": "2025-12-13",
+   "remit_charge": null,
+   "remit_allowed": 75.52,
+   "remit_paid": 75.52,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99232",
+    "fee": 111.0,
+    "paid": 111.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "CAP07",
+    "pays": [
+     {
+      "amt": -75.52,
+      "chk": "4126827",
+      "car": "CAP07",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -35.48,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17477350,
+   "vid": 19453955,
+   "cid": "23364868",
+   "cpt": null,
+   "dos": "2026-09-07",
+   "remit_charge": null,
+   "remit_allowed": 21.8,
+   "remit_paid": 21.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "819825344",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -21.8,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -52.74,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17470940,
+   "vid": 19453959,
+   "cid": "23364872",
+   "cpt": null,
+   "dos": "2026-09-05",
+   "remit_charge": null,
+   "remit_allowed": 31.94,
+   "remit_paid": 31.94,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99223",
+    "fee": 310.0,
+    "paid": 310.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -125.2,
+      "chk": "819825344",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -31.94,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -152.86,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17470940,
+   "vid": 19453959,
+   "cid": "23364873",
+   "cpt": null,
+   "dos": "2026-09-05",
+   "remit_charge": null,
+   "remit_allowed": 13.35,
+   "remit_paid": 13.35,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99497",
+    "fee": 133.0,
+    "paid": 133.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -52.33,
+      "chk": "819825344",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -13.35,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -67.32,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17470940,
+   "vid": 19454092,
+   "cid": "23365061",
+   "cpt": null,
+   "dos": "2026-09-08",
+   "remit_charge": null,
+   "remit_allowed": 21.8,
+   "remit_paid": 21.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "819834619",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -21.8,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -52.74,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17477350,
+   "vid": 19454096,
+   "cid": "23365065",
+   "cpt": null,
+   "dos": "2026-09-08",
+   "remit_charge": null,
+   "remit_allowed": 21.8,
+   "remit_paid": 21.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "819834619",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -21.8,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -52.74,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17470940,
+   "vid": 19453958,
+   "cid": "23364871",
+   "cpt": null,
+   "dos": "2026-09-06",
+   "remit_charge": null,
+   "remit_allowed": 21.8,
+   "remit_paid": 21.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "819825344",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -21.8,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -52.74,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053225,
+   "pid": 17470940,
+   "vid": 19453951,
+   "cid": "23364865",
+   "cpt": null,
+   "dos": "2026-09-07",
+   "remit_charge": null,
+   "remit_allowed": 21.8,
+   "remit_paid": 21.8,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "819825344",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -21.8,
+      "chk": "00148656937",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -52.74,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  }
+ ]
+}

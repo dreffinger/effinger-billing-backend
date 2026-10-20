@@ -1,0 +1,93 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-20T1518Z",
+ "count": 4,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053220,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T02:21:09.973",
+   "depositdate": "2026-10-21T00:00:00",
+   "eracarrierid": "1448",
+   "eracarriername": "MEDICARE PART B",
+   "hasnote": false,
+   "systemcarrierid": 6085,
+   "systemcarriercode": "FLO02",
+   "systemcarriername": "FLORIDA MEDICARE",
+   "paymentnumber": "820007360",
+   "paymentamount": 1577.04,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1491.58,
+   "unpostedamount": -85.46,
+   "checkstatusid": 1,
+   "providerleveladjustment": [
+    {
+     "code": "FB",
+     "amount": -85.46
+    }
+   ]
+  },
+  {
+   "id": 1053222,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T07:20:54.247",
+   "depositdate": "2026-10-19T00:00:00",
+   "eracarrierid": "2872",
+   "eracarriername": "[name]",
+   "hasnote": false,
+   "systemcarrierid": 6872,
+   "systemcarriercode": "TRI00",
+   "systemcarriername": "TRICARE EAST",
+   "paymentnumber": "0010086437ER7",
+   "paymentamount": 84.63,
+   "paymentcode": "CHK",
+   "paymentdescription": "",
+   "calculatedamount": 84.63,
+   "unpostedamount": 84.63,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053223,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T07:23:08.817",
+   "depositdate": "2026-10-20T00:00:00",
+   "eracarrierid": "4246",
+   "eracarriername": "CAPITAL HEALTH PLAN",
+   "hasnote": false,
+   "systemcarrierid": 41826,
+   "systemcarriercode": "CAP07",
+   "systemcarriername": "CAPITAL HEALTH PLAN",
+   "paymentnumber": "4126827",
+   "paymentamount": 2432.6,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 2432.6,
+   "unpostedamount": 2432.6,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  },
+  {
+   "id": 1053225,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T08:19:32.213",
+   "depositdate": "2026-10-22T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "AARP SUPPLEMENTAL HEALTH PLANS FROM UNITEDHEALTHCARE",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "00148656937",
+   "paymentamount": 154.29,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 154.29,
+   "unpostedamount": 154.29,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}
