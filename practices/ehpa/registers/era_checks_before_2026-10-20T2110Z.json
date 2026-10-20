@@ -1,0 +1,53 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-20T2110Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053220,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T02:21:09.973",
+   "depositdate": "2026-10-21T00:00:00",
+   "eracarrierid": "1448",
+   "eracarriername": "MEDICARE PART B",
+   "hasnote": false,
+   "systemcarrierid": 6085,
+   "systemcarriercode": "FLO02",
+   "systemcarriername": "FLORIDA MEDICARE",
+   "paymentnumber": "820007360",
+   "paymentamount": 1577.04,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1491.58,
+   "unpostedamount": -85.46,
+   "checkstatusid": 1,
+   "providerleveladjustment": [
+    {
+     "code": "FB",
+     "amount": -85.46
+    }
+   ]
+  },
+  {
+   "id": 1053227,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T13:37:08.853",
+   "depositdate": "2026-10-22T00:00:00",
+   "eracarrierid": "3429",
+   "eracarriername": "UNITED HEALTHCARE INSURANCE COMPANY",
+   "hasnote": false,
+   "systemcarrierid": 6404,
+   "systemcarriercode": "UNI20",
+   "systemcarriername": "UNITED HEALTHCARE",
+   "paymentnumber": "W1448344",
+   "paymentamount": 170.09,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 170.09,
+   "unpostedamount": 170.09,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

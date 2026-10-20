@@ -1,0 +1,384 @@
+{
+ "stamp": "2026-10-20T2110Z",
+ "rows": [
+  {
+   "check": 1053227,
+   "pid": 17473661,
+   "vid": 19455470,
+   "cid": "23366761",
+   "cpt": null,
+   "dos": "2026-09-18",
+   "remit_charge": null,
+   "remit_allowed": 141.0,
+   "remit_paid": 0.0,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99309",
+    "fee": 141.0,
+    "paid": 124.07,
+    "patbal": 16.93,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -66.36,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -57.71,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17470802,
+   "vid": 19452372,
+   "cid": "23362582",
+   "cpt": null,
+   "dos": "2026-08-22",
+   "remit_charge": null,
+   "remit_allowed": 206.0,
+   "remit_paid": 0.0,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99487",
+    "fee": 206.0,
+    "paid": 206.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     {
+      "amt": -63.28,
+      "chk": "819938228",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "PATBAL1013",
+      "car": "",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -126.58,
+      "WOINS",
+      "0"
+     ],
+     [
+      -16.14,
+      "WOCLTREQ",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17470802,
+   "vid": 19452372,
+   "cid": "23362583",
+   "cpt": null,
+   "dos": "2026-08-22",
+   "remit_charge": null,
+   "remit_allowed": 109.0,
+   "remit_paid": 0.0,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99489",
+    "fee": 109.0,
+    "paid": 109.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     {
+      "amt": -34.95,
+      "chk": "819938228",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "PATBAL1013",
+      "car": "",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -65.13,
+      "WOINS",
+      "0"
+     ],
+     [
+      -8.92,
+      "WOCLTREQ",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17477638,
+   "vid": 19456884,
+   "cid": "23368545",
+   "cpt": null,
+   "dos": "2026-09-29",
+   "remit_charge": null,
+   "remit_allowed": 85.46,
+   "remit_paid": 85.46,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99233",
+    "fee": 160.0,
+    "paid": 160.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -85.46,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -74.54,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17470802,
+   "vid": 19452694,
+   "cid": "23363073",
+   "cpt": null,
+   "dos": "2026-08-20",
+   "remit_charge": null,
+   "remit_allowed": 256.0,
+   "remit_paid": 0.0,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99306",
+    "fee": 256.0,
+    "paid": 256.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     {
+      "amt": 0.0,
+      "chk": "W0299825",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -129.74,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": -20.41,
+      "chk": "153026823",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -93.16,
+      "WOINS",
+      "0"
+     ],
+     [
+      -12.69,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17470802,
+   "vid": 19452694,
+   "cid": "23363074",
+   "cpt": null,
+   "dos": "2026-08-20",
+   "remit_charge": null,
+   "remit_allowed": 133.0,
+   "remit_paid": 0.0,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99497",
+    "fee": 133.0,
+    "paid": 119.65,
+    "patbal": 13.35,
+    "insbal": 0.0,
+    "carrier": "FLO02",
+    "pays": [
+     {
+      "amt": 0.0,
+      "chk": "W0299825",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": -52.33,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "0",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "819928855",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "",
+      "car": "FLO02",
+      "void": "1",
+      "reasons": []
+     },
+     {
+      "amt": 0.0,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -67.32,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  },
+  {
+   "check": 1053227,
+   "pid": 17477638,
+   "vid": 19456871,
+   "cid": "23368532",
+   "cpt": null,
+   "dos": "2026-09-30",
+   "remit_charge": null,
+   "remit_allowed": 84.63,
+   "remit_paid": 84.63,
+   "remit_adj": [],
+   "live": {
+    "cpt": "99239",
+    "fee": 163.0,
+    "paid": 163.0,
+    "patbal": 0.0,
+    "insbal": 0.0,
+    "carrier": "UNI20",
+    "pays": [
+     {
+      "amt": -84.63,
+      "chk": "W1448344",
+      "car": "UNI20",
+      "void": "0",
+      "reasons": []
+     }
+    ],
+    "wos": [
+     [
+      -78.37,
+      "WOINS",
+      "0"
+     ]
+    ]
+   }
+  }
+ ]
+}

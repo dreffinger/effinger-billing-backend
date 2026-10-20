@@ -1,0 +1,12 @@
+{
+ "stamp": "2026-10-20T2110Z",
+ "live": false,
+ "steps": [
+  "chart 17473661 v19455470 c23366761 99309 live ins 16.93 pat 0.00 carrier None",
+  "  WOCLTREQ 16.93 -> True DRY bal 16.93 prof prof15 pid 17473661 -> pay 0.00 wo 16.93",
+  "chart 17470802 v19452694 c23363074 99497 live ins 13.35 pat 0.00 carrier None",
+  "chart 17470802 v19452372 c23362582 99487 live ins 0.00 pat 0.00 carrier None",
+  "chart 17473661 patient insorder 2,1 UHC plan ins9514351 begin 07/18/2024 end ''",
+  "  DRY: would end-date ins9514351 09/17/2026 and set the patient order to '2'"
+ ]
+}

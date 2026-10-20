@@ -1,0 +1,19 @@
+{
+ "stamp": "2026-10-20T2110Z",
+ "live": true,
+ "steps": [
+  "chart 17473661 v19455470 c23366761 99309 live ins 0.00 pat 16.93 carrier None",
+  "  patient balance 16.93 -> move back to insurance, no rebill: moved 16.93 -> {'patbalance': '0.00', 'insbalance': '16.93', 'insorder': '2,1'}",
+  "  after move: ins 16.93 pat 0.00",
+  "  WOCLTREQ 16.93 -> True <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-bcz98\" lst=\"10/20/2026 14:37:11\"><Results success=\"1\" paymentid=\"10175978\" /><Error /></PPMDResult",
+  "  after write-off: ins 0.00 pat 0.00",
+  "chart 17470802 v19452694 c23363074 99497 live ins 0.00 pat 13.35 carrier None",
+  "  patient balance 13.35 -> move back to insurance, no rebill: moved 13.35 -> {'patbalance': '0.00', 'insbalance': '13.35', 'insorder': '2'}",
+  "  after move: ins 13.35 pat 0.00",
+  "chart 17470802 v19452372 c23362582 99487 live ins 0.00 pat 0.00 carrier None",
+  "chart 17473661 patient insorder 2,1 UHC plan ins9514351 begin 07/18/2024 end ''",
+  "  end-date UHC 09/17/2026: (True, 'f-g4xbm\" lst=\"10/20/2026 14:37:23\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder \\'2,1\\' - restored: insorder 2,1 via ins9520551 -> \\'2,1\\'')",
+  "  patient order -> '2' (Medicare only): (True, \"insorder 2 via ins9520551 -> '2'\")",
+  "  readback: insorder 2 UHC enddate 09/17/2026"
+ ]
+}
