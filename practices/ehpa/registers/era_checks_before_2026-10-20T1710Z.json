@@ -1,0 +1,53 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-20T1710Z",
+ "count": 2,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053220,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T02:21:09.973",
+   "depositdate": "2026-10-21T00:00:00",
+   "eracarrierid": "1448",
+   "eracarriername": "MEDICARE PART B",
+   "hasnote": false,
+   "systemcarrierid": 6085,
+   "systemcarriercode": "FLO02",
+   "systemcarriername": "FLORIDA MEDICARE",
+   "paymentnumber": "820007360",
+   "paymentamount": 1577.04,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 1491.58,
+   "unpostedamount": -85.46,
+   "checkstatusid": 1,
+   "providerleveladjustment": [
+    {
+     "code": "FB",
+     "amount": -85.46
+    }
+   ]
+  },
+  {
+   "id": 1053226,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-20T08:42:34.343",
+   "depositdate": "2026-10-22T00:00:00",
+   "eracarrierid": "5271",
+   "eracarriername": "AARP SUPPLEMENTAL HEALTH PLANS FROM UNITEDHEALTHCARE",
+   "hasnote": false,
+   "systemcarrierid": 6600,
+   "systemcarriercode": "AAR01",
+   "systemcarriername": "AARP",
+   "paymentnumber": "00148714043",
+   "paymentamount": 0.0,
+   "paymentcode": "NON",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

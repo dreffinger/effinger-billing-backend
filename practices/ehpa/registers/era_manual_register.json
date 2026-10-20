@@ -34361,5 +34361,29 @@
   "wo": null,
   "wocode": "WOCAID2ND",
   "when": "2026-10-19T2110Z"
+ },
+ {
+  "checkid": "1053226",
+  "checkclaimid": 15447207,
+  "visitid": "19423579",
+  "chargedetailid": "23329181",
+  "outcome": "already-posted",
+  "pay": null,
+  "wo": null,
+  "wocode": null,
+  "when": "2026-10-20T1710Z",
+  "note": "AARP $0 remit 00148714043 OA-23 + OA-18 exact duplicate: the original AARP adjudication (check 00148578843, 10/19) is already on the charge; live balance $0 insurance / $0 patient; never rebilled; check dismissed by the GitHub button slot #115 17:2xZ after the lines were cached (era_details/1053226.json)"
+ },
+ {
+  "checkid": "1053226",
+  "checkclaimid": 15447208,
+  "visitid": "19422334",
+  "chargedetailid": "23327672",
+  "outcome": "already-posted",
+  "pay": null,
+  "wo": null,
+  "wocode": null,
+  "when": "2026-10-20T1710Z",
+  "note": "AARP $0 remit 00148714043 OA-23 + OA-18 exact duplicate: the original AARP adjudication (check 00148578843, 10/19) is already on the charge; live balance $0 insurance / $0 patient; never rebilled; check dismissed by the GitHub button slot #115 17:2xZ after the lines were cached (era_details/1053226.json)"
  }
 ]
