@@ -1416,6 +1416,20 @@
    "answer": "2026-10-16T15:26:56Z applied by the billing button run 2026-10-16T1525Z (dry run first, then live; log 15_excl_1016_1110.py_--live_--only_A.log)",
    "note": "applied 2026-10-16T1525Z (billing button)",
    "added_by": "backend billing run 2026-10-16T1310Z (the 1110Z run's register append was refused by the classifier; item re-created from the page card)"
+  },
+  {
+   "id": "A-2026-10-20T1310Z-A",
+   "stamp": "2026-10-20T1310Z",
+   "at": "2026-10-20T13:38:57Z",
+   "cmd": "cd /home/claude/unbilled && python3 era_cache_restore.py 1053221 --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Modify Shared Resources]. (the command that bundled the --dry and --live runs of era_cache_restore.py 1053221, 13:38Z; the dry form was therefore never run either)",
+   "what": "ERA Center check 1053221 - OPTUM VA CCN trace 3680190162, a $0 (denial-only) remit received 10/20 - was DISMISSED by the GitHub Billing Button slot #113 at 13:30:50Z before any run cached its claim lines (GET /api/era/checkdetails answers 0 claims while a check is dismissed; era_details/1053221.json holds that empty answer). era_cache_restore.py restores the check (POST /api/era/checks/reversedismiss), caches its lines to era_details/1053221.json, dismisses it again and audits each line read-only. The denial lines (VA CCN visits, CARCs, RARCs - referral / auth answers) are then worked by the standing rules on the next run. No payment, write-off or charge is touched; the check ends up exactly as it is now (dismissed).",
+   "dollars": "$0.00",
+   "evidence_file": "era_details/1053221.json",
+   "evidence": "the dry form was not run (the refused command bundled --dry and --live); GET /api/era/checkdetails?checkid=1053221 at 13:37Z answered eracheckdetails [] (dismissed); the GitHub slot's report reports/button/2026-10-20T1328Z.json lists the check at stage 'before' with amount 0.0 / unposted 0.0 and 'checks dismissed: 1'",
+   "ui": "AdvancedMD > ERA Center > show Dismissed (dismissed on 10/20/2026) > check 3680190162 OPTUM VA CCN > Restore (undismiss); open the check and leave it on the unposted list - the next backend run caches its lines and dismisses it after the denial lines are worked. (Or: open the restored check, note each claim's visit number, [name] and the CAS reason codes, then Dismiss it again.)",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
