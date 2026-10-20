@@ -1,0 +1,36 @@
+{
+ "run": "1700311",
+ "stamp": "2026-10-20T0510Z",
+ "actions": [
+  {
+   "visit": "19455357",
+   "claimid": "19455357B",
+   "carrier": "SUN01",
+   "insorder_set": "4 (FLO99 FCC)",
+   "hide": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vvclg\" lst=\"10/19/2026 22:45:45\"><Results success=\"1\" /><Error /></PPMDResults>"
+  }
+ ],
+ "after": [
+  [
+   "19431511",
+   "19431511F"
+  ],
+  [
+   "19435174",
+   "19435174F"
+  ],
+  [
+   "19435175",
+   "19435175F"
+  ]
+ ],
+ "aetna_held": {
+  "chart": "17471204",
+  "visits": [
+   "19431511",
+   "19435174",
+   "19435175"
+  ],
+  "why": "front-end 'entity not eligible for DOS: patient' while Stedi 60054 + AMD 271 say Aetna active from 1/1/2026 with this member id; plan entered relationship self, subscriber is the spouse (9/5 note) - William"
+ }
+}
