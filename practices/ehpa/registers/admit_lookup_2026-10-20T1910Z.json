@@ -1,0 +1,48 @@
+{
+ "stamp": "2026-10-20T1910Z",
+ "lookups": [
+  {
+   "pattern_hash": "34612",
+   "charts": []
+  },
+  {
+   "pattern_hash": "141231",
+   "charts": []
+  },
+  {
+   "pattern_hash": "456745",
+   "charts": []
+  },
+  {
+   "pattern_hash": "866756",
+   "charts": []
+  },
+  {
+   "pattern_hash": "92983",
+   "charts": []
+  },
+  {
+   "pattern_hash": "693679",
+   "charts": []
+  },
+  {
+   "pattern_hash": "14041",
+   "charts": [
+    "pat25746"
+   ]
+  },
+  {
+   "pattern_hash": "344271",
+   "charts": [
+    "pat17474046"
+   ]
+  },
+  {
+   "pattern_hash": "448805",
+   "charts": [
+    "pat17472553",
+    "pat21086"
+   ]
+  }
+ ]
+}
