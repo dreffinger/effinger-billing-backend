@@ -190,6 +190,8 @@ class Run:
         for f in glob.glob(os.path.join(pe, "registers", "*")):
             if os.path.isfile(f):
                 dst = os.path.join(ws, "registers", os.path.basename(f))
+                if os.path.basename(f) == "deceased_cache.json" and os.path.exists(dst):
+                    continue        # 10/20/2026: the repo copy is PHI-scrubbed ('[DOB]'); the workspace copy comes from Drive via dg_drive.py
                 if not os.path.exists(dst) or os.path.getmtime(f) >= os.path.getmtime(dst):
                     shutil.copy2(f, dst)
                     regs += 1
