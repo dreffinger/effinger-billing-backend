@@ -1,0 +1,38 @@
+{
+ "run": "2026-10-20T0938Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [],
+ "left": [
+  {
+   "pid": "17478059",
+   "vid": "19457778",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457783",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457784",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478064",
+   "vid": "19457791",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478059",
+   "vid": "19457794",
+   "err": "Insurance order is missing on visit"
+  },
+  {
+   "pid": "17478063",
+   "vid": "19457797",
+   "err": "Insurance order is missing on visit"
+  }
+ ]
+}

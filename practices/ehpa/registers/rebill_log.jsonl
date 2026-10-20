@@ -56,3 +56,6 @@
 {"at": "2026-10-16T13:31:57Z", "visit": "19456866", "charge": "23368527", "seq": 1, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-16T13:32:18Z", "visit": "19422652", "charge": "23327978", "seq": 1, "status": 204, "by": "freq1_visit.py"}
 {"at": "2026-10-16T17:25:41Z", "visit": "19452655", "charge": "23363029", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-20T09:40:03Z", "visit": "19456918", "charge": "23368626", "seq": 2, "status": 204, "by": "gv_add_rebill_1020_0910.py"}
+{"at": "2026-10-20T09:40:12Z", "visit": "19457091", "charge": "23368913", "seq": 2, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-20T09:47:16Z", "visit": "19455721", "charge": "23367120", "seq": 2, "status": 204, "by": "ccm_monthend_1020_0910.py"}
