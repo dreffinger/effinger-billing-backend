@@ -1,0 +1,1106 @@
+{
+ "about": "UNI20/BCBS pre-5/1/2026 claim-status sweep pass 141 (claim_status_sweep.py --min-age 159 --max 60 --carriers UNI20,BCBS --skip-answered <passes 1-140>)",
+ "stamp": "2026-10-20T2331Z",
+ "rows": [
+  {
+   "visitid": 19433791,
+   "patientid": 17475632,
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 310.0,
+   "member": "9876576",
+   "icn": null,
+   "status": [],
+   "errors": [],
+   "action": "UNKNOWN - review"
+  },
+  {
+   "visitid": 19439702,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251532"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437843,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437926,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437951,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438061,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438356,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-12",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438357,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251519"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438358,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-13",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251521"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438701,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-14",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251523"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438903,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-15",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251522"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438993,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-18",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439010,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-17",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439022,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-16",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251524"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439233,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-19",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251529"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439271,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-07",
+     "payerClaim": "18251528"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19455322,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "member": "911779256",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-09",
+     "payerClaim": "20090623"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  }
+ ]
+}
