@@ -1,0 +1,80 @@
+{
+ "stamp": "2026-10-21T0620Z",
+ "checkid": "1053221",
+ "live": true,
+ "steps": [
+  "cache absent; dismissed-list entry yes (2026-10-20T06:30:49.883)",
+  "reversedismiss -> True [{\"issuccess\":true,\"id\":1053221,\"actionname\":2}]",
+  "checkdetails -> 3 claim lines cached",
+  "dismiss again -> True {\"issuccess\":true,\"id\":1053221,\"actionname\":1}"
+ ],
+ "audit": [
+  {
+   "pid": "12182043",
+   "visit": "13978952",
+   "cid": "20970503",
+   "dos": "2023-02-20",
+   "remit_paid": 0.0,
+   "remit_co": 52.09,
+   "remit_pr": 0,
+   "posted": 0,
+   "payments": 0,
+   "reasons": [],
+   "insbalance": null,
+   "patbalance": null,
+   "verdict": "ok"
+  },
+  {
+   "pid": "12182043",
+   "visit": "13978952",
+   "cid": "20970504",
+   "dos": "2023-02-20",
+   "remit_paid": 0.0,
+   "remit_co": -70.91,
+   "remit_pr": 0,
+   "posted": 0,
+   "payments": 0,
+   "reasons": [],
+   "insbalance": null,
+   "patbalance": null,
+   "verdict": "ok"
+  },
+  {
+   "pid": "12182043",
+   "visit": "13981091",
+   "cid": "20972184",
+   "dos": "2023-02-28",
+   "remit_paid": 0.0,
+   "remit_co": 69.61,
+   "remit_pr": 0,
+   "posted": 0,
+   "payments": 0,
+   "reasons": [],
+   "insbalance": null,
+   "patbalance": null,
+   "verdict": "ok"
+  },
+  {
+   "pid": "12182043",
+   "visit": "13984634",
+   "cid": "20974042",
+   "dos": "2023-03-01",
+   "remit_paid": 0.0,
+   "remit_co": 69.61,
+   "remit_pr": 0,
+   "posted": 0,
+   "payments": 0,
+   "reasons": [],
+   "insbalance": null,
+   "patbalance": null,
+   "verdict": "ok"
+  }
+ ],
+ "summary": {
+  "lines": 4,
+  "remit_paid_total": 0.0,
+  "verdicts": {
+   "ok": 4
+  }
+ }
+}
