@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-21T09:31:40Z",
+ "at": "2026-10-21T11:28:00Z",
  "as_of": "2026-10-21",
- "total": 292639.75,
- "visits": 3055,
+ "total": 292127.55,
+ "visits": 3052,
  "charts": 557,
  "over_365": {
   "n": 1082,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 318,
-   "dollars": 53814.57
+   "n": 315,
+   "dollars": 53302.37
   },
   "31-60": {
    "n": 308,
@@ -39,10 +39,10 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1574,
-   "dollars": 138566.45,
+   "n": 1571,
+   "dollars": 138054.25,
    "buckets": {
-    "0-30": 22443.16,
+    "0-30": 21930.96,
     "31-60": 17411.92,
     "61-90": 6837.32,
     "91-180": 22588.1,
@@ -750,13 +750,13 @@
   },
   {
    "month": "2026-09",
-   "n": 328,
-   "dollars": 45907.51
+   "n": 326,
+   "dollars": 45693.51
   },
   {
    "month": "2026-10",
-   "n": 222,
-   "dollars": 40260.49
+   "n": 221,
+   "dollars": 39962.29
   }
  ],
  "oldest": [
@@ -23397,14 +23397,6 @@
    "dos": "2026-09-21"
   },
   {
-   "visitid": 19456187,
-   "patientid": 12182946,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
-   "days": 30,
-   "dos": "2026-09-21"
-  },
-  {
    "visitid": 19456208,
    "patientid": 17477313,
    "carriercode": "FLO02",
@@ -23809,14 +23801,6 @@
    "patientid": 17477895,
    "carriercode": "UNI20",
    "insbalance": 111.0,
-   "days": 27,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456215,
-   "patientid": 44987,
-   "carriercode": "FLO02",
-   "insbalance": 107.0,
    "days": 27,
    "dos": "2026-09-24"
   },
@@ -24421,24 +24405,8 @@
    "dos": "2026-10-04"
   },
   {
-   "visitid": 19457174,
-   "patientid": 17477980,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 17,
-   "dos": "2026-10-04"
-  },
-  {
    "visitid": 19457173,
    "patientid": 17472553,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 17,
-   "dos": "2026-10-04"
-  },
-  {
-   "visitid": 19457078,
-   "patientid": 17476358,
    "carriercode": "FLO02",
    "insbalance": 160.0,
    "days": 17,
@@ -24577,6 +24545,14 @@
    "patientid": 17477899,
    "carriercode": "HUM01",
    "insbalance": 111.0,
+   "days": 17,
+   "dos": "2026-10-04"
+  },
+  {
+   "visitid": 19457174,
+   "patientid": 17477980,
+   "carriercode": "FLO02",
+   "insbalance": 21.8,
    "days": 17,
    "dos": "2026-10-04"
   },
