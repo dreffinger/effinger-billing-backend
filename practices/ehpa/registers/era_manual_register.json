@@ -34385,5 +34385,29 @@
   "wocode": null,
   "when": "2026-10-20T1710Z",
   "note": "AARP $0 remit 00148714043 OA-23 + OA-18 exact duplicate: the original AARP adjudication (check 00148578843, 10/19) is already on the charge; live balance $0 insurance / $0 patient; never rebilled; check dismissed by the GitHub button slot #115 17:2xZ after the lines were cached (era_details/1053226.json)"
+ },
+ {
+  "checkid": 1053245,
+  "checkclaimid": 15447308,
+  "visitid": 19438715,
+  "chargeid": 23345986,
+  "outcome": "posted",
+  "when": "2026-10-21T1710Z"
+ },
+ {
+  "checkid": 1053245,
+  "checkclaimid": 15447320,
+  "visitid": 19451186,
+  "chargeid": 23361186,
+  "outcome": "posted",
+  "when": "2026-10-21T1710Z"
+ },
+ {
+  "checkid": 1053245,
+  "checkclaimid": 15447312,
+  "visitid": 19453037,
+  "chargeid": 23363452,
+  "outcome": "posted",
+  "when": "2026-10-21T1710Z"
  }
 ]

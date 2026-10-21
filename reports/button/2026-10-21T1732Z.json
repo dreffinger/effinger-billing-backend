@@ -1,0 +1,201 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-21T1732Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/6/29 -> 0/0/6/29; ERA 1 checks $58.80 -> 1 checks $58.80",
+ "note": "backend billing run 2026-10-21T1710Z engine pass after slot #128",
+ "run_url": "",
+ "started": "2026-10-21T17:32:33Z",
+ "ended": "2026-10-21T17:36:49Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 6,
+    "exclusions": 29
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 6,
+    "exclusions": 29
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 58.8
+   },
+   "after": {
+    "checks": 1,
+    "unposted": 58.8
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1184 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1184,
+    "registers": 1413,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-21T17:32:33Z",
+   "ended": "2026-10-21T17:32:34Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 29->29",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 6,
+    "exclusions": 29,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 6,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700302": 0,
+    "exclusions crossover run 1700302": "see log",
+    "exclusions dup run 1700311": 0,
+    "exclusions crossover run 1700311": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "Insurance order is missing on visit",
+     "visits": 6,
+     "ids": "v19457778 v19457783 v19457784 v19457791 v19457794 v19457797"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700302",
+     "kind": "AAR01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 25,
+     "ids": "v19437731 v19438960 v19439767 v19439793 v19439814 v19439885 v19439926 v19440252 v19440267 v19440391 v19440410 v19440512 v19440611 v19440624 v19440869 v19440884 v19441172 v19441183 v19441310 v19442592 v19442618 v19442859 v19443842 v19443846 v19444045"
+    },
+    {
+     "column": "exclusions run 1700311",
+     "kind": "AET07 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 3,
+     "ids": "v19431511 v19435174 v19435175"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-21T17:32:34Z",
+   "ended": "2026-10-21T17:35:42Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 checks / $58.80 -> 1 checks / $58.80",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 1
+   },
+   "dollars": {
+    "unposted before": 58.8,
+    "unposted after": 58.8,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053245,
+     "payer": "FLORIDA BLUE",
+     "checknumber": "423830695",
+     "amount": 0.0,
+     "unposted": 58.8,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-21T17:35:42Z",
+   "ended": "2026-10-21T17:35:58Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "UNKNOWN - review: 1; PENDING at payer - wait: 16",
+   "counts": {
+    "UNKNOWN - review": 1,
+    "PENDING at payer - wait": 16
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "UNKNOWN - review",
+     "visits": 1,
+     "ids": "v19433791"
+    },
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 16,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271 v19455322"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-21T17:35:58Z",
+   "ended": "2026-10-21T17:36:49Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-21T17:36:49Z",
+   "ended": "2026-10-21T17:36:49Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "ERA check 1053245 held by era_clear: BCBS 423830695 $312.18: 0 postable / 0 unrecorded lines - left on the list"
+ ],
+ "errors": []
+}

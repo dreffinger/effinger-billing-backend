@@ -1,0 +1,33 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-21T1732Z",
+ "count": 1,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053245,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-21T09:16:22.743",
+   "depositdate": "2026-10-21T00:00:00",
+   "eracarrierid": "1414",
+   "eracarriername": "FLORIDA BLUE",
+   "hasnote": false,
+   "systemcarrierid": 6062,
+   "systemcarriercode": "BCBS",
+   "systemcarriername": "FLORIDA BLUE",
+   "paymentnumber": "423830695",
+   "paymentamount": 312.18,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 311.1,
+   "unpostedamount": 58.8,
+   "checkstatusid": 1,
+   "providerleveladjustment": [
+    {
+     "code": "L6",
+     "amount": -1.08
+    }
+   ]
+  }
+ ]
+}

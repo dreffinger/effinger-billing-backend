@@ -1,0 +1,42 @@
+{
+ "stamp": "2026-10-21T1710Z",
+ "pid": "17473245",
+ "steps": [
+  {
+   "step": "chart order",
+   "result": "(True, \"insorder 2,1 via ins9519180 -> '2,1'\")"
+  },
+  {
+   "step": "move back 23362978",
+   "result": "moved 216.77 -> {'patbalance': '0.00', 'insbalance': '142.72', 'insorder': '2,1'}"
+  },
+  {
+   "step": "WOINS 23362978 126.58",
+   "result": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-glszj\" lst=\"10/21/2026 10:44:12\"><Results success=\"1\" paymentid=\"10176075\" /><Error /></PPMDResult')"
+  },
+  {
+   "step": "move back 23362979",
+   "result": "moved 16.14 -> {'patbalance': '0.00', 'insbalance': '74.05', 'insorder': '2,1'}"
+  },
+  {
+   "step": "WOINS 23362979 65.13",
+   "result": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vvclg\" lst=\"10/21/2026 10:44:22\"><Results success=\"1\" paymentid=\"10176076\" /><Error /></PPMDResult')"
+  },
+  {
+   "step": "move back 23363234",
+   "result": "moved 74.64 -> {'patbalance': '0.00', 'insbalance': '74.64', 'insorder': '2,1'}"
+  },
+  {
+   "step": "WOINS 23363234 57.71",
+   "result": "(True, '<?xml version=\\'1.0\\' encoding=\\'ISO-8859-1\\'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-glszj\" lst=\"10/21/2026 10:44:30\"><Results success=\"1\" paymentid=\"10176077\" /><Error /></PPMDResult')"
+  },
+  {
+   "step": "reroute v19452629",
+   "result": "visit vst19452629 insorder already 2,1 - resave skipped | freq1 + rebill seq 1 -> 204"
+  },
+  {
+   "step": "reroute v19452861",
+   "result": "visit vst19452861 insorder already 2,1 - resave skipped | freq1 + rebill seq 1 -> 204"
+  }
+ ]
+}

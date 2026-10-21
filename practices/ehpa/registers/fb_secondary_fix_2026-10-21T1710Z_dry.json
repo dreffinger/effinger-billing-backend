@@ -1,0 +1,42 @@
+{
+ "stamp": "2026-10-21T1710Z",
+ "pid": "17473245",
+ "steps": [
+  {
+   "step": "chart order",
+   "result": "DRY ins_update.update(17473245, ins9519180, sequence='2,1')"
+  },
+  {
+   "step": "move back 23362978",
+   "result": "DRY move 216.77 seq 2,1"
+  },
+  {
+   "step": "WOINS 23362978 126.58",
+   "result": "(False, 'over-apply: pay 0.00 + wo 126.58 > insbalance 0.00')"
+  },
+  {
+   "step": "move back 23362979",
+   "result": "DRY move 216.77 seq 2,1"
+  },
+  {
+   "step": "WOINS 23362979 65.13",
+   "result": "(False, 'over-apply: pay 0.00 + wo 65.13 > insbalance 0.00')"
+  },
+  {
+   "step": "move back 23363234",
+   "result": "DRY move 74.64 seq 2,1"
+  },
+  {
+   "step": "WOINS 23363234 57.71",
+   "result": "(False, 'over-apply: pay 0.00 + wo 57.71 > insbalance 0.00')"
+  },
+  {
+   "step": "reroute v19452629",
+   "result": "visit vst19452629 insorder already 2,1 - resave skipped | DRY freq1 + rebill seq 1"
+  },
+  {
+   "step": "reroute v19452861",
+   "result": "visit vst19452861 insorder already 2,1 - resave skipped | DRY freq1 + rebill seq 1"
+  }
+ ]
+}
