@@ -1,0 +1,33 @@
+{
+ "stamp": "2026-10-21T2310Z",
+ "charts": {
+  "17477848": [
+   {
+    "id": "ins9520570",
+    "carrier": "car6404",
+    "seq": "1",
+    "subscriber_present": true,
+    "begin": "09/01/2026",
+    "end": ""
+   }
+  ],
+  "17475312": [
+   {
+    "id": "ins9516283",
+    "carrier": "car6085",
+    "seq": "1",
+    "subscriber_present": true,
+    "begin": "02/02/2020",
+    "end": "08/22/2026"
+   },
+   {
+    "id": "ins9519353",
+    "carrier": "car6404",
+    "seq": "2",
+    "subscriber_present": true,
+    "begin": "08/23/2026",
+    "end": ""
+   }
+  ]
+ }
+}

@@ -1,0 +1,31 @@
+{
+ "stamp": "2026-10-21T2310Z",
+ "dry": true,
+ "checkid": "1053251",
+ "paymentnumber": "W1539499",
+ "lines": [
+  {
+   "checkid": "1053251",
+   "checkclaimid": 15447393,
+   "pid": "17475312",
+   "visitid": "19455651",
+   "chargedetailid": "23367014",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "rule": "COB9 hospice - CCM not covered (10/15 rule, WONCS, no rebill)",
+   "wocode": "WONCS",
+   "remit_insbal": 206.0,
+   "remit_paid": 0.0,
+   "before": {
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "cpt": "99487",
+    "dos": "09/20/2026",
+    "fee": "206.00",
+    "primary_paid": 0
+   },
+   "outcome": "DRY would post pay 0.00 + WONCS 206.00 (ERA-linked, check W1539499)"
+  }
+ ]
+}

@@ -1,0 +1,746 @@
+{
+ "stamp": "2026-10-21T2344Z",
+ "checkid": "1053251",
+ "checknumber": "W1539499",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17470849",
+   "vid": "19455607",
+   "cid": "23366949",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 93.9,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24669309",
+   "result": "DRY"
+  },
+  {
+   "pid": "17470849",
+   "vid": "19455607",
+   "cid": "23366950",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.75,
+    "insbalance": 48.25,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24669310",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477828",
+   "vid": "19455467",
+   "cid": "23366759",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 0.0,
+    "patbalance": 184.79,
+    "carrier": "UNI20"
+   },
+   "payid": "24669311",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477828",
+   "vid": "19455870",
+   "cid": "23367335",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "UNI20"
+   },
+   "payid": "24669312",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477844",
+   "vid": "19456118",
+   "cid": "23367727",
+   "cpt": "99306",
+   "paid": 162.19,
+   "co": 93.81,
+   "pr": 0,
+   "before": {
+    "fee": 256.0,
+    "paid": 162.19,
+    "insbalance": 0.0,
+    "patbalance": 93.81,
+    "carrier": "UNI20"
+   },
+   "payid": "24669313",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477844",
+   "vid": "19456118",
+   "cid": "23367728",
+   "cpt": "99497",
+   "paid": 52.34,
+   "co": 80.66,
+   "pr": 0,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.34,
+    "insbalance": 0.0,
+    "patbalance": 80.66,
+    "carrier": "UNI20"
+   },
+   "payid": "24669314",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477847",
+   "vid": "19455862",
+   "cid": "23367327",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 54.63,
+   "pr": 0,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 0.0,
+    "patbalance": 54.63,
+    "carrier": "UNI20"
+   },
+   "payid": "24669315",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476749",
+   "vid": "19455652",
+   "cid": "23367015",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669316",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19456052",
+   "cid": "23367533",
+   "cpt": "99309",
+   "paid": 97.59,
+   "co": 43.41,
+   "pr": 0,
+   "before": {
+    "fee": 141.0,
+    "paid": 97.59,
+    "insbalance": 0.0,
+    "patbalance": 43.41,
+    "carrier": "UNI20"
+   },
+   "payid": "24669317",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477828",
+   "vid": "19455890",
+   "cid": "23367355",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "UNI20"
+   },
+   "payid": "24669318",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477848",
+   "vid": "19455897",
+   "cid": "23367364",
+   "cpt": "99223",
+   "paid": 100.17,
+   "co": 184.28,
+   "pr": 25.55,
+   "before": {
+    "fee": 310.0,
+    "paid": 100.17,
+    "insbalance": 0.0,
+    "patbalance": 209.83,
+    "carrier": "UNI20"
+   },
+   "payid": "24669319",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477847",
+   "vid": "19455892",
+   "cid": "23367357",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 0.0,
+    "patbalance": 184.79,
+    "carrier": "UNI20"
+   },
+   "payid": "24669320",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477847",
+   "vid": "19455892",
+   "cid": "23367358",
+   "cpt": "99497",
+   "paid": 52.34,
+   "co": 80.66,
+   "pr": 0,
+   "before": {
+    "fee": 133.0,
+    "paid": 52.34,
+    "insbalance": 0.0,
+    "patbalance": 80.66,
+    "carrier": "UNI20"
+   },
+   "payid": "24669321",
+   "result": "DRY"
+  },
+  {
+   "pid": "24655",
+   "vid": "19455697",
+   "cid": "23367075",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669322",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473200",
+   "vid": "19455650",
+   "cid": "23367013",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669323",
+   "result": "DRY"
+  },
+  {
+   "pid": "17474441",
+   "vid": "19455693",
+   "cid": "23367071",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669324",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473233",
+   "vid": "19455610",
+   "cid": "23366954",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669325",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473233",
+   "vid": "19455610",
+   "cid": "23366955",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.75,
+    "insbalance": 0.0,
+    "patbalance": 48.25,
+    "carrier": "UNI20"
+   },
+   "payid": "24669326",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477848",
+   "vid": "19455863",
+   "cid": "23367328",
+   "cpt": "99232",
+   "paid": 45.1,
+   "co": 54.4,
+   "pr": 11.5,
+   "before": {
+    "fee": 111.0,
+    "paid": 45.1,
+    "insbalance": 0.0,
+    "patbalance": 65.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669327",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477844",
+   "vid": "19455786",
+   "cid": "23367232",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 142.72,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "UNI20"
+   },
+   "payid": "24669328",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477844",
+   "vid": "19455786",
+   "cid": "23367233",
+   "cpt": "99489",
+   "paid": 34.95,
+   "co": 74.05,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 34.95,
+    "insbalance": 0.0,
+    "patbalance": 74.05,
+    "carrier": "UNI20"
+   },
+   "payid": "24669329",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477828",
+   "vid": "19455448",
+   "cid": "23366741",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "UNI20"
+   },
+   "payid": "24669330",
+   "result": "DRY"
+  },
+  {
+   "pid": "12182506",
+   "vid": "19455702",
+   "cid": "23367083",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669331",
+   "result": "DRY"
+  },
+  {
+   "pid": "12182506",
+   "vid": "19455702",
+   "cid": "23367084",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.75,
+    "insbalance": 0.0,
+    "patbalance": 48.25,
+    "carrier": "UNI20"
+   },
+   "payid": "24669332",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477846",
+   "vid": "19455857",
+   "cid": "23367322",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 54.63,
+   "pr": 0,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 0.0,
+    "patbalance": 54.63,
+    "carrier": "UNI20"
+   },
+   "payid": "24669333",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473306",
+   "vid": "19455677",
+   "cid": "23367051",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 93.9,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24669334",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476265",
+   "vid": "19455633",
+   "cid": "23366990",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669335",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477845",
+   "vid": "19455853",
+   "cid": "23367318",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 54.63,
+   "pr": 0,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 0.0,
+    "patbalance": 54.63,
+    "carrier": "UNI20"
+   },
+   "payid": "24669336",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472641",
+   "vid": "19455874",
+   "cid": "23367340",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 0.0,
+    "patbalance": 184.79,
+    "carrier": "UNI20"
+   },
+   "payid": "24669337",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477845",
+   "vid": "19455896",
+   "cid": "23367363",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 0.0,
+    "patbalance": 184.79,
+    "carrier": "UNI20"
+   },
+   "payid": "24669338",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477828",
+   "vid": "19455447",
+   "cid": "23366740",
+   "cpt": "99233",
+   "paid": 85.46,
+   "co": 74.54,
+   "pr": 0,
+   "before": {
+    "fee": 160.0,
+    "paid": 85.46,
+    "insbalance": 0.0,
+    "patbalance": 74.54,
+    "carrier": "UNI20"
+   },
+   "payid": "24669339",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472641",
+   "vid": "19456117",
+   "cid": "23367726",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 54.63,
+   "pr": 0,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 0.0,
+    "patbalance": 54.63,
+    "carrier": "UNI20"
+   },
+   "payid": "24669340",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472228",
+   "vid": "19451572",
+   "cid": "23361626",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 184.79,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24669341",
+   "result": "DRY"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19455657",
+   "cid": "23367020",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 142.72,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "UNI20"
+   },
+   "payid": "24669342",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473236",
+   "vid": "19455618",
+   "cid": "23366969",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669343",
+   "result": "DRY"
+  },
+  {
+   "pid": "17473236",
+   "vid": "19455618",
+   "cid": "23366970",
+   "cpt": "99489",
+   "paid": 60.75,
+   "co": 48.25,
+   "pr": 0,
+   "before": {
+    "fee": 109.0,
+    "paid": 60.75,
+    "insbalance": 0.0,
+    "patbalance": 48.25,
+    "carrier": "UNI20"
+   },
+   "payid": "24669344",
+   "result": "DRY"
+  },
+  {
+   "pid": "45496",
+   "vid": "19455699",
+   "cid": "23367078",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669345",
+   "result": "DRY"
+  },
+  {
+   "pid": "17471216",
+   "vid": "19455598",
+   "cid": "23366937",
+   "cpt": "99487",
+   "paid": 112.1,
+   "co": 93.9,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 112.1,
+    "insbalance": 0.0,
+    "patbalance": 93.9,
+    "carrier": "UNI20"
+   },
+   "payid": "24669346",
+   "result": "DRY"
+  },
+  {
+   "pid": "17477846",
+   "vid": "19455893",
+   "cid": "23367359",
+   "cpt": "99223",
+   "paid": 125.21,
+   "co": 184.79,
+   "pr": 0,
+   "before": {
+    "fee": 310.0,
+    "paid": 125.21,
+    "insbalance": 0.0,
+    "patbalance": 184.79,
+    "carrier": "UNI20"
+   },
+   "payid": "24669347",
+   "result": "DRY"
+  },
+  {
+   "pid": "17472228",
+   "vid": "19451582",
+   "cid": "23361637",
+   "cpt": "99232",
+   "paid": 56.37,
+   "co": 54.63,
+   "pr": 0,
+   "before": {
+    "fee": 111.0,
+    "paid": 56.37,
+    "insbalance": 54.63,
+    "patbalance": 0.0,
+    "carrier": "UNI20"
+   },
+   "payid": "24669348",
+   "result": "DRY"
+  },
+  {
+   "pid": "17476531",
+   "vid": "19455662",
+   "cid": "23367029",
+   "cpt": "99487",
+   "paid": 63.28,
+   "co": 142.72,
+   "pr": 0,
+   "before": {
+    "fee": 206.0,
+    "paid": 63.28,
+    "insbalance": 0.0,
+    "patbalance": 142.72,
+    "carrier": "UNI20"
+   },
+   "payid": "24669349",
+   "result": "DRY"
+  }
+ ]
+}

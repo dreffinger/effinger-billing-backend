@@ -1,0 +1,39 @@
+{
+ "stamp": "2026-10-21T2310Z",
+ "dry": false,
+ "checkid": "1053251",
+ "paymentnumber": "W1539499",
+ "lines": [
+  {
+   "checkid": "1053251",
+   "checkclaimid": 15447393,
+   "pid": "17475312",
+   "visitid": "19455651",
+   "chargedetailid": "23367014",
+   "cpt": "99487",
+   "dos": "2026-09-20",
+   "rule": "COB9 hospice - CCM not covered (10/15 rule, WONCS, no rebill)",
+   "wocode": "WONCS",
+   "remit_insbal": 206.0,
+   "remit_paid": 0.0,
+   "before": {
+    "insbal": 206.0,
+    "patbal": 0.0,
+    "carrier": "UNI20",
+    "cpt": "99487",
+    "dos": "09/20/2026",
+    "fee": "206.00",
+    "primary_paid": 0
+   },
+   "outcome": "posted",
+   "pay": 0.0,
+   "wo": 206.0,
+   "paymentid": "10176224",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vvclg\" lst=\"10/21/2026 16:52:48\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}

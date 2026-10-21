@@ -1,12 +1,12 @@
-#!/bin/bash
-# ERA step 5 chain for the 2026-09-15T2310Z run (7pm ET 9/15 slot): b before-snapshot + cache, c era_post --all-unposted, d fallback dry+live, e clear dry+live, after-snapshot
+#!/usr/bin/env bash
+# PLAIN ENGLISH: the ERA settlement chain of the 7 PM ET 10/21/2026 run on UHC check 1053251, run under nohup (Bash cap 600 s):
+# (1) era_co45_relink.py --live = void each Post-button payment and re-post it ERA-linked with WOINS for the CO-45/CO-253 contractual
+# (PR amounts stay); (2) era_b9_1021_2310.py --live = WONCS the one $0 CO-B9 hospice CCM line; (3) era_clear.py = dismiss the check once
+# no postable money remains; (4) era_list.py after = confirm the Center; (5) era_audit_1021_2310.py = read every charge live again.
 cd /home/claude/unbilled
-S=2026-09-15T2310Z
-echo "### step b BEFORE $(date -u +%H:%M:%S)"; timeout 900 python3 era_step_b_0913.py before $S
-echo "### era_post --all-unposted $(date -u +%H:%M:%S)"; timeout 900 python3 era_post.py --all-unposted
-echo "### fallback DRY $(date -u +%H:%M:%S)"; timeout 600 python3 era_fallback_0913b.py --dry --stamp $S --checks era_checks_before_$S.json
-echo "### fallback LIVE $(date -u +%H:%M:%S)"; timeout 600 python3 era_fallback_0913b.py --stamp $S --checks era_checks_before_$S.json --max-faults 3
-echo "### era_clear DRY $(date -u +%H:%M:%S)"; timeout 600 python3 era_clear.py --dry
-echo "### era_clear LIVE $(date -u +%H:%M:%S)"; timeout 600 python3 era_clear.py
-echo "### after snapshot $(date -u +%H:%M:%S)"; timeout 600 python3 era_step_b_0913.py after $S
-echo "### ERA CHAIN DONE $(date -u +%H:%M:%S)"
+echo "== relink live $(date -u +%H:%M:%SZ)"; python3 era_co45_relink.py 1053251 --meta registers/era_checks_meta_1053251.json --live
+echo "== b9 live $(date -u +%H:%M:%SZ)"; python3 era_b9_1021_2310.py --only 19455651 --live
+echo "== era_clear $(date -u +%H:%M:%SZ)"; python3 era_clear.py
+echo "== era_list after $(date -u +%H:%M:%SZ)"; python3 era_list.py after 2026-10-21T2355Z
+echo "== audit $(date -u +%H:%M:%SZ)"; python3 era_audit_1021_2310.py | tail -3
+echo "== CHAIN_DONE $(date -u +%H:%M:%SZ)"
