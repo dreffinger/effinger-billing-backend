@@ -1,0 +1,68 @@
+{
+ "stamp": "2026-10-21T1310Z",
+ "lookups": [
+  {
+   "pattern_hash": "571920",
+   "charts": []
+  },
+  {
+   "pattern_hash": "583266",
+   "charts": []
+  },
+  {
+   "pattern_hash": "418318",
+   "charts": [
+    "pat25746"
+   ]
+  },
+  {
+   "pattern_hash": "164582",
+   "charts": []
+  },
+  {
+   "pattern_hash": "903110",
+   "charts": [
+    "pat17474046"
+   ]
+  },
+  {
+   "pattern_hash": "517846",
+   "charts": [
+    "pat17472553",
+    "pat21086"
+   ]
+  },
+  {
+   "pattern_hash": "919048",
+   "charts": []
+  },
+  {
+   "pattern_hash": "658290",
+   "charts": []
+  },
+  {
+   "pattern_hash": "229098",
+   "charts": []
+  },
+  {
+   "pattern_hash": "163271",
+   "charts": [
+    "pat21692"
+   ]
+  },
+  {
+   "pattern_hash": "698493",
+   "charts": [
+    "pat20863"
+   ]
+  },
+  {
+   "pattern_hash": "93223",
+   "charts": []
+  },
+  {
+   "pattern_hash": "490590",
+   "charts": []
+  }
+ ]
+}

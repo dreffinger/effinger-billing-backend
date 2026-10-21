@@ -1,0 +1,203 @@
+{
+ "stamp": "2026-10-21T1310Z",
+ "check": 1053239,
+ "payer": "OPTUM VA CCN REGION 3",
+ "trace": "3680200143",
+ "checkdate": "2026-10-23",
+ "restored_and_redismissed": true,
+ "lines": [
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447285,
+   "pid": 17478013,
+   "visitid": 19457321,
+   "chargeid": 23369178,
+   "dos": "2026-10-05",
+   "cpt": "99223",
+   "claimamt": 310.0,
+   "paid": 0.0,
+   "adj": 310.0,
+   "carc": [
+    [
+     "CO288",
+     310.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 310.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447286,
+   "pid": 17478013,
+   "visitid": 19457471,
+   "chargeid": 23369378,
+   "dos": "2026-10-09",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447287,
+   "pid": 17478013,
+   "visitid": 19457476,
+   "chargeid": 23369383,
+   "dos": "2026-10-08",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447288,
+   "pid": 17478013,
+   "visitid": 19457519,
+   "chargeid": 23369447,
+   "dos": "2026-10-11",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447289,
+   "pid": 17478013,
+   "visitid": 19457529,
+   "chargeid": 23369457,
+   "dos": "2026-10-10",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447290,
+   "pid": 17478013,
+   "visitid": 19457280,
+   "chargeid": 23369137,
+   "dos": "2026-10-07",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447291,
+   "pid": 17478013,
+   "visitid": 19457281,
+   "chargeid": 23369138,
+   "dos": "2026-10-06",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  },
+  {
+   "check": 1053239,
+   "trace": "3680200143",
+   "checkclaimid": 15447292,
+   "pid": 17478013,
+   "visitid": 19457647,
+   "chargeid": 23369559,
+   "dos": "2026-10-12",
+   "cpt": "99233",
+   "claimamt": 160.0,
+   "paid": 0.0,
+   "adj": 160.0,
+   "carc": [
+    [
+     "CO288",
+     160.0
+    ]
+   ],
+   "rarc": [
+    "#AM"
+   ],
+   "icn": "",
+   "insbal_remit": 160.0
+  }
+ ],
+ "outcome": "denial-only CO-288 referral absent - no post, no write-off; VA auth needed (board row chart 17478013)"
+}
