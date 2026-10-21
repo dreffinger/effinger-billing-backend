@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-21T03:33:01Z",
+ "at": "2026-10-21T05:29:35Z",
  "as_of": "2026-10-21",
- "total": 292104.95,
- "visits": 3052,
+ "total": 292939.75,
+ "visits": 3056,
  "charts": 557,
  "over_365": {
   "n": 1082,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 315,
-   "dollars": 53279.77
+   "n": 319,
+   "dollars": 54114.57
   },
   "31-60": {
    "n": 308,
@@ -39,10 +39,10 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1572,
-   "dollars": 138053.45,
+   "n": 1574,
+   "dollars": 138566.45,
    "buckets": {
-    "0-30": 21930.16,
+    "0-30": 22443.16,
     "31-60": 17411.92,
     "61-90": 6837.32,
     "91-180": 22588.1,
@@ -84,10 +84,10 @@
   {
    "carrier": "BCBS",
    "name": "FLORIDA BLUE",
-   "n": 320,
-   "dollars": 20947.34,
+   "n": 321,
+   "dollars": 21247.34,
    "buckets": {
-    "0-30": 1524.63,
+    "0-30": 1824.63,
     "31-60": 3688.71,
     "61-90": 1861.68,
     "91-180": 3670.96,
@@ -309,10 +309,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 17,
-   "dollars": 1291.08,
+   "n": 18,
+   "dollars": 1312.88,
    "buckets": {
-    "0-30": 822.88,
+    "0-30": 844.68,
     "31-60": 198.4,
     "61-90": 21.8,
     "91-180": 141.0,
@@ -750,13 +750,13 @@
   },
   {
    "month": "2026-09",
-   "n": 327,
-   "dollars": 45592.51
+   "n": 328,
+   "dollars": 45907.51
   },
   {
    "month": "2026-10",
-   "n": 220,
-   "dollars": 40040.69
+   "n": 223,
+   "dollars": 40560.49
   }
  ],
  "oldest": [
@@ -24005,6 +24005,14 @@
    "dos": "2026-09-29"
   },
   {
+   "visitid": 19455721,
+   "patientid": 17473343,
+   "carriercode": "FLO02",
+   "insbalance": 315.0,
+   "days": 21,
+   "dos": "2026-09-30"
+  },
+  {
    "visitid": 19456837,
    "patientid": 17474493,
    "carriercode": "UNI20",
@@ -24081,6 +24089,14 @@
    "patientid": 17477953,
    "carriercode": "UNI20",
    "insbalance": 389.0,
+   "days": 20,
+   "dos": "2026-10-01"
+  },
+  {
+   "visitid": 19457091,
+   "patientid": 48449,
+   "carriercode": "BCBS",
+   "insbalance": 300.0,
    "days": 20,
    "dos": "2026-10-01"
   },
@@ -24285,6 +24301,14 @@
    "dos": "2026-10-02"
   },
   {
+   "visitid": 19456918,
+   "patientid": 17471496,
+   "carriercode": "FLO02",
+   "insbalance": 198.0,
+   "days": 19,
+   "dos": "2026-10-02"
+  },
+  {
    "visitid": 19456912,
    "patientid": 17473087,
    "carriercode": "FLO02",
@@ -24385,6 +24409,14 @@
    "patientid": 17477899,
    "carriercode": "HUM01",
    "insbalance": 111.0,
+   "days": 18,
+   "dos": "2026-10-03"
+  },
+  {
+   "visitid": 19456968,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 21.8,
    "days": 18,
    "dos": "2026-10-03"
   },
