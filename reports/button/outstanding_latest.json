@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-21T21:35:40Z",
+ "at": "2026-10-21T23:26:25Z",
  "as_of": "2026-10-21",
- "total": 290941.29,
- "visits": 3041,
+ "total": 290764.44,
+ "visits": 3034,
  "charts": 553,
  "over_365": {
   "n": 1082,
@@ -23,12 +23,12 @@
    "dollars": 14208.45
   },
   "91-180": {
-   "n": 450,
-   "dollars": 41236.07
+   "n": 448,
+   "dollars": 41178.87
   },
   "181-365": {
-   "n": 750,
-   "dollars": 91149.49
+   "n": 745,
+   "dollars": 91029.84
   },
   "over 365": {
    "n": 1082,
@@ -38,22 +38,22 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-   "name": "[name]",
-   "n": 1568,
-   "dollars": 137991.0,
+   "name": "FLORIDA MEDICARE",
+   "n": 1561,
+   "dollars": 137814.15,
    "buckets": {
     "0-30": 21884.64,
     "31-60": 17411.92,
     "61-90": 6820.39,
-    "91-180": 22588.1,
-    "181-365": 39071.72,
+    "91-180": 22530.9,
+    "181-365": 38952.07,
     "over 365": 30214.23
    },
    "oldest_days": 1071
   },
   {
    "carrier": "UNI20",
-   "name": "[name]",
+   "name": "UNITED HEALTHCARE",
    "n": 315,
    "dollars": 49670.64,
    "buckets": {
@@ -68,7 +68,7 @@
   },
   {
    "carrier": "FLO99",
-   "name": "[name]",
+   "name": "FLORIDA COMMUNITY CARE AVAILITY",
    "n": 136,
    "dollars": 22431.58,
    "buckets": {
@@ -83,7 +83,7 @@
   },
   {
    "carrier": "BCBS",
-   "name": "[name]",
+   "name": "FLORIDA BLUE",
    "n": 315,
    "dollars": 20206.33,
    "buckets": {
@@ -98,7 +98,7 @@
   },
   {
    "carrier": "HUM01",
-   "name": "[name]",
+   "name": "HUMANA",
    "n": 116,
    "dollars": 10064.48,
    "buckets": {
@@ -113,7 +113,7 @@
   },
   {
    "carrier": "CAP07",
-   "name": "[name]",
+   "name": "CAPITAL HEALTH PLAN",
    "n": 33,
    "dollars": 6309.24,
    "buckets": {
@@ -128,7 +128,7 @@
   },
   {
    "carrier": "UHCMA",
-   "name": "[name]",
+   "name": "UNITEDHEALTHCARE DUAL COMPLETE",
    "n": 29,
    "dollars": 5081.97,
    "buckets": {
@@ -143,7 +143,7 @@
   },
   {
    "carrier": "AET07",
-   "name": "[name]",
+   "name": "AETNA",
    "n": 31,
    "dollars": 4264.01,
    "buckets": {
@@ -173,7 +173,7 @@
   },
   {
    "carrier": "VACCN",
-   "name": "[name]",
+   "name": "OPTUM VA CCN",
    "n": 24,
    "dollars": 3979.98,
    "buckets": {
@@ -188,7 +188,7 @@
   },
   {
    "carrier": "MCAD",
-   "name": "[name]",
+   "name": "FLORIDA MEDICAID",
    "n": 30,
    "dollars": 3787.1,
    "buckets": {
@@ -203,7 +203,7 @@
   },
   {
    "carrier": "SIM01",
-   "name": "[name]",
+   "name": "SIMPLY HEALTHCARE MCD PLANS",
    "n": 19,
    "dollars": 3231.12,
    "buckets": {
@@ -218,7 +218,7 @@
   },
   {
    "carrier": "TRI05",
-   "name": "[name]",
+   "name": "TRICARE FOR LIFE",
    "n": 96,
    "dollars": 3105.91,
    "buckets": {
@@ -233,7 +233,7 @@
   },
   {
    "carrier": "WEL04",
-   "name": "[name]",
+   "name": "WELLCARE",
    "n": 35,
    "dollars": 3045.73,
    "buckets": {
@@ -248,7 +248,7 @@
   },
   {
    "carrier": "UMR",
-   "name": "[name]",
+   "name": "UMR CHOICE",
    "n": 14,
    "dollars": 2050.0,
    "buckets": {
@@ -263,7 +263,7 @@
   },
   {
    "carrier": "AET12",
-   "name": "[name]",
+   "name": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
    "n": 50,
    "dollars": 1854.51,
    "buckets": {
@@ -293,7 +293,7 @@
   },
   {
    "carrier": "TRI00",
-   "name": "[name]",
+   "name": "TRICARE EAST",
    "n": 7,
    "dollars": 1644.0,
    "buckets": {
@@ -308,7 +308,7 @@
   },
   {
    "carrier": "SUN01",
-   "name": "[name]",
+   "name": "SUNSHINE STATE HEALTH PLAN",
    "n": 18,
    "dollars": 1312.88,
    "buckets": {
@@ -323,7 +323,7 @@
   },
   {
    "carrier": "FIR07",
-   "name": "[name]",
+   "name": "FIRST HEALTH NETWORK",
    "n": 8,
    "dollars": 1087.0,
    "buckets": {
@@ -338,7 +338,7 @@
   },
   {
    "carrier": "AMB03",
-   "name": "[name]",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
    "n": 8,
    "dollars": 704.2,
    "buckets": {
@@ -353,7 +353,7 @@
   },
   {
    "carrier": "WEL07",
-   "name": "[name]",
+   "name": "WELLCARE HEALTH PLAN ENCOUNTERS",
    "n": 4,
    "dollars": 704.0,
    "buckets": {
@@ -368,7 +368,7 @@
   },
   {
    "carrier": "CHA03",
-   "name": "[name]",
+   "name": "CHAMPVA",
    "n": 29,
    "dollars": 565.05,
    "buckets": {
@@ -383,7 +383,7 @@
   },
   {
    "carrier": "GEH04",
-   "name": "[name]",
+   "name": "GEHA HIGH OPTION",
    "n": 46,
    "dollars": 471.05,
    "buckets": {
@@ -413,7 +413,7 @@
   },
   {
    "carrier": "BCBS1",
-   "name": "[name]",
+   "name": "FLORIDABLUE MEDICARE",
    "n": 2,
    "dollars": 421.0,
    "buckets": {
@@ -428,7 +428,7 @@
   },
   {
    "carrier": "LAN",
-   "name": "[name]",
+   "name": "LANTERN",
    "n": 1,
    "dollars": 310.0,
    "buckets": {
@@ -443,7 +443,7 @@
   },
   {
    "carrier": "COL07",
-   "name": "[name]",
+   "name": "COLONIAL HEALTHCARE",
    "n": 8,
    "dollars": 210.44,
    "buckets": {
@@ -458,7 +458,7 @@
   },
   {
    "carrier": "RET01",
-   "name": "[name]",
+   "name": "RETIRED RAILROAD MEDICARE",
    "n": 2,
    "dollars": 88.18,
    "buckets": {
@@ -473,7 +473,7 @@
   },
   {
    "carrier": "MUT01",
-   "name": "[name]",
+   "name": "MUTUAL OF OMAHA",
    "n": 5,
    "dollars": 71.91,
    "buckets": {
@@ -488,7 +488,7 @@
   },
   {
    "carrier": "CON08",
-   "name": "[name]",
+   "name": "CONTINENTAL GENERAL INSURANCE",
    "n": 2,
    "dollars": 67.35,
    "buckets": {
@@ -700,18 +700,18 @@
   },
   {
    "month": "2025-11",
-   "n": 106,
-   "dollars": 10450.2
+   "n": 105,
+   "dollars": 10432.7
   },
   {
    "month": "2025-12",
-   "n": 99,
-   "dollars": 12981.4
+   "n": 98,
+   "dollars": 12954.43
   },
   {
    "month": "2026-01",
-   "n": 142,
-   "dollars": 16807.95
+   "n": 141,
+   "dollars": 16782.89
   },
   {
    "month": "2026-02",
@@ -720,18 +720,18 @@
   },
   {
    "month": "2026-03",
-   "n": 89,
-   "dollars": 8816.39
+   "n": 88,
+   "dollars": 8791.33
   },
   {
    "month": "2026-04",
-   "n": 155,
-   "dollars": 17941.71
+   "n": 154,
+   "dollars": 17916.65
   },
   {
    "month": "2026-05",
-   "n": 158,
-   "dollars": 13195.99
+   "n": 157,
+   "dollars": 13167.39
   },
   {
    "month": "2026-06",
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-07",
-   "n": 173,
-   "dollars": 18664.95
+   "n": 172,
+   "dollars": 18636.35
   },
   {
    "month": "2026-08",
@@ -11269,14 +11269,6 @@
    "dos": "2025-11-15"
   },
   {
-   "visitid": 19423576,
-   "patientid": 17472396,
-   "carriercode": "FLO02",
-   "insbalance": 17.5,
-   "days": 340,
-   "dos": "2025-11-15"
-  },
-  {
    "visitid": 19423457,
    "patientid": 17474200,
    "carriercode": "FLO02",
@@ -12152,14 +12144,6 @@
    "visitid": 19427243,
    "patientid": 45052,
    "carriercode": "BCBS",
-   "insbalance": 26.97,
-   "days": 304,
-   "dos": "2025-12-21"
-  },
-  {
-   "visitid": 19427232,
-   "patientid": 17472396,
-   "carriercode": "FLO02",
    "insbalance": 26.97,
    "days": 304,
    "dos": "2025-12-21"
@@ -13408,14 +13392,6 @@
    "visitid": 19430590,
    "patientid": 17471138,
    "carriercode": "AET12",
-   "insbalance": 25.06,
-   "days": 267,
-   "dos": "2026-01-27"
-  },
-  {
-   "visitid": 19430610,
-   "patientid": 17472396,
-   "carriercode": "FLO02",
    "insbalance": 25.06,
    "days": 267,
    "dos": "2026-01-27"
@@ -14925,14 +14901,6 @@
    "dos": "2026-03-20"
   },
   {
-   "visitid": 19438571,
-   "patientid": 17472396,
-   "carriercode": "FLO02",
-   "insbalance": 25.06,
-   "days": 215,
-   "dos": "2026-03-20"
-  },
-  {
    "visitid": 19438568,
    "patientid": 17475602,
    "carriercode": "FLO02",
@@ -15871,14 +15839,6 @@
   {
    "visitid": 19439683,
    "patientid": 20716,
-   "carriercode": "FLO02",
-   "insbalance": 25.06,
-   "days": 184,
-   "dos": "2026-04-20"
-  },
-  {
-   "visitid": 19439596,
-   "patientid": 17472396,
    "carriercode": "FLO02",
    "insbalance": 25.06,
    "days": 184,
@@ -17161,14 +17121,6 @@
    "patientid": 17475365,
    "carriercode": "TRI05",
    "insbalance": 44.09,
-   "days": 157,
-   "dos": "2026-05-17"
-  },
-  {
-   "visitid": 19442357,
-   "patientid": 17473477,
-   "carriercode": "FLO02",
-   "insbalance": 28.6,
    "days": 157,
    "dos": "2026-05-17"
   },
@@ -19305,14 +19257,6 @@
    "patientid": 17470939,
    "carriercode": "FLO02",
    "insbalance": 44.09,
-   "days": 96,
-   "dos": "2026-07-17"
-  },
-  {
-   "visitid": 19448745,
-   "patientid": 17473477,
-   "carriercode": "FLO02",
-   "insbalance": 28.6,
    "days": 96,
    "dos": "2026-07-17"
   },
