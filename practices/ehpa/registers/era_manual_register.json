@@ -34409,5 +34409,159 @@
   "chargeid": 23363452,
   "outcome": "posted",
   "when": "2026-10-21T1710Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447335,
+  "visitid": "19430610",
+  "chargedetailid": "23336957",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 16.14,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447335,
+  "visitid": "19430610",
+  "chargedetailid": "23336958",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 8.92,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447336,
+  "visitid": "19438571",
+  "chargedetailid": "23345738",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 16.14,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447336,
+  "visitid": "19438571",
+  "chargedetailid": "23345739",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 8.92,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447337,
+  "visitid": "19427232",
+  "chargedetailid": "23333592",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 17.5,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447337,
+  "visitid": "19427232",
+  "chargedetailid": "23333593",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 9.47,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447338,
+  "visitid": "19439596",
+  "chargedetailid": "23347146",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 16.14,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447338,
+  "visitid": "19439596",
+  "chargedetailid": "23347147",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 8.92,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447339,
+  "visitid": "19448745",
+  "chargedetailid": "23358095",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 28.6,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447340,
+  "visitid": "19442357",
+  "chargedetailid": "23350410",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 28.6,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447341,
+  "visitid": "19423576",
+  "chargedetailid": "23329178",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 17.5,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447345,
+  "visitid": "19456669",
+  "chargedetailid": "23368376",
+  "outcome": "already-posted",
+  "pay": null,
+  "wo": null,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447345,
+  "visitid": "19456669",
+  "chargedetailid": "23368375",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 10.03,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
+ },
+ {
+  "checkid": "1053247",
+  "checkclaimid": 15447345,
+  "visitid": "19456669",
+  "chargedetailid": "23368376",
+  "outcome": "posted",
+  "pay": 0.0,
+  "wo": 13.35,
+  "wocode": "WOCAID2ND",
+  "when": "2026-10-21T2110Z"
  }
 ]

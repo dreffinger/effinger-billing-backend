@@ -1,0 +1,77 @@
+{
+ "stamp": "2026-10-21T2110Z",
+ "dry": false,
+ "checkid": "1053247",
+ "visit": "19456669",
+ "lines": [
+  {
+   "chargedetailid": "23368375",
+   "cpt": "99305",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 10.03,
+    "cpt": "99305",
+    "pays": [
+     [
+      "819979797",
+      "0",
+      95.33,
+      "FLO02"
+     ],
+     [
+      "0917962882",
+      "0",
+      14.29,
+      "SUN01"
+     ]
+    ],
+    "medicare_paid": 95.33
+   },
+   "move": "moved 10.03 -> {'patbalance': '0.00', 'insbalance': '10.03', 'insorder': '1,2'}",
+   "after_move": {
+    "insbal": 10.03,
+    "patbal": 0.0
+   },
+   "outcome": "posted",
+   "wo": 10.03,
+   "paymentid": "10176104",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vvclg\" lst=\"10/21/2026 14:44:49\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  },
+  {
+   "chargedetailid": "23368376",
+   "cpt": "99497",
+   "before": {
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "cpt": "99497",
+    "pays": [
+     [
+      "819979797",
+      "0",
+      52.33,
+      "FLO02"
+     ],
+     [
+      "0917962882",
+      "0",
+      0.0,
+      "SUN01"
+     ]
+    ],
+    "medicare_paid": 52.33
+   },
+   "outcome": "posted",
+   "wo": 13.35,
+   "paymentid": "10176105",
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-vvclg\" lst=\"10/21/2026 14:44:52\"><Results success=\"1\" paym",
+   "after": {
+    "insbal": 0.0,
+    "patbal": 0.0
+   }
+  }
+ ]
+}

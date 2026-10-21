@@ -1,0 +1,87 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-21T2147Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "nothing ran",
+ "note": "backend billing run 2026-10-21T2110Z UNI20/BCBS pre-5/1 sweep (step 5b2) after the engine pass",
+ "run_url": "",
+ "started": "2026-10-21T21:47:34Z",
+ "ended": "2026-10-21T21:48:21Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1194 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1194,
+    "registers": 1436,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-21T21:47:34Z",
+   "ended": "2026-10-21T21:47:35Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "UNKNOWN - review: 1; PENDING at payer - wait: 16",
+   "counts": {
+    "UNKNOWN - review": 1,
+    "PENDING at payer - wait": 16
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "UNKNOWN - review",
+     "visits": 1,
+     "ids": "v19433791"
+    },
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 16,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271 v19455322"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-21T21:47:35Z",
+   "ended": "2026-10-21T21:48:21Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}

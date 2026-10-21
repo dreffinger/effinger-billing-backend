@@ -1,0 +1,59 @@
+{
+ "stamp": "2026-10-21T2110Z",
+ "dry": true,
+ "checkid": "1053247",
+ "visit": "19456669",
+ "lines": [
+  {
+   "chargedetailid": "23368375",
+   "cpt": "99305",
+   "before": {
+    "insbal": 0.0,
+    "patbal": 10.03,
+    "cpt": "99305",
+    "pays": [
+     [
+      "819979797",
+      "0",
+      95.33,
+      "FLO02"
+     ],
+     [
+      "0917962882",
+      "0",
+      14.29,
+      "SUN01"
+     ]
+    ],
+    "medicare_paid": 95.33
+   },
+   "move": "DRY would move 10.03 back to insurance (no rebill)",
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 10.03 ERA-linked"
+  },
+  {
+   "chargedetailid": "23368376",
+   "cpt": "99497",
+   "before": {
+    "insbal": 13.35,
+    "patbal": 0.0,
+    "cpt": "99497",
+    "pays": [
+     [
+      "819979797",
+      "0",
+      52.33,
+      "FLO02"
+     ],
+     [
+      "0917962882",
+      "0",
+      0.0,
+      "SUN01"
+     ]
+    ],
+    "medicare_paid": 52.33
+   },
+   "outcome": "DRY would post pay 0.00 + WOCAID2ND 13.35 ERA-linked"
+  }
+ ]
+}
