@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-21T19:24:52Z",
+ "at": "2026-10-21T21:27:15Z",
  "as_of": "2026-10-21",
- "total": 291323.29,
- "visits": 3044,
- "charts": 554,
+ "total": 290941.29,
+ "visits": 3041,
+ "charts": 553,
  "over_365": {
   "n": 1082,
   "dollars": 48627.77
  },
  "by_bucket": {
   "0-30": {
-   "n": 311,
-   "dollars": 52835.05
+   "n": 308,
+   "dollars": 52453.05
   },
   "31-60": {
    "n": 306,
@@ -99,10 +99,10 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 119,
-   "dollars": 10446.48,
+   "n": 116,
+   "dollars": 10064.48,
    "buckets": {
-    "0-30": 4262.0,
+    "0-30": 3880.0,
     "31-60": 1331.88,
     "61-90": 361.86,
     "91-180": 1186.19,
@@ -755,8 +755,8 @@
   },
   {
    "month": "2026-10",
-   "n": 219,
-   "dollars": 39541.29
+   "n": 216,
+   "dollars": 39159.29
   }
  ],
  "oldest": [
@@ -24333,14 +24333,6 @@
    "dos": "2026-10-03"
   },
   {
-   "visitid": 19456969,
-   "patientid": 17477899,
-   "carriercode": "HUM01",
-   "insbalance": 111.0,
-   "days": 18,
-   "dos": "2026-10-03"
-  },
-  {
    "visitid": 19456968,
    "patientid": 17476358,
    "carriercode": "SUN01",
@@ -24360,14 +24352,6 @@
    "visitid": 19457173,
    "patientid": 17472553,
    "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 17,
-   "dos": "2026-10-04"
-  },
-  {
-   "visitid": 19457076,
-   "patientid": 17477640,
-   "carriercode": "HUM01",
    "insbalance": 160.0,
    "days": 17,
    "dos": "2026-10-04"
@@ -24488,14 +24472,6 @@
    "visitid": 19457082,
    "patientid": 17471741,
    "carriercode": "FIR07",
-   "insbalance": 111.0,
-   "days": 17,
-   "dos": "2026-10-04"
-  },
-  {
-   "visitid": 19457079,
-   "patientid": 17477899,
-   "carriercode": "HUM01",
    "insbalance": 111.0,
    "days": 17,
    "dos": "2026-10-04"
