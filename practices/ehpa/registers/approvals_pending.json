@@ -1429,7 +1429,8 @@
    "evidence": "the dry form was not run (the refused command bundled --dry and --live); GET /api/era/checkdetails?checkid=1053221 at 13:37Z answered eracheckdetails [] (dismissed); the GitHub slot's report reports/button/2026-10-20T1328Z.json lists the check at stage 'before' with amount 0.0 / unposted 0.0 and 'checks dismissed: 1'",
    "ui": "AdvancedMD > ERA Center > show Dismissed (dismissed on 10/20/2026) > check 3680190162 OPTUM VA CCN > Restore (undismiss); open the check and leave it on the unposted list - the next backend run caches its lines and dismisses it after the denial lines are worked. (Or: open the restored check, note each claim's visit number, [name] and the CAS reason codes, then Dismiss it again.)",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-21T0619Z (go)"
   }
  ]
 }
