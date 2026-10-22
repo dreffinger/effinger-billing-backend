@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-22T2124Z",
+ "stamp": "2026-10-22T2325Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/6/29 -> 0/0/6/29; ERA 1 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/29 -> 0/0/6/29; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39857022838",
- "started": "2026-10-22T21:24:50Z",
- "ended": "2026-10-22T21:31:11Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39871602449",
+ "started": "2026-10-22T23:25:00Z",
+ "ended": "2026-10-22T23:30:48Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 0.0
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -65,7 +65,7 @@
    "visits": 7374,
    "actionable": 68,
    "actionable_amt": 12376.0,
-   "asof": "2026-10-22 21:31 UTC"
+   "asof": "2026-10-22 23:30 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-22T21:24:50Z",
-   "ended": "2026-10-22T21:24:55Z"
+   "started": "2026-10-22T23:25:00Z",
+   "ended": "2026-10-22T23:25:02Z"
   },
   {
    "name": "columns",
@@ -137,37 +137,28 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T21:24:55Z",
-   "ended": "2026-10-22T21:26:49Z"
+   "started": "2026-10-22T23:25:02Z",
+   "ended": "2026-10-22T23:26:50Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 0,
-    "checks dismissed": 1,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0.0,
+    "unposted before": 0,
     "unposted after": 0,
     "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053258,
-     "payer": "HUMANA",
-     "checknumber": "NO-PAY-202610210008064",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-10-22T21:26:49Z",
-   "ended": "2026-10-22T21:26:54Z"
+   "started": "2026-10-22T23:26:50Z",
+   "ended": "2026-10-22T23:26:52Z"
   },
   {
    "name": "packages",
@@ -178,8 +169,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-22T21:26:54Z",
-   "ended": "2026-10-22T21:26:54Z"
+   "started": "2026-10-22T23:26:52Z",
+   "ended": "2026-10-22T23:26:52Z"
   },
   {
    "name": "outstanding",
@@ -282,14 +273,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T21:26:54Z",
-   "ended": "2026-10-22T21:26:55Z"
+   "started": "2026-10-22T23:26:52Z",
+   "ended": "2026-10-22T23:26:54Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7374 denied visits on 841 charts; 68 actionable $12376.00 (64 inside 12 months $11656.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 174, OPEN 200",
+   "summary": "7374 denied visits on 841 charts; 68 actionable $12376.00 (64 inside 12 months $11656.00); WRITTEN-OFF 2686, RESUBMITTED 174, RESOLVED 4314, OPEN 200",
    "counts": {
     "charts read": 841,
     "denial lines": 12546,
@@ -297,8 +288,8 @@
     "actionable": 68,
     "inside 12 months": 64,
     "status WRITTEN-OFF": 2686,
-    "status RESOLVED": 4314,
     "status RESUBMITTED": 174,
+    "status RESOLVED": 4314,
     "status OPEN": 200
    },
    "dollars": {
@@ -370,8 +361,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T21:26:55Z",
-   "ended": "2026-10-22T21:31:11Z"
+   "started": "2026-10-22T23:26:54Z",
+   "ended": "2026-10-22T23:30:48Z"
   }
  ],
  "packages": [],
