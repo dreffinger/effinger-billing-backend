@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-22T03:32:37Z",
+ "at": "2026-10-22T05:29:41Z",
  "as_of": "2026-10-22",
- "total": 282784.44,
- "visits": 2999,
- "charts": 543,
+ "total": 282857.93,
+ "visits": 3002,
+ "charts": 544,
  "over_365": {
   "n": 1088,
   "dollars": 49933.1
  },
  "by_bucket": {
   "0-30": {
-   "n": 282,
-   "dollars": 48689.05
+   "n": 285,
+   "dollars": 48762.54
   },
   "31-60": {
    "n": 275,
@@ -39,10 +39,10 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1561,
-   "dollars": 137814.15,
+   "n": 1563,
+   "dollars": 137865.84,
    "buckets": {
-    "0-30": 21777.64,
+    "0-30": 21829.33,
     "31-60": 15322.68,
     "61-90": 8606.31,
     "91-180": 22776.48,
@@ -309,10 +309,10 @@
   {
    "carrier": "SUN01",
    "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 18,
-   "dollars": 1312.88,
+   "n": 19,
+   "dollars": 1334.68,
    "buckets": {
-    "0-30": 686.75,
+    "0-30": 708.55,
     "31-60": 356.33,
     "61-90": 21.8,
     "91-180": 141.0,
@@ -755,8 +755,8 @@
   },
   {
    "month": "2026-10",
-   "n": 216,
-   "dollars": 39159.29
+   "n": 219,
+   "dollars": 39232.78
   }
  ],
  "oldest": [
@@ -24149,6 +24149,14 @@
    "dos": "2026-10-04"
   },
   {
+   "visitid": 19457078,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 21.8,
+   "days": 18,
+   "dos": "2026-10-04"
+  },
+  {
    "visitid": 19457421,
    "patientid": 17474046,
    "carriercode": "SIM01",
@@ -25333,6 +25341,14 @@
    "dos": "2026-10-12"
   },
   {
+   "visitid": 19457792,
+   "patientid": 17471019,
+   "carriercode": "FLO02",
+   "insbalance": 38.09,
+   "days": 10,
+   "dos": "2026-10-12"
+  },
+  {
    "visitid": 19457787,
    "patientid": 17477405,
    "carriercode": "FLO02",
@@ -25393,6 +25409,14 @@
    "patientid": 17478058,
    "carriercode": "UNI20",
    "insbalance": 111.0,
+   "days": 9,
+   "dos": "2026-10-13"
+  },
+  {
+   "visitid": 19457781,
+   "patientid": 17471019,
+   "carriercode": "FLO02",
+   "insbalance": 13.6,
    "days": 9,
    "dos": "2026-10-13"
   }
