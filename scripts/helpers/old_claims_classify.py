@@ -175,17 +175,17 @@ for v in facts:
             bal_med = car in MEDICAID; bal_supp = car in SUPPLEMENT
             sec0 = sorted({p["carrier"] for p in pays if p["amount"] == 0 and (p["carrier"] in MEDICAID or p["carrier"] == "HUM01") and any(r[0] in ("OA23", "CO256", "CO170") for r in p["reasons"])})
             med_answered = sorted({p["carrier"] for p in pays if (p["carrier"] in MEDICAID) or (p["carrier"] == "HUM01" and any(r[0] == "OA23" for r in p["reasons"]))})
-            prim_paid = [p for p in pays if p["amount"] > 0 and p["carrier"] not in MEDICAID]
+            primrose_paid = [p for p in pays if p["amount"] > 0 and p["carrier"] not in MEDICAID]
             dual = bal_med or (med_sec and not sup_sec) or bool(sec0)
             sub = ("PR/" if any(r.startswith("PR") for r in v["pay_reasons"]) else "CO/") + ("dual" if dual else ("supp" if (sup_sec or bal_supp) else "none"))
             note.append("payer %s paid $%.2f on %s (%s); open $%.2f is the residual" % ("/".join(v["pay_carriers"]), v["paid_total"], v["last_pay_date"], "/".join(v["pay_reasons"])[:60], openbal))
             if set(v["pay_carriers"]) - {car}: note.append("balance sits at %s" % car)
             if car == "AET12": tier = "HOLD-AET12"; note.append("balance sits at Aetna Senior Supplemental - on hold (9/21 rule), worked from the Aetna side")
-            elif dual and prim_paid:
+            elif dual and primrose_paid:
                 hum185 = any(p["carrier"] == "HUM01" and p["amount"] == 0 and any(r[0] in ("CO185", "N767") for r in p["reasons"]) for p in pays)
                 if hum185: med_answered = sorted(set(med_answered) | {"HUM01"})
                 tier, pkg, wocode = "WO-DUAL", ("J" if med_answered else "K"), ("WOINS" if hum185 else "WOCAID2ND"); acts = wo_all(wocode, split_pr=True, pr_code=wocode)
-                note.append("dual: Medicaid-family coverage (%s) and the primary paid $%.2f - the cost-sharing residual is %s, never billed to the patient (9/11 rule%s); %s%s" % ("/".join(sorted(set(([car] if bal_med else []) + med_sec + sec0 + (["HUM01"] if hum185 else [])))), sum(p["amount"] for p in prim_paid),
+                note.append("dual: Medicaid-family coverage (%s) and the primary paid $%.2f - the cost-sharing residual is %s, never billed to the patient (9/11 rule%s); %s%s" % ("/".join(sorted(set(([car] if bal_med else []) + med_sec + sec0 + (["HUM01"] if hum185 else [])))), sum(p["amount"] for p in primrose_paid),
                             wocode, "; Humana Medicaid answered CO185 provider-not-enrolled -> WOINS per William 9/20" if hum185 else "",
                             ("the Medicaid plan already answered on this visit (%s)" % "/".join(med_answered)) if med_answered else "the Medicaid plan has NOT answered on this visit yet - approving K skips the crossover",
                             "; the part no PR reason covers is an unadjusted contractual -> WOINS" if any(x.get("why") for x in acts) else ""))

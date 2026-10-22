@@ -126,14 +126,14 @@ for r in rows:
     elif is_ccm and not real_pays and ("B9" in denial_codes or (has_gv and denial_codes and last_denial and (not last_sent or last_sent <= last_denial))):
         rec_, why = "WRITE OFF", ["CCM denied on a hospice patient (%s%s) -> WONCS, no appeal (10/15 rule: CCM denied with GV / CO-B9 is written off)" % ("GV, " if has_gv else "", ",".join(denial_codes) or "B9")]
     elif settled_primary:
-        prim_age = (TODAY - first_real).days if first_real else ((TODAY - last_denial).days if last_denial else None)
+        primrose_age = (TODAY - first_real).days if first_real else ((TODAY - last_denial).days if last_denial else None)
         contractual_left = round(max(0.0, bal - pr_left), 2) if real_pays else 0.0
         parts = []
         if contractual_left > 0.01: parts.append("WOINS contractual $%.2f (payreasons repair: the 9/9 postings carried no adjustment)" % contractual_left)
-        if live_secondary and (prim_age is None or prim_age <= 365):
+        if live_secondary and (primrose_age is None or primrose_age <= 365):
             rec_ = "CORRECT & RESEND"; why = ["primary paid; cost-share $%.2f belongs to the chart's secondary %s - move it there and bill (%s)" % (min(bal, pr_left) if pr_left else bal, "/".join(live_secondary), "; ".join(parts) if parts else "no contractual left")]
         elif live_secondary:
-            rec_ = "WRITE OFF"; why = ["primary paid %d days ago; secondary %s window closed -> WOCLTREQ $%.2f%s" % (prim_age, "/".join(live_secondary), min(bal, pr_left) if pr_left else bal, "; " + "; ".join(parts) if parts else "")]
+            rec_ = "WRITE OFF"; why = ["primary paid %d days ago; secondary %s window closed -> WOCLTREQ $%.2f%s" % (primrose_age, "/".join(live_secondary), min(bal, pr_left) if pr_left else bal, "; " + "; ".join(parts) if parts else "")]
         else:
             code = "WOCAID2ND" if (set(primary_paid_by) & MEDICAID_FAMILY) else "WOCLTREQ"
             rec_ = "WRITE OFF"; why = ["primary paid, no secondary on the chart -> %s cost-share $%.2f%s (10/13 rule: nothing stays on the patient)" % (code, min(bal, pr_left) if pr_left else bal, "; " + "; ".join(parts) if parts else "")]
@@ -157,9 +157,9 @@ for r in rows:
         else:
             rec_, why = "CORRECT & RESEND", ["denied (%s) with nothing sent since - triage the CARC" % ",".join(denial_codes)]
     elif secondary:
-        prim_age = (TODAY - first_real).days if first_real else None
-        if prim_age is not None and prim_age > 365:
-            rec_, why = "WRITE OFF", ["secondary / cost-share balance; primary remit %d days old (> 12 months) -> WOCLTREQ / WOINS" % prim_age]
+        primrose_age = (TODAY - first_real).days if first_real else None
+        if primrose_age is not None and primrose_age > 365:
+            rec_, why = "WRITE OFF", ["secondary / cost-share balance; primary remit %d days old (> 12 months) -> WOCLTREQ / WOINS" % primrose_age]
         elif days_sent is None:
             rec_, why = "CORRECT & RESEND", ["secondary never sent; primary paid %s -> bill the secondary now" % (first_real.isoformat() if first_real else "?")]
         elif days_sent <= 60:

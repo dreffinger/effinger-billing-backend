@@ -48,7 +48,7 @@ for (run, cl), r in bx.items():
     if vid in ex14r: act = "excl_1014_0510.py: %s -> %s" % (ex14r[vid]["action"], ex14r[vid].get("result", "")[:60])
     elif r["carriercodeshort"] == "BCBS" and st == "cleared": act = "completed - Florida Blue Medigap crossover-wait (Medicare paid, balance = coinsurance)"
     elif r["carriercodeshort"] == "BCBS": act = "LEFT - balance is not the coinsurance (Medicare contractual never adjusted) - needs the CO-45 correction pass"
-    elif r["carriercodeshort"] == "AAR01": act = "AARP member id AAA 72 on AMD's 271 - board row hicks-leon-23969 on William's turn (card)"
+    elif r["carriercodeshort"] == "AAR01": act = "AARP member id AAA 72 on AMD's 271 - board row hic[member id] on William's turn (card)"
     elif r["carriercodeshort"] == "AET12": act = "AET12 carrier-master hold (TIN as payer id)"
     else: act = ""
     rows.append(["Exclusions", st, r["patientid"], vid + " " + cl, dos, r["carriercodeshort"], errs[:120], "%.2f" % amt, act + (" [run %s]" % run)])

@@ -5113,3 +5113,12 @@ No new call shapes this run. The columns, ERA, sweep and packages steps ran thro
 
 ## 2026-10-22 01:10Z - backend billing run, 9 PM ET 10/21/2026 (ehpa cloud, repo attached)
 No new call shapes this run. The scheduled GitHub Billing Button slot (run #132, 01:34:11-01:39:58Z, 17 minutes late) ran the live columns / ERA / packages pass (bypassclaimedits on two Pattern 35790 advisories, Post button $0.00); this container's own engine pass (tools/button/run_all.py --mode live --steps columns,era,sweep,packages --stedi-proxy) was refused by the permission classifier (recorded verbatim in the run report) and read-only helpers ran by name instead. One login (plan_check_1022_0110.py 00:51Z; every later helper reused the token; no lock, no 429). Calls used (all already in the registry): login, getdemographic x5 (plan_check_1022_0110.py), lookuppatient x9 (admit_lookup_1022_0110.py), GET /api/era/checks (era_list.py 00:52Z pre-slot and 01:42Z after; the slot's before/after), getclaimcenteroverview + getreviewcharges / getclaiminspectorbatches / getclaiminspectorcharges / getclaimunbillablecharges / getclaimexclusionclaimruns + getclaimexclusioncharges (columns_scan.py before 00:51Z / after 01:41Z), era_post.py --all-unposted --dry (0 checks), Stedi 276/277 (claim_status_sweep.py, 17 visits, pass 154 via sweep_register.py). Slot report reports/button/2026-10-22T0134Z.json.
+
+# captured_calls additions - nightly cascade 2026-10-22T0535Z (1:30 AM ET 10/22/2026)
+
+No new AMD or Stedi call shapes captured this run. Calls used, all already in the registry: AMD login (one attempt, POI0712), `POST /claim/massrebillsearch` with `{}` (unpaid list, via precheck.py), `GET /api/era/checks` (via era_post.py / era_clear.py), Stedi `GET /payers/search` (credential self-check only). 0 vocabulary entries added.
+
+Operational notes for the registry:
+- precheck.py `--days 3` found no unpaid visit dated 10/19-10/22 (Claimocity feed lag) -> 0 Stedi lookups.
+- cred_check.py: npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov all refused from this container ('Max retries exceeded') - the NPPES diff, CMS revalidation list and LEIE were not verified tonight.
+- The permission classifier refused one Bash command (a base64 decode of the Drive needs-list section into needs_facesheet_list.md, reason [Instruction Poisoning]); not retried, listed in the run report.
