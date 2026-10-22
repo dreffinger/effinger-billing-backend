@@ -1,0 +1,52 @@
+{
+ "stamp": "2026-10-22T1840Z",
+ "charts": {
+  "17478059": [],
+  "17478063": [],
+  "17478064": [],
+  "17470713": [
+   {
+    "id": "ins9509692",
+    "carrier": "car6062",
+    "seq": "1",
+    "subscriber_present": true,
+    "begin": "",
+    "end": "12/31/2022"
+   },
+   {
+    "id": "ins9509722",
+    "carrier": "car303217",
+    "seq": "2",
+    "subscriber_present": true,
+    "begin": "01/01/2023",
+    "end": "03/31/2026"
+   },
+   {
+    "id": "ins9519283",
+    "carrier": "car6085",
+    "seq": "3",
+    "subscriber_present": true,
+    "begin": "10/01/2013",
+    "end": ""
+   },
+   {
+    "id": "ins9520543",
+    "carrier": "car6600",
+    "seq": "4",
+    "subscriber_present": true,
+    "begin": "01/01/2026",
+    "end": ""
+   }
+  ],
+  "17478013": [
+   {
+    "id": "ins9520862",
+    "carrier": "car42025",
+    "seq": "1",
+    "subscriber_present": true,
+    "begin": "10/15/2025",
+    "end": ""
+   }
+  ]
+ }
+}
