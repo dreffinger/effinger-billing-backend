@@ -1,18 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-22T0134Z",
+ "stamp": "2026-10-22T0331Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/6/6/29 -> 0/0/6/29; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/6/29 -> 0/0/6/29; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39706439206",
- "started": "2026-10-22T01:34:23Z",
- "ended": "2026-10-22T01:39:48Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39717241910",
+ "started": "2026-10-22T03:31:01Z",
+ "ended": "2026-10-22T03:35:57Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 6,
+    "claim_inspector": 0,
     "unbilled": 6,
     "exclusions": 29
    },
@@ -65,7 +65,7 @@
    "visits": 7374,
    "actionable": 68,
    "actionable_amt": 12376.0,
-   "asof": "2026-10-22 01:39 UTC"
+   "asof": "2026-10-22 03:35 UTC"
   }
  },
  "steps": [
@@ -73,31 +73,31 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1205 helpers into /home/claude/unbilled",
+   "summary": "1208 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1205,
-    "registers": 1470,
+    "helpers copied": 1208,
+    "registers": 1475,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-22T01:34:23Z",
-   "ended": "2026-10-22T01:34:23Z"
+   "started": "2026-10-22T03:31:01Z",
+   "ended": "2026-10-22T03:31:02Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 6->0, Unbilled 6->6, Exclusions 29->29",
+   "summary": "CR 0->0, CI 0->0, Unbilled 6->6, Exclusions 29->29",
    "counts": {
     "charge review": 0,
-    "claim inspector": 6,
+    "claim inspector": 0,
     "unbilled": 6,
     "exclusions": 29,
-    "inspector advisories to bypass": 6,
+    "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 6,
+    "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 6,
@@ -111,12 +111,6 @@
    },
    "dollars": {},
    "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 6,
-     "ids": "v19455610 v19455618 v19455652 v19455699 v19455702 v19455786"
-    },
     {
      "column": "unbilled",
      "kind": "Insurance order is missing on visit",
@@ -143,8 +137,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T01:34:23Z",
-   "ended": "2026-10-22T01:36:08Z"
+   "started": "2026-10-22T03:31:02Z",
+   "ended": "2026-10-22T03:32:34Z"
   },
   {
    "name": "era",
@@ -163,8 +157,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-22T01:36:08Z",
-   "ended": "2026-10-22T01:36:09Z"
+   "started": "2026-10-22T03:32:34Z",
+   "ended": "2026-10-22T03:32:36Z"
   },
   {
    "name": "packages",
@@ -175,8 +169,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-22T01:36:09Z",
-   "ended": "2026-10-22T01:36:09Z"
+   "started": "2026-10-22T03:32:36Z",
+   "ended": "2026-10-22T03:32:36Z"
   },
   {
    "name": "outstanding",
@@ -279,8 +273,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T01:36:09Z",
-   "ended": "2026-10-22T01:36:11Z"
+   "started": "2026-10-22T03:32:36Z",
+   "ended": "2026-10-22T03:32:37Z"
   },
   {
    "name": "denials",
@@ -367,8 +361,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-22T01:36:11Z",
-   "ended": "2026-10-22T01:39:48Z"
+   "started": "2026-10-22T03:32:37Z",
+   "ended": "2026-10-22T03:35:57Z"
   }
  ],
  "packages": [],
