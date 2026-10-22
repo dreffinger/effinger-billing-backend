@@ -1,0 +1,472 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-22T0544Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "ERA 0 checks $0.00 -> 0 checks $0.00; Aging 3002 visits $282857.93 open: wait $174240.15 / resend $61090.96 / write off $47526.82",
+ "note": "scheduled-cascade",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/39729745700",
+ "started": "2026-10-22T05:44:36Z",
+ "ended": "2026-10-22T05:52:41Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 282857.93,
+   "visits": 3002,
+   "charts": 544,
+   "over_365": {
+    "n": 1088,
+    "dollars": 49933.1
+   }
+  },
+  "denials": {
+   "visits": 7374,
+   "actionable": 68,
+   "actionable_amt": 12376.0,
+   "asof": "2026-10-22 05:49 UTC"
+  },
+  "aging": {
+   "total": 282857.93,
+   "visits": 3002,
+   "asof": "2026-10-22 05:52 UTC",
+   "by_rec": {
+    "WAIT": {
+     "n": 1420,
+     "amt": 174240.15
+    },
+    "CORRECT & RESEND": {
+     "n": 693,
+     "amt": 61090.96
+    },
+    "WRITE OFF": {
+     "n": 889,
+     "amt": 47526.82
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0
+    }
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1208 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1208,
+    "registers": 1475,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:36Z",
+   "ended": "2026-10-22T05:44:37Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:37Z",
+   "ended": "2026-10-22T05:44:41Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Insurance cascade",
+   "status": "ok",
+   "summary": "void rules: void_rules.json not in this workspace (Drive 'workspace mirror') - skipped; precheck flagged charts: 0",
+   "counts": {
+    "void rules": "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped",
+    "precheck flagged charts": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:41Z",
+   "ended": "2026-10-22T05:44:43Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:43Z",
+   "ended": "2026-10-22T05:44:43Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:43Z",
+   "ended": "2026-10-22T05:44:45Z"
+  },
+  {
+   "name": "money",
+   "title": "Money ledger data",
+   "status": "ok",
+   "summary": "money_ledger.html rebuilt: unpaid $282858, era $0, excl 29",
+   "counts": {
+    "payments scan": "patient_universe_0907.json not in this workspace - skipped"
+   },
+   "dollars": {
+    "unpaid total": 282857.93,
+    "era paid": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-22T05:44:45Z",
+   "ended": "2026-10-22T05:45:14Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "3002 visits on 544 charts, $282857.93 open; 1088 over a year ($49933.10)",
+   "counts": {
+    "visits": 3002,
+    "charts": 544,
+    "over 365 days": 1088
+   },
+   "dollars": {
+    "open insurance balance": 282857.93,
+    "over 365 days": 49933.1
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1563,
+     "dollars": 137865.84,
+     "oldest_days": 1072
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 280,
+     "dollars": 41690.64,
+     "oldest_days": 1256
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 136,
+     "dollars": 22431.58,
+     "oldest_days": 409
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 315,
+     "dollars": 20206.33,
+     "oldest_days": 1529
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 116,
+     "dollars": 10064.48,
+     "oldest_days": 1292
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 33,
+     "dollars": 6309.24,
+     "oldest_days": 769
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 29,
+     "dollars": 5081.97,
+     "oldest_days": 1141
+    },
+    {
+     "carrier": "AET07",
+     "name": "AETNA",
+     "visits": 31,
+     "dollars": 4264.01,
+     "oldest_days": 1476
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 157
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 24,
+     "dollars": 3979.98,
+     "oldest_days": 1340
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 30,
+     "dollars": 3787.1,
+     "oldest_days": 385
+    },
+    {
+     "carrier": "SIM01",
+     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "visits": 19,
+     "dollars": 3231.12,
+     "oldest_days": 104
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-22T05:45:14Z",
+   "ended": "2026-10-22T05:45:16Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7374 denied visits on 843 charts; 68 actionable $12376.00 (64 inside 12 months $11656.00); WRITTEN-OFF 2683, RESOLVED 4314, RESUBMITTED 177, OPEN 200",
+   "counts": {
+    "charts read": 843,
+    "denial lines": 12543,
+    "visits": 7374,
+    "actionable": 68,
+    "inside 12 months": 64,
+    "status WRITTEN-OFF": 2683,
+    "status RESOLVED": 4314,
+    "status RESUBMITTED": 177,
+    "status OPEN": 200
+   },
+   "dollars": {
+    "actionable": 12376.0,
+    "inside 12 months": 11656.0,
+    "resubmitted": 30274.53,
+    "resolved since": 649341.85
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1817,
+     "dollars": 301197.0,
+     "patients": 209
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1176,
+     "dollars": 182798.23,
+     "patients": 186
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1092,
+     "dollars": 168879.55,
+     "patients": 205
+    },
+    {
+     "disposition": "COB",
+     "visits": 929,
+     "dollars": 152777.61,
+     "patients": 95
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 486,
+     "dollars": 93226.0,
+     "patients": 217
+    },
+    {
+     "disposition": "INFO",
+     "visits": 459,
+     "dollars": 76661.35,
+     "patients": 48
+    },
+    {
+     "disposition": "CRED",
+     "visits": 387,
+     "dollars": 55509.3,
+     "patients": 64
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 497,
+     "dollars": 34433.19,
+     "patients": 69
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 308,
+     "dollars": 27184.0,
+     "patients": 137
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-22T05:45:16Z",
+   "ended": "2026-10-22T05:49:28Z"
+  },
+  {
+   "name": "aging",
+   "title": "AR aging refresh",
+   "status": "ok",
+   "summary": "3002 visits / 544 charts, $282857.93 open: WAIT $174240.15, CORRECT & RESEND $61090.96, WRITE OFF $47526.82",
+   "counts": {
+    "visits": 3002,
+    "patients": 544,
+    "charts read": 544,
+    "sent 0-30": 1278,
+    "sent 31-60": 935,
+    "sent 61-90": 16,
+    "sent 91-120": 39,
+    "sent over 120": 734
+   },
+   "dollars": {
+    "open insurance balance": 282857.93,
+    "WAIT": 174240.15,
+    "CORRECT & RESEND": 61090.96,
+    "WRITE OFF": 47526.82
+   },
+   "lines": [
+    {
+     "payer": "FLO02",
+     "visits": 1563,
+     "dollars": 137865.84,
+     "over_120": 33228.5
+    },
+    {
+     "payer": "UNI20",
+     "visits": 280,
+     "dollars": 41690.64,
+     "over_120": 9033.96
+    },
+    {
+     "payer": "FLO99",
+     "visits": 136,
+     "dollars": 22431.58,
+     "over_120": 0.0
+    },
+    {
+     "payer": "BCBS",
+     "visits": 315,
+     "dollars": 20206.33,
+     "over_120": 289.67
+    },
+    {
+     "payer": "HUM01",
+     "visits": 116,
+     "dollars": 10064.48,
+     "over_120": 1651.58
+    },
+    {
+     "payer": "CAP07",
+     "visits": 33,
+     "dollars": 6309.24,
+     "over_120": 542.06
+    },
+    {
+     "payer": "UHCMA",
+     "visits": 29,
+     "dollars": 5081.97,
+     "over_120": 163.37
+    },
+    {
+     "payer": "AET07",
+     "visits": 31,
+     "dollars": 4264.01,
+     "over_120": 118.22
+    },
+    {
+     "payer": "CIG09",
+     "visits": 26,
+     "dollars": 4031.01,
+     "over_120": 0.0
+    },
+    {
+     "payer": "VACCN",
+     "visits": 24,
+     "dollars": 3979.98,
+     "over_120": 77.22
+    },
+    {
+     "payer": "MCAD",
+     "visits": 30,
+     "dollars": 3787.1,
+     "over_120": 0.0
+    },
+    {
+     "payer": "SIM01",
+     "visits": 19,
+     "dollars": 3231.12,
+     "over_120": 0.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-22T05:49:28Z",
+   "ended": "2026-10-22T05:52:41Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
