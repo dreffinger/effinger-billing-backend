@@ -1,0 +1,282 @@
+{
+ "stamp": "2026-10-23T0424Z",
+ "live": false,
+ "started": "2026-10-23T04:41:41Z",
+ "P": {
+  "run": "1700302",
+  "visits": [
+   {
+    "vid": "19437731",
+    "claimid": "19437731E",
+    "cid": "23344836",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19438960",
+    "claimid": "19438960E",
+    "cid": "23346278",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19439767",
+    "claimid": "19439767G",
+    "cid": "23347410",
+    "moved": 0.0,
+    "already_patient": 45.29,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19439793",
+    "claimid": "19439793G",
+    "cid": "23347437",
+    "moved": 0.0,
+    "already_patient": 21.8,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19439814",
+    "claimid": "19439814G",
+    "cid": "23347458",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19439885",
+    "claimid": "19439885G",
+    "cid": "23347511",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19439926",
+    "claimid": "19439926G",
+    "cid": "23347571",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440252",
+    "claimid": "19440252G",
+    "cid": "23347909",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440267",
+    "claimid": "19440267G",
+    "cid": "23347924",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440391",
+    "claimid": "19440391G",
+    "cid": "23348092",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440410",
+    "claimid": "19440410G",
+    "cid": "23348111",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440512",
+    "claimid": "19440512G",
+    "cid": "23348202",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440611",
+    "claimid": "19440611G",
+    "cid": "23348339",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440624",
+    "claimid": "19440624G",
+    "cid": "23348354",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440869",
+    "claimid": "19440869F",
+    "cid": "23348626",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19440884",
+    "claimid": "19440884F",
+    "cid": "23348640",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19441172",
+    "claimid": "19441172F",
+    "cid": "23349010",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19441183",
+    "claimid": "19441183F",
+    "cid": "23349021",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19441310",
+    "claimid": "19441310F",
+    "cid": "23349160",
+    "moved": 0.0,
+    "already_patient": 14.38,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19442592",
+    "claimid": "19442592E",
+    "cid": "23350788",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19442618",
+    "claimid": "19442618E",
+    "cid": "23350813",
+    "moved": 0.0,
+    "already_patient": 46.45,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19442859",
+    "claimid": "19442859E",
+    "cid": "23351118",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19443842",
+    "claimid": "19443842E",
+    "cid": "23352361",
+    "moved": 0.0,
+    "already_patient": 11.59,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19443846",
+    "claimid": "19443846E",
+    "cid": "23352365",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   },
+   {
+    "vid": "19444045",
+    "claimid": "19444045E",
+    "cid": "23352637",
+    "moved": 0.0,
+    "already_patient": 16.93,
+    "result": "already on the patient side"
+   }
+  ],
+  "moved": 0.0,
+  "already_patient": 442.41,
+  "hide": "DRY hideexclusions run 1700302 x25"
+ },
+ "T": {
+  "run": "1700311",
+  "visits": [
+   {
+    "vid": "19431511",
+    "claimid": "19431511F",
+    "cid": "23338125",
+    "insbal": 169.2,
+    "pays_nonzero": [],
+    "result": "DRY reroute order 2 + freq1 rebill seq 2 (insbal 169.20)"
+   },
+   {
+    "vid": "19435174",
+    "claimid": "19435174F",
+    "cid": "23342168",
+    "insbal": 310.0,
+    "pays_nonzero": [],
+    "result": "DRY reroute order 2 + freq1 rebill seq 2 (insbal 310.00)"
+   },
+   {
+    "vid": "19435175",
+    "claimid": "19435175F",
+    "cid": "23342169",
+    "insbal": 163.0,
+    "pays_nonzero": [],
+    "result": "DRY reroute order 2 + freq1 rebill seq 2 (insbal 163.00)"
+   }
+  ],
+  "hide": "DRY hideexclusions run 1700311 x3"
+ },
+ "log": [
+  "P run 1700302 open rows for chart 17470713: 25",
+  "P AAR01 plan: [('ins9520543', '01/01/2026', '01/01/2026')]",
+  "P v19437731 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P v19438960 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P v19439767 coinsurance 45.29 already on the patient - complete the exclusion",
+  "P v19439793 coinsurance 21.80 already on the patient - complete the exclusion",
+  "P v19439814 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19439885 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19439926 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440252 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440267 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440391 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440410 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440512 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440611 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440624 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440869 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19440884 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19441172 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19441183 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19441310 coinsurance 14.38 already on the patient - complete the exclusion",
+  "P v19442592 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P v19442618 coinsurance 46.45 already on the patient - complete the exclusion",
+  "P v19442859 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P v19443842 coinsurance 11.59 already on the patient - complete the exclusion",
+  "P v19443846 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P v19444045 coinsurance 16.93 already on the patient - complete the exclusion",
+  "P hideexclusions run 1700302 x25 -> DRY hideexclusions run 1700302 x25",
+  "P SUMMARY: 25 visits, 0.00 moved to the patient this run, 442.41 already there",
+  "T run 1700311 open rows for chart 17471204: 3",
+  "T DRY updateinsurance ins9510367 relationship=2 hipaarelationship=01 grpnum='' grpname=''; DRY patient order 2",
+  "T v19431511 DRY reroute order 2 + freq1 rebill seq 2 (insbal 169.20)",
+  "T v19435174 DRY reroute order 2 + freq1 rebill seq 2 (insbal 310.00)",
+  "T v19435175 DRY reroute order 2 + freq1 rebill seq 2 (insbal 163.00)",
+  "T hideexclusions run 1700311 x3 -> DRY hideexclusions run 1700311 x3",
+  "T SUMMARY: 3 visits re-sent to Aetna seq 2"
+ ],
+ "ended": "2026-10-23T04:43:22Z"
+}

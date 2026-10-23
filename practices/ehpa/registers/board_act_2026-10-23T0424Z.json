@@ -1,0 +1,72 @@
+{
+ "stamp": "2026-10-23T0424Z",
+ "live": true,
+ "started": "2026-10-23T04:44:07Z",
+ "P": {
+  "run": "1700302",
+  "visits": [],
+  "moved": 0.0,
+  "already_patient": 0.0
+ },
+ "T": {
+  "run": "1700311",
+  "visits": [
+   {
+    "vid": "19431511",
+    "claimid": "19431511F",
+    "cid": "23338125",
+    "insbal": 169.2,
+    "pays_nonzero": [],
+    "result": "visit vst19431511 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204"
+   },
+   {
+    "vid": "19435174",
+    "claimid": "19435174F",
+    "cid": "23342168",
+    "insbal": 310.0,
+    "pays_nonzero": [],
+    "result": "visit vst19435174 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204"
+   },
+   {
+    "vid": "19435175",
+    "claimid": "19435175F",
+    "cid": "23342169",
+    "insbal": 163.0,
+    "pays_nonzero": [],
+    "result": "visit vst19435175 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204"
+   }
+  ],
+  "plan_edit": [
+   true,
+   "5-zpvng\" lst=\"10/22/2026 21:44:10\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+  ],
+  "order": [
+   true,
+   "insorder 2 via ins9510367 -> '2'"
+  ],
+  "plan_after": {
+   "relationship": "2",
+   "hipaarelationship": "01",
+   "grpnum": "",
+   "grpname": "",
+   "subscriber": "resp21479706",
+   "sequence": "2"
+  },
+  "hide": "ok"
+ },
+ "log": [
+  "P run 1700302 open rows for chart 17470713: 0",
+  "P AAR01 plan: [('ins9520543', '01/01/2026', '01/01/2026')]",
+  "P SUMMARY: 0 visits, 0.00 moved to the patient this run, 0.00 already there",
+  "T run 1700311 open rows for chart 17471204: 3",
+  "T plan ins9510367 relationship -> spouse, group stripped: True 5-zpvng\" lst=\"10/22/2026 21:44:10\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>",
+  "T patient order 2: True insorder 2 via ins9510367 -> '2'",
+  "T plan after: {'relationship': '2', 'hipaarelationship': '01', 'grpnum': '', 'grpname': '', 'subscriber': 'resp21479706', 'sequence': '2'} | insorder 2",
+  "T v19431511 visit vst19431511 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204",
+  "T v19435174 visit vst19435174 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204",
+  "T v19435175 visit vst19435175 insorder already 2 - resave skipped | freq1 + rebill seq 2 -> 204",
+  "T hideexclusions run 1700311 x3 -> ok",
+  "T SUMMARY: 3 visits re-sent to Aetna seq 2"
+ ],
+ "ended": "2026-10-23T04:44:42Z"
+}
