@@ -63,7 +63,7 @@ Script errors: none. Calls learned: 0 new shapes (0 vocabulary entries).
 open("needs_facesheet_list.md", "a").write("\n" + sec); open("needs_facesheet_list_section_%s.md" % S, "w").write(sec)
 chk = lambda txt: {"checks": [{"ok": "na", "result": txt, "src": SRC, "when": W}]}
 hold = "11 PM ET 10/17: chart %s live read 03:1xZ still 0 insplans; no new HCA facesheet in Drive, no Pam email, no board note - the two visits (%s) stay in Unbilled 'Insurance order is missing'; your turn unchanged (HCA Florida Capital facesheet, admit 10/12/2026)."
-ops = [{"op": "update", "collection": "items", "id": "madison-digby-[first]-17478059", "append": chk(hold % ("17478059", "v19457778 / v19457794"))},
+ops = [{"op": "update", "collection": "items", "id": "maddern-digby-[first]-17478059", "append": chk(hold % ("17478059", "v19457778 / v19457794"))},
        {"op": "update", "collection": "items", "id": "[name]-17478063", "append": chk(hold % ("17478063", "v19457783 / v19457797"))},
        {"op": "update", "collection": "items", "id": "edgerton-jocelyn-17478064", "append": chk(hold % ("17478064", "v19457784 / v19457791"))}]
 ops.append({"op": "update", "collection": "items", "id": "poulter-ellery-gwen-x", "append": chk("11 PM ET 10/17: the 25 AARP Medicare Supplement secondary rows of chart 17470713 on run 1700302 are unchanged on the Exclusions list (subscriber id not found) - not rebilled; still waiting on the supplement member number from her card.")})

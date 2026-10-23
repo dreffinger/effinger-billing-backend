@@ -9,7 +9,7 @@ src = "11pm ET 10/18 columns run (ehpa cloud) - run 2026-10-19T0310Z"; when = "1
 hca = "11 PM ET 10/18: getdemographic 03:2xZ - chart still has zero insurance plans; no new file in the hca/tmh/PCC/Claimocity folders after 20:00Z 10/18, Pam Gmail (6d) nothing for this chart, no board drop; the two visits (99223 10/12 + 99232 10/13/2026, $421) stay in Unbilled 'Insurance order is missing'. HCA facesheet (admit 10/12/2026) still needed."
 ops = [
  {"op": "upsert", "collection": "items", "id": i, "append": {"checks": [{"ok": "no", "result": hca, "src": src, "when": when}]}}
- for i in ("madison-digby-[first]-17478059", "[name]-17478063", "edgerton-jocelyn-17478064")]
+ for i in ("maddern-digby-[first]-17478059", "[name]-17478063", "edgerton-jocelyn-17478064")]
 ops += [
  {"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid",
   "append": {"checks": [{"ok": "na", "result": "11 PM ET 10/18: HOLD - the one AET12 PREF0288 exclusion row (chart 24750, v19455937) stays on the list, not rebilled; chart plans unchanged (FLO02 seq 1, AET12 seq 2); carrier master still unchanged.", "src": src, "when": when}]}},
