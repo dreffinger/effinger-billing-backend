@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ehpa Billing Button</title>
-<meta name="description" content="One button that runs every billing script in the repository on GitHub - the Claims Center columns, ERA posting, the insurance cascade, the approved packages - with no approval prompts, and shows the report.">
+<meta name="description" content="One button that starts a Claude billing run by the standing prompts - the board input, the Claims Center columns, ERA posting, the cascade, the approved packages - and shows the report. The scripted GitHub engine stays as the secondary, engine-only path.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
 /* layout: one control (the button + its mode) with the last run beside it, the plan of the run under it, the report and the history below,
    then the pages of the billing project and how it works; dark-first, the ehpa Midnight tokens from ehpa Home.
-   Source of this page: tools/button/billing_button_page.html in the repository, built by tools/button/build_button_page.py. */
+   Since 10/23/2026 the button fires the Claude scheduled task trig_01S771Si8VJ8DvcwgHMHGYB5 through the viewer's Claude Code Remote connector;
+   the GitHub engine (workflow_dispatch) is the secondary 'Engine only' button. Source: tools/button/billing_button_page.html, built by tools/button/build_button_page.py. */
 :root{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--deep:#0f4048;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;--on-accent:#082f35;--accent:#70d6f8;--accent-soft:#1f5a68;--magenta:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;--hero:#041d21;--grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--font:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;--r-md:8px;--r-lg:12px;--r-xl:18px;--pill:999px;color-scheme:dark}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}}
 :root[data-theme="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--deep:#082f35;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;--on-accent:#ffffff;--accent:#0054e9;--accent-soft:#e0f4fd;--magenta:#b5169b;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;--hero:#082f35;--grad:linear-gradient(135deg,#0054e9 0%,#b5169b 100%);color-scheme:light}
 *{box-sizing:border-box}
+[hidden]{display:none!important}   /* an author display rule (.confirm{display:flex}) would otherwise beat the browser's [hidden] */
 body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding-block:18px 120px;padding-inline:16px}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:700}
@@ -52,6 +54,19 @@ a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
 .pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em}
 .pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad,.pill.failed{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim,.pill.skipped{background:var(--surface-2);color:var(--muted)}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px} .kv b{color:var(--muted);font-weight:600}
+/* the running bar while a run is going on GitHub: magenta-to-sky orbit, shimmering label, elapsed time, Cancel (William 10/12/2026) */
+.runbar{display:flex;align-items:center;gap:12px;border:1px solid var(--magenta);background:linear-gradient(90deg,rgba(248,65,224,.12),rgba(112,214,248,.12));border-radius:var(--r-lg);padding:10px 14px;margin-top:10px}
+.orbit{position:relative;width:34px;height:34px;flex:none}
+.orbit i{position:absolute;top:50%;left:50%;width:9px;height:9px;margin:-4.5px;border-radius:50%;background:var(--magenta);box-shadow:0 0 10px rgba(248,65,224,.6);animation:orbit 1.4s linear infinite}
+.orbit i:nth-child(2){animation-delay:-.47s;background:var(--accent);box-shadow:0 0 10px rgba(112,214,248,.6)} .orbit i:nth-child(3){animation-delay:-.93s;background:#b98cf5;box-shadow:0 0 10px rgba(185,140,245,.6)}
+@keyframes orbit{from{transform:rotate(0deg) translateX(12px) rotate(0deg)}to{transform:rotate(360deg) translateX(12px) rotate(-360deg)}}
+.runtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.runtext b{font-size:14.5px;background:linear-gradient(90deg,var(--ink) 0%,var(--magenta) 40%,var(--accent) 60%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.2s linear infinite}
+.runtext small{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+.runtime{color:var(--muted);font-size:13px;white-space:nowrap;font-family:var(--mono)}
+.btn.stop{background:var(--bad);border-color:var(--bad);color:#fff} .btn.stop:hover{filter:brightness(1.08)}
+@media (prefers-reduced-motion:reduce){.orbit i,.runtext b{animation:none} .runtext b{color:var(--ink)}}
 section.block{margin-top:22px}
 .block>h2{margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .block>h2 .eyebrow{margin-left:auto}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px 18px;min-width:0}
@@ -103,11 +118,11 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
       <div class="mark" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M55.04 32A23.04 23.04 0 1 0 47.42 49.12" stroke="#70d6f8" stroke-width="5.4" stroke-linecap="round"/><path d="M32 19.84V44.16M19.84 32H44.16" stroke="#f841e0" stroke-width="6.2" stroke-linecap="round"/></svg></div>
       <div><div class="brand">ehpa</div><h1>Billing Button</h1></div>
     </div>
-    <div class="tools">
-      <button class="btn" id="theme-btn" type="button" title="Light / dark / system">Theme</button>
-      <a class="btn" id="actions-link" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener">Runs on GitHub</a>
+    <div class="tools"><button class="btn" id="theme-btn" type="button" title="Light / dark / system">Theme</button>
+      <a class="btn" id="task-link" href="https://claude.ai/code/routines" target="_blank" rel="noopener" title="The Claude scheduled task the button fires (ehpa Billing Button — full billing run): its prompt, model and run history">Claude task</a>
+      <a class="btn" id="actions-link" href="https://github.com/dreffinger/effinger-billing-backend/actions/workflows/billing-button.yml" target="_blank" rel="noopener" title="The engine-only runs (GitHub Actions)">Engine runs</a>
       <a class="btn" href="https://github.com/dreffinger/effinger-billing-backend/releases" target="_blank" rel="noopener" title="The Windows installer of the desktop app - download ehpa-billing-button-setup.exe from the newest release">Desktop app</a>
-      <button class="btn" id="settings-btn" type="button">Token</button>
+      <button class="btn" id="settings-btn" type="button" aria-controls="settings" aria-expanded="false">Settings</button>
     </div>
   </header>
 
@@ -118,20 +133,24 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
         <button type="button" data-mode="live" class="live" aria-pressed="false">Live</button>
       </div>
       <button class="trigger" id="trigger" type="button">
-        <span>Run all billing<small id="trigger-sub">Dry run · reads everything, writes nothing</small></span>
+        <span>Run all billing with Claude<small id="trigger-sub">Dry run · Claude reads and counts, writes nothing</small></span>
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z" fill="currentColor"/></svg>
       </button>
-      <div class="alt-run"><a class="btn" id="pc-run" href="ehpa-billing://run?mode=dry" title="Opens the installed desktop app (ehpa Billing Button) and starts this run on your PC instead of on GitHub">Run on this PC</a><span class="note">needs the desktop app installed</span></div>
-      <p class="will" id="will">Runs the scripted billing day on GitHub Actions in your repository: the four Claims Center columns, ERA posting, the insurance cascade, resubmits and the packages you tick below. Pressing the button is the approval; nothing else asks. The same engine also runs on its own every two hours and nightly (dry until you flip it to live in the repository settings).</p>
+      <div class="alt-run"><button class="btn" id="engine-run" type="button" title="The scripted engine on GitHub Actions, without Claude: deterministic helpers only, no judgement calls (the path the button used before 10/23/2026)">Engine only · GitHub (no Claude)</button><a class="btn" id="pc-run" href="ehpa-billing://run?mode=dry" title="Opens the installed desktop app (ehpa Billing Button) and runs the engine on your PC">Run on this PC</a><span class="note">secondary paths · no Claude</span></div>
+      <p class="will" id="will">Starts a Claude run of the whole billing day by the standing prompts: the Insurance Refresh Board input you entered, Charge Review, Claim Inspector, Unbilled, Exclusions (worked and completed), ERA posting, the insurance cascade pre-check, the packages you tick below, the credentialing check and the Outstanding Claims refresh. Pressing the button is your order to run; the session may ask you for an approval on a write, and it waits for your answer rather than skipping the work. The report comes back to this page.</p>
       <div class="confirm" id="confirm" hidden>
-        <div id="confirm-text"><b>Run live now?</b> This posts payments, releases visits, rebills and writes off exactly by the standing rules in the repository.</div>
-        <div class="row"><button class="btn primary" id="confirm-go" type="button">Run now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
+        <div id="confirm-text"><b>Start the Claude run?</b></div>
+        <div class="row"><button class="btn primary" id="confirm-go" type="button">Run with Claude now</button><button class="btn" id="confirm-no" type="button">Cancel</button></div>
+      </div>
+      <div class="confirm" id="confirm-engine" hidden>
+        <div id="confirm-engine-text"><b>Engine only on GitHub?</b></div>
+        <div class="row"><button class="btn primary" id="confirm-engine-go" type="button">Run the engine</button><button class="btn" id="confirm-engine-no" type="button">Cancel</button></div>
       </div>
       <div class="status" id="status" aria-live="polite"></div>
     </div>
     <aside class="last" id="last">
       <div class="eyebrow">Last run</div>
-      <div id="last-body" class="note">Save a GitHub token (the Token button) and this card shows the newest run, live, with a link to its log.</div>
+      <div id="last-body" class="note">Inside claude.ai this card shows the Claude task's newest run, live, with a link to its session.</div>
     </aside>
   </section>
 
@@ -172,17 +191,18 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   </section>
 
   <section class="block settings" id="settings" hidden>
-    <h2>GitHub token</h2>
+    <h2>Settings</h2>
     <div class="card">
-      <p class="note">The button talks to GitHub from this browser with a <b>fine-grained personal access token</b> that only reaches this one repository. It is kept in this browser only (localStorage) and is never sent anywhere but api.github.com.</p>
-      <div class="field"><label for="tok">Token</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
+      <p class="note"><b>Inside claude.ai nothing needs to be set up.</b> This page reaches Claude through your built-in <b>Claude Code Remote</b> connector (it starts the scheduled task and watches its run) and GitHub through your <b>GitHub</b> connector (it reads the reports and the packages register), both as you; claude.ai asks once whether to allow each. The token below is only for a copy of this page opened outside claude.ai, where only the GitHub reads and the engine-only button work: a <b>fine-grained personal access token</b> for this one repository, kept in this browser only and never sent anywhere but api.github.com.</p>
+      <p class="note" style="margin-top:8px"><b>The AdvancedMD password and the Stedi key are not entered here.</b> The Claude run takes them from the places its prompt names (the environment credential or the saved mail threads) and never prints them; the GitHub engine reads them from the repository's locked secrets (<a href="https://github.com/dreffinger/effinger-billing-backend/settings/secrets/actions" target="_blank" rel="noopener">Settings → Secrets and variables → Actions</a>: <span class="mono">AMD_PSW</span>, <span class="mono">STEDI_API_KEY</span>). The desktop app has its own Settings with all three fields, because it runs the engine on your PC.</p>
+      <div class="field"><label for="tok">GitHub token (copies outside claude.ai only)</label><input type="password" id="tok" autocomplete="off" placeholder="github_pat_…"></div>
       <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn primary" id="tok-save" type="button">Save in this browser</button><button class="btn" id="tok-test" type="button">Test</button><button class="btn" id="tok-forget" type="button">Forget</button></div>
       <div class="status" id="tok-status"></div>
       <ol class="how">
         <li>GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token.</li>
         <li>Repository access: <b>Only select repositories</b> → effinger-billing-backend.</li>
         <li>Permissions: <b>Actions: Read and write</b>, <b>Contents: Read</b> (Metadata is added on its own).</li>
-        <li>Paste it above and press Save. Press Test; it should answer with your GitHub login.</li>
+        <li>Paste it above and press Save. Press Test; inside claude.ai it answers with the Claude task's name, outside with your GitHub login.</li>
       </ol>
     </div>
   </section>
@@ -190,13 +210,12 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   <section class="block">
     <h2>How it works</h2>
     <div class="card note">
-      <p style="margin:0 0 8px">The button sends a <span class="mono">workflow_dispatch</span> to <span class="mono">.github/workflows/billing-button.yml</span>. GitHub starts a fresh machine, checks out <span class="mono">main</span>, builds the same workspace the routines use, logs in to AdvancedMD once with the password stored in the repository's secrets, and runs <span class="mono">tools/button/run_all.py</span>. That script chains the helpers in this repository in the standing order, dry first and then live when you chose Live, and writes <span class="mono">reports/button/&lt;stamp&gt;.json</span> back to the repository; this page reads it. No permission classifier sits in that path. One run at a time: a second press while a run is going waits in line.</p>
+      <p style="margin:0 0 8px"><b>The button starts a Claude run.</b> Pressing it fires the scheduled task <span class="mono">ehpa Billing Button — full billing run (Claude)</span> through your Claude Code Remote connector, with a one-line brief (mode, steps, packages). A fresh Claude session bootstraps the billing workspace from the repository and the Drive mirror, logs in to AdvancedMD once, and works the whole day by the standing prompts (the same rules as the 6-hourly backend run and the nightly cascade, plus the board input first): the Insurance Refresh Board rows and drops you entered, the Working Denials commands, Charge Review, Claim Inspector, Unbilled, Exclusions, ERA posting, the cascade pre-check, the ticked approval packages, the credentialing check and the Outstanding Claims refresh. Pressing the button is your order to run; if the session needs an approval for a write it asks you there and waits. It then writes <span class="mono">reports/button/&lt;stamp&gt;.json</span> + <span class="mono">latest.json</span> to the repository (same shape as the engine's report, with <span class="mono">"engine":"claude"</span>), mirrors, and posts its digest. This page follows the run on the Last run card and draws the report when it lands. The task's prompt lives in the repository as <span class="mono">nightly/button_run_prompt_v1.txt</span>; its model and settings are edited at <a href="https://claude.ai/code/routines" target="_blank" rel="noopener">claude.ai/code/routines</a>. One run at a time: a press while another billing run is working (the 6-hourly run, the cascade or an earlier press) waits for it.</p>
       <dl class="how">
-        <dt>on its own</dt><dd>Every two hours at :17 on the odd UTC hours (the columns profile) and at 05:35 UTC (the nightly cascade profile). Scheduled runs are <b>dry</b> until the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> is set to <span class="mono">live</span>; <span class="mono">BUTTON_SCHEDULE_ENABLED=false</span> stops them. When you go live here, pause the Claude 2-hourly routine so two writers never post the same check.</dd>
-        <dt>secrets</dt><dd>Repository → Settings → Secrets and variables → Actions: <span class="mono">AMD_PSW</span> (required) and <span class="mono">STEDI_API_KEY</span> (optional; without it the cascade and the sweep are skipped).</dd>
-        <dt>this PC</dt><dd>The desktop app (Releases → <span class="mono">ehpa-billing-button-setup.exe</span>) runs the same engine on your computer with the password typed into its settings, and the Run button on every billing page can open it (<span class="mono">ehpa-billing://run</span>).</dd>
-        <dt>what it cannot do</dt><dd>A chart fix after a Stedi answer, a dx cascade on a named chart, a hand-post of an unmatched line - those need a judgement and are listed under "Waiting on William or a chat session" in the report.</dd>
-        <dt>privacy</dt><dd>The report carries chart ids, visit ids, check ids and dollars only; the privacy gate checks it before it is committed. Helper logs are scrubbed and kept 14 days as a workflow artifact.</dd>
+        <dt>the brief</dt><dd><span class="mono">BUTTON PRESS &lt;time&gt; · mode: live|dry · steps: all|columns,era,… · packages: &lt;ids&gt; · note: ehpa Billing Button</span> - dry reads and counts and writes nothing in AdvancedMD; a steps list limits the run; the packages are the approved cards ticked above.</dd>
+        <dt>engine only</dt><dd>The secondary button sends a <span class="mono">workflow_dispatch</span> to <span class="mono">.github/workflows/billing-button.yml</span>: GitHub lends a machine, checks out <span class="mono">main</span>, logs in with the password stored in the repository's secrets and runs <span class="mono">tools/button/run_all.py</span> - deterministic helpers in the standing order, no Claude, no judgement calls (those are listed under "waiting"). Its schedules are dry until the repository variable <span class="mono">BUTTON_SCHEDULE_MODE</span> is set to <span class="mono">live</span>; <span class="mono">BUTTON_SCHEDULE_ENABLED=false</span> stops them. The Working Denials and AR Aging pages' Refresh buttons still use this engine, read-only.</dd>
+        <dt>this PC</dt><dd>The desktop app (Releases → <span class="mono">ehpa-billing-button-setup.exe</span>) runs the same engine on your computer with the password typed into its settings (<span class="mono">ehpa-billing://run</span>).</dd>
+        <dt>privacy</dt><dd>The report carries chart ids, visit ids, check ids and dollars only; the privacy gate checks it before it is committed. Patient names stay in the workspace, the boards and the Drive digest.</dd>
       </dl>
     </div>
   </section>
@@ -215,6 +234,8 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   'use strict';
   const $=s=>document.querySelector(s);
   const REPO='dreffinger/effinger-billing-backend', WF='billing-button.yml', API='https://api.github.com', BRANCH='main';
+  // the Claude scheduled task the button fires (created 10/23/2026; its prompt is nightly/button_run_prompt_v1.txt in the repository)
+  const TRIG='trig_01S771Si8VJ8DvcwgHMHGYB5', CCR='Claude Code Remote', TASKS_URL='https://claude.ai/code/routines';
   const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const money=n=>{ const v=Number(n)||0; return (v<0?'-':'')+'$'+Math.abs(v).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}); };
   const when=iso=>{ if(!iso) return ''; const d=new Date(iso); return isNaN(d)?String(iso):d.toLocaleString([],{month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'}); };
@@ -248,73 +269,160 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
   ].filter(p=>!p[1].startsWith('__'));
   $('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
 
-  // ---- token
+  // ---- connectors: inside claude.ai the page uses the viewer's connectors through the mcp capability - "Claude Code Remote" (built in)
+  //      fires and watches the Claude scheduled task; "github" reads the reports, the packages register and the engine runs
+  //      (the artifact sandbox blocks direct fetch - William 10/12/2026). A saved token only serves GitHub reads on a copy opened outside claude.ai.
+  const OWNER='dreffinger', NAME='effinger-billing-backend', SERVER='github';
   let tok=ls.get('ehpa-btn-gh-token')||'';
+  let mcp=null, mcpReady=null;
+  function connector(){ if(mcpReady) return mcpReady;
+    mcpReady=(window.claude&&typeof window.claude.use==='function'?window.claude.use('mcp'):Promise.resolve(null)).then(m=>{ mcp=m||null; return mcp; }).catch(()=>{ mcp=null; return null; });
+    return mcpReady; }
+  function ghErr(e){ const code=e&&e.code; const m={
+      server_not_connected:'GitHub is not connected to claude.ai yet. Add it under claude.ai Settings → Connectors, then reload this page.',
+      needs_reauth:'GitHub needs reconnecting: claude.ai Settings → Connectors → GitHub → Reconnect.',
+      not_in_manifest:'This page is not allowed to use GitHub for you. Open the page\'s Permissions menu and allow GitHub.',
+      approval_required:'claude.ai asked whether to allow the GitHub call and it was not allowed. Press again and choose Allow.',
+      selection_required:'claude.ai has more than one GitHub connector. Choose one when it asks, then press again.',
+      blocked_by_policy:'Your organisation blocks this GitHub call.',
+      server_unavailable:'GitHub did not answer in time. Try again in a moment.',
+      consent_required:'GitHub was not allowed for this page. Press again and choose Allow.',
+      tool_error:'GitHub reported: '+((e&&e.message)||'an error')};
+    return m[code]||((e&&e.message)||String(e)); }
+  function ccrErr(e){ const code=e&&e.code; const m={
+      server_not_connected:'The Claude Code Remote connector is not reachable from this copy of the page. Open the page inside claude.ai (the connector is built in there) and reload.',
+      needs_reauth:'Claude Code Remote needs reconnecting: claude.ai Settings → Connectors.',
+      not_in_manifest:'This page is not allowed to use Claude Code Remote for you. Open the page\'s Permissions menu and allow Claude Code Remote.',
+      approval_required:'claude.ai asked whether to allow the Claude call and it was not allowed. Press again and choose Allow.',
+      consent_required:'Claude Code Remote was not allowed for this page. Press again and choose Allow.',
+      selection_required:'claude.ai has more than one Claude Code Remote connector. Choose one when it asks, then press again.',
+      blocked_by_policy:'Your organisation blocks this Claude Code Remote call.',
+      server_unavailable:'Claude did not answer in time. The task may still have started: watch the Last run card before pressing again.',
+      upstream_error:'Claude did not answer ('+((e&&e.message)||'no detail')+'). If a consent prompt was open, press again once it is answered.',
+      rate_limited:'Too many calls in a row. Wait a moment and press again.',
+      tool_error:'Claude reported: '+((e&&e.message)||'an error')};
+    return m[code]||((e&&e.message)||String(e)); }
+  function unwrap(res){ if(!res) return null; if(res.payload!==undefined&&res.payload!==null&&typeof res.payload==='object') return res.payload; if(res.structuredContent!==undefined) return res.structuredContent;
+    for(const b of (res.content||[])){ const t=(b.resource&&typeof b.resource.text==='string')?b.resource.text:(b.type==='text'?b.text:null); if(t==null) continue; try{ return JSON.parse(t); }catch(err){} }
+    return res.payload!==undefined?res.payload:null; }
+  async function call(tool,input,opts){ const res=await mcp.callTool(SERVER,tool,Object.assign({owner:OWNER,repo:NAME},input),opts||{cache:false}); return unwrap(res); }
+  async function ccr(tool,input){ const res=await mcp.callTool(CCR,tool,input,{cache:false}); return unwrap(res); }
+  async function dispatch(inputs){ if(mcp) return call('actions_run_trigger',{method:'run_workflow',workflow_id:WF,ref:BRANCH,inputs:inputs},{cache:false});
+    return gh('/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{method:'POST',body:{ref:BRANCH,inputs:inputs}}); }
+  async function listRuns(){ if(mcp){ const j=await call('actions_list',{method:'list_workflow_runs',resource_id:WF,perPage:8}); return (j&&j.workflow_runs)||[]; }
+    const j=await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/runs?per_page=8'); return (j.workflow_runs||[]); }
+  async function contents(path){ if(mcp) return call('get_file_contents',{path:path,ref:'refs/heads/'+BRANCH});
+    return gh('/repos/'+REPO+'/contents/'+path+'?ref='+BRANCH,{raw:!path.endsWith('/')&&/\.\w+$/.test(path)}); }
+  const notFound=e=>/404|not found|does not exist/i.test((e&&e.message)||'');
   const settings=$('#settings');
-  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; if(!settings.hidden) $('#tok').focus(); });
+  $('#settings-btn').addEventListener('click',()=>{ settings.hidden=!settings.hidden; $('#settings-btn').setAttribute('aria-expanded',settings.hidden?'false':'true'); $('#settings-btn').textContent=settings.hidden?'Settings':'Close settings';
+    if(!settings.hidden){ settings.scrollIntoView({behavior:'smooth',block:'start'}); setTimeout(()=>$('#tok').focus({preventScroll:true}),450); } });
   $('#tok-save').addEventListener('click',()=>{ tok=$('#tok').value.trim(); if(!tok){ setTok('Paste a token first.',true); return; } ls.set('ehpa-btn-gh-token',tok); setTok('Saved in this browser.'); boot(); });
   $('#tok-forget').addEventListener('click',()=>{ tok=''; ls.del('ehpa-btn-gh-token'); $('#tok').value=''; setTok('Forgotten.'); });
-  $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok; if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
+  $('#tok-test').addEventListener('click',async()=>{ const t=$('#tok').value.trim()||tok;
+    if(mcp&&!t){ try{ const task=await findTask(); setTok(task?'OK: Claude Code Remote answers through your claude.ai connector (task "'+task.name+'" found). GitHub reads use your GitHub connector. No token needed.':'Claude Code Remote answers, but the scheduled task '+TRIG+' was not in its list - check claude.ai/code/routines.', !task); }catch(e){ setTok('Failed: '+ccrErr(e),true); } return; }
+    if(!t){ setTok('Paste a token first.',true); return; } try{ const me=await gh('/user',{token:t}); const r=await gh('/repos/'+REPO,{token:t}); setTok('OK: '+me.login+' can see '+r.full_name+(r.permissions&&r.permissions.push?' (write)':' (read)')); }catch(e){ setTok('Failed: '+e.message,true); } });
   function setTok(m,err){ const s=$('#tok-status'); s.textContent=m; s.className='status'+(err?' err':' ok'); }
 
   async function gh(path,opt){ opt=opt||{}; const t=opt.token||tok; if(!t) throw new Error('no token saved');
     const h={'Authorization':'Bearer '+t,'Accept':opt.raw?'application/vnd.github.raw+json':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
     if(opt.body) h['Content-Type']='application/json';
     const r=await fetch(API+path,{method:opt.method||'GET',headers:h,body:opt.body?JSON.stringify(opt.body):undefined,cache:'no-store'});
-    if(r.status===204) return null;
+    if(r.status===204||r.status===202) return null;
     if(!r.ok){ let m=r.status+' '+r.statusText; try{ const j=await r.json(); if(j.message) m+=': '+j.message; }catch(e){} throw new Error(m); }
     return r.json(); }
 
   // ---- mode + plan
   let mode='dry';
   function paintMode(){ document.querySelectorAll('.seg [data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===mode?'true':'false'));
-    $('#trigger-sub').textContent= mode==='live' ? 'Live · posts, releases, rebills and writes off by the standing rules' : 'Dry run · reads everything, writes nothing';
-    $('#confirm').classList.toggle('dry',mode!=='live');
+    $('#trigger-sub').textContent= mode==='live' ? 'Live · Claude works every column, the board, ERA, the cascade and the packages by the standing prompts (approvals may be asked in the session)' : 'Dry run · Claude reads and counts, writes nothing';
+    $('#confirm').classList.toggle('dry',mode!=='live'); $('#confirm-engine').classList.toggle('dry',mode!=='live');
     $('#pc-run').href='ehpa-billing://run?mode='+mode+'&steps='+encodeURIComponent(steps());
-    $('#confirm-text').innerHTML= mode==='live' ? '<b>Run live now?</b> This posts payments, releases visits, rebills and writes off exactly by the standing rules in the repository, plus the ticked packages.' : '<b>Start the dry run?</b> It logs in once, reads every column and check, and writes a report. Nothing changes in AdvancedMD.'; }
+    $('#confirm-text').innerHTML= mode==='live' ? '<b>Start the live Claude run now?</b> Claude works the board input, every Claims Center column (Exclusions included), ERA posting, the cascade pre-check and the ticked packages exactly by the standing prompts, and may ask for an approval inside its session. The report comes back to this page.' : '<b>Start the dry Claude run?</b> Claude logs in once, reads every column, check and board row, and writes a report. Nothing changes in AdvancedMD.';
+    $('#confirm-engine-text').innerHTML= mode==='live' ? '<b>Engine only, live, on GitHub?</b> No Claude: the scripted helpers post payments, release visits, rebill and write off exactly by the standing rules, plus the ticked packages. Anything that needs a judgement is left under "waiting".' : '<b>Engine only, dry, on GitHub?</b> The scripted helpers read every column and check and write a report. Nothing changes in AdvancedMD.'; }
   const STEPS=['columns','era','cascade','sweep','packages','cred','outstanding','money'];
   function steps(){ const on=STEPS.filter(k=>$('#s-'+k).checked); return on.length===STEPS.length?'all':on.join(','); }
   document.querySelectorAll('.seg [data-mode]').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.mode; paintMode(); }));
   STEPS.forEach(k=>$('#s-'+k).addEventListener('change',paintMode)); paintMode();
   function packages(){ return Array.from(document.querySelectorAll('#packages input[type=checkbox]:checked')).map(i=>i.value).join(','); }
+  function brief(){ const pk=$('#s-packages').checked?packages():''; return 'BUTTON PRESS '+new Date().toISOString()+' · mode: '+mode+' · steps: '+steps()+' · packages: '+(pk||'none')+' · note: ehpa Billing Button'; }
 
-  // ---- the button
-  const trig=$('#trigger'), confirmBox=$('#confirm'), status=$('#status');
+  // ---- the button: Claude
+  const trig=$('#trigger'), confirmBox=$('#confirm'), confirmEngine=$('#confirm-engine'), status=$('#status');
   function say(m,cls){ status.textContent=m; status.className='status'+(cls?' '+cls:''); }
-  trig.addEventListener('click',()=>{ if(!tok){ settings.hidden=false; $('#tok').focus(); say('Save a GitHub token first (the Token button).','err'); return; } confirmBox.hidden=false; $('#confirm-go').focus(); });
+  trig.addEventListener('click',()=>{ confirmEngine.hidden=true; if(!mcp){ say(mcpReady?'Claude is reachable only inside claude.ai. Open this page there (Claude Code Remote is built in), or use the Engine-only button with a saved token.':'Still connecting to claude.ai - try again in a moment.','err'); return; }
+    confirmBox.hidden=false; $('#confirm-go').focus(); });
   $('#confirm-no').addEventListener('click',()=>{ confirmBox.hidden=true; });
-  $('#confirm-go').addEventListener('click',fire);
-  async function fire(){ confirmBox.hidden=true; trig.disabled=true; say('Sending the trigger to GitHub…');
-    const inputs={mode:mode,steps:steps(),packages:$('#s-packages').checked?packages():'',note:'ehpa Billing Button '+new Date().toISOString()};
-    try{ await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/dispatches',{method:'POST',body:{ref:BRANCH,inputs:inputs}});
-      say('Triggered ('+mode+'). GitHub is starting the run; this page follows it.','ok'); ls.set('ehpa-btn-fired',new Date().toISOString()); setTimeout(()=>{ trig.disabled=false; },8000); watch(true); }
-    catch(e){ trig.disabled=false; say('GitHub refused the trigger: '+e.message+'. Check the token scopes (Actions: read and write) and that the workflow file is on main.','err'); } }
+  $('#confirm-go').addEventListener('click',fireClaude);
+  async function fireClaude(){ confirmBox.hidden=true; trig.disabled=true; say('Asking Claude to start the billing run…');
+    const b=brief();
+    try{ await ccr('fire_trigger',{trigger_id:TRIG,text:b});
+      say('Claude is starting the '+mode+' run ('+b.replace(/^BUTTON PRESS \S+ · /,'')+'). This page follows it; the report lands here when the run finishes.','ok'); ls.set('ehpa-btn-fired',new Date().toISOString()); firedAt=Date.now(); setTimeout(()=>{ trig.disabled=false; },8000); watchClaude(true); }
+    catch(e){ trig.disabled=false; say('Claude refused the start: '+ccrErr(e),'err'); } }
 
-  // ---- last run + polling
-  let pollTimer=null, lastSeen='';
-  async function runs(){ const j=await gh('/repos/'+REPO+'/actions/workflows/'+WF+'/runs?per_page=8'); return (j.workflow_runs||[]); }
-  function paintLast(r){ const b=$('#last-body'); if(!r){ b.innerHTML='<span class="note">No run yet. Press the button.</span>'; return; }
+  // ---- the secondary button: the GitHub engine (no Claude)
+  const engBtn=$('#engine-run');
+  engBtn.addEventListener('click',()=>{ confirmBox.hidden=true; if(!mcp&&!tok){ settings.hidden=false; $('#settings-btn').textContent='Close settings'; settings.scrollIntoView({behavior:'smooth',block:'start'});
+      say(mcpReady?'GitHub is not reachable from this copy of the page. Open it inside claude.ai (it uses your GitHub connector there), or save a token in Settings.':'Still connecting to claude.ai - try again in a moment.','err'); return; }
+    confirmEngine.hidden=false; $('#confirm-engine-go').focus(); });
+  $('#confirm-engine-no').addEventListener('click',()=>{ confirmEngine.hidden=true; });
+  $('#confirm-engine-go').addEventListener('click',fireEngine);
+  async function fireEngine(){ confirmEngine.hidden=true; engBtn.disabled=true; say('Sending the engine trigger to GitHub…');
+    const inputs={mode:mode,steps:steps(),packages:$('#s-packages').checked?packages():'',note:'ehpa Billing Button (engine only) '+new Date().toISOString()};
+    try{ await dispatch(inputs);
+      say('Engine triggered ('+mode+', GitHub). This page follows it.','ok'); setTimeout(()=>{ engBtn.disabled=false; },8000); watchGh(true); }
+    catch(e){ engBtn.disabled=false; say('GitHub refused the trigger: '+(mcp?ghErr(e):e.message+'. Check the token scopes (Actions: read and write) and that the workflow file is on main.'),'err'); } }
+
+  // ---- last run: the Claude task (default) or the GitHub engine run (after an engine-only press)
+  let pollTimer=null, lastSeen='', firedAt=0, lastClaudeKey='';
+  const TERMINAL=/SUCCEEDED|FAILED|CANCEL/i;
+  const sessionUrl=id=>id?'https://claude.ai/code/session_'+String(id).replace(/^cse_/,''):'';
+  async function findTask(){ let cursor=null; for(let i=0;i<3;i++){ const input={limit:50,recurring:false}; if(cursor) input.cursor=cursor;
+      const j=await ccr('list_triggers',input); const rows=(j&&j.data)||[]; const t=rows.find(r=>r.id===TRIG); if(t) return t; if(!j||!j.has_more||!j.next_cursor) return null; cursor=j.next_cursor; } return null; }
+  function elapsed(since){ const el=since?Math.max(0,Math.round((Date.now()-new Date(since))/1000)):0; return Math.floor(el/60)+'m '+String(el%60).padStart(2,'0')+'s'; }
+  function paintClaude(task){ const b=$('#last-body'); if(!task){ b.innerHTML='<span class="note">The scheduled task was not found in your Claude Code Remote list ('+esc(TRIG)+'). Check <a href="'+TASKS_URL+'" target="_blank" rel="noopener">claude.ai/code/routines</a>.</span>'; return; }
+    const lr=task.last_run; if(!lr){ b.innerHTML='<span class="pill dim">never run</span><div class="kv"><b>Task</b><span>'+esc(task.name)+'</span><b>Edit</b><span><a href="'+TASKS_URL+'" target="_blank" rel="noopener">claude.ai/code/routines</a></span></div>'; return; }
+    const st=String(lr.status||''); const done=TERMINAL.test(st); const ok=/SUCCEEDED/i.test(st); const label=done?(ok?'succeeded':(/CANCEL/i.test(st)?'cancelled':'failed')):'running';
+    const mins=done&&lr.finished_at&&lr.fired_at?Math.round((new Date(lr.finished_at)-new Date(lr.fired_at))/60000):null; const url=sessionUrl(lr.session_id);
+    b.innerHTML='<span class="pill '+(done?(ok?'ok':(/CANCEL/i.test(st)?'dim':'bad')):'run')+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(lr.fired_at))+'</span><b>Run</b><span>Claude · '+esc(task.name)+'</span>'+(mins!==null?'<b>Took</b><span>'+mins+' min</span>':'')+(url?'<b>Session</b><span><a href="'+esc(url)+'" target="_blank" rel="noopener">open on claude.ai</a></span>':'')+(lr.failure_reason&&!/UNSPECIFIED/.test(lr.failure_reason)?'<b>Reason</b><span>'+esc(lr.failure_reason)+'</span>':'')+'</div>'
+      +(!done?'<div class="runbar" role="status" aria-live="polite"><span class="orbit" aria-hidden="true"><i></i><i></i><i></i></span><span class="runtext"><b>Claude is running the billing</b><small>'+esc(mode==='live'?'live by the standing prompts':'the run follows the brief you sent')+'</small></span><span class="runtime">'+elapsed(lr.fired_at)+'</span>'+(url?'<a class="btn stop" href="'+esc(url)+'" target="_blank" rel="noopener" title="Opens the Claude session running this billing pass. The run is stopped from inside that session; this page cannot cancel it.">Open the session</a>':'')+'</div>':''); }
+  async function watchClaude(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
+    let tries=0; const tick=async()=>{ tries++; try{ const task=await findTask(); paintClaude(task); const lr=task&&task.last_run; const key=lr?(lr.fired_at||'')+'|'+(lr.status||''):'';
+        const running=lr&&!TERMINAL.test(String(lr.status||'')); const fresh=lr&&firedAt&&new Date(lr.fired_at).getTime()>=firedAt-120000;
+        if(lr&&TERMINAL.test(String(lr.status||''))&&lastClaudeKey&&key!==lastClaudeKey){ await loadReport(); await loadHistory(); }
+        lastClaudeKey=key;
+        if(!running&&(!justFired||tries>6||fresh)){ clearInterval(pollTimer); pollTimer=null; } }
+      catch(e){ $('#last-body').innerHTML='<span class="note">Cannot read the task: '+esc(ccrErr(e))+'</span>'; clearInterval(pollTimer); pollTimer=null; } };
+    await tick(); pollTimer=setInterval(tick,20000); }
+
+  // GitHub engine runs (the secondary path)
+  function paintGh(r){ const b=$('#last-body'); if(!r){ b.innerHTML='<span class="note">No engine run yet.</span>'; return; }
     const st=r.status==='completed'?(r.conclusion==='success'?'ok':(r.conclusion==='cancelled'?'dim':'bad')):'run';
     const label=r.status==='completed'?(r.conclusion||'done'):r.status.replace('_',' ');
     const mins=r.updated_at&&r.run_started_at?Math.round((new Date(r.updated_at)-new Date(r.run_started_at))/60000):null;
-    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(r.run_started_at||r.created_at))+'</span><b>Run</b><span>'+esc(r.display_title||r.name)+'</span>'+(mins!==null?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'; }
-  async function watch(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
-    let tries=0; const tick=async()=>{ tries++; try{ const rs=await runs(); const r=rs[0]; paintLast(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the run list: '+e.message,'err'); clearInterval(pollTimer); pollTimer=null; } };
+    const live=r.status!=='completed'; const since=r.run_started_at||r.created_at;
+    b.innerHTML='<span class="pill '+st+'">'+esc(label)+'</span><div class="kv"><b>Started</b><span>'+esc(when(since))+'</span><b>Run</b><span>Engine · '+esc(r.display_title||r.name)+'</span>'+(mins!==null&&!live?'<b>Took</b><span>'+mins+' min</span>':'')+'<b>Log</b><span><a href="'+esc(r.html_url)+'" target="_blank" rel="noopener">open on GitHub</a></span></div>'
+      +(live?'<div class="runbar" role="status" aria-live="polite"><span class="orbit" aria-hidden="true"><i></i><i></i><i></i></span><span class="runtext"><b>'+esc(String(r.status).replace('_',' ')==='queued'?'Waiting for a machine on GitHub':'Engine running on GitHub')+'</b><small>'+esc(r.display_title||'')+'</small></span><span class="runtime">'+elapsed(since)+'</span><button class="btn stop" type="button" id="cancel-run" data-id="'+esc(r.id)+'" title="Cancel this run on GitHub. The step in progress is cut off; nothing more is written.">Cancel</button></div>':''); }
+  $('#last-body').addEventListener('click',async e=>{ const btn=e.target.closest('#cancel-run'); if(!btn) return; if(!confirm('Cancel this engine run on GitHub? The step in progress is cut off; nothing more is written.')) return; btn.disabled=true;
+    try{ if(mcp) await call('actions_run_trigger',{method:'cancel_workflow_run',run_id:Number(btn.dataset.id)},{cache:false}); else await gh('/repos/'+REPO+'/actions/runs/'+btn.dataset.id+'/cancel',{method:'POST'});
+      say('Cancel sent. GitHub stops the run in a few seconds.','ok'); watchGh(true); }catch(err){ say('Could not cancel: '+(mcp?ghErr(err):err.message),'err'); btn.disabled=false; } });
+  async function watchGh(justFired){ if(pollTimer){ clearInterval(pollTimer); pollTimer=null; }
+    let tries=0; const tick=async()=>{ tries++; try{ const rs=await listRuns(); const r=rs[0]; paintGh(r); if(r&&r.status==='completed'){ if(r.id!==lastSeen){ lastSeen=r.id; await loadReport(); await loadHistory(); } if(!justFired||tries>2){ clearInterval(pollTimer); pollTimer=null; } } }catch(e){ say('Cannot read the engine run list: '+(mcp?ghErr(e):e.message),'err'); clearInterval(pollTimer); pollTimer=null; } };
     await tick(); pollTimer=setInterval(tick,15000); }
 
   // ---- packages from the register on main
-  async function loadPackages(){ const box=$('#packages'); try{ const reg=await gh('/repos/'+REPO+'/contents/practices/ehpa/registers/approvals_pending.json?ref='+BRANCH,{raw:true});
+  async function loadPackages(){ const box=$('#packages'); try{ const reg=await contents('practices/ehpa/registers/approvals_pending.json');
       const items=(Array.isArray(reg)?reg:(reg.items||[])).filter(i=>i.status!=='done'&&i.status!=='declined');
       $('#pk-count').textContent=items.length+' open'; if(!items.length){ box.innerHTML='<span class="note">Nothing waiting. Every package in the register is done.</span>'; return; }
       box.innerHTML=items.map(i=>'<div class="chk"><input type="checkbox" id="pk-'+esc(i.id)+'" value="'+esc(i.id)+'"'+(i.status==='approved'?' checked':'')+'><label for="pk-'+esc(i.id)+'"><span class="mono">'+esc(i.id)+'</span> <span class="pill '+(i.status==='approved'?'ok':'warn')+'">'+esc(i.status)+'</span><small>'+esc(String(i.what||'').slice(0,160))+(String(i.what||'').length>160?'…':'')+(i.note?' · '+esc(String(i.note).slice(0,120)):'')+'</small></label><span class="amt">'+esc(i.dollars||'')+'</span></div>').join('');
-    }catch(e){ box.innerHTML='<span class="note">Could not read the register: '+esc(e.message)+'</span>'; } }
+    }catch(e){ box.innerHTML='<span class="note">Could not read the register: '+esc(mcp?ghErr(e):e.message)+'</span>'; } }
 
   // ---- report
   function tile(label,html){ return '<div class="tile"><div class="eyebrow">'+label+'</div><div class="v">'+html+'</div></div>'; }
   function ba(b,a,fmt){ fmt=fmt||(x=>x); return esc(fmt(b))+'<span class="arrow">→</span>'+esc(fmt(a)); }
   function renderReport(rep,example){ const box=$('#report'); if(!rep){ box.innerHTML='<div class="card note">No report yet.</div>'; return; }
     const s=rep.summary||{}, c=s.columns||{}, cb=c.before||{}, ca=c.after||{}, e=s.era||{}, eb=e.before||{}, ea=e.after||{}, p=s.posted||{}, rs=s.resent||{}, wo=s.written_off||{}, pk=s.packages||{}, oc=s.outstanding||{};
-    $('#report-stamp').innerHTML=(example?'<span class="ex">example - the dry run of 10/11/2026 from the build session</span> ':'')+esc((rep.mode||'')+' · '+(rep.stamp||''))+(rep.run_url?' · <a href="'+esc(rep.run_url)+'" target="_blank" rel="noopener">log</a>':'');
+    $('#report-stamp').innerHTML=(example?'<span class="ex">example - the dry run of 10/11/2026 from the build session</span> ':'')+esc((rep.mode||'')+' · '+(rep.stamp||'')+(rep.engine==='claude'?' · Claude':' · engine'))+(rep.run_url?' · <a href="'+esc(rep.run_url)+'" target="_blank" rel="noopener">'+(rep.engine==='claude'?'session':'log')+'</a>':'');
     let h='<div class="tiles">'
       +tile('Columns · CR / CI / Unb / Exc', ba([cb.charge_review,cb.claim_inspector,cb.unbilled,cb.exclusions].map(x=>x??'–').join('/'),[ca.charge_review,ca.claim_inspector,ca.unbilled,ca.exclusions].map(x=>x??'–').join('/')))
       +tile('ERA checks · unposted', ba((eb.checks??'–')+' · '+money(eb.unposted||0),(ea.checks??'–')+' · '+money(ea.unposted||0)))
@@ -334,23 +442,73 @@ dl.how{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;
       return '<details class="step"'+(stp.status&&stp.status!=='ok'&&stp.status!=='skipped'?' open':'')+'><summary><span class="pill '+sc+'">'+esc(stp.status||'')+'</span><span class="name">'+esc(stp.title||stp.name)+'</span><span class="sum">'+esc(stp.summary||'')+'</span><span class="mono" style="color:var(--dim);font-size:12px">'+esc(when(stp.started))+'</span></summary><div class="body">'+(body||'<span class="note">Nothing to show.</span>')+'</div></details>'; }).join('')+'</div>';
     if((rep.packages||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Packages</h3><div class="tbl"><table><thead><tr><th>id</th><th>status</th><th>dollars</th><th>result</th></tr></thead><tbody>'+rep.packages.map(q=>'<tr><td>'+esc(q.id)+'</td><td>'+esc(q.status)+'</td><td>'+esc(q.dollars||'')+'</td><td class="wrap-cell">'+esc(q.result||'')+'</td></tr>').join('')+'</tbody></table></div></div>';
     if((rep.waiting||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Waiting on William or a chat session</h3><ul class="note" style="margin:6px 0 0;padding-left:18px">'+rep.waiting.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul></div>';
-    if((rep.errors||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Errors</h3><div class="errs">'+esc(rep.errors.join('\n'))+'</div></div>';
+    if((rep.errors||[]).length) h+='<div class="card" style="margin-top:10px"><h3>Errors / refused - for William</h3><div class="errs">'+esc(rep.errors.join('\n'))+'</div></div>';
     box.innerHTML=h; }
-  async function loadReport(){ try{ const rep=await gh('/repos/'+REPO+'/contents/reports/button/latest.json?ref='+BRANCH,{raw:true}); renderReport(rep,false); }
-    catch(e){ if(/404/.test(e.message)) renderReport(EXAMPLE,true); else $('#report').innerHTML='<div class="card note">Could not read the report: '+esc(e.message)+'</div>'; } }
-  async function loadHistory(){ const box=$('#history'); try{ const list=await gh('/repos/'+REPO+'/contents/reports/button?ref='+BRANCH);
-      const files=(Array.isArray(list)?list:[]).filter(f=>/^\d{4}-\d{2}-\d{2}T\d{4}Z\.json$/.test(f.name)).sort((a,b)=>a.name<b.name?1:-1).slice(0,12);
+  async function loadReport(){ try{ const rep=await contents('reports/button/latest.json'); if(!rep||!rep.schema) throw new Error('not found'); renderReport(rep,false); }
+    catch(e){ if(notFound(e)) renderReport(EXAMPLE,true); else $('#report').innerHTML='<div class="card note">Could not read the report: '+esc(mcp?ghErr(e):e.message)+'</div>'; } }
+  async function loadHistory(){ const box=$('#history'); try{ const list=await contents('reports/button');
+      const files=(Array.isArray(list)?list:[]).filter(f=>/^\d{4}-\d{2}-\d{2}T\d{4}Z(-dry)?\.json$/.test(f.name)).sort((a,b)=>a.name<b.name?1:-1).slice(0,8);
       if(!files.length){ box.innerHTML='<div class="note">No reports yet.</div>'; return; }
-      const rows=await Promise.all(files.map(async f=>{ try{ const r=await gh('/repos/'+REPO+'/contents/reports/button/'+f.name+'?ref='+BRANCH,{raw:true}); const s=r.summary||{}, p=s.posted||{}; const st=r.status||'ok';
-        return '<a class="row" href="'+esc(r.run_url||('https://github.com/'+REPO+'/blob/'+BRANCH+'/reports/button/'+f.name))+'" target="_blank" rel="noopener"><span class="when">'+esc(r.stamp||f.name.replace('.json',''))+'</span><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(r.mode||'')+' · '+esc(st)+'</span><span class="note">'+esc(r.headline||'')+'</span><span class="mono">'+esc(money(p.pay||0))+'</span></a>'; }catch(e){ return '<div class="note">'+esc(f.name)+': '+esc(e.message)+'</div>'; } }));
-      box.innerHTML=rows.join(''); }catch(e){ box.innerHTML='<div class="note">'+(/404/.test(e.message)?'No reports yet.':'Could not list reports: '+esc(e.message))+'</div>'; } }
+      const rows=await Promise.all(files.map(async f=>{ try{ const r=await contents('reports/button/'+f.name); const s=r.summary||{}, p=s.posted||{}; const st=r.status||'ok';
+        return '<a class="row" href="'+esc(r.run_url||('https://github.com/'+REPO+'/blob/'+BRANCH+'/reports/button/'+f.name))+'" target="_blank" rel="noopener"><span class="when">'+esc(r.stamp||f.name.replace('.json',''))+'</span><span class="pill '+(st==='ok'?'ok':(st==='failed'?'bad':'warn'))+'">'+esc(r.mode||'')+' · '+esc(st)+(r.engine==='claude'?' · Claude':'')+'</span><span class="note">'+esc(r.headline||'')+'</span><span class="mono">'+esc(money(p.pay||0))+'</span></a>'; }catch(e){ return '<div class="note">'+esc(f.name)+': '+esc(e.message)+'</div>'; } }));
+      box.innerHTML=rows.join(''); }catch(e){ box.innerHTML='<div class="note">'+(notFound(e)?'No reports yet.':'Could not list reports: '+esc(mcp?ghErr(e):e.message))+'</div>'; } }
 
   // ---- the first frame: the real dry run of 10/11/2026 (from the build session) until the first button run reports
   let EXAMPLE=null; try{ EXAMPLE=JSON.parse(document.getElementById('example').textContent||'null'); }catch(e){ EXAMPLE=null; }
 
-  async function boot(){ if(!tok){ renderReport(EXAMPLE,true); return; } $('#tok').value=tok; await Promise.all([loadPackages(),loadReport(),loadHistory()]); watch(false); }
+  // the example renders at once; the live data arrives when the connectors (or the token) answer
+  renderReport(EXAMPLE,true);
+  window.__ehpaRefresh=async function(){ await connector(); if(!mcp&&!tok) return 'reload'; await Promise.all([loadPackages(),loadReport(),loadHistory()]); if(mcp){ const task=await findTask(); paintClaude(task); const lr=task&&task.last_run; lastClaudeKey=lr?(lr.fired_at||'')+'|'+(lr.status||''):''; if(lr&&!TERMINAL.test(String(lr.status||''))&&!pollTimer) watchClaude(false); } else { const rs=await listRuns(); paintGh(rs[0]); } };
+async function boot(){ await connector(); if(!mcp&&!tok){ setTok('Inside claude.ai this page uses your Claude Code Remote and GitHub connectors and needs no token. This copy has neither.',true); $('#last-body').innerHTML='<span class="note">Open this page inside claude.ai to start a Claude run and see its progress here.</span>'; return; }
+    if(tok) $('#tok').value=tok; if(mcp) setTok('Using your claude.ai connectors (Claude Code Remote + GitHub). No token needed.');
+    await Promise.all([loadPackages(),loadReport(),loadHistory()]); if(mcp) watchClaude(false); else watchGh(false); }
   boot();
-  if(location.hash==='#trigger'){ setTimeout(()=>{ $('#trigger').scrollIntoView({block:'center'}); $('#trigger').focus(); if(tok){ confirmBox.hidden=false; $('#confirm-go').focus(); } },300); }
+  // opened from a page's "Run all billing" button (#trigger): scroll to the button and, once the connector answers, open its confirm
+  if(location.hash==='#trigger'){ setTimeout(()=>{ $('#trigger').scrollIntoView({block:'center'}); $('#trigger').focus(); },300);
+    connector().then(m=>{ if(m){ confirmBox.hidden=false; $('#confirm-go').focus({preventScroll:true}); } }); }
+})();
+</script>
+
+<style id="ehpa-refresh-css">
+/* the Refresh control (top right): re-fetches the page's live data through window.__ehpaRefresh, or reloads the page when it has no loader - Midnight colours, independent of the page's own styles */
+.ehpa-refresh-top{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:2147483001;display:flex;align-items:center;gap:8px;font-family:'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;pointer-events:none}
+.ehpa-refresh-top>*{pointer-events:auto}
+.ehpa-refresh{display:inline-flex;align-items:center;gap:6px;font:700 13px/1 'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;color:#082f35;background:#70d6f8;border:1px solid rgba(8,47,53,.35);border-radius:999px;padding:8px 13px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.22);white-space:nowrap}
+.ehpa-refresh:hover{filter:brightness(1.07)}
+.ehpa-refresh:focus-visible{outline:3px solid #f841e0;outline-offset:2px}
+.ehpa-refresh[disabled]{opacity:.75;cursor:wait}
+.ehpa-refresh .ico{display:inline-block;font-size:15px;line-height:1}
+.ehpa-refresh.spin .ico{animation:ehpaspin .8s linear infinite}
+.ehpa-rf-stamp{display:none;font:600 12px/1.2 'Quicksand',system-ui,-apple-system,'Segoe UI',sans-serif;color:#fff;background:rgba(8,47,53,.94);border:1px solid #70d6f8;border-radius:999px;padding:6px 10px;white-space:nowrap;max-width:min(62vw,340px);overflow:hidden;text-overflow:ellipsis}
+.ehpa-rf-stamp.show{display:inline-block}
+.ehpa-rf-stamp.err{border-color:#ff8a80;color:#ffd2cf}
+@keyframes ehpaspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.ehpa-refresh.spin .ico{animation:none}}
+@media (max-width:520px){.ehpa-refresh .txt{display:none} .ehpa-refresh{padding:7px 10px}}
+</style>
+<style id="ehpa-refresh-nudge">@media (min-width:761px){.tools{padding-top:42px}}</style>
+<div class="ehpa-refresh-top" id="ehpa-refresh-top" role="group" aria-label="Refresh this page">
+  <span class="ehpa-rf-stamp" id="ehpa-rf-stamp" role="status" aria-live="polite"></span>
+  <button type="button" class="ehpa-refresh" id="ehpa-rf-btn" aria-label="Refresh" title="Re-fetches this page's live data (or reloads the page when it has nothing to re-fetch)"><span class="ico" aria-hidden="true">↻</span><span class="txt">Refresh</span></button>
+</div>
+<script id="ehpa-refresh-js">
+(function(){
+  var btn=document.getElementById('ehpa-rf-btn'), st=document.getElementById('ehpa-rf-stamp'); if(!btn||!st) return;
+  var busy=false, timer=null, KEY='ehpa-refreshed-at';
+  function hhmm(d){ try{ return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}); }catch(e){ return d.getHours()+':'+('0'+d.getMinutes()).slice(-2); } }
+  function stamp(text,cls,ms){ st.textContent=text; st.className='ehpa-rf-stamp show'+(cls?' '+cls:''); clearTimeout(timer); if(ms!==0) timer=setTimeout(function(){ st.className='ehpa-rf-stamp'; }, ms||12000); }
+  function reload(){ try{ sessionStorage.setItem(KEY, String(Date.now())); }catch(e){} location.reload(); }
+  try{ var t=sessionStorage.getItem(KEY); if(t){ sessionStorage.removeItem(KEY); if(Date.now()-Number(t)<30000) stamp('refreshed '+hhmm(new Date())); } }catch(e){}
+  btn.addEventListener('click', function(){
+    if(busy) return; var hook=window.__ehpaRefresh;
+    if(typeof hook!=='function'){ stamp('reloading\u2026',null,0); reload(); return; }
+    busy=true; btn.disabled=true; btn.classList.add('spin'); stamp('refreshing\u2026',null,0);
+    Promise.resolve().then(function(){ return hook(); }).then(function(r){
+      if(r==='reload'){ reload(); return; }
+      stamp('refreshed '+hhmm(new Date()));
+    }).catch(function(e){ stamp('could not refresh ('+((e&&(e.code||e.message))||'error')+')','err',15000); })
+    .then(function(){ busy=false; btn.disabled=false; btn.classList.remove('spin'); });
+  });
 })();
 </script>
 </body>
