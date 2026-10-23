@@ -1,6 +1,6 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-23T05:14:18Z",
+ "at": "2026-10-23T05:28:46Z",
  "as_of": "2026-10-23",
  "total": 275465.09,
  "visits": 2946,
@@ -38,7 +38,7 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-   "name": "",
+   "name": "FLORIDA MEDICARE",
    "n": 1529,
    "dollars": 130399.47,
    "buckets": {
@@ -53,7 +53,7 @@
   },
   {
    "carrier": "UNI20",
-   "name": "",
+   "name": "UNITED HEALTHCARE",
    "n": 279,
    "dollars": 41380.64,
    "buckets": {
@@ -68,7 +68,7 @@
   },
   {
    "carrier": "FLO99",
-   "name": "",
+   "name": "FLORIDA COMMUNITY CARE AVAILITY",
    "n": 136,
    "dollars": 22431.58,
    "buckets": {
@@ -83,7 +83,7 @@
   },
   {
    "carrier": "BCBS",
-   "name": "",
+   "name": "FLORIDA BLUE",
    "n": 317,
    "dollars": 20522.47,
    "buckets": {
@@ -98,7 +98,7 @@
   },
   {
    "carrier": "HUM01",
-   "name": "",
+   "name": "HUMANA",
    "n": 116,
    "dollars": 10064.48,
    "buckets": {
@@ -113,7 +113,7 @@
   },
   {
    "carrier": "CAP07",
-   "name": "",
+   "name": "CAPITAL HEALTH PLAN",
    "n": 37,
    "dollars": 7151.24,
    "buckets": {
@@ -128,7 +128,7 @@
   },
   {
    "carrier": "UHCMA",
-   "name": "",
+   "name": "UNITEDHEALTHCARE DUAL COMPLETE",
    "n": 29,
    "dollars": 5081.97,
    "buckets": {
@@ -143,7 +143,7 @@
   },
   {
    "carrier": "CIG09",
-   "name": "",
+   "name": "CIGNA HEALTH PLANS HMO/PPO/OTR",
    "n": 26,
    "dollars": 4031.01,
    "buckets": {
@@ -158,7 +158,7 @@
   },
   {
    "carrier": "VACCN",
-   "name": "",
+   "name": "OPTUM VA CCN",
    "n": 24,
    "dollars": 3979.98,
    "buckets": {
@@ -173,7 +173,7 @@
   },
   {
    "carrier": "MCAD",
-   "name": "",
+   "name": "FLORIDA MEDICAID",
    "n": 30,
    "dollars": 3787.1,
    "buckets": {
@@ -188,7 +188,7 @@
   },
   {
    "carrier": "AET07",
-   "name": "",
+   "name": "AETNA",
    "n": 28,
    "dollars": 3621.81,
    "buckets": {
@@ -203,7 +203,7 @@
   },
   {
    "carrier": "SIM01",
-   "name": "",
+   "name": "SIMPLY HEALTHCARE MCD PLANS",
    "n": 19,
    "dollars": 3231.12,
    "buckets": {
@@ -218,7 +218,7 @@
   },
   {
    "carrier": "TRI05",
-   "name": "",
+   "name": "TRICARE FOR LIFE",
    "n": 96,
    "dollars": 3105.91,
    "buckets": {
@@ -233,7 +233,7 @@
   },
   {
    "carrier": "WEL04",
-   "name": "",
+   "name": "WELLCARE",
    "n": 35,
    "dollars": 3045.73,
    "buckets": {
@@ -248,7 +248,7 @@
   },
   {
    "carrier": "UMR",
-   "name": "",
+   "name": "UMR CHOICE",
    "n": 14,
    "dollars": 2050.0,
    "buckets": {
@@ -263,7 +263,7 @@
   },
   {
    "carrier": "AET12",
-   "name": "",
+   "name": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
    "n": 50,
    "dollars": 1854.51,
    "buckets": {
@@ -278,7 +278,7 @@
   },
   {
    "carrier": "TRI00",
-   "name": "",
+   "name": "TRICARE EAST",
    "n": 7,
    "dollars": 1644.0,
    "buckets": {
@@ -293,7 +293,7 @@
   },
   {
    "carrier": "SUN01",
-   "name": "",
+   "name": "SUNSHINE STATE HEALTH PLAN",
    "n": 19,
    "dollars": 1334.68,
    "buckets": {
@@ -308,7 +308,7 @@
   },
   {
    "carrier": "AAR01",
-   "name": "",
+   "name": "AARP",
    "n": 37,
    "dollars": 1267.21,
    "buckets": {
@@ -323,7 +323,7 @@
   },
   {
    "carrier": "FIR07",
-   "name": "",
+   "name": "FIRST HEALTH NETWORK",
    "n": 8,
    "dollars": 1087.0,
    "buckets": {
@@ -338,7 +338,7 @@
   },
   {
    "carrier": "AMB03",
-   "name": "",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
    "n": 8,
    "dollars": 704.2,
    "buckets": {
@@ -353,7 +353,7 @@
   },
   {
    "carrier": "WEL07",
-   "name": "",
+   "name": "WELLCARE HEALTH PLAN ENCOUNTERS",
    "n": 4,
    "dollars": 704.0,
    "buckets": {
@@ -368,7 +368,7 @@
   },
   {
    "carrier": "CHA03",
-   "name": "",
+   "name": "CHAMPVA",
    "n": 29,
    "dollars": 565.05,
    "buckets": {
@@ -383,7 +383,7 @@
   },
   {
    "carrier": "GEH04",
-   "name": "",
+   "name": "GEHA HIGH OPTION",
    "n": 46,
    "dollars": 471.05,
    "buckets": {
@@ -413,7 +413,7 @@
   },
   {
    "carrier": "BCBS1",
-   "name": "",
+   "name": "FLORIDABLUE MEDICARE",
    "n": 2,
    "dollars": 421.0,
    "buckets": {
@@ -428,7 +428,7 @@
   },
   {
    "carrier": "LAN",
-   "name": "",
+   "name": "LANTERN",
    "n": 1,
    "dollars": 310.0,
    "buckets": {
@@ -458,7 +458,7 @@
   },
   {
    "carrier": "COL07",
-   "name": "",
+   "name": "COLONIAL HEALTHCARE",
    "n": 8,
    "dollars": 210.44,
    "buckets": {
@@ -473,7 +473,7 @@
   },
   {
    "carrier": "RET01",
-   "name": "",
+   "name": "RETIRED RAILROAD MEDICARE",
    "n": 2,
    "dollars": 88.18,
    "buckets": {
@@ -488,7 +488,7 @@
   },
   {
    "carrier": "MUT01",
-   "name": "",
+   "name": "MUTUAL OF OMAHA",
    "n": 5,
    "dollars": 71.91,
    "buckets": {
@@ -503,7 +503,7 @@
   },
   {
    "carrier": "CON08",
-   "name": "",
+   "name": "CONTINENTAL GENERAL INSURANCE",
    "n": 2,
    "dollars": 67.35,
    "buckets": {
