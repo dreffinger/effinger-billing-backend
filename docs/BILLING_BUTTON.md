@@ -1,5 +1,39 @@
 # The Billing Button (set up 2026-10-11, William's order: "package all the billing routines and the nightly cascade in an automatic run, as they are written in GitHub, with a dashboard where I press one button and get reports - no mandatory-approval blocks")
 
+## Since 10/23/2026 the button starts a Claude run
+
+The big trigger on the ehpa Billing Button page ("Run all billing with Claude") no longer dispatches the
+GitHub Actions engine. It fires the on-demand Claude scheduled task **trig_01S771Si8VJ8DvcwgHMHGYB5**
+("ehpa Billing Button - full billing run (Claude)"; poke-only, no cron; model claude-fable-5-1; the
+server gave it permission_mode `auto`), whose prompt is `nightly/button_run_prompt_v1.txt` - the full
+2-hourly columns prompt (v12 + v13 insert) reframed for a button press: it works the board, every Claims
+Center column, ERA posting, the cascade and the approved packages by the standing prompts, waits for any
+approval the environment asks for (William 10/22: manual approvals during the run are fine), and lists
+only a command refused outright under "Refused - for William".
+
+* **How it is fired.** The page calls the viewer's Claude Code Remote connector:
+  `mcp.callTool('Claude Code Remote','fire_trigger',{trigger_id, text})`, then watches
+  `list_triggers` (recurring:false) every 20 s and shows the run bar "Claude is running the billing" with
+  an "Open the session" link (`https://claude.ai/code/session_<id without cse_>`). Inside claude.ai no
+  token is needed; the page declares `mcp` for `github` (get_file_contents, actions_list,
+  actions_run_trigger) and `Claude Code Remote` (fire_trigger, list_triggers).
+* **The brief** appended to the prompt on each press:
+  `BUTTON PRESS <iso> · mode: live|dry · steps: <steps> · packages: <ids|none> · note: ehpa Billing Button`.
+* **The report file.** The run writes `reports/button/<stamp>.json` + `latest.json` (schema
+  `button-run/1`, with `"engine":"claude"` and `"trigger":"trig_01S771Si8VJ8DvcwgHMHGYB5"`), commits
+  "button run <stamp> (Claude)" and pushes HEAD:main; the page draws it like any engine report.
+* **The engine is secondary.** The GitHub `workflow_dispatch` path is still on the page as the small
+  "Engine only · GitHub (no Claude)" button (and its schedules are untouched); "Run on this PC" (the
+  desktop app) is unchanged.
+* **The floating "Run all billing" button** on every billing page (tools/button/fab.py) now reads
+  "Claude · columns · ERA · cascade · packages" and says the run may ask for an approval; it still opens
+  this page at `#trigger`.
+* **Refresh (10/23, William 00:33 ET).** Every page in the set carries a "↻ Refresh" pill at its top-right
+  corner (tools/button/refresh_button.py): it calls the page's `window.__ehpaRefresh` hook (the boards
+  re-read their store and the Drive inbox and re-render; this page re-reads the task's last run and the
+  report; Outstanding Claims re-pulls the snapshot) and shows "refreshed HH:MM"; a page with no loader
+  reloads instead. The older reload-only Refresh button (10/22) is replaced by it.
+
 One button runs every billing script this repository carries, in the standing order of the
 2-hourly backend billing run and the nightly insurance cascade, on a machine GitHub lends us
 (or on William's own PC), with no permission classifier in the path. Pressing the button is the
