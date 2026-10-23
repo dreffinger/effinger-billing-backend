@@ -1,0 +1,47 @@
+{
+ "run": "2026-10-23T0400Z",
+ "kind": "chat full pass (William-requested 10/22 11:40 PM ET)",
+ "columns_before": "0/0/6/29",
+ "era_before": "0 checks $0.00",
+ "board_input": [
+  {
+   "pid": "17478064",
+   "plan": "CAP07 added seq 1, 271 ACTIVE",
+   "visits": {
+    "v19457784": "admit 10/12/2026 onhcfa 1 insorder 1 released",
+    "v19457791": "admit 10/12/2026 onhcfa 1 insorder 1 released"
+   }
+  },
+  {
+   "pid": "17478059",
+   "plan": "CAP07 added seq 1, 271 ACTIVE",
+   "visits": {
+    "v19457778": "released (admit 10/12/2026, order 1)",
+    "v19457794": "released (admit 10/12/2026, order 1)"
+   }
+  },
+  {
+   "pid": "17478063",
+   "plan": "FLO02 seq 1 (begin 10/01/2026, 271 ACTIVE A/B 20261001) + TRI05 seq 2 (271 ACTIVE); patient order 1,2",
+   "visits": {
+    "v19457783": "released (admit 10/12/2026, order 1,2)",
+    "v19457797": "released (admit 10/12/2026, order 1,2)"
+   }
+  },
+  {
+   "pid": "17475632",
+   "plan": "plan ins9517662 carrier car6404 -> car307804 (UNI98 cpid 6465) in place; insorder 1 kept",
+   "visits": {
+    "v19433791": "freq1 + chargerebill seq 1 -> 204 (DOS 02/26/2026 99223 $310)"
+   }
+  }
+ ],
+ "exclusions": {
+  "run 1700294": "1 AET12 PREF0288 row chart 24750 v19455937 - HOLD (carrier master)",
+  "run 1700302": "25 AAR01 rows chart 17470713 'subscriber and subscriber id not found' - CMS 271 no Medigap COB, discovery Medicare only, UHC 270 needs member id -> William's turn (member number)",
+  "run 1700311": "3 AET07 rows chart 17471204 'entity not eligible for benefits for submitted DOS: patient' -> William's turn (subscriber/dependent)"
+ },
+ "era": "0 checks before and after",
+ "precheck": "--days 3 --max 80: 0 pairs, 0 flagged",
+ "engine_live_steps": "packages,cred,outstanding,denials,aging (see reports/button logs)"
+}

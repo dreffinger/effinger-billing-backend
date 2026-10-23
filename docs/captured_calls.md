@@ -5160,3 +5160,6 @@ Lesson (not a call): a Pam admit sent as iPhone HEIC photos - ImageMagick's heic
 `python3 -m venv /tmp/heifenv && /tmp/heifenv/bin/pip install pillow pillow-heif` and a 6-line convert (register_heif_opener, exif_transpose,
 save JPEG) reads them; never `pip install pillow-heif` into the main interpreter (it replaced the workspace Pillow and broke `from PIL import Image`
 until `pip install --ignore-installed pillow==10.2.0`).
+
+## 2026-10-23T0400Z - chat full pass (11:40 PM ET 10/22, William-requested)
+Calls learned: no new AMD or Stedi call shapes. Behaviours proven this pass: (1) updateinsurance with the wrapped shape changes a plan's CARRIER in place (carrier + o_carrier) -> success="1", plan keeps its id/sequence/member id, chart insorder re-read intact (ins_update.update(pid, ins, carrier=carN)); (2) lookupcarrier code %UNI98% -> car307804 UNITEDHEALTHCARE STUDENT cpid 6465 (Change Health) - William added it in Master Files 10/23; (3) a begindate edit through updateinsurance also answers <patient insorder=""/> (same as enddate) and ins_update restores the order; (4) a chart with ZERO plans: add_ins + ins_update.update(sequence=) + full-visit echo (insorder, onhcfa=1, extins hospitalizationfrom) + hideunbillablevisits releases the HCA visits in one pass (board_act_1023.py). Vocabulary entries added: 0.
