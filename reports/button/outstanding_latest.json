@@ -1,22 +1,22 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-23T17:26:44Z",
+ "at": "2026-10-23T19:26:05Z",
  "as_of": "2026-10-23",
- "total": 273941.01,
- "visits": 2940,
- "charts": 538,
+ "total": 273238.01,
+ "visits": 2936,
+ "charts": 536,
  "over_365": {
   "n": 1097,
   "dollars": 50886.33
  },
  "by_bucket": {
   "0-30": {
-   "n": 247,
-   "dollars": 41485.72
+   "n": 244,
+   "dollars": 40923.72
   },
   "31-60": {
-   "n": 259,
-   "dollars": 32882.12
+   "n": 258,
+   "dollars": 32741.12
   },
   "61-90": {
    "n": 184,
@@ -54,11 +54,11 @@
   {
    "carrier": "UNI20",
    "name": "UNITED HEALTHCARE",
-   "n": 279,
-   "dollars": 41380.64,
+   "n": 277,
+   "dollars": 41098.64,
    "buckets": {
-    "0-30": 11731.48,
-    "31-60": 2664.6,
+    "0-30": 11590.48,
+    "31-60": 2523.6,
     "61-90": 1184.8,
     "91-180": 3055.68,
     "181-365": 16781.33,
@@ -114,10 +114,10 @@
   {
    "carrier": "CAP07",
    "name": "CAPITAL HEALTH PLAN",
-   "n": 31,
-   "dollars": 5618.24,
+   "n": 29,
+   "dollars": 5197.24,
    "buckets": {
-    "0-30": 842.0,
+    "0-30": 421.0,
     "31-60": 1194.0,
     "61-90": 347.0,
     "91-180": 1256.0,
@@ -765,13 +765,13 @@
   },
   {
    "month": "2026-09",
-   "n": 290,
-   "dollars": 38059.59
+   "n": 288,
+   "dollars": 37777.59
   },
   {
    "month": "2026-10",
-   "n": 192,
-   "dollars": 33226.41
+   "n": 190,
+   "dollars": 32805.41
   }
  ],
  "oldest": [
@@ -22804,14 +22804,6 @@
    "dos": "2026-09-21"
   },
   {
-   "visitid": 19456178,
-   "patientid": 17477844,
-   "carriercode": "UNI20",
-   "insbalance": 141.0,
-   "days": 32,
-   "dos": "2026-09-21"
-  },
-  {
    "visitid": 19455884,
    "patientid": 17477774,
    "carriercode": "UMR",
@@ -23111,14 +23103,6 @@
    "visitid": 19456196,
    "patientid": 17473748,
    "carriercode": "UHCMA",
-   "insbalance": 141.0,
-   "days": 29,
-   "dos": "2026-09-24"
-  },
-  {
-   "visitid": 19456177,
-   "patientid": 17477844,
-   "carriercode": "UNI20",
    "insbalance": 141.0,
    "days": 29,
    "dos": "2026-09-24"
@@ -24724,14 +24708,6 @@
    "dos": "2026-10-11"
   },
   {
-   "visitid": 19457791,
-   "patientid": 17478064,
-   "carriercode": "CAP07",
-   "insbalance": 310.0,
-   "days": 11,
-   "dos": "2026-10-12"
-  },
-  {
    "visitid": 19457794,
    "patientid": 17478059,
    "carriercode": "CAP07",
@@ -24872,14 +24848,6 @@
    "patientid": 17474046,
    "carriercode": "SIM01",
    "insbalance": 160.0,
-   "days": 10,
-   "dos": "2026-10-13"
-  },
-  {
-   "visitid": 19457784,
-   "patientid": 17478064,
-   "carriercode": "CAP07",
-   "insbalance": 111.0,
    "days": 10,
    "dos": "2026-10-13"
   },
