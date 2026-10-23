@@ -69,7 +69,7 @@ sec = sec.replace('" + PM + "', PM).replace('" + PX + "', PX).replace('" + PD + 
 open("needs_facesheet_list.md", "a").write("\n" + sec); open("needs_facesheet_list_section_%s.md" % S, "w").write(sec)
 chk = lambda txt, ok="na": {"checks": [{"ok": ok, "result": txt, "src": SRC, "when": W}]}
 hold = "3 PM ET 10/19: chart %s still has zero insurance plans (Unbilled list unchanged); no new HCA facesheet in Drive, no Pam email, no board note - the two visits (%s) stay in Unbilled 'Insurance order is missing'; your turn unchanged (HCA Florida Capital facesheet, admit 10/12/2026)."
-ops = [{"op": "upsert", "collection": "items", "id": "madison-digby-[first]-17478059", "append": chk(hold % ("17478059", "v19457778 / v19457794"), "no")},
+ops = [{"op": "upsert", "collection": "items", "id": "maddern-digby-[first]-17478059", "append": chk(hold % ("17478059", "v19457778 / v19457794"), "no")},
        {"op": "upsert", "collection": "items", "id": "[name]-17478063", "append": chk(hold % ("17478063", "v19457783 / v19457797"), "no")},
        {"op": "upsert", "collection": "items", "id": "edgerton-jocelyn-17478064", "append": chk(hold % ("17478064", "v19457784 / v19457791"), "no")}]
 ops.append({"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid", "append": chk("3 PM ET 10/19: HOLD - the one AET12 PREF0288 exclusion row (chart 24750, v19455937) stays on the list, not rebilled; carrier master still unchanged.")})

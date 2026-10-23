@@ -56,7 +56,7 @@ with open("_run report 10-19 2110.csv", "w", newline="") as f: csv.writer(f).wri
 # ---- board updates
 def chk(ok, result): return {"ok": ok, "result": result, "src": "5pm ET 10/19 columns run (ehpa cloud) - run %s" % S, "when": "10/19"}
 ops = []
-for rid, pid, vs in (("madison-digby-[first]-17478059", "17478059", "v19457778 / v19457794"), ("[name]-17478063", "17478063", "v19457783 / v19457797"), ("edgerton-jocelyn-17478064", "17478064", "v19457784 / v19457791")):
+for rid, pid, vs in (("maddern-digby-[first]-17478059", "17478059", "v19457778 / v19457794"), ("[name]-17478063", "17478063", "v19457783 / v19457797"), ("edgerton-jocelyn-17478064", "17478064", "v19457784 / v19457791")):
     ops.append({"op": "upsert", "collection": "items", "id": rid, "append": {"checks": [chk("no", "5 PM ET 10/19: chart %s still has zero insurance plans (Unbilled list unchanged); no new HCA facesheet in Drive, no Pam email, no board note - the two visits (%s) stay in Unbilled 'Insurance order is missing'; your turn unchanged (HCA Florida Capital facesheet, admit 10/12/2026)." % (pid, vs))]}})
 ops.append({"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid", "append": {"checks": [chk("na", "5 PM ET 10/19: HOLD - the one AET12 PREF0288 exclusion row (chart 24750, v19455937) stays on the list, not rebilled; carrier master still unchanged.")]}})
 ops.append({"op": "upsert", "collection": "items", "id": "dunwoody-laurel-admit-1016", "append": {"checks": [chk("na", "5 PM ET 10/19: lookuppatient 21:21Z - still no AMD chart for the 10/16 Brynwood admit (nor for the three 10/15 admits); the Sunshine MMA plan + auth from Pam's sheet wait on the Claimocity feed.")]}})

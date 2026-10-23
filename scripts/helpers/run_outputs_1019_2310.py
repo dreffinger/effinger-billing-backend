@@ -39,8 +39,8 @@ open("outbox/needs_section_%s.md" % S, "w").write(sec)
 rows = [["column", "status", "patient", "chart", "visit", "dos", "carrier", "error", "action"]]
 rows.append(["charge review", "clear", "", "", "", "", "", "", "0 charges before and after"])
 rows.append(["claim inspector", "clear", "", "", "", "", "", "", "0 batches before and after (GitHub slot #105 bypassed one advisory v19419577 at 23:2xZ)"])
-for nm, pid, v1, v2, act in (("MADISON-DIGBY DELORES C", "17478059", "19457778", "19457794", "William: HCA Florida Capital facesheet (admit 10/12/2026) - CHP member id; zero plans at 23:36Z"),
-                             ("GASKINS MICAH G", "17478063", "19457783", "19457797", "William: HCA facesheet - medical plan + member id (FEHB likely); zero plans at 23:36Z"),
+for nm, pid, v1, v2, act in (("MADDERN-DIGBY DOROTHEA C", "17478059", "19457778", "19457794", "William: HCA Florida Capital facesheet (admit 10/12/2026) - CHP member id; zero plans at 23:36Z"),
+                             ("GASCOIGNE MICAH G", "17478063", "19457783", "19457797", "William: HCA facesheet - medical plan + member id (FEHB likely); zero plans at 23:36Z"),
                              ("EDGERTON JOCELYN R", "17478064", "19457784", "19457791", "William: HCA facesheet - CHP member id; zero plans at 23:36Z")):
     rows.append(["unbilled", "remaining", nm, pid, v1, "10/12/2026", "(none on chart)", "Insurance order is missing on visit", act])
     rows.append(["unbilled", "remaining", nm, pid, v2, "10/13/2026", "(none on chart)", "Insurance order is missing on visit", "same"])
@@ -56,7 +56,7 @@ with open("_run report 10-19 2310.csv", "w", newline="") as f: csv.writer(f).wri
 def chk(ok, result): return {"ok": ok, "result": result, "src": "7pm ET 10/19 columns run (ehpa cloud) - run %s" % S, "when": "10/19"}
 ops = []
 hold = "7 PM ET 10/19: chart %s still has zero insurance plans (live getdemographic 23:36Z; Unbilled list unchanged); no new HCA facesheet in Drive, no Pam email, no board note - the two visits (%s) stay in Unbilled 'Insurance order is missing'; your turn unchanged (HCA Florida Capital facesheet, admit 10/12/2026); in tonight's face sheets email."
-for rid, pid, vs in (("madison-digby-[first]-17478059", "17478059", "v19457778 / v19457794"), ("[name]-17478063", "17478063", "v19457783 / v19457797"), ("edgerton-jocelyn-17478064", "17478064", "v19457784 / v19457791")):
+for rid, pid, vs in (("maddern-digby-[first]-17478059", "17478059", "v19457778 / v19457794"), ("[name]-17478063", "17478063", "v19457783 / v19457797"), ("edgerton-jocelyn-17478064", "17478064", "v19457784 / v19457791")):
     ops.append({"op": "upsert", "collection": "items", "id": rid, "append": {"checks": [chk("no", hold % (pid, vs))]}})
 ops.append({"op": "upsert", "collection": "items", "id": "poulter-ellery-gwen-denials", "append": {"checks": [chk("na", "7 PM ET 10/19: the 25 AARP Medigap secondary rejections of claim run 1700302 stay on the exclusion list; held, not rebilled - the AARP Medicare Supplement member number from her card is still the only fix (chart plans unchanged at 23:36Z: AAR01 seq 4 begin 1/1/2026); in tonight's face sheets email.")]}})
 ops.append({"op": "upsert", "collection": "items", "id": "aet12-carrier-cpid", "append": {"checks": [chk("na", "7 PM ET 10/19: HOLD - the one AET12 PREF0288 exclusion row (chart 24750, v19455937) stays on the list, not rebilled; carrier master still unchanged.")]}})
