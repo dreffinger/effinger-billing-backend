@@ -1,0 +1,73 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-23T0514Z",
+ "mode": "dry",
+ "status": "ok",
+ "headline": "DRY (steps: outstanding) - outstanding 2946 visits / 539 charts / $275465.09 open; no AdvancedMD write",
+ "note": "BUTTON PRESS 2026-10-23T04:25:00Z \u00b7 mode: dry \u00b7 steps: outstanding \u00b7 packages: none \u00b7 note: verification from the build session \u2014 read-only",
+ "run_url": "https://claude.ai/code/session_01H9ApYhzVHnN6avYfo8Sp8x",
+ "started": "2026-10-23T05:14:00Z",
+ "ended": "2026-10-23T05:14:37Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 275465.09,
+   "visits": 2946,
+   "charts": 539,
+   "over_365": {
+    "n": 1097,
+    "dollars": 50886.33
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2946 visits / 539 charts / $275465.09 open (over 365 days: 1097 / $50886.33); read-only (massrebillsearch), no AMD write",
+   "counts": {
+    "visits": 2946,
+    "charts": 539
+   },
+   "dollars": {
+    "total": 275465.09
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-23T05:14:12Z",
+   "ended": "2026-10-23T05:14:20Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}
