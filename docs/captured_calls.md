@@ -5218,3 +5218,16 @@ UNI20 pre-5/1 277 pass answered PENDING (P1 'accepted for processing' / P5) on a
 ## 2026-10-23 18:42Z - 2:40 PM ET 10/23 backend billing run (ehpa cloud, v7 prompt) - additions
 - No new call shape this run. Calls used (all already in the registry): login_cached, getclaimcenteroverview, getclaiminspectorbatches, getclaimunbillablecharges, getclaimexclusioncharges, getdemographic, checkEligibility (REST EligibilityDetailsLegacy), updateinsurance (wrapped, subscribernum + o_subscribernum via ins_update.update), updextrainsinfo + /api/claim/chargerebill (freq1_visit.run), hideexclusions, gettxhistory (txh.fetch_visit), lookuppatient, GET /api/era/checks + checkdetails, posterapayments (era_post.py --all-unposted).
 - LESSON (CHP / CAP07 car41826, chart pat17478064): the Change Health payer edit "PA SUBSCRIBER ID IS EIGHT NUMERIC CHARACTERS WITH THE FIRST CHARACTER STARTING WITH 0, 1, 2, 5 OR 6, OR A MAXIMUM OF ELEVEN CHARACTERS WITH A PREFIX OF CHP, CHI, OR CIO" rejects a CHP member id typed from an HCA facesheet with an extra leading zero (CIO001011016, 12 chars). AMD's free 271 on that plan still answers ACTIVE, and its Edi271 <Name NM101="IL" ... NM109_IdentificationCode="01011016"/> element carries the id CHP recognizes (8 digits). Read NM109 from the checkEligibility answer (the Results subscriberid attribute only echoes what the chart holds) before any Stedi 95112 spend; fix with ins_update.update(pid, ins, subscribernum=<NM109>) - the field edit answers <patient insorder=""/> and ins_update re-reads/restores the order - then freq1_visit.run per visit and hideexclusions. The sibling chart from the same facesheet batch (pat17478059) carries the valid CIO + 8-digit form.
+
+# captured_calls additions - 2026-10-24T0040Z backend billing run (9 PM ET 10/23 slot, fired 00:40Z 10/24, ehpa cloud, v7 prompt + v12/v13 rules)
+Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries). Calls used, all in the registry: the engine pass
+(tools/button/run_all.py --mode live --steps columns,era,sweep,packages --stedi-proxy, 00:52-00:56Z, plainly in the foreground):
+columns_scan before/after (getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus,
+getclaimexclusioncharges), insp_bypass_advisories (0 to bypass), unbilled_repair --live (0 rows), payreasons --unbilled --live (0 rows),
+excl_dup_complete / excl_crossover_complete on runs 1700294 + 1700319 (0 completed), era_list before/after (GET /api/era/checks, 0 checks),
+era_post --all-unposted (0 lines), era_clear (0), claim_status_sweep --min-age 176 --max 60 --carriers UNI20,BCBS --skip-answered (Stedi 276/277,
+16 asked) + sweep_register; lookuppatient (admit_lookup_1024_0040.py, read-only, three name patterns). ONE login inside the engine pass; no 429,
+no lock, no classifier refusal. No AdvancedMD write by this container.
+Behaviour seen: nothing new - the two exclusion rows are the standing carrier-record holds (AET12 PREF0288 v19455937 on run 1700294;
+UNI98 'CH EC MISSING PAYER CITY' v19433791 on run 1700319); the ERA Center was empty before and after; the UNI20/BCBS pre-5/1 277 pass
+(pass 162) answered PENDING on all 16 chart-17472874 visits again; the two chartless Pam admits (BRO* 10/19 Brynwood, HIC* 10/22) still have no AMD chart.
