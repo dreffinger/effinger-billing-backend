@@ -1,0 +1,92 @@
+{
+ "date": "2026-10-24",
+ "nppes": {
+  "1629515325": {
+   "who": "Effinger Health PA (group)",
+   "error": "HTTPSConnectionPool(host='npiregistry.cms.hhs.gov', port=443): Max retries exceeded with url: /api/?version=2.1&number=1"
+  },
+  "1225327380": {
+   "who": "William Effinger DO",
+   "error": "HTTPSConnectionPool(host='npiregistry.cms.hhs.gov', port=443): Max retries exceeded with url: /api/?version=2.1&number=1"
+  },
+  "1235128869": {
+   "who": "Pamela Garland-G ARNP",
+   "error": "HTTPSConnectionPool(host='npiregistry.cms.hhs.gov', port=443): Max retries exceeded with url: /api/?version=2.1&number=1"
+  }
+ },
+ "nppes_changes": [],
+ "revalidation": {
+  "error": "HTTPSConnectionPool(host='data.cms.gov', port=443): Max retries exceeded with url: /data-api/v1/dataset/3746498e-874d-45"
+ },
+ "leie": {
+  "error": "HTTPSConnectionPool(host='oig.hhs.gov', port=443): Max retries exceeded with url: /exclusions/downloadables/UPDATED.csv "
+ },
+ "reminders": [
+  {
+   "id": "avl-fb-sender",
+   "name": "Availity: Florida Blue claim-status sender number",
+   "due": "2026-09-12",
+   "days": -42
+  },
+  {
+   "id": "grp-facilities",
+   "name": "Facility credentialing & medical director agreements",
+   "due": "2026-10-21",
+   "days": -3
+  },
+  {
+   "id": "grp-hets",
+   "name": "Medicare HETS attestation (HEET)",
+   "due": "2026-10-14",
+   "days": -10
+  },
+  {
+   "id": "pay-centene",
+   "name": "Sunshine Health / WellCare / Ambetter (Centene)",
+   "due": "2026-09-14",
+   "days": -40
+  },
+  {
+   "id": "pay-cigna",
+   "name": "Cigna / HealthSpring",
+   "due": "2026-10-22",
+   "days": -2
+  },
+  {
+   "id": "pay-fcc",
+   "name": "Florida Community Care (FCC / ILS)",
+   "due": "2026-09-19",
+   "days": -35
+  },
+  {
+   "id": "pay-optum",
+   "name": "Optum Network",
+   "due": "2026-10-01",
+   "days": -23
+  },
+  {
+   "id": "pay-tricare",
+   "name": "TRICARE East (Humana Military)",
+   "due": "2026-09-12",
+   "days": -42
+  },
+  {
+   "id": "pay-uhc",
+   "name": "UnitedHealthcare / AARP Medicare Advantage",
+   "due": "2026-09-10",
+   "days": -44
+  },
+  {
+   "id": "pay-vaccn",
+   "name": "VA Community Care Network (Optum)",
+   "due": "2026-10-10",
+   "days": -14
+  },
+  {
+   "id": "pg-medicaid",
+   "name": "Florida Medicaid provider ID",
+   "due": "2026-10-12",
+   "days": -12
+  }
+ ]
+}

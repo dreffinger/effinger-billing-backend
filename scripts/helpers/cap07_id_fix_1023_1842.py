@@ -1,15 +1,15 @@
 # PLAIN ENGLISH (2:40 PM ET 10/23 slot, run 2026-10-23T1842Z): chart 17478064's two HCA visits (v19457791 99223 10/12/2026, v19457784
 #   99232 10/13/2026, $421) were rejected on claim run 1700319 by Capital Health Plan: "SUBSCRIBER ID IS EIGHT NUMERIC CHARACTERS WITH THE
 #   FIRST CHARACTER STARTING WITH 0, 1, 2, 5 OR 6, OR A MAXIMUM OF ELEVEN CHARACTERS WITH A PREFIX OF CHP, CHI, OR CIO". The chart's CAP07
-#   plan (ins9520948) carries CIO001011016 - 12 characters, one too many. CHP's own 271 on that plan (AMD free eligibility, 19:0xZ)
-#   echoes the member as NM109 = 01011016 (8 digits, first digit 0 = the allowed form), so that is the id the payer recognizes.
+#   plan (ins9520948) carries a 12-character CIO-prefixed id (redacted here) - 12 characters, one too many. CHP's own 271 on that plan (AMD free eligibility, 19:0xZ)
+#   echoes the member as NM109 = MEMBER-ID-REDACTED (8 digits, first digit 0 = the allowed form), so that is the id the payer recognizes.
 # Decides: nothing new - the 10/14 exclusion rule ('wrong member id' -> fix the id, frequency-1 original, hideexclusions).
-# Does (live): ins_update.update(pid, ins, subscribernum="01011016") [wrapped updateinsurance; re-reads insorder], freq1_visit.run per
+# Does (live): ins_update.update(pid, ins, subscribernum="MEMBER-ID-REDACTED") [wrapped updateinsurance; re-reads insorder], freq1_visit.run per
 #   visit on seq 1 (one rebill per visit), hideexclusions run 1700319 for 19457784A + 19457791A, re-list the run.
 # --dry = read only. Register registers/cap07_id_fix_2026-10-23T1842Z[_dry].json. Chart/visit ids only - no names.
 import amd, re, json, sys, time
 DRY = "--dry" in sys.argv; S = "2026-10-23T1842Z"
-PID = "17478064"; INS = "ins9520948"; NEW = "01011016"; RUN = "1700319"
+PID = "17478064"; INS = "ins9520948"; NEW = "MEMBER-ID-REDACTED"; RUN = "1700319"
 VIS = [("19457791", "23369837", "19457791A"), ("19457784", "23369828", "19457784A")]
 amd.login_cached(); out = {"stamp": S, "dry": DRY, "pid": PID, "ins": INS, "new_id": NEW, "steps": []}
 def plans():
