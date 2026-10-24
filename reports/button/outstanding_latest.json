@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-24T03:31:34Z",
+ "at": "2026-10-24T05:27:59Z",
  "as_of": "2026-10-24",
- "total": 272673.36,
- "visits": 2928,
- "charts": 534,
+ "total": 273753.49,
+ "visits": 2934,
+ "charts": 535,
  "over_365": {
   "n": 1101,
   "dollars": 51282.65
  },
  "by_bucket": {
   "0-30": {
-   "n": 229,
-   "dollars": 39307.21
+   "n": 232,
+   "dollars": 39745.14
   },
   "31-60": {
    "n": 260,
@@ -27,8 +27,8 @@
    "dollars": 41017.59
   },
   "181-365": {
-   "n": 721,
-   "dollars": 87109.93
+   "n": 724,
+   "dollars": 87752.13
   },
   "over 365": {
    "n": 1101,
@@ -39,10 +39,10 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1524,
-   "dollars": 130314.82,
+   "n": 1525,
+   "dollars": 130331.75,
    "buckets": {
-    "0-30": 14980.96,
+    "0-30": 14997.89,
     "31-60": 12843.07,
     "61-90": 10574.75,
     "91-180": 22334.24,
@@ -114,10 +114,10 @@
   {
    "carrier": "CAP07",
    "name": "CAPITAL HEALTH PLAN",
-   "n": 29,
-   "dollars": 5197.24,
+   "n": 31,
+   "dollars": 5618.24,
    "buckets": {
-    "0-30": 421.0,
+    "0-30": 842.0,
     "31-60": 1194.0,
     "61-90": 347.0,
     "91-180": 1256.0,
@@ -140,6 +140,21 @@
     "over 365": 638.52
    },
    "oldest_days": 1143
+  },
+  {
+   "carrier": "AET07",
+   "name": "AETNA",
+   "n": 31,
+   "dollars": 4264.01,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 1515.22,
+    "181-365": 2695.04,
+    "over 365": 53.75
+   },
+   "oldest_days": 1478
   },
   {
    "carrier": "CIG09",
@@ -185,21 +200,6 @@
     "over 365": 141.0
    },
    "oldest_days": 387
-  },
-  {
-   "carrier": "AET07",
-   "name": "AETNA",
-   "n": 28,
-   "dollars": 3621.81,
-   "buckets": {
-    "0-30": 0.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 1515.22,
-    "181-365": 2052.84,
-    "over 365": 53.75
-   },
-   "oldest_days": 1478
   },
   {
    "carrier": "SIM01",
@@ -730,13 +730,13 @@
   },
   {
    "month": "2026-02",
-   "n": 109,
-   "dollars": 13455.2
+   "n": 110,
+   "dollars": 13624.4
   },
   {
    "month": "2026-03",
-   "n": 86,
-   "dollars": 8318.33
+   "n": 88,
+   "dollars": 8791.33
   },
   {
    "month": "2026-04",
@@ -770,8 +770,8 @@
   },
   {
    "month": "2026-10",
-   "n": 187,
-   "dollars": 32325.41
+   "n": 190,
+   "dollars": 32763.34
   }
  ],
  "oldest": [
@@ -13532,6 +13532,14 @@
    "dos": "2026-02-02"
   },
   {
+   "visitid": 19431511,
+   "patientid": 17471204,
+   "carriercode": "AET07",
+   "insbalance": 169.2,
+   "days": 263,
+   "dos": "2026-02-03"
+  },
+  {
    "visitid": 19454223,
    "patientid": 24330,
    "carriercode": "MCAD",
@@ -14506,6 +14514,22 @@
    "insbalance": 11.59,
    "days": 232,
    "dos": "2026-03-06"
+  },
+  {
+   "visitid": 19435174,
+   "patientid": 17471204,
+   "carriercode": "AET07",
+   "insbalance": 310.0,
+   "days": 230,
+   "dos": "2026-03-08"
+  },
+  {
+   "visitid": 19435175,
+   "patientid": 17471204,
+   "carriercode": "AET07",
+   "insbalance": 163.0,
+   "days": 229,
+   "dos": "2026-03-09"
   },
   {
    "visitid": 19438176,
@@ -23780,6 +23804,14 @@
    "dos": "2026-10-04"
   },
   {
+   "visitid": 19457360,
+   "patientid": 17473661,
+   "carriercode": "FLO02",
+   "insbalance": 16.93,
+   "days": 20,
+   "dos": "2026-10-04"
+  },
+  {
    "visitid": 19457353,
    "patientid": 46673,
    "carriercode": "FLO02",
@@ -24644,6 +24676,14 @@
    "dos": "2026-10-11"
   },
   {
+   "visitid": 19457791,
+   "patientid": 17478064,
+   "carriercode": "CAP07",
+   "insbalance": 310.0,
+   "days": 12,
+   "dos": "2026-10-12"
+  },
+  {
    "visitid": 19457794,
    "patientid": 17478059,
    "carriercode": "CAP07",
@@ -24784,6 +24824,14 @@
    "patientid": 17474046,
    "carriercode": "SIM01",
    "insbalance": 160.0,
+   "days": 11,
+   "dos": "2026-10-13"
+  },
+  {
+   "visitid": 19457784,
+   "patientid": 17478064,
+   "carriercode": "CAP07",
+   "insbalance": 111.0,
    "days": 11,
    "dos": "2026-10-13"
   },
