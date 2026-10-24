@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-24T0726Z",
+ "stamp": "2026-10-24T0925Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 2 checks $4314.87 -> 1 checks $208.48",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40074095252",
- "started": "2026-10-24T07:26:00Z",
- "ended": "2026-10-24T07:31:37Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40081893478",
+ "started": "2026-10-24T09:25:44Z",
+ "ended": "2026-10-24T09:31:18Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,16 +25,16 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 2,
+    "unposted": 4314.87
    },
    "after": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 208.48
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 4106.39,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 273753.49,
-   "visits": 2934,
-   "charts": 535,
+   "total": 266281.08,
+   "visits": 2897,
+   "charts": 533,
    "over_365": {
     "n": 1101,
     "dollars": 51282.65
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 69,
    "actionable_amt": 12676.0,
-   "asof": "2026-10-24 07:31 UTC"
+   "asof": "2026-10-24 09:31 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T07:26:00Z",
-   "ended": "2026-10-24T07:26:00Z"
+   "started": "2026-10-24T09:25:44Z",
+   "ended": "2026-10-24T09:25:45Z"
   },
   {
    "name": "columns",
@@ -123,28 +123,45 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T07:26:00Z",
-   "ended": "2026-10-24T07:27:41Z"
+   "started": "2026-10-24T09:25:45Z",
+   "ended": "2026-10-24T09:27:23Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "2 checks / $4314.87 -> 1 checks / $208.48",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
-    "checks held": 0
+    "era_post lines": 1,
+    "checks dismissed": 1,
+    "checks held": 1
    },
    "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
+    "unposted before": 4314.87,
+    "unposted after": 208.48,
+    "posted this run": 4106.39
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053273,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350122299",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053274,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "820043715",
+     "amount": 0.0,
+     "unposted": 4314.87,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-24T07:27:41Z",
-   "ended": "2026-10-24T07:27:42Z"
+   "started": "2026-10-24T09:27:23Z",
+   "ended": "2026-10-24T09:27:49Z"
   },
   {
    "name": "packages",
@@ -155,29 +172,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T07:27:42Z",
-   "ended": "2026-10-24T07:27:42Z"
+   "started": "2026-10-24T09:27:49Z",
+   "ended": "2026-10-24T09:27:49Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2934 visits on 535 charts, $273753.49 open; 1101 over a year ($51282.65)",
+   "summary": "2897 visits on 533 charts, $266281.08 open; 1101 over a year ($51282.65)",
    "counts": {
-    "visits": 2934,
-    "charts": 535,
+    "visits": 2897,
+    "charts": 533,
     "over 365 days": 1101
    },
    "dollars": {
-    "open insurance balance": 273753.49,
+    "open insurance balance": 266281.08,
     "over 365 days": 51282.65
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1525,
-     "dollars": 130331.75,
+     "visits": 1488,
+     "dollars": 122859.34,
      "oldest_days": 1074
     },
     {
@@ -259,16 +276,16 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T07:27:42Z",
-   "ended": "2026-10-24T07:27:44Z"
+   "started": "2026-10-24T09:27:49Z",
+   "ended": "2026-10-24T09:27:51Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7375 denied visits on 842 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
+   "summary": "7375 denied visits on 841 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
    "counts": {
-    "charts read": 842,
+    "charts read": 841,
     "denial lines": 12553,
     "visits": 7375,
     "actionable": 69,
@@ -347,11 +364,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T07:27:44Z",
-   "ended": "2026-10-24T07:31:37Z"
+   "started": "2026-10-24T09:27:51Z",
+   "ended": "2026-10-24T09:31:18Z"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "ERA check 1053274 held by era_clear: FLO02 820043715 $4314.87: 2 postable / 0 unrecorded lines - left on the list"
+ ],
  "errors": []
 }
