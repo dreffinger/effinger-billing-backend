@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-24T0133Z",
+ "stamp": "2026-10-24T0329Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 1 checks $288.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40050313543",
- "started": "2026-10-24T01:33:22Z",
- "ended": "2026-10-24T01:38:50Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40058491535",
+ "started": "2026-10-24T03:29:25Z",
+ "ended": "2026-10-24T03:35:27Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 288.0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 288.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 272758.01,
-   "visits": 2933,
-   "charts": 536,
+   "total": 272673.36,
+   "visits": 2928,
+   "charts": 534,
    "over_365": {
     "n": 1101,
     "dollars": 51282.65
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 69,
    "actionable_amt": 12676.0,
-   "asof": "2026-10-24 01:38 UTC"
+   "asof": "2026-10-24 03:35 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T01:33:22Z",
-   "ended": "2026-10-24T01:33:23Z"
+   "started": "2026-10-24T03:29:25Z",
+   "ended": "2026-10-24T03:29:25Z"
   },
   {
    "name": "columns",
@@ -123,28 +123,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T01:33:23Z",
-   "ended": "2026-10-24T01:35:02Z"
+   "started": "2026-10-24T03:29:25Z",
+   "ended": "2026-10-24T03:31:22Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $288.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
+    "era_post lines": 1,
     "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 288.0,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 288.0
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053272,
+     "payer": "AARP",
+     "checknumber": "00148859434",
+     "amount": 0.0,
+     "unposted": 288.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-24T01:35:02Z",
-   "ended": "2026-10-24T01:35:03Z"
+   "started": "2026-10-24T03:31:22Z",
+   "ended": "2026-10-24T03:31:32Z"
   },
   {
    "name": "packages",
@@ -155,29 +164,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T01:35:03Z",
-   "ended": "2026-10-24T01:35:03Z"
+   "started": "2026-10-24T03:31:32Z",
+   "ended": "2026-10-24T03:31:32Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2933 visits on 536 charts, $272758.01 open; 1101 over a year ($51282.65)",
+   "summary": "2928 visits on 534 charts, $272673.36 open; 1101 over a year ($51282.65)",
    "counts": {
-    "visits": 2933,
-    "charts": 536,
+    "visits": 2928,
+    "charts": 534,
     "over 365 days": 1101
    },
    "dollars": {
-    "open insurance balance": 272758.01,
+    "open insurance balance": 272673.36,
     "over 365 days": 51282.65
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1529,
-     "dollars": 130399.47,
+     "visits": 1524,
+     "dollars": 130314.82,
      "oldest_days": 1074
     },
     {
@@ -259,16 +268,16 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T01:35:03Z",
-   "ended": "2026-10-24T01:35:05Z"
+   "started": "2026-10-24T03:31:32Z",
+   "ended": "2026-10-24T03:31:34Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7375 denied visits on 842 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
+   "summary": "7375 denied visits on 841 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
    "counts": {
-    "charts read": 842,
+    "charts read": 841,
     "denial lines": 12553,
     "visits": 7375,
     "actionable": 69,
@@ -347,8 +356,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T01:35:05Z",
-   "ended": "2026-10-24T01:38:50Z"
+   "started": "2026-10-24T03:31:34Z",
+   "ended": "2026-10-24T03:35:27Z"
   }
  ],
  "packages": [],
