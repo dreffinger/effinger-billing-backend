@@ -1,27 +1,17 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-24T0525Z",
+ "stamp": "2026-10-24T0542Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/32/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40066179251",
- "started": "2026-10-24T05:25:29Z",
- "ended": "2026-10-24T05:32:12Z",
+ "headline": "ERA 0 checks $0.00 -> 0 checks $0.00; Aging 2934 visits $273753.49 open: wait $164283.80 / resend $61090.96 / write off $48378.73",
+ "note": "scheduled-cascade",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40067302426",
+ "started": "2026-10-24T05:42:37Z",
+ "ended": "2026-10-24T05:49:42Z",
  "summary": {
   "columns": {
-   "before": {
-    "charge_review": 0,
-    "claim_inspector": 0,
-    "unbilled": 32,
-    "exclusions": 2
-   },
-   "after": {
-    "charge_review": 0,
-    "claim_inspector": 0,
-    "unbilled": 0,
-    "exclusions": 2
-   }
+   "before": {},
+   "after": {}
   },
   "era": {
    "before": {
@@ -65,7 +55,30 @@
    "visits": 7375,
    "actionable": 69,
    "actionable_amt": 12676.0,
-   "asof": "2026-10-24 05:32 UTC"
+   "asof": "2026-10-24 05:46 UTC"
+  },
+  "aging": {
+   "total": 273753.49,
+   "visits": 2934,
+   "asof": "2026-10-24 05:49 UTC",
+   "by_rec": {
+    "WAIT": {
+     "n": 1338,
+     "amt": 164283.8
+    },
+    "CORRECT & RESEND": {
+     "n": 693,
+     "amt": 61090.96
+    },
+    "WRITE OFF": {
+     "n": 903,
+     "amt": 48378.73
+    },
+    "REVIEW": {
+     "n": 0,
+     "amt": 0
+    }
+   }
   }
  },
  "steps": [
@@ -82,61 +95,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T05:25:29Z",
-   "ended": "2026-10-24T05:25:30Z"
-  },
-  {
-   "name": "columns",
-   "title": "Claims Center columns",
-   "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 32->0, Exclusions 2->2",
-   "counts": {
-    "charge review": 0,
-    "claim inspector": 0,
-    "unbilled": 32,
-    "exclusions": 2,
-    "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 0,
-    "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 30,
-    "unbilled rows left alone": 0,
-    "unbilled released": 0,
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log",
-    "exclusions dup run 1700319": 0,
-    "exclusions crossover run 1700319": "see log"
-   },
-   "dollars": {},
-   "lines": [
-    {
-     "column": "unbilled",
-     "kind": "A payment from the prior payor is required before another claim can be",
-     "visits": 30,
-     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
-    },
-    {
-     "column": "unbilled",
-     "kind": "?",
-     "visits": 2,
-     "ids": "v19392347 v19452223"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    },
-    {
-     "column": "exclusions run 1700319",
-     "kind": "UNI98 CH EC  MISSING PAYER CITY",
-     "visits": 1,
-     "ids": "v19433791"
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-24T05:25:30Z",
-   "ended": "2026-10-24T05:27:56Z"
+   "started": "2026-10-24T05:42:37Z",
+   "ended": "2026-10-24T05:42:37Z"
   },
   {
    "name": "era",
@@ -155,8 +115,23 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T05:27:56Z",
-   "ended": "2026-10-24T05:27:57Z"
+   "started": "2026-10-24T05:42:37Z",
+   "ended": "2026-10-24T05:42:41Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Insurance cascade",
+   "status": "ok",
+   "summary": "void rules: void_rules.json not in this workspace (Drive 'workspace mirror') - skipped; precheck flagged charts: 0",
+   "counts": {
+    "void rules": "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped",
+    "precheck flagged charts": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-24T05:42:41Z",
+   "ended": "2026-10-24T05:42:42Z"
   },
   {
    "name": "packages",
@@ -167,8 +142,37 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-24T05:27:57Z",
-   "ended": "2026-10-24T05:27:57Z"
+   "started": "2026-10-24T05:42:42Z",
+   "ended": "2026-10-24T05:42:42Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-24T05:42:42Z",
+   "ended": "2026-10-24T05:42:45Z"
+  },
+  {
+   "name": "money",
+   "title": "Money ledger data",
+   "status": "ok",
+   "summary": "money_ledger.html rebuilt: unpaid $273753, era $0, excl 2",
+   "counts": {
+    "payments scan": "patient_universe_0907.json not in this workspace - skipped"
+   },
+   "dollars": {
+    "unpaid total": 273753.49,
+    "era paid": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-24T05:42:45Z",
+   "ended": "2026-10-24T05:43:13Z"
   },
   {
    "name": "outstanding",
@@ -271,14 +275,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T05:27:57Z",
-   "ended": "2026-10-24T05:27:59Z"
+   "started": "2026-10-24T05:43:13Z",
+   "ended": "2026-10-24T05:43:14Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7375 denied visits on 842 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESUBMITTED 170, RESOLVED 4314, OPEN 205",
+   "summary": "7375 denied visits on 842 charts; 69 actionable $12676.00 (65 inside 12 months $11956.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
    "counts": {
     "charts read": 842,
     "denial lines": 12553,
@@ -286,8 +290,8 @@
     "actionable": 69,
     "inside 12 months": 65,
     "status WRITTEN-OFF": 2686,
-    "status RESUBMITTED": 170,
     "status RESOLVED": 4314,
+    "status RESUBMITTED": 170,
     "status OPEN": 205
    },
    "dollars": {
@@ -359,8 +363,107 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-24T05:27:59Z",
-   "ended": "2026-10-24T05:32:12Z"
+   "started": "2026-10-24T05:43:14Z",
+   "ended": "2026-10-24T05:46:54Z"
+  },
+  {
+   "name": "aging",
+   "title": "AR aging refresh",
+   "status": "ok",
+   "summary": "2934 visits / 535 charts, $273753.49 open: WAIT $164283.80, CORRECT & RESEND $61090.96, WRITE OFF $48378.73",
+   "counts": {
+    "visits": 2934,
+    "patients": 535,
+    "charts read": 535,
+    "sent 0-30": 1023,
+    "sent 31-60": 1121,
+    "sent 61-90": 14,
+    "sent 91-120": 39,
+    "sent over 120": 737
+   },
+   "dollars": {
+    "open insurance balance": 273753.49,
+    "WAIT": 164283.8,
+    "CORRECT & RESEND": 61090.96,
+    "WRITE OFF": 48378.73
+   },
+   "lines": [
+    {
+     "payer": "FLO02",
+     "visits": 1525,
+     "dollars": 130331.75,
+     "over_120": 33391.5
+    },
+    {
+     "payer": "UNI20",
+     "visits": 277,
+     "dollars": 41098.64,
+     "over_120": 9174.96
+    },
+    {
+     "payer": "FLO99",
+     "visits": 136,
+     "dollars": 22431.58,
+     "over_120": 0.0
+    },
+    {
+     "payer": "BCBS",
+     "visits": 317,
+     "dollars": 20531.39,
+     "over_120": 289.67
+    },
+    {
+     "payer": "HUM01",
+     "visits": 113,
+     "dollars": 9584.48,
+     "over_120": 1764.6
+    },
+    {
+     "payer": "CAP07",
+     "visits": 31,
+     "dollars": 5618.24,
+     "over_120": 542.06
+    },
+    {
+     "payer": "UHCMA",
+     "visits": 29,
+     "dollars": 5081.97,
+     "over_120": 163.37
+    },
+    {
+     "payer": "AET07",
+     "visits": 31,
+     "dollars": 4264.01,
+     "over_120": 118.22
+    },
+    {
+     "payer": "CIG09",
+     "visits": 26,
+     "dollars": 4031.01,
+     "over_120": 0.0
+    },
+    {
+     "payer": "VACCN",
+     "visits": 24,
+     "dollars": 3979.98,
+     "over_120": 77.22
+    },
+    {
+     "payer": "MCAD",
+     "visits": 30,
+     "dollars": 3787.1,
+     "over_120": 0.0
+    },
+    {
+     "payer": "SIM01",
+     "visits": 19,
+     "dollars": 3231.12,
+     "over_120": 0.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-24T05:46:54Z",
+   "ended": "2026-10-24T05:49:42Z"
   }
  ],
  "packages": [],
