@@ -1,0 +1,179 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-25T0047Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 1 checks $113.48 -> 0 checks $0.00",
+ "note": "backend billing run 2026-10-25T0040Z (9 PM ET slot)",
+ "run_url": "",
+ "started": "2026-10-25T00:47:52Z",
+ "ended": "2026-10-25T00:51:39Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 0,
+    "exclusions": 2
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 0,
+    "exclusions": 2
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 113.48
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 113.48,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1236 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1236,
+    "registers": 1521,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-25T00:47:52Z",
+   "ended": "2026-10-25T00:47:52Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 2->2",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 0,
+    "exclusions": 2,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 0,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700319": 0,
+    "exclusions crossover run 1700319": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700319",
+     "kind": "UNI98 CH EC  MISSING PAYER CITY",
+     "visits": 1,
+     "ids": "v19433791"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-25T00:47:52Z",
+   "ended": "2026-10-25T00:50:45Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 checks / $113.48 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 1,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 113.48,
+    "unposted after": 0,
+    "posted this run": 113.48
+   },
+   "lines": [
+    {
+     "check": 1053282,
+     "payer": "HUMANA",
+     "checknumber": "204239374261024",
+     "amount": 0.0,
+     "unposted": 113.48,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-25T00:50:45Z",
+   "ended": "2026-10-25T00:50:57Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "PENDING at payer - wait: 16",
+   "counts": {
+    "PENDING at payer - wait": 16
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 16,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271 v19455322"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-25T00:50:57Z",
+   "ended": "2026-10-25T00:51:39Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-25T00:51:39Z",
+   "ended": "2026-10-25T00:51:39Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}

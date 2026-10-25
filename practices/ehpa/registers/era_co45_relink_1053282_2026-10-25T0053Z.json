@@ -1,0 +1,130 @@
+{
+ "stamp": "2026-10-25T0053Z",
+ "checkid": "1053282",
+ "checknumber": "204239374261024",
+ "live": true,
+ "lines": [
+  {
+   "pid": "17478012",
+   "vid": "19457320",
+   "cid": "23369177",
+   "cpt": "99223",
+   "paid": 78.25,
+   "co": 151.9,
+   "pr": 79.85,
+   "before": {
+    "fee": 310.0,
+    "paid": 78.25,
+    "insbalance": 0.0,
+    "patbalance": 231.75,
+    "carrier": "HUM01"
+   },
+   "payid": "24669724",
+   "void": [
+    true,
+    "5-w567k\" lst=\"10/24/2026 17:53:46\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "move_back": "moved 231.75 -> {'patbalance': '0.00', 'insbalance': '310.00', 'insorder': '1'}",
+   "post": [
+    true,
+    "10176467",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-pkvm9\" lst=\"10/24/2026 17:53:58\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 310.0,
+    "paid": 230.15,
+    "insbalance": 0.0,
+    "patbalance": 79.85,
+    "pays": [
+     [
+      "24669727",
+      78.25,
+      "204239374261024",
+      [
+       [
+        "CO45",
+        150.3
+       ],
+       [
+        "PR2",
+        79.85
+       ],
+       [
+        "CO253",
+        1.6
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      151.9
+     ]
+    ]
+   },
+   "result": "corrected"
+  },
+  {
+   "pid": "17478012",
+   "vid": "19457271",
+   "cid": "23369128",
+   "cpt": "99232",
+   "paid": 35.23,
+   "co": 39.82,
+   "pr": 35.95,
+   "before": {
+    "fee": 111.0,
+    "paid": 35.23,
+    "insbalance": 0.0,
+    "patbalance": 75.77,
+    "carrier": "HUM01"
+   },
+   "payid": "24669725",
+   "void": [
+    true,
+    "5-pkvm9\" lst=\"10/24/2026 17:54:02\"><Results success=\"1\" /><Error /></PPMDResults>"
+   ],
+   "move_back": "moved 75.77 -> {'patbalance': '0.00', 'insbalance': '111.00', 'insorder': '1'}",
+   "post": [
+    true,
+    "10176469",
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-w567k\" lst=\"10/24/2026 17:54:12\"><Results success=\"1\" paym"
+   ],
+   "after": {
+    "fee": 111.0,
+    "paid": 75.05,
+    "insbalance": 0.0,
+    "patbalance": 35.95,
+    "pays": [
+     [
+      "24669729",
+      35.23,
+      "204239374261024",
+      [
+       [
+        "CO45",
+        39.1
+       ],
+       [
+        "PR2",
+        35.95
+       ],
+       [
+        "CO253",
+        0.72
+       ]
+      ]
+     ]
+    ],
+    "wos": [
+     [
+      "WOINS",
+      39.82
+     ]
+    ]
+   },
+   "result": "corrected"
+  }
+ ]
+}

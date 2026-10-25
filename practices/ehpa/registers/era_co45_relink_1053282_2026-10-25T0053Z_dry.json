@@ -1,0 +1,44 @@
+{
+ "stamp": "2026-10-25T0053Z",
+ "checkid": "1053282",
+ "checknumber": "204239374261024",
+ "live": false,
+ "lines": [
+  {
+   "pid": "17478012",
+   "vid": "19457320",
+   "cid": "23369177",
+   "cpt": "99223",
+   "paid": 78.25,
+   "co": 151.9,
+   "pr": 79.85,
+   "before": {
+    "fee": 310.0,
+    "paid": 78.25,
+    "insbalance": 0.0,
+    "patbalance": 231.75,
+    "carrier": "HUM01"
+   },
+   "payid": "24669724",
+   "result": "DRY"
+  },
+  {
+   "pid": "17478012",
+   "vid": "19457271",
+   "cid": "23369128",
+   "cpt": "99232",
+   "paid": 35.23,
+   "co": 39.82,
+   "pr": 35.95,
+   "before": {
+    "fee": 111.0,
+    "paid": 35.23,
+    "insbalance": 0.0,
+    "patbalance": 75.77,
+    "carrier": "HUM01"
+   },
+   "payid": "24669725",
+   "result": "DRY"
+  }
+ ]
+}
