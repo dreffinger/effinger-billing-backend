@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-25T1323Z",
+ "stamp": "2026-10-25T1523Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40197351125",
- "started": "2026-10-25T13:23:11Z",
- "ended": "2026-10-25T13:28:22Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40206709091",
+ "started": "2026-10-25T15:23:43Z",
+ "ended": "2026-10-25T15:29:54Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 69,
    "actionable_amt": 12676.0,
-   "asof": "2026-10-25 13:28 UTC"
+   "asof": "2026-10-25 15:29 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T13:23:11Z",
-   "ended": "2026-10-25T13:23:11Z"
+   "started": "2026-10-25T15:23:43Z",
+   "ended": "2026-10-25T15:23:44Z"
   },
   {
    "name": "columns",
@@ -123,8 +123,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-25T13:23:11Z",
-   "ended": "2026-10-25T13:24:51Z"
+   "started": "2026-10-25T15:23:44Z",
+   "ended": "2026-10-25T15:25:42Z"
   },
   {
    "name": "era",
@@ -143,8 +143,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T13:24:51Z",
-   "ended": "2026-10-25T13:24:52Z"
+   "started": "2026-10-25T15:25:42Z",
+   "ended": "2026-10-25T15:25:44Z"
   },
   {
    "name": "packages",
@@ -155,8 +155,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T13:24:52Z",
-   "ended": "2026-10-25T13:24:52Z"
+   "started": "2026-10-25T15:25:44Z",
+   "ended": "2026-10-25T15:25:44Z"
   },
   {
    "name": "outstanding",
@@ -259,8 +259,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-25T13:24:52Z",
-   "ended": "2026-10-25T13:24:54Z"
+   "started": "2026-10-25T15:25:44Z",
+   "ended": "2026-10-25T15:25:46Z"
   },
   {
    "name": "denials",
@@ -347,8 +347,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-25T13:24:54Z",
-   "ended": "2026-10-25T13:28:22Z"
+   "started": "2026-10-25T15:25:46Z",
+   "ended": "2026-10-25T15:29:54Z"
   }
  ],
  "packages": [],
