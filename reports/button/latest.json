@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-25T0331Z",
+ "stamp": "2026-10-25T0525Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/32/3 -> 0/0/0/3; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40158508349",
- "started": "2026-10-25T03:31:18Z",
- "ended": "2026-10-25T03:36:45Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40165475953",
+ "started": "2026-10-25T05:25:35Z",
+ "ended": "2026-10-25T05:30:55Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 0,
-    "exclusions": 2
+    "unbilled": 32,
+    "exclusions": 3
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
     "unbilled": 0,
-    "exclusions": 2
+    "exclusions": 3
    }
   },
   "era": {
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 263383.08,
-   "visits": 2883,
+   "total": 263808.96,
+   "visits": 2890,
    "charts": 526,
    "over_365": {
     "n": 1109,
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 69,
    "actionable_amt": 12676.0,
-   "asof": "2026-10-25 03:36 UTC"
+   "asof": "2026-10-25 05:30 UTC"
   }
  },
  "steps": [
@@ -82,33 +82,47 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T03:31:18Z",
-   "ended": "2026-10-25T03:31:18Z"
+   "started": "2026-10-25T05:25:35Z",
+   "ended": "2026-10-25T05:25:36Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 2->2",
+   "summary": "CR 0->0, CI 0->0, Unbilled 32->0, Exclusions 3->3",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 0,
-    "exclusions": 2,
+    "unbilled": 32,
+    "exclusions": 3,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 30,
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
     "exclusions crossover run 1700294": "see log",
     "exclusions dup run 1700319": 0,
-    "exclusions crossover run 1700319": "see log"
+    "exclusions crossover run 1700319": "see log",
+    "exclusions dup run 1700323": 0,
+    "exclusions crossover run 1700323": "nothing to complete"
    },
    "dollars": {},
    "lines": [
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
     {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
@@ -120,11 +134,17 @@
      "kind": "UNI98 CH EC  MISSING PAYER CITY",
      "visits": 1,
      "ids": "v19433791"
+    },
+    {
+     "column": "exclusions run 1700323",
+     "kind": "BCBS CH FH  PREF0283:MISSING PAYER DOC CONTROL NUM",
+     "visits": 1,
+     "ids": "v19456319"
     }
    ],
    "errors": [],
-   "started": "2026-10-25T03:31:18Z",
-   "ended": "2026-10-25T03:33:07Z"
+   "started": "2026-10-25T05:25:36Z",
+   "ended": "2026-10-25T05:27:38Z"
   },
   {
    "name": "era",
@@ -143,8 +163,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T03:33:07Z",
-   "ended": "2026-10-25T03:33:10Z"
+   "started": "2026-10-25T05:27:38Z",
+   "ended": "2026-10-25T05:27:39Z"
   },
   {
    "name": "packages",
@@ -155,21 +175,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-25T03:33:10Z",
-   "ended": "2026-10-25T03:33:10Z"
+   "started": "2026-10-25T05:27:39Z",
+   "ended": "2026-10-25T05:27:39Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2883 visits on 526 charts, $263383.08 open; 1109 over a year ($52142.36)",
+   "summary": "2890 visits on 526 charts, $263808.96 open; 1109 over a year ($52142.36)",
    "counts": {
-    "visits": 2883,
+    "visits": 2890,
     "charts": 526,
     "over 365 days": 1109
    },
    "dollars": {
-    "open insurance balance": 263383.08,
+    "open insurance balance": 263808.96,
     "over 365 days": 52142.36
    },
    "lines": [
@@ -197,8 +217,8 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 317,
-     "dollars": 20531.39,
+     "visits": 318,
+     "dollars": 20557.98,
      "oldest_days": 1532
     },
     {
@@ -259,8 +279,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-25T03:33:10Z",
-   "ended": "2026-10-25T03:33:12Z"
+   "started": "2026-10-25T05:27:39Z",
+   "ended": "2026-10-25T05:27:41Z"
   },
   {
    "name": "denials",
@@ -347,8 +367,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-25T03:33:12Z",
-   "ended": "2026-10-25T03:36:45Z"
+   "started": "2026-10-25T05:27:41Z",
+   "ended": "2026-10-25T05:30:55Z"
   }
  ],
  "packages": [],

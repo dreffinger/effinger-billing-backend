@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-25T03:33:12Z",
+ "at": "2026-10-25T05:27:41Z",
  "as_of": "2026-10-25",
- "total": 263383.08,
- "visits": 2883,
+ "total": 263808.96,
+ "visits": 2890,
  "charts": 526,
  "over_365": {
   "n": 1109,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 177,
-   "dollars": 29601.03
+   "n": 184,
+   "dollars": 30026.91
   },
   "31-60": {
    "n": 260,
@@ -84,10 +84,10 @@
   {
    "carrier": "BCBS",
    "name": "FLORIDA BLUE",
-   "n": 317,
-   "dollars": 20531.39,
+   "n": 318,
+   "dollars": 20557.98,
    "buckets": {
-    "0-30": 1028.44,
+    "0-30": 1055.03,
     "31-60": 2263.62,
     "61-90": 3367.01,
     "91-180": 3670.96,
@@ -277,6 +277,21 @@
    "oldest_days": 765
   },
   {
+   "carrier": "SUN01",
+   "name": "SUNSHINE STATE HEALTH PLAN",
+   "n": 24,
+   "dollars": 1707.38,
+   "buckets": {
+    "0-30": 765.39,
+    "31-60": 606.79,
+    "61-90": 87.2,
+    "91-180": 141.0,
+    "181-365": 107.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 256
+  },
+  {
    "carrier": "TRI00",
    "name": "TRICARE EAST",
    "n": 7,
@@ -292,27 +307,12 @@
    "oldest_days": 265
   },
   {
-   "carrier": "SUN01",
-   "name": "SUNSHINE STATE HEALTH PLAN",
-   "n": 19,
-   "dollars": 1334.68,
-   "buckets": {
-    "0-30": 392.69,
-    "31-60": 606.79,
-    "61-90": 87.2,
-    "91-180": 141.0,
-    "181-365": 107.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 256
-  },
-  {
    "carrier": "AAR01",
    "name": "AARP",
-   "n": 37,
-   "dollars": 1267.21,
+   "n": 38,
+   "dollars": 1293.8,
    "buckets": {
-    "0-30": 31.94,
+    "0-30": 58.53,
     "31-60": 774.12,
     "61-90": 88.18,
     "91-180": 314.01,
@@ -765,13 +765,13 @@
   },
   {
    "month": "2026-09",
-   "n": 269,
-   "dollars": 34612.94
+   "n": 271,
+   "dollars": 34666.12
   },
   {
    "month": "2026-10",
-   "n": 153,
-   "dollars": 25472.93
+   "n": 158,
+   "dollars": 25845.63
   }
  ],
  "oldest": [
@@ -23086,6 +23086,22 @@
   {
    "visitid": 19456320,
    "patientid": 17470940,
+   "carriercode": "AAR01",
+   "insbalance": 26.59,
+   "days": 30,
+   "dos": "2026-09-25"
+  },
+  {
+   "visitid": 19456319,
+   "patientid": 17477516,
+   "carriercode": "BCBS",
+   "insbalance": 26.59,
+   "days": 30,
+   "dos": "2026-09-25"
+  },
+  {
+   "visitid": 19456320,
+   "patientid": 17470940,
    "carriercode": "FLO02",
    "insbalance": 17.37,
    "days": 30,
@@ -23748,6 +23764,14 @@
    "dos": "2026-10-05"
   },
   {
+   "visitid": 19457301,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 74.54,
+   "days": 20,
+   "dos": "2026-10-05"
+  },
+  {
    "visitid": 19457314,
    "patientid": 17477980,
    "carriercode": "FLO02",
@@ -23884,6 +23908,14 @@
    "dos": "2026-10-06"
   },
   {
+   "visitid": 19457290,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 74.54,
+   "days": 19,
+   "dos": "2026-10-06"
+  },
+  {
    "visitid": 19457282,
    "patientid": 17478014,
    "carriercode": "FLO02",
@@ -24004,6 +24036,14 @@
    "dos": "2026-10-07"
   },
   {
+   "visitid": 19457266,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 74.54,
+   "days": 18,
+   "dos": "2026-10-07"
+  },
+  {
    "visitid": 19457263,
    "patientid": 17476869,
    "carriercode": "FLO02",
@@ -24092,6 +24132,14 @@
    "dos": "2026-10-08"
   },
   {
+   "visitid": 19457483,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
+   "insbalance": 74.54,
+   "days": 17,
+   "dos": "2026-10-08"
+  },
+  {
    "visitid": 19457457,
    "patientid": 17478030,
    "carriercode": "FLO02",
@@ -24159,6 +24207,14 @@
    "visitid": 19457462,
    "patientid": 17477557,
    "carriercode": "FLO02",
+   "insbalance": 74.54,
+   "days": 16,
+   "dos": "2026-10-09"
+  },
+  {
+   "visitid": 19457464,
+   "patientid": 17476358,
+   "carriercode": "SUN01",
    "insbalance": 74.54,
    "days": 16,
    "dos": "2026-10-09"
