@@ -6,6 +6,7 @@
 #   9/20/2026 rule; the 10/5/2026 run completed 9 such rows the same way). A row whose charges carry no Medicare payment, whose
 #   balance is not the coinsurance, or whose carrier is not BCBS is LEFT on the list and printed.
 # Never touches: charges, payments, write-offs, claims; nothing is rebilled. --live writes; default dry.
+#   10/25/2026: a charge still flagged to Medicare (FLO02) counts when Medicare paid it and only its PR coinsurance is open.
 #   python3 excl_crossover_complete.py --scan <scan dir> --run <claimrunid> [--live]
 #   register registers/excl_crossover_<run>_<stamp>[_dry].json
 import amd, txh, re, json, sys, time, datetime
@@ -43,7 +44,10 @@ for r in rows:
                      "billdate": c.get("billdate") or c.get("datebilled"), "insbal": float(c.get("insbal") or 0), "patbal": float(c.get("patbal") or 0),
                      "medicare_paid": sum(-float(p.get("amount") or 0) for p in pays), "medicare_checks": sorted({p.get("checknumber") or "" for p in pays}),
                      "pr": round(pr, 2)})
-    ok = bool(live) and all(l["medicare_paid"] > 0 and abs(l["insbal"] - l["pr"]) < 0.01 and l["carrier"] == "BCBS" for l in live)
+    # 10/25/2026: a charge whose live carrier still reads Medicare (FLO02) but that Medicare already PAID, with only its PR coinsurance
+    # open, is in the same crossover-wait state as its BCBS-flagged sibling (visit 19456319: 99349 flipped to BCBS, 99497 still FLO02,
+    # both paid by Medicare, both open = PR) - the row's own carrier is already filtered to BCBS above.
+    ok = bool(live) and all(l["medicare_paid"] > 0 and abs(l["insbal"] - l["pr"]) < 0.01 and l["carrier"] in ({"BCBS"} | MEDICARE) for l in live)
     rec = {"visit": r["id"], "claimid": r["claimid"], "pid": pid, "fee": sum(float(c.get("totalfee") or 0) for c in r.get("_chgs") or []),
            "coinsurance_open": round(sum(l["insbal"] for l in live), 2), "live": live}
     (reg["complete"] if ok else reg["left"]).append(rec)
