@@ -1,0 +1,29 @@
+{
+ "run": "2026-10-26T0640Z",
+ "live": true,
+ "visits": [
+  {
+   "pid": "17473308",
+   "vid": "19442309",
+   "cids": [
+    "23350335",
+    "23350336"
+   ],
+   "dos": "05/17/2026",
+   "cpts": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "err": "Date of service is outside insurance coverage effective dates",
+   "from": "BCBS ins9514966 (ended 10/24/2025)",
+   "to": "FLO02 ins9519437 seq 2 (begin 05/01/2025)",
+   "steps": [
+    "freq1_visit.reroute order 2 seq 2 -> resave ok, freq1 + rebill 204",
+    "visit_order_release --release -> success 1",
+    "ins_update sequence=2 -> patient insorder 2"
+   ],
+   "rule": "v13 rule A refinement (covering plan on the chart -> reroute, one freq-1)"
+  }
+ ]
+}
