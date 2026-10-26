@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-26T0139Z",
+ "stamp": "2026-10-26T0335Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40255250439",
- "started": "2026-10-26T01:39:13Z",
- "ended": "2026-10-26T01:45:04Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40264781734",
+ "started": "2026-10-26T03:35:12Z",
+ "ended": "2026-10-26T03:40:11Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 263433.12,
-   "visits": 2888,
-   "charts": 526,
+   "total": 239393.54,
+   "visits": 2753,
+   "charts": 487,
    "over_365": {
-    "n": 1149,
-    "dollars": 59622.07
+    "n": 1123,
+    "dollars": 55275.68
    }
   },
   "denials": {
    "visits": 7375,
-   "actionable": 69,
-   "actionable_amt": 12676.0,
-   "asof": "2026-10-26 01:45 UTC"
+   "actionable": 63,
+   "actionable_amt": 11562.0,
+   "asof": "2026-10-26 03:40 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1242 helpers into /home/claude/unbilled",
+   "summary": "1243 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1242,
-    "registers": 1547,
+    "helpers copied": 1243,
+    "registers": 1548,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T01:39:13Z",
-   "ended": "2026-10-26T01:39:14Z"
+   "started": "2026-10-26T03:35:12Z",
+   "ended": "2026-10-26T03:35:17Z"
   },
   {
    "name": "columns",
@@ -123,8 +123,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-26T01:39:14Z",
-   "ended": "2026-10-26T01:41:04Z"
+   "started": "2026-10-26T03:35:17Z",
+   "ended": "2026-10-26T03:36:53Z"
   },
   {
    "name": "era",
@@ -143,8 +143,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T01:41:04Z",
-   "ended": "2026-10-26T01:41:07Z"
+   "started": "2026-10-26T03:36:53Z",
+   "ended": "2026-10-26T03:36:54Z"
   },
   {
    "name": "packages",
@@ -155,22 +155,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T01:41:07Z",
-   "ended": "2026-10-26T01:41:07Z"
+   "started": "2026-10-26T03:36:54Z",
+   "ended": "2026-10-26T03:36:54Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2888 visits on 526 charts, $263433.12 open; 1149 over a year ($59622.07)",
+   "summary": "2753 visits on 487 charts, $239393.54 open; 1123 over a year ($55275.68)",
    "counts": {
-    "visits": 2888,
-    "charts": 526,
-    "over 365 days": 1149
+    "visits": 2753,
+    "charts": 487,
+    "over 365 days": 1123
    },
    "dollars": {
-    "open insurance balance": 263433.12,
-    "over 365 days": 59622.07
+    "open insurance balance": 239393.54,
+    "over 365 days": 55275.68
    },
    "lines": [
     {
@@ -183,8 +183,8 @@
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 265,
-     "dollars": 39221.64,
+     "visits": 192,
+     "dollars": 25850.2,
      "oldest_days": 1260
     },
     {
@@ -197,16 +197,9 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 317,
-     "dollars": 20242.98,
+     "visits": 304,
+     "dollars": 16930.99,
      "oldest_days": 1533
-    },
-    {
-     "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 111,
-     "dollars": 9163.48,
-     "oldest_days": 1296
     },
     {
      "carrier": "CAP07",
@@ -216,18 +209,18 @@
      "oldest_days": 773
     },
     {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 82,
+     "dollars": 5605.33,
+     "oldest_days": 1296
+    },
+    {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 29,
      "dollars": 5081.97,
      "oldest_days": 1145
-    },
-    {
-     "carrier": "AET07",
-     "name": "AETNA",
-     "visits": 30,
-     "dollars": 4203.17,
-     "oldest_days": 1480
     },
     {
      "carrier": "CIG09",
@@ -251,37 +244,44 @@
      "oldest_days": 389
     },
     {
-     "carrier": "SIM01",
-     "name": "SIMPLY HEALTHCARE MCD PLANS",
-     "visits": 19,
-     "dollars": 3231.12,
-     "oldest_days": 108
+     "carrier": "TRI05",
+     "name": "TRICARE FOR LIFE",
+     "visits": 96,
+     "dollars": 3105.91,
+     "oldest_days": 1504
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 35,
+     "dollars": 3045.73,
+     "oldest_days": 593
     }
    ],
    "errors": [],
-   "started": "2026-10-26T01:41:07Z",
-   "ended": "2026-10-26T01:41:09Z"
+   "started": "2026-10-26T03:36:54Z",
+   "ended": "2026-10-26T03:36:56Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7375 denied visits on 834 charts; 69 actionable $12676.00 (64 inside 12 months $11750.00); WRITTEN-OFF 2686, RESOLVED 4314, RESUBMITTED 170, OPEN 205",
+   "summary": "7375 denied visits on 823 charts; 63 actionable $11562.00 (59 inside 12 months $10743.00); WRITTEN-OFF 2739, RESOLVED 4314, RESUBMITTED 168, OPEN 154",
    "counts": {
-    "charts read": 834,
+    "charts read": 823,
     "denial lines": 12553,
     "visits": 7375,
-    "actionable": 69,
-    "inside 12 months": 64,
-    "status WRITTEN-OFF": 2686,
+    "actionable": 63,
+    "inside 12 months": 59,
+    "status WRITTEN-OFF": 2739,
     "status RESOLVED": 4314,
-    "status RESUBMITTED": 170,
-    "status OPEN": 205
+    "status RESUBMITTED": 168,
+    "status OPEN": 154
    },
    "dollars": {
-    "actionable": 12676.0,
-    "inside 12 months": 11750.0,
-    "resubmitted": 28856.53,
+    "actionable": 11562.0,
+    "inside 12 months": 10743.0,
+    "resubmitted": 28444.53,
     "resolved since": 649341.85
    },
    "lines": [
@@ -347,8 +347,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-26T01:41:09Z",
-   "ended": "2026-10-26T01:45:04Z"
+   "started": "2026-10-26T03:36:56Z",
+   "ended": "2026-10-26T03:40:11Z"
   }
  ],
  "packages": [],
