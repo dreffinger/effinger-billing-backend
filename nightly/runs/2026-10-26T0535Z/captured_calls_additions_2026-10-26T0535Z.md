@@ -1,0 +1,4 @@
+# captured_calls additions - nightly insurance cascade 2026-10-26T0535Z (1:30 AM ET 10/26/2026, Monday, ehpa cloud, repo attached)
+No new call shapes this run. Calls used (all already in the registry): login (one attempt, precheck.py 06:00Z), POST /claim/massrebillsearch {} (precheck.py, build_money.py), gettxhistory (void_rules.py, 1 chart), GET /api/era/checks (era_post.py / era_clear.py: 0 checks), GET /api/claim/runs via build_money.py, Stedi GET /payers/search (1 free reachability probe), NPPES API (cred_check.py, 3 records). data.cms.gov and oig.hhs.gov unreachable from the container (every night since 10/22).
+Lessons:
+- Nothing new. The 3-day precheck window has been empty every night since 10/18 because the Claimocity charge feed runs ~10 days behind; the --days 14 variant is still waiting on William's word.
