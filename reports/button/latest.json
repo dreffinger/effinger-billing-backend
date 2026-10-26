@@ -1,25 +1,25 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-26T0335Z",
+ "stamp": "2026-10-26T0530Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/33/2 -> 0/0/1/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40264781734",
- "started": "2026-10-26T03:35:12Z",
- "ended": "2026-10-26T03:40:11Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40274559286",
+ "started": "2026-10-26T05:30:27Z",
+ "ended": "2026-10-26T05:35:45Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 0,
+    "unbilled": 33,
     "exclusions": 2
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 0,
+    "unbilled": 1,
     "exclusions": 2
    }
   },
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 239393.54,
-   "visits": 2753,
+   "total": 239454.38,
+   "visits": 2754,
    "charts": 487,
    "over_365": {
     "n": 1123,
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 63,
    "actionable_amt": 11562.0,
-   "asof": "2026-10-26 03:40 UTC"
+   "asof": "2026-10-26 05:35 UTC"
   }
  },
  "steps": [
@@ -82,25 +82,25 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T03:35:12Z",
-   "ended": "2026-10-26T03:35:17Z"
+   "started": "2026-10-26T05:30:27Z",
+   "ended": "2026-10-26T05:30:28Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 2->2",
+   "summary": "CR 0->0, CI 0->0, Unbilled 33->1, Exclusions 2->2",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 0,
+    "unbilled": 33,
     "exclusions": 2,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 0,
+    "unbilled prior-payor rows": 30,
+    "unbilled rows left alone": 1,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
     "exclusions crossover run 1700294": "see log",
@@ -109,6 +109,24 @@
    },
    "dollars": {},
    "lines": [
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Date of service is outside insurance coverage effective dates",
+     "visits": 1,
+     "ids": "v19442309"
+    },
     {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
@@ -123,8 +141,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-26T03:35:17Z",
-   "ended": "2026-10-26T03:36:53Z"
+   "started": "2026-10-26T05:30:28Z",
+   "ended": "2026-10-26T05:32:24Z"
   },
   {
    "name": "era",
@@ -143,8 +161,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T03:36:53Z",
-   "ended": "2026-10-26T03:36:54Z"
+   "started": "2026-10-26T05:32:24Z",
+   "ended": "2026-10-26T05:32:26Z"
   },
   {
    "name": "packages",
@@ -155,21 +173,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-26T03:36:54Z",
-   "ended": "2026-10-26T03:36:54Z"
+   "started": "2026-10-26T05:32:26Z",
+   "ended": "2026-10-26T05:32:26Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2753 visits on 487 charts, $239393.54 open; 1123 over a year ($55275.68)",
+   "summary": "2754 visits on 487 charts, $239454.38 open; 1123 over a year ($55275.68)",
    "counts": {
-    "visits": 2753,
+    "visits": 2754,
     "charts": 487,
     "over 365 days": 1123
    },
    "dollars": {
-    "open insurance balance": 239393.54,
+    "open insurance balance": 239454.38,
     "over 365 days": 55275.68
    },
    "lines": [
@@ -259,14 +277,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-26T03:36:54Z",
-   "ended": "2026-10-26T03:36:56Z"
+   "started": "2026-10-26T05:32:26Z",
+   "ended": "2026-10-26T05:32:28Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7375 denied visits on 823 charts; 63 actionable $11562.00 (59 inside 12 months $10743.00); WRITTEN-OFF 2739, RESOLVED 4314, RESUBMITTED 168, OPEN 154",
+   "summary": "7375 denied visits on 823 charts; 63 actionable $11562.00 (59 inside 12 months $10743.00); WRITTEN-OFF 2739, RESOLVED 4314, RESUBMITTED 169, OPEN 153",
    "counts": {
     "charts read": 823,
     "denial lines": 12553,
@@ -275,13 +293,13 @@
     "inside 12 months": 59,
     "status WRITTEN-OFF": 2739,
     "status RESOLVED": 4314,
-    "status RESUBMITTED": 168,
-    "status OPEN": 154
+    "status RESUBMITTED": 169,
+    "status OPEN": 153
    },
    "dollars": {
     "actionable": 11562.0,
     "inside 12 months": 10743.0,
-    "resubmitted": 28444.53,
+    "resubmitted": 28505.37,
     "resolved since": 649341.85
    },
    "lines": [
@@ -347,8 +365,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-26T03:36:56Z",
-   "ended": "2026-10-26T03:40:11Z"
+   "started": "2026-10-26T05:32:28Z",
+   "ended": "2026-10-26T05:35:45Z"
   }
  ],
  "packages": [],
