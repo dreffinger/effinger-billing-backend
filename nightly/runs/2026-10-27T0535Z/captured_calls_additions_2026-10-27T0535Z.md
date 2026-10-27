@@ -1,0 +1,4 @@
+# captured_calls additions - 2026-10-27T0535Z nightly insurance cascade (1:30 AM ET 10/27/2026, Tuesday)
+Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries).
+Calls used, all in the registry: login (one attempt), massrebillsearch via precheck.py (0 visits inside the 3-day window), void_rules.py (gettxhistory reads, no void), GET /api/era/checks via era_post.py --all-unposted and era_clear.py (0 checks), build_money.py reads, Stedi GET /payers/search?query=Humana (free probe, 200).
+Behaviour seen: ERA Center empty; unpaid list has no DOS inside the 3-day window (Claimocity feed lag since 10/18); cred_check.py egress to npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov all 'Max retries exceeded' - NPPES verified through the NPI Registry connector instead (3 records unchanged). Environment note: /usr/local/bin/python3 (3.11) lacked requests and openpyxl on the fresh container; installed with python3 -m pip. No AMD write this run.
