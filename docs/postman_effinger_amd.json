@@ -6,9 +6,11 @@
  },
  "item": [
   {
+   "id": "54b1c46c-7ab7-51bb-b291-4761df30c0ee",
    "name": "Login",
    "item": [
     {
+     "id": "f860c3c1-ca93-523a-b22d-0c9e98bbb7a7",
      "name": "Login step 1 — partnerlogin (returns webserver redirect)",
      "request": {
       "method": "POST",
@@ -32,6 +34,7 @@
      }
     },
     {
+     "id": "89caa5d0-196e-5b1b-bee4-2f22db96dd85",
      "name": "Login step 2 — webserver (returns usercontext token)",
      "request": {
       "method": "POST",
@@ -57,9 +60,11 @@
    ]
   },
   {
+   "id": "b2607367-a7d9-5daf-acfd-2f9fd178fe9c",
    "name": "Eligibility",
    "item": [
     {
+     "id": "1c186271-754c-527f-9068-8c0d863f873f",
      "name": "Check eligibility (EligibilityDetailsLegacy) — full 271",
      "request": {
       "method": "POST",
@@ -89,9 +94,11 @@
    ]
   },
   {
+   "id": "a5873065-9c5a-5212-98da-de1a345f548a",
    "name": "Demographics",
    "item": [
     {
+     "id": "18c9e29f-e23b-5795-a431-332f85dcba42",
      "name": "Read patient",
      "request": {
       "method": "GET",
@@ -114,6 +121,7 @@
      }
     },
     {
+     "id": "80fef525-034e-54b5-a56d-fabc0e675df4",
      "name": "Edit address (familyupdate) — PATCH",
      "request": {
       "method": "PATCH",
@@ -145,6 +153,7 @@
      }
     },
     {
+     "id": "8491f634-5d48-5df0-9052-531e3feb811b",
      "name": "getdemographic (plans)",
      "request": {
       "method": "POST",
@@ -172,6 +181,7 @@
      }
     },
     {
+     "id": "f540314e-2142-589f-b606-b391e7d8252b",
      "name": "gettxhistory (charges, payments, write-offs)",
      "request": {
       "method": "POST",
@@ -199,6 +209,7 @@
      }
     },
     {
+     "id": "3ea6252f-50ee-51fb-a6f8-9bb9124ddc35",
      "name": "getchargedetaildataicd10 (by charge id)",
      "request": {
       "method": "POST",
@@ -226,6 +237,7 @@
      }
     },
     {
+     "id": "365378a3-4bdb-59b9-b95e-dc4ce2bd11c4",
      "name": "addinsurance — add a plan (NO group number)",
      "request": {
       "method": "POST",
@@ -253,6 +265,7 @@
      }
     },
     {
+     "id": "cb023760-4c15-5376-bfd1-6015967c4176",
      "name": "updateinsurance — change one plan field (wrapped shape)",
      "request": {
       "method": "POST",
@@ -280,6 +293,7 @@
      }
     },
     {
+     "id": "a543260f-eb0b-5e99-924e-51ac35cd0361",
      "name": "lookuppatient — find a chart",
      "request": {
       "method": "POST",
@@ -307,6 +321,7 @@
      }
     },
     {
+     "id": "bbbe65c7-ef16-5b45-8998-2f7eeda3a75e",
      "name": "DOB / flat fields — PATCH (familyupdate null)",
      "request": {
       "method": "PATCH",
@@ -338,6 +353,7 @@
      }
     },
     {
+     "id": "1a9a7638-7210-50f8-9172-09abb70d7810",
      "name": "Edit address when original line 1 is blank (Claimocity-fed chart)",
      "request": {
       "method": "PATCH",
@@ -377,6 +393,7 @@
      }
     },
     {
+     "id": "fd4dd6a5-188b-5383-9bf9-271a8d1d0270",
      "name": "addpatient — create a chart",
      "request": {
       "method": "POST",
@@ -404,6 +421,7 @@
      }
     },
     {
+     "id": "dd53ed21-6243-5ab6-b9bb-e14c1ebbade8",
      "name": "updaterespparty — name/dob/sex on the responsible party",
      "request": {
       "method": "POST",
@@ -433,9 +451,11 @@
    ]
   },
   {
+   "id": "bfef91ee-77f2-5602-93da-6cb5e318a7ed",
    "name": "Charges & visits",
    "item": [
     {
+     "id": "989a4cfa-5fda-5ce0-969c-d49cdf250966",
      "name": "updvisitwithcharges — FULL-ECHO resave (void trap!)",
      "request": {
       "method": "POST",
@@ -463,6 +483,7 @@
      }
     },
     {
+     "id": "7f9e352b-cc88-5a18-99c2-0122945ada5a",
      "name": "updextrainsinfo — frequency reset (always original) / hospitalization dates",
      "request": {
       "method": "POST",
@@ -490,6 +511,7 @@
      }
     },
     {
+     "id": "c1a1be79-7680-52a2-ad40-8744158105c0",
      "name": "addreferralplan — one referral plan per VA stay",
      "request": {
       "method": "POST",
@@ -517,6 +539,7 @@
      }
     },
     {
+     "id": "af71acf2-7ae5-5571-95bd-c2e40bc488f9",
      "name": "getreviewcharges — Charge Review column",
      "request": {
       "method": "POST",
@@ -544,6 +567,7 @@
      }
     },
     {
+     "id": "2a8257f8-e4cb-5c75-b3e4-24c04365e657",
      "name": "approvecharges — approve Charge Review rows",
      "request": {
       "method": "POST",
@@ -571,6 +595,7 @@
      }
     },
     {
+     "id": "a01934ba-3105-5ac7-8265-46bf529d5db6",
      "name": "Re-render a visit to another provider profile (updvisitwithnewcharges profile=)",
      "request": {
       "method": "POST",
@@ -594,6 +619,7 @@
      }
     },
     {
+     "id": "8e567ea1-7837-54b5-ad8c-67ca2f746773",
      "name": "updextrainsinfo - frequency 7 corrected claim (payer ICN from the posted ERA payment)",
      "request": {
       "method": "POST",
@@ -621,6 +647,7 @@
      }
     },
     {
+     "id": "55635417-6723-595c-8472-7fa97014bf5e",
      "name": "addvisit — create an EMPTY visit (<appt> child)",
      "request": {
       "method": "POST",
@@ -648,6 +675,7 @@
      }
     },
     {
+     "id": "8072ab9c-426a-5983-8855-6846fc47b965",
      "name": "updvisitwithnewcharges — ADD NEW charges to a visit",
      "request": {
       "method": "POST",
@@ -677,9 +705,11 @@
    ]
   },
   {
+   "id": "5cf7ad59-354c-557a-a8fa-76a8173b2af2",
    "name": "Claims Center",
    "item": [
     {
+     "id": "ad4eb5a2-aef7-53c7-a27a-b6f60adb0c6e",
      "name": "getclaimcenteroverview",
      "request": {
       "method": "POST",
@@ -707,6 +737,7 @@
      }
     },
     {
+     "id": "ebabde81-1465-5701-9908-e39b5dcf1517",
      "name": "getclaimunbillablecharges",
      "request": {
       "method": "POST",
@@ -734,6 +765,7 @@
      }
     },
     {
+     "id": "a8394eef-1864-5a90-937c-bedd749f53ca",
      "name": "getclaimexclusionclaimruns",
      "request": {
       "method": "POST",
@@ -761,6 +793,7 @@
      }
     },
     {
+     "id": "86825613-e0be-58eb-bf86-33f5dea5a93d",
      "name": "getclaimexclusioncharges (both flags required)",
      "request": {
       "method": "POST",
@@ -788,6 +821,7 @@
      }
     },
     {
+     "id": "fd14a233-f2f4-55ec-a95c-4045c2eeae25",
      "name": "getclaiminspectorbatches",
      "request": {
       "method": "POST",
@@ -815,6 +849,7 @@
      }
     },
     {
+     "id": "9826bf2e-7dc3-5bb1-8c92-e27619a44dac",
      "name": "getclaiminspectorcharges",
      "request": {
       "method": "POST",
@@ -842,6 +877,7 @@
      }
     },
     {
+     "id": "79bbb54f-1267-5fc6-bf98-4ac45d11416d",
      "name": "Mass write-off search — open balances by carrier",
      "request": {
       "method": "POST",
@@ -869,6 +905,7 @@
      }
     },
     {
+     "id": "9bd41a34-c090-53bb-8a25-4b46b18d3cfe",
      "name": "Mass rebill search — unpaid list / by last-billed carrier",
      "request": {
       "method": "POST",
@@ -896,6 +933,7 @@
      }
     },
     {
+     "id": "d6a77b6d-4d7e-51c1-a1b9-972a6f1963f0",
      "name": "Rebill a charge (frequency 1 first via updextrainsinfo)",
      "request": {
       "method": "POST",
@@ -923,6 +961,7 @@
      }
     },
     {
+     "id": "dff73cd2-d8af-5193-93d8-a0f595bb383c",
      "name": "bypassclaimedits — clear an Inspector edit",
      "request": {
       "method": "POST",
@@ -950,6 +989,7 @@
      }
     },
     {
+     "id": "b9e4a214-d768-578a-9c3d-69cbb4bb2946",
      "name": "hideunbillablevisits — release Unbilled rows",
      "request": {
       "method": "POST",
@@ -977,6 +1017,7 @@
      }
     },
     {
+     "id": "e97bd110-a55f-5427-99b7-b9790a3a2711",
      "name": "hideexclusions — complete an Exclusions claim run",
      "request": {
       "method": "POST",
@@ -1004,6 +1045,7 @@
      }
     },
     {
+     "id": "100b0d70-854b-55a0-a357-971478fdc090",
      "name": "getclaimrunstatus — claim runs / run alerts",
      "request": {
       "method": "POST",
@@ -1031,6 +1073,7 @@
      }
     },
     {
+     "id": "a5dcd6a5-ccf3-5855-8e72-f550a82190f0",
      "name": "Mass write-off search — PATIENT balances (isinsbalance false)",
      "request": {
       "method": "POST",
@@ -1064,9 +1107,11 @@
    ]
   },
   {
+   "id": "9323105b-c4bd-5e9d-b975-42a64c4ce30c",
    "name": "Payments & ERA",
    "item": [
     {
+     "id": "3d75ae22-daaf-5787-83a0-87120e4c6b0c",
      "name": "Unposted checks",
      "request": {
       "method": "GET",
@@ -1085,6 +1130,7 @@
      }
     },
     {
+     "id": "fb0ae125-fdc3-5748-b661-3288b9aec2bb",
      "name": "Check details",
      "request": {
       "method": "GET",
@@ -1103,6 +1149,7 @@
      }
     },
     {
+     "id": "545fb46d-c5fa-5896-95dd-38450a28c423",
      "name": "Dismiss a check",
      "request": {
       "method": "POST",
@@ -1130,6 +1177,7 @@
      }
     },
     {
+     "id": "d6c51aa8-57b7-5cbe-9638-f7c17d457963",
      "name": "Dismissed list",
      "request": {
       "method": "GET",
@@ -1148,6 +1196,7 @@
      }
     },
     {
+     "id": "dca1c6b9-d45a-5cc1-a440-47f91b62807e",
      "name": "Restore a dismissed check",
      "request": {
       "method": "POST",
@@ -1175,6 +1224,7 @@
      }
     },
     {
+     "id": "8b65ca24-5faf-5661-a32c-a56dd379ace6",
      "name": "Release expired locks",
      "request": {
       "method": "POST",
@@ -1193,6 +1243,7 @@
      }
     },
     {
+     "id": "7c5cca69-1341-5153-9c8e-04247bd8161d",
      "name": "Upload an 835 into the ERA Center (POST /api/era/upload/835, multipart)",
      "request": {
       "method": "POST",
@@ -1228,6 +1279,7 @@
      }
     },
     {
+     "id": "f0764385-b594-56fa-91fa-d263763f036e",
      "name": "addpayments — manual payment / write-off (Payment Entry)",
      "request": {
       "method": "POST",
@@ -1255,6 +1307,7 @@
      }
     },
     {
+     "id": "a966480b-8111-5656-bfda-72ae121d580e",
      "name": "posterapayments — the ERA Post button (JSON ppmdmsg via wfe gateway)",
      "request": {
       "method": "POST",
@@ -1282,6 +1335,7 @@
      }
     },
     {
+     "id": "210fc046-be0d-56fe-bc2c-633a2d4ca43c",
      "name": "Write-off codes (reference for addpayments wocode)",
      "request": {
       "method": "POST",
@@ -1305,6 +1359,7 @@
      }
     },
     {
+     "id": "32a0ea64-afc2-54bc-8052-156b9dd3965f",
      "name": "Availity Remittance Viewer PDF exports -> check register -> manual posts (data source, no HTTP call)",
      "request": {
       "method": "GET",
@@ -1323,6 +1378,7 @@
      }
     },
     {
+     "id": "cc35a1e8-d69c-5599-866a-ab9f47f26683",
      "name": "addpayments — ERA-linked manual post WITH reason codes (Payment Entry 'post manually' shape)",
      "request": {
       "method": "POST",
@@ -1350,6 +1406,7 @@
      }
     },
     {
+     "id": "a47d63f6-d9e4-5e61-bbe2-7ea3b4a2b813",
      "name": "RECIPE — repair an Unbilled 'Payment reason codes are missing or do not balance' row",
      "request": {
       "method": "POST",
@@ -1377,6 +1434,7 @@
      }
     },
     {
+     "id": "fec5ede8-6d2d-5bc8-8b87-d9d858d0ae43",
      "name": "RECIPE — paper / virtual-card EOB -> synthetic 835 -> ERA Center -> ERA-linked post under the payer's carrier",
      "request": {
       "method": "POST",
@@ -1404,6 +1462,7 @@
      }
     },
     {
+     "id": "d2fd1a06-f0c2-5afc-a5dc-aabb67dd6726",
      "name": "addpayments — ERA-linked $0 post with TWO write-offs (Medicare contractual + Medicaid coinsurance) on one charge",
      "request": {
       "method": "POST",
@@ -1431,6 +1490,7 @@
      }
     },
     {
+     "id": "7373e4e8-8743-5557-915d-074126b56f3d",
      "name": "Post an UNAPPLIED insurance credit on a chart (addpayments, unappliedpaymentlist, empty chargelist)",
      "request": {
       "method": "POST",
@@ -1454,6 +1514,7 @@
      }
     },
     {
+     "id": "083d3dac-9de4-5fc6-a2a3-cdec5e20c385",
      "name": "Write-off only Payment Entry (addpayments, empty paymentlist - no $0 payment line)",
      "request": {
       "method": "POST",
@@ -1479,9 +1540,11 @@
    ]
   },
   {
+   "id": "55469475-56ec-5ce6-9fad-1890f56371d3",
    "name": "Lookups",
    "item": [
     {
+     "id": "5b9a20b6-ed56-5f88-968d-61f668ef950f",
      "name": "lookupdiagcode — dcode ids",
      "request": {
       "method": "POST",
@@ -1509,6 +1572,7 @@
      }
     },
     {
+     "id": "049f9216-c07b-5885-9ea1-6228784e9fb4",
      "name": "lookupcarrier — carrier by code",
      "request": {
       "method": "POST",
@@ -1536,6 +1600,7 @@
      }
     },
     {
+     "id": "ec23a8f2-cac0-5eee-8660-b84e56f723bf",
      "name": "selectfacilities — facility id map",
      "request": {
       "method": "POST",
@@ -1563,6 +1628,7 @@
      }
     },
     {
+     "id": "c8dcffaf-a3d1-52ff-927f-520bd2994089",
      "name": "lookupdiagcode — ICD-10 dcode id (codeset=10)",
      "request": {
       "method": "POST",
@@ -1590,6 +1656,7 @@
      }
     },
     {
+     "id": "57293f13-078d-534a-a626-5f0d40e10d5b",
      "name": "lookupproccode — pcode id for a CPT",
      "request": {
       "method": "POST",
@@ -1619,9 +1686,11 @@
    ]
   },
   {
+   "id": "0de197b6-8bfa-5f85-88bd-7f0229c7c9d2",
    "name": "Locator",
    "item": [
     {
+     "id": "5fd3ba35-1d79-5cf8-9bbd-3588da6da351",
      "name": "Service map (401 here in the browser = stale session)",
      "request": {
       "method": "GET",
@@ -1642,9 +1711,11 @@
    ]
   },
   {
+   "id": "160e156c-2226-546d-8397-4675901197f7",
    "name": "Stedi",
    "item": [
     {
+     "id": "da7e32c0-dbd0-5931-825d-476fc0234b0c",
      "name": "Eligibility v3 (270/271)",
      "request": {
       "method": "POST",
@@ -1672,6 +1743,7 @@
      }
     },
     {
+     "id": "21768bc3-66c3-56ef-9a83-c40640d1fed7",
      "name": "Claim status v2 (276/277)",
      "request": {
       "method": "POST",
@@ -1699,6 +1771,7 @@
      }
     },
     {
+     "id": "4aa1af98-5128-5b70-b885-7778102294d6",
      "name": "Insurance discovery v1",
      "request": {
       "method": "POST",
@@ -1726,6 +1799,7 @@
      }
     },
     {
+     "id": "bb36565f-3bf5-5eb2-94ca-d671cc5677df",
      "name": "Payer search / CPID cross-reference",
      "request": {
       "method": "GET",
@@ -1740,6 +1814,7 @@
      }
     },
     {
+     "id": "432dc2bb-4d63-580f-bd67-26291481b55b",
      "name": "Eligibility v3 - dependent shape (subscriber + dependents[])",
      "request": {
       "method": "POST",
@@ -1793,9 +1868,11 @@
    ]
   },
   {
+   "id": "46dd3c72-1039-572a-80b6-d542f6f23dd0",
    "name": "Inputs & scans",
    "item": [
     {
+     "id": "ffe97abc-e021-5c9a-9ac6-e68dd8a8a41b",
      "name": "ScanSnap batch -> container: the size ladder (Gmail RAW <=1 MB, Drive connector <=10 MB, Zapier byte-range slices above) - data route, no single HTTP call",
      "request": {
       "method": "GET",
@@ -1814,6 +1891,7 @@
      }
     },
     {
+     "id": "9477eeb3-4b1c-59a2-a950-74e2da92489d",
      "name": "Zapier: Gmail attachment -> hydrate URL -> Google Drive 'Upload File' (native hydration, any size)",
      "request": {
       "method": "POST",
@@ -1832,6 +1910,7 @@
      }
     },
     {
+     "id": "fbccfc03-94d4-5e22-b0c6-93a3233eaf31",
      "name": "Zapier code action: Google Drive file byte range as base64 (files over the Drive connector's 10 MB limit)",
      "request": {
       "method": "POST",

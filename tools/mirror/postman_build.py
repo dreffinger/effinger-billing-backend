@@ -8,9 +8,14 @@
 #   collection. Refuses to write if any body/url/header looks like it carries a real token or key.
 # Never touches: AMD, Stedi, Drive, GitHub. Pure file in, file out.
 # ---
-import json, os, re, sys, datetime
+import json, os, re, sys, datetime, uuid
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# 10/28/2026: the Postman connector's putCollection validates `id` on EVERY item (folders and requests) - "Required at
+# collection.item[0].id" - so each item carries a stable uuid5 of its vocabulary id / folder name (same id on every rebuild,
+# so a re-put updates in place instead of recreating the request).
+NS = uuid.UUID("6f1b2c3d-4e5f-4a6b-8c7d-9e0f1a2b3c4d")
+def item_id(key): return str(uuid.uuid5(NS, key))
 VOCAB = os.path.join(ROOT, "docs", "api_vocabulary.json")
 OUT = os.path.join(ROOT, "docs", "postman_effinger_amd.json")
 
@@ -37,9 +42,9 @@ def build(vocab):
         if c.get("body"):
             lang = c.get("body_language", "text")
             req["body"] = {"mode": "raw", "raw": c["body"], "options": {"raw": {"language": lang}}}
-        folders.setdefault(c["folder"], []).append({"name": c["name"], "request": req})
+        folders.setdefault(c["folder"], []).append({"id": item_id("call:" + c["id"]), "name": c["name"], "request": req})
     order = vocab.get("folders", []) + [f for f in folders if f not in vocab.get("folders", [])]
-    items = [{"name": f, "item": folders[f]} for f in order if f in folders]
+    items = [{"id": item_id("folder:" + f), "name": f, "item": folders[f]} for f in order if f in folders]
     return {
         "info": {
             "name": "Effinger AMD — captured calls (generated %s, %d calls)" % (datetime.date.today().isoformat(), len(vocab["calls"])),
