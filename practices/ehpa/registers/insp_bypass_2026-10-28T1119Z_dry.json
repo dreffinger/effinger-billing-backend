@@ -1,0 +1,46 @@
+{
+ "stamp": "2026-10-28T1119Z",
+ "live": false,
+ "source": "scan_board_2026-10-28T1038Z/summary_after.json",
+ "held": [],
+ "done": [],
+ "failed": [],
+ "planned": [
+  {
+   "batch": "1",
+   "vid": "19459073",
+   "pid": "24208",
+   "errids": [
+    "397337"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": []
+  },
+  {
+   "batch": "1",
+   "vid": "19459138",
+   "pid": "12179690",
+   "errids": [
+    "397336"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": []
+  },
+  {
+   "batch": "1",
+   "vid": "19459143",
+   "pid": "17472873",
+   "errids": [
+    "397335"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": []
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "stamp": "2026-10-28T1038Z",
+ "live": true,
+ "run": "1700335",
+ "visit": "19459291",
+ "claimid": "19459291A",
+ "ok": true,
+ "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 04:21:00\"><Results success=\"1\" /><Error /></PPMDResults>"
+}

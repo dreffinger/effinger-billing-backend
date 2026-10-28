@@ -1,0 +1,17 @@
+{
+ "stamp": "2026-10-28T1038Z",
+ "live": true,
+ "at": "2026-10-28T11:13:37Z",
+ "rows": [
+  {
+   "visit": "19459063",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 04:13:37\"><Results success=\"1\" /><E"
+  },
+  {
+   "visit": "19459073",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 04:13:38\"><Results success=\"1\" /><E"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "stamp": "2026-10-28T1119Z",
+ "live": true,
+ "source": "scan_board_2026-10-28T1038Z/summary_after.json",
+ "held": [],
+ "done": [
+  {
+   "batch": "1",
+   "vid": "19459073",
+   "pid": "24208",
+   "errids": [
+    "397337"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 04:19:37\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "1",
+   "vid": "19459138",
+   "pid": "12179690",
+   "errids": [
+    "397336"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 04:19:38\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "1",
+   "vid": "19459143",
+   "pid": "17472873",
+   "errids": [
+    "397335"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 04:19:39\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}
