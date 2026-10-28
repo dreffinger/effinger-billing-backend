@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-28T1521Z",
+ "stamp": "2026-10-28T1720Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 4 checks $425.47 -> 1 checks $22.60",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40715116989",
- "started": "2026-10-28T15:21:46Z",
- "ended": "2026-10-28T15:27:49Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40734642338",
+ "started": "2026-10-28T17:20:00Z",
+ "ended": "2026-10-28T17:27:24Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,16 +25,16 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 4,
+    "unposted": 425.47
    },
    "after": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 22.6
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 402.87,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 337269.22,
-   "visits": 3182,
-   "charts": 570,
+   "total": 336023.22,
+   "visits": 3178,
+   "charts": 569,
    "over_365": {
     "n": 1126,
     "dollars": 55333.86
@@ -65,7 +65,7 @@
    "visits": 7736,
    "actionable": 65,
    "actionable_amt": 11909.0,
-   "asof": "2026-10-28 15:27 UTC"
+   "asof": "2026-10-28 17:27 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T15:21:46Z",
-   "ended": "2026-10-28T15:21:47Z"
+   "started": "2026-10-28T17:20:00Z",
+   "ended": "2026-10-28T17:20:00Z"
   },
   {
    "name": "columns",
@@ -121,28 +121,61 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T15:21:47Z",
-   "ended": "2026-10-28T15:23:33Z"
+   "started": "2026-10-28T17:20:00Z",
+   "ended": "2026-10-28T17:22:12Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "4 checks / $425.47 -> 1 checks / $22.60",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
-    "checks held": 0
+    "era_post lines": 2,
+    "checks dismissed": 3,
+    "checks held": 1
    },
    "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
+    "unposted before": 425.47,
+    "unposted after": 22.6,
+    "posted this run": 402.87
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053315,
+     "payer": "FLORIDA BLUE",
+     "checknumber": "2610280541",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053316,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "2610281090",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053317,
+     "payer": "FLORIDA BLUE",
+     "checknumber": "213518717",
+     "amount": 0.0,
+     "unposted": 374.27,
+     "stage": "before"
+    },
+    {
+     "check": 1053318,
+     "payer": "FLORIDA BLUE",
+     "checknumber": "423837831",
+     "amount": 0.0,
+     "unposted": 51.2,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-28T15:23:33Z",
-   "ended": "2026-10-28T15:23:34Z"
+   "started": "2026-10-28T17:22:12Z",
+   "ended": "2026-10-28T17:22:43Z"
   },
   {
    "name": "packages",
@@ -153,21 +186,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T15:23:34Z",
-   "ended": "2026-10-28T15:23:34Z"
+   "started": "2026-10-28T17:22:43Z",
+   "ended": "2026-10-28T17:22:43Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3182 visits on 570 charts, $337269.22 open; 1126 over a year ($55333.86)",
+   "summary": "3178 visits on 569 charts, $336023.22 open; 1126 over a year ($55333.86)",
    "counts": {
-    "visits": 3182,
-    "charts": 570,
+    "visits": 3178,
+    "charts": 569,
     "over 365 days": 1126
    },
    "dollars": {
-    "open insurance balance": 337269.22,
+    "open insurance balance": 336023.22,
     "over 365 days": 55333.86
    },
    "lines": [
@@ -195,8 +228,8 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 317,
-     "dollars": 20113.93,
+     "visits": 313,
+     "dollars": 18867.93,
      "oldest_days": 1535
     },
     {
@@ -257,8 +290,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T15:23:34Z",
-   "ended": "2026-10-28T15:23:35Z"
+   "started": "2026-10-28T17:22:43Z",
+   "ended": "2026-10-28T17:22:45Z"
   },
   {
    "name": "denials",
@@ -267,7 +300,7 @@
    "summary": "7736 denied visits on 865 charts; 65 actionable $11909.00 (61 inside 12 months $11090.00); WRITTEN-OFF 2929, RESOLVED 4482, RESUBMITTED 170, OPEN 155",
    "counts": {
     "charts read": 865,
-    "denial lines": 13128,
+    "denial lines": 13136,
     "visits": 7736,
     "actionable": 65,
     "inside 12 months": 61,
@@ -345,11 +378,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T15:23:35Z",
-   "ended": "2026-10-28T15:27:49Z"
+   "started": "2026-10-28T17:22:45Z",
+   "ended": "2026-10-28T17:27:24Z"
   }
  ],
  "packages": [],
- "waiting": [],
+ "waiting": [
+  "ERA check 1053317 held by era_clear: BCBS 213518717 $374.27: 0 postable / 0 unrecorded lines - left on the list"
+ ],
  "errors": []
 }
