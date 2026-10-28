@@ -5449,3 +5449,8 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
 - Claimocity's PID-19 SSN answers Stedi MBILU ERR 72 on every HCA chart tried (12 of 12) - as on 10/9; facesheets remain the route.
 - The 06:40Z backend routine ran concurrently and worked the inspector on this import (100 bypasses, 8 dx cascades, admission dates) -
   concurrent sessions on the same ledger are a known pattern (9/10 rule); nothing was double-written.
+
+# captured_calls additions - 2026-10-28T1246Z backend billing run (8:46 AM ET 10/28 slot, fired 12:46Z, ehpa cloud, v7 prompt + v12/v13 rules)
+Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries).
+Calls used, all in the registry: engine pass tools/button/run_all.py --mode live --steps columns,era,sweep,packages --stedi-proxy (13:04-13:08Z): login (one), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges per run (columns_scan before/after); era_list (GET /api/era/checks), era_post --all-unposted (0 checks), era_clear dismiss (POST /api/era/checks/dismiss, check 1053307); claim_status_sweep (Stedi 276/277 x15); lookuppatient x3 (admit_lookup_1028_1246.py); gettxhistory (txh.fetch_visit pat17473664 v19415871, read-only).
+Behaviour seen: era_clear classifies a check whose lines are all $0 denials already posted with a WOINS as 'denial with write-off (cascade handles)' and dismisses it - correct per the 5(e) rule (no postable money, visits settled). Columns 0/0/4/1 -> 0/0/4/1: both holds are William's (fac67 facility NPI; AET12 carrier master).
