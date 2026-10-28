@@ -4,7 +4,7 @@
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/0/49/2 -> 0/0/4/1; ERA 1 checks $0.00 -> 0 checks $0.00; posted $0 (WOINS 25.06, WONCS 315.00); re-sent 13 visits $2,976",
- "note": "ehpa Billing Button run (full, no brief) - William 10/28 06:34 ET 'run all the columns again and cascade to clean up the billing'",
+ "note": "BUTTON PRESS 2026-10-28T10:40Z \u00b7 mode: live \u00b7 steps: columns,cascade \u00b7 packages: none \u00b7 note: William 06:34 ET 'run all the columns again and cascade to clean up the billing' (brief arrived after the run; the run had already done columns + cascade and every other step live)",
  "run_url": "https://claude.ai/code/session_01HHfWRByehYaMNDbni8SfFf",
  "started": "2026-10-28T10:53:54Z",
  "ended": "2026-10-28T11:28:00Z",
@@ -92,7 +92,7 @@
    "status": "ok",
    "started": "2026-10-28T10:48:00Z",
    "ended": "2026-10-28T10:54:00Z",
-   "summary": "2 William orders done (row levin-lize-17475632 'rebill' -> v19433791 freq-1 to UNI98 + exclusion 1700319 completed; row dalrymple-dane-17473245 'write off' -> WOINS 16.14 + 8.92 on v19452629); drops 0; denials commands 0; Pam admit chart found (pat17478229, Medicare verified) -> William for the secondary's name; board_updates_2026-10-28T1038Z.json (11 ops) in board inbox",
+   "summary": "2 William orders done (row levin-lize-17475632 'rebill' -> v19433791 freq-1 to UNI98 + exclusion 1700319 completed; row dalrymple-dane-17473245 'write off' -> WOINS 16.14 + 8.92 on v19452629); drops 0; denials commands 0; Pam admit chart found (pat17478229, Medicare verified) -> William for the secondary's name; board_updates_2026-10-28T1038Z.json (11 ops) in board inbox; brief expectations: (a) 13 payerless F1028 charts listed (registers/payerless_f1028_2026-10-28T1038Z.json), no plans invented; (b) deceased cache unpacked before the guard; (c) no integration duplicates seen (feed paused); (d) inspector re-listed with fresh ids - 0 held",
    "counts": {
     "rows on claude turn read": 200,
     "william orders acted": 2,
@@ -552,6 +552,7 @@
  ],
  "packages": [],
  "waiting": [
+  "13 Claimocity-backlog charts with no payer anywhere (feed IN1 empty, discovery empty): 17478200 17478201 17478203 17478205 17478208 17478212 17478214 17478215 17478216 17478221 17478225 17478228 17477946 - 33 visits entered, unbillable until facesheets arrive (emailed 'current face sheets needed' 11:40Z); no plans invented",
   "facility fac67 HCA REHAB NPI in Master Files (4 Unbilled visits $871) - board row facility-npi-fac67",
   "chart 17477533: DOB / MBI from the facesheet (CMS AAA 71) - board row daffin-faye-17477533",
   "chart 17478229: name of the private Medicare coinsurance plan (or none) - board row brown-lisa-admit-1019",
