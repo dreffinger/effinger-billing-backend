@@ -5424,6 +5424,10 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
 - `registers/feed_import_1028.json` (every visit/charge this import created — the list to void if Gregg's pickup re-posts the same
   10 files), `registers/feed_newcharts_1028.json` (31 charts F1028-02..32 + pat17478199 F1028-01), `registers/feed_verify_1028.json`,
   `registers/feed_inspector_1028.json`, `feed_match_1028.json` (feed patient → chart), `dx_cache_1028.json` (ICD → dcode).
+- `feed_parse_dft_1028.py <hl7 folder> feed_parsed_1028.json` (step 1, saved 04:30 UTC from the scratchpad) re-parses the Claimocity DFT files byte-exact into
+  `feed_parsed_1028.json` (570 messages / 797 charge lines), so the parsed feed is reproducible from the SFTP zip and is not mirrored to Drive; SSNs are never copied out.
+- Postman connector `putCollection` validates `id` on every folder and request ("Required at collection.item[0].id"); `tools/mirror/postman_build.py` now writes a
+  stable uuid5 per item (same id on every rebuild) - the 69-call collection was re-put 04:20 UTC 10/28.
 
 ## Later in the same session (07:30–09:00 UTC)
 - **Responsible party name**: `addpatient` creates the responsible party with an EMPTY name; the inspector then raises 117080083
