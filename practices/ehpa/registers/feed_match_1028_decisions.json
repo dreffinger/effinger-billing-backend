@@ -1,0 +1,509 @@
+{
+"_note":"Claimocity patient id (PID-3) -> AMD chart chosen on 10/28/2026 for the feed patients that were not a single exact name+DOB match. FOUND matches and every visit's feed_id->pid are in practices/ehpa/registers/feed_import_1028.json (GitHub). Rule: AMBIGUOUS -> the chart with the most recent non-void charge; MISSING -> new chart F1028-NN (feed_newcharts_1028.py).",
+"decisions":{
+"6acf68a9761929e7970a7bc4":{
+"status":"MISSING",
+"resolved":"pat17478199",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-01)"
+},
+"6acf58415a5de0132d0d8e29":{
+"status":"MISSING",
+"resolved":"pat17478200",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-03)"
+},
+"6acf55e9d9c22f80640a7069":{
+"status":"MISSING",
+"resolved":"pat17478201",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-04)"
+},
+"6501593ae9abd1e55976e55c":{
+"status":"AMBIGUOUS",
+"resolved":"pat17469466",
+"candidates":[
+"pat17469466",
+"pat17469619"
+],
+"resolution":"most recent charge 20260924 (86 charges)"
+},
+"627a3e0253431d27ed7eba18":{
+"status":"AMBIGUOUS",
+"resolved":"pat17477010",
+"candidates":[
+"pat17477010",
+"pat23493"
+],
+"resolution":"most recent charge 20260921 (10 charges)"
+},
+"6436c1469793d294232397f5":{
+"status":"AMBIGUOUS",
+"resolved":"pat17475713",
+"candidates":[
+"pat17475713",
+"pat44976"
+],
+"resolution":"most recent charge 20260921 (16 charges)"
+},
+"6412b01f9793d29423990b51":{
+"status":"AMBIGUOUS",
+"resolved":"pat17471017",
+"candidates":[
+"pat17470874",
+"pat17471017",
+"pat17473368"
+],
+"resolution":"most recent charge 20260921 (31 charges)"
+},
+"69ea035a29ab4514796d023e":{
+"status":"MISSING",
+"resolved":"pat17478202",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-05)"
+},
+"6284344981f139179dace11f":{
+"status":"AMBIGUOUS",
+"resolved":"pat23204",
+"candidates":[
+"pat17473466",
+"pat23204"
+],
+"resolution":"most recent charge 20260920 (52 charges)"
+},
+"6284343f81f139179dacce72":{
+"status":"AMBIGUOUS",
+"resolved":"pat45003",
+"candidates":[
+"pat17473515",
+"pat45003"
+],
+"resolution":"most recent charge 20260920 (98 charges)"
+},
+"62a895faa4ea93d62b48dbf0":{
+"status":"AMBIGUOUS",
+"resolved":"pat22546",
+"candidates":[
+"pat22546",
+"pat22776"
+],
+"resolution":"most recent charge 20260920 (93 charges)"
+},
+"65d59da49a358333fc509428":{
+"status":"MISSING",
+"resolved":"pat17478203",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-06)"
+},
+"6ace3f00c723fde70c13da64":{
+"status":"MISSING",
+"resolved":"pat17478204",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-07)"
+},
+"6ad24fa1efb672cc54749a67":{
+"status":"MISSING",
+"resolved":"pat17478205",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-08)"
+},
+"6ad6015440cfdd150b8ed8cd":{
+"status":"MISSING",
+"resolved":"pat17478206",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-09)"
+},
+"6ad603ae40cfdd150b8ed9bf":{
+"status":"MISSING",
+"resolved":"pat17478207",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-10)"
+},
+"6ac58698a404b19a0cfd4e07":{
+"status":"MISSING",
+"resolved":"pat17478208",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-11)"
+},
+"62e3d7959d21987631b9cce3":{
+"status":"AMBIGUOUS",
+"resolved":"pat22880",
+"candidates":[
+"pat22880",
+"pat44888"
+],
+"resolution":"most recent charge 20260920 (70 charges)"
+},
+"62e3d6978cefb011d8ecfbc0":{
+"status":"AMBIGUOUS",
+"resolved":"pat45447",
+"candidates":[
+"pat24644",
+"pat45447"
+],
+"resolution":"most recent charge 20260920 (47 charges)"
+},
+"62e3d5408cefb011d8ecfaa6":{
+"status":"AMBIGUOUS",
+"resolved":"pat45052",
+"candidates":[
+"pat20829",
+"pat45052"
+],
+"resolution":"most recent charge 20260920 (97 charges)"
+},
+"6acfdddc83d0c9ba480e8a5f":{
+"status":"MISSING",
+"resolved":"pat17478209",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-12)"
+},
+"6284344b81f139179dace5b8":{
+"status":"AMBIGUOUS",
+"resolved":"pat45024",
+"candidates":[
+"pat23329",
+"pat45024"
+],
+"resolution":"most recent charge 20260920 (93 charges)"
+},
+"691aec7f63f516595dd1ae91":{
+"status":"AMBIGUOUS",
+"resolved":"pat45001",
+"candidates":[
+"pat17474689",
+"pat45001"
+],
+"resolution":"most recent charge 20260920 (72 charges)"
+},
+"6aad4e30df13071be8fc2d3f":{
+"status":"AMBIGUOUS",
+"resolved":"pat17477976",
+"candidates":[
+"pat17477828",
+"pat17477976"
+],
+"resolution":"most recent charge 20261005 (4 charges)"
+},
+"62a89600a4ea93d62b48f397":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472553",
+"candidates":[
+"pat17472553",
+"pat21086"
+],
+"resolution":"most recent charge 20261012 (65 charges)"
+},
+"6ad875745bf31d8ad60ce9fd":{
+"status":"MISSING",
+"resolved":"pat17478210",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-13)"
+},
+"6ad2a9e13c8ae7060a29d2db":{
+"status":"MISSING",
+"resolved":"pat17478211",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-14)"
+},
+"6ad7fa68ab8b3242b37811a6":{
+"status":"MISSING",
+"resolved":"pat17478212",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-15)"
+},
+"693ca1b9384c0ab0796fcc33":{
+"status":"AMBIGUOUS",
+"resolved":"pat17469426",
+"candidates":[
+"pat17469426",
+"pat17471103"
+],
+"resolution":"most recent charge 20260920 (22 charges)"
+},
+"6ad90ef92fbbd296b58def81":{
+"status":"MISSING",
+"resolved":"pat17478213",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-16)"
+},
+"6ad8906b2400581ddb208c79":{
+"status":"MISSING",
+"resolved":"pat17478214",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-17)"
+},
+"6ad892c0d9abf485c6209b70":{
+"status":"MISSING",
+"resolved":"pat17478215",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-18)"
+},
+"6a89477a8484c65cfb45daba":{
+"status":"MISSING",
+"resolved":"pat17478216",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-19)"
+},
+"62f4b4f2ad77382d8038a206":{
+"status":"MISSING",
+"resolved":"pat44954",
+"candidates":[],
+"resolution":"DOB MISMATCH feed 19391224 vs chart 19391224 - single same-name chart"
+},
+"62f4a7b7ad77382d803896cd":{
+"status":"AMBIGUOUS",
+"resolved":"pat44953",
+"candidates":[
+"pat23412",
+"pat44953"
+],
+"resolution":"most recent charge 20261001 (69 charges)"
+},
+"654b84cd0c28c8d475e9dffe":{
+"status":"AMBIGUOUS",
+"resolved":"pat17477870",
+"candidates":[
+"pat17470849",
+"pat17477870"
+],
+"resolution":"most recent charge 20260922 (2 charges)"
+},
+"65e17620bc9e495d370c922b":{
+"status":"MISSING",
+"resolved":"pat17478018",
+"candidates":[],
+"resolution":"William 10/11: feed chart pat17478018 is the live Joiner chart"
+},
+"6859100bec5cb3863e9f8282":{
+"status":"MISSING",
+"resolved":"pat17478217",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-20)"
+},
+"6abe2e74cccf1b988c3f145d":{
+"status":"MISSING",
+"resolved":"pat17478218",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-21)"
+},
+"6a97e4f6f6af6a5ec0c504cc":{
+"status":"MISSING",
+"resolved":"pat17478219",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-22)"
+},
+"68518a304d81967f88346373":{
+"status":"MISSING",
+"resolved":"pat17478220",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-23)"
+},
+"6abe2d522719d910a725c3fd":{
+"status":"MISSING",
+"resolved":"pat17478221",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-24)"
+},
+"69e9c86629ab4514796cf7fe":{
+"status":"MISSING",
+"resolved":"pat17478222",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-25)"
+},
+"6436c1479793d29423239b53":{
+"status":"AMBIGUOUS",
+"resolved":"pat21798",
+"candidates":[
+"pat12180395",
+"pat17469615",
+"pat17472040",
+"pat17477383",
+"pat17477933",
+"pat21798"
+],
+"resolution":"most recent charge 20261005 (87 charges)"
+},
+"65f1e38a843d469498459a9d":{
+"status":"AMBIGUOUS",
+"resolved":"pat17471333",
+"candidates":[
+"pat17471238",
+"pat17471333"
+],
+"resolution":"most recent charge 20260920 (65 charges)"
+},
+"650d2fbbe9abd1e55959b12b":{
+"status":"AMBIGUOUS",
+"resolved":"pat17469525",
+"candidates":[
+"pat17469484",
+"pat17469525",
+"pat17475528"
+],
+"resolution":"most recent charge 20261004 (69 charges)"
+},
+"62a89604a4ea93d62b4903fb":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472436",
+"candidates":[
+"pat17472436",
+"pat24923"
+],
+"resolution":"most recent charge 20260920 (57 charges)"
+},
+"661c4dd6aac6e6639c5a1337":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472420",
+"candidates":[
+"pat17472420",
+"pat23683"
+],
+"resolution":"most recent charge 20260920 (50 charges)"
+},
+"62a89603a4ea93d62b490103":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472420",
+"candidates":[
+"pat17472420",
+"pat23683"
+],
+"resolution":"most recent charge 20260920 (50 charges)"
+},
+"62a89603a4ea93d62b48ff0b":{
+"status":"AMBIGUOUS",
+"resolved":"pat17469645",
+"candidates":[
+"pat17469645",
+"pat22609"
+],
+"resolution":"most recent charge 20260920 (78 charges)"
+},
+"62a89601a4ea93d62b48f918":{
+"status":"AMBIGUOUS",
+"resolved":"pat17477134",
+"candidates":[
+"pat17477134",
+"pat21489"
+],
+"resolution":"most recent charge 20260920 (3 charges)"
+},
+"62a89600a4ea93d62b48f603":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472517",
+"candidates":[
+"pat17472517",
+"pat22971"
+],
+"resolution":"most recent charge 20260920 (96 charges)"
+},
+"62a895fda4ea93d62b48e6b8":{
+"status":"AMBIGUOUS",
+"resolved":"pat17477125",
+"candidates":[
+"pat17477125",
+"pat23252"
+],
+"resolution":"most recent charge 20260920 (10 charges)"
+},
+"6ad8ecfc5411455d7c20a66c":{
+"status":"MISSING",
+"resolved":"pat17478223",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-26)"
+},
+"6acf301c84f69d38b581023d":{
+"status":"MISSING",
+"resolved":"pat17478224",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-27)"
+},
+"632c437f65ca5352dba37a47":{
+"status":"AMBIGUOUS",
+"resolved":"pat45496",
+"candidates":[
+"pat26008",
+"pat45496"
+],
+"resolution":"most recent charge 20260920 (34 charges)"
+},
+"679a6fe9374b28d93c1b4590":{
+"status":"AMBIGUOUS",
+"resolved":"pat17472829",
+"candidates":[
+"pat17472829",
+"pat21262",
+"pat45012",
+"pat48522"
+],
+"resolution":"most recent charge 20260920 (16 charges)"
+},
+"67992fff370d13ab351b4589":{
+"status":"AMBIGUOUS",
+"resolved":"pat23745",
+"candidates":[
+"pat23745",
+"pat45494"
+],
+"resolution":"most recent charge 20260920 (11 charges)"
+},
+"657b88b4d98c1339964fd8d8":{
+"status":"AMBIGUOUS",
+"resolved":"pat12232559",
+"candidates":[
+"pat12232559",
+"pat17468774",
+"pat17470822",
+"pat17471088",
+"pat17471422",
+"pat17472049",
+"pat17472591",
+"pat17472665",
+"pat17473063",
+"pat26007",
+"pat45493",
+"pat48454"
+],
+"resolution":"most recent charge 20260823 (17 charges)"
+},
+"6adbd3f4bf6b03438c16889e":{
+"status":"MISSING",
+"resolved":"pat17478225",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-28)"
+},
+"6adb5c6d8b7b2c2a4c7f0c42":{
+"status":"MISSING",
+"resolved":"pat17478226",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-29)"
+},
+"67f206914456d9fa167b60c1":{
+"status":"AMBIGUOUS",
+"resolved":"pat17473601",
+"candidates":[
+"pat17472013",
+"pat17473601"
+],
+"resolution":"most recent charge 20260920 (12 charges)"
+},
+"6adca360d321f672ba0057a8":{
+"status":"MISSING",
+"resolved":"pat17478227",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-30)"
+},
+"6adf074f5bf31d8ad60edd69":{
+"status":"MISSING",
+"resolved":"pat17478228",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-31)"
+},
+"6ad69d3bb507c0a789078810":{
+"status":"MISSING",
+"resolved":"pat17478229",
+"candidates":[],
+"resolution":"NEW CHART created 10/28 (F1028-32)"
+}
+}
+}

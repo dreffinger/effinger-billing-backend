@@ -5426,6 +5426,8 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
   `registers/feed_inspector_1028.json`, `feed_match_1028.json` (feed patient → chart), `dx_cache_1028.json` (ICD → dcode).
 - `feed_parse_dft_1028.py <hl7 folder> feed_parsed_1028.json` (step 1, saved 04:30 UTC from the scratchpad) re-parses the Claimocity DFT files byte-exact into
   `feed_parsed_1028.json` (570 messages / 797 charge lines), so the parsed feed is reproducible from the SFTP zip and is not mirrored to Drive; SSNs are never copied out.
+- `feed_match_1028.json` (names + DOBs, workspace only) is likewise not mirrored: every visit's feed_id -> pid is in `registers/feed_import_1028.json`, and the 65
+  non-trivial chart choices (AMBIGUOUS -> live chart, MISSING -> new chart) are in `registers/feed_match_1028_decisions.json` (Claimocity ids + pids only, in the repo).
 - Postman connector `putCollection` validates `id` on every folder and request ("Required at collection.item[0].id"); `tools/mirror/postman_build.py` now writes a
   stable uuid5 per item (same id on every rebuild) - the 69-call collection was re-put 04:20 UTC 10/28.
 
@@ -5447,14 +5449,3 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
 - Claimocity's PID-19 SSN answers Stedi MBILU ERR 72 on every HCA chart tried (12 of 12) - as on 10/9; facesheets remain the route.
 - The 06:40Z backend routine ran concurrently and worked the inspector on this import (100 bypasses, 8 dx cascades, admission dates) -
   concurrent sessions on the same ledger are a known pattern (9/10 rule); nothing was double-written.
-
-# captured_calls additions - 2026-10-27T0535Z nightly insurance cascade (1:30 AM ET 10/27/2026, Tuesday)
-Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries).
-Calls used, all in the registry: login (one attempt), massrebillsearch via precheck.py (0 visits inside the 3-day window), void_rules.py (gettxhistory reads, no void), GET /api/era/checks via era_post.py --all-unposted and era_clear.py (0 checks), build_money.py reads, Stedi GET /payers/search?query=Humana (free probe, 200).
-Behaviour seen: ERA Center empty; unpaid list has no DOS inside the 3-day window (Claimocity feed lag since 10/18); cred_check.py egress to npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov all 'Max retries exceeded' - NPPES verified through the NPI Registry connector instead (3 records unchanged). Environment note: /usr/local/bin/python3 (3.11) lacked requests and openpyxl on the fresh container; installed with python3 -m pip. No AMD write this run.
-
-# captured_calls additions - 2026-10-28T0640Z backend billing run (2:40 AM ET 10/28 slot, fired 06:40Z, ehpa cloud, v7 prompt + v12/v13 rules)
-Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries). Data learned: carrier IDEALIFE INSURANCE COMPANY = car307801 code IDEL1 (lookupcarrier name="%IDEALIFE%"; code="%IDEA%" answers 0 rows - the code lookup matches the carrier CODE, the name lookup the name) -> practices/ehpa/carriers.json.
-Calls used, all in the registry: engine pass tools/button/run_all.py --mode live --steps columns,era,sweep,packages --stedi-proxy (06:52-06:56Z) and again --steps columns,era (07:2x-07:3xZ); columns_scan x8; insp_bypass_advisories x8 (bypassclaimedits, 100 visits); updextrainsinfo hospitalizationfrom + updvisitwithcharges full echo (act_0640_1028.py, act2_0640_1028.py, insp_loop_0640.py); dx_primary_fix.plan/save_visit_dx (8 visits, no rebill - unclaimed); getdemographic; lookuppatient (admit_lookup_1028_0640.py, 3 patterns); manual_post addpayments (IDEL1 $16.93 + WOINS 57.71, paymentid 10176824); era_list / era_post --all-unposted / era_clear (0 checks).
-Behaviour seen: a ~120-visit Claimocity batch (visits 19458733-19459301, DOS 10/5-10/22) landed DURING the run - the inspector count rose 3 -> 47 between scans; three scan+act+bypass rounds were needed (insp_loop_0640.py) before it settled. Four visits arrived as 99309 / CCM at POS 21 on the HCA facility (Pattern 4531 + hospitalization-date hold) and were corrected to POS 31 / SNF facility fac67 outside this run within 20 minutes - treat such rows as feed corrections in flight, not William's decision, and re-read before writing a board row. Pattern 24078 CCI (99309 vs 99487 on the same chart) remains a hold.
-Lesson: the dx cascade deletes F02.80 when it leads (never-primary) - the inspector's F02.8x -> F03.90 swap rule should run FIRST on F02.8x so the dementia diagnosis survives (this run added F03.90 back on the two visits).
