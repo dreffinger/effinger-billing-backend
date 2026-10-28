@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-28T0324Z",
+ "stamp": "2026-10-28T0521Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/0/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/32/2 -> 0/0/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40626485106",
- "started": "2026-10-28T03:24:26Z",
- "ended": "2026-10-28T03:30:32Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40637471966",
+ "started": "2026-10-28T05:21:09Z",
+ "ended": "2026-10-28T05:27:08Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 0,
+    "unbilled": 32,
     "exclusions": 2
    },
    "after": {
@@ -65,7 +65,7 @@
    "visits": 7375,
    "actionable": 63,
    "actionable_amt": 11562.0,
-   "asof": "2026-10-28 03:30 UTC"
+   "asof": "2026-10-28 05:27 UTC"
   }
  },
  "steps": [
@@ -82,24 +82,24 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T03:24:26Z",
-   "ended": "2026-10-28T03:24:27Z"
+   "started": "2026-10-28T05:21:09Z",
+   "ended": "2026-10-28T05:21:10Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 2->2",
+   "summary": "CR 0->0, CI 0->0, Unbilled 32->0, Exclusions 2->2",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 0,
+    "unbilled": 32,
     "exclusions": 2,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 30,
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
@@ -109,6 +109,18 @@
    },
    "dollars": {},
    "lines": [
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
     {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
@@ -123,8 +135,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T03:24:27Z",
-   "ended": "2026-10-28T03:26:28Z"
+   "started": "2026-10-28T05:21:10Z",
+   "ended": "2026-10-28T05:23:20Z"
   },
   {
    "name": "era",
@@ -143,8 +155,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T03:26:28Z",
-   "ended": "2026-10-28T03:26:30Z"
+   "started": "2026-10-28T05:23:20Z",
+   "ended": "2026-10-28T05:23:23Z"
   },
   {
    "name": "packages",
@@ -155,8 +167,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T03:26:30Z",
-   "ended": "2026-10-28T03:26:30Z"
+   "started": "2026-10-28T05:23:23Z",
+   "ended": "2026-10-28T05:23:23Z"
   },
   {
    "name": "outstanding",
@@ -259,8 +271,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T03:26:30Z",
-   "ended": "2026-10-28T03:26:32Z"
+   "started": "2026-10-28T05:23:23Z",
+   "ended": "2026-10-28T05:23:25Z"
   },
   {
    "name": "denials",
@@ -269,7 +281,7 @@
    "summary": "7375 denied visits on 820 charts; 63 actionable $11562.00 (59 inside 12 months $10743.00); WRITTEN-OFF 2739, RESOLVED 4314, RESUBMITTED 170, OPEN 152",
    "counts": {
     "charts read": 820,
-    "denial lines": 12549,
+    "denial lines": 12553,
     "visits": 7375,
     "actionable": 63,
     "inside 12 months": 59,
@@ -347,8 +359,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T03:26:32Z",
-   "ended": "2026-10-28T03:30:32Z"
+   "started": "2026-10-28T05:23:25Z",
+   "ended": "2026-10-28T05:27:08Z"
   }
  ],
  "packages": [],
