@@ -1,0 +1,44 @@
+{
+ "voided_after_death": [
+  {
+   "pid": "17476416",
+   "charge": "23371258",
+   "visit": "19458965",
+   "ok": true,
+   "after": [
+    [
+     "23371258",
+     "1",
+     "99487"
+    ]
+   ]
+  },
+  {
+   "pid": "24797",
+   "charge": "23371259",
+   "visit": "19458966",
+   "ok": true,
+   "after": [
+    [
+     "23371259",
+     "1",
+     "99487"
+    ]
+   ]
+  },
+  {
+   "pid": "24797",
+   "charge": "23371260",
+   "visit": "19458966",
+   "ok": true,
+   "after": [
+    [
+     "23371260",
+     "1",
+     "99489"
+    ]
+   ]
+  }
+ ],
+ "rule": "William 9/22/2026 never bill a deceased patient; DOS after date of death"
+}

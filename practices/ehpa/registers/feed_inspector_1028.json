@@ -1,0 +1,318 @@
+{
+ "fixed": [
+  {
+   "visit": "19458791",
+   "pid": "pat17477843",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19458937",
+   "pid": "pat17471326",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19458952",
+   "pid": "pat17472396",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19458968",
+   "pid": "pat25189",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19458969",
+   "pid": "pat17474798",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459028",
+   "pid": "pat20709",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459029",
+   "pid": "pat17471333",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459064",
+   "pid": "pat23832",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459065",
+   "pid": "pat23617",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459072",
+   "pid": "pat23161",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459093",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459140",
+   "pid": "pat17473306",
+   "patterns": [
+    "68065080"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459219",
+   "pid": "pat17478213",
+   "patterns": [
+    "117080083"
+   ],
+   "note": [
+    "HELD: 117080083"
+   ]
+  },
+  {
+   "visit": "19459233",
+   "pid": "pat17478213",
+   "patterns": [
+    "117080083"
+   ],
+   "note": [
+    "HELD: 117080083"
+   ]
+  },
+  {
+   "visit": "19459242",
+   "pid": "pat17478213",
+   "patterns": [
+    "117080083"
+   ],
+   "note": [
+    "HELD: 117080083"
+   ]
+  },
+  {
+   "visit": "19459247",
+   "pid": "pat17478213",
+   "patterns": [
+    "117080083"
+   ],
+   "note": [
+    "HELD: 117080083"
+   ]
+  },
+  {
+   "visit": "19459253",
+   "pid": "pat17478213",
+   "patterns": [
+    "117080083"
+   ],
+   "note": [
+    "HELD: 117080083"
+   ]
+  },
+  {
+   "visit": "19459298",
+   "pid": "pat20729",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19458791",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19458937",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19458952",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19458968",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19458969",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19459028",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19459029",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19459064",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459065",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459072",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19459093",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459140",
+   "patterns": [
+    "68065080"
+   ]
+  },
+  {
+   "visit": "19459298",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19459219",
+   "pid": "pat17478213",
+   "why": "Relationship of Subscriber to Patient is invalid"
+  },
+  {
+   "visit": "19459233",
+   "pid": "pat17478213",
+   "why": "Relationship of Subscriber to Patient is invalid"
+  },
+  {
+   "visit": "19459242",
+   "pid": "pat17478213",
+   "why": "Relationship of Subscriber to Patient is invalid"
+  },
+  {
+   "visit": "19459247",
+   "pid": "pat17478213",
+   "why": "Relationship of Subscriber to Patient is invalid"
+  },
+  {
+   "visit": "19459253",
+   "pid": "pat17478213",
+   "why": "Relationship of Subscriber to Patient is invalid"
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19458791",
+   "pid": "pat17477843",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19459064",
+   "pid": "pat23832",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M25519..."
+  },
+  {
+   "visit": "19459065",
+   "pid": "pat23617",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19459093",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459298",
+   "pid": "pat20729",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009A..."
+  }
+ ]
+}

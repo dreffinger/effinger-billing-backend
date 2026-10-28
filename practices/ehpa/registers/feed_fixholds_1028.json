@@ -1,0 +1,180 @@
+{
+ "pat12182947": {
+  "holds": [
+   "CMS reports MA/other primary 'SUNSHINE STATE HEALTH PLAN, INC.' (SUN01) but no ACTIVE SUN01 plan on the chart"
+  ],
+  "fixes": [
+   "cannot add SUN01 (no member id)"
+  ]
+ },
+ "pat17477843": {
+  "holds": [
+   "271 reports date of death [DOB]"
+  ],
+  "fixes": [
+   "date-of-death hold re-evaluated by the verifier (visits before the death date are billable)"
+  ]
+ },
+ "pat17477183": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17473568": {
+  "holds": [
+   "Medicaid 271 names SMMC MMA plan FLO99 but the chart has no FLO99 plan"
+  ],
+  "fixes": [
+   "added FLO99 seq 3 (ins9521030) - SMMC MMA plan per the Medicaid 271; Medicaid id from the MCAD plan"
+  ]
+ },
+ "pat17478203": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478215": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17477946": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478201": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478205": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478213": {
+  "holds": [
+   "no active plan: discovery found [('Florida Medicai', 'Active Coverage')]"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)",
+   "added MCAD (Florida Medicaid, Full Medicaid per Stedi discovery; payer name truncated 'Florida Medicai' - mapped by hand)"
+  ]
+ },
+ "pat17478221": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478225": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17473460": {
+  "holds": [
+   "no active plan: discovery found [('BCBSF', 'Active Coverage')]"
+  ],
+  "fixes": [
+   "added BCBS seq 2 (ins9521031) - Stedi discovery 'BCBSF' BLUEOPTIONS STANDARD PPO"
+  ]
+ },
+ "pat17476416": {
+  "holds": [
+   "pat17476416 DOS 2026-10-22 is after date of death [DOB] (stedi-medicare-271) - claim must not be submitted; void the charge"
+  ],
+  "fixes": []
+ },
+ "pat24797": {
+  "holds": [
+   "pat24797 DOS 2026-10-22 is after date of death [DOB] (stedi-medicare-271) - claim must not be submitted; void the charge",
+   "271 reports date of death [DOB]"
+  ],
+  "fixes": []
+ },
+ "pat17478214": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478200": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478208": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478212": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478216": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ },
+ "pat17478228": {
+  "holds": [
+   "no active plan: discovery found nothing"
+  ],
+  "fixes": [
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+  ]
+ }
+}

@@ -5363,6 +5363,87 @@ Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entr
 Calls used, all in the registry: login (one attempt), massrebillsearch via precheck.py (0 visits inside the 3-day window; newest DOS on the unpaid list 10/13), void_rules.py (gettxhistory reads, no void), GET /api/era/checks via era_post.py --all-unposted and era_clear.py (0 checks), build_money.py reads, Stedi GET /payers/search?query=Humana (free probe, 200).
 Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10/13 on the unpaid list); cred_check.py egress to npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov all 'Max retries exceeded' - NPPES verified through the NPI Registry connector instead (3 records unchanged). precheck.py dry listing flags FIR07 (First Health Network) as 'carrier not mapped - add to CAR2STEDI'. cred_check.py's NPIS table in the repo carries a PHI-gate pseudonym for one provider name (LEIE name match would miss) - to fix. No AMD write this run.
 
+# Additions 2026-10-28 06:30–09:00 UTC — chat session (Claimocity feed outage: backlog imported through the API)
+
+## Outage finding (10/28)
+- Gregg's AMD pickup stopped after the 10/15 file; Claimocity kept delivering one DFT^P03 file per day to `/download/` ROOT on
+  sftp.claimocity.io (`/download/<yyyymmdd>626627aa54d52f67a80d586a.hl7`, 10/18 and 10/26 empty). The Cloud Run copy job walks only
+  the `/download/{adt,dft,mdm}` subfolders — fix its walk before trusting "0 copied" as a health signal. Normal lag 1–3 days.
+- William 10/28 02:23 ET: Gregg's feed paused; "enter all of these encounters into advanced md and bill them out, i dont care if we
+  get duplicates later"; "use the nightly cascade insurance look up stedi tools as well to verify correct insurances".
+
+## NEW CALL SHAPES (all proven live 10/28/2026)
+- **Create an empty visit**: `addvisit` class="chargeentry" msg attrs `patientid episodeid approval="1" inspectorenabled="1"
+  getfinancials="-1" customclaimfieldsavailable="1"`, child **`<appt id="" patient="patN" episode="epsN" date="MM/DD/YYYY"
+  profile="profN" facility="facN" refplan="rplanN" insorder="1" onhcfa="0|1" acceptassign="1" forcepaper="0" isappt="0" note=""
+  billingnote="" referenceid=""/>`** → `<visit id="vstNEW" .../>` with an empty chargelist. A `<visit>` child answers "Value can not
+  be null (argument)"; `<appt>` without `episode=` answers "This appointment must have a valid episode". (feed_import_1028.py)
+- **Add NEW charges to a visit**: `updvisitwithnewcharges` (same msg attrs) `<visit id="vstN" date profile facility refplan insorder
+  onhcfa acceptassign="1" forcepaper="0" force="1"><chargelist><charge id="" respparty="respN" begindate enddate
+  diagcodes="dcodeA dcodeB" modcodes="" aging="<DOS>" billins="1" proccode="pcodeN" cobcode="" pos="31" tos="01" units="1" netfee="0"
+  fee allowed patportion="0.00" insportion patbalance="0.00" insbalance finclasscode="MC" lineitemnote=""><diagcodelist><diagcode
+  id="NUMERIC"/>...</diagcodelist></charge></chargelist></visit>` → new charge ids with the fee as sent. **BOTH the `diagcodes`
+  attribute (dcode-prefixed ids) AND `finclasscode` are required**: without either AMD answers SQL CHECK constraint
+  `CD_FIDReferences` on actv_ChargeDetail. `insorder` on the FIRST create (visit id="") answers FK `FK_appts_InsuranceOrder` —
+  create the visit with addvisit first. A negative temp id (`charge-1`) makes AMD run the duplicate check ("Another charge already
+  exists for this patient, date, provider, and code"). The `<extins>` child is ignored on create → write the admission date with
+  the proven `updextrainsinfo` per CPT afterwards. The visit arrives APPROVED (Charge Review stays empty) and inspected.
+- **Create a chart**: `addpatient` class="demographics" `<patient id="" name="LAST,FIRST" dob sex chart="<UNIQUE>" profile="prof13"
+  finclasscode="CC" relationship="1" hipaarelationship="18" additionalmrn="<Claimocity 24-hex id>" respparty=""><address zip city
+  state address1 address2 areacode countrycode="USA"/><contactinfo homephone=""/></patient>` → `success="1"` + `<patient id="patN">`
+  with a responsible party, main referral plan and NEW PATIENT DEFAULT memo created. `chart` is REQUIRED and unique (empty →
+  "Duplicate chart number found"); the integration uses the numeric series (4855 on 10/8), this import used `F1028-NN` so the two
+  series cannot collide. The chart number is editable afterwards with `patient_patch.patch(pid, {"chartnumber": X, "address2":
+  <line 1>})` — the PATCH answers 500 "Address is required." while address2 is blank (feed-chart rule of 9/14). The integration
+  stores Claimocity's PID-3 as `additionalmrn` — a future matching key.
+- **Diagnosis id lookup that works for ICD-10**: `lookupdiagcode` class="lookup" `code="I10%" exactmatch="0" codeset="10"
+  orderby="code" page="1"` → `<diagcode id="dcodeN" code="I10" name=.../>`. Without `codeset="10"` the call returns `<Results/>`
+  (that is why the 10/6 probe failed). 454 of the 475 feed codes resolved; 21 are not in AMD's table (F10.239, F19.20, G90.A,
+  H61.22, I69.328, K44.0, N64.4, N80.9, R20.8, R22.31, S06.9X9S, S22.43XD, S32.592G, S32.599A, S82.91XD, Z11.59, Z11.9, Z15.89,
+  Z20.822, Z86.018, Z88.9) — those codes were dropped from the visit's dx list.
+- **Procedure id lookup**: `lookupproccode` class="lookup" `code="99487%" exactmatch="0" orderby="code" page="1"` → pcode ids
+  (99487 pcode492676, 99489 pcode492677, 99223 pcode65084, 99232 pcode65089, 99233 pcode65090, 99239 pcode65095, 99497 pcode492667,
+  99498 pcode492668, 99306 pcode65116, 99308 pcode65118, 99309 pcode65119, 99316 pcode65122, 99344 pcode601053).
+- `lookuppatient class="lookup" code="48%"` lists charts by chart-number prefix (50 max) — used to read the numeric series.
+- Practice fees read from 2026 charges: 99223 310 · 99232 111 · 99233 160 · 99239 163 · 99306 256 · 99308 107 · 99309 141 ·
+  99487 206 · 99489 109 · 99497 133 · 99344 300 · 99316 207. Feed facility → AMD facility/POS: HCA fac29/21, Brynwood fac34/31,
+  Aspire fac32/31, Centre Pointe fac33/31, Westminster Bertrand fac58/31, Pruitt Southwood fac1350/31, Azalea fac37/13, Tapestry
+  fac55/13, Opal Hermitage fac53/13, Capital Square fac54/13, Canterfield fac38/13, Sodalis fac65/13, Allegro fac57/13; HCA-sent
+  99309 = HCA REHAB fac67/31. Provider NPI 1225327380 → prof13 (Effinger), 1235128869 → prof15 (Garcia).
+
+## Cascade-check lessons (feed_verify_1028.py)
+- Stedi insurance discovery returns Part D plans (payer id S\d{4}, plan "... (PDP)") as "Active Coverage" — never add one as a
+  medical plan (one WEL04 plan was added then end-dated the same minute: pat17471462 ins9521002).
+- On a Medicare 271 the OT-type entry with REF 18 = S-contract is Part D, not a Medicare Advantage replacement; an HN entry with an
+  H-contract (e.g. UnitedHealthcare of Florida H2509) IS one — match it to the chart by payer FAMILY (UNI20/UHCMA/AAR01 = UHC).
+- A Florida Medicaid 271 that lists "SMMC MMA Capitated <plan>" = physician claims go to that MMA plan (FCC → FLO99), not MCAD FFS.
+- Visit insorder is set with a full-echo resave (resave.set_insorder) — when the import copied the chart default and the default is
+  already the target, skip the resave (it costs 3–5 AMD calls per visit).
+
+## Registers
+- `registers/feed_import_1028.json` (every visit/charge this import created — the list to void if Gregg's pickup re-posts the same
+  10 files), `registers/feed_newcharts_1028.json` (31 charts F1028-02..32 + pat17478199 F1028-01), `registers/feed_verify_1028.json`,
+  `registers/feed_inspector_1028.json`, `feed_match_1028.json` (feed patient → chart), `dx_cache_1028.json` (ICD → dcode).
+
+## Later in the same session (07:30–09:00 UTC)
+- **Responsible party name**: `addpatient` creates the responsible party with an EMPTY name; the inspector then raises 117080083
+  "Relationship of Subscriber to Patient is invalid" on every claim. Fix (proven on 31 charts): `updaterespparty` class="demographics"
+  msg attr `patientid="patN"`, child `<respparty id="respN" changed="1" name="LAST,FIRST" o_name="" dob="MM/DD/YYYY" o_dob="" sex="F" o_sex="M"/>`
+  → echoes the updated respparty. Add the name/dob/sex at chart creation time in future (feed_newcharts_1028.py does not yet).
+- **Re-dating a visit** (William: CCI 24078 = re-date the CCM off the E/M day): full-echo `updvisitwithcharges` with the new `date` on the
+  visit and `begindate/enddate/aging` on each charge → AMD VOIDS the charges and RE-CREATES them under NEW charge ids on the SAME visit id
+  (a date change behaves like the 10/5 recode). Unpaid/unbilled only; update any register that carries the charge ids. Three CCM visits
+  moved 10/22 → 10/23 (vst19459282/86/87); the 99309 partners cleared on resave.
+- **Charge void** = `void_tx.void_charge(pid, cid)` (action=void class=void `<patient id=patN><charge id=CID void="1"/></patient>`); an
+  empty-chargelist resave is refused ("Missing element: <charge/>"). Deceased rule applied: 3 CCM charges voided (2 charts, DOS after death).
+- **Verifier lessons** (feed_verify_1028.py v3): (1) a plan's AMD 271 right after `addinsurance` can answer UNKNOWN - never let discovery
+  add a carrier the chart already carries in any status; (2) Medicare answers INACTIVE after a death - when every DOS precedes the date
+  of death Medicare still leads; (3) Stedi discovery payer names are truncated ("Florida Medicai") - match on MEDICAI; (4) the import
+  copied the chart's default insorder onto each visit, so a resave is needed only when the verified order differs (107 of 284 charts).
+- Claimocity's PID-19 SSN answers Stedi MBILU ERR 72 on every HCA chart tried (12 of 12) - as on 10/9; facesheets remain the route.
+- The 06:40Z backend routine ran concurrently and worked the inspector on this import (100 bypasses, 8 dx cascades, admission dates) -
+  concurrent sessions on the same ledger are a known pattern (9/10 rule); nothing was double-written.
+
 # captured_calls additions - 2026-10-27T0535Z nightly insurance cascade (1:30 AM ET 10/27/2026, Tuesday)
 Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries).
 Calls used, all in the registry: login (one attempt), massrebillsearch via precheck.py (0 visits inside the 3-day window), void_rules.py (gettxhistory reads, no void), GET /api/era/checks via era_post.py --all-unposted and era_clear.py (0 checks), build_money.py reads, Stedi GET /payers/search?query=Humana (free probe, 200).

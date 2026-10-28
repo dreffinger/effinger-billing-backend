@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-10-28, 63 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-10-28, 69 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -375,6 +375,60 @@
        }
       }
      }
+    },
+    {
+     "name": "addpatient — create a chart",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Creates the chart + responsible party + main referral plan + NEW PATIENT DEFAULT memo; chart= is REQUIRED and unique (empty -> 'Duplicate chart number found'). The integration uses the numeric series; this session used F1028-NN. address2 must repeat address1 (later PATCHes fail 'Address is required' otherwise). The responsible party is created with an EMPTY name - follow with updaterespparty. 32 charts 10/28/2026.\n\nHelper: feed_newcharts_1028.py\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"addpatient\" class=\"demographics\" msgtime=\"{{msgtime}}\" nocookie=\"1\"><usercontext>{{token}}</usercontext><patient id=\"\" name=\"{{lastname}},{{firstname}}\" dob=\"{{dob}}\" sex=\"{{sex}}\" chart=\"{{chartnumber}}\" profile=\"prof13\" finclasscode=\"CC\" relationship=\"1\" hipaarelationship=\"18\" additionalmrn=\"{{externalid}}\" respparty=\"\"><address zip=\"{{zip}}\" city=\"{{city}}\" state=\"FL\" address1=\"{{street}}\" address2=\"{{street}}\" areacode=\"{{areacode}}\" countrycode=\"USA\"/><contactinfo homephone=\"{{phone}}\"/></patient></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "updaterespparty — name/dob/sex on the responsible party",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Fixes inspector 117080083 'Relationship of Subscriber to Patient is invalid' on charts created by addpatient (empty responsible-party name). Echoes the updated respparty. 31 charts 10/28/2026.\n\nHelper: chat 10/28 inline\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"updaterespparty\" class=\"demographics\" msgtime=\"{{msgtime}}\" patientid=\"pat{{patientid}}\" nocookie=\"1\"><usercontext>{{token}}</usercontext><respparty id=\"resp{{respid}}\" changed=\"1\" name=\"{{lastname}},{{firstname}}\" o_name=\"\" dob=\"{{dob}}\" o_dob=\"\" sex=\"{{sex}}\" o_sex=\"M\"/></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
     }
    ]
   },
@@ -558,6 +612,60 @@
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"updextrainsinfo\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" visitid=\"{{visitid}}\"><usercontext>{{token}}</usercontext><extins txtChargeCode=\"{{pcode}}\" resubmissioncode=\"7\" origrefnum=\"{{payer_icn}}\" patsignature=\"1\" emergency=\"0\" epsdt=\"0\" payprov=\"1\" employment=\"0\" autoaccident=\"0\" otheraccident=\"0\" pregnant=\"0\" outsidelab=\"0\"/></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "addvisit — create an EMPTY visit (<appt> child)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Creates a new visit with an empty chargelist and returns its vst id. The child MUST be <appt> with patient= and episode= (a <visit> child answers 'Value can not be null'; no episode -> 'This appointment must have a valid episode'). Step 1 of charge creation (Claimocity backlog import 10/28/2026).\n\nHelper: feed_import_1028.py\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"addvisit\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" patientid=\"pat{{patientid}}\" episodeid=\"eps{{episodeid}}\" approval=\"1\" inspectorenabled=\"1\" getfinancials=\"-1\" customclaimfieldsavailable=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext><appt id=\"\" patient=\"pat{{patientid}}\" episode=\"eps{{episodeid}}\" date=\"{{visitdate}}\" profile=\"prof13\" facility=\"fac{{facilityid}}\" refplan=\"rplan{{refplanid}}\" insorder=\"1\" onhcfa=\"0\" acceptassign=\"1\" forcepaper=\"0\" isappt=\"0\" note=\"\" billingnote=\"\" referenceid=\"\"/></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "updvisitwithnewcharges — ADD NEW charges to a visit",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Step 2 of charge creation: charge id=\"\" on an EXISTING visit (from addvisit). BOTH the diagcodes attribute (dcode ids) AND finclasscode are required or AMD answers CHECK constraint CD_FIDReferences; insorder on a brand-new visit (id=\"\") answers FK FK_appts_InsuranceOrder. The <extins> child is ignored on create - write hospitalizationfrom with updextrainsinfo afterwards. Charges arrive APPROVED and inspected. Proven 569 visits 10/28/2026.\n\nHelper: feed_import_1028.py\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"updvisitwithnewcharges\" class=\"chargeentry\" msgtime=\"{{msgtime}}\" patientid=\"pat{{patientid}}\" episodeid=\"eps{{episodeid}}\" approval=\"1\" inspectorenabled=\"1\" getfinancials=\"-1\" customclaimfieldsavailable=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext><visit id=\"vst{{visitid}}\" date=\"{{visitdate}}\" profile=\"prof13\" facility=\"fac{{facilityid}}\" refplan=\"rplan{{refplanid}}\" insorder=\"{{insorder}}\" onhcfa=\"0\" acceptassign=\"1\" forcepaper=\"0\" force=\"1\"><chargelist><charge id=\"\" respparty=\"resp{{respid}}\" begindate=\"{{dos}}\" enddate=\"{{dos}}\" diagcodes=\"dcode{{dx1}} dcode{{dx2}}\" modcodes=\"\" aging=\"{{dos}}\" billins=\"1\" proccode=\"pcode{{procid}}\" cobcode=\"\" pos=\"31\" tos=\"01\" units=\"1\" netfee=\"0\" fee=\"{{fee}}\" allowed=\"{{fee}}\" patportion=\"0.00\" insportion=\"{{fee}}\" patbalance=\"0.00\" insbalance=\"{{fee}}\" finclasscode=\"MC\" lineitemnote=\"\"><diagcodelist><diagcode id=\"{{dx1}}\"/><diagcode id=\"{{dx2}}\"/></diagcodelist></charge></chargelist></visit></ppmdmsg>",
        "options": {
         "raw": {
          "language": "xml"
@@ -1446,6 +1554,60 @@
       "body": {
        "mode": "raw",
        "raw": "<ppmdmsg action=\"selectfacilities\" class=\"masterfiles\" msgtime=\"{{msgtime}}\" ><usercontext>{{token}}</usercontext></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "lookupdiagcode — ICD-10 dcode id (codeset=10)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "codeset=\"10\" is REQUIRED for ICD-10 - without it the call returns <Results/> (why the 10/6 M86.8x probe failed). Returns <diagcode id=\"dcodeN\" code name/>. 454 of 475 feed codes resolved 10/28/2026.\n\nHelper: feed_import_1028.py (dx_cache_1028.json)\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"lookupdiagcode\" class=\"lookup\" msgtime=\"{{msgtime}}\" code=\"{{icd10}}%\" exactmatch=\"0\" codeset=\"10\" orderby=\"code\" page=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
+       "options": {
+        "raw": {
+         "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "name": "lookupproccode — pcode id for a CPT",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "text/xml"
+       },
+       {
+        "key": "Cookie",
+        "value": "token={{token}}"
+       }
+      ],
+      "url": "{{xmlgw}}",
+      "description": "Returns <proccode id=\"pcodeN\" code=.../>. 99487 pcode492676, 99489 pcode492677, 99223 pcode65084, 99232 pcode65089, 99233 pcode65090, 99239 pcode65095, 99497 pcode492667, 99498 pcode492668, 99306 pcode65116, 99308 pcode65118, 99309 pcode65119, 99316 pcode65122, 99344 pcode601053.\n\nHelper: feed_import_1028.py\nCaptured: 10/28/2026\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "<ppmdmsg action=\"lookupproccode\" class=\"lookup\" msgtime=\"{{msgtime}}\" code=\"{{cpt}}%\" exactmatch=\"0\" orderby=\"code\" page=\"1\" nocookie=\"1\"><usercontext>{{token}}</usercontext></ppmdmsg>",
        "options": {
         "raw": {
          "language": "xml"
