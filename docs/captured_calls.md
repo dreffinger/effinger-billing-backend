@@ -5407,9 +5407,9 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
 - `lookuppatient class="lookup" code="48%"` lists charts by chart-number prefix (50 max) — used to read the numeric series.
 - Practice fees read from 2026 charges: 99223 310 · 99232 111 · 99233 160 · 99239 163 · 99306 256 · 99308 107 · 99309 141 ·
   99487 206 · 99489 109 · 99497 133 · 99344 300 · 99316 207. Feed facility → AMD facility/POS: HCA fac29/21, Brynwood fac34/31,
-  Aspire fac32/31, Centre Pointe fac33/31, Westminster Bertrand fac58/31, Pruitt Southwood fac1350/31, Azalea fac37/13, Tapestry
+  Aspire fac32/31, Centre Pointe fac33/31, Westminster Bertrand fac58/31, Oakes Southwood fac1350/31, Azalea fac37/13, Tapestry
   fac55/13, Opal Hermitage fac53/13, Capital Square fac54/13, Canterfield fac38/13, Sodalis fac65/13, Allegro fac57/13; HCA-sent
-  99309 = HCA REHAB fac67/31. Provider NPI 1225327380 → prof13 (Effinger), 1235128869 → prof15 (Garcia).
+  99309 = HCA REHAB fac67/31. Provider NPI 1225327380 → prof13 (Effinger), 1235128869 → prof15 (Garland-G).
 
 ## Cascade-check lessons (feed_verify_1028.py)
 - Stedi insurance discovery returns Part D plans (payer id S\d{4}, plan "... (PDP)") as "Active Coverage" — never add one as a
