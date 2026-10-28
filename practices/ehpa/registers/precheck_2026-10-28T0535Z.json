@@ -1,0 +1,220 @@
+[
+ {
+  "patientid": 17474046,
+  "patient": "ORME,COTTERELL",
+  "carrier": "SIM01",
+  "visits": 6,
+  "balance": 960.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478013,
+  "patient": "[name]",
+  "carrier": "VACCN",
+  "visits": 5,
+  "balance": 800.0,
+  "dos": "20261012",
+  "dob": "[DOB]",
+  "member": "[ICN]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 20034,
+  "patient": "[name]",
+  "carrier": "UNI20",
+  "visits": 3,
+  "balance": 766.0,
+  "dos": "20261012",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17477640,
+  "patient": "REEVE,CYRILLA M",
+  "carrier": "HUM01",
+  "visits": 4,
+  "balance": 640.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17471916,
+  "patient": "FERRAND,MARTHE A",
+  "carrier": "UNI20",
+  "visits": 3,
+  "balance": 483.0,
+  "dos": "20261010",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478063,
+  "patient": "GASCOIGNE,MICAH G",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478062,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478060,
+  "patient": "LATTIMER,JOCELYN M",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478061,
+  "patient": "KINSALE,[first]",
+  "carrier": "HUM01",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478058,
+  "patient": "[name]",
+  "carrier": "UNI20",
+  "visits": 2,
+  "balance": 421.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478031,
+  "patient": "JACOBSEN,NORCOTT",
+  "carrier": "UHCMA",
+  "visits": 3,
+  "balance": 333.0,
+  "dos": "20261010",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17471741,
+  "patient": "[name]",
+  "carrier": "FIR07",
+  "visits": 2,
+  "balance": 222.0,
+  "dos": "20261009",
+  "result": "carrier not mapped - add to CAR2STEDI"
+ },
+ {
+  "patientid": 17477405,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17472553,
+  "patient": "HESKETH,[first]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261012",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 24560,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17477557,
+  "patient": "SLADE,RUFFORD",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 149.08,
+  "dos": "20261009",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17476358,
+  "patient": "PRIMROSE,KELVIN",
+  "carrier": "SUN01",
+  "visits": 2,
+  "balance": 149.08,
+  "dos": "20261009",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17478030,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 109.26,
+  "dos": "20261009",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17476869,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 78.38,
+  "dos": "20261008",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ },
+ {
+  "patientid": 17471019,
+  "patient": "[name]",
+  "carrier": "FLO02",
+  "visits": 2,
+  "balance": 51.69,
+  "dos": "20261013",
+  "dob": "[DOB]",
+  "member": "[MBI]",
+  "result": "DRY"
+ }
+]

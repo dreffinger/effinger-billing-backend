@@ -5357,3 +5357,8 @@ era_list / era_post --all-unposted / era_clear, claim_status_sweep --skip-answer
 Behaviour seen: columns 0/0/0/2 -> 0/0/0/2 (standing holds AET12 run 1700294 pat24750; UNI98 run 1700319 pat17475632); ERA 0 checks before/after;
 UNI20/BCBS pre-5/1 sweep: 15 PENDING pat17472874, 0 sent. Three Pam admits (10/19, 10/22, 10/23) still without an AMD chart. No AMD write this run.
 Container lesson: this session's image lacked python 'requests' (amd.py import) - the engine's first pass ran nothing (no login, no lock); pip install requests pypdf openpyxl, re-run clean.
+
+# captured_calls additions - 2026-10-28T0535Z nightly insurance cascade (1:30 AM ET 10/28/2026, Wednesday)
+Calls learned: NONE - no new AMD or Stedi call shape this run (0 vocabulary entries).
+Calls used, all in the registry: login (one attempt), massrebillsearch via precheck.py (0 visits inside the 3-day window; newest DOS on the unpaid list 10/13), void_rules.py (gettxhistory reads, no void), GET /api/era/checks via era_post.py --all-unposted and era_clear.py (0 checks), build_money.py reads, Stedi GET /payers/search?query=Humana (free probe, 200).
+Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10/13 on the unpaid list); cred_check.py egress to npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov all 'Max retries exceeded' - NPPES verified through the NPI Registry connector instead (3 records unchanged). precheck.py dry listing flags FIR07 (First Health Network) as 'carrier not mapped - add to CAR2STEDI'. cred_check.py's NPIS table in the repo carries a PHI-gate pseudonym for one provider name (LEIE name match would miss) - to fix. No AMD write this run.
