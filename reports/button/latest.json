@@ -1,18 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-28T1919Z",
+ "stamp": "2026-10-28T2119Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/3/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40753165844",
- "started": "2026-10-28T19:19:03Z",
- "ended": "2026-10-28T19:26:23Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40770913341",
+ "started": "2026-10-28T21:19:10Z",
+ "ended": "2026-10-28T21:24:47Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 3,
+    "claim_inspector": 0,
     "unbilled": 4,
     "exclusions": 1
    },
@@ -65,7 +65,7 @@
    "visits": 7736,
    "actionable": 71,
    "actionable_amt": 13229.0,
-   "asof": "2026-10-28 19:26 UTC"
+   "asof": "2026-10-28 21:24 UTC"
   }
  },
  "steps": [
@@ -82,22 +82,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T19:19:03Z",
-   "ended": "2026-10-28T19:19:04Z"
+   "started": "2026-10-28T21:19:10Z",
+   "ended": "2026-10-28T21:19:12Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 3->0, Unbilled 4->4, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 4->4, Exclusions 1->1",
    "counts": {
     "charge review": 0,
-    "claim inspector": 3,
+    "claim inspector": 0,
     "unbilled": 4,
     "exclusions": 1,
-    "inspector advisories to bypass": 3,
+    "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
-    "inspector bypasses sent": 3,
+    "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 4,
@@ -107,12 +107,6 @@
    },
    "dollars": {},
    "lines": [
-    {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 3,
-     "ids": "v19448753 v19452596 v19455634"
-    },
     {
      "column": "unbilled",
      "kind": "Facility is missing NPI information",
@@ -127,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T19:19:04Z",
-   "ended": "2026-10-28T19:21:14Z"
+   "started": "2026-10-28T21:19:12Z",
+   "ended": "2026-10-28T21:20:52Z"
   },
   {
    "name": "era",
@@ -147,8 +141,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T19:21:14Z",
-   "ended": "2026-10-28T19:21:16Z"
+   "started": "2026-10-28T21:20:52Z",
+   "ended": "2026-10-28T21:20:53Z"
   },
   {
    "name": "packages",
@@ -159,8 +153,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-28T19:21:16Z",
-   "ended": "2026-10-28T19:21:16Z"
+   "started": "2026-10-28T21:20:53Z",
+   "ended": "2026-10-28T21:20:53Z"
   },
   {
    "name": "outstanding",
@@ -263,8 +257,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T19:21:16Z",
-   "ended": "2026-10-28T19:21:18Z"
+   "started": "2026-10-28T21:20:53Z",
+   "ended": "2026-10-28T21:20:55Z"
   },
   {
    "name": "denials",
@@ -351,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-28T19:21:18Z",
-   "ended": "2026-10-28T19:26:23Z"
+   "started": "2026-10-28T21:20:55Z",
+   "ended": "2026-10-28T21:24:47Z"
   }
  ],
  "packages": [],
