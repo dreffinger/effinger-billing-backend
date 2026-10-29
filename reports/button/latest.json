@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-29T0324Z",
+ "stamp": "2026-10-29T0521Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/5/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40811926528",
- "started": "2026-10-29T03:24:21Z",
- "ended": "2026-10-29T03:30:25Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40822907714",
+ "started": "2026-10-29T05:21:30Z",
+ "ended": "2026-10-29T05:26:48Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 0,
-    "unbilled": 4,
+    "unbilled": 5,
     "exclusions": 1
    },
    "after": {
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 334296.74,
-   "visits": 3170,
-   "charts": 568,
+   "total": 339744.74,
+   "visits": 3190,
+   "charts": 574,
    "over_365": {
     "n": 1129,
     "dollars": 55763.39
    }
   },
   "denials": {
-   "visits": 7736,
-   "actionable": 71,
-   "actionable_amt": 13229.0,
-   "asof": "2026-10-29 03:30 UTC"
+   "visits": 7748,
+   "actionable": 69,
+   "actionable_amt": 12825.0,
+   "asof": "2026-10-29 05:26 UTC"
   }
  },
  "steps": [
@@ -82,18 +82,18 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T03:24:21Z",
-   "ended": "2026-10-29T03:24:21Z"
+   "started": "2026-10-29T05:21:30Z",
+   "ended": "2026-10-29T05:21:30Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 4->4, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 5->4, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 0,
-    "unbilled": 4,
+    "unbilled": 5,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 0,
@@ -114,6 +114,12 @@
      "ids": "v19458784 v19458785 v19458864 v19459136"
     },
     {
+     "column": "unbilled",
+     "kind": "Payment reason codes are missing or do not balance.",
+     "visits": 1,
+     "ids": "v19457366"
+    },
+    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -121,8 +127,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-29T03:24:21Z",
-   "ended": "2026-10-29T03:26:14Z"
+   "started": "2026-10-29T05:21:30Z",
+   "ended": "2026-10-29T05:23:10Z"
   },
   {
    "name": "era",
@@ -141,8 +147,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T03:26:14Z",
-   "ended": "2026-10-29T03:26:16Z"
+   "started": "2026-10-29T05:23:10Z",
+   "ended": "2026-10-29T05:23:12Z"
   },
   {
    "name": "packages",
@@ -153,36 +159,36 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T03:26:16Z",
-   "ended": "2026-10-29T03:26:16Z"
+   "started": "2026-10-29T05:23:12Z",
+   "ended": "2026-10-29T05:23:12Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3170 visits on 568 charts, $334296.74 open; 1129 over a year ($55763.39)",
+   "summary": "3190 visits on 574 charts, $339744.74 open; 1129 over a year ($55763.39)",
    "counts": {
-    "visits": 3170,
-    "charts": 568,
+    "visits": 3190,
+    "charts": 574,
     "over 365 days": 1129
    },
    "dollars": {
-    "open insurance balance": 334296.74,
+    "open insurance balance": 339744.74,
     "over 365 days": 55763.39
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1780,
-     "dollars": 188673.03,
+     "visits": 1786,
+     "dollars": 190411.03,
      "oldest_days": 1079
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 200,
-     "dollars": 28126.11,
+     "visits": 211,
+     "dollars": 31005.11,
      "oldest_days": 1263
     },
     {
@@ -216,8 +222,8 @@
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 40,
-     "dollars": 7685.97,
+     "visits": 42,
+     "dollars": 8206.97,
      "oldest_days": 1148
     },
     {
@@ -257,29 +263,29 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-29T03:26:16Z",
-   "ended": "2026-10-29T03:26:18Z"
+   "started": "2026-10-29T05:23:12Z",
+   "ended": "2026-10-29T05:23:13Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7736 denied visits on 865 charts; 71 actionable $13229.00 (67 inside 12 months $12410.00); WRITTEN-OFF 2924, RESOLVED 4482, RESUBMITTED 170, OPEN 160",
+   "summary": "7748 denied visits on 868 charts; 69 actionable $12825.00 (65 inside 12 months $12006.00); WRITTEN-OFF 2936, RESOLVED 4482, RESUBMITTED 172, OPEN 158",
    "counts": {
-    "charts read": 865,
-    "denial lines": 13127,
-    "visits": 7736,
-    "actionable": 71,
-    "inside 12 months": 67,
-    "status WRITTEN-OFF": 2924,
+    "charts read": 868,
+    "denial lines": 13148,
+    "visits": 7748,
+    "actionable": 69,
+    "inside 12 months": 65,
+    "status WRITTEN-OFF": 2936,
     "status RESOLVED": 4482,
-    "status RESUBMITTED": 170,
-    "status OPEN": 160
+    "status RESUBMITTED": 172,
+    "status OPEN": 158
    },
    "dollars": {
-    "actionable": 13229.0,
-    "inside 12 months": 12410.0,
-    "resubmitted": 28711.37,
+    "actionable": 12825.0,
+    "inside 12 months": 12006.0,
+    "resubmitted": 29115.37,
     "resolved since": 676827.14
    },
    "lines": [
@@ -303,9 +309,9 @@
     },
     {
      "disposition": "COB",
-     "visits": 980,
-     "dollars": 161631.61,
-     "patients": 99
+     "visits": 991,
+     "dollars": 163871.61,
+     "patients": 100
     },
     {
      "disposition": "DUPLICATE",
@@ -339,14 +345,14 @@
     },
     {
      "disposition": "PATIENT",
-     "visits": 319,
-     "dollars": 28004.31,
-     "patients": 142
+     "visits": 320,
+     "dollars": 28173.07,
+     "patients": 143
     }
    ],
    "errors": [],
-   "started": "2026-10-29T03:26:18Z",
-   "ended": "2026-10-29T03:30:25Z"
+   "started": "2026-10-29T05:23:13Z",
+   "ended": "2026-10-29T05:26:48Z"
   }
  ],
  "packages": [],
