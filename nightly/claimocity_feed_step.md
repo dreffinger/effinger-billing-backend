@@ -10,8 +10,9 @@ Where this text runs:
   this runbook (like docs/MIRROR.md and docs/APPROVALS_LOOP.md) and the prompt names only the file and the one command. The Button
   reads this file from main after its STEP 0 bootstrap (GitHub-less: the copy in Drive "billing agent project files"). Step `feed`
   runs on every firing, live or dry, before Charge Review.
-- the daily task "Claimocity feed ingest (daily)" (nightly/claimocity_feed_daily_prompt_v1.txt, a cheaper model): the same
-  paragraph, inline, with its own cheap "anything new?" check first.
+- the daily task "Claimocity feed ingest (daily)" (nightly/claimocity_feed_daily_prompt_v1.txt, a cheaper model; William creates
+  it in the scheduled-tasks UI - the agent's create call was refused by the environment 10/29): the same paragraph, inline, with
+  its own cheap "anything new?" check first.
 The paragraph between the --- lines is the step. Keep it and the daily prompt's (c)-(f) saying the same thing.
 
 Stamps and chart numbers (10/29): claimocity_ingest.py accepts the routines' stamp form 2026-10-29T0121Z as well as 20261029T0121Z
@@ -41,7 +42,7 @@ Duplicates: should Gregg's pickup ever post the same files, `FEED_STAMP=<batch> 
 
 ## Cheaper model
 The step is scripted end to end; the model's judgment is only needed for the listing, the download, reading the digest and routing
-holds. It runs inside the Billing Button (any firing, any mode) AND as its own daily scheduled task on claude-sonnet-5-5
-(nightly/claimocity_feed_daily_prompt_v1.txt): phase A costs a handful of tool calls and stops when Drive holds nothing new; phase B
+holds. It runs inside the Billing Button (any firing, any mode) and, once William creates that task, as its own daily scheduled
+task on claude-sonnet-5-5 (prompt = nightly/claimocity_feed_daily_prompt_v1.txt, 8:34 PM ET daily, same environment as the Button): phase A costs a handful of tool calls and stops when Drive holds nothing new; phase B
 (the bootstrap, the ingest, the mirror) runs only when a new download__ file exists. The 2-hourly backend run can carry the same
 paragraph too if William pastes it into that task's prompt (the agent cannot edit that task); it is idempotent, so overlap is safe.
