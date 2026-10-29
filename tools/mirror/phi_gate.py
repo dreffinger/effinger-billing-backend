@@ -220,6 +220,7 @@ CODE_HINT = re.compile(r"^(import |from \S+ import |def |class |#!/|#!)", re.M)
 # in code only the comments and string literals are prose: a name list / search pattern lives in a string, never in a token
 STR_OR_COMMENT = re.compile(r'("""[\s\S]*?"""|\'\'\'[\s\S]*?\'\'\'|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])*\'|#[^\n]*)')
 # board-row slugs built from real names ("last-first-<amdid>", the BOARD ACCESS RULE's id form, with an optional initial)
+NOT_SLUG = {"ehpa", "project", "claimocity", "pull", "drive", "run", "job", "cloud", "us", "east", "west", "central"}
 SLUG_NAME = re.compile(r"\b([a-z][a-z']+)-([a-z][a-z']+)((?:-[a-z])?)-(\d{5,9})\b")
 # file names built from a name and a date of birth (patient_db/pending_admits/<last>_<first>_<yyyymmdd>.json)
 FILE_SLUG = re.compile(r"\b([a-z][a-z']+)_([a-z][a-z']+)_((?:19|20)\d{6})\b")
@@ -229,6 +230,7 @@ MBI_FRAG = re.compile(r"\b[1-9][AC-HJKMNP-RT-Y][AC-HJKMNP-RT-Y0-9]\d[AC-HJKMNP-R
 DOB_SUB = re.compile(r"(?i)((?:\bdob\b|\bdod\b|date\s*of\s*(?:birth|death)|dateofbirth|dateofdeath|birth\s*date|birthdate|birthday|\bbirth\b|\bdeath\b|deceased|\bdied\b|\bborn\b)[^\n\[\]]{0,16}?)"
                      r"((?:19|20)\d{2}[-/]\d{2}[-/]\d{2}(?:T[\d:.]*Z?)?|\b\d{1,2}/\d{1,2}/(?:19|20)\d{2}\b|\b\d{1,2}/\d{1,2}/\d{2}\b|\b(?:19|20)\d{6}\b)")
 MEMBER_JSON = re.compile(r'("(?:subscribernum|subscriberid|subscriber_id|memberid|member_id|membernum|member|insid|insuredid|policynum|policynumber|policy_number|hicnum|hicn|medicaidid|medicaid_id|medicaidnum)"\s*:\s*")([A-Za-z0-9][A-Za-z0-9\-]{4,})(")', re.I)
+HL7_FIELD = re.compile(r"(?:MSH|PID|PV1|PV2|GT1|IN1|IN2|FT1|DG1|NK1|OBX|PR1)-\d{1,2}")   # an HL7 segment field reference such as IN1-49 (10/29)
 MEMBER_PROSE = re.compile(r"(?i)\b(member|subscriber|policy|insured|recipient|medicaid|hic|hicn)((?:\s*(?:id|#|number|no\.?|num))?\s*[:=#]?\s*)(?=[A-Za-z0-9\-]*\d)([A-Za-z0-9][A-Za-z0-9\-]{5,})\b")
 MEMBER_SUB = MEMBER_PROSE                                       # older name, kept for callers
 PHONE_JSON = re.compile(r'("(?:phone|homephone|cellphone|mobilephone|workphone|phone1|phone2|phonenumber|phone_number|homephone1|cell|mobile)"\s*:\s*")(\+?[\d\-\(\) .]{7,})(")', re.I)
@@ -292,6 +294,8 @@ def redact(text, names, code=None):
     t = PROSE_NAME.sub(lambda m: _bare(m, vals_up), t)
     def slug(m):
         last, first, ini, pid = m.group(1), m.group(2), m.group(3), m.group(4)
+        if last in NOT_SLUG or first in NOT_SLUG:        # ehpa-project-50717 (GCP project id), claimocity-pull-<n> (Cloud Run execution) - not a board row slug (10/29)
+            return m.group(0)
         if last not in vals_lo:
             return "[name]-" + pid
         if first not in vals_lo:
@@ -317,7 +321,7 @@ def redact(text, names, code=None):
     t = MBI_FRAG.sub("[MBI]", t)
     t = DOB_SUB.sub(lambda m: m.group(1) + "[DOB]", t)
     t = MEMBER_JSON.sub(lambda m: m.group(1) + "[member id]" + m.group(3), t)
-    t = MEMBER_PROSE.sub(lambda m: m.group(1) + m.group(2) + "[member id]", t)
+    t = MEMBER_PROSE.sub(lambda m: m.group(0) if HL7_FIELD.fullmatch(m.group(3)) else m.group(1) + m.group(2) + "[member id]", t)
     t = PHONE_JSON.sub(lambda m: m.group(1) + "[phone]" + m.group(3), t)
     t = PHONE_PROSE.sub(lambda m: m.group(1) + "[phone]", t)
     t = ADDR_JSON.sub(lambda m: m.group(1) + "[address]" + m.group(3), t)

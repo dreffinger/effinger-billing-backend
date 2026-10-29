@@ -1212,7 +1212,7 @@ Mirror: pending
 
 ## Claimocity feed — two paths (never confuse them)
 - Charges into AMD: Claimocity DFT^P03 HL7 files on sftp.claimocity.io (account kykzfgie, /download) are picked up by the AMD integration, which clears each file. This path never stopped: the 9/17 3 PM ET run found 56 new HCA hospital visits (DOS 9/14–9/16) in Claim Inspector. Posting lags 1–3 days, daytime batches.
-- Our Drive copies: Cloud Run Job `claimocity-pull` (GCP project [name]-50717, us-east1, service account claimocity-pull@[name]-50717.iam.gserviceaccount.com) runs every 30 min and copies new SFTP files into Drive "Claimocity drop" (1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI) as download__<name>.hl7, one per day about 07:30 UTC. It catches a file only because it runs before the AMD pickup clears it.
+- Our Drive copies: Cloud Run Job `claimocity-pull` (GCP project ehpa-project-50717, us-east1, service account claimocity-pull@ehpa-project-50717.iam.gserviceaccount.com) runs every 30 min and copies new SFTP files into Drive "Claimocity drop" (1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI) as download__<name>.hl7, one per day about 07:30 UTC. It catches a file only because it runs before the AMD pickup clears it.
 
 ## Outage 9/10–9/17 and fix (9/18)
 - Every execution since 9/10 died at the Drive login: `google.auth.exceptions.RefreshError: invalid_grant: Token has been expired or revoked` (exit 1). The deployed script used a copy of William's personal Google refresh token from the secret `drive-user-creds`; the token was revoked ~9/10.
@@ -1221,9 +1221,9 @@ Mirror: pending
 - Never re-run claimocity_redeploy_paste.txt (restores the expired-token version). claimocity_gcs_paste.txt = bucket alternative (ehpa-claimocity-drop, unused); claimocity-reader-key.json = read-only key for that bucket.
 
 ## Cloud Shell one-liners (William pastes; Claude sessions cannot reach GCP, and the session credential policy refuses using the reader key)
-- describe: `gcloud run jobs describe claimocity-pull --region us-east1 --project [name]-50717 --format="yaml(spec.template.spec.template.spec.containers[0].env,spec.template.spec.template.spec.serviceAccountName)"`
-- run: `gcloud run jobs execute claimocity-pull --region us-east1 --project [name]-50717 --wait`
-- read THAT run's output in order: `gcloud logging read 'resource.type="cloud_run_job" AND labels."run.googleapis.com/execution_name"="claimocity-pull-<id>"' --order=asc --project [name]-50717 --format="value(textPayload)"` (without --order=asc the newest entry comes first and `tail` shows the oldest run).
+- describe: `gcloud run jobs describe claimocity-pull --region us-east1 --project ehpa-project-50717 --format="yaml(spec.template.spec.template.spec.containers[0].env,spec.template.spec.template.spec.serviceAccountName)"`
+- run: `gcloud run jobs execute claimocity-pull --region us-east1 --project ehpa-project-50717 --wait`
+- read THAT run's output in order: `gcloud logging read 'resource.type="cloud_run_job" AND labels."run.googleapis.com/execution_name"="claimocity-pull-<id>"' --order=asc --project ehpa-project-50717 --format="value(textPayload)"` (without --order=asc the newest entry comes first and `tail` shows the oldest run).
 - Reading it: `done: 0 copied, N skipped` = both logins fine, nothing new at Claimocity; `copied ...` = files landed; `UPLOAD FAILED ... 403` = switch to the bucket paste; `Authentication failed` = SFTP password changed -> new version of secret claimocity-sftp-pass. The audit line "failed to complete, 0/1 tasks were a success" has no reason in it.
 
 ## Facts for the routine
