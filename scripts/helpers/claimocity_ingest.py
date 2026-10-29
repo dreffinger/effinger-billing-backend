@@ -7,7 +7,7 @@
 #   3 match       registers/claimocity_patient_map.json first (Claimocity patient id -> AMD chart from every earlier run), then
 #                 claimocity_match + claimocity_resolve for the unknown patients (lookuppatient by name + DOB; several same-DOB charts ->
 #                 the one with the most recent charge)                                  -> feed_match_<stamp>.json
-#   4 new charts  claimocity_newcharts (addpatient + updaterespparty + addinsurance from IN1, member id [member id])   [--live only]
+#   4 new charts  claimocity_newcharts (addpatient + updaterespparty + addinsurance from IN1, member id IN1-49)   [--live only]
 #   5 import      claimocity_import (addvisit + updvisitwithnewcharges + admission date; dedupe = register + live CPT+DOS check)
 #   6 verify      claimocity_verify (AMD 271 per plan, deceased guard, Stedi discovery when nothing active, visit insorder) [--live]
 #   7 inspector   claimocity_inspector (facility/POS fixes, admission dates, advisory bypasses)                               [--live]
@@ -28,7 +28,7 @@ def opt(name, default=None):
 hl7_dir = opt("--hl7-dir"); live = "--live" in a; limit = opt("--limit"); reprocess = "--reprocess" in a
 stamp = opt("--stamp", utcnow().strftime("%Y%m%dT%H%MZ"))
 # any stamp form is accepted (the routines write 2026-10-29T0121Z, this script 20261029T0121Z): keep digits/T/Z only, so the
-# chart prefix F<yymmdd><hhmm> and every feed_*_<stamp>.json name come out the same whichever form the caller passed
+# chart prefix F<yymmdd> (first free -NN, probed by claimocity_newcharts) and every feed_*_<stamp>.json name come out the same whichever form the caller passed
 stamp = re.sub(r"[^0-9TZ]", "", stamp)
 if not re.match(r"^\d{8}T\d{4}Z$", stamp): sys.exit("stamp must look like 20261029T0121Z (or 2026-10-29T0121Z); got %r" % stamp)
 if not hl7_dir: sys.exit("usage: claimocity_ingest.py --hl7-dir <folder> [--stamp S] [--live] [--limit N] [--skip-verify] [--skip-inspector] [--no-stedi] [--reprocess]")
@@ -56,10 +56,10 @@ def finish(code):
 # ---- which files are new ----------------------------------------------------------------------------------------------
 batch = os.path.join("hl7", stamp); os.makedirs(batch, exist_ok=True)
 files = []
-def key(b): return re.sub(r"^(download__)+", "", b)   # Drive copies are named download__<sftp name>; the register keys the SFTP name
+def sftp_name(b): return re.sub(r"^(download__)+", "", b)   # Drive copies are named download__<sftp name>; the register keys the SFTP name
 known_sha = {v.get("sha256") for v in reg["files"].values()}
 for f in sorted(glob.glob(os.path.join(hl7_dir, "*.hl7"))):
-    b = key(os.path.basename(f)); s = sha(f)
+    b = sftp_name(os.path.basename(f)); s = sha(f)
     if os.path.getsize(f) == 0: print("empty file skipped:", b); continue
     if not reprocess and ((b in reg["files"] and reg["files"][b].get("sha256") == s) or s in known_sha): continue   # same name+content or same content under another name
     shutil.copy(f, os.path.join(batch, b)); files.append(b)
