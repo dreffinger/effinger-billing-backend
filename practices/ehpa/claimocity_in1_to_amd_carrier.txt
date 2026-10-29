@@ -1,0 +1,101 @@
+feed_IN1-4_payer_name,rows_in_10_files,rows_with_member_id_IN1-49,amd_carrier_code,amd_carrier_id,amd_carrier_name,action
+Medicare B,94,94,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Medicare,80,80,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Patient Liability,77,0,,,,SKIP (not a medical payer for our claims)
+Florida Community Care,61,61,FLO99,car42008,FLORIDA COMMUNITY CARE AVAILITY,addinsurance
+Humana,40,40,HUM01,car6285,HUMANA,addinsurance
+Sunshine State Health Plan,37,37,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+RESLIAB-Resident Liability,37,0,,,,SKIP (not a medical payer for our claims)
+Patient Liability-Care Cost,33,0,,,,SKIP (not a medical payer for our claims)
+MCBV-Medicare B Vaccine/Lab,32,32,,,,SKIP (not a medical payer for our claims)
+Resident Liability,29,0,,,,SKIP (not a medical payer for our claims)
+MCBT-Medicare B Therapy,29,29,,,,SKIP (not a medical payer for our claims)
+FLORIDA COMMUNITY CARE MCO,27,27,FLO99,car42008,FLORIDA COMMUNITY CARE AVAILITY,addinsurance
+COINS-Florida Community Care LTC Part B,23,23,,,,SKIP (not a medical payer for our claims)
+Managed Care coinsurance from private,22,0,,,,SKIP (not a medical payer for our claims)
+United Healthcare,22,8,UNI20,car6404,UNITED HEALTHCARE,addinsurance
+Humana LTC MCD FL,21,21,HUM01,car6285,HUMANA,addinsurance
+Medicare B coinsurance from Medicaid,17,16,,,,SKIP (not a medical payer for our claims)
+MCA-Medicare A,16,16,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Medicare A,15,15,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Medicare A Co-Ins Private,15,0,,,,SKIP (not a medical payer for our claims)
+Medicaid-FL,14,14,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+BC/BS of FL,14,14,BCBS,car6062,FLORIDA BLUE,addinsurance
+Capital Health Plan,14,14,CAP07,car41826,CAPITAL HEALTH PLAN,addinsurance
+Blue Cross Federal,13,13,BCBS,car6062,FLORIDA BLUE,addinsurance
+Capital Health Plans Part B,12,12,CAP07,car41826,CAPITAL HEALTH PLAN,addinsurance
+Private Pay- Non Contract,11,0,,,,SKIP (not a medical payer for our claims)
+MCDP-Medicaid Pending Florida,11,0,,,,SKIP (not a medical payer for our claims)
+Private Pay Perm,10,0,,,,SKIP (not a medical payer for our claims)
+First Coast Medicare,10,10,,,,NO MAP - held for William (facesheet)
+Medicare A Vaccinations/Telehealth,9,9,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Pending-MCD \T\ HSM,8,5,,,,SKIP (not a medical payer for our claims)
+AARP UHC Medicare Supplement,8,8,UNI20,car6404,UNITED HEALTHCARE,addinsurance
+Private Pay,8,0,,,,SKIP (not a medical payer for our claims)
+Managed Care coinsurance from Medicaid ,8,8,,,,SKIP (not a medical payer for our claims)
+MCD LTC-Sunshine FL,8,8,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+Medicare First Coast Service Options Inc.,8,8,,,,NO MAP - held for William (facesheet)
+Medicaid AHCA,7,7,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+COINS-Humana LTC Medicare B Coins,7,7,,,,SKIP (not a medical payer for our claims)
+Simply Healthcare,6,6,SIM01,car42019,SIMPLY HEALTHCARE MCD PLANS,addinsurance
+Medicare A coinsurance from private,6,0,,,,SKIP (not a medical payer for our claims)
+Sunshine State Health,6,6,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+SUNSHINE STATE (EAP),5,5,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+Capital Health Plan (HMO),5,5,CAP07,car41826,CAPITAL HEALTH PLAN,addinsurance
+Medicaid Pending FL,5,3,,,,SKIP (not a medical payer for our claims)
+Medicare B coins from Medicaid Pndg ,5,5,,,,SKIP (not a medical payer for our claims)
+"Humana Medical Plan, Inc.",5,5,HUM01,car6285,HUMANA,addinsurance
+Managed Care B Co-Ins Private ,5,0,,,,SKIP (not a medical payer for our claims)
+Managed Care A Co-Ins Private,5,0,,,,SKIP (not a medical payer for our claims)
+Medicaid,4,4,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+MGD PDPM-Tricare Contract ,4,0,,,,SKIP (not a medical payer for our claims)
+American Elder Care,4,4,,,,NO MAP - held for William (facesheet)
+Managed Care Part B ,4,0,,,,NO MAP - held for William (facesheet)
+COINS-Medicaid HMO B Willoughby Write Off Coins ,4,4,,,,SKIP (not a medical payer for our claims)
+SIMPLY HEALTHCARE PLANS,3,3,SIM01,car42019,SIMPLY HEALTHCARE MCD PLANS,addinsurance
+AARP,3,3,AAR01,car6600,AARP,addinsurance
+Big Bend Hospice,3,2,,,,SKIP (not a medical payer for our claims)
+COINS-Private HMO A/B Coins ,3,0,,,,SKIP (not a medical payer for our claims)
+AARP Healthcare Options,3,3,AAR01,car6600,AARP,addinsurance
+MCD-Medicaid Florida,3,2,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+UNITED HEALTH MEDICARE ADVANTAGE,2,0,UNI20,car6404,UNITED HEALTHCARE,addinsurance
+X-over MRC to Private (Dual),2,2,,,,NO MAP - held for William (facesheet)
+X-over Medicare B to MCD-PND,2,2,FLO02,car6085,FLORIDA MEDICARE,addinsurance
+Medicaid Pending,2,0,,,,SKIP (not a medical payer for our claims)
+United American Ins Co,2,0,,,,NO MAP - held for William (facesheet)
+Medicare B coinsurance from private,2,0,,,,SKIP (not a medical payer for our claims)
+Humana Long Term Care,2,2,HUM01,car6285,HUMANA,addinsurance
+Tricare for Life,2,0,TRI05,car6559,TRICARE FOR LIFE,addinsurance
+Hospice Private,2,0,,,,SKIP (not a medical payer for our claims)
+Constitution Life,2,2,,,,NO MAP - held for William (facesheet)
+Medicare B Co-Ins Private,2,0,,,,SKIP (not a medical payer for our claims)
+Florida Medicaid,2,2,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+Community Care Plan,2,2,,,,NO MAP - held for William (facesheet)
+FL MCD MNG-American Eldercare,2,2,,,,NO MAP - held for William (facesheet)
+Staywell HMO,2,2,,,,NO MAP - held for William (facesheet)
+FL MCD MNG-Community Care (ILS),2,2,,,,NO MAP - held for William (facesheet)
+Managed Care Part B Coinsurance from Medicaid,2,2,,,,SKIP (not a medical payer for our claims)
+Ambetter - Sunshine Health Care,2,2,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+Simply Health Care Plans Inc,2,2,SIM01,car42019,SIMPLY HEALTHCARE MCD PLANS,addinsurance
+"C \T\ O Employees"" Hospital Association",2,2,,,,NO MAP - held for William (facesheet)
+UHC - Optum B,2,0,UNI20,car6404,UNITED HEALTHCARE,addinsurance
+Hospice Medicaid Pending,2,0,,,,SKIP (not a medical payer for our claims)
+Managed Care with Level (1),2,0,,,,NO MAP - held for William (facesheet)
+MCD HMO-Humana MMA,2,0,HUM01,car6285,HUMANA,addinsurance
+COINS-Florida Community Care LTC Part A,2,2,,,,SKIP (not a medical payer for our claims)
+Sunshine MCO,2,2,SUN01,car6194,SUNSHINE STATE HEALTH PLAN,addinsurance
+PTB MCD-Medicaid Therapy Only,2,2,,,,SKIP (not a medical payer for our claims)
+PTB MCD-Medicaid Vaccine,2,2,,,,SKIP (not a medical payer for our claims)
+Medicare FL,2,2,,,,NO MAP - held for William (facesheet)
+Private Pay-SNF,1,0,,,,SKIP (not a medical payer for our claims)
+COINS-Private Medicare Part A Coins,1,0,,,,SKIP (not a medical payer for our claims)
+Medicaid Humana ,1,1,HUM01,car6285,HUMANA,addinsurance
+Medicaid Florida Community,1,1,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+Patient Resources,1,0,,,,NO MAP - held for William (facesheet)
+Medicaid MMA Florida Community,1,1,MCAD,car6113,FLORIDA MEDICAID,addinsurance
+Hospice Big Bend,1,0,,,,SKIP (not a medical payer for our claims)
+HUMANA MCD (EAP),1,1,HUM01,car6285,HUMANA,addinsurance
+Managed Care Coinsurance from Medicaid Pending,1,1,,,,SKIP (not a medical payer for our claims)
+BCBS FLORIDA,1,1,BCBS,car6062,FLORIDA BLUE,addinsurance
+HOS-Big Bend Hospice,1,0,,,,SKIP (not a medical payer for our claims)
+MCD LTC-Florida Community Care,1,1,FLO99,car42008,FLORIDA COMMUNITY CARE AVAILITY,addinsurance

@@ -12428,7 +12428,9 @@
     "charge23371713"
    ],
    "dos_before_redate": "10/22/2026",
-   "redated": "10/28 CCI 24078 - William: off the E/M day"
+   "redated": "10/28 CCI 24078 - William: off the E/M day",
+   "dos_feed": "10/22/2026",
+   "redated_from": "10/22/2026"
   },
   {
    "feed_id": "639be7ee080aab6d37bfd3fe",
@@ -12530,7 +12532,9 @@
     "charge23371721"
    ],
    "dos_before_redate": "10/22/2026",
-   "redated": "10/28 CCI 24078 - William: off the E/M day"
+   "redated": "10/28 CCI 24078 - William: off the E/M day",
+   "dos_feed": "10/22/2026",
+   "redated_from": "10/22/2026"
   },
   {
    "feed_id": "64ffe67cee1304ab155e8a24",
@@ -12560,7 +12564,9 @@
     "charge23371723"
    ],
    "dos_before_redate": "10/22/2026",
-   "redated": "10/28 CCI 24078 - William: off the E/M day"
+   "redated": "10/28 CCI 24078 - William: off the E/M day",
+   "dos_feed": "10/22/2026",
+   "redated_from": "10/22/2026"
   },
   {
    "feed_id": "64226d1f9793d29423f32b74",

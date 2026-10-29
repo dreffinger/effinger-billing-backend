@@ -5449,3 +5449,28 @@ Behaviour seen: ERA Center empty; Claimocity feed lag continues (no DOS after 10
 - Claimocity's PID-19 SSN answers Stedi MBILU ERR 72 on every HCA chart tried (12 of 12) - as on 10/9; facesheets remain the route.
 - The 06:40Z backend routine ran concurrently and worked the inspector on this import (100 bypasses, 8 dx cascades, admission dates) -
   concurrent sessions on the same ledger are a known pattern (9/10 rule); nothing was double-written.
+
+## Later still (10/29 02:50-03:40 UTC) - Gregg's answer, the feed taken in-house
+- Gregg (10/28 11:57 ET): the 10/15 Claimocity format change = segments now end with CR (0x0D) instead of LF, messages separated
+  CR LF LF; his parser shut the interface down. Confirmed on our copies (1,043 bare CRs in the 10/16 file). The same change added
+  GT1 + IN1 segments (1,076 IN1 across the 570 messages) - the insurance data William asked Claimocity for on 8/29.
+- **IN1 member id lives in IN1-49 (Insured's ID number), not IN1-36** (empty in every row). The 10/28 scripts read IN1-36, so no plan
+  was ever added from the feed; fixed in claimocity_newcharts.py / claimocity_fixholds.py (in1_member: IN1-49 then IN1-36, never an
+  SSN-shaped value). Re-read for the 14 payer-less F1028 charts: only pat17478208 had a usable IN1 (Capital Health Plan HMO + id) ->
+  CAP07 ins9521050 seq 1 added, AMD 271 ACTIVE; the other 13 carry no IN1 at all (hospital messages) - facesheets.
+- Mapping table practices/ehpa/claimocity_in1_to_amd_carrier.txt (100 distinct IN1-4 payer names in the 10 files -> carrier code /
+  car id / action; the PAYER_MAP regexes in claimocity_newcharts.py are the rule; LIABILITY/SELF PAY/PENDING/COINS/THERAPY/VACCINE/
+  LAB/PART D/HOSPICE rows are skipped; 'First Coast Medicare' / 'Medicare FL' / 'American Elder Care' / 'Community Care Plan' /
+  'Staywell' / 'United American' / 'Constitution Life' have no map yet).
+- William 10/28 23:05 ET: no need for Gregg - leave the files on Claimocity, copy them, import the charges ourselves on the routine.
+  Built: the generic claimocity_*.py set (the 10/28 scripts parametrized by FEED_STAMP / FEED_HL7_DIR / FEED_DX_CACHE /
+  FEED_CHART_PREFIX) + claimocity_dx.py (dx cache) + claimocity_ingest.py (orchestrator: parse -> dx -> patient map / lookup ->
+  new charts -> import -> verify -> inspector -> report; file register registers/claimocity_ingest.json by sha256; patient map
+  registers/claimocity_patient_map.json Claimocity PID-3 -> chart, 286 seeded). Dry runs 10/29: the ten 10/16-10/27 files = 568
+  'already created' + 2 live-skips, 0 would-create; the 10/17 file with its 11 patients removed from the map -> 11 lookuppatient
+  FOUND, resolved, 12 'already created'. Import now dedupes against EVERY earlier batch register (a re-dated visit keeps its feed DOS
+  as dos_feed) and refuses a DOS after the deceased cache's date of death before any write; a null dx in the shared cache is skipped.
+- Cloud Run claimocity-pull v3 (claimocity/cloud_run/main.py + DEPLOY.md; Drive 'Claimocity drop' claimocity_v3_paste.txt): walks
+  /download root + subfolders, service-account auth, copy-only. The deployed v2 never copied a root file (newest Drive copy 9/9).
+- Routine step text: nightly/claimocity_feed_step.md (step `feed`, part of `all`, before Charge Review) - pasted into the Billing
+  Button prompt 10/29.

@@ -612,3 +612,8 @@ Pam admits: lookuppatient BRO* / HIC* / RIC* at 12:59Z - still no AMD chart for 
 Writes in AdvancedMD: none. Dollars re-sent $0. Insurance entered: none. Write-offs: none. Packages applied 0 / refused 0 / skipped 0. Classifier refusals: none. Script errors: the first engine pass's ModuleNotFoundError 'requests' (container lacked the module; fixed by pip, pass re-run clean).
 Waiting on William: UNI98 carrier record (car307804) payer address in Master Files, then 'rebill' on row levy-liza-17475632 ($310); AET12 carrier master (pat24750 v19455937, $315); the three chartless Pam admits.
 Calls learned: none. Vocabulary entries added: 0.
+## 2026-10-28 chat - Claimocity backlog import: charts with NO insurance found (AMD 271 / Stedi discovery / MBI-by-SSN all empty) - facesheets needed
+- pat17477183 (HCA, 11 x 99233 10/15-10/25; feed IN1 'Medicaid' without an id) · pat17477946 (feed IN1 TRICARE, no id) · pat12182947 (CMS names Sunshine MA primary; no SUN01 member id anywhere)
+- RESOLVED 10/29 03:05Z: pat17478208 - CAP07 added from the feed IN1 (member id lives in IN1-49), 271 ACTIVE.
+- new charts F1028: pat17478200, pat17478201, pat17478203, pat17478205, pat17478212, pat17478214, pat17478215, pat17478216, pat17478221, pat17478225, pat17478228
+- their visits carry no insurance order -> Unbilled 'Insurance order is missing' until a plan is attached (bht hca facesheets / Pam admit emails)

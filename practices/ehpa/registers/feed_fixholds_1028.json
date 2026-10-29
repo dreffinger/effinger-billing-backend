@@ -149,7 +149,8 @@
   ],
   "fixes": [
    "MBI lookup: ['72 Invalid/Missing Subscriber/Insured ID']",
-   "no mappable IN1 payer with a member id in the feed - William (facesheet)"
+   "no mappable IN1 payer with a member id in the feed - William (facesheet)",
+   "10/29 03:05Z: CAP07 (Capital Health Plan HMO) added from the feed's IN1 - member id in IN1-49 (the 10/28 scripts read IN1-36, always empty) -> ins9521050 seq 1, AMD 271 ACTIVE"
   ]
  },
  "pat17478212": {
