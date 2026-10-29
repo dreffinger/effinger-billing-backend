@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-29T0722Z",
+ "stamp": "2026-10-29T0922Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 1 checks $697.03 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40835014421",
- "started": "2026-10-29T07:22:44Z",
- "ended": "2026-10-29T07:27:58Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/40849150429",
+ "started": "2026-10-29T09:22:52Z",
+ "ended": "2026-10-29T09:29:50Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 697.03
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 697.03,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 335739.74,
-   "visits": 3174,
+   "total": 334686.6,
+   "visits": 3171,
    "charts": 573,
    "over_365": {
     "n": 1128,
@@ -65,7 +65,7 @@
    "visits": 7748,
    "actionable": 69,
    "actionable_amt": 12825.0,
-   "asof": "2026-10-29 07:27 UTC"
+   "asof": "2026-10-29 09:29 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T07:22:44Z",
-   "ended": "2026-10-29T07:22:44Z"
+   "started": "2026-10-29T09:22:52Z",
+   "ended": "2026-10-29T09:22:54Z"
   },
   {
    "name": "columns",
@@ -121,28 +121,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-29T07:22:44Z",
-   "ended": "2026-10-29T07:24:23Z"
+   "started": "2026-10-29T09:22:54Z",
+   "ended": "2026-10-29T09:25:02Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $697.03 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
+    "era_post lines": 1,
     "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 697.03,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 697.03
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053328,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "820075772",
+     "amount": 0.0,
+     "unposted": 697.03,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-29T07:24:23Z",
-   "ended": "2026-10-29T07:24:24Z"
+   "started": "2026-10-29T09:25:02Z",
+   "ended": "2026-10-29T09:25:10Z"
   },
   {
    "name": "packages",
@@ -153,29 +162,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T07:24:24Z",
-   "ended": "2026-10-29T07:24:24Z"
+   "started": "2026-10-29T09:25:10Z",
+   "ended": "2026-10-29T09:25:10Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3174 visits on 573 charts, $335739.74 open; 1128 over a year ($55448.39)",
+   "summary": "3171 visits on 573 charts, $334686.60 open; 1128 over a year ($55448.39)",
    "counts": {
-    "visits": 3174,
+    "visits": 3171,
     "charts": 573,
     "over 365 days": 1128
    },
    "dollars": {
-    "open insurance balance": 335739.74,
+    "open insurance balance": 334686.6,
     "over 365 days": 55448.39
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1770,
-     "dollars": 186406.03,
+     "visits": 1767,
+     "dollars": 185352.89,
      "oldest_days": 1079
     },
     {
@@ -257,8 +266,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-29T07:24:24Z",
-   "ended": "2026-10-29T07:24:26Z"
+   "started": "2026-10-29T09:25:10Z",
+   "ended": "2026-10-29T09:25:12Z"
   },
   {
    "name": "denials",
@@ -345,8 +354,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-29T07:24:26Z",
-   "ended": "2026-10-29T07:27:58Z"
+   "started": "2026-10-29T09:25:12Z",
+   "ended": "2026-10-29T09:29:50Z"
   }
  ],
  "packages": [],
