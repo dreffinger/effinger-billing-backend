@@ -1,0 +1,563 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-28T1038Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/0/49/2 -> 0/0/4/1; ERA 1 checks $0.00 -> 0 checks $0.00; posted $0 (WOINS 25.06, WONCS 315.00); re-sent 13 visits $2,976",
+ "note": "BUTTON PRESS 2026-10-28T10:40Z \u00b7 mode: live \u00b7 steps: columns,cascade \u00b7 packages: none \u00b7 note: William 06:34 ET 'run all the columns again and cascade to clean up the billing' (brief arrived after the run; the run had already done columns + cascade and every other step live)",
+ "run_url": "https://claude.ai/code/session_01HHfWRByehYaMNDbni8SfFf",
+ "started": "2026-10-28T10:53:54Z",
+ "ended": "2026-10-28T11:28:00Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 49,
+    "exclusions": 2
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 4,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 1,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 25.06,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0,
+   "woncs": 315.0
+  },
+  "resent": {
+   "visits": 13,
+   "dollars": 2976.0
+  },
+  "written_off": {
+   "count": 4,
+   "dollars": 340.06
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 340165.22,
+   "visits": 3193,
+   "charts": 573,
+   "over_365": {
+    "n": 1126,
+    "dollars": 55333.86
+   }
+  },
+  "denials": {
+   "visits": 7748,
+   "actionable": 65,
+   "actionable_amt": 11909.0,
+   "asof": "2026-10-28 11:05 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1267 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1267,
+    "registers": 1569,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-28T10:53:54Z",
+   "ended": "2026-10-28T10:53:55Z"
+  },
+  {
+   "name": "board",
+   "title": "Board input (Insurance Refresh Board, Working Denials queue, drops)",
+   "status": "ok",
+   "started": "2026-10-28T10:48:00Z",
+   "ended": "2026-10-28T10:54:00Z",
+   "summary": "2 William orders done (row levin-lize-17475632 'rebill' -> v19433791 freq-1 to UNI98 + exclusion 1700319 completed; row dalrymple-dane-17473245 'write off' -> WOINS 16.14 + 8.92 on v19452629); drops 0; denials commands 0; Pam admit chart found (pat17478229, Medicare verified) -> William for the secondary's name; board_updates_2026-10-28T1038Z.json (11 ops) in board inbox; brief expectations: (a) 13 payerless F1028 charts listed (registers/payerless_f1028_2026-10-28T1038Z.json), no plans invented; (b) deceased cache unpacked before the guard; (c) no integration duplicates seen (feed paused); (d) inspector re-listed with fresh ids - 0 held",
+   "counts": {
+    "rows on claude turn read": 200,
+    "william orders acted": 2,
+    "drops": 0,
+    "denials commands": 0,
+    "board ops written": 11,
+    "new rows for william": 2
+   },
+   "dollars": {
+    "resent": 310.0,
+    "woins": 25.06
+   },
+   "lines": [
+    {
+     "chart": 17475632,
+     "visit": 19433791,
+     "action": "freq1 rebill seq 1 (UNI98) 204 + hideexclusions run 1700319",
+     "dollars": 310.0
+    },
+    {
+     "chart": 17473245,
+     "visit": 19452629,
+     "action": "WOINS 16.14 + 8.92 (paymentids 10176853/10176854)",
+     "dollars": 25.06
+    },
+    {
+     "chart": 17478229,
+     "visit": 19459260,
+     "action": "Pam admit chart found; Medicare MBI verified on CMS; Medicaid id inactive; secondary name -> William",
+     "dollars": 389.0
+    }
+   ],
+   "errors": []
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0 (3 add-on 35790 advisories from this run's rebills bypassed), Unbilled 49->4 (30 prior-payor released; 11 uninsured hospital visits chart 17477183 to patient balance per William's 10/4 plan; 2 MSP-code visits 19459063/19459073 re-routed to UHC Dual Complete seq 3 and released; 4 fac67 'Facility is missing NPI' rows held for William), Exclusions 2->1 (run 1700319 UNI98 completed after the rebill; new run 1700335 MCAD PSBR0111 chart 17469549 CCM 10/22 WONCS 315 + completed; AET12 chart 24750 standing)",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 49,
+    "exclusions": 2,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 0,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 30,
+    "unbilled rows left alone": 17,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log",
+    "unbilled after": 4,
+    "exclusions after": 1,
+    "prior-payor released": 30,
+    "patient-balance moves": 11,
+    "msp re-routes": 2,
+    "facility-npi holds": 4,
+    "inspector bypasses (final)": 3
+   },
+   "dollars": {
+    "woncs": 315.0,
+    "resent": 521.0
+   },
+   "lines": [
+    {
+     "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Date of service is outside insurance coverage effective dates",
+     "visits": 11,
+     "ids": "v19458800 v19458808 v19458819 v19458825 v19458834 v19458843 v19458909 v19459084 v19459119 v19459133 v19459149"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Facility is missing NPI information",
+     "visits": 4,
+     "ids": "v19458784 v19458785 v19458864 v19459136"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "unbilled",
+     "kind": "When billing Medicare as the non-primary carrier, the MSP Code on the ",
+     "visits": 1,
+     "ids": "v19459063"
+    },
+    {
+     "column": "unbilled",
+     "kind": "One or more charges within this visit have errors. Charges with errors",
+     "visits": 1,
+     "ids": "v19459073"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    },
+    {
+     "chart": 17477183,
+     "visits": "19458800 19458808 19458819 19458825 19458834 19458843 19458909 19459084 19459119 19459133 19459149",
+     "action": "insurance balance -> patient (full-visit echo) + released; 77027 inactive 10/20, MBILU 72",
+     "dollars": 1760.0
+    },
+    {
+     "chart": 21020,
+     "visit": 19459063,
+     "action": "reroute 3,4 seq 3 (UHCMA) 204 + released",
+     "dollars": 206.0
+    },
+    {
+     "chart": 24208,
+     "visit": 19459073,
+     "action": "reroute 3,4 seq 3 (UHCMA) 204 + released",
+     "dollars": 315.0
+    },
+    {
+     "chart": 17469549,
+     "visit": 19459291,
+     "action": "WONCS 206 + 109 (MCAD) + hideexclusions run 1700335",
+     "dollars": 315.0
+    },
+    {
+     "charts": "25994 x2, 17477225, 17469426",
+     "visits": "19458784 19458785 19458864 19459136",
+     "action": "HELD facility fac67 missing NPI -> board row facility-npi-fac67",
+     "dollars": 871.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T10:53:55Z",
+   "ended": "2026-10-28T10:57:22Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "1 check / $0.00 -> 0 checks / $0.00: check 1053305 Medicare OA-18 exact duplicate of visit 19457360 (original payment posted 10/22, 66.36 + WOINS 57.71) - never rebilled, dismissed by era_clear; 16.93 coinsurance stays (no secondary); Availity/treasury: nothing new since 10/21",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 1,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 0.0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [
+    {
+     "check": 1053305,
+     "visit": 19457360,
+     "chart": 17473661,
+     "outcome": "duplicate-original (payment already posted); dismissed",
+     "dollars": 0.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T10:57:22Z",
+   "ended": "2026-10-28T10:57:31Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Insurance cascade",
+   "status": "ok",
+   "summary": "precheck 22 pairs, 6 flagged: chart 17472873 MA (UHC 87726) plan added + visit 19459143 re-sent; chart 12179690 MA (H1045-041 on chart seq 3) begin date 1/1/2026, inactive plan end-dated, 4 visits re-sent to seq 3; chart 17473601 MBI mismatch (seq-1 invalid, seq-3 valid) 5 visits re-sent to seq 3; chart 17469028 CMS valid (no change); chart 17477533 CMS AAA 71 DOB mismatch -> board row (William); chart 47979 FLO99 n/a; void rules 1 open, 0 voided",
+   "counts": {
+    "pairs checked": 22,
+    "flagged": 6,
+    "ma re-routes": 2,
+    "mbi re-routes": 1,
+    "holds for william": 1,
+    "visits re-sent": 10,
+    "void rules": "1 open, 0 voided",
+    "stedi lookups": 13
+   },
+   "dollars": {
+    "resent": 2145.0,
+    "stedi": 7.8
+   },
+   "lines": [
+    {
+     "chart": 17472873,
+     "visit": 19459143,
+     "action": "add_ins UNI20 (begin 08/01/2025) + insorder 2,1 + rebill_patient_year order 2",
+     "dollars": 315.0
+    },
+    {
+     "chart": 12179690,
+     "visits": "19455317 19455318 19455675 19459138",
+     "action": "UNI20 begindate 01/01/2026; WellCare enddate 12/31/2025; insorder 3,2; rebill_patient_year order 3",
+     "dollars": 808.0
+    },
+    {
+     "chart": 17473601,
+     "visits": "19442289 19450680 19452637 19455676 19459139",
+     "action": "rebill_patient_year order 3 (valid Medicare plan)",
+     "dollars": 1022.0
+    },
+    {
+     "chart": 17477533,
+     "visit": 19459144,
+     "action": "HELD - CMS AAA 71 DOB mismatch; board row daffin-faye-17477533",
+     "dollars": 206.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T10:57:31Z",
+   "ended": "2026-10-28T10:59:16Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "PENDING at payer - wait: 15",
+   "counts": {
+    "PENDING at payer - wait": 15
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "PENDING at payer - wait",
+     "visits": 15,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T10:59:16Z",
+   "ended": "2026-10-28T10:59:59Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-28T10:59:59Z",
+   "ended": "2026-10-28T10:59:59Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "  revalidation William Effinger DO: I20120313000781 due TBD |   revalidation Pamela Garland-G ARNP: I20080619000178 due TBD | LEIE: 84093 rows, 0 matches | Reminders due: none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-28T10:59:59Z",
+   "ended": "2026-10-28T11:00:04Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "3193 visits on 573 charts, $340165.22 open; 1126 over a year ($55333.86)",
+   "counts": {
+    "visits": 3193,
+    "charts": 573,
+    "over 365 days": 1126
+   },
+   "dollars": {
+    "open insurance balance": 340165.22,
+    "over 365 days": 55333.86
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1788,
+     "dollars": 190761.42,
+     "oldest_days": 1078
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 206,
+     "dollars": 29667.2,
+     "oldest_days": 1262
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 152,
+     "dollars": 26090.58,
+     "oldest_days": 415
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 317,
+     "dollars": 20113.93,
+     "oldest_days": 1535
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 119,
+     "dollars": 13458.33,
+     "oldest_days": 1298
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 55,
+     "dollars": 11340.24,
+     "oldest_days": 775
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 40,
+     "dollars": 7685.97,
+     "oldest_days": 1147
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 36,
+     "dollars": 4954.1,
+     "oldest_days": 391
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 29,
+     "dollars": 4929.98,
+     "oldest_days": 1346
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 163
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 39,
+     "dollars": 3957.73,
+     "oldest_days": 595
+    },
+    {
+     "carrier": "TRI05",
+     "name": "TRICARE FOR LIFE",
+     "visits": 96,
+     "dollars": 3105.91,
+     "oldest_days": 1506
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T11:00:04Z",
+   "ended": "2026-10-28T11:00:06Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7748 denied visits on 866 charts; 65 actionable $11909.00 (61 inside 12 months $11090.00); WRITTEN-OFF 2941, RESOLVED 4482, RESUBMITTED 170, OPEN 155",
+   "counts": {
+    "charts read": 866,
+    "denial lines": 13149,
+    "visits": 7748,
+    "actionable": 65,
+    "inside 12 months": 61,
+    "status WRITTEN-OFF": 2941,
+    "status RESOLVED": 4482,
+    "status RESUBMITTED": 170,
+    "status OPEN": 155
+   },
+   "dollars": {
+    "actionable": 11909.0,
+    "inside 12 months": 11090.0,
+    "resubmitted": 28711.37,
+    "resolved since": 676827.14
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1891,
+     "dollars": 312800.0,
+     "patients": 218
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1262,
+     "dollars": 196436.23,
+     "patients": 200
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1120,
+     "dollars": 174328.55,
+     "patients": 213
+    },
+    {
+     "disposition": "COB",
+     "visits": 991,
+     "dollars": 163871.61,
+     "patients": 100
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 499,
+     "dollars": 95024.0,
+     "patients": 223
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84472.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 444,
+     "dollars": 63801.3,
+     "patients": 73
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 498,
+     "dollars": 34492.77,
+     "patients": 70
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 320,
+     "dollars": 28173.07,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-28T11:00:06Z",
+   "ended": "2026-10-28T11:05:59Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "13 Claimocity-backlog charts with no payer anywhere (feed IN1 empty, discovery empty): 17478200 17478201 17478203 17478205 17478208 17478212 17478214 17478215 17478216 17478221 17478225 17478228 17477946 - 33 visits entered, unbillable until facesheets arrive (emailed 'current face sheets needed' 11:40Z); no plans invented",
+  "facility fac67 HCA REHAB NPI in Master Files (4 Unbilled visits $871) - board row facility-npi-fac67",
+  "chart 17477533: DOB / MBI from the facesheet (CMS AAA 71) - board row daffin-faye-17477533",
+  "chart 17478229: name of the private Medicare coinsurance plan (or none) - board row brown-lisa-admit-1019",
+  "AET12 carrier master (chart 24750 run 1700294) - standing",
+  "UNI20/BCBS pre-5/1 sweep: 15 PENDING (chart 17472874), 0 sent; the 10/25 chat RULE (sweep write-off codes) vs the v12 sweep text (a 277 alone is never a write-off) still needs a chat decision"
+ ],
+ "errors": []
+}

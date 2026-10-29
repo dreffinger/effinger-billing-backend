@@ -1,0 +1,28 @@
+{
+ "tag": "before",
+ "stamp": "2026-10-28T1246Z",
+ "count": 1,
+ "total": 0.0,
+ "checks": [
+  {
+   "id": 1053307,
+   "licensekey": 152563,
+   "receiveddate": "2026-10-28T04:44:29.65",
+   "depositdate": "2026-10-27T00:00:00",
+   "eracarrierid": "1844",
+   "eracarriername": "SUNSHINE STATE HEALTH PLAN, INC",
+   "hasnote": false,
+   "systemcarrierid": 6174,
+   "systemcarriercode": "WEL04",
+   "systemcarriername": "WELLCARE",
+   "paymentnumber": "1008858347",
+   "paymentamount": 0.0,
+   "paymentcode": "ACH",
+   "paymentdescription": "",
+   "calculatedamount": 0.0,
+   "unpostedamount": 0.0,
+   "checkstatusid": 1,
+   "providerleveladjustment": []
+  }
+ ]
+}

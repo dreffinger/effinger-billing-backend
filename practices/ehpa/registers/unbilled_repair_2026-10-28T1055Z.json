@@ -1,0 +1,334 @@
+{
+ "run": "2026-10-28T1055Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "17469423",
+   "vid": "19364723",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:26\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364735",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:27\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364840",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:28\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369676",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:29\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369706",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:30\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369726",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:31\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370060",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:32\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370081",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:33\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370099",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:34\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384132",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:35\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384238",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:36\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388904",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:37\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388905",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:38\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17472098",
+   "vid": "19389211",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:39\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:40\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:41\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:42\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451903",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:43\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451913",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:44\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451923",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:45\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19452055",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:46\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19452223",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:46\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:47\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:48\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:49\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-zb7g2\" lst=\"10/28/2026 03:55:50\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:51\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:52\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:53\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 03:55:54\"><Results success=\"1\" /><E"
+   ]
+  }
+ ],
+ "left": [
+  {
+   "pid": "25994",
+   "vid": "19458784",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "25994",
+   "vid": "19458785",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458800",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458808",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458819",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458825",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458834",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458843",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477225",
+   "vid": "19458864",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19458909",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "21020",
+   "vid": "19459063",
+   "err": "When billing Medicare as the non-primary carrier, the MSP Code on the Insurance "
+  },
+  {
+   "pid": "24208",
+   "vid": "19459073",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459084",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459119",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459133",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17469426",
+   "vid": "19459136",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459149",
+   "err": "Date of service is outside insurance coverage effective dates"
+  }
+ ]
+}

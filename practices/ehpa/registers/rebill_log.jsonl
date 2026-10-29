@@ -62,3 +62,16 @@
 {"at": "2026-10-23T04:44:23Z", "visit": "19431511", "charge": "23338125", "seq": 2, "status": 204, "by": "board_act_1023_0424.py"}
 {"at": "2026-10-23T04:44:32Z", "visit": "19435174", "charge": "23342168", "seq": 2, "status": 204, "by": "board_act_1023_0424.py"}
 {"at": "2026-10-23T04:44:41Z", "visit": "19435175", "charge": "23342169", "seq": 2, "status": 204, "by": "board_act_1023_0424.py"}
+{"at": "2026-10-28T10:52:53Z", "visit": "19433791", "charge": "23340509", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-28T11:06:19Z", "visit": "19459143", "charge": "23371545", "seq": 2, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:07:04Z", "visit": "19455317", "charge": "23366556", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:07:15Z", "visit": "19455318", "charge": "23366558", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:07:36Z", "visit": "19455675", "charge": "23367049", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:07:48Z", "visit": "19459138", "charge": "23371535", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:09:54Z", "visit": "19442289", "charge": "23350295", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:10:04Z", "visit": "19450680", "charge": "23360631", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:10:17Z", "visit": "19452637", "charge": "23362992", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:10:28Z", "visit": "19455676", "charge": "23367050", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:10:40Z", "visit": "19459139", "charge": "23371537", "seq": 3, "status": 204, "by": "rebill_patient_year.py"}
+{"at": "2026-10-28T11:12:39Z", "visit": "19459063", "charge": "23371442", "seq": 3, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-10-28T11:13:18Z", "visit": "19459073", "charge": "23371455", "seq": 3, "status": 204, "by": "freq1_visit.py"}
