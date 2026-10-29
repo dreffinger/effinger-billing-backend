@@ -1,0 +1,143 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-29T0544Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "steps: outstanding only - 3190 visits / 574 charts / $339744.74 open (1129 over a year $55763.39); columns and ERA not worked this firing (full run 2026-10-29T0501Z: 0/0/35/1 -> 0/0/4/1, ERA 0 -> 0)",
+ "note": "ehpa Billing Button (BUTTON PRESS 2026-10-29T05:01:05Z - mode live, steps outstanding, packages none; the brief reached the session after the full run had finished)",
+ "run_url": "https://claude.ai/code/session_01HHfWRCbCrmqehbQQP6wJ9r",
+ "started": "2026-10-29T05:44:00Z",
+ "ended": "2026-10-29T05:45:11Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 35,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 4,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 339744.74,
+   "visits": 3190,
+   "charts": 574,
+   "over_365": {
+    "n": 1129,
+    "dollars": 55763.39
+   }
+  },
+  "denials": {
+   "visits": 7748,
+   "actionable": 69,
+   "actionable_amt": 12825.0,
+   "asof": "2026-10-29 05:34 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims (read-only)",
+   "status": "ok",
+   "summary": "3190 visits on 574 charts, $339744.74 open; 1129 over a year ($55763.39); by bucket {\"0-30\": 134339.29, \"31-60\": 32114.02, \"61-90\": 17089.23, \"91-180\": 34417.27, \"181-365\": 66021.54, \"over 365\": 55763.39}",
+   "counts": {
+    "visits": 3190,
+    "charts": 574
+   },
+   "dollars": {
+    "total": 339744.74
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:44:00Z",
+   "ended": "2026-10-29T05:45:11Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "skipped",
+   "summary": "not in the brief's steps list (see run 2026-10-29T0501Z)",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "skipped",
+   "summary": "not in the brief's steps list (see run 2026-10-29T0501Z)",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "skipped",
+   "summary": "brief: packages none",
+   "counts": {
+    "applied": 0,
+    "refused": 0,
+    "skipped": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "facility fac67 (HCA REHAB) NPI in Master Files - 4 Unbilled visits $871 (v19458784 v19458785 v19458864 v19459136)",
+  "AET12 carrier master - chart 24750 v19455937 PREF0288 $315",
+  "Cloud Shell paste of claimocity_v3_paste.txt (claimocity-pull copies /download root files) - Drive newest download__ is 9/9, the feed step reports nothing new until then",
+  "daily 'Claimocity feed ingest' scheduled task creation (prompt nightly/claimocity_feed_daily_prompt_v1.txt)",
+  "chartless admit HIC* 10/22 (Florida Blue card photos) - no AMD chart yet",
+  "13 payerless 10/28 backlog charts - facesheets (email 'current face sheets needed' sent)",
+  "the 10/25 chat sweep write-off RULE vs the v12 sweep text (a 277 alone is never a write-off) - chat decision"
+ ],
+ "errors": []
+}

@@ -69,7 +69,30 @@
    "messages": null,
    "at": "2026-10-28T07:30:00Z",
    "note": "chat import 10/28 (feed_import_1028.json)"
+  },
+  "20260905626627aa54d52f67a80d586a.hl7": {
+   "stamp": "20261029T0549Z",
+   "sha256": "1dab4668ebd0dc91fc0154972eaa029cde08ac3874772c989cd9785e5685ae7c",
+   "messages": 38,
+   "at": "2026-10-29T05:52:01.078275Z"
+  },
+  "20260906626627aa54d52f67a80d586a.hl7": {
+   "stamp": "20261029T0549Z",
+   "sha256": "ede7751eeadad74e7ce04ab96d555b2fe510ac4b85f3ae4a2735deaa827f13e2",
+   "messages": 39,
+   "at": "2026-10-29T05:52:01.078807Z"
   }
  },
- "runs": []
+ "runs": [
+  {
+   "stamp": "20261029T0549Z",
+   "at": "2026-10-29T05:52:01.078898Z",
+   "live": true,
+   "files": [
+    "20260905626627aa54d52f67a80d586a.hl7",
+    "20260906626627aa54d52f67a80d586a.hl7"
+   ],
+   "exit": 0
+  }
+ ]
 }

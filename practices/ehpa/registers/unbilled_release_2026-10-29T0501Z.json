@@ -1,0 +1,27 @@
+{
+ "stamp": "2026-10-29T0501Z",
+ "live": true,
+ "rows": [
+  {
+   "pid": "17472791",
+   "vid": "19457366",
+   "balances": [
+    [
+     "23369225",
+     "99306",
+     0.0,
+     0.0
+    ],
+    [
+     "23369226",
+     "99497",
+     0.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-29T05:21:35Z",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-frjfx\" lst=\"10/28/2026 22:21:36\"><Results success=\"1\" /><E"
+  }
+ ]
+}

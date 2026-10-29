@@ -1,0 +1,15 @@
+{
+ "run": "2026-10-29T0501Z",
+ "live": true,
+ "rule": "Unbilled 'Payment reason codes are missing or do not balance' - no-era-line row (Sunshine check 0918010930 / ERA 1053322 posted by the engine's Post button 10/28 2319Z, era_details cache empty in this container, processed check answers no claim lines): coinsurance a Medicaid-family plan (SUN01 SMMC MMA secondary) answered short of the PR2 total -> WOCAID2ND, balance $0 -> released",
+ "visits": [
+  {"pid": "17472791", "vid": "19457366", "next": "SUN01",
+   "charges": [
+    {"cid": "23369225", "cpt": "99306", "dos": "10/06/2026", "fee": 256.0, "medicare_paid": 129.74, "pr2": 33.1, "sun01_paid_codeless": 20.41, "wo": "WOCAID2ND", "amount": 12.69, "paymentid": "10176952", "check": "PAYREASON2026-10-29T0501Z"},
+    {"cid": "23369226", "cpt": "99497", "dos": "10/06/2026", "fee": 133.0, "medicare_paid": 52.33, "pr2": 13.35, "sun01_paid_codeless": 0.0, "wo": "WOCAID2ND", "amount": 13.35, "paymentid": "10176953", "check": "PAYREASON2026-10-29T0501Z"}
+   ],
+   "released": true, "balances_after": [["23369225", 0.0, 0.0], ["23369226", 0.0, 0.0]],
+   "codeless_payment_left": "24670392 20.41 (money, kept) and 24670393 0.00 (kept - no re-post source)"}
+ ],
+ "left": []
+}
