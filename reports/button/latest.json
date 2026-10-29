@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-29T0501Z",
+ "stamp": "2026-10-29T0544Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns CR/CI/Unb/Exc 0/0/35/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00 (WOCAID2ND $26.04); re-sent 0",
- "note": "no BUTTON PRESS brief (v2 prompt, first firing) -> live, all steps, every approved package",
+ "headline": "steps: outstanding only - 3190 visits / 574 charts / $339744.74 open (1129 over a year $55763.39); columns and ERA not worked this firing (full run 2026-10-29T0501Z: 0/0/35/1 -> 0/0/4/1, ERA 0 -> 0)",
+ "note": "ehpa Billing Button (BUTTON PRESS 2026-10-29T05:01:05Z - mode live, steps outstanding, packages none; the brief reached the session after the full run had finished)",
  "run_url": "https://claude.ai/code/session_01HHfWRCbCrmqehbQQP6wJ9r",
- "started": "2026-10-29T05:01:00Z",
- "ended": "2026-10-29T05:37:08Z",
+ "started": "2026-10-29T05:44:00Z",
+ "ended": "2026-10-29T05:45:11Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
@@ -38,7 +38,7 @@
   "posted": {
    "pay": 0.0,
    "woins": 0.0,
-   "wocaid2nd": 26.04,
+   "wocaid2nd": 0.0,
    "wolate": 0.0
   },
   "resent": {
@@ -46,8 +46,8 @@
    "dollars": 0.0
   },
   "written_off": {
-   "count": 2,
-   "dollars": 26.04
+   "count": 0,
+   "dollars": 0.0
   },
   "packages": {
    "applied": 0,
@@ -68,171 +68,14 @@
    "actionable": 69,
    "actionable_amt": 12825.0,
    "asof": "2026-10-29 05:34 UTC"
-  },
-  "feed": {
-   "new_files": 0,
-   "newest_download": "2026-09-09",
-   "copy_job_stale": true
-  },
-  "sweep": {
-   "pass": 169,
-   "asked": 60,
-   "pending": 19,
-   "no_answer_A4_E0": 23,
-   "d0": 10,
-   "finalized_f0": 7,
-   "denied_f2": 1,
-   "sent": 0,
-   "written_off": 0
   }
  },
  "steps": [
   {
-   "name": "board",
-   "title": "Board input (IRB items / drops / Working Denials queue)",
-   "status": "ok",
-   "summary": "drops 0; denials queue 0; 2 William orders of 10/26 (dalrymple-dane-17473245 'write off' $25.06, levin-lize-17475632 'rebill' v19433791) already executed by the 10/28 1038Z run - awaiting board sync (board_updates_2026-10-28T1038Z.json unapplied, registry lastCheck 10/26); Pam Gmail 0; facesheet/835/treasury folders nothing new since 10/21",
-   "counts": {
-    "drops": 0,
-    "commands": 0,
-    "orders_awaiting_sync": 2,
-    "board_ops_written": 6
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-29T05:14:00Z",
-   "ended": "2026-10-29T05:17:00Z"
-  },
-  {
-   "name": "columns",
-   "title": "Claims Center columns",
-   "status": "ok",
-   "summary": "CR 0->0, CI 0->0, Unbilled 35->4 (30 prior-payor rows released; chart 17472791 v19457366 payment-reason row settled WOCAID2ND 12.69+13.35 and released; 4 fac67 facility-NPI holds stay, $871), Exclusions 1->1 (AET12 chart 24750 v19455937 standing hold)",
-   "counts": {
-    "released_prior_payor": 30,
-    "payreason_settled": 1,
-    "unbilled_left": 4,
-    "exclusions_left": 1
-   },
-   "dollars": {
-    "unbilled_before": 7634.97,
-    "unbilled_after": 871.0,
-    "wocaid2nd": 26.04
-   },
-   "lines": [
-    {
-     "col": "unbilled",
-     "chart": 17472791,
-     "visit": 19457366,
-     "charges": [
-      23369225,
-      23369226
-     ],
-     "action": "WOCAID2ND 12.69 + 13.35, released",
-     "check": "PAYREASON2026-10-29T0501Z"
-    },
-    {
-     "col": "unbilled",
-     "visits_held": [
-      19458784,
-      19458785,
-      19458864,
-      19459136
-     ],
-     "charts": [
-      25994,
-      17477225,
-      17469426
-     ],
-     "dollars": 871.0,
-     "why": "Facility is missing NPI information (fac67) - William"
-    },
-    {
-     "col": "exclusions",
-     "chart": 24750,
-     "visit": 19455937,
-     "run": 1700294,
-     "dollars": 315.0,
-     "why": "AET12 PREF0288 carrier master - William"
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-29T05:13:00Z",
-   "ended": "2026-10-29T05:27:00Z"
-  },
-  {
-   "name": "era",
-   "title": "ERA posting + Availity + UNI20/BCBS sweep",
-   "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00; nothing to upload; Availity nothing new; sweep pass 169: 60 asked, 19 PENDING (chart 17472874 x15 $2,563 + chart 12232248 x4), 20 A4 + 3 E0 no answer, 10 D0 (7 tf-watch answered, 3 carry payments - never rebill), 7 F0 Florida Blue, 1 F2 585; 0 sent",
-   "counts": {
-    "checks_before": 0,
-    "checks_after": 0,
-    "sweep_asked": 60,
-    "sweep_sent": 0
-   },
-   "dollars": {
-    "unposted_before": 0.0,
-    "unposted_after": 0.0,
-    "posted": 0.0
-   },
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-29T05:27:00Z",
-   "ended": "2026-10-29T05:31:00Z"
-  },
-  {
-   "name": "cascade",
-   "title": "Cascade pre-check",
-   "status": "ok",
-   "summary": "precheck --days 3 --max 120: 0 pairs, 0 flagged (feed lag - newest Drive download__ 9/9); void_rules.json absent -> void_rules skipped",
-   "counts": {
-    "pairs": 0,
-    "flagged": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-29T05:31:00Z",
-   "ended": "2026-10-29T05:32:00Z"
-  },
-  {
-   "name": "packages",
-   "title": "Approved packages",
-   "status": "ok",
-   "summary": "0 approved / 0 waiting on the Mandatory Approvals page and in approvals_pending.json (93 items, all done)",
-   "counts": {
-    "applied": 0,
-    "refused": 0,
-    "skipped": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-29T05:37:08Z",
-   "ended": "2026-10-29T05:37:08Z"
-  },
-  {
-   "name": "cred",
-   "title": "cred_check",
-   "status": "ok",
-   "summary": "NPPES 3 records 0 changed; revalidation due TBD x3; LEIE 84093 rows 0 matches; reminders none - no cred_updates file",
-   "counts": {
-    "nppes_changed": 0,
-    "leie_matches": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-29T05:32:00Z",
-   "ended": "2026-10-29T05:33:00Z"
-  },
-  {
    "name": "outstanding",
-   "title": "Outstanding claims",
+   "title": "Outstanding claims (read-only)",
    "status": "ok",
-   "summary": "3190 visits on 574 charts, $339744.74 open; 1129 over a year ($55763.39)",
+   "summary": "3190 visits on 574 charts, $339744.74 open; 1129 over a year ($55763.39); by bucket {\"0-30\": 134339.29, \"31-60\": 32114.02, \"61-90\": 17089.23, \"91-180\": 34417.27, \"181-365\": 66021.54, \"over 365\": 55763.39}",
    "counts": {
     "visits": 3190,
     "charts": 574
@@ -242,27 +85,48 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T05:28:00Z",
-   "ended": "2026-10-29T05:29:00Z"
+   "started": "2026-10-29T05:44:00Z",
+   "ended": "2026-10-29T05:45:11Z"
   },
   {
-   "name": "denials",
-   "title": "Working denials refresh",
-   "status": "ok",
-   "summary": "7748 denied visits on 868 charts; 69 actionable $12825.00 (65 inside 12 months $12006.00); {\"WRITTEN-OFF\": 2936, \"RESOLVED\": 4482, \"RESUBMITTED\": 172, \"OPEN\": 158}",
-   "counts": {
-    "WRITTEN-OFF": 2936,
-    "RESOLVED": 4482,
-    "RESUBMITTED": 172,
-    "OPEN": 158
-   },
-   "dollars": {
-    "actionable": 12825.0
-   },
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "skipped",
+   "summary": "not in the brief's steps list (see run 2026-10-29T0501Z)",
+   "counts": {},
+   "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-29T05:29:00Z",
-   "ended": "2026-10-29T05:34:00Z"
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "skipped",
+   "summary": "not in the brief's steps list (see run 2026-10-29T0501Z)",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "skipped",
+   "summary": "brief: packages none",
+   "counts": {
+    "applied": 0,
+    "refused": 0,
+    "skipped": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-29T05:45:11Z",
+   "ended": "2026-10-29T05:45:11Z"
   }
  ],
  "packages": [],
