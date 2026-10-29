@@ -2,7 +2,7 @@
 # Resolves AMBIGUOUS (duplicate same-DOB charts) and MISSING feed patients.
 #  AMBIGUOUS -> the candidate chart with the most recent non-void charge (ties: most charges) = the live chart.
 #  MISSING   -> surname-only lookup; if exactly ONE chart carries the same surname + first 3 letters (DOB differs) it is
-#               taken as a DOB mismatch (feed DOB wrong, Joiner pattern); otherwise stays MISSING (new chart needed).
+#               taken as a DOB mismatch (feed DOB wrong, Jarvis pattern); otherwise stays MISSING (new chart needed).
 # Writes feed_match_1028.json back with "resolved" pids. No AMD write.
 import amd, re, json, time, collections
 import xml.etree.ElementTree as ET

@@ -1,0 +1,22 @@
+{
+ "run": "2026-10-29T0535Z",
+ "precheck": {"window_days": 8, "max": 120, "pairs": 121, "new_lookups": 120, "mbi_lookups": 91, "payer_eligibility": 29, "discovery": 0, "cost_usd": 99.70, "flagged": 9},
+ "flagged": [
+  {"pid": "47979", "carrier": "FLO99", "result": "no Stedi eligibility for FCC (portal only)", "action": "none"},
+  {"pid": "17472553", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (QMB, PDP only)", "action": "none"},
+  {"pid": "23177", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (QMB, Medicaid SMMC Humana)", "action": "none"},
+  {"pid": "17473431", "carrier": "FLO02", "result": "MBI MISMATCH - CMS reissued MBI; AMD 271 ACTIVE on the new one", "action": "ins9514885 subscribernum fixed in place, patient order 1,2 restored, 10 visits rebilled freq 1 ($2,136), v19421004 (10/25/2025) WOINS untimely $315"},
+  {"pid": "17473245", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (Medicare + BCBS BlueOptions)", "action": "none"},
+  {"pid": "25266", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (QMB, Sunshine SMMC)", "action": "none"},
+  {"pid": "17469028", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (BCBS FEP secondary)", "action": "none"},
+  {"pid": "17473233", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (UHC Preferred Care Partners H1045-041) - plan already on chart seq 1", "action": "v19458936 re-pointed to UNI20 (order 1) + rebilled freq 1 ($315); I63.9 -> I69.30 both charges"},
+  {"pid": "17472491", "carrier": "FLO02", "result": "ADVANTAGE/HMO on DOS (C&O Employees' Hospital Association H4906) - plan on chart seq 2, eligibility AAA 75", "action": "4 visits re-pointed to seq 2 + rebilled freq 1 ($694); board row william (member id, restore 8 written-off visits $1,887)"}
+ ],
+ "rebilled": {"visits": 15, "amount": 3145.00},
+ "writeoffs": [{"pid": "17473431", "visit": "19421004", "dos": "10/25/2025", "amount": 315.00, "code": "WOINS", "reason": "untimely >12 months, never adjudicated"}],
+ "era": {"checks": 0, "posted": 0.0, "dismissed": 0},
+ "void_rules": {"open": 1, "voided": 0},
+ "cred_check": {"nppes_changed": 0, "leie": "egress blocked", "revalidation": "egress blocked", "reminders_past_due": 12, "cred_updates_file": false},
+ "board": {"file": "board_updates_2026-10-29T0535Z.json", "ops": 3, "drops_new": 0, "inbox_trashed": 0},
+ "money_ledger": {"unpaid_total": 335739.74, "unpaid_n": 3174, "prev_unpaid_total": 237055.26, "artifact_version": 52}
+}
