@@ -1,0 +1,35 @@
+{
+ "stamp": "2026-10-29T0651Z",
+ "live": true,
+ "source": "scan_2026-10-29T0640Z/summary_before.json",
+ "held": [],
+ "done": [
+  {
+   "batch": "1",
+   "vid": "19459023",
+   "pid": "17472491",
+   "errids": [
+    "397356"
+   ],
+   "patterns": [
+    "35790"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 23:51:43\"><Results retval=\"0\" /><Er"
+  },
+  {
+   "batch": "127882",
+   "vid": "19457097",
+   "pid": "17473431",
+   "errids": [
+    "397357"
+   ],
+   "patterns": [
+    "4310"
+   ],
+   "lat": [],
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-9bwlx\" lst=\"10/28/2026 23:51:44\"><Results retval=\"0\" /><Er"
+  }
+ ],
+ "failed": []
+}
