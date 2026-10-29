@@ -130,6 +130,7 @@ td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabu
       </div>
       <button class="btn" type="button" id="refresh" title="Read the newest feed_monitor.json from GitHub main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>Refresh</button>
       <button class="btn primary" type="button" id="run">Run the feed now</button>
+      <button class="btn" type="button" id="perm" title="Allow or switch on GitHub and Claude Code Remote for this page">Permissions</button>
       <div class="status" id="status"></div>
     </div>
   </header>
@@ -273,6 +274,15 @@ $('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'"'+(p[1]==='#'?' class
 // ---- connectors: GitHub reads the data file; Claude Code Remote fires and watches the Billing Button task (inside claude.ai only)
 function connector(){ if(mcpReady) return mcpReady;
   mcpReady=(window.claude&&typeof window.claude.use==='function'?window.claude.use('mcp'):Promise.resolve(null)).then(m=>{ mcp=m||null; return mcp; }).catch(()=>{ mcp=null; return null; }); return mcpReady; }
+let perms=null, permsReady=null;
+function permissions(){ if(permsReady) return permsReady;
+  permsReady=(window.claude&&typeof window.claude.use==='function'?window.claude.use('permissions'):Promise.resolve(null)).then(p=>{ perms=p||null; return perms; }).catch(()=>{ perms=null; return null; }); return permsReady; }
+// consent for one connector: read the state, ask once behind the viewer's click, never on load
+async function ensure(serverName){ const p=await permissions(); if(!p) return 'prompt'; const key='mcp:'+serverName; let st='prompt';
+  try{ st=await p.state(key); }catch(e){ st='prompt'; }
+  if(st==='prompt'){ try{ const r=await p.request([key]); st=(r&&r[key])||st; }catch(e){} }
+  return st; }
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function payload(res){ if(!res) return null; if(res.payload!==undefined&&res.payload!==null) return res.payload; if(res.structuredContent!==undefined) return res.structuredContent;
   for(const b of (res.content||[])){ const t=(b.resource&&typeof b.resource.text==='string')?b.resource.text:(b.type==='text'?b.text:null); if(t==null) continue; try{ return JSON.parse(t); }catch(e){} } return null; }
 function asData(p){ if(!p) return null; if(p.schema==='feed-monitor/1') return p; if(typeof p==='string'){ try{ return asData(JSON.parse(p)); }catch(e){ return null; } }
@@ -281,19 +291,28 @@ const ERR={server_not_connected:'GitHub is not connected to claude.ai. Add it un
 const say=(m,cls)=>{ const s=$('#status'); s.textContent=m||''; s.className='status'+(cls?' '+cls:''); };
 async function load(refresh){ const btn=$('#refresh'); btn.disabled=true; btn.classList.add('spin'); say(refresh?'Reading the newest data from GitHub…':'');
   try{ const m=await connector(); if(!m){ say(window.claude?'Live data needs this page open inside claude.ai; showing the snapshot built '+when(data&&data.generated)+'.':'Showing the snapshot; open the page inside claude.ai for live data.'); return; }
-    const res=await m.callTool(GH,'get_file_contents',{owner:OWNER,repo:NAME,path:DATA_PATH,ref:'refs/heads/main'},refresh?{cache:{refresh:true,staleTime:0}}:{cache:{staleTime:60000}});
+    if(refresh){ const st=await ensure(GH); if(st==='denied'){ say('GitHub is switched off for this page. Press Permissions, turn GitHub on, then Refresh.','err'); return; }
+      if(st==='unavailable'){ say('GitHub is not available to this page here. Open the page inside claude.ai (Settings → Connectors must list GitHub).','err'); return; } }
+    const opts=refresh?{cache:{refresh:true,staleTime:0}}:{cache:{staleTime:60000}}; let res;
+    try{ res=await m.callTool(GH,'get_file_contents',{owner:OWNER,repo:NAME,path:DATA_PATH,ref:'refs/heads/main'},opts); }
+    catch(e1){ if(e1&&e1.retryable&&refresh){ say('Waiting for claude.ai to confirm GitHub for this page…'); await sleep(Math.min(8000,(e1.retryAfterMs||3000))); res=await m.callTool(GH,'get_file_contents',{owner:OWNER,repo:NAME,path:DATA_PATH,ref:'refs/heads/main'},opts); } else throw e1; }
     const d=asData(payload(res)); if(!d) throw {code:'tool_error',message:'the file on main is not a feed-monitor/1 document'};
     data=d; live=true; stamp=res.cache&&res.cache.storedAt?new Date(res.cache.storedAt).toISOString():new Date().toISOString(); render(); say(refresh?'Up to date.':'','ok'); }
   catch(e){ const code=e&&e.code; if(code==='tool_error'&&/404|not found/i.test(e.message||'')){ say('No feed_monitor.json on main yet - the next feed run writes it. Showing the snapshot.'); return; }
-    say(ERR[code]||('Could not read GitHub: '+((e&&e.message)||e)),'err'); }
+    if(code==='upstream_error'||code==='not_granted'||code==='capability_disabled'){ say('claude.ai has not confirmed GitHub for this page yet. Press Permissions and allow GitHub (or answer the Allow prompt, which may be in the Claude tab), then Refresh. Until then this is the snapshot built '+when(data&&data.generated)+'.','err'); return; }
+    say(ERR[code]||('Could not read GitHub ('+(code||'no code')+'): '+((e&&e.message)||e)),'err'); }
   finally{ btn.disabled=false; btn.classList.remove('spin'); } }
 $('#refresh').addEventListener('click',()=>load(true));
+$('#perm').addEventListener('click',async()=>{ const p=await permissions(); if(!p){ say('Permissions are managed from the page’s ⋯ menu → Permissions (inside claude.ai).','err'); return; }
+  try{ await p.manage(); const st=await p.state('mcp:'+GH).catch(()=>'unavailable'); say(st==='granted'?'GitHub is allowed for this page - press Refresh.':'GitHub state: '+st+'. Use the ⋯ menu → Permissions if the panel did not open.',st==='granted'?'ok':''); }
+  catch(e){ try{ const r=await p.request(['mcp:'+GH,'mcp:'+CCR]); say('GitHub: '+(r['mcp:'+GH]||'?')+' · Claude Code Remote: '+(r['mcp:'+CCR]||'?')+'. If either says denied, open the page’s ⋯ menu → Permissions and switch it on.'); }catch(e2){ say('Open the page’s ⋯ menu → Permissions to allow GitHub and Claude Code Remote.','err'); } } });
 
 // ---- Run the feed now = press the Billing Button with steps: feed
 const TERMINAL=/SUCCEEDED|FAILED|CANCEL/i; let poll=null, firedAt=0;
 $('#run').addEventListener('click',()=>{ if(!mcp){ say(mcpReady?'Starting a run needs this page open inside claude.ai (Claude Code Remote is built in there). You can also press the Billing Button.':'Still connecting - try again in a moment.','err'); return; } $('#confirm').hidden=false; $('#confirm-go').focus(); });
 $('#confirm-no').addEventListener('click',()=>{ $('#confirm').hidden=true; });
 $('#confirm-go').addEventListener('click',async()=>{ $('#confirm').hidden=true; const b=$('#run'); b.disabled=true; say('Asking Claude to start the feed run…');
+  const st=await ensure(CCR); if(st==='denied'){ say('Claude Code Remote is switched off for this page. Press Permissions, turn it on, then try again.','err'); b.disabled=false; return; }
   const brief='BUTTON PRESS '+new Date().toISOString()+' · mode: live · steps: feed · packages: none · note: Claimocity feed monitoring page';
   try{ await mcp.callTool(CCR,'fire_trigger',{trigger_id:TRIG,text:brief},{cache:false}); firedAt=Date.now(); say('Claude is starting the feed run. This page follows the task; press Refresh when it finishes to see the new figures.','ok'); watchTask(true); }
   catch(e){ const code=e&&e.code; say(code==='approval_required'||code==='consent_required'?'claude.ai asked to allow the Claude call and it was not allowed. Press again and choose Allow.':('Claude refused the start: '+((e&&e.message)||code)),'err'); }
