@@ -20,12 +20,17 @@
 #        [--skip-verify] [--skip-inspector] [--no-stedi] [--reprocess]
 import os, sys, json, glob, hashlib, shutil, subprocess, datetime, collections, re
 WS = "/home/claude/unbilled"
+def utcnow(): return datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)   # naive UTC, no deprecation warning
 HERE = os.path.dirname(os.path.abspath(__file__))
 a = sys.argv[1:]
 def opt(name, default=None):
     return a[a.index(name) + 1] if name in a else default
 hl7_dir = opt("--hl7-dir"); live = "--live" in a; limit = opt("--limit"); reprocess = "--reprocess" in a
-stamp = opt("--stamp", datetime.datetime.utcnow().strftime("%Y%m%dT%H%MZ"))
+stamp = opt("--stamp", utcnow().strftime("%Y%m%dT%H%MZ"))
+# any stamp form is accepted (the routines write 2026-10-29T0121Z, this script 20261029T0121Z): keep digits/T/Z only, so the
+# chart prefix F<yymmdd><hhmm> and every feed_*_<stamp>.json name come out the same whichever form the caller passed
+stamp = re.sub(r"[^0-9TZ]", "", stamp)
+if not re.match(r"^\d{8}T\d{4}Z$", stamp): sys.exit("stamp must look like 20261029T0121Z (or 2026-10-29T0121Z); got %r" % stamp)
 if not hl7_dir: sys.exit("usage: claimocity_ingest.py --hl7-dir <folder> [--stamp S] [--live] [--limit N] [--skip-verify] [--skip-inspector] [--no-stedi] [--reprocess]")
 os.chdir(WS); os.makedirs("registers", exist_ok=True); os.makedirs("logs", exist_ok=True); os.makedirs("hl7", exist_ok=True)
 REGF = "registers/claimocity_ingest.json"
@@ -33,7 +38,7 @@ reg = json.load(open(REGF)) if os.path.exists(REGF) else {"files": {}, "runs": [
 MAPF = "registers/claimocity_patient_map.json"
 pmap = json.load(open(MAPF)) if os.path.exists(MAPF) else {}
 env = dict(os.environ, FEED_STAMP=stamp, FEED_DX_CACHE=os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json"),
-           FEED_CHART_PREFIX=os.environ.get("FEED_CHART_PREFIX", "F" + stamp[2:8] + stamp[9:13]), PYTHONPATH=WS + ":" + HERE)
+           FEED_CHART_PREFIX=os.environ.get("FEED_CHART_PREFIX", "F" + stamp[2:8]), PYTHONPATH=WS + ":" + HERE)
 def sha(p):
     h = hashlib.sha256(); h.update(open(p, "rb").read()); return h.hexdigest()
 def step(name, cmd, must=True):
@@ -46,15 +51,17 @@ def step(name, cmd, must=True):
         print("STEP FAILED:", name, "- see", log); finish(2)
     return r.returncode
 def finish(code):
-    reg["runs"].append({"stamp": stamp, "at": datetime.datetime.utcnow().isoformat() + "Z", "live": live, "files": files, "exit": code})
+    reg["runs"].append({"stamp": stamp, "at": utcnow().isoformat() + "Z", "live": live, "files": files, "exit": code})
     json.dump(reg, open(REGF, "w"), indent=1); sys.exit(code)
 # ---- which files are new ----------------------------------------------------------------------------------------------
 batch = os.path.join("hl7", stamp); os.makedirs(batch, exist_ok=True)
 files = []
+def key(b): return re.sub(r"^(download__)+", "", b)   # Drive copies are named download__<sftp name>; the register keys the SFTP name
+known_sha = {v.get("sha256") for v in reg["files"].values()}
 for f in sorted(glob.glob(os.path.join(hl7_dir, "*.hl7"))):
-    b = os.path.basename(f); s = sha(f)
+    b = key(os.path.basename(f)); s = sha(f)
     if os.path.getsize(f) == 0: print("empty file skipped:", b); continue
-    if not reprocess and b in reg["files"] and reg["files"][b].get("sha256") == s: continue
+    if not reprocess and ((b in reg["files"] and reg["files"][b].get("sha256") == s) or s in known_sha): continue   # same name+content or same content under another name
     shutil.copy(f, os.path.join(batch, b)); files.append(b)
 print("stamp %s | %d new file(s) of %d in %s | mode %s" % (stamp, len(files), len(glob.glob(os.path.join(hl7_dir, "*.hl7"))), hl7_dir, "LIVE" if live else "DRY"))
 if not files:
@@ -114,7 +121,7 @@ imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skippe
 for b in files:
     msgs = [m for m in parsed if m["file"] == b[:8] or b.startswith(m["file"])]
     if live:
-        reg["files"][b] = {"stamp": stamp, "sha256": sha(os.path.join(batch, b)), "messages": len(msgs), "at": datetime.datetime.utcnow().isoformat() + "Z"}
+        reg["files"][b] = {"stamp": stamp, "sha256": sha(os.path.join(batch, b)), "messages": len(msgs), "at": utcnow().isoformat() + "Z"}
 print("RESULT stamp %s: files %d, messages %d, visits created %d, skipped %d, failed %d%s" % (
     stamp, len(files), len(parsed), len(imp["created"]), len(imp["skipped"]), len(imp["failed"]), "" if live else " (DRY - nothing written, files not registered)"))
 if live and os.path.exists("feed_digest_%s.md" % stamp): print("digest: feed_digest_%s.md" % stamp)

@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-10-29, 69 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-10-28, 69 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },

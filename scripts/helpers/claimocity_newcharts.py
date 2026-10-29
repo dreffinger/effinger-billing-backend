@@ -1,7 +1,8 @@
 # PLAIN ENGLISH (Claimocity feed ingest (generic; born as the [DOB] backlog import) - new charts for feed patients with no AMD chart).
 # Creates the chart from the DFT PID segment (name, DOB, sex, address, phone; Claimocity id kept as additionalmrn like the
-# integration does), chart number F1028-NN (its own series so Gregg's numeric series cannot collide), address line 2 = line 1
-# (the 9/14 rule for feed charts), then adds the feed's IN1 payers that map to an AMD carrier (member id from IN1-36) so the
+# integration does), chart number F<yymmdd>-NN - first FREE number, probed with lookuppatient code= (its own series so
+# Gregg's numeric series cannot collide and two batches on one day cannot either), address line 2 = line 1
+# (the 9/14 rule for feed charts), then adds the feed's IN1 payers that map to an AMD carrier (member id from IN1-49) so the
 # cascade check has something to verify. Writes registers/feed_newcharts_1028.json and updates feed_match_1028.json (resolved).
 # Proven 10/28/2026 on pat17478199 (chart F1028-01). Never touches existing charts.
 import os as _os
@@ -42,20 +43,39 @@ for f in glob.glob((HL7_DIR + "/*.hl7")):
 REGF = ("registers/feed_newcharts_%s.json" % STAMP)
 import os
 reg = json.load(open(REGF)) if os.path.exists(REGF) else {"created": [], "failed": []}
-n = len(reg["created"]) + 1
+n = len(reg["created"])
+def chart_taken(chart):
+    # lookuppatient code= matches the CHART code (captured 9/2026): any hit carrying exactly this chart means the number is in use
+    try:
+        r = amd.post(amd.msg("lookuppatient", "lookup", {"code": chart, "nocookie": "1"}), timeout=60)
+        return any(dict(re.findall(r'(\w+)="([^"]*)"', x)).get("chart", "").upper() == chart.upper() for x in re.findall(r'<patient [^>]*/?>', r))
+    except Exception:
+        return False
+def next_chart():
+    # first free number of this run's series F<yymmdd>-NN: two batches on one day (Billing Button + daily task) never collide
+    global n
+    while True:
+        c = "%s-%02d" % (CHART_PREFIX, n + 1)
+        if not chart_taken(c): return c
+        n += 1
 for k, v in MATCH.items():
     if v["status"] != "MISSING" or v.get("resolved"): continue
     name, dob = k.split("|"); last, _, first = name.partition(","); last = last.strip(); first = first.strip()
     seg = PID.get(v["feed_ids"][0])
     if not seg: reg["failed"].append({"key": k[:6], "why": "no PID segment"}); continue
     sex = seg[8] or "U"; addr = (seg[11] or "^^^^^").split("^"); phone = re.sub(r"\D", "", seg[14] or "")[-10:]
-    mdy = "%s/%s/%s" % (dob[4:6], dob[6:8], dob[:4]); chart = "%s-%02d" % (CHART_PREFIX, n + 1)
+    mdy = "%s/%s/%s" % (dob[4:6], dob[6:8], dob[:4]); chart = next_chart()
     street = addr[0] or "HCA"; city = addr[2] or "TALLAHASSEE"; st = addr[3] or "FL"; zipc = (addr[4] or "32308-4486")[:10]
     xml = ('<patient id="" name="%s,%s" dob="%s" sex="%s" chart="%s" profile="prof13" finclasscode="CC" relationship="1" hipaarelationship="18" '
            'additionalmrn="%s" respparty=""><address zip="%s" city="%s" state="%s" address1="%s" address2="%s" areacode="%s" countrycode="USA"/>'
            '<contactinfo homephone="%s"/></patient>') % (last, first, mdy, sex, chart, v["feed_ids"][0].upper()[:24], zipc, city, st, street, street, phone[:3], phone)
-    r = amd.post(amd.msg("addpatient", "demographics", {"nocookie": "1"}, xml), timeout=90)
-    m = re.search(r'<patient id="(pat\d+)"', r)
+    for _try in range(3):
+        r = amd.post(amd.msg("addpatient", "demographics", {"nocookie": "1"}, xml), timeout=90)
+        m = re.search(r'<patient id="(pat\d+)"', r)
+        if m and 'success="1"' in r: break
+        if "uplicate chart" in r:   # the number was taken between the probe and the add - next free number, same patient
+            n += 1; chart = next_chart(); xml = re.sub(r'chart="[^"]*"', 'chart="%s"' % chart, xml, count=1); continue
+        break
     if not m or 'success="1"' not in r:
         d = re.search(r"<description>(.*?)</description>", r, re.S)
         reg["failed"].append({"key": k[:6], "chart": chart, "err": (d.group(1) if d else r[:200])[:200]}); print("FAIL", last[:5] + "*", (d.group(1) if d else r[:120])[:120]); continue
