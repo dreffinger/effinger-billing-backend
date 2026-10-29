@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#082f35" stroke-opacity=".07" stroke-width="2"/></pattern>
+    <clipPath id="tile"><rect x="0" y="0" width="1024" height="1024" rx="224"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="1024" height="1024" fill="#ffffff"/>
+    <rect width="1024" height="1024" fill="url(#grid)"/>
+    <rect x="0" y="0" width="1024" height="1024" fill="none" stroke="#d7d8da" stroke-width="12"/>
+  </g>
+  <!-- the ehpa mark in dark blue, top left -->
+  <path d="M300 160 A150 150 0 1 1 194 203" fill="none" stroke="#082f35" stroke-width="44" stroke-linecap="round"/>
+  <path d="M300 236 V384 M226 310 H374" fill="none" stroke="#082f35" stroke-width="44" stroke-linecap="round"/>
+  <!-- feed bars: the week's encounters, rising -->
+  <g>
+    <rect x="212" y="640" width="118" height="208" rx="28" fill="#70d6f8"/>
+    <rect x="374" y="560" width="118" height="288" rx="28" fill="#0054e9"/>
+    <rect x="536" y="476" width="118" height="372" rx="28" fill="#0054e9"/>
+    <rect x="698" y="372" width="118" height="476" rx="28" fill="#0054e9"/>
+  </g>
+  <!-- the live dot on the newest day -->
+  <circle cx="757" cy="300" r="42" fill="#f841e0"/>
+  <!-- baseline -->
+  <rect x="180" y="868" width="664" height="16" rx="8" fill="#082f35"/>
+</svg>
