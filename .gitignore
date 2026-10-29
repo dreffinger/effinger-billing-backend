@@ -14,6 +14,7 @@ __pycache__/
 *.tgz
 !.claude/settings.json
 !reports/button/*.json
+!reports/feed/*.json
 reports/button/logs_*/
 reports/button/money_ledger_*.html
 desktop/build/
