@@ -11,16 +11,16 @@
 <style>
 /* Layout: a monitoring console - one top bar (lockup, freshness, Refresh, Run feed, palette), a window switcher, six figures, the
    day chart, then the category panels in a two-column grid, the holds table, the files/runs ledger and the project's pages.
-   Color: Lapis - lapis-lazuli blue ground with the stone's pyrite gold as the one accent; the ehpa palettes (Midnight, Navy, Plum,
+   Color: Lapis - lapis-lazuli blue ground with a bronze (pyrite) accent, William 10/29: not the pale yellow; the ehpa palettes (Midnight, Navy, Plum,
    Light) stay in the picker. Type: Quicksand for everything read, JetBrains Mono for every number. Source: tools/feed/feed_monitor_page.html,
    built by tools/feed/build_feed_page.py; data: reports/feed/feed_monitor.json on main, written by tools/feed/feed_monitor.py. */
 :root{--font:"Quicksand",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--r:14px;--r-lg:18px;--pill:999px;
   --bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
-  --accent:#e9c46a;--on-accent:#0b1f4d;--accent-soft:rgba(233,196,106,.16);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
-  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#e9c46a 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
+  --accent:#cf9544;--on-accent:#0b1f4d;--accent-soft:rgba(207,149,68,.18);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
+  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#cf9544 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
 :root[data-ehpa="lapis"]{--bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
-  --accent:#e9c46a;--on-accent:#0b1f4d;--accent-soft:rgba(233,196,106,.16);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
-  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#e9c46a 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
+  --accent:#cf9544;--on-accent:#0b1f4d;--accent-soft:rgba(207,149,68,.18);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
+  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#cf9544 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
 :root[data-ehpa="midnight"]{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;
   --accent:#70d6f8;--on-accent:#082f35;--accent-soft:#1f5a68;--accent-2:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;
   --grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
@@ -122,7 +122,7 @@ td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabu
     </div>
     <div class="tools">
       <div class="pal" role="group" aria-label="Color scheme" id="pal">
-        <button type="button" data-pal="lapis" aria-pressed="true"><i style="background:#0b1f4d;border-color:#e9c46a"></i>Lapis</button>
+        <button type="button" data-pal="lapis" aria-pressed="true"><i style="background:#0b1f4d;border-color:#cf9544"></i>Lapis</button>
         <button type="button" data-pal="midnight" aria-pressed="false"><i style="background:#082f35;border-color:#70d6f8"></i>Midnight</button>
         <button type="button" data-pal="navy" aria-pressed="false"><i style="background:#253e59;border-color:#70d6f8"></i>Navy</button>
         <button type="button" data-pal="plum" aria-pressed="false"><i style="background:#181924;border-color:#9be8e2"></i>Plum</button>
