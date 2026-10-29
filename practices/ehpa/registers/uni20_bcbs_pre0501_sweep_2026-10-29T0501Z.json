@@ -1,0 +1,2296 @@
+{
+ "about": "UNI20/BCBS pre-5/1/2026 claim-status sweep pass 169 (claim_status_sweep.py --min-age 159 --max 60 --carriers UNI20,BCBS --skip-answered <passes 1-168>)",
+ "stamp": "2026-10-29T0501Z",
+ "rows": [
+  {
+   "visitid": 19427723,
+   "patientid": 17471832,
+   "carrier": "BCBS",
+   "dos": "2025-12-31",
+   "balance": 443.0,
+   "member": "[member id]",
+   "icn": "Q100001347266891",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347266201"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212872628",
+     "paidDate": "2026-01-20",
+     "payerClaim": "Q100001293589045"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347231"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265019"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265371"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347319"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347266891"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347408"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19437920,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 443.0,
+   "member": "[member id]",
+   "icn": "KEN4075750300",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19431393,
+   "patientid": 17475362,
+   "carrier": "BCBS",
+   "dos": "2026-02-02",
+   "balance": 433.0,
+   "member": "[member id]",
+   "icn": "Q100001346974027",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-11",
+     "payerClaim": "Q100001298433520"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213518717",
+     "paidDate": "2026-10-27",
+     "payerClaim": "M0001R2283417201"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19427050,
+   "patientid": 17474516,
+   "carrier": "BCBS",
+   "dos": "2025-12-15",
+   "balance": 389.0,
+   "member": "[member id]",
+   "icn": "H100001346973339",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212857343",
+     "paidDate": "2026-01-07",
+     "payerClaim": "H100001289802877"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001346973339"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19389388,
+   "patientid": 21577,
+   "carrier": "BCBS",
+   "dos": "2024-09-09",
+   "balance": 372.07,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "35",
+     "codev": "Claim/encounter not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433863,
+   "patientid": 17475362,
+   "carrier": "BCBS",
+   "dos": "2026-02-26",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "Q100001346977104",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213095771",
+     "paidDate": "2026-04-23",
+     "payerClaim": "M0001R2208541934"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213518717",
+     "paidDate": "2026-10-27",
+     "payerClaim": "M0001R2283420370"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19427219,
+   "patientid": 17473308,
+   "carrier": "BCBS",
+   "dos": "2025-12-21",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "H100001346973214",
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "33",
+     "codev": "Subscriber and subscriber ID not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19430674,
+   "patientid": 17473308,
+   "carrier": "BCBS",
+   "dos": "2026-01-27",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "H100001346975557",
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "33",
+     "codev": "Subscriber and subscriber ID not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433887,
+   "patientid": 17473308,
+   "carrier": "BCBS",
+   "dos": "2026-02-26",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "H100001346973846",
+   "status": [
+    {
+     "cat": "E0",
+     "catv": "Response not possible - error on submitted request data.",
+     "code": "33",
+     "codev": "Subscriber and subscriber ID not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19420993,
+   "patientid": 48449,
+   "carrier": "BCBS",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "F100001346975301",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "190563556",
+     "paidDate": "2026-09-08",
+     "payerClaim": "F100001346975301"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "190273973",
+     "paidDate": "2025-10-29",
+     "payerClaim": "F100001274004618"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19417390,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "21404613"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19420985,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "20873077"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19424662,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-11-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "20873078"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19427156,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-12-22",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "20896678"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19416179,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-09-08",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19420949,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19427225,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2025-12-21",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "NTL8365314300",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19430609,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-01-27",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "NTL0136491900",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433941,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "NTL0336505600",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19438570,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-03-20",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "NTL0654512200",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19439595,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "NTL0736239100",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19430668,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-01-27",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "KEN9763625600",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433880,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-02-26",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "KEN3579927400",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19424006,
+   "patientid": 17474713,
+   "carrier": "BCBS",
+   "dos": "2025-11-17",
+   "balance": 310.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265496"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720483"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265124"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720827"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19365043,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-10",
+   "balance": 246.33,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370971,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-07",
+   "balance": 246.33,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 14013956,
+   "patientid": 46250,
+   "carrier": "UNI20",
+   "dos": "2023-05-15",
+   "balance": 211.44,
+   "member": "[member id]",
+   "icn": "NTL9250919400",
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433404,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-02-19",
+   "balance": 198.0,
+   "member": "[member id]",
+   "icn": "KEN3579926900",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19438955,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 198.0,
+   "member": "[member id]",
+   "icn": "KEN4147997600",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19438956,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-06",
+   "balance": 198.0,
+   "member": "[member id]",
+   "icn": "KEN4147997700",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19455317,
+   "patientid": 12179690,
+   "carrier": "UNI20",
+   "dos": "2026-04-28",
+   "balance": 198.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "153",
+     "codev": "Entity's ID number.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19362850,
+   "patientid": 17469033,
+   "carrier": "UNI20",
+   "dos": "2023-08-11",
+   "balance": 196.67,
+   "member": "[member id]",
+   "icn": "KLC9659728600",
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19432733,
+   "patientid": 25710,
+   "carrier": "BCBS",
+   "dos": "2026-02-12",
+   "balance": 184.8,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P0",
+     "catv": "Pending: Adjudication/Details - This is a generic message about a pended claim. A pended claim is one for which no remittance advice has been issued,or only part of the claim has been paid.",
+     "code": "41",
+     "codev": "Special handling required at payer site.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": "M0001R2283959777"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423676596",
+     "paidDate": "2026-05-08",
+     "payerClaim": "M0001R2211297271"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423795599",
+     "paidDate": "2026-09-11",
+     "payerClaim": "Q100001348232119"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423676596",
+     "paidDate": "2026-05-08",
+     "payerClaim": "M0001R2211296877"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423795599",
+     "paidDate": "2026-09-11",
+     "payerClaim": "Q100001348230407"
+    },
+    {
+     "cat": "P0",
+     "catv": "Pending: Adjudication/Details - This is a generic message about a pended claim. A pended claim is one for which no remittance advice has been issued,or only part of the claim has been paid.",
+     "code": "41",
+     "codev": "Special handling required at payer site.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": "M0001R2283960133"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19438063,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 163.0,
+   "member": "[member id]",
+   "icn": "KEN4075750600",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19439702,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-21",
+   "balance": 163.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251532"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437932,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": "KEN4075750400",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19437956,
+   "patientid": 17473065,
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": "KEN4075750200",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19437843,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-07",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437926,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-08",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19437951,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-09",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438061,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-10",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251519"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251518"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438356,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-12",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438357,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-11",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251520"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251519"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438358,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-13",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251521"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438701,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-14",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251523"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438903,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-15",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251522"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19438993,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-18",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439010,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-17",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439022,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-16",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251526"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251525"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251524"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439233,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-19",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251529"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19439271,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-04-20",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251531"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251530"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251527"
+    },
+    {
+     "cat": "P5",
+     "catv": "Pending/Payer Administrative/System hold.",
+     "code": "3",
+     "codev": "Claim has been adjudicated and is awaiting payment cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-27",
+     "payerClaim": "18251528"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19455322,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-03-04",
+   "balance": 160.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "W1762340",
+     "paidDate": "2026-10-09",
+     "payerClaim": "20090623"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19418991,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-10-02",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19429014,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-01-09",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": "NTL0033394400",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19432501,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-02-06",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": "NTL0250643400",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19435216,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-03-06",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": "NTL0425278600",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19437725,
+   "patientid": 17473422,
+   "carrier": "UNI20",
+   "dos": "2026-04-03",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": "NTL0637214400",
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19419622,
+   "patientid": 17474258,
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19422181,
+   "patientid": 17474258,
+   "carrier": "UNI20",
+   "dos": "2025-10-22",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19455323,
+   "patientid": 17472874,
+   "carrier": "UNI20",
+   "dos": "2026-03-02",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  }
+ ]
+}
