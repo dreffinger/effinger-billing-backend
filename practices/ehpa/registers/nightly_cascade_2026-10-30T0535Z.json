@@ -1,0 +1,28 @@
+{
+ "run": "2026-10-30T0535Z",
+ "precheck": {"window_days": 10, "max": 120, "pairs": 239, "cached": 118, "new_lookups": 121, "mbi_lookups": 72, "payer_eligibility": 40, "discovery": 2, "cost_usd": 87.0, "flagged_new": 9, "flagged_cached": 7, "no_lookup_payer": 9},
+ "flagged": [
+  {"pid": "17473087", "carrier": "FLO02", "result": "Stedi ERR 72 name miss (CMS carries the JR suffix); AMD 271 Medicare ACTIVE since 1996, UNI20 indemnity ACTIVE with Medicare as other payer", "action": "none (board row check appended)"},
+  {"pid": "17473601", "carrier": "FLO02", "result": "Stedi ERR 72; chart Medicare plan seq 1 AAA 72 (dead MBI), duplicate Medicare plan seq 3 ACTIVE since 2006 with WellCare PDP only", "action": "ins9514479 subscribernum fixed in place, patient order 1,2 restored, 5 open visits 5/17-10/25/2026 rebilled freq 1 ($1,022)"},
+  {"pid": "17477533", "carrier": "FLO02", "result": "Stedi ERR 72; AMD 271 AAA 71 (DOB mismatch) on both Medicare plans - unchanged from 10/28", "action": "none; board row already on William's turn (check appended)"},
+  {"pid": "17475363", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 Medicare ACTIVE since 10/1/2025, WellCare PDP only; UNI01 Medigap AAA 41", "action": "none"},
+  {"pid": "17477549", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 Medicare ACTIVE since 2012, WellCare PDP only; BCBS XYR921075810 ACTIVE (Medigap)", "action": "none"},
+  {"pid": "17475777", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (Preferred Care Partners H1045-041, COB 20260701) - UNI20 plan already on chart seq 1 (AMD 271 ACTIVE AARP MA)", "action": "v19458953 10/22 CCM re-pointed to order 1 + rebilled freq 1 ($206)"},
+  {"pid": "17471216", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (Preferred Care Partners H1045-041, COB 20220201) - UNI20 plan on chart seq 2 (AMD 271 ACTIVE AARP MA)", "action": "v19458938 10/22 CCM re-pointed to order 2 + rebilled freq 1 ($206)"},
+  {"pid": "25558", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (Care Improvement Plus South Central H1889-026 = UHC Dual Complete, COB 20250301); chart had no UHC plan (MAG01 AAA 72, WEL04 inactive); Stedi discovery -> member [member id]", "action": "UHCMA car302853 added ins9521057 seq 4 (AMD 271 ACTIVE); 24 open visits 11/3/2025-10/22/2026 rebilled freq 1 ($4,277; one Server Error retried with freq1_visit reroute); board row william - restore decision on 12 written-off 2025 visits ($1,919)"},
+  {"pid": "17475837", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (Care Improvement Plus South Central R0759-002 = AARP Medicare Advantage Patriot RPPO, COB 20240401); chart had Medicare only; Stedi discovery -> member [member id]", "action": "UNI20 car6404 added ins9521058 seq 2 (AMD 271 ACTIVE); v19459096 10/22 CCM rebilled freq 1 ($206); board row william - restore decision on 7 written-off 2026 visits ($1,986)"},
+  {"pid": "17472491", "carrier": "COL07", "result": "carrier not mapped in CAR2STEDI (C&O Employees' Hospital Association) - known board row [name]-17472491", "action": "none"},
+  {"pid": "cached", "carrier": "FLO02", "result": "7 cached flags from 10/29 re-listed (17473245, 17472553, 23177, 25266, 17469028 name misses; 17473431 MBI fixed 10/29; 47979 FLO99)", "action": "none"},
+  {"pid": "FLO99 x8", "carrier": "FLO99", "result": "no Stedi eligibility for FCC (portal only)", "action": "none"}
+ ],
+ "rebilled": {"visits": 32, "amount": 5917.0, "charts": 5},
+ "writeoffs": [],
+ "amd_writes": {"addinsurance": 2, "updateinsurance": 2, "visit_reroutes_rebills": 32, "eligibility_checks": 32},
+ "era": {"checks": 0, "posted": 0.0, "dismissed": 0},
+ "void_rules": {"open": 1, "voided": 0},
+ "cred_check": {"nppes_changed": 0, "nppes_source": "NPI Registry connector (npiregistry egress blocked)", "leie": "egress blocked", "revalidation": "egress blocked", "reminders_past_due": 12, "cred_updates_file": false},
+ "money_ledger": {"unpaid": 333369.21, "unpaid_n": 3162, "era_unposted": 0, "exclusions": 1, "writeoffs_registers": 1375.11, "artifact_version": 53},
+ "board_updates_file": "board_updates_2026-10-30T0535Z.json",
+ "errors": ["AMD read timeout (180 s) once during rebill_patient_year on pid 25558 - rerun", "AMD Server Error 500 on v19426937 rebill - retried with freq1_visit reroute, 204", "cred_check.py: npiregistry.cms.hhs.gov / data.cms.gov / oig.hhs.gov Max retries exceeded"],
+ "refused_commands": []
+}
