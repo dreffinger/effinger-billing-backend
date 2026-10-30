@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-30T1520Z",
+ "stamp": "2026-10-30T1719Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 1 checks $3325.89 -> 0 checks $0.00",
+ "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41079711780",
- "started": "2026-10-30T15:20:10Z",
- "ended": "2026-10-30T15:27:20Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41097729705",
+ "started": "2026-10-30T17:19:06Z",
+ "ended": "2026-10-30T17:25:55Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 1,
-    "unposted": 3325.89
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 3325.89,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7748,
    "actionable": 66,
    "actionable_amt": 12217.0,
-   "asof": "2026-10-30 15:27 UTC"
+   "asof": "2026-10-30 17:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-30T15:20:10Z",
-   "ended": "2026-10-30T15:20:10Z"
+   "started": "2026-10-30T17:19:06Z",
+   "ended": "2026-10-30T17:19:07Z"
   },
   {
    "name": "columns",
@@ -121,37 +121,28 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-30T15:20:10Z",
-   "ended": "2026-10-30T15:21:54Z"
+   "started": "2026-10-30T17:19:07Z",
+   "ended": "2026-10-30T17:21:16Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $3325.89 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks dismissed": 1,
+    "era_post lines": 0,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 3325.89,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 3325.89
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053341,
-     "payer": "CAPITAL HEALTH PLAN",
-     "checknumber": "4128227",
-     "amount": 0.0,
-     "unposted": 3325.89,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-10-30T15:21:54Z",
-   "ended": "2026-10-30T15:22:24Z"
+   "started": "2026-10-30T17:21:16Z",
+   "ended": "2026-10-30T17:21:18Z"
   },
   {
    "name": "packages",
@@ -162,8 +153,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-30T15:22:24Z",
-   "ended": "2026-10-30T15:22:24Z"
+   "started": "2026-10-30T17:21:18Z",
+   "ended": "2026-10-30T17:21:18Z"
   },
   {
    "name": "outstanding",
@@ -266,8 +257,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-30T15:22:24Z",
-   "ended": "2026-10-30T15:22:25Z"
+   "started": "2026-10-30T17:21:18Z",
+   "ended": "2026-10-30T17:21:20Z"
   },
   {
    "name": "denials",
@@ -354,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-30T15:22:25Z",
-   "ended": "2026-10-30T15:27:20Z"
+   "started": "2026-10-30T17:21:20Z",
+   "ended": "2026-10-30T17:25:55Z"
   }
  ],
  "packages": [],
