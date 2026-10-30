@@ -1,0 +1,28 @@
+{
+ "run": "2026-10-30T0646Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [],
+ "left": [
+  {
+   "pid": "25994",
+   "vid": "19458784",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "25994",
+   "vid": "19458785",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "17477225",
+   "vid": "19458864",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  },
+  {
+   "pid": "17469426",
+   "vid": "19459136",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  }
+ ]
+}
