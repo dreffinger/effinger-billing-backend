@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-30T09:24:58Z",
+ "at": "2026-10-30T11:20:55Z",
  "as_of": "2026-10-30",
- "total": 332110.21,
- "visits": 3156,
+ "total": 330503.21,
+ "visits": 3150,
  "charts": 575,
  "over_365": {
   "n": 1130,
@@ -11,16 +11,16 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 618,
-   "dollars": 131607.07
+   "n": 614,
+   "dollars": 130404.07
   },
   "31-60": {
-   "n": 260,
-   "dollars": 33366.77
+   "n": 259,
+   "dollars": 33160.77
   },
   "61-90": {
-   "n": 161,
-   "dollars": 15652.57
+   "n": 160,
+   "dollars": 15454.57
   },
   "91-180": {
    "n": 379,
@@ -54,12 +54,12 @@
   {
    "carrier": "UNI20",
    "name": "UNITED HEALTHCARE",
-   "n": 214,
-   "dollars": 31811.11,
+   "n": 208,
+   "dollars": 30204.11,
    "buckets": {
-    "0-30": 13310.0,
-    "31-60": 3402.08,
-    "61-90": 761.8,
+    "0-30": 12107.0,
+    "31-60": 3196.08,
+    "61-90": 563.8,
     "91-180": 1251.68,
     "181-365": 8501.44,
     "over 365": 4584.11
@@ -760,18 +760,18 @@
   },
   {
    "month": "2026-08",
-   "n": 167,
-   "dollars": 16665.39
+   "n": 166,
+   "dollars": 16467.39
   },
   {
    "month": "2026-09",
-   "n": 261,
-   "dollars": 33813.53
+   "n": 260,
+   "dollars": 33607.53
   },
   {
    "month": "2026-10",
-   "n": 611,
-   "dollars": 130147.49
+   "n": 607,
+   "dollars": 128944.49
   }
  ],
  "oldest": [
@@ -1178,14 +1178,6 @@
    "dos": "2026-10-01"
   },
   {
-   "visitid": 19456841,
-   "patientid": 17472228,
-   "carriercode": "UNI20",
-   "insbalance": 443.0,
-   "days": 29,
-   "dos": "2026-10-01"
-  },
-  {
    "visitid": 19457421,
    "patientid": 17474046,
    "carriercode": "SIM01",
@@ -1416,6 +1408,14 @@
    "insbalance": 389.0,
    "days": 130,
    "dos": "2026-06-22"
+  },
+  {
+   "visitid": 19449475,
+   "patientid": 17476021,
+   "carriercode": "FLO02",
+   "insbalance": 389.0,
+   "days": 101,
+   "dos": "2026-07-21"
   }
  ],
  "rows": [
@@ -18444,14 +18444,6 @@
    "dos": "2026-08-03"
   },
   {
-   "visitid": 19455318,
-   "patientid": 12179690,
-   "carriercode": "UNI20",
-   "insbalance": 198.0,
-   "days": 87,
-   "dos": "2026-08-04"
-  },
-  {
    "visitid": 19450696,
    "patientid": 17476021,
    "carriercode": "FLO02",
@@ -21044,14 +21036,6 @@
    "dos": "2026-09-20"
   },
   {
-   "visitid": 19455675,
-   "patientid": 12179690,
-   "carriercode": "UNI20",
-   "insbalance": 206.0,
-   "days": 40,
-   "dos": "2026-09-20"
-  },
-  {
    "visitid": 19455455,
    "patientid": 17477774,
    "carriercode": "UMR",
@@ -21788,14 +21772,6 @@
    "dos": "2026-10-01"
   },
   {
-   "visitid": 19456841,
-   "patientid": 17472228,
-   "carriercode": "UNI20",
-   "insbalance": 443.0,
-   "days": 29,
-   "dos": "2026-10-01"
-  },
-  {
    "visitid": 19456978,
    "patientid": 17477953,
    "carriercode": "UNI20",
@@ -21948,22 +21924,6 @@
    "dos": "2026-10-02"
   },
   {
-   "visitid": 19456919,
-   "patientid": 24655,
-   "carriercode": "UNI20",
-   "insbalance": 300.0,
-   "days": 28,
-   "dos": "2026-10-02"
-  },
-  {
-   "visitid": 19456916,
-   "patientid": 17474441,
-   "carriercode": "UNI20",
-   "insbalance": 300.0,
-   "days": 28,
-   "dos": "2026-10-02"
-  },
-  {
    "visitid": 19456847,
    "patientid": 17477971,
    "carriercode": "CIG09",
@@ -21990,14 +21950,6 @@
   {
    "visitid": 19456832,
    "patientid": 17471916,
-   "carriercode": "UNI20",
-   "insbalance": 160.0,
-   "days": 28,
-   "dos": "2026-10-02"
-  },
-  {
-   "visitid": 19456830,
-   "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
    "days": 28,
