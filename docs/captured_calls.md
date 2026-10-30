@@ -5525,3 +5525,7 @@ Behaviour seen:
 - Stedi insurance discovery is the member-id source for an Advantage plan the Medicare 271 names but the chart does not carry (pat25558 UHC Dual Complete LPPO member via 25463/87726; pat17475837 AARP Medicare Advantage Patriot RPPO via 87726) - $1.50 each, both REVIEW_NEEDED confidence yet AMD's own 271 on the new plan answered ACTIVE at once.
 - AMD gettxhistory / getchargedetaildataicd10 answered a 180 s read timeout once during a 21-visit rebill_patient_year run (providerapi.advancedmd.com) - the helper was simply rerun; a rebill is idempotent per claim run.
 - cred_check.py egress to npiregistry.cms.hhs.gov, data.cms.gov and oig.hhs.gov still 'Max retries exceeded'; NPPES verified through the NPI Registry connector (3 records unchanged).
+
+# captured_calls additions - backend billing run 2026-10-30T1840Z (2:40 PM ET 10/30 slot, ehpa cloud)
+
+No new call shapes this run. Calls used (all registered): login (one), getclaimcenteroverview / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus / getclaimexclusioncharges (columns_scan before + after), GET /api/era/checks (era_list before + after, 0 checks), posterapayments (era_post --all-unposted, nothing to post), massrebillsearch + Stedi 277 (claim_status_sweep pass 173, 15 visits), getdemographic (plans for the sweep). No AMD write.
