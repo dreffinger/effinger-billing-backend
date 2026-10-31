@@ -1,0 +1,72 @@
+{
+ "fixed": [
+  {
+   "visit": "19459652",
+   "pid": "pat22758",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459653",
+   "pid": "pat17478208",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459655",
+   "pid": "pat17478229",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19459652",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459653",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459655",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19459652",
+   "pid": "pat22758",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C50919..."
+  },
+  {
+   "visit": "19459653",
+   "pid": "pat17478208",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S2249XD..."
+  },
+  {
+   "visit": "19459655",
+   "pid": "pat17478229",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I63519..."
+  }
+ ]
+}
