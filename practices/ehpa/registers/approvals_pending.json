@@ -1431,6 +1431,20 @@
    "status": "done",
    "answer": "2026-10-21T06:21Z applied in the cascade session on William's go (page approval 05:38Z): era_cache_restore.py 1053221 --live - reversedismiss OK, checkdetails cached 3 claim lines (4 charge lines, chart 12182043, DOS 02/20-03/01/2023, remit paid $0.00 each, CO adjustments incl. one -70.91 reversal), dismiss again OK; read-only audit 4/4 ok; the check ends dismissed exactly as before, era_details/1053221.json now holds the lines for the denial work. Register registers/era_cache_restore_1053221_2026-10-21T0620Z.json. The cascade session's AMD token (6 days old, 401) was replaced by one guarded relogin first.",
    "note": "applying 2026-10-21T0619Z (go)"
+  },
+  {
+   "id": "A-2026-10-31T0200Z-A",
+   "stamp": "2026-10-31T0200Z",
+   "at": "2026-10-31T02:02:25Z",
+   "cmd": "cd /home/claude/unbilled && python3 claimocity_void_visits.py pat17477204:vst19459522 pat17476748:vst19459523 --live",
+   "reason": "Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Modify Shared Resources]",
+   "what": "Void the two 9/2/2026 home-visit charges the 10/29 daily feed run entered twice: pat17477204 vst19459522 charge23372064 (99344, UHCMA) and pat17476748 vst19459523 charge23372065 (99344, UNI20). Each chart already carries the same 9/2 encounter as 99349 (visits 19453700 / 19453702, entered in September). Billed 10/29, no payment posted; the September copies stay.",
+   "dollars": "$600.00",
+   "evidence_file": "/home/claude/unbilled/registers/feed_void_visits.json",
+   "evidence": "claimocity_void_visits.py --dry 10/31 01:59Z: both visits 1 live charge (99344), billdate 10/29/2026, payments 0; gettxhistory shows the 99349 twin on the same DOS for each chart",
+   "ui": "AdvancedMD > Patient > Transaction History: open visit 19459522 (chart pat17477204) and visit 19459523 (chart pat17476748); on each 99344 charge dated 09/02/2026 choose Void Charge. Leave the 99349 charges of the same date alone.",
+   "status": "waiting",
+   "answer": null
   }
  ]
 }
