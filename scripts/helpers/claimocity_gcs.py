@@ -13,6 +13,7 @@
 # Network: needs oauth2.googleapis.com and storage.googleapis.com - exit 3 with a plain message when they are blocked.
 # Exit 0 ok (also when nothing is new), 3 network blocked, 4 key missing / unusable key mail, 5 gcloud/auth failure.
 # Usage: python3 claimocity_gcs.py [--bucket ehpa-claimocity-feed-50717] [--key secrets/claimocity_gcs_key.json] [--dest inbox/claimocity] [--list-only]
+#        python3 claimocity_gcs.py --fetch <name>[,<name>] [--dest hl7/<stamp>]   (re-download named files the register already knows)
 #        python3 claimocity_gcs.py --install-key secrets/gcs_key_mail.txt   (writes --key and exits; run again without it)
 import os, sys, re, json, base64, subprocess, datetime
 
@@ -28,6 +29,7 @@ KEY = opt("--key", os.path.join(WS, "secrets", "claimocity_gcs_key.json"))
 DEST = opt("--dest", os.path.join(WS, "inbox", "claimocity"))
 LIST_ONLY = "--list-only" in sys.argv
 INSTALL = opt("--install-key")
+FETCH = opt("--fetch")          # comma list of file names to download even though the register knows them
 REG = os.path.join(WS, "registers", "claimocity_ingest.json")
 
 def run(cmd, timeout=180):
@@ -114,6 +116,11 @@ known = set(reg.get("files", {}))
 def sftp_name(n): return re.sub(r"^(download__)+", "", n)
 dates = sorted({d.group(0) for n, _, _ in objects for d in [re.search(r"20\d{6}", sftp_name(n))] if d})
 new = [(n, size) for n, size, _ in objects if size > 0 and sftp_name(n) not in known and n.endswith(".hl7")]
+if FETCH:   # named files regardless of the register (claimocity_retry_dx.py re-reads a batch's files in a fresh container)
+    want = {sftp_name(x.strip()) for x in FETCH.split(",") if x.strip()}
+    new = [(n, size) for n, size, _ in objects if sftp_name(n) in want]
+    miss = want - {sftp_name(n) for n, _ in new}
+    if miss: print("gcs: not in the bucket:", ", ".join(sorted(miss)))
 os.makedirs(DEST, exist_ok=True)
 got = 0
 if not LIST_ONLY:

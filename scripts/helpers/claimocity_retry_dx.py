@@ -1,0 +1,120 @@
+# PLAIN ENGLISH (Claimocity feed: retry the visits an earlier batch skipped as "no usable dx for <CPT>").
+# Why: AdvancedMD only accepts diagnosis codes that are in the PRACTICE's diagnosis list (Master Files > Diagnosis Codes). A valid ICD-10
+#   code the practice never used before (10/31/2026: M51.17 and M51.86, chart F261031-04, two hospital visits) is "not in AMD" to
+#   lookupdiagcode, so claimocity_import.py skips the visit and records it under "skipped" with why "no usable dx for <CPT>". Once
+#   William adds the code to AMD's list, this driver enters those visits - nothing else re-reads a file the register already knows.
+# Decides: nothing new. For every skipped-dx row in registers/feed_import_*.json whose (patient, DOS, CPT set) was never created:
+#   1 gets the batch's parsed messages (feed_parsed_<stamp>.json, else re-parses hl7/<stamp>/, else re-downloads the batch's files from
+#     the bucket with claimocity_gcs.py --fetch), 2 re-checks the codes in AMD (claimocity_dx.py looks null codes up again), 3 imports
+#     only the messages whose every charge line now has a usable code, under a NEW stamp <now>R (import, verify, inspector, report -
+#     the same scripts as claimocity_ingest.py; dedupe is the registers + the chart's live charges, so a retry is a no-op the second time).
+# Codes still missing are printed: "still wait on codes not in AMD's diagnosis list: M51.17, M51.86" - that line goes into the digest
+#   under Holds, with the fix: William adds the code in AMD (Master Files > Diagnosis Codes > New, ICD-10 code + description).
+# Dry by default (prints what would be entered, writes nothing in AMD); --live enters. Exit 0 done (also when nothing to retry), 2 a step failed.
+# Usage: cd /home/claude/unbilled && python3 claimocity_retry_dx.py [--live] [--stamp <UTC stamp>] [--no-stedi]
+import os, sys, re, json, glob, subprocess, datetime
+WS = "/home/claude/unbilled"; HERE = os.path.dirname(os.path.abspath(__file__))
+os.chdir(WS)
+a = sys.argv[1:]; live = "--live" in a
+def opt(name, default=None): return a[a.index(name) + 1] if name in a else default
+def utcnow(): return datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
+rstamp = re.sub(r"[^0-9TZ]", "", opt("--stamp", utcnow().strftime("%Y%m%dT%H%MZ"))) + "R"
+def mdy(yyyymmdd): return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0:4])
+REGF = "registers/claimocity_ingest.json"
+reg = json.load(open(REGF)) if os.path.exists(REGF) else {"files": {}, "runs": []}
+pmap = json.load(open("registers/claimocity_patient_map.json")) if os.path.exists("registers/claimocity_patient_map.json") else {}
+
+# ---- 1 what was skipped for dx, and what has been created since --------------------------------------------------------------
+want = {}          # stamp -> set(feed patient ids)
+done = set()
+for rf in sorted(glob.glob("registers/feed_import_*.json")):
+    if rf.endswith("_decisions.json"): continue
+    try: r = json.load(open(rf))
+    except Exception: continue
+    stamp = re.sub(r"^registers/feed_import_|\.json$", "", rf)
+    for row in r.get("created", []):
+        if row.get("feed_id"):
+            done.add((row["feed_id"], row.get("dos"), tuple(sorted(row.get("cpts", [])))))
+            if row.get("dos_feed"): done.add((row["feed_id"], row["dos_feed"], tuple(sorted(row.get("cpts", [])))))
+    for row in r.get("skipped", []):
+        if str(row.get("why", "")).startswith("no usable dx"): want.setdefault(stamp, set()).add(row["feed_id"])
+if not want:
+    print("retry-dx: nothing to retry (no 'no usable dx' skips in the registers)"); sys.exit(0)
+
+# ---- 2 the messages behind those skips ------------------------------------------------------------------------------------------
+def parsed_for(stamp):
+    pf = "feed_parsed_%s.json" % stamp
+    if os.path.exists(pf): return json.load(open(pf))
+    batch = os.path.join("hl7", stamp); os.makedirs(batch, exist_ok=True)
+    if not glob.glob(os.path.join(batch, "*.hl7")):
+        names = [n for n, v in reg.get("files", {}).items() if v.get("stamp") == stamp]
+        if not names: print("retry-dx: batch %s - no files in the register, cannot re-read" % stamp); return []
+        c = subprocess.run([sys.executable, os.path.join(HERE, "claimocity_gcs.py"), "--fetch", ",".join(names), "--dest", batch], capture_output=True, text=True)
+        print("retry-dx: fetched batch %s files: %s" % (stamp, (c.stdout.strip().splitlines() or ["?"])[0][:160]))
+        for f in glob.glob(os.path.join(batch, "download__*.hl7")):      # the bucket names carry the download__ prefix; the parser keys files by their first 8 digits
+            os.replace(f, os.path.join(batch, re.sub(r"^(download__)+", "", os.path.basename(f))))
+    if not glob.glob(os.path.join(batch, "*.hl7")): return []
+    c = subprocess.run([sys.executable, "-I", os.path.join(WS, "feed_parse_dft_1028.py"), os.path.abspath(batch), pf], capture_output=True, text=True)
+    if c.returncode or not os.path.exists(pf): print("retry-dx: parse of batch %s failed: %s" % (stamp, (c.stdout + c.stderr)[-200:])); return []
+    return json.load(open(pf))
+
+msgs = []
+for stamp, ids in sorted(want.items()):
+    for m in parsed_for(stamp):
+        if m["pid"] not in ids: continue
+        key = (m["pid"], mdy(m["FT1"][0]["dos"][:8]), tuple(sorted(c["cpt"] for c in m["FT1"])))
+        if key in done: continue
+        m = dict(m); m["_batch"] = stamp; msgs.append(m)
+if not msgs:
+    print("retry-dx: nothing to retry (every dx-skipped visit has been entered since)"); sys.exit(0)
+
+# ---- 3 re-check the codes in AMD (null cache entries are looked up again) ---------------------------------------------------------
+env = dict(os.environ, FEED_STAMP=rstamp, FEED_DX_CACHE=os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json"), PYTHONPATH=WS + ":" + HERE)
+json.dump(msgs, open("feed_parsed_%s.json" % rstamp, "w"), indent=1)
+os.makedirs("logs", exist_ok=True)
+def step(name, cmd, must=True):
+    log = "logs/claimocity_%s_%s.log" % (rstamp, name)
+    with open(log, "w") as fh: r = subprocess.run(cmd, cwd=WS, env=env, stdout=fh, stderr=subprocess.STDOUT, text=True)
+    tail = open(log).read().strip().splitlines()[-3:]
+    print("[%s] exit %d  %s" % (name, r.returncode, " | ".join(t[:110] for t in tail)))
+    if r.returncode and must: print("STEP FAILED:", name, "- see", log); sys.exit(2)
+    return r.returncode
+step("dx", [sys.executable, os.path.join(HERE, "claimocity_dx.py")])
+cache = json.load(open(env["FEED_DX_CACHE"]))
+ready, waiting, missing = [], 0, set()
+for m in msgs:
+    ok = True
+    for c in m["FT1"]:
+        codes = [x.strip() for x in (c.get("dx") or "").split("^") if x.strip()]
+        if not any(cache.get(x) for x in codes):
+            ok = False; missing.update(x for x in codes if not cache.get(x))
+    if ok: ready.append(m)
+    else: waiting += 1
+if not ready:
+    print("retry-dx: %d visit(s) still wait on codes not in AMD's diagnosis list: %s (valid ICD-10 - William adds them in AMD Master Files > Diagnosis Codes; the next run enters the visits)" % (waiting, ", ".join(sorted(missing))))
+    os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
+
+# ---- 4 import (+ verify, inspector, report when live) under the retry stamp ----------------------------------------------------------
+json.dump(ready, open("feed_parsed_%s.json" % rstamp, "w"), indent=1)
+match = {}
+for m in ready:
+    key = m["name"].upper().strip() + "|" + m["dob"][:8]; pid = pmap.get(m["pid"])
+    if not pid: print("retry-dx: feed patient %s has no chart in the patient map - skipped" % m["pid"]); continue
+    e = match.setdefault(key, {"status": "FOUND", "pids": [pid], "amd_names": [], "feed_ids": [], "resolved": pid, "via": "patient map (retry)"})
+    if m["pid"] not in e["feed_ids"]: e["feed_ids"].append(m["pid"])
+json.dump(match, open("feed_match_%s.json" % rstamp, "w"), indent=1)
+batches = sorted({m["_batch"] for m in ready})
+env["FEED_HL7_DIR"] = os.path.abspath(os.path.join("hl7", batches[0]))
+print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s | mode %s" % (rstamp, len(ready), ", ".join(batches), ("; %d still wait on %s" % (waiting, ", ".join(sorted(missing)))) if waiting else "", "LIVE" if live else "DRY"))
+step("import", [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"])
+if live:
+    step("verify", [sys.executable, os.path.join(HERE, "claimocity_verify.py")] + (["--no-stedi"] if "--no-stedi" in a else []), must=False)
+    step("inspector", [sys.executable, os.path.join(HERE, "claimocity_inspector.py")], must=False)
+    step("report", [sys.executable, os.path.join(HERE, "claimocity_report.py")], must=False)
+impf = "registers/feed_import_%s.json" % rstamp
+imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skipped": [], "failed": []}
+reg.setdefault("runs", []).append({"stamp": rstamp, "at": utcnow().isoformat() + "Z", "live": live, "files": [], "retry_of": batches, "exit": 0})
+json.dump(reg, open(REGF, "w"), indent=1)
+print("RESULT retry %s: visits created %d, skipped %d, failed %d%s%s" % (rstamp, len(imp["created"]), len(imp["skipped"]), len(imp["failed"]),
+      "" if live else " (DRY - nothing written)", (" | still waiting on codes: " + ", ".join(sorted(missing))) if waiting else ""))
+if live and os.path.exists("feed_digest_%s.md" % rstamp): print("digest: feed_digest_%s.md" % rstamp)

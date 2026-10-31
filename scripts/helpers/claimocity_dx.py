@@ -1,7 +1,8 @@
 # PLAIN ENGLISH (Claimocity feed ingest - diagnosis-code cache):
 # Every ICD-10 code the parsed feed carries (FT1-19, dotted - the DG1-3 copies are the same codes without the dot) must be turned into AMD's numeric dcode id before a charge can be
 # written. This fills the shared cache (FEED_DX_CACHE, default dx_cache_feed.json): one lookupdiagcode codeset="10" per code not yet
-# cached. A code AMD does not know is cached as null so it is never looked up again (21 of 475 feed codes on 10/28/2026).
+# cached. A code AMD does not know is cached as null and is looked up AGAIN whenever a later batch carries it (William may have added it
+#   to the practice's AMD diagnosis list since - 10/31/2026: M51.17 and M51.86 are valid ICD-10 but were not in the list).
 # Reads: feed_parsed_<STAMP>.json. Writes: the cache only. One AMD login (login_cached), read-only calls.
 # Usage: FEED_STAMP=<stamp> python3 claimocity_dx.py
 import os as _os
@@ -15,7 +16,7 @@ for m in parsed:
     for c in m.get("FT1", []):
         for code in (c.get("dx") or "").split("^"):
             if code: codes.add(code.strip())
-todo = sorted(c for c in codes if c not in cache)
+todo = sorted(c for c in codes if not cache.get(c))   # unknown AND previously-null codes (null = not in AMD's list at the time)
 print("dx codes in feed: %d, cached: %d, to look up: %d" % (len(codes), len(codes) - len(todo), len(todo)))
 if todo:
     amd.login_cached()
