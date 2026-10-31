@@ -1,7 +1,7 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-10-31T03:30:18Z",
- "as_of": "2026-10-30",
+ "generated": "2026-10-31T04:28:11Z",
+ "as_of": "2026-10-31",
  "coverage": {
   "files": [
    {
@@ -159,13 +159,13 @@
  },
  "windows": {
   "week": {
-   "from": "2026-10-24",
-   "to": "2026-10-30",
-   "visits": 137,
-   "lines": 174,
-   "dollars": 28578.0,
-   "patients": 70,
-   "entered": 137,
+   "from": "2026-10-25",
+   "to": "2026-10-31",
+   "visits": 118,
+   "lines": 154,
+   "dollars": 25451.0,
+   "patients": 66,
+   "entered": 118,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -178,15 +178,15 @@
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 10,
-     "visits": 10,
-     "dollars": 3100.0
+     "lines": 9,
+     "visits": 9,
+     "dollars": 2790.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 84,
-     "visits": 84,
-     "dollars": 12558.0
+     "lines": 66,
+     "visits": 66,
+     "dollars": 9874.0
     },
     {
      "name": "Hospital discharge",
@@ -202,17 +202,17 @@
     },
     {
      "name": "Advance care planning",
-     "lines": 3,
-     "visits": 3,
-     "dollars": 399.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 266.0
     }
    ],
    "cpt": [
     {
      "name": "99233",
-     "lines": 66,
-     "visits": 66,
-     "dollars": 10560.0
+     "lines": 52,
+     "visits": 52,
+     "dollars": 8320.0
     },
     {
      "name": "99487",
@@ -228,21 +228,21 @@
     },
     {
      "name": "99232",
-     "lines": 18,
-     "visits": 18,
-     "dollars": 1998.0
+     "lines": 14,
+     "visits": 14,
+     "dollars": 1554.0
     },
     {
      "name": "99223",
-     "lines": 10,
-     "visits": 10,
-     "dollars": 3100.0
+     "lines": 9,
+     "visits": 9,
+     "dollars": 2790.0
     },
     {
      "name": "99497",
-     "lines": 3,
-     "visits": 3,
-     "dollars": 399.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 266.0
     },
     {
      "name": "99239",
@@ -254,9 +254,9 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 98,
-     "visits": 95,
-     "dollars": 16220.0
+     "lines": 78,
+     "visits": 76,
+     "dollars": 13093.0
     },
     {
      "name": "Sodalis ALF",
@@ -274,9 +274,9 @@
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 98,
-     "visits": 95,
-     "dollars": 16220.0
+     "lines": 78,
+     "visits": 76,
+     "dollars": 13093.0
     },
     {
      "name": "Assisted living",
@@ -288,107 +288,106 @@
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 174,
-     "visits": 137,
-     "dollars": 28578.0
+     "lines": 119,
+     "visits": 93,
+     "dollars": 19907.0
+    },
+    {
+     "name": "Clinician on file",
+     "lines": 35,
+     "visits": 25,
+     "dollars": 5544.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 79,
-     "visits": 55,
-     "dollars": 13015.0
+     "lines": 71,
+     "visits": 48,
+     "dollars": 11661.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 44,
-     "visits": 36,
-     "dollars": 7597.0
+     "lines": 40,
+     "visits": 32,
+     "dollars": 7006.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 11,
-     "visits": 10,
-     "dollars": 1984.0
+     "lines": 10,
+     "visits": 9,
+     "dollars": 1824.0
     },
     {
      "name": "Commercial / other",
-     "lines": 14,
-     "visits": 12,
-     "dollars": 2230.0
+     "lines": 12,
+     "visits": 10,
+     "dollars": 1910.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 5,
-     "visits": 5,
-     "dollars": 800.0
+     "lines": 4,
+     "visits": 4,
+     "dollars": 640.0
     },
     {
      "name": "No active plan",
-     "lines": 21,
-     "visits": 19,
-     "dollars": 2952.0
+     "lines": 17,
+     "visits": 15,
+     "dollars": 2410.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 39
-    },
-    {
-     "code": "E785",
      "patients": 27
     },
     {
+     "code": "E785",
+     "patients": 19
+    },
+    {
      "code": "E039",
-     "patients": 14
-    },
-    {
-     "code": "F0390",
-     "patients": 13
-    },
-    {
-     "code": "F32A",
-     "patients": 13
+     "patients": 10
     },
     {
      "code": "E119",
-     "patients": 13
+     "patients": 10
+    },
+    {
+     "code": "F32A",
+     "patients": 8
     },
     {
      "code": "M1990",
-     "patients": 12
-    },
-    {
-     "code": "G309",
-     "patients": 11
-    },
-    {
-     "code": "N179",
-     "patients": 9
+     "patients": 8
     },
     {
      "code": "M4726",
-     "patients": 9
+     "patients": 7
     },
     {
-     "code": "N390",
-     "patients": 8
+     "code": "G309",
+     "patients": 7
     },
     {
-     "code": "M6281",
-     "patients": 8
+     "code": "N179",
+     "patients": 6
+    },
+    {
+     "code": "F0390",
+     "patients": 6
+    },
+    {
+     "code": "M48.02",
+     "patients": 6
+    },
+    {
+     "code": "M4802",
+     "patients": 6
     }
    ],
    "days": [
-    {
-     "date": "2026-10-24",
-     "visits": 19,
-     "lines": 20,
-     "dollars": 3127.0,
-     "patients": 19
-    },
     {
      "date": "2026-10-25",
      "visits": 27,
@@ -430,12 +429,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-10-31",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "month": {
-   "from": "2026-10-01",
-   "to": "2026-10-30",
+   "from": "2026-10-02",
+   "to": "2026-10-31",
    "visits": 664,
    "lines": 916,
    "dollars": 146221.0,
@@ -688,16 +694,16 @@
    ],
    "clinician": [
     {
-     "name": "Dr. Effinger (DO)",
-     "lines": 783,
-     "visits": 565,
-     "dollars": 125865.0
+     "name": "Clinician on file",
+     "lines": 794,
+     "visits": 569,
+     "dollars": 125839.0
     },
     {
-     "name": "Pamela G.",
-     "lines": 133,
-     "visits": 99,
-     "dollars": 20356.0
+     "name": "Dr. Effinger (DO)",
+     "lines": 122,
+     "visits": 95,
+     "dollars": 20382.0
     }
    ],
    "payer": [
@@ -741,61 +747,54 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 234
+     "patients": 28
     },
     {
      "code": "E785",
-     "patients": 160
-    },
-    {
-     "code": "E119",
-     "patients": 104
-    },
-    {
-     "code": "F0390",
-     "patients": 102
-    },
-    {
-     "code": "N390",
-     "patients": 91
+     "patients": 20
     },
     {
      "code": "E039",
-     "patients": 84
+     "patients": 10
     },
     {
-     "code": "I639",
-     "patients": 83
+     "code": "E119",
+     "patients": 10
     },
     {
      "code": "F32A",
-     "patients": 80
+     "patients": 8
     },
     {
-     "code": "M6281",
-     "patients": 62
+     "code": "M1990",
+     "patients": 8
     },
     {
-     "code": "K219",
-     "patients": 52
+     "code": "M4726",
+     "patients": 7
     },
     {
-     "code": "I4891",
-     "patients": 52
+     "code": "G309",
+     "patients": 7
     },
     {
-     "code": "D649",
-     "patients": 48
+     "code": "N179",
+     "patients": 6
+    },
+    {
+     "code": "F0390",
+     "patients": 6
+    },
+    {
+     "code": "M48.02",
+     "patients": 6
+    },
+    {
+     "code": "M4802",
+     "patients": 6
     }
    ],
    "days": [
-    {
-     "date": "2026-10-01",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
-    },
     {
      "date": "2026-10-02",
      "visits": 0,
@@ -998,12 +997,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-10-31",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "all": {
    "from": "2026-09-01",
-   "to": "2026-10-30",
+   "to": "2026-10-31",
    "visits": 670,
    "lines": 923,
    "dollars": 148154.0,
@@ -1256,22 +1262,16 @@
    ],
    "clinician": [
     {
-     "name": "Dr. Effinger (DO)",
-     "lines": 788,
-     "visits": 569,
-     "dollars": 127198.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 133,
-     "visits": 99,
-     "dollars": 20356.0
-    },
-    {
      "name": "Clinician on file",
-     "lines": 2,
-     "visits": 2,
-     "dollars": 600.0
+     "lines": 801,
+     "visits": 575,
+     "dollars": 127772.0
+    },
+    {
+     "name": "Dr. Effinger (DO)",
+     "lines": 122,
+     "visits": 95,
+     "dollars": 20382.0
     }
    ],
    "payer": [
@@ -1315,51 +1315,51 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 236
+     "patients": 28
     },
     {
      "code": "E785",
-     "patients": 161
-    },
-    {
-     "code": "E119",
-     "patients": 104
-    },
-    {
-     "code": "F0390",
-     "patients": 102
-    },
-    {
-     "code": "N390",
-     "patients": 91
+     "patients": 20
     },
     {
      "code": "E039",
-     "patients": 85
+     "patients": 10
     },
     {
-     "code": "I639",
-     "patients": 84
+     "code": "E119",
+     "patients": 10
     },
     {
      "code": "F32A",
-     "patients": 80
+     "patients": 8
     },
     {
-     "code": "M6281",
-     "patients": 62
+     "code": "M1990",
+     "patients": 8
     },
     {
-     "code": "K219",
-     "patients": 52
+     "code": "M4726",
+     "patients": 7
     },
     {
-     "code": "I4891",
-     "patients": 52
+     "code": "G309",
+     "patients": 7
     },
     {
-     "code": "D649",
-     "patients": 48
+     "code": "N179",
+     "patients": 6
+    },
+    {
+     "code": "F0390",
+     "patients": 6
+    },
+    {
+     "code": "M48.02",
+     "patients": 6
+    },
+    {
+     "code": "M4802",
+     "patients": 6
     }
    ],
    "days": [
@@ -1782,6 +1782,13 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-10-31",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   }
@@ -1789,19 +1796,19 @@
  "holds": [
   {
    "pid": "pat17476416",
-   "why": "pat17476416 DOS 2026-10-22 is after date of death [date] (stedi-medicare-271) - claim must not be submitted; void the charge",
+   "why": "pat17476416 DOS 2026-10-22 is after date of death [DOB] (stedi-medicare-271) - claim must not be submitted; void the charge",
    "dos": "10/22/2026",
    "kind": "deceased"
   },
   {
    "pid": "pat24797",
-   "why": "pat24797 DOS 2026-10-22 is after date of death [date] (stedi-medicare-271 (verify log)) - claim must not be submitted; void the charge",
+   "why": "pat24797 DOS 2026-10-22 is after date of death [DOB] (stedi-medicare-271 (verify log)) - claim must not be submitted; void the charge",
    "dos": "10/22/2026",
    "kind": "deceased"
   },
   {
    "pid": "pat24797",
-   "why": "271 reports date of death [date] - visits dated after it: ['10/22/2026'] (never bill; void)",
+   "why": "271 reports date of death [DOB] - visits dated after it: ['10/22/2026'] (never bill; void)",
    "dos": "10/22/2026",
    "kind": "deceased"
   },
@@ -1958,6 +1965,13 @@
    "stamp": "20261031T0312Z",
    "at": "2026-10-31T03:28:53.232632Z",
    "files": 3,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261031T0302Z",
+   "at": "2026-10-31T03:56:32.353816Z",
+   "files": 0,
    "exit": 0,
    "live": true
   }

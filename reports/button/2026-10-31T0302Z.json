@@ -2,9 +2,9 @@
  "schema": "button-run/1",
  "stamp": "2026-10-31T0302Z",
  "mode": "live",
- "status": "ok",
+ "status": "warn",
  "headline": "Columns CR/CI/Unb/Exc 0/1/4/1 -> 0/1/8/1 (Unbilled snapshot refreshed to 42 mid-run: 30 prior-payor rows released, 4 chart-25558 rows fixed + re-sent); ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 9 visits $1,657 (3 feed holds fixed: SUN01 / UHCMA plans added, CHP confirmed); 4 new board rows for facesheets/ids",
- "note": "no BUTTON PRESS brief in the firing - live, all steps, every approved package",
+ "note": "BUTTON PRESS 2026-10-31T03:01:57Z - mode live - steps feed - packages none - note: Claimocity feed monitoring page (the brief reached the session only after the full run had finished; it ran all steps - see errors)",
  "run_url": "https://claude.ai/code/session_01HHfWRDMZ6eP5Fo13FUbs4C",
  "started": "2026-10-31T03:02:00Z",
  "ended": "2026-10-31T04:22:37Z",
@@ -292,5 +292,7 @@
   "dx M51.17 / M51.86 not in AMD's diagnosis list - chart 17478261, 2 hospital visits",
   "chart 17472874: 15 April-2026 visits DENIED 585 at UHC ($2,403) - the 835 CARC decides"
  ],
- "errors": []
+ "errors": [
+  "brief scope: the BUTTON PRESS brief (steps: feed, packages: none) reached the session after the full run had finished - the run worked every step; its AdvancedMD writes (30 Unbilled releases, chart 25558 begin date + 4 rebills, SUN01 / UHCMA plans added and 5 visit re-routes on charts 17478213 / 17477085 / 17476942) were standing-rule actions and stand; no package was applied (A-2026-10-31T0200Z-A was already done). Feed step result: 0 new files; feed_monitor.json refreshed on the late brief."
+ ]
 }
