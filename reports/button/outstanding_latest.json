@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-31T09:21:08Z",
+ "at": "2026-10-31T11:21:37Z",
  "as_of": "2026-10-31",
- "total": 348194.21,
- "visits": 3232,
+ "total": 346867.21,
+ "visits": 3228,
  "charts": 585,
  "over_365": {
   "n": 1130,
@@ -11,12 +11,12 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 667,
-   "dollars": 141613.49
+   "n": 665,
+   "dollars": 141064.49
   },
   "31-60": {
-   "n": 260,
-   "dollars": 33354.53
+   "n": 258,
+   "dollars": 32576.53
   },
   "61-90": {
    "n": 167,
@@ -54,11 +54,11 @@
   {
    "carrier": "UNI20",
    "name": "UNITED HEALTHCARE",
-   "n": 219,
-   "dollars": 33001.11,
+   "n": 215,
+   "dollars": 31674.11,
    "buckets": {
-    "0-30": 14734.0,
-    "31-60": 3366.08,
+    "0-30": 14185.0,
+    "31-60": 2588.08,
     "61-90": 563.8,
     "91-180": 1251.68,
     "181-365": 8501.44,
@@ -765,13 +765,13 @@
   },
   {
    "month": "2026-09",
-   "n": 260,
-   "dollars": 33354.53
+   "n": 258,
+   "dollars": 32576.53
   },
   {
    "month": "2026-10",
-   "n": 667,
-   "dollars": 141613.49
+   "n": 665,
+   "dollars": 141064.49
   }
  ],
  "oldest": [
@@ -21540,14 +21540,6 @@
    "dos": "2026-09-21"
   },
   {
-   "visitid": 19456058,
-   "patientid": 17477870,
-   "carriercode": "UNI20",
-   "insbalance": 389.0,
-   "days": 39,
-   "dos": "2026-09-22"
-  },
-  {
    "visitid": 19456239,
    "patientid": 17476727,
    "carriercode": "BCBS",
@@ -21804,14 +21796,6 @@
    "dos": "2026-09-27"
   },
   {
-   "visitid": 19456902,
-   "patientid": 17477976,
-   "carriercode": "UNI20",
-   "insbalance": 389.0,
-   "days": 33,
-   "dos": "2026-09-28"
-  },
-  {
    "visitid": 19456749,
    "patientid": 17477829,
    "carriercode": "SUN01",
@@ -21944,14 +21928,6 @@
    "patientid": 17477971,
    "carriercode": "CIG09",
    "insbalance": 443.0,
-   "days": 30,
-   "dos": "2026-10-01"
-  },
-  {
-   "visitid": 19456978,
-   "patientid": 17477953,
-   "carriercode": "UNI20",
-   "insbalance": 389.0,
    "days": 30,
    "dos": "2026-10-01"
   },
@@ -22158,14 +22134,6 @@
   {
    "visitid": 19456974,
    "patientid": 17471916,
-   "carriercode": "UNI20",
-   "insbalance": 160.0,
-   "days": 28,
-   "dos": "2026-10-03"
-  },
-  {
-   "visitid": 19456964,
-   "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
    "days": 28,
