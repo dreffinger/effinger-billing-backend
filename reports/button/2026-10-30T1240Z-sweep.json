@@ -1,0 +1,81 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-30T1240Z-sweep",
+ "mode": "live",
+ "status": "ok",
+ "headline": "nothing ran",
+ "note": "UNI20/BCBS pre-5/1 sweep, backend run 2026-10-30T1240Z",
+ "run_url": "",
+ "started": "2026-10-30T12:58:43Z",
+ "ended": "2026-10-30T12:59:23Z",
+ "summary": {
+  "columns": {
+   "before": {},
+   "after": {}
+  },
+  "era": {
+   "before": {},
+   "after": {}
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1288 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1288,
+    "registers": 1633,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-30T12:58:43Z",
+   "ended": "2026-10-30T12:58:44Z"
+  },
+  {
+   "name": "sweep",
+   "title": "Claim-status sweep (277)",
+   "status": "ok",
+   "summary": "DENIED/REVISED - run the denial cascade: 15",
+   "counts": {
+    "DENIED/REVISED - run the denial cascade": 15
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "action": "DENIED/REVISED - run the denial cascade",
+     "visits": 15,
+     "ids": "v19439702 v19437843 v19437926 v19437951 v19438061 v19438356 v19438357 v19438358 v19438701 v19438903 v19438993 v19439010 v19439022 v19439233 v19439271"
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-30T12:58:44Z",
+   "ended": "2026-10-30T12:59:23Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [],
+ "errors": []
+}

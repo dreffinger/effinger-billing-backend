@@ -1,0 +1,47 @@
+{
+ "stamp": "2026-10-29T1850Z",
+ "run": "1700338",
+ "pid": "12179690",
+ "live": true,
+ "rule": "UHC SmartEdit UDCP3 duplicate of claim received 10/05/2026 (FY90250883/84) after the 10/28 rebill_patient_year re-send - complete, never rebill (step 4 duplicate rule)",
+ "rows": [
+  {
+   "visit": "19455318",
+   "claimid": "19455318D",
+   "carrier": "UNI20",
+   "live": [
+    {
+     "cid": "23366558",
+     "cpt": "99349",
+     "dos": "08/04/2026",
+     "carrier": "UNI20",
+     "billdate": "10/28/2026",
+     "insbal": "198.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  },
+  {
+   "visit": "19455675",
+   "claimid": "19455675C",
+   "carrier": "UNI20",
+   "live": [
+    {
+     "cid": "23367049",
+     "cpt": "99487",
+     "dos": "09/20/2026",
+     "carrier": "UNI20",
+     "billdate": "10/28/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-frjfx\" lst=\"10/29/2026 11:50:29\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": []
+}
