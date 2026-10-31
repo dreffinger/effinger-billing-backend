@@ -1,0 +1,34 @@
+{
+ "stamp": "2026-10-28T1038Z",
+ "live": true,
+ "pid": "17477183",
+ "at": "2026-10-31T06:52:25Z",
+ "visits": [
+  {
+   "visit": "19459562",
+   "cid": "23372107",
+   "moved": 160.0,
+   "charges": 1,
+   "resave_ok": true,
+   "balances_after": []
+  },
+  {
+   "visit": "19459570",
+   "cid": "23372115",
+   "moved": 160.0,
+   "charges": 1,
+   "resave_ok": true,
+   "balances_after": []
+  }
+ ],
+ "released": [
+  [
+   "19459562",
+   true
+  ],
+  [
+   "19459570",
+   true
+  ]
+ ]
+}
