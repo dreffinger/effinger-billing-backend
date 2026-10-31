@@ -240,7 +240,7 @@ function render(){ if(!data){ $('#tiles').innerHTML='<div class="tile"><div clas
   rows($('#facility'),(w.facility||[]).slice().sort((a,b)=>b.visits-a.visits),{key:'visits',alt:true});
   rows($('#payer'),w.payer||[],{key:'visits',cls:r=>r.name==='No active plan'?'warn':''});
   const outcome=[{name:'Entered by the feed',n:w.entered||0,c:''},{name:'Already in AdvancedMD (skipped)',n:w.already_in_amd||0,c:'dim'},{name:'Held - no active plan',n:(data.holds||[]).filter(h=>h.kind==='facesheet').length,c:'warn'},
-    {name:'Held - payer question',n:(data.holds||[]).filter(h=>h.kind==='payer').length,c:'warn'},{name:'Not billed - after date of death',n:(data.holds||[]).filter(h=>h.kind==='deceased').length+(w.deceased_not_entered||0),c:'bad'},{name:'Failed',n:w.failed||0,c:'bad'}];
+    {name:'Held - payer question',n:(data.holds||[]).filter(h=>h.kind==='payer').length,c:'warn'},{name:'Not billed - after date of death',n:(data.holds||[]).filter(h=>h.kind==='deceased').length+(w.deceased_not_entered||0),c:'bad'},{name:'Skipped - '+((w.skipped_other_why||[])[0]||'unknown code'),n:w.skipped_other||0,c:'dim'},{name:'Failed',n:w.failed||0,c:'bad'}];
   rows($('#outcome'),outcome.map(o=>({name:o.name,visits:o.n,c:o.c})),{key:'visits',cls:r=>r.c});
   rows($('#clinician'),w.clinician||[],{key:'visits',alt:true});
   const v=t.verification||{}; rows($('#verif'),[{name:'Active plan verified (271)',visits:v['active plan verified']||0,c:'ok'},{name:'Only inactive plans found',visits:v['inactive only']||0,c:'warn'},{name:'No plan to check',visits:v['no plan to check']||0,c:'dim'}],{key:'visits',cls:r=>r.c});

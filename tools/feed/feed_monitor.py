@@ -111,6 +111,7 @@ reg = load(os.path.join(WS, "registers", "claimocity_ingest.json"), {"files": {}
 stamps = sorted({re.sub(r"^feed_import_|\.json$", "", os.path.basename(p)) for p in glob.glob(os.path.join(WS, "registers", "feed_import_*.json"))})
 visits = []      # one per created visit: {date, pid, visit, cpts, fees, fac, pos, stamp, provider, dx}
 already = []     # skipped as already in AMD
+other_skips = [] # skipped for another reason (unknown CPT, no chart)
 deceased = []    # skipped for a date of death
 failed = []
 newcharts = 0
@@ -131,7 +132,7 @@ for st in stamps:
     for s in imp.get("skipped", []):
         why = (s.get("why") or "").lower()
         row = {"pid": s.get("pid"), "why": s.get("why"), "stamp": st, "feed_id": s.get("feed_id"), "date": mdy_to_date(s.get("dos"))}
-        (deceased if "death" in why or "deceased" in why else already).append(row)
+        (deceased if "death" in why or "deceased" in why else (already if "already" in why else other_skips)).append(row)
     for f in imp.get("failed", []):
         failed.append({"pid": f.get("pid"), "why": (f.get("why") or f.get("err") or "")[:160], "stamp": st})
     nc = load(os.path.join(WS, "registers", "feed_newcharts_%s.json" % st), {})
@@ -161,7 +162,8 @@ def agg(rows, deceased_rows, already_rows, lo, hi):
     alr = [r for r in already_rows if r.get("date") is None or inwin(r["date"])] if rows else already_rows
     out = {"from": lo.isoformat(), "to": hi.isoformat(), "visits": len(rs), "lines": sum(len(r["cpts"]) for r in rs),
            "dollars": round(sum(sum(r["fees"]) for r in rs), 2), "patients": len({r["pid"] for r in rs}),
-           "entered": len(rs), "already_in_amd": len(alr), "deceased_not_entered": len(dec), "failed": len(failed) if rows else 0}
+           "entered": len(rs), "already_in_amd": len(alr), "deceased_not_entered": len(dec), "failed": len(failed) if rows else 0,
+           "skipped_other": len(other_skips) if rows else 0, "skipped_other_why": sorted({(r.get("why") or "")[:60] for r in other_skips})[:5]}
     def table(keyf, order=None, per="lines"):
         cnt, dol, vis = collections.Counter(), collections.Counter(), collections.Counter()
         for r in rs:
@@ -209,7 +211,7 @@ data = {"schema": "feed-monitor/1", "generated": datetime.datetime.now(datetime.
         "coverage": coverage, "windows": windows, "holds": sorted(holds, key=lambda h: (h["kind"], h["pid"])), "runs": runs,
         "totals": {"visits": len(visits), "lines": sum(len(r["cpts"]) for r in visits), "dollars": round(sum(sum(r["fees"]) for r in visits), 2),
                    "patients": len({r["pid"] for r in visits}), "new_charts": newcharts, "already_in_amd": len(already), "deceased_not_entered": len(deceased),
-                   "failed": len(failed), "holds": len(holds), "verification": dict(verif_status)},
+                   "failed": len(failed), "skipped_other": len(other_skips), "holds": len(holds), "verification": dict(verif_status)},
         "button": {"trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5", "page": "https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ"}}
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 json.dump(data, open(OUT, "w"), indent=1)
