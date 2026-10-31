@@ -1,0 +1,296 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-10-31T0302Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns CR/CI/Unb/Exc 0/1/4/1 -> 0/1/8/1 (Unbilled snapshot refreshed to 42 mid-run: 30 prior-payor rows released, 4 chart-25558 rows fixed + re-sent); ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 9 visits $1,657 (3 feed holds fixed: SUN01 / UHCMA plans added, CHP confirmed); 4 new board rows for facesheets/ids",
+ "note": "no BUTTON PRESS brief in the firing - live, all steps, every approved package",
+ "run_url": "https://claude.ai/code/session_01HHfWRDMZ6eP5Fo13FUbs4C",
+ "started": "2026-10-31T03:02:00Z",
+ "ended": "2026-10-31T04:22:37Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 4,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 8,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 9,
+   "dollars": 1657.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 1
+  },
+  "outstanding": {
+   "total": 321140.21,
+   "visits": 3111,
+   "charts": 562,
+   "over_365": {
+    "n": 1130,
+    "dollars": 55567.53
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Bootstrap",
+   "status": "ok",
+   "summary": "AMD_OK; Stedi key from Gmail (STEDI_CRED_MISSING); repo attached, main 48700a0 -> 983da10 after the 03:12Z chat feed commits (re-layout); Drive state bundle stale (2026-09-18) - registers from main; precheck_cache 10/30, pseudonyms 10/23, deceased_cache 10/28 merged (82 dated); 1,304 helpers, required all present (era_details_pull.py optional absent); v12 ok; no login lock; cross-container guard clear (0213Z and 0312Z digests RUN COMPLETE); own START 03:53Z (Drive downloads via subagent took 44 min)",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T03:02:00Z",
+   "ended": "2026-10-31T03:55:00Z"
+  },
+  {
+   "name": "feed",
+   "title": "Claimocity feed",
+   "status": "ok",
+   "summary": "GCS key installed from the Gmail thread; bucket 13 objects, 0 new after the registers from main (the 03:12Z chat session ingested the 10/28-10/30 files: 95 visits / $20,382); claimocity_ingest.py --live: nothing new; claimocity_retry_dx.py: M51.17 / M51.86 still not in AMD's diagnosis list (2 visits of pat17478261 wait)",
+   "counts": {
+    "new_files": 0,
+    "visits_entered": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T03:55:00Z",
+   "ended": "2026-10-31T03:57:00Z"
+  },
+  {
+   "name": "board",
+   "title": "Board input",
+   "status": "ok",
+   "summary": "Insurance Refresh Board: 2 rows re-stamped by the 03:06Z sync, 0 William notes since 10/15; drops 0; Working Denials queue 0; Mandatory Approvals 1 approved card already done on main; Pam Gmail: 10/30 readmit already handled; facesheet / 835 / Availity / treasury folders nothing new since 10/21; board_updates_2026-10-31T0302Z.json -> board inbox (5 ops: 4 new rows on William's turn, fac67 check); sync registry applied map unchanged since 9/20 - nothing trashed",
+   "counts": {
+    "rows_read": 2,
+    "drops": 0,
+    "commands": 0,
+    "board_ops": 5
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T03:57:00Z",
+   "ended": "2026-10-31T04:20:00Z"
+  },
+  {
+   "name": "columns",
+   "title": "Four columns",
+   "status": "ok",
+   "summary": "0/1/4/1 -> 0/1/8/1: Unbilled snapshot refreshed to 42 rows mid-run - 30 'A payment from the prior payor is required' released (unbilled_repair.py --live), 4 chart-25558 'DOS outside coverage' fixed (UHCMA plan begin date 01/01/2026 -> 03/01/2025 per Stedi 271, freq-1 to seq 4, released; $803); left 5 fac67 'Facility is missing NPI' (+ new v19459618 chart 17473197), 2 chart-17477183 'DOS outside coverage' (SUN01 ended 8/31/2026 - facesheet row), 1 Unresolved CI; CI v19459299 chart 17471793 CCI 24078 held (William); Exclusions AET12 chart 24750 v19455937 $315 carrier-master hold. Feed holds worked: chart 17478213 SUN01 plan added (Medicaid 271 names Sunshine MMA) + 3 visits re-routed ($333); chart 17477085 UHCMA plan added (Stedi UHC Dual Complete active 8/1-12/31/2026) + CCM visit re-routed ($315); chart 17476942 CHP confirmed ACTIVE MEDICARE RISK by Stedi 95112 -> order 1 + CCM visit re-routed ($206)",
+   "counts": {
+    "unbilled_released": 34,
+    "rerouted": 9,
+    "plans_added": 2
+   },
+   "dollars": {
+    "resent": 1657.0
+   },
+   "lines": [
+    {
+     "chart": "17478213",
+     "visits": [
+      "19459548",
+      "19459573",
+      "19459590"
+     ],
+     "action": "SUN01 car6194 ins9521065 added, patient order 3, freq-1 seq 3 x3",
+     "dollars": 333.0
+    },
+    {
+     "chart": "17477085",
+     "visits": [
+      "19459602"
+     ],
+     "action": "UHCMA car302853 ins9521066 added (begin 08/01/2026), patient order 3,2, freq-1 seq 3",
+     "dollars": 315.0
+    },
+    {
+     "chart": "17476942",
+     "visits": [
+      "19459617"
+     ],
+     "action": "patient order 1 (CAP07 ACTIVE per Stedi 95112), freq-1 seq 1",
+     "dollars": 206.0
+    },
+    {
+     "chart": "25558",
+     "visits": [
+      "19422673",
+      "19423617",
+      "19426937",
+      "19427577"
+     ],
+     "action": "ins9521057 begindate 03/01/2025, freq-1 seq 4, released",
+     "dollars": 803.0
+    },
+    {
+     "chart": "various",
+     "visits": "30 prior-payor rows",
+     "action": "released (unbilled_repair_2026-10-31T0413Z.json)",
+     "dollars": 0.0
+    }
+   ],
+   "errors": [],
+   "started": "2026-10-31T03:58:00Z",
+   "ended": "2026-10-31T04:19:00Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 unposted checks / $0.00 before and after; nothing to upload (no new 835 / Availity / treasury file since 10/21); UNI20/BCBS pre-5/1 sweep pass 175 (--min-age 183): 610 answered skipped, 0 asked (pool exhausted), 0 sent; tf_writeoff_watch: no stale 'sending'",
+   "counts": {
+    "checks_before": 0,
+    "checks_after": 0
+   },
+   "dollars": {
+    "before": 0.0,
+    "after": 0.0,
+    "auto_posted": 0.0,
+    "manual": 0.0,
+    "residual": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T03:59:00Z",
+   "ended": "2026-10-31T04:01:00Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check",
+   "status": "ok",
+   "summary": "precheck.py --days 3 --max 120: 0 patient/payer pairs, 0 flagged, 0 lookups; void_rules.py skipped (no void_rules.json); Stedi this run: 4 eligibility ($1.20) + 1 discovery ($1.50) on the feed holds",
+   "counts": {
+    "pairs": 0,
+    "flags": 0
+   },
+   "dollars": {
+    "stedi": 2.7
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T04:01:00Z",
+   "ended": "2026-10-31T04:02:00Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "ok",
+   "summary": "A-2026-10-31T0200Z-A shows approved on the page but is done in approvals_pending.json on main (applied by run 0213Z) - skipped; nothing submitted, nothing refused",
+   "counts": {
+    "applied": 0,
+    "skipped": 1,
+    "refused": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T04:02:00Z",
+   "ended": "2026-10-31T04:02:30Z"
+  },
+  {
+   "name": "cred",
+   "title": "cred_check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; revalidation 3 (due TBD); LEIE 84,093 rows 0 matches; reminders none - no cred_updates file",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T04:01:00Z",
+   "ended": "2026-10-31T04:02:00Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims",
+   "status": "ok",
+   "summary": "$321,140.21 open on 3,111 visits / 562 charts; over 365 days 1,130 visits $55,567.53 -> reports/button/outstanding_latest.json",
+   "counts": {
+    "visits": 3111,
+    "charts": 562
+   },
+   "dollars": {
+    "total": 321140.21,
+    "over_365": 55567.53
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T04:01:00Z",
+   "ended": "2026-10-31T04:02:00Z"
+  },
+  {
+   "name": "denials",
+   "title": "Denials refresh",
+   "status": "ok",
+   "summary": "867 charts, 13,148 denial lines, 7,748 visits; 66 actionable $12,217 (62 inside 12 months $11,398); OPEN 155 / RESUBMITTED 173 / RESOLVED 4484 / WRITTEN-OFF 2936 -> reports/button/working_denials_latest.json",
+   "counts": {
+    "actionable": 66,
+    "open": 155
+   },
+   "dollars": {
+    "actionable": 12217.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-10-31T04:01:00Z",
+   "ended": "2026-10-31T04:13:00Z"
+  }
+ ],
+ "packages": [
+  {
+   "id": "A-2026-10-31T0200Z-A",
+   "status": "done",
+   "dollars": "$600.00",
+   "result": "already applied by run 2026-10-31T0213Z (main 5aaebc9) - page card awaits the hourly sync"
+  }
+ ],
+ "waiting": [
+  "fac67 HCA REHAB facility NPI (Master Files > Facilities) - 5 Unbilled visits: charts 25994 x2, 17477225, 17469426, 17473197 (new v19459618 $310)",
+  "AET12 carrier master payer id (TIN transmitted) - exclusion chart 24750 v19455937 $315",
+  "CCI 24078 modifier decision chart 17471793 v19459299 $141 (row nesbit-edith)",
+  "facesheet: chart 17478225 (new F1028-28, no plan, discovery empty) - 3 x 99232 $333",
+  "facesheet / Medicaid id: chart 17477183 (SUN01 ended 8/31/2026) - 2 x 99233 $320",
+  "payer: chart 17475392 (TRI00 REJECTED, discovery empty) - 99487 $206",
+  "Florida Blue Medicare member id: chart 17472519 (CMS names BCBS MA; BCBSF ERR 72) - CCM v19459622 $315",
+  "dx M51.17 / M51.86 not in AMD's diagnosis list - chart 17478261, 2 hospital visits",
+  "chart 17472874: 15 April-2026 visits DENIED 585 at UHC ($2,403) - the 835 CARC decides"
+ ],
+ "errors": []
+}
