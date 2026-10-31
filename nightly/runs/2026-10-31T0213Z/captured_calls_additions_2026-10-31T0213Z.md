@@ -1,0 +1,2 @@
+# captured_calls additions - ehpa Billing Button run 2026-10-31T0213Z (10:13 PM ET 10/30)
+No new AdvancedMD / Stedi call shapes this run. Calls used (all registered): getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/charges, getclaimunbillablecharges, getclaimrunstatus/getclaimexclusioncharges, GET /api/era/checks, massrebillsearch (sweep, 0 asked), getdemographic, gettxhistory (txh.fetch_visit), void charge (void_tx.void_charge via claimocity_void_visits.py, package A-2026-10-31T0200Z-A). Vocabulary entries added: 0. Postman: unchanged.

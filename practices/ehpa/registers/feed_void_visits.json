@@ -1,0 +1,64 @@
+[
+ {
+  "pid": "pat17477204",
+  "vid": "vst19459522",
+  "charges": [
+   {
+    "id": "23372064",
+    "cpt": "99344",
+    "ok": null
+   }
+  ],
+  "billdate": "10/29/2026",
+  "why": "duplicate of an encounter already in AdvancedMD",
+  "at": "2026-10-31T02:38:14.309054+00:00",
+  "mode": "dry"
+ },
+ {
+  "pid": "pat17476748",
+  "vid": "vst19459523",
+  "charges": [
+   {
+    "id": "23372065",
+    "cpt": "99344",
+    "ok": null
+   }
+  ],
+  "billdate": "10/29/2026",
+  "why": "duplicate of an encounter already in AdvancedMD",
+  "at": "2026-10-31T02:38:15.042020+00:00",
+  "mode": "dry"
+ },
+ {
+  "pid": "pat17477204",
+  "vid": "vst19459522",
+  "charges": [
+   {
+    "id": "23372064",
+    "cpt": "99344",
+    "ok": true
+   }
+  ],
+  "billdate": "10/29/2026",
+  "why": "duplicate of an encounter already in AdvancedMD",
+  "at": "2026-10-31T02:39:35.075995+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17476748",
+  "vid": "vst19459523",
+  "charges": [
+   {
+    "id": "23372065",
+    "cpt": "99344",
+    "ok": true
+   }
+  ],
+  "billdate": "10/29/2026",
+  "why": "duplicate of an encounter already in AdvancedMD",
+  "at": "2026-10-31T02:39:37.312484+00:00",
+  "mode": "live",
+  "left_live": 0
+ }
+]
