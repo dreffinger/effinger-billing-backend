@@ -1,32 +1,32 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-31T0718Z",
+ "stamp": "2026-10-31T0918Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/6/1 -> 0/1/6/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/1/33/1 -> 0/1/1/1; ERA 1 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41180093443",
- "started": "2026-10-31T07:18:54Z",
- "ended": "2026-10-31T07:26:01Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41188158271",
+ "started": "2026-10-31T09:18:39Z",
+ "ended": "2026-10-31T09:25:07Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 6,
+    "unbilled": 33,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 6,
+    "unbilled": 1,
     "exclusions": 1
    }
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 0.0
    },
    "after": {
     "checks": 0,
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 345147.21,
-   "visits": 3217,
-   "charts": 583,
+   "total": 348194.21,
+   "visits": 3232,
+   "charts": 585,
    "over_365": {
     "n": 1130,
     "dollars": 55567.53
    }
   },
   "denials": {
-   "visits": 7769,
+   "visits": 7779,
    "actionable": 66,
    "actionable_amt": 12217.0,
-   "asof": "2026-10-31 07:26 UTC"
+   "asof": "2026-10-31 09:25 UTC"
   }
  },
  "steps": [
@@ -82,25 +82,25 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-31T07:18:54Z",
-   "ended": "2026-10-31T07:18:55Z"
+   "started": "2026-10-31T09:18:39Z",
+   "ended": "2026-10-31T09:18:39Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 1->1, Unbilled 6->6, Exclusions 1->1",
+   "summary": "CR 0->0, CI 1->1, Unbilled 33->1, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 1,
-    "unbilled": 6,
+    "unbilled": 33,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 1,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
-    "unbilled rows left alone": 6,
+    "unbilled prior-payor rows": 30,
+    "unbilled rows left alone": 1,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
     "exclusions crossover run 1700294": "see log"
@@ -115,9 +115,15 @@
     },
     {
      "column": "unbilled",
-     "kind": "Facility is missing NPI information",
-     "visits": 5,
-     "ids": "v19458784 v19458785 v19458864 v19459136 v19459618"
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
     },
     {
      "column": "unbilled",
@@ -133,28 +139,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-31T07:18:55Z",
-   "ended": "2026-10-31T07:21:05Z"
+   "started": "2026-10-31T09:18:39Z",
+   "ended": "2026-10-31T09:20:57Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 0.0,
     "unposted after": 0,
     "posted this run": 0.0
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053353,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350153043",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-31T07:21:05Z",
-   "ended": "2026-10-31T07:21:07Z"
+   "started": "2026-10-31T09:20:57Z",
+   "ended": "2026-10-31T09:21:06Z"
   },
   {
    "name": "packages",
@@ -165,29 +180,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-31T07:21:07Z",
-   "ended": "2026-10-31T07:21:07Z"
+   "started": "2026-10-31T09:21:06Z",
+   "ended": "2026-10-31T09:21:06Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3217 visits on 583 charts, $345147.21 open; 1130 over a year ($55567.53)",
+   "summary": "3232 visits on 585 charts, $348194.21 open; 1130 over a year ($55567.53)",
    "counts": {
-    "visits": 3217,
-    "charts": 583,
+    "visits": 3232,
+    "charts": 585,
     "over 365 days": 1130
    },
    "dollars": {
-    "open insurance balance": 345147.21,
+    "open insurance balance": 348194.21,
     "over 365 days": 55567.53
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1785,
-     "dollars": 190548.88,
+     "visits": 1789,
+     "dollars": 191419.88,
      "oldest_days": 1081
     },
     {
@@ -214,8 +229,8 @@
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 65,
-     "dollars": 13274.97,
+     "visits": 70,
+     "dollars": 14392.97,
      "oldest_days": 1150
     },
     {
@@ -228,8 +243,8 @@
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
-     "visits": 34,
-     "dollars": 6313.24,
+     "visits": 35,
+     "dollars": 6519.24,
      "oldest_days": 778
     },
     {
@@ -238,6 +253,13 @@
      "visits": 32,
      "dollars": 5409.98,
      "oldest_days": 1349
+    },
+    {
+     "carrier": "SUN01",
+     "name": "SUNSHINE STATE HEALTH PLAN",
+     "visits": 36,
+     "dollars": 4244.38,
+     "oldest_days": 262
     },
     {
      "carrier": "CIG09",
@@ -259,34 +281,27 @@
      "visits": 38,
      "dollars": 3759.73,
      "oldest_days": 598
-    },
-    {
-     "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 31,
-     "dollars": 3392.38,
-     "oldest_days": 262
     }
    ],
    "errors": [],
-   "started": "2026-10-31T07:21:07Z",
-   "ended": "2026-10-31T07:21:09Z"
+   "started": "2026-10-31T09:21:06Z",
+   "ended": "2026-10-31T09:21:08Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7769 denied visits on 882 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2946, RESOLVED 4495, RESUBMITTED 173, OPEN 155",
+   "summary": "7779 denied visits on 884 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2955, RESOLVED 4495, RESUBMITTED 173, OPEN 156",
    "counts": {
-    "charts read": 882,
-    "denial lines": 13178,
-    "visits": 7769,
+    "charts read": 884,
+    "denial lines": 13194,
+    "visits": 7779,
     "actionable": 66,
     "inside 12 months": 62,
-    "status WRITTEN-OFF": 2946,
+    "status WRITTEN-OFF": 2955,
     "status RESOLVED": 4495,
     "status RESUBMITTED": 173,
-    "status OPEN": 155
+    "status OPEN": 156
    },
    "dollars": {
     "actionable": 12217.0,
@@ -297,8 +312,8 @@
    "lines": [
     {
      "disposition": "UNCLASSIFIED",
-     "visits": 1900,
-     "dollars": 314622.0,
+     "visits": 1901,
+     "dollars": 314828.0,
      "patients": 219
     },
     {
@@ -315,9 +330,9 @@
     },
     {
      "disposition": "COB",
-     "visits": 999,
-     "dollars": 165595.61,
-     "patients": 101
+     "visits": 1008,
+     "dollars": 167627.61,
+     "patients": 103
     },
     {
      "disposition": "DUPLICATE",
@@ -357,8 +372,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-31T07:21:09Z",
-   "ended": "2026-10-31T07:26:01Z"
+   "started": "2026-10-31T09:21:08Z",
+   "ended": "2026-10-31T09:25:07Z"
   }
  ],
  "packages": [],
