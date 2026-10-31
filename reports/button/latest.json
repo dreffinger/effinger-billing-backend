@@ -2,12 +2,12 @@
  "schema": "button-run/1",
  "stamp": "2026-10-31T0213Z",
  "mode": "live",
- "status": "ok",
- "headline": "Columns CR/CI/Unb/Exc 0/1/4/1 -> 0/1/4/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 0; package A-2026-10-31T0200Z-A applied (2 duplicate feed charges voided, $600)",
- "note": "ehpa Billing Button full run (no BUTTON PRESS brief in the firing - live, all steps, every approved package)",
+ "status": "warn",
+ "headline": "Brief: steps feed (live). Claimocity feed: nothing new (Drive drop newest download__ 9/9; GCS bucket not listed - key email incomplete). Full run also ran before the brief arrived: columns 0/1/4/1 -> 0/1/4/1; ERA 0 checks $0; package A-2026-10-31T0200Z-A applied ($600)",
+ "note": "Claimocity feed monitoring page",
  "run_url": "https://claude.ai/code/session_01HHfWRBnbCE6KbPbY9d8xVu",
  "started": "2026-10-31T02:13:00Z",
- "ended": "2026-10-31T02:51:41Z",
+ "ended": "2026-10-31T02:59:50Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
@@ -106,8 +106,8 @@
   {
    "name": "feed",
    "title": "Claimocity feed ingest",
-   "status": "ok",
-   "summary": "nothing new - 0 new files in Drive 'Claimocity drop' (no 'Claimocity feed drop' folder yet); claimocity_ingest.py --live: 0 new file(s); copy job stale (newest download__ 9/9) - claimocity-pull v5 paste pending",
+   "status": "warn",
+   "summary": "nothing new in Drive 'Claimocity drop' (newest download__ 9/9; no 'Claimocity feed drop' folder); claimocity_ingest.py --live: 0 new files. Runbook v5 (pushed mid-run) step (a) claimocity_gcs.py exit 4 'key missing': the Gmail thread 'claimocity gcs key' (02:43Z) holds only the private-key body (PEM lines), not the service-account JSON (client_email, private_key_id, token_uri) - the bucket gs://ehpa-claimocity-feed-50717 could not be listed. Network to oauth2/storage.googleapis.com answers (not blocked).",
    "counts": {
     "new_files": 0,
     "messages": 0,
@@ -119,7 +119,9 @@
     "entered": 0.0
    },
    "lines": [],
-   "errors": [],
+   "errors": [
+    "gcs: key missing - write the JSON from the Gmail thread 'claimocity gcs key' to /home/claude/unbilled/secrets/claimocity_gcs_key.json (chmod 600)  [exit 4; the thread's body is a private-key fragment, not the JSON]"
+   ],
    "started": "2026-10-31T02:33:00Z",
    "ended": "2026-10-31T02:34:00Z"
   },
@@ -379,6 +381,7 @@
   }
  ],
  "waiting": [
+  "Claimocity feed (GCS): re-send the WHOLE service-account JSON for claimocity-reader in the Gmail thread 'claimocity gcs key' (the 02:43Z email carries only the private-key body) - until then the bucket gs://ehpa-claimocity-feed-50717 cannot be read and the feed step falls back to the (dead) Drive drop",
   "fac67 HCA REHAB facility NPI in Master Files > Facilities - 4 Unbilled visits $871 (charts 25994 x2, 17477225, 17469426)",
   "AET12 carrier master payer id (TIN transmitted) - exclusion chart 24750 v19455937 $315",
   "CCI Pattern 24078 modifier decision: chart 17471793 v19459299 99309 10/22 vs same-day CCM v19459284 ($141) - row nesbit-edith",
@@ -388,5 +391,8 @@
   "Cloud Shell paste for claimocity-pull v5 (GCS bucket) - feed copy job stale since 9/9",
   "HIC* (10/22) and RIC* (10/23) admits still without an AMD chart; chart 17477183 Medicaid Pending"
  ],
- "errors": []
+ "errors": [
+  "brief scope: the BUTTON PRESS brief (steps: feed, packages: none) reached the session only after the full run had finished (it ran all steps and applied the page-approved package A-2026-10-31T0200Z-A, $600 - the void of charges 23372064 / 23372065 is done and is not reversed without William's word; restore_charge.py needs his OK)"
+ ],
+ "brief": "BUTTON PRESS 2026-10-31T02:13:00.457Z \u00b7 mode: live \u00b7 steps: feed \u00b7 packages: none \u00b7 note: Claimocity feed monitoring page"
 }
