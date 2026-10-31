@@ -23,10 +23,10 @@ PCODE = {"99487": "pcode492676", "99489": "pcode492677", "99223": "pcode65084", 
          "99309": "pcode65119", "99316": "pcode65122", "99344": "pcode601053"}
 FEE = {"99223": "310.00", "99232": "111.00", "99233": "160.00", "99239": "163.00", "99306": "256.00", "99308": "107.00", "99309": "141.00",
        "99487": "206.00", "99489": "109.00", "99497": "133.00", "99344": "300.00", "99316": "207.00", "99498": "115.00"}
-PROFILE = {"1225327380": "prof13", "1235128869": "prof15"}          # Effinger DO / Garland-G ARNP
+PROFILE = {"1225327380": "prof13", "1235128869": "prof15"}          # Effinger DO / Garcia ARNP
 FAC = {"HCA Florida Capital Hospital": ("fac29", "21"), "BRYNWOOD OPERATIONS LLC": ("fac34", "31"), "Aspire of Tallahassee": ("fac32", "31"),
        "Centre Pointe Health And Rehab Center": ("fac33", "31"), "Westminster Oaks-Bertrand Health Center": ("fac58", "31"),
-       "Oakes Southwood": ("fac1350", "31"), "Azalea Gardens ALF": ("fac37", "13"), "Tapestry Senior Living Lakeshore": ("fac55", "13"),
+       "Pruitt Southwood": ("fac1350", "31"), "Azalea Gardens ALF": ("fac37", "13"), "Tapestry Senior Living Lakeshore": ("fac55", "13"),
        "Opal Hermitage Boulevard ALF": ("fac53", "13"), "Capital Square at Tallahassee": ("fac54", "13"), "Canterfield of Tallahassee ALF": ("fac38", "13"),
        "Sodalis Senior Living ALF": ("fac65", "13"), "Allegro Senior Living ALF": ("fac57", "13")}
 HOSP = {"99221", "99222", "99223", "99231", "99232", "99233", "99238", "99239"}
@@ -76,6 +76,18 @@ def chart_ctx(pid):
                 if ch: ctx["resp"] = ch[0].get("respparty", "")
     _ctx[pid] = ctx
     return ctx
+# One face-to-face E/M per patient per day: a charge already on the chart for the same DOS from the same visit family IS this encounter,
+# whatever level or new/established code it ended up with (the Claim Inspector swaps a second new-patient code to 99349; coders change
+# levels). 10/30/2026: two 9/2 home visits were entered twice because the feed said 99344 and the chart carried 99349.
+EM_FAMILY = [set("99341 99342 99344 99345 99347 99348 99349 99350".split()),            # home / ALF visits
+             set("99221 99222 99223 99231 99232 99233 99238 99239 99234 99235 99236".split()),   # hospital
+             set("99304 99305 99306 99307 99308 99309 99310 99315 99316".split()),      # SNF / NF
+             set("99202 99203 99204 99205 99212 99213 99214 99215".split())]            # office
+# (CCM 99487 + its add-on 99489 and ACP 99497/99498 legitimately share a DOS - those stay on the exact code + DOS rule)
+def same_encounter(cpt, dos, live):
+    fam = next((f for f in EM_FAMILY if cpt in f), None)
+    if not fam: return False
+    return any(lc in fam and ld == dos for lc, ld in live)
 def build(msg, ctx):
     fid = msg["pid"]; fac, pos = FAC.get(FACOF.get(fid, ""), ("", "31"))
     prof = PROFILE.get(NPIOF.get(fid, ""), "prof13")
@@ -83,7 +95,8 @@ def build(msg, ctx):
     for c in msg["FT1"]:
         cpt = c["cpt"]
         if cpt not in PCODE: return None, "unknown CPT %s" % cpt
-        if (cpt, mdy(c["dos"][:8])) in ctx["live"]: continue        # dedupe
+        if (cpt, mdy(c["dos"][:8])) in ctx["live"]: continue        # dedupe: same code, same DOS
+        if same_encounter(cpt, mdy(c["dos"][:8]), ctx["live"]): continue   # dedupe: same E/M family, same DOS (10/30: 99344 vs the inspector's 99349)
         lines.append(c)
     if not lines: return None, "all lines already in AMD"
     dos = mdy(lines[0]["dos"][:8])
