@@ -1,9 +1,9 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-10-31T05:39:47Z",
+ "at": "2026-10-31T07:21:09Z",
  "as_of": "2026-10-31",
- "total": 345999.21,
- "visits": 3222,
+ "total": 345147.21,
+ "visits": 3217,
  "charts": 583,
  "over_365": {
   "n": 1130,
@@ -11,8 +11,8 @@
  },
  "by_bucket": {
   "0-30": {
-   "n": 661,
-   "dollars": 140221.49
+   "n": 656,
+   "dollars": 139369.49
   },
   "31-60": {
    "n": 260,
@@ -157,21 +157,6 @@
    "oldest_days": 1349
   },
   {
-   "carrier": "MCAD",
-   "name": "FLORIDA MEDICAID",
-   "n": 35,
-   "dollars": 4639.1,
-   "buckets": {
-    "0-30": 852.0,
-    "31-60": 116.1,
-    "61-90": 0.0,
-    "91-180": 141.0,
-    "181-365": 3389.0,
-    "over 365": 141.0
-   },
-   "oldest_days": 394
-  },
-  {
    "carrier": "CIG09",
    "name": "CIGNA HEALTH PLANS HMO/PPO/OTR",
    "n": 26,
@@ -185,6 +170,21 @@
     "over 365": 0.0
    },
    "oldest_days": 166
+  },
+  {
+   "carrier": "MCAD",
+   "name": "FLORIDA MEDICAID",
+   "n": 30,
+   "dollars": 3787.1,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 116.1,
+    "61-90": 0.0,
+    "91-180": 141.0,
+    "181-365": 3389.0,
+    "over 365": 141.0
+   },
+   "oldest_days": 394
   },
   {
    "carrier": "WEL04",
@@ -770,8 +770,8 @@
   },
   {
    "month": "2026-10",
-   "n": 661,
-   "dollars": 140221.49
+   "n": 656,
+   "dollars": 139369.49
   }
  ],
  "oldest": [
@@ -24340,14 +24340,6 @@
    "dos": "2026-10-21"
   },
   {
-   "visitid": 19459219,
-   "patientid": 17478213,
-   "carriercode": "MCAD",
-   "insbalance": 310.0,
-   "days": 10,
-   "dos": "2026-10-21"
-  },
-  {
    "visitid": 19458908,
    "patientid": 17478013,
    "carriercode": "VACCN",
@@ -26060,14 +26052,6 @@
    "dos": "2026-10-22"
   },
   {
-   "visitid": 19459233,
-   "patientid": 17478213,
-   "carriercode": "MCAD",
-   "insbalance": 111.0,
-   "days": 9,
-   "dos": "2026-10-22"
-  },
-  {
    "visitid": 19459051,
    "patientid": 17472420,
    "carriercode": "FLO02",
@@ -26191,14 +26175,6 @@
    "visitid": 19459128,
    "patientid": 17477972,
    "carriercode": "HUM01",
-   "insbalance": 160.0,
-   "days": 8,
-   "dos": "2026-10-23"
-  },
-  {
-   "visitid": 19459247,
-   "patientid": 17478213,
-   "carriercode": "MCAD",
    "insbalance": 160.0,
    "days": 8,
    "dos": "2026-10-23"
@@ -26343,14 +26319,6 @@
    "visitid": 19459116,
    "patientid": 17477972,
    "carriercode": "HUM01",
-   "insbalance": 160.0,
-   "days": 7,
-   "dos": "2026-10-24"
-  },
-  {
-   "visitid": 19459242,
-   "patientid": 17478213,
-   "carriercode": "MCAD",
    "insbalance": 160.0,
    "days": 7,
    "dos": "2026-10-24"
@@ -26560,14 +26528,6 @@
    "patientid": 17478013,
    "carriercode": "VACCN",
    "insbalance": 160.0,
-   "days": 6,
-   "dos": "2026-10-25"
-  },
-  {
-   "visitid": 19459253,
-   "patientid": 17478213,
-   "carriercode": "MCAD",
-   "insbalance": 111.0,
    "days": 6,
    "dos": "2026-10-25"
   },
