@@ -1,0 +1,72 @@
+{
+ "stamp": "2026-10-31T0302Z",
+ "live": true,
+ "rows": [
+  {
+   "pid": "25558",
+   "vid": "19422673",
+   "balances": [
+    [
+     "23328002",
+     "99309",
+     141.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:12Z",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:18:12\"><Results success=\"1\" /><E"
+  },
+  {
+   "pid": "25558",
+   "vid": "19423617",
+   "balances": [
+    [
+     "23329247",
+     "99487",
+     206.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:13Z",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:18:14\"><Results success=\"1\" /><E"
+  },
+  {
+   "pid": "25558",
+   "vid": "19426937",
+   "balances": [
+    [
+     "23333129",
+     "99309",
+     141.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:15Z",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:18:15\"><Results success=\"1\" /><E"
+  },
+  {
+   "pid": "25558",
+   "vid": "19427577",
+   "balances": [
+    [
+     "23334101",
+     "99487",
+     206.0,
+     0.0
+    ],
+    [
+     "23334102",
+     "99489",
+     109.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:16Z",
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:18:17\"><Results success=\"1\" /><E"
+  }
+ ]
+}

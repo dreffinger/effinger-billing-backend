@@ -1,0 +1,68 @@
+{
+ "stamp": "2026-10-31T0302Z",
+ "live": false,
+ "rows": [
+  {
+   "pid": "25558",
+   "vid": "19422673",
+   "balances": [
+    [
+     "23328002",
+     "99309",
+     141.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:00Z",
+   "resp": "dry: would hideunbillablevisits hide=-1"
+  },
+  {
+   "pid": "25558",
+   "vid": "19423617",
+   "balances": [
+    [
+     "23329247",
+     "99487",
+     206.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:01Z",
+   "resp": "dry: would hideunbillablevisits hide=-1"
+  },
+  {
+   "pid": "25558",
+   "vid": "19426937",
+   "balances": [
+    [
+     "23333129",
+     "99309",
+     141.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:02Z",
+   "resp": "dry: would hideunbillablevisits hide=-1"
+  },
+  {
+   "pid": "25558",
+   "vid": "19427577",
+   "balances": [
+    [
+     "23334101",
+     "99487",
+     206.0,
+     0.0
+    ],
+    [
+     "23334102",
+     "99489",
+     109.0,
+     0.0
+    ]
+   ],
+   "at": "2026-10-31T04:18:03Z",
+   "resp": "dry: would hideunbillablevisits hide=-1"
+  }
+ ]
+}

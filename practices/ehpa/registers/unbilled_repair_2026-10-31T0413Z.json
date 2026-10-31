@@ -1,0 +1,309 @@
+{
+ "run": "2026-10-31T0413Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [
+  {
+   "pid": "17469423",
+   "vid": "19364723",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:50\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364735",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:51\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17469423",
+   "vid": "19364840",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:52\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369676",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:53\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369706",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:54\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19369726",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:13:55\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370060",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:56\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370081",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:13:56\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17470811",
+   "vid": "19370099",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:57\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384132",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:13:58\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "12181744",
+   "vid": "19384238",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:13:59\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388904",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:00\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17471832",
+   "vid": "19388905",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:01\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17472098",
+   "vid": "19389211",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:02\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "23391",
+   "vid": "19392347",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:03\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19427585",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:05\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "17473383",
+   "vid": "19430729",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:06\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451903",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:07\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451913",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:08\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19451923",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:09\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21593",
+   "vid": "19452055",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:10\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "24853",
+   "vid": "19452223",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:11\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19453682",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:12\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21885",
+   "vid": "19455351",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:13\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "25541",
+   "vid": "19455362",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:14\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455872",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:14\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "46692",
+   "vid": "19455895",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:15\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "45024",
+   "vid": "19455907",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:16\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "20452",
+   "vid": "19455935",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"10/30/2026 21:14:17\"><Results success=\"1\" /><E"
+   ]
+  },
+  {
+   "pid": "21238",
+   "vid": "19455951",
+   "release": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"10/30/2026 21:14:18\"><Results success=\"1\" /><E"
+   ]
+  }
+ ],
+ "left": [
+  {
+   "pid": "25558",
+   "vid": "19422673",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "25558",
+   "vid": "19423617",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "25558",
+   "vid": "19426937",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "25558",
+   "vid": "19427577",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "25994",
+   "vid": "19458784",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "25994",
+   "vid": "19458785",
+   "err": "Facility is missing NPI information"
+  },
+  {
+   "pid": "17477225",
+   "vid": "19458864",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  },
+  {
+   "pid": "17469426",
+   "vid": "19459136",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  },
+  {
+   "pid": "17471793",
+   "vid": "19459299",
+   "err": "Unresolved Claim Inspector errors"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459562",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17477183",
+   "vid": "19459570",
+   "err": "Date of service is outside insurance coverage effective dates"
+  },
+  {
+   "pid": "17473197",
+   "vid": "19459618",
+   "err": "Facility is missing NPI information | One or more charges within this visit have"
+  }
+ ]
+}
