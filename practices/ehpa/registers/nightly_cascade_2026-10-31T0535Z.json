@@ -1,0 +1,11 @@
+{"run":"2026-10-31T0535Z","kind":"nightly cascade","weekday":"Saturday","login":"one (precheck.py), cached session reused","stedi":{"mbi":2,"eligibility":7,"discovery":0,"cost":4.10,"free_probes":1},
+"precheck":{"args":"--days 3 --max 120","pairs":16,"cached":9,"new_lookups":7,"flagged":3,"rows":[
+ {"pid":"22902","carrier":"CAP07","result":"Stedi CHP AAA 72; AMD 271 ACTIVE -> Stedi id-format miss","action":"none"},
+ {"pid":"47979","carrier":"FLO99","result":"FCC no Stedi eligibility; AMD 271: UNI20 INACTIVE, FLO02 MBI AAA 71 DOB mismatch, WEL04 AAA 75, FLO99 T4; Stedi MBI lookup 72; Stedi CMS 71","action":"board row william (facesheet DOB + MBI); 7 inpatient visits 10/22-10/28 $1,403 stay at FCC"},
+ {"pid":"17478213","carrier":"SUN01","result":"Stedi Centene AAA 71 DOB mismatch; AMD 271 Medicaid FFS ACTIVE names SMMC MMA Sunshine; AMD Sunshine 271 AAA 71","action":"5 visits (19459219,19459233,19459242,19459247,19459253) rerouted insorder 1->3 + freq1 rebill seq 3 -> 204 ($852); dx_primary_fix dry all acceptable; board row william (confirm DOB)"}]},
+"rebilled":{"visits":5,"amount":852.0,"charts":1},"writeoffs":[],"amd_writes":{"visit_reroutes_rebills":5,"addinsurance":0,"updateinsurance":0,"eligibility_checks":11},
+"claim_status_sweep":"skipped (Saturday)","void_rules":{"open":1,"voided":0},"era":{"checks":0,"posted":0.0,"dismissed":0,"left":0},
+"board":{"drops_new":0,"file":"board_updates_2026-10-31T0535Z.json","drive_id":"1P4nlF1B5_OkLypeKw7f4EZQiY-6MFlLu","ops":2,"trashed":[]},
+"cred_check":{"nppes_changed":0,"nppes_source":"NPI Registry connector (script egress blocked)","revalidation":"egress blocked","leie":"egress blocked","reminders_past_due":12,"new_window":["we-board 30-day (AOBFP LA due 2026-11-30)"],"file":"cred_updates_2026-10-31T0535Z.json","drive_id":"1dsfwDOL6-t8vEG5Ph6kMlab9lXH-YDal"},
+"money":{"unpaid_total":345147.21,"unpaid_n":3217,"era":0,"excl":1,"writeoff_registers":1375.11,"artifact_version":54},
+"refused_commands":[],"errors":["cred_check: npiregistry.cms.hhs.gov / data.cms.gov / oig.hhs.gov Max retries exceeded (egress)"]}
