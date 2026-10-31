@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-30T2318Z",
+ "stamp": "2026-10-31T0040Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41143700355",
- "started": "2026-10-30T23:18:58Z",
- "ended": "2026-10-30T23:24:51Z",
+ "headline": "Columns 0/0/4/1 -> 0/0/4/1; ERA 3 checks $156.51 -> 0 checks $0.00",
+ "note": "backend billing run 2026-10-31T0040Z (ehpa cloud, 9 PM ET slot)",
+ "run_url": "",
+ "started": "2026-10-31T00:51:51Z",
+ "ended": "2026-10-31T01:00:43Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 3,
+    "unposted": 156.51
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 156.51,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 323798.21,
-   "visits": 3121,
+   "total": 323488.21,
+   "visits": 3120,
    "charts": 562,
    "over_365": {
     "n": 1130,
@@ -65,7 +65,7 @@
    "visits": 7748,
    "actionable": 66,
    "actionable_amt": 12217.0,
-   "asof": "2026-10-30 23:24 UTC"
+   "asof": "2026-10-31 01:00 UTC"
   }
  },
  "steps": [
@@ -76,14 +76,14 @@
    "summary": "1288 helpers into /home/claude/unbilled",
    "counts": {
     "helpers copied": 1288,
-    "registers": 1637,
-    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+    "registers": 1636,
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-30T23:18:58Z",
-   "ended": "2026-10-30T23:18:58Z"
+   "started": "2026-10-31T00:51:51Z",
+   "ended": "2026-10-31T00:51:52Z"
   },
   {
    "name": "columns",
@@ -121,28 +121,53 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-30T23:18:58Z",
-   "ended": "2026-10-30T23:20:52Z"
+   "started": "2026-10-31T00:51:52Z",
+   "ended": "2026-10-31T00:54:47Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "3 checks / $156.51 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
+    "era_post lines": 1,
+    "checks dismissed": 3,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 156.51,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 156.51
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053349,
+     "payer": "HUMANA",
+     "checknumber": "NO-PAY-202610290006066",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053350,
+     "payer": "HUMANA",
+     "checknumber": "NO-PAY-202610290006067",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053351,
+     "payer": "HUMANA",
+     "checknumber": "204863822261030",
+     "amount": 0.0,
+     "unposted": 156.51,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-10-30T23:20:52Z",
-   "ended": "2026-10-30T23:20:55Z"
+   "started": "2026-10-31T00:54:47Z",
+   "ended": "2026-10-31T00:55:08Z"
   },
   {
    "name": "packages",
@@ -153,112 +178,112 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-30T23:20:55Z",
-   "ended": "2026-10-30T23:20:55Z"
+   "started": "2026-10-31T00:55:08Z",
+   "ended": "2026-10-31T00:55:08Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3121 visits on 562 charts, $323798.21 open; 1130 over a year ($55567.53)",
+   "summary": "3120 visits on 562 charts, $323488.21 open; 1130 over a year ($55567.53)",
    "counts": {
-    "visits": 3121,
+    "visits": 3120,
     "charts": 562,
     "over 365 days": 1130
    },
    "dollars": {
-    "open insurance balance": 323798.21,
+    "open insurance balance": 323488.21,
     "over 365 days": 55567.53
    },
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1745,
      "dollars": 180741.88,
-     "oldest_days": 1080
+     "oldest_days": 1081
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 208,
      "dollars": 30204.11,
-     "oldest_days": 1264
+     "oldest_days": 1265
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 152,
      "dollars": 26090.58,
-     "oldest_days": 417
+     "oldest_days": 418
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 313,
      "dollars": 18867.93,
-     "oldest_days": 1537
+     "oldest_days": 1538
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 115,
-     "dollars": 12818.33,
-     "oldest_days": 1300
+     "name": "[name]",
+     "visits": 114,
+     "dollars": 12508.33,
+     "oldest_days": 1301
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 43,
      "dollars": 8506.97,
-     "oldest_days": 1149
+     "oldest_days": 1150
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 29,
      "dollars": 4929.98,
-     "oldest_days": 1348
+     "oldest_days": 1349
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 35,
      "dollars": 4639.1,
-     "oldest_days": 393
+     "oldest_days": 394
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 26,
      "dollars": 4635.24,
-     "oldest_days": 777
+     "oldest_days": 778
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 26,
      "dollars": 4031.01,
-     "oldest_days": 165
+     "oldest_days": 166
     },
     {
      "carrier": "WEL04",
-     "name": "WELLCARE",
+     "name": "[name]",
      "visits": 38,
      "dollars": 3759.73,
-     "oldest_days": 597
+     "oldest_days": 598
     },
     {
      "carrier": "TRI05",
-     "name": "TRICARE FOR LIFE",
+     "name": "[name]",
      "visits": 96,
      "dollars": 3105.91,
-     "oldest_days": 1508
+     "oldest_days": 1509
     }
    ],
    "errors": [],
-   "started": "2026-10-30T23:20:55Z",
-   "ended": "2026-10-30T23:20:57Z"
+   "started": "2026-10-31T00:55:08Z",
+   "ended": "2026-10-31T00:55:10Z"
   },
   {
    "name": "denials",
@@ -345,8 +370,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-10-30T23:20:57Z",
-   "ended": "2026-10-30T23:24:51Z"
+   "started": "2026-10-31T00:55:10Z",
+   "ended": "2026-10-31T01:00:43Z"
   }
  ],
  "packages": [],

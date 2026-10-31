@@ -5529,3 +5529,7 @@ Behaviour seen:
 # captured_calls additions - backend billing run 2026-10-30T1840Z (2:40 PM ET 10/30 slot, ehpa cloud)
 
 No new call shapes this run. Calls used (all registered): login (one), getclaimcenteroverview / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus / getclaimexclusioncharges (columns_scan before + after), GET /api/era/checks (era_list before + after, 0 checks), posterapayments (era_post --all-unposted, nothing to post), massrebillsearch + Stedi 277 (claim_status_sweep pass 173, 15 visits), getdemographic (plans for the sweep). No AMD write.
+
+# captured_calls additions - backend billing run 2026-10-31T0040Z (9 PM ET 10/30 slot, ehpa cloud)
+
+No new call shapes this run. Calls used (all registered): login (one), getclaimcenteroverview / getclaiminspectorbatches / getclaimunbillablecharges / getclaimrunstatus / getclaimexclusioncharges (columns_scan before + after), GET /api/era/checks (era_list before 3 / after 0), GET /api/era/checkdetails (3 checks cached), posterapayments (era_post --all-unposted: 1 visit $156.51), POST /api/era/checks/dismiss x3 (era_clear), getdemographic + gettxhistory + getchargedetaildataicd10 (chart/visit reads for the 14 denial lines), EligibilityDetailsLegacy/checkEligibility (elig_amd on 7 charts), Stedi MBILUNOSSN x2 + Medicaid 77027 x1, updvisitwithcharges full-visit resave x3 (dx_primary_fix x2, resave.set_insorder x1), updextrainsinfo + chargerebill x3 (freq-1), updateinsurance sequence=2,4 (wrapped shape), addpayments write-off-only x8 (manual_post WONCS x7, WOINS x1).
