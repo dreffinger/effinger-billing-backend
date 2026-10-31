@@ -1,26 +1,24 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-10-31T0213Z",
+ "stamp": "2026-10-31T0319Z",
  "mode": "live",
- "status": "warn",
- "headline": "Brief: steps feed (live). Claimocity feed: nothing new (Drive drop newest download__ 9/9; GCS bucket not listed - key email incomplete). Full run also ran before the brief arrived: columns 0/1/4/1 -> 0/1/4/1; ERA 0 checks $0; package A-2026-10-31T0200Z-A applied ($600)",
- "note": "Claimocity feed monitoring page",
- "run_url": "https://claude.ai/code/session_01HHfWRBnbCE6KbPbY9d8xVu",
- "started": "2026-10-31T02:13:00Z",
- "ended": "2026-10-31T02:59:50Z",
- "engine": "claude",
- "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "status": "ok",
+ "headline": "Columns 0/16/4/1 -> 0/6/4/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41163854324",
+ "started": "2026-10-31T03:19:24Z",
+ "ended": "2026-10-31T03:25:25Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 1,
+    "claim_inspector": 16,
     "unbilled": 4,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 1,
+    "claim_inspector": 6,
     "unbilled": 4,
     "exclusions": 1
    }
@@ -28,11 +26,11 @@
   "era": {
    "before": {
     "checks": 0,
-    "unposted": 0.0
+    "unposted": 0
    },
    "after": {
     "checks": 0,
-    "unposted": 0.0
+    "unposted": 0
    }
   },
   "posted": {
@@ -50,7 +48,7 @@
    "dollars": 0.0
   },
   "packages": {
-   "applied": 1,
+   "applied": 0,
    "refused": 0,
    "skipped": 0
   },
@@ -67,332 +65,305 @@
    "visits": 7748,
    "actionable": 66,
    "actionable_amt": 12217.0,
-   "asof": "2026-10-31 02:47 UTC"
-  },
-  "feed": {
-   "new_files": 0,
-   "visits": 0,
-   "charts": 0,
-   "note": "nothing new (newest download__ 9/9; copy job stale, Cloud Shell paste pending)"
-  },
-  "cascade": {
-   "pairs": 0,
-   "flags": 0,
-   "stedi_lookups": 0
-  },
-  "sweep": {
-   "pass": 174,
-   "asked": 0,
-   "skipped_answered": 610,
-   "sent": 0
+   "asof": "2026-10-31 03:25 UTC"
   }
  },
  "steps": [
   {
    "name": "bootstrap",
-   "title": "Fresh-container bootstrap",
+   "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "AMD_OK; Stedi key from Gmail; repo attached main b6d9a83 -> 9e7e251 mid-run; Drive state bundle stale (2026-09-18) - registers from main; precheck_cache 10/30, deceased_cache 10/28 merged (82 dated); 1,303 helpers, required all present; v12 ok; no login lock; cross-container guard clear; own START 02:29Z",
+   "summary": "1293 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers": 1303,
-    "required_missing": 0
+    "helpers copied": 1293,
+    "registers": 1642,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-31T02:13:00Z",
-   "ended": "2026-10-31T02:31:00Z"
-  },
-  {
-   "name": "feed",
-   "title": "Claimocity feed ingest",
-   "status": "warn",
-   "summary": "nothing new in Drive 'Claimocity drop' (newest download__ 9/9; no 'Claimocity feed drop' folder); claimocity_ingest.py --live: 0 new files. Runbook v5 (pushed mid-run) step (a) claimocity_gcs.py exit 4 'key missing': the Gmail thread 'claimocity gcs key' (02:43Z) holds only the private-key body (PEM lines), not the service-account JSON (client_email, private_key_id, token_uri) - the bucket gs://ehpa-claimocity-feed-50717 could not be listed. Network to oauth2/storage.googleapis.com answers (not blocked).",
-   "counts": {
-    "new_files": 0,
-    "messages": 0,
-    "visits": 0,
-    "new_charts": 0,
-    "holds": 0
-   },
-   "dollars": {
-    "entered": 0.0
-   },
-   "lines": [],
-   "errors": [
-    "gcs: key missing - write the JSON from the Gmail thread 'claimocity gcs key' to /home/claude/unbilled/secrets/claimocity_gcs_key.json (chmod 600)  [exit 4; the thread's body is a private-key fragment, not the JSON]"
-   ],
-   "started": "2026-10-31T02:33:00Z",
-   "ended": "2026-10-31T02:34:00Z"
-  },
-  {
-   "name": "board",
-   "title": "Board input",
-   "status": "ok",
-   "summary": "Insurance Refresh Board: 0 William notes since 10/28 (8 status=claude rows re-stamped by the 10/29 06:11Z sync), drops 0; Working Denials queue 0; Mandatory Approvals 1 approved (applied under packages); Pam Gmail 2 threads (10/29, 10/30 readmits) already handled; facesheet / 835 / Availity / treasury folders nothing new since 10/21; board_updates_2026-10-31T0213Z.json -> board inbox (3 ops)",
-   "counts": {
-    "rows_changed": 0,
-    "drops": 0,
-    "commands": 0,
-    "board_ops": 3
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-31T02:33:00Z",
-   "ended": "2026-10-31T02:38:00Z"
+   "started": "2026-10-31T03:19:24Z",
+   "ended": "2026-10-31T03:19:24Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "0/1/4/1 -> 0/1/4/1: CI v19459299 chart 17471793 CCI 24078 (99309 vs same-day CCM) held for William's modifier call; Unbilled 4 fac67 'Facility is missing NPI' visits $871 (row facility-npi-fac67); Exclusions AET12 chart 24750 v19455937 run 1700294 $315 carrier-master hold; Charge Review 0",
+   "summary": "CR 0->0, CI 16->6, Unbilled 4->4, Exclusions 1->1",
    "counts": {
-    "before": {
-     "charge_review": 0,
-     "claim_inspector": 1,
-     "unbilled": 4,
-     "exclusions": 1
-    },
-    "after": {
-     "charge_review": 0,
-     "claim_inspector": 1,
-     "unbilled": 4,
-     "exclusions": 1
-    },
-    "cleared": 0
+    "charge review": 0,
+    "claim inspector": 16,
+    "unbilled": 4,
+    "exclusions": 1,
+    "inspector advisories to bypass": 9,
+    "inspector held (not advisory)": 7,
+    "inspector bypasses sent": 9,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 4,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
    },
-   "dollars": {
-    "unbilled": 871.0,
-    "exclusions": 315.0,
-    "inspector": 141.0
-   },
+   "dollars": {},
    "lines": [
     {
-     "column": "claim_inspector",
-     "chart": "17471793",
-     "visit": "19459299",
-     "dos": "10/22/2026",
-     "cpt": "99309",
-     "carrier": "FLO02",
-     "error": "CCI Pattern 24078 unbundle with same-day CCM v19459284 (99487+99489)",
-     "amount": 141.0,
-     "action": "held - William: modifier 25 on the 99309 / send as is / void (row nesbit-edith)"
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 7,
+     "ids": "v19459299 v19459550 v19459557 v19459566 v19459568 v19459592 v19459618"
+    },
+    {
+     "column": "claim inspector",
+     "kind": "advisory",
+     "visits": 9,
+     "ids": "v19459604 v19459605 v19459607 v19459614 v19459627 v19459629 v19459630 v19459631 v19459632"
     },
     {
      "column": "unbilled",
-     "chart": "25994",
-     "visit": "19458784",
-     "dos": "10/13/2026",
-     "cpt": "99309",
-     "carrier": "FLO02",
-     "error": "Facility is missing NPI information",
-     "amount": 141.0,
-     "action": "William: fac67 NPI (row facility-npi-fac67)"
+     "kind": "Facility is missing NPI information",
+     "visits": 4,
+     "ids": "v19458784 v19458785 v19458864 v19459136"
     },
     {
-     "column": "unbilled",
-     "chart": "25994",
-     "visit": "19458785",
-     "dos": "10/06/2026",
-     "cpt": "99309",
-     "carrier": "FLO02",
-     "error": "Facility is missing NPI information",
-     "amount": 141.0,
-     "action": "William: fac67 NPI"
-    },
-    {
-     "column": "unbilled",
-     "chart": "17477225",
-     "visit": "19458864",
-     "dos": "10/14/2026",
-     "cpt": "99309+99497",
-     "carrier": "FLO02",
-     "error": "Facility is missing NPI information",
-     "amount": 274.0,
-     "action": "William: fac67 NPI"
-    },
-    {
-     "column": "unbilled",
-     "chart": "17469426",
-     "visit": "19459136",
-     "dos": "10/20/2026",
-     "cpt": "99487+99489",
-     "carrier": "FLO02",
-     "error": "Facility is missing NPI information",
-     "amount": 315.0,
-     "action": "William: fac67 NPI"
-    },
-    {
-     "column": "exclusions",
-     "chart": "24750",
-     "visit": "19455937",
-     "run": "1700294",
-     "carrier": "AET12",
-     "error": "PREF0288 INVALID PAYER ID/CPID + PREF0264",
-     "amount": 315.0,
-     "action": "hold - carrier master (row aet12-carrier-cpid)"
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
     }
    ],
    "errors": [],
-   "started": "2026-10-31T02:31:00Z",
-   "ended": "2026-10-31T02:48:00Z"
+   "started": "2026-10-31T03:19:24Z",
+   "ended": "2026-10-31T03:21:26Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 unposted checks / $0.00 before and after; nothing to upload (no new 835 / Availity / treasury file since 10/21); UNI20/BCBS pre-5/1 sweep pass 174 (--min-age 183): 610 answered skipped, 0 asked (pool exhausted), 0 sent; chart 17472874 April visits DENIED 585 at UHC waiting for the 835 CARC",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "checks_before": 0,
-    "checks_after": 0,
-    "auto_posted_lines": 0,
-    "manual_posted_lines": 0,
-    "cleared": 0,
-    "sweep_asked": 0,
-    "sweep_sent": 0
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
    },
    "dollars": {
-    "unposted_before": 0.0,
-    "unposted_after": 0.0,
-    "auto_posted": 0.0,
-    "manual_posted": 0.0,
-    "residuals": 0.0
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
    },
    "lines": [],
    "errors": [],
-   "started": "2026-10-31T02:34:00Z",
-   "ended": "2026-10-31T02:36:00Z"
-  },
-  {
-   "name": "cascade",
-   "title": "Cascade pre-check",
-   "status": "ok",
-   "summary": "precheck.py --days 3 --max 120: 0 patient/payer pairs (feed lag), 0 flagged, 0 Stedi lookups; void_rules.py skipped (no void_rules.json)",
-   "counts": {
-    "pairs": 0,
-    "flags": 0,
-    "lookups": 0,
-    "voids": 0
-   },
-   "dollars": {
-    "stedi_cost": 0.0
-   },
-   "lines": [],
-   "errors": [],
-   "started": "2026-10-31T02:36:00Z",
-   "ended": "2026-10-31T02:37:00Z"
+   "started": "2026-10-31T03:21:26Z",
+   "ended": "2026-10-31T03:21:28Z"
   },
   {
    "name": "packages",
-   "title": "Approved packages",
+   "title": "Approval packages",
    "status": "ok",
-   "summary": "A-2026-10-31T0200Z-A ($600, approved on the page 02:05Z): claimed on main (c280e4f), dry matched the card, live claimocity_void_visits.py voided charge 23372064 (chart 17477204 v19459522) and charge 23372065 (chart 17476748 v19459523) - the duplicate 9/2/2026 99344 feed entries - re-read 0 live charges left; register done (5aaebc9)",
-   "counts": {
-    "applied": 1,
-    "refused": 0,
-    "skipped": 0
-   },
-   "dollars": {
-    "applied": 600.0
-   },
-   "lines": [
-    {
-     "package": "A-2026-10-31T0200Z-A",
-     "chart": "17477204",
-     "visit": "19459522",
-     "charge": "23372064",
-     "result": "voided"
-    },
-    {
-     "package": "A-2026-10-31T0200Z-A",
-     "chart": "17476748",
-     "visit": "19459523",
-     "charge": "23372065",
-     "result": "voided"
-    }
-   ],
-   "errors": [],
-   "started": "2026-10-31T02:38:00Z",
-   "ended": "2026-10-31T02:41:00Z"
-  },
-  {
-   "name": "cred",
-   "title": "Credentialing check",
-   "status": "ok",
-   "summary": "cred_check.py: NPPES 3 records 0 changed; revalidation 3 (due TBD); LEIE 0 matches; reminders none - no cred_updates file",
-   "counts": {
-    "nppes_changed": 0,
-    "leie_matches": 0,
-    "reminders": 0
-   },
+   "summary": "no approved package in the register",
+   "counts": {},
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-10-31T02:41:00Z",
-   "ended": "2026-10-31T02:42:00Z"
+   "started": "2026-10-31T03:21:28Z",
+   "ended": "2026-10-31T03:21:28Z"
   },
   {
    "name": "outstanding",
-   "title": "Outstanding claims",
+   "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "$321,140.21 open on 3,111 visits / 562 charts; over 365 days 1,130 visits $55,567.53 -> reports/button/outstanding_latest.json",
+   "summary": "3111 visits on 562 charts, $321140.21 open; 1130 over a year ($55567.53)",
    "counts": {
     "visits": 3111,
     "charts": 562,
-    "over_365": 1130
+    "over 365 days": 1130
    },
    "dollars": {
-    "total": 321140.21,
-    "over_365": 55567.53
+    "open insurance balance": 321140.21,
+    "over 365 days": 55567.53
    },
-   "lines": [],
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1745,
+     "dollars": 180741.88,
+     "oldest_days": 1081
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 207,
+     "dollars": 29904.11,
+     "oldest_days": 1265
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 152,
+     "dollars": 26090.58,
+     "oldest_days": 418
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 313,
+     "dollars": 18867.93,
+     "oldest_days": 1538
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 107,
+     "dollars": 10760.33,
+     "oldest_days": 1301
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 42,
+     "dollars": 8206.97,
+     "oldest_days": 1150
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 29,
+     "dollars": 4929.98,
+     "oldest_days": 1349
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 35,
+     "dollars": 4639.1,
+     "oldest_days": 394
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 26,
+     "dollars": 4635.24,
+     "oldest_days": 778
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 166
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 38,
+     "dollars": 3759.73,
+     "oldest_days": 598
+    },
+    {
+     "carrier": "TRI05",
+     "name": "TRICARE FOR LIFE",
+     "visits": 96,
+     "dollars": 3105.91,
+     "oldest_days": 1509
+    }
+   ],
    "errors": [],
-   "started": "2026-10-31T02:40:00Z",
-   "ended": "2026-10-31T02:41:00Z"
+   "started": "2026-10-31T03:21:28Z",
+   "ended": "2026-10-31T03:21:30Z"
   },
   {
    "name": "denials",
-   "title": "Working denials refresh",
+   "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "denials_refresh.py: 867 charts, 13,148 denial lines, 7,748 visits; 66 actionable $12,217 (62 inside 12 months $11,398); status OPEN 155 / RESUBMITTED 173 / RESOLVED 4484 / WRITTEN-OFF 2936 -> reports/button/working_denials_latest.json",
+   "summary": "7748 denied visits on 867 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2936, RESUBMITTED 173, RESOLVED 4484, OPEN 155",
    "counts": {
-    "charts": 867,
-    "lines": 13148,
+    "charts read": 867,
+    "denial lines": 13148,
     "visits": 7748,
     "actionable": 66,
-    "open": 155
+    "inside 12 months": 62,
+    "status WRITTEN-OFF": 2936,
+    "status RESUBMITTED": 173,
+    "status RESOLVED": 4484,
+    "status OPEN": 155
    },
    "dollars": {
-    "actionable": 12217.0
+    "actionable": 12217.0,
+    "inside 12 months": 11398.0,
+    "resubmitted": 29376.37,
+    "resolved since": 677174.14
    },
-   "lines": [],
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1891,
+     "dollars": 312800.0,
+     "patients": 218
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1262,
+     "dollars": 196436.23,
+     "patients": 200
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1120,
+     "dollars": 174328.55,
+     "patients": 213
+    },
+    {
+     "disposition": "COB",
+     "visits": 991,
+     "dollars": 163871.61,
+     "patients": 100
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 499,
+     "dollars": 95024.0,
+     "patients": 223
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84472.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 444,
+     "dollars": 63801.3,
+     "patients": 73
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 498,
+     "dollars": 34492.77,
+     "patients": 70
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 320,
+     "dollars": 28173.07,
+     "patients": 143
+    }
+   ],
    "errors": [],
-   "started": "2026-10-31T02:41:00Z",
-   "ended": "2026-10-31T02:47:00Z"
+   "started": "2026-10-31T03:21:30Z",
+   "ended": "2026-10-31T03:25:25Z"
   }
  ],
- "packages": [
-  {
-   "id": "A-2026-10-31T0200Z-A",
-   "status": "done",
-   "dollars": 600.0,
-   "result": "applied 2026-10-31T02:40Z - charges 23372064 and 23372065 (duplicate 9/2/2026 99344 feed entries) voided, 0 live charges left on visits 19459522 / 19459523"
-  }
- ],
+ "packages": [],
  "waiting": [
-  "Claimocity feed (GCS): re-send the WHOLE service-account JSON for claimocity-reader in the Gmail thread 'claimocity gcs key' (the 02:43Z email carries only the private-key body) - until then the bucket gs://ehpa-claimocity-feed-50717 cannot be read and the feed step falls back to the (dead) Drive drop",
-  "fac67 HCA REHAB facility NPI in Master Files > Facilities - 4 Unbilled visits $871 (charts 25994 x2, 17477225, 17469426)",
-  "AET12 carrier master payer id (TIN transmitted) - exclusion chart 24750 v19455937 $315",
-  "CCI Pattern 24078 modifier decision: chart 17471793 v19459299 99309 10/22 vs same-day CCM v19459284 ($141) - row nesbit-edith",
-  "Humana PI197 authorizations for four 99309 visits ($564, row humana-pi197-precert-1031)",
-  "CO234/N20 CCM denial chart 17473065 v19459095 ($206) - Working Denials board",
-  "chart 17472874: 15 April-2026 visits DENIED 585 at UHC ($2,403) - the 835 CARC decides (CO-29 -> WOLATE under the watch)",
-  "Cloud Shell paste for claimocity-pull v5 (GCS bucket) - feed copy job stale since 9/9",
-  "HIC* (10/22) and RIC* (10/23) admits still without an AMD chart; chart 17477183 Medicaid Pending"
+  "Claim Inspector: 7 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
- "errors": [
-  "brief scope: the BUTTON PRESS brief (steps: feed, packages: none) reached the session only after the full run had finished (it ran all steps and applied the page-approved package A-2026-10-31T0200Z-A, $600 - the void of charges 23372064 / 23372065 is done and is not reversed without William's word; restore_charge.py needs his OK)"
- ],
- "brief": "BUTTON PRESS 2026-10-31T02:13:00.457Z \u00b7 mode: live \u00b7 steps: feed \u00b7 packages: none \u00b7 note: Claimocity feed monitoring page"
+ "errors": []
 }
