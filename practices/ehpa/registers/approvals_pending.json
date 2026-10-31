@@ -1444,7 +1444,8 @@
    "evidence": "claimocity_void_visits.py --dry 10/31 01:59Z: both visits 1 live charge (99344), billdate 10/29/2026, payments 0; gettxhistory shows the 99349 twin on the same DOS for each chart",
    "ui": "AdvancedMD > Patient > Transaction History: open visit 19459522 (chart pat17477204) and visit 19459523 (chart pat17476748); on each 99344 charge dated 09/02/2026 choose Void Charge. Leave the 99349 charges of the same date alone.",
    "status": "waiting",
-   "answer": null
+   "answer": null,
+   "note": "applying 2026-10-31T0213Z"
   }
  ]
 }
