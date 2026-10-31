@@ -16,7 +16,7 @@ Copies every new Claimocity DFT file from the SFTP /download ROOT (and subfolder
 1. Cloud Shell (project ehpa-project-50717): paste the whole of `claimocity_v5_paste.txt` (beside this note; also Drive 'Claimocity drop'). It creates the
    bucket (private, uniform access), grants the writer and the reader, deploys the job, runs it once, prints the log and the bucket listing, then prints the
    reader key JSON ONCE and deletes the local copy.
-2. Copy the printed JSON into an email to dreffinger@gmail.com with the subject exactly `claimocity gcs key` (the routines search that subject).
+2. Copy the printed JSON into an email to dreffinger@gmail.com with the subject exactly `claimocity gcs key` (the routines search that subject and take the newest message). The whole `{ ... }` is best; the 10/30 mail carried only the private key's base64 lines and `claimocity_gcs.py --install-key` accepts that too (client_email and project are fixed; Google takes the JWT without a private_key_id).
 3. The routine environment's Network access must allow `oauth2.googleapis.com` and `storage.googleapis.com` (Custom list: add both; Full: nothing to do).
    A blocked run says so in its report ("gcs: BLOCKED ...") instead of failing.
 4. The Billing Button (prompt v3, runbook step (a)) and the daily routine (prompt v3) then read the bucket; the first run ingests 10/28 onward
