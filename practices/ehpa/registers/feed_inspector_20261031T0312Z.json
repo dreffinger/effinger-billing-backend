@@ -1,0 +1,59 @@
+{
+ "fixed": [
+  {
+   "visit": "19459550",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459568",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459592",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459618",
+   "pid": "pat17473197",
+   "patterns": [
+    "117065068",
+    "4531"
+   ],
+   "note": [
+    "non-hospital CPT at a hospital facility - see location fix",
+    "facility fac29 -> fac67 (HCA REHAB), POS 31",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459632",
+   "pid": "pat17473199",
+   "patterns": [],
+   "note": []
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": []
+}
