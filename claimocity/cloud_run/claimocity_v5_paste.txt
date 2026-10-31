@@ -1,0 +1,84 @@
+# --- claimocity-pull v5 (2026-10-31): copies the Claimocity SFTP files into a PRIVATE Cloud Storage bucket in your own project.
+# --- No Drive, no OAuth app, no token expiry. ONE paste into Cloud Shell (project ehpa-project-50717). ~3 minutes.
+# --- At the end it prints the READ-ONLY key the billing routines use: email that whole JSON to yourself (dreffinger@gmail.com),
+# --- subject exactly:  claimocity gcs key   - then the routines fetch it from that thread like they fetch the Stedi key.
+PROJECT=ehpa-project-50717; REGION=us-east1; SA=claimocity-pull@$PROJECT.iam.gserviceaccount.com
+BUCKET=ehpa-claimocity-feed-50717; READER=claimocity-reader@$PROJECT.iam.gserviceaccount.com
+gcloud config set project $PROJECT
+# 1) the bucket (private, uniform access, no public access, versioning off) and the writer / reader grants
+gcloud storage buckets create gs://$BUCKET --location=$REGION --uniform-bucket-level-access --public-access-prevention 2>/dev/null || echo "bucket exists"
+gcloud storage buckets add-iam-policy-binding gs://$BUCKET --member="serviceAccount:$SA" --role="roles/storage.objectAdmin" >/dev/null
+gcloud iam service-accounts create claimocity-reader --display-name="Claimocity feed reader (billing routines, read-only)" 2>/dev/null || echo "reader exists"
+gcloud storage buckets add-iam-policy-binding gs://$BUCKET --member="serviceAccount:$READER" --role="roles/storage.objectViewer" >/dev/null
+# 2) the job code
+mkdir -p ~/claimocity-pipeline && cd ~/claimocity-pipeline
+cat > requirements.txt <<'REQEOF'
+paramiko
+google-cloud-storage
+REQEOF
+cat > main.py <<'PYEOF'
+"""Claimocity SFTP -> Cloud Storage copy job (claimocity-pull), v5 2026-10-31.
+PLAIN ENGLISH: every 30 minutes, list /download on sftp.claimocity.io (the root AND its subfolders) and copy every non-empty file
+not yet in the private bucket BUCKET (object name = SFTP path with '/' turned into '__', e.g. download__20261029...hl7).
+COPY ONLY: nothing on Claimocity is ever deleted, moved or renamed - the files pile up there and that is fine (William 10/28/2026).
+WHY A BUCKET (10/30-10/31): Google no longer lets a service account create files in a personal Drive ("Service Accounts do not have
+  storage quota"), and publishing an OAuth app for a user token now needs a verified domain with a privacy page. A bucket in the
+  practice's own project has neither problem: the job's service account writes it, and the billing routines read it with the
+  read-only key of claimocity-reader@ (fetched from the Gmail thread "claimocity gcs key", like the Stedi key).
+"""
+import io, os, stat
+import paramiko
+from google.cloud import storage
+
+SFTP_HOST = "sftp.claimocity.io"; SFTP_PORT = 22; SFTP_USER = "kykzfgie"
+REMOTE_ROOT = os.environ.get("REMOTE_ROOT", "/download")
+BUCKET = os.environ["BUCKET"]                      # e.g. ehpa-claimocity-feed-50717
+SFTP_PASS = os.environ["SFTP_PASS"]                # Secret Manager claimocity-sftp-pass
+
+def main():
+    bucket = storage.Client().bucket(BUCKET)
+    have = {b.name for b in bucket.list_blobs()}
+    print("bucket ok: gs://%s has %d files already" % (BUCKET, len(have)))
+    transport = paramiko.Transport((SFTP_HOST, SFTP_PORT))
+    transport.connect(username=SFTP_USER, password=SFTP_PASS)
+    sftp = paramiko.SFTPClient.from_transport(transport)
+    copied = skipped = seen = 0
+    def walk(path):
+        nonlocal copied, skipped, seen
+        for entry in sftp.listdir_attr(path):
+            full = path.rstrip("/") + "/" + entry.filename
+            if entry.filename.startswith("."):
+                continue
+            if stat.S_ISDIR(entry.st_mode):
+                walk(full); continue
+            seen += 1
+            name = full.lstrip("/").replace("/", "__")
+            if entry.st_size == 0 or name in have:
+                skipped += 1; continue
+            try:
+                buf = io.BytesIO(); sftp.getfo(full, buf); buf.seek(0)
+                bucket.blob(name).upload_from_file(buf, content_type="text/plain")
+                have.add(name); copied += 1; print("copied %s (%d bytes)" % (full, entry.st_size))
+            except Exception as e:
+                print("UPLOAD FAILED %s: %s" % (full, str(e)[:200]))
+    walk(REMOTE_ROOT)
+    print("done: %d files on sftp under %s, %d copied, %d skipped (empty or already in the bucket)" % (seen, REMOTE_ROOT, copied, skipped))
+    transport.close()
+
+if __name__ == "__main__":
+    main()
+PYEOF
+gcloud run jobs deploy claimocity-pull --source . --region $REGION --quiet --service-account $SA \
+  --set-env-vars BUCKET=$BUCKET,REMOTE_ROOT=/download \
+  --set-secrets SFTP_PASS=claimocity-sftp-pass:latest
+gcloud run jobs execute claimocity-pull --region $REGION --wait
+EXEC=$(gcloud run jobs executions list --job claimocity-pull --region $REGION --limit 1 --format="value(name)")
+gcloud logging read "resource.type=\"cloud_run_job\" AND labels.\"run.googleapis.com/execution_name\"=\"$EXEC\"" --order=asc --project $PROJECT --format="value(textPayload)" | grep -v httplib2
+gcloud storage ls gs://$BUCKET/ | tail -5
+# 3) the read-only key for the billing routines - printed ONCE; email it to yourself, subject: claimocity gcs key ; then it is deleted here
+gcloud iam service-accounts keys create ~/claimocity-reader-key.json --iam-account=$READER >/dev/null
+echo; echo "=================== COPY EVERYTHING BETWEEN THE LINES INTO AN EMAIL TO dreffinger@gmail.com, SUBJECT: claimocity gcs key ==================="
+cat ~/claimocity-reader-key.json
+echo "=================================================================================================================================="
+rm -f ~/claimocity-reader-key.json
+echo "done. Cloud Scheduler keeps running the job every 30 minutes (unchanged)."

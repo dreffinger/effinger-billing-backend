@@ -1,25 +1,27 @@
-# claimocity-pull v4 — redeploy from Cloud Shell (William pastes; two pastes, ~5 minutes)
+# claimocity-pull v5 — SFTP to a private Cloud Storage bucket (William pastes once; ~3 minutes)
 
-Copies every new Claimocity DFT file from the SFTP /download ROOT (and subfolders) into Drive every 30 minutes. Copy-only.
+Copies every new Claimocity DFT file from the SFTP /download ROOT (and subfolders) into `gs://ehpa-claimocity-feed-50717` every 30 minutes. Copy-only.
 
-## Why v4 (2026-10-31)
-The v3 run (`claimocity-pull-6n4g5`, 10/30 22:12 ET) reached the SFTP (18 files) but every upload answered
-`403 Service Accounts do not have storage quota` — Google no longer lets a service account create files in a personal Drive, shared folder or not.
-So the job now uploads AS WILLIAM through his OAuth refresh token (Secret Manager `drive-user-creds`, scope **drive.file** — non-sensitive, the
-app only sees files it created) into a folder the job creates itself: **"Claimocity feed drop"** in My Drive (drive.file cannot write into a folder
-the app did not create). The September copies stopped on 9/9 for the same family of reasons: the first token was minted while the OAuth app was in
-*Testing* status, and testing-mode refresh tokens expire after 7 days — publish the consent screen first.
+## Why a bucket (2026-10-31)
+- v3 (service account writing into a shared Drive folder) failed on every upload: `403 Service Accounts do not have storage quota` — Google no longer
+  lets a service account create files in a personal Drive. The September copies had come through a user OAuth token minted while the OAuth app was in
+  *Testing*, so that token died after 7 days (copies stopped 9/9).
+- v4 (OAuth as William, scope drive.file) needs the OAuth app published, and publishing an external app now requires a homepage and privacy-policy URL on a
+  verified domain. Not worth it for an internal job.
+- A bucket in the practice's own project has neither problem. The job's service account writes it; the billing routines read it with the read-only key of
+  `claimocity-reader@ehpa-project-50717.iam.gserviceaccount.com` (roles/storage.objectViewer on that bucket only), fetched at bootstrap from the Gmail
+  thread **"claimocity gcs key"** the way the Stedi key is. Routine side: `scripts/helpers/claimocity_gcs.py` (lists, compares with the register, downloads).
 
 ## Steps
-0. Console > APIs & Services > OAuth consent screen (ehpa-project-50717): if Publishing status says *Testing*, **Publish app**. One click, once.
-1. Cloud Shell: paste **PASTE 1** of `claimocity_v4_paste.txt` (Drive 'Claimocity drop'). It writes main.py, requirements.txt, finish.sh and prints a consent link.
-2. Open the link in a browser, choose dreffinger@gmail.com, Allow (Advanced > Go to … if Google warns the app is unverified). The browser lands on an
-   error page `http://localhost:8765/?code=4/0A…&scope=…` — copy the `code=` value.
-3. Cloud Shell: `bash ~/claimocity-pipeline/finish.sh '<the code>'` — exchanges the code for a refresh token, adds it as a new version of
-   `drive-user-creds`, deploys the job with `FOLDER_NAME=Claimocity feed drop` + secrets SFTP_PASS / DRIVE_USER_CREDS, runs it once and prints the log.
-4. Read the log: `drive folder CREATED: Claimocity feed drop (id <id>)`, `copied /download/2026…hl7` lines, `done: 18 files … 18 copied`.
-   **Send Claude the folder id** — the feed step (runbook nightly/claimocity_feed_step.md (a), the daily routine A4) switches to that folder.
-   The old 'Claimocity drop' folder keeps the ADT facesheets and the September copies; nothing moves.
+1. Cloud Shell (project ehpa-project-50717): paste the whole of `claimocity_v5_paste.txt` (beside this note; also Drive 'Claimocity drop'). It creates the
+   bucket (private, uniform access), grants the writer and the reader, deploys the job, runs it once, prints the log and the bucket listing, then prints the
+   reader key JSON ONCE and deletes the local copy.
+2. Copy the printed JSON into an email to dreffinger@gmail.com with the subject exactly `claimocity gcs key` (the routines search that subject).
+3. The routine environment's Network access must allow `oauth2.googleapis.com` and `storage.googleapis.com` (Custom list: add both; Full: nothing to do).
+   A blocked run says so in its report ("gcs: BLOCKED ...") instead of failing.
+4. The Billing Button (prompt v3, runbook step (a)) and the daily routine (prompt v3) then read the bucket; the first run ingests 10/28 onward
+   (10/16–10/27 and the September files are already registered by content and skipped).
 
-Cloud Scheduler still fires the job every 30 minutes (unchanged). `Authentication failed` in a later log = the SFTP password changed:
-`gcloud secrets versions add claimocity-sftp-pass --data-file=-`. `invalid_grant` = the refresh token was revoked/expired: repeat steps 1–3.
+Expected log: `bucket ok: gs://... has 0 files already`, `copied /download/2026...hl7` × 18, `done: 18 files on sftp under /download, 18 copied, 0 skipped`.
+`Authentication failed` = the SFTP password changed: `gcloud secrets versions add claimocity-sftp-pass --data-file=-`.
+Cloud Scheduler still fires the job every 30 minutes (unchanged). Drive 'Claimocity drop' keeps the ADT facesheets and the September copies; nothing moves.
