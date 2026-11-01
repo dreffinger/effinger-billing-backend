@@ -1,0 +1,363 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-01T1718Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/2/1/1 -> 0/2/1/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41330816997",
+ "started": "2026-11-01T17:18:52Z",
+ "ended": "2026-11-01T17:24:55Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 2,
+    "unbilled": 1,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 2,
+    "unbilled": 1,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 351256.22,
+   "visits": 3256,
+   "charts": 586,
+   "over_365": {
+    "n": 1132,
+    "dollars": 55925.79
+   }
+  },
+  "denials": {
+   "visits": 7780,
+   "actionable": 66,
+   "actionable_amt": 12217.0,
+   "asof": "2026-11-01 17:24 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1298 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1298,
+    "registers": 1668,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-01T17:18:52Z",
+   "ended": "2026-11-01T17:18:53Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 2->2, Unbilled 1->1, Exclusions 1->1",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 2,
+    "unbilled": 1,
+    "exclusions": 1,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 2,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 1,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 2,
+     "ids": "v19459299 v19459752"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Unresolved Claim Inspector errors",
+     "visits": 1,
+     "ids": "v19459299"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-01T17:18:53Z",
+   "ended": "2026-11-01T17:20:48Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-01T17:20:48Z",
+   "ended": "2026-11-01T17:20:50Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "no approved package in the register",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-01T17:20:50Z",
+   "ended": "2026-11-01T17:20:50Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "3256 visits on 586 charts, $351256.22 open; 1132 over a year ($55925.79)",
+   "counts": {
+    "visits": 3256,
+    "charts": 586,
+    "over 365 days": 1132
+   },
+   "dollars": {
+    "open insurance balance": 351256.22,
+    "over 365 days": 55925.79
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1813,
+     "dollars": 195212.88,
+     "oldest_days": 1082
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 218,
+     "dollars": 32097.11,
+     "oldest_days": 1266
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 155,
+     "dollars": 26570.58,
+     "oldest_days": 419
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 321,
+     "dollars": 20457.93,
+     "oldest_days": 1539
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 70,
+     "dollars": 14392.97,
+     "oldest_days": 1151
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 117,
+     "dollars": 12777.8,
+     "oldest_days": 1302
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 31,
+     "dollars": 5816.24,
+     "oldest_days": 779
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 32,
+     "dollars": 5409.98,
+     "oldest_days": 1350
+    },
+    {
+     "carrier": "SUN01",
+     "name": "SUNSHINE STATE HEALTH PLAN",
+     "visits": 37,
+     "dollars": 4318.92,
+     "oldest_days": 263
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 167
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 30,
+     "dollars": 3787.1,
+     "oldest_days": 395
+    },
+    {
+     "carrier": "WEL04",
+     "name": "WELLCARE",
+     "visits": 37,
+     "dollars": 3618.73,
+     "oldest_days": 599
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-01T17:20:50Z",
+   "ended": "2026-11-01T17:20:51Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7780 denied visits on 886 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2955, RESOLVED 4495, RESUBMITTED 173, OPEN 157",
+   "counts": {
+    "charts read": 886,
+    "denial lines": 13191,
+    "visits": 7780,
+    "actionable": 66,
+    "inside 12 months": 62,
+    "status WRITTEN-OFF": 2955,
+    "status RESOLVED": 4495,
+    "status RESUBMITTED": 173,
+    "status OPEN": 157
+   },
+   "dollars": {
+    "actionable": 12217.0,
+    "inside 12 months": 11398.0,
+    "resubmitted": 29376.37,
+    "resolved since": 679405.14
+   },
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1902,
+     "dollars": 315084.0,
+     "patients": 220
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1262,
+     "dollars": 196436.23,
+     "patients": 200
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1123,
+     "dollars": 174846.95,
+     "patients": 215
+    },
+    {
+     "disposition": "COB",
+     "visits": 1008,
+     "dollars": 167627.61,
+     "patients": 103
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 500,
+     "dollars": 95230.0,
+     "patients": 224
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84472.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 444,
+     "dollars": 63801.3,
+     "patients": 73
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 498,
+     "dollars": 34492.77,
+     "patients": 70
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 320,
+     "dollars": 28173.07,
+     "patients": 143
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-01T17:20:51Z",
+   "ended": "2026-11-01T17:24:55Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Claim Inspector: 2 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+ ],
+ "errors": []
+}
