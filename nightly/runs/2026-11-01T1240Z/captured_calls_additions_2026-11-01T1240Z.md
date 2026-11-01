@@ -1,0 +1,5 @@
+# captured_calls additions - backend billing run 2026-11-01T1240Z (7:40 AM ET 11/1, ehpa cloud, columns task v7)
+
+No new AMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): login (one, claimocity_ingest dx step), lookupdiagcode codeset=10, lookuppatient, addpatient / updaterespparty / addinsurance (claimocity_newcharts), addvisit / updvisitwithnewcharges / updextrainsinfo (claimocity_import), checkEligibility 271 (claimocity_verify, elig_amd), Stedi insurance-discovery + MBILUNOSSN (stedi.py), getclaiminspectorbatches/getclaiminspectorcharges + bypassclaimedits (claimocity_inspector, insp_bypass_advisories), getclaimcenteroverview, getclaimunbillablecharges, getclaimrunstatus/getclaimexclusioncharges, GET /api/era/checks, posterapayments (Post button, nothing to post), getdemographic, GCS bucket listing (claimocity_gcs.py). Vocabulary entries added: 0.
+
+Observation: Stedi insurance discovery answered HTTP 502 twice for one chart (12:58Z and 13:22Z) while four other discovery calls in the same ingest succeeded - chart-specific, retried next run.

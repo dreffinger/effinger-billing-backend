@@ -1,0 +1,214 @@
+{
+ "fixed": [
+  {
+   "visit": "19459706",
+   "pid": "pat17478208",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459707",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459708",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459711",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459712",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459719",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459728",
+   "pid": "pat17478031",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/24/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459735",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459741",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459752",
+   "pid": "pat17478223",
+   "patterns": [
+    "692"
+   ],
+   "note": [
+    "HELD: 692"
+   ]
+  },
+  {
+   "visit": "19459759",
+   "pid": "pat17475536",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459775",
+   "pid": "pat25994",
+   "patterns": [],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19459706",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459707",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459708",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459711",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459712",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459759",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459775",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19459752",
+   "pid": "pat17478223",
+   "why": "[Pattern 692] Initial hospital care code 99223..."
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19459706",
+   "pid": "pat17478208",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S2249XD..."
+  },
+  {
+   "visit": "19459707",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459708",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459711",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459712",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459759",
+   "pid": "pat17475536",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H6120..."
+  },
+  {
+   "visit": "19459775",
+   "pid": "pat25994",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) C3490..."
+  }
+ ]
+}

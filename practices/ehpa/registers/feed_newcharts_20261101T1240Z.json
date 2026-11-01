@@ -1,0 +1,62 @@
+{
+ "created": [
+  {
+   "pid": "pat17478262",
+   "chart": "F261101-01",
+   "feed_ids": [
+    "6ae47d25f08f283e21524288",
+    "6ae47d25f08f283e21524288"
+   ],
+   "plans": [],
+   "respparty": "resp21479817",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478263",
+   "chart": "F261101-02",
+   "feed_ids": [
+    "6ae506402b2e3bf5612dedda",
+    "6ae506402b2e3bf5612dedda"
+   ],
+   "plans": [],
+   "respparty": "resp21479818",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478264",
+   "chart": "F261101-03",
+   "feed_ids": [
+    "6ae4f382bd5e0eb95cbb02af",
+    "6ae4f382bd5e0eb95cbb02af"
+   ],
+   "plans": [],
+   "respparty": "resp21479819",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478265",
+   "chart": "F261101-04",
+   "feed_ids": [
+    "6ad3fa344519af75c88e792e",
+    "6ad3fa344519af75c88e792e"
+   ],
+   "plans": [
+    {
+     "code": "FLO02",
+     "ins": "ins9521075",
+     "seq": "1",
+     "from": "Medicare A"
+    },
+    {
+     "code": "BCBS",
+     "ins": "ins9521076",
+     "seq": "2",
+     "from": "Blue Cross Blue Shield Of Flor"
+    }
+   ],
+   "respparty": "resp21479820",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}
