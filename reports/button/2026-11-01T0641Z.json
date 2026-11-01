@@ -1,0 +1,144 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-01T0641Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/1/1/1 -> 0/1/1/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "backend billing run 2026-11-01T0641Z (columns task v7)",
+ "run_url": "",
+ "started": "2026-11-01T06:52:04Z",
+ "ended": "2026-11-01T06:55:05Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 1,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 1,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1295 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1295,
+    "registers": 1661,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-01T06:52:04Z",
+   "ended": "2026-11-01T06:52:05Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 1->1, Unbilled 1->1, Exclusions 1->1",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 1,
+    "unbilled": 1,
+    "exclusions": 1,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 1,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 1,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 1,
+     "ids": "v19459299"
+    },
+    {
+     "column": "unbilled",
+     "kind": "Unresolved Claim Inspector errors",
+     "visits": 1,
+     "ids": "v19459299"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-01T06:52:05Z",
+   "ended": "2026-11-01T06:55:02Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "counts": {
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
+   },
+   "dollars": {
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-01T06:55:02Z",
+   "ended": "2026-11-01T06:55:05Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+ ],
+ "errors": []
+}

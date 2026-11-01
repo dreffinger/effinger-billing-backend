@@ -5579,3 +5579,11 @@ No new call shape this run. Behaviours: run_all.py --steps columns,era --stedi-p
 
 # captured_calls additions - backend billing run 2026-10-31T1840Z (2:40 PM ET 10/31/2026, ehpa cloud, columns task v7)
 No new call shape this run. Behaviours: run_all.py --steps columns,era --stedi-proxy ran the four columns + ERA (columns_scan before/after); columns 0/1/1/1 unchanged (standing holds: CCI 24078 chart 17471793 v19459299; AET12 chart 24750 v19455937), ERA Center empty. Claimocity feed: bucket 14 objects, 0 new (newest 20261031, taken by the 1240Z run); claimocity_retry_dx.py: 3 visits still wait on M51.17 / M51.86 / S82.843A (not in AMD's diagnosis list). Bootstrap: `python3 -m pip install cffi` before claimocity_gcs.py --install-key (the 0640Z lesson holds).
+
+# captured_calls additions - nightly cascade 2026-11-01T0535Z (Sunday)
+
+# captured_calls additions - backend billing run 2026-11-01T0641Z (1:41 AM ET 11/1, ehpa cloud, columns task v7)
+
+No new AMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): login (one, inside tools/button/run_all.py), getclaimcenteroverview, getclaiminspectorbatches/getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus/getclaimexclusioncharges, GET /api/era/checks, posterapayments (Post button, nothing to post), GCS bucket listing (claimocity_gcs.py), lookupdiagcode codeset=10 (claimocity_retry_dx.py). Vocabulary entries added: 0.
+
+Lesson re-confirmed (fresh container): the GCS key install needs cffi for THIS interpreter - `python3 -m pip install cffi` (a bare `pip install` lands in Python 3.13 and the cryptography import panics 'Python API call failed').
