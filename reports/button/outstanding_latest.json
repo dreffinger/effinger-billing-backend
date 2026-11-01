@@ -1,10 +1,10 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-01T05:39:17Z",
+ "at": "2026-11-01T07:20:48Z",
  "as_of": "2026-11-01",
- "total": 352307.22,
- "visits": 3262,
- "charts": 587,
+ "total": 351256.22,
+ "visits": 3256,
+ "charts": 586,
  "over_365": {
   "n": 1132,
   "dollars": 55925.79
@@ -15,20 +15,20 @@
    "dollars": 141617.74
   },
   "31-60": {
-   "n": 256,
-   "dollars": 34330.98
+   "n": 254,
+   "dollars": 33983.98
   },
   "61-90": {
    "n": 186,
    "dollars": 20340.5
   },
   "91-180": {
-   "n": 383,
-   "dollars": 34077.33
+   "n": 381,
+   "dollars": 33655.33
   },
   "181-365": {
-   "n": 625,
-   "dollars": 66014.88
+   "n": 623,
+   "dollars": 65732.88
   },
   "over 365": {
    "n": 1132,
@@ -129,14 +129,14 @@
   {
    "carrier": "CAP07",
    "name": "CAPITAL HEALTH PLAN",
-   "n": 36,
-   "dollars": 6726.24,
+   "n": 31,
+   "dollars": 5816.24,
    "buckets": {
     "0-30": 2406.0,
-    "31-60": 662.0,
+    "31-60": 315.0,
     "61-90": 738.0,
-    "91-180": 941.0,
-    "181-365": 1083.0,
+    "91-180": 519.0,
+    "181-365": 942.0,
     "over 365": 896.24
    },
    "oldest_days": 779
@@ -204,14 +204,14 @@
   {
    "carrier": "WEL04",
    "name": "WELLCARE",
-   "n": 38,
-   "dollars": 3759.73,
+   "n": 37,
+   "dollars": 3618.73,
    "buckets": {
     "0-30": 912.0,
     "31-60": 0.0,
     "61-90": 353.34,
     "91-180": 1739.0,
-    "181-365": 372.65,
+    "181-365": 231.65,
     "over 365": 382.74
    },
    "oldest_days": 599
@@ -730,13 +730,13 @@
   },
   {
    "month": "2026-02",
-   "n": 95,
-   "dollars": 11268.86
+   "n": 94,
+   "dollars": 11127.86
   },
   {
    "month": "2026-03",
-   "n": 81,
-   "dollars": 7271.82
+   "n": 80,
+   "dollars": 7130.82
   },
   {
    "month": "2026-04",
@@ -750,13 +750,13 @@
   },
   {
    "month": "2026-06",
-   "n": 98,
-   "dollars": 7537.1
+   "n": 97,
+   "dollars": 7222.1
   },
   {
    "month": "2026-07",
-   "n": 164,
-   "dollars": 16934.58
+   "n": 163,
+   "dollars": 16827.58
   },
   {
    "month": "2026-08",
@@ -765,8 +765,8 @@
   },
   {
    "month": "2026-09",
-   "n": 259,
-   "dollars": 32751.0
+   "n": 257,
+   "dollars": 32404.0
   },
   {
    "month": "2026-10",
@@ -12940,14 +12940,6 @@
    "dos": "2026-02-02"
   },
   {
-   "visitid": 19455294,
-   "patientid": 17475222,
-   "carriercode": "WEL04",
-   "insbalance": 141.0,
-   "days": 272,
-   "dos": "2026-02-02"
-  },
-  {
    "visitid": 19432978,
    "patientid": 44997,
    "carriercode": "FLO02",
@@ -13906,14 +13898,6 @@
    "insbalance": 11.59,
    "days": 237,
    "dos": "2026-03-09"
-  },
-  {
-   "visitid": 19435817,
-   "patientid": 20925,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 236,
-   "dos": "2026-03-10"
   },
   {
    "visitid": 19435651,
@@ -16948,14 +16932,6 @@
    "dos": "2026-06-24"
   },
   {
-   "visitid": 19446246,
-   "patientid": 20925,
-   "carriercode": "CAP07",
-   "insbalance": 315.0,
-   "days": 129,
-   "dos": "2026-06-25"
-  },
-  {
    "visitid": 19446205,
    "patientid": 23617,
    "carriercode": "FLO02",
@@ -17408,14 +17384,6 @@
    "patientid": 17477039,
    "carriercode": "WEL04",
    "insbalance": 141.0,
-   "days": 117,
-   "dos": "2026-07-07"
-  },
-  {
-   "visitid": 19448272,
-   "patientid": 20925,
-   "carriercode": "CAP07",
-   "insbalance": 107.0,
    "days": 117,
    "dos": "2026-07-07"
   },
@@ -20700,14 +20668,6 @@
    "dos": "2026-09-18"
   },
   {
-   "visitid": 19455914,
-   "patientid": 20925,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
-   "days": 44,
-   "dos": "2026-09-18"
-  },
-  {
    "visitid": 19455917,
    "patientid": 17472491,
    "carriercode": "COL07",
@@ -21063,14 +21023,6 @@
    "visitid": 19455653,
    "patientid": 17473199,
    "carriercode": "BCBS",
-   "insbalance": 206.0,
-   "days": 42,
-   "dos": "2026-09-20"
-  },
-  {
-   "visitid": 19455832,
-   "patientid": 20925,
-   "carriercode": "CAP07",
    "insbalance": 206.0,
    "days": 42,
    "dos": "2026-09-20"
