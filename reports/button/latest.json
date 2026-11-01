@@ -1,19 +1,19 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-01T0322Z",
+ "stamp": "2026-11-01T0518Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/1/1 -> 0/1/1/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/1/33/1 -> 0/1/1/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41268913813",
- "started": "2026-11-01T03:22:34Z",
- "ended": "2026-11-01T03:28:15Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41276433715",
+ "started": "2026-11-01T05:18:44Z",
+ "ended": "2026-11-01T05:25:36Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 1,
-    "unbilled": 1,
+    "unbilled": 33,
     "exclusions": 1
    },
    "after": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 346756.21,
-   "visits": 3227,
-   "charts": 585,
+   "total": 352307.22,
+   "visits": 3262,
+   "charts": 587,
    "over_365": {
     "n": 1132,
     "dollars": 55925.79
@@ -65,7 +65,7 @@
    "visits": 7780,
    "actionable": 66,
    "actionable_amt": 12217.0,
-   "asof": "2026-11-01 03:28 UTC"
+   "asof": "2026-11-01 05:25 UTC"
   }
  },
  "steps": [
@@ -82,24 +82,24 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-01T03:22:34Z",
-   "ended": "2026-11-01T03:22:35Z"
+   "started": "2026-11-01T05:18:44Z",
+   "ended": "2026-11-01T05:18:45Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 1->1, Unbilled 1->1, Exclusions 1->1",
+   "summary": "CR 0->0, CI 1->1, Unbilled 33->1, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 1,
-    "unbilled": 1,
+    "unbilled": 33,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 1,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 0,
+    "unbilled prior-payor rows": 30,
     "unbilled rows left alone": 1,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
@@ -115,6 +115,18 @@
     },
     {
      "column": "unbilled",
+     "kind": "A payment from the prior payor is required before another claim can be",
+     "visits": 30,
+     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19451903 v19451913 v19451923 v19452055 v19452223 v19453682 v19455351 v19455362"
+    },
+    {
+     "column": "unbilled",
+     "kind": "?",
+     "visits": 2,
+     "ids": "v19392347 v19452223"
+    },
+    {
+     "column": "unbilled",
      "kind": "Unresolved Claim Inspector errors",
      "visits": 1,
      "ids": "v19459299"
@@ -127,8 +139,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-01T03:22:35Z",
-   "ended": "2026-11-01T03:24:22Z"
+   "started": "2026-11-01T05:18:45Z",
+   "ended": "2026-11-01T05:21:01Z"
   },
   {
    "name": "era",
@@ -147,8 +159,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-01T03:24:22Z",
-   "ended": "2026-11-01T03:24:23Z"
+   "started": "2026-11-01T05:21:01Z",
+   "ended": "2026-11-01T05:21:03Z"
   },
   {
    "name": "packages",
@@ -159,36 +171,36 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-01T03:24:23Z",
-   "ended": "2026-11-01T03:24:23Z"
+   "started": "2026-11-01T05:21:03Z",
+   "ended": "2026-11-01T05:21:03Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "3227 visits on 585 charts, $346756.21 open; 1132 over a year ($55925.79)",
+   "summary": "3262 visits on 587 charts, $352307.22 open; 1132 over a year ($55925.79)",
    "counts": {
-    "visits": 3227,
-    "charts": 585,
+    "visits": 3262,
+    "charts": 587,
     "over 365 days": 1132
    },
    "dollars": {
-    "open insurance balance": 346756.21,
+    "open insurance balance": 352307.22,
     "over 365 days": 55925.79
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1789,
-     "dollars": 191419.88,
+     "visits": 1813,
+     "dollars": 195212.88,
      "oldest_days": 1082
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 215,
-     "dollars": 31674.11,
+     "visits": 218,
+     "dollars": 32097.11,
      "oldest_days": 1266
     },
     {
@@ -201,8 +213,8 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 320,
-     "dollars": 20142.93,
+     "visits": 321,
+     "dollars": 20457.93,
      "oldest_days": 1539
     },
     {
@@ -215,15 +227,15 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 114,
-     "dollars": 12321.33,
+     "visits": 117,
+     "dollars": 12777.8,
      "oldest_days": 1302
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
-     "visits": 35,
-     "dollars": 6519.24,
+     "visits": 36,
+     "dollars": 6726.24,
      "oldest_days": 779
     },
     {
@@ -236,8 +248,8 @@
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 36,
-     "dollars": 4244.38,
+     "visits": 37,
+     "dollars": 4318.92,
      "oldest_days": 263
     },
     {
@@ -263,16 +275,16 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-01T03:24:23Z",
-   "ended": "2026-11-01T03:24:25Z"
+   "started": "2026-11-01T05:21:03Z",
+   "ended": "2026-11-01T05:21:05Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7780 denied visits on 884 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2955, RESOLVED 4495, RESUBMITTED 173, OPEN 157",
+   "summary": "7780 denied visits on 886 charts; 66 actionable $12217.00 (62 inside 12 months $11398.00); WRITTEN-OFF 2955, RESOLVED 4495, RESUBMITTED 173, OPEN 157",
    "counts": {
-    "charts read": 884,
+    "charts read": 886,
     "denial lines": 13196,
     "visits": 7780,
     "actionable": 66,
@@ -351,8 +363,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-01T03:24:25Z",
-   "ended": "2026-11-01T03:28:15Z"
+   "started": "2026-11-01T05:21:05Z",
+   "ended": "2026-11-01T05:25:36Z"
   }
  ],
  "packages": [],
