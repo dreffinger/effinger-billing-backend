@@ -65,7 +65,10 @@ def clin(p):
     parts = k.split(); return (parts[-1].title() + " " + parts[0][0] + ".") if len(parts) > 1 else parts[0].title()
 
 docs = []   # (collection, doc_id, body)
+_seen = set()
 def add(collection, doc_id, body):
+    if (collection, doc_id) in _seen: return          # a stamp can appear under two spellings (2026-10-20T1328Z and 20261020T1328Z): one document
+    _seen.add((collection, doc_id))
     body = dict(body); body.setdefault("_written", NOW.strftime("%Y-%m-%dT%H:%M:%SZ")); body.setdefault("_source", "tools/db/practice_db.py")
     s = json.dumps(body, separators=(",", ":"))
     if len(s) <= MAXKB * 1024 or "rows" not in body: docs.append((collection, doc_id, body)); return
