@@ -1,0 +1,2086 @@
+{
+ "about": "UNI20/BCBS pre-5/1/2026 claim-status sweep pass 177 (claim_status_sweep.py --min-age 159 --max 60 --carriers UNI20,BCBS --skip-answered <passes 1-176>)",
+ "stamp": "2026-11-02T2038Z",
+ "rows": [
+  {
+   "visitid": 19427723,
+   "patientid": 17471832,
+   "carrier": "BCBS",
+   "dos": "2025-12-31",
+   "balance": 443.0,
+   "member": "[member id]",
+   "icn": "Q100001347266891",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347266201"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212872628",
+     "paidDate": "2026-01-20",
+     "payerClaim": "Q100001293589045"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347231"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265019"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265371"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347319"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347266891"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212841719",
+     "paidDate": "2026-01-05",
+     "payerClaim": "Q100001290347408"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19431393,
+   "patientid": 17475362,
+   "carrier": "BCBS",
+   "dos": "2026-02-02",
+   "balance": 433.0,
+   "member": "[member id]",
+   "icn": "Q100001346974027",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-11",
+     "payerClaim": "Q100001298433520"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213518717",
+     "paidDate": "2026-10-27",
+     "payerClaim": "M0001R2283417201"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19427050,
+   "patientid": 17474516,
+   "carrier": "BCBS",
+   "dos": "2025-12-15",
+   "balance": 389.0,
+   "member": "[member id]",
+   "icn": "H100001346973339",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212857343",
+     "paidDate": "2026-01-07",
+     "payerClaim": "H100001289802877"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001346973339"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19389388,
+   "patientid": 21577,
+   "carrier": "BCBS",
+   "dos": "2024-09-09",
+   "balance": 372.07,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "35",
+     "codev": "Claim/encounter not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19433863,
+   "patientid": 17475362,
+   "carrier": "BCBS",
+   "dos": "2026-02-26",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "Q100001346977104",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213095771",
+     "paidDate": "2026-04-23",
+     "payerClaim": "M0001R2208541934"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213518717",
+     "paidDate": "2026-10-27",
+     "payerClaim": "M0001R2283420370"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19420993,
+   "patientid": 48449,
+   "carrier": "BCBS",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": "F100001346975301",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "190563556",
+     "paidDate": "2026-09-08",
+     "payerClaim": "F100001346975301"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "190273973",
+     "paidDate": "2025-10-29",
+     "payerClaim": "F100001274004618"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19417390,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "W2081158",
+     "paidDate": "2026-10-28",
+     "payerClaim": "21404613"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19420985,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "W2081158",
+     "paidDate": "2026-10-28",
+     "payerClaim": "20873077"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19424662,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-11-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "W2081158",
+     "paidDate": "2026-10-28",
+     "payerClaim": "20873078"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19427156,
+   "patientid": 12232248,
+   "carrier": "UNI20",
+   "dos": "2025-12-22",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F2",
+     "catv": "Finalized/Denial - The claim/line has been denied.",
+     "code": "585",
+     "codev": "Denied Charge or Non-covered Charge.",
+     "paid": "0",
+     "check": "W2081158",
+     "paidDate": "2026-10-28",
+     "payerClaim": "20896678"
+    }
+   ],
+   "errors": [],
+   "action": "DENIED/REVISED - run the denial cascade"
+  },
+  {
+   "visitid": 19416179,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-09-08",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19420949,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19424006,
+   "patientid": 17474713,
+   "carrier": "BCBS",
+   "dos": "2025-11-17",
+   "balance": 310.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265496"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720483"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265124"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720827"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19365043,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-10",
+   "balance": 246.33,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370971,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-07",
+   "balance": 246.33,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19455317,
+   "patientid": 12179690,
+   "carrier": "UNI20",
+   "dos": "2026-04-28",
+   "balance": 198.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "P1",
+     "catv": "Pending/In Process - The claim or encounter is in the adjudication system.",
+     "code": "20",
+     "codev": "Accepted for processing.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-30",
+     "payerClaim": "23507896"
+    }
+   ],
+   "errors": [],
+   "action": "PENDING at payer - wait"
+  },
+  {
+   "visitid": 19362850,
+   "patientid": 17469033,
+   "carrier": "UNI20",
+   "dos": "2023-08-11",
+   "balance": 196.67,
+   "member": "[member id]",
+   "icn": "KLC9659728600",
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19432733,
+   "patientid": 25710,
+   "carrier": "BCBS",
+   "dos": "2026-02-12",
+   "balance": 184.8,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": "M0001R2285615401"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "M0001R2283959777"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423676596",
+     "paidDate": "2026-05-08",
+     "payerClaim": "M0001R2211297271"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-29",
+     "payerClaim": "M0001R2285613352"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-10-28",
+     "payerClaim": "M0001R2283960133"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423676596",
+     "paidDate": "2026-05-08",
+     "payerClaim": "M0001R2211296877"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19418991,
+   "patientid": 20336,
+   "carrier": "UNI20",
+   "dos": "2025-10-02",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19419622,
+   "patientid": 17474258,
+   "carrier": "UNI20",
+   "dos": "2025-10-08",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19422181,
+   "patientid": 17474258,
+   "carrier": "UNI20",
+   "dos": "2025-10-22",
+   "balance": 141.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19403896,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2025-04-14",
+   "balance": 137.38,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19386697,
+   "patientid": 17471795,
+   "carrier": "BCBS",
+   "dos": "2024-07-24",
+   "balance": 116.53,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "A4",
+     "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+     "code": "35",
+     "codev": "Claim/encounter not found.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19424038,
+   "patientid": 17474713,
+   "carrier": "BCBS",
+   "dos": "2025-11-18",
+   "balance": 111.0,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265496"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720483"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2609090736",
+     "paidDate": "2026-09-08",
+     "payerClaim": "Q100001347265124"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2512100690",
+     "paidDate": "2025-12-05",
+     "payerClaim": "Q100001283720827"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19430108,
+   "patientid": 17474516,
+   "carrier": "BCBS",
+   "dos": "2026-01-23",
+   "balance": 74.54,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347265619"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295218096"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213469446",
+     "paidDate": "2026-10-06",
+     "payerClaim": "H100001347264613"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295218985"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-10",
+     "payerClaim": "H100001295218303"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347264170"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347264531"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295219268"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295218110"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347267146"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19448695,
+   "patientid": 17471968,
+   "carrier": "BCBS",
+   "dos": "2026-04-16",
+   "balance": 69.99,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213306248",
+     "paidDate": "2026-07-23",
+     "payerClaim": "H100001336093896"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19365003,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-12",
+   "balance": 65.82,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19365028,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-11",
+   "balance": 65.82,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19365118,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-13",
+   "balance": 65.82,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19365221,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-14",
+   "balance": 65.82,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19365286,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-09-15",
+   "balance": 65.82,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19401011,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-02-21",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19402497,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-20",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19402527,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-21",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19402571,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-23",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19402572,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-22",
+   "balance": 50.58,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19387595,
+   "patientid": 17471979,
+   "carrier": "BCBS",
+   "dos": "2024-08-09",
+   "balance": 49.45,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19396895,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2024-12-04",
+   "balance": 49.45,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370156,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-11-27",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370183,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-11-26",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370929,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-09",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19370958,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-08",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372497,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-13",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372509,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-12",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372523,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-11",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19372541,
+   "patientid": 17469067,
+   "carrier": "UNI20",
+   "dos": "2023-12-10",
+   "balance": 48.39,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19400005,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-02-04",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210359410"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210360230"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19402079,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-13",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19400002,
+   "patientid": 17472046,
+   "carrier": "BCBS",
+   "dos": "2025-02-01",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210359920"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-13",
+     "payerClaim": "Q100001210360069"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210359699"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423265091",
+     "paidDate": "2025-02-12",
+     "payerClaim": "Q100001210360142"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19401536,
+   "patientid": 17472636,
+   "carrier": "UNI20",
+   "dos": "2025-03-01",
+   "balance": 48.29,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "187",
+     "codev": "Date(s) of service.",
+     "paid": null,
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19431880,
+   "patientid": 17471968,
+   "carrier": "BCBS",
+   "dos": "2026-02-06",
+   "balance": 45.29,
+   "member": "[member id]",
+   "icn": "H100001348230496",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-14",
+     "payerClaim": "H100001347265018"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192234"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347267514"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299193355"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192772"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347265539"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-11",
+     "payerClaim": "H100001347265219"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "2603040276",
+     "paidDate": "2026-02-25",
+     "payerClaim": "H100001299192819"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213436603",
+     "paidDate": "2026-09-17",
+     "payerClaim": "H100001348230496"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19393947,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2024-10-23",
+   "balance": 43.43,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "211907303",
+     "paidDate": "2024-11-27",
+     "payerClaim": "Q100001193384437"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19415417,
+   "patientid": 17471204,
+   "carrier": "UNI20",
+   "dos": "2025-09-02",
+   "balance": 42.3,
+   "member": "[member id]",
+   "icn": "FG44150532 0141092060",
+   "status": [
+    {
+     "cat": "F1",
+     "catv": "Finalized/Payment - The claim/line has been paid.",
+     "code": "65",
+     "codev": "Claim/line has been paid.",
+     "paid": "126.9",
+     "check": "W335003063",
+     "paidDate": "2025-09-07",
+     "payerClaim": "FG44150532 0141092060"
+    },
+    {
+     "cat": "A7",
+     "catv": "Acknowledgement/Rejected for Invalid Information - The claim/encounter has invalid information as specified in the Status details and has been rejected.",
+     "code": "54",
+     "codev": "Duplicate of a previously processed claim/line.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-09-05",
+     "payerClaim": "920262485384100"
+    }
+   ],
+   "errors": [],
+   "action": "PAID $126.90 - find/post the ERA (check W335003063)"
+  },
+  {
+   "visitid": 19399981,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-01-30",
+   "balance": 42.17,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212068073",
+     "paidDate": "2025-02-07",
+     "payerClaim": "Q100001210359570"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19402906,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2025-03-25",
+   "balance": 42.17,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "visitid": 19388473,
+   "patientid": 17472046,
+   "carrier": "BCBS",
+   "dos": "2024-08-22",
+   "balance": 34.48,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423127948",
+     "paidDate": "2024-09-10",
+     "payerClaim": "Q100001173797964"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187445383"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504576"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423133929",
+     "paidDate": "2024-09-11",
+     "payerClaim": "Q100001173797954"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187447266"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504514"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187446448"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423127948",
+     "paidDate": "2024-09-10",
+     "payerClaim": "Q100001173797955"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504515"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423133929",
+     "paidDate": "2024-09-11",
+     "payerClaim": "Q100001173798026"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423175105",
+     "paidDate": "2024-11-05",
+     "payerClaim": "Q100001187447598"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "423121989",
+     "paidDate": "2024-08-30",
+     "payerClaim": "Q100001171504973"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19429719,
+   "patientid": 17474516,
+   "carrier": "BCBS",
+   "dos": "2026-01-19",
+   "balance": 31.94,
+   "member": "[member id]",
+   "icn": "H100001347266605",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-10",
+     "payerClaim": "H100001295218303"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347264170"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347264531"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295219268"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295218110"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347267146"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001347266605"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212935377",
+     "paidDate": "2026-02-12",
+     "payerClaim": "H100001295218915"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213420173",
+     "paidDate": "2026-09-10",
+     "payerClaim": "H100001346973743"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-10",
+     "payerClaim": "H100001295218384"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19431100,
+   "patientid": 17475338,
+   "carrier": "BCBS",
+   "dos": "2026-01-27",
+   "balance": 31.3,
+   "member": "[member id]",
+   "icn": "H100001347265276",
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-06",
+     "payerClaim": "H100001297220971"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "H100001347267064"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "H100001347265636"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-06",
+     "payerClaim": "H100001297220344"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-06",
+     "payerClaim": "H100001297220105"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "213403769",
+     "paidDate": "2026-09-08",
+     "payerClaim": "H100001347265542"
+    },
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "212919365",
+     "paidDate": "2026-02-06",
+     "payerClaim": "H100001297220716"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19393940,
+   "patientid": 17472305,
+   "carrier": "BCBS",
+   "dos": "2024-10-28",
+   "balance": 30.84,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "F0",
+     "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+     "code": "38",
+     "codev": "Awaiting next periodic adjudication cycle.",
+     "paid": "0",
+     "check": "211907303",
+     "paidDate": "2024-11-27",
+     "payerClaim": "Q100001193387042"
+    }
+   ],
+   "errors": [],
+   "action": "FINALIZED $0 - denial, run the cascade"
+  },
+  {
+   "visitid": 19382290,
+   "patientid": 45052,
+   "carrier": "BCBS",
+   "dos": "2024-05-02",
+   "balance": 30.84,
+   "member": "[member id]",
+   "icn": null,
+   "status": [
+    {
+     "cat": "D0",
+     "catv": "Data Search Unsuccessful - The payer is unable to return status on the requested claim(s) based on the submitted search criteria.",
+     "code": "0",
+     "codev": "Cannot provide further status electronically.",
+     "paid": "0",
+     "check": null,
+     "paidDate": "2026-11-02",
+     "payerClaim": null
+    }
+   ],
+   "errors": [],
+   "action": "NOT ON FILE / rejected - resend as original"
+  }
+ ]
+}

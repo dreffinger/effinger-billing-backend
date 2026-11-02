@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-11-02T2038Z",
+ "why": "advisory 35790 add-on 99489 with 99487 - standing bypass rule (prompt step 2); visit re-routed to Florida Blue primary per William 11/2",
+ "live": false,
+ "items": [
+  {
+   "visit": "19458947",
+   "pattern": "35790",
+   "batch": "1",
+   "errorid": "397606",
+   "desc": "Pattern 35790 Add-on procedure code 99489 on the current line is reported with primary procedure code 99487, on Claim ID",
+   "result": "dry"
+  }
+ ]
+}

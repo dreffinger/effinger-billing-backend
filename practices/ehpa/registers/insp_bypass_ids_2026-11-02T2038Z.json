@@ -1,0 +1,31 @@
+{
+ "stamp": "2026-11-02T2038Z",
+ "why": "William 11/2 board 'write off' (WOCAID2ND, dual residual) - the 12.14 residual is written off, visit balance 0.00, nothing left to send; bypassed so the held row clears",
+ "live": true,
+ "items": [
+  {
+   "visit": "19409077",
+   "pattern": "15775",
+   "batch": "114385",
+   "errorid": "397608",
+   "desc": "Pattern 15775 Add-on procedure code 99489 has been submitted without an appropriate primary procedure code.Pattern 15775",
+   "result": "ok"
+  },
+  {
+   "visit": "19409077",
+   "pattern": "20657",
+   "batch": "114385",
+   "errorid": "397609",
+   "desc": "Pattern 20657 The beginning date of service occurred more than 12 months from the entry date 11/02/2026, this exceeds Me",
+   "result": "ok"
+  },
+  {
+   "visit": "19409077",
+   "pattern": "24078",
+   "batch": "114385",
+   "errorid": "397610",
+   "desc": "Pattern 24078 Per Medicare CCI Guidelines, procedure code 99308 has an unbundle relationship with history procedure code",
+   "result": "ok"
+  }
+ ]
+}

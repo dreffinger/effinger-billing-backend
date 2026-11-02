@@ -1,0 +1,181 @@
+{
+ "10/25/2025": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190563556",
+    "paidDate": "2026-09-08",
+    "payerClaim": "F100001346975301"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190273973",
+    "paidDate": "2025-10-29",
+    "payerClaim": "F100001274004618"
+   }
+  ],
+  "errs": [],
+  "action": "FINALIZED $0 - denial, run the cascade"
+ },
+ "05/17/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190563556",
+    "paidDate": "2026-09-08",
+    "payerClaim": "F100001346974243"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "2605271424",
+    "paidDate": "2026-05-22",
+    "payerClaim": "F100001322486070"
+   }
+  ],
+  "errs": [],
+  "action": "FINALIZED $0 - denial, run the cascade"
+ },
+ "07/17/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190524424",
+    "paidDate": "2026-07-22",
+    "payerClaim": "F100001336094082"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "2609161009",
+    "paidDate": "2026-09-14",
+    "payerClaim": "F100001348233773"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "75.37",
+    "check": "190524424",
+    "paidDate": "2026-07-24",
+    "payerClaim": "F100001336095621"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "2609161009",
+    "paidDate": "2026-09-14",
+    "payerClaim": "F100001348234122"
+   }
+  ],
+  "errs": [],
+  "action": "PAID $75.37 - find/post the ERA (check 190524424,2609161009)"
+ },
+ "08/23/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "2609021032",
+    "paidDate": "2026-08-31",
+    "payerClaim": "F100001345003365"
+   }
+  ],
+  "errs": [],
+  "action": "FINALIZED $0 - denial, run the cascade"
+ },
+ "09/20/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190583773",
+    "paidDate": "2026-09-28",
+    "payerClaim": "F100001351362107"
+   }
+  ],
+  "errs": [],
+  "action": "FINALIZED $0 - denial, run the cascade"
+ },
+ "10/01/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "0",
+    "check": "190596986",
+    "paidDate": "2026-10-09",
+    "payerClaim": "F100001354400209"
+   },
+   {
+    "cat": "F0",
+    "catv": "Finalized - The claim/encounter has completed the adjudication cycle and no more action will be taken.",
+    "code": "38",
+    "codev": "Awaiting next periodic adjudication cycle.",
+    "paid": "75.37",
+    "check": null,
+    "paidDate": "2026-10-30",
+    "payerClaim": "F100001358159013"
+   }
+  ],
+  "errs": [],
+  "action": "PAID $75.37 - find/post the ERA (check 190596986)"
+ },
+ "10/22/2026": {
+  "http": 200,
+  "rows": [
+   {
+    "cat": "A4",
+    "catv": "Acknowledgement/Not Found - The claim/encounter can not be found in the adjudication system.",
+    "code": "35",
+    "codev": "Claim/encounter not found.",
+    "paid": "0",
+    "check": null,
+    "paidDate": "2026-11-02",
+    "payerClaim": null
+   }
+  ],
+  "errs": [],
+  "action": "NOT ON FILE / rejected - resend as original"
+ }
+}
