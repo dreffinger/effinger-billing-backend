@@ -9,9 +9,11 @@
 #   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
 #                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
-#   4. git       - commit, push main AND the project's synced branch; if the proxy says 403
-#                  ("not in this session's authorized repository set") write a bundle to
-#                  /home/claude/unbilled/outbox/ for William and say so - never retry the push.
+#   4. git       - commit, push main AND the project's synced branch: with the PAT when secrets/github_pat.key
+#                  exists, otherwise through the session proxy (11/2/2026 - a cloud session with the repository
+#                  attached needs no PAT: fetch + merge origin/main, push main, push the synced branch); only when
+#                  the proxy says 403 ("not in this session's authorized repository set") leave HEAD on its own
+#                  branch upstream and write a PACKAGE to /home/claude/unbilled/outbox/ - never retry the push.
 #   The Drive and Postman legs are done by the run itself with the connectors (see docs/MIRROR.md):
 #   this script prints exactly which files to upload and to which Drive folder.
 # Rules it uses: no PHI on GitHub (phi_gate on every file that crosses); Drive is the PHI-OK copy;
@@ -162,7 +164,9 @@ def commit_and_push(message):
         print("git: committed -> %s" % sh("git rev-parse --short HEAD").stdout.strip())
     tok = token()
     if not tok:
-        print("git: no secrets/github_pat.key - push skipped (fetch the PAT from Gmail 'github claude token' first)")
+        print("git: no secrets/github_pat.key - pushing through the session proxy (the attached repository's own credential)")
+        if push_via_proxy():
+            return True
         return bundle()
     url = "https://x-access-token:%s@github.com/%s" % (tok, REPO)
     head = sh("git rev-parse --abbrev-ref HEAD").stdout.strip()
@@ -177,6 +181,55 @@ def commit_and_push(message):
         else:
             print("git: push to %s failed:\n%s" % (b, out[-600:]))
             return bundle()
+    return True
+
+UNION = ["docs/captured_calls.md merge=union", "docs/captured_calls_additions_*.md merge=union", "practices/ehpa/rules.md merge=union",
+         "needs_facesheet_list.md merge=union", "docs/SHARED_LESSONS.md merge=union", "practices/ehpa/registers/rebill_log.jsonl merge=union"]
+def union_rules():
+    """Append-only text files merge by union (both sides kept) when origin/main moved under us - the same list
+    tools/mirror/apply_bundle.py uses; written to .git/info/attributes (repo-local, never committed). Idempotent."""
+    d = sh("git rev-parse --git-dir").stdout.strip()
+    if not os.path.isabs(d):
+        d = os.path.join(ROOT, d)
+    f = os.path.join(d, "info", "attributes"); os.makedirs(os.path.dirname(f), exist_ok=True)
+    have = open(f).read() if os.path.exists(f) else ""
+    add = [r for r in UNION if r not in have]
+    if add:
+        open(f, "a").write(("" if not have or have.endswith("\n") else "\n") + "\n".join(add) + "\n")
+
+def push_via_proxy():
+    """11/2/2026 (William: "make it permanent where I don't have to manually push anything"): a Claude Code cloud session with
+    the repository attached pushes through the session proxy, which injects the repository's credential - no PAT, no Drive
+    package, no pull request for William to merge. origin/main moves every few hours, so bring it in first (a merge commit;
+    append-only files merge by union), then push main and the project's synced branch. A push that GitHub rejects as
+    non-fast-forward (main moved again meanwhile) is retried once after another merge. Returns True when main carries HEAD;
+    False when the proxy or GitHub refuses - HEAD is then left safe on its own branch upstream and the caller writes the package."""
+    for attempt in (1, 2):
+        r = sh("git fetch -q origin main", check=False)
+        if r.returncode:
+            print("git: fetch origin main failed - %s" % (r.stdout + r.stderr).strip()[-300:]); return False
+        union_rules()
+        if sh("git merge-base --is-ancestor origin/main HEAD", check=False).returncode != 0:
+            m = sh('git -c user.name="Claude" -c user.email="noreply@anthropic.com" merge -q --no-edit origin/main', check=False)
+            if m.returncode:
+                sh("git merge --abort", check=False)
+                print("git: merging origin/main CONFLICTS - resolve by hand, then rerun:\n%s" % (m.stdout + m.stderr).strip()[-600:]); return False
+            print("git: merged origin/main -> %s" % sh("git rev-parse --short HEAD").stdout.strip())
+        r = sh("git push -q origin HEAD:refs/heads/%s" % BRANCHES[0], check=False)
+        out = (r.stdout + r.stderr).strip()
+        if r.returncode == 0:
+            print("git: pushed -> %s (session proxy)" % BRANCHES[0]); break
+        if attempt == 1 and ("fetch first" in out or "non-fast-forward" in out):
+            print("git: main moved during the push - merging it once more"); continue
+        print("git: push to %s refused - %s" % (BRANCHES[0], out[-400:]))
+        head = sh("git rev-parse --abbrev-ref HEAD", check=False).stdout.strip()
+        if head and head != "HEAD" and head not in BRANCHES:
+            r2 = sh("git push -q -u origin %s" % head, check=False)
+            print("git: HEAD kept safe on origin/%s%s - open a pull request for it" % (head, "" if r2.returncode == 0 else " FAILED too"))
+        return False
+    for b in BRANCHES[1:]:
+        r = sh("git push -q origin HEAD:refs/heads/%s" % b, check=False)
+        print("git: pushed -> %s (session proxy)" % b if r.returncode == 0 else "git: push to %s failed (main is pushed; the synced branch catches up on the next mirror) - %s" % (b, (r.stdout + r.stderr).strip()[-300:]))
     return True
 
 def bundle(slug="", base_ref=None):

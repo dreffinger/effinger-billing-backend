@@ -95,3 +95,7 @@ bash scripts/helpers/github_restore.sh          # clones main -> /home/claude/ef
 cp -n scripts/helpers/* /home/claude/unbilled/  # the working helpers
 # then Drive 'workspace mirror' -> secrets/pseudonyms.json, and the registry from Drive
 ```
+
+## Landing changes without William (11/2/2026)
+
+William 11/2/2026: "make it permanent where I don't have to manually push anything." `mirror.py sync` now lands a run's commit on `main` by itself, in this order: (1) the PAT (`secrets/github_pat.key`, the routines' way) pushes `main` and the synced branch; (2) with no PAT, a Claude Code cloud session that has the repository attached pushes through the **session proxy**, which injects the repository's credential — `mirror.py` fetches `origin/main`, merges it (append-only files by union), pushes `main`, then the synced branch; (3) only when the proxy or GitHub refuses (403 "not in this session's authorized repository set", a protected branch) does it leave HEAD on the session's own branch upstream and write the PACKAGE to `/home/claude/unbilled/outbox/`. That package is a record, not a hand-off: no live routine prompt carries the GITHUB INBOX step any more (the last `practices/ehpa/registers/bundles_applied.json` entry is 10/4/2026; the 10/5–10/12 packages in Drive "github mirror" were never applied), so a package waits for the next session with GitHub access to run `tools/mirror/apply_bundle.py` and then `mirror.py sync`. Drive "github mirror" is the last resort only; GitHub `main` is the one record.
