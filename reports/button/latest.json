@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-02T1118Z",
+ "stamp": "2026-11-02T1320Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 3 checks $509.49 -> 0 checks $0.00",
+ "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41435802322",
- "started": "2026-11-02T11:18:52Z",
- "ended": "2026-11-02T11:25:20Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41452056201",
+ "started": "2026-11-02T13:20:12Z",
+ "ended": "2026-11-02T13:26:22Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 3,
-    "unposted": 509.49
+    "checks": 0,
+    "unposted": 0
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 509.49,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7783,
    "actionable": 72,
    "actionable_amt": 13443.0,
-   "asof": "2026-11-02 11:25 UTC"
+   "asof": "2026-11-02 13:26 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1306 helpers into /home/claude/unbilled",
+   "summary": "1307 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1306,
-    "registers": 1684,
+    "helpers copied": 1307,
+    "registers": 1685,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T11:18:52Z",
-   "ended": "2026-11-02T11:18:54Z"
+   "started": "2026-11-02T13:20:12Z",
+   "ended": "2026-11-02T13:20:12Z"
   },
   {
    "name": "columns",
@@ -121,53 +121,28 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T11:18:54Z",
-   "ended": "2026-11-02T11:20:58Z"
+   "started": "2026-11-02T13:20:12Z",
+   "ended": "2026-11-02T13:22:10Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "3 checks / $509.49 -> 0 checks / $0.00",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 2,
-    "checks dismissed": 2,
+    "era_post lines": 0,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 509.49,
+    "unposted before": 0,
     "unposted after": 0,
-    "posted this run": 509.49
+    "posted this run": 0.0
    },
-   "lines": [
-    {
-     "check": 1053376,
-     "payer": "HUMANA",
-     "checknumber": "205106379261101",
-     "amount": 0.0,
-     "unposted": 359.34,
-     "stage": "before"
-    },
-    {
-     "check": 1053377,
-     "payer": "OPTUM VA CCN",
-     "checknumber": "3680300143",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053378,
-     "payer": "HUMANA",
-     "checknumber": "205106378261101",
-     "amount": 0.0,
-     "unposted": 150.15,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-   "started": "2026-11-02T11:20:58Z",
-   "ended": "2026-11-02T11:21:15Z"
+   "started": "2026-11-02T13:22:10Z",
+   "ended": "2026-11-02T13:22:12Z"
   },
   {
    "name": "packages",
@@ -178,8 +153,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T11:21:15Z",
-   "ended": "2026-11-02T11:21:15Z"
+   "started": "2026-11-02T13:22:12Z",
+   "ended": "2026-11-02T13:22:12Z"
   },
   {
    "name": "outstanding",
@@ -282,14 +257,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T11:21:15Z",
-   "ended": "2026-11-02T11:21:16Z"
+   "started": "2026-11-02T13:22:12Z",
+   "ended": "2026-11-02T13:22:14Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7783 denied visits on 835 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESOLVED 4498, RESUBMITTED 164, OPEN 160",
+   "summary": "7783 denied visits on 835 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESUBMITTED 164, RESOLVED 4498, OPEN 160",
    "counts": {
     "charts read": 835,
     "denial lines": 13194,
@@ -297,8 +272,8 @@
     "actionable": 72,
     "inside 12 months": 69,
     "status WRITTEN-OFF": 2961,
-    "status RESOLVED": 4498,
     "status RESUBMITTED": 164,
+    "status RESOLVED": 4498,
     "status OPEN": 160
    },
    "dollars": {
@@ -370,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T11:21:16Z",
-   "ended": "2026-11-02T11:25:20Z"
+   "started": "2026-11-02T13:22:14Z",
+   "ended": "2026-11-02T13:26:22Z"
   }
  ],
  "packages": [],
