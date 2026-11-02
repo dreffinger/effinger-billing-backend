@@ -47,10 +47,18 @@ python3 tools/mirror/mirror.py status      # what would be pushed, is the collec
 
 The page https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk ("ehpa Practice Database", formerly Claimocity Feed Monitoring) keeps
 the artifact's own document database. `tools/db/practice_db.py` turns the PHI-light files on main into documents (collections
-`feed_batches`, `feed_checks`, `billing_runs`, `era_runs`, `snapshots`, `practice`; copies of the other boards' databases under
-`artifacts/<page>/...` with an `artifact_index`), writes them as files and prints the ArtifactData batch calls; the run makes those
-calls. Documents are keyed by run stamp so nothing is ever overwritten and no version pinning is needed. Viewers read the page with
-no connector or prompt; only the owner and Claude sessions write. The old GitHub-read path is gone.
+`feed_batches`, `feed_checks`, `billing_runs`, `era_runs`, `snapshots`, `practice`), writes them as files and prints the ArtifactData
+batch calls; the run makes those calls. Documents are keyed by run stamp so nothing is ever overwritten and no version pinning is
+needed. Viewers read the page with no connector or prompt; only the owner and Claude sessions write. The old GitHub-read path is gone.
+
+The other billing and credentialing pages are copied into the same database by the daily **practice database sync**
+(`nightly/practice_db_sync_prompt_v1.txt`, a scheduled task William creates in the UI): `ArtifactData list ... out_dir` saves each
+page's collections as files, `Artifact read ... path index.html` saves the page and `tools/db/artifact_embedded.py` pulls the
+dataset a report page carries inside its HTML, then `tools/db/artifact_copy.py` packs them into `artifact_copies/<page>-<collection>-<stamp>`
+(+ `.p2..` parts over 200 KB), one `artifact_index/<page>-<stamp>` per page that changed and one `sync_runs/<stamp>` per firing.
+The register `practices/ehpa/registers/practice_db_copies.json` (ids, counts, sha256 only) is what makes it cheap: a collection whose
+content did not change is not copied again, and `--prune-plan 30` (1st of the month) deletes old copies that are no longer the newest
+of their collection. The saved out_dir files carry patient names and stay under /home/claude/unbilled - never a commit, never Drive.
 
 `phi_gate.py` exits 2 and the sync stops if an MBI, SSN, ICN, DOB, member number, token or key would leave the workspace. A "possible patient name" warning means add the name to `secrets/pseudonyms.json` (then upload that file to `workspace mirror`) and rerun. **New registry entries should not carry patient names at all** — write the AMD chart id (`patNNN`) instead; the gate is the backstop, not the plan.
 
