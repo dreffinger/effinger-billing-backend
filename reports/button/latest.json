@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-02T1719Z",
+ "stamp": "2026-11-02T1919Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41490004440",
- "started": "2026-11-02T17:19:17Z",
- "ended": "2026-11-02T17:26:06Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41508788740",
+ "started": "2026-11-02T19:19:13Z",
+ "ended": "2026-11-02T19:24:48Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 304282.24,
-   "visits": 2558,
-   "charts": 475,
+   "total": 302966.7,
+   "visits": 2552,
+   "charts": 474,
    "over_365": {
     "n": 521,
     "dollars": 20868.57
@@ -65,7 +65,7 @@
    "visits": 7783,
    "actionable": 72,
    "actionable_amt": 13443.0,
-   "asof": "2026-11-02 17:26 UTC"
+   "asof": "2026-11-02 19:24 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1307 helpers into /home/claude/unbilled",
+   "summary": "1308 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1307,
-    "registers": 1685,
+    "helpers copied": 1308,
+    "registers": 1696,
     "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T17:19:17Z",
-   "ended": "2026-11-02T17:19:18Z"
+   "started": "2026-11-02T19:19:13Z",
+   "ended": "2026-11-02T19:19:14Z"
   },
   {
    "name": "columns",
@@ -111,7 +111,7 @@
      "column": "claim inspector",
      "kind": "missing data / dx",
      "visits": 2,
-     "ids": "v19459752 v19409077"
+     "ids": "v19459831 v19409077"
     },
     {
      "column": "exclusions run 1700294",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T17:19:18Z",
-   "ended": "2026-11-02T17:21:27Z"
+   "started": "2026-11-02T19:19:14Z",
+   "ended": "2026-11-02T19:20:59Z"
   },
   {
    "name": "era",
@@ -141,8 +141,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T17:21:27Z",
-   "ended": "2026-11-02T17:21:29Z"
+   "started": "2026-11-02T19:20:59Z",
+   "ended": "2026-11-02T19:21:00Z"
   },
   {
    "name": "packages",
@@ -153,21 +153,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T17:21:29Z",
-   "ended": "2026-11-02T17:21:29Z"
+   "started": "2026-11-02T19:21:00Z",
+   "ended": "2026-11-02T19:21:00Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2558 visits on 475 charts, $304282.24 open; 521 over a year ($20868.57)",
+   "summary": "2552 visits on 474 charts, $302966.70 open; 521 over a year ($20868.57)",
    "counts": {
-    "visits": 2558,
-    "charts": 475,
+    "visits": 2552,
+    "charts": 474,
     "over 365 days": 521
    },
    "dollars": {
-    "open insurance balance": 304282.24,
+    "open insurance balance": 302966.7,
     "over 365 days": 20868.57
    },
    "lines": [
@@ -195,8 +195,8 @@
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
-     "visits": 293,
-     "dollars": 19142.41,
+     "visits": 292,
+     "dollars": 18827.41,
      "oldest_days": 1050
     },
     {
@@ -209,8 +209,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 65,
-     "dollars": 10269.73,
+     "visits": 63,
+     "dollars": 9813.73,
      "oldest_days": 1060
     },
     {
@@ -235,18 +235,18 @@
      "oldest_days": 364
     },
     {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 19,
-     "dollars": 3618.0,
-     "oldest_days": 43
-    },
-    {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 27,
-     "dollars": 3419.72,
+     "visits": 26,
+     "dollars": 3345.18,
      "oldest_days": 62
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 17,
+     "dollars": 3148.0,
+     "oldest_days": 43
     },
     {
      "carrier": "SIM01",
@@ -257,23 +257,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T17:21:29Z",
-   "ended": "2026-11-02T17:21:32Z"
+   "started": "2026-11-02T19:21:00Z",
+   "ended": "2026-11-02T19:21:02Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7783 denied visits on 835 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESUBMITTED 164, RESOLVED 4498, OPEN 160",
+   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESOLVED 4498, RESUBMITTED 164, OPEN 160",
    "counts": {
-    "charts read": 835,
+    "charts read": 834,
     "denial lines": 13194,
     "visits": 7783,
     "actionable": 72,
     "inside 12 months": 69,
     "status WRITTEN-OFF": 2961,
-    "status RESUBMITTED": 164,
     "status RESOLVED": 4498,
+    "status RESUBMITTED": 164,
     "status OPEN": 160
    },
    "dollars": {
@@ -345,8 +345,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T17:21:32Z",
-   "ended": "2026-11-02T17:26:06Z"
+   "started": "2026-11-02T19:21:02Z",
+   "ended": "2026-11-02T19:24:48Z"
   }
  ],
  "packages": [],
