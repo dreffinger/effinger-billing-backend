@@ -1,0 +1,4 @@
+# captured_calls additions - chat run 2026-11-02T0855Z (William's 11/2 board answers + cleanup)
+
+No new AdvancedMD or Stedi call shapes. Calls used (all in the registry): getdemographic, gettxhistory, getchargedetaildataicd10, updvisitwithcharges full echo (re-date, insorder), updextrainsinfo + chargerebill (freq1_visit), addinsurance (add_ins), updateinsurance (ins_update enddate / sequence), action=void class=void (void_tx.void_writeoff), addpayments (manual_post write-offs), REST PATCH /api/demographic/patients/{id} with familyupdate (DOB), Stedi 270/271 (TRICARE East 99727, precheck) and 276/277 (claim_status_sweep), GET /api/era/checks (empty), bypassclaimedits, hideunbillablevisits.
+Observation: updaterespparty on a spouse subscriber record faults -2147217398 'Another user has changed this responsible party record' on every echo shape tried (see SHARED_LESSONS).

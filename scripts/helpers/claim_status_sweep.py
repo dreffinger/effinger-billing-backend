@@ -38,19 +38,9 @@ def action(rows, errs):
 def main():
     a = sys.argv[1:]; minage = int(a[a.index("--min-age") + 1]) if "--min-age" in a else 45; mx = int(a[a.index("--max") + 1]) if "--max" in a else 100
     cars = a[a.index("--carriers") + 1].split(",") if "--carriers" in a else ["UNI20", "BCBS", "HUM01", "AET07", "SUN01", "WEL04", "CAP07", "SIM01", "CIG09", "CIG13"]
-    # --skip-answered <claimstatus json>[,<json>...] (10/6/2026): visits an earlier sweep already answered with a FINAL status (PAID / FINALIZED /
-    # DENIED / NOT ON FILE) are not asked again - only PENDING / ERROR / UNKNOWN rows and never-asked visits cost a new 277.
-    skip = set()
-    if "--skip-answered" in a:
-        for fn in a[a.index("--skip-answered") + 1].split(","):
-            j = json.load(open(fn)); recs = j.get("rows", []) if isinstance(j, dict) else j   # 10/6 1310Z: the sweep registers are {rows:[{vid, action}]}
-            for r in recs:
-                act = r.get("action") or ""
-                if act.startswith(("PAID", "FINALIZED", "DENIED", "NOT ON FILE")): skip.add(str(r.get("visitid") or r.get("vid")))
-        print("skipping %d visits already answered" % len(skip))
     amd.login_cached(); today = datetime.date.today(); stamp = today.strftime("%Y%m%d")
     unp = requests.post(era_post.API + "/claim/massrebillsearch", headers=era_post.H(), json={}, timeout=120).json()
-    keep = [v for v in unp if v["carriercode"].strip() in cars and (today - datetime.datetime.fromisoformat(v["dateofservice"]).date()).days >= minage and str(v["visitid"]) not in skip]
+    keep = [v for v in unp if v["carriercode"].strip() in cars and (today - datetime.datetime.fromisoformat(v["dateofservice"]).date()).days >= minage]
     keep.sort(key=lambda v: -v["insbalance"]); out = []; cache = {}
     for v in keep[:mx]:
         pid = v["patientid"]; car = v["carriercode"].strip(); payer = CAR2STEDI.get(car)

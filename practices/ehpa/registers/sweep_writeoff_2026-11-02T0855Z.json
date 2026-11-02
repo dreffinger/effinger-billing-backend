@@ -1,0 +1,3639 @@
+{
+ "stamp": "2026-11-02T0855Z",
+ "live": true,
+ "posted": [
+  {
+   "pid": "17477851",
+   "vid": "19455900",
+   "cid": "23367368",
+   "cpt": "99306",
+   "dos": "09/17/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 256.0,
+   "why": "paid not posted - payer UHCMA reports paid 214.51 on 2026-09-29 chk 26275B1000193111",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:39:53\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477851",
+   "vid": "19455900",
+   "cid": "23367369",
+   "cpt": "99497",
+   "dos": "09/17/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 133.0,
+   "why": "paid not posted - payer UHCMA reports paid 214.51 on 2026-09-29 chk 26275B1000193111",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:39:54\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "25160",
+   "vid": "19417357",
+   "cid": "23321063",
+   "cpt": "99487",
+   "dos": "09/21/2025",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 206.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:39:57\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "25160",
+   "vid": "19417357",
+   "cid": "23321064",
+   "cpt": "99489",
+   "dos": "09/21/2025",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 109.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:39:59\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477204",
+   "vid": "19453491",
+   "cid": "23364188",
+   "cpt": "99344",
+   "dos": "08/31/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 300.0,
+   "why": "payer finalized 585 denied/non-covered: internal review/audit. pending/payer administrative/system hold. denied charge o",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:01\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477204",
+   "vid": "19455929",
+   "cid": "23367398",
+   "cpt": "99344",
+   "dos": "09/16/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 300.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:03\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477797",
+   "vid": "19455029",
+   "cid": "23366178",
+   "cpt": "99223",
+   "dos": "09/15/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 169.2,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid.",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:05\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477797",
+   "vid": "19455029",
+   "cid": "23366179",
+   "cpt": "99497",
+   "dos": "09/15/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 66.07,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid.",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:07\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "24208",
+   "vid": "19430738",
+   "cid": "23337214",
+   "cpt": "99487",
+   "dos": "01/27/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 135.98,
+   "why": "paid not posted - payer UHCMA reports paid 0;107.91 on 2026-02-02;2026-09-04;2026-09-07;2026-09-10 chk 26042B1000278771;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:10\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "24208",
+   "vid": "19430738",
+   "cid": "23337215",
+   "cpt": "99489",
+   "dos": "01/27/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 71.11,
+   "why": "paid not posted - payer UHCMA reports paid 0;107.91 on 2026-02-02;2026-09-04;2026-09-07;2026-09-10 chk 26042B1000278771;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:12\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21020",
+   "vid": "19430727",
+   "cid": "23337192",
+   "cpt": "99487",
+   "dos": "01/27/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 135.98,
+   "why": "paid not posted - payer UHCMA reports paid 0;107.91 on 2026-02-02;2026-09-04;2026-09-07;2026-09-10 chk 26042B1000278771;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:15\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21020",
+   "vid": "19430727",
+   "cid": "23337193",
+   "cpt": "99489",
+   "dos": "01/27/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 71.11,
+   "why": "paid not posted - payer UHCMA reports paid 0;107.91 on 2026-02-02;2026-09-04;2026-09-07;2026-09-10 chk 26042B1000278771;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:16\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439702",
+   "cid": "23347346",
+   "cpt": "99239",
+   "dos": "04/21/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 163.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:19\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473689",
+   "vid": "19422705",
+   "cid": "23328034",
+   "cpt": "99306",
+   "dos": "10/22/2025",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 84.17,
+   "why": "paid not posted - payer UHCMA reports paid 0;228.85 on 2025-11-15;2026-05-27;2026-09-04;2026-09-09;2026-09-26 chk 26149B1000135895;26252B1000426598;26254B1000243083;26273B1000304719;280637173",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:22\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473689",
+   "vid": "19422705",
+   "cid": "23328035",
+   "cpt": "99497",
+   "dos": "10/22/2025",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 75.98,
+   "why": "paid not posted - payer UHCMA reports paid 0;228.85 on 2025-11-15;2026-05-27;2026-09-04;2026-09-09;2026-09-26 chk 26149B1000135895;26252B1000426598;26254B1000243083;26273B1000304719;280637173",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:23\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437843",
+   "cid": "23344964",
+   "cpt": "99233",
+   "dos": "04/07/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:25\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437926",
+   "cid": "23345028",
+   "cpt": "99233",
+   "dos": "04/08/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:27\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19437951",
+   "cid": "23345053",
+   "cpt": "99233",
+   "dos": "04/09/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:28\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438061",
+   "cid": "23345152",
+   "cpt": "99233",
+   "dos": "04/10/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:30\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438356",
+   "cid": "23345441",
+   "cpt": "99233",
+   "dos": "04/12/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:32\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438357",
+   "cid": "23345443",
+   "cpt": "99233",
+   "dos": "04/11/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:34\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438358",
+   "cid": "23345444",
+   "cpt": "99233",
+   "dos": "04/13/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:35\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438701",
+   "cid": "23345967",
+   "cpt": "99233",
+   "dos": "04/14/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:37\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438903",
+   "cid": "23346194",
+   "cpt": "99233",
+   "dos": "04/15/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:39\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19438993",
+   "cid": "23346339",
+   "cpt": "99233",
+   "dos": "04/18/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:41\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439010",
+   "cid": "23346357",
+   "cpt": "99233",
+   "dos": "04/17/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:42\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439022",
+   "cid": "23346369",
+   "cpt": "99233",
+   "dos": "04/16/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:44\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439233",
+   "cid": "23346559",
+   "cpt": "99233",
+   "dos": "04/19/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:46\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19439271",
+   "cid": "23346604",
+   "cpt": "99233",
+   "dos": "04/20/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:47\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19455322",
+   "cid": "23366566",
+   "cpt": "99316",
+   "dos": "03/04/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 160.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:49\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21020",
+   "vid": "19453816",
+   "cid": "23364725",
+   "cpt": "99309",
+   "dos": "09/01/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: claim/line has been paid. finalized/revised - adjudication information has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:51\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "48163",
+   "vid": "19455310",
+   "cid": "23366542",
+   "cpt": "99309",
+   "dos": "03/02/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:54\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "48163",
+   "vid": "19455311",
+   "cid": "23366544",
+   "cpt": "99309",
+   "dos": "04/09/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:40:55\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "48163",
+   "vid": "19455312",
+   "cid": "23366546",
+   "cpt": "99309",
+   "dos": "05/11/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:57\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "48163",
+   "vid": "19455313",
+   "cid": "23366548",
+   "cpt": "99309",
+   "dos": "06/09/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:40:59\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "48163",
+   "vid": "19455315",
+   "cid": "23366552",
+   "cpt": "99309",
+   "dos": "08/11/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 141.0,
+   "why": "paid not posted - payer UHCMA reports paid 97.59 on 2026-09-29 chk 26275B1000193111",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:01\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "25160",
+   "vid": "19422654",
+   "cid": "23327980",
+   "cpt": "99309",
+   "dos": "11/05/2025",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 141.0,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:03\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "24208",
+   "vid": "19453825",
+   "cid": "23364734",
+   "cpt": "99308",
+   "dos": "09/01/2026",
+   "carrier": "UHCMA",
+   "code": "WONCS",
+   "amt": 107.0,
+   "why": "payer finalized 585 denied/non-covered: claim/line has been paid. finalized/revised - adjudication information has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:04\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477797",
+   "vid": "19455025",
+   "cid": "23366174",
+   "cpt": "99233",
+   "dos": "09/16/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 86.94,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. clai",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:06\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17477797",
+   "vid": "19455046",
+   "cid": "23366198",
+   "cpt": "99233",
+   "dos": "09/17/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 86.94,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. clai",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:08\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17474288",
+   "vid": "19419296",
+   "cid": "23324239",
+   "cpt": "99232",
+   "dos": "10/08/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 50.58,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:10\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473066",
+   "vid": "19416494",
+   "cid": "23320157",
+   "cpt": "99232",
+   "dos": "09/13/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 50.58,
+   "why": "paid not posted - payer UNI20 reports paid 0;60.42 on 2025-09-18;2025-09-19;2026-09-09;2026-09-12 chk 26254B1000243083;26259B1000319208;280628694",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:13\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473066",
+   "vid": "19416588",
+   "cid": "23320262",
+   "cpt": "99232",
+   "dos": "09/14/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 50.58,
+   "why": "paid not posted - payer UNI20 reports paid 0;60.42 on 2025-09-18;2025-09-19;2026-09-09;2026-09-12 chk 26254B1000243083;26259B1000319208;280628694",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:15\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473571",
+   "vid": "19415865",
+   "cid": "23319415",
+   "cpt": "99306",
+   "dos": "09/05/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 35.07,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:18\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473571",
+   "vid": "19415865",
+   "cid": "23319416",
+   "cpt": "99497",
+   "dos": "09/05/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 14.54,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:20\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20874",
+   "vid": "19391052",
+   "cid": "22462793",
+   "cpt": "99232",
+   "dos": "09/29/2024",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 49.46,
+   "why": "paid not posted - payer BCBS reports paid 0;15.7;49.45 on 2024-10-16;2024-10-31;2024-11-04;2025-04-21 chk 423163174;423175105;423322835",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:23\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20874",
+   "vid": "19391537",
+   "cid": "22463369",
+   "cpt": "99232",
+   "dos": "10/09/2024",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 49.46,
+   "why": "paid not posted - payer BCBS reports paid 0;15.7 on 2024-10-16;2024-10-31;2024-11-04;2024-11-05;2025-04-21;2025-04-24 chk 2504301654;423163174;423175105;423322835",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:24\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20874",
+   "vid": "19390974",
+   "cid": "22462497",
+   "cpt": "99223",
+   "dos": "09/26/2024",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 34.48,
+   "why": "paid not posted - payer BCBS reports paid 0;15.7;49.45 on 2024-10-16;2024-10-31;2024-11-04;2025-04-21 chk 423163174;423175105;423322835",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:26\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "20874",
+   "vid": "19390974",
+   "cid": "22462498",
+   "cpt": "99497",
+   "dos": "09/26/2024",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 14.97,
+   "why": "paid not posted - payer BCBS reports paid 0;15.7;49.45 on 2024-10-16;2024-10-31;2024-11-04;2025-04-21 chk 423163174;423175105;423322835",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:28\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19416744",
+   "cid": "23320392",
+   "cpt": "99223",
+   "dos": "09/14/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 33.75,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:31\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19416744",
+   "cid": "23320393",
+   "cpt": "99497",
+   "dos": "09/14/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 14.54,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:32\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19444531",
+   "cid": "23353219",
+   "cpt": "99306",
+   "dos": "06/05/2026",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 33.1,
+   "why": "payer says claim/line already paid, no remit posted: special handling required at payer site. pending: adjudication/details - this is",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:35\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19444531",
+   "cid": "23353220",
+   "cpt": "99497",
+   "dos": "06/05/2026",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 13.35,
+   "why": "payer says claim/line already paid, no remit posted: special handling required at payer site. pending: adjudication/details - this is",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:37\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19435656",
+   "cid": "23342674",
+   "cpt": "99309",
+   "dos": "03/11/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 43.41,
+   "why": "paid not posted - payer UNI20 reports paid 0;97.59 on 2026-06-29;2026-09-10 chk V5475692",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:41\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19436802",
+   "cid": "23343850",
+   "cpt": "99309",
+   "dos": "03/17/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 43.41,
+   "why": "paid not posted - payer UNI20 reports paid 0;97.59 on 2026-06-29;2026-09-10 chk V5475692",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:43\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19436803",
+   "cid": "23343851",
+   "cpt": "99309",
+   "dos": "03/24/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 43.41,
+   "why": "paid not posted - payer UNI20 reports paid 0;97.59 on 2026-06-29;2026-09-10 chk V5475692",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:45\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472397",
+   "vid": "19401668",
+   "cid": "22475879",
+   "cpt": "99308",
+   "dos": "03/03/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 21.24,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:47\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472397",
+   "vid": "19401668",
+   "cid": "22475880",
+   "cpt": "99497",
+   "dos": "03/03/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 21.64,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:49\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473689",
+   "vid": "19422704",
+   "cid": "23328033",
+   "cpt": "99309",
+   "dos": "11/05/2025",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 39.23,
+   "why": "paid not posted - payer UHCMA reports paid 0;101.77 on 2025-11-13;2026-09-04;2026-09-24 chk 26252B1000426598;26270B1000120934;280637173",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:50\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17474798",
+   "vid": "19424927",
+   "cid": "23330835",
+   "cpt": "99309",
+   "dos": "11/25/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 39.23,
+   "why": "paid not posted - payer UNI20 reports paid 0;101.77 on 2026-02-05;2026-09-04;2026-09-07 chk 26042B1000278771;26253B1000149568",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:41:53\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17474798",
+   "vid": "19425346",
+   "cid": "23331338",
+   "cpt": "99309",
+   "dos": "12/03/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 39.23,
+   "why": "paid not posted - payer UNI20 reports paid 0;101.77 on 2026-02-05;2026-09-04;2026-09-07 chk 26042B1000278771;26253B1000149568",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:55\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472977",
+   "vid": "19429866",
+   "cid": "23336339",
+   "cpt": "99309",
+   "dos": "01/16/2026",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 39.23,
+   "why": "paid not posted - payer UNI20 reports paid 0;101.77 on 2026-01-29;2026-09-04;2026-09-07;2026-09-10 chk 26035B1000270050;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:41:57\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21263",
+   "vid": "19415102",
+   "cid": "23318416",
+   "cpt": "99307",
+   "dos": "08/05/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 37.46,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:00\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21263",
+   "vid": "19417134",
+   "cid": "23320746",
+   "cpt": "99307",
+   "dos": "09/02/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 37.46,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:02\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "21020",
+   "vid": "19429022",
+   "cid": "23335533",
+   "cpt": "99308",
+   "dos": "01/05/2026",
+   "carrier": "UHCMA",
+   "code": "WOINSBANK",
+   "amt": 37.04,
+   "why": "paid not posted - payer UHCMA reports paid 0;69.96 on 2026-01-19;2026-09-04;2026-09-07;2026-09-10 chk 26028B1000291434;26252B1000426598;26253B1000149568;26256B1000176953",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:03\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17474798",
+   "vid": "19426368",
+   "cid": "23332403",
+   "cpt": "99308",
+   "dos": "12/10/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 37.04,
+   "why": "paid not posted - payer UNI20 reports paid 0;69.96 on 2026-02-05;2026-09-04;2026-09-07 chk 26042B1000278771;26253B1000149568",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:06\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17474798",
+   "vid": "19427538",
+   "cid": "23334030",
+   "cpt": "99316",
+   "dos": "12/15/2025",
+   "carrier": "UNI20",
+   "code": "WOINSBANK",
+   "amt": 36.66,
+   "why": "paid not posted - payer UNI20 reports paid 0;123.34 on 2026-02-05;2026-09-04;2026-09-07 chk 26042B1000278771;26253B1000149568",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:08\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475063",
+   "vid": "19427804",
+   "cid": "23334393",
+   "cpt": "99344",
+   "dos": "12/30/2025",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 23.27,
+   "why": "paid not posted - payer BCBS reports paid 2.35 on 2026-09-28 chk 423809550",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:10\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475063",
+   "vid": "19427804",
+   "cid": "23334394",
+   "cpt": "99497",
+   "dos": "12/30/2025",
+   "carrier": "BCBS",
+   "code": "WOINSBANK",
+   "amt": 11.15,
+   "why": "paid not posted - payer BCBS reports paid 2.35 on 2026-09-28 chk 423809550",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:12\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17475321",
+   "vid": "19430868",
+   "cid": "23337457",
+   "cpt": "99223",
+   "dos": "01/26/2026",
+   "carrier": "HUM01",
+   "code": "WOINSBANK",
+   "amt": 31.94,
+   "why": "paid not posted - payer HUM01 reports paid 0;14.38;31.94 on 2026-02-20;2026-02-21;2026-10-15 chk 000000030563;000000079543;NO-PAY-202610150",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:14\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473477",
+   "vid": "19452587",
+   "cid": "23362901",
+   "cpt": "99487",
+   "dos": "08/23/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 28.6,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:18\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472397",
+   "vid": "19398216",
+   "cid": "22471904",
+   "cpt": "99232",
+   "dos": "01/01/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 26.97,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:20\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472397",
+   "vid": "19398278",
+   "cid": "22472015",
+   "cpt": "99232",
+   "dos": "01/02/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 26.97,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:21\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19408928",
+   "cid": "22484161",
+   "cpt": "99487",
+   "dos": "07/08/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 17.5,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:24\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19408928",
+   "cid": "22484162",
+   "cpt": "99489",
+   "dos": "07/08/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 9.47,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:25\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19413622",
+   "cid": "23316689",
+   "cpt": "99487",
+   "dos": "08/17/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 17.5,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:27\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19413622",
+   "cid": "23316690",
+   "cpt": "99489",
+   "dos": "08/17/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 9.47,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:29\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19421072",
+   "cid": "23326344",
+   "cpt": "99487",
+   "dos": "10/25/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 17.5,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:30\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19421072",
+   "cid": "23326345",
+   "cpt": "99489",
+   "dos": "10/25/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 9.47,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:32\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19423677",
+   "cid": "23329359",
+   "cpt": "99487",
+   "dos": "11/15/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 17.5,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:34\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19423677",
+   "cid": "23329360",
+   "cpt": "99489",
+   "dos": "11/15/2025",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 9.47,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:36\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19408975",
+   "cid": "22484252",
+   "cpt": "99487",
+   "dos": "07/08/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 17.5,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:38\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19408975",
+   "cid": "22484253",
+   "cpt": "99489",
+   "dos": "07/08/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 9.47,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:39\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19448871",
+   "cid": "23358347",
+   "cpt": "99487",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:42\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472396",
+   "vid": "19448871",
+   "cid": "23358348",
+   "cpt": "99489",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:44\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19430778",
+   "cid": "23337294",
+   "cpt": "99487",
+   "dos": "01/27/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:45\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19430778",
+   "cid": "23337295",
+   "cpt": "99489",
+   "dos": "01/27/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:47\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19438606",
+   "cid": "23345805",
+   "cpt": "99487",
+   "dos": "03/20/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:49\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19438606",
+   "cid": "23345806",
+   "cpt": "99489",
+   "dos": "03/20/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:50\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19442450",
+   "cid": "23350556",
+   "cpt": "99487",
+   "dos": "05/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINSBANK",
+   "amt": 16.14,
+   "why": "paid not posted - payer HUM01 reports paid 0;16.93 on 2026-05-27;2026-09-21 chk 200700340260922;NO-PAY-202605270",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:52\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19442450",
+   "cid": "23350557",
+   "cpt": "99489",
+   "dos": "05/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINSBANK",
+   "amt": 8.92,
+   "why": "paid not posted - payer HUM01 reports paid 0;16.93 on 2026-05-27;2026-09-21 chk 200700340260922;NO-PAY-202605270",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:42:53\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19448878",
+   "cid": "23358361",
+   "cpt": "99487",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:55\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19448878",
+   "cid": "23358362",
+   "cpt": "99489",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:57\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19452357",
+   "cid": "23362554",
+   "cpt": "99487",
+   "dos": "08/22/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:42:58\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17469466",
+   "vid": "19452357",
+   "cid": "23362555",
+   "cpt": "99489",
+   "dos": "08/22/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:00\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "45024",
+   "vid": "19448931",
+   "cid": "23358465",
+   "cpt": "99487",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:03\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "45024",
+   "vid": "19448931",
+   "cid": "23358466",
+   "cpt": "99489",
+   "dos": "07/17/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:05\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "45024",
+   "vid": "19452325",
+   "cid": "23362492",
+   "cpt": "99487",
+   "dos": "08/22/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 16.14,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:07\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "45024",
+   "vid": "19452325",
+   "cid": "23362493",
+   "cpt": "99489",
+   "dos": "08/22/2026",
+   "carrier": "HUM01",
+   "code": "WOINS",
+   "amt": 8.92,
+   "why": "payer 107 processed per contract: processed according to contract provisions (contract refers to provisions that e",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:08\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19448902",
+   "cid": "23358409",
+   "cpt": "99487",
+   "dos": "07/17/2026",
+   "carrier": "SIM01",
+   "code": "WONCS",
+   "amt": 16.14,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized - the claim/encounter has complet",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:11\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19448902",
+   "cid": "23358410",
+   "cpt": "99489",
+   "dos": "07/17/2026",
+   "carrier": "SIM01",
+   "code": "WONCS",
+   "amt": 8.92,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized - the claim/encounter has complet",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:13\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19452391",
+   "cid": "23362618",
+   "cpt": "99487",
+   "dos": "08/22/2026",
+   "carrier": "SIM01",
+   "code": "WONCS",
+   "amt": 16.14,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized - the claim/encounter has complet",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:15\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472849",
+   "vid": "19452391",
+   "cid": "23362619",
+   "cpt": "99489",
+   "dos": "08/22/2026",
+   "carrier": "SIM01",
+   "code": "WONCS",
+   "amt": 8.92,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized - the claim/encounter has complet",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:17\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17473571",
+   "vid": "19429855",
+   "cid": "23336328",
+   "cpt": "99310",
+   "dos": "01/12/2026",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 24.15,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:18\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19416743",
+   "cid": "23320391",
+   "cpt": "99233",
+   "dos": "09/15/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 22.92,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:20\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17472910",
+   "vid": "19416882",
+   "cid": "23320549",
+   "cpt": "99233",
+   "dos": "09/16/2025",
+   "carrier": "UNI20",
+   "code": "WONCS",
+   "amt": 22.92,
+   "why": "payer finalized 585 denied/non-covered: denied charge or non-covered charge. finalized/denial - the claim/line has been ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:22\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476358",
+   "vid": "19452324",
+   "cid": "23362491",
+   "cpt": "99233",
+   "dos": "08/21/2026",
+   "carrier": "SUN01",
+   "code": "WOINSBANK",
+   "amt": 21.8,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. clai",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:25\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476358",
+   "vid": "19452800",
+   "cid": "23363176",
+   "cpt": "99233",
+   "dos": "08/25/2026",
+   "carrier": "SUN01",
+   "code": "WOINSBANK",
+   "amt": 21.8,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. for ",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:27\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476358",
+   "vid": "19452814",
+   "cid": "23363190",
+   "cpt": "99233",
+   "dos": "08/24/2026",
+   "carrier": "SUN01",
+   "code": "WOINSBANK",
+   "amt": 21.8,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. clai",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:43:28\"><Results success=\"1\" paym"
+  },
+  {
+   "pid": "17476358",
+   "vid": "19452953",
+   "cid": "23363343",
+   "cpt": "99233",
+   "dos": "08/23/2026",
+   "carrier": "SUN01",
+   "code": "WOINSBANK",
+   "amt": 21.8,
+   "why": "payer says claim/line already paid, no remit posted: claim/line has been paid. finalized/payment - the claim/line has been paid. clai",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:43:30\"><Results success=\"1\" paym"
+  }
+ ],
+ "held": [
+  {
+   "pid": "17475338",
+   "vid": "19443019",
+   "carrier": "BCBS",
+   "bal": 443.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17471832",
+   "vid": "19427723",
+   "carrier": "BCBS",
+   "bal": 443.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19437920",
+   "carrier": "UNI20",
+   "bal": 443.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475362",
+   "vid": "19431393",
+   "carrier": "BCBS",
+   "bal": 433.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476438",
+   "vid": "19441388",
+   "carrier": "BCBS",
+   "bal": 433.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19427050",
+   "carrier": "BCBS",
+   "bal": 389.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "25558",
+   "vid": "19443034",
+   "carrier": "UHCMA",
+   "bal": 389.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17476912",
+   "vid": "19445941",
+   "carrier": "WEL04",
+   "bal": 389.0,
+   "why": "no rule for: for more detailed information,see remittance advice. finalized - the claim/encounter has completed t"
+  },
+  {
+   "pid": "23083",
+   "vid": "19443011",
+   "carrier": "WEL04",
+   "bal": 389.0,
+   "why": "no rule for: for more detailed information,see remittance advice. finalized - the claim/encounter has completed t"
+  },
+  {
+   "pid": "21577",
+   "vid": "19389388",
+   "carrier": "BCBS",
+   "bal": 372.07,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475362",
+   "vid": "19433863",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17475362",
+   "vid": "19442543",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19452451",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473308",
+   "vid": "19427219",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473308",
+   "vid": "19430674",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473308",
+   "vid": "19433887",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "48449",
+   "vid": "19420993",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476503",
+   "vid": "19452589",
+   "carrier": "BCBS",
+   "bal": 315.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "46678",
+   "vid": "19442338",
+   "carrier": "CAP07",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "48008",
+   "vid": "19423586",
+   "carrier": "CAP07",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19446224",
+   "carrier": "TRI00",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "25558",
+   "vid": "19427577",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19430717",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19433912",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19438537",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19439563",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19442427",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19446195",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19448847",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19452438",
+   "carrier": "UHCMA",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19417390",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19420985",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19424662",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "12232248",
+   "vid": "19427156",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "20336",
+   "vid": "19416179",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "20336",
+   "vid": "19420949",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19427225",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19430609",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19433941",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19438570",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19439595",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19448753",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19452596",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19430668",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19433880",
+   "carrier": "UNI20",
+   "bal": 315.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19448259",
+   "carrier": "AET07",
+   "bal": 310.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17471204",
+   "vid": "19435174",
+   "carrier": "AET07",
+   "bal": 310.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477062",
+   "vid": "19454442",
+   "carrier": "BCBS",
+   "bal": 310.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474713",
+   "vid": "19424006",
+   "carrier": "BCBS",
+   "bal": 310.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17475407",
+   "vid": "19431787",
+   "carrier": "CAP07",
+   "bal": 310.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477572",
+   "vid": "19453098",
+   "carrier": "CAP07",
+   "bal": 310.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475908",
+   "vid": "19436456",
+   "carrier": "TRI00",
+   "bal": 310.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474798",
+   "vid": "19459520",
+   "carrier": "SUN01",
+   "bal": 300.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19431657",
+   "carrier": "TRI00",
+   "bal": 300.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17478222",
+   "vid": "19459519",
+   "carrier": "UNI20",
+   "bal": 300.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19450211",
+   "carrier": "UNI20",
+   "bal": 300.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455304",
+   "carrier": "WEL04",
+   "bal": 256.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477375",
+   "vid": "19455316",
+   "carrier": "WEL04",
+   "bal": 256.0,
+   "why": "no rule for: duplicate of a previously processed claim/line. finalized/denial - the claim/line has been denied."
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390723",
+   "carrier": "AET12",
+   "bal": 249.19,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365043",
+   "carrier": "UNI20",
+   "bal": 246.33,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19370971",
+   "carrier": "UNI20",
+   "bal": 246.33,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471138",
+   "vid": "19391503",
+   "carrier": "AET12",
+   "bal": 218.77,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473245",
+   "vid": "19448870",
+   "carrier": "BCBS",
+   "bal": 216.77,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "46250",
+   "vid": "14013956",
+   "carrier": "UNI20",
+   "bal": 211.44,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474434",
+   "vid": "19420783",
+   "carrier": "CAP07",
+   "bal": 210.95,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "48449",
+   "vid": "19442321",
+   "carrier": "BCBS",
+   "bal": 206.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "48449",
+   "vid": "19452567",
+   "carrier": "BCBS",
+   "bal": 206.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "46678",
+   "vid": "19452574",
+   "carrier": "CAP07",
+   "bal": 206.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474083",
+   "vid": "19434037",
+   "carrier": "CAP07",
+   "bal": 206.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19452583",
+   "carrier": "TRI00",
+   "bal": 206.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "25558",
+   "vid": "19423617",
+   "carrier": "UHCMA",
+   "bal": 206.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "46678",
+   "vid": "19448386",
+   "carrier": "CAP07",
+   "bal": 204.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19448596",
+   "carrier": "TRI00",
+   "bal": 204.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "25558",
+   "vid": "19448508",
+   "carrier": "UHCMA",
+   "bal": 204.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17473799",
+   "vid": "19448476",
+   "carrier": "UNI20",
+   "bal": 204.0,
+   "why": "UNKNOWN - review"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19448606",
+   "carrier": "UNI20",
+   "bal": 204.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17477777",
+   "vid": "19454905",
+   "carrier": "BCBS",
+   "bal": 200.7,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17475392",
+   "vid": "19445829",
+   "carrier": "TRI00",
+   "bal": 198.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476748",
+   "vid": "19452683",
+   "carrier": "UNI20",
+   "bal": 198.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19433404",
+   "carrier": "UNI20",
+   "bal": 198.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19438955",
+   "carrier": "UNI20",
+   "bal": 198.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19438956",
+   "carrier": "UNI20",
+   "bal": 198.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "12179690",
+   "vid": "19455317",
+   "carrier": "UNI20",
+   "bal": 198.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17469033",
+   "vid": "19362850",
+   "carrier": "UNI20",
+   "bal": 196.67,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "25710",
+   "vid": "19432733",
+   "carrier": "BCBS",
+   "bal": 184.8,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17471204",
+   "vid": "19431511",
+   "carrier": "AET07",
+   "bal": 169.2,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471204",
+   "vid": "19435175",
+   "carrier": "AET07",
+   "bal": 163.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19438063",
+   "carrier": "UNI20",
+   "bal": 163.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19437932",
+   "carrier": "UNI20",
+   "bal": 160.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473065",
+   "vid": "19437956",
+   "carrier": "UNI20",
+   "bal": 160.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471138",
+   "vid": "19393287",
+   "carrier": "AET12",
+   "bal": 153.12,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17474434",
+   "vid": "19420782",
+   "carrier": "CAP07",
+   "bal": 143.23,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19452690",
+   "carrier": "BCBS",
+   "bal": 141.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19453362",
+   "carrier": "BCBS",
+   "bal": 141.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "25558",
+   "vid": "19422673",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19426937",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19428136",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19432987",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19435323",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19437732",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19444991",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19448714",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19451204",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25558",
+   "vid": "19453808",
+   "carrier": "UHCMA",
+   "bal": 141.0,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "20336",
+   "vid": "19418991",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19429014",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19432501",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19435216",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19437725",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474258",
+   "vid": "19419622",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474258",
+   "vid": "19422181",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19455323",
+   "carrier": "UNI20",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455305",
+   "carrier": "WEL04",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455306",
+   "carrier": "WEL04",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455307",
+   "carrier": "WEL04",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455308",
+   "carrier": "WEL04",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477039",
+   "vid": "19455309",
+   "carrier": "WEL04",
+   "bal": 141.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19403896",
+   "carrier": "BCBS",
+   "bal": 137.38,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19403945",
+   "carrier": "WEL04",
+   "bal": 137.38,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471795",
+   "vid": "19386697",
+   "carrier": "BCBS",
+   "bal": 116.53,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19448592",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19448627",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19448967",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19448986",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19449065",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17471273",
+   "vid": "19449321",
+   "carrier": "AET07",
+   "bal": 111.0,
+   "why": "AET 20 inside 6 months - hold"
+  },
+  {
+   "pid": "17477062",
+   "vid": "19454441",
+   "carrier": "BCBS",
+   "bal": 111.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474713",
+   "vid": "19424038",
+   "carrier": "BCBS",
+   "bal": 111.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17475407",
+   "vid": "19431884",
+   "carrier": "CAP07",
+   "bal": 111.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477572",
+   "vid": "19453097",
+   "carrier": "CAP07",
+   "bal": 111.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477572",
+   "vid": "19453099",
+   "carrier": "CAP07",
+   "bal": 111.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475908",
+   "vid": "19436537",
+   "carrier": "TRI00",
+   "bal": 111.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19452691",
+   "carrier": "BCBS",
+   "bal": 107.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476544",
+   "vid": "19453821",
+   "carrier": "BCBS",
+   "bal": 107.0,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "21489",
+   "vid": "19455357",
+   "carrier": "SUN01",
+   "bal": 107.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "20336",
+   "vid": "19422683",
+   "carrier": "UNI20",
+   "bal": 107.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473422",
+   "vid": "19427018",
+   "carrier": "UNI20",
+   "bal": 107.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19455319",
+   "carrier": "WEL04",
+   "bal": 107.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472874",
+   "vid": "19455320",
+   "carrier": "WEL04",
+   "bal": 107.0,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "46354",
+   "vid": "19378537",
+   "carrier": "BCBS",
+   "bal": 103.73,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17468921",
+   "vid": "19374885",
+   "carrier": "HUM01",
+   "bal": 99.51,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469033",
+   "vid": "19362820",
+   "carrier": "UNI20",
+   "bal": 94.18,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469033",
+   "vid": "19362837",
+   "carrier": "UNI20",
+   "bal": 94.18,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19452564",
+   "carrier": "BCBS",
+   "bal": 93.91,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471174",
+   "vid": "19442540",
+   "carrier": "UNI20",
+   "bal": 93.91,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "12233791",
+   "vid": "19365297",
+   "carrier": "UHCMA",
+   "bal": 90.4,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471111",
+   "vid": "19375415",
+   "carrier": "UNI20",
+   "bal": 87.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471695",
+   "vid": "19399581",
+   "carrier": "CAP07",
+   "bal": 86.5,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471695",
+   "vid": "19399789",
+   "carrier": "CAP07",
+   "bal": 86.5,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472128",
+   "vid": "19389655",
+   "carrier": "CAP07",
+   "bal": 76.93,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472128",
+   "vid": "19390064",
+   "carrier": "CAP07",
+   "bal": 76.93,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472128",
+   "vid": "19390065",
+   "carrier": "CAP07",
+   "bal": 76.93,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472128",
+   "vid": "19390066",
+   "carrier": "CAP07",
+   "bal": 76.93,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19447739",
+   "carrier": "BCBS",
+   "bal": 74.64,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19450195",
+   "carrier": "BCBS",
+   "bal": 74.64,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19451554",
+   "carrier": "BCBS",
+   "bal": 74.64,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19453351",
+   "carrier": "BCBS",
+   "bal": 74.64,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430108",
+   "carrier": "BCBS",
+   "bal": 74.54,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19450730",
+   "carrier": "BCBS",
+   "bal": 74.54,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19450835",
+   "carrier": "BCBS",
+   "bal": 74.54,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19450850",
+   "carrier": "BCBS",
+   "bal": 74.54,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "12234780",
+   "vid": "19365398",
+   "carrier": "UHCMA",
+   "bal": 72.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477777",
+   "vid": "19454919",
+   "carrier": "BCBS",
+   "bal": 71.66,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19448487",
+   "carrier": "BCBS",
+   "bal": 69.99,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17471968",
+   "vid": "19448695",
+   "carrier": "BCBS",
+   "bal": 69.99,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365003",
+   "carrier": "UNI20",
+   "bal": 65.82,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365028",
+   "carrier": "UNI20",
+   "bal": 65.82,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365118",
+   "carrier": "UNI20",
+   "bal": 65.82,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365221",
+   "carrier": "UNI20",
+   "bal": 65.82,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19365286",
+   "carrier": "UNI20",
+   "bal": 65.82,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471138",
+   "vid": "19391718",
+   "carrier": "AET12",
+   "bal": 65.2,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17472700",
+   "vid": "19398259",
+   "carrier": "UNI20",
+   "bal": 61.55,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472700",
+   "vid": "19398274",
+   "carrier": "UNI20",
+   "bal": 61.55,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45011",
+   "vid": "19398675",
+   "carrier": "CAP07",
+   "bal": 61.34,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471204",
+   "vid": "19431654",
+   "carrier": "AET07",
+   "bal": 60.84,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451288",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451318",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451360",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451391",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451474",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451587",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451899",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451909",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17477267",
+   "vid": "19451919",
+   "carrier": "BCBS",
+   "bal": 54.63,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "46253",
+   "vid": "32392",
+   "carrier": "AET07",
+   "bal": 53.75,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19401011",
+   "carrier": "BCBS",
+   "bal": 50.58,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402497",
+   "carrier": "BCBS",
+   "bal": 50.58,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402527",
+   "carrier": "BCBS",
+   "bal": 50.58,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402571",
+   "carrier": "BCBS",
+   "bal": 50.58,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402572",
+   "carrier": "BCBS",
+   "bal": 50.58,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473501",
+   "vid": "19442733",
+   "carrier": "BCBS",
+   "bal": 49.91,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473501",
+   "vid": "19442953",
+   "carrier": "BCBS",
+   "bal": 49.91,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473520",
+   "vid": "19412418",
+   "carrier": "AET12",
+   "bal": 49.61,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390645",
+   "carrier": "AET12",
+   "bal": 49.46,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390680",
+   "carrier": "AET12",
+   "bal": 49.46,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390720",
+   "carrier": "AET12",
+   "bal": 49.46,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390721",
+   "carrier": "AET12",
+   "bal": 49.46,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471138",
+   "vid": "19390722",
+   "carrier": "AET12",
+   "bal": 49.46,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17471979",
+   "vid": "19387595",
+   "carrier": "BCBS",
+   "bal": 49.45,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19396895",
+   "carrier": "BCBS",
+   "bal": 49.45,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19370156",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19370183",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19370929",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19370958",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19372497",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19372509",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19372523",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469067",
+   "vid": "19372541",
+   "carrier": "UNI20",
+   "bal": 48.39,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19400005",
+   "carrier": "BCBS",
+   "bal": 48.29,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402079",
+   "carrier": "BCBS",
+   "bal": 48.29,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472046",
+   "vid": "19400002",
+   "carrier": "BCBS",
+   "bal": 48.29,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472636",
+   "vid": "19401536",
+   "carrier": "UNI20",
+   "bal": 48.29,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476458",
+   "vid": "19445002",
+   "carrier": "CHA03",
+   "bal": 46.45,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473476",
+   "vid": "19441279",
+   "carrier": "BCBS",
+   "bal": 45.29,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19447146",
+   "carrier": "BCBS",
+   "bal": 45.29,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471968",
+   "vid": "19431880",
+   "carrier": "BCBS",
+   "bal": 45.29,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17476458",
+   "vid": "19441644",
+   "carrier": "CHA03",
+   "bal": 45.29,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17476458",
+   "vid": "19452662",
+   "carrier": "CHA03",
+   "bal": 44.09,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "23391",
+   "vid": "19369897",
+   "carrier": "BCBS",
+   "bal": 43.88,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19393947",
+   "carrier": "BCBS",
+   "bal": 43.43,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19399981",
+   "carrier": "BCBS",
+   "bal": 42.17,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19402906",
+   "carrier": "BCBS",
+   "bal": 42.17,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17472046",
+   "vid": "19388473",
+   "carrier": "BCBS",
+   "bal": 34.48,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474208",
+   "vid": "19418457",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473362",
+   "vid": "19407003",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473520",
+   "vid": "19409553",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473518",
+   "vid": "19409551",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473853",
+   "vid": "19414705",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "12233544",
+   "vid": "19414188",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473442",
+   "vid": "19408393",
+   "carrier": "AET12",
+   "bal": 33.75,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "12183299",
+   "vid": "19441460",
+   "carrier": "AET07",
+   "bal": 31.94,
+   "why": "no rule for: entity not eligible for benefits for submitted dates of service. finalized/denial - the claim/line h"
+  },
+  {
+   "pid": "17475139",
+   "vid": "19428602",
+   "carrier": "AET12",
+   "bal": 31.94,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17475139",
+   "vid": "19428675",
+   "carrier": "AET12",
+   "bal": 31.94,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17476506",
+   "vid": "19442184",
+   "carrier": "AET12",
+   "bal": 31.94,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17476419",
+   "vid": "19441288",
+   "carrier": "AET12",
+   "bal": 31.94,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17475771",
+   "vid": "19435180",
+   "carrier": "AET12",
+   "bal": 31.94,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473476",
+   "vid": "19444029",
+   "carrier": "BCBS",
+   "bal": 31.94,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450297",
+   "carrier": "BCBS",
+   "bal": 31.94,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429719",
+   "carrier": "BCBS",
+   "bal": 31.94,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451365",
+   "carrier": "WEL04",
+   "bal": 31.94,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "46354",
+   "vid": "19363655",
+   "carrier": "BCBS",
+   "bal": 31.76,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475338",
+   "vid": "19431100",
+   "carrier": "BCBS",
+   "bal": 31.3,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472305",
+   "vid": "19393940",
+   "carrier": "BCBS",
+   "bal": 30.84,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "45052",
+   "vid": "19382290",
+   "carrier": "BCBS",
+   "bal": 30.84,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19388556",
+   "carrier": "BCBS",
+   "bal": 30.84,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19447123",
+   "carrier": "BCBS",
+   "bal": 28.76,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473520",
+   "vid": "19413557",
+   "carrier": "AET12",
+   "bal": 26.97,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "45052",
+   "vid": "19409352",
+   "carrier": "BCBS",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19421021",
+   "carrier": "BCBS",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19423555",
+   "carrier": "BCBS",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19427243",
+   "carrier": "BCBS",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19427548",
+   "carrier": "BCBS",
+   "bal": 26.97,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17472397",
+   "vid": "19398825",
+   "carrier": "HUM01",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19408949",
+   "carrier": "WEL04",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17469446",
+   "vid": "19413644",
+   "carrier": "WEL04",
+   "bal": 26.97,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "42092",
+   "vid": "13995444",
+   "carrier": "BCBS",
+   "bal": 26.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17468781",
+   "vid": "19360885",
+   "carrier": "BCBS",
+   "bal": 26.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471138",
+   "vid": "19430590",
+   "carrier": "AET12",
+   "bal": 25.06,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "45052",
+   "vid": "19433858",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19438509",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19439542",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19442387",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "45052",
+   "vid": "19448803",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473245",
+   "vid": "19446222",
+   "carrier": "BCBS",
+   "bal": 25.06,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19442513",
+   "carrier": "UNI20",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17475777",
+   "vid": "19446216",
+   "carrier": "UNI20",
+   "bal": 25.06,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17476458",
+   "vid": "19452969",
+   "carrier": "CHA03",
+   "bal": 22.6,
+   "why": "no rule for: "
+  },
+  {
+   "pid": "17473501",
+   "vid": "19442744",
+   "carrier": "BCBS",
+   "bal": 22.47,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17468781",
+   "vid": "19361056",
+   "carrier": "BCBS",
+   "bal": 22.4,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17471600",
+   "vid": "19452051",
+   "carrier": "UNI20",
+   "bal": 22.2,
+   "why": "PENDING at payer - wait"
+  },
+  {
+   "pid": "25710",
+   "vid": "19432731",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19448250",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450299",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450318",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450466",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450488",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450666",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450742",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17473476",
+   "vid": "19450760",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19429718",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430040",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "17474516",
+   "vid": "19430055",
+   "carrier": "BCBS",
+   "bal": 21.8,
+   "why": "BCBS 38 awaiting adjudication - hold"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451388",
+   "carrier": "WEL04",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451470",
+   "carrier": "WEL04",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  },
+  {
+   "pid": "21593",
+   "vid": "19451595",
+   "carrier": "WEL04",
+   "bal": 21.8,
+   "why": "NOT ON FILE / rejected - resend as original"
+  }
+ ],
+ "skipped": [
+  {
+   "pid": "12183413",
+   "vid": "19361053",
+   "cid": "22426409",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19361053",
+   "cid": "22426410",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "17471204",
+   "vid": "19415417",
+   "why": "board chart / FLO99"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19363300",
+   "cid": "22429287",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19363300",
+   "cid": "22429288",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19363280",
+   "cid": "22429262",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19363280",
+   "cid": "22429263",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "22566",
+   "vid": "19372600",
+   "cid": "22440220",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "22566",
+   "vid": "19372600",
+   "cid": "22440221",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19363387",
+   "cid": "22429427",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "13992589",
+   "cid": "20979289",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19359508",
+   "cid": "22424455",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19359515",
+   "cid": "22424462",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19359691",
+   "cid": "22424732",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364399",
+   "cid": "22430412",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364417",
+   "cid": "22430430",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364436",
+   "cid": "22430451",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364457",
+   "cid": "22430473",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364476",
+   "cid": "22430492",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364540",
+   "cid": "22430601",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366457",
+   "cid": "22432797",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366488",
+   "cid": "22432831",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366517",
+   "cid": "22432860",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366911",
+   "cid": "22433418",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366941",
+   "cid": "22433450",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366967",
+   "cid": "22433480",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19366989",
+   "cid": "22433503",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19367009",
+   "cid": "22433527",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19367026",
+   "cid": "22433548",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19367075",
+   "cid": "22433661",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19367102",
+   "cid": "22433688",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19360103",
+   "cid": "22425190",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "12183413",
+   "vid": "19364673",
+   "cid": "22430779",
+   "why": "insbal 0"
+  },
+  {
+   "pid": "25630",
+   "vid": "19361540",
+   "cid": "22426897",
+   "why": "insbal 0"
+  }
+ ],
+ "failed": []
+}

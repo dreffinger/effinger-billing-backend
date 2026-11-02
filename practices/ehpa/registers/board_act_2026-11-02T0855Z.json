@@ -1,0 +1,1056 @@
+{
+ "stamp": "2026-11-02T0855Z",
+ "live": true,
+ "steps": [
+  {
+   "key": "A void wo 22408126 c22475893",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:04:47\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:04:47.482594Z",
+   "live": true
+  },
+  {
+   "key": "A move v19401676 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '68.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:04:53.501550Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19401676 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:04:59.622562Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408127 c22477891",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:05:00\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:00.897385Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408128 c22477892",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:05:02\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:02.199921Z",
+   "live": true
+  },
+  {
+   "key": "A move v19403764 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '256.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:05:08.707724Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19403764 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:05:15.563140Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408129 c22478696",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:05:16\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:16.710907Z",
+   "live": true
+  },
+  {
+   "key": "A move v19404463 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:05:23.165349Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19404463 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:05:28.887160Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408130 c22479341",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:05:29\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:30.044547Z",
+   "live": true
+  },
+  {
+   "key": "A move v19405093 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:05:35.626426Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19405093 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:05:41.553814Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408131 c22479725",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:05:42\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:42.577076Z",
+   "live": true
+  },
+  {
+   "key": "A move v19405522 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:05:48.509460Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19405522 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:05:54.388745Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22408132 c22480296",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:05:55\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:05:55.508566Z",
+   "live": true
+  },
+  {
+   "key": "A move v19406057 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:06:00.406942Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19406057 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:06:23.809898Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22455185 c22482921",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:06:24\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:06:24.773761Z",
+   "live": true
+  },
+  {
+   "key": "A move v19407634 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:06:31.142655Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19407634 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:06:38.231364Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22455186 c22483225",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:06:39\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:06:39.337743Z",
+   "live": true
+  },
+  {
+   "key": "A move v19407903 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:06:45.774636Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19407903 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:06:52.073657Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22455187 c22485487",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:06:53\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:06:53.099371Z",
+   "live": true
+  },
+  {
+   "key": "A move v19409748 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '204.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:06:59.373627Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19409748 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:07:05.679157Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22455188 c23313960",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:07:06\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:07:06.804522Z",
+   "live": true
+  },
+  {
+   "key": "A move v19411235 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:07:13.054825Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19411235 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:07:20.135594Z",
+   "live": true
+  },
+  {
+   "key": "A void wo 22455189 c23319574",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:07:21\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:07:21.298329Z",
+   "live": true
+  },
+  {
+   "key": "A move v19416035 to ins order 4",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '141.00', 'insorder': '4'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:07:27.658540Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19416035 seq 4",
+   "ok": true,
+   "msg": "freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:07:35.386687Z",
+   "live": true
+  },
+  {
+   "key": "A reroute v19416162 -> 4",
+   "ok": true,
+   "msg": "resave vst19416162 insorder 1,2,3 -> 4, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:07:53.038324Z",
+   "live": true
+  },
+  {
+   "key": "A reroute v19418998 -> 4",
+   "ok": true,
+   "msg": "resave vst19418998 insorder 1,2,3 -> 4, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:08:08.553611Z",
+   "live": true
+  },
+  {
+   "key": "A reroute v19420931 -> 4",
+   "ok": true,
+   "msg": "resave vst19420931 insorder 1,2,3 -> 4, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:08:26.532388Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22376682 c23342861",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:08:27\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:08:27.818337Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22376683 c23342862",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:08:28\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:08:28.897054Z",
+   "live": true
+  },
+  {
+   "key": "B move v19435890 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '300.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:08:34.157744Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19435890 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:08:40.327032Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22426342 c23354845",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:08:41\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:08:41.529345Z",
+   "live": true
+  },
+  {
+   "key": "B move v19445945 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '198.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:08:45.952958Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19445945 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:08:50.203417Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22426416 c23355097",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:08:51\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:08:51.321455Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22426417 c23355098",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:08:52\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:08:52.444337Z",
+   "live": true
+  },
+  {
+   "key": "B move v19446162 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:08:58.200217Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19446162 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:09:12.012317Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22427886 c23357852",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:09:12\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:13.065236Z",
+   "live": true
+  },
+  {
+   "key": "B move v19448549 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '204.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:09:17.680683Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19448549 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:09:22.815029Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22427874 c23358149",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:09:23\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:23.905151Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22427875 c23358150",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:09:25\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:25.152928Z",
+   "live": true
+  },
+  {
+   "key": "B move v19448772 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:09:30.723312Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19448772 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:09:36.574816Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22432239 c23363044",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:09:37\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:37.645245Z",
+   "live": true
+  },
+  {
+   "key": "B move v19452665 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:09:41.935453Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19452665 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:09:47.156125Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22495863 c23367087",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:09:48\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:48.307322Z",
+   "live": true
+  },
+  {
+   "key": "B void wo 22495864 c23367088",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:09:49\"><Results success=\"1\" /><Error /></PPMDResults>",
+   "at": "2026-11-02T09:09:49.421712Z",
+   "live": true
+  },
+  {
+   "key": "B move v19455704 to ins order 2",
+   "ok": true,
+   "msg": "moved 0.00 -> {'patbalance': '0.00', 'insbalance': '206.00', 'insorder': '2'} (no rebill - the caller rebills ONCE via freq1_visit)",
+   "at": "2026-11-02T09:09:54.241355Z",
+   "live": true
+  },
+  {
+   "key": "B freq1 v19455704 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:10:00.145793Z",
+   "live": true
+  },
+  {
+   "key": "C add BCBS1 plan",
+   "ok": true,
+   "msg": "ins9521081 seq 3",
+   "at": "2026-11-02T09:10:02.343443Z",
+   "live": true
+  },
+  {
+   "key": "C end HUM01 ins9511900",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:10:04\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '2,3' - restored: insorder 2,3 via ins9512677 -> '2,3'",
+   "at": "2026-11-02T09:10:05.690183Z",
+   "live": true
+  },
+  {
+   "key": "C patient order 3",
+   "ok": true,
+   "msg": "insorder 3 via ins9521081 -> '3'",
+   "at": "2026-11-02T09:10:07.562671Z",
+   "live": true
+  },
+  {
+   "key": "C reroute v19459622 -> 3",
+   "ok": true,
+   "msg": "resave vst19459622 insorder 2 -> 3, 2 live charges (was 2) | freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:10:35.907526Z",
+   "live": true
+  },
+  {
+   "key": "D add HUM01 plan",
+   "ok": true,
+   "msg": "ins9521082 seq 2",
+   "at": "2026-11-02T09:10:37.867134Z",
+   "live": true
+  },
+  {
+   "key": "D end WEL04 ins9518511",
+   "ok": true,
+   "msg": "5-lrm5n\" lst=\"11/02/2026 01:10:39\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '1,2' - WARNING not restored, set it: insorder 1,2 would lead with end-dated plan ins9518511 (AMD blanks that) - nothing written",
+   "at": "2026-11-02T09:10:40.736848Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455304 -> 2",
+   "ok": true,
+   "msg": "resave vst19455304 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:10:52.426411Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455305 -> 2",
+   "ok": true,
+   "msg": "resave vst19455305 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:11:04.606820Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455306 -> 2",
+   "ok": true,
+   "msg": "resave vst19455306 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:11:16.250320Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455307 -> 2",
+   "ok": true,
+   "msg": "resave vst19455307 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:11:28.967205Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455308 -> 2",
+   "ok": true,
+   "msg": "resave vst19455308 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:11:40.744917Z",
+   "live": true
+  },
+  {
+   "key": "D reroute v19455309 -> 2",
+   "ok": true,
+   "msg": "resave vst19455309 insorder 1 -> 2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:11:53.047146Z",
+   "live": true
+  },
+  {
+   "key": "E dob [DOB]",
+   "ok": true,
+   "msg": "HTTP 200 dob now [DOB] {\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":47979,\"conversionid\":null,\"chartnumber\":\"558\",\"mrn\":\"639D940797C91F01B8CFC4ED\",\"ss",
+   "at": "2026-11-02T09:11:56.059486Z",
+   "live": true
+  },
+  {
+   "key": "E add UHCMA plan",
+   "ok": true,
+   "msg": "ins9521083 seq 5",
+   "at": "2026-11-02T09:11:58.035375Z",
+   "live": true
+  },
+  {
+   "key": "E end UNI20 ins6005612",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:11:59\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '1,3,4,5' - WARNING not restored, set it: insorder 1,3,4,5 would lead with end-dated plan ins6005612 (AMD blanks that) - nothing written",
+   "at": "2026-11-02T09:12:00.709358Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459087 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459087 insorder 4 -> 5,4, 2 live charges (was 2) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:12:16.431623Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459120 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459120 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:12:27.957813Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459125 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459125 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:12:40.032078Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459157 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459157 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:12:52.308160Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459550 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459550 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:13:04.232382Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459568 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459568 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:13:16.126944Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459592 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459592 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:13:28.217985Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459719 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459719 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:13:40.646828Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459735 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459735 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:13:52.758422Z",
+   "live": true
+  },
+  {
+   "key": "E reroute v19459741 -> 5,4",
+   "ok": true,
+   "msg": "resave vst19459741 insorder 4 -> 5,4, 1 live charges (was 1) | freq1 + rebill seq 5 -> 204",
+   "at": "2026-11-02T09:14:05.121524Z",
+   "live": true
+  },
+  {
+   "key": "F dob [DOB]",
+   "ok": true,
+   "msg": "HTTP 200 dob now [DOB] {\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17478213,\"conversionid\":null,\"chartnumber\":\"F1028-16\",\"mrn\":\"6AD90EF92FBBD296B58DE",
+   "at": "2026-11-02T09:14:07.986411Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459219 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:13.218145Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459233 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:18.994237Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459242 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:24.473785Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459247 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:29.464621Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459253 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:34.411718Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459548 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:39.481173Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459573 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:44.799617Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459590 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:49.863805Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459718 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:14:55.129420Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459736 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:15:00.120996Z",
+   "live": true
+  },
+  {
+   "key": "F freq1 v19459740 seq 3",
+   "ok": true,
+   "msg": "freq1 + rebill seq 3 -> 204",
+   "at": "2026-11-02T09:15:04.948454Z",
+   "live": true
+  },
+  {
+   "key": "G subscriber dob",
+   "ok": false,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:15:05\"><Results /><Error><Fault><faultcode>Client</faultcode><faultstrin",
+   "at": "2026-11-02T09:15:06.235148Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19431657 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:11.403955Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19445829 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:16.039363Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19446224 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:37.894823Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19448596 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:42.839060Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19452583 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:47.483180Z",
+   "live": true
+  },
+  {
+   "key": "H freq1 v19459603 seq 1",
+   "ok": true,
+   "msg": "freq1 + rebill seq 1 -> 204",
+   "at": "2026-11-02T09:15:52.594534Z",
+   "live": true
+  },
+  {
+   "key": "I add TRI05 plan",
+   "ok": true,
+   "msg": "ins9521084 seq 2",
+   "at": "2026-11-02T09:15:54.650154Z",
+   "live": true
+  },
+  {
+   "key": "I patient order 1,2",
+   "ok": true,
+   "msg": "insorder 1,2 via ins9521018 -> '1,2'",
+   "at": "2026-11-02T09:15:56.364495Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23349362 WOCLTREQ 31.94",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:15:58\"><Results success=\"1\" paymentid=\"10177524\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:15:58.185122Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23349356 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:00\"><Results success=\"1\" paymentid=\"10177526\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:00.227516Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23349357 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:01\"><Results success=\"1\" paymentid=\"10177528\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:02.118120Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23349546 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:03\"><Results success=\"1\" paymentid=\"10177530\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:03.878692Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23350103 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:05\"><Results success=\"1\" paymentid=\"10177533\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:05.814616Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23350104 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:07\"><Results success=\"1\" paymentid=\"10177535\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:07.736053Z",
+   "live": true
+  },
+  {
+   "key": "J wo c23350105 WOCLTREQ 14.38",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:09\"><Results success=\"1\" paymentid=\"10177537\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:09.793713Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23361409 WOCLTREQ 31.94",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:11\"><Results success=\"1\" paymentid=\"10177539\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:11.887837Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23361432 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:13\"><Results success=\"1\" paymentid=\"10177541\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:13.777524Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23361518 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:15\"><Results success=\"1\" paymentid=\"10177543\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:15.673219Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23361650 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:17\"><Results success=\"1\" paymentid=\"10177545\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:17.750935Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23361993 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:19\"><Results success=\"1\" paymentid=\"10177547\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:19.820581Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23362003 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:21\"><Results success=\"1\" paymentid=\"10177549\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:21.757585Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23362013 WOCLTREQ 21.80",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:16:23\"><Results success=\"1\" paymentid=\"10177551\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:23.452642Z",
+   "live": true
+  },
+  {
+   "key": "K wo c23362168 WOCLTREQ 21.59",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:16:25\"><Results success=\"1\" paymentid=\"10177553\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:16:25.300045Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19402245 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19402245 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:16:38.584071Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19402644 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19402644 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:16:53.257842Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19403418 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19403418 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:17:06.334447Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19403945 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19403945 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:17:34.471604Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19404635 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19404635 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:17:47.753249Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19404697 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19404697 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:18:02.054567Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19405084 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19405084 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:18:15.822599Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19405500 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19405500 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:18:29.580218Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19406109 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19406109 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:18:43.172420Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19407286 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19407286 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:18:56.630923Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19407974 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19407974 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:19:10.104620Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19408949 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19408949 insorder 3,1 -> 3,2, 2 live charges (was 2) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:19:26.411129Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19409077 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19409077 insorder 3,1 -> 3,2, 2 live charges (was 2) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:19:42.047429Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19413644 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19413644 insorder 3,1 -> 3,2, 2 live charges (was 2) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:19:58.249221Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19415101 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19415101 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:20:11.830864Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19416084 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19416084 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:20:25.991744Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19417133 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19417133 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:20:39.775886Z",
+   "live": true
+  },
+  {
+   "key": "L reroute v19425350 -> 3,2",
+   "ok": true,
+   "msg": "resave vst19425350 insorder 3,1 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:20:53.313511Z",
+   "live": true
+  },
+  {
+   "key": "M wo c22472523 WOINS 61.34",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:20:54\"><Results success=\"1\" paymentid=\"10177697\" /><Error /></PPMDResult",
+   "at": "2026-11-02T09:20:55.092664Z",
+   "live": true
+  },
+  {
+   "key": "N end WEL04 ins9512360 12/04/2025",
+   "ok": true,
+   "msg": "5-vhkxr\" lst=\"11/02/2026 01:20:56\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '4' - restored: insorder 4 via ins9520573 -> '4'",
+   "at": "2026-11-02T09:20:58.329812Z",
+   "live": true
+  },
+  {
+   "key": "N reroute v19455319 -> 4,2",
+   "ok": true,
+   "msg": "resave vst19455319 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:21:23.457903Z",
+   "live": true
+  },
+  {
+   "key": "N reroute v19455320 -> 4,2",
+   "ok": true,
+   "msg": "resave vst19455320 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+   "at": "2026-11-02T09:21:38.290175Z",
+   "live": true
+  },
+  {
+   "key": "O redate CCM v19459284 -> 10/21/2026",
+   "ok": true,
+   "msg": "visit vst19459284 date 10/22/2026 -> 10/21/2026, charges 2 -> 2",
+   "at": "2026-11-02T09:21:46.451688Z",
+   "live": true
+  },
+  {
+   "key": "O reroute v19459284 -> 2,4",
+   "ok": true,
+   "msg": "resave vst19459284 insorder 4 -> 2,4, 2 live charges (was 2) | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:22:19.607464Z",
+   "live": true
+  },
+  {
+   "key": "O reroute v19459299 -> 2,4",
+   "ok": true,
+   "msg": "visit vst19459299 insorder already 2,4 - resave skipped | freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T09:22:27.945589Z",
+   "live": true
+  },
+  {
+   "key": "G subscriber dob",
+   "ok": false,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 01:44:15\"><Results /><Error><Fault><faultcode>Client</faultcode><faultstrin",
+   "at": "2026-11-02T09:44:16.172734Z",
+   "live": true
+  },
+  {
+   "key": "G subscriber dob",
+   "ok": false,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 01:44:49\"><Results /><Error><Fault><faultcode>Client</faultcode><faultstrin",
+   "at": "2026-11-02T09:44:50.004927Z",
+   "live": true
+  }
+ ]
+}

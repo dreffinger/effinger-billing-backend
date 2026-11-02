@@ -1,0 +1,1662 @@
+{
+ "run": "2026-11-02T0855Z",
+ "denials": [
+  {
+   "pid": 17472874,
+   "patient": "THACKERAY,KENDREW D",
+   "carriers": {
+    "UNI20": 16
+   },
+   "visits": [
+    19439702,
+    19437843,
+    19437926,
+    19437951,
+    19438061,
+    19438356,
+    19438357,
+    19438358,
+    19438701,
+    19438903,
+    19438993,
+    19439010,
+    19439022,
+    19439233,
+    19439271,
+    19455322
+   ],
+   "dos": [
+    "2026-03-04",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-12",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-16",
+    "2026-04-17",
+    "2026-04-18",
+    "2026-04-19",
+    "2026-04-20",
+    "2026-04-21"
+   ],
+   "balance": 2563.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     88
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17475362,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 3
+   },
+   "visits": [
+    19431393,
+    19433863,
+    19442543
+   ],
+   "dos": [
+    "2026-02-02",
+    "2026-02-26",
+    "2026-05-17"
+   ],
+   "balance": 1063.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     6
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17471273,
+   "patient": "[name]",
+   "carriers": {
+    "AET07": 6
+   },
+   "visits": [
+    19448259,
+    19448592,
+    19448627,
+    19448967,
+    19449065,
+    19449321
+   ],
+   "dos": [
+    "2026-07-14",
+    "2026-07-15",
+    "2026-07-16",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-20"
+   ],
+   "balance": 865.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "20 Accepted for processing.",
+     60
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17476544,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 5
+   },
+   "visits": [
+    19452451,
+    19452690,
+    19453362,
+    19452691,
+    19453821
+   ],
+   "dos": [
+    "2026-08-14",
+    "2026-08-18",
+    "2026-08-22",
+    "2026-08-28",
+    "2026-09-01"
+   ],
+   "balance": 811.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     6
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 48449,
+   "patient": "ROWLEY,CORINNE",
+   "carriers": {
+    "BCBS": 3
+   },
+   "visits": [
+    19420993,
+    19442321,
+    19452567
+   ],
+   "dos": [
+    "2025-10-25",
+    "2026-05-17",
+    "2026-08-23"
+   ],
+   "balance": 727.0,
+   "untimely": 1,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     5
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17473245,
+   "patient": "DALRYMPLE,DANE",
+   "carriers": {
+    "BCBS": 8
+   },
+   "visits": [
+    19448870,
+    19447739,
+    19450195,
+    19451554,
+    19453351,
+    19448487,
+    19444531,
+    19446222
+   ],
+   "dos": [
+    "2026-06-05",
+    "2026-06-25",
+    "2026-07-09",
+    "2026-07-13",
+    "2026-07-17",
+    "2026-07-28",
+    "2026-08-10",
+    "2026-08-27"
+   ],
+   "balance": 656.83,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     15
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17477204,
+   "patient": "[name]",
+   "carriers": {
+    "UHCMA": 2
+   },
+   "visits": [
+    19453491,
+    19455929
+   ],
+   "dos": [
+    "2026-08-31",
+    "2026-09-16"
+   ],
+   "balance": 600.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     3
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17474516,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 7
+   },
+   "visits": [
+    19427050,
+    19430108,
+    19429719,
+    19427548,
+    19429718,
+    19430040,
+    19430055
+   ],
+   "dos": [
+    "2025-12-15",
+    "2025-12-28",
+    "2026-01-19",
+    "2026-01-20",
+    "2026-01-21",
+    "2026-01-22",
+    "2026-01-23"
+   ],
+   "balance": 587.85,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     58
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 12183413,
+   "patient": "[name]",
+   "carriers": {
+    "HUM01": 23
+   },
+   "visits": [
+    19363300,
+    19363280,
+    19363387,
+    13992589,
+    19359508,
+    19359515,
+    19359691,
+    19364399,
+    19364417,
+    19364540,
+    19366457,
+    19366488,
+    19366517,
+    19366911,
+    19366941,
+    19366967,
+    19366989,
+    19367009,
+    19367026,
+    19367075,
+    19367102,
+    19360103,
+    19364673
+   ],
+   "dos": [
+    "2023-04-09",
+    "2023-06-30",
+    "2023-07-01",
+    "2023-07-04",
+    "2023-07-05",
+    "2023-07-31",
+    "2023-08-04",
+    "2023-08-07",
+    "2023-09-02",
+    "2023-09-03",
+    "2023-09-06",
+    "2023-09-07",
+    "2023-10-01",
+    "2023-10-02",
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+   ],
+   "balance": 578.78,
+   "untimely": 23,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     243
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 48163,
+   "patient": "[name]",
+   "carriers": {
+    "UHCMA": 4
+   },
+   "visits": [
+    19455310,
+    19455311,
+    19455312,
+    19455313
+   ],
+   "dos": [
+    "2026-03-02",
+    "2026-04-09",
+    "2026-05-11",
+    "2026-06-09"
+   ],
+   "balance": 564.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17475338,
+   "patient": "KIRKBRIDE,DAVIN",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19443019,
+    19431100
+   ],
+   "dos": [
+    "2026-01-27",
+    "2026-05-22"
+   ],
+   "balance": 474.3,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     15
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 25160,
+   "patient": "[name]",
+   "carriers": {
+    "UHCMA": 2
+   },
+   "visits": [
+    19417357,
+    19422654
+   ],
+   "dos": [
+    "2025-09-21",
+    "2025-11-05"
+   ],
+   "balance": 456.0,
+   "untimely": 1,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17471832,
+   "patient": "SELWYN,JANIS C",
+   "carriers": {
+    "BCBS": 1
+   },
+   "visits": [
+    19427723
+   ],
+   "dos": [
+    "2025-12-31"
+   ],
+   "balance": 443.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     8
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17476438,
+   "patient": "BURWELL,CORINNE",
+   "carriers": {
+    "BCBS": 1
+   },
+   "visits": [
+    19441388
+   ],
+   "dos": [
+    "2026-05-07"
+   ],
+   "balance": 433.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17477062,
+   "patient": "ELLERBY,LORNA S",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19454442,
+    19454441
+   ],
+   "dos": [
+    "2026-09-10",
+    "2026-09-11"
+   ],
+   "balance": 421.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17474713,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19424006,
+    19424038
+   ],
+   "dos": [
+    "2025-11-17",
+    "2025-11-18"
+   ],
+   "balance": 421.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     8
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17477797,
+   "patient": "MASKELL,KIERAN",
+   "carriers": {
+    "UNI20": 3
+   },
+   "visits": [
+    19455029,
+    19455025,
+    19455046
+   ],
+   "dos": [
+    "2026-09-15",
+    "2026-09-16",
+    "2026-09-17"
+   ],
+   "balance": 409.15,
+   "untimely": 0,
+   "codes": [
+    [
+     "65 Claim/line has been paid.",
+     5
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17476912,
+   "patient": "[name]",
+   "carriers": {
+    "WEL04": 1
+   },
+   "visits": [
+    19445941
+   ],
+   "dos": [
+    "2026-06-22"
+   ],
+   "balance": 389.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "1 For more detailed information,see remittance advic",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 23083,
+   "patient": "LISLE,JASPER",
+   "carriers": {
+    "WEL04": 1
+   },
+   "visits": [
+    19443011
+   ],
+   "dos": [
+    "2026-05-22"
+   ],
+   "balance": 389.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "1 For more detailed information,see remittance advic",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17476503,
+   "patient": "[name] LANE",
+   "carriers": {
+    "BCBS": 1
+   },
+   "visits": [
+    19452589
+   ],
+   "dos": [
+    "2026-08-23"
+   ],
+   "balance": 315.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17477777,
+   "patient": "LAZENBY,CARYS LEORA",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19454905,
+    19454919
+   ],
+   "dos": [
+    "2026-09-14",
+    "2026-09-15"
+   ],
+   "balance": 272.36,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17477375,
+   "patient": "SCRIVENER,JULIANA A",
+   "carriers": {
+    "WEL04": 1
+   },
+   "visits": [
+    19455316
+   ],
+   "dos": [
+    "2026-08-07"
+   ],
+   "balance": 256.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "54 Duplicate of a previously processed claim/line.",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17469466,
+   "patient": "ROWANTREE,ARDEN",
+   "carriers": {
+    "HUM01": 8
+   },
+   "visits": [
+    19408928,
+    19413622,
+    19421072,
+    19423677,
+    19430778,
+    19438606,
+    19448878,
+    19452357
+   ],
+   "dos": [
+    "2025-07-08",
+    "2025-08-17",
+    "2025-10-25",
+    "2025-11-15",
+    "2026-01-27",
+    "2026-03-20",
+    "2026-07-17",
+    "2026-08-22"
+   ],
+   "balance": 208.12,
+   "untimely": 3,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     13
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 25710,
+   "patient": "BEXLEY-BATESON,BRIGID",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19432733,
+    19432731
+   ],
+   "dos": [
+    "2026-02-12",
+    "2026-02-13"
+   ],
+   "balance": 206.6,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     12
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472305,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 4
+   },
+   "visits": [
+    19400005,
+    19393947,
+    19399981,
+    19393940
+   ],
+   "dos": [
+    "2024-10-23",
+    "2024-10-28",
+    "2025-01-30",
+    "2025-02-04"
+   ],
+   "balance": 164.73,
+   "untimely": 4,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     5
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 21020,
+   "patient": "[name]",
+   "carriers": {
+    "UHCMA": 1
+   },
+   "visits": [
+    19453816
+   ],
+   "dos": [
+    "2026-09-01"
+   ],
+   "balance": 141.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "65 Claim/line has been paid.",
+     1
+    ],
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17473501,
+   "patient": "OLNEY,[first] R",
+   "carriers": {
+    "BCBS": 3
+   },
+   "visits": [
+    19442733,
+    19442953,
+    19442744
+   ],
+   "dos": [
+    "2026-05-18",
+    "2026-05-19",
+    "2026-05-21"
+   ],
+   "balance": 122.29,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     15
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472910,
+   "patient": "[name]",
+   "carriers": {
+    "UNI20": 4
+   },
+   "visits": [
+    19416744,
+    19408975,
+    19416743,
+    19416882
+   ],
+   "dos": [
+    "2025-07-08",
+    "2025-09-14",
+    "2025-09-15",
+    "2025-09-16"
+   ],
+   "balance": 121.1,
+   "untimely": 4,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     6
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17471968,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19448695,
+    19431880
+   ],
+   "dos": [
+    "2026-02-06",
+    "2026-04-16"
+   ],
+   "balance": 115.28,
+   "untimely": 0,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     10
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 24208,
+   "patient": "[name]",
+   "carriers": {
+    "UHCMA": 1
+   },
+   "visits": [
+    19453825
+   ],
+   "dos": [
+    "2026-09-01"
+   ],
+   "balance": 107.0,
+   "untimely": 0,
+   "codes": [
+    [
+     "65 Claim/line has been paid.",
+     1
+    ],
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472397,
+   "patient": "[name]",
+   "carriers": {
+    "HUM01": 3
+   },
+   "visits": [
+    19401668,
+    19398216,
+    19398278
+   ],
+   "dos": [
+    "2025-01-01",
+    "2025-01-02",
+    "2025-03-03"
+   ],
+   "balance": 96.82,
+   "untimely": 3,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     11
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17476358,
+   "patient": "PRIMROSE,KELVIN",
+   "carriers": {
+    "SUN01": 4
+   },
+   "visits": [
+    19452324,
+    19452800,
+    19452814,
+    19452953
+   ],
+   "dos": [
+    "2026-08-21",
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25"
+   ],
+   "balance": 87.2,
+   "untimely": 0,
+   "codes": [
+    [
+     "65 Claim/line has been paid.",
+     18
+    ],
+    [
+     "1 For more detailed information,see remittance advic",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472046,
+   "patient": "[name]",
+   "carriers": {
+    "BCBS": 2
+   },
+   "visits": [
+    19400002,
+    19388473
+   ],
+   "dos": [
+    "2024-08-22",
+    "2025-02-01"
+   ],
+   "balance": 82.77,
+   "untimely": 2,
+   "codes": [
+    [
+     "38 Awaiting next periodic adjudication cycle.",
+     16
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 21021,
+   "patient": "MORLAND,BETTINA",
+   "carriers": {
+    "HUM01": 2
+   },
+   "visits": [
+    19372463,
+    19372311
+   ],
+   "dos": [
+    "2023-12-08",
+    "2023-12-14"
+   ],
+   "balance": 81.13,
+   "untimely": 2,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     7
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 21263,
+   "patient": "[name]",
+   "carriers": {
+    "UNI20": 2
+   },
+   "visits": [
+    19415102,
+    19417134
+   ],
+   "dos": [
+    "2025-08-05",
+    "2025-09-02"
+   ],
+   "balance": 74.92,
+   "untimely": 2,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17473571,
+   "patient": "[name]",
+   "carriers": {
+    "UNI20": 2
+   },
+   "visits": [
+    19415865,
+    19429855
+   ],
+   "dos": [
+    "2025-09-05",
+    "2026-01-12"
+   ],
+   "balance": 73.76,
+   "untimely": 1,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17474288,
+   "patient": "[name]",
+   "carriers": {
+    "UNI20": 1
+   },
+   "visits": [
+    19419296
+   ],
+   "dos": [
+    "2025-10-08"
+   ],
+   "balance": 50.58,
+   "untimely": 1,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 45024,
+   "patient": "YARDLEY,[first]",
+   "carriers": {
+    "HUM01": 2
+   },
+   "visits": [
+    19448931,
+    19452325
+   ],
+   "dos": [
+    "2026-07-17",
+    "2026-08-22"
+   ],
+   "balance": 50.12,
+   "untimely": 0,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472849,
+   "patient": "HARTNELL,[first] C",
+   "carriers": {
+    "SIM01": 2
+   },
+   "visits": [
+    19448902,
+    19452391
+   ],
+   "dos": [
+    "2026-07-17",
+    "2026-08-22"
+   ],
+   "balance": 50.12,
+   "untimely": 0,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     2
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 12183299,
+   "patient": "LAMPRON [name] MARIE",
+   "carriers": {
+    "AET07": 1
+   },
+   "visits": [
+    19441460
+   ],
+   "dos": [
+    "2026-05-08"
+   ],
+   "balance": 31.94,
+   "untimely": 0,
+   "codes": [
+    [
+     "88 Entity not eligible for benefits for submitted dat",
+     4
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17473477,
+   "patient": "SMYTHE,BEXFORD",
+   "carriers": {
+    "UNI20": 1
+   },
+   "visits": [
+    19452587
+   ],
+   "dos": [
+    "2026-08-23"
+   ],
+   "balance": 28.6,
+   "untimely": 0,
+   "codes": [
+    [
+     "585 Denied Charge or Non-covered Charge.",
+     3
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 17472396,
+   "patient": "CARDWELL,RUPERT",
+   "carriers": {
+    "HUM01": 1
+   },
+   "visits": [
+    19448871
+   ],
+   "dos": [
+    "2026-07-17"
+   ],
+   "balance": 25.06,
+   "untimely": 0,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     1
+    ]
+   ],
+   "dx_denial": false
+  },
+  {
+   "pid": 25630,
+   "patient": "[name]",
+   "carriers": {
+    "HUM01": 1
+   },
+   "visits": [
+    19361540
+   ],
+   "dos": [
+    "2023-07-13"
+   ],
+   "balance": 21.76,
+   "untimely": 1,
+   "codes": [
+    [
+     "107 Processed according to contract provisions (Contra",
+     2
+    ]
+   ],
+   "dx_denial": false
+  }
+ ],
+ "pending": [
+  {
+   "vid": 19443034,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-05-05",
+   "balance": 389.0
+  },
+  {
+   "vid": 19427577,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2025-12-28",
+   "balance": 315.0
+  },
+  {
+   "vid": 19430717,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-01-27",
+   "balance": 315.0
+  },
+  {
+   "vid": 19433912,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-02-26",
+   "balance": 315.0
+  },
+  {
+   "vid": 19438537,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-03-20",
+   "balance": 315.0
+  },
+  {
+   "vid": 19439563,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-04-20",
+   "balance": 315.0
+  },
+  {
+   "vid": 19442427,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-05-17",
+   "balance": 315.0
+  },
+  {
+   "vid": 19446195,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-06-25",
+   "balance": 315.0
+  },
+  {
+   "vid": 19448847,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-07-17",
+   "balance": 315.0
+  },
+  {
+   "vid": 19452438,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-08-22",
+   "balance": 315.0
+  },
+  {
+   "vid": 19417390,
+   "patient": "MARLOW,[first]",
+   "carrier": "UNI20",
+   "dos": "2025-09-21",
+   "balance": 315.0
+  },
+  {
+   "vid": 19420985,
+   "patient": "MARLOW,[first]",
+   "carrier": "UNI20",
+   "dos": "2025-10-25",
+   "balance": 315.0
+  },
+  {
+   "vid": 19424662,
+   "patient": "MARLOW,[first]",
+   "carrier": "UNI20",
+   "dos": "2025-11-25",
+   "balance": 315.0
+  },
+  {
+   "vid": 19427156,
+   "patient": "MARLOW,[first]",
+   "carrier": "UNI20",
+   "dos": "2025-12-22",
+   "balance": 315.0
+  },
+  {
+   "vid": 19448753,
+   "patient": "JARRELL,LYLE",
+   "carrier": "UNI20",
+   "dos": "2026-07-17",
+   "balance": 315.0
+  },
+  {
+   "vid": 19452596,
+   "patient": "JARRELL,LYLE",
+   "carrier": "UNI20",
+   "dos": "2026-08-23",
+   "balance": 315.0
+  },
+  {
+   "vid": 19459520,
+   "patient": "ANNIKA,SHELAGH",
+   "carrier": "SUN01",
+   "dos": "2026-09-01",
+   "balance": 300.0
+  },
+  {
+   "vid": 19459519,
+   "patient": "[name]",
+   "carrier": "UNI20",
+   "dos": "2026-09-01",
+   "balance": 300.0
+  },
+  {
+   "vid": 19450211,
+   "patient": "JARRELL,LYLE",
+   "carrier": "UNI20",
+   "dos": "2026-07-22",
+   "balance": 300.0
+  },
+  {
+   "vid": 19423617,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2025-11-15",
+   "balance": 206.0
+  },
+  {
+   "vid": 19448508,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-07-13",
+   "balance": 204.0
+  },
+  {
+   "vid": 19448606,
+   "patient": "JARRELL,LYLE",
+   "carrier": "UNI20",
+   "dos": "2026-07-16",
+   "balance": 204.0
+  },
+  {
+   "vid": 19452683,
+   "patient": "JARRELL,LYLE",
+   "carrier": "UNI20",
+   "dos": "2026-08-19",
+   "balance": 198.0
+  },
+  {
+   "vid": 19455317,
+   "patient": "SLATER,RUPERT",
+   "carrier": "UNI20",
+   "dos": "2026-04-28",
+   "balance": 198.0
+  },
+  {
+   "vid": 19422673,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2025-11-03",
+   "balance": 141.0
+  },
+  {
+   "vid": 19426937,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2025-12-01",
+   "balance": 141.0
+  },
+  {
+   "vid": 19428136,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-01-02",
+   "balance": 141.0
+  },
+  {
+   "vid": 19432987,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-02-02",
+   "balance": 141.0
+  },
+  {
+   "vid": 19435323,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-03-02",
+   "balance": 141.0
+  },
+  {
+   "vid": 19437732,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-04-03",
+   "balance": 141.0
+  },
+  {
+   "vid": 19444991,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-06-09",
+   "balance": 141.0
+  },
+  {
+   "vid": 19448714,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-07-07",
+   "balance": 141.0
+  },
+  {
+   "vid": 19451204,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-08-07",
+   "balance": 141.0
+  },
+  {
+   "vid": 19453808,
+   "patient": "[name]",
+   "carrier": "UHCMA",
+   "dos": "2026-09-01",
+   "balance": 141.0
+  },
+  {
+   "vid": 19442540,
+   "patient": "ENDERBY,MICAH",
+   "carrier": "UNI20",
+   "dos": "2026-05-17",
+   "balance": 93.91
+  },
+  {
+   "vid": 32392,
+   "patient": "[name]",
+   "carrier": "AET07",
+   "dos": "2022-10-07",
+   "balance": 53.75
+  },
+  {
+   "vid": 19452051,
+   "patient": "[name]",
+   "carrier": "UNI20",
+   "dos": "2026-08-18",
+   "balance": 22.2
+  }
+ ],
+ "other": [
+  {
+   "vid": 19390723,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-20",
+   "balance": 249.19,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19391503,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-10-05",
+   "balance": 218.77,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19448476,
+   "patient": "ARKWRIGHT,MARGUERITE M",
+   "carrier": "UNI20",
+   "dos": "2026-07-13",
+   "balance": 204.0,
+   "action": "UNKNOWN - review"
+  },
+  {
+   "vid": 19393287,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-11-07",
+   "balance": 153.12,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19391718,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-10-07",
+   "balance": 65.2,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19412418,
+   "patient": "KESTREL,BARBARY",
+   "carrier": "AET12",
+   "dos": "2025-07-26",
+   "balance": 49.61,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19390645,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-25",
+   "balance": 49.46,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19390680,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-24",
+   "balance": 49.46,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19390720,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-23",
+   "balance": 49.46,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19390721,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-22",
+   "balance": 49.46,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19390722,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2024-09-21",
+   "balance": 49.46,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19445002,
+   "patient": "RUSTIN,[first]",
+   "carrier": "CHA03",
+   "dos": "2026-06-10",
+   "balance": 46.45,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19441644,
+   "patient": "RUSTIN,[first]",
+   "carrier": "CHA03",
+   "dos": "2026-05-10",
+   "balance": 45.29,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19452662,
+   "patient": "RUSTIN,[first]",
+   "carrier": "CHA03",
+   "dos": "2026-08-23",
+   "balance": 44.09,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19418457,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-09-29",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19407003,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-06-03",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19409553,
+   "patient": "KESTREL,BARBARY",
+   "carrier": "AET12",
+   "dos": "2025-07-15",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19409551,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-07-14",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19414705,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-08-25",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19414188,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-08-20",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19408393,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2025-06-23",
+   "balance": 33.75,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19428602,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-01-04",
+   "balance": 31.94,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19428675,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-01-05",
+   "balance": 31.94,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19442184,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-05-11",
+   "balance": 31.94,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19441288,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-05-04",
+   "balance": 31.94,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19435180,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-03-09",
+   "balance": 31.94,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19413557,
+   "patient": "KESTREL,BARBARY",
+   "carrier": "AET12",
+   "dos": "2025-08-17",
+   "balance": 26.97,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19430590,
+   "patient": "[name]",
+   "carrier": "AET12",
+   "dos": "2026-01-27",
+   "balance": 25.06,
+   "action": "SKIP - no payer map / member id"
+  },
+  {
+   "vid": 19452969,
+   "patient": "RUSTIN,[first]",
+   "carrier": "CHA03",
+   "dos": "2026-08-25",
+   "balance": 22.6,
+   "action": "SKIP - no payer map / member id"
+  }
+ ]
+}
