@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
  "stamp": "2026-11-02T2037Z",
- "mode": "live",
+ "mode": "dry",
  "status": "warn",
- "headline": "Duplicate firing: parallel run 2038Z did the work (its result: Columns 0/2/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0; re-sent 9 visits $1,588.87). This run: Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0 - read-only after the cross-container guard",
- "note": "no BUTTON PRESS brief in the firing (live, all steps, every approved package); a second button session (2038Z, session_01HHfWRD5e97VhD4Uwfu6xdp) started one minute after this one and completed the full run while this one waited on the Drive START-marker guard; this run then re-read everything and wrote nothing new in AdvancedMD except one no-rebill full-visit echo on v19459831 (re-inspection, same hold)",
+ "headline": "DRY (brief) - duplicate firing beside run 2038Z: Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0",
+ "note": "BUTTON PRESS 2026-11-02T20:37:31Z, mode dry, steps feed,columns,era,cascade,packages,cred,outstanding, packages none, note 'ehpa Billing Button' - the brief reached the session after the run had finished (recorded by this finalize). The run was already read-only: a parallel button session (2038Z) did the full live run while this one waited on the Drive START-marker guard. ONE AdvancedMD write happened before the dry brief arrived - a no-rebill full-visit echo on v19459831 (chart 17477128) to re-inspect a Pattern 4516 hold; it changed no balance, order or claim. The denials snapshot was refreshed read-only although the brief's step list omits it.",
  "run_url": "https://claude.ai/code/session_01HHfWRBofvbWSacFKyS3HS3",
  "started": "2026-11-02T20:37:00Z",
- "ended": "2026-11-02T21:40:36Z",
+ "ended": "2026-11-02T21:43:24Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
@@ -223,5 +223,6 @@
   "Brynwood admits 10/30 and 11/1 without an AMD chart - parked until the feed brings a charge",
   "Billing Button fired twice within one minute (sessions 2037Z and 2038Z) - check the page / scheduler for a double press"
  ],
- "errors": []
+ "errors": [],
+ "brief": "BUTTON PRESS 2026-11-02T20:37:31.143Z \u00b7 mode: dry \u00b7 steps: feed,columns,era,cascade,packages,cred,outstanding \u00b7 packages: none \u00b7 note: ehpa Billing Button"
 }
