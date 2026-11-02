@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-02T07:00:42Z",
+ "generated": "2026-11-02T13:14:06Z",
  "as_of": "2026-11-02",
  "coverage": {
   "files": [
@@ -388,16 +388,10 @@
    ],
    "clinician": [
     {
-     "name": "Dr. Effinger (DO)",
-     "lines": 154,
-     "visits": 124,
-     "dollars": 25554.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 38,
-     "visits": 38,
-     "dollars": 5674.0
+     "name": "Clinician on file",
+     "lines": 192,
+     "visits": 162,
+     "dollars": 31228.0
     }
    ],
    "payer": [
@@ -438,56 +432,7 @@
      "dollars": 2874.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 57
-    },
-    {
-     "code": "E785",
-     "patients": 41
-    },
-    {
-     "code": "E119",
-     "patients": 22
-    },
-    {
-     "code": "I639",
-     "patients": 20
-    },
-    {
-     "code": "E039",
-     "patients": 19
-    },
-    {
-     "code": "N390",
-     "patients": 16
-    },
-    {
-     "code": "F32A",
-     "patients": 15
-    },
-    {
-     "code": "I4891",
-     "patients": 15
-    },
-    {
-     "code": "M6281",
-     "patients": 14
-    },
-    {
-     "code": "J449",
-     "patients": 14
-    },
-    {
-     "code": "F0390",
-     "patients": 12
-    },
-    {
-     "code": "M1990",
-     "patients": 12
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-10-27",
@@ -803,21 +748,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 794,
-     "visits": 569,
-     "dollars": 125839.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 181,
-     "visits": 148,
-     "dollars": 30470.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 50,
-     "visits": 50,
-     "dollars": 7525.0
+     "lines": 1025,
+     "visits": 767,
+     "dollars": 163834.0
     }
    ],
    "payer": [
@@ -858,56 +791,7 @@
      "dollars": 12088.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 70
-    },
-    {
-     "code": "E785",
-     "patients": 49
-    },
-    {
-     "code": "E039",
-     "patients": 26
-    },
-    {
-     "code": "E119",
-     "patients": 24
-    },
-    {
-     "code": "I639",
-     "patients": 23
-    },
-    {
-     "code": "N390",
-     "patients": 21
-    },
-    {
-     "code": "F32A",
-     "patients": 17
-    },
-    {
-     "code": "J449",
-     "patients": 17
-    },
-    {
-     "code": "I4891",
-     "patients": 17
-    },
-    {
-     "code": "F0390",
-     "patients": 16
-    },
-    {
-     "code": "N179",
-     "patients": 15
-    },
-    {
-     "code": "M6281",
-     "patients": 15
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-10-04",
@@ -1384,21 +1268,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 801,
-     "visits": 575,
-     "dollars": 127772.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 181,
-     "visits": 148,
-     "dollars": 30470.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 50,
-     "visits": 50,
-     "dollars": 7525.0
+     "lines": 1032,
+     "visits": 773,
+     "dollars": 165767.0
     }
    ],
    "payer": [
@@ -1439,56 +1311,7 @@
      "dollars": 12521.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 70
-    },
-    {
-     "code": "E785",
-     "patients": 49
-    },
-    {
-     "code": "E039",
-     "patients": 26
-    },
-    {
-     "code": "E119",
-     "patients": 24
-    },
-    {
-     "code": "I639",
-     "patients": 23
-    },
-    {
-     "code": "N390",
-     "patients": 21
-    },
-    {
-     "code": "F32A",
-     "patients": 17
-    },
-    {
-     "code": "J449",
-     "patients": 17
-    },
-    {
-     "code": "I4891",
-     "patients": 17
-    },
-    {
-     "code": "F0390",
-     "patients": 16
-    },
-    {
-     "code": "N179",
-     "patients": 15
-    },
-    {
-     "code": "M6281",
-     "patients": 15
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-09-01",
@@ -2108,13 +1931,6 @@
    "stamp": "20261101T1240Z",
    "at": "2026-11-01T13:11:34.613555Z",
    "files": 1,
-   "exit": 0,
-   "live": true
-  },
-  {
-   "stamp": "20261102T0643Z",
-   "at": "2026-11-02T07:00:12.191401Z",
-   "files": 0,
    "exit": 0,
    "live": true
   }
