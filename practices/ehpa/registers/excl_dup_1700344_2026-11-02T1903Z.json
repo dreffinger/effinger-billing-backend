@@ -1,0 +1,52 @@
+{
+ "stamp": "2026-11-02T1903Z",
+ "run": "1700344",
+ "pid": "44953",
+ "live": true,
+ "rows": [
+  {
+   "visit": "19458948",
+   "claimid": "19458948B",
+   "carrier": "HUM01",
+   "dos": [
+    "10/22/2026",
+    "10/22/2026"
+   ],
+   "cpt": [
+    "99487",
+    "99489"
+   ],
+   "fee": 315.0,
+   "error": "PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD AND NOT ENTERD INTO ADJUDICATION SYS.:DUPLICATE OF A PREVIOUSLY PROCESSED CLAIM, LINE.",
+   "live": [
+    {
+     "cid": "23371225",
+     "cpt": "99487",
+     "dos": "10/22/2026",
+     "carrier": "HUM01",
+     "billdate": "10/30/2026",
+     "insbal": "206.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    },
+    {
+     "cid": "23371226",
+     "cpt": "99489",
+     "dos": "10/22/2026",
+     "carrier": "HUM01",
+     "billdate": "10/30/2026",
+     "insbal": "109.00",
+     "patbal": "0.00",
+     "paid": "0.00",
+     "pays": []
+    }
+   ]
+  }
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-lrm5n\" lst=\"11/02/2026 11:03:10\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": [
+  "19459600",
+  "19459637"
+ ]
+}

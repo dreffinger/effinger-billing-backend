@@ -1,0 +1,14 @@
+{
+ "stamp": "2026-11-02T1840Z",
+ "run": "1700346",
+ "live": true,
+ "why": "PREF0283 missing payer doc control num - William 10/14: resubmitted as an original (freq 1) to the Florida Blue plan seq 2",
+ "rows": [
+  [
+   "19458947",
+   "19458947B"
+  ]
+ ],
+ "hide_result": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-vhkxr\" lst=\"11/02/2026 11:03:47\"><Results success=\"1\" /><Error /></PPMDResults>",
+ "relist_visits": []
+}

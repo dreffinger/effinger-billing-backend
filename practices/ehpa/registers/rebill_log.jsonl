@@ -212,3 +212,8 @@
 {"at": "2026-11-02T09:53:12Z", "visit": "19434037", "charge": "23340932", "seq": 1, "status": 204, "by": "sweep_act_1102.py"}
 {"at": "2026-11-02T09:53:26Z", "visit": "19448986", "charge": "23358547", "seq": 2, "status": 204, "by": "sweep_act_1102.py"}
 {"at": "2026-11-02T09:53:37Z", "visit": "19455357", "charge": "23366640", "seq": 4, "status": 204, "by": "sweep_act_1102.py"}
+{"at": "2026-11-02T19:02:47Z", "visit": "19458764", "charge": "23370984", "seq": 2, "status": 204, "by": "freq7_visit.py"}
+{"at": "2026-11-02T19:03:04Z", "visit": "19458948", "charge": "23371225", "seq": 1, "status": 204, "by": "freq7_visit.py"}
+{"at": "2026-11-02T19:03:22Z", "visit": "19459600", "charge": "23372146", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-02T19:03:27Z", "visit": "19459637", "charge": "23372208", "seq": 1, "status": 204, "by": "freq1_visit.py"}
+{"at": "2026-11-02T19:03:46Z", "visit": "19458947", "charge": "23371223", "seq": 2, "status": 204, "by": "freq1_visit.py"}

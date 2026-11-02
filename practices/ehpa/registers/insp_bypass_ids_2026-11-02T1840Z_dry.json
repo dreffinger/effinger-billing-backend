@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-11-02T1840Z",
+ "why": "William 11/2 08:36Z coding call: confirmed new admission, Pattern 692 bypass (row 17478223); re-raised by re-inspection, error id 397576",
+ "live": false,
+ "items": [
+  {
+   "visit": "19459752",
+   "pattern": "692",
+   "batch": "1",
+   "errorid": "397576",
+   "desc": "Pattern 692 Initial hospital care code 99223 was reported on a date after subsequent hospital care code 99233 on Claim I",
+   "result": "dry"
+  }
+ ]
+}

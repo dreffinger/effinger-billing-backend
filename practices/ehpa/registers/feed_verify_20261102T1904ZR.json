@@ -1,0 +1,105 @@
+{
+ "pat17478261": {
+  "v": 3,
+  "visits": [
+   "vst19459829",
+   "vst19459830",
+   "vst19459832",
+   "vst19459833",
+   "vst19459834"
+  ],
+  "dos": [
+   "10/27/2026",
+   "10/28/2026",
+   "10/29/2026",
+   "10/30/2026",
+   "10/31/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added BCBS plan -> ins9521094 seq 1",
+   "chart order -> 1: insorder 1 via ins9521094 -> '1'",
+   "vst19459829 insorder 1: ok",
+   "vst19459830 insorder 1: ok",
+   "vst19459832 insorder 1: ok",
+   "vst19459833 insorder 1: ok",
+   "vst19459834 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "BCBS",
+   "seq": "1",
+   "why": "Stedi discovery BCBS ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19459829": "1",
+   "vst19459830": "1",
+   "vst19459832": "1",
+   "vst19459833": "1",
+   "vst19459834": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477128": {
+  "v": 3,
+  "visits": [
+   "vst19459831"
+  ],
+  "dos": [
+   "10/29/2026"
+  ],
+  "cpts": [
+   "99309"
+  ],
+  "checks": [
+   {
+    "plan": "ins9519091",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9518486",
+    "car": "UNI20",
+    "seq": "1",
+    "end": "08/03/2026"
+   },
+   {
+    "id": "ins9519091",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19459831": "2"
+  },
+  "decision": "RELEASE"
+ }
+}

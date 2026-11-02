@@ -1,0 +1,137 @@
+{
+ "created": [
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19459829",
+   "charges": [
+    "charge23372426"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-02T19:04:51.175280",
+   "dos": "10/28/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261027",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19459830",
+   "charges": [
+    "charge23372427"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-02T19:04:54.176569",
+   "dos": "10/27/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261027",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6a565f774b95b38f0194a2c7",
+   "pid": "pat17477128",
+   "visit": "vst19459831",
+   "charges": [
+    "charge23372428"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-02T19:04:59.093292",
+   "dos": "10/29/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "",
+   "pos": "31",
+   "prof": "prof13",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19459832",
+   "charges": [
+    "charge23372429"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-02T19:05:02.085109",
+   "dos": "10/31/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261027",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19459833",
+   "charges": [
+    "charge23372430"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-02T19:05:04.580330",
+   "dos": "10/30/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261027",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6ae18ba0d34805b07960ca03",
+   "pid": "pat17478261",
+   "visit": "vst19459834",
+   "charges": [
+    "charge23372431"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-02T19:05:07.081720",
+   "dos": "10/29/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261027",
+   "missing_dx": [],
+   "admit_written": true
+  }
+ ],
+ "skipped": [],
+ "failed": []
+}

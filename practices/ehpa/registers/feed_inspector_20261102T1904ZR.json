@@ -1,0 +1,23 @@
+{
+ "fixed": [
+  {
+   "visit": "19459831",
+   "pid": "pat17477128",
+   "patterns": [
+    "4516"
+   ],
+   "note": [
+    "HELD: 4516"
+   ]
+  }
+ ],
+ "bypassed": [],
+ "held": [
+  {
+   "visit": "19459831",
+   "pid": "pat17477128",
+   "why": "[Pattern 4516] There is no Primary Diagnosis..."
+  }
+ ],
+ "laterality": []
+}
