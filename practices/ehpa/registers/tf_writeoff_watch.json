@@ -804,6 +804,121 @@
      "outcome": "answer-found 2026-10-17T0510Z: UHC 277 says PAID 101.77 on check 280637173 (the 11/2025 adjudication) - no 835 in the ERA Center, nothing posted on the charge (insbal 141.00 at UNI20, billdate 10/16/2026); the 10/16 frequency-1 re-send will answer duplicate; needs the 280637173 835 pulled into 'bht Optum era downloads' (board row uhc-2025-remits-unposted-1006); not written off"
     }
    ]
+  },
+  {
+   "id": "hunter-restore-2026-11-02T0855Z",
+   "status": "open",
+   "carrier": "UHCMA",
+   "pid": "25558",
+   "created": "2026-11-02T0951Z",
+   "about": "William 11/2/2026 board 'restore': twelve 2025 Medicare-$0 write-offs voided and the visits plus three open 9/8-10/25/2025 visits sent ONCE to UHC Dual Complete (seq 4) as originals; 13-20 months old - a CARC 29 from UHC = WOLATE write-off under this watch, any other answer by the denial rules",
+   "visits": [
+    {
+     "visitid": "19401676",
+     "chargeid": "22475893",
+     "dollars": 68.0,
+     "dos": "2025-03-03",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19403764",
+     "chargeid": "22477891",
+     "dollars": 256.0,
+     "dos": "2025-04-10",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19403764",
+     "chargeid": "22477892",
+     "dollars": 133.0,
+     "dos": "2025-04-10",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19404463",
+     "chargeid": "22478696",
+     "dollars": 141.0,
+     "dos": "2025-04-14",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19405093",
+     "chargeid": "22479341",
+     "dollars": 141.0,
+     "dos": "2025-04-28",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19405522",
+     "chargeid": "22479725",
+     "dollars": 141.0,
+     "dos": "2025-05-05",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19406057",
+     "chargeid": "22480296",
+     "dollars": 206.0,
+     "dos": "2025-05-16",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19407634",
+     "chargeid": "22482921",
+     "dollars": 141.0,
+     "dos": "2025-06-09",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19407903",
+     "chargeid": "22483225",
+     "dollars": 206.0,
+     "dos": "2025-06-20",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19409748",
+     "chargeid": "22485487",
+     "dollars": 204.0,
+     "dos": "2025-07-17",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19411235",
+     "chargeid": "23313960",
+     "dollars": 141.0,
+     "dos": "2025-07-12",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19416035",
+     "chargeid": "23319574",
+     "dollars": 141.0,
+     "dos": "2025-08-01",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19416162",
+     "chargeid": "23319718",
+     "dollars": 315.0,
+     "dos": "2025-09-08",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19418998",
+     "chargeid": "23323911",
+     "dollars": 141.0,
+     "dos": "2025-10-01",
+     "outcome": "sent 2026-11-02T0951Z"
+    },
+    {
+     "visitid": "19420931",
+     "chargeid": "23326062",
+     "dollars": 315.0,
+     "dos": "2025-10-25",
+     "outcome": "sent 2026-11-02T0951Z"
+    }
+   ]
   }
  ]
 }
