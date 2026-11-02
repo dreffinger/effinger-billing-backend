@@ -38,7 +38,7 @@ def mdy(yyyymmdd):
 def iso_from_mdy(s):
     m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s or "")
     return "%s-%02d-%02d" % (m.group(3), int(m.group(1)), int(m.group(2))) if m else None
-CLIN = {"EFFINGER WILLIAM": "Dr. Effinger (DO)", "GARCIA PAMELA": "Pamela G. (ARNP)", "GARLAND-G PAMELA": "Pamela G. (ARNP)"}
+CLIN = {"EFFINGER WILLIAM": "Dr. Effinger (DO)", "GARLAND-G PAMELA": "Pamela G. (ARNP)", "GARLAND-G PAMELA": "Pamela G. (ARNP)"}
 def clin(p):
     """clinician label without a surname the PHI gate could mistake for a patient's (the pseudonym map holds common surnames)"""
     if not p: return "Clinician on file"
