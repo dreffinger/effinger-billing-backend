@@ -1,0 +1,15 @@
+{
+ "stamp": "2026-11-02T1244Z",
+ "why": "William 11/2 08:36Z board row [name]-17478223: 10/29 stays 99233, 10/30 is the 99223 (feed admit 10/30) - send as coded",
+ "live": true,
+ "items": [
+  {
+   "visit": "19459752",
+   "pattern": "692",
+   "batch": "1",
+   "errorid": "397535",
+   "desc": "Pattern 692 Initial hospital care code 99223 was reported on a date after subsequent hospital care code 99233 on Claim I",
+   "result": "ok"
+  }
+ ]
+}
