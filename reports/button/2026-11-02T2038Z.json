@@ -1,0 +1,299 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-02T2038Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns CR/CI/Unb/Exc 0/2/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00 (WOINS 69.99, WOCAID2ND 12.14); re-sent 9 visits $1,588.87; 5 board answers acted on",
+ "note": "no BUTTON PRESS brief in the firing (scheduled fire) - live, all steps, every approved package (none)",
+ "run_url": "https://claude.ai/code/session_01HHfWRD5e97VhD4Uwfu6xdp",
+ "started": "2026-11-02T20:38:00Z",
+ "ended": "2026-11-02T21:31:46Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 2,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 69.99,
+   "wocaid2nd": 12.14,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 9,
+   "dollars": 1588.87
+  },
+  "written_off": {
+   "count": 2,
+   "dollars": 82.13
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 301622.84,
+   "visits": 2543,
+   "charts": 473,
+   "over_365": {
+    "n": 519,
+    "dollars": 20709.74
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "board",
+   "title": "Feed + board input + Working Denials queue",
+   "status": "ok",
+   "summary": "feed: gs bucket 15 objects, 0 new (newest 20261101), ingest nothing new, retry_dx nothing; board: 5 William answers acted on (charts 48449, 17472228, 17477533, 17469446, 17471204), 1 new row on William's turn (17477128); drops 0; denials queue 0; approvals 0 approved / 0 waiting; Pam Gmail 3 facesheets already handled 18:40Z; PCC folder IMG_8912 = chart 17477533 facesheet",
+   "counts": {
+    "rows_acted": 5,
+    "rows_new": 1,
+    "drops": 0,
+    "commands": 0,
+    "feed_new_files": 0
+   },
+   "dollars": {
+    "resent": 1472.34,
+    "written_off": 12.14
+   },
+   "lines": [
+    {
+     "chart": "48449",
+     "action": "patient order 2,1 (FB first); v19458947 reroute FB primary freq1 $315; v19452567 freq7 F100001345003365 $206"
+    },
+    {
+     "chart": "17472228",
+     "action": "SUN01 ins9511589 end-dated 10/02/2026; order 3"
+    },
+    {
+     "chart": "17477533",
+     "action": "DOB patched to Medicare's record; 271 ACTIVE; v19459144 freq1 seq 2 $206"
+    },
+    {
+     "chart": "17469446",
+     "action": "c22484496 WOCAID2ND 12.14 (paymentid 10178088)"
+    },
+    {
+     "chart": "17471204",
+     "action": "v19431511/19431654/19435174/19435175 freq1 seq 2 $703.04"
+    },
+    {
+     "chart": "17477128",
+     "action": "board row william - Pattern 4516, dx master record malformed, v19459831 $141"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-02T20:50:00Z",
+   "ended": "2026-11-02T21:20:00Z"
+  },
+  {
+   "name": "columns",
+   "title": "Charge Review / Claim Inspector / Unbilled / Exclusions",
+   "status": "ok",
+   "summary": "CR 0; CI 2 -> 1 (v19458947 35790 advisory bypassed; v19409077 written off + 15775/20657/24078 bypassed per William; v19459831 Pattern 4516 held - board row); Unbilled 0; Exclusions 1 -> 1 (AET12 chart 24750 standing carrier master)",
+   "counts": {
+    "before": {
+     "charge_review": 0,
+     "claim_inspector": 2,
+     "unbilled": 0,
+     "exclusions": 1
+    },
+    "after": {
+     "charge_review": 0,
+     "claim_inspector": 1,
+     "unbilled": 0,
+     "exclusions": 1
+    }
+   },
+   "dollars": {
+    "held": 456.0
+   },
+   "lines": [
+    {
+     "column": "CI",
+     "visit": "19459831",
+     "chart": "17477128",
+     "dollars": 141.0,
+     "state": "held - Pattern 4516, William"
+    },
+    {
+     "column": "EXC",
+     "chart": "24750",
+     "dollars": 315.0,
+     "state": "standing AET12 PREF0288"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-02T20:47:00Z",
+   "ended": "2026-11-02T21:21:00Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting + UNI20/BCBS sweep + Availity",
+   "status": "ok",
+   "summary": "0 unposted checks before and after; no new 835 / Availity / treasury file since 10/30; sweep pass 177: 60 asked (57 already answered - no --skip-answered), 3 new: v19386697 BCBS secondary not on file -> freq1 ($116.53); v19448695 Medicare contractual never written off -> WOINS 69.99; v19415417 UHC paid 126.90 posted, PR2 42.30 -> Aetna secondary freq1; conflict named: rules.md 11/2 retires 5(b2), prompt step run, no tf_writeoff_watch claim",
+   "counts": {
+    "checks_before": 0,
+    "checks_after": 0,
+    "sweep_asked": 60,
+    "sweep_new": 3
+   },
+   "dollars": {
+    "unposted_before": 0.0,
+    "unposted_after": 0.0,
+    "auto_posted": 0.0,
+    "manual_posted": 0.0,
+    "residual": 0.0,
+    "woins": 69.99
+   },
+   "lines": [
+    {
+     "visit": "19386697",
+     "chart": "17471795",
+     "dollars": 116.53,
+     "action": "freq1 seq 2 (BCBS secondary)"
+    },
+    {
+     "visit": "19448695",
+     "chart": "17471968",
+     "dollars": 69.99,
+     "action": "WOINS check 819814877"
+    },
+    {
+     "visit": "19415417",
+     "chart": "17471204",
+     "dollars": 42.3,
+     "action": "freq1 seq 2 (Aetna secondary)"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-02T21:17:00Z",
+   "ended": "2026-11-02T21:22:00Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check + void rules",
+   "status": "ok",
+   "summary": "precheck 11 pairs (0 new lookups), 1 flag: chart 22858 FLO99 $320 'no eligibility on Stedi for this payer' (FCC - known, no action); void_rules 1 open rule, 0 matches; Stedi $0",
+   "counts": {
+    "pairs": 11,
+    "flagged": 1,
+    "new_lookups": 0
+   },
+   "dollars": {
+    "stedi": 0.0
+   },
+   "lines": [
+    {
+     "chart": "22858",
+     "carrier": "FLO99",
+     "dollars": 320.0,
+     "state": "no Stedi payer for FCC - left"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-02T21:22:00Z",
+   "ended": "2026-11-02T21:23:00Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "ok",
+   "summary": "0 approved / 0 waiting on the approvals page and in the register (94 items all done)",
+   "counts": {
+    "applied": 0,
+    "refused": 0,
+    "skipped": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T20:52:00Z",
+   "ended": "2026-11-02T20:52:00Z"
+  },
+  {
+   "name": "cred",
+   "title": "cred_check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; revalidation due TBD x3; LEIE 84093 rows 0 matches; reminders none - no board file",
+   "counts": {
+    "nppes_changed": 0,
+    "leie_matches": 0,
+    "reminders": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:23:00Z",
+   "ended": "2026-11-02T21:23:30Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "outstanding_claims.py",
+   "status": "ok",
+   "summary": "$301,622.84 open on 2,543 visits / 473 charts; over 365 days 519 visits $20,709.74",
+   "counts": {
+    "visits": 2543,
+    "charts": 473
+   },
+   "dollars": {
+    "total": 301622.84,
+    "over_365": 20709.74
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:23:30Z",
+   "ended": "2026-11-02T21:24:00Z"
+  },
+  {
+   "name": "denials",
+   "title": "denials_refresh.py",
+   "status": "ok",
+   "summary": "834 charts, 13,194 denial lines, 7,783 visits; 72 actionable $13,443 (69 inside 12 months $12,924); OPEN 160",
+   "counts": {
+    "actionable": 72,
+    "open": 160
+   },
+   "dollars": {
+    "actionable": 13443.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:24:00Z",
+   "ended": "2026-11-02T21:28:00Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "chart 17477128 v19459831 $141: fix the S82.843A diagnosis master record (description '/ M51.86 / S82.843A') or name the diagnosis - board row",
+  "AET12 carrier master chart 24750 $315 (standing)",
+  "chart 48449: Florida Blue finalized $0 on three FB-primary CCM claims (10/25/2025, 5/17, 9/20) - remit reason needed; FB paid 75.37 on 10/30 for the 10/1 99349 - 835 expected",
+  "charts without an AMD chart yet (Brynwood admits 10/30 and 11/1) parked until the feed brings a charge"
+ ],
+ "errors": []
+}
