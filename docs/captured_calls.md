@@ -5593,3 +5593,9 @@ Lesson re-confirmed (fresh container): the GCS key install needs cffi for THIS i
 No new AMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): login (one, columns_scan), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus / getclaimexclusioncharges, GET /api/era/checks, posterapayments (Post button, nothing to post), lookupdiagcode codeset=10 (retry-dx), GCS bucket listing (claimocity_gcs.py). Vocabulary entries added: 0.
 
 Observation: Claimocity bucket unchanged since the 1240Z ingest (15 objects, newest 20261101); 6 feed visits still wait on M51.17 / M51.86 / S82.843A being added to AMD's diagnosis list.
+
+# captured_calls additions - backend billing run 2026-11-02T0040Z (7:40 PM ET 11/1, ehpa cloud, columns task v7)
+
+No new AMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): login (one, claimocity_retry_dx), lookupdiagcode codeset=10 (retry-dx), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus / getclaimexclusioncharges, GET /api/era/checks, posterapayments (Post button, nothing to post), GCS bucket listing (claimocity_gcs.py), precheck (0 pairs - no Stedi call). Vocabulary entries added: 0.
+
+Observation: Claimocity bucket unchanged since the 11/1 1240Z ingest (15 objects, newest 20261101); 6 feed visits still wait on M51.17 / M51.86 / S82.843A being added to AMD's diagnosis list. Bootstrap note: the first `claimocity_gcs.py --install-key` in this container died with a pyo3 'Python API call failed' panic inside the Debian cryptography 41.0.7 package; the identical second call succeeded - transient, not a code problem.
