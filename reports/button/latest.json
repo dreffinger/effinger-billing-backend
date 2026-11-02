@@ -1,15 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-02T2037Z",
- "mode": "dry",
- "status": "warn",
- "headline": "DRY (brief) - duplicate firing beside run 2038Z: Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0",
- "note": "BUTTON PRESS 2026-11-02T20:37:31Z, mode dry, steps feed,columns,era,cascade,packages,cred,outstanding, packages none, note 'ehpa Billing Button' - the brief reached the session after the run had finished (recorded by this finalize). The run was already read-only: a parallel button session (2038Z) did the full live run while this one waited on the Drive START-marker guard. ONE AdvancedMD write happened before the dry brief arrived - a no-rebill full-visit echo on v19459831 (chart 17477128) to re-inspect a Pattern 4516 hold; it changed no balance, order or claim. The denials snapshot was refreshed read-only although the brief's step list omits it.",
- "run_url": "https://claude.ai/code/session_01HHfWRBofvbWSacFKyS3HS3",
- "started": "2026-11-02T20:37:00Z",
- "ended": "2026-11-02T21:43:24Z",
- "engine": "claude",
- "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "stamp": "2026-11-02T2318Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41544412081",
+ "started": "2026-11-02T23:18:47Z",
+ "ended": "2026-11-02T23:24:48Z",
  "summary": {
   "columns": {
    "before": {
@@ -28,11 +26,11 @@
   "era": {
    "before": {
     "checks": 0,
-    "unposted": 0.0
+    "unposted": 0
    },
    "after": {
     "checks": 0,
-    "unposted": 0.0
+    "unposted": 0
    }
   },
   "posted": {
@@ -55,174 +53,305 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": null,
-   "visits": null,
-   "charts": null,
-   "over_365": null
+   "total": 301622.84,
+   "visits": 2543,
+   "charts": 473,
+   "over_365": {
+    "n": 519,
+    "dollars": 20709.74
+   }
   },
   "denials": {
    "visits": 7783,
    "actionable": 72,
    "actionable_amt": 13443.0,
-   "asof": "2026-11-02T21:40:36Z"
+   "asof": "2026-11-02 23:24 UTC"
   }
  },
  "steps": [
   {
-   "name": "board",
-   "title": "Feed + board input",
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "feed: bucket 15 objects, 0 new (newest 20261101), ingest nothing new, retry_dx nothing to retry; Working Denials queue 0; drops 0; William's 20:12Z / 20:27Z answers on charts 48449 and 17472228 verified live as already in place (FB-first order 2,1 + FB primary claim queued; SUN01 end-dated 10/02/2026, order UHC only) - the parallel run 2038Z acted on them (board_updates_2026-11-02T2038Z.json), this run's board file withheld ('awaiting board sync'); Pam Gmail: chart 17475778 readmit 10/29 matched the chart (UNI20 AARP MA 271 ACTIVE, MBI matches) - no write",
+   "summary": "1310 helpers into /home/claude/unbilled",
    "counts": {
-    "rows_acted": 0,
-    "drops": 0,
-    "commands": 0
+    "helpers copied": 1310,
+    "registers": 1703,
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T21:22:00Z",
-   "ended": "2026-11-02T21:36:00Z"
+   "started": "2026-11-02T23:18:47Z",
+   "ended": "2026-11-02T23:18:48Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0; CI 1 -> 1 (v19459831 chart 17477128 $141 Pattern 4516: no-rebill full-visit echo re-inspected it, same hold - the S82.843A diagnosis master record is malformed, board row on William's turn by the parallel run); Unbilled 0; Exclusions 1 -> 1 (AET12 chart 24750 standing)",
+   "summary": "CR 0->0, CI 1->1, Unbilled 0->0, Exclusions 1->1",
    "counts": {
-    "before": [
-     0,
-     1,
-     0,
-     1
-    ],
-    "after": [
-     0,
-     1,
-     0,
-     1
-    ]
+    "charge review": 0,
+    "claim inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 1,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 0,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
    },
    "dollars": {},
    "lines": [
     {
-     "visit": 19459831,
-     "chart": 17477128,
-     "dollars": 141.0,
-     "hold": "Pattern 4516 - dx master record S82.843A"
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 1,
+     "ids": "v19459831"
     },
     {
-     "chart": 24750,
-     "visit": 19455937,
-     "dollars": 315.0,
-     "hold": "AET12 PREF0288 carrier master"
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
     }
    ],
    "errors": [],
-   "started": "2026-11-02T21:22:00Z",
-   "ended": "2026-11-02T21:40:00Z"
+   "started": "2026-11-02T23:18:48Z",
+   "ended": "2026-11-02T23:20:43Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 unposted checks before and after (read-only this run)",
+   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
    "counts": {
-    "checks_before": 0,
-    "checks_after": 0
+    "era_post lines": 0,
+    "checks dismissed": 0,
+    "checks held": 0
    },
    "dollars": {
-    "unposted_before": 0.0,
-    "unposted_after": 0.0
+    "unposted before": 0,
+    "unposted after": 0,
+    "posted this run": 0.0
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T21:32:00Z",
-   "ended": "2026-11-02T21:33:00Z"
-  },
-  {
-   "name": "cascade",
-   "title": "Insurance cascade pre-check",
-   "status": "ok",
-   "summary": "precheck --days 3 --max 120: 11 pairs (0 new lookups), 1 flag: chart 22858 FLO99 $320 'no eligibility on Stedi for this payer' (FCC is not on Stedi - known, no action); void_rules.json absent in this workspace - 0 VOID lines; Stedi $0.00",
-   "counts": {
-    "pairs": 11,
-    "flagged": 1
-   },
-   "dollars": {
-    "stedi": 0.0
-   },
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-02T21:34:00Z",
-   "ended": "2026-11-02T21:35:00Z"
+   "started": "2026-11-02T23:20:43Z",
+   "ended": "2026-11-02T23:20:46Z"
   },
   {
    "name": "packages",
    "title": "Approval packages",
    "status": "ok",
-   "summary": "0 approved / 0 waiting (register 94 items all done)",
-   "counts": {
-    "applied": 0,
-    "refused": 0,
-    "skipped": 0
-   },
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-02T21:40:36Z",
-   "ended": "2026-11-02T21:40:36Z"
-  },
-  {
-   "name": "cred",
-   "title": "Credentialing check",
-   "status": "ok",
-   "summary": "NPPES 3 records 0 changed; revalidation due TBD x3; LEIE 84093 rows 0 matches; reminders none - no board file",
+   "summary": "no approved package in the register",
    "counts": {},
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T21:40:36Z",
-   "ended": "2026-11-02T21:40:36Z"
+   "started": "2026-11-02T23:20:46Z",
+   "ended": "2026-11-02T23:20:46Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "$None open on None visits / None charts; over 365 days None visits $None",
-   "counts": {},
-   "dollars": {
-    "total": null
+   "summary": "2543 visits on 473 charts, $301622.84 open; 519 over a year ($20709.74)",
+   "counts": {
+    "visits": 2543,
+    "charts": 473,
+    "over 365 days": 519
    },
-   "lines": [],
+   "dollars": {
+    "open insurance balance": 301622.84,
+    "over 365 days": 20709.74
+   },
+   "lines": [
+    {
+     "carrier": "FLO02",
+     "name": "FLORIDA MEDICARE",
+     "visits": 1390,
+     "dollars": 172054.76,
+     "oldest_days": 1083
+    },
+    {
+     "carrier": "FLO99",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "visits": 151,
+     "dollars": 25930.58,
+     "oldest_days": 420
+    },
+    {
+     "carrier": "UNI20",
+     "name": "UNITED HEALTHCARE",
+     "visits": 151,
+     "dollars": 23056.63,
+     "oldest_days": 1179
+    },
+    {
+     "carrier": "BCBS",
+     "name": "FLORIDA BLUE",
+     "visits": 289,
+     "dollars": 18434.89,
+     "oldest_days": 1050
+    },
+    {
+     "carrier": "UHCMA",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "visits": 55,
+     "dollars": 11751.4,
+     "oldest_days": 1152
+    },
+    {
+     "carrier": "HUM01",
+     "name": "HUMANA",
+     "visits": 63,
+     "dollars": 9813.73,
+     "oldest_days": 1060
+    },
+    {
+     "carrier": "VACCN",
+     "name": "OPTUM VA CCN",
+     "visits": 30,
+     "dollars": 5554.22,
+     "oldest_days": 968
+    },
+    {
+     "carrier": "CIG09",
+     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
+     "visits": 26,
+     "dollars": 4031.01,
+     "oldest_days": 168
+    },
+    {
+     "carrier": "MCAD",
+     "name": "FLORIDA MEDICAID",
+     "visits": 29,
+     "dollars": 3646.1,
+     "oldest_days": 364
+    },
+    {
+     "carrier": "SUN01",
+     "name": "SUNSHINE STATE HEALTH PLAN",
+     "visits": 26,
+     "dollars": 3345.18,
+     "oldest_days": 62
+    },
+    {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 17,
+     "dollars": 3148.0,
+     "oldest_days": 43
+    },
+    {
+     "carrier": "SIM01",
+     "name": "SIMPLY HEALTHCARE MCD PLANS",
+     "visits": 13,
+     "dollars": 2545.0,
+     "oldest_days": 43
+    }
+   ],
    "errors": [],
-   "started": "2026-11-02T21:40:36Z",
-   "ended": "2026-11-02T21:40:36Z"
+   "started": "2026-11-02T23:20:46Z",
+   "ended": "2026-11-02T23:20:48Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "834 charts, 13,194 denial lines, 7,783 visits; 72 actionable $13,443 (69 inside 12 months $12,924); OPEN 160",
+   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESUBMITTED 164, RESOLVED 4498, OPEN 160",
    "counts": {
-    "actionable": 72
+    "charts read": 834,
+    "denial lines": 13194,
+    "visits": 7783,
+    "actionable": 72,
+    "inside 12 months": 69,
+    "status WRITTEN-OFF": 2961,
+    "status RESUBMITTED": 164,
+    "status RESOLVED": 4498,
+    "status OPEN": 160
    },
    "dollars": {
-    "actionable": 13443.0
+    "actionable": 13443.0,
+    "inside 12 months": 12924.0,
+    "resubmitted": 27824.37,
+    "resolved since": 679756.14
    },
-   "lines": [],
+   "lines": [
+    {
+     "disposition": "UNCLASSIFIED",
+     "visits": 1903,
+     "dollars": 315217.0,
+     "patients": 221
+    },
+    {
+     "disposition": "FIX",
+     "visits": 1264,
+     "dollars": 196654.23,
+     "patients": 200
+    },
+    {
+     "disposition": "REVIEW",
+     "visits": 1123,
+     "dollars": 174846.95,
+     "patients": 215
+    },
+    {
+     "disposition": "COB",
+     "visits": 1008,
+     "dollars": 167627.61,
+     "patients": 103
+    },
+    {
+     "disposition": "DUPLICATE",
+     "visits": 500,
+     "dollars": 95230.0,
+     "patients": 224
+    },
+    {
+     "disposition": "INFO",
+     "visits": 500,
+     "dollars": 84472.35,
+     "patients": 56
+    },
+    {
+     "disposition": "CRED",
+     "visits": 444,
+     "dollars": 63801.3,
+     "patients": 73
+    },
+    {
+     "disposition": "TIMELY",
+     "visits": 223,
+     "dollars": 37540.38,
+     "patients": 95
+    },
+    {
+     "disposition": "CONTRACTUAL",
+     "visits": 498,
+     "dollars": 34492.77,
+     "patients": 70
+    },
+    {
+     "disposition": "PATIENT",
+     "visits": 320,
+     "dollars": 28173.07,
+     "patients": 143
+    }
+   ],
    "errors": [],
-   "started": "2026-11-02T21:40:36Z",
-   "ended": "2026-11-02T21:40:36Z"
+   "started": "2026-11-02T23:20:48Z",
+   "ended": "2026-11-02T23:24:48Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "chart 17477128 v19459831 $141: fix the S82.843A diagnosis master record (description '/ M51.86 / S82.843A') - board row (parallel run 2038Z)",
-  "AET12 carrier master chart 24750 $315 (standing)",
-  "Brynwood admits 10/30 and 11/1 without an AMD chart - parked until the feed brings a charge",
-  "Billing Button fired twice within one minute (sessions 2037Z and 2038Z) - check the page / scheduler for a double press"
+  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
- "errors": [],
- "brief": "BUTTON PRESS 2026-11-02T20:37:31.143Z \u00b7 mode: dry \u00b7 steps: feed,columns,era,cascade,packages,cred,outstanding \u00b7 packages: none \u00b7 note: ehpa Billing Button"
+ "errors": []
 }
