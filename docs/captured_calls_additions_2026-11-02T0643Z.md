@@ -1,0 +1,5 @@
+# captured_calls additions - backend billing run 2026-11-02T0643Z (1:43 AM ET 11/2, ehpa cloud, columns task v7)
+
+No new AMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): login (one, columns_scan), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges, GET /api/era/checks, posterapayments dry (nothing to post), lookupdiagcode codeset=10 (retry-dx), GCS bucket listing (claimocity_gcs.py). Vocabulary entries added: 0.
+
+Observation: Claimocity bucket unchanged since the 11/1 1240Z ingest (15 objects, newest 20261101); 6 feed visits still wait on M51.17 / M51.86 / S82.843A being added to AMD's diagnosis list. The Insurance Refresh Board page's drive_sync.applied map has recorded nothing since 9/20 while the board inbox holds 100+ board_updates files since 10/18 - the inbox cannot be trimmed by the rule 'trash exactly the applied ids'.
