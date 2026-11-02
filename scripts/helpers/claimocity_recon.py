@@ -17,6 +17,9 @@ import os, sys, re, json, glob, subprocess, datetime, collections
 
 a = sys.argv[1:]
 def opt(name, default=None): return a[a.index(name) + 1] if name in a else default
+# --all-already "<evidence>": a batch with NO import register whose run log proved every line was already in AMD (10/29 05:49Z: the
+# importer wrote no register when it created nothing - fixed 11/2); the evidence text becomes every row's why. Used by hand, once.
+ALL_ALREADY = opt("--all-already")
 WS = opt("--ws", "/home/claude/unbilled")
 STAMP = next((x for x in a if re.match(r"^\d{8}T\d{4}Z(R?)$|^1028$|^dry\w+$", x)), None) or os.environ.get("FEED_STAMP")
 if not STAMP: sys.exit("usage: claimocity_recon.py <stamp>  (or FEED_STAMP=<stamp>)")
@@ -81,6 +84,16 @@ resolved = {}
 for k, v in match.items():
     if v.get("resolved"):
         for fid in v.get("feed_ids", []): resolved[fid] = v["resolved"]
+# every OTHER batch's created visits: a batch whose own import register is missing (10/29 05:49Z - the first daily run, its
+# container's registers never reached main) is still accounted for when the 10/28 backlog or another batch entered the same visit
+other_created = {}
+if not HAVE_IMPORT:
+    for rf in sorted(glob.glob("registers/feed_import_*.json")):
+        if rf.endswith("_decisions.json") or rf == IMPF: continue
+        ost = re.sub(r"^registers/feed_import_|\.json$", "", rf)
+        for c in load(rf, {}).get("created", []) or []:
+            for d in {c.get("dos"), c.get("dos_feed")} - {None}:
+                other_created.setdefault((c.get("feed_id"), d, tuple(sorted(c.get("cpts") or []))), (ost, c))
 
 def skip_kind(why):
     w = (why or "").lower()
@@ -116,8 +129,15 @@ for m in parsed:
                 row["hold"] = txt[:240]
         if c.get("pid") in newcharts: row["newchart"] = newcharts[c.get("pid")]
         if c.get("visit") in voided: row["s"] = "voided"; row["why"] = ("voided after entry: " + voided[c.get("visit")])[:200]
+    elif not HAVE_IMPORT and other_created.get(key):
+        ost, c = other_created[key]
+        row.update({"s": "already", "p": c.get("pid") or pid, "v": c.get("visit"), "ch": c.get("charges") or [], "fee": round(sum(money(x) for x in c.get("fees") or []), 2),
+                    "why": ("already in AMD - entered by batch %s; this batch's own import register is not on main" % ost)[:200]})
+        if c.get("visit") in voided: row["s"] = "voided"; row["why"] = ("voided after entry: " + voided[c.get("visit")])[:200]
+    elif not HAVE_IMPORT and ALL_ALREADY:
+        row.update({"s": "already", "p": pid, "why": ALL_ALREADY[:200]})
     elif not HAVE_IMPORT:
-        row.update({"s": "unrecorded", "p": pid, "why": "this batch's import register is not on main - outcome not recorded (the September files the old integration had already posted)"})
+        row.update({"s": "unrecorded", "p": pid, "why": "this batch's import register is not on main and no other batch entered this visit - outcome not recorded (the old integration had posted the September files before the practice took over)"})
     elif skipped_by_fid.get(fid):
         s = skipped_by_fid[fid].pop(0)
         why = s.get("why") or ""; why = re.sub(r"(date of death)\s+\d{4}-\d{2}-\d{2}", r"\1 [date]", why)

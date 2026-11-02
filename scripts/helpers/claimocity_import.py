@@ -212,5 +212,8 @@ def main():
             stats["error"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
             json.dump(reg, open(REG, "w"), indent=1)
         if n % 25 == 0 and n: print("progress", n, dict(stats))
+    # 10/29 05:49Z lesson: a live batch whose every line was already in AMD created nothing and so wrote NO import register (verify,
+    # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
+    if not dry: json.dump(reg, open(REG, "w"), indent=1)
     print("DONE", dict(stats))
 if __name__ == "__main__": main()

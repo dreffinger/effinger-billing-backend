@@ -1,0 +1,2069 @@
+{
+"schema":"feed-recon/1",
+"stamp":"20261030T0034Z",
+"built":"2026-11-02T04:59:00Z",
+"at":"2026-10-30T00:41:18.504236Z",
+"live":true,
+"files":[
+{
+"name":"20260903626627aa54d52f67a80d586a.hl7",
+"date":"20260903",
+"messages":5
+},
+{
+"name":"20260904626627aa54d52f67a80d586a.hl7",
+"date":"20260904",
+"messages":24
+},
+{
+"name":"20260907626627aa54d52f67a80d586a.hl7",
+"date":"20260907",
+"messages":34
+},
+{
+"name":"20260908626627aa54d52f67a80d586a.hl7",
+"date":"20260908",
+"messages":22
+},
+{
+"name":"20260909626627aa54d52f67a80d586a.hl7",
+"date":"20260909",
+"messages":24
+}
+],
+"dmin":"2026-08-31",
+"dmax":"2026-09-08",
+"counts":{
+"messages":109,
+"entered":4,
+"lines":5,
+"dollars":1333.0,
+"already":101,
+"deceased":0,
+"dx":0,
+"cpt":2,
+"skipped":0,
+"failed":0,
+"nochart":0,
+"voided":2,
+"unrecorded":0,
+"new_charts":0,
+"holds":1
+},
+"rows":[
+{
+"f":"6859100bec5cb3863e9f8282",
+"d":"2026-09-01",
+"c":[
+"99344"
+],
+"dx":[
+"E78.5",
+"I10",
+"I63.9",
+"J06.9",
+"J30.9",
+"J32.9",
+"R47.01",
+"Z87.891"
+],
+"file":"20260903",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"entered",
+"p":"pat17478217",
+"v":"vst19459518",
+"ch":[
+"charge23372059"
+],
+"fee":300.0,
+"fac":"fac53",
+"pos":"13",
+"admit":null,
+"lead":"FLO02",
+"verdict":"RELEASE"
+},
+{
+"f":"69e9c86629ab4514796cf7fe",
+"d":"2026-09-01",
+"c":[
+"99344"
+],
+"dx":[
+"D47.1",
+"D69.6",
+"G43.909",
+"G62.9",
+"J44.9",
+"K76.0",
+"M06.9",
+"M81.0",
+"R22.31",
+"R22.41",
+"R22.42",
+"R56.9",
+"S06.9X9S"
+],
+"file":"20260903",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"entered",
+"p":"pat17478222",
+"v":"vst19459519",
+"ch":[
+"charge23372060"
+],
+"fee":300.0,
+"fac":"fac53",
+"pos":"13",
+"admit":null,
+"lead":"UNI20",
+"verdict":"RELEASE"
+},
+{
+"f":"68b4625e9f2669a7ab5e6934",
+"d":"2026-09-01",
+"c":[
+"99344"
+],
+"dx":[
+"M79.642",
+"M79.89"
+],
+"file":"20260903",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"entered",
+"p":"pat17474798",
+"v":"vst19459520",
+"ch":[
+"charge23372061"
+],
+"fee":300.0,
+"fac":"fac53",
+"pos":"13",
+"admit":null,
+"lead":"SUN01",
+"verdict":"RELEASE"
+},
+{
+"f":"632c437f65ca5352dba37a47",
+"d":"2026-09-01",
+"c":[
+"99349"
+],
+"dx":[
+"F03.B0",
+"R53.1",
+"S51.811A",
+"S51.819A",
+"Z91.81"
+],
+"file":"20260903",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"cpt",
+"p":"pat45496",
+"why":"unknown CPT 99349"
+},
+{
+"f":"6a97e4f6f6af6a5ec0c504cc",
+"d":"2026-09-01",
+"c":[
+"99344",
+"99497"
+],
+"dx":[
+"E03.9",
+"E78.5",
+"F41.8",
+"I10",
+"J06.9",
+"J30.9",
+"J32.9"
+],
+"file":"20260903",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"entered",
+"p":"pat17478219",
+"v":"vst19459521",
+"ch":[
+"charge23372062",
+"charge23372063"
+],
+"fee":433.0,
+"fac":"fac53",
+"pos":"13",
+"admit":null,
+"lead":"",
+"verdict":"HOLD",
+"hold":"CMS reports MA/other primary 'CAPITAL HEALTH PLAN' (CAP07) but no ACTIVE CAP07 plan on the chart"
+},
+{
+"f":"6a6312c334b0b2b559fbc176",
+"d":"2026-09-02",
+"c":[
+"99344"
+],
+"dx":[
+"F02.80",
+"G30.9",
+"R45.1"
+],
+"file":"20260904",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"voided",
+"p":"pat17477204",
+"v":"vst19459522",
+"ch":[
+"charge23372064"
+],
+"fee":300.0,
+"fac":"fac65",
+"pos":"13",
+"admit":null,
+"lead":"UHCMA",
+"verdict":"RELEASE",
+"why":"voided after entry: duplicate of an encounter already in AdvancedMD"
+},
+{
+"f":"6536ab03b626dc96365fc8de",
+"d":"2026-09-02",
+"c":[
+"99349"
+],
+"dx":[
+"J20.9",
+"J44.9"
+],
+"file":"20260904",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"cpt",
+"p":"pat22322",
+"why":"unknown CPT 99349"
+},
+{
+"f":"6a224b04b7ef7701de439933",
+"d":"2026-09-02",
+"c":[
+"99344"
+],
+"dx":[
+"I48.91",
+"I62.9",
+"I63.9",
+"I87.2",
+"N40.0",
+"Z79.01"
+],
+"file":"20260904",
+"prov":"Pamela G. (ARNP)",
+"u":1,
+"s":"voided",
+"p":"pat17476748",
+"v":"vst19459523",
+"ch":[
+"charge23372065"
+],
+"fee":300.0,
+"fac":"fac65",
+"pos":"13",
+"admit":null,
+"lead":"UNI20",
+"verdict":"RELEASE",
+"why":"voided after entry: duplicate of an encounter already in AdvancedMD"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a955c1feaa289504307888d",
+"d":"2026-09-02",
+"c":[
+"99232"
+],
+"dx":[
+"M47.26",
+"M96.1",
+"M99.63"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477635",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a955c1feaa289504307888d",
+"d":"2026-09-01",
+"c":[
+"99232"
+],
+"dx":[
+"M47.26",
+"M96.1",
+"M99.63"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477635",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a955c1feaa289504307888d",
+"d":"2026-09-03",
+"c":[
+"99232"
+],
+"dx":[
+"M47.26",
+"M96.1",
+"M99.63"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477635",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a9839b6562811761bab797e",
+"d":"2026-09-03",
+"c":[
+"99232"
+],
+"dx":[
+"M48.02",
+"M50.021"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477636",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a96b5d26c5b131cc9c8cb1e",
+"d":"2026-09-02",
+"c":[
+"99232"
+],
+"dx":[
+"M16.11"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477637",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"N39.0",
+"R56.9",
+"R69"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a8c8c7ac0b9d5f45bb9b35e",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477573",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a738470356b3c4b1786653d",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"M75.102"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477350",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a8c1a94cd566a28feb9debd",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"M48.02",
+"M50.021",
+"M50.022",
+"M50.023"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477530",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-03",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-03",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-03",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a992b2525c3fd4e06093385",
+"d":"2026-09-02",
+"c":[
+"99344",
+"99497"
+],
+"dx":[
+"C61",
+"E78.5",
+"I10",
+"I48.91",
+"I63.9",
+"R27.0"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17477638",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a9929bc0a49b635014d976a",
+"d":"2026-09-02",
+"c":[
+"99344",
+"99497"
+],
+"dx":[
+"E78.5",
+"F41.9",
+"F43.10",
+"F90.9",
+"K21.9",
+"M48.00",
+"R22.1",
+"R45.86",
+"R48.0",
+"Z86.79",
+"Z87.898"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17477639",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a9839b6562811761bab797e",
+"d":"2026-09-02",
+"c":[
+"99223"
+],
+"dx":[
+"M48.02",
+"M50.021"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477636",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a90b4556b9ab57ae4df25c6",
+"d":"2026-09-02",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"A41.9",
+"D49.2",
+"E78.5",
+"F32.A",
+"F41.9",
+"N39.0",
+"R65.20"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17477640",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a96b5d26c5b131cc9c8cb1e",
+"d":"2026-09-01",
+"c":[
+"99223"
+],
+"dx":[
+"M16.11"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477637",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a955c1feaa289504307888d",
+"d":"2026-08-31",
+"c":[
+"99223"
+],
+"dx":[
+"M47.26",
+"M96.1",
+"M99.63"
+],
+"file":"20260904",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477635",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a90b4556b9ab57ae4df25c6",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"A41.9",
+"D49.2",
+"E78.5",
+"F32.A",
+"F41.9",
+"N39.0",
+"R65.20",
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477640",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a99392dcfc8aa0bffea551c",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477647",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"N39.0",
+"R56.9",
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a18c0a8fb0e2e8689bba75a",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"S14.104A"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477650",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"62a2d52339a4b322c3b6714a",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"B20",
+"G20.C",
+"G24.9",
+"G93.40",
+"R25.1"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20863",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"627a3e0053431d27ed7eb5ce",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20379",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a738470356b3c4b1786653d",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"M75.102"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477350",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"665f47a40528a63b59b21998",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"S81.801S"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472546",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-04",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-03",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-02",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-01",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-08-31",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a99392dcfc8aa0bffea551c",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477647",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a90b4556b9ab57ae4df25c6",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"A41.9",
+"D49.2",
+"E78.5",
+"F32.A",
+"F41.9",
+"N39.0",
+"R65.20",
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477640",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"64ffe67cee1304ab155e8a24",
+"d":"2026-09-05",
+"c":[
+"99239"
+],
+"dx":[
+"R07.9"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17469446",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"N39.0",
+"R56.9",
+"R69"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a18c0a8fb0e2e8689bba75a",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"S14.104A"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477650",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"62a2d52339a4b322c3b6714a",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"B20",
+"G20.C",
+"G24.9",
+"G93.40",
+"R25.1"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20863",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"627a3e0053431d27ed7eb5ce",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20379",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a738470356b3c4b1786653d",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"M75.102"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477350",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"665f47a40528a63b59b21998",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"S81.801S"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472546",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"M79.81",
+"R58"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475970",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-09-05",
+"c":[
+"99233"
+],
+"dx":[
+"M79.81",
+"R58"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475970",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-09-04",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"M79.81",
+"R58"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17475970",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"67748f4f184c7cd6a7161953",
+"d":"2026-09-05",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"M86.171"
+],
+"file":"20260907",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17472703",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a15f92dd6c6d9ae5cf6c8f0",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"I63.9"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476658",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a15f92dd6c6d9ae5cf6c8f0",
+"d":"2026-09-06",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"I63.9"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17476658",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a99392dcfc8aa0bffea551c",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"R69"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477647",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a90b4556b9ab57ae4df25c6",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"A41.9",
+"D49.2",
+"E78.5",
+"F32.A",
+"F41.9",
+"N39.0",
+"R65.20",
+"R69"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477640",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"67748f4f184c7cd6a7161953",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"M86.171"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472703",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"N39.0",
+"R56.9",
+"R69"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a18c0a8fb0e2e8689bba75a",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"S14.104A"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477650",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"657bd676dfce2cdaa0e5cebc",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"E86.0",
+"F03.918",
+"G93.41",
+"I26.94",
+"K57.92",
+"R41.82",
+"R46.89",
+"R62.7"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17470940",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"62a2d52339a4b322c3b6714a",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"B20",
+"G20.C",
+"G24.9",
+"G93.40",
+"R25.1"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20863",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"627a3e0053431d27ed7eb5ce",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20379",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a738470356b3c4b1786653d",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"M75.102"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477350",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"665f47a40528a63b59b21998",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"S81.801S"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472546",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"67748f4f184c7cd6a7161953",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"M86.171"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472703",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"657bd676dfce2cdaa0e5cebc",
+"d":"2026-09-06",
+"c":[
+"99233"
+],
+"dx":[
+"E86.0",
+"F03.918",
+"G93.41",
+"I26.94",
+"K57.92",
+"R41.82",
+"R46.89",
+"R62.7"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17470940",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"657bd676dfce2cdaa0e5cebc",
+"d":"2026-09-05",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"E86.0",
+"F03.918",
+"G93.41",
+"I26.94",
+"K57.92",
+"R41.82",
+"R46.89",
+"R62.7"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17470940",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"646aaa961cf96345e58f2ac4",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33",
+"R55"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat12234026",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"698d0f960a760cb970c279a9",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"J15.9",
+"R69"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475638",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"698d0f960a760cb970c279a9",
+"d":"2026-09-06",
+"c":[
+"99223"
+],
+"dx":[
+"J15.9",
+"R69"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475638",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"646aaa961cf96345e58f2ac4",
+"d":"2026-09-06",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"I50.33",
+"R55"
+],
+"file":"20260908",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat12234026",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a5ba65cfc70217fa5be7852",
+"d":"2026-09-07",
+"c":[
+"99223",
+"99497"
+],
+"dx":[
+"I21.3"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":2,
+"s":"already",
+"p":"pat17477182",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-09-07",
+"c":[
+"99233"
+],
+"dx":[
+"M79.81",
+"R58"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475970",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a9ff05231967fac770c7a93",
+"d":"2026-09-08",
+"c":[
+"99223"
+],
+"dx":[
+"L08.9"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477684",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69d282a0f1610f19d2a18f0c",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"N10"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476042",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a5ba65cfc70217fa5be7852",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"I21.3"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477182",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a99392dcfc8aa0bffea551c",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"R69"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477647",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"673ca55f501f6c07b5db4227",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"F32.A",
+"F41.9",
+"I24.9",
+"I69.391",
+"R42",
+"R45.4"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472393",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"69e2a3c4c1da29ea05aadb48",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476191",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a15f92dd6c6d9ae5cf6c8f0",
+"d":"2026-09-08",
+"c":[
+"99239"
+],
+"dx":[
+"I63.9"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17476658",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"65f994493807946acb922114",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"I48.0"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17471349",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a90b4556b9ab57ae4df25c6",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"A41.9",
+"D49.2",
+"E78.5",
+"F32.A",
+"F41.9",
+"N39.0",
+"R65.20",
+"R69"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477640",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"67748f4f184c7cd6a7161953",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"M86.171"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472703",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"646aaa961cf96345e58f2ac4",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"I50.33",
+"R55"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat12234026",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"664d0757873f3f63c850d77e",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"N39.0",
+"R56.9",
+"R69"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat24039",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a18c0a8fb0e2e8689bba75a",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"S14.104A"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477650",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"657bd676dfce2cdaa0e5cebc",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"E86.0",
+"F03.918",
+"G93.41",
+"I26.94",
+"K57.92",
+"R41.82",
+"R46.89",
+"R62.7"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17470940",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"62a2d52339a4b322c3b6714a",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"B20",
+"G20.C",
+"G24.9",
+"G93.40",
+"R25.1"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20863",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"698d0f960a760cb970c279a9",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"J15.9",
+"R69"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475638",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"627a3e0053431d27ed7eb5ce",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"R55"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat20379",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a738470356b3c4b1786653d",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"M75.102"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477350",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"665f47a40528a63b59b21998",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"S81.801S"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17472546",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"670186a92a65a77c06941f99",
+"d":"2026-09-08",
+"c":[
+"99233"
+],
+"dx":[
+"M79.81",
+"R58"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17475970",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+},
+{
+"f":"6a6464148917bcfc8d442cab",
+"d":"2026-09-08",
+"c":[
+"99309"
+],
+"dx":[
+"I50.9",
+"I82.402",
+"J81.1",
+"J96.01",
+"L03.113",
+"M06.9",
+"Z98.890"
+],
+"file":"20260909",
+"prov":"Dr. Effinger (DO)",
+"u":1,
+"s":"already",
+"p":"pat17477208",
+"why":"visit already on the chart (same CPT and date) - not entered twice"
+}
+]
+}
