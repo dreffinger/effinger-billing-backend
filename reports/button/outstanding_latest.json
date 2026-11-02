@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-02T10:04:44Z",
+ "at": "2026-11-02T11:21:16Z",
  "as_of": "2026-11-02",
- "total": 305507.24,
- "visits": 2562,
- "charts": 477,
+ "total": 304282.24,
+ "visits": 2558,
+ "charts": 475,
  "over_365": {
   "n": 521,
   "dollars": 20868.57
  },
  "by_bucket": {
   "0-30": {
-   "n": 709,
-   "dollars": 146165.34
+   "n": 705,
+   "dollars": 144940.34
   },
   "31-60": {
    "n": 245,
@@ -114,10 +114,10 @@
   {
    "carrier": "HUM01",
    "name": "HUMANA",
-   "n": 69,
-   "dollars": 11494.73,
+   "n": 65,
+   "dollars": 10269.73,
    "buckets": {
-    "0-30": 9070.0,
+    "0-30": 7845.0,
     "31-60": 2187.61,
     "61-90": 0.0,
     "91-180": 56.49,
@@ -755,8 +755,8 @@
   },
   {
    "month": "2026-10",
-   "n": 734,
-   "dollars": 152043.03
+   "n": 730,
+   "dollars": 150818.03
   }
  ],
  "oldest": [
@@ -18173,14 +18173,6 @@
    "dos": "2026-10-19"
   },
   {
-   "visitid": 19459186,
-   "patientid": 17469512,
-   "carriercode": "HUM01",
-   "insbalance": 389.0,
-   "days": 14,
-   "dos": "2026-10-19"
-  },
-  {
    "visitid": 19458836,
    "patientid": 17477650,
    "carriercode": "FLO02",
@@ -19613,14 +19605,6 @@
    "dos": "2026-10-22"
   },
   {
-   "visitid": 19458952,
-   "patientid": 17472396,
-   "carriercode": "HUM01",
-   "insbalance": 315.0,
-   "days": 11,
-   "dos": "2026-10-22"
-  },
-  {
    "visitid": 19459029,
    "patientid": 17471333,
    "carriercode": "HUM01",
@@ -20000,14 +19984,6 @@
    "visitid": 19459090,
    "patientid": 25827,
    "carriercode": "FLO02",
-   "insbalance": 206.0,
-   "days": 11,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19459106,
-   "patientid": 17473347,
-   "carriercode": "HUM01",
    "insbalance": 206.0,
    "days": 11,
    "dos": "2026-10-22"
@@ -20512,14 +20488,6 @@
    "visitid": 19459139,
    "patientid": 17473601,
    "carriercode": "FLO02",
-   "insbalance": 315.0,
-   "days": 8,
-   "dos": "2026-10-25"
-  },
-  {
-   "visitid": 19459146,
-   "patientid": 48444,
-   "carriercode": "HUM01",
    "insbalance": 315.0,
    "days": 8,
    "dos": "2026-10-25"
