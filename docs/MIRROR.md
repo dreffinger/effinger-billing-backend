@@ -34,8 +34,23 @@ python3 tools/mirror/mirror.py sync "run <date> <time>: <what changed>"
 #    upload changed helpers + secrets/pseudonyms.json to 'workspace mirror'
 # 3. Postman connector: updateCollection with docs/postman_effinger_amd.json (createCollection once)
 # 4. chat history: one dated digest
+# 5. the ehpa Practice Database (William 11/1/2026): after the push, EVERY run (live or dry) -
+python3 tools/db/practice_db.py build --run <run stamp>     # -> outbox/practice_db/<stamp>/writes_N.json + CALLS.md
+#    then ONE ArtifactData call per writes file: action batch, url https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk,
+#    writes = that file's JSON array verbatim (billing_runs/<stamp> from reports/button, era_runs/<stamp>, feed_batches +
+#    feed_checks when the run ingested feed files, snapshots/approvals-<stamp> and repo-<stamp>). Every id is new: no if_version.
+#    quota_exceeded / invalid_argument -> report verbatim, never retry. The page reads only this database - no GitHub connector.
 python3 tools/mirror/mirror.py status      # what would be pushed, is the collection current
 ```
+
+## The fourth copy: the ehpa Practice Database (11/2/2026)
+
+The page https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk ("ehpa Practice Database", formerly Claimocity Feed Monitoring) keeps
+the artifact's own document database. `tools/db/practice_db.py` turns the PHI-light files on main into documents (collections
+`feed_batches`, `feed_checks`, `billing_runs`, `era_runs`, `snapshots`, `practice`; copies of the other boards' databases under
+`artifacts/<page>/...` with an `artifact_index`), writes them as files and prints the ArtifactData batch calls; the run makes those
+calls. Documents are keyed by run stamp so nothing is ever overwritten and no version pinning is needed. Viewers read the page with
+no connector or prompt; only the owner and Claude sessions write. The old GitHub-read path is gone.
 
 `phi_gate.py` exits 2 and the sync stops if an MBI, SSN, ICN, DOB, member number, token or key would leave the workspace. A "possible patient name" warning means add the name to `secrets/pseudonyms.json` (then upload that file to `workspace mirror`) and rerun. **New registry entries should not carry patient names at all** — write the AMD chart id (`patNNN`) instead; the gate is the backstop, not the plan.
 

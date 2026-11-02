@@ -1,0 +1,526 @@
+<title>ehpa Practice Database</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<script>
+/* palette before first paint: the viewer's saved pick, else Lapis on a dark host and Light on a light host */
+(function(){ var p=null; try{ p=localStorage.getItem('ehpa-feed-palette'); }catch(e){}
+  var r=document.documentElement; var t=r.getAttribute('data-theme');
+  var light = t==='light' || (!t && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches);
+  r.setAttribute('data-ehpa', p || (light ? 'light' : 'lapis')); })();
+</script>
+<style>
+/* Layout: one console with a top bar (lockup, freshness, Refresh, palette) and a view rail - Overview, Claimocity feed, Billing runs,
+   ERA, Approvals, Raw data, Mirror. Every number on the page is computed in the browser from the page's own database (the `db`
+   capability); nothing is fetched from GitHub and no connector is asked for. Color: Lapis (lapis-lazuli ground, bronze accent, William
+   10/29) with the ehpa palettes in the picker. Type: Quicksand for words, JetBrains Mono for every number and id.
+   Source: tools/db/practice_db_page.html on main; data: tools/db/practice_db.py builds the documents the routines write with ArtifactData. */
+:root{--font:"Quicksand",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--r:14px;--r-lg:18px;--pill:999px;
+  --bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
+  --accent:#cf9544;--on-accent:#0b1f4d;--accent-soft:rgba(207,149,68,.18);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
+  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#cf9544 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
+:root[data-ehpa="lapis"]{--bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
+  --accent:#cf9544;--on-accent:#0b1f4d;--accent-soft:rgba(207,149,68,.18);--accent-2:#79a6ff;--ok:#5fd394;--ok-soft:rgba(95,211,148,.16);--warn:#f5b84d;--warn-soft:rgba(245,184,77,.16);
+  --bad:#ff7b8a;--bad-soft:rgba(255,123,138,.16);--grad:linear-gradient(135deg,#cf9544 0%,#79a6ff 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
+:root[data-ehpa="midnight"]{--bg:#082f35;--bg-deep:#07292f;--surface:#214449;--surface-2:#2d5057;--line:#1d4b53;--line-strong:#3c6169;--ink:#f4f5f7;--ink-2:#dee2e6;--muted:#cacaca;--dim:#9da8b4;
+  --accent:#70d6f8;--on-accent:#082f35;--accent-soft:#1f5a68;--accent-2:#f841e0;--ok:#3dd475;--ok-soft:#164a41;--warn:#ffc409;--warn-soft:#3d4020;--bad:#df7079;--bad-soft:#3d1b22;
+  --grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--grid:rgba(255,255,255,.06);color-scheme:dark}
+:root[data-ehpa="navy"]{--bg:#253e59;--bg-deep:#21374e;--surface:#304861;--surface-2:#3b516a;--line:#1f3450;--line-strong:#465b72;--ink:#ffffff;--ink-2:#dee2e6;--muted:#cacaca;--dim:#989aa2;
+  --accent:#70d6f8;--on-accent:#082f35;--accent-soft:#2a4f68;--accent-2:#f841e0;--ok:#3dd475;--ok-soft:#1f4a3c;--warn:#ffc409;--warn-soft:#4a4020;--bad:#e58f95;--bad-soft:#4d1f2a;
+  --grad:linear-gradient(135deg,#70d6f8 0%,#f841e0 100%);--grid:rgba(255,255,255,.07);color-scheme:dark}
+:root[data-ehpa="plum"]{--bg:#181924;--bg-deep:#1d122e;--surface:#2c2933;--surface-2:#232529;--line:#3c3941;--line-strong:#626468;--ink:#ffffff;--ink-2:#d1d2d3;--muted:#adaeaf;--dim:#77787a;
+  --accent:#9be8e2;--on-accent:#19171d;--accent-soft:#243a3f;--accent-2:#f841e0;--ok:#50ef73;--ok-soft:#173a1d;--warn:#ffd442;--warn-soft:#3d3616;--bad:#ff877a;--bad-soft:#3f1f22;
+  --grad:linear-gradient(135deg,#9be8e2 0%,#f841e0 100%);--grid:rgba(255,255,255,.07);color-scheme:dark}
+:root[data-ehpa="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;
+  --accent:#0054e9;--on-accent:#ffffff;--accent-soft:#e0f4fd;--accent-2:#b4169e;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;
+  --grad:linear-gradient(135deg,#0054e9 0%,#70d6f8 100%);--grid:rgba(8,47,53,.08);color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
+.wrap{max-width:1180px;margin:0 auto;padding-block:18px 90px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;text-wrap:balance;font-weight:700}
+h1{font-size:26px;line-height:1.1} h2{font-size:16px;letter-spacing:.01em} h3{font-size:14px;color:var(--muted);font-weight:600}
+a{color:var(--accent)} a:hover{text-decoration-thickness:2px}
+p{margin:0 0 10px} .prose p{max-width:70ch} .prose li{max-width:70ch} .prose ul,.prose ol{margin:4px 0 12px;padding-left:22px}
+.eyebrow{font:600 11px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.mono,.num,code{font-family:var(--mono);font-variant-numeric:tabular-nums}
+code{font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink-2)}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.lockup{display:flex;align-items:center;gap:14px;min-width:0}
+.mark{width:46px;height:46px;flex:none;border-radius:12px;background:var(--grad);display:grid;place-items:center}
+.mark svg{width:30px;height:30px}
+.brand{font:700 12px/1 var(--font);letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.sub{color:var(--muted);font-size:14px;margin-top:4px;max-width:62ch}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+.btn{border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);font:600 13.5px var(--font);padding:9px 14px;border-radius:var(--pill);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px}
+.btn:hover{border-color:var(--accent)} .btn:focus-visible,.seg button:focus-visible,.pal button:focus-visible,.rail a:focus-visible,select:focus-visible,input:focus-visible,.chipbtn:focus-visible,.doclist button:focus-visible{outline:3px solid var(--accent-2);outline-offset:2px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn[disabled]{opacity:.55;cursor:progress} .btn svg{width:15px;height:15px}
+.spin svg{animation:spin 1s linear infinite} @keyframes spin{to{transform:rotate(360deg)}}
+.pal{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;background:var(--surface)}
+.pal button{border:0;background:transparent;color:var(--muted);font:600 12.5px var(--font);padding:6px 10px;border-radius:var(--pill);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.pal button i{width:12px;height:12px;border-radius:50%;display:inline-block;border:1px solid rgba(255,255,255,.35)}
+.pal button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)} .pal button[aria-pressed="true"] i{border-color:var(--on-accent)}
+.status{font-size:13.5px;color:var(--muted);min-height:1.4em;width:100%;text-align:right} .status.err{color:var(--bad)} .status.ok{color:var(--ok)}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:var(--pill);padding:3px 10px;font:700 12px var(--font);letter-spacing:.02em;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.warn{background:var(--warn-soft);color:var(--warn)} .pill.bad{background:var(--bad-soft);color:var(--bad)} .pill.run{background:var(--accent-soft);color:var(--accent)} .pill.dim{background:var(--surface-2);color:var(--muted)}
+.rail{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 16px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.rail a{text-decoration:none;color:var(--muted);font:600 13.5px var(--font);padding:8px 13px;border-radius:var(--pill);border:1px solid transparent;display:inline-flex;gap:7px;align-items:center}
+.rail a:hover{color:var(--ink);border-color:var(--line-strong)} .rail a[aria-current="page"]{background:var(--accent);color:var(--on-accent)}
+.rail a .n{font:600 11.5px var(--mono);opacity:.85}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px;gap:3px;background:var(--surface);flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 13px var(--font);padding:7px 14px;border-radius:var(--pill);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.range{color:var(--muted);font-size:14px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:14px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;min-width:0}
+.tile .v{font:600 26px/1.1 var(--mono);font-variant-numeric:tabular-nums;margin-top:6px;color:var(--ink);overflow-wrap:anywhere}
+.tile .d{color:var(--muted);font-size:12.5px;margin-top:4px}
+.tile.accent .v{color:var(--accent)} .tile.warn .v{color:var(--warn)} .tile.bad .v{color:var(--bad)} .tile.ok .v{color:var(--ok)}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:14px;min-width:0}
+.block header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-bottom:14px} .grid2 .block{margin-bottom:0}
+.chart{position:relative;width:100%;min-width:0} .chart svg{display:block;width:100%;height:auto}
+.tip{position:absolute;pointer-events:none;background:var(--bg-deep);color:var(--ink);border:1px solid var(--line-strong);border-radius:10px;padding:7px 10px;font-size:12.5px;line-height:1.35;white-space:nowrap;transform:translate(-50%,calc(-100% - 10px));opacity:0;transition:opacity .12s;z-index:3;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.tip b{font-family:var(--mono);font-weight:600}
+.rows{display:grid;gap:7px}
+.row{display:grid;grid-template-columns:minmax(150px,46%) 1fr auto;gap:10px;align-items:center;font-size:13.5px;min-width:0}
+.row .nm{color:var(--ink-2);line-height:1.25;overflow-wrap:anywhere}
+.row .tr{height:12px;background:var(--surface-2);border-radius:6px;overflow:hidden;position:relative}
+.row .tr i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:6px;min-width:4px}
+.row .tr i.alt{background:var(--accent-2)} .row .tr i.ok{background:var(--ok)} .row .tr i.warn{background:var(--warn)} .row .tr i.bad{background:var(--bad)} .row .tr i.dim{background:var(--line-strong)}
+.row .vl{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);font-size:13px;white-space:nowrap}
+.row .vl small{color:var(--dim);font:500 11.5px var(--mono);margin-left:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font:600 11px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+tbody tr:nth-child(odd) td{background:var(--surface-2)}
+td.num,th.num{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto} .tablewrap table{min-width:640px}
+tr.exp td{background:var(--bg-deep)!important;color:var(--ink-2);font-size:13px}
+.note{color:var(--muted);font-size:13.5px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line-strong);border-radius:var(--pill);padding:3px 10px;font:600 12px var(--mono);color:var(--muted)}
+.chipbtn{border:1px solid var(--line-strong);background:var(--surface);color:var(--muted);border-radius:var(--pill);padding:5px 11px;font:600 12.5px var(--font);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.chipbtn[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)} .chipbtn .n{font-family:var(--mono)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+input[type=search],select{background:var(--bg-deep);color:var(--ink);border:1px solid var(--line-strong);border-radius:10px;padding:8px 12px;font:500 13.5px var(--font);min-width:0}
+input[type=search]{flex:1 1 220px}
+.pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.pages a{display:flex;flex-direction:column;gap:3px;text-decoration:none;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.pages a:hover{border-color:var(--accent)} .pages .nm{display:flex;justify-content:space-between;gap:8px;font-weight:700;font-size:13.5px} .pages .kd{font:600 10.5px var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)} .pages .nt{color:var(--muted);font-size:12.5px}
+.pages a.here{border-color:var(--accent);background:var(--accent-soft)}
+.health{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.hc{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.hc .dot{width:12px;height:12px;border-radius:50%;margin-top:5px;background:var(--dim)} .hc.ok .dot{background:var(--ok)} .hc.warn .dot{background:var(--warn)} .hc.bad .dot{background:var(--bad)}
+.hc b{display:block;font-size:13.5px} .hc span{color:var(--muted);font-size:12.5px;overflow-wrap:anywhere}
+.schema td:first-child{font-family:var(--mono);white-space:nowrap}
+.browser{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:14px} @media (max-width:760px){ .browser{grid-template-columns:1fr} }
+.doclist{display:flex;flex-direction:column;gap:4px;max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:12px;padding:6px;background:var(--bg-deep)}
+.doclist button{text-align:left;border:1px solid transparent;background:transparent;color:var(--ink-2);font:500 13px var(--mono);padding:7px 9px;border-radius:8px;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.doclist button:hover{border-color:var(--line-strong)} .doclist button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.doclist button small{color:var(--dim);font-size:11.5px;white-space:nowrap}
+pre.json{margin:0;background:var(--bg-deep);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font:500 12.5px/1.45 var(--mono);color:var(--ink-2);overflow:auto;max-height:560px;white-space:pre}
+.k{color:var(--accent-2)} .s{color:var(--ok)} .nn{color:var(--accent)} .b{color:var(--warn)}
+.foot{color:var(--dim);font-size:12.5px;margin-top:18px;line-height:1.5}
+.view[hidden]{display:none}
+.empty{border:1px dashed var(--line-strong);border-radius:var(--r);padding:16px 18px;color:var(--muted);font-size:14px}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0;font-size:13.5px} dl.kv dt{color:var(--dim)} dl.kv dd{margin:0;color:var(--ink-2);overflow-wrap:anywhere}
+@media (max-width:640px){ .row{grid-template-columns:minmax(120px,44%) 1fr auto} h1{font-size:22px} .status{text-align:left} dl.kv{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .spin svg{animation:none} .tip{transition:none} }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="lockup">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="9" rx="10" ry="4" stroke="#0b1f4d" stroke-width="3"/><path d="M6 9v14c0 2.2 4.5 4 10 4s10-1.8 10-4V9" stroke="#0b1f4d" stroke-width="3"/><path d="M6 16c0 2.2 4.5 4 10 4s10-1.8 10-4" stroke="#0b1f4d" stroke-width="3"/></svg></div>
+      <div>
+        <div class="brand">ehpa · Practice Database</div>
+        <h1>ehpa Practice Database</h1>
+        <div class="sub">One database for the billing and credentialing work: the Claimocity feed and what AdvancedMD got, every billing run, ERA postings, approvals, master data and the mirrors. The page reads its own database; nothing is fetched from GitHub and no connector is asked for.</div>
+      </div>
+    </div>
+    <div class="tools">
+      <div class="pal" role="group" aria-label="Color scheme" id="pal">
+        <button type="button" data-pal="lapis" aria-pressed="true"><i style="background:#0b1f4d;border-color:#cf9544"></i>Lapis</button>
+        <button type="button" data-pal="midnight" aria-pressed="false"><i style="background:#082f35;border-color:#70d6f8"></i>Midnight</button>
+        <button type="button" data-pal="navy" aria-pressed="false"><i style="background:#253e59;border-color:#70d6f8"></i>Navy</button>
+        <button type="button" data-pal="plum" aria-pressed="false"><i style="background:#181924;border-color:#9be8e2"></i>Plum</button>
+        <button type="button" data-pal="light" aria-pressed="false"><i style="background:#ffffff;border-color:#0054e9"></i>Light</button>
+      </div>
+      <button class="btn" type="button" id="refresh" title="Re-read the database"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>Refresh</button>
+      <a class="btn primary" href="https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ" target="_blank" rel="noopener">Run billing (Button page)</a>
+      <div class="status" id="status"></div>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="Views" id="rail">
+    <a href="#overview" data-view="overview">Overview</a>
+    <a href="#feed" data-view="feed">Claimocity feed <span class="n" id="n-feed"></span></a>
+    <a href="#runs" data-view="runs">Billing runs <span class="n" id="n-runs"></span></a>
+    <a href="#era" data-view="era">ERA <span class="n" id="n-era"></span></a>
+    <a href="#approvals" data-view="approvals">Approvals <span class="n" id="n-appr"></span></a>
+    <a href="#data" data-view="data">Raw data</a>
+    <a href="#mirror" data-view="mirror">Mirror &amp; sources</a>
+  </nav>
+
+  <!-- ============================== OVERVIEW ============================== -->
+  <section class="view" id="view-overview">
+    <section class="tiles" id="ov-tiles" aria-label="Database at a glance"></section>
+    <section class="block">
+      <header><h2>Is it working?</h2><span class="note" id="health-note"></span></header>
+      <div class="health" id="health"></div>
+    </section>
+    <div class="grid2">
+      <section class="block prose">
+        <header><h2>Where the database lives</h2></header>
+        <p>Inside this page. Every claude.ai artifact can carry its own document database; this one does. The documents are JSON, grouped in collections, stored by claude.ai with the artifact and kept across republishes. They are readable by whoever can open this page and writable only by the owner and by Claude sessions acting as the owner.</p>
+        <p>Nothing here lives on GitHub or Drive at read time. GitHub main stays the record the routines write first; after each run a helper turns those files into documents and the run stores them here in one call. Drive keeps what must never be in a shared page (patient names, facesheets, HL7 files); this database holds chart ids, dates, codes and dollars only.</p>
+        <dl class="kv">
+          <dt>Page / database</dt><dd class="mono">https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk</dd>
+          <dt>Read by</dt><dd>this page, through the artifact <code>db</code> capability (live: a change shows without a reload)</dd>
+          <dt>Written by</dt><dd>the Billing Button, the daily feed task and chat sessions with the <code>ArtifactData</code> tool; documents are built by <code>tools/db/practice_db.py</code></dd>
+          <dt>Limits</dt><dd>256 KB per document (large batches split into parts), 25,000 documents per database</dd>
+          <dt>Privacy</dt><dd>no names, dates of birth, member or policy ids, SSNs; the same rule as GitHub main (<code>tools/mirror/phi_gate.py</code>)</dd>
+        </dl>
+      </section>
+      <section class="block prose">
+        <header><h2>How it was built, in what languages</h2></header>
+        <ul>
+          <li><b>Python 3</b> helpers do the work: <code>claimocity_ingest.py</code> parses the HL7 v2.4 DFT^P03 feed, matches charts and enters charges through the AdvancedMD XML API; <code>claimocity_verify.py</code> runs eligibility (AMD 271, Stedi X12 270/271); <code>claimocity_recon.py</code> pairs every feed message with its AdvancedMD outcome; <code>practice_db.py</code> turns registers and reports into documents.</li>
+          <li><b>Bash + runbooks</b> (Markdown) tell each scheduled run what to do; the routine prompts point at the runbooks on main.</li>
+          <li><b>JSON</b> registers on GitHub main are the record; <b>git</b> mirrors them to the synced branch, Postman and Drive.</li>
+          <li><b>HTML, CSS and plain JavaScript</b> make this page; it computes every figure from the documents in the browser (no server, no library).</li>
+          <li><b>Google Cloud</b>: a Cloud Run job copies the Claimocity SFTP files into a private bucket every 30 minutes; the routines read the bucket with a read-only key.</li>
+        </ul>
+        <p>Capabilities the database gives the practice: a complete, searchable record of what the feed sent and what was billed; a daily health check without opening AdvancedMD; a place every routine can write to and every page can read from; raw JSON for any analysis; and the ability to add collections (credentialing, deposits, denials) without new plumbing.</p>
+      </section>
+    </div>
+    <section class="block">
+      <header><h2>Structure</h2><span class="note">collection · document id · what one document holds · who writes it · source on main</span></header>
+      <div class="tablewrap"><table class="schema"><thead><tr><th>Collection</th><th>Document id</th><th>Holds</th><th>Writer</th><th>Source</th><th class="num">Loaded</th></tr></thead><tbody id="schema"></tbody></table></div>
+    </section>
+    <section class="block">
+      <header><h2>Billing project pages</h2><span class="note">one tap each · their data is copied into this database by the sync (collection <code>artifacts</code>)</span></header>
+      <div class="pages" id="pages"></div>
+    </section>
+  </section>
+
+  <!-- ============================== FEED ============================== -->
+  <section class="view" id="view-feed" hidden>
+    <div class="bar">
+      <div class="seg" role="group" aria-label="Window" id="win">
+        <button type="button" data-win="week" aria-pressed="true">Past 7 days</button>
+        <button type="button" data-win="month" aria-pressed="false">Past 30 days</button>
+        <button type="button" data-win="all" aria-pressed="false">Everything on hand</button>
+      </div>
+      <div class="range" id="range"></div>
+    </div>
+    <section class="tiles" id="tiles" aria-label="Figures"></section>
+    <section class="block">
+      <header><h2>Encounters by date of service</h2><span class="note" id="days-note"></span></header>
+      <div class="chart" id="days"></div>
+    </section>
+    <section class="block">
+      <header><h2>Every feed charge and what AdvancedMD got</h2><span class="note" id="recon-note"></span></header>
+      <div class="filters" id="recon-filters"></div>
+      <div class="filters"><input type="search" id="recon-q" placeholder="Search chart, visit, CPT, date or file…" aria-label="Search the reconciliation"><select id="recon-sort" aria-label="Sort"><option value="date">Newest date first</option><option value="status">Not entered first</option><option value="fee">Highest charge first</option></select></div>
+      <div class="tablewrap"><table><thead><tr><th>DOS</th><th>Feed file</th><th>Chart</th><th>CPT</th><th class="num">Charge</th><th>In AdvancedMD</th><th>Insurance</th><th>Note</th></tr></thead><tbody id="recon"></tbody></table></div>
+      <div class="filters" style="margin-top:10px"><button class="btn" type="button" id="recon-more" hidden>Show more</button><span class="note" id="recon-count"></span></div>
+    </section>
+    <div class="grid2">
+      <section class="block"><header><h2>Service</h2><span class="note">charge lines · dollars</span></header><div class="rows" id="service"></div></section>
+      <section class="block"><header><h2>Where the patients were seen</h2><span class="note">visits</span></header><div class="rows" id="facility"></div></section>
+      <section class="block"><header><h2>Lead payer on the chart</h2><span class="note">visits · after the eligibility cascade</span></header><div class="rows" id="payer"></div></section>
+      <section class="block"><header><h2>In AdvancedMD</h2><span class="note">what happened to each encounter</span></header><div class="rows" id="outcome"></div></section>
+      <section class="block"><header><h2>Clinician</h2><span class="note">visits</span></header><div class="rows" id="clinician"></div></section>
+      <section class="block"><header><h2>Conditions on the feed</h2><span class="note">diagnosis codes · patients in this window</span></header><div class="chips" id="dx"></div></section>
+    </div>
+    <section class="block">
+      <header><h2>Holds for William</h2><span class="note" id="holds-note"></span></header>
+      <div class="tablewrap"><table><thead><tr><th>Chart</th><th>Kind</th><th>Why</th><th>DOS</th></tr></thead><tbody id="holds"></tbody></table></div>
+    </section>
+    <div class="grid2">
+      <section class="block"><header><h2>Feed files on hand</h2><span class="note" id="files-note"></span></header><div class="chips" id="files"></div><p class="note" id="coverage" style="margin-top:10px"></p></section>
+      <section class="block"><header><h2>Feed checks and ingests</h2><span class="note">newest first</span></header><div class="tablewrap"><table><thead><tr><th>When</th><th>Result</th><th>What the bucket held</th><th class="num">Visits</th><th class="num">Dollars</th></tr></thead><tbody id="checks"></tbody></table></div></section>
+    </div>
+  </section>
+
+  <!-- ============================== BILLING RUNS ============================== -->
+  <section class="view" id="view-runs" hidden>
+    <section class="tiles" id="runs-tiles" aria-label="Billing run figures"></section>
+    <section class="block">
+      <header><h2>Billing runs</h2><span class="note" id="runs-note"></span></header>
+      <div class="filters"><input type="search" id="runs-q" placeholder="Search headline, mode, status…" aria-label="Search runs"></div>
+      <div class="tablewrap"><table><thead><tr><th>Finished</th><th>Mode</th><th>Status</th><th>Headline</th><th>Columns before → after</th><th class="num">ERA</th><th class="num">Packages</th><th class="num">Waiting</th></tr></thead><tbody id="runs"></tbody></table></div>
+      <p class="note" style="margin-top:8px">Tap a row for its steps, what is waiting on William and any errors. Columns = Charge Review / Claim Inspector / Unbilled / Exclusions.</p>
+    </section>
+  </section>
+
+  <!-- ============================== ERA ============================== -->
+  <section class="view" id="view-era" hidden>
+    <section class="tiles" id="era-tiles" aria-label="ERA figures"></section>
+    <section class="block">
+      <header><h2>ERA posting runs</h2><span class="note" id="era-note"></span></header>
+      <div class="tablewrap"><table><thead><tr><th>Run</th><th class="num">Checks before</th><th class="num">Checks after</th><th class="num">Lines posted</th><th class="num">Paid</th><th>Outcomes</th><th class="num">Audit flags</th></tr></thead><tbody id="era"></tbody></table></div>
+      <p class="note" style="margin-top:8px">Tap a run for its posted lines (chart, visit, CPT, DOS, paid, claim status, CARC codes). Checks before/after = unposted ERA checks in AdvancedMD when the run started and when it ended.</p>
+    </section>
+  </section>
+
+  <!-- ============================== APPROVALS ============================== -->
+  <section class="view" id="view-approvals" hidden>
+    <section class="tiles" id="appr-tiles" aria-label="Approval figures"></section>
+    <section class="block">
+      <header><h2>Mandatory approval packages</h2><span class="note" id="appr-note"></span></header>
+      <div class="filters" id="appr-filters"></div>
+      <div class="tablewrap"><table><thead><tr><th>Package</th><th>When</th><th>What</th><th class="num">Dollars</th><th>Status</th><th>Answer</th></tr></thead><tbody id="appr"></tbody></table></div>
+      <p class="note" style="margin-top:8px">The cards themselves are approved on the <a href="https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR" target="_blank" rel="noopener">Mandatory Approvals page</a>; this is the record from <code>practices/ehpa/registers/approvals_pending.json</code> as of the newest snapshot.</p>
+    </section>
+  </section>
+
+  <!-- ============================== RAW DATA ============================== -->
+  <section class="view" id="view-data" hidden>
+    <section class="block">
+      <header><h2>Raw data</h2><span class="note">every document, as stored · newest first · the source link opens the file on GitHub main</span></header>
+      <div class="filters"><select id="coll" aria-label="Collection"></select><input type="search" id="doc-q" placeholder="Filter document ids…" aria-label="Filter documents"><span class="note" id="coll-note"></span></div>
+      <div class="browser">
+        <div class="doclist" id="doclist" role="listbox" aria-label="Documents"></div>
+        <div>
+          <div class="filters" id="doc-tools" hidden><span class="mono" id="doc-path"></span><button class="btn" type="button" id="doc-copy">Copy JSON</button><button class="btn" type="button" id="doc-dl">Download</button><a class="btn" id="doc-src" href="#" target="_blank" rel="noopener" hidden>Source on GitHub</a></div>
+          <pre class="json" id="doc-json">Pick a document.</pre>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================== MIRROR ============================== -->
+  <section class="view" id="view-mirror" hidden>
+    <div class="grid2">
+      <section class="block prose">
+        <header><h2>The triple mirror</h2></header>
+        <p>The record is <b>GitHub main</b> (<code>dreffinger/effinger-billing-backend</code>): code, runbooks, PHI-light registers and reports. Every change is also pushed to the <b>synced branch</b> the claude.ai Project reads, mirrored to the <b>Postman</b> workspace (API vocabulary and collections) and copied to <b>Google Drive</b> (runbooks, prompts, digests, the PHI state bundle). This database is the fourth copy of the structured data, and the one the pages read.</p>
+        <dl class="kv" id="repo-kv"></dl>
+      </section>
+      <section class="block">
+        <header><h2>Links</h2><span class="note">where each copy lives</span></header>
+        <div class="pages" id="mirror-links"></div>
+      </section>
+    </div>
+    <section class="block">
+      <header><h2>Routines that write here</h2><span class="note">scheduled tasks · open one to see its runs</span></header>
+      <div class="pages" id="routines"></div>
+    </section>
+    <section class="block">
+      <header><h2>Practice master data</h2><span class="note">collection <code>practice</code> · carriers, facilities, practice</span></header>
+      <div id="practice" class="note">Loading…</div>
+    </section>
+  </section>
+
+  <p class="foot" id="foot">Data: this page's own database, written after every Claimocity ingest, Billing Button run and ERA posting by the routines (ArtifactData), built from the PHI-light registers on GitHub main by tools/db/practice_db.py. Dollars are the fee-schedule amounts entered, not collections; see the Money Ledger and Outstanding Claims pages for what was paid.</p>
+</div>
+
+<script>
+const $=s=>document.querySelector(s); const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n||0).toLocaleString('en-US'); const usd=n=>'$'+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:0}); const usd2=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const REPO='https://github.com/dreffinger/effinger-billing-backend', GH=p=>REPO+'/blob/main/'+p;
+const TODAY=new Date(); const iso=d=>d.toISOString().slice(0,10); const daysAgo=n=>{const d=new Date(TODAY);d.setDate(d.getDate()-n);return iso(d);};
+function fdate(s){ if(!s) return ''; const d=new Date(s.length===10?s+'T12:00:00':s); return isNaN(d)?s:d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
+function when(s){ if(!s) return ''; const d=new Date(s); return isNaN(d)?s:d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }
+function ago(s){ if(!s) return 'never'; const ms=Date.now()-new Date(s).getTime(); if(isNaN(ms)) return s; const h=ms/36e5; if(h<1) return Math.max(1,Math.round(ms/6e4))+' min ago'; if(h<48) return Math.round(h)+' h ago'; return Math.round(h/24)+' days ago'; }
+function stampDate(st){ const m=/^(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z/.exec(st||''); return m?`${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:00Z`:null; }
+
+// ---- palette (per viewer) and view routing (hash)
+function paintPal(){ const cur=document.documentElement.getAttribute('data-ehpa')||'lapis'; document.querySelectorAll('#pal button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===cur?'true':'false')); }
+document.querySelectorAll('#pal button').forEach(b=>b.addEventListener('click',()=>{ document.documentElement.setAttribute('data-ehpa',b.dataset.pal); ls.set('ehpa-feed-palette',b.dataset.pal); paintPal(); })); paintPal();
+const VIEWS=['overview','feed','runs','era','approvals','data','mirror'];
+function route(){ let v=(location.hash||'').replace('#',''); if(!VIEWS.includes(v)) v='overview'; VIEWS.forEach(x=>{ $('#view-'+x).hidden=x!==v; }); document.querySelectorAll('#rail a').forEach(a=>{ if(a.dataset.view===v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); if(v==='feed'&&D.batches.length) dayChart(); }
+addEventListener('hashchange',route);
+
+// ---- the database
+const D={db:null,ready:false,checks:[],batchDocs:{},batches:[],runs:[],era:[],snaps:[],practice:[],index:[],loaded:{},err:null};
+const say=(m,cls)=>{ const s=$('#status'); s.textContent=m||''; s.className='status'+(cls?' '+cls:''); };
+let subs=[];
+function sub(q,key,next){ const t=setTimeout(()=>{ if(!D.loaded[key]) say('The database has not answered yet for '+key+' - it may be unreachable from here; what is shown may be out of date.','err'); },10000);
+  const u=q.onSnapshot(s=>{ if(!s.metadata||!s.metadata.fromCache){ clearTimeout(t); } D.loaded[key]=true; next(s); renderAll(); },e=>{ clearTimeout(t); D.err=e; say('Database error on '+key+': '+(e&&e.code)+' - '+(e&&e.message||''),'err'); }); subs.push(u); }
+async function connect(){ let db=null; try{ db=(window.claude&&typeof window.claude.use==='function')?await window.claude.use('db'):null; }catch(e){ db=null; }
+  D.db=db; if(!db){ say(window.claude?'The database is only readable inside claude.ai (open the page there).':'Open this page inside claude.ai to read the database.','err'); renderAll(); return; }
+  subs.forEach(u=>{ try{u();}catch(e){} }); subs=[]; D.loaded={};
+  sub(db.collection('feed_checks').orderBy('at','desc').limit(40),'feed checks',s=>{ D.checks=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  sub(db.collection('feed_batches').orderBy('dmax','desc').limit(400),'feed batches',s=>{ D.batchDocs={}; s.docs.forEach(d=>{ D.batchDocs[d.id]=Object.assign({id:d.id},d.data()); }); mergeBatches(); });
+  sub(db.collection('billing_runs').orderBy('at','desc').limit(120),'billing runs',s=>{ D.runs=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  sub(db.collection('era_runs').orderBy('at','desc').limit(120),'ERA runs',s=>{ D.era=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  sub(db.collection('snapshots').orderBy('at','desc').limit(40),'snapshots',s=>{ D.snaps=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  sub(db.collection('artifact_index').orderBy('at','desc').limit(60),'artifact index',s=>{ D.index=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  try{ const p=await db.collection('practice').get(); D.practice=p.docs.map(d=>Object.assign({id:d.id},d.data())); }catch(e){}
+  D.ready=true; renderAll(); say('','ok'); }
+function mergeBatches(){ const by={}; Object.values(D.batchDocs).forEach(d=>{ const st=d.stamp||d.id.replace(/\.p\d+$/,''); const b=by[st]||(by[st]={stamp:st,rows:[],parts:{},meta:d}); b.parts[d.part||1]=d.rows||[]; if(!d.part||d.part===1) b.meta=d; });
+  D.batches=Object.values(by).map(b=>{ const rows=Object.keys(b.parts).sort((x,y)=>x-y).flatMap(k=>b.parts[k]); return Object.assign({},b.meta,{rows, stamp:b.stamp, partsLoaded:Object.keys(b.parts).length}); }).sort((a,b)=>(b.at||'').localeCompare(a.at||'')); }
+function newestSnap(kind){ return D.snaps.find(s=>s.kind===kind)||null; }
+
+// ---- feed aggregation (ported from tools/feed/feed_monitor.py)
+function service(c){ c=(c||'').toUpperCase(); if(['99221','99222','99223'].includes(c)) return 'Hospital admission'; if(['99231','99232','99233'].includes(c)) return 'Hospital follow-up'; if(['99238','99239'].includes(c)) return 'Hospital discharge'; if(['99234','99235','99236'].includes(c)) return 'Observation same-day'; if(/^9928[1-5]$/.test(c)) return 'Emergency visit'; if(['99304','99305','99306'].includes(c)) return 'SNF admission'; if(['99307','99308','99309','99310'].includes(c)) return 'SNF follow-up'; if(['99315','99316'].includes(c)) return 'SNF discharge'; if(/^9934[1-9]$|^99350$/.test(c)) return 'Home / ALF visit'; if(['99487','99489','99490','99491','99437','99439','G0506'].includes(c)) return 'Chronic care management'; if(['99497','99498'].includes(c)) return 'Advance care planning'; if(['G0438','G0439','G0402'].includes(c)) return 'Annual wellness'; if(['99495','99496'].includes(c)) return 'Transitional care'; if(['99358','99359','G2211','G0136'].includes(c)) return 'Prolonged / add-on'; return 'Other'; }
+const MA=new Set(['HUM01','UNI20','CAP07','UHCMA','WEL04','AET12','AET07','CIG13','DEV01','CPL01','FBM01']), MCD=new Set(['FLO99','FCC','SUN01','SIM01','MCAD','MOL01','STA01','HUMMD']);
+function payerCat(code,name){ if(!code) return 'No active plan'; const c=code.toUpperCase(), n=(name||'').toUpperCase(); if(MA.has(c)||/ADVANTAGE|DUAL COMPLETE|MEDICARE HMO|MEDICARE PPO|CAREPLUS|DEVOTED|WELLCARE/.test(n)) return 'Medicare Advantage'; if(MCD.has(c)||/MEDICAID|MCD|COMMUNITY CARE|SUNSHINE STATE|SIMPLY|MOLINA|STAYWELL|LTC/.test(n)) return 'Medicaid / LTC'; if(['MC','FLO02','MCR'].includes(c)||/\bMEDICARE\b/.test(n)) return 'Medicare'; if(['VACCN','TRI05','TRI01'].includes(c)||/\bVA\b|VETERAN|TRICARE|CCN/.test(n)) return 'VA / TRICARE'; return 'Commercial / other'; }
+const POS={'21':'Inpatient hospital','22':'Outpatient hospital','23':'Emergency room','31':'Skilled nursing facility','32':'Nursing facility','13':'Assisted living','12':'Home','11':'Office','33':'Custodial care','34':'Hospice'};
+const STATUS={entered:['Entered in AdvancedMD','ok'],already:['Already in AdvancedMD','dim'],hold:['Entered - insurance hold','warn'],dx:['Not entered - diagnosis code not in AMD list','warn'],deceased:['Not entered - after date of death','bad'],cpt:['Not entered - unknown CPT','warn'],skipped:['Not entered - skipped','warn'],failed:['Failed','bad'],nochart:['No chart matched','bad'],voided:['Entered, then voided','dim'],unrecorded:['Outcome not recorded','dim']};
+function rowStatus(r){ return r.s==='entered'&&r.hold?'hold':r.s; }
+function allRows(){ const L={fac:{},car:{},prov:{}}; const rows=[]; D.batches.forEach(b=>{ Object.assign(L.fac,(b.lookups||{}).fac||{}); Object.assign(L.car,(b.lookups||{}).car||{}); Object.assign(L.prov,(b.lookups||{}).prov||{}); (b.rows||[]).forEach(r=>rows.push(Object.assign({stamp:b.stamp,bat:b.at},r))); }); return {rows,L}; }
+let win=ls.get('ehpa-feed-win')||'week';
+document.querySelectorAll('#win button').forEach(b=>b.addEventListener('click',()=>{ win=b.dataset.win; ls.set('ehpa-feed-win',win); renderFeed(); }));
+function windowRange(){ if(win==='week') return [daysAgo(6),iso(TODAY)]; if(win==='month') return [daysAgo(29),iso(TODAY)]; const {rows}=allRows(); const ds=rows.map(r=>r.d).filter(Boolean).sort(); return [ds[0]||iso(TODAY), (ds[ds.length-1]||iso(TODAY))>iso(TODAY)?ds[ds.length-1]:iso(TODAY)]; }
+function rows(el,list,opts){ opts=opts||{}; const key=opts.key||'visits'; const max=Math.max(1,...list.map(r=>r[key]||0));
+  if(!list.length){ el.innerHTML='<div class="note">Nothing in this window.</div>'; return; }
+  el.innerHTML=list.map((r,i)=>{ const v=r[key]||0; const w=Math.max(2,Math.round(100*v/max)); const cls=opts.cls?opts.cls(r,i):(opts.alt?'alt':''); const extra=opts.extra?opts.extra(r):'';
+    return '<div class="row" title="'+esc(r.name)+'"><span class="nm">'+esc(r.name)+'</span><span class="tr"><i class="'+cls+'" style="width:'+w+'%"></i></span><span class="vl">'+fmt(v)+(extra?'<small>'+esc(extra)+'</small>':'')+'</span></div>'; }).join(''); }
+function table(rs,keyf,per){ const cnt={},dol={},vis={}; rs.forEach(r=>{ const seen=new Set(); (r.c||[]).forEach((cpt,i)=>{ const k=keyf(r,cpt); cnt[k]=(cnt[k]||0)+1; dol[k]=(dol[k]||0)+((r.fee||0)/Math.max(1,(r.c||[]).length)); if(!seen.has(k)){ vis[k]=(vis[k]||0)+1; seen.add(k);} }); }); return Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).map(k=>({name:k,lines:cnt[k],visits:vis[k],dollars:dol[k]})); }
+let dayData=[];
+function renderFeed(){ document.querySelectorAll('#win button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.win===win?'true':'false'));
+  const {rows:all,L}=allRows(); const [lo,hi]=windowRange(); const inw=r=>r.d&&r.d>=lo&&r.d<=hi; const rs=all.filter(inw); const ent=rs.filter(r=>r.s==='entered'||r.s==='voided'&&false);
+  $('#range').textContent=fdate(lo)+' – '+fdate(hi)+(win==='all'?' (all feed files on hand)':'');
+  const notEntered=rs.filter(r=>['dx','deceased','cpt','skipped','failed','nochart'].includes(r.s)); const holds=rs.filter(r=>r.s==='entered'&&r.hold); const dollars=ent.reduce((a,r)=>a+(r.fee||0),0);
+  const pats=new Set(ent.map(r=>r.p)); const newc=new Set(rs.filter(r=>r.newchart).map(r=>r.p));
+  $('#tiles').innerHTML=[['Feed encounters',fmt(rs.length),'messages Claimocity sent for these dates'],['Entered in AdvancedMD',fmt(ent.length),fmt(pats.size)+' patients · '+fmt(ent.reduce((a,r)=>a+(r.c||[]).length,0))+' charge lines','accent'],['Charges entered',usd(dollars),'fee schedule, as entered'],
+    ['Not entered',fmt(notEntered.length),notEntered.length?'see the table - each has its reason':'every encounter is in', notEntered.length?'warn':'ok'],['Insurance holds',fmt(holds.length),'entered, waiting on a plan or facesheet',holds.length?'warn':''],['New charts',fmt(newc.size),'patients the feed brought in']]
+    .map(i=>'<div class="tile '+(i[3]||'')+'"><div class="eyebrow">'+esc(i[0])+'</div><div class="v">'+esc(i[1])+'</div><div class="d">'+esc(i[2])+'</div></div>').join('');
+  // day chart data
+  const by={}; ent.forEach(r=>{ const d=by[r.d]||(by[r.d]={visits:0,lines:0,dollars:0,pats:new Set(),notin:0}); d.visits++; d.lines+=(r.c||[]).length; d.dollars+=r.fee||0; d.pats.add(r.p); }); notEntered.forEach(r=>{ const d=by[r.d]||(by[r.d]={visits:0,lines:0,dollars:0,pats:new Set(),notin:0}); d.notin++; });
+  dayData=[]; for(let d=new Date(lo+'T12:00:00'); iso(d)<=hi; d.setDate(d.getDate()+1)){ const k=iso(d); const e=by[k]; dayData.push({date:k,visits:e?e.visits:0,lines:e?e.lines:0,dollars:e?e.dollars:0,patients:e?e.pats.size:0,notin:e?e.notin:0}); }
+  dayChart();
+  rows($('#service'),table(ent,(r,c)=>service(c)),{key:'lines',extra:r=>usd(r.dollars)});
+  rows($('#facility'),table(ent,(r,c)=>L.fac[r.fac]||r.fac||'unknown facility'),{key:'visits',alt:true});
+  rows($('#payer'),table(ent,(r,c)=>payerCat(r.lead,L.car[r.lead])),{key:'visits',cls:r=>r.name==='No active plan'?'warn':''});
+  const oc={}; rs.forEach(r=>{ const k=rowStatus(r); oc[k]=(oc[k]||0)+1; }); rows($('#outcome'),Object.keys(oc).sort((a,b)=>oc[b]-oc[a]).map(k=>({name:(STATUS[k]||[k])[0],visits:oc[k],c:(STATUS[k]||['','dim'])[1]})),{key:'visits',cls:r=>r.c});
+  rows($('#clinician'),table(ent,(r,c)=>L.prov[r.prov]||r.prov||'Clinician on file'),{key:'visits',alt:true});
+  const dxc={}; rs.forEach(r=>{ new Set(r.dx||[]).forEach(d=>{ dxc[d]=(dxc[d]||0)+1; }); }); $('#dx').innerHTML=Object.keys(dxc).sort((a,b)=>dxc[b]-dxc[a]).slice(0,14).map(d=>'<span class="chip">'+esc(d)+' · '+fmt(dxc[d])+'</span>').join('')||'<span class="note">No diagnosis codes in this window.</span>';
+  // holds table (all batches, newest first, one per chart)
+  const seen=new Set(); const hl=all.filter(r=>r.s==='entered'&&r.hold).sort((a,b)=>(b.d||'').localeCompare(a.d||'')).filter(r=>{ if(seen.has(r.p)) return false; seen.add(r.p); return true; });
+  $('#holds-note').textContent=hl.length?hl.length+' charts · chart ids only; names stay in the workspace':'none open';
+  $('#holds').innerHTML=hl.length?hl.map(r=>{ const kind=/CMS reports|primary|names/.test(r.hold)?'payer':'facesheet'; return '<tr><td class="mono">'+esc(r.p)+'</td><td><span class="pill warn">'+kind+'</span></td><td>'+esc(r.hold)+'</td><td class="mono">'+esc(fdate(r.d))+'</td></tr>'; }).join(''):'<tr><td colspan="4" class="note">Nothing is held.</td></tr>';
+  // files + checks
+  const files=[]; D.batches.forEach(b=>(b.files||[]).forEach(f=>files.push(Object.assign({stamp:b.stamp},f)))); files.sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  $('#files').innerHTML=files.map(f=>'<span class="chip" title="'+esc(f.name)+' · batch '+esc(f.stamp)+'">'+esc(fdate(String(f.date).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')))+(f.messages?' · '+f.messages:'')+'</span>').join('')||'<span class="note">No feed file in the database yet.</span>';
+  const ds=all.map(r=>r.d).filter(Boolean).sort(); $('#files-note').textContent=files.length+' files · DOS '+fdate(ds[0])+' – '+fdate(ds[ds.length-1]); $('#coverage').textContent='Feed files on hand start 10/16/2026 (the September copies the old integration had posted are the "outcome not recorded" rows). Days with no bar are days with no feed encounter on hand, not necessarily days without visits; Claimocity posts a visit one to two days after it happens.';
+  $('#checks').innerHTML=D.checks.length?D.checks.map(c=>'<tr><td class="mono">'+esc(when(c.at))+'</td><td><span class="pill '+(c.result==='ingested'?'ok':c.result==='nothing_new'?'dim':'bad')+'">'+esc((c.result||'').replace('_',' '))+'</span></td><td>'+esc(c.line||(c.files_new?c.files_new+' new file(s)':''))+(c.newest_file?' <span class="note">newest file '+esc(fdate(String(c.newest_file).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')))+'</span>':'')+'</td><td class="num">'+(c.visits!=null?fmt(c.visits):'')+'</td><td class="num">'+(c.dollars!=null?usd(c.dollars):'')+'</td></tr>').join(''):'<tr><td colspan="5" class="note">No feed check recorded yet - the next feed run writes one.</td></tr>';
+  renderRecon(all,L); }
+function dayChart(){ const box=$('#days'); const days=dayData; if(!days.length){ box.innerHTML='<div class="note">No days in this window.</div>'; return; }
+  const W=Math.max(360,Math.round(box.clientWidth||960)),H=W<560?200:230,L=38,R=12,T=18,B=34; const n=days.length; const max=Math.max(1,...days.map(d=>d.visits+d.notin)); const step=(W-L-R)/n; const bw=Math.max(3,Math.min(26,step-3));
+  const ticks=[0,Math.ceil(max/2),max]; let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Encounters per date of service">';
+  ticks.forEach(t=>{ const y=T+(H-T-B)*(1-t/max); s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(L-8)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="var(--dim)" font-family="var(--mono)">'+t+'</text>'; });
+  days.forEach((d,i)=>{ const x=L+i*step+(step-bw)/2; const h=(H-T-B)*(d.visits/max); const hn=(H-T-B)*(d.notin/max); const y=T+(H-T-B)-h; const today=d.date===iso(TODAY);
+    s+='<rect x="'+x.toFixed(1)+'" y="'+(d.visits?y.toFixed(1):(H-B-2))+'" width="'+bw.toFixed(1)+'" height="'+(d.visits?h.toFixed(1):2)+'" rx="3" fill="'+(d.visits?'var(--accent)':'var(--line-strong)')+'"'+(today?' stroke="var(--accent-2)" stroke-width="2"':'')+'/>';
+    if(d.notin) s+='<rect x="'+x.toFixed(1)+'" y="'+(y-hn).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+hn.toFixed(1)+'" rx="3" fill="var(--warn)"/>';
+    const every=n>14?Math.ceil(n/10):1; if(i%every===0||i===n-1) s+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11" fill="var(--dim)" font-family="var(--mono)">'+esc(fdate(d.date))+'</text>';
+    s+='<rect class="hit" data-i="'+i+'" x="'+(L+i*step).toFixed(1)+'" y="'+T+'" width="'+step.toFixed(1)+'" height="'+(H-T-B)+'" fill="transparent"/>'; });
+  s+='</svg><div class="tip" id="tip"></div>'; box.innerHTML=s; const tip=$('#tip'); const svg=box.querySelector('svg');
+  function show(i){ const d=days[i]; if(!d) return; const r=svg.getBoundingClientRect(); const bx=box.getBoundingClientRect(); const x=r.left+(L+i*step+step/2)*(r.width/W)-bx.left; const h=(H-T-B)*((d.visits+d.notin)/max); const y=r.top+(T+(H-T-B)-h)*(r.height/H)-bx.top;
+    tip.innerHTML='<div>'+esc(new Date(d.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}))+'</div><div><b>'+fmt(d.visits)+'</b> entered · <b>'+fmt(d.lines)+'</b> lines · <b>'+usd(d.dollars)+'</b></div><div>'+fmt(d.patients)+' patients'+(d.notin?' · <b>'+fmt(d.notin)+'</b> not entered':'')+'</div>'; tip.style.left=x+'px'; tip.style.top=Math.max(44,y)+'px'; tip.style.opacity='1'; }
+  box.querySelectorAll('.hit').forEach(h=>{ h.addEventListener('mousemove',()=>show(Number(h.dataset.i))); h.addEventListener('mouseleave',()=>{ tip.style.opacity='0'; }); h.addEventListener('click',()=>show(Number(h.dataset.i))); });
+  const busy=days.filter(d=>d.visits).length; const peak=days.reduce((a,b)=>b.visits>a.visits?b:a,days[0]); $('#days-note').textContent=busy+' of '+n+' days carry feed encounters · peak '+fmt(peak.visits)+' on '+fdate(peak.date)+' · amber = not entered'; }
+
+// ---- reconciliation table
+let reconFilter=ls.get('ehpa-recon-filter')||'all', reconShown=200;
+$('#recon-q').addEventListener('input',()=>{ reconShown=200; renderFeed(); }); $('#recon-sort').addEventListener('change',()=>renderFeed()); $('#recon-more').addEventListener('click',()=>{ reconShown+=300; renderFeed(); });
+function renderRecon(all,L){ const q=($('#recon-q').value||'').trim().toLowerCase(); const [lo,hi]=windowRange(); let rs=all.filter(r=>r.d&&r.d>=lo&&r.d<=hi);
+  const counts={all:rs.length}; rs.forEach(r=>{ const k=rowStatus(r); counts[k]=(counts[k]||0)+1; });
+  const order=['all','entered','hold','already','dx','deceased','cpt','skipped','failed','nochart','voided','unrecorded'];
+  $('#recon-filters').innerHTML=order.filter(k=>k==='all'||counts[k]).map(k=>'<button type="button" class="chipbtn" data-f="'+k+'" aria-pressed="'+(reconFilter===k)+'">'+esc(k==='all'?'All encounters':(STATUS[k]||[k])[0])+' <span class="n">'+fmt(counts[k]||0)+'</span></button>').join('');
+  document.querySelectorAll('#recon-filters .chipbtn').forEach(b=>b.addEventListener('click',()=>{ reconFilter=b.dataset.f; ls.set('ehpa-recon-filter',reconFilter); reconShown=200; renderFeed(); }));
+  if(reconFilter!=='all') rs=rs.filter(r=>rowStatus(r)===reconFilter);
+  if(q) rs=rs.filter(r=>[r.p,r.v,r.f,r.d,r.file,(r.c||[]).join(' '),(r.ch||[]).join(' '),r.why,r.hold,r.newchart].join(' ').toLowerCase().includes(q));
+  const sort=$('#recon-sort').value; const rank=r=>({nochart:0,failed:1,dx:2,cpt:3,skipped:4,deceased:5,hold:6,voided:7,already:8,unrecorded:9,entered:10}[rowStatus(r)]??5);
+  rs.sort((a,b)=> sort==='fee'?(b.fee||0)-(a.fee||0): sort==='status'?(rank(a)-rank(b)||(b.d||'').localeCompare(a.d||'')):((b.d||'').localeCompare(a.d||'')||(a.p||'').localeCompare(b.p||'')));
+  const shown=rs.slice(0,reconShown);
+  $('#recon').innerHTML=shown.length?shown.map(r=>{ const k=rowStatus(r); const st=STATUS[k]||[k,'dim']; const amd=r.v?'<span class="pill '+st[1]+'">'+esc(st[0])+'</span><div class="mono note">'+esc(r.v)+(r.ch&&r.ch.length?' · '+esc(r.ch.map(c=>c.replace('charge','')).join(', ')):'')+'</div>':'<span class="pill '+st[1]+'">'+esc(st[0])+'</span>';
+      const ins=r.s==='entered'?(r.hold?'<span class="pill warn">hold</span> '+esc(L.car[r.lead]||r.lead||''):'<span class="pill ok">'+esc(r.verdict||'released')+'</span> '+esc(L.car[r.lead]||r.lead||'')):'';
+      return '<tr><td class="mono">'+esc(fdate(r.d))+'</td><td class="mono">'+esc(fdate(String(r.file).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')))+'</td><td class="mono">'+esc(r.p||'—')+(r.newchart?'<div class="note">new '+esc(r.newchart)+'</div>':'')+'</td><td class="mono">'+esc((r.c||[]).join(' '))+'</td><td class="num">'+(r.fee!=null&&r.s==='entered'?usd(r.fee):'—')+'</td><td>'+amd+'</td><td>'+ins+'</td><td class="note">'+esc(r.why||r.hold||(L.fac[r.fac]||''))+'</td></tr>'; }).join(''):'<tr><td colspan="8" class="note">'+(D.batches.length?'No encounter matches.':'No feed batch in the database yet.')+'</td></tr>';
+  $('#recon-more').hidden=rs.length<=reconShown; $('#recon-count').textContent=fmt(shown.length)+' of '+fmt(rs.length)+' encounters shown · '+fmt(all.length)+' on hand in '+fmt(D.batches.length)+' batches';
+  $('#recon-note').textContent='one row per patient-day the feed sent · the AdvancedMD visit id proves it was entered'; }
+
+// ---- billing runs
+$('#runs-q').addEventListener('input',()=>renderRuns());
+function cols(sm){ const c=(sm||{}).columns; if(!c||!c.before) return ''; const f=x=>[x.charge_review,x.claim_inspector,x.unbilled,x.exclusions].map(v=>v==null?'·':v).join('/'); return f(c.before)+' → '+f(c.after||c.before); }
+function renderRuns(){ const q=($('#runs-q').value||'').toLowerCase(); const rs=D.runs.filter(r=>!q||[r.headline,r.mode,r.status,r.note,r.brief].join(' ').toLowerCase().includes(q));
+  const last=D.runs[0]; const live=D.runs.filter(r=>r.mode==='live').length; const fails=D.runs.filter(r=>/fail|error|refused/i.test(r.status||'')).length; const pk=D.runs.reduce((a,r)=>a+((r.packages||[]).length),0);
+  $('#runs-tiles').innerHTML=[['Runs on hand',fmt(D.runs.length),'newest '+fmt(Math.min(120,D.runs.length))+' loaded'],['Last run',last?ago(last.at):'—',last?esc(when(last.at))+' · '+esc(last.mode||''):'none recorded','accent'],['Live runs',fmt(live),'the rest were dry passes'],['Runs with a failed step',fmt(fails),'open the row for the error',fails?'warn':'ok'],['Approval packages',fmt(pk),'written or applied by these runs']].map(i=>'<div class="tile '+(i[3]||'')+'"><div class="eyebrow">'+esc(i[0])+'</div><div class="v">'+i[1]+'</div><div class="d">'+i[2]+'</div></div>').join('');
+  $('#runs-note').textContent=rs.length+' runs · tap a row for detail';
+  $('#runs').innerHTML=rs.length?rs.map((r,i)=>{ const era=(r.summary||{}).era; const eraTxt=era&&era.after?fmt(era.after.count||era.after.checks||0):''; const bad=/fail|error|refused/i.test(r.status||''); return '<tr class="run" data-i="'+i+'" style="cursor:pointer"><td class="mono">'+esc(when(r.at))+'</td><td>'+esc(r.mode||'')+'</td><td><span class="pill '+(bad?'bad':'ok')+'">'+esc(r.status||'')+'</span></td><td>'+esc(r.headline||'')+'</td><td class="mono">'+esc(cols(r.summary))+'</td><td class="num">'+eraTxt+'</td><td class="num">'+fmt((r.packages||[]).length)+'</td><td class="num">'+fmt((r.waiting||[]).length)+'</td></tr>'; }).join(''):'<tr><td colspan="8" class="note">No billing run in the database yet.</td></tr>';
+  document.querySelectorAll('#runs tr.run').forEach(tr=>tr.addEventListener('click',()=>{ const r=rs[Number(tr.dataset.i)]; const next=tr.nextElementSibling; if(next&&next.classList.contains('exp')){ next.remove(); return; }
+    const d=document.createElement('tr'); d.className='exp'; d.innerHTML='<td colspan="8"><b>Steps</b><ul style="margin:4px 0 8px;padding-left:18px">'+(r.steps||[]).map(s=>'<li><b>'+esc(s.title||s.name)+'</b> <span class="pill '+(/fail|error/i.test(s.status||'')?'bad':'dim')+'">'+esc(s.status||'')+'</span> '+esc(s.summary||'')+(s.errors&&s.errors.length?'<div class="note">'+esc(s.errors.join(' · '))+'</div>':'')+'</li>').join('')+'</ul>'+(r.waiting&&r.waiting.length?'<b>Waiting on William</b><ul style="margin:4px 0 8px;padding-left:18px">'+r.waiting.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul>':'')+(r.errors&&r.errors.length?'<b>Errors</b><ul style="margin:4px 0 8px;padding-left:18px">'+r.errors.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul>':'')+(r.run_url?'<a href="'+esc(r.run_url)+'" target="_blank" rel="noopener">session</a> · ':'')+'<a href="'+esc(GH(r.source||''))+'" target="_blank" rel="noopener">report on GitHub</a></td>'; tr.after(d); })); }
+
+// ---- ERA
+function renderEra(){ const rs=D.era; const posted=rs.filter(r=>(r.line_count||0)>0&&!r.dry); const paid=posted.reduce((a,r)=>a+(r.paid_total||0),0); const lines=posted.reduce((a,r)=>a+(r.line_count||0),0); const last=posted[0];
+  const after=rs.find(r=>r.checks_after&&r.checks_after.count!=null);
+  $('#era-tiles').innerHTML=[['ERA runs on hand',fmt(rs.length),'runs that touched ERA posting'],['Lines posted',fmt(lines),'payment lines auto-posted','accent'],['Paid posted',usd2(paid),'from the ERAs those lines came from'],['Last posting',last?ago(last.at):'—',last?when(last.at):'none recorded'],['Unposted checks now',after?fmt(after.checks_after.count):'—',after?'after the run of '+when(after.at)+(after.checks_after.total?' · '+usd(after.checks_after.total):''):'']].map(i=>'<div class="tile '+(i[3]||'')+'"><div class="eyebrow">'+esc(i[0])+'</div><div class="v">'+i[1]+'</div><div class="d">'+esc(i[2])+'</div></div>').join('');
+  $('#era-note').textContent=rs.length+' runs · newest first';
+  $('#era').innerHTML=rs.length?rs.map((r,i)=>'<tr class="run" data-i="'+i+'" style="cursor:pointer"><td class="mono">'+esc(when(r.at)||r.stamp)+(r.dry?' <span class="pill dim">dry</span>':'')+'</td><td class="num">'+(r.checks_before&&r.checks_before.count!=null?fmt(r.checks_before.count):'')+'</td><td class="num">'+(r.checks_after&&r.checks_after.count!=null?fmt(r.checks_after.count):'')+'</td><td class="num">'+fmt(r.line_count||0)+'</td><td class="num">'+(r.paid_total?usd2(r.paid_total):'')+'</td><td>'+esc(Object.entries(r.outcomes||{}).map(([k,v])=>k+' '+v).join(' · '))+'</td><td class="num">'+(r.audit?fmt((r.audit.flags||[]).length):'')+'</td></tr>').join(''):'<tr><td colspan="7" class="note">No ERA run in the database yet.</td></tr>';
+  document.querySelectorAll('#era tr.run').forEach(tr=>tr.addEventListener('click',()=>{ const r=rs[Number(tr.dataset.i)]; const next=tr.nextElementSibling; if(next&&next.classList.contains('exp')){ next.remove(); return; }
+    const d=document.createElement('tr'); d.className='exp'; const L=(r.lines||[]).slice(0,120); d.innerHTML='<td colspan="7">'+(L.length?'<div class="tablewrap"><table><thead><tr><th>Check</th><th>Chart</th><th>Visit</th><th>CPT</th><th>DOS</th><th class="num">Paid</th><th>Status</th><th>CARC</th><th>Outcome</th></tr></thead><tbody>'+L.map(l=>'<tr><td class="mono">'+esc(l.check)+'</td><td class="mono">'+esc(l.p)+'</td><td class="mono">'+esc(l.v)+'</td><td class="mono">'+esc(l.cpt)+'</td><td class="mono">'+esc(l.dos)+'</td><td class="num">'+usd2(l.paid)+'</td><td>'+esc(l.status||'')+'</td><td class="mono">'+esc((l.carcs||[]).join(' '))+'</td><td class="note">'+esc(l.outcome||'')+'</td></tr>').join('')+'</tbody></table></div>'+(r.lines.length>120?'<div class="note">'+(r.lines.length-120)+' more lines in the raw document.</div>':''):'<div class="note">No posted lines in this run.</div>')+(r.audit&&r.audit.flags&&r.audit.flags.length?'<div class="note" style="margin-top:8px"><b>Audit flags</b>: '+esc(r.audit.flags.slice(0,30).map(f=>f.join(' '))?.join(' · '))+'</div>':'')+'<div style="margin-top:8px"><a href="'+esc(REPO+'/tree/main/practices/ehpa/registers')+'" target="_blank" rel="noopener">registers on GitHub</a></div></td>'; tr.after(d); })); }
+
+// ---- approvals
+let apprFilter='all';
+function renderAppr(){ const s=newestSnap('approvals'); const rows=s?(s.rows||[]):[]; const c=s?(s.counts||{}):{};
+  $('#appr-tiles').innerHTML=[['Waiting',fmt(c.waiting||0),s?usd(s.dollars_waiting)+' to approve':'no snapshot yet',(c.waiting?'warn':'ok')],['Done',fmt(c.done||0),'applied by a run or on "go"'],['Approved, not yet applied',fmt(c.approved||0),'the next billing run applies them'],['Declined',fmt(c.declined||0),'left alone'],['Snapshot',s?ago(s.at):'—',s?when(s.at):'']].map(i=>'<div class="tile '+(i[3]||'')+'"><div class="eyebrow">'+esc(i[0])+'</div><div class="v">'+i[1]+'</div><div class="d">'+esc(i[2])+'</div></div>').join('');
+  const kinds=['all','waiting','approved','done','declined']; $('#appr-filters').innerHTML=kinds.map(k=>'<button type="button" class="chipbtn" data-f="'+k+'" aria-pressed="'+(apprFilter===k)+'">'+k+' <span class="n">'+fmt(k==='all'?rows.length:(c[k]||0))+'</span></button>').join('');
+  document.querySelectorAll('#appr-filters .chipbtn').forEach(b=>b.addEventListener('click',()=>{ apprFilter=b.dataset.f; renderAppr(); }));
+  const rs=rows.filter(r=>apprFilter==='all'||r.status===apprFilter).sort((a,b)=>(b.at||'').localeCompare(a.at||''));
+  $('#appr-note').textContent=s?rs.length+' packages · snapshot '+when(s.at):'no snapshot in the database yet';
+  $('#appr').innerHTML=rs.length?rs.map(r=>'<tr><td class="mono"><a href="https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR#'+esc(r.id)+'" target="_blank" rel="noopener">'+esc(r.id)+'</a></td><td class="mono">'+esc(when(r.at))+'</td><td>'+esc(r.what||'')+(r.ui?'<div class="note">'+esc(r.ui)+'</div>':'')+'</td><td class="num">'+(r.dollars!=null?usd2(r.dollars):'')+'</td><td><span class="pill '+(r.status==='waiting'?'warn':r.status==='done'?'ok':r.status==='declined'?'bad':'run')+'">'+esc(r.status||'')+'</span></td><td class="note">'+esc(r.answer||'')+'</td></tr>').join(''):'<tr><td colspan="6" class="note">Nothing here.</td></tr>'; }
+
+// ---- raw data browser
+const COLLS=[['feed_batches','one Claimocity ingest batch: every feed message and its AdvancedMD outcome'],['feed_checks','one line per feed run - what the bucket held and when it was checked'],['billing_runs','one Billing Button / scheduled billing run'],['era_runs','one run’s ERA posting work'],['snapshots','approvals, repo head and other point-in-time copies'],['practice','master data: carriers, facilities, practice']];
+let curColl=ls.get('ehpa-db-coll')||'feed_batches', curDoc=null, extraColls=[];
+$('#coll').addEventListener('change',()=>{ curColl=$('#coll').value; ls.set('ehpa-db-coll',curColl); curDoc=null; loadColl(); }); $('#doc-q').addEventListener('input',()=>renderDocList());
+let collDocs=[];
+async function loadColl(){ if(!D.db){ $('#doclist').innerHTML='<div class="note" style="padding:8px">Open inside claude.ai to browse.</div>'; return; }
+  try{ const s=await D.db.collection(curColl).orderBy('_written','desc').limit(500).get(); collDocs=s.docs.map(d=>({id:d.id,path:s.docs.length?curColl+'/'+d.id:'',data:d.data()})); }
+  catch(e){ try{ const s=await D.db.collection(curColl).limit(500).get(); collDocs=s.docs.map(d=>({id:d.id,path:curColl+'/'+d.id,data:d.data()})); }catch(e2){ collDocs=[]; $('#coll-note').textContent='Could not list '+curColl+': '+(e2&&e2.code); } }
+  $('#coll-note').textContent=collDocs.length+' document'+(collDocs.length===1?'':'s')+(collDocs.length>=500?' (first 500)':''); renderDocList(); if(curDoc) showDoc(curDoc); }
+function renderDocList(){ const q=($('#doc-q').value||'').toLowerCase(); const list=collDocs.filter(d=>!q||d.id.toLowerCase().includes(q));
+  $('#doclist').innerHTML=list.length?list.map(d=>'<button type="button" data-id="'+esc(d.id)+'" aria-pressed="'+(curDoc===d.id)+'">'+esc(d.id)+'<small>'+esc(Math.round(JSON.stringify(d.data).length/1024))+' KB</small></button>').join(''):'<div class="note" style="padding:8px">No documents.</div>';
+  document.querySelectorAll('#doclist button').forEach(b=>b.addEventListener('click',()=>{ curDoc=b.dataset.id; renderDocList(); showDoc(curDoc); })); }
+function hl(json){ return esc(json).replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,m=>{ let c='nn'; if(/^"/.test(m)) c=/:$/.test(m)?'k':'s'; else if(/true|false|null/.test(m)) c='b'; return '<span class="'+c+'">'+m+'</span>'; }); }
+let dlns=null;
+async function showDoc(id){ const d=collDocs.find(x=>x.id===id); if(!d) return; const txt=JSON.stringify(d.data,null,2); $('#doc-json').innerHTML=hl(txt.length>400000?txt.slice(0,400000)+'\n… (truncated in view; Download for the whole document)':txt); $('#doc-tools').hidden=false; $('#doc-path').textContent=curColl+'/'+id;
+  const src=d.data&&d.data.source; const a=$('#doc-src'); if(src&&/^[\w./-]+$/.test(src)&&!/\*/.test(src)){ a.href=GH(src); a.hidden=false; } else if(src&&/\*/.test(src)){ a.href=REPO+'/tree/main/'+src.split('/').slice(0,-1).join('/'); a.hidden=false; } else a.hidden=true;
+  $('#doc-copy').onclick=async()=>{ try{ await navigator.clipboard.writeText(txt); say('Copied '+curColl+'/'+id+'.','ok'); }catch(e){ const r=document.createRange(); r.selectNodeContents($('#doc-json')); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); say('Select-all is ready - press Ctrl+C / Cmd+C.',''); } };
+  $('#doc-dl').onclick=async()=>{ if(dlns===null){ try{ dlns=(window.claude&&window.claude.use)?await window.claude.use('downloads'):null; }catch(e){ dlns=null; } } if(!dlns){ say('Downloads are not available in this view - use Copy JSON.','err'); return; } try{ await dlns.save({filename:curColl.replace(/\//g,'_')+'__'+id+'.json',data:txt}); say('Saved.','ok'); }catch(e){ say('Download declined or unavailable ('+(e&&e.code||'')+').',''); } }; }
+function fillCollSelect(){ const have=new Set(); const opts=[]; COLLS.forEach(([c,d])=>{ have.add(c); opts.push('<option value="'+c+'">'+esc(c)+'</option>'); });
+  D.index.forEach(ix=>{ Object.keys(ix.collections||{}).forEach(c=>{ const p='artifacts/'+ix.slug+'/'+c; if(!have.has(p)){ have.add(p); opts.push('<option value="'+esc(p)+'">'+esc(p)+'</option>'); } }); });
+  if(!have.has(curColl)) curColl='feed_batches'; $('#coll').innerHTML=opts.join(''); $('#coll').value=curColl; }
+
+// ---- overview, schema, health, mirror
+const PAGES=[['ehpa Practice Database','#overview','here','This page and its database'],['Claimocity Feed Monitoring','#feed','view','The feed and what AdvancedMD got (in this database)'],['ehpa Billing Button','https://claude.ai/artifact/5Eyw5K3ydS13uDHkR8JJyZ','run','Start a billing run; step feed pulls the Claimocity files'],['Outstanding Claims','https://claude.ai/artifact/VNssV7RYwYrMrzvNwQtWwQ','report','Every open insurance balance by payer, age and month'],['Mandatory Approvals','https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR','approve','Writes the Claude routines could not make; Approve / Decline cards'],['Insurance Refresh Board','https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg','board','Patients whose coverage is being resolved'],['Working Denials','https://claude.ai/artifact/HDcGSG4QQHFSwt33g8E5qo','board','Denial triage, live AMD status'],['Effinger Money Ledger','https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN','report','Billed, outstanding, posted and written off'],['Treasury Payments','https://claude.ai/artifact/WqPdTgjbFDKwGh4NH1nuSa','report','Regions deposits matched to ERAs by payer'],['Old Claims Disposition','https://claude.ai/artifact/X7a5aehSHPUyPppSdV1yAp','report','The aged-claim review, batch by batch'],['Credentialing Board','https://claude.ai/artifact/CmAo5e3hAouWyFEqwbdo4M','board','Payer enrollments, licenses and renewals'],['ehpa Home','https://claude.ai/artifact/R6zTSimdzdGv9ZShvkG5GH','home','Visit, Claims, Treasury, Plan: the home screen'],['Shared Workspaces','https://claude.ai/artifact/9r5xD5BvFW7CkYfWA35TaB','launcher','Every session, routine, board and folder'],['effinger-billing-backend on GitHub',REPO,'code','The repository: scripts, runbooks, registers, reports']];
+$('#pages').innerHTML=PAGES.map(p=>'<a href="'+esc(p[1])+'"'+(p[1].startsWith('#')?(p[1]==='#overview'?' class="here"':''):' target="_blank" rel="noopener"')+'><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
+const LINKS=[['GitHub main (the record)',REPO+'/tree/main','code','scripts/helpers, nightly runbooks, practices/ehpa/registers, reports'],['Synced branch (the Project reads it)',REPO+'/tree/claude/effinger-billing-backend-mirror-w74pqv','code','claude/effinger-billing-backend-mirror-w74pqv'],['Drive · billing agent project files','https://drive.google.com/drive/folders/1-AsLUHMaeqvHq-fqWKUVKKUU4Xkw6XTt','drive','runbooks, prompts, pastes'],['Drive · chat history','https://drive.google.com/drive/folders/1VCZfjSmok1fNNnYwf2yBTXlZ-zMUnAWU','drive','every run digest and START marker'],['Drive · workspace mirror','https://drive.google.com/drive/folders/135OCbRNCnFLyVm2GBXk1XsE3lt0vnsrn','drive','the PHI state bundle, deceased cache, helpers'],['Drive · github mirror','https://drive.google.com/drive/folders/1yr8X30h01-tPa0swclvtBFdAisiHzgJ8','drive','git bundles when a push is blocked'],['Drive · Claimocity drop','https://drive.google.com/drive/folders/1XskJ8BJAC-YQRLRFBZ9lWuyEJiU1-htI','drive','September feed copies and facesheets (history)'],['Google Cloud bucket','https://console.cloud.google.com/storage/browser/ehpa-claimocity-feed-50717','cloud','gs://ehpa-claimocity-feed-50717 - the Claimocity feed files, copied every 30 min'],['Postman workspace','https://www.postman.com/','api','AdvancedMD API vocabulary and collections (mirror of docs/api_vocabulary.json)']];
+$('#mirror-links').innerHTML=LINKS.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
+const ROUTINES=[['ehpa Billing Button - full billing run','trig_01S771Si8VJ8DvcwgHMHGYB5','on demand from the Button page; writes billing_runs, feed_batches, feed_checks, era_runs, snapshots'],['Claimocity feed - daily','trig_011wLUbRetVyUZdEBojuCwrs','8:34 PM ET daily; writes feed_checks and, when files are new, feed_batches'],['Backend billing run - every 2 hours','trig_01QRqT8KB4Q1H9EyYRG4NBKX','the scheduled columns/ERA pass; writes billing_runs when it reports'],['Nightly insurance cascade','trig_01XVrVN9dpSdvAbB1ZrsAzFU','eligibility cascade; its approvals land in snapshots/approvals'],['Billing approvals sync - hourly','trig_01Bqg5n4YZZG55SULBq79JKJ','copies waiting packages onto the Mandatory Approvals page'],['Mandatory approval writes - 8:51 AM/PM','trig_01YUgjTTz71pE9Nh65mMUeGY','reminder of what is waiting']];
+$('#routines').innerHTML=ROUTINES.map(r=>'<a href="https://claude.ai/code/routines/'+esc(r[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(r[0])+'</span><span class="kd">routine</span></span><span class="nt">'+esc(r[2])+'</span></a>').join('');
+function renderSchema(){ const rows=[['feed_batches','&lt;ingest stamp&gt; (.p2… parts)','every feed message of one ingest with its AdvancedMD outcome, holds, files, lookups','Button step feed · daily feed task','practices/ehpa/registers/feed_recon_&lt;stamp&gt;.json',D.batches.length],['feed_checks','&lt;run stamp&gt;','what the bucket held, result (ingested / nothing new / blocked), visits and dollars','every feed run','registers/claimocity_ingest.json',D.checks.length],['billing_runs','&lt;run stamp&gt;','headline, columns before→after, steps, packages, waiting, errors','Billing Button · 2-hourly run','reports/button/&lt;stamp&gt;.json',D.runs.length],['era_runs','&lt;run stamp&gt;','unposted checks before/after, posted lines, outcomes, audit flags','runs that post ERAs','registers/era_*_&lt;stamp&gt;.json',D.era.length],['snapshots','&lt;kind&gt;-&lt;stamp&gt;','approvals register, repo head, other point-in-time copies','every run','registers/approvals_pending.json · git',D.snaps.length],['practice','carriers · facilities · practice','master data as on main','chat session','practices/ehpa/*.json',D.practice.length],['artifact_index / artifacts/&lt;page&gt;/…','&lt;page&gt;-&lt;stamp&gt; · the page’s own ids','copies of the other billing pages’ databases','practice db sync','each page’s database',D.index.length]];
+  $('#schema').innerHTML=rows.map(r=>'<tr><td>'+r[0]+'</td><td class="mono">'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td class="mono">'+r[4]+'</td><td class="num">'+fmt(r[5])+'</td></tr>').join(''); }
+function renderOverview(){ const lastCheck=D.checks[0]; const lastIngest=D.checks.find(c=>c.result==='ingested'); const lastRun=D.runs[0]; const lastEra=D.era.find(r=>(r.line_count||0)>0&&!r.dry); const appr=newestSnap('approvals'); const repo=newestSnap('repo');
+  const {rows:all}=allRows(); const ent=all.filter(r=>r.s==='entered'); const notIn=all.filter(r=>['dx','deceased','cpt','skipped','failed','nochart'].includes(r.s));
+  const docs=D.batches.length+D.checks.length+D.runs.length+D.era.length+D.snaps.length+D.practice.length;
+  $('#ov-tiles').innerHTML=[['Documents loaded',fmt(docs),'of the newest in each collection','accent'],['Feed encounters on hand',fmt(all.length),fmt(ent.length)+' entered · '+fmt(notIn.length)+' not entered'],['Entered by the feed',usd(ent.reduce((a,r)=>a+(r.fee||0),0)),'fee schedule, all batches'],['Last feed check',lastCheck?ago(lastCheck.at):'—',lastCheck?esc((lastCheck.result||'').replace('_',' '))+' · '+when(lastCheck.at):'none yet',lastCheck&&(Date.now()-new Date(lastCheck.at))<26*36e5?'ok':'warn'],['Last billing run',lastRun?ago(lastRun.at):'—',lastRun?esc(lastRun.mode||'')+' · '+when(lastRun.at):'none yet'],['Approvals waiting',appr?fmt((appr.counts||{}).waiting||0):'—',appr?usd(appr.dollars_waiting):'no snapshot',appr&&(appr.counts||{}).waiting?'warn':'ok']].map(i=>'<div class="tile '+(i[3]||'')+'"><div class="eyebrow">'+esc(i[0])+'</div><div class="v">'+i[1]+'</div><div class="d">'+i[2]+'</div></div>').join('');
+  const H=[]; const push=(st,title,text)=>H.push({st,title,text});
+  push(D.db?'ok':'bad','Database reachable',D.db?'This view can read the page’s database.':'Open the page inside claude.ai; outside it the database cannot be read.');
+  const ageH=lastCheck?(Date.now()-new Date(lastCheck.at))/36e5:null; push(ageH==null?'bad':ageH<26?'ok':'warn','Feed checked in the last day',lastCheck?'Last check '+when(lastCheck.at)+' ('+(lastCheck.result||'').replace('_',' ')+'). The daily task runs 8:34 PM ET; the Billing Button checks on every press.':'No feed check in the database - the next feed run writes one.');
+  const nf=lastCheck&&lastCheck.newest_file?String(lastCheck.newest_file).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3'):null; const nfAge=nf?Math.round((TODAY-new Date(nf+'T12:00:00'))/864e5):null; push(nf==null?'warn':nfAge<=2?'ok':'warn','Claimocity still delivering',nf?'Newest feed file is dated '+fdate(nf)+(nfAge>2?' - '+nfAge+' days old: check the Cloud Run copy job (claimocity/cloud_run/DEPLOY.md) or Claimocity’s delivery.':' ('+nfAge+' day'+(nfAge===1?'':'s')+' old; Claimocity posts one to two days after the visit).'):'No file date recorded yet.');
+  const incomplete=D.batches.filter(b=>b.counts&&b.counts.messages!=null&&b.counts.messages!==b.rows.length); push(incomplete.length?'warn':'ok','Every feed message accounted for',incomplete.length?incomplete.length+' batch(es) have fewer rows loaded than messages ('+incomplete.map(b=>b.stamp).join(', ')+') - a part may still be loading.':D.batches.length+' batches, '+fmt(all.length)+' messages, each with an AdvancedMD outcome.');
+  push(notIn.length?'warn':'ok','Everything billable is in AdvancedMD',notIn.length?notIn.length+' encounter(s) are not entered - open the feed view, filter "not entered"; each row says why and what clears it.':'Every feed encounter on hand was entered or was already there.');
+  const rh=lastRun?(Date.now()-new Date(lastRun.at))/36e5:null; push(rh==null?'bad':rh<5?'ok':rh<26?'warn':'bad','Billing runs are happening',lastRun?'Last run '+when(lastRun.at)+' ('+(lastRun.mode||'')+', '+(lastRun.status||'')+'). The scheduled pass runs every 2 hours.':'No billing run in the database yet.');
+  const eh=lastEra?(Date.now()-new Date(lastEra.at))/36e5/24:null; push(eh==null?'warn':eh<8?'ok':'warn','ERAs are being posted',lastEra?'Last posting '+when(lastEra.at)+': '+fmt(lastEra.line_count)+' lines, '+usd2(lastEra.paid_total)+'.':'No ERA posting recorded yet.');
+  push(appr&&(appr.counts||{}).waiting?'warn':'ok','Approvals',appr?fmt((appr.counts||{}).waiting||0)+' waiting ('+usd(appr.dollars_waiting)+'), '+fmt((appr.counts||{}).approved||0)+' approved and not yet applied, '+fmt((appr.counts||{}).done||0)+' done - snapshot '+when(appr.at)+'.':'No approvals snapshot yet.');
+  push(repo?'ok':'warn','GitHub main in step',repo?'Repository head '+(repo.head||'')+' at '+when(repo.at)+' · '+fmt((repo.counts||{}).registers)+' registers, '+fmt((repo.counts||{}).button_reports)+' run reports.':'No repository snapshot yet.');
+  push(docs>20000?'warn':'ok','Room in the database',fmt(docs)+' documents loaded here; the database holds up to 25,000 (256 KB each). Old runs can be pruned when needed.');
+  $('#health').innerHTML=H.map(h=>'<div class="hc '+h.st+'"><span class="dot" aria-hidden="true"></span><div><b>'+esc(h.title)+'</b><span>'+esc(h.text)+'</span></div></div>').join(''); const bad=H.filter(h=>h.st==='bad').length, warn=H.filter(h=>h.st==='warn').length; $('#health-note').textContent=bad?bad+' failing · '+warn+' to watch':warn?warn+' to watch, nothing failing':'all checks pass';
+  $('#repo-kv').innerHTML=repo?'<dt>Head on main</dt><dd class="mono">'+esc(repo.head||'')+'</dd><dt>Last commit</dt><dd>'+esc(repo.last_commit||'')+'</dd><dt>Registers</dt><dd class="mono">'+fmt((repo.counts||{}).registers)+'</dd><dt>Run reports</dt><dd class="mono">'+fmt((repo.counts||{}).button_reports)+'</dd><dt>Snapshot</dt><dd>'+esc(when(repo.at))+'</dd>':'<dt>Repository</dt><dd>no snapshot in the database yet</dd>';
+  $('#practice').innerHTML=D.practice.length?'<dl class="kv">'+D.practice.map(p=>'<dt>'+esc(p.name||p.id)+'</dt><dd>'+esc(Array.isArray(p.data)?p.data.length+' entries':(p.data&&typeof p.data==='object'?Object.keys(p.data).length+' entries':String(p.data||'')))+' · <a href="#data" data-coll="practice">raw</a> · <a href="'+esc(GH(p.source||''))+'" target="_blank" rel="noopener">GitHub</a></dd>').join('')+'</dl>':'<span class="note">No master data document yet.</span>';
+  $('#n-feed').textContent=all.length?fmt(all.length):''; $('#n-runs').textContent=D.runs.length?fmt(D.runs.length):''; $('#n-era').textContent=D.era.length?fmt(D.era.length):''; $('#n-appr').textContent=appr?fmt((appr.counts||{}).waiting||0):''; }
+let rendering=false;
+function renderAll(){ if(rendering) return; rendering=true; try{ renderSchema(); renderOverview(); renderFeed(); renderRuns(); renderEra(); renderAppr(); fillCollSelect(); if(!$('#view-data').hidden&&D.db&&!collDocs.length) loadColl(); }finally{ rendering=false; } }
+document.querySelectorAll('#rail a').forEach(a=>a.addEventListener('click',()=>{ if(a.dataset.view==='data') setTimeout(loadColl,50); }));
+$('#refresh').addEventListener('click',async()=>{ const b=$('#refresh'); b.disabled=true; b.classList.add('spin'); say('Re-reading the database…'); try{ await connect(); if(!$('#view-data').hidden) await loadColl(); say(D.db?'Up to date.':'','ok'); }finally{ b.disabled=false; b.classList.remove('spin'); } });
+addEventListener('resize',()=>{ clearTimeout(window.__rsz); window.__rsz=setTimeout(()=>{ if(!$('#view-feed').hidden) dayChart(); },150); });
+route(); renderAll(); connect();
+</script>

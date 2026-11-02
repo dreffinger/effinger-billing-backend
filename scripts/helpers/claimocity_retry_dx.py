@@ -111,6 +111,7 @@ if live:
     step("verify", [sys.executable, os.path.join(HERE, "claimocity_verify.py")] + (["--no-stedi"] if "--no-stedi" in a else []), must=False)
     step("inspector", [sys.executable, os.path.join(HERE, "claimocity_inspector.py")], must=False)
     step("report", [sys.executable, os.path.join(HERE, "claimocity_report.py")], must=False)
+    step("recon", [sys.executable, os.path.join(HERE, "claimocity_recon.py"), rstamp], must=False)
 impf = "registers/feed_import_%s.json" % rstamp
 imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skipped": [], "failed": []}
 reg.setdefault("runs", []).append({"stamp": rstamp, "at": utcnow().isoformat() + "Z", "live": live, "files": [], "retry_of": batches, "exit": 0})

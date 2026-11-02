@@ -115,6 +115,7 @@ if live:
     if "--skip-inspector" not in a:
         step("inspector", [sys.executable, os.path.join(HERE, "claimocity_inspector.py")], must=False)
     step("report", [sys.executable, os.path.join(HERE, "claimocity_report.py")], must=False)
+    step("recon", [sys.executable, os.path.join(HERE, "claimocity_recon.py"), stamp], must=False)   # registers/feed_recon_<stamp>.json: every message and its AMD outcome (the Practice Database's feed_batches document)
 # ---- register the files ------------------------------------------------------------------------------------------------------------
 impf = "registers/feed_import_%s.json" % stamp
 imp = json.load(open(impf)) if os.path.exists(impf) else {"created": [], "skipped": [], "failed": []}
