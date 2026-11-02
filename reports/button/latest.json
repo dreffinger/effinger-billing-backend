@@ -4,7 +4,7 @@
  "mode": "live",
  "status": "ok",
  "headline": "Columns CR/CI/Unb/Exc 0/2/1/1 -> 0/2/1/1 (all standing holds on William's turn); ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0; feed nothing new (6 visits wait on dx codes)",
- "note": "no BUTTON PRESS brief in the firing - live, all steps, every approved package (none approved)",
+ "note": "BUTTON PRESS 2026-11-02T04:03:00Z - mode live - steps all - packages approved - note: William 11/1/2026 22:59 ET in chat: \"run the feed claimocity and run all the billing tasks\" - full run; the feed step first, then every column, ERA, sweep and the approved packages. The brief reached the session at 04:29Z, after the run had finished; the run was already live / all steps / every approved package (none approved), so it matches the press. Bucket re-checked 04:30Z: still 0 new files (newest 20261101).",
  "run_url": "https://claude.ai/code/session_01HHfWREuxnAZ2HmnpbmTPQx",
  "started": "2026-11-02T04:01:00Z",
  "ended": "2026-11-02T04:26:40Z",
@@ -81,7 +81,7 @@
    "name": "feed",
    "title": "Claimocity feed",
    "status": "ok",
-   "summary": "GCS key installed from the Gmail thread; bucket 15 objects, 0 new (newest 20261101); claimocity_ingest.py --live: nothing new; claimocity_retry_dx.py --live: 6 visits still wait on dx M51.17 / M51.86 / S82.843A (not in AMD's diagnosis list - William adds them in Master Files > Diagnosis Codes)",
+   "summary": "GCS key installed from the Gmail thread; bucket 15 objects, 0 new (newest 20261101); claimocity_ingest.py --live: nothing new; claimocity_retry_dx.py --live: 6 visits still wait on dx M51.17 / M51.86 / S82.843A (not in AMD's diagnosis list - William adds them in Master Files > Diagnosis Codes); bucket re-checked 04:30Z after the press: 0 new",
    "counts": {
     "new_files": 0,
     "visits_entered": 0,
