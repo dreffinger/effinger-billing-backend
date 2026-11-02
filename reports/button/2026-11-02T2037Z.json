@@ -1,0 +1,228 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-02T2037Z",
+ "mode": "dry",
+ "status": "warn",
+ "headline": "DRY (brief) - duplicate firing beside run 2038Z: Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0; re-sent 0",
+ "note": "BUTTON PRESS 2026-11-02T20:37:31Z, mode dry, steps feed,columns,era,cascade,packages,cred,outstanding, packages none, note 'ehpa Billing Button' - the brief reached the session after the run had finished (recorded by this finalize). The run was already read-only: a parallel button session (2038Z) did the full live run while this one waited on the Drive START-marker guard. ONE AdvancedMD write happened before the dry brief arrived - a no-rebill full-visit echo on v19459831 (chart 17477128) to re-inspect a Pattern 4516 hold; it changed no balance, order or claim. The denials snapshot was refreshed read-only although the brief's step list omits it.",
+ "run_url": "https://claude.ai/code/session_01HHfWRBofvbWSacFKyS3HS3",
+ "started": "2026-11-02T20:37:00Z",
+ "ended": "2026-11-02T21:43:24Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 1,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": null,
+   "visits": null,
+   "charts": null,
+   "over_365": null
+  },
+  "denials": {
+   "visits": 7783,
+   "actionable": 72,
+   "actionable_amt": 13443.0,
+   "asof": "2026-11-02T21:40:36Z"
+  }
+ },
+ "steps": [
+  {
+   "name": "board",
+   "title": "Feed + board input",
+   "status": "ok",
+   "summary": "feed: bucket 15 objects, 0 new (newest 20261101), ingest nothing new, retry_dx nothing to retry; Working Denials queue 0; drops 0; William's 20:12Z / 20:27Z answers on charts 48449 and 17472228 verified live as already in place (FB-first order 2,1 + FB primary claim queued; SUN01 end-dated 10/02/2026, order UHC only) - the parallel run 2038Z acted on them (board_updates_2026-11-02T2038Z.json), this run's board file withheld ('awaiting board sync'); Pam Gmail: chart 17475778 readmit 10/29 matched the chart (UNI20 AARP MA 271 ACTIVE, MBI matches) - no write",
+   "counts": {
+    "rows_acted": 0,
+    "drops": 0,
+    "commands": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:22:00Z",
+   "ended": "2026-11-02T21:36:00Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0; CI 1 -> 1 (v19459831 chart 17477128 $141 Pattern 4516: no-rebill full-visit echo re-inspected it, same hold - the S82.843A diagnosis master record is malformed, board row on William's turn by the parallel run); Unbilled 0; Exclusions 1 -> 1 (AET12 chart 24750 standing)",
+   "counts": {
+    "before": [
+     0,
+     1,
+     0,
+     1
+    ],
+    "after": [
+     0,
+     1,
+     0,
+     1
+    ]
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "visit": 19459831,
+     "chart": 17477128,
+     "dollars": 141.0,
+     "hold": "Pattern 4516 - dx master record S82.843A"
+    },
+    {
+     "chart": 24750,
+     "visit": 19455937,
+     "dollars": 315.0,
+     "hold": "AET12 PREF0288 carrier master"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-02T21:22:00Z",
+   "ended": "2026-11-02T21:40:00Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "0 unposted checks before and after (read-only this run)",
+   "counts": {
+    "checks_before": 0,
+    "checks_after": 0
+   },
+   "dollars": {
+    "unposted_before": 0.0,
+    "unposted_after": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:32:00Z",
+   "ended": "2026-11-02T21:33:00Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Insurance cascade pre-check",
+   "status": "ok",
+   "summary": "precheck --days 3 --max 120: 11 pairs (0 new lookups), 1 flag: chart 22858 FLO99 $320 'no eligibility on Stedi for this payer' (FCC is not on Stedi - known, no action); void_rules.json absent in this workspace - 0 VOID lines; Stedi $0.00",
+   "counts": {
+    "pairs": 11,
+    "flagged": 1
+   },
+   "dollars": {
+    "stedi": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:34:00Z",
+   "ended": "2026-11-02T21:35:00Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "0 approved / 0 waiting (register 94 items all done)",
+   "counts": {
+    "applied": 0,
+    "refused": 0,
+    "skipped": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:40:36Z",
+   "ended": "2026-11-02T21:40:36Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; revalidation due TBD x3; LEIE 84093 rows 0 matches; reminders none - no board file",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:40:36Z",
+   "ended": "2026-11-02T21:40:36Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "$None open on None visits / None charts; over 365 days None visits $None",
+   "counts": {},
+   "dollars": {
+    "total": null
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:40:36Z",
+   "ended": "2026-11-02T21:40:36Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "834 charts, 13,194 denial lines, 7,783 visits; 72 actionable $13,443 (69 inside 12 months $12,924); OPEN 160",
+   "counts": {
+    "actionable": 72
+   },
+   "dollars": {
+    "actionable": 13443.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-02T21:40:36Z",
+   "ended": "2026-11-02T21:40:36Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "chart 17477128 v19459831 $141: fix the S82.843A diagnosis master record (description '/ M51.86 / S82.843A') - board row (parallel run 2038Z)",
+  "AET12 carrier master chart 24750 $315 (standing)",
+  "Brynwood admits 10/30 and 11/1 without an AMD chart - parked until the feed brings a charge",
+  "Billing Button fired twice within one minute (sessions 2037Z and 2038Z) - check the page / scheduler for a double press"
+ ],
+ "errors": [],
+ "brief": "BUTTON PRESS 2026-11-02T20:37:31.143Z \u00b7 mode: dry \u00b7 steps: feed,columns,era,cascade,packages,cred,outstanding \u00b7 packages: none \u00b7 note: ehpa Billing Button"
+}

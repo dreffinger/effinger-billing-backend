@@ -1,0 +1,62 @@
+{
+ "stamp": "2026-11-02T2038Z",
+ "live": true,
+ "steps": [
+  {
+   "key": "A dob [DOB]",
+   "ok": true,
+   "msg": "HTTP 200 dob now [DOB] {\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17477533,\"conversionid\":null,\"chartnumber\":\"4758\",\"mrn\":\"6A8DD87F3E6016BB9F6D93FE\"",
+   "at": "2026-11-02T21:10:12.543756Z",
+   "live": true
+  },
+  {
+   "key": "A 271 FLO02 after the DOB",
+   "ok": true,
+   "msg": "ins9521009: ACTIVE | plan 19970301 | A 19970301 B 19970301 | others   ; OT  18:S5904 N6:002 BLUE CROSS AND BLUE SHIELD OF FLORIDA, INC.: | death - | addr 542 HIGH OAKS CT T | ins9518956: ACTIVE | plan 19970301 | A 19970301 B 19970301 | others   ; OT  18:S5904 N6:002 BLUE CROSS AND BLUE SHIELD OF FLORIDA, INC.: | death - | addr 542 HIGH OAKS CT T",
+   "at": "2026-11-02T21:10:18.611821Z",
+   "live": true
+  },
+  {
+   "key": "A freq1 v19459144 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T21:10:30.048938Z",
+   "live": true
+  },
+  {
+   "key": "B wo c22484496 WOCAID2ND 12.14",
+   "ok": true,
+   "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-54f6c5df45-5ns82\" lst=\"11/02/2026 13:10:32\"><Results success=\"1\" paymentid=\"10178088\" /><Error /></PPMDResult",
+   "at": "2026-11-02T21:10:32.466499Z",
+   "live": true
+  },
+  {
+   "key": "C freq1 v19431511 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T21:10:37.993696Z",
+   "live": true
+  },
+  {
+   "key": "C freq1 v19431654 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T21:10:43.924772Z",
+   "live": true
+  },
+  {
+   "key": "C freq1 v19435174 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T21:10:50.106095Z",
+   "live": true
+  },
+  {
+   "key": "C freq1 v19435175 seq 2",
+   "ok": true,
+   "msg": "freq1 + rebill seq 2 -> 204",
+   "at": "2026-11-02T21:10:55.978974Z",
+   "live": true
+  }
+ ]
+}
