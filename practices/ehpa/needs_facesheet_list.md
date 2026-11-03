@@ -617,3 +617,12 @@ Calls learned: none. Vocabulary entries added: 0.
 - RESOLVED 10/29 03:05Z: pat17478208 - CAP07 added from the feed IN1 (member id lives in IN1-49), 271 ACTIVE.
 - new charts F1028: pat17478200, pat17478201, pat17478203, pat17478205, pat17478212, pat17478214, pat17478215, pat17478216, pat17478221, pat17478225, pat17478228
 - their visits carry no insurance order -> Unbilled 'Insurance order is missing' until a plan is attached (bht hca facesheets / Pam admit emails)
+
+## 2026-11-03T0043Z - 7:43 PM ET Mon 11/2/2026 backend columns run (ehpa cloud, Code routine)
+- Bootstrap: repo attached (main f1f8e6c), AMD_OK, STEDI_CRED_OK (no key file), AMD password from Gmail, pseudonyms 10/23 (415) from Drive, Drive state bundle still 2026-09-18 (stale, skipped - registers from main), GCS key installed (python cryptography needed `python3 -m pip install --user cffi cryptography` first). One login 00:46Z.
+- Board: 0 queued denial commands, 0 new drops, 0 rows on William's turn; William's 'use i10' (11/2 21:34Z) on brinson-etta-17477128 acted on. Pam Gmail: Cox / Palmer / Proctor (already worked 11/2). Facesheet folders: nothing new after 18:52Z 11/2 (the YourLife packet 2026-08-20T201649.pdf = chart 17477533, already worked).
+- Feed: gcs 15 objects, 0 new (newest 20261101); ingest nothing new; retry-dx nothing to retry; feed_monitor refreshed.
+- Columns 0/1/0/1 -> 0/0/0/1 (overview 0/1/0/5 lags). CI: v19459831 chart 17477128 Pattern 4516 -> I10 first per William, inspector clear. Exclusions: AET12 chart 24750 v19455937 PREF0288 standing hold.
+- ERA: 0 checks $0.00 before and after; no new 835 / Availity / treasury files since 10/29.
+- Precheck --days 3 --max 120: 10 pairs, 1 flag (FLO99 'no eligibility on Stedi' - known FCC, no action).
+- Calls learned: none. Waiting on William: AET12 carrier master (chart 24750, $315); Robinson 48449 FB $0 answers (remit reason); Cox 11/1 + Palmer 10/30 Brynwood admits parked until the feed creates a chart.

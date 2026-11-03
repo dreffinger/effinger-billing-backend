@@ -1,7 +1,7 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-02T19:14:43Z",
- "as_of": "2026-11-02",
+ "generated": "2026-11-03T00:50:31Z",
+ "as_of": "2026-11-03",
  "coverage": {
   "files": [
    {
@@ -176,13 +176,13 @@
  },
  "windows": {
   "week": {
-   "from": "2026-10-27",
-   "to": "2026-11-02",
-   "visits": 168,
-   "lines": 198,
-   "dollars": 32319.0,
-   "patients": 92,
-   "entered": 168,
+   "from": "2026-10-28",
+   "to": "2026-11-03",
+   "visits": 100,
+   "lines": 106,
+   "dollars": 17155.0,
+   "patients": 53,
+   "entered": 100,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -196,15 +196,15 @@
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 13,
-     "visits": 13,
-     "dollars": 4030.0
+     "lines": 8,
+     "visits": 8,
+     "dollars": 2480.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 82,
-     "visits": 82,
-     "dollars": 12042.0
+     "lines": 63,
+     "visits": 63,
+     "dollars": 9198.0
     },
     {
      "name": "Hospital discharge",
@@ -220,9 +220,9 @@
     },
     {
      "name": "SNF follow-up",
-     "lines": 36,
-     "visits": 36,
-     "dollars": 5008.0
+     "lines": 22,
+     "visits": 22,
+     "dollars": 3034.0
     },
     {
      "name": "SNF discharge",
@@ -237,12 +237,6 @@
      "dollars": 600.0
     },
     {
-     "name": "Chronic care management",
-     "lines": 54,
-     "visits": 30,
-     "dollars": 8796.0
-    },
-    {
      "name": "Advance care planning",
      "lines": 6,
      "visits": 6,
@@ -252,39 +246,27 @@
    "cpt": [
     {
      "name": "99233",
-     "lines": 60,
-     "visits": 60,
-     "dollars": 9600.0
+     "lines": 45,
+     "visits": 45,
+     "dollars": 7200.0
     },
     {
      "name": "99309",
-     "lines": 34,
-     "visits": 34,
-     "dollars": 4794.0
-    },
-    {
-     "name": "99487",
-     "lines": 30,
-     "visits": 30,
-     "dollars": 6180.0
-    },
-    {
-     "name": "99489",
-     "lines": 24,
-     "visits": 24,
-     "dollars": 2616.0
+     "lines": 20,
+     "visits": 20,
+     "dollars": 2820.0
     },
     {
      "name": "99232",
-     "lines": 22,
-     "visits": 22,
-     "dollars": 2442.0
+     "lines": 18,
+     "visits": 18,
+     "dollars": 1998.0
     },
     {
      "name": "99223",
-     "lines": 13,
-     "visits": 13,
-     "dollars": 4030.0
+     "lines": 8,
+     "visits": 8,
+     "dollars": 2480.0
     },
     {
      "name": "99497",
@@ -326,21 +308,9 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 101,
-     "visits": 97,
-     "dollars": 16930.0
-    },
-    {
-     "name": "Sodalis ALF",
-     "lines": 56,
-     "visits": 32,
-     "dollars": 9396.0
-    },
-    {
-     "name": "Aspire at Tallahassee",
-     "lines": 15,
-     "visits": 14,
-     "dollars": 2188.0
+     "lines": 77,
+     "visits": 73,
+     "dollars": 12536.0
     },
     {
      "name": "Brynwood (Monticello)",
@@ -349,10 +319,10 @@
      "dollars": 1160.0
     },
     {
-     "name": "unknown facility",
+     "name": "Aspire at Tallahassee",
      "lines": 8,
-     "visits": 8,
-     "dollars": 1128.0
+     "visits": 7,
+     "dollars": 1201.0
     },
     {
      "name": "Centre Pointe Health & Rehab",
@@ -365,138 +335,143 @@
      "lines": 3,
      "visits": 3,
      "dollars": 423.0
+    },
+    {
+     "name": "Sodalis ALF",
+     "lines": 2,
+     "visits": 2,
+     "dollars": 600.0
+    },
+    {
+     "name": "unknown facility",
+     "lines": 1,
+     "visits": 1,
+     "dollars": 141.0
     }
    ],
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 101,
-     "visits": 97,
-     "dollars": 16930.0
-    },
-    {
-     "name": "Assisted living",
-     "lines": 56,
-     "visits": 32,
-     "dollars": 9396.0
+     "lines": 77,
+     "visits": 73,
+     "dollars": 12536.0
     },
     {
      "name": "Skilled nursing facility",
-     "lines": 41,
-     "visits": 39,
-     "dollars": 5993.0
+     "lines": 27,
+     "visits": 25,
+     "dollars": 4019.0
+    },
+    {
+     "name": "Assisted living",
+     "lines": 2,
+     "visits": 2,
+     "dollars": 600.0
     }
    ],
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 159,
-     "visits": 129,
-     "dollars": 26504.0
+     "lines": 81,
+     "visits": 75,
+     "dollars": 13314.0
     },
     {
      "name": "Pamela G.",
-     "lines": 39,
-     "visits": 39,
-     "dollars": 5815.0
+     "lines": 25,
+     "visits": 25,
+     "dollars": 3841.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 97,
-     "visits": 78,
-     "dollars": 15882.0
+     "lines": 49,
+     "visits": 45,
+     "dollars": 8225.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 46,
-     "visits": 40,
-     "dollars": 7446.0
+     "lines": 21,
+     "visits": 21,
+     "dollars": 3040.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 22,
-     "visits": 21,
-     "dollars": 3450.0
+     "lines": 18,
+     "visits": 17,
+     "dollars": 2908.0
     },
     {
      "name": "Commercial / other",
-     "lines": 9,
-     "visits": 8,
-     "dollars": 1585.0
+     "lines": 5,
+     "visits": 5,
+     "dollars": 800.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 7,
-     "visits": 7,
-     "dollars": 1082.0
+     "lines": 5,
+     "visits": 5,
+     "dollars": 781.0
     },
     {
      "name": "No active plan",
-     "lines": 17,
-     "visits": 14,
-     "dollars": 2874.0
+     "lines": 8,
+     "visits": 7,
+     "dollars": 1401.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 57
+     "patients": 26
     },
     {
      "code": "E785",
-     "patients": 41
-    },
-    {
-     "code": "E119",
-     "patients": 22
-    },
-    {
-     "code": "I639",
      "patients": 20
     },
     {
-     "code": "E039",
-     "patients": 19
+     "code": "M6281",
+     "patients": 12
     },
     {
      "code": "N390",
-     "patients": 16
+     "patients": 12
     },
     {
-     "code": "F32A",
-     "patients": 15
+     "code": "E039",
+     "patients": 11
     },
     {
-     "code": "I4891",
-     "patients": 15
+     "code": "I639",
+     "patients": 11
     },
     {
-     "code": "M6281",
-     "patients": 14
+     "code": "E119",
+     "patients": 10
     },
     {
      "code": "J449",
-     "patients": 14
+     "patients": 10
     },
     {
-     "code": "F0390",
-     "patients": 12
+     "code": "N179",
+     "patients": 9
     },
     {
-     "code": "M1990",
-     "patients": 12
+     "code": "R531",
+     "patients": 9
+    },
+    {
+     "code": "M4802",
+     "patients": 8
+    },
+    {
+     "code": "M48.02",
+     "patients": 8
     }
    ],
    "days": [
-    {
-     "date": "2026-10-27",
-     "visits": 68,
-     "lines": 92,
-     "dollars": 15164.0,
-     "patients": 68
-    },
     {
      "date": "2026-10-28",
      "visits": 28,
@@ -538,12 +513,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-03",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "month": {
-   "from": "2026-10-04",
-   "to": "2026-11-02",
+   "from": "2026-10-05",
+   "to": "2026-11-03",
    "visits": 773,
    "lines": 1031,
    "dollars": 164925.0,
@@ -911,13 +893,6 @@
    ],
    "days": [
     {
-     "date": "2026-10-04",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
-    },
-    {
      "date": "2026-10-05",
      "visits": 24,
      "lines": 24,
@@ -1119,12 +1094,19 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-03",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "all": {
    "from": "2026-09-01",
-   "to": "2026-11-02",
+   "to": "2026-11-03",
    "visits": 779,
    "lines": 1038,
    "dollars": 166858.0,
@@ -1931,6 +1913,13 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-03",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   }
@@ -2113,8 +2102,8 @@
    "live": true
   },
   {
-   "stamp": "20261102T1904ZR",
-   "at": "2026-11-02T19:05:55.973242Z",
+   "stamp": "20261103T0043Z",
+   "at": "2026-11-03T00:50:05.918679Z",
    "files": 0,
    "exit": 0,
    "live": true
