@@ -1,24 +1,24 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-02T2318Z",
+ "stamp": "2026-11-03T0119Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/1/0/1 -> 0/1/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41544412081",
- "started": "2026-11-02T23:18:47Z",
- "ended": "2026-11-02T23:24:48Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41558917727",
+ "started": "2026-11-03T01:19:04Z",
+ "ended": "2026-11-03T01:24:50Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 1,
+    "claim_inspector": 0,
     "unbilled": 0,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 1,
+    "claim_inspector": 0,
     "unbilled": 0,
     "exclusions": 1
    }
@@ -65,7 +65,7 @@
    "visits": 7783,
    "actionable": 72,
    "actionable_amt": 13443.0,
-   "asof": "2026-11-02 23:24 UTC"
+   "asof": "2026-11-03 01:24 UTC"
   }
  },
  "steps": [
@@ -82,21 +82,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T23:18:47Z",
-   "ended": "2026-11-02T23:18:48Z"
+   "started": "2026-11-03T01:19:04Z",
+   "ended": "2026-11-03T01:19:05Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 1->1, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
-    "claim inspector": 1,
+    "claim inspector": 0,
     "unbilled": 0,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 1,
+    "inspector held (not advisory)": 0,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
@@ -108,12 +108,6 @@
    "dollars": {},
    "lines": [
     {
-     "column": "claim inspector",
-     "kind": "missing data / dx",
-     "visits": 1,
-     "ids": "v19459831"
-    },
-    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -121,8 +115,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T23:18:48Z",
-   "ended": "2026-11-02T23:20:43Z"
+   "started": "2026-11-03T01:19:05Z",
+   "ended": "2026-11-03T01:21:02Z"
   },
   {
    "name": "era",
@@ -141,8 +135,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T23:20:43Z",
-   "ended": "2026-11-02T23:20:46Z"
+   "started": "2026-11-03T01:21:02Z",
+   "ended": "2026-11-03T01:21:03Z"
   },
   {
    "name": "packages",
@@ -153,8 +147,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-02T23:20:46Z",
-   "ended": "2026-11-02T23:20:46Z"
+   "started": "2026-11-03T01:21:03Z",
+   "ended": "2026-11-03T01:21:03Z"
   },
   {
    "name": "outstanding",
@@ -176,95 +170,95 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1390,
      "dollars": 172054.76,
-     "oldest_days": 1083
+     "oldest_days": 1084
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 151,
      "dollars": 25930.58,
-     "oldest_days": 420
+     "oldest_days": 421
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 151,
      "dollars": 23056.63,
-     "oldest_days": 1179
+     "oldest_days": 1180
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 289,
      "dollars": 18434.89,
-     "oldest_days": 1050
+     "oldest_days": 1051
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 55,
      "dollars": 11751.4,
-     "oldest_days": 1152
+     "oldest_days": 1153
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 63,
      "dollars": 9813.73,
-     "oldest_days": 1060
+     "oldest_days": 1061
     },
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
      "visits": 30,
      "dollars": 5554.22,
-     "oldest_days": 968
+     "oldest_days": 969
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 26,
      "dollars": 4031.01,
-     "oldest_days": 168
+     "oldest_days": 169
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 29,
      "dollars": 3646.1,
-     "oldest_days": 364
+     "oldest_days": 365
     },
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 26,
      "dollars": 3345.18,
-     "oldest_days": 62
+     "oldest_days": 63
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 17,
      "dollars": 3148.0,
-     "oldest_days": 43
+     "oldest_days": 44
     },
     {
      "carrier": "SIM01",
      "name": "SIMPLY HEALTHCARE MCD PLANS",
      "visits": 13,
      "dollars": 2545.0,
-     "oldest_days": 43
+     "oldest_days": 44
     }
    ],
    "errors": [],
-   "started": "2026-11-02T23:20:46Z",
-   "ended": "2026-11-02T23:20:48Z"
+   "started": "2026-11-03T01:21:03Z",
+   "ended": "2026-11-03T01:21:05Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESUBMITTED 164, RESOLVED 4498, OPEN 160",
+   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00); WRITTEN-OFF 2961, RESOLVED 4498, RESUBMITTED 164, OPEN 160",
    "counts": {
     "charts read": 834,
     "denial lines": 13194,
@@ -272,8 +266,8 @@
     "actionable": 72,
     "inside 12 months": 69,
     "status WRITTEN-OFF": 2961,
-    "status RESUBMITTED": 164,
     "status RESOLVED": 4498,
+    "status RESUBMITTED": 164,
     "status OPEN": 160
    },
    "dollars": {
@@ -345,13 +339,11 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-02T23:20:48Z",
-   "ended": "2026-11-02T23:24:48Z"
+   "started": "2026-11-03T01:21:05Z",
+   "ended": "2026-11-03T01:24:50Z"
   }
  ],
  "packages": [],
- "waiting": [
-  "Claim Inspector: 1 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
- ],
+ "waiting": [],
  "errors": []
 }
