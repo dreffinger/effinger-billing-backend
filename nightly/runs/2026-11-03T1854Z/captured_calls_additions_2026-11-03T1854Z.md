@@ -1,0 +1,10 @@
+# captured_calls additions - backend columns run 2026-11-03T1854Z (Tuesday 1:54 PM ET)
+
+No new AMD/Stedi call shapes this run. Calls used (all already in the registry): login (one, 18:59Z), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges (columns_scan.py before + after), lookuppatient class=lookup (five name probes for Pam's Sodalis admits), getdemographic (pat17477353 insplans), checkEligibility (elig_amd --all, pat17477353: Humana HumanaChoice MA ACTIVE), GET /api/era/checks (era_list + era_post --dry, 0 unposted), gcloud storage ls on the Claimocity bucket (0 new).
+
+## Container lesson (not an API call): the Claimocity bucket client in this image
+`claimocity_gcs.py` shells out to gcloud. In this container (python 3.11.18 image, system cryptography 41.0.7 under /usr/lib/python3/dist-packages) `cryptography.hazmat` panics ("No module named _cffi_backend" -> pyo3 PanicException) and gcloud's bundled python 3.14 answers `AttributeError: module 'lib' has no attribute 'GEN_EMAIL'` from its pyOpenSSL. Fix that worked, no script change: `python3 -m pip install --ignore-installed --target /home/claude/pylib cryptography cffi`, then run the helper with `PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3` - `--install-key` and the listing both answer normally (exit 0, 16 objects, newest 20261103). Worth folding into bootstrap_workspace.sh layout if it recurs.
+
+## Observations
+- Pam's 'Additional insurance on Jamie Griffith' page (16:47Z) carried, under the UHC Dual Complete UCard, a Medicare card and a Kentucky driver's licence belonging to another resident (chart pat17477353, DOB matches the licence). That chart's Humana MA is ACTIVE on the AMD 271 - treated as a mis-scanned page, nothing changed on that chart, noted on the Griffith row.
+- Neither Sodalis admit (GRIFFITH-MERRITT / RASHBROOKE) has an AMD chart yet; lookuppatient with the hyphenated and the card spellings all empty - parked rows, the feed creates the charts.
