@@ -1,0 +1,7 @@
+# captured_calls additions - backend columns run 2026-11-03T0640Z (Tuesday 1:40 AM ET)
+
+No new AdvancedMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): AMD login (one, columns_scan.py 06:53Z), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges, getdemographic, gettxhistory, getchargedetaildataicd10, updvisitwithcharges (full-visit echo, insorder only), updextrainsinfo + POST /api/claim/chargerebill (freq1_visit), hideunbillablevisits, hideexclusions, bypassclaimedits, checkEligibility (elig_amd), GET /api/era/checks (empty). Vocabulary entries added: 0.
+
+Observation: the Unbilled error 'When billing Medicare as the non-primary carrier, the MSP Code on the Insurance Tab is required' appears whenever a visit insorder lists Medicare AFTER another payer (e.g. '2,1' or '1,2' with Medicare second). The backend fix that clears it is a full-visit echo with the first payer ALONE in insorder (resave.set_insorder(cid, '<seq>')), which keeps the queued rebill (insbilled stays 0, resubmissioncode/origrefnum untouched). The MSP code itself is a Master Files / Insurance-tab field with no captured API write.
+
+Container note: python's system 'cryptography' (41.0.7) lacked _cffi_backend; claimocity_gcs.py --install-key needs 'python3 -m pip install --user -U cryptography cffi' first (same as the 0043Z run).

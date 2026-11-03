@@ -5629,3 +5629,11 @@ No new AdvancedMD or Stedi call shapes this run. Calls used (all already in the 
 Observation for the registry (precheck cache): precheck_cache.json is keyed patient|payer|yyyymm, so a chart fix that changes what the 270 sends (DOB, member id) leaves the old rejection cached for the rest of that month - pat17478213's Centene AAA 71 (DOB mismatch) was still reported on 11/3 a day after the facesheet DOB went on the chart. Fix used tonight: delete that patient's keys for the affected month(s) (`jq 'del(."<pid>|<carrier>|<yyyymm>")'`) and re-run precheck; the fresh 271 answered ACTIVE. Any run that edits a chart DOB or subscriber number should evict those keys in the same pass.
 
 Egress to npiregistry.cms.hhs.gov / data.cms.gov / oig.hhs.gov is still blocked from the nightly container (cred_check: 'Max retries exceeded' on all three; the 10/26 NPPES snapshot stands).
+
+# captured_calls additions - backend columns run 2026-11-03T0640Z (Tuesday 1:40 AM ET)
+
+No new AdvancedMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): AMD login (one, columns_scan.py 06:53Z), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches/getclaiminspectorcharges, getclaimunbillablecharges, getclaimrunstatus, getclaimexclusioncharges, getdemographic, gettxhistory, getchargedetaildataicd10, updvisitwithcharges (full-visit echo, insorder only), updextrainsinfo + POST /api/claim/chargerebill (freq1_visit), hideunbillablevisits, hideexclusions, bypassclaimedits, checkEligibility (elig_amd), GET /api/era/checks (empty). Vocabulary entries added: 0.
+
+Observation: the Unbilled error 'When billing Medicare as the non-primary carrier, the MSP Code on the Insurance Tab is required' appears whenever a visit insorder lists Medicare AFTER another payer (e.g. '2,1' or '1,2' with Medicare second). The backend fix that clears it is a full-visit echo with the first payer ALONE in insorder (resave.set_insorder(cid, '<seq>')), which keeps the queued rebill (insbilled stays 0, resubmissioncode/origrefnum untouched). The MSP code itself is a Master Files / Insurance-tab field with no captured API write.
+
+Container note: python's system 'cryptography' (41.0.7) lacked _cffi_backend; claimocity_gcs.py --install-key needs 'python3 -m pip install --user -U cryptography cffi' first (same as the 0043Z run).
