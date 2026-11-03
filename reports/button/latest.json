@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-03T0141Z",
- "mode": "live",
+ "stamp": "2026-11-03T0202Z",
+ "mode": "dry",
  "status": "ok",
- "headline": "Columns CR/CI/Unb/Exc 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 0",
- "note": "no BUTTON PRESS brief in the firing (fired 2026-11-02T2343Z; live, all steps, every approved package); bootstrap (Drive state-bundle download) took the first hour, work ran 01:41-02:00Z",
+ "headline": "DRY - Columns CR/CI/Unb/Exc 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 0",
+ "note": "BUTTON PRESS 2026-11-02T23:44:00Z \u00b7 mode: dry \u00b7 steps: all \u00b7 packages: none \u00b7 note: pointer-stub validation - the stored prompt is now a pointer; read nightly/live/billing_button.txt from main in full and run it in dry mode (no AdvancedMD writes); state in your summary that the instructions came from that file and its byte size. [instructions: nightly/live/billing_button.txt on main, 64,091 bytes, sha256 95af7b9b..., read in full; second firing in the same session as the 0141Z live run]",
  "run_url": "https://claude.ai/code/session_01HHfWRF6uMD3EgsdLYcFyX5",
- "started": "2026-11-02T23:43:00Z",
- "ended": "2026-11-03T01:57:02Z",
+ "started": "2026-11-03T02:01:00Z",
+ "ended": "2026-11-03T02:12:20Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
@@ -67,7 +67,7 @@
    "visits": 7783,
    "actionable": 72,
    "actionable_amt": 13443.0,
-   "asof": "2026-11-03 01:55 UTC"
+   "asof": "2026-11-03 02:10 UTC"
   }
  },
  "steps": [
@@ -75,26 +75,21 @@
    "name": "bootstrap",
    "title": "Workspace bootstrap",
    "status": "ok",
-   "summary": "AMD_OK; STEDI_CRED_MISSING -> Gmail key; repo attached (main f1f8e6c); Drive state bundle 2026-09-18_1123UTC partially restored (part21 corrupt on Drive - 67 of 92 members, registers only); helpers from main (1321); deceased cache 10/28 merged (82 dated entries); precheck_cache 11/2; GCS key installed; v12 checks pass; ONE login 01:41Z",
+   "summary": "dry re-run in the same container as the 0141Z live run: main re-fetched (ec40396), nightly/live/billing_button.txt unchanged (64,091 bytes, sha256 95af7b9b...), credentials in place, token cached (no new login), lock + Drive START written",
    "counts": {
-    "helpers copied": 1321,
-    "registers": 1705,
-    "bundle members restored": 67,
-    "bundle members lost": 25
+    "instruction file bytes": 64091
    },
    "dollars": {},
    "lines": [],
-   "errors": [
-    "Drive workspace_state_2026-09-18_1123UTC.part21.b64 is corrupt (deflate stream breaks; no single edit matches the manifest sha256) - the 25 missing members are 9/16-9/18 registers only"
-   ],
-   "started": "2026-11-02T23:43:00Z",
-   "ended": "2026-11-03T01:41:00Z"
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "feed",
    "title": "Claimocity feed ingest",
    "status": "ok",
-   "summary": "gcs: 15 objects in gs://ehpa-claimocity-feed-50717, 0 new, newest 20261101; ingest nothing new; retry-dx nothing to retry",
+   "summary": "DRY: gcs 15 objects, 0 new, newest 20261101; ingest (no --live) nothing new",
    "counts": {
     "bucket objects": 15,
     "new files": 0,
@@ -108,14 +103,14 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:43:00Z",
-   "ended": "2026-11-03T01:44:30Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "board",
    "title": "Board input",
    "status": "ok",
-   "summary": "IRB: 0 rows updated since 00:40Z, 0 status=william, 0 drops; Working Denials queue 0; Pam Gmail 3 threads of 11/1 already worked; no facesheet/835/treasury file newer than 18:52Z 11/2; no board file written",
+   "summary": "IRB: 0 rows updated since 01:40Z, 0 drops; Working Denials queue 0; no board file (dry)",
    "counts": {
     "rows acted": 0,
     "drops": 0,
@@ -124,8 +119,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:42:00Z",
-   "ended": "2026-11-03T01:43:00Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "columns",
@@ -156,14 +151,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-03T01:41:49Z",
-   "ended": "2026-11-03T01:45:40Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00; no new 835, Availity PDF or treasury CSV since 10/29",
+   "summary": "DRY: 0 checks / $0.00 before and after",
    "counts": {
     "era_post lines": 0,
     "manual posted": 0,
@@ -179,14 +174,14 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:45:00Z",
-   "ended": "2026-11-03T01:45:35Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "cascade",
    "title": "Cascade pre-check",
    "status": "ok",
-   "summary": "precheck --days 3 --max 120: 10 pairs, 0 new lookups, 1 flag (FLO99 10/31/2026 $160 'no eligibility on Stedi for this payer' - FCC portal-only, known, no action); void_rules 1 open rule, 0 matches; Stedi $0.00",
+   "summary": "DRY: precheck --days 3 --max 120: 10 pairs, 0 new lookups, 1 known FLO99 flag (no action); void_rules 1 open / 0 matches",
    "counts": {
     "pairs": 10,
     "new lookups": 0,
@@ -208,14 +203,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-03T01:45:40Z",
-   "ended": "2026-11-03T01:46:40Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "packages",
    "title": "Approval packages",
    "status": "ok",
-   "summary": "0 approved / 0 waiting on the Mandatory Approvals page; register all done",
+   "summary": "brief packages: none; page 0 approved / 0 waiting - nothing applied (dry)",
    "counts": {
     "approved": 0,
     "waiting": 0,
@@ -224,8 +219,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:46:40Z",
-   "ended": "2026-11-03T01:46:50Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "cred",
@@ -240,8 +235,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:46:50Z",
-   "ended": "2026-11-03T01:47:10Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "outstanding",
@@ -259,14 +254,14 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:47:10Z",
-   "ended": "2026-11-03T01:48:00Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00 (69 inside 12 months $12924.00)",
+   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00",
    "counts": {
     "charts read": 834,
     "denial lines": 13194,
@@ -281,8 +276,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T01:48:30Z",
-   "ended": "2026-11-03T01:55:30Z"
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
   }
  ],
  "packages": [],

@@ -1,0 +1,291 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-03T0202Z",
+ "mode": "dry",
+ "status": "ok",
+ "headline": "DRY - Columns CR/CI/Unb/Exc 0/0/0/1 -> 0/0/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 0",
+ "note": "BUTTON PRESS 2026-11-02T23:44:00Z \u00b7 mode: dry \u00b7 steps: all \u00b7 packages: none \u00b7 note: pointer-stub validation - the stored prompt is now a pointer; read nightly/live/billing_button.txt from main in full and run it in dry mode (no AdvancedMD writes); state in your summary that the instructions came from that file and its byte size. [instructions: nightly/live/billing_button.txt on main, 64,091 bytes, sha256 95af7b9b..., read in full; second firing in the same session as the 0141Z live run]",
+ "run_url": "https://claude.ai/code/session_01HHfWRF6uMD3EgsdLYcFyX5",
+ "started": "2026-11-03T02:01:00Z",
+ "ended": "2026-11-03T02:12:20Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 0,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 301622.84,
+   "visits": 2543,
+   "charts": 473,
+   "over_365": {
+    "n": 519,
+    "dollars": 20709.74
+   }
+  },
+  "denials": {
+   "visits": 7783,
+   "actionable": 72,
+   "actionable_amt": 13443.0,
+   "asof": "2026-11-03 02:10 UTC"
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace bootstrap",
+   "status": "ok",
+   "summary": "dry re-run in the same container as the 0141Z live run: main re-fetched (ec40396), nightly/live/billing_button.txt unchanged (64,091 bytes, sha256 95af7b9b...), credentials in place, token cached (no new login), lock + Drive START written",
+   "counts": {
+    "instruction file bytes": 64091
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "feed",
+   "title": "Claimocity feed ingest",
+   "status": "ok",
+   "summary": "DRY: gcs 15 objects, 0 new, newest 20261101; ingest (no --live) nothing new",
+   "counts": {
+    "bucket objects": 15,
+    "new files": 0,
+    "messages": 0,
+    "visits entered": 0,
+    "new charts": 0,
+    "holds": 0
+   },
+   "dollars": {
+    "entered": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "board",
+   "title": "Board input",
+   "status": "ok",
+   "summary": "IRB: 0 rows updated since 01:40Z, 0 drops; Working Denials queue 0; no board file (dry)",
+   "counts": {
+    "rows acted": 0,
+    "drops": 0,
+    "commands": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 0->0, Unbilled 0->0, Exclusions 1->1 (AET12 chart 24750 v19455937 PREF0288/PREF0264 standing hold, $315)",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 0,
+    "unbilled": 0,
+    "exclusions": 1,
+    "exclusions held (carrier master)": 1
+   },
+   "dollars": {
+    "exclusions open": 315.0
+   },
+   "lines": [
+    {
+     "column": "exclusions",
+     "chart": "24750",
+     "visit": "19455937",
+     "claim": "19455937B",
+     "run": "1700294",
+     "carrier": "AET12",
+     "error": "PREF0288 INVALID PAYER ID/CPID (TIN) + PREF0264",
+     "dollars": 315.0,
+     "action": "held - carrier master record (board row aet12-carrier-cpid)"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "DRY: 0 checks / $0.00 before and after",
+   "counts": {
+    "era_post lines": 0,
+    "manual posted": 0,
+    "checks dismissed": 0,
+    "checks held": 0,
+    "availity files": 0
+   },
+   "dollars": {
+    "unposted before": 0.0,
+    "unposted after": 0.0,
+    "posted this run": 0.0,
+    "residuals": 0.0
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check",
+   "status": "ok",
+   "summary": "DRY: precheck --days 3 --max 120: 10 pairs, 0 new lookups, 1 known FLO99 flag (no action); void_rules 1 open / 0 matches",
+   "counts": {
+    "pairs": 10,
+    "new lookups": 0,
+    "flagged": 1,
+    "acted": 0,
+    "void matches": 0
+   },
+   "dollars": {
+    "stedi": 0.0,
+    "flagged": 160.0
+   },
+   "lines": [
+    {
+     "carrier": "FLO99",
+     "dos": "10/31/2026",
+     "dollars": 160.0,
+     "flag": "no eligibility on Stedi for this payer",
+     "action": "none (FCC portal-only)"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approval packages",
+   "status": "ok",
+   "summary": "brief packages: none; page 0 approved / 0 waiting - nothing applied (dry)",
+   "counts": {
+    "approved": 0,
+    "waiting": 0,
+    "applied": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "NPPES 3 records 0 changed; LEIE 84093 rows 0 matches; reminders none - no board file",
+   "counts": {
+    "nppes changed": 0,
+    "leie matches": 0,
+    "reminders": 0
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims summary",
+   "status": "ok",
+   "summary": "2543 visits on 473 charts, $301622.84 open; 519 over a year ($20709.74)",
+   "counts": {
+    "visits": 2543,
+    "charts": 473,
+    "over 365 days": 519
+   },
+   "dollars": {
+    "open insurance balance": 301622.84,
+    "over 365 days": 20709.74
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  },
+  {
+   "name": "denials",
+   "title": "Working Denials refresh",
+   "status": "ok",
+   "summary": "7783 denied visits on 834 charts; 72 actionable $13443.00",
+   "counts": {
+    "charts read": 834,
+    "denial lines": 13194,
+    "visits": 7783,
+    "actionable": 72
+   },
+   "dollars": {
+    "actionable": 13443.0,
+    "inside 12 months": 12924.0,
+    "resubmitted": 27824.37,
+    "resolved since": 679756.14
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-03T02:01:00Z",
+   "ended": "2026-11-03T02:12:20Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "AET12 carrier master record (chart 24750 v19455937, $315) - William, Master Files",
+  "fac67 facility NPI (4 visits, $871) - William",
+  "Humana PI197 auths x4 ($564) - William",
+  "Drive workspace_state_2026-09-18_1123UTC.part21.b64 corrupt - a fresh state bundle upload from a workspace that holds patient_db/ era_details/ would replace it"
+ ],
+ "errors": []
+}
