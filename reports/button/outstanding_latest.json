@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-03T19:20:47Z",
+ "at": "2026-11-03T21:21:28Z",
  "as_of": "2026-11-03",
- "total": 320203.58,
- "visits": 2633,
- "charts": 482,
+ "total": 319291.58,
+ "visits": 2629,
+ "charts": 481,
  "over_365": {
   "n": 551,
   "dollars": 23929.17
  },
  "by_bucket": {
   "0-30": {
-   "n": 717,
-   "dollars": 146973.0
+   "n": 713,
+   "dollars": 146061.0
   },
   "31-60": {
    "n": 221,
@@ -292,21 +292,6 @@
    "oldest_days": 427
   },
   {
-   "carrier": "AMB03",
-   "name": "AMBETTER FROM SUNSHINE HEALTH",
-   "n": 12,
-   "dollars": 1616.2,
-   "buckets": {
-    "0-30": 912.0,
-    "31-60": 0.0,
-    "61-90": 0.0,
-    "91-180": 0.0,
-    "181-365": 641.54,
-    "over 365": 62.66
-   },
-   "oldest_days": 755
-  },
-  {
    "carrier": "FIR07",
    "name": "FIRST HEALTH NETWORK",
    "n": 8,
@@ -365,6 +350,21 @@
     "over 365": 0.0
    },
    "oldest_days": 85
+  },
+  {
+   "carrier": "AMB03",
+   "name": "AMBETTER FROM SUNSHINE HEALTH",
+   "n": 8,
+   "dollars": 704.2,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 0.0,
+    "61-90": 0.0,
+    "91-180": 0.0,
+    "181-365": 641.54,
+    "over 365": 62.66
+   },
+   "oldest_days": 755
   },
   {
    "carrier": "WEL07",
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-10",
-   "n": 745,
-   "dollars": 153105.49
+   "n": 741,
+   "dollars": 152193.49
   }
  ],
  "oldest": [
@@ -16886,14 +16886,6 @@
    "dos": "2026-10-05"
   },
   {
-   "visitid": 19458735,
-   "patientid": 17471792,
-   "carriercode": "AMB03",
-   "insbalance": 141.0,
-   "days": 29,
-   "dos": "2026-10-05"
-  },
-  {
    "visitid": 19458757,
    "patientid": 23177,
    "carriercode": "FLO02",
@@ -17562,14 +17554,6 @@
    "patientid": 17478013,
    "carriercode": "VACCN",
    "insbalance": 160.0,
-   "days": 26,
-   "dos": "2026-10-08"
-  },
-  {
-   "visitid": 19458768,
-   "patientid": 17475198,
-   "carriercode": "AMB03",
-   "insbalance": 141.0,
    "days": 26,
    "dos": "2026-10-08"
   },
@@ -19018,22 +19002,6 @@
    "patientid": 17478229,
    "carriercode": "FLO02",
    "insbalance": 389.0,
-   "days": 12,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19458992,
-   "patientid": 17475198,
-   "carriercode": "AMB03",
-   "insbalance": 315.0,
-   "days": 12,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19459280,
-   "patientid": 17471792,
-   "carriercode": "AMB03",
-   "insbalance": 315.0,
    "days": 12,
    "dos": "2026-10-22"
   },

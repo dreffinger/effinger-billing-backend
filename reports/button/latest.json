@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-03T1918Z",
+ "stamp": "2026-11-03T2119Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/12 -> 0/15/0/12; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/15/0/12 -> 0/15/0/12; ERA 2 checks $382.29 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41702064470",
- "started": "2026-11-03T19:18:52Z",
- "ended": "2026-11-03T19:24:49Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41720652468",
+ "started": "2026-11-03T21:19:13Z",
+ "ended": "2026-11-03T21:25:46Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 2,
+    "unposted": 382.29
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 382.29,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 320203.58,
-   "visits": 2633,
-   "charts": 482,
+   "total": 319291.58,
+   "visits": 2629,
+   "charts": 481,
    "over_365": {
     "n": 551,
     "dollars": 23929.17
@@ -65,7 +65,7 @@
    "visits": 7783,
    "actionable": 66,
    "actionable_amt": 12123.0,
-   "asof": "2026-11-03 19:24 UTC"
+   "asof": "2026-11-03 21:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T19:18:52Z",
-   "ended": "2026-11-03T19:18:53Z"
+   "started": "2026-11-03T21:19:13Z",
+   "ended": "2026-11-03T21:19:13Z"
   },
   {
    "name": "columns",
@@ -141,28 +141,45 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-03T19:18:53Z",
-   "ended": "2026-11-03T19:20:44Z"
+   "started": "2026-11-03T21:19:13Z",
+   "ended": "2026-11-03T21:21:16Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "2 checks / $382.29 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
+    "era_post lines": 1,
+    "checks dismissed": 1,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 382.29,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 382.29
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053395,
+     "payer": "SUNSHINE STATE HEALTH PLAN",
+     "checknumber": "X319933332",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053396,
+     "payer": "AMBETTER FROM SUNSHINE HEALTH",
+     "checknumber": "0935430596",
+     "amount": 0.0,
+     "unposted": 382.29,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-03T19:20:44Z",
-   "ended": "2026-11-03T19:20:46Z"
+   "started": "2026-11-03T21:21:16Z",
+   "ended": "2026-11-03T21:21:27Z"
   },
   {
    "name": "packages",
@@ -173,21 +190,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-03T19:20:46Z",
-   "ended": "2026-11-03T19:20:46Z"
+   "started": "2026-11-03T21:21:27Z",
+   "ended": "2026-11-03T21:21:27Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2633 visits on 482 charts, $320203.58 open; 551 over a year ($23929.17)",
+   "summary": "2629 visits on 481 charts, $319291.58 open; 551 over a year ($23929.17)",
    "counts": {
-    "visits": 2633,
-    "charts": 482,
+    "visits": 2629,
+    "charts": 481,
     "over 365 days": 551
    },
    "dollars": {
-    "open insurance balance": 320203.58,
+    "open insurance balance": 319291.58,
     "over 365 days": 23929.17
    },
    "lines": [
@@ -277,8 +294,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-03T19:20:46Z",
-   "ended": "2026-11-03T19:20:47Z"
+   "started": "2026-11-03T21:21:27Z",
+   "ended": "2026-11-03T21:21:28Z"
   },
   {
    "name": "denials",
@@ -365,8 +382,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-03T19:20:47Z",
-   "ended": "2026-11-03T19:24:49Z"
+   "started": "2026-11-03T21:21:28Z",
+   "ended": "2026-11-03T21:25:46Z"
   }
  ],
  "packages": [],
