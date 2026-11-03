@@ -1,0 +1,2 @@
+# captured_calls additions - ehpa Billing Button run 2026-11-03T0141Z (8:41 PM ET Mon 11/2, ehpa cloud)
+No new call shapes this run. Calls used: login (one), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches, getclaimunbillablecharges, getclaimrunstatus + getclaimexclusioncharges, GET /api/era/checks, precheck (Stedi cache only, 0 lookups), cred_check (NPPES/LEIE), massrebillsearch + gettxhistory (outstanding / denials refresh). No AMD write.
