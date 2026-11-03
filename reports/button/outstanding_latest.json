@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-03T13:21:15Z",
+ "at": "2026-11-03T15:21:05Z",
  "as_of": "2026-11-03",
- "total": 322323.58,
- "visits": 2643,
- "charts": 486,
+ "total": 321411.58,
+ "visits": 2639,
+ "charts": 484,
  "over_365": {
   "n": 551,
   "dollars": 23929.17
  },
  "by_bucket": {
   "0-30": {
-   "n": 726,
-   "dollars": 148887.0
+   "n": 722,
+   "dollars": 147975.0
   },
   "31-60": {
    "n": 221,
@@ -262,21 +262,6 @@
    "oldest_days": 62
   },
   {
-   "carrier": "WEL04",
-   "name": "WELLCARE",
-   "n": 7,
-   "dollars": 1946.0,
-   "buckets": {
-    "0-30": 912.0,
-    "31-60": 0.0,
-    "61-90": 256.0,
-    "91-180": 778.0,
-    "181-365": 0.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 165
-  },
-  {
    "carrier": "AET12",
    "name": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
    "n": 50,
@@ -335,6 +320,21 @@
     "over 365": 0.0
    },
    "oldest_days": 32
+  },
+  {
+   "carrier": "WEL04",
+   "name": "WELLCARE",
+   "n": 3,
+   "dollars": 1034.0,
+   "buckets": {
+    "0-30": 0.0,
+    "31-60": 0.0,
+    "61-90": 256.0,
+    "91-180": 778.0,
+    "181-365": 0.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 165
   },
   {
    "carrier": "COL07",
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-10",
-   "n": 754,
-   "dollars": 155019.49
+   "n": 750,
+   "dollars": 154107.49
   }
  ],
  "oldest": [
@@ -17710,22 +17710,6 @@
    "dos": "2026-10-08"
   },
   {
-   "visitid": 19458773,
-   "patientid": 12182947,
-   "carriercode": "WEL04",
-   "insbalance": 141.0,
-   "days": 26,
-   "dos": "2026-10-08"
-  },
-  {
-   "visitid": 19458762,
-   "patientid": 17476739,
-   "carriercode": "WEL04",
-   "insbalance": 141.0,
-   "days": 26,
-   "dos": "2026-10-08"
-  },
-  {
    "visitid": 19457478,
    "patientid": 17471741,
    "carriercode": "FIR07",
@@ -20185,22 +20169,6 @@
    "visitid": 19458938,
    "patientid": 17471216,
    "carriercode": "UNI20",
-   "insbalance": 315.0,
-   "days": 12,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19459010,
-   "patientid": 12182947,
-   "carriercode": "WEL04",
-   "insbalance": 315.0,
-   "days": 12,
-   "dos": "2026-10-22"
-  },
-  {
-   "visitid": 19458981,
-   "patientid": 17476739,
-   "carriercode": "WEL04",
    "insbalance": 315.0,
    "days": 12,
    "dos": "2026-10-22"
