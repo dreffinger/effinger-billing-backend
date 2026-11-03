@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-11-03, 69 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-11-03, 70 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -443,6 +443,38 @@
        "options": {
         "raw": {
          "language": "xml"
+        }
+       }
+      }
+     }
+    },
+    {
+     "id": "e7b9cbce-1ea3-5744-9163-07293cb76272",
+     "name": "PATCH patient - correct the chart name (names list)",
+     "request": {
+      "method": "PATCH",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/vnd.advancedmd.api.v2+json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
+      "description": "Correct a chart's first or last name: GET /api/demographic/patients/{id}, copy names[] (firstname/middlename/lastname/prefix/suffix/nametype/isbilling/ispreferred/isprevious/enddate), change the field, send the same flat-record PATCH as the DOB edit with updatedpatient.names = the corrected list (originalpatient = the read, updateaccounttype false, familyupdate null, deleteappointments false). HTTP 200; getdemographic's patient name follows. The responsible party is its own record - updaterespparty <respparty id name o_name/>. Proven 11/3/2026 on a Claimocity duplicate chart whose first name differed from the payer records (Humana 277CA entity not found; UHC 271 AAA 73).\n\nHelper: patient_patch.patch(pid, {'names': [...]}) then updaterespparty name=/o_name= (claimocity_newcharts shape)\nCaptured: 2026-11-03\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n \"updatedpatient\": \"<flat patient with the changed field>\",\n \"originalpatient\": \"<the GET result, unchanged>\",\n \"updateaccounttype\": false,\n \"familyupdate\": null,\n \"deleteappointments\": false\n}",
+       "options": {
+        "raw": {
+         "language": "json"
         }
        }
       }

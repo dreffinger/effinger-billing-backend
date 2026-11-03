@@ -1,0 +1,486 @@
+{
+ "tag": "after",
+ "at": "2026-11-03T13:04:47Z",
+ "overview": {
+  "chargereviewcount": "0",
+  "chargereviewamount": "0.00",
+  "claiminspectorcount": "15",
+  "claiminspectoramount": "2204.00",
+  "unbillablecount": "0",
+  "unbillableamount": "0.00",
+  "exclusioncount": "10",
+  "exclusionamount": "2266.91",
+  "claimrunstatuscount": "118",
+  "claimrunstatusamount": "2422252.73"
+ },
+ "chargereview": [],
+ "inspector": {
+  "1": [
+   {
+    "vid": "19459901",
+    "pid": "22858",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397626",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372510",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459902",
+    "pid": "17476458",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397624",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372511",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459903",
+    "pid": "17478213",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397646",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372512",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459904",
+    "pid": "47979",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397647",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372513",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459905",
+    "pid": "17478223",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397627",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372514",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459906",
+    "pid": "17473197",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397631",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372515",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459907",
+    "pid": "17473090",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397644",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372516",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459908",
+    "pid": "17470950",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397634",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372517",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459909",
+    "pid": "20379",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397635",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372518",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459910",
+    "pid": "17478262",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397632",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372519",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459911",
+    "pid": "17478264",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397633",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372520",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459912",
+    "pid": "17472922",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397637",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372521",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459913",
+    "pid": "17478261",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397638",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372522",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459914",
+    "pid": "17474798",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397645",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372523",
+      null
+     ]
+    ]
+   },
+   {
+    "vid": "19459915",
+    "pid": "17478031",
+    "name": "",
+    "status": "ERROR",
+    "errs": [
+     [
+      "397648",
+      "Pattern 4543 The beginning or ending Date of Service is invalid or missing.Pattern 4543 The beginning or ending Date of Service is invalid or missing.",
+      "66068083"
+     ]
+    ],
+    "chgs": [
+     [
+      "23372524",
+      null
+     ]
+    ]
+   }
+  ]
+ },
+ "unbilled_totalcount": "0",
+ "unbilled_totalamount": "0.00",
+ "unbilled": [],
+ "exclusions": {
+  "1699931": [],
+  "1699949": [],
+  "1699950": [],
+  "1700009": [],
+  "1700013": [],
+  "1700048": [],
+  "1700060": [],
+  "1700076": [],
+  "1700079": [],
+  "1700080": [],
+  "1700082": [],
+  "1700088": [],
+  "1700090": [],
+  "1700092": [],
+  "1700093": [],
+  "1700094": [],
+  "1700096": [],
+  "1700098": [],
+  "1700099": [],
+  "1700100": [],
+  "1700101": [],
+  "1700102": [],
+  "1700103": [],
+  "1700104": [],
+  "1700105": [],
+  "1700106": [],
+  "1700107": [],
+  "1700108": [],
+  "1700109": [],
+  "1700110": [],
+  "1700111": [],
+  "1700112": [],
+  "1700113": [],
+  "1700114": [],
+  "1700115": [],
+  "1700116": [],
+  "1700117": [],
+  "1700118": [],
+  "1700119": [],
+  "1700120": [],
+  "1700121": [],
+  "1700122": [],
+  "1700123": [],
+  "1700129": [],
+  "1700130": [],
+  "1700131": [],
+  "1700132": [],
+  "1700133": [],
+  "1700136": [],
+  "1700139": [],
+  "1700140": [],
+  "1700141": [],
+  "1700142": [],
+  "1700144": [],
+  "1700146": [],
+  "1700147": [],
+  "1700151": [],
+  "1700156": [],
+  "1700158": [],
+  "1700166": [],
+  "1700168": [],
+  "1700178": [],
+  "1700179": [],
+  "1700181": [],
+  "1700182": [],
+  "1700183": [],
+  "1700186": [],
+  "1700188": [],
+  "1700192": [],
+  "1700193": [],
+  "1700201": [],
+  "1700202": [],
+  "1700209": [],
+  "1700210": [],
+  "1700211": [],
+  "1700216": [],
+  "1700227": [],
+  "1700228": [],
+  "1700229": [],
+  "1700236": [],
+  "1700243": [],
+  "1700250": [],
+  "1700266": [],
+  "1700276": [],
+  "1700278": [],
+  "1700286": [],
+  "1700289": [],
+  "1700294": [
+   {
+    "claimrunid": "1700294",
+    "id": "19455937",
+    "claimid": "19455937B",
+    "errorcount": "2",
+    "patientid": "24750",
+    "patientchart": "HF387131688",
+    "provcode": "WEFFI",
+    "provname": "EFFINGER, WILLIAM",
+    "carrierid": "42009",
+    "carriercode": "AET12 6870",
+    "carriercodeshort": "AET12",
+    "carriercpid": "6870",
+    "carriername": "AETNA SENIOR SUPPLEMENTAL INSURANCE",
+    "carrierphone": "(800) 264-4000",
+    "carrierphoneext": "",
+    "isinstitutional": "0",
+    "partner": "CHANGE HEALTH",
+    "partnerid": "1",
+    "_errs": [
+     {
+      "id": "23977056",
+      "name": "CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+      "isexclusion": "1"
+     },
+     {
+      "id": "23977057",
+      "name": "CH FH  PREF0264:MISS/INVD PAYER DOC CONTRL NUM",
+      "isexclusion": "1"
+     }
+    ],
+    "_chgs": [
+     {
+      "id": "23367411",
+      "visit": "19455937",
+      "dos": "09/20/2026 ",
+      "billingdos": "09/20/2026 ",
+      "totalfee": "206.00",
+      "diagcode": "M62.81;F03.90;F48.2;N32.81;Z87.440;M81.0;M06.9",
+      "chgcode": "99487",
+      "insportion": "206.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "206.00",
+      "batchid": "127783",
+      "dmecharge": "N",
+      "units": "1.0"
+     },
+     {
+      "id": "23367412",
+      "visit": "19455937",
+      "dos": "09/20/2026 ",
+      "billingdos": "09/20/2026 ",
+      "totalfee": "109.00",
+      "diagcode": "M62.81;F03.90;F48.2;N32.81;Z87.440;M81.0;M06.9",
+      "chgcode": "99489",
+      "insportion": "109.00",
+      "patportion": "0.00",
+      "modifiers": "",
+      "billinsurance": "Y",
+      "acceptassign": "Y",
+      "finclassdescrip": "MC - MEDICARE",
+      "fee": "109.00",
+      "batchid": "127783",
+      "dmecharge": "N",
+      "units": "1.0"
+     }
+    ]
+   }
+  ],
+  "1700295": [],
+  "1700296": [],
+  "1700297": [],
+  "1700302": [],
+  "1700305": [],
+  "1700311": [],
+  "1700315": [],
+  "1700319": [],
+  "1700323": [],
+  "1700335": [],
+  "1700338": [],
+  "1700344": [],
+  "1700345": [],
+  "1700346": []
+ }
+}

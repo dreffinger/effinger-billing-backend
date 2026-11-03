@@ -1,0 +1,269 @@
+{
+ "fixed": [
+  {
+   "visit": "19459887",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19459889",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459901",
+   "pid": "pat22858",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459902",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256",
+    "4543"
+   ],
+   "note": [
+    "bypassed 1 advisories",
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459903",
+   "pid": "pat17478213",
+   "patterns": [
+    "117065068",
+    "4543"
+   ],
+   "note": [
+    "admit 10/21/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459904",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068",
+    "4543"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19459905",
+   "pid": "pat17478223",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459906",
+   "pid": "pat17473197",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459907",
+   "pid": "pat17473090",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459908",
+   "pid": "pat17470950",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459909",
+   "pid": "pat20379",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459910",
+   "pid": "pat17478262",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459911",
+   "pid": "pat17478264",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459912",
+   "pid": "pat17472922",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459913",
+   "pid": "pat17478261",
+   "patterns": [
+    "4543"
+   ],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459914",
+   "pid": "pat17474798",
+   "patterns": [],
+   "note": [
+    "HELD: 4543"
+   ]
+  },
+  {
+   "visit": "19459915",
+   "pid": "pat17478031",
+   "patterns": [
+    "117065068",
+    "4543"
+   ],
+   "note": [
+    "admit 10/24/2026 written",
+    "resave ok"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19459887",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19459902",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [
+  {
+   "visit": "19459901",
+   "pid": "pat22858",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459902",
+   "pid": "pat17476458",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459905",
+   "pid": "pat17478223",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459906",
+   "pid": "pat17473197",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459907",
+   "pid": "pat17473090",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459908",
+   "pid": "pat17470950",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459909",
+   "pid": "pat20379",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459910",
+   "pid": "pat17478262",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459911",
+   "pid": "pat17478264",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459912",
+   "pid": "pat17472922",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459913",
+   "pid": "pat17478261",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  },
+  {
+   "visit": "19459914",
+   "pid": "pat17474798",
+   "why": "[Pattern 4543] The beginning or ending Date of..."
+  }
+ ],
+ "laterality": [
+  {
+   "visit": "19459887",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19459902",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  }
+ ]
+}

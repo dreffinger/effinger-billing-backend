@@ -1332,6 +1332,25 @@
     "lookup"
    ],
    "id": "lookups/lookupproccode-cpt"
+  },
+  {
+   "folder": "Demographics",
+   "name": "PATCH patient - correct the chart name (names list)",
+   "method": "PATCH",
+   "url": "https://pm-api-103.advancedmd.com/api/demographic/patients/{{patientid}}",
+   "headers": {
+    "Authorization": "Bearer {{token}}",
+    "Accept": "application/vnd.advancedmd.api.v2+json",
+    "Content-Type": "application/json"
+   },
+   "body": "{\n \"updatedpatient\": \"<flat patient with the changed field>\",\n \"originalpatient\": \"<the GET result, unchanged>\",\n \"updateaccounttype\": false,\n \"familyupdate\": null,\n \"deleteappointments\": false\n}",
+   "description": "Correct a chart's first or last name: GET /api/demographic/patients/{id}, copy names[] (firstname/middlename/lastname/prefix/suffix/nametype/isbilling/ispreferred/isprevious/enddate), change the field, send the same flat-record PATCH as the DOB edit with updatedpatient.names = the corrected list (originalpatient = the read, updateaccounttype false, familyupdate null, deleteappointments false). HTTP 200; getdemographic's patient name follows. The responsible party is its own record - updaterespparty <respparty id name o_name/>. Proven 11/3/2026 on a Claimocity duplicate chart whose first name differed from the payer records (Humana 277CA entity not found; UHC 271 AAA 73).",
+   "helper": "patient_patch.patch(pid, {'names': [...]}) then updaterespparty name=/o_name= (claimocity_newcharts shape)",
+   "captured": "2026-11-03",
+   "body_language": "json",
+   "status": "proven",
+   "tags": [],
+   "id": "demographics/patch-patient-name-names-list"
   }
  ]
 }
