@@ -6,10 +6,10 @@
 #   C GOMER 17472519           - add the Florida Blue Medicare Advantage plan William pasted (BCBS1 car303217, 8/1/2024), end the dead
 #                                Humana plan 7/31/2024, patient order = the new plan, re-route the 10/27 CCM to it.
 #   D JACOBSEN 17477039         - add Humana Medicare Advantage (HUM01, 1/1/2026), end WellCare 12/31/2025, re-route the six July visits.
-#   E MONROE 47979             - chart DOB [DOB] -> 06/08/1950 (REST PATCH with familyupdate, placeholder address HCA), add UHC Dual
+#   E MONROE 47979             - chart DOB [DOB] -> [DOB] (REST PATCH with familyupdate, placeholder address HCA), add UHC Dual
 #                                Complete (UHCMA car302853, member from the HCA facesheet), end the dead UNI20 plan, re-route 11 hospital visits
 #                                (UHC Dual first, FCC second).
-#   F PRIMROSE 17478213            - chart DOB [DOB] -> 10/01/1963 (facesheet), then re-send the eleven SUN01 hospital claims as originals.
+#   F PRIMROSE 17478213            - chart DOB [DOB] -> [DOB] (facesheet), then re-send the eleven SUN01 hospital claims as originals.
 #   G TOLLIVER 17471204           - the Aetna subscriber (spouse) gets his DOB [DOB] (updaterespparty), the four AET07 claims go again.
 #   H ROWANTREE 17475392        - Stedi says TRICARE East is ACTIVE on the DBN the chart carries: re-send the seven TRI00 claims as originals.
 #   I BROWN 17478229           - add TRICARE For Life (TRI05 car6559) as the Medicare secondary, order Medicare first.

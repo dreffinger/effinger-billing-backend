@@ -1,6 +1,6 @@
 # PLAIN ENGLISH (Insurance Refresh Board answers of 11/2/2026 afternoon - William's words on three rows, ehpa Billing Button run 2026-11-02T2038Z)
 # Decides: nothing new - it carries out what William wrote on each board row between 19:03Z and 20:30Z on 11/2/2026, one lettered section per chart:
-#   A DAFFIN 17477533   - 'Date of Birth [DOB]' (Medicare's record): chart DOB [DOB] -> 03/27/1932 (REST PATCH with familyupdate,
+#   A DAFFIN 17477533   - 'Date of Birth [DOB]' (Medicare's record): chart DOB [DOB] -> [DOB] (REST PATCH with familyupdate,
 #                          placeholder address ALF when the chart has no street), AMD 271 on the FLO02 plan must answer ACTIVE, then the
 #                          10/25/2026 CCM v19459144 (99487 $206) goes to Medicare (seq 2) again as an original.
 #   B MAPLIN 17469446  - 'write off' (WOCAID2ND, dual residual): the 7/1/2025 99308 residual $12.14 on charge 22484496 (visit v19409077,
@@ -58,7 +58,7 @@ if want("A"):
     pid = "17477533"
     if not LIVE:
         orig = patient_patch.flatten(patient_patch.get(pid)); print("DRY  A chart dob", orig.get("dob"), "address1", orig.get("address1") or "(none -> ALF)")
-    if step("A dob [DOB]", lambda: patch_dob(pid, "1932-03-27", "ALF")):
+    if step("A dob [DOB]", lambda: patch_dob(pid, "[DOB yyyy-mm-dd - real value in the Drive workspace-mirror copy]", "ALF")):
         def elig():
             out = []; active = False
             for insid in ("9521009", "9518956"):

@@ -1,0 +1,138 @@
+[
+ {
+  "patientid": 17478223,
+  "patient": "[name]",
+  "carrier": "BCBS",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "OK active - FL PPO ALTNET NETWORKBLUE 10P0 {\"planBegin\": \"20240101\", \"benefitBegin\": \"20260101\"}",
+  "cached": true
+ },
+ {
+  "patientid": 20379,
+  "patient": "FENNER,MAUDE",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "mbi": "[MBI]",
+  "death": null,
+  "partA": "20141101",
+  "partB": "20141101",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17470950,
+  "patient": "HAYWOOD,JEFFCOAT M",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "mbi": "[MBI]",
+  "death": null,
+  "partA": "20190201",
+  "partB": "20190201",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17473197,
+  "patient": "MARLOWE,[first]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "mbi": "[MBI]",
+  "death": null,
+  "partA": "20070401",
+  "partB": "20110401",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 17476458,
+  "patient": "RUSTIN,[first]",
+  "carrier": "FLO02",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "mbi": "[MBI]",
+  "death": null,
+  "partA": "19990401",
+  "partB": "19990401",
+  "result": "OK straight Medicare",
+  "cached": true
+ },
+ {
+  "patientid": 22858,
+  "patient": "THACKERAY,[first]",
+  "carrier": "FLO99",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "no eligibility on Stedi for this payer"
+ },
+ {
+  "patientid": 17474798,
+  "patient": "ANNIKA,SHELAGH",
+  "carrier": "SUN01",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "OK active - SSHP - LTC with HCBS Dual Eligible {\"planBegin\": \"20251101\", \"dateOfLastUpdate\": \"20261030\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17478031,
+  "patient": "JACOBSEN,NORCOTT",
+  "carrier": "UHCMA",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE HMOPOS HIDE FULL {\"plan\": \"20260501-20261231\"}",
+  "cached": true
+ },
+ {
+  "patientid": 47979,
+  "patient": "[name] WILLIE",
+  "carrier": "UHCMA",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "OK active - FL UNITEDHEALTHCARE DUAL COMPLETE HMOPOS HIDE FULL {\"plan\": \"20260101-20261231\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17478013,
+  "patient": "[name]",
+  "carrier": "VACCN",
+  "visits": 1,
+  "balance": 160.0,
+  "dos": "20261031",
+  "result": "OK active - VA FEE BASIS PROGRAM {\"planBegin\": \"19980728\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17472922,
+  "patient": "CARRAWAY,HADLEY L",
+  "carrier": "CAP07",
+  "visits": 1,
+  "balance": 111.0,
+  "dos": "20261031",
+  "result": "OK active -  {\"planBegin\": \"20150401\"}",
+  "cached": true
+ },
+ {
+  "patientid": 17478213,
+  "patient": "PRIMROSE,COTTERELL",
+  "carrier": "SUN01",
+  "visits": 1,
+  "balance": 111.0,
+  "dos": "20261031",
+  "dob": "[DOB]",
+  "member": "[member id]",
+  "result": "OK active - SSI Non Dual MMA {\"planBegin\": \"20250331\", \"dateOfLastUpdate\": \"20261102\"}"
+ }
+]
