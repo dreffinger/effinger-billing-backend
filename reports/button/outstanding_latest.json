@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-04T19:20:55Z",
+ "at": "2026-11-04T21:21:11Z",
  "as_of": "2026-11-04",
- "total": 315681.21,
- "visits": 2584,
- "charts": 475,
+ "total": 314091.21,
+ "visits": 2575,
+ "charts": 474,
  "over_365": {
   "n": 559,
   "dollars": 24872.92
  },
  "by_bucket": {
   "0-30": {
-   "n": 703,
-   "dollars": 144364.85
+   "n": 694,
+   "dollars": 142774.85
   },
   "31-60": {
    "n": 212,
@@ -82,21 +82,6 @@
    "oldest_days": 422
   },
   {
-   "carrier": "BCBS",
-   "name": "FLORIDA BLUE",
-   "n": 280,
-   "dollars": 17999.07,
-   "buckets": {
-    "0-30": 5518.0,
-    "31-60": 1743.15,
-    "61-90": 2288.43,
-    "91-180": 2046.43,
-    "181-365": 3252.55,
-    "over 365": 3150.51
-   },
-   "oldest_days": 1052
-  },
-  {
    "carrier": "UHCMA",
    "name": "UNITEDHEALTHCARE DUAL COMPLETE",
    "n": 81,
@@ -110,6 +95,21 @@
     "over 365": 2921.4
    },
    "oldest_days": 1154
+  },
+  {
+   "carrier": "BCBS",
+   "name": "FLORIDA BLUE",
+   "n": 271,
+   "dollars": 16409.07,
+   "buckets": {
+    "0-30": 3928.0,
+    "31-60": 1743.15,
+    "61-90": 2288.43,
+    "91-180": 2046.43,
+    "181-365": 3252.55,
+    "over 365": 3150.51
+   },
+   "oldest_days": 1052
   },
   {
    "carrier": "HUM01",
@@ -740,8 +740,8 @@
   },
   {
    "month": "2026-10",
-   "n": 722,
-   "dollars": 147725.8
+   "n": 713,
+   "dollars": 146135.8
   },
   {
    "month": "2026-11",
@@ -18339,14 +18339,6 @@
    "dos": "2026-10-20"
   },
   {
-   "visitid": 19458844,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 310.0,
-   "days": 15,
-   "dos": "2026-10-20"
-  },
-  {
    "visitid": 19458896,
    "patientid": 17478031,
    "carriercode": "UHCMA",
@@ -18495,14 +18487,6 @@
    "patientid": 17478031,
    "carriercode": "UHCMA",
    "insbalance": 163.0,
-   "days": 14,
-   "dos": "2026-10-21"
-  },
-  {
-   "visitid": 19459086,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
    "days": 14,
    "dos": "2026-10-21"
   },
@@ -19955,14 +19939,6 @@
    "dos": "2026-10-22"
   },
   {
-   "visitid": 19459083,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
-   "days": 13,
-   "dos": "2026-10-22"
-  },
-  {
    "visitid": 19459237,
    "patientid": 17478223,
    "carriercode": "BCBS",
@@ -20163,14 +20139,6 @@
    "dos": "2026-10-23"
   },
   {
-   "visitid": 19459131,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
-   "days": 12,
-   "dos": "2026-10-23"
-  },
-  {
    "visitid": 19459248,
    "patientid": 17478223,
    "carriercode": "BCBS",
@@ -20303,14 +20271,6 @@
    "patientid": 17470950,
    "carriercode": "FLO02",
    "insbalance": 443.0,
-   "days": 11,
-   "dos": "2026-10-24"
-  },
-  {
-   "visitid": 19459118,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
    "days": 11,
    "dos": "2026-10-24"
   },
@@ -20483,14 +20443,6 @@
    "dos": "2026-10-25"
   },
   {
-   "visitid": 19459150,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
-   "days": 10,
-   "dos": "2026-10-25"
-  },
-  {
    "visitid": 19459251,
    "patientid": 17478223,
    "carriercode": "BCBS",
@@ -20607,14 +20559,6 @@
    "patientid": 17477650,
    "carriercode": "FLO02",
    "insbalance": 163.0,
-   "days": 9,
-   "dos": "2026-10-26"
-  },
-  {
-   "visitid": 19459567,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
    "days": 9,
    "dos": "2026-10-26"
   },
@@ -21043,14 +20987,6 @@
    "dos": "2026-10-27"
   },
   {
-   "visitid": 19459560,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
-   "days": 8,
-   "dos": "2026-10-27"
-  },
-  {
    "visitid": 19459551,
    "patientid": 17478223,
    "carriercode": "BCBS",
@@ -21303,14 +21239,6 @@
    "patientid": 17478208,
    "carriercode": "CAP07",
    "insbalance": 207.0,
-   "days": 7,
-   "dos": "2026-10-28"
-  },
-  {
-   "visitid": 19459601,
-   "patientid": 23069,
-   "carriercode": "BCBS",
-   "insbalance": 160.0,
    "days": 7,
    "dos": "2026-10-28"
   },
