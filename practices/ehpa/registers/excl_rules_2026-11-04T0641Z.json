@@ -1,0 +1,9 @@
+{
+ "run": "2026-11-04T0641Z",
+ "visit": "19415417",
+ "chart": "17471204",
+ "charge": "23318840",
+ "wo": "WOCLTREQ 42.30",
+ "excl": "hideexclusions 1700349 19415417E",
+ "reason": "Aetna not eligible on 9/2/2025 (coverage from 1/1/2026); UHC MA cost-share, no supplement in force"
+}
