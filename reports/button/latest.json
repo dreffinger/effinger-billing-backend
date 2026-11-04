@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-04T2119Z",
+ "stamp": "2026-11-04T2318Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/15/0/17 -> 0/15/0/17; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41914925541",
- "started": "2026-11-04T21:19:09Z",
- "ended": "2026-11-04T21:25:16Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41932694174",
+ "started": "2026-11-04T23:18:55Z",
+ "ended": "2026-11-04T23:24:32Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 15,
     "unbilled": 0,
-    "exclusions": 1
+    "exclusions": 17
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 15,
     "unbilled": 0,
-    "exclusions": 1
+    "exclusions": 17
    }
   },
   "era": {
@@ -65,7 +65,7 @@
    "visits": 7794,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-04 21:25 UTC"
+   "asof": "2026-11-04 23:24 UTC"
   }
  },
  "steps": [
@@ -82,19 +82,19 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T21:19:09Z",
-   "ended": "2026-11-04T21:19:09Z"
+   "started": "2026-11-04T23:18:55Z",
+   "ended": "2026-11-04T23:18:56Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 15->15, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 15->15, Unbilled 0->0, Exclusions 17->17",
    "counts": {
     "charge review": 0,
     "claim inspector": 15,
     "unbilled": 0,
-    "exclusions": 1,
+    "exclusions": 17,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 15,
     "inspector bypasses sent": 0,
@@ -103,7 +103,9 @@
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700349": 0,
+    "exclusions crossover run 1700349": "see log"
    },
    "dollars": {},
    "lines": [
@@ -118,11 +120,17 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700349",
+     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
+     "visits": 16,
+     "ids": "v19402245 v19402644 v19403418 v19403945 v19404635 v19404697 v19405084 v19405500 v19406109 v19407286 v19407974 v19408949 v19413644 v19415101 v19416084 v19417133"
     }
    ],
    "errors": [],
-   "started": "2026-11-04T21:19:09Z",
-   "ended": "2026-11-04T21:21:06Z"
+   "started": "2026-11-04T23:18:56Z",
+   "ended": "2026-11-04T23:20:45Z"
   },
   {
    "name": "era",
@@ -141,8 +149,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T21:21:06Z",
-   "ended": "2026-11-04T21:21:09Z"
+   "started": "2026-11-04T23:20:45Z",
+   "ended": "2026-11-04T23:20:46Z"
   },
   {
    "name": "packages",
@@ -153,8 +161,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T21:21:09Z",
-   "ended": "2026-11-04T21:21:09Z"
+   "started": "2026-11-04T23:20:46Z",
+   "ended": "2026-11-04T23:20:46Z"
   },
   {
    "name": "outstanding",
@@ -257,8 +265,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T21:21:09Z",
-   "ended": "2026-11-04T21:21:11Z"
+   "started": "2026-11-04T23:20:46Z",
+   "ended": "2026-11-04T23:20:47Z"
   },
   {
    "name": "denials",
@@ -345,8 +353,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T21:21:11Z",
-   "ended": "2026-11-04T21:25:16Z"
+   "started": "2026-11-04T23:20:47Z",
+   "ended": "2026-11-04T23:24:32Z"
   }
  ],
  "packages": [],
