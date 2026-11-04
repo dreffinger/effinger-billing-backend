@@ -1,0 +1,294 @@
+{
+ "pat17471478": {
+  "v": 3,
+  "visits": [
+   "vst19460029"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99223"
+  ],
+  "checks": [
+   {
+    "plan": "ins9510744",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "REJECTED  "
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['REJECTED']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9510744",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "TRI05",
+   "FLO02"
+  ],
+  "decision": "HOLD"
+ },
+ "pat17478265": {
+  "v": 3,
+  "visits": [
+   "vst19460030"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99309"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521075",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9521076",
+    "car": "BCBS",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521075",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521076",
+    "car": "BCBS",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02",
+   "BCBS"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1,2",
+  "applied": {
+   "vst19460030": "1,2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat12181827": {
+  "v": 3,
+  "visits": [
+   "vst19460031"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99309"
+  ],
+  "checks": [
+   {
+    "plan": "ins6009061",
+    "car": "CAP07",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins6009061",
+    "car": "CAP07",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "CAP07"
+  ],
+  "lead": {
+   "code": "CAP07",
+   "seq": "1",
+   "why": "CAP07 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460031": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17472491": {
+  "v": 3,
+  "visits": [
+   "vst19460032"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9511956",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "ACTIVE"
+   },
+   {
+    "plan": "ins9511957",
+    "car": "COL07",
+    "seq": "2",
+    "status": "REJECTED  "
+   }
+  ],
+  "fixes": [
+   "vst19460032 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9511956",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9511957",
+    "car": "COL07",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460032": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478292": {
+  "v": 3,
+  "visits": [
+   "vst19460033"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added UNI20 plan -> ins9521121 seq 1",
+   "chart order -> 1: insorder 1 via ins9521121 -> '1'",
+   "vst19460033 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [
+   "UNI20"
+  ],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "Stedi discovery UNI20 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460033": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17475778": {
+  "v": 3,
+  "visits": [
+   "vst19460034"
+  ],
+  "dos": [
+   "11/02/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517735",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517735",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02"
+  ],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "UNI20 ACTIVE (no traditional Medicare)",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460034": "1"
+  },
+  "note": "feed IN1 says ['FLO02'], chart bills UNI20 first (UNI20 ACTIVE (no traditional Medicare))",
+  "decision": "RELEASE"
+ }
+}

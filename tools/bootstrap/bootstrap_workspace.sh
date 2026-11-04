@@ -75,6 +75,12 @@ case "$mode" in
     mkdir -p "$WS/registers"
     [ -d "$REPO/practices/ehpa/registers" ] && cp -pn "$REPO"/practices/ehpa/registers/* "$WS/registers/" 2>/dev/null
     for f in needs_facesheet_list.md laterality_flag_log.md; do [ -f "$REPO/practices/ehpa/$f" ] && [ ! -e "$WS/$f" ] && cp -p "$REPO/practices/ehpa/$f" "$WS/$f"; done
+    # 2c) Claimocity feed helper needs a working cryptography (the image's system module panics under pyo3, 11/3-11/4/2026 x4):
+    if ! python3 -c "import cryptography.hazmat.primitives.hashes" >/dev/null 2>&1; then
+      python3 -m pip install -q --ignore-installed --target /home/claude/pylib cryptography cffi >/dev/null 2>&1 \
+        && echo "layout: cryptography installed into /home/claude/pylib - run the feed helpers with PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3" \
+        || echo "layout: WARN cryptography pylib install failed - claimocity_gcs.py may panic (see captured_calls.md 11/3)"
+    fi
     # 3) docs the run needs locally
     for d in docs/captured_calls.md docs/api_vocabulary.json docs/MIRROR.md; do
       [ -f "$REPO/$d" ] && [ ! -e "$WS/$(basename "$d")" ] && cp -p "$REPO/$d" "$WS/$(basename "$d")"
