@@ -33,6 +33,12 @@
 :root[data-ehpa="light"]{--bg:#ffffff;--bg-deep:#f4f5f8;--surface:#ffffff;--surface-2:#f2f2f2;--line:#d7d8da;--line-strong:#bfbfbf;--ink:#082f35;--ink-2:#222428;--muted:#636469;--dim:#737478;
   --accent:#0054e9;--on-accent:#ffffff;--accent-soft:#e0f4fd;--accent-2:#b4169e;--ok:#1b8037;--ok-soft:#dcfae6;--warn:#917005;--warn-soft:#fff3c4;--bad:#c5000f;--bad-soft:#fbdcdf;
   --pulled:#4e8f6e;--grad:linear-gradient(135deg,#0054e9 0%,#70d6f8 100%);--grid:rgba(8,47,53,.08);color-scheme:light}
+/* Nightly insurance cascade chart (William 11/4/2026): light pastel purple - pale lavender = checked, pastel purple = changed */
+:root{--cascade:#d9ccfa;--cascade-2:#b9a2f2;--cascade-edge:transparent}
+:root[data-ehpa="light"]{--cascade:#ddd2f8;--cascade-2:#b49cee;--cascade-edge:#9a80e0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:0 0 6px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;box-shadow:inset 0 0 0 1px var(--cascade-edge)}
+.weeknote{margin:12px 0 0;max-width:78ch;color:var(--ink-2);font-size:14px;line-height:1.55}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px}
@@ -226,6 +232,14 @@ dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;margin:0;f
       <header><h2>Encounters by date of service</h2><span class="note" id="days-note"></span></header>
       <div class="chart" id="days"></div>
     </section>
+    <section class="block" id="cascade-block">
+      <header><h2>Nightly insurance cascade: cases checked and changed</h2><span class="note" id="cascade-note"></span></header>
+      <p class="note" style="margin:0 0 8px">One pair of bars per night (the run starts about 1:30 AM Eastern). <b>Checked</b> = visit-and-plan pairs the run verified with AdvancedMD or Stedi. <b>Changed</b> = visits it fixed in AdvancedMD (re-pointed, re-routed or re-sent). A grey dash means no run is recorded here for that night.</p>
+      <div class="legend" aria-hidden="true"><span><i style="background:var(--cascade)"></i>Checked</span><span><i style="background:var(--cascade-2)"></i>Changed</span></div>
+      <div class="chart" id="cascade"></div>
+      <p class="weeknote" id="cascade-week"></p>
+      <div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>Night</th><th class="num">Checked</th><th class="num">Changed</th><th class="num">Re-sent</th><th>What was done</th></tr></thead><tbody id="cascade-log"></tbody></table></div>
+    </section>
     <section class="block">
       <header><h2>Every feed charge and what AdvancedMD got</h2><span class="note" id="recon-note"></span></header>
       <div class="filters" id="recon-filters"></div>
@@ -343,11 +357,11 @@ function stampDate(st){ const m=/^(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z/.exe
 function paintPal(){ const cur=document.documentElement.getAttribute('data-ehpa')||'lapis'; document.querySelectorAll('#pal button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.pal===cur?'true':'false')); }
 document.querySelectorAll('#pal button').forEach(b=>b.addEventListener('click',()=>{ document.documentElement.setAttribute('data-ehpa',b.dataset.pal); ls.set('ehpa-feed-palette',b.dataset.pal); paintPal(); })); paintPal();
 const VIEWS=['overview','feed','runs','era','approvals','data','mirror'];
-function route(){ let v=(location.hash||'').replace('#',''); if(!VIEWS.includes(v)) v='overview'; VIEWS.forEach(x=>{ $('#view-'+x).hidden=x!==v; }); document.querySelectorAll('#rail a').forEach(a=>{ if(a.dataset.view===v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); if(v==='feed'&&D.batches.length){ dayChart(); pulledChart(); } }
+function route(){ let v=(location.hash||'').replace('#',''); if(!VIEWS.includes(v)) v='overview'; VIEWS.forEach(x=>{ $('#view-'+x).hidden=x!==v; }); document.querySelectorAll('#rail a').forEach(a=>{ if(a.dataset.view===v) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); }); if(v==='feed'){ if(D.batches.length){ dayChart(); pulledChart(); } cascadeChart(); } }
 addEventListener('hashchange',route);
 
 // ---- the database
-const D={db:null,ready:false,checks:[],batchDocs:{},batches:[],runs:[],era:[],snaps:[],practice:[],index:[],syncs:[],loaded:{},err:null};
+const D={db:null,ready:false,checks:[],batchDocs:{},batches:[],runs:[],era:[],snaps:[],practice:[],index:[],syncs:[],cascade:[],loaded:{},err:null};
 const say=(m,cls)=>{ const s=$('#status'); s.textContent=m||''; s.className='status'+(cls?' '+cls:''); };
 let subs=[];
 function sub(q,key,next){ const t=setTimeout(()=>{ if(!D.loaded[key]) say('The database has not answered yet for '+key+' - it may be unreachable from here; what is shown may be out of date.','err'); },10000);
@@ -362,6 +376,7 @@ async function connect(){ let db=null; try{ db=(window.claude&&typeof window.cla
   sub(db.collection('snapshots').orderBy('at','desc').limit(40),'snapshots',s=>{ D.snaps=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
   sub(db.collection('artifact_index').orderBy('at','desc').limit(60),'artifact index',s=>{ D.index=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
   sub(db.collection('sync_runs').orderBy('at','desc').limit(5),'sync runs',s=>{ D.syncs=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
+  sub(db.collection('cascade_runs').orderBy('at','desc').limit(120),'cascade runs',s=>{ D.cascade=s.docs.map(d=>Object.assign({id:d.id},d.data())); });
   try{ const p=await db.collection('practice').get(); D.practice=p.docs.map(d=>Object.assign({id:d.id},d.data())); }catch(e){}
   D.ready=true; renderAll(); say('','ok'); }
 function mergeBatches(){ const by={}; Object.values(D.batchDocs).forEach(d=>{ const st=d.stamp||d.id.replace(/\.p\d+$/,''); const b=by[st]||(by[st]={stamp:st,rows:[],parts:{},meta:d}); b.parts[d.part||1]=d.rows||[]; if(!d.part||d.part===1) b.meta=d; });
@@ -423,7 +438,7 @@ function renderFeed(){ document.querySelectorAll('#win button').forEach(b=>b.set
   $('#files').innerHTML=files.map(f=>'<span class="chip" title="'+esc(f.name)+' · batch '+esc(f.stamp)+'">'+esc(fdate(String(f.date).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')))+(f.messages?' · '+f.messages:'')+'</span>').join('')||'<span class="note">No feed file in the database yet.</span>';
   const ds=all.map(r=>r.d).filter(Boolean).sort(); $('#files-note').textContent=files.length+' files · DOS '+fdate(ds[0])+' – '+fdate(ds[ds.length-1]); $('#coverage').textContent='Feed files on hand start 10/16/2026 (the September copies the old integration had posted are the "outcome not recorded" rows). Days with no bar are days with no feed encounter on hand, not necessarily days without visits; Claimocity posts a visit one to two days after it happens.';
   $('#checks').innerHTML=D.checks.length?D.checks.map(c=>'<tr><td class="mono">'+esc(when(c.at))+'</td><td><span class="pill '+(c.result==='ingested'?'ok':c.result==='nothing_new'?'dim':'bad')+'">'+esc((c.result||'').replace('_',' '))+'</span></td><td>'+esc(c.line||(c.files_new?c.files_new+' new file(s)':''))+(c.newest_file?' <span class="note">newest file '+esc(fdate(String(c.newest_file).replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3')))+'</span>':'')+'</td><td class="num">'+(c.visits!=null?fmt(c.visits):'')+'</td><td class="num">'+(c.dollars!=null?usd(c.dollars):'')+'</td></tr>').join(''):'<tr><td colspan="5" class="note">No feed check recorded yet - the next feed run writes one.</td></tr>';
-  renderRecon(all,L); }
+  cascadeChart(); renderRecon(all,L); }
 function dayChart(){ drawDays($('#days'),dayData,{fill:'var(--accent)',label:'Encounters per date of service',tip:'tip',note:$('#days-note'),verb:'entered',what:'carry feed encounters'}); }
 function pulledChart(){ drawDays($('#pulled'),pulledData,{fill:'var(--pulled)',label:'Encounters per date pulled into AdvancedMD',tip:'tip-pulled',note:$('#pulled-note'),verb:'pulled in',what:'had visits pulled into AdvancedMD'}); }
 function drawDays(box,days,o){ if(!box) return; if(!days.length){ box.innerHTML='<div class="note">No days in this window.</div>'; if(o.note) o.note.textContent=''; return; }
@@ -440,6 +455,47 @@ function drawDays(box,days,o){ if(!box) return; if(!days.length){ box.innerHTML=
     tip.innerHTML='<div>'+esc(new Date(d.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}))+'</div><div><b>'+fmt(d.visits)+'</b> '+esc(o.verb)+' · <b>'+fmt(d.lines)+'</b> lines · <b>'+usd(d.dollars)+'</b></div><div>'+fmt(d.patients)+' patients'+(d.notin?' · <b>'+fmt(d.notin)+'</b> not entered':'')+'</div>'; tip.style.left=x+'px'; tip.style.top=Math.max(44,y)+'px'; tip.style.opacity='1'; }
   box.querySelectorAll('.hit').forEach(h=>{ h.addEventListener('mousemove',()=>show(Number(h.dataset.i))); h.addEventListener('mouseleave',()=>{ tip.style.opacity='0'; }); h.addEventListener('click',()=>show(Number(h.dataset.i))); });
   const busy=days.filter(d=>d.visits).length; const peak=days.reduce((a,b)=>b.visits>a.visits?b:a,days[0]); if(o.note) o.note.textContent=busy+' of '+n+' days '+o.what+' · peak '+fmt(peak.visits)+' on '+fdate(peak.date)+' · amber = not entered'; }
+
+// ---- nightly insurance cascade (collection cascade_runs: one document per night - at, date, checked, changed, dollars, done, note)
+let cascadeData=[];
+const longDay=k=>new Date(k+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+function cascadeChart(){ const box=$('#cascade'), note=$('#cascade-note'), log=$('#cascade-log'); if(!box) return;
+  const by={}; D.cascade.filter(r=>r.at).forEach(r=>{ const k=r.date||etDate(r.at); if(!by[k]||(r.at||'')>(by[k].at||'')) by[k]=r; });
+  const keys=Object.keys(by).sort(); cascadeWeek(by,keys);
+  if(!keys.length){ box.innerHTML='<div class="empty">No nightly cascade run is recorded here yet. Each night appears as a pair of purple bars once its row is written to the <code>cascade_runs</code> collection.</div>'; note.textContent=''; log.innerHTML='<tr><td colspan="5" class="note">Nothing recorded yet.</td></tr>'; return; }
+  const wlo=windowRange()[0], today=iso(TODAY); const lo=keys[0]>wlo?keys[0]:wlo; const hi=keys[keys.length-1]>today?keys[keys.length-1]:today;
+  cascadeData=[]; for(let d=new Date(lo+'T12:00:00'); iso(d)<=hi; d.setDate(d.getDate()+1)){ const k=iso(d); cascadeData.push({date:k,run:by[k]||null}); }
+  drawCascade(box,cascadeData);
+  const inw=cascadeData.filter(d=>d.run).map(d=>d.run).reverse(); const last=by[keys[keys.length-1]];
+  const ck=inw.reduce((a,r)=>a+(r.checked||0),0), ch=inw.reduce((a,r)=>a+(r.changed||0),0), dol=inw.reduce((a,r)=>a+(r.dollars||0),0);
+  note.textContent=inw.length+' night'+(inw.length===1?'':'s')+' · '+fmt(ck)+' checked · '+fmt(ch)+' changed · '+usd(dol)+' re-sent · last run '+when(last.at)+' ('+ago(last.at)+')';
+  log.innerHTML=inw.length?inw.map(r=>'<tr><td class="mono" style="white-space:nowrap">'+esc(longDay(r.date||etDate(r.at)))+'</td><td class="num">'+fmt(r.checked||0)+'</td><td class="num">'+fmt(r.changed||0)+'</td><td class="num">'+(r.dollars?usd(r.dollars):'—')+'</td><td>'+esc(r.done||'')+(r.note?'<div class="note">'+esc(r.note)+'</div>':'')+'</td></tr>').join(''):'<tr><td colspan="5" class="note">No run recorded in this window - the last recorded night is '+esc(longDay(keys[keys.length-1]))+'.</td></tr>'; }
+// the paragraph under the chart: what the cascade did in the past 7 days, written from the same documents
+function cascadeWeek(by,keys){ const el=$('#cascade-week'); if(!el) return; const lo=daysAgo(6), hi=iso(TODAY); const wk=keys.filter(k=>k>=lo&&k<=hi); const runs=wk.map(k=>by[k]);
+  if(!runs.length){ el.textContent='Past 7 days ('+fdate(lo)+' – '+fdate(hi)+'): no nightly cascade run is recorded here.'; return; }
+  const ck=runs.reduce((a,r)=>a+(r.checked||0),0), ch=runs.reduce((a,r)=>a+(r.changed||0),0), dol=runs.reduce((a,r)=>a+(r.dollars||0),0);
+  let t='Past 7 days ('+fdate(lo)+' – '+fdate(hi)+'): the nightly cascade ran on '+runs.length+' recorded night'+(runs.length===1?'':'s')+', checked '+fmt(ck)+' visit-and-plan pairs, changed '+fmt(ch)+' visit'+(ch===1?'':'s')+' in AdvancedMD and re-sent '+usd(dol)+' to the right payer.';
+  const top=runs.slice().sort((a,b)=>(b.dollars||0)-(a.dollars||0))[0]; if(top&&top.dollars) t+=' The biggest night was '+fdate(top.date||etDate(top.at))+': '+String(top.done||'').replace(/\.$/,'')+'.';
+  const quiet=runs.filter(r=>!r.changed); if(quiet.length) t+=' '+quiet.map(r=>fdate(r.date||etDate(r.at))).join(', ')+(quiet.length===1?' needed':' needed')+' no AdvancedMD change'+(quiet.length===1&&quiet[0].done?' ('+String(quiet[0].done).replace(/\.$/,'')+')':'')+'.';
+  const gaps=[]; for(let d=new Date((keys[0]>lo?keys[0]:lo)+'T12:00:00'); iso(d)<=hi; d.setDate(d.getDate()+1)){ const k=iso(d); if(!by[k]) gaps.push(k); }
+  if(gaps.length) t+=' No run is recorded here yet for '+gaps.map(fdate).join(', ')+'.';
+  el.textContent=t; }
+function drawCascade(box,days){ const W=Math.max(360,Math.round(box.clientWidth||960)),H=W<560?210:240,L=38,R=12,T=22,B=34,ph=H-T-B; const n=days.length;
+  const max=Math.max(1,...days.map(d=>d.run?Math.max(d.run.checked||0,d.run.changed||0):0)); const step=(W-L-R)/n; const bw=Math.max(3,Math.min(24,(step-10)/2)); const lab=step>=40;
+  const ticks=[...new Set([0,Math.ceil(max/2),max])]; let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Nightly insurance cascade: pairs checked and visits changed per night">';
+  ticks.forEach(t=>{ const y=T+ph*(1-t/max); s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(L-8)+'" y="'+(y+4).toFixed(1)+'" text-anchor="end" font-size="11" fill="var(--dim)" font-family="var(--mono)">'+t+'</text>'; });
+  days.forEach((d,i)=>{ const cx=L+i*step+step/2, r=d.run;
+    if(r){ [[r.checked||0,'var(--cascade)'],[r.changed||0,'var(--cascade-2)']].forEach(([v,fill],j)=>{ const x=cx+(j?1:-bw-1); const h=v?Math.max(2,ph*v/max):2; const y=T+ph-h;
+        s+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" fill="'+fill+'" stroke="var(--cascade-edge)" stroke-width="1"/>';
+        if(lab) s+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(y-5).toFixed(1)+'" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="var(--mono)">'+fmt(v)+'</text>'; }); }
+    else s+='<rect x="'+(cx-bw-1).toFixed(1)+'" y="'+(T+ph-2)+'" width="'+(2*bw+2).toFixed(1)+'" height="2" rx="1" fill="var(--line-strong)"/>';
+    const every=n>14?Math.ceil(n/10):1; if(i%every===0||i===n-1) s+='<text x="'+cx.toFixed(1)+'" y="'+(H-B+16)+'" text-anchor="middle" font-size="11" fill="var(--dim)" font-family="var(--mono)">'+esc(fdate(d.date))+'</text>';
+    s+='<rect class="hit" data-i="'+i+'" x="'+(L+i*step).toFixed(1)+'" y="'+T+'" width="'+step.toFixed(1)+'" height="'+ph+'" fill="transparent"/>'; });
+  s+='</svg><div class="tip" style="white-space:normal;width:max-content;max-width:260px"></div>'; box.innerHTML=s; const tip=box.querySelector('.tip'), svg=box.querySelector('svg');
+  function show(i){ const d=days[i]; if(!d) return; const r=svg.getBoundingClientRect(), bx=box.getBoundingClientRect(); const x=r.left+(L+i*step+step/2)*(r.width/W)-bx.left; const top=d.run?Math.max(d.run.checked||0,d.run.changed||0):0; const y=r.top+(T+ph-ph*top/max)*(r.height/H)-bx.top;
+    tip.innerHTML='<div>'+esc(longDay(d.date))+'</div>'+(d.run?'<div><b>'+fmt(d.run.checked||0)+'</b> checked · <b>'+fmt(d.run.changed||0)+'</b> changed'+(d.run.dollars?' · <b>'+usd(d.run.dollars)+'</b> re-sent':'')+'</div>'+(d.run.done?'<div>'+esc(d.run.done)+'</div>':''):'<div>'+(d.date===iso(TODAY)?'This morning’s run is not recorded here yet.':'No run recorded here for this night.')+'</div>');
+    tip.style.left=Math.min(Math.max(x,135),bx.width-135)+'px'; tip.style.top=Math.max(60,y)+'px'; tip.style.opacity='1'; }
+  box.querySelectorAll('.hit').forEach(h=>{ h.addEventListener('mousemove',()=>show(Number(h.dataset.i))); h.addEventListener('mouseleave',()=>{ tip.style.opacity='0'; }); h.addEventListener('click',()=>show(Number(h.dataset.i))); }); }
 
 // ---- reconciliation table
 let reconFilter=ls.get('ehpa-recon-filter')||'all', reconShown=200;
@@ -491,7 +547,7 @@ function renderAppr(){ const s=newestSnap('approvals'); const rows=s?(s.rows||[]
   $('#appr').innerHTML=rs.length?rs.map(r=>'<tr><td class="mono"><a href="https://claude.ai/artifact/HuYd2bSm2NxkFgYRqra7wR#'+esc(r.id)+'" target="_blank" rel="noopener">'+esc(r.id)+'</a></td><td class="mono">'+esc(when(r.at))+'</td><td>'+esc(r.what||'')+(r.ui?'<div class="note">'+esc(r.ui)+'</div>':'')+'</td><td class="num">'+(r.dollars!=null?usd2(r.dollars):'')+'</td><td><span class="pill '+(r.status==='waiting'?'warn':r.status==='done'?'ok':r.status==='declined'?'bad':'run')+'">'+esc(r.status||'')+'</span></td><td class="note">'+esc(r.answer||'')+'</td></tr>').join(''):'<tr><td colspan="6" class="note">Nothing here.</td></tr>'; }
 
 // ---- raw data browser
-const COLLS=[['feed_batches','one Claimocity ingest batch: every feed message and its AdvancedMD outcome'],['feed_checks','one line per feed run - what the bucket held and when it was checked'],['billing_runs','one Billing Button / scheduled billing run'],['era_runs','one run\u2019s ERA posting work'],['snapshots','approvals, repo head and other point-in-time copies'],['practice','master data: carriers, facilities, practice'],['artifact_index','one line per copied page: its collections and counts'],['artifact_copies','a copy of one collection of another billing page (all its documents inside)'],['sync_runs','one line per practice database sync: boards checked, collections copied or unchanged']];
+const COLLS=[['feed_batches','one Claimocity ingest batch: every feed message and its AdvancedMD outcome'],['feed_checks','one line per feed run - what the bucket held and when it was checked'],['billing_runs','one Billing Button / scheduled billing run'],['era_runs','one run\u2019s ERA posting work'],['snapshots','approvals, repo head and other point-in-time copies'],['practice','master data: carriers, facilities, practice'],['artifact_index','one line per copied page: its collections and counts'],['artifact_copies','a copy of one collection of another billing page (all its documents inside)'],['sync_runs','one line per practice database sync: boards checked, collections copied or unchanged'],['cascade_runs','one nightly insurance cascade run: pairs checked, visits changed, dollars re-sent, what was done']];
 let curColl=ls.get('ehpa-db-coll')||'feed_batches', curDoc=null, extraColls=[];
 $('#coll').addEventListener('change',()=>{ curColl=$('#coll').value; ls.set('ehpa-db-coll',curColl); curDoc=null; loadColl(); }); $('#doc-q').addEventListener('input',()=>renderDocList());
 let collDocs=[];
@@ -521,7 +577,7 @@ const LINKS=[['GitHub main (the record)',REPO+'/tree/main','code','scripts/helpe
 $('#mirror-links').innerHTML=LINKS.map(p=>'<a href="'+esc(p[1])+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(p[0])+'</span><span class="kd">'+esc(p[2])+'</span></span><span class="nt">'+esc(p[3])+'</span></a>').join('');
 const ROUTINES=[['ehpa Billing Button - full billing run','trig_01S771Si8VJ8DvcwgHMHGYB5','on demand from the Button page; writes billing_runs, feed_batches, feed_checks, era_runs, snapshots'],['Claimocity feed - daily','trig_011wLUbRetVyUZdEBojuCwrs','8:34 PM ET daily; writes feed_checks and, when files are new, feed_batches'],['Backend billing run - every 2 hours','trig_01QRqT8KB4Q1H9EyYRG4NBKX','the scheduled columns/ERA pass; writes billing_runs when it reports'],['Nightly insurance cascade','trig_01XVrVN9dpSdvAbB1ZrsAzFU','eligibility cascade; its approvals land in snapshots/approvals'],['Billing approvals sync - hourly','trig_01Bqg5n4YZZG55SULBq79JKJ','copies waiting packages onto the Mandatory Approvals page'],['Mandatory approval writes - 8:51 AM/PM','trig_01YUgjTTz71pE9Nh65mMUeGY','reminder of what is waiting'],['Practice database sync - daily','nightly/practice_db_sync_prompt_v1.txt','copies the other billing pages\u2019 databases and datasets into artifact_copies (William creates the routine from this prompt)']];
 $('#routines').innerHTML=ROUTINES.map(r=>'<a href="'+(r[1].startsWith('trig_')?'https://claude.ai/code/routines/'+esc(r[1]):esc(GH(r[1])))+'" target="_blank" rel="noopener"><span class="nm"><span>'+esc(r[0])+'</span><span class="kd">routine</span></span><span class="nt">'+esc(r[2])+'</span></a>').join('');
-function renderSchema(){ const rows=[['feed_batches','&lt;ingest stamp&gt; (.p2… parts)','every feed message of one ingest with its AdvancedMD outcome, holds, files, lookups','Button step feed · daily feed task','practices/ehpa/registers/feed_recon_&lt;stamp&gt;.json',D.batches.length],['feed_checks','&lt;run stamp&gt;','what the bucket held, result (ingested / nothing new / blocked), visits and dollars','every feed run','registers/claimocity_ingest.json',D.checks.length],['billing_runs','&lt;run stamp&gt;','headline, columns before→after, steps, packages, waiting, errors','Billing Button · 2-hourly run','reports/button/&lt;stamp&gt;.json',D.runs.length],['era_runs','&lt;run stamp&gt;','unposted checks before/after, posted lines, outcomes, audit flags','runs that post ERAs','registers/era_*_&lt;stamp&gt;.json',D.era.length],['snapshots','&lt;kind&gt;-&lt;stamp&gt;','approvals register, repo head, other point-in-time copies','every run','registers/approvals_pending.json · git',D.snaps.length],['practice','carriers · facilities · practice','master data as on main','chat session','practices/ehpa/*.json',D.practice.length],['artifact_index · artifact_copies','&lt;page&gt;-&lt;stamp&gt; · &lt;page&gt;-&lt;collection&gt;-&lt;stamp&gt;','copies of the other billing pages\u2019 databases and embedded datasets (one collection per copy; an unchanged collection is not copied again)','practice database sync (daily)','each page\u2019s own database \u00b7 registers/practice_db_copies.json',D.index.length],['sync_runs','&lt;run stamp&gt;','one sync run: pages checked, collections copied or unchanged','practice database sync (daily)','registers/practice_db_copies.json',D.syncs.length]];
+function renderSchema(){ const rows=[['feed_batches','&lt;ingest stamp&gt; (.p2… parts)','every feed message of one ingest with its AdvancedMD outcome, holds, files, lookups','Button step feed · daily feed task','practices/ehpa/registers/feed_recon_&lt;stamp&gt;.json',D.batches.length],['feed_checks','&lt;run stamp&gt;','what the bucket held, result (ingested / nothing new / blocked), visits and dollars','every feed run','registers/claimocity_ingest.json',D.checks.length],['billing_runs','&lt;run stamp&gt;','headline, columns before→after, steps, packages, waiting, errors','Billing Button · 2-hourly run','reports/button/&lt;stamp&gt;.json',D.runs.length],['era_runs','&lt;run stamp&gt;','unposted checks before/after, posted lines, outcomes, audit flags','runs that post ERAs','registers/era_*_&lt;stamp&gt;.json',D.era.length],['snapshots','&lt;kind&gt;-&lt;stamp&gt;','approvals register, repo head, other point-in-time copies','every run','registers/approvals_pending.json · git',D.snaps.length],['practice','carriers · facilities · practice','master data as on main','chat session','practices/ehpa/*.json',D.practice.length],['artifact_index · artifact_copies','&lt;page&gt;-&lt;stamp&gt; · &lt;page&gt;-&lt;collection&gt;-&lt;stamp&gt;','copies of the other billing pages\u2019 databases and embedded datasets (one collection per copy; an unchanged collection is not copied again)','practice database sync (daily)','each page\u2019s own database \u00b7 registers/practice_db_copies.json',D.index.length],['sync_runs','&lt;run stamp&gt;','one sync run: pages checked, collections copied or unchanged','practice database sync (daily)','registers/practice_db_copies.json',D.syncs.length],['cascade_runs','&lt;run stamp&gt;','one nightly insurance cascade: pairs checked, visits changed, dollars re-sent, what was done','chat session (from the nightly run commits)','nightly/runs/&lt;stamp&gt;/',D.cascade.length]];
   $('#schema').innerHTML=rows.map(r=>'<tr><td>'+r[0]+'</td><td class="mono">'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3]+'</td><td class="mono">'+r[4]+'</td><td class="num">'+fmt(r[5])+'</td></tr>').join(''); }
 function renderOverview(){ const lastCheck=D.checks[0]; const lastIngest=D.checks.find(c=>c.result==='ingested'); const lastRun=D.runs[0]; const lastEra=D.era.find(r=>(r.line_count||0)>0&&!r.dry); const appr=newestSnap('approvals'); const repo=newestSnap('repo');
   const {rows:all}=allRows(); const ent=all.filter(r=>r.s==='entered'); const notIn=all.filter(r=>['dx','deceased','cpt','skipped','failed','nochart'].includes(r.s));
@@ -547,6 +603,6 @@ let rendering=false;
 function renderAll(){ if(rendering) return; rendering=true; try{ renderSchema(); renderOverview(); renderFeed(); renderRuns(); renderEra(); renderAppr(); renderCopies(); fillCollSelect(); if(!$('#view-data').hidden&&D.db&&!collDocs.length) loadColl(); }finally{ rendering=false; } }
 document.querySelectorAll('#rail a').forEach(a=>a.addEventListener('click',()=>{ if(a.dataset.view==='data') setTimeout(loadColl,50); }));
 $('#refresh').addEventListener('click',async()=>{ const b=$('#refresh'); b.disabled=true; b.classList.add('spin'); say('Re-reading the database…'); try{ await connect(); if(!$('#view-data').hidden) await loadColl(); say(D.db?'Up to date.':'','ok'); }finally{ b.disabled=false; b.classList.remove('spin'); } });
-addEventListener('resize',()=>{ clearTimeout(window.__rsz); window.__rsz=setTimeout(()=>{ if(!$('#view-feed').hidden){ dayChart(); pulledChart(); } },150); });
+addEventListener('resize',()=>{ clearTimeout(window.__rsz); window.__rsz=setTimeout(()=>{ if(!$('#view-feed').hidden){ dayChart(); pulledChart(); cascadeChart(); } },150); });
 route(); renderAll(); connect();
 </script>
