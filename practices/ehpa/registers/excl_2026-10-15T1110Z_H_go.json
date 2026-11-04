@@ -1,0 +1,101 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "H": {
+   "pid": "20347",
+   "code": "WOCLTREQ",
+   "why": "deceased [DOB]; Humana INACTIVE; Medicare + Humana paid the 99305, the 99497 residual has no payer left",
+   "visits": [
+    {
+     "vid": "13965169",
+     "claim": "13965169B",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "20961003",
+       "cpt": "99305",
+       "insbal": 0.0,
+       "steps": [],
+       "result": "already $0 - nothing to post"
+      },
+      {
+       "cid": "20961004",
+       "cpt": "99497",
+       "insbal": 15.6,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 15.6,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:22:32\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "20961003": {
+       "cpt": "99305",
+       "fee": 199.0,
+       "paid": 199.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -100.75,
+         "812329372",
+         "FLO02",
+         "0"
+        ],
+        [
+         -25.58,
+         "100973334230303",
+         "HUM01",
+         "0"
+        ]
+       ]
+      },
+      "20961004": {
+       "cpt": "99497",
+       "fee": 133.0,
+       "paid": 133.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "HUM01",
+       "pays": [
+        [
+         -61.44,
+         "812329372",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "100973334230303",
+         "HUM01",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "HUM01",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 1,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:22:34\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

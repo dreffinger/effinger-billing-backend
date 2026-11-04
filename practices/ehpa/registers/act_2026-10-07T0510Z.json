@@ -1,0 +1,31 @@
+{
+ "stamp": "2026-10-07T0510Z",
+ "dry": false,
+ "steps": [
+  "B pat17475338 v19431100 19431100H charge 23337644: live carrier ['BCBS'] insbal [31.3] patbal [0.0] paid [278.7] medicare-pays 1 other-pays 0",
+  "B pat12180329 v19436591 19436591H charge 23343643: live carrier ['BCBS'] insbal [31.94] patbal [0.0] paid [278.06] medicare-pays 1 other-pays 0",
+  "B pat12180329 v19436827 19436827H charge 23343875: live carrier ['BCBS'] insbal [21.8] patbal [0.0] paid [138.2] medicare-pays 1 other-pays 0",
+  "B hideexclusions 1700276: <?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-w27fc\" lst=\"10/07/2026 01:24:10\"><Results success=\"1\" /><E"
+ ],
+ "hold": [],
+ "done": [
+  {
+   "pid": "17475338",
+   "vid": "19431100",
+   "claim": "19431100H",
+   "action": "PREF0283 completed - crossover-wait rule (Medicare paid 125.2)"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436591",
+   "claim": "19436591H",
+   "action": "PREF0283 completed - crossover-wait rule (Medicare paid 125.2)"
+  },
+  {
+   "pid": "12180329",
+   "vid": "19436827",
+   "claim": "19436827H",
+   "action": "PREF0283 completed - crossover-wait rule (Medicare paid 85.46)"
+  }
+ ]
+}

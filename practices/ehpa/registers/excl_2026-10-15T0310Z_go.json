@@ -1,0 +1,122 @@
+{
+ "stamp": "2026-10-15T0310Z",
+ "live": true,
+ "pid": "17471414",
+ "steps": [
+  {
+   "cid": "22467665",
+   "cpt": "99306",
+   "expect": 105.54,
+   "wocltreq": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:44:27\"><Results success=\"1\" paymentid=\"10175215\" /><Error /></PPMDResult"
+   ],
+   "result": "settled (primary paid, cost-share written off)"
+  },
+  {
+   "cid": "22467666",
+   "cpt": "99497",
+   "expect": 70.66,
+   "wocltreq": [
+    true,
+    "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:44:29\"><Results success=\"1\" paymentid=\"10175216\" /><Error /></PPMDResult"
+   ],
+   "result": "settled (primary paid, cost-share written off)"
+  }
+ ],
+ "hidden": {
+  "1700296": {
+   "n": 1,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:44:31\"><Results success=\"1\" /><E"
+  }
+ },
+ "before": {
+  "22467665": {
+   "cpt": "99306",
+   "dos": "03/18/2024",
+   "fee": 256.0,
+   "paid": 150.46,
+   "insbal": 105.54,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-150.46",
+     "147569600241201"
+    ]
+   ]
+  },
+  "22467666": {
+   "cpt": "99497",
+   "dos": "03/18/2024",
+   "fee": 133.0,
+   "paid": 62.34,
+   "insbal": 70.66,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-62.34",
+     "147569600241201"
+    ]
+   ]
+  }
+ },
+ "after": {
+  "22467665": {
+   "cpt": "99306",
+   "dos": "03/18/2024",
+   "fee": 256.0,
+   "paid": 256.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-150.46",
+     "147569600241201"
+    ],
+    [
+     "10/14/2026",
+     "HUM01",
+     "0.00",
+     "EXCL1015"
+    ]
+   ]
+  },
+  "22467666": {
+   "cpt": "99497",
+   "dos": "03/18/2024",
+   "fee": 133.0,
+   "paid": 133.0,
+   "insbal": 0.0,
+   "patbal": 0.0,
+   "carrier": "UNI20",
+   "billdate": "10/13/2026",
+   "pays": [
+    [
+     "09/09/2026",
+     "HUM01",
+     "-62.34",
+     "147569600241201"
+    ],
+    [
+     "10/14/2026",
+     "HUM01",
+     "0.00",
+     "EXCL1015"
+    ]
+   ]
+  }
+ }
+}

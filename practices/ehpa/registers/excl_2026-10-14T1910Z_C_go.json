@@ -1,0 +1,236 @@
+{
+ "stamp": "2026-10-14T1910Z",
+ "live": true,
+ "A": [],
+ "B": [],
+ "C": [
+  {
+   "pid": "25416",
+   "vid": "24826",
+   "claimid": "24826C",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "3205",
+     "cpt": "99232",
+     "dos": "08/25/2022",
+     "insbal": 14.32,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:10\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 14.32"
+    }
+   ]
+  },
+  {
+   "pid": "25416",
+   "vid": "28053",
+   "claimid": "28053C",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "6978",
+     "cpt": "99308",
+     "dos": "09/07/2022",
+     "insbal": 11.67,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:13\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 11.67"
+    }
+   ]
+  },
+  {
+   "pid": "25416",
+   "vid": "29807",
+   "claimid": "29807C",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "10197",
+     "cpt": "99308",
+     "dos": "09/19/2022",
+     "insbal": 11.67,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:16\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 11.67"
+    }
+   ]
+  },
+  {
+   "pid": "25416",
+   "vid": "30078",
+   "claimid": "30078C",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "10506",
+     "cpt": "99309",
+     "dos": "09/21/2022",
+     "insbal": 15.32,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:19\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 15.32"
+    }
+   ]
+  },
+  {
+   "pid": "25416",
+   "vid": "30916",
+   "claimid": "30916D",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "11360",
+     "cpt": "99305",
+     "dos": "09/28/2022",
+     "insbal": 25.58,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:21\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 25.58"
+    },
+    {
+     "cid": "11361",
+     "cpt": "99497",
+     "dos": "09/28/2022",
+     "insbal": 15.6,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:23\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 15.60"
+    }
+   ]
+  },
+  {
+   "pid": "25416",
+   "vid": "31869",
+   "claimid": "31869G",
+   "run": "1700296",
+   "lines": [
+    {
+     "cid": "12293",
+     "cpt": "99308",
+     "dos": "10/05/2022",
+     "insbal": 11.67,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:26\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 11.67"
+    }
+   ]
+  },
+  {
+   "pid": "47643",
+   "vid": "39939",
+   "claimid": "39939B",
+   "run": "1700297",
+   "lines": [
+    {
+     "cid": "19946",
+     "cpt": "99306",
+     "dos": "11/07/2022",
+     "insbal": 32.91,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:29\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 32.91"
+    },
+    {
+     "cid": "19947",
+     "cpt": "99497",
+     "dos": "11/07/2022",
+     "insbal": 15.6,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:31\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 15.60"
+    }
+   ]
+  },
+  {
+   "pid": "47643",
+   "vid": "41664",
+   "claimid": "41664B",
+   "run": "1700297",
+   "lines": [
+    {
+     "cid": "21382",
+     "cpt": "99308",
+     "dos": "12/06/2022",
+     "insbal": 11.67,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:34\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 11.67"
+    }
+   ]
+  },
+  {
+   "pid": "47643",
+   "vid": "41667",
+   "claimid": "41667B",
+   "run": "1700297",
+   "lines": [
+    {
+     "cid": "21385",
+     "cpt": "99308",
+     "dos": "11/29/2022",
+     "insbal": 13.73,
+     "patbal": 0.0,
+     "carrier": "UNI20",
+     "post": [
+      true,
+      "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:43:37\"><Results success=\"1\" paym"
+     ],
+     "result": "written off 13.73"
+    }
+   ]
+  }
+ ],
+ "hidden": {
+  "1700296": {
+   "n": 6,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:38\"><Results success=\"1\" /><E"
+  },
+  "1700297": {
+   "n": 3,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:43:39\"><Results success=\"1\" /><E"
+  }
+ },
+ "faults": 0
+}

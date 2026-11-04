@@ -1,0 +1,508 @@
+{
+ "stamp": "2026-10-15T1110Z",
+ "live": true,
+ "sections": {
+  "N": {
+   "pid": "17471834",
+   "code": "WOCLTREQ",
+   "why": "VA CCN 'returned to entity' on Medicare-paid 2024 SNF visits (deceased [DOB]); VA CCN is not a Medicare supplement - cost-share written off",
+   "visits": [
+    {
+     "vid": "19385867",
+     "claim": "19385867F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456038",
+       "cpt": "99306",
+       "insbal": 30.71,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 30.71,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:25:15\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      },
+      {
+       "cid": "22456039",
+       "cpt": "99497",
+       "insbal": 12.72,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.72,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:25:17\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22456038": {
+       "cpt": "99306",
+       "fee": 256.0,
+       "paid": 256.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -120.36,
+         "815336903",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      },
+      "22456039": {
+       "cpt": "99497",
+       "fee": 133.0,
+       "paid": 133.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -49.87,
+         "815336903",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19386226",
+     "claim": "19386226F",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456457",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:25:20\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22456457": {
+       "cpt": "99308",
+       "fee": 107.0,
+       "paid": 107.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -49.07,
+         "815336903",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19386717",
+     "claim": "19386717E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22456884",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:25:24\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22456884": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -71.01,
+         "815336903",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19387411",
+     "claim": "19387411E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22457691",
+       "cpt": "99309",
+       "insbal": 19.65,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 1.92,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-hb5kb\" lst=\"10/15/2026 16:25:28\"><Results success=\"1\" paym"
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 17.73,
+         "ok": false,
+         "msg": "over-apply: pay 0.00 + wo 17.73 > insbalance 0.00"
+        }
+       ],
+       "result": "FAULT"
+      }
+     ],
+     "result": "HOLD"
+    },
+    {
+     "vid": "19387567",
+     "claim": "19387567E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22457934",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:25:32\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22457934": {
+       "cpt": "99308",
+       "fee": 107.0,
+       "paid": 107.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -49.07,
+         "815432154",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19387984",
+     "claim": "19387984E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22458487",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:25:36\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22458487": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -71.01,
+         "815458384",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19388428",
+     "claim": "19388428E",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22458894",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:25:40\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22458894": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -71.01,
+         "815504904",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19389094",
+     "claim": "19389094D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22459701",
+       "cpt": "99309",
+       "insbal": 69.99,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 51.88,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:25:43\"><Results success=\"1\" paym"
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.11,
+         "ok": false,
+         "msg": "over-apply: pay 0.00 + wo 18.11 > insbalance 0.00"
+        }
+       ],
+       "result": "FAULT"
+      }
+     ],
+     "result": "HOLD"
+    },
+    {
+     "vid": "19390386",
+     "claim": "19390386D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22461706",
+       "cpt": "99309",
+       "insbal": 18.12,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 18.12,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:25:47\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22461706": {
+       "cpt": "99309",
+       "fee": 141.0,
+       "paid": 141.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -71.01,
+         "815675051",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19391178",
+     "claim": "19391178D",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22462861",
+       "cpt": "99308",
+       "insbal": 12.52,
+       "steps": [
+        {
+         "code": "WOCLTREQ",
+         "amt": 12.52,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:25:53\"><Results success=\"1\" paym"
+        }
+       ],
+       "result": "settled"
+      }
+     ],
+     "after": {
+      "22462861": {
+       "cpt": "99308",
+       "fee": 107.0,
+       "paid": 107.0,
+       "insbal": 0.0,
+       "patbal": 0.0,
+       "carrier": "VACCN",
+       "pays": [
+        [
+         -49.07,
+         "815742608",
+         "FLO02",
+         "0"
+        ],
+        [
+         0.0,
+         "EXCL1015B",
+         "VACCN",
+         "0"
+        ]
+       ]
+      }
+     },
+     "result": "settled"
+    },
+    {
+     "vid": "19392888",
+     "claim": "19392888C",
+     "run": "1700296",
+     "charges": [
+      {
+       "cid": "22464974",
+       "cpt": "99316",
+       "insbal": 73.36,
+       "steps": [
+        {
+         "code": "WOINS",
+         "amt": 51.26,
+         "ok": true,
+         "msg": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/15/2026 16:25:57\"><Results success=\"1\" paym"
+        },
+        {
+         "code": "WOCLTREQ",
+         "amt": 22.1,
+         "ok": false,
+         "msg": "over-apply: pay 0.00 + wo 22.10 > insbalance 0.00"
+        }
+       ],
+       "result": "FAULT"
+      }
+     ],
+     "result": "HOLD"
+    }
+   ],
+   "hide": {
+    "1700296": {
+     "n": 8,
+     "ok": true,
+     "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g6558\" lst=\"10/15/2026 16:25:59\"><Results success=\"1\" /><E"
+    }
+   }
+  }
+ }
+}

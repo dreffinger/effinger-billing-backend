@@ -1,0 +1,492 @@
+{
+ "stamp": "2026-10-14T1910Z",
+ "live": true,
+ "A": [],
+ "B": [
+  {
+   "pid": "17471451",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9510766",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9510767",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1,2",
+   "visits": [
+    {
+     "vid": "19455684",
+     "cid": "23367061",
+     "claimid": "19455684B",
+     "run": "1700296",
+     "before": {
+      "23367061": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 177.4,
+       "insbal": 28.6,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-112.09",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455684 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-g4xbm\" lst=\"10/14/2026 20:39:49\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17473432",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9514507",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9514508",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1,2",
+   "visits": [
+    {
+     "vid": "19455934",
+     "cid": "23367405",
+     "claimid": "19455934B",
+     "run": "1700296",
+     "before": {
+      "23367405": {
+       "cpt": "99306",
+       "dos": "09/15/2026",
+       "fee": 256.0,
+       "paid": 222.9,
+       "insbal": 33.1,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-129.74",
+         "819928855"
+        ]
+       ]
+      },
+      "23367406": {
+       "cpt": "99497",
+       "dos": "09/15/2026",
+       "fee": 133.0,
+       "paid": 119.65,
+       "insbal": 13.35,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-52.33",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455934 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    },
+    {
+     "vid": "19455955",
+     "cid": "23367447",
+     "claimid": "19455955B",
+     "run": "1700296",
+     "before": {
+      "23367447": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 189.86,
+       "insbal": 16.14,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-63.28",
+         "819928855"
+        ]
+       ]
+      },
+      "23367448": {
+       "cpt": "99489",
+       "dos": "09/20/2026",
+       "fee": 109.0,
+       "paid": 100.08,
+       "insbal": 8.92,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-34.95",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455955 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-8ns2l\" lst=\"10/14/2026 20:40:07\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17469426",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9509801",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9509802",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1,2",
+   "visits": [
+    {
+     "vid": "19455674",
+     "cid": "23367048",
+     "claimid": "19455674B",
+     "run": "1700297",
+     "before": {
+      "23367048": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 177.4,
+       "insbal": 28.6,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-112.09",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455674 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-g4xbm\" lst=\"10/14/2026 20:40:40\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17471495",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9511154",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9511155",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1,2",
+   "visits": [
+    {
+     "vid": "19455686",
+     "cid": "23367063",
+     "claimid": "19455686B",
+     "run": "1700297",
+     "before": {
+      "23367063": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 177.4,
+       "insbal": 28.6,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-112.09",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455686 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-8ns2l\" lst=\"10/14/2026 20:40:58\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17472732",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9512282",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9512283",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1",
+   "visits": [
+    {
+     "vid": "19455710",
+     "cid": "23367099",
+     "claimid": "19455710B",
+     "run": "1700297",
+     "before": {
+      "23367099": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 177.4,
+       "insbal": 28.6,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-112.09",
+         "819928855"
+        ]
+       ]
+      },
+      "23367100": {
+       "cpt": "99489",
+       "dos": "09/20/2026",
+       "fee": 109.0,
+       "paid": 93.51,
+       "insbal": 15.49,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-60.74",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455710 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-8ns2l\" lst=\"10/14/2026 20:41:15\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17476917",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9518290",
+     "car6085",
+     "1",
+     ""
+    ],
+    [
+     "ins9518291",
+     "car6404",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "1",
+   "visits": [
+    {
+     "vid": "19455938",
+     "cid": "23367413",
+     "claimid": "19455938B",
+     "run": "1700297",
+     "before": {
+      "23367413": {
+       "cpt": "99487",
+       "dos": "09/20/2026",
+       "fee": 206.0,
+       "paid": 189.86,
+       "insbal": 16.14,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-63.28",
+         "819928855"
+        ]
+       ]
+      },
+      "23367414": {
+       "cpt": "99489",
+       "dos": "09/20/2026",
+       "fee": 109.0,
+       "paid": 100.08,
+       "insbal": 8.92,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/07/2026",
+         "FLO02",
+         "-34.95",
+         "819928855"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19455938 insorder already 1,2 - resave skipped | freq1 + rebill seq 2 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-8ns2l\" lst=\"10/14/2026 20:41:35\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  },
+  {
+   "pid": "17471496",
+   "insid": "[member id]",
+   "plans_before": [
+    [
+     "ins9510840",
+     "car6404",
+     "1",
+     ""
+    ],
+    [
+     "ins9511208",
+     "car6085",
+     "2",
+     ""
+    ]
+   ],
+   "porder": "2,1",
+   "visits": [
+    {
+     "vid": "19449794",
+     "cid": "23359632",
+     "claimid": "19449794C",
+     "run": "1700296",
+     "before": {
+      "23359632": {
+       "cpt": "99349",
+       "dos": "07/24/2026",
+       "fee": 198.0,
+       "paid": 175.4,
+       "insbal": 22.6,
+       "patbal": 0.0,
+       "carrier": "UNI20",
+       "billdate": "10/13/2026",
+       "pays": [
+        [
+         "10/08/2026",
+         "FLO02",
+         "-88.61",
+         "819938228"
+        ]
+       ]
+      }
+     },
+     "reroute": "visit vst19449794 insorder already 2,1 - resave skipped | freq1 + rebill seq 1 -> 204",
+     "result": "sent"
+    }
+   ],
+   "carrier": [
+    true,
+    "f-g4xbm\" lst=\"10/14/2026 20:41:54\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults>"
+   ]
+  }
+ ],
+ "C": [],
+ "hidden": {
+  "1700296": {
+   "n": 4,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-8ns2l\" lst=\"10/14/2026 20:42:05\"><Results success=\"1\" /><E"
+  },
+  "1700297": {
+   "n": 4,
+   "ok": true,
+   "resp": "<?xml version='1.0' encoding='ISO-8859-1'?><PPMDResults s=\"advancedmd-api-processrequest-3-775768bb6f-g4xbm\" lst=\"10/14/2026 20:42:06\"><Results success=\"1\" /><E"
+  }
+ },
+ "faults": 0
+}

@@ -1,0 +1,11 @@
+{
+ "stamp": "2026-10-15T0510Z",
+ "live": true,
+ "sections": {
+  "G": [
+   "v19457790 moved 443.00 to patient -> ok",
+   "v19457788 moved 160.00 to patient -> ok",
+   "release -> [('19457790', 'released'), ('19457788', 'released')]"
+  ]
+ }
+}
