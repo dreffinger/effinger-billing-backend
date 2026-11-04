@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-04T1519Z",
+ "stamp": "2026-11-04T1719Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 3 checks $70.46 -> 0 checks $0.00",
+ "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 1 checks $493.71 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41856507815",
- "started": "2026-11-04T15:19:35Z",
- "ended": "2026-11-04T15:26:13Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41876378518",
+ "started": "2026-11-04T17:19:07Z",
+ "ended": "2026-11-04T17:26:04Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 3,
-    "unposted": 70.46
+    "checks": 1,
+    "unposted": 493.71
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 70.46,
+   "pay": 493.71,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 323106.01,
-   "visits": 2641,
+   "total": 321554.32,
+   "visits": 2634,
    "charts": 482,
    "over_365": {
     "n": 559,
@@ -65,7 +65,7 @@
    "visits": 7783,
    "actionable": 65,
    "actionable_amt": 11917.0,
-   "asof": "2026-11-04 15:26 UTC"
+   "asof": "2026-11-04 17:26 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T15:19:35Z",
-   "ended": "2026-11-04T15:19:35Z"
+   "started": "2026-11-04T17:19:07Z",
+   "ended": "2026-11-04T17:19:07Z"
   },
   {
    "name": "columns",
@@ -121,53 +121,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T15:19:35Z",
-   "ended": "2026-11-04T15:21:36Z"
+   "started": "2026-11-04T17:19:07Z",
+   "ended": "2026-11-04T17:21:19Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "3 checks / $70.46 -> 0 checks / $0.00",
+   "summary": "1 checks / $493.71 -> 0 checks / $0.00",
    "counts": {
     "era_post lines": 1,
-    "checks dismissed": 2,
+    "checks dismissed": 0,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 70.46,
+    "unposted before": 493.71,
     "unposted after": 0,
-    "posted this run": 70.46
+    "posted this run": 493.71
    },
    "lines": [
     {
-     "check": 1053400,
-     "payer": "HUMANA",
-     "checknumber": "205309836261103",
+     "check": 1053409,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "820114139",
      "amount": 0.0,
-     "unposted": 70.46,
-     "stage": "before"
-    },
-    {
-     "check": 1053402,
-     "payer": "SUNSHINE STATE HEALTH PLAN",
-     "checknumber": "X319947579",
-     "amount": 0.0,
-     "unposted": 0.0,
-     "stage": "before"
-    },
-    {
-     "check": 1053403,
-     "payer": "FLORIDA MEDICAID",
-     "checknumber": "NO-PAY-202611020005006",
-     "amount": 0.0,
-     "unposted": 0.0,
+     "unposted": 493.71,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-04T15:21:36Z",
-   "ended": "2026-11-04T15:21:52Z"
+   "started": "2026-11-04T17:21:19Z",
+   "ended": "2026-11-04T17:21:28Z"
   },
   {
    "name": "packages",
@@ -178,29 +162,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T15:21:52Z",
-   "ended": "2026-11-04T15:21:52Z"
+   "started": "2026-11-04T17:21:28Z",
+   "ended": "2026-11-04T17:21:28Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2641 visits on 482 charts, $323106.01 open; 559 over a year ($24872.92)",
+   "summary": "2634 visits on 482 charts, $321554.32 open; 559 over a year ($24872.92)",
    "counts": {
-    "visits": 2641,
+    "visits": 2634,
     "charts": 482,
     "over 365 days": 559
    },
    "dollars": {
-    "open insurance balance": 323106.01,
+    "open insurance balance": 321554.32,
     "over 365 days": 24872.92
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1408,
-     "dollars": 175240.76,
+     "visits": 1401,
+     "dollars": 173689.07,
      "oldest_days": 1085
     },
     {
@@ -282,8 +266,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T15:21:52Z",
-   "ended": "2026-11-04T15:21:54Z"
+   "started": "2026-11-04T17:21:28Z",
+   "ended": "2026-11-04T17:21:30Z"
   },
   {
    "name": "denials",
@@ -370,8 +354,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T15:21:54Z",
-   "ended": "2026-11-04T15:26:13Z"
+   "started": "2026-11-04T17:21:30Z",
+   "ended": "2026-11-04T17:26:04Z"
   }
  ],
  "packages": [],
