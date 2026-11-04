@@ -11,7 +11,7 @@ cp "$R"/practices/ehpa/{carriers.json,facilities.json,practice.json,rules.md} "$
 cp "$R"/practices/ehpa/carriers.json "$W"/
 cp -r "$R"/practices/ehpa/registers/. "$W/registers/" 2>/dev/null || true
 cp "$R"/docs/captured_calls.md "$W"/ 2>/dev/null || true
-python3 -c "import openpyxl" 2>/dev/null || pip install -q openpyxl 2>/dev/null || true
+python3 -c "import openpyxl, requests" 2>/dev/null || python3 -m pip install -q openpyxl requests 2>/dev/null || true
 if [ -n "${AMD_PSW:-}" ]; then python3 -c "import os,json;json.dump({'psw':os.environ['AMD_PSW']},open('$W/.amd_cred.json','w'))"; chmod 600 "$W/.amd_cred.json"; fi
 # Still needed from Drive 'workspace mirror' (135OCbRNCnFLyVm2GBXk1XsE3lt0vnsrn): pseudonyms.json -> $R/secrets/, void_rules.json, precheck_cache.json, cred_nppes_snapshot.json
 echo "bootstrap done: $(ls "$W" | wc -l) files in $W"

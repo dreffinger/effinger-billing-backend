@@ -1,0 +1,9 @@
+# captured_calls additions - nightly cascade 2026-11-04T0535Z (Wednesday)
+
+No new AdvancedMD or Stedi call shapes this run. Calls used (all already in the registry / docs/api_vocabulary.json): AMD login (one, precheck.py 05:41Z; .session.json reused by every later helper), massrebillsearch (precheck unpaid list + build_money), getdemographic (precheck DOB/member reads; elig_amd plan list), EligibilityDetailsLegacy/checkEligibility (elig_amd.py --all on pat17473090 and pat22858), gettxhistory (txh.py), getchargedetaildataicd10 + updvisitwithcharges full echo + updextrainsinfo + POST /api/claim/chargerebill (freq1_visit.py reroute, one visit, 204), Stedi MBI lookup MBILUNOSSN (six, precheck), Stedi payer eligibility v3 (eight, precheck), Stedi payers/search probe (free), GET /api/era/checks (empty), void_rules charge lookup. Vocabulary entries added: 0.
+
+Bootstrap observation (fixed in tools/nightly_bootstrap.sh tonight): the nightly container's `python3` is /usr/local/bin/python3 = 3.11 while bare `pip` belongs to the 3.13 interpreter, so `pip install openpyxl` satisfied nothing the helpers import and `requests` was missing until `python3 -m pip install requests openpyxl` was run. The bootstrap now installs both through `python3 -m pip`.
+
+Pattern note (second night running, pat17473090): the Claimocity feed keeps defaulting this chart's hospital visits to Medicare FLO02 although the chart carries the HCSC Blue Cross MA plan (BlueCard, carrier BCBS) at seq 1 - the fix is `freq1_visit.py reroute <vid> <cid> 1,2 1` per new visit (no plan add), and rebill_patient_year must NOT be used with --days on this chart while an unbilled future-dated feed visit (11/07/2026 DOS question) sits on it, because the day filter admits future DOS.
+
+Egress to npiregistry.cms.hhs.gov / data.cms.gov / oig.hhs.gov is still blocked from the nightly container (cred_check: LEIE 'Max retries exceeded'; the 10/26 NPPES snapshot stands).
