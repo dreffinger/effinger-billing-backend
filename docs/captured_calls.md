@@ -5660,3 +5660,13 @@ No new AMD/Stedi call shapes this run. Calls used (all already in the registry):
 ## Observations
 - Pam's 'Additional insurance on Jamie Griffith' page (16:47Z) carried, under the UHC Dual Complete UCard, a Medicare card and a Kentucky driver's licence belonging to another resident (chart pat17477353, DOB matches the licence). That chart's Humana MA is ACTIVE on the AMD 271 - treated as a mis-scanned page, nothing changed on that chart, noted on the Griffith row.
 - Neither Sodalis admit (GRIFFITH-MERRITT / RASHBROOKE) has an AMD chart yet; lookuppatient with the hyphenated and the card spellings all empty - parked rows, the feed creates the charts.
+
+# captured_calls additions - backend columns run 2026-11-04T0041Z (Tuesday 7:41 PM ET 11/3)
+
+No new AMD/Stedi call shapes this run. Calls used (all in the registry): login (one, 00:52Z), getclaimcenteroverview, getreviewcharges, getclaiminspectorbatches / getclaiminspectorcharges, getclaimunbillablecharges, getclaimexclusionclaimruns / getclaimexclusioncharges (columns_scan.py before + after), gettxhistory (6 charts), checkEligibility (elig_amd --all x3), getdemographic x2, Stedi CMS 271 x5 (MBI at the DOS), updateinsurance (enddate + sequence, wrapped shape) x4, updvisitwithcharges no-rebill echo + updextrainsinfo + chargerebill (freq1_visit.reroute) x8, hideexclusions run 1700349 x13, GET /api/era/checks x2, posterapayments x2 (era_post), GET /api/era/checkdetails (1053398), POST /api/era/checks/dismiss (1053398), gcloud storage ls (0 new).
+
+## Container lesson (repeat of 11/3 1854Z): `python3 -m pip install --ignore-installed --target /home/claude/pylib cryptography cffi` then `PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3 python3 claimocity_gcs.py` - worked first time this run (--install-key + listing, exit 0).
+
+## Observations
+- The 11/2 Sunday sweep re-sent as 'NOT ON FILE' eight UHC visits that UHC had already answered $0 PR26/PR27 on 9/4/2026 (charts 17473422, 17473065); UHC rejected the re-sends as duplicates (SmartEdit UDCP3). The settling answer was the wrong-payer cascade (Medicare 271 at the DOS), not a resend - a visit with a non-void $0 PR26/PR27 payment should route to the cascade before any sweep resend.
+- TRICARE East answers 'PA R DUP DUPLICATE OF A CLAIM PREVIOUSLY PAID' on claims it paid outside the ERA Center (pre-10/3 enrollment); Stedi 276 answers nothing for TRI00 (status []), so the EOB is William's.
