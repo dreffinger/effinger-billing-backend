@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-04T05:39:47Z",
+ "at": "2026-11-04T07:22:23Z",
  "as_of": "2026-11-04",
- "total": 323419.31,
- "visits": 2644,
+ "total": 323217.01,
+ "visits": 2642,
  "charts": 483,
  "over_365": {
-  "n": 560,
-  "dollars": 24915.22
+  "n": 559,
+  "dollars": 24872.92
  },
  "by_bucket": {
   "0-30": {
-   "n": 720,
-   "dollars": 148156.54
+   "n": 719,
+   "dollars": 147996.54
   },
   "31-60": {
    "n": 221,
@@ -31,18 +31,18 @@
    "dollars": 62347.38
   },
   "over 365": {
-   "n": 560,
-   "dollars": 24915.22
+   "n": 559,
+   "dollars": 24872.92
   }
  },
  "by_carrier": [
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1409,
-   "dollars": 175400.76,
+   "n": 1408,
+   "dollars": 175240.76,
    "buckets": {
-    "0-30": 94961.84,
+    "0-30": 94801.84,
     "31-60": 12015.53,
     "61-90": 9867.94,
     "91-180": 19534.83,
@@ -279,17 +279,17 @@
   {
    "carrier": "AET07",
    "name": "AETNA",
-   "n": 12,
-   "dollars": 1721.34,
+   "n": 11,
+   "dollars": 1679.04,
    "buckets": {
     "0-30": 0.0,
     "31-60": 0.0,
     "61-90": 0.0,
     "91-180": 976.0,
     "181-365": 703.04,
-    "over 365": 42.3
+    "over 365": 0.0
    },
-   "oldest_days": 428
+   "oldest_days": 274
   },
   {
    "carrier": "FIR07",
@@ -675,8 +675,8 @@
   },
   {
    "month": "2025-09",
-   "n": 46,
-   "dollars": 2364.75
+   "n": 45,
+   "dollars": 2322.45
   },
   {
    "month": "2025-10",
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 15,
-   "dollars": 2204.0
+   "n": 14,
+   "dollars": 2044.0
   }
  ],
  "oldest": [
@@ -5025,14 +5025,6 @@
    "insbalance": 17.65,
    "days": 429,
    "dos": "2025-09-01"
-  },
-  {
-   "visitid": 19415417,
-   "patientid": 17471204,
-   "carriercode": "AET07",
-   "insbalance": 42.3,
-   "days": 428,
-   "dos": "2025-09-02"
   },
   {
    "visitid": 19417129,
@@ -22453,14 +22445,6 @@
   {
    "visitid": 19459895,
    "patientid": 17470950,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 2,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19459892,
-   "patientid": 17473090,
    "carriercode": "FLO02",
    "insbalance": 160.0,
    "days": 2,
