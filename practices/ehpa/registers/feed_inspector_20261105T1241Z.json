@@ -1,0 +1,168 @@
+{
+ "fixed": [
+  {
+   "visit": "19460158",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460160",
+   "pid": "pat47979",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/22/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460187",
+   "pid": "pat17477353",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460189",
+   "pid": "pat23969",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460192",
+   "pid": "pat17473197",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/27/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460198",
+   "pid": "pat17470950",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 10/25/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460200",
+   "pid": "pat17476537",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460205",
+   "pid": "pat17476458",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460221",
+   "pid": "pat17476537",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19460158",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460187",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460189",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460200",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460205",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460221",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19460158",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19460187",
+   "pid": "pat17477353",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19460189",
+   "pid": "pat23969",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  },
+  {
+   "visit": "19460200",
+   "pid": "pat17476537",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M979XXA..."
+  },
+  {
+   "visit": "19460205",
+   "pid": "pat17476458",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) S72009D..."
+  },
+  {
+   "visit": "19460221",
+   "pid": "pat17476537",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) M979XXA..."
+  }
+ ]
+}

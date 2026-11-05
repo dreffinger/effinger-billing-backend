@@ -1,0 +1,18 @@
+[
+ "MERRIMAN add UHCMA -> ins9521149 1",
+ "  271: ACTIVE | plan  | A  B  | others   F6:[MBI];   DBP DENTAL-  WONDERBOX:;   OPTUMRX:;   EFFINGER:1225327380 | death - | addr [address] 157 TALLAHASSEE FL 32308 | aaa []",
+ "  order: (True, \"insorder 1 via ins9521149 -> '1'\")",
+ "  visit: (True, 'visit vst19460211 insorder already 1 - resave skipped')",
+ "COXWELL add FLO02 -> ins9521150 1",
+ "  271: ACTIVE | plan 20120601,20190801 | A 20120601 B 20190801 | others OT  18:S4802 N6:146 WELLCARE PRESCRIPTION INSURANCE, INC.: | death - | addr [address] TALLAHASSEE FL 323084869 | aaa []",
+ "  order: (True, \"insorder 1 via ins9521150 -> '1'\")",
+ "  visit: (True, 'visit vst19460175 insorder already 1 - resave skipped')",
+ "RATHBONE UNI20 271: ACTIVE | plan  | A  B  | others   F6:[MBI]; HN HMOPOS-AARP MEDICARE ADVANTAGE FROM UHC FL-0011 (H N6:H1045-041-000 UNITEDHEALTHCARE:87726; HN  ; HN  ; HN  ;   SYNAPSE HEALTH:;   UNITEDHE | death - | addr [address] TALLAHASSEE FL 32308 | aaa []",
+ "  plans: [('ins9521144', 'car6404', '937990312', '1')]",
+ "  add MCAD -> ins9521151 2",
+ "  MCAD 271: REJECTED   | plan  | A  B  | others  | death - | addr  | aaa [{'ConditionOrResponseCode': 'N', 'RejectReasonCode': '72', 'FollowUpActionCode': 'C'}]",
+ "  order: (True, \"insorder 1,2 via ins9521144 -> '1,2'\")",
+ "  visit: (True, 'resave vst19460188 insorder 1 -> 1,2, 2 live charges (was 2)')",
+ "PENDLETON visit: (True, 'visit vst19460215 insorder already 1 - resave skipped')",
+ "RATHBONE: MCAD 41796819 AAA 72 at FL Medicaid (Stedi 77027) and on AMD 271; CMS QMB window ended 8/31/2026 - plan end-dated 10/31/2026, order and visit back to UNI20 alone"
+]
