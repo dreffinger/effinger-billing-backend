@@ -1,0 +1,29 @@
+{
+ "run": "2026-11-05T0535Z",
+ "weekday": "Thursday",
+ "precheck": {"args": "default --days 14 --max 150 (helper has no --help; the probe ran the full window; 3-day window = the 11/02 pairs)", "pairs": 252, "cached": 202, "new_lookups": 40, "mbi": 19, "eligibility": 21, "discovery": 1, "flagged": 29, "dos_window": "20261022-20261102"},
+ "flags": [
+  {"pid": "17473749", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE with Advantage plan H2406-008 (UHC) 1/1-12/31/2026; UHC 87726 by the formal first name + MBI -> member [member id] AARP MA PPO", "action": "UNI20 car6404 added seq 2 (ins9521141) begin 01/01/2026, patient order 2,1, v19459621 10/27 CCM $315 insorder 2,1 + freq-1 rebill seq 2 (204); board row on William's turn (chart first name vs payer; restore of 2026 write-offs)"},
+  {"pid": "17472491", "carrier": "FLO02", "result": "ADVANTAGE PLAN on DOS (C&O Employees' Hospital Association H4906 since 2003) on the new 11/02 feed visit; chart C&O plan seq 2 still AAA 75", "action": "v19460032 11/02 99306+99497 $389 insorder 1 -> 2,1 + freq-1 rebill seq 2 (204); existing board row appended"},
+  {"pid": "17473460", "carrier": "FLO02", "result": "Stedi ERR 72; AMD 271 AAA 73 (name) on the chart MBI; Stedi CMS with the MBI AAA 73; BCBS BlueOptions 271 ACTIVE and lists the same MBI; Medicare has PAID this chart's 8/10, 8/23, 9/20/2026 claims and the 10/22 CCM already carries a payment", "action": "none - eligibility-only name quirk, claims pay"},
+  {"pid": "23069", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 ACTIVE (A 2005, B 2007), BCBS BlueOptions secondary ACTIVE", "action": "none"},
+  {"pid": "45108", "carrier": "FLO02", "result": "Stedi ERR 72 name miss; AMD 271 Medicare seq 4 ACTIVE since 3/1/2010 (original Medicare); MCAD plans seq 1+2 (730594906) REJECTED AAA 72; UNI20 AARP supplement UNKNOWN", "action": "none tonight (Medicare claim is right); dead Medicaid plans noted for a later secondary pass"},
+  {"pid": "17475312", "carrier": "UNI20", "result": "Stedi 'INACTIVE (Active - Pending Investigation)' + discovery UHC 984112710 9/1-11/30/2026; AMD 271 UNI20 ACTIVE (AARP MA H1045-041), Medicare 271 names the same MA plan", "action": "none - billed plan is right"},
+  {"pid": "17476749", "carrier": "UNI20", "result": "Stedi AAA 42 (payer unable to respond); AMD 271 UNI20 ACTIVE (AARP MA H1045-041)", "action": "none"},
+  {"pid": "17473431", "carrier": "FLO02", "result": "cached 'MBI MISMATCH' flag from 10/29 - chart already carries the reissued MBI, AMD 271 ACTIVE", "action": "none; board note"},
+  {"pid": "cached", "carrier": "FLO02", "result": "cached ERR 72 name misses re-listed (17472553, 23177, 17473245, 25266, 17469028, 17473087, 17473601, 17477533, 17475363, 17477549) - all settled on 10/29-11/2", "action": "none"},
+  {"pid": "22902", "carrier": "CAP07", "result": "cached payer error 72 (CHP needs its own member number)", "action": "none - known"},
+  {"pid": "FLO99 x8", "carrier": "FLO99", "result": "no Stedi eligibility for FCC (22858, 17473190, 23161, 20514, 17471017, 17477134, 20060, 17473568)", "action": "none"},
+  {"pid": "17472519 / 17472491", "carrier": "BCBS1 / COL07", "result": "carriers not mapped in CAR2STEDI (Florida Blue Medicare; Colonial Healthcare = C&O)", "action": "none"}
+ ],
+ "rebilled": {"visits": 2, "amount": 704.0, "charts": 2},
+ "writeoffs": [],
+ "amd_writes": {"addinsurance": 1, "updateinsurance": 1, "visit_reroutes_rebills": 2, "eligibility_checks": 20},
+ "era": {"checks": 0, "posted": 0.0, "dismissed": 0, "zero_lines": 0},
+ "void_rules": {"open": 1, "voided": 0},
+ "claim_status_sweep": "skipped (Thursday)",
+ "cred_check": {"nppes": "egress blocked x3 (snapshot of 10/26 stands)", "revalidation": "egress blocked", "leie": "egress blocked", "reminders": "12 past-due cards, all already on William's turn", "file": "none"},
+ "stedi": {"mbi": 19, "eligibility": 25, "discovery": 2, "cost": 29.5},
+ "board": {"file": "board_updates_2026-11-05T0535Z.json", "ops": 3, "drops_new": 0},
+ "refused_commands": []
+}
