@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+# PLAIN ENGLISH (write the button-run/1 report file for the ehpa Billing Button run 2026-11-05T0512Z)
+# Decides: nothing. Ids and dollars only - never a patient name or member id. Writes <repo>/reports/button/<stamp>.json and latest.json.
+import json, datetime, os
+STAMP = "2026-11-05T0512Z"; REPO = "/home/claude/effinger-billing-backend"
+now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+out = json.load(open("/home/claude/unbilled/outstanding_claims.json"))
+den = json.load(open("/home/claude/unbilled/working_denials_latest.json"))
+dsum = den.get("summary", den) if isinstance(den, dict) else {}
+rep = {
+ "schema": "button-run/1", "stamp": STAMP, "mode": "live", "status": "ok",
+ "headline": "Columns 0/15/1/1 -> 0/15/0/1; ERA 0 checks $0.00 -> 0 checks $0.00; posted $0.00; re-sent 1 ($160)",
+ "note": "no brief (fired from the Billing Button page; live, all steps, every approved package)",
+ "run_url": "https://claude.ai/code/session_01HHfWRCaiLjEcwyXQ5KHUEU",
+ "started": "2026-11-05T05:12:00Z", "ended": now, "engine": "claude", "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {"before": {"charge_review": 0, "claim_inspector": 15, "unbilled": 1, "exclusions": 1},
+              "after": {"charge_review": 0, "claim_inspector": 15, "unbilled": 0, "exclusions": 1}},
+  "era": {"before": {"checks": 0, "unposted": 0.0}, "after": {"checks": 0, "unposted": 0.0}},
+  "posted": {"pay": 0.0, "woins": 0.0, "wocaid2nd": 0.0, "wolate": 0.0},
+  "resent": {"visits": 1, "dollars": 160.0},
+  "written_off": {"count": 0, "dollars": 0.0},
+  "packages": {"applied": 0, "refused": 0, "skipped": 0},
+  "outstanding": {"total": out["total"], "visits": out["visits"], "charts": out["charts"], "over_365": out["over_365"]},
+  "denials": {"visits": 7799, "actionable": 75, "actionable_amt": 13713.0, "asof": now[:16].replace("T", " ") + " UTC"}
+ },
+ "steps": [
+  {"name": "board", "title": "Board input + feed", "status": "ok",
+   "summary": "feed: nothing new (17 objects, newest 20261104); board 18 claude-turn rows read, 2 acted (1 closed, 1 noted), 1 new row (chartless admit), 2 chartless checks; drops 0; denials queue 0; approvals 0",
+   "counts": {"feed new files": 0, "board rows read": 18, "board ops": 5, "drops": 0, "denials queued": 0, "approved packages": 0},
+   "dollars": {}, "lines": [
+    {"kind": "board row closed", "chart": "17477128", "visit": "19459831", "note": "I10 primary already on the charge, billed 11/02 - card done"},
+    {"kind": "board new row", "chart": "", "note": "Pam admit 10/28 (SNF) - no AMD chart; Medicare + BCBS secondary from the sheet; parked"},
+    {"kind": "board check", "chart": "17478229", "note": "TRI05 secondary already on the chart (seq 2) - nothing to do"}],
+   "errors": [], "started": "2026-11-05T05:16:00Z", "ended": "2026-11-05T05:24:00Z"},
+  {"name": "columns", "title": "Claims Center columns", "status": "ok",
+   "summary": "CR 0->0, CI 15->15 (held: 15 feed visits dated 11/07/2026, Pattern 4543, William's DOS answer), Unbilled 1->0 (MSP-code row re-routed to the MA plan alone + released), Exclusions 1->1 (AET12 carrier hold)",
+   "counts": {"charge review": 0, "claim inspector": 15, "unbilled before": 1, "unbilled after": 0, "exclusions": 1, "inspector held (not advisory)": 15, "unbilled released": 1, "rebills": 1},
+   "dollars": {"resent": 160.0},
+   "lines": [
+    {"column": "unbilled", "kind": "MSP code required (Medicare non-primary behind an MA plan)", "chart": "17473090", "visit": "19459892", "charge": "23372501", "dollars": 160.0, "action": "visit insorder 1,2 -> 1 (no-rebill echo), freq1 + chargerebill 204, hideunbillablevisits; chart default order 2 -> 1 via ins_update"},
+    {"column": "claim inspector", "kind": "future DOS from the feed (Pattern 4543)", "visits": 15, "ids": "v19459901-v19459915", "action": "held - a date is data; rows on William's turn"},
+    {"column": "exclusions", "kind": "AET12 PREF0288 carrier CPID", "chart": "24750", "visit": "19455937", "dollars": 315.0, "action": "standing hold"}],
+   "errors": [], "started": "2026-11-05T05:19:00Z", "ended": "2026-11-05T05:28:00Z"},
+  {"name": "era", "title": "ERA posting", "status": "ok", "summary": "0 checks / $0.00 before and after; no new 835, Availity PDF or treasury CSV since 10/21",
+   "counts": {"checks before": 0, "checks after": 0, "auto-posted lines": 0, "manual-posted lines": 0, "cleared": 0}, "dollars": {"auto": 0.0, "manual": 0.0}, "lines": [], "errors": [],
+   "started": "2026-11-05T05:26:00Z", "ended": "2026-11-05T05:26:30Z"},
+  {"name": "cascade", "title": "Cascade pre-check", "status": "ok",
+   "summary": "precheck --days 3 --max 120: 19 pairs, 5 Stedi lookups ($5.00), 2 flagged - chart 17472491 'advantage plan' flag = the chart's COL07 secondary (Medicare pays every 2026 visit; same cached flag 202610) no change; chart 22858 FLO99 no Stedi route, as charted; void_rules 0 matches",
+   "counts": {"pairs": 19, "lookups": 5, "flagged": 2, "acted": 0, "void rules matched": 0}, "dollars": {"stedi": 5.0}, "lines": [
+    {"chart": "17472491", "carrier": "FLO02", "dos": "20261102", "dollars": 389.0, "flag": "ADVANTAGE PLAN on DOS (employer retiree plan, COB 2003)", "action": "none - known secondary"},
+    {"chart": "22858", "carrier": "FLO99", "dos": "20261102", "dollars": 160.0, "flag": "no eligibility on Stedi for this payer", "action": "none - as charted"}],
+   "errors": [], "started": "2026-11-05T05:26:40Z", "ended": "2026-11-05T05:27:20Z"},
+  {"name": "packages", "title": "Approved packages", "status": "ok", "summary": "no approved or waiting package (page 0 approved / 0 waiting; register 94 items all done)", "counts": {"approved": 0, "applied": 0, "refused": 0, "skipped": 0}, "dollars": {}, "lines": [], "errors": [], "started": "2026-11-05T05:17:00Z", "ended": "2026-11-05T05:17:10Z"},
+  {"name": "cred", "title": "Credentialing check", "status": "ok", "summary": "NPPES 3 records 0 changed; LEIE 84093 rows 0 matches; reminders none - no news, no cred file", "counts": {"nppes changed": 0, "leie matches": 0, "reminders": 0}, "dollars": {}, "lines": [], "errors": [], "started": "2026-11-05T05:27:30Z", "ended": "2026-11-05T05:27:50Z"},
+  {"name": "outstanding", "title": "Outstanding claims", "status": "ok", "summary": "%d visits on %d charts, $%.2f open; %d over a year ($%.2f)" % (out["visits"], out["charts"], out["total"], out["over_365"]["n"], out["over_365"]["dollars"]),
+   "counts": {"visits": out["visits"], "charts": out["charts"]}, "dollars": {"total": out["total"]}, "lines": [], "errors": [], "started": "2026-11-05T05:27:50Z", "ended": "2026-11-05T05:28:10Z"},
+  {"name": "denials", "title": "Working denials refresh", "status": "ok", "summary": "7799 denied visits on 841 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2962, RESOLVED 4502, RESUBMITTED 192, OPEN 143",
+   "counts": {"visits": 7799, "actionable": 75, "open": 143}, "dollars": {"actionable": 13713.0}, "lines": [], "errors": [], "started": "2026-11-05T05:28:10Z", "ended": "2026-11-05T05:29:30Z"}
+ ],
+ "packages": [],
+ "waiting": [
+  "Claim Inspector: 15 feed visits dated 11/07/2026 (Pattern 4543) - the real DOS on the claimocity-*-20261107 board rows",
+  "Exclusions: AET12 carrier master CPID (chart 24750, $315)",
+  "Humana PI-197 authorizations x4 ($564) - board row humana-pi197-precert-1031",
+  "Three chartless admits parked on the board (10/30, 11/01, 10/28) until the feed creates the charts",
+  "A fresh Drive state bundle: the 9/18 workspace_state set is corrupt and registers-only - this run restored registers from main and skipped it"
+ ],
+ "errors": []
+}
+os.makedirs(REPO + "/reports/button", exist_ok=True)
+json.dump(rep, open(REPO + "/reports/button/%s.json" % STAMP, "w"), indent=1)
+json.dump(rep, open(REPO + "/reports/button/latest.json", "w"), indent=1)
+print("report written", STAMP)

@@ -6,6 +6,7 @@
 # Decides per live charge (payreasons.visit_state - the primary's payment must be on the charge, patient balance 0):
 #   contractual = Medicare CO45 + CO253 minus non-void WOINS already posted -> WOINS (capped to the open insurance balance);
 #   the rest of the open insurance balance (= the PR2 coinsurance) -> WOCAID2ND. Never over-apply; nothing on the patient.
+#   LESSON 11/5: post the WOCAID2ND before the WOINS - a WOINS first moved the PR2 remainder to the PATIENT balance (fixed with move_to_ins + repost).
 # Then excl_complete.py completes the 16 rows. --dry prints the plan; --live posts.  Register registers/excl_dual_settle_<stamp>.json
 import sys, json, time, payreasons, manual_post
 LIVE = "--live" in sys.argv
@@ -33,7 +34,7 @@ if LIVE:
     faults = 0
     for p in plan:
         if p["outcome"] != "plan": continue
-        for code, amt, car in (("WOINS", p["woins"], "FLO02"), ("WOCAID2ND", p["wocaid2nd"], "HUM01")):
+        for code, amt, car in (("WOCAID2ND", p["wocaid2nd"], "HUM01"), ("WOINS", p["woins"], "FLO02")):
             if amt <= 0: continue
             try:
                 r = manual_post.post(p["cid"], car, 0.0, amt, code, "EXCL1105", None, "run %s: Humana Medicaid 277 'policy canceled' on the 2025 dual residual - %s per William 11/2 (v19409077 precedent)" % (STAMP, code))

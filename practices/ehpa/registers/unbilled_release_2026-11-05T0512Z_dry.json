@@ -1,0 +1,20 @@
+{
+ "stamp": "2026-11-05T0512Z",
+ "live": false,
+ "rows": [
+  {
+   "pid": "17473090",
+   "vid": "19459892",
+   "balances": [
+    [
+     "23372501",
+     "99233",
+     160.0,
+     0.0
+    ]
+   ],
+   "at": "2026-11-05T05:24:43Z",
+   "resp": "dry: would hideunbillablevisits hide=-1"
+  }
+ ]
+}
