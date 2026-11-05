@@ -1,7 +1,7 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-04T12:59:35Z",
- "as_of": "2026-11-04",
+ "generated": "2026-11-05T05:40:39Z",
+ "as_of": "2026-11-05",
  "coverage": {
   "files": [
    {
@@ -192,13 +192,13 @@
  },
  "windows": {
   "week": {
-   "from": "2026-10-29",
-   "to": "2026-11-04",
-   "visits": 93,
-   "lines": 100,
-   "dollars": 16115.0,
-   "patients": 45,
-   "entered": 93,
+   "from": "2026-10-30",
+   "to": "2026-11-05",
+   "visits": 56,
+   "lines": 60,
+   "dollars": 10054.0,
+   "patients": 24,
+   "entered": 56,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -212,247 +212,216 @@
    "service": [
     {
      "name": "Hospital admission",
-     "lines": 7,
-     "visits": 7,
-     "dollars": 2170.0
+     "lines": 6,
+     "visits": 6,
+     "dollars": 1860.0
     },
     {
      "name": "Hospital follow-up",
-     "lines": 59,
-     "visits": 59,
-     "dollars": 8656.0
-    },
-    {
-     "name": "Hospital discharge",
-     "lines": 2,
-     "visits": 2,
-     "dollars": 326.0
+     "lines": 45,
+     "visits": 45,
+     "dollars": 6612.0
     },
     {
      "name": "SNF admission",
-     "lines": 5,
-     "visits": 5,
-     "dollars": 1280.0
+     "lines": 3,
+     "visits": 3,
+     "dollars": 768.0
     },
     {
      "name": "SNF follow-up",
-     "lines": 20,
-     "visits": 20,
-     "dollars": 2752.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 282.0
     },
     {
      "name": "Advance care planning",
-     "lines": 7,
-     "visits": 7,
-     "dollars": 931.0
+     "lines": 4,
+     "visits": 4,
+     "dollars": 532.0
     }
    ],
    "cpt": [
     {
      "name": "99233",
-     "lines": 43,
-     "visits": 43,
-     "dollars": 6880.0
-    },
-    {
-     "name": "99309",
-     "lines": 18,
-     "visits": 18,
-     "dollars": 2538.0
+     "lines": 33,
+     "visits": 33,
+     "dollars": 5280.0
     },
     {
      "name": "99232",
-     "lines": 16,
-     "visits": 16,
-     "dollars": 1776.0
-    },
-    {
-     "name": "99497",
-     "lines": 7,
-     "visits": 7,
-     "dollars": 931.0
+     "lines": 12,
+     "visits": 12,
+     "dollars": 1332.0
     },
     {
      "name": "99223",
-     "lines": 7,
-     "visits": 7,
-     "dollars": 2170.0
+     "lines": 6,
+     "visits": 6,
+     "dollars": 1860.0
+    },
+    {
+     "name": "99497",
+     "lines": 4,
+     "visits": 4,
+     "dollars": 532.0
     },
     {
      "name": "99306",
-     "lines": 5,
-     "visits": 5,
-     "dollars": 1280.0
+     "lines": 3,
+     "visits": 3,
+     "dollars": 768.0
     },
     {
-     "name": "99308",
+     "name": "99309",
      "lines": 2,
      "visits": 2,
-     "dollars": 214.0
-    },
-    {
-     "name": "99239",
-     "lines": 2,
-     "visits": 2,
-     "dollars": 326.0
+     "dollars": 282.0
     }
    ],
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 70,
-     "visits": 68,
-     "dollars": 11418.0
-    },
-    {
-     "name": "Brynwood (Monticello)",
-     "lines": 11,
-     "visits": 9,
-     "dollars": 1731.0
+     "lines": 52,
+     "visits": 51,
+     "dollars": 8605.0
     },
     {
      "name": "Centre Pointe Health & Rehab",
-     "lines": 10,
-     "visits": 8,
-     "dollars": 1624.0
+     "lines": 4,
+     "visits": 3,
+     "dollars": 671.0
     },
     {
-     "name": "Aspire at Tallahassee",
-     "lines": 8,
-     "visits": 7,
-     "dollars": 1201.0
-    },
-    {
-     "name": "unknown facility",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 141.0
+     "name": "Brynwood (Monticello)",
+     "lines": 4,
+     "visits": 2,
+     "dollars": 778.0
     }
    ],
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 70,
-     "visits": 68,
-     "dollars": 11418.0
+     "lines": 52,
+     "visits": 51,
+     "dollars": 8605.0
     },
     {
      "name": "Skilled nursing facility",
-     "lines": 30,
-     "visits": 25,
-     "dollars": 4697.0
+     "lines": 8,
+     "visits": 5,
+     "dollars": 1449.0
     }
    ],
    "clinician": [
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 80,
-     "visits": 73,
-     "dollars": 13363.0
+     "lines": 51,
+     "visits": 50,
+     "dollars": 8295.0
+    },
+    {
+     "name": "Clinician on file",
+     "lines": 7,
+     "visits": 4,
+     "dollars": 1477.0
     },
     {
      "name": "Pamela G.",
-     "lines": 20,
-     "visits": 20,
-     "dollars": 2752.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 282.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 43,
-     "visits": 40,
-     "dollars": 6865.0
+     "lines": 22,
+     "visits": 20,
+     "dollars": 3745.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 26,
-     "visits": 24,
-     "dollars": 3961.0
+     "lines": 18,
+     "visits": 16,
+     "dollars": 2855.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 15,
-     "visits": 14,
-     "dollars": 2428.0
+     "lines": 11,
+     "visits": 11,
+     "dollars": 1714.0
     },
     {
      "name": "Commercial / other",
-     "lines": 8,
-     "visits": 8,
-     "dollars": 1430.0
+     "lines": 6,
+     "visits": 6,
+     "dollars": 1110.0
     },
     {
      "name": "VA / TRICARE",
-     "lines": 4,
-     "visits": 4,
-     "dollars": 621.0
+     "lines": 2,
+     "visits": 2,
+     "dollars": 320.0
     },
     {
      "name": "No active plan",
-     "lines": 4,
-     "visits": 3,
-     "dollars": 810.0
+     "lines": 1,
+     "visits": 1,
+     "dollars": 310.0
     }
    ],
    "top_dx": [
     {
      "code": "I10",
-     "patients": 25
-    },
-    {
-     "code": "E785",
-     "patients": 20
-    },
-    {
-     "code": "N390",
-     "patients": 13
-    },
-    {
-     "code": "I639",
-     "patients": 12
-    },
-    {
-     "code": "M6281",
-     "patients": 12
-    },
-    {
-     "code": "E039",
-     "patients": 11
-    },
-    {
-     "code": "J449",
-     "patients": 11
-    },
-    {
-     "code": "N179",
      "patients": 10
     },
     {
-     "code": "E119",
+     "code": "E785",
      "patients": 9
     },
     {
-     "code": "R531",
-     "patients": 8
+     "code": "M6281",
+     "patients": 9
+    },
+    {
+     "code": "J449",
+     "patients": 6
     },
     {
      "code": "R2681",
-     "patients": 8
+     "patients": 6
     },
     {
-     "code": "M4802",
-     "patients": 8
+     "code": "M19.012",
+     "patients": 6
+    },
+    {
+     "code": "M19012",
+     "patients": 6
+    },
+    {
+     "code": "N390",
+     "patients": 6
+    },
+    {
+     "code": "E119",
+     "patients": 6
+    },
+    {
+     "code": "N179",
+     "patients": 6
+    },
+    {
+     "code": "R55",
+     "patients": 6
+    },
+    {
+     "code": "M48.02",
+     "patients": 6
     }
    ],
    "days": [
-    {
-     "date": "2026-10-29",
-     "visits": 37,
-     "lines": 40,
-     "dollars": 6061.0,
-     "patients": 37
-    },
     {
      "date": "2026-10-30",
      "visits": 18,
@@ -494,17 +463,24 @@
      "lines": 0,
      "dollars": 0.0,
      "patients": 0
+    },
+    {
+     "date": "2026-11-05",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "month": {
-   "from": "2026-10-06",
-   "to": "2026-11-04",
-   "visits": 770,
-   "lines": 1031,
-   "dollars": 168183.0,
-   "patients": 328,
-   "entered": 770,
+   "from": "2026-10-07",
+   "to": "2026-11-05",
+   "visits": 754,
+   "lines": 1014,
+   "dollars": 165794.0,
+   "patients": 327,
+   "entered": 754,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -542,9 +518,9 @@
     },
     {
      "name": "SNF follow-up",
-     "lines": 175,
-     "visits": 175,
-     "dollars": 24505.0
+     "lines": 159,
+     "visits": 159,
+     "dollars": 22249.0
     },
     {
      "name": "SNF discharge",
@@ -566,9 +542,9 @@
     },
     {
      "name": "Advance care planning",
-     "lines": 46,
-     "visits": 44,
-     "dollars": 6082.0
+     "lines": 45,
+     "visits": 43,
+     "dollars": 5949.0
     }
    ],
    "cpt": [
@@ -592,9 +568,9 @@
     },
     {
      "name": "99309",
-     "lines": 170,
-     "visits": 170,
-     "dollars": 23970.0
+     "lines": 154,
+     "visits": 154,
+     "dollars": 21714.0
     },
     {
      "name": "99232",
@@ -610,9 +586,9 @@
     },
     {
      "name": "99497",
-     "lines": 44,
-     "visits": 44,
-     "dollars": 5852.0
+     "lines": 43,
+     "visits": 43,
+     "dollars": 5719.0
     },
     {
      "name": "99306",
@@ -654,9 +630,9 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 330,
-     "visits": 312,
-     "dollars": 56566.0
+     "lines": 329,
+     "visits": 311,
+     "dollars": 56425.0
     },
     {
      "name": "Brynwood (Monticello)",
@@ -672,9 +648,9 @@
     },
     {
      "name": "Centre Pointe Health & Rehab",
-     "lines": 88,
-     "visits": 58,
-     "dollars": 13693.0
+     "lines": 72,
+     "visits": 43,
+     "dollars": 11445.0
     },
     {
      "name": "Westminster Bertrand",
@@ -740,15 +716,15 @@
    "setting": [
     {
      "name": "Skilled nursing facility",
-     "lines": 508,
-     "visits": 344,
-     "dollars": 78625.0
+     "lines": 492,
+     "visits": 329,
+     "dollars": 76377.0
     },
     {
      "name": "Inpatient hospital",
-     "lines": 330,
-     "visits": 312,
-     "dollars": 56566.0
+     "lines": 329,
+     "visits": 311,
+     "dollars": 56425.0
     },
     {
      "name": "Assisted living",
@@ -760,15 +736,15 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 770,
-     "visits": 545,
-     "dollars": 125134.0
+     "lines": 760,
+     "visits": 533,
+     "dollars": 124222.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 208,
-     "visits": 172,
-     "dollars": 35101.0
+     "lines": 201,
+     "visits": 168,
+     "dollars": 33624.0
     },
     {
      "name": "Pamela G.",
@@ -780,21 +756,21 @@
    "payer": [
     {
      "name": "Medicare",
-     "lines": 618,
-     "visits": 438,
-     "dollars": 99843.0
+     "lines": 606,
+     "visits": 427,
+     "dollars": 98159.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 229,
-     "visits": 177,
-     "dollars": 37506.0
+     "lines": 225,
+     "visits": 173,
+     "dollars": 36942.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 57,
-     "visits": 44,
-     "dollars": 9134.0
+     "lines": 56,
+     "visits": 43,
+     "dollars": 8993.0
     },
     {
      "name": "Commercial / other",
@@ -818,11 +794,11 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 76
+     "patients": 74
     },
     {
      "code": "E785",
-     "patients": 53
+     "patients": 52
     },
     {
      "code": "E039",
@@ -833,20 +809,16 @@
      "patients": 26
     },
     {
-     "code": "N390",
-     "patients": 25
+     "code": "I639",
+     "patients": 24
     },
     {
-     "code": "I639",
-     "patients": 25
+     "code": "N390",
+     "patients": 23
     },
     {
      "code": "J449",
-     "patients": 20
-    },
-    {
-     "code": "N179",
-     "patients": 18
+     "patients": 19
     },
     {
      "code": "F32A",
@@ -861,18 +833,15 @@
      "patients": 18
     },
     {
+     "code": "N179",
+     "patients": 17
+    },
+    {
      "code": "I4891",
-     "patients": 18
+     "patients": 17
     }
    ],
    "days": [
-    {
-     "date": "2026-10-06",
-     "visits": 16,
-     "lines": 17,
-     "dollars": 2389.0,
-     "patients": 16
-    },
     {
      "date": "2026-10-07",
      "visits": 8,
@@ -1071,6 +1040,13 @@
     },
     {
      "date": "2026-11-04",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
+    },
+    {
+     "date": "2026-11-05",
      "visits": 0,
      "lines": 0,
      "dollars": 0.0,
@@ -1341,15 +1317,15 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 801,
-     "visits": 575,
-     "dollars": 127772.0
+     "lines": 808,
+     "visits": 579,
+     "dollars": 129249.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 223,
-     "visits": 187,
-     "dollars": 37305.0
+     "lines": 216,
+     "visits": 183,
+     "dollars": 35828.0
     },
     {
      "name": "Pamela G.",
@@ -1399,11 +1375,11 @@
    "top_dx": [
     {
      "code": "I10",
-     "patients": 79
+     "patients": 77
     },
     {
      "code": "E785",
-     "patients": 56
+     "patients": 55
     },
     {
      "code": "E039",
@@ -1415,23 +1391,23 @@
     },
     {
      "code": "N390",
-     "patients": 27
+     "patients": 25
     },
     {
      "code": "I639",
-     "patients": 26
-    },
-    {
-     "code": "J449",
-     "patients": 22
+     "patients": 25
     },
     {
      "code": "M6281",
      "patients": 21
     },
     {
+     "code": "J449",
+     "patients": 21
+    },
+    {
      "code": "N179",
-     "patients": 20
+     "patients": 19
     },
     {
      "code": "F32A",
@@ -1443,7 +1419,7 @@
     },
     {
      "code": "I4891",
-     "patients": 18
+     "patients": 17
     }
    ],
    "days": [
@@ -2121,6 +2097,13 @@
    "stamp": "20261104T1240Z",
    "at": "2026-11-04T12:58:01.047183Z",
    "files": 1,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261105T0512Z",
+   "at": "2026-11-05T05:18:21.518450Z",
+   "files": 0,
    "exit": 0,
    "live": true
   }

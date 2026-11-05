@@ -148,3 +148,42 @@ applies it.
 | status `warn` with an error sentence | the step; the run's logs artifact (14 days) | one helper reported a problem; the rest ran |
 | nothing happens for minutes, then it starts | Actions: queued | another run was in progress |
 | Stedi steps skipped | bootstrap | no `STEDI_API_KEY` |
+
+## FAST PATH - what a fresh container actually needs (learned on the 11/5/2026 run; William: "learn from this run and back up steps on the triple mirror to make this process quicker")
+
+The 11/5 full run bootstrapped in 7 minutes and finished the billing work in 20 by skipping what every earlier run had
+re-done. The prompt (nightly/live/billing_button.txt) still lists every step; this is the order and the shortcuts that
+satisfy it with the fewest tool calls. Everything here is data-safe (no retyped bytes) and leaves the standing rules intact.
+
+1. **Toolkit = the attached clone.** `tools/bootstrap/bootstrap_workspace.sh` and `ws_bundle.py` are on main under
+   tools/bootstrap/ - copy them into /home/claude/unbilled/tools/ from the clone; never download them from Drive first.
+   `bash tools/bootstrap_workspace.sh net` (AMD_OK / STEDI_CRED_MISSING is the normal answer), then
+   `bash tools/bootstrap_workspace.sh layout /home/claude/effinger-billing-backend` restores the 1,300+ helpers, the registers
+   (1,773 files from practices/ehpa/registers/), captured_calls.md, the needs list and the laterality log in one command.
+2. **Skip the Drive state bundle until a fresh one exists.** The only workspace_state_* set on Drive (2026-09-18_1123UTC, 26 parts)
+   is corrupt (part21) and carried registers only - main already has every register. Downloading it cost the 11/3 run an hour.
+   Check `title contains 'manifest.json'` in "workspace mirror": a manifest newer than 9/18 = unpack it; none = say
+   "state bundle skipped (9/18 set corrupt, registers from main)" and go on. patient_db/ and era_details/ fill from live reads.
+3. **Only five Drive files matter at bootstrap**, found by exact title in "workspace mirror" (`title = 'x' or title = 'y'`
+   in one search_files call - the folder listing pages 5 at a time and is useless): deceased_cache.json, pseudonyms.json,
+   void_rules.json, precheck_cache.json (newest copy), plus any helper .py newer than the last run. Download each with
+   download_file_content and decode it with `python3 -I tools/bootstrap/transcript_extract.py drive <fileId>=<path>` -
+   the helper reads the connector's answer back out of the session transcript, so nothing is retyped (a result over the
+   size cap lands in ~/.claude/projects/<slug>/<session>/tool-results/*.txt and the helper follows that pointer).
+4. **Credentials the same way**: AMD password = Gmail thread 1866ce7e2233e4c0, Stedi key = thread 1a083035f566f9fb,
+   GCS key = `subject:"claimocity gcs key"` -> `transcript_extract.py gmail-body <threadId>=secrets/gcs_key_mail.txt` then
+   `claimocity_gcs.py --install-key`. Pam's facesheet photos: get_message RAW -> `transcript_extract.py raw-attachments
+   <messageId>=inbox/pam` (byte-exact JPEGs; apply EXIF rotation and crop/upscale the insurance block before reading it).
+5. **Cross-container guard in one search**: `parentId = '<chat history>' and title contains '<today>T0' and title contains 'START'`.
+6. **Board in three cheap reads**: items where `updated >` the last run's stamp; items where `status == claude and updated >
+   <3 days ago>` (the 11/5 read was 18 rows / 110k tokens - most already settled by the 11/2 runs, so verify LIVE before
+   acting: brinson's I10 and brown-lisa's TRI05 were already on the charts); drops where status == new; denials commands
+   where status == queued; meta/drive_sync once (its applied map is the only reason to trash inbox files).
+7. **Columns**: `columns_scan.py before` is the login; trust its list sections, not the overview (the overview said Unbilled 27,
+   the list had 1). Write helpers used this run: `freq1_visit.py reroute <vid> <cid> <order> <seq>` (dry, then live),
+   `unbilled_release.py <pid>:<vid> --stamp <stamp> [--live]`, `ins_update.py <pid> <insid> sequence=<order>`.
+8. **ERA**: `era_post.py --all-unposted --dry` is the whole list read (0 checks = done; no need to fetch details).
+9. **Report + mirror**: a dated report_<mmdd>.py writes the button-run/1 file from outstanding_claims.json /
+   working_denials_latest.json; phi_gate both copies; `git rebase --autostash origin/main` then `mirror.py sync`.
+
+Standing lesson behind all of it: never let the model retype a connector payload - decode from the transcript.
