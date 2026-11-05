@@ -1,0 +1,176 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-05T0545Z",
+ "mode": "dry",
+ "status": "ok",
+ "headline": "DRY: Columns 0/15/0/1 -> 0/15/0/1 (read only); ERA 0 checks; nothing written",
+ "note": "dry run (brief: feed,columns,era,cascade,packages,cred,outstanding; packages none) - read and counted, nothing written in AMD, no board file",
+ "run_url": "https://claude.ai/code/session_01HHfWRCaiLjEcwyXQ5KHUEU",
+ "started": "2026-11-05T05:45:00Z",
+ "ended": "2026-11-05T05:50:12Z",
+ "engine": "claude",
+ "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 15,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 15,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 0,
+    "unposted": 0.0
+   },
+   "after": {
+    "checks": 0,
+    "unposted": 0.0
+   }
+  },
+  "posted": {
+   "pay": 0.0,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  },
+  "outstanding": {
+   "total": 316714.97,
+   "visits": 2584,
+   "charts": 476,
+   "over_365": {
+    "n": 553,
+    "dollars": 24850.66
+   }
+  }
+ },
+ "steps": [
+  {
+   "name": "feed",
+   "title": "Feed",
+   "status": "ok",
+   "summary": "17 objects, 0 new, newest 20261104",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "dry: CR 0, CI 15 (held), Unbilled 0, Exclusions 1 (AET12 carrier hold); nothing changed",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 15,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "dry: 0 checks / $0.00",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "cascade",
+   "title": "Cascade pre-check",
+   "status": "ok",
+   "summary": "dry: 19 pairs, 0 new lookups, 2 known flags (no change)",
+   "counts": {
+    "pairs": 19,
+    "lookups": 0,
+    "flagged": 2
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "packages",
+   "title": "Approved packages",
+   "status": "ok",
+   "summary": "brief says none",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "cred",
+   "title": "Credentialing check",
+   "status": "ok",
+   "summary": "clean",
+   "counts": {},
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  },
+  {
+   "name": "outstanding",
+   "title": "Outstanding claims",
+   "status": "ok",
+   "summary": "2584 visits on 476 charts, $316714.97 open; 553 over a year ($24850.66)",
+   "counts": {
+    "visits": 2584,
+    "charts": 476
+   },
+   "dollars": {
+    "total": 316714.97
+   },
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-05T05:50:12Z",
+   "ended": "2026-11-05T05:50:12Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Claim Inspector: 15 feed visits dated 11/07 (v19459901-v19459915, Pattern 4543) are Claimocity mistakes that should have been 11/01 (already entered correctly on 11/01). Void only after 11/07 and only those patients no longer hospitalized - William will say which. Nothing voided, bypassed or edited.",
+  "Exclusions: AET12 carrier master CPID (chart 24750, $315)",
+  "Humana PI-197 authorizations x4 ($564) - board row humana-pi197-precert-1031",
+  "Chartless admits parked on the board until the feed creates the charts",
+  "A fresh Drive state bundle (9/18 set corrupt)"
+ ],
+ "errors": []
+}
