@@ -1,0 +1,75 @@
+{
+ "stamp": "2026-11-05T0639Z",
+ "live": true,
+ "charts": {
+  "17473431": {
+   "steps": [
+    [
+     "add RET01",
+     "ins9521142",
+     "4"
+    ],
+    [
+     "enddate",
+     "ins9514885",
+     true,
+     "5-rrp9f\" lst=\"11/04/2026 23:03:55\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '2,3,1,4' - restored: insorder 2,3,1,4 via ins9514886 -> "
+    ],
+    [
+     "enddate",
+     "ins9521007",
+     true,
+     "5-rrp9f\" lst=\"11/04/2026 23:03:59\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '2,3,1,4' - restored: insorder 2,3,1,4 via ins9514886 -> "
+    ],
+    [
+     "order",
+     "4,2",
+     true,
+     "insorder 4,2 via ins9521142 -> '4,2'"
+    ]
+   ],
+   "visits": {
+    "19439780": "resave vst19439780 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19439520": "resave vst19439520 insorder 1,2 -> 4,2, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+    "19442341": "resave vst19442341 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19448374": "resave vst19448374 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19449003": "resave vst19449003 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19448819": "resave vst19448819 insorder 1,2 -> 4,2, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+    "19452578": "resave vst19452578 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19455615": "resave vst19455615 insorder 1,2 -> 4,2, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204",
+    "19457097": "resave vst19457097 insorder 1,2 -> 4,2, 1 live charges (was 1) | freq1 + rebill seq 4 -> 204",
+    "19458943": "resave vst19458943 insorder 1,2 -> 4,2, 2 live charges (was 2) | freq1 + rebill seq 4 -> 204"
+   },
+   "insorder": "4,2"
+  },
+  "17472491": {
+   "steps": [
+    [
+     "add RET01",
+     "ins9521143",
+     "3"
+    ],
+    [
+     "enddate",
+     "ins9511956",
+     true,
+     "5-rrp9f\" lst=\"11/04/2026 23:06:29\"><Results success=\"1\"><patient insorder=\"\" /></Results><Error /></PPMDResults> | field edit cleared insorder '1,2,3' - WARNING not restored, set it: insorder 1,2,3 wo"
+    ],
+    [
+     "order",
+     "3,2",
+     true,
+     "insorder 3,2 via ins9521143 -> '3,2'"
+    ]
+   ],
+   "visits": {
+    "19455917": "resave vst19455917 insorder 2 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+    "19455836": "resave vst19455836 insorder 2 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+    "19458782": "resave vst19458782 insorder 2 -> 3,2, 1 live charges (was 1) | freq1 + rebill seq 3 -> 204",
+    "19459023": "resave vst19459023 insorder 2 -> 3,2, 2 live charges (was 2) | freq1 + rebill seq 3 -> 204",
+    "19460032": "resave vst19460032 insorder 2,1 -> 3,2, 2 live charges (was 2) | freq1 + rebill seq 3 -> 204"
+   },
+   "insorder": "3,2"
+  }
+ }
+}

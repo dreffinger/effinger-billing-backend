@@ -34779,5 +34779,45 @@
   "wocode": "",
   "note": "CO234/N20 CCM not paid separately (Humana MA H-plan, 271 AAA 42) - Working Denials board (no standing rule)",
   "when": "2026-10-31T0040Z"
+ },
+ {
+  "checkid": 1053425,
+  "checkclaimid": 15448536,
+  "visitid": 19457783,
+  "chargeid": 23369827,
+  "outcome": "posted (Post button)",
+  "when": "2026-11-05T07:10Z"
+ },
+ {
+  "checkid": 1053425,
+  "checkclaimid": 15448537,
+  "visitid": 19457797,
+  "chargeid": 23369843,
+  "outcome": "posted (Post button)",
+  "when": "2026-11-05T07:10Z"
+ },
+ {
+  "checkid": 1053426,
+  "checkclaimid": 15448546,
+  "visitid": 19459144,
+  "chargeid": 23371547,
+  "outcome": "denial-only OA-18 duplicate of the 11/2 original (Medicare) - never rebill, wait for the original adjudication",
+  "when": "2026-11-05T07:10Z"
+ },
+ {
+  "checkid": 1053426,
+  "checkclaimid": "15448538-15448545",
+  "visitid": "17473431 x7 visits",
+  "chargeid": "",
+  "outcome": "denial-only CO-109/N105 Railroad Medicare - chart re-routed to RET01, 10 visits re-sent",
+  "when": "2026-11-05T07:10Z"
+ },
+ {
+  "checkid": 1053426,
+  "checkclaimid": 15448547,
+  "visitid": 19459023,
+  "chargeid": 23371373,
+  "outcome": "denial-only CO-109/N105 Railroad Medicare - chart re-routed to RET01, 5 visits re-sent",
+  "when": "2026-11-05T07:10Z"
  }
 ]
