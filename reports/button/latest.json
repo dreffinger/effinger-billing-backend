@@ -1,32 +1,32 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-04T2318Z",
+ "stamp": "2026-11-05T0119Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/17 -> 0/15/0/17; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 1 checks $451.56 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41932694174",
- "started": "2026-11-04T23:18:55Z",
- "ended": "2026-11-04T23:24:32Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41947696876",
+ "started": "2026-11-05T01:19:23Z",
+ "ended": "2026-11-05T01:25:50Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 15,
     "unbilled": 0,
-    "exclusions": 17
+    "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 15,
     "unbilled": 0,
-    "exclusions": 17
+    "exclusions": 1
    }
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 451.56
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 451.56,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 314091.21,
-   "visits": 2575,
-   "charts": 474,
+   "total": 311697.96,
+   "visits": 2546,
+   "charts": 471,
    "over_365": {
-    "n": 559,
-    "dollars": 24872.92
+    "n": 553,
+    "dollars": 24850.66
    }
   },
   "denials": {
-   "visits": 7794,
+   "visits": 7799,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-04 23:24 UTC"
+   "asof": "2026-11-05 01:25 UTC"
   }
  },
  "steps": [
@@ -73,28 +73,28 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1315 helpers into /home/claude/unbilled",
+   "summary": "1316 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1315,
+    "helpers copied": 1316,
     "registers": 1771,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "python": "/opt/hostedtoolcache/Python/3.12.15/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T23:18:55Z",
-   "ended": "2026-11-04T23:18:56Z"
+   "started": "2026-11-05T01:19:23Z",
+   "ended": "2026-11-05T01:19:24Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 15->15, Unbilled 0->0, Exclusions 17->17",
+   "summary": "CR 0->0, CI 15->15, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
     "claim inspector": 15,
     "unbilled": 0,
-    "exclusions": 17,
+    "exclusions": 1,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 15,
     "inspector bypasses sent": 0,
@@ -103,9 +103,7 @@
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log",
-    "exclusions dup run 1700349": 0,
-    "exclusions crossover run 1700349": "see log"
+    "exclusions crossover run 1700294": "see log"
    },
    "dollars": {},
    "lines": [
@@ -120,37 +118,40 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
-    },
-    {
-     "column": "exclusions run 1700349",
-     "kind": "HUM01 PA  ACK,RETURND AS UNPRCESSBLE CLM- CLM,ENCNTER BEEN REJECTD",
-     "visits": 16,
-     "ids": "v19402245 v19402644 v19403418 v19403945 v19404635 v19404697 v19405084 v19405500 v19406109 v19407286 v19407974 v19408949 v19413644 v19415101 v19416084 v19417133"
     }
    ],
    "errors": [],
-   "started": "2026-11-04T23:18:56Z",
-   "ended": "2026-11-04T23:20:45Z"
+   "started": "2026-11-05T01:19:24Z",
+   "ended": "2026-11-05T01:21:34Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $451.56 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks dismissed": 0,
+    "era_post lines": 1,
+    "checks dismissed": 1,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 451.56,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 451.56
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053423,
+     "payer": "UNITED HEALTHCARE",
+     "checknumber": "W2172476",
+     "amount": 0.0,
+     "unposted": 451.56,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-04T23:20:45Z",
-   "ended": "2026-11-04T23:20:46Z"
+   "started": "2026-11-05T01:21:34Z",
+   "ended": "2026-11-05T01:21:45Z"
   },
   {
    "name": "packages",
@@ -161,22 +162,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-04T23:20:46Z",
-   "ended": "2026-11-04T23:20:46Z"
+   "started": "2026-11-05T01:21:45Z",
+   "ended": "2026-11-05T01:21:45Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2575 visits on 474 charts, $314091.21 open; 559 over a year ($24872.92)",
+   "summary": "2546 visits on 471 charts, $311697.96 open; 553 over a year ($24850.66)",
    "counts": {
-    "visits": 2575,
-    "charts": 474,
-    "over 365 days": 559
+    "visits": 2546,
+    "charts": 471,
+    "over 365 days": 553
    },
    "dollars": {
-    "open insurance balance": 314091.21,
-    "over 365 days": 24872.92
+    "open insurance balance": 311697.96,
+    "over 365 days": 24850.66
    },
    "lines": [
     {
@@ -184,124 +185,124 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1375,
      "dollars": 171702.31,
-     "oldest_days": 1085
+     "oldest_days": 1086
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
-     "visits": 169,
-     "dollars": 27926.83,
-     "oldest_days": 1181
+     "visits": 160,
+     "dollars": 26731.18,
+     "oldest_days": 1182
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 153,
      "dollars": 26197.58,
-     "oldest_days": 422
+     "oldest_days": 423
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 81,
      "dollars": 16644.4,
-     "oldest_days": 1154
+     "oldest_days": 1155
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 271,
      "dollars": 16409.07,
-     "oldest_days": 1052
+     "oldest_days": 1053
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 77,
-     "dollars": 9961.51,
-     "oldest_days": 1062
+     "visits": 57,
+     "dollars": 8763.91,
+     "oldest_days": 1063
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 31,
      "dollars": 5696.0,
-     "oldest_days": 354
+     "oldest_days": 355
     },
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
      "visits": 30,
      "dollars": 5554.22,
-     "oldest_days": 970
+     "oldest_days": 971
     },
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 39,
      "dollars": 5134.18,
-     "oldest_days": 64
+     "oldest_days": 65
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 26,
      "dollars": 4031.01,
-     "oldest_days": 170
+     "oldest_days": 171
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 29,
      "dollars": 3646.1,
-     "oldest_days": 366
+     "oldest_days": 367
     },
     {
      "carrier": "TRI00",
      "name": "TRICARE EAST",
      "visits": 14,
      "dollars": 2870.0,
-     "oldest_days": 275
+     "oldest_days": 276
     }
    ],
    "errors": [],
-   "started": "2026-11-04T23:20:46Z",
-   "ended": "2026-11-04T23:20:47Z"
+   "started": "2026-11-05T01:21:45Z",
+   "ended": "2026-11-05T01:21:47Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7794 denied visits on 840 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2962, RESOLVED 4499, RESUBMITTED 192, OPEN 141",
+   "summary": "7799 denied visits on 839 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2962, RESOLVED 4502, RESUBMITTED 192, OPEN 143",
    "counts": {
-    "charts read": 840,
-    "denial lines": 13219,
-    "visits": 7794,
+    "charts read": 839,
+    "denial lines": 13226,
+    "visits": 7799,
     "actionable": 75,
     "inside 12 months": 72,
     "status WRITTEN-OFF": 2962,
-    "status RESOLVED": 4499,
+    "status RESOLVED": 4502,
     "status RESUBMITTED": 192,
-    "status OPEN": 141
+    "status OPEN": 143
    },
    "dollars": {
     "actionable": 13713.0,
     "inside 12 months": 13194.0,
     "resubmitted": 33168.37,
-    "resolved since": 680056.14
+    "resolved since": 680478.14
    },
    "lines": [
     {
      "disposition": "UNCLASSIFIED",
-     "visits": 1903,
-     "dollars": 315217.0,
-     "patients": 221
+     "visits": 1907,
+     "dollars": 315927.0,
+     "patients": 222
     },
     {
      "disposition": "FIX",
-     "visits": 1264,
-     "dollars": 196654.23,
-     "patients": 200
+     "visits": 1265,
+     "dollars": 196763.23,
+     "patients": 201
     },
     {
      "disposition": "REVIEW",
@@ -353,8 +354,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-04T23:20:47Z",
-   "ended": "2026-11-04T23:24:32Z"
+   "started": "2026-11-05T01:21:47Z",
+   "ended": "2026-11-05T01:25:50Z"
   }
  ],
  "packages": [],
