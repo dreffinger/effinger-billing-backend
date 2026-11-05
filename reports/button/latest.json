@@ -1,15 +1,5 @@
 {
  "schema": "button-run/1",
-<<<<<<< Updated upstream
- "stamp": "2026-11-05T0519Z",
- "mode": "live",
- "status": "ok",
- "headline": "Columns 0/15/29/1 -> 0/15/1/1; ERA 1 checks $43.60 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/41973220138",
- "started": "2026-11-05T05:19:02Z",
- "ended": "2026-11-05T05:25:24Z",
-=======
  "stamp": "2026-11-05T0512Z",
  "mode": "live",
  "status": "ok",
@@ -17,38 +7,28 @@
  "note": "no brief (fired from the Billing Button page; live, all steps, every approved package)",
  "run_url": "https://claude.ai/code/session_01HHfWRCaiLjEcwyXQ5KHUEU",
  "started": "2026-11-05T05:12:00Z",
- "ended": "2026-11-05T05:38:11Z",
+ "ended": "2026-11-05T05:41:36Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
->>>>>>> Stashed changes
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 15,
-<<<<<<< Updated upstream
-    "unbilled": 29,
-=======
     "unbilled": 1,
->>>>>>> Stashed changes
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 15,
-    "unbilled": 1,
+    "unbilled": 0,
     "exclusions": 1
    }
   },
   "era": {
    "before": {
-<<<<<<< Updated upstream
-    "checks": 1,
-    "unposted": 43.6
-=======
     "checks": 0,
     "unposted": 0.0
->>>>>>> Stashed changes
    },
    "after": {
     "checks": 0,
@@ -56,7 +36,7 @@
    }
   },
   "posted": {
-   "pay": 43.6,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -87,11 +67,7 @@
    "visits": 7799,
    "actionable": 75,
    "actionable_amt": 13713.0,
-<<<<<<< Updated upstream
-   "asof": "2026-11-05 05:25 UTC"
-=======
-   "asof": "2026-11-05 05:38 UTC"
->>>>>>> Stashed changes
+   "asof": "2026-11-05 05:41 UTC"
   }
  },
  "steps": [
@@ -101,18 +77,12 @@
    "status": "ok",
    "summary": "feed: nothing new (17 objects, newest 20261104); board 18 claude-turn rows read, 2 acted (1 closed, 1 noted), 1 new row (chartless admit), 2 chartless checks; drops 0; denials queue 0; approvals 0",
    "counts": {
-<<<<<<< Updated upstream
-    "helpers copied": 1316,
-    "registers": 1771,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
-=======
     "feed new files": 0,
     "board rows read": 18,
     "board ops": 5,
     "drops": 0,
     "denials queued": 0,
     "approved packages": 0
->>>>>>> Stashed changes
    },
    "dollars": {},
    "lines": [
@@ -134,49 +104,26 @@
     }
    ],
    "errors": [],
-<<<<<<< Updated upstream
-   "started": "2026-11-05T05:19:02Z",
-   "ended": "2026-11-05T05:19:03Z"
-=======
    "started": "2026-11-05T05:16:00Z",
    "ended": "2026-11-05T05:24:00Z"
->>>>>>> Stashed changes
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-<<<<<<< Updated upstream
-   "summary": "CR 0->0, CI 15->15, Unbilled 29->1, Exclusions 1->1",
-   "counts": {
-    "charge review": 0,
-    "claim inspector": 15,
-    "unbilled": 29,
-=======
    "summary": "CR 0->0, CI 15->15 (held: 15 feed visits dated 11/07/2026, Pattern 4543, William's DOS answer), Unbilled 1->0 (MSP-code row re-routed to the MA plan alone + released), Exclusions 1->1 (AET12 carrier hold)",
    "counts": {
     "charge review": 0,
     "claim inspector": 15,
     "unbilled before": 1,
     "unbilled after": 0,
->>>>>>> Stashed changes
     "exclusions": 1,
     "inspector held (not advisory)": 15,
-<<<<<<< Updated upstream
-    "inspector bypasses sent": 0,
-    "unbilled reason-code rows": 0,
-    "unbilled prior-payor rows": 26,
-    "unbilled rows left alone": 1,
-    "unbilled released": 0,
-    "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
-=======
     "unbilled released": 1,
     "rebills": 1
    },
    "dollars": {
     "resent": 160.0
->>>>>>> Stashed changes
    },
    "lines": [
     {
@@ -189,35 +136,6 @@
      "action": "visit insorder 1,2 -> 1 (no-rebill echo), freq1 + chargerebill 204, hideunbillablevisits; chart default order 2 -> 1 via ins_update"
     },
     {
-<<<<<<< Updated upstream
-     "column": "unbilled",
-     "kind": "A payment from the prior payor is required before another claim can be",
-     "visits": 26,
-     "ids": "v19364723 v19364735 v19364840 v19369676 v19369706 v19369726 v19370060 v19370081 v19370099 v19384132 v19384238 v19388904 v19388905 v19389211 v19392347 v19427585 v19430729 v19452223 v19453682 v19455351 v19455362 v19455872 v19455895 v19455907 v19455935"
-    },
-    {
-     "column": "unbilled",
-     "kind": "?",
-     "visits": 2,
-     "ids": "v19392347 v19452223"
-    },
-    {
-     "column": "unbilled",
-     "kind": "When billing Medicare as the non-primary carrier, the MSP Code on the ",
-     "visits": 1,
-     "ids": "v19459892"
-    },
-    {
-     "column": "exclusions run 1700294",
-     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
-     "visits": 1,
-     "ids": "v19455937"
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-05T05:19:03Z",
-   "ended": "2026-11-05T05:21:20Z"
-=======
      "column": "claim inspector",
      "kind": "future DOS from the feed (Pattern 4543)",
      "visits": 15,
@@ -236,24 +154,11 @@
    "errors": [],
    "started": "2026-11-05T05:19:00Z",
    "ended": "2026-11-05T05:28:00Z"
->>>>>>> Stashed changes
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-<<<<<<< Updated upstream
-   "summary": "1 checks / $43.60 -> 0 checks / $0.00",
-   "counts": {
-    "era_post lines": 1,
-    "checks dismissed": 0,
-    "checks held": 0
-   },
-   "dollars": {
-    "unposted before": 43.6,
-    "unposted after": 0,
-    "posted this run": 43.6
-=======
    "summary": "0 checks / $0.00 before and after; no new 835, Availity PDF or treasury CSV since 10/21",
    "counts": {
     "checks before": 0,
@@ -265,23 +170,9 @@
    "dollars": {
     "auto": 0.0,
     "manual": 0.0
->>>>>>> Stashed changes
    },
-   "lines": [
-    {
-     "check": 1053424,
-     "payer": "AARP",
-     "checknumber": "00149353947",
-     "amount": 0.0,
-     "unposted": 43.6,
-     "stage": "before"
-    }
-   ],
+   "lines": [],
    "errors": [],
-<<<<<<< Updated upstream
-   "started": "2026-11-05T05:21:20Z",
-   "ended": "2026-11-05T05:21:30Z"
-=======
    "started": "2026-11-05T05:26:00Z",
    "ended": "2026-11-05T05:26:30Z"
   },
@@ -321,7 +212,6 @@
    "errors": [],
    "started": "2026-11-05T05:26:40Z",
    "ended": "2026-11-05T05:27:20Z"
->>>>>>> Stashed changes
   },
   {
    "name": "packages",
@@ -337,10 +227,6 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-<<<<<<< Updated upstream
-   "started": "2026-11-05T05:21:30Z",
-   "ended": "2026-11-05T05:21:30Z"
-=======
    "started": "2026-11-05T05:17:00Z",
    "ended": "2026-11-05T05:17:10Z"
   },
@@ -359,7 +245,6 @@
    "errors": [],
    "started": "2026-11-05T05:27:30Z",
    "ended": "2026-11-05T05:27:50Z"
->>>>>>> Stashed changes
   },
   {
    "name": "outstanding",
@@ -368,104 +253,6 @@
    "summary": "2584 visits on 476 charts, $316714.97 open; 553 over a year ($24850.66)",
    "counts": {
     "visits": 2584,
-<<<<<<< Updated upstream
-    "charts": 476,
-    "over 365 days": 553
-   },
-   "dollars": {
-    "open insurance balance": 316714.97,
-    "over 365 days": 24850.66
-   },
-   "lines": [
-    {
-     "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
-     "visits": 1392,
-     "dollars": 175359.31,
-     "oldest_days": 1086
-    },
-    {
-     "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
-     "visits": 162,
-     "dollars": 27261.18,
-     "oldest_days": 1182
-    },
-    {
-     "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
-     "visits": 153,
-     "dollars": 26197.58,
-     "oldest_days": 423
-    },
-    {
-     "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
-     "visits": 291,
-     "dollars": 17141.68,
-     "oldest_days": 1053
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 81,
-     "dollars": 16644.4,
-     "oldest_days": 1155
-    },
-    {
-     "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 57,
-     "dollars": 8763.91,
-     "oldest_days": 1063
-    },
-    {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 32,
-     "dollars": 5837.0,
-     "oldest_days": 355
-    },
-    {
-     "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
-     "visits": 30,
-     "dollars": 5554.22,
-     "oldest_days": 971
-    },
-    {
-     "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 39,
-     "dollars": 5134.18,
-     "oldest_days": 65
-    },
-    {
-     "carrier": "CIG09",
-     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
-     "visits": 26,
-     "dollars": 4031.01,
-     "oldest_days": 171
-    },
-    {
-     "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
-     "visits": 29,
-     "dollars": 3646.1,
-     "oldest_days": 367
-    },
-    {
-     "carrier": "TRI00",
-     "name": "TRICARE EAST",
-     "visits": 14,
-     "dollars": 2870.0,
-     "oldest_days": 276
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-05T05:21:30Z",
-   "ended": "2026-11-05T05:21:32Z"
-=======
     "charts": 476
    },
    "dollars": {
@@ -475,7 +262,6 @@
    "errors": [],
    "started": "2026-11-05T05:27:50Z",
    "ended": "2026-11-05T05:28:10Z"
->>>>>>> Stashed changes
   },
   {
    "name": "denials",
@@ -483,11 +269,6 @@
    "status": "ok",
    "summary": "7799 denied visits on 841 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2962, RESOLVED 4502, RESUBMITTED 192, OPEN 143",
    "counts": {
-<<<<<<< Updated upstream
-    "charts read": 841,
-    "denial lines": 13226,
-=======
->>>>>>> Stashed changes
     "visits": 7799,
     "actionable": 75,
     "open": 143
@@ -497,13 +278,8 @@
    },
    "lines": [],
    "errors": [],
-<<<<<<< Updated upstream
-   "started": "2026-11-05T05:21:32Z",
-   "ended": "2026-11-05T05:25:24Z"
-=======
    "started": "2026-11-05T05:28:10Z",
    "ended": "2026-11-05T05:29:30Z"
->>>>>>> Stashed changes
   }
  ],
  "packages": [],

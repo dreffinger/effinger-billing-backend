@@ -1,10 +1,6 @@
 {
  "schema": "outstanding-claims/1",
-<<<<<<< Updated upstream
- "at": "2026-11-05T05:21:31Z",
-=======
  "at": "2026-11-05T05:27:50Z",
->>>>>>> Stashed changes
  "as_of": "2026-11-05",
  "total": 316714.97,
  "visits": 2584,
@@ -42,11 +38,7 @@
  "by_carrier": [
   {
    "carrier": "FLO02",
-<<<<<<< Updated upstream
-   "name": "FLORIDA MEDICARE",
-=======
    "name": "",
->>>>>>> Stashed changes
    "n": 1392,
    "dollars": 175359.31,
    "buckets": {
@@ -61,11 +53,7 @@
   },
   {
    "carrier": "UNI20",
-<<<<<<< Updated upstream
-   "name": "UNITED HEALTHCARE",
-=======
    "name": "",
->>>>>>> Stashed changes
    "n": 162,
    "dollars": 27261.18,
    "buckets": {
@@ -95,11 +83,7 @@
   },
   {
    "carrier": "BCBS",
-<<<<<<< Updated upstream
-   "name": "FLORIDA BLUE",
-=======
    "name": "",
->>>>>>> Stashed changes
    "n": 291,
    "dollars": 17141.68,
    "buckets": {
@@ -144,11 +128,7 @@
   },
   {
    "carrier": "CAP07",
-<<<<<<< Updated upstream
-   "name": "CAPITAL HEALTH PLAN",
-=======
    "name": "",
->>>>>>> Stashed changes
    "n": 32,
    "dollars": 5837.0,
    "buckets": {
@@ -448,11 +428,7 @@
   },
   {
    "carrier": "AAR01",
-<<<<<<< Updated upstream
-   "name": "AARP",
-=======
    "name": "",
->>>>>>> Stashed changes
    "n": 6,
    "dollars": 405.48,
    "buckets": {

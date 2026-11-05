@@ -7,7 +7,7 @@
  "note": "no brief (fired from the Billing Button page; live, all steps, every approved package)",
  "run_url": "https://claude.ai/code/session_01HHfWRCaiLjEcwyXQ5KHUEU",
  "started": "2026-11-05T05:12:00Z",
- "ended": "2026-11-05T05:38:11Z",
+ "ended": "2026-11-05T05:41:36Z",
  "engine": "claude",
  "trigger": "trig_01S771Si8VJ8DvcwgHMHGYB5",
  "summary": {
@@ -67,7 +67,7 @@
    "visits": 7799,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-05 05:38 UTC"
+   "asof": "2026-11-05 05:41 UTC"
   }
  },
  "steps": [
