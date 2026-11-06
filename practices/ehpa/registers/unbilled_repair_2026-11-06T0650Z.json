@@ -1,0 +1,13 @@
+{
+ "run": "2026-11-06T0650Z",
+ "live": true,
+ "reason_rows": [],
+ "prior_rows": [],
+ "left": [
+  {
+   "pid": "17473749",
+   "vid": "19459621",
+   "err": "One or more charges within this visit have errors. Charges with errors will be l"
+  }
+ ]
+}

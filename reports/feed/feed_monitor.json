@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-06T00:58:50Z",
+ "generated": "2026-11-06T06:56:47Z",
  "as_of": "2026-11-06",
  "coverage": {
   "files": [
@@ -433,19 +433,19 @@
      "patients": 10
     },
     {
-     "code": "M48.02",
-     "patients": 10
-    },
-    {
      "code": "M4802",
      "patients": 10
     },
     {
-     "code": "N390",
-     "patients": 9
+     "code": "M48.02",
+     "patients": 10
     },
     {
      "code": "E119",
+     "patients": 9
+    },
+    {
+     "code": "N390",
      "patients": 9
     },
     {
@@ -881,7 +881,7 @@
      "patients": 20
     },
     {
-     "code": "M48.02",
+     "code": "M4802",
      "patients": 20
     }
    ],
@@ -1458,11 +1458,11 @@
      "patients": 22
     },
     {
-     "code": "M48.02",
+     "code": "M4802",
      "patients": 22
     },
     {
-     "code": "M4802",
+     "code": "M48.02",
      "patients": 22
     }
    ],
@@ -2160,6 +2160,13 @@
    "stamp": "20261105T1241Z",
    "at": "2026-11-05T13:05:17.162564Z",
    "files": 1,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261106T0639Z",
+   "at": "2026-11-06T06:48:16.004275Z",
+   "files": 0,
    "exit": 0,
    "live": true
   }
