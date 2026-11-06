@@ -1,0 +1,1051 @@
+{
+ "pat44953": {
+  "v": 3,
+  "visits": [
+   "vst19460322",
+   "vst19460331"
+  ],
+  "dos": [
+   "11/04/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9437",
+    "car": "HUM01",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521165 seq 2",
+   "chart order -> 2: insorder 2 via ins9521165 -> '2'",
+   "vst19460322 insorder 2: ok",
+   "vst19460331 insorder 2: ok"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9437",
+    "car": "HUM01",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19460322": "2",
+   "vst19460331": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17471478": {
+  "v": 3,
+  "visits": [
+   "vst19460323",
+   "vst19460330"
+  ],
+  "dos": [
+   "11/03/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9510744",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9510744",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "TRI05",
+   "FLO02"
+  ],
+  "decision": "HOLD"
+ },
+ "pat46439": {
+  "v": 3,
+  "visits": [
+   "vst19460324",
+   "vst19460338"
+  ],
+  "dos": [
+   "11/02/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521145",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('WELLCARE HEALTH PLANS', 'Active Coverage'), ('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('AETNA INC', 'Other Source of Data'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521145",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17473090": {
+  "v": 3,
+  "visits": [
+   "vst19460325",
+   "vst19460334"
+  ],
+  "dos": [
+   "11/01/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9512646",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9521080",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9512646",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521080",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478316": {
+  "v": 3,
+  "visits": [
+   "vst19460326"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521146",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('WELLCARE HEALTH PLANS', 'Active Coverage'), ('UNITEDHEALTHCARE', 'Inactive'), ('UNITEDHEALTHCARE', 'Inactive'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521146",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478319": {
+  "v": 3,
+  "visits": [
+   "vst19460327"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [],
+  "hold": [
+   "no active plan: discovery found [('METLIFE', 'Active Coverage')]"
+  ],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17472228": {
+  "v": 3,
+  "visits": [
+   "vst19460328"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520546",
+    "car": "UNI20",
+    "seq": "3",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan: discovery found nothing"
+  ],
+  "insorder": "3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9511589",
+    "car": "SUN01",
+    "seq": "1",
+    "end": "10/02/2026"
+   },
+   {
+    "id": "ins9511598",
+    "car": "WEL04",
+    "seq": "2",
+    "end": "06/30/2026"
+   },
+   {
+    "id": "ins9520546",
+    "car": "UNI20",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17473113": {
+  "v": 3,
+  "visits": [
+   "vst19460329"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9512692",
+    "car": "UNI20",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found UNI20 but the chart already carries a UNI20 plan (status ['PARSE']) - not re-added",
+   "discovery found UNI20 but the chart already carries a UNI20 plan (status ['PARSE']) - not re-added",
+   "discovery: added FLO02 plan -> ins9521166 seq 2",
+   "chart order -> 2: insorder 2 via ins9521166 -> '2'",
+   "vst19460329 insorder 2: ok"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9512692",
+    "car": "UNI20",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19460329": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478223": {
+  "v": 3,
+  "visits": [
+   "vst19460332"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521028",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan; discovery error 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521028",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17473197": {
+  "v": 3,
+  "visits": [
+   "vst19460333"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517950",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('UNITEDHEALTHCARE', 'Other or Additional Payor'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9512841",
+    "car": "UNI20",
+    "seq": "1",
+    "end": "05/16/2026"
+   },
+   {
+    "id": "ins9517950",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478031": {
+  "v": 3,
+  "visits": [
+   "vst19460335"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520808",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9520809",
+    "car": "UHCMA",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery: added UNI20 plan -> ins9521167 seq 3",
+   "chart order -> 3: insorder 3 via ins9521167 -> '3'",
+   "vst19460335 insorder 3: ok"
+  ],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520808",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9520809",
+    "car": "UHCMA",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "3",
+   "why": "Stedi discovery UNI20 ACTIVE",
+   "qmb": false
+  },
+  "order": "3",
+  "applied": {
+   "vst19460335": "3"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477972": {
+  "v": 3,
+  "visits": [
+   "vst19460336",
+   "vst19460345"
+  ],
+  "dos": [
+   "11/04/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520719",
+    "car": "HUM01",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery: added MCAD plan -> ins9521168 seq 2",
+   "chart order -> 2: insorder 2 via ins9521168 -> '2'",
+   "vst19460336 insorder 2: ok",
+   "vst19460345 insorder 2: ok"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520719",
+    "car": "HUM01",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "MCAD",
+   "seq": "2",
+   "why": "Stedi discovery MCAD ACTIVE",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19460336": "2",
+   "vst19460345": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17470950": {
+  "v": 3,
+  "visits": [
+   "vst19460337"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9510098",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9510099",
+    "car": "AAR01",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9510098",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9510099",
+    "car": "AAR01",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17476537": {
+  "v": 3,
+  "visits": [
+   "vst19460339"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517811",
+    "car": "HUM01",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan; discovery error 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517811",
+    "car": "HUM01",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478318": {
+  "v": 3,
+  "visits": [
+   "vst19460340"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99232"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521148",
+    "car": "CIG09",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan; discovery error 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521148",
+    "car": "CIG09",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478261": {
+  "v": 3,
+  "visits": [
+   "vst19460341"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521094",
+    "car": "BCBS",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found BCBS but the chart already carries a BCBS plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('BCBSF', 'Active Coverage')]"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521094",
+    "car": "BCBS",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478331": {
+  "v": 3,
+  "visits": [
+   "vst19460342",
+   "vst19460349"
+  ],
+  "dos": [
+   "11/04/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [],
+  "hold": [
+   "no active plan; discovery error 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
+  ],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat22322": {
+  "v": 3,
+  "visits": [
+   "vst19460343",
+   "vst19460347"
+  ],
+  "dos": [
+   "11/04/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('WELLCARE HEALTH PLANS', 'Inactive'), ('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('UNITEDHEALTHCARE', 'Contact Following Entity for Eligibility or Benefit Information'), ('CMS', 'Active Coverage')]"
+  ],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins499",
+    "car": "CAP07",
+    "seq": "1",
+    "end": "12/31/2025"
+   },
+   {
+    "id": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17475970": {
+  "v": 3,
+  "visits": [
+   "vst19460344",
+   "vst19460346"
+  ],
+  "dos": [
+   "11/04/2026",
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99233",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9517099",
+    "car": "VACCN",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521169 seq 2",
+   "chart order -> 2: insorder 2 via ins9521169 -> '2'",
+   "vst19460344 insorder 2: ok",
+   "vst19460346 insorder 2: ok"
+  ],
+  "hold": [],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9517099",
+    "car": "VACCN",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19460344": "2",
+   "vst19460346": "2"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478265": {
+  "v": 3,
+  "visits": [
+   "vst19460348"
+  ],
+  "dos": [
+   "10/22/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9521075",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9521076",
+    "car": "BCBS",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan; discovery error 502 Server Error: Bad Gateway for url: https://healthcare.us.stedi.com/2024-04-01/insurance-discovery/check/v1"
+  ],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9521075",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9521076",
+    "car": "BCBS",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02",
+   "BCBS"
+  ],
+  "decision": "HOLD"
+ },
+ "pat17478332": {
+  "v": 3,
+  "visits": [
+   "vst19460350"
+  ],
+  "dos": [
+   "11/03/2026"
+  ],
+  "cpts": [
+   "99344",
+   "99497"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added FLO02 plan -> ins9521170 seq 1",
+   "chart order -> 1: insorder 1 via ins9521170 -> '1'",
+   "vst19460350 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "1",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460350": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat23069": {
+  "v": 3,
+  "visits": [
+   "vst19460351"
+  ],
+  "dos": [
+   "11/04/2026"
+  ],
+  "cpts": [
+   "99306",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins4282",
+    "car": "FLO02",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins8913",
+    "car": "BCBS",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found BCBS but the chart already carries a BCBS plan (status ['PARSE']) - not re-added",
+   "discovery found FLO02 but the chart already carries a FLO02 plan (status ['PARSE']) - not re-added",
+   "discovery found BCBS but the chart already carries a BCBS plan (status ['PARSE']) - not re-added"
+  ],
+  "hold": [
+   "no active plan: discovery found [('BCBSF', 'Active Coverage'), ('CMS', 'Active Coverage'), ('BCBSF', 'Active Coverage')]"
+  ],
+  "insorder": "1,2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins4282",
+    "car": "FLO02",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins8913",
+    "car": "BCBS",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "FLO02",
+   "BCBS"
+  ],
+  "decision": "HOLD"
+ },
+ "pat17476739": {
+  "v": 3,
+  "visits": [
+   "vst19460352"
+  ],
+  "dos": [
+   "11/05/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99497"
+  ],
+  "checks": [
+   {
+    "plan": "ins9518103",
+    "car": "WEL04",
+    "seq": "1",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9518104",
+    "car": "SUN01",
+    "seq": "2",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   },
+   {
+    "plan": "ins9518105",
+    "car": "MCAD",
+    "seq": "3",
+    "status": "PARSE ERROR not well-formed (invalid tok"
+   }
+  ],
+  "fixes": [
+   "discovery found WEL04 but the chart already carries a WEL04 plan (status ['PARSE']) - not re-added",
+   "discovery: added FLO02 plan -> ins9521171 seq 4",
+   "chart order -> 4: insorder 4 via ins9521171 -> '4'",
+   "vst19460352 insorder 4: ok"
+  ],
+  "hold": [],
+  "insorder": "1,3",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9518103",
+    "car": "WEL04",
+    "seq": "1",
+    "end": ""
+   },
+   {
+    "id": "ins9518104",
+    "car": "SUN01",
+    "seq": "2",
+    "end": ""
+   },
+   {
+    "id": "ins9518105",
+    "car": "MCAD",
+    "seq": "3",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "SUN01",
+   "MCAD"
+  ],
+  "lead": {
+   "code": "FLO02",
+   "seq": "4",
+   "why": "Stedi discovery FLO02 ACTIVE",
+   "qmb": false
+  },
+  "order": "4",
+  "applied": {
+   "vst19460352": "4"
+  },
+  "note": "feed IN1 says ['SUN01', 'MCAD'], chart bills FLO02 first (Stedi discovery FLO02 ACTIVE)",
+  "decision": "RELEASE"
+ }
+}
