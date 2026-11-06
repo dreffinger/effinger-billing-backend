@@ -1,24 +1,24 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-06T1118Z",
+ "stamp": "2026-11-06T1319Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 1 checks $104.36 -> 1 checks $60.97",
+ "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 1 checks $60.97 -> 1 checks $60.97",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42209304001",
- "started": "2026-11-06T11:18:58Z",
- "ended": "2026-11-06T11:25:06Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42224525574",
+ "started": "2026-11-06T13:19:21Z",
+ "ended": "2026-11-06T13:24:55Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 15,
+    "claim_inspector": 17,
     "unbilled": 0,
     "exclusions": 1
    },
    "after": {
     "charge_review": 0,
-    "claim_inspector": 15,
+    "claim_inspector": 17,
     "unbilled": 0,
     "exclusions": 1
    }
@@ -26,7 +26,7 @@
   "era": {
    "before": {
     "checks": 1,
-    "unposted": 104.36
+    "unposted": 60.97
    },
    "after": {
     "checks": 1,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 43.39,
+   "pay": 0.0,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -65,7 +65,7 @@
    "visits": 7799,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-06 11:25 UTC"
+   "asof": "2026-11-06 13:24 UTC"
   }
  },
  "steps": [
@@ -82,21 +82,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T11:18:58Z",
-   "ended": "2026-11-06T11:18:59Z"
+   "started": "2026-11-06T13:19:21Z",
+   "ended": "2026-11-06T13:19:21Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 15->15, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 17->17, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
-    "claim inspector": 15,
+    "claim inspector": 17,
     "unbilled": 0,
     "exclusions": 1,
     "inspector advisories to bypass": 0,
-    "inspector held (not advisory)": 15,
+    "inspector held (not advisory)": 17,
     "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
@@ -110,8 +110,8 @@
     {
      "column": "claim inspector",
      "kind": "missing data / dx",
-     "visits": 15,
-     "ids": "v19459901 v19459902 v19459903 v19459904 v19459905 v19459906 v19459907 v19459908 v19459909 v19459910 v19459911 v19459912 v19459913 v19459914 v19459915"
+     "visits": 17,
+     "ids": "v19459901 v19459902 v19459903 v19459904 v19459905 v19459906 v19459907 v19459908 v19459909 v19459910 v19459911 v19459912 v19459913 v19459914 v19459915 v19460343 v19460347"
     },
     {
      "column": "exclusions run 1700294",
@@ -121,23 +121,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T11:18:59Z",
-   "ended": "2026-11-06T11:20:58Z"
+   "started": "2026-11-06T13:19:21Z",
+   "ended": "2026-11-06T13:21:10Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "1 checks / $104.36 -> 1 checks / $60.97",
+   "summary": "1 checks / $60.97 -> 1 checks / $60.97",
    "counts": {
-    "era_post lines": 1,
+    "era_post lines": 0,
     "checks dismissed": 0,
-    "checks held": 1
+    "checks held": 0
    },
    "dollars": {
-    "unposted before": 104.36,
+    "unposted before": 60.97,
     "unposted after": 60.97,
-    "posted this run": 43.39
+    "posted this run": 0.0
    },
    "lines": [
     {
@@ -145,13 +145,13 @@
      "payer": "FLORIDA MEDICARE",
      "checknumber": "00149381538",
      "amount": 0.0,
-     "unposted": 104.36,
+     "unposted": 60.97,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-06T11:20:58Z",
-   "ended": "2026-11-06T11:21:09Z"
+   "started": "2026-11-06T13:21:10Z",
+   "ended": "2026-11-06T13:21:13Z"
   },
   {
    "name": "packages",
@@ -162,8 +162,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T11:21:09Z",
-   "ended": "2026-11-06T11:21:09Z"
+   "started": "2026-11-06T13:21:13Z",
+   "ended": "2026-11-06T13:21:13Z"
   },
   {
    "name": "outstanding",
@@ -266,8 +266,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T11:21:09Z",
-   "ended": "2026-11-06T11:21:10Z"
+   "started": "2026-11-06T13:21:13Z",
+   "ended": "2026-11-06T13:21:14Z"
   },
   {
    "name": "denials",
@@ -354,14 +354,13 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T11:21:10Z",
-   "ended": "2026-11-06T11:25:06Z"
+   "started": "2026-11-06T13:21:14Z",
+   "ended": "2026-11-06T13:24:55Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 15 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
-  "ERA check 1053433 held by era_clear: FLO02 00149381538 $104.36: 0 postable / 0 unrecorded lines - left on the list"
+  "Claim Inspector: 17 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
  ],
  "errors": []
 }
