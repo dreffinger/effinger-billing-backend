@@ -16,7 +16,7 @@ for pid,vids in ex.items():
         print(pid,'PLANS',elig_amd.plans(pid))
     except Exception as e: print('plans err',e)
 json.dump(out,open('scan_2026-11-05T0639Z/excl_state.json','w'),indent=1)
-# Berger + Dorrington
+# Bergstrom + Dorrington
 for pid in ('23069','22322'):
     try: print(pid,'PLANS',elig_amd.plans(pid))
     except Exception as e: print('plans err',e)

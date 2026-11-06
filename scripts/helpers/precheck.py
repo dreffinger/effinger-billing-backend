@@ -59,7 +59,7 @@ def main():
                 j = stedi.elig(payer, first, last, dobc, member, dos)
                 st = (j.get("planStatus") or [{}])[0]; errs = j.get("errors") or []
                 if errs: rec["result"] = "payer error: " + "; ".join("%s %s" % (e.get("code"), e.get("description")) for e in errs[:2])
-                elif st.get("statusCode") == "1": rec["result"] = "OK active - " + (st.get("planDetails") or "") + " " + json.dumps(j.get("planDateInformation") or {})
+                elif st.get("statusCode") in ("1", "2", "3", "4", "5"): rec["result"] = "OK active - "  # X12 EB01 1-5 are all ACTIVE (5 = Active - Pending Investigation; 11/6/2026 fix - it was flagged INACTIVE and bought a $1.50 discovery) + (st.get("planDetails") or "") + " " + json.dumps(j.get("planDateInformation") or {})
                 else:
                     rec["result"] = "INACTIVE on DOS (%s)" % (st.get("status") or "?")
                     try:

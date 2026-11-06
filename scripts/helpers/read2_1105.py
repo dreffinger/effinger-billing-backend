@@ -1,7 +1,7 @@
 import amd, json, re
 import xml.etree.ElementTree as ET
 def X(r): return ET.fromstring(r.encode('latin-1','ignore')) if isinstance(r,str) else ET.fromstring(r)
-# Berger lookup
+# Bergstrom lookup
 for nm in ('[name]%','DORRINGTON,[first]%'):
     r=amd.call({'class':'lookup','action':'lookuppatient','name':nm})
     for p in X(r).iter('patient'): print(nm, {k:p.attrib.get(k) for k in ('id','name','chart','dob')})
