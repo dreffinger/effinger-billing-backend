@@ -131,7 +131,7 @@ def floor_offence(text):
     for mm_ in TITLE_RE.finditer(text):                                     # "John Smith" - every word outside the vocabulary
         words = [w.upper() for w in mm_.group(1).split()]
         if all(w not in VOCAB for w in words): return "a name (%r)" % mm_.group(1)
-    if MBI_RE.search(text) or MBI_RE.search(re.sub(r"(?<=[A-Z0-9])[- ](?=[A-Z0-9]{3}\b)", "", re.sub(r"(?<=[A-Z0-9])-(?=[A-Z0-9])", "", text))): return "an MBI"   # 1EG4TE5MK73, the card's 1EG4-TE5-MK73 and 1EG4 TE5 MK73
+    if MBI_RE.search(text) or MBI_RE.search(re.sub(r"(?<=[A-Z0-9])[- ](?=[A-Z0-9]{3}\b)", "", re.sub(r"(?<=[A-Z0-9])-(?=[A-Z0-9])", "", text))): return "an MBI"   # the 11-character form, the card's dashed form (4-3-4) and a spaced one
     if SSN_RE.search(text): return "an SSN"
     if MEMBER_RE.search(text): return "a member / policy number"
     mm_ = BARE_ID_RE.search(text)
