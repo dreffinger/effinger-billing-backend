@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-06T1718Z",
+ "stamp": "2026-11-06T1839Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 2 checks $3467.68 -> 1 checks $1489.52",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42260463676",
- "started": "2026-11-06T17:18:57Z",
- "ended": "2026-11-06T17:25:31Z",
+ "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 2 checks $2100.47 -> 2 checks $1561.01",
+ "note": "scheduled columns run v8 (live)",
+ "run_url": "",
+ "started": "2026-11-06T18:54:19Z",
+ "ended": "2026-11-06T18:57:54Z",
  "summary": {
   "columns": {
    "before": {
@@ -26,15 +26,15 @@
   "era": {
    "before": {
     "checks": 2,
-    "unposted": 3467.68
+    "unposted": 2100.47
    },
    "after": {
-    "checks": 1,
-    "unposted": 1489.52
+    "checks": 2,
+    "unposted": 1561.01
    }
   },
   "posted": {
-   "pay": 1978.16,
+   "pay": 539.46,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -51,21 +51,6 @@
    "applied": 0,
    "refused": 0,
    "skipped": 0
-  },
-  "outstanding": {
-   "total": 324472.56,
-   "visits": 2614,
-   "charts": 476,
-   "over_365": {
-    "n": 555,
-    "dollars": 24883.57
-   }
-  },
-  "denials": {
-   "visits": 7799,
-   "actionable": 75,
-   "actionable_amt": 13713.0,
-   "asof": "2026-11-06 17:25 UTC"
   }
  },
  "steps": [
@@ -77,13 +62,13 @@
    "counts": {
     "helpers copied": 1324,
     "registers": 1798,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T17:18:57Z",
-   "ended": "2026-11-06T17:18:57Z"
+   "started": "2026-11-06T18:54:19Z",
+   "ended": "2026-11-06T18:54:20Z"
   },
   {
    "name": "columns",
@@ -121,23 +106,23 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T17:18:57Z",
-   "ended": "2026-11-06T17:20:55Z"
+   "started": "2026-11-06T18:54:20Z",
+   "ended": "2026-11-06T18:57:30Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $3467.68 -> 1 checks / $1489.52",
+   "summary": "2 checks / $2100.47 -> 2 checks / $1561.01",
    "counts": {
-    "era_post lines": 2,
+    "era_post lines": 1,
     "checks dismissed": 0,
-    "checks held": 1
+    "checks held": 2
    },
    "dollars": {
-    "unposted before": 3467.68,
-    "unposted after": 1489.52,
-    "posted this run": 1978.16
+    "unposted before": 2100.47,
+    "unposted after": 1561.01,
+    "posted this run": 539.46
    },
    "lines": [
     {
@@ -145,230 +130,27 @@
      "payer": "CAPITAL HEALTH PLAN",
      "checknumber": "4129172",
      "amount": 0.0,
-     "unposted": 3204.67,
+     "unposted": 1489.52,
      "stage": "before"
     },
     {
-     "check": 1053439,
-     "payer": "UNITED HEALTHCARE",
-     "checknumber": "W2281260",
+     "check": 1053441,
+     "payer": "TRICARE EAST",
+     "checknumber": "0010151228ER7",
      "amount": 0.0,
-     "unposted": 263.01,
+     "unposted": 610.95,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-06T17:20:55Z",
-   "ended": "2026-11-06T17:21:15Z"
-  },
-  {
-   "name": "packages",
-   "title": "Approval packages",
-   "status": "ok",
-   "summary": "no approved package in the register",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-06T17:21:15Z",
-   "ended": "2026-11-06T17:21:15Z"
-  },
-  {
-   "name": "outstanding",
-   "title": "Outstanding claims summary",
-   "status": "ok",
-   "summary": "2614 visits on 476 charts, $324472.56 open; 555 over a year ($24883.57)",
-   "counts": {
-    "visits": 2614,
-    "charts": 476,
-    "over 365 days": 555
-   },
-   "dollars": {
-    "open insurance balance": 324472.56,
-    "over 365 days": 24883.57
-   },
-   "lines": [
-    {
-     "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
-     "visits": 1399,
-     "dollars": 176472.94,
-     "oldest_days": 1087
-    },
-    {
-     "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
-     "visits": 172,
-     "dollars": 29518.18,
-     "oldest_days": 1183
-    },
-    {
-     "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
-     "visits": 154,
-     "dollars": 26357.58,
-     "oldest_days": 424
-    },
-    {
-     "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
-     "visits": 298,
-     "dollars": 18261.68,
-     "oldest_days": 1054
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 85,
-     "dollars": 17284.4,
-     "oldest_days": 1156
-    },
-    {
-     "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 60,
-     "dollars": 9910.26,
-     "oldest_days": 1064
-    },
-    {
-     "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 42,
-     "dollars": 5565.18,
-     "oldest_days": 66
-    },
-    {
-     "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
-     "visits": 30,
-     "dollars": 5554.22,
-     "oldest_days": 972
-    },
-    {
-     "carrier": "CIG09",
-     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
-     "visits": 26,
-     "dollars": 4031.01,
-     "oldest_days": 172
-    },
-    {
-     "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
-     "visits": 15,
-     "dollars": 3764.0,
-     "oldest_days": 199
-    },
-    {
-     "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
-     "visits": 29,
-     "dollars": 3646.1,
-     "oldest_days": 368
-    },
-    {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 17,
-     "dollars": 3509.0,
-     "oldest_days": 356
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-06T17:21:15Z",
-   "ended": "2026-11-06T17:21:16Z"
-  },
-  {
-   "name": "denials",
-   "title": "Working Denials refresh",
-   "status": "ok",
-   "summary": "7799 denied visits on 841 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2963, RESUBMITTED 192, RESOLVED 4501, OPEN 143",
-   "counts": {
-    "charts read": 841,
-    "denial lines": 13224,
-    "visits": 7799,
-    "actionable": 75,
-    "inside 12 months": 72,
-    "status WRITTEN-OFF": 2963,
-    "status RESUBMITTED": 192,
-    "status RESOLVED": 4501,
-    "status OPEN": 143
-   },
-   "dollars": {
-    "actionable": 13713.0,
-    "inside 12 months": 13194.0,
-    "resubmitted": 33168.37,
-    "resolved since": 680371.14
-   },
-   "lines": [
-    {
-     "disposition": "UNCLASSIFIED",
-     "visits": 1907,
-     "dollars": 315927.0,
-     "patients": 222
-    },
-    {
-     "disposition": "FIX",
-     "visits": 1265,
-     "dollars": 196763.23,
-     "patients": 201
-    },
-    {
-     "disposition": "REVIEW",
-     "visits": 1123,
-     "dollars": 174872.95,
-     "patients": 215
-    },
-    {
-     "disposition": "COB",
-     "visits": 1018,
-     "dollars": 169423.61,
-     "patients": 105
-    },
-    {
-     "disposition": "DUPLICATE",
-     "visits": 500,
-     "dollars": 95230.0,
-     "patients": 224
-    },
-    {
-     "disposition": "INFO",
-     "visits": 500,
-     "dollars": 84472.35,
-     "patients": 56
-    },
-    {
-     "disposition": "CRED",
-     "visits": 444,
-     "dollars": 63801.3,
-     "patients": 73
-    },
-    {
-     "disposition": "TIMELY",
-     "visits": 223,
-     "dollars": 37540.38,
-     "patients": 95
-    },
-    {
-     "disposition": "CONTRACTUAL",
-     "visits": 498,
-     "dollars": 34492.77,
-     "patients": 70
-    },
-    {
-     "disposition": "PATIENT",
-     "visits": 321,
-     "dollars": 28313.76,
-     "patients": 143
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-06T17:21:16Z",
-   "ended": "2026-11-06T17:25:31Z"
+   "started": "2026-11-06T18:57:30Z",
+   "ended": "2026-11-06T18:57:54Z"
   }
  ],
  "packages": [],
  "waiting": [
   "Claim Inspector: 17 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA check 1053441 held by era_clear: TRI00 0010151228ER7 $610.95: 0 postable / 0 unrecorded lines - left on the list",
   "ERA check 1053438 held by era_clear: CAP07 4129172 $3204.67: 0 postable / 8 unrecorded lines - left on the list",
   "era_clear wrote era_clear_reversal_20261106.json - write-offs to reverse before the payer's money can post (wo_reversal_post.py)"
  ],

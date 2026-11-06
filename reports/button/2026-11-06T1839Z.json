@@ -1,0 +1,158 @@
+{
+ "schema": "button-run/1",
+ "stamp": "2026-11-06T1839Z",
+ "mode": "live",
+ "status": "ok",
+ "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 2 checks $2100.47 -> 2 checks $1561.01",
+ "note": "scheduled columns run v8 (live)",
+ "run_url": "",
+ "started": "2026-11-06T18:54:19Z",
+ "ended": "2026-11-06T18:57:54Z",
+ "summary": {
+  "columns": {
+   "before": {
+    "charge_review": 0,
+    "claim_inspector": 17,
+    "unbilled": 0,
+    "exclusions": 1
+   },
+   "after": {
+    "charge_review": 0,
+    "claim_inspector": 17,
+    "unbilled": 0,
+    "exclusions": 1
+   }
+  },
+  "era": {
+   "before": {
+    "checks": 2,
+    "unposted": 2100.47
+   },
+   "after": {
+    "checks": 2,
+    "unposted": 1561.01
+   }
+  },
+  "posted": {
+   "pay": 539.46,
+   "woins": 0.0,
+   "wocaid2nd": 0.0,
+   "wolate": 0.0
+  },
+  "resent": {
+   "visits": 0,
+   "dollars": 0.0
+  },
+  "written_off": {
+   "count": 0,
+   "dollars": 0.0
+  },
+  "packages": {
+   "applied": 0,
+   "refused": 0,
+   "skipped": 0
+  }
+ },
+ "steps": [
+  {
+   "name": "bootstrap",
+   "title": "Workspace from the repository",
+   "status": "ok",
+   "summary": "1324 helpers into /home/claude/unbilled",
+   "counts": {
+    "helpers copied": 1324,
+    "registers": 1798,
+    "python": "/usr/local/bin/python3"
+   },
+   "dollars": {},
+   "lines": [],
+   "errors": [],
+   "started": "2026-11-06T18:54:19Z",
+   "ended": "2026-11-06T18:54:20Z"
+  },
+  {
+   "name": "columns",
+   "title": "Claims Center columns",
+   "status": "ok",
+   "summary": "CR 0->0, CI 17->17, Unbilled 0->0, Exclusions 1->1",
+   "counts": {
+    "charge review": 0,
+    "claim inspector": 17,
+    "unbilled": 0,
+    "exclusions": 1,
+    "inspector advisories to bypass": 0,
+    "inspector held (not advisory)": 17,
+    "inspector bypasses sent": 0,
+    "unbilled reason-code rows": 0,
+    "unbilled prior-payor rows": 0,
+    "unbilled rows left alone": 0,
+    "unbilled released": 0,
+    "exclusions dup run 1700294": 0,
+    "exclusions crossover run 1700294": "see log"
+   },
+   "dollars": {},
+   "lines": [
+    {
+     "column": "claim inspector",
+     "kind": "missing data / dx",
+     "visits": 17,
+     "ids": "v19459901 v19459902 v19459903 v19459904 v19459905 v19459906 v19459907 v19459908 v19459909 v19459910 v19459911 v19459912 v19459913 v19459914 v19459915 v19460343 v19460347"
+    },
+    {
+     "column": "exclusions run 1700294",
+     "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
+     "visits": 1,
+     "ids": "v19455937"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-06T18:54:20Z",
+   "ended": "2026-11-06T18:57:30Z"
+  },
+  {
+   "name": "era",
+   "title": "ERA posting",
+   "status": "ok",
+   "summary": "2 checks / $2100.47 -> 2 checks / $1561.01",
+   "counts": {
+    "era_post lines": 1,
+    "checks dismissed": 0,
+    "checks held": 2
+   },
+   "dollars": {
+    "unposted before": 2100.47,
+    "unposted after": 1561.01,
+    "posted this run": 539.46
+   },
+   "lines": [
+    {
+     "check": 1053438,
+     "payer": "CAPITAL HEALTH PLAN",
+     "checknumber": "4129172",
+     "amount": 0.0,
+     "unposted": 1489.52,
+     "stage": "before"
+    },
+    {
+     "check": 1053441,
+     "payer": "TRICARE EAST",
+     "checknumber": "0010151228ER7",
+     "amount": 0.0,
+     "unposted": 610.95,
+     "stage": "before"
+    }
+   ],
+   "errors": [],
+   "started": "2026-11-06T18:57:30Z",
+   "ended": "2026-11-06T18:57:54Z"
+  }
+ ],
+ "packages": [],
+ "waiting": [
+  "Claim Inspector: 17 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA check 1053441 held by era_clear: TRI00 0010151228ER7 $610.95: 0 postable / 0 unrecorded lines - left on the list",
+  "ERA check 1053438 held by era_clear: CAP07 4129172 $3204.67: 0 postable / 8 unrecorded lines - left on the list",
+  "era_clear wrote era_clear_reversal_20261106.json - write-offs to reverse before the payer's money can post (wo_reversal_post.py)"
+ ],
+ "errors": []
+}
