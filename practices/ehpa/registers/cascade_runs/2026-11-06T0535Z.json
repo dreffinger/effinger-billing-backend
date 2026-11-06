@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-06T06:59:56Z",
+ "at": "2026-11-06T05:35:00Z",
+ "changed": 3,
+ "checked": 31,
+ "commit": "68ac528",
+ "date": "2026-11-06",
+ "dollars": 620,
+ "done": "1 Medicare Advantage plan added and a chart MBI corrected, 3 hospital and ALF visits re-pointed and re-sent as original claims (620 dollars, charts 17473090 and 17477638)",
+ "era_posted": 0.0,
+ "finished": "2026-11-06T06:15:52Z",
+ "flagged": 4,
+ "kind": "nightly cascade",
+ "lookups": 20,
+ "note": "31 visit-and-plan pairs checked (20 new Stedi lookups), 4 flagged, 2 false flags cleared",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-06T0535Z.json",
+ "stamp": "2026-11-06T0535Z",
+ "stedi_cost": 15.6,
+ "writeoffs": 0.0
+}

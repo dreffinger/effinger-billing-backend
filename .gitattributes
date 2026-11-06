@@ -1,2 +1,3 @@
 docs/SHARED_LESSONS.md merge=union
 practices/ehpa/registers/rebill_log.jsonl merge=union
+practices/ehpa/registers/practice_db_written.jsonl merge=union

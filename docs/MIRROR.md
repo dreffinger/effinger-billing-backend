@@ -34,12 +34,23 @@ python3 tools/mirror/mirror.py sync "run <date> <time>: <what changed>"
 #    upload changed helpers + secrets/pseudonyms.json to 'workspace mirror'
 # 3. Postman connector: updateCollection with docs/postman_effinger_amd.json (createCollection once)
 # 4. chat history: one dated digest
-# 5. the ehpa Practice Database (William 11/1/2026): after the push, EVERY run (live or dry) -
+# 5. the ehpa Practice Database (William 11/1/2026): EVERY run (live or dry), ONCE per run - a run that already built in its
+#    FEED step (the Button, the 6-hourly columns run) does NOT build again here (its own report is swept in by the next run); a
+#    run that builds here does so BEFORE this sync, so the register below is committed with it -
 python3 tools/db/practice_db.py build --run <run stamp>     # -> outbox/practice_db/<stamp>/writes_N.json + CALLS.md
 #    then ONE ArtifactData call per writes file: action batch, url https://claude.ai/artifact/QrLJpUcpFv3cFRB9xHfLyk,
 #    writes = that file's JSON array verbatim (billing_runs/<stamp> from reports/button, era_runs/<stamp>, feed_batches +
 #    feed_checks when the run ingested feed files, snapshots/approvals-<stamp> and repo-<stamp>). Every id is new: no if_version.
 #    quota_exceeded / invalid_argument -> report verbatim, never retry. The page reads only this database - no GitHub connector.
+#    11/6/2026: the build also writes writes_sweep_<day>_N.json (one file set per day) - every engine report (reports/button, the
+#    GitHub Actions workflow), ERA register, feed batch and cascade night (practices/ehpa/registers/cascade_runs/, written by
+#    tools/db/cascade_record.py) of the last 7 days that main holds and the database does not yet; practices/ehpa/registers/
+#    practice_db_written.jsonl (one JSON line per document, merge=union) records every id sent and is committed and pushed by the
+#    run RIGHT AFTER its batch calls (CALLS.md prints the command) - never left for this sync's rebase to carry.
+#    One batch per writes file, sweep files included; build ONCE per run. An answer naming a document that ALREADY EXISTS:
+#    `python3 tools/db/practice_db.py trim --out <dir> --file <writes file> --exists <collection>/<doc_id>`, then send that file again
+#    (repeat while another is named). A refused / approval-gated / errored call: `python3 tools/db/practice_db.py unsent --out <dir>
+#    --file <writes file>` - its ids leave the register and the next run resends them. Never retry a call as it was.
 python3 tools/mirror/mirror.py status      # what would be pushed, is the collection current
 ```
 
@@ -50,6 +61,20 @@ the artifact's own document database. `tools/db/practice_db.py` turns the PHI-li
 `feed_batches`, `feed_checks`, `billing_runs`, `era_runs`, `snapshots`, `practice`), writes them as files and prints the ArtifactData
 batch calls; the run makes those calls. Documents are keyed by run stamp so nothing is ever overwritten and no version pinning is
 needed. Viewers read the page with no connector or prompt; only the owner and Claude sessions write. The old GitHub-read path is gone.
+
+**Every scheduled run on the page (11/6/2026).** The page's "Nightly insurance cascade" chart reads `cascade_runs` (one document per night: at, date,
+checked, changed, dollars, done, note); its "Scheduled billing runs" table reads `billing_runs` + `feed_checks` + `era_runs` + `cascade_runs` by Eastern
+day. Two things keep them moving: the nightly cascade's STEP 5b (`nightly/live/cascade.txt`) records its night with `tools/db/cascade_record.py`
+(`practices/ehpa/registers/cascade_runs/<stamp>.json`, chart ids and dollars only - it refuses a name), and every `practice_db.py build` SWEEPS main
+for the GitHub Actions engine's reports (`reports/button/<stamp>.json` - the engine runs 12 times a day and writes no database document itself),
+ERA registers, feed batches and cascade nights of the last 7 days that the database lacks. `practices/ehpa/registers/practice_db_written.jsonl`
+(one JSON line per document: collection/doc_id, when, by which run; 45 days kept; `merge=union` so two runs' lines merge) is the never-send-twice
+register: a `set` of an id the database already holds fails the whole batch, so nothing another run sent is emitted again (a rebuild of the same
+run stamp re-emits that run's own files). Every run commits and pushes the register right after its batch calls - never left uncommitted for a
+later rebase to carry, because an unreadable register fails every build closed. When an answer still names a
+document that already exists (the register had fallen behind), `practice_db.py trim` drops that entry and the file is sent again; a call refused,
+approval-gated or errored is taken back out with `practice_db.py unsent` so the next run resends it. Sweep files are cut per day so a collision
+touches one day's file.
 
 The other billing and credentialing pages are copied into the same database by the daily **practice database sync**
 (`nightly/practice_db_sync_prompt_v1.txt`, a scheduled task William creates in the UI): `ArtifactData list ... out_dir` saves each

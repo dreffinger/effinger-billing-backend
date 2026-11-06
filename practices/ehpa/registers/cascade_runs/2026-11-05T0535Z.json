@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-06T05:57:14Z",
+ "at": "2026-11-05T05:35:00Z",
+ "changed": 2,
+ "checked": 252,
+ "commit": "2344896",
+ "date": "2026-11-05",
+ "dollars": 704,
+ "done": "1 Medicare Advantage plan added and 2 visits re-pointed and re-sent as original claims ($704, charts 17473749 and 17472491)",
+ "era_posted": 0.0,
+ "finished": "2026-11-05T06:07:08Z",
+ "flagged": 29,
+ "kind": "nightly cascade",
+ "lookups": 40,
+ "note": "252 visit-and-plan pairs checked (202 from cache, 40 new Stedi lookups), 29 flagged",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-05T0535Z.json",
+ "stamp": "2026-11-05T0535Z",
+ "stedi_cost": 29.5,
+ "writeoffs": 0.0
+}
