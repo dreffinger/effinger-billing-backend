@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-06T0920Z",
+ "stamp": "2026-11-06T1118Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/15/0/1 -> 0/15/0/1; ERA 1 checks $104.36 -> 1 checks $60.97",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42194234000",
- "started": "2026-11-06T09:20:12Z",
- "ended": "2026-11-06T09:25:53Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42209304001",
+ "started": "2026-11-06T11:18:58Z",
+ "ended": "2026-11-06T11:25:06Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,16 +25,16 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 104.36
    },
    "after": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 60.97
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 43.39,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 327797.32,
-   "visits": 2637,
+   "total": 327753.93,
+   "visits": 2635,
    "charts": 480,
    "over_365": {
     "n": 555,
@@ -65,7 +65,7 @@
    "visits": 7799,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-06 09:25 UTC"
+   "asof": "2026-11-06 11:25 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T09:20:12Z",
-   "ended": "2026-11-06T09:20:12Z"
+   "started": "2026-11-06T11:18:58Z",
+   "ended": "2026-11-06T11:18:59Z"
   },
   {
    "name": "columns",
@@ -121,28 +121,37 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T09:20:12Z",
-   "ended": "2026-11-06T09:22:07Z"
+   "started": "2026-11-06T11:18:59Z",
+   "ended": "2026-11-06T11:20:58Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $104.36 -> 1 checks / $60.97",
    "counts": {
-    "era_post lines": 0,
+    "era_post lines": 1,
     "checks dismissed": 0,
-    "checks held": 0
+    "checks held": 1
    },
    "dollars": {
-    "unposted before": 0,
-    "unposted after": 0,
-    "posted this run": 0.0
+    "unposted before": 104.36,
+    "unposted after": 60.97,
+    "posted this run": 43.39
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053433,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "00149381538",
+     "amount": 0.0,
+     "unposted": 104.36,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-06T09:22:07Z",
-   "ended": "2026-11-06T09:22:08Z"
+   "started": "2026-11-06T11:20:58Z",
+   "ended": "2026-11-06T11:21:09Z"
   },
   {
    "name": "packages",
@@ -153,21 +162,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T09:22:08Z",
-   "ended": "2026-11-06T09:22:08Z"
+   "started": "2026-11-06T11:21:09Z",
+   "ended": "2026-11-06T11:21:09Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2637 visits on 480 charts, $327797.32 open; 555 over a year ($24883.57)",
+   "summary": "2635 visits on 480 charts, $327753.93 open; 555 over a year ($24883.57)",
    "counts": {
-    "visits": 2637,
+    "visits": 2635,
     "charts": 480,
     "over 365 days": 555
    },
    "dollars": {
-    "open insurance balance": 327797.32,
+    "open insurance balance": 327753.93,
     "over 365 days": 24883.57
    },
    "lines": [
@@ -257,8 +266,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T09:22:08Z",
-   "ended": "2026-11-06T09:22:10Z"
+   "started": "2026-11-06T11:21:09Z",
+   "ended": "2026-11-06T11:21:10Z"
   },
   {
    "name": "denials",
@@ -345,13 +354,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T09:22:10Z",
-   "ended": "2026-11-06T09:25:53Z"
+   "started": "2026-11-06T11:21:10Z",
+   "ended": "2026-11-06T11:25:06Z"
   }
  ],
  "packages": [],
  "waiting": [
-  "Claim Inspector: 15 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William"
+  "Claim Inspector: 15 visit(s) with missing-data / diagnosis holds (admission date, dx order, CCI) - chat session or William",
+  "ERA check 1053433 held by era_clear: FLO02 00149381538 $104.36: 0 postable / 0 unrecorded lines - left on the list"
  ],
  "errors": []
 }
