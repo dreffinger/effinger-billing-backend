@@ -34819,5 +34819,89 @@
   "chargeid": 23371373,
   "outcome": "denial-only CO-109/N105 Railroad Medicare - chart re-routed to RET01, 5 visits re-sent",
   "when": "2026-11-05T07:10Z"
+ },
+ {
+  "checkid": 1053441,
+  "checkclaimid": 15448638,
+  "visitid": 19459603,
+  "chargeid": 23372150,
+  "outcome": "posted",
+  "pay": 71.49,
+  "wo": 63.02,
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053441,
+  "checkclaimid": 15448641,
+  "visitid": 19459603,
+  "chargeid": 23372150,
+  "outcome": "duplicate-$0 CO18 on a paid claim - nothing posted",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053441,
+  "visitid": 19448596,
+  "chargeid": 23357900,
+  "outcome": "denial-only CO96/N428 G0439 - denial handling (Working Denials board)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19407222,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19407188,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19407178,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19407000,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19406800,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19405878,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19405972,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
+ },
+ {
+  "checkid": 1053438,
+  "visitid": 19405791,
+  "outcome": "posted via wo_reversal_post (write-offs voided, Post button)",
+  "when": "2026-11-06T19:02:11.803113Z",
+  "run": "2026-11-06T1839Z"
  }
 ]
