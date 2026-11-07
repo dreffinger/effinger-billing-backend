@@ -422,6 +422,13 @@ class Run:
         elif before:
             self.warn(s, "the before-list rows carry no check number (printed-line fallback) - the CO-45 pass and the fallback are skipped this run")
         # 11/7/2026: a pre-post copy of every listed check's remit cache - era_clear re-pulls checkdetails after the posts and the cache shrinks to the leftovers
+        # (copies older than 14 days are removed first - the engine's cache keeps era_details between runs)
+        for old in glob.glob(os.path.join(self.ws, "era_details", "*_prepost_*.json")):
+            try:
+                if time.time() - os.path.getmtime(old) > 14 * 86400:
+                    os.remove(old)
+            except OSError:
+                pass
         for cid in before_ids:
             src = os.path.join(self.ws, "era_details", "%s.json" % cid)
             if os.path.isfile(src):
