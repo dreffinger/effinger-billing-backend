@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-07T05:40:22Z",
+ "at": "2026-11-07T07:20:43Z",
  "as_of": "2026-11-07",
- "total": 328568.56,
- "visits": 2632,
- "charts": 482,
+ "total": 327694.56,
+ "visits": 2628,
+ "charts": 481,
  "over_365": {
   "n": 559,
   "dollars": 25072.01
  },
  "by_bucket": {
   "0-30": {
-   "n": 675,
-   "dollars": 146139.66
+   "n": 671,
+   "dollars": 145265.66
   },
   "31-60": {
    "n": 277,
@@ -39,10 +39,10 @@
   {
    "carrier": "FLO02",
    "name": "FLORIDA MEDICARE",
-   "n": 1412,
-   "dollars": 179478.94,
+   "n": 1408,
+   "dollars": 178604.94,
    "buckets": {
-    "0-30": 97187.58,
+    "0-30": 96313.58,
     "31-60": 15874.59,
     "61-90": 9440.66,
     "91-180": 18823.78,
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 100,
-   "dollars": 20161.0
+   "n": 96,
+   "dollars": 19287.0
   }
  ],
  "oldest": [
@@ -1321,14 +1321,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460352,
-   "patientid": 17476739,
-   "carriercode": "FLO02",
-   "insbalance": 443.0,
-   "days": 2,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19431393,
    "patientid": 17475362,
    "carriercode": "BCBS",
@@ -1391,6 +1383,14 @@
    "insbalance": 389.0,
    "days": 375,
    "dos": "2025-10-28"
+  },
+  {
+   "visitid": 19425236,
+   "patientid": 17474826,
+   "carriercode": "FLO02",
+   "insbalance": 389.0,
+   "days": 340,
+   "dos": "2025-12-02"
   }
  ],
  "rows": [
@@ -22267,14 +22267,6 @@
    "dos": "2026-11-04"
   },
   {
-   "visitid": 19460322,
-   "patientid": 44953,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 3,
-   "dos": "2026-11-04"
-  },
-  {
    "visitid": 19460215,
    "patientid": 17471478,
    "carriercode": "FLO02",
@@ -22321,14 +22313,6 @@
    "insbalance": 111.0,
    "days": 3,
    "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460352,
-   "patientid": 17476739,
-   "carriercode": "FLO02",
-   "insbalance": 443.0,
-   "days": 2,
-   "dos": "2026-11-05"
   },
   {
    "visitid": 19460341,
@@ -22379,14 +22363,6 @@
    "dos": "2026-11-05"
   },
   {
-   "visitid": 19460331,
-   "patientid": 44953,
-   "carriercode": "FLO02",
-   "insbalance": 160.0,
-   "days": 2,
-   "dos": "2026-11-05"
-  },
-  {
    "visitid": 19460330,
    "patientid": 17471478,
    "carriercode": "FLO02",
@@ -22422,14 +22398,6 @@
    "visitid": 19460340,
    "patientid": 17478318,
    "carriercode": "CIG09",
-   "insbalance": 111.0,
-   "days": 2,
-   "dos": "2026-11-05"
-  },
-  {
-   "visitid": 19460329,
-   "patientid": 17473113,
-   "carriercode": "FLO02",
    "insbalance": 111.0,
    "days": 2,
    "dos": "2026-11-05"
