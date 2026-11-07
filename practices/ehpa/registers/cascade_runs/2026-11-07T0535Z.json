@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-07T06:00:08Z",
+ "at": "2026-11-07T05:35:00Z",
+ "changed": 5,
+ "checked": 20,
+ "commit": "",
+ "date": "2026-11-07",
+ "dollars": 874,
+ "done": "5 hospital visits on 3 charts re-pointed from Medicare to the Medicare Advantage plan on record and re-sent as originals (874 dollars: chart 17476739 to WellCare 443, chart 44953 to Humana 320 with F01.50 deleted, chart 17473113 to UHC Group MA 111); ERA Center empty",
+ "era_posted": 0.0,
+ "finished": "2026-11-07T06:00:08Z",
+ "flagged": 3,
+ "kind": "nightly cascade",
+ "lookups": 15,
+ "note": "20 visit-and-plan pairs checked (10 new Stedi lookups), 3 flagged, 5 visits re-sent",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-07T0535Z.json",
+ "stamp": "2026-11-07T0535Z",
+ "stedi_cost": 8.7,
+ "writeoffs": 0.0
+}
