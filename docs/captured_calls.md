@@ -5836,3 +5836,12 @@ No new AMD / Stedi call shapes this run. Lessons (operational, no PHI):
 5. Drive connector transport: a small JSON on 'workspace mirror' (pseudonyms.json 12 KB, deceased_cache.json 9 KB) is easiest to restore with read_file_content (text, markdown-escaped: \_ \> \[ must be un-escaped) and written with the Write tool; download_file_content returns inline base64 that cannot be piped to disk without re-typing it. Results over ~75 KB are saved to a tool-results file that jq can decode (precheck_cache.json came in that way).
 6. Postman connector: workspace d869e89a-d16a-4ed1-8443-54ed1a6ded35 holds the collection "Effinger AMD - captured calls" uid 21333910-2a1aec48-7c24-4044-9e78-9f60ec404c8f (name still says generated 2026-10-28, 69 calls; local vocabulary 70 calls).
 7. The GitHub Actions engine (scheduled columns slot 1318Z) pushed reports/button/latest.json while this run's feed ingest was in flight (it saw Claim Inspector 26 -> 21: the feed visits mid-entry); the run's own commit then hit a rebase conflict on latest.json - resolved by keeping this run's file (the chronologically later pass). Expect this whenever a run spans an engine slot.
+
+# captured_calls additions - 2026-11-07T1839Z backend billing run (ehpa cloud, 1:39 PM ET 11/7)
+
+No new AMD / Stedi call shapes this run (engine pass tools/button/run_all.py --profile columns; every call already in the registry).
+
+Lessons:
+1. ERA: a payer's $0 835 that arrives AFTER its own paid remit on the same claim (WellCare check 1053447 / 1003587222, visit 19458981, OA23 + CO96/N448 + CO4/N56, remark '#AM allowed amount does not match the expected amount') is a REPEAT adjudication, not a denial: the live charges already carried WellCare's 11/03 payment (check 1008865419) with the CO45 contractual written off and $0 balances. era_clear dismissed it correctly (no postable money, recorded() gate satisfied). Rule: read the live payments first; a $0 line on a charge the same payer already paid is 'already adjudicated - record only'.
+2. Bootstrap: the Drive 'workspace mirror' deceased_cache.json (10/28) carried 0 dated entries the repo copy lacked (dg_drive.py unpack merged 0) - the repo register practices/ehpa/registers/deceased_cache.json is current since the 10/28 run.
+3. Guard/overview: getclaimcenteroverview exclusioncount reads 7 / $1,419 while getclaimexclusioncharges lists 1 row (chart 24750) - the cached overview lag again; the list calls are the truth.
