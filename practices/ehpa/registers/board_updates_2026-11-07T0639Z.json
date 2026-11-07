@@ -1,0 +1,231 @@
+{
+ "schema": "irb-board-updates/1",
+ "source": "backend billing run 2026-11-07T0639Z",
+ "created": "2026-11-07T07:02:00Z",
+ "ops": [
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "[name]-46439",
+   "set": {
+    "id": "[name]-46439",
+    "patient": "HARCOURT,CHERILYN",
+    "dob": "[DOB]",
+    "facility": "hospital inpatient (99223+99497 11/2, 99233 11/5/2026)",
+    "amdid": "46439",
+    "mbi": "[MBI]",
+    "amount": 603,
+    "status": "claude",
+    "inscarrier": "FLO02 Florida Medicare",
+    "insid": "[MBI]",
+    "insplans": "1st FLO02 Florida Medicare [MBI] (begin 11/05/2025)",
+    "need": "None - fixed; watching Medicare's answer. Both hospital visits (99223+99497 11/2/2026 v19460324 $443, 99233 11/5/2026 v19460338 $160) sat in Unbilled on 'Subscriber sex is invalid for insurance coverage' - the feed chart carried sex U. Medicare's own record (Stedi MBI lookup, MBI [MBI], Part A/B active, no Advantage plan) gives F: chart gender set U -> F (captured demographics PATCH, read back F) and both visits released; they go to Medicare on the next claim run. HEADS-UP: Medicare's record also carries a working-aged MSP line - 'Medicare Secondary, employer group health plan' administered by INTERACTIVE MEDICAL SYSTEMS (coordination of benefits since 01/01/2024). No live employer plan found: insurance discovery = WellCare Part D only, UnitedHealthcare 804494078 INACTIVE, Aetna 2006-07, Medicare; AMD's own 271 answered nothing tonight. If Medicare answers CO-22 / MSP, the HCA facesheet for the 11/2 admission names the employer plan - say the word and I re-route.",
+    "why": "Unbilled 11/7: 2 hospital visits ($603) held 'Subscriber sex is invalid' - chart sex U; Medicare MSP flag (employer group plan via Interactive Medical Systems) on the CMS record",
+    "notes": [
+     {
+      "who": "Claude",
+      "at": "2026-11-07T07:02:00Z",
+      "text": "1:39 AM ET 11/7 run: the chart's sex was blank (U), which blocks every Medicare claim; set it to F from Medicare's own record and released the two hospital visits. Watch item: CMS lists an employer group plan (Interactive Medical Systems) as primary since 1/1/2024 - no live plan found anywhere; Medicare's answer decides. Nothing for you unless Medicare denies MSP."
+     }
+    ],
+    "checks": [
+     {
+      "ok": "no",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Unbilled",
+      "result": "'Subscriber sex is invalid for insurance coverage' on v19460324 + v19460338 ($603) - chart sex U",
+      "when": "11/7"
+     },
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - AMD eligibility (free 271) FLO02 ins9521145",
+      "result": "UNKNOWN - AMD eligibility route answered nothing tonight (eligibilitystatusid 20, empty 271)",
+      "when": "11/7"
+     },
+     {
+      "ok": "ok",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Stedi MBI lookup MBILUNOSSN (name/DOB, FL, DOS [DOB])",
+      "result": "MBI [MBI] active Part A (2024-01-01) / Part B; subscriber gender F; no Advantage entity; no date of death; MSP line: type 12 working-aged EGHP, INTERACTIVE MEDICAL SYSTEMS, COB 20240101",
+      "when": "11/7"
+     },
+     {
+      "ok": "no",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Stedi insurance discovery (FL, DOS 11/2/2026)",
+      "result": "coveragesFound 5: WellCare 14163 Classic PDP (Part D, not medical); UnitedHealthcare 87726/25463 member [member id] 'Other or Additional Payor' (no dates); Aetna W149369738 2006-2007; CMS [MBI] active",
+      "when": "11/7"
+     },
+     {
+      "ok": "no",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Stedi UHC 87726 eligibility",
+      "result": "planStatus 6 Inactive with member [member id] at DOS 11/2/2026 - not a live plan",
+      "when": "11/7"
+     },
+     {
+      "ok": "ok",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - AMD demographics PATCH (patient_patch.patch)",
+      "result": "PATCH 200: gender U -> F (patient; responsible party reads from the patient)",
+      "when": "11/7"
+     },
+     {
+      "ok": "ok",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - AMD action: release",
+      "result": "v19460324 + v19460338 released (hideunbillablevisits True x2); Unbilled column 2 -> 0",
+      "when": "11/7"
+     }
+    ],
+    "api": [
+     {
+      "src": "Stedi API - MBI lookup MBILUNOSSN (DOS 20261105) + insurance discovery (DOS 20261102)",
+      "at": "2026-11-07T07:02:00Z",
+      "text": "HARCOURT, CHERILYN  DOB [DOB]  FL\nMBI [MBI]; Part A plan 20240101, benefit 20260101-20261231; gender F; death none\nOT/R: WELLCARE PRESCRIPTION INSURANCE, INC. (Part D, 20260101)\n12/R: Medicare Secondary Working Aged Beneficiary or Spouse with Employer Group Health Plan - INTERACTIVE MEDICAL SYSTEMS, coordinationOfBenefits 20240101, dateOfLastUpdate 20240111\nDiscovery: WELLCARE HEALTH PLANS 14163 member [member id] Classic (PDP) 20260101-20261231; UNITEDHEALTHCARE 87726 + 25463 member [member id] 'Other or Additional Payor' (87726 eligibility at DOS 20261102: planStatus 6 Inactive); AETNA 60054 member [member id] plan 20061001-20070701; CMS [MBI] Active"
+     }
+    ],
+    "created": "2026-11-07T07:02:00Z"
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "hawksworth-davin-admit-1107",
+   "set": {
+    "id": "hawksworth-davin-admit-1107",
+    "patient": "HAWKSWORTH,DAVIN",
+    "dob": "[DOB]",
+    "facility": "Azalea Gardens (ALF) - PCC admission 08/27/2026 (Pam 'NA Azalea Gardens' 11/6)",
+    "amdid": "",
+    "mbi": "",
+    "amount": 0,
+    "status": "claude",
+    "inscarrier": "UNI20 UnitedHealthcare (Group Medicare Advantage LPPO)",
+    "insid": "[member id]",
+    "insplans": "facesheet: UnitedHealth policy [member id]; Stedi UHC 271: LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PPO) ACTIVE, member [member id]; no Medicaid, no Medicare # on the sheet",
+    "need": "None yet - no AMD chart for this name/DOB (lookuppatient HAWKSWORTH,[first]% -> one chart, DOB [DOB] = a different person; never created from an email). Insurance is ready for the moment the Claimocity feed creates the chart: UnitedHealthcare Group Medicare Advantage LPPO, member [member id] (the PCC policy [member id] with its trailing 00 dropped - UHC's 271 echoes 840235819), ACTIVE on 11/6/2026, the only plan, primary (MA - no Medicare plan on the chart); PCC 'Primary Payer: Private Pay' is the ALF's own arrangement, not the physician payer. Stedi Medicare lookup by name/DOB: AAA 72 (the MA plan is the answer). The run re-checks for the chart every pass.",
+    "why": "Pam admit email 11/6 21:46 ET 'NA Azalea Gardens' (IMG_0072): PCC resident profile, admitted 08/27/2026, UnitedHealth 84023581900 - no AMD chart yet",
+    "notes": [
+     {
+      "who": "Claude",
+      "at": "2026-11-07T07:02:00Z",
+      "text": "1:39 AM ET 11/7 run: read Pam's Azalea Gardens admit photo. No chart in AMD yet (the only Davin Hawksworth there is born 1961). His UnitedHealth policy is an active UHC Group Medicare Advantage PPO (member [member id]) - the only plan to bill once the feed creates his chart. Nothing for you."
+     }
+    ],
+    "checks": [
+     {
+      "ok": "no",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - lookuppatient",
+      "result": "HAWKSWORTH,[first]% -> pat17476928 DOB [DOB] only (different person); no chart with DOB [DOB]",
+      "when": "11/7"
+     },
+     {
+      "ok": "no",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Stedi MBI lookup MBILUNOSSN (name/DOB, FL, DOS [DOB])",
+      "result": "AAA 72 Invalid/Missing Subscriber/Insured ID - not found on Medicare by name/DOB (MA member)",
+      "when": "11/7"
+     },
+     {
+      "ok": "ok",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Stedi UHC 87726 eligibility (DOS 11/6/2026)",
+      "result": "Active Coverage - LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PPO), member [member id] (sheet 84023581900), payer UNITEDHEALTHCARE, PCP entity EFFINGER HEALTH PA, OPTUMRX",
+      "when": "11/7"
+     }
+    ],
+    "api": [
+     {
+      "src": "Stedi API - UHC 87726 eligibility (DOS 20261106)",
+      "at": "2026-11-07T07:02:00Z",
+      "text": "HAWKSWORTH, DAVIN  DOB [DOB]  member [member id] -> UHC echoes 840235819\nplanStatus: 1 Active Coverage - LPPO-UNITEDHEALTHCARE GROUP MEDICARE ADVANTAGE (PPO) (+5 active service types)\nentities: 1 UNITEDHEALTHCARE; U OPTUMRX; X EFFINGER HEALTH PA; L HOGARTH\nerrors: none\nMBI lookup MBILUNOSSN (name/DOB FL DOS [DOB]): AAA 72"
+     }
+    ],
+    "created": "2026-11-07T07:02:00Z"
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "orme-cotterell-simply-npi",
+   "append": {
+    "checks": [
+     {
+      "ok": "ok",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - Pam admit email 11/6 22:39 ET 'Read, admit Brynwood' (IMG_0075) + Stedi 77027",
+      "result": "Pam's Brynwood readmit record (admitted 10/15/2026, orig 7/28/2025; Medicaid # [member id], Ins. Company Simply Healthcare, policy [member id]; Medicaid Only-No Medicare Benefits: Yes) matches the chart: MCAD seq 1 + SIM01 seq 2 both 9407894649. Stedi FL Medicaid 271 (DOS 10/15/2026): Active - MI I Full Medicaid, SMMC MC = SIMPLY HEALTHCARE PLANS INC (+ DentaQuest). AMD 271 answered nothing tonight. 13 charges 9/20-10/13/2026 ($2,170) at SIM01, billed 9/24-10/14, unpaid, inside 45 days - WAIT; nothing changed.",
+      "when": "11/7"
+     }
+    ]
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "hunter-edwin-jr-admit-1104",
+   "append": {
+    "checks": [
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - lookuppatient",
+      "result": "still no AMD chart with DOB [DOB] (HUNTLEY,[first]% -> one 1971 chart; HUNTLEY JR,[first]% none) - the feed has not created it; UNI20 995900786 waits for the chart",
+      "when": "11/7"
+     }
+    ]
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "[name]-20261107-mis-dated-visits",
+   "append": {
+    "checks": [
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z",
+      "result": "the 15 feed visits dated 11/07/2026 (v19459901-v19459915, $2,204) still hold in the Claim Inspector on Pattern 4543 (AMD's clock reached 11/7 at 05:00Z; the batch was not re-inspected by this run - a resave would send claims on the mis-dated DOS); your void / re-date call stands",
+      "when": "11/7"
+     }
+    ]
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "dorrington-kathryn-22322",
+   "append": {
+    "checks": [
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z",
+      "result": "v19460343 (99233) + v19460347 (99223) still held in the Claim Inspector on Pattern 4531 (hospital codes at POS 13 ALF) - coding call, $603, not bypassed",
+      "when": "11/7"
+     }
+    ]
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "aet12-carrier-cpid",
+   "append": {
+    "checks": [
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z",
+      "result": "HOLD - the one AET12 PREF0288 + PREF0264 exclusion row (chart 24750, v19455937, run 1700294, $315) stays on the list, not rebilled; carrier master still unchanged.",
+      "when": "11/7"
+     }
+    ]
+   }
+  },
+  {
+   "op": "upsert",
+   "collection": "items",
+   "id": "availity-remits-backlog",
+   "append": {
+    "checks": [
+     {
+      "ok": "na",
+      "src": "1:39am ET 11/7 columns run (ehpa cloud) - run 2026-11-07T0639Z - ERA step 5(g)",
+      "result": "1:39 AM ET 11/7: no new Availity PDF or Check/EFT export in 'bht Optum era downloads' / 'treasury payments' (Drive-wide nothing new after 00:30Z 11/7 outside the routines' own files); no new 835, facesheet or Claimocity file (feed 19 objects, 0 new, newest 20261106); Working Denials queue 0; board drops 0; 0 rows changed since 00:30Z; Pam Gmail: two new admits (Orme Brynwood readmit - chart verified; Hawksworth Azalea Gardens - chartless, row hawksworth-davin-admit-1107). ERA Center 0 checks $0.00 before and after. Columns 0/17/2/1 -> 0/17/0/1: chart 46439's two 'Subscriber sex' holds fixed (gender F from Medicare's record) and released; 15 mis-dated feed visits + 2 coding holds + AET12 unchanged.",
+      "when": "11/7"
+     }
+    ]
+   }
+  }
+ ]
+}
