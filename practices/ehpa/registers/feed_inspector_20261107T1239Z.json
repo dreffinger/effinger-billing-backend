@@ -1,0 +1,53 @@
+{
+ "fixed": [
+  {
+   "visit": "19460402",
+   "pid": "pat17478316",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/04/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460404",
+   "pid": "pat17478331",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/04/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460406",
+   "pid": "pat17476537",
+   "patterns": [
+    "11256",
+    "117065068"
+   ],
+   "note": [
+    "admit 11/05/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460430",
+   "pid": "pat17476680",
+   "patterns": [
+    "20389"
+   ],
+   "note": [
+    "charge23373112: delete ['Z16.12', 'N39.0', 'I69.354'] -> ['N39.0', 'I69.354', 'I10']",
+    "saved: 1 live charges (was 1)",
+    "resave ok"
+   ]
+  }
+ ],
+ "bypassed": [],
+ "held": [],
+ "laterality": []
+}
