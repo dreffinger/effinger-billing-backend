@@ -49,11 +49,11 @@ STAMP_RE = re.compile(r"(\d{4})-?(\d{2})-?(\d{2})T(\d{2})(\d{2})Z")
 # ---- the connection string ----------------------------------------------------------------------------------------------------------
 def database_url():
     for k in ("NEON_DATABASE_URL", "DATABASE_URL"):
-        v = (os.environ.get(k) or "").strip()
+        v = re.sub(r"\s+", "", os.environ.get(k) or "")                 # a value pasted across several lines (or with stray spaces) is still one URL
         if v.startswith("postgres"): return v
     for p in (opt("--url-file"), os.path.join(REPO, "secrets", "neon_database_url"), os.path.join(WS, "secrets", "neon_database_url"), os.path.expanduser("~/.config/ehpa/neon_database_url")):
         if p and os.path.isfile(p):
-            v = open(p, encoding="utf-8").read().strip()
+            v = re.sub(r"\s+", "", open(p, encoding="utf-8").read())
             if v.startswith("postgres"): return v
     sys.exit("neon_db: no connection string - set NEON_DATABASE_URL, or write it to %s (chmod 600; the file is git-ignored)" % os.path.join(REPO, "secrets", "neon_database_url"))
 
