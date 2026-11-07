@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-07T1918Z",
+ "stamp": "2026-11-07T2118Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 2 checks $176.38 -> 0 checks $0.00",
+ "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 4 checks $261.11 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42405556532",
- "started": "2026-11-07T19:18:38Z",
- "ended": "2026-11-07T19:24:10Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42415253651",
+ "started": "2026-11-07T21:18:58Z",
+ "ended": "2026-11-07T21:24:57Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 2,
-    "unposted": 176.38
+    "checks": 4,
+    "unposted": 261.11
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 176.38,
+   "pay": 261.11,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 327273.56,
-   "visits": 2626,
+   "total": 326817.56,
+   "visits": 2624,
    "charts": 481,
    "over_365": {
     "n": 559,
@@ -65,7 +65,7 @@
    "visits": 7801,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-07 19:24 UTC"
+   "asof": "2026-11-07 21:24 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-07T19:18:38Z",
-   "ended": "2026-11-07T19:18:40Z"
+   "started": "2026-11-07T21:18:58Z",
+   "ended": "2026-11-07T21:18:58Z"
   },
   {
    "name": "columns",
@@ -121,45 +121,61 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-07T19:18:40Z",
-   "ended": "2026-11-07T19:20:27Z"
+   "started": "2026-11-07T21:18:58Z",
+   "ended": "2026-11-07T21:20:54Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "2 checks / $176.38 -> 0 checks / $0.00",
+   "summary": "4 checks / $261.11 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 1,
-    "checks dismissed": 2,
+    "era_post lines": 2,
+    "checks dismissed": 3,
     "checks held": 0
    },
    "dollars": {
-    "unposted before": 176.38,
+    "unposted before": 261.11,
     "unposted after": 0,
-    "posted this run": 176.38
+    "posted this run": 261.11
    },
    "lines": [
     {
-     "check": 1053448,
-     "payer": "WELLCARE",
-     "checknumber": "1003586198",
+     "check": 1053450,
+     "payer": "HUMANA",
+     "checknumber": "NO-PAY-202611050005691",
      "amount": 0.0,
      "unposted": 0.0,
      "stage": "before"
     },
     {
-     "check": 1053449,
-     "payer": "SUNSHINE STATE HEALTH PLAN",
-     "checknumber": "0918079840",
+     "check": 1053451,
+     "payer": "HUMANA",
+     "checknumber": "205625052261106",
      "amount": 0.0,
-     "unposted": 176.38,
+     "unposted": 88.28,
+     "stage": "before"
+    },
+    {
+     "check": 1053452,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "820143312",
+     "amount": 0.0,
+     "unposted": 172.83,
+     "stage": "before"
+    },
+    {
+     "check": 1053453,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350182900",
+     "amount": 0.0,
+     "unposted": 0.0,
      "stage": "before"
     }
    ],
    "errors": [],
-   "started": "2026-11-07T19:20:27Z",
-   "ended": "2026-11-07T19:20:37Z"
+   "started": "2026-11-07T21:20:54Z",
+   "ended": "2026-11-07T21:21:14Z"
   },
   {
    "name": "packages",
@@ -170,29 +186,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-07T19:20:37Z",
-   "ended": "2026-11-07T19:20:37Z"
+   "started": "2026-11-07T21:21:14Z",
+   "ended": "2026-11-07T21:21:14Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2626 visits on 481 charts, $327273.56 open; 559 over a year ($25072.01)",
+   "summary": "2624 visits on 481 charts, $326817.56 open; 559 over a year ($25072.01)",
    "counts": {
-    "visits": 2626,
+    "visits": 2624,
     "charts": 481,
     "over 365 days": 559
    },
    "dollars": {
-    "open insurance balance": 327273.56,
+    "open insurance balance": 326817.56,
     "over 365 days": 25072.01
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1408,
-     "dollars": 178604.94,
+     "visits": 1407,
+     "dollars": 178289.94,
      "oldest_days": 1088
     },
     {
@@ -226,8 +242,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 62,
-     "dollars": 10321.26,
+     "visits": 61,
+     "dollars": 10180.26,
      "oldest_days": 1065
     },
     {
@@ -274,14 +290,14 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-07T19:20:37Z",
-   "ended": "2026-11-07T19:20:38Z"
+   "started": "2026-11-07T21:21:14Z",
+   "ended": "2026-11-07T21:21:16Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7801 denied visits on 845 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2963, RESUBMITTED 192, RESOLVED 4501, OPEN 145",
+   "summary": "7801 denied visits on 845 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2963, RESUBMITTED 191, RESOLVED 4502, OPEN 145",
    "counts": {
     "charts read": 845,
     "denial lines": 13226,
@@ -289,15 +305,15 @@
     "actionable": 75,
     "inside 12 months": 72,
     "status WRITTEN-OFF": 2963,
-    "status RESUBMITTED": 192,
-    "status RESOLVED": 4501,
+    "status RESUBMITTED": 191,
+    "status RESOLVED": 4502,
     "status OPEN": 145
    },
    "dollars": {
     "actionable": 13713.0,
     "inside 12 months": 13194.0,
-    "resubmitted": 33168.37,
-    "resolved since": 680371.14
+    "resubmitted": 32962.37,
+    "resolved since": 680577.14
    },
    "lines": [
     {
@@ -362,8 +378,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-07T19:20:38Z",
-   "ended": "2026-11-07T19:24:10Z"
+   "started": "2026-11-07T21:21:16Z",
+   "ended": "2026-11-07T21:24:57Z"
   }
  ],
  "packages": [],
