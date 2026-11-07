@@ -33,6 +33,8 @@ if META:
     chk = next((c for c in json.load(open(META)) if str(c["id"]) == CHECKID), None)
 if not chk: chk = payreasons.check_meta(CHECKID, d[0] if d else None)
 CHK = str(chk.get("paymentnumber") or "")
+if not CHK.strip():
+    L("check %s carries no check number - stopping: a blank number would match blank-check payments for the VOID (11/7/2026)" % CHECKID); sys.exit(2)
 L("check %s %s %s amount %s deposit %s - %d claims" % (CHECKID, chk.get("systemcarriercode"), CHK, chk.get("paymentamount"), chk.get("depositdate"), len(d)))
 reg = {"stamp": STAMP, "checkid": CHECKID, "checknumber": CHK, "live": LIVE, "lines": []}
 faults = 0; done = 0; tot_pay = 0.0; tot_wo = 0.0

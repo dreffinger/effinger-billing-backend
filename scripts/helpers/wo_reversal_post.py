@@ -3,10 +3,11 @@
 # Rules it uses: Only visits with no payment ever posted and a remit line > $0. Voids are logged with the write-off ids so they can be traced. Posting is era_post.post_check on the same check afterwards (it only posts visits with an open balance).
 # Never touches: Visits that already have a payment, write-offs on visits the remit did not pay, or any check not in the scan file.
 # ---
-"""Usage: python3 wo_reversal_post.py [--max N] [--dry]"""
-import amd, era_post, void_tx, json, sys, time, datetime, collections, glob
+"""Usage: python3 wo_reversal_post.py [--file wo_reversal_<stamp>.json] [--max N] [--dry]   (default file: the last wo_reversal_*.json by name)"""
+import amd, era_post, void_tx, txh, json, sys, time, datetime, collections, glob
 amd.login_cached(); stamp = datetime.date.today().strftime('%Y%m%d')
-recs = json.load(open(sorted(glob.glob('wo_reversal_*.json'))[-1])); mx = int(sys.argv[sys.argv.index('--max') + 1]) if '--max' in sys.argv else 10**9; dry = '--dry' in sys.argv
+SRC = sys.argv[sys.argv.index('--file') + 1] if '--file' in sys.argv else sorted(glob.glob('wo_reversal_*.json'))[-1]   # 11/7/2026: the engine names its own file
+recs = json.load(open(SRC)); mx = int(sys.argv[sys.argv.index('--max') + 1]) if '--max' in sys.argv else 10**9; dry = '--dry' in sys.argv
 LOG = open('wo_reversal_post.log', 'a'); REG = open('Writeoff_reversal_register_%s.csv' % stamp, 'a')
 def L(m): print(m, flush=True); LOG.write(m + '\n'); LOG.flush()
 done = set(l.split()[1] for l in open('wo_reversal_post.log') if l.startswith('VOIDED ')) if glob.glob('wo_reversal_post.log') else set()
@@ -20,13 +21,20 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
         key = '%s' % r['visitid']
         if key in done: continue
         if dry: L('DRY %s %s %s era %.2f wos %s' % (r['patient'], r['dos'], r['visitid'], r['era_pay'], [(w[2], w[3]) for w in r['writeoffs']])); continue
+        try:   # 11/7/2026: read the visit again right before the void - the rows were built minutes ago and another engine may have posted since
+            fresh = [p for ch in txh.fetch_visit(r['patientid'], r['visitid']).iter('charge') if ch.get('void') != '1' for p in ch.iter('payment') if p.get('void') != '1' and float(p.get('amount') or 0) != 0]
+        except Exception as e:
+            L('SKIP %s history unreadable: %s' % (key, str(e)[:80])); continue
+        if fresh: L('SKIP %s payment present (%s)' % (key, ', '.join(sorted(set((p.get('checknumber') or '?') for p in fresh))[:3]))); continue
         ok_all = True
         for chg, woid, code, amt, date in r['writeoffs']:
             ok, msg = void_tx.void_writeoff(r['patientid'], chg, woid); ok_all &= ok
             REG.write('%s,%s,%s,%s,%s,%s,%s,%s,%s\n' % (stamp, r['check'], r['patient'].replace(',', ' '), r['dos'], chg, woid, code, amt, 'voided' if ok else 'FAILED ' + msg[:60])); REG.flush()
             if not ok: L('  void FAIL %s %s wo %s: %s' % (r['patient'], r['dos'], woid, msg)); time.sleep(0.3)
             else: tot_void += abs(float(amt or 0))
-        L('VOIDED %s %s %s era %.2f wos %d ok=%s' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']), ok_all)); touched += 1; touched_visits.append(int(r['visitid'])); time.sleep(0.3)
+        if ok_all: L('VOIDED %s %s %s era %.2f wos %d ok=True' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']))); touched += 1; touched_visits.append(int(r['visitid']))
+        else: L('VOIDFAIL %s era %.2f wos %d - not forced, retried by the next era_clear round' % (key, r['era_pay'], len(r['writeoffs'])))   # 11/7/2026: a failed void is no VOIDED (resume) line and no forced Post
+        time.sleep(0.3)
     n += 1
     if touched and not dry:
         chk = next((c for c in era_post.checks() if str(c['id']) == str(cid)), None)   # 9/20: ids come back numeric; str-compare or the post step silently skips

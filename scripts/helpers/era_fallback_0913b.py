@@ -19,12 +19,16 @@ settled = {(r["checkid"], r.get("checkclaimid"), r.get("chargedetailid") or r.ge
 checks = json.load(open(sys.argv[sys.argv.index("--checks") + 1] if "--checks" in sys.argv else "era_checks_before_2026-09-13T0930Z.json"))
 seen = {(r["checkid"], r.get("checkclaimid"), r.get("chargedetailid") or r.get("cpt"), r["outcome"]) for r in reg}  # .get: the 9/21 2110Z hand-post-restored entries carry no checkclaimid (KeyError 9/22 0310Z)
 TX = {}
-def charges_of(pid):
-    if pid not in TX:
-        try: TX[pid] = [c for c in txh.fetch("pat%s" % pid).iter("charge") if c.get("void") != "1"]
-        except Exception as e: print("txh err", pid, str(e)[:80]); TX[pid] = []
+def charges_of(pid, vid, fresh=False):
+    """The visit's own non-void charges (txh.fetch_visit - page 1 of the whole chart misses old visits, the 9/22 trap); None when the history could not be read (11/7/2026)."""
+    key = (str(pid), str(vid))
+    if fresh or key not in TX:
+        try: TX[key] = [c for c in txh.fetch_visit(pid, vid).iter("charge") if c.get("void") != "1" and c.get("visit") in (None, str(vid))]
+        except Exception as e: print("txh err", pid, vid, str(e)[:80]); TX[key] = None
         time.sleep(0.3)
-    return TX[pid]
+    return TX[key]
+def this_check_paid(chs, chkno):
+    return any((p.get("checknumber") or "").strip() == str(chkno).strip() for c in (chs or []) for p in c.iter("payment") if p.get("void") != "1" and float(p.get("amount") or 0) != 0)
 def norm_dos(s):
     s = (s or "")[:10]
     if "-" in s:
@@ -46,25 +50,31 @@ for chk in checks:
             out.append({"checkid": cid, "checkclaimid": cl["checkclaimid"], "visitid": vid, "outcome": "orphan", "amt": cl["paymentamount"], "carrier": car, "when": STAMP, "why": "no visit AMD can identify"}); tot["orphan"] += 1; dol["orphan"] += float(cl["paymentamount"]); continue
         if cl.get("hasreversals") or 11 in errs:
             out.append({"checkid": cid, "checkclaimid": cl["checkclaimid"], "visitid": vid, "outcome": "reversal-skipped", "amt": cl["paymentamount"], "carrier": car, "when": STAMP}); tot["reversal"] += 1; dol["reversal"] += float(cl["paymentamount"]); continue
-        live = [c for c in charges_of(pid) if c.get("visit") == str(vid)]
+        live = charges_of(pid, vid)
+        if live is None:
+            out.append({"checkid": cid, "checkclaimid": cl["checkclaimid"], "visitid": vid, "outcome": "unreadable", "amt": cl["paymentamount"], "carrier": car, "when": STAMP, "why": "visit history could not be read - left for the next run"}); tot["unreadable"] += 1; continue
         for ln in cl.get("charges") or []:
             paid = float(ln.get("paymentamount") or 0)
             if paid <= 0: continue
             key = (cid, cl["checkclaimid"], ln.get("chargedetailid") or ln.get("chargecode"))
             if key in settled: tot["register-skip"] += 1; continue
             cpt = (ln.get("chargecode") or "").strip(); ldos = norm_dos(ln.get("dos"))
-            m = [c for c in live if (c.get("proccode") or "").strip() == cpt and c.get("dos") == ldos]
+            m = [c for c in live if str(c.get("id")) == str(ln.get("chargedetailid"))] if str(ln.get("chargedetailid") or "0") not in ("0", "-1", "None", "") else []   # 11/7/2026: the remit's own charge id first
+            if not m: m = [c for c in live if (c.get("proccode") or "").strip() == cpt and c.get("dos") == ldos]
             if not m and len(live) == 1 and live[0].get("dos") == ldos and len(cl.get("charges") or []) == 1: m = live  # single-charge visit, single ERA line, same DOS
             rec = {"checkid": cid, "checkclaimid": cl["checkclaimid"], "visitid": vid, "pid": pid, "cpt": cpt, "dos": ldos, "era_paid": paid, "carrier": car, "checkno": chkno, "when": STAMP, "chargedetailid": ln.get("chargedetailid")}
             if not m:
                 rec.update(outcome="orphan", why="no live charge with CPT %s on %s (live: %s)" % (cpt, ldos, [(c.get("proccode"), c.get("dos")) for c in live])); out.append(rec); tot["orphan"] += 1; dol["orphan"] += paid; continue
             c = m[0]; chg = c.get("id"); rec["chargeid"] = chg
             pays = [p for p in c.iter("payment") if p.get("void") != "1" and float(p.get("amount") or 0) != 0]
-            if any((p.get("checknumber") or "").strip() == str(chkno).strip() for p in pays):
+            if this_check_paid(live, chkno):   # 11/7/2026: this check's payment on ANY charge of the visit = posted (the Post button may have landed it on a twin CPT/DOS charge)
                 rec.update(outcome="already-posted"); out.append(rec); tot["already"] += 1; dol["already"] += paid; continue
             insbal = float(c.get("insbal") or 0)
             if insbal <= 0:
-                rec.update(outcome="residual %.2f" % paid, why="open insurance balance $0 - already adjudicated (paid by %s)" % [(p.get("carrier"), p.get("amount"), p.get("checknumber")) for p in pays][:2]); out.append(rec); tot["residual-zero"] += 1; dol["residual"] += paid; continue
+                # 11/7/2026: a $0 open balance is not 'already adjudicated' by itself - say what sits on the charge; era_clear HOLDs the check with the same reading
+                if pays: rec.update(outcome="secondary-unposted %.2f" % paid, why="paid by another check only (%s) - move_to_ins then the ERA-linked post, 10/7/2026 lesson" % [(p.get("carrier"), p.get("amount"), p.get("checknumber")) for p in pays][:2]); tot["secondary-unposted"] += 1; dol["secondary-unposted"] += paid
+                else: rec.update(outcome="unrecorded %.2f" % paid, why="no payment on the visit - the write-off reversal pipeline (era_clear -> wo_reversal_post)"); tot["unrecorded"] += 1; dol["unrecorded"] += paid
+                out.append(rec); continue
             pay = min(paid, insbal)
             co = 0.0; code = "WOINS"
             for a in cl.get("carc") or []:
@@ -78,6 +88,8 @@ for chk in checks:
             rec.update(pay=round(pay, 2), wo=round(wo, 2), wocode=code, residual=round(paid - pay, 2), insbal=insbal)
             if dry:
                 rec.update(outcome="DRY would post"); out.append(rec); tot["would-post"] += 1; dol["would-pay"] += pay; dol["would-wo"] += wo; continue
+            if this_check_paid(charges_of(pid, vid, fresh=True), chkno):   # 11/7/2026: read the visit again right before posting - another engine may have posted this line meanwhile
+                rec.update(outcome="already-posted", why="posted by another pass between the read and this post"); out.append(rec); tot["already"] += 1; dol["already"] += paid; continue
             try:
                 # 9/21/2026: post through the ERA-LINKED Payment Entry shape (payreasons.post_line = addpayments postingmethod=era with
                 # eraclaimid/erareportid + the remit's reasonlist) - it keeps the CO45/PR2/CO253 reason codes on the payment, so the
