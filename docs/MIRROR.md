@@ -51,6 +51,12 @@ python3 tools/db/practice_db.py build --run <run stamp>     # -> outbox/practice
 #    `python3 tools/db/practice_db.py trim --out <dir> --file <writes file> --exists <collection>/<doc_id>`, then send that file again
 #    (repeat while another is named). A refused / approval-gated / errored call: `python3 tools/db/practice_db.py unsent --out <dir>
 #    --file <writes file>` - its ids leave the register and the next run resends them. Never retry a call as it was.
+python3 tools/db/neon_db.py load-writes --out outbox/practice_db/<stamp>     # 11/6/2026: the same documents into the PERMANENT STORE (Neon Postgres, raw.documents)
+python3 tools/db/neon_db.py run-log --routine "<routine>" --stamp <stamp> --status ok --headline "<the report's one line>"   # ops.routine_runs
+#    neon_db.py reads NEON_DATABASE_URL (an environment credential of the ehpa cloud environment) or, when absent, secrets/
+#    neon_database_url written once per container from the Gmail thread 'neon database url' (like the other keys; never Drive,
+#    never committed); one line each, never retried. 'no path to the database' = the container's egress policy blocks
+#    the Neon hosts (tools/bootstrap/bootstrap_workspace.sh net probes them): report it; the artifact batches above still count.
 python3 tools/mirror/mirror.py status      # what would be pushed, is the collection current
 ```
 

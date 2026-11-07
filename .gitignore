@@ -20,3 +20,6 @@ reports/button/money_ledger_*.html
 desktop/build/
 desktop/dist/
 desktop/Output/
+.neon
+.env
+.env.*

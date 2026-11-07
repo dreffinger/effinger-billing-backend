@@ -44,6 +44,9 @@ case "$mode" in
     [ -z "$sc" ] && sc="000"
     if [ "$sc" = "200" ]; then echo "STEDI_CRED_OK: environment API credential attached - do NOT write secrets/stedi_live.key."; else echo "STEDI_CRED_MISSING (HTTP $sc): no environment credential for healthcare.us.stedi.com - fall back to the Gmail key (thread 1a083035f566f9fb) -> secrets/stedi_live.key."; fi
     if [ "$g" = "200" ]; then echo "GitHub: repository attached (API reachable)."; else echo "GitHub: repo NOT attached to this session (HTTP $g) - mirror.py will fall back to a bundle on Drive."; fi
+    # Neon Postgres - the permanent store (11/6/2026): can this container reach the endpoint at all (HTTPS SQL route on 443)?
+    n=$(probe "Neon endpoint (HTTPS SQL route)" "https://ep-proud-waterfall-bczdy4bi.c-16.us-east-1.aws.neon.tech/sql")
+    if [ "$n" = "000" ]; then echo "NEON_BLOCKED: the egress policy refuses the Neon hosts - add ep-proud-waterfall-bczdy4bi.c-16.us-east-1.aws.neon.tech, ep-proud-waterfall-bczdy4bi-pooler.c-16.us-east-1.aws.neon.tech and console.neon.tech to Network access (routine -> Edit -> environment); tools/db/neon_db.py loads report 'no path to the database' until then."; else echo "NEON_REACHABLE (HTTP $n on 443 - python3 tools/db/neon_db.py egress-test tells 5432 vs 443 once the connection string is in place)."; fi
     echo "RESULT: AMD_OK"
     exit 0
     ;;
@@ -114,6 +117,8 @@ PY
     python3 -c "import requests" 2>/dev/null || python3 -m pip install -q requests >/dev/null 2>&1 || echo "layout: WARN could not pip-install requests - amd.py will not import"
     python3 -c "import pymupdf" 2>/dev/null || python3 -m pip install -q pymupdf >/dev/null 2>&1 || true
     python3 -c "import openpyxl, pypdf" 2>/dev/null || python3 -m pip install -q openpyxl pypdf >/dev/null 2>&1 || true
+    python3 -c "import pg8000" 2>/dev/null || python3 -m pip install -q pg8000 >/dev/null 2>&1 || echo "layout: WARN could not pip-install pg8000 - neon_db.py falls back to the HTTPS SQL route"
+    [ -s "$WS/secrets/neon_database_url" ] && mkdir -p "$REPO/secrets" && cp -p "$WS/secrets/neon_database_url" "$REPO/secrets/neon_database_url" && chmod 600 "$REPO/secrets/neon_database_url"
     chmod +x "$WS"/*.sh "$WS"/tools/*.sh 2>/dev/null
     echo "layout: copied/refreshed $n helper files into $WS"
     exit 0
@@ -129,6 +134,7 @@ PY
     hdr "credentials (presence only)"
     [ -s "$WS/.amd_cred.json" ] && echo "  ok       .amd_cred.json (AMD password, Gmail thread 1866ce7e2233e4c0)" || [ -n "${AMD_PSW:-}" ] && echo "  ok       AMD_PSW environment credential (no credential file needed)" || echo "  MISSING  .amd_cred.json  -> write {\"psw\": \"<from Gmail thread 1866ce7e2233e4c0>\"} (chmod 600)"
     [ -s "$WS/secrets/stedi_live.key" ] && echo "  ok       secrets/stedi_live.key (Gmail fallback, thread 1a083035f566f9fb)" || echo "  proxy    secrets/stedi_live.key absent - relying on the environment API credential (bootstrap net must have printed STEDI_CRED_OK)"
+    if [ -n "${NEON_DATABASE_URL:-}" ]; then echo "  ok       NEON_DATABASE_URL environment variable (permanent store: Neon Postgres)"; elif [ -s "$WS/secrets/neon_database_url" ]; then echo "  ok       secrets/neon_database_url (permanent store: Neon Postgres; written from the Gmail thread 'neon database url')"; else echo "  absent   NEON_DATABASE_URL / secrets/neon_database_url -> the NEON_DATABASE_URL environment credential, else the Gmail thread 'neon database url' -> secrets/neon_database_url (neon_db.py loads print 'no connection string' and are skipped until one is in place; never Drive)"; fi
     [ -s "$WS/secrets/github_pat.key" ] && echo "  ok       secrets/github_pat.key (Gmail thread 'github claude token')" || echo "  absent   secrets/github_pat.key (only needed when the repo is not attached to the routine)"
     [ -s "$WS/secrets/pseudonyms.json" ] && echo "  ok       secrets/pseudonyms.json (Drive 'workspace mirror'; copy to <repo>/secrets/ before mirror.py)" || echo "  MISSING  secrets/pseudonyms.json -> Drive 'workspace mirror' pseudonyms.json"
     [ -e "$WS/.amd_login_lock" ] && echo "  LOCK     .amd_login_lock present - a prior login FAILED. Do NOT log in; report it and stop."

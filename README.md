@@ -4,6 +4,8 @@ One project for running a medical practice's back office with Claude: the **dail
 
 Every script starts with a PLAIN ENGLISH header — what it decides, which of William's rules it uses, what it never touches — and this README is generated from those headers. **No credentials and no patient data are in this repository**: tokens come from the login cache, the Stedi key from `secrets/`, logs / results / `patient_db/` stay in the workspace, and the 12 scripts whose data tables hold member numbers are mirrored as header-only stubs (marked *local only* below).
 
+**Permanent store (11/6/2026):** the practice's data lives in **Neon Postgres** (organization `ehpa`, project `ehpa-database`, HIPAA-enabled, Databricks BAA accepted 2026-11-06 - `docs/compliance/`). `tools/db/neon_db.py` is the one door: every billing run copies its practice-database documents there (`load-writes`) and logs itself (`run-log`); the daily sync copies every board's database and page (`load-docs`, `load-page`); `tools/db/neon_schema.sql` builds the typed `ehpa.*` views the reports read. The claude.ai artifact databases stay what the boards read today; Neon is the copy that answers questions across all of them, and the only place patient data is meant to rest. The connection string is never in this repository (the routine environment's `NEON_DATABASE_URL` credential, or `secrets/neon_database_url` written from the Gmail thread 'neon database url', git-ignored; never Drive).
+
 ## Layout
 
 | Folder | What lives there |
