@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-06T2318Z",
+ "stamp": "2026-11-07T0039Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42311024345",
- "started": "2026-11-06T23:18:55Z",
- "ended": "2026-11-06T23:24:41Z",
+ "note": "six-hourly columns run 00:39Z 11/7",
+ "run_url": "",
+ "started": "2026-11-07T00:52:45Z",
+ "ended": "2026-11-07T00:56:16Z",
  "summary": {
   "columns": {
    "before": {
@@ -51,21 +51,6 @@
    "applied": 0,
    "refused": 0,
    "skipped": 0
-  },
-  "outstanding": {
-   "total": 322421.56,
-   "visits": 2603,
-   "charts": 475,
-   "over_365": {
-    "n": 555,
-    "dollars": 24883.57
-   }
-  },
-  "denials": {
-   "visits": 7801,
-   "actionable": 75,
-   "actionable_amt": 13713.0,
-   "asof": "2026-11-06 23:24 UTC"
   }
  },
  "steps": [
@@ -77,13 +62,13 @@
    "counts": {
     "helpers copied": 1324,
     "registers": 1799,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T23:18:55Z",
-   "ended": "2026-11-06T23:18:56Z"
+   "started": "2026-11-07T00:52:45Z",
+   "ended": "2026-11-07T00:52:45Z"
   },
   {
    "name": "columns",
@@ -121,8 +106,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-06T23:18:56Z",
-   "ended": "2026-11-06T23:20:51Z"
+   "started": "2026-11-07T00:52:45Z",
+   "ended": "2026-11-07T00:56:12Z"
   },
   {
    "name": "era",
@@ -141,212 +126,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-06T23:20:51Z",
-   "ended": "2026-11-06T23:20:53Z"
-  },
-  {
-   "name": "packages",
-   "title": "Approval packages",
-   "status": "ok",
-   "summary": "no approved package in the register",
-   "counts": {},
-   "dollars": {},
-   "lines": [],
-   "errors": [],
-   "started": "2026-11-06T23:20:53Z",
-   "ended": "2026-11-06T23:20:53Z"
-  },
-  {
-   "name": "outstanding",
-   "title": "Outstanding claims summary",
-   "status": "ok",
-   "summary": "2603 visits on 475 charts, $322421.56 open; 555 over a year ($24883.57)",
-   "counts": {
-    "visits": 2603,
-    "charts": 475,
-    "over 365 days": 555
-   },
-   "dollars": {
-    "open insurance balance": 322421.56,
-    "over 365 days": 24883.57
-   },
-   "lines": [
-    {
-     "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
-     "visits": 1399,
-     "dollars": 176472.94,
-     "oldest_days": 1087
-    },
-    {
-     "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
-     "visits": 172,
-     "dollars": 29518.18,
-     "oldest_days": 1183
-    },
-    {
-     "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
-     "visits": 154,
-     "dollars": 26357.58,
-     "oldest_days": 424
-    },
-    {
-     "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
-     "visits": 298,
-     "dollars": 18261.68,
-     "oldest_days": 1054
-    },
-    {
-     "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
-     "visits": 85,
-     "dollars": 17284.4,
-     "oldest_days": 1156
-    },
-    {
-     "carrier": "HUM01",
-     "name": "HUMANA",
-     "visits": 60,
-     "dollars": 9910.26,
-     "oldest_days": 1064
-    },
-    {
-     "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
-     "visits": 42,
-     "dollars": 5565.18,
-     "oldest_days": 66
-    },
-    {
-     "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
-     "visits": 30,
-     "dollars": 5554.22,
-     "oldest_days": 972
-    },
-    {
-     "carrier": "CIG09",
-     "name": "CIGNA HEALTH PLANS HMO/PPO/O",
-     "visits": 26,
-     "dollars": 4031.01,
-     "oldest_days": 172
-    },
-    {
-     "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
-     "visits": 15,
-     "dollars": 3764.0,
-     "oldest_days": 199
-    },
-    {
-     "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
-     "visits": 29,
-     "dollars": 3646.1,
-     "oldest_days": 368
-    },
-    {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 15,
-     "dollars": 3088.0,
-     "oldest_days": 356
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-06T23:20:53Z",
-   "ended": "2026-11-06T23:20:54Z"
-  },
-  {
-   "name": "denials",
-   "title": "Working Denials refresh",
-   "status": "ok",
-   "summary": "7801 denied visits on 841 charts; 75 actionable $13713.00 (72 inside 12 months $13194.00); WRITTEN-OFF 2963, RESOLVED 4501, RESUBMITTED 192, OPEN 145",
-   "counts": {
-    "charts read": 841,
-    "denial lines": 13227,
-    "visits": 7801,
-    "actionable": 75,
-    "inside 12 months": 72,
-    "status WRITTEN-OFF": 2963,
-    "status RESOLVED": 4501,
-    "status RESUBMITTED": 192,
-    "status OPEN": 145
-   },
-   "dollars": {
-    "actionable": 13713.0,
-    "inside 12 months": 13194.0,
-    "resubmitted": 33168.37,
-    "resolved since": 680371.14
-   },
-   "lines": [
-    {
-     "disposition": "UNCLASSIFIED",
-     "visits": 1909,
-     "dollars": 316331.0,
-     "patients": 223
-    },
-    {
-     "disposition": "FIX",
-     "visits": 1265,
-     "dollars": 196763.23,
-     "patients": 201
-    },
-    {
-     "disposition": "REVIEW",
-     "visits": 1123,
-     "dollars": 174872.95,
-     "patients": 215
-    },
-    {
-     "disposition": "COB",
-     "visits": 1018,
-     "dollars": 169423.61,
-     "patients": 105
-    },
-    {
-     "disposition": "DUPLICATE",
-     "visits": 500,
-     "dollars": 95230.0,
-     "patients": 224
-    },
-    {
-     "disposition": "INFO",
-     "visits": 500,
-     "dollars": 84472.35,
-     "patients": 56
-    },
-    {
-     "disposition": "CRED",
-     "visits": 444,
-     "dollars": 63801.3,
-     "patients": 73
-    },
-    {
-     "disposition": "TIMELY",
-     "visits": 223,
-     "dollars": 37540.38,
-     "patients": 95
-    },
-    {
-     "disposition": "CONTRACTUAL",
-     "visits": 498,
-     "dollars": 34492.77,
-     "patients": 70
-    },
-    {
-     "disposition": "PATIENT",
-     "visits": 321,
-     "dollars": 28313.76,
-     "patients": 143
-    }
-   ],
-   "errors": [],
-   "started": "2026-11-06T23:20:54Z",
-   "ended": "2026-11-06T23:24:41Z"
+   "started": "2026-11-07T00:56:12Z",
+   "ended": "2026-11-07T00:56:16Z"
   }
  ],
  "packages": [],
