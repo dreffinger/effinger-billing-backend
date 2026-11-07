@@ -23,3 +23,7 @@ desktop/Output/
 .neon
 .env
 .env.*
+node_modules/
+!apps/ehpadb/package.json
+!apps/ehpadb/package-lock.json
+!apps/ehpadb/tsconfig.json

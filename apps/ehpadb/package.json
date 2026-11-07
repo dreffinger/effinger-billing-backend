@@ -1,0 +1,27 @@
+{
+  "name": "ehpadb",
+  "private": true,
+  "type": "module",
+  "description": "ehpa Practice Database app: a Neon Function that serves William's sign-in page and the ehpa.* views from the practice's Neon Postgres",
+  "scripts": {
+    "build:client": "node scripts/bundle-client.mjs",
+    "dev": "npm run build:client && neon dev",
+    "deploy": "npm run build:client && neon deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@neon/config": "^1.13.0",
+    "@neon/env": "^2.1.0",
+    "@neon/functions": "^0.11.0",
+    "hono": "^4.13.17",
+    "jose": "^6.2.15",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "@neon/auth": "^0.8.2",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.15.0",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.9.0"
+  }
+}

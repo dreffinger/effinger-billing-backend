@@ -208,6 +208,11 @@ create or replace view ehpa.ar_aging_by_recommendation as
 select snapshot, as_of, recommendation, count(*) as visits, round(sum(balance), 2) as balance, round(sum(balance) filter (where days_since_dos > 365), 2) as balance_over_365
 from ehpa.ar_aging_rows group by 1, 2, 3;
 
+-- the app's access trail (apps/ehpadb): who asked for what, when, with what result
+create table if not exists ops.app_access_log (
+  id bigserial primary key, at timestamptz not null default now(), user_email text, user_id text, route text, status integer, ms integer);
+create index if not exists app_access_log_at_idx on ops.app_access_log (at desc);
+
 -- ---- what ran, and what was loaded ---------------------------------------------------------------------------------------------------
 create or replace view ehpa.routine_runs as
 select id, routine, stamp, started_at, finished_at, status, headline, summary, session_url, commit_sha, loaded_by from ops.routine_runs;
