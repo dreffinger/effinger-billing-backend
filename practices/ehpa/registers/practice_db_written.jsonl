@@ -433,10 +433,17 @@
 {"at":"2026-11-06T19:03:10Z","by":"2026-11-06T1839Z","k":"billing_runs/20261106T1519Z"}
 {"at":"2026-11-06T19:03:10Z","by":"2026-11-06T1839Z","k":"billing_runs/20261106T1718Z"}
 {"at":"2026-11-06T19:03:10Z","by":"2026-11-06T1839Z","k":"billing_runs/20261106T1839Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261106T1918Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261106T2119Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261106T2318Z"}
 {"at":"2026-11-07T00:58:00Z","by":"2026-11-07T0039Z","k":"billing_runs/20261107T0039Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261107T0118Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261107T0319Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"billing_runs/20261107T0518Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-04T0535Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-05T0535Z"}
 {"at":"2026-11-06T07:54:53Z","by":"sweep 20261106T0754Z","k":"cascade_runs/2026-11-06T0535Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"cascade_runs/2026-11-07T0535Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20260923T0910Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20260925T0110Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"era_runs/20260928T2310Z"}
@@ -694,6 +701,7 @@
 {"at":"2026-11-06T13:23:56Z","by":"2026-11-06T1239Z","k":"snapshots/approvals-20261106T1239Z"}
 {"at":"2026-11-06T19:03:10Z","by":"2026-11-06T1839Z","k":"snapshots/approvals-20261106T1839Z"}
 {"at":"2026-11-07T00:58:00Z","by":"2026-11-07T0039Z","k":"snapshots/approvals-20261107T0039Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"snapshots/approvals-20261107T0535Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T0414Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T0643Z"}
 {"at":"2026-11-06T06:00:00Z","by":"seed from the live database listing 2026-11-06","k":"snapshots/repo-20261102T1244Z"}
@@ -712,3 +720,4 @@
 {"at":"2026-11-06T13:23:56Z","by":"2026-11-06T1239Z","k":"snapshots/repo-20261106T1239Z"}
 {"at":"2026-11-06T19:03:10Z","by":"2026-11-06T1839Z","k":"snapshots/repo-20261106T1839Z"}
 {"at":"2026-11-07T00:58:00Z","by":"2026-11-07T0039Z","k":"snapshots/repo-20261107T0039Z"}
+{"at":"2026-11-07T06:00:48Z","by":"2026-11-07T0535Z","k":"snapshots/repo-20261107T0535Z"}
