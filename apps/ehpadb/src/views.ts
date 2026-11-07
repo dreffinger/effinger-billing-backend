@@ -5,12 +5,41 @@ import type { Pool } from "pg";
 
 export type Kind = "text" | "int" | "money" | "when";
 export type SectionSpec = { heading: string; note?: string; sql: string; kinds?: Record<string, Kind> };
-export type ViewSpec = { title: string; note?: string; sections: SectionSpec[] };
+export type ChartSpec = { id: string; kind: "days" | "pairs"; title: string; note?: string; fill?: string; sql: string };
+export type ViewSpec = { title: string; note?: string; sections: SectionSpec[]; charts?: ChartSpec[] };
+
+// the feed's per-day rollups: one row per calendar day with the entered visits, their charge lines, dollars and distinct charts,
+// plus the encounters NOT entered (diagnosis, CPT, deceased, skipped, failed, no chart) - the artifact page's day charts, in SQL
+const DAY_ROLLUP = (dayExpr: string) => `
+  select day::text as date,
+         count(*) filter (where status = 'entered') as visits,
+         coalesce(sum(coalesce(array_length(cpts, 1), 0)) filter (where status = 'entered'), 0) as lines,
+         round(coalesce(sum(fee) filter (where status = 'entered'), 0)) as dollars,
+         count(distinct chart_id) filter (where status = 'entered') as patients,
+         count(*) filter (where status in ('dx', 'deceased', 'cpt', 'skipped', 'failed', 'nochart')) as notin
+  from (select ${dayExpr} as day, status, cpts, fee, chart_id from ehpa.feed_charges) f
+  where day is not null group by day order by day`;
+// the day (Eastern time) a batch was pulled into AdvancedMD: the batch's recorded time, else its run stamp (20261031T0312Z -> Oct 30
+// 11:12 PM ET), else the 10/28 backlog (stamp 1028)
+const PULLED_DAY = `coalesce((batch_at at time zone 'America/New_York')::date,
+  case when batch_stamp ~ '^[0-9]{8}T[0-9]{4}Z' then (((substr(batch_stamp, 1, 4) || '-' || substr(batch_stamp, 5, 2) || '-' || substr(batch_stamp, 7, 2) || ' ' || substr(batch_stamp, 10, 2) || ':' || substr(batch_stamp, 12, 2) || ':00+00')::timestamptz) at time zone 'America/New_York')::date
+       when batch_stamp ~ '^[0-9]{4}$' then make_date(extract(year from now())::int, substr(batch_stamp, 1, 2)::int, substr(batch_stamp, 3, 2)::int) end)`;
 
 export const VIEWS: Record<string, ViewSpec> = {
   overview: {
     title: "Overview",
     note: "What the database holds and the newest numbers the engine reported.",
+    charts: [
+      { id: "pulled", kind: "days", fill: "pulled", title: "Encounters by date pulled into AdvancedMD",
+        note: "The day each visit came through the Claimocity connection and was entered in AdvancedMD (Eastern time); today's pull sits at the right edge. Amber = not entered.",
+        sql: DAY_ROLLUP(PULLED_DAY) },
+      { id: "dos", kind: "days", fill: "accent", title: "Encounters by date of service",
+        note: "The same visits by the day the patient was seen. Amber = not entered.",
+        sql: DAY_ROLLUP("dos") },
+      { id: "cascade", kind: "pairs", title: "Nightly insurance cascade: cases checked and changed",
+        note: "One pair of bars per night (the run starts at 05:35 UTC, 12:35 AM Eastern in winter). Checked = visit-and-plan pairs the run verified with AdvancedMD or Stedi. Changed = visits it fixed in AdvancedMD (re-pointed, re-routed or re-sent). A grey dash means no run is recorded for that night.",
+        sql: `select night::text as date, checked, changed, dollars_resent as dollars, done, at::text as at from ehpa.cascade_nights where night is not null order by night` },
+    ],
     sections: [
       { heading: "Latest billing run", note: "from ehpa.billing_runs (the engine's own summary)", kinds: { outstanding_total: "money", outstanding_over_365_dollars: "money", denials_actionable_dollars: "money", era_unposted_after: "money", at: "when" },
         sql: `select stamp, at, mode, status, outstanding_total, outstanding_visits, outstanding_over_365_dollars, denials_actionable, denials_actionable_dollars, era_unposted_after,
@@ -151,5 +180,10 @@ export async function runView(pool: Pool, name: string) {
     const kinds = columns.map((c) => (s.kinds && s.kinds[c]) || KIND_ALIAS[c] || "text");
     sections.push({ heading: s.heading, note: s.note, columns, rows: r.rows.slice(0, 500), kinds });
   }
-  return { title: spec.title, note: spec.note, sections, generated_at: new Date().toISOString() };
+  const charts = [];
+  for (const ch of spec.charts || []) {
+    const r = await pool.query(ch.sql);
+    charts.push({ id: ch.id, kind: ch.kind, title: ch.title, note: ch.note, fill: ch.fill, rows: r.rows });
+  }
+  return { title: spec.title, note: spec.note, charts, sections, generated_at: new Date().toISOString() };
 }

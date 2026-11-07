@@ -10,7 +10,11 @@ export function pageHtml(authUrl: string, idleMinutes: string): string {
 <title>ehpa Practice Database</title>
 <style>
 :root{--bg:#0b1f4d;--bg-deep:#071538;--surface:#132c66;--surface-2:#1a387d;--line:#23418a;--line-strong:#3b5fae;--ink:#f2f5ff;--ink-2:#dde5fb;--muted:#b9c6ea;--dim:#8ea1d2;
-  --accent:#cf9544;--on-accent:#0b1f4d;--accent-2:#79a6ff;--ok:#5fd394;--bad:#ff7b8a;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--font:system-ui,-apple-system,"Segoe UI",sans-serif}
+  --accent:#cf9544;--on-accent:#0b1f4d;--accent-2:#79a6ff;--ok:#5fd394;--bad:#ff7b8a;--warn:#f5b84d;--pulled:#8fc7a6;--cascade:#d9ccfa;--cascade-2:#b9a2f2;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--font:system-ui,-apple-system,"Segoe UI",sans-serif}
+.chart svg{display:block;width:100%;height:auto}.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;gap:3px;background:var(--surface);flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--muted);font:600 13px var(--font);padding:7px 14px;border-radius:999px;cursor:pointer}.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin:0 0 6px}.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:500 15px/1.5 var(--font);-webkit-font-smoothing:antialiased}
 .wrap{max-width:1180px;margin:0 auto;padding:18px 16px 90px}
 .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
