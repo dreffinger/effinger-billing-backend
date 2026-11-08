@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-08T06:38:32Z",
+ "at": "2026-11-08T05:35:00Z",
+ "changed": 31,
+ "checked": 34,
+ "commit": "365ca96",
+ "date": "2026-11-08",
+ "dollars": 4457,
+ "done": "7 precheck visits re-pointed to the charts MA plans (1159 dollars, charts 17470950 44953 17476739 17478343 17475777); sweep: 24 claims re-sent (3298 dollars, charts 17475362 17476438 17476544 17476503 17477267 46678 17474798); 81 dollars written off (chart 21021)",
+ "era_posted": 0.0,
+ "finished": "2026-11-08T06:38:32Z",
+ "flagged": 6,
+ "kind": "nightly cascade",
+ "lookups": 24,
+ "note": "34 visit-and-plan pairs checked (16 new Stedi lookups), 6 flagged; Sunday 300-claim status sweep: 23 paid-unposted, 96 finalized at 0, 154 not on file, 26 pending",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-08T0535Z.json",
+ "stamp": "2026-11-08T0535Z",
+ "stedi_cost": 16.3,
+ "writeoffs": 81.0
+}
