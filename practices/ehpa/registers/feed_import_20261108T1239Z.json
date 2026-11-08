@@ -1,0 +1,1086 @@
+{
+ "created": [
+  {
+   "feed_id": "627a3e0453431d27ed7ebe01",
+   "pid": "pat20728",
+   "visit": "vst19460483",
+   "charges": [
+    "charge23373189"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:47:48.568995",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6887bc67b3648c1a29cf5df4",
+   "pid": "pat17473568",
+   "visit": "vst19460484",
+   "charges": [
+    "charge23373190"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:47:53.168754",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6887bc67b3648c1a29cf5df4",
+   "pid": "pat17473568",
+   "visit": "vst19460485",
+   "charges": [
+    "charge23373191"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:47:55.254088",
+   "dos": "11/02/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "63f9dbe9340cfc171fe0a854",
+   "pid": "pat17478345",
+   "visit": "vst19460486",
+   "charges": [
+    "charge23373192"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:47:58.780428",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20230207",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "666c96b17ee5b030d270ee00",
+   "pid": "pat17471792",
+   "visit": "vst19460487",
+   "charges": [
+    "charge23373193"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:03.341455",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20240614",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "67c760933971c876dc367bbe",
+   "pid": "pat17472286",
+   "visit": "vst19460488",
+   "charges": [
+    "charge23373194"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:07.929396",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260814",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "64ffe67cee1304ab155e8a24",
+   "pid": "pat17469446",
+   "visit": "vst19460489",
+   "charges": [
+    "charge23373195"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:12.961836",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260905",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "64ffe67cee1304ab155e8a24",
+   "pid": "pat17469446",
+   "visit": "vst19460490",
+   "charges": [
+    "charge23373196"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:15.213072",
+   "dos": "11/02/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260905",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "695be3af98bc18fb268ee54a",
+   "pid": "pat17475697",
+   "visit": "vst19460491",
+   "charges": [
+    "charge23373197"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:19.576448",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260219",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6792ad1c626b2f403db64d6d",
+   "pid": "pat17472849",
+   "visit": "vst19460492",
+   "charges": [
+    "charge23373198"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:24.135273",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20250123",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6513b6dce9abd1e559a47775",
+   "pid": "pat17469541",
+   "visit": "vst19460493",
+   "charges": [
+    "charge23373199"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:28.471859",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20231102",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "633d1c60080aab6d3718d2a2",
+   "pid": "pat46048",
+   "visit": "vst19460494",
+   "charges": [
+    "charge23373200"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:33.317663",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20230211",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6acfdddc83d0c9ba480e8a5f",
+   "pid": "pat17478209",
+   "visit": "vst19460495",
+   "charges": [
+    "charge23373201"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:37.788996",
+   "dos": "11/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20261014",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6acfdddc83d0c9ba480e8a5f",
+   "pid": "pat17478209",
+   "visit": "vst19460496",
+   "charges": [
+    "charge23373202"
+   ],
+   "fees": [
+    "107.00"
+   ],
+   "at": "2026-11-08T12:48:39.802730",
+   "dos": "11/02/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fac": "fac34",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20261014",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "678029595e3e85750dd84c60",
+   "pid": "pat17472741",
+   "visit": "vst19460497",
+   "charges": [
+    "charge23373203"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:44.588169",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20250109",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "678029595e3e85750dd84c60",
+   "pid": "pat17472741",
+   "visit": "vst19460498",
+   "charges": [
+    "charge23373204"
+   ],
+   "fees": [
+    "107.00"
+   ],
+   "at": "2026-11-08T12:48:46.472078",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20250109",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "683a0ebab0c27758e155de01",
+   "pid": "pat17473343",
+   "visit": "vst19460499",
+   "charges": [
+    "charge23373205"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:50.684407",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260422",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "683a0ebab0c27758e155de01",
+   "pid": "pat17473343",
+   "visit": "vst19460500",
+   "charges": [
+    "charge23373206"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:52.665529",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260422",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62ecaa3b080aab6d373383f9",
+   "pid": "pat44997",
+   "visit": "vst19460501",
+   "charges": [
+    "charge23373207"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:48:57.089931",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20220814",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62ecaa3b080aab6d373383f9",
+   "pid": "pat44997",
+   "visit": "vst19460502",
+   "charges": [
+    "charge23373208"
+   ],
+   "fees": [
+    "107.00"
+   ],
+   "at": "2026-11-08T12:48:59.069980",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20220814",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62d780548c02105eb3525ca2",
+   "pid": "pat44962",
+   "visit": "vst19460503",
+   "charges": [
+    "charge23373209"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:04.010586",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20220719",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62d780548c02105eb3525ca2",
+   "pid": "pat44962",
+   "visit": "vst19460504",
+   "charges": [
+    "charge23373210"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:06.192362",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20220719",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "65e9cf2dafe9221b5480a424",
+   "pid": "pat17476348",
+   "visit": "vst19460505",
+   "charges": [
+    "charge23373211"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:10.459056",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260501",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "65e9cf2dafe9221b5480a424",
+   "pid": "pat17476348",
+   "visit": "vst19460506",
+   "charges": [
+    "charge23373212"
+   ],
+   "fees": [
+    "107.00"
+   ],
+   "at": "2026-11-08T12:49:12.373057",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260501",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a89604a4ea93d62b4903fb",
+   "pid": "pat17472436",
+   "visit": "vst19460507",
+   "charges": [
+    "charge23373213"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:18.881131",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20200925",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a89604a4ea93d62b4903fb",
+   "pid": "pat17472436",
+   "visit": "vst19460508",
+   "charges": [
+    "charge23373214"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:20.881236",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20200925",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6a5fda2c3526dce62539d4ea",
+   "pid": "pat17477190",
+   "visit": "vst19460509",
+   "charges": [
+    "charge23373215"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:24.884446",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260721",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a89600a4ea93d62b48f5e2",
+   "pid": "pat25558",
+   "visit": "vst19460510",
+   "charges": [
+    "charge23373216"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:29.735265",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260726",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a89600a4ea93d62b48f603",
+   "pid": "pat17472517",
+   "visit": "vst19460511",
+   "charges": [
+    "charge23373217"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:34.452589",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260223",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a89600a4ea93d62b48f603",
+   "pid": "pat17472517",
+   "visit": "vst19460512",
+   "charges": [
+    "charge23373218"
+   ],
+   "fees": [
+    "107.00"
+   ],
+   "at": "2026-11-08T12:49:36.390081",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99308"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260223",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6893a270c9d2b4de3e66360a",
+   "pid": "pat17473661",
+   "visit": "vst19460513",
+   "charges": [
+    "charge23373219"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:40.838696",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260817",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a895fea4ea93d62b48eb6e",
+   "pid": "pat21020",
+   "visit": "vst19460514",
+   "charges": [
+    "charge23373220"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:45.310335",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20171011",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a895fea4ea93d62b48eb6e",
+   "pid": "pat21020",
+   "visit": "vst19460515",
+   "charges": [
+    "charge23373221"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:47.293621",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20171011",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "667c84c87ee5b030d236127d",
+   "pid": "pat17472397",
+   "visit": "vst19460516",
+   "charges": [
+    "charge23373222"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:52.040364",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20250115",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "667c84c87ee5b030d236127d",
+   "pid": "pat17472397",
+   "visit": "vst19460517",
+   "charges": [
+    "charge23373223"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:53.927950",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20250115",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6a064ccf82b36edbf7c37a41",
+   "pid": "pat17476544",
+   "visit": "vst19460518",
+   "charges": [
+    "charge23373224"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:49:58.175184",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260514",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6a064ccf82b36edbf7c37a41",
+   "pid": "pat17476544",
+   "visit": "vst19460519",
+   "charges": [
+    "charge23373225"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:50:00.031905",
+   "dos": "10/05/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260514",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "62a895fca4ea93d62b48e249",
+   "pid": "pat23159",
+   "visit": "vst19460520",
+   "charges": [
+    "charge23373226"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:50:04.989689",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20261009",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "69b4251de623f7da92671193",
+   "pid": "pat17477496",
+   "visit": "vst19460521",
+   "charges": [
+    "charge23373227"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:50:09.556881",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260919",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6a569d49ce1e66509045b54b",
+   "pid": "pat17477183",
+   "visit": "vst19460522",
+   "charges": [
+    "charge23373228"
+   ],
+   "fees": [
+    "141.00"
+   ],
+   "at": "2026-11-08T12:50:14.021677",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99309"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20261027",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6aee996e2bfc253ac863d04a",
+   "pid": "pat17478346",
+   "visit": "vst19460523",
+   "charges": [
+    "charge23373229"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-08T12:50:17.896024",
+   "dos": "11/06/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6aea453aa45a633ebd24133d",
+   "pid": "pat17478316",
+   "visit": "vst19460524",
+   "charges": [
+    "charge23373230"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-08T12:50:22.856255",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261104",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aea178475d91711b303e95c",
+   "pid": "pat17478318",
+   "visit": "vst19460525",
+   "charges": [
+    "charge23373231"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-08T12:50:27.405861",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261104",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6a21b852fc671d52db26c01a",
+   "pid": "pat17476739",
+   "visit": "vst19460526",
+   "charges": [
+    "charge23373232"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-08T12:50:32.416853",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20260604",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "66c63e40026452cacfe6daae",
+   "pid": "pat17471478",
+   "visit": "vst19460527",
+   "charges": [
+    "charge23373233"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-08T12:50:37.653994",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261103",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aeb11200fa618b2ed637cb6",
+   "pid": "pat17478331",
+   "visit": "vst19460528",
+   "charges": [
+    "charge23373234"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-08T12:50:42.507327",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261104",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "62f4a7b7ad77382d803896cd",
+   "pid": "pat44953",
+   "visit": "vst19460529",
+   "charges": [
+    "charge23373235"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-08T12:50:47.560186",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261104",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6a0772e8dbd2a23f6bc38ff3",
+   "pid": "pat17476583",
+   "visit": "vst19460530",
+   "charges": [
+    "charge23373236"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-08T12:50:52.692649",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261105",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aee996e2bfc253ac863d04a",
+   "pid": "pat17478346",
+   "visit": "vst19460531",
+   "charges": [
+    "charge23373237"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-08T12:50:54.540328",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "670186a92a65a77c06941f99",
+   "pid": "pat17475970",
+   "visit": "vst19460532",
+   "charges": [
+    "charge23373238"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-08T12:50:59.427295",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261105",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6ae94ba0a0e552e64deaf124",
+   "pid": "pat17472228",
+   "visit": "vst19460533",
+   "charges": [
+    "charge23373239"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-08T12:51:04.649984",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261103",
+   "missing_dx": [],
+   "admit_written": true
+  }
+ ],
+ "skipped": [],
+ "failed": []
+}

@@ -1,0 +1,26 @@
+{
+ "created": [
+  {
+   "pid": "pat17478345",
+   "chart": "F261108-01",
+   "feed_ids": [
+    "63f9dbe9340cfc171fe0a854"
+   ],
+   "plans": [],
+   "respparty": "resp21479900",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478346",
+   "chart": "F261108-02",
+   "feed_ids": [
+    "6aee996e2bfc253ac863d04a",
+    "6aee996e2bfc253ac863d04a"
+   ],
+   "plans": [],
+   "respparty": "resp21479901",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}

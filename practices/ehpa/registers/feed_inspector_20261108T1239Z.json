@@ -1,0 +1,105 @@
+{
+ "fixed": [
+  {
+   "visit": "19460483",
+   "pid": "pat20728",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460491",
+   "pid": "pat17475697",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460509",
+   "pid": "pat17477190",
+   "patterns": [
+    "11256"
+   ],
+   "note": [
+    "bypassed 1 advisories"
+   ]
+  },
+  {
+   "visit": "19460524",
+   "pid": "pat17478316",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/04/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460526",
+   "pid": "pat17476739",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 06/04/2026 written",
+    "resave ok"
+   ]
+  },
+  {
+   "visit": "19460528",
+   "pid": "pat17478331",
+   "patterns": [
+    "117065068"
+   ],
+   "note": [
+    "admit 11/04/2026 written",
+    "resave ok"
+   ]
+  }
+ ],
+ "bypassed": [
+  {
+   "visit": "19460483",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460491",
+   "patterns": [
+    "11256"
+   ]
+  },
+  {
+   "visit": "19460509",
+   "patterns": [
+    "11256"
+   ]
+  }
+ ],
+ "held": [],
+ "laterality": [
+  {
+   "visit": "19460483",
+   "pid": "pat20728",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) Z9010..."
+  },
+  {
+   "visit": "19460491",
+   "pid": "pat17475697",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) I69359..."
+  },
+  {
+   "visit": "19460509",
+   "pid": "pat17477190",
+   "text": "[Pattern 11256] The ICD-10-CM code(s) H9190..."
+  }
+ ]
+}
