@@ -1,7 +1,7 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-07T13:49:45Z",
- "as_of": "2026-11-07",
+ "generated": "2026-11-08T01:05:48Z",
+ "as_of": "2026-11-08",
  "coverage": {
   "files": [
    {
@@ -216,13 +216,13 @@
  },
  "windows": {
   "week": {
-   "from": "2026-11-01",
-   "to": "2026-11-07",
-   "visits": 195,
-   "lines": 213,
-   "dollars": 36985.0,
+   "from": "2026-11-02",
+   "to": "2026-11-08",
+   "visits": 180,
+   "lines": 198,
+   "dollars": 34781.0,
    "patients": 86,
-   "entered": 195,
+   "entered": 180,
    "already_in_amd": 2,
    "deceased_not_entered": 1,
    "failed": 0,
@@ -242,9 +242,9 @@
     },
     {
      "name": "Hospital follow-up",
-     "lines": 116,
-     "visits": 116,
-     "dollars": 16894.0
+     "lines": 101,
+     "visits": 101,
+     "dollars": 14690.0
     },
     {
      "name": "Hospital discharge",
@@ -280,21 +280,21 @@
    "cpt": [
     {
      "name": "99233",
-     "lines": 82,
-     "visits": 82,
-     "dollars": 13120.0
-    },
-    {
-     "name": "99232",
-     "lines": 34,
-     "visits": 34,
-     "dollars": 3774.0
+     "lines": 71,
+     "visits": 71,
+     "dollars": 11360.0
     },
     {
      "name": "99309",
      "lines": 34,
      "visits": 34,
      "dollars": 4794.0
+    },
+    {
+     "name": "99232",
+     "lines": 30,
+     "visits": 30,
+     "dollars": 3330.0
     },
     {
      "name": "99223",
@@ -336,9 +336,9 @@
    "facility": [
     {
      "name": "HCA Capital Hospital",
-     "lines": 140,
-     "visits": 134,
-     "dollars": 23275.0
+     "lines": 125,
+     "visits": 119,
+     "dollars": 21071.0
     },
     {
      "name": "Sodalis ALF",
@@ -380,9 +380,9 @@
    "setting": [
     {
      "name": "Inpatient hospital",
-     "lines": 140,
-     "visits": 134,
-     "dollars": 23275.0
+     "lines": 125,
+     "visits": 119,
+     "dollars": 21071.0
     },
     {
      "name": "Skilled nursing facility",
@@ -400,47 +400,35 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 153,
-     "visits": 137,
-     "dollars": 27862.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 34,
-     "visits": 34,
-     "dollars": 4726.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 26,
-     "visits": 24,
-     "dollars": 4397.0
+     "lines": 198,
+     "visits": 180,
+     "dollars": 34781.0
     }
    ],
    "payer": [
     {
      "name": "Medicare",
-     "lines": 63,
-     "visits": 59,
-     "dollars": 10819.0
+     "lines": 60,
+     "visits": 56,
+     "dollars": 10388.0
     },
     {
      "name": "Medicare Advantage",
-     "lines": 44,
-     "visits": 39,
-     "dollars": 7599.0
+     "lines": 40,
+     "visits": 35,
+     "dollars": 7057.0
     },
     {
      "name": "Medicaid / LTC",
-     "lines": 11,
-     "visits": 11,
-     "dollars": 1753.0
+     "lines": 8,
+     "visits": 8,
+     "dollars": 1322.0
     },
     {
      "name": "Commercial / other",
-     "lines": 9,
-     "visits": 8,
-     "dollars": 1553.0
+     "lines": 8,
+     "visits": 7,
+     "dollars": 1393.0
     },
     {
      "name": "VA / TRICARE",
@@ -450,69 +438,13 @@
     },
     {
      "name": "No active plan",
-     "lines": 85,
-     "visits": 77,
-     "dollars": 14961.0
+     "lines": 81,
+     "visits": 73,
+     "dollars": 14321.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 19
-    },
-    {
-     "code": "E785",
-     "patients": 9
-    },
-    {
-     "code": "F0390",
-     "patients": 9
-    },
-    {
-     "code": "N390",
-     "patients": 8
-    },
-    {
-     "code": "I509",
-     "patients": 7
-    },
-    {
-     "code": "I639",
-     "patients": 6
-    },
-    {
-     "code": "E119",
-     "patients": 6
-    },
-    {
-     "code": "F419",
-     "patients": 5
-    },
-    {
-     "code": "F32A",
-     "patients": 5
-    },
-    {
-     "code": "E039",
-     "patients": 5
-    },
-    {
-     "code": "K219",
-     "patients": 4
-    },
-    {
-     "code": "F03B0",
-     "patients": 4
-    }
-   ],
+   "top_dx": [],
    "days": [
-    {
-     "date": "2026-11-01",
-     "visits": 15,
-     "lines": 15,
-     "dollars": 2204.0,
-     "patients": 15
-    },
     {
      "date": "2026-11-02",
      "visits": 33,
@@ -554,12 +486,19 @@
      "lines": 15,
      "dollars": 2204.0,
      "patients": 15
+    },
+    {
+     "date": "2026-11-08",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "month": {
-   "from": "2026-10-09",
-   "to": "2026-11-07",
+   "from": "2026-10-10",
+   "to": "2026-11-08",
    "visits": 902,
    "lines": 1174,
    "dollars": 194900.0,
@@ -820,21 +759,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1112,
-     "visits": 843,
-     "dollars": 185388.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 36,
-     "visits": 35,
-     "dollars": 5115.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 26,
-     "visits": 24,
-     "dollars": 4397.0
+     "lines": 1174,
+     "visits": 902,
+     "dollars": 194900.0
     }
    ],
    "payer": [
@@ -875,64 +802,8 @@
      "dollars": 35569.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 20
-    },
-    {
-     "code": "E785",
-     "patients": 9
-    },
-    {
-     "code": "F0390",
-     "patients": 9
-    },
-    {
-     "code": "I509",
-     "patients": 8
-    },
-    {
-     "code": "N390",
-     "patients": 8
-    },
-    {
-     "code": "E119",
-     "patients": 7
-    },
-    {
-     "code": "I639",
-     "patients": 6
-    },
-    {
-     "code": "F419",
-     "patients": 5
-    },
-    {
-     "code": "F32A",
-     "patients": 5
-    },
-    {
-     "code": "E039",
-     "patients": 5
-    },
-    {
-     "code": "Z950",
-     "patients": 4
-    },
-    {
-     "code": "K219",
-     "patients": 4
-    }
-   ],
+   "top_dx": [],
    "days": [
-    {
-     "date": "2026-10-09",
-     "visits": 0,
-     "lines": 0,
-     "dollars": 0.0,
-     "patients": 0
-    },
     {
      "date": "2026-10-10",
      "visits": 0,
@@ -1135,12 +1006,19 @@
      "lines": 15,
      "dollars": 2204.0,
      "patients": 15
+    },
+    {
+     "date": "2026-11-08",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   },
   "all": {
    "from": "2026-09-01",
-   "to": "2026-11-07",
+   "to": "2026-11-08",
    "visits": 976,
    "lines": 1255,
    "dollars": 204621.0,
@@ -1401,21 +1279,9 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1193,
-     "visits": 917,
-     "dollars": 195109.0
-    },
-    {
-     "name": "Pamela G.",
-     "lines": 36,
-     "visits": 35,
-     "dollars": 5115.0
-    },
-    {
-     "name": "Dr. Effinger (DO)",
-     "lines": 26,
-     "visits": 24,
-     "dollars": 4397.0
+     "lines": 1255,
+     "visits": 976,
+     "dollars": 204621.0
     }
    ],
    "payer": [
@@ -1456,56 +1322,7 @@
      "dollars": 36284.0
     }
    ],
-   "top_dx": [
-    {
-     "code": "I10",
-     "patients": 20
-    },
-    {
-     "code": "E785",
-     "patients": 9
-    },
-    {
-     "code": "F0390",
-     "patients": 9
-    },
-    {
-     "code": "I509",
-     "patients": 8
-    },
-    {
-     "code": "N390",
-     "patients": 8
-    },
-    {
-     "code": "E119",
-     "patients": 7
-    },
-    {
-     "code": "I639",
-     "patients": 6
-    },
-    {
-     "code": "F419",
-     "patients": 5
-    },
-    {
-     "code": "F32A",
-     "patients": 5
-    },
-    {
-     "code": "E039",
-     "patients": 5
-    },
-    {
-     "code": "Z950",
-     "patients": 4
-    },
-    {
-     "code": "K219",
-     "patients": 4
-    }
-   ],
+   "top_dx": [],
    "days": [
     {
      "date": "2026-09-01",
@@ -1982,6 +1799,13 @@
      "lines": 15,
      "dollars": 2204.0,
      "patients": 15
+    },
+    {
+     "date": "2026-11-08",
+     "visits": 0,
+     "lines": 0,
+     "dollars": 0.0,
+     "patients": 0
     }
    ]
   }
