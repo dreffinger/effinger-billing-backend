@@ -1,18 +1,18 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-08T0118Z",
+ "stamp": "2026-11-08T0320Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/38/0/1 -> 0/17/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 1 checks $97.59 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42433690579",
- "started": "2026-11-08T01:18:48Z",
- "ended": "2026-11-08T01:25:08Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42442313384",
+ "started": "2026-11-08T03:20:46Z",
+ "ended": "2026-11-08T03:26:00Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
-    "claim_inspector": 38,
+    "claim_inspector": 17,
     "unbilled": 0,
     "exclusions": 1
    },
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 97.59
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 97.59,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,8 +53,8 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 325955.14,
-   "visits": 2590,
+   "total": 325814.14,
+   "visits": 2589,
    "charts": 480,
    "over_365": {
     "n": 543,
@@ -65,7 +65,7 @@
    "visits": 7807,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-08 01:25 UTC"
+   "asof": "2026-11-08 03:25 UTC"
   }
  },
  "steps": [
@@ -82,22 +82,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-08T01:18:48Z",
-   "ended": "2026-11-08T01:18:49Z"
+   "started": "2026-11-08T03:20:46Z",
+   "ended": "2026-11-08T03:20:46Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 38->17, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 17->17, Unbilled 0->0, Exclusions 1->1",
    "counts": {
     "charge review": 0,
-    "claim inspector": 38,
+    "claim inspector": 17,
     "unbilled": 0,
     "exclusions": 1,
-    "inspector advisories to bypass": 21,
+    "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 17,
-    "inspector bypasses sent": 21,
+    "inspector bypasses sent": 0,
     "unbilled reason-code rows": 0,
     "unbilled prior-payor rows": 0,
     "unbilled rows left alone": 0,
@@ -114,12 +114,6 @@
      "ids": "v19459901 v19459902 v19459903 v19459904 v19459905 v19459906 v19459907 v19459908 v19459909 v19459910 v19459911 v19459912 v19459913 v19459914 v19459915 v19460343 v19460347"
     },
     {
-     "column": "claim inspector",
-     "kind": "advisory",
-     "visits": 21,
-     "ids": "v19407376 v19407564 v19407678 v19408002 v19408635 v19409063 v19409083 v19413673 v19414974 v19416108 v19416684 v19417075 v19417092 v19418052 v19418641 v19419246 v19419562 v19420369 v19421513 v19421672 v19421673"
-    },
-    {
      "column": "exclusions run 1700294",
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
@@ -127,28 +121,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-08T01:18:49Z",
-   "ended": "2026-11-08T01:21:17Z"
+   "started": "2026-11-08T03:20:46Z",
+   "ended": "2026-11-08T03:22:32Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $97.59 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
+    "fallback posted": 0,
     "checks dismissed": 0,
-    "checks held": 0
+    "checks held": 0,
+    "denial lines recorded": 0
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 97.59,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 97.59
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053459,
+     "payer": "HUMANA",
+     "checknumber": "205732710261107",
+     "amount": 0.0,
+     "unposted": 97.59,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-08T01:21:17Z",
-   "ended": "2026-11-08T01:21:19Z"
+   "started": "2026-11-08T03:22:32Z",
+   "ended": "2026-11-08T03:22:38Z"
   },
   {
    "name": "packages",
@@ -159,21 +167,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-08T01:21:19Z",
-   "ended": "2026-11-08T01:21:19Z"
+   "started": "2026-11-08T03:22:38Z",
+   "ended": "2026-11-08T03:22:38Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2590 visits on 480 charts, $325955.14 open; 543 over a year ($25044.66)",
+   "summary": "2589 visits on 480 charts, $325814.14 open; 543 over a year ($25044.66)",
    "counts": {
-    "visits": 2590,
+    "visits": 2589,
     "charts": 480,
     "over 365 days": 543
    },
    "dollars": {
-    "open insurance balance": 325955.14,
+    "open insurance balance": 325814.14,
     "over 365 days": 25044.66
    },
    "lines": [
@@ -215,8 +223,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 61,
-     "dollars": 10180.26,
+     "visits": 60,
+     "dollars": 10039.26,
      "oldest_days": 1066
     },
     {
@@ -263,8 +271,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-08T01:21:19Z",
-   "ended": "2026-11-08T01:21:21Z"
+   "started": "2026-11-08T03:22:38Z",
+   "ended": "2026-11-08T03:22:39Z"
   },
   {
    "name": "denials",
@@ -351,8 +359,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-08T01:21:21Z",
-   "ended": "2026-11-08T01:25:08Z"
+   "started": "2026-11-08T03:22:39Z",
+   "ended": "2026-11-08T03:26:00Z"
   }
  ],
  "packages": [],
