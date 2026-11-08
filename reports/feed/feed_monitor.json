@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-08T01:05:48Z",
+ "generated": "2026-11-08T06:46:23Z",
  "as_of": "2026-11-08",
  "coverage": {
   "files": [
@@ -400,9 +400,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 198,
-     "visits": 180,
-     "dollars": 34781.0
+     "lines": 105,
+     "visits": 90,
+     "dollars": 18799.0
+    },
+    {
+     "name": "Dr. Effinger (DO)",
+     "lines": 74,
+     "visits": 72,
+     "dollars": 12945.0
+    },
+    {
+     "name": "Pamela G.",
+     "lines": 19,
+     "visits": 18,
+     "dollars": 3037.0
     }
    ],
    "payer": [
@@ -443,7 +455,56 @@
      "dollars": 14321.0
     }
    ],
-   "top_dx": [],
+   "top_dx": [
+    {
+     "code": "I10",
+     "patients": 28
+    },
+    {
+     "code": "E785",
+     "patients": 18
+    },
+    {
+     "code": "N390",
+     "patients": 11
+    },
+    {
+     "code": "I639",
+     "patients": 11
+    },
+    {
+     "code": "J449",
+     "patients": 10
+    },
+    {
+     "code": "M4802",
+     "patients": 10
+    },
+    {
+     "code": "M48.02",
+     "patients": 10
+    },
+    {
+     "code": "M6281",
+     "patients": 9
+    },
+    {
+     "code": "R55",
+     "patients": 8
+    },
+    {
+     "code": "E119",
+     "patients": 8
+    },
+    {
+     "code": "F0390",
+     "patients": 7
+    },
+    {
+     "code": "N179",
+     "patients": 6
+    }
+   ],
    "days": [
     {
      "date": "2026-11-02",
@@ -759,9 +820,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1174,
-     "visits": 902,
-     "dollars": 194900.0
+     "lines": 827,
+     "visits": 592,
+     "dollars": 137239.0
+    },
+    {
+     "name": "Dr. Effinger (DO)",
+     "lines": 275,
+     "visits": 240,
+     "dollars": 46569.0
+    },
+    {
+     "name": "Pamela G.",
+     "lines": 72,
+     "visits": 70,
+     "dollars": 11092.0
     }
    ],
    "payer": [
@@ -802,7 +875,56 @@
      "dollars": 35569.0
     }
    ],
-   "top_dx": [],
+   "top_dx": [
+    {
+     "code": "I10",
+     "patients": 102
+    },
+    {
+     "code": "E785",
+     "patients": 70
+    },
+    {
+     "code": "I639",
+     "patients": 35
+    },
+    {
+     "code": "E119",
+     "patients": 34
+    },
+    {
+     "code": "N390",
+     "patients": 34
+    },
+    {
+     "code": "E039",
+     "patients": 33
+    },
+    {
+     "code": "J449",
+     "patients": 29
+    },
+    {
+     "code": "M6281",
+     "patients": 27
+    },
+    {
+     "code": "F0390",
+     "patients": 24
+    },
+    {
+     "code": "M4802",
+     "patients": 24
+    },
+    {
+     "code": "M48.02",
+     "patients": 24
+    },
+    {
+     "code": "N179",
+     "patients": 23
+    }
+   ],
    "days": [
     {
      "date": "2026-10-10",
@@ -1279,9 +1401,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1255,
-     "visits": 976,
-     "dollars": 204621.0
+     "lines": 908,
+     "visits": 666,
+     "dollars": 146960.0
+    },
+    {
+     "name": "Dr. Effinger (DO)",
+     "lines": 275,
+     "visits": 240,
+     "dollars": 46569.0
+    },
+    {
+     "name": "Pamela G.",
+     "lines": 72,
+     "visits": 70,
+     "dollars": 11092.0
     }
    ],
    "payer": [
@@ -1322,7 +1456,56 @@
      "dollars": 36284.0
     }
    ],
-   "top_dx": [],
+   "top_dx": [
+    {
+     "code": "I10",
+     "patients": 102
+    },
+    {
+     "code": "E785",
+     "patients": 70
+    },
+    {
+     "code": "I639",
+     "patients": 35
+    },
+    {
+     "code": "E119",
+     "patients": 34
+    },
+    {
+     "code": "N390",
+     "patients": 34
+    },
+    {
+     "code": "E039",
+     "patients": 33
+    },
+    {
+     "code": "J449",
+     "patients": 29
+    },
+    {
+     "code": "M6281",
+     "patients": 27
+    },
+    {
+     "code": "F0390",
+     "patients": 24
+    },
+    {
+     "code": "M4802",
+     "patients": 24
+    },
+    {
+     "code": "M48.02",
+     "patients": 24
+    },
+    {
+     "code": "N179",
+     "patients": 23
+    }
+   ],
    "days": [
     {
      "date": "2026-09-01",
@@ -2060,13 +2243,6 @@
  ],
  "runs": [
   {
-   "stamp": "20261029T0549Z",
-   "at": "2026-10-29T05:52:01.078898Z",
-   "files": 2,
-   "exit": 0,
-   "live": true
-  },
-  {
    "stamp": "20261030T0034Z",
    "at": "2026-10-30T00:41:18.504236Z",
    "files": 5,
@@ -2140,6 +2316,13 @@
    "stamp": "20261107T1239Z",
    "at": "2026-11-07T13:49:17.008738Z",
    "files": 1,
+   "exit": 0,
+   "live": true
+  },
+  {
+   "stamp": "20261108T0639Z",
+   "at": "2026-11-08T06:46:01.349759Z",
+   "files": 0,
    "exit": 0,
    "live": true
   }
