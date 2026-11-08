@@ -21,9 +21,10 @@ CHECKID = next((x for x in a if x.isdigit()), None)
 LIVE = "--live" in a; FIRST = "--first-only" in a
 META = a[a.index("--meta") + 1] if "--meta" in a else None
 ONLY_CID = a[a.index("--cid") + 1] if "--cid" in a else None   # correct one charge only (re-run of a line the first pass left)
+ARG_STAMP = a[a.index("--stamp") + 1] if "--stamp" in a else None   # 11/7/2026: the engine names the register after its own run stamp
 if not CHECKID:
     print("usage: python3 era_co45_relink.py <checkid> [--meta <era_checks json>] [--live] [--first-only]"); sys.exit(2)
-STAMP = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H%MZ")
+STAMP = ARG_STAMP or datetime.datetime.utcnow().strftime("%Y-%m-%dT%H%MZ")
 def L(m): print(m, flush=True)
 
 amd.login_cached()
@@ -31,12 +32,16 @@ d = json.load(open("era_details/%s.json" % CHECKID))["eracheckdetails"]
 chk = None
 if META:
     chk = next((c for c in json.load(open(META)) if str(c["id"]) == CHECKID), None)
+if chk and not chk.get("depositdate"):   # 11/7/2026: a slim meta row keeps its check number but takes deposit date and pay method from the live check row
+    full = dict(payreasons.check_meta(CHECKID, d[0] if d else None) or {}); full.update({k: v for k, v in chk.items() if v}); chk = full
 if not chk: chk = payreasons.check_meta(CHECKID, d[0] if d else None)
 CHK = str(chk.get("paymentnumber") or "")
 if not CHK.strip():
     L("check %s carries no check number - stopping: a blank number would match blank-check payments for the VOID (11/7/2026)" % CHECKID); sys.exit(2)
 L("check %s %s %s amount %s deposit %s - %d claims" % (CHECKID, chk.get("systemcarriercode"), CHK, chk.get("paymentamount"), chk.get("depositdate"), len(d)))
 reg = {"stamp": STAMP, "checkid": CHECKID, "checknumber": CHK, "live": LIVE, "lines": []}
+REGF = "registers/era_co45_relink_%s_%s%s.json" % (CHECKID, STAMP, "" if LIVE else "_dry")
+def save(): json.dump(reg, open(REGF, "w"), indent=1)   # 11/7/2026: written after every line - a killed run keeps its record of what was voided and re-posted
 faults = 0; done = 0; tot_pay = 0.0; tot_wo = 0.0
 
 for v in d:
@@ -66,10 +71,10 @@ for v in d:
         L("pat%s v%s c%s %s fee %.2f paid %.2f insbal %.2f patbal %.2f -> void pay %s, re-post pay %.2f + WOINS %.2f (PR %.2f stays)"
           % (pid, vid, cid, c["cpt"], c["fee"], paid, c["insbalance"], c["patbalance"], p["id"], paid, co, pr))
         if not LIVE:
-            rec["result"] = "DRY"; reg["lines"].append(rec); continue
+            rec["result"] = "DRY"; reg["lines"].append(rec); save(); continue
         ok, msg = void_tx.void_payment(pid, cid, p["id"]); rec["void"] = (ok, str(msg)[:160]); L("   void -> %s %s" % (ok, str(msg)[:100]))
         if not ok:
-            faults += 1; rec["result"] = "VOID FAULT"; reg["lines"].append(rec)
+            faults += 1; rec["result"] = "VOID FAULT"; reg["lines"].append(rec); save()
             if faults >= 3: L("3 consecutive faults - stopping"); break
             continue
         time.sleep(1.0)
@@ -98,14 +103,14 @@ for v in d:
         if ok2: faults = 0; done += 1; tot_pay += paid; tot_wo += co
         else:
             faults += 1
-        reg["lines"].append(rec)
+        reg["lines"].append(rec); save()
         if faults >= 3: L("3 consecutive faults - stopping"); break
         if FIRST: L("--first-only: stopping after the first line"); break
     else:
         continue
     break
 
-json.dump(reg, open("registers/era_co45_relink_%s_%s%s.json" % (CHECKID, STAMP, "" if LIVE else "_dry"), "w"), indent=1)
+save()
 n_dry = sum(1 for r in reg["lines"] if r.get("result") == "DRY")
 L("SUMMARY %s check %s: %s lines; corrected %d (pay $%.2f re-posted, WOINS $%.2f); review/left %d"
   % ("DRY" if not LIVE else "LIVE", CHECKID, n_dry if not LIVE else len(reg["lines"]), done, tot_pay, tot_wo,

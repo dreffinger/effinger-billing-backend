@@ -16,7 +16,7 @@ for r in recs: bych[r['checkid']].append(r)
 n = 0; tot_void = 0.0; posted_total = 0.0
 for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv[1])):
     if n >= mx: break
-    touched = 0; touched_visits = []
+    touched = 0; touched_visits = []; blocked = 0   # 11/7/2026: a row that could not be voided or was skipped unreadable blocks the forced Post for the whole check (9/21 SWEEP RULE)
     for r in rs:
         key = '%s' % r['visitid']
         if key in done: continue
@@ -24,7 +24,7 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
         try:   # 11/7/2026: read the visit again right before the void - the rows were built minutes ago and another engine may have posted since
             fresh = [p for ch in txh.fetch_visit(r['patientid'], r['visitid']).iter('charge') if ch.get('void') != '1' for p in ch.iter('payment') if p.get('void') != '1' and float(p.get('amount') or 0) != 0]
         except Exception as e:
-            L('SKIP %s history unreadable: %s' % (key, str(e)[:80])); continue
+            L('SKIP %s history unreadable: %s' % (key, str(e)[:80])); blocked += 1; continue
         if fresh: L('SKIP %s payment present (%s)' % (key, ', '.join(sorted(set((p.get('checknumber') or '?') for p in fresh))[:3]))); continue
         ok_all = True
         for chg, woid, code, amt, date in r['writeoffs']:
@@ -33,10 +33,12 @@ for cid, rs in sorted(bych.items(), key=lambda kv: -sum(r['era_pay'] for r in kv
             if not ok: L('  void FAIL %s %s wo %s: %s' % (r['patient'], r['dos'], woid, msg)); time.sleep(0.3)
             else: tot_void += abs(float(amt or 0))
         if ok_all: L('VOIDED %s %s %s era %.2f wos %d ok=True' % (key, r['patient'], r['dos'], r['era_pay'], len(r['writeoffs']))); touched += 1; touched_visits.append(int(r['visitid']))
-        else: L('VOIDFAIL %s era %.2f wos %d - not forced, retried by the next era_clear round' % (key, r['era_pay'], len(r['writeoffs'])))   # 11/7/2026: a failed void is no VOIDED (resume) line and no forced Post
+        else: L('VOIDFAIL %s era %.2f wos %d - not forced, retried by the next era_clear round' % (key, r['era_pay'], len(r['writeoffs']))); blocked += 1   # 11/7/2026: a failed void is no VOIDED (resume) line and no forced Post
         time.sleep(0.3)
     n += 1
-    if touched and not dry:
+    if touched and blocked and not dry:
+        L('NOT POSTED check %s - a written-off visit of this check could not be voided or read (SWEEP RULE); the voided visits are open again and the fallback posts their lines ERA-linked' % cid)
+    elif touched and not dry:
         chk = next((c for c in era_post.checks() if str(c['id']) == str(cid)), None)   # 9/20: ids come back numeric; str-compare or the post step silently skips
         if chk:
             # The ERA remit stores each visit's insurancebalance as of remit-load time (0, because the
