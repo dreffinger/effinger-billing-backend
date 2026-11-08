@@ -123,7 +123,12 @@ def details(checkid, fresh=False):
     if fresh: _DET.pop(checkid, None)
     if checkid not in _DET:
         d = era_post.details(checkid); fn = os.path.join(CACHE, "%s.json" % checkid)
-        if d.get("eracheckdetails"): json.dump(d, open(fn, "w"))
+        if d.get("eracheckdetails"):   # 11/7/2026: era_post.details already caches under the never-shrink rule; write here only when the cache is missing or not fuller
+            old_n = -1
+            if os.path.exists(fn):
+                try: old_n = len(json.load(open(fn)).get("eracheckdetails") or [])
+                except Exception: old_n = -1
+            if len(d["eracheckdetails"]) >= old_n: json.dump(d, open(fn, "w"))
         elif os.path.exists(fn): d = json.load(open(fn)); d["_stale_cache"] = True
         _DET[checkid] = d
     return _DET[checkid]
