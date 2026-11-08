@@ -11,7 +11,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "billing_button-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -38,7 +38,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "credentialing_board-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -73,7 +73,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "ehpa_home-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -108,7 +108,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "insurance_refresh_board-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -127,7 +127,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "mandatory_approvals-20261102T0440Z",
 "stamp": "20261102T0440Z"
@@ -138,18 +138,18 @@
 "money_ledger": {
 "collections": {
 "embedded": {
-"bytes": 9337,
+"bytes": 19167,
 "count": 1,
-"doc": "money_ledger-embedded-20261107T0859Z",
+"doc": "money_ledger-embedded-20261108T0838Z",
 "parts": 1,
-"sha": "5e0bdfde883e53b37e99507531254fb9060715363bbf483974878a68d3eb68a5",
-"stamp": "20261107T0859Z"
+"sha": "2476156413744a48b7edbbb621a621c6280237970a35f22acfddcb2e35b14408",
+"stamp": "20261108T0838Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
-"doc": "money_ledger-20261107T0859Z",
-"stamp": "20261107T0859Z"
+"doc": "money_ledger-20261108T0838Z",
+"stamp": "20261108T0838Z"
 },
 "title": "Effinger Money Ledger",
 "url": "https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN"
@@ -165,7 +165,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "outstanding_claims-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -192,7 +192,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "treasury_payments-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -227,7 +227,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-07T09:00:00Z",
+"last_checked": "2026-11-08T08:39:32Z",
 "last_index": {
 "doc": "working_denials-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -521,6 +521,16 @@
 "index": "billing_button-20261107T0859Z",
 "slug": "billing_button",
 "stamp": "20261107T0859Z"
+},
+{
+"at": "2026-11-08T08:39:32Z",
+"coll": "embedded",
+"docs": [
+"money_ledger-embedded-20261108T0838Z"
+],
+"index": "money_ledger-20261108T0838Z",
+"slug": "money_ledger",
+"stamp": "20261108T0838Z"
 }
 ],
 "runs": {
@@ -741,6 +751,114 @@
 "index": "working_denials-20261107T0859Z",
 "unchanged": [
 "commands",
+"meta"
+]
+}
+},
+"20261108T0838Z": {
+"billing_button": {
+"changed": [],
+"counts": {
+"embedded": 1
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"credentialing_board": {
+"changed": [],
+"counts": {
+"cred": 42,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"cred",
+"meta"
+]
+},
+"ehpa_home": {
+"changed": [],
+"counts": {
+"embedded": 2,
+"meta": 1,
+"questions": 20
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta",
+"questions"
+]
+},
+"insurance_refresh_board": {
+"changed": [],
+"counts": {
+"drops": 6,
+"items": 474,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"drops",
+"items",
+"meta"
+]
+},
+"mandatory_approvals": {
+"changed": [],
+"counts": {
+"approvals": 97
+},
+"index": null,
+"unchanged": [
+"approvals"
+]
+},
+"money_ledger": {
+"changed": [
+"embedded"
+],
+"counts": {
+"embedded": 1
+},
+"index": "money_ledger-20261108T0838Z",
+"unchanged": []
+},
+"outstanding_claims": {
+"changed": [],
+"counts": {
+"embedded": 3
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"treasury_payments": {
+"changed": [],
+"counts": {
+"embedded": 1,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta"
+]
+},
+"working_denials": {
+"changed": [],
+"counts": {
+"commands": 5,
+"embedded": 5,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"commands",
+"embedded",
 "meta"
 ]
 }
