@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-08T1839Z-engine",
+ "stamp": "2026-11-08T1919Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/17/0/1 -> 0/17/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled columns run 2026-11-08T1839Z (Code routine)",
- "run_url": "",
- "started": "2026-11-08T18:46:03Z",
- "ended": "2026-11-08T18:55:01Z",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42514395069",
+ "started": "2026-11-08T19:19:00Z",
+ "ended": "2026-11-08T19:24:21Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7807,
    "actionable": 75,
    "actionable_amt": 13713.0,
-   "asof": "2026-11-08 18:54 UTC"
+   "asof": "2026-11-08 19:24 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1343 helpers into /home/claude/unbilled",
+   "summary": "1344 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1343,
-    "registers": 1814,
-    "python": "/usr/local/bin/python3"
+    "helpers copied": 1344,
+    "registers": 1815,
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-08T18:46:03Z",
-   "ended": "2026-11-08T18:46:03Z"
+   "started": "2026-11-08T19:19:00Z",
+   "ended": "2026-11-08T19:19:01Z"
   },
   {
    "name": "columns",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-08T18:46:03Z",
-   "ended": "2026-11-08T18:49:19Z"
+   "started": "2026-11-08T19:19:01Z",
+   "ended": "2026-11-08T19:20:50Z"
   },
   {
    "name": "era",
@@ -144,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-08T18:49:19Z",
-   "ended": "2026-11-08T18:49:23Z"
+   "started": "2026-11-08T19:20:50Z",
+   "ended": "2026-11-08T19:20:52Z"
   },
   {
    "name": "packages",
@@ -156,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-08T18:49:23Z",
-   "ended": "2026-11-08T18:49:23Z"
+   "started": "2026-11-08T19:20:52Z",
+   "ended": "2026-11-08T19:20:52Z"
   },
   {
    "name": "outstanding",
@@ -176,63 +176,63 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1442,
      "dollars": 183797.3,
      "oldest_days": 1089
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 147,
      "dollars": 30307.4,
      "oldest_days": 1185
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 154,
      "dollars": 26357.58,
      "oldest_days": 426
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 287,
      "dollars": 17451.48,
      "oldest_days": 1056
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 85,
      "dollars": 17284.4,
      "oldest_days": 1158
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 61,
      "dollars": 10389.13,
      "oldest_days": 662
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 6024.22,
      "oldest_days": 974
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 39,
      "dollars": 4844.18,
      "oldest_days": 48
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 370
@@ -246,22 +246,22 @@
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 201
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 19,
      "dollars": 3617.0,
      "oldest_days": 358
     }
    ],
    "errors": [],
-   "started": "2026-11-08T18:49:23Z",
-   "ended": "2026-11-08T18:49:25Z"
+   "started": "2026-11-08T19:20:52Z",
+   "ended": "2026-11-08T19:20:53Z"
   },
   {
    "name": "denials",
@@ -348,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-08T18:49:25Z",
-   "ended": "2026-11-08T18:55:01Z"
+   "started": "2026-11-08T19:20:53Z",
+   "ended": "2026-11-08T19:24:21Z"
   }
  ],
  "packages": [],
