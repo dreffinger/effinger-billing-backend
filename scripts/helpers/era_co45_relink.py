@@ -14,7 +14,7 @@
 # Never touches: PR amounts, plans, claims, other checks, charges not on the remit.
 # Usage: cd /home/claude/unbilled && python3 era_co45_relink.py <checkid> [--meta <era_checks json>] [--live] [--first-only] [--cid <chargeid>]
 #   A line whose remainder sits on the PATIENT (chart without a secondary) is moved back to insurance after the void (move_to_ins.move, no rebill) before the re-post.
-import amd, payreasons, void_tx, move_to_ins, json, sys, time, datetime, re
+import amd, payreasons, void_tx, move_to_ins, txh, json, sys, time, datetime, re
 
 a = sys.argv[1:]
 CHECKID = next((x for x in a if x.isdigit()), None)
@@ -47,7 +47,7 @@ for v in d:
         if ONLY_CID and cid != ONLY_CID: continue
         co = round(sum(payreasons.f(x.get("reasonamt")) for x in ch.get("carc", []) if str(x.get("payreasongroup")).upper() in ("CO", "OA", "PI")), 2)
         pr = round(sum(payreasons.f(x.get("reasonamt")) for x in ch.get("carc", []) if str(x.get("payreasongroup")).upper() == "PR"), 2)
-        st = payreasons.visit_state(pid, vid); live = [c for c in st if c["cid"] == cid]
+        st = payreasons.visit_state(pid, vid, root=txh.fetch_visit(pid, vid)); live = [c for c in st if c["cid"] == cid]   # 11/7/2026: the visit's own history (page 1 of the chart misses old visits)
         rec = {"pid": pid, "vid": vid, "cid": cid, "cpt": ch.get("chargecode"), "paid": paid, "co": co, "pr": pr}
         if not live:
             rec["result"] = "not live"; reg["lines"].append(rec); L("pat%s v%s c%s not live" % (pid, vid, cid)); continue
@@ -83,7 +83,7 @@ for v in d:
             ok2, payid, head = False, "", "EXC " + str(e)[:160]
         rec["post"] = (ok2, payid, head[:160]); L("   ERA-linked re-post -> %s payid %s %s" % (ok2, payid, head[:100]))
         time.sleep(1.0)
-        after = [c2 for c2 in payreasons.visit_state(pid, vid) if c2["cid"] == cid]
+        after = [c2 for c2 in payreasons.visit_state(pid, vid, root=txh.fetch_visit(pid, vid)) if c2["cid"] == cid]
         if after:
             c2 = after[0]; rec["after"] = {k: c2[k] for k in ("fee", "paid", "insbalance", "patbalance")}
             rec["after"]["pays"] = [(q["id"], q["amount"], q["checkno"], q["reasons"]) for q in c2["pays"] if q["void"] != "1"]

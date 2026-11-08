@@ -33,7 +33,14 @@ def details(checkid):
     # claim list afterwards, so cache the lines in era_details/ BEFORE anything posts them (payreasons and the audits read it).
     try:
         if d.get("eracheckdetails"):
-            os.makedirs("era_details", exist_ok=True); json.dump(d, open(os.path.join("era_details", "%s.json" % checkid), "w"))
+            os.makedirs("era_details", exist_ok=True); p = os.path.join("era_details", "%s.json" % checkid)
+            old_n = -1
+            if os.path.exists(p):
+                try: old_n = len(json.load(open(p)).get("eracheckdetails") or [])
+                except Exception: old_n = -1
+            # 11/7/2026: after a post checkdetails answers only the leftover lines (10/7 lesson) - a shorter answer never overwrites the fuller remit cache,
+            # which the CO-45 relink, the fallback and the denial work read
+            if len(d["eracheckdetails"]) >= old_n: json.dump(d, open(p, "w"))
     except Exception as e: L("   cache write failed for %s: %s" % (checkid, e))
     return d
 def batch():

@@ -29,6 +29,12 @@ def charges_of(pid, vid, fresh=False):
     return TX[key]
 def this_check_paid(chs, chkno):
     return any((p.get("checknumber") or "").strip() == str(chkno).strip() for c in (chs or []) for p in c.iter("payment") if p.get("void") != "1" and float(p.get("amount") or 0) != 0)
+def posted_here(chs, chg, cpt, ldos, chkno):
+    """Is THIS remit line posted? This check's payment on the matched charge, or on a twin charge (same CPT + DOS - the Post button may land on either twin).
+    A payment on an unrelated sibling charge is that sibling's own line, not this one (11/7/2026 second review: the visit-level test posted only the first line of a two-charge claim)."""
+    own = [c for c in (chs or []) if str(c.get("id")) == str(chg)]
+    twins = [c for c in (chs or []) if str(c.get("id")) != str(chg) and (c.get("proccode") or "").strip() == cpt and c.get("dos") == ldos]
+    return this_check_paid(own, chkno) or this_check_paid(twins, chkno)
 def norm_dos(s):
     s = (s or "")[:10]
     if "-" in s:
@@ -67,7 +73,7 @@ for chk in checks:
                 rec.update(outcome="orphan", why="no live charge with CPT %s on %s (live: %s)" % (cpt, ldos, [(c.get("proccode"), c.get("dos")) for c in live])); out.append(rec); tot["orphan"] += 1; dol["orphan"] += paid; continue
             c = m[0]; chg = c.get("id"); rec["chargeid"] = chg
             pays = [p for p in c.iter("payment") if p.get("void") != "1" and float(p.get("amount") or 0) != 0]
-            if this_check_paid(live, chkno):   # 11/7/2026: this check's payment on ANY charge of the visit = posted (the Post button may have landed it on a twin CPT/DOS charge)
+            if posted_here(live, chg, cpt, ldos, chkno):   # 11/7/2026: this check's payment on this charge or a twin (same CPT + DOS) = posted; a sibling's payment is the sibling's line
                 rec.update(outcome="already-posted"); out.append(rec); tot["already"] += 1; dol["already"] += paid; continue
             insbal = float(c.get("insbal") or 0)
             if insbal <= 0:
@@ -88,7 +94,7 @@ for chk in checks:
             rec.update(pay=round(pay, 2), wo=round(wo, 2), wocode=code, residual=round(paid - pay, 2), insbal=insbal)
             if dry:
                 rec.update(outcome="DRY would post"); out.append(rec); tot["would-post"] += 1; dol["would-pay"] += pay; dol["would-wo"] += wo; continue
-            if this_check_paid(charges_of(pid, vid, fresh=True), chkno):   # 11/7/2026: read the visit again right before posting - another engine may have posted this line meanwhile
+            if posted_here(charges_of(pid, vid, fresh=True), chg, cpt, ldos, chkno):   # 11/7/2026: read the visit again right before posting - another engine may have posted THIS line meanwhile
                 rec.update(outcome="already-posted", why="posted by another pass between the read and this post"); out.append(rec); tot["already"] += 1; dol["already"] += paid; continue
             try:
                 # 9/21/2026: post through the ERA-LINKED Payment Entry shape (payreasons.post_line = addpayments postingmethod=era with

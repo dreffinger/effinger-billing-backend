@@ -5,7 +5,7 @@
 # ---
 """Usage: python3 wo_reversal_post.py [--file wo_reversal_<stamp>.json] [--max N] [--dry]   (default file: the last wo_reversal_*.json by name)"""
 import amd, era_post, void_tx, txh, json, sys, time, datetime, collections, glob
-amd.login_cached(); stamp = datetime.date.today().strftime('%Y%m%d')
+amd.login_cached(); stamp = datetime.datetime.utcnow().strftime('%Y%m%d')   # 11/7/2026: UTC like era_clear and the engine
 SRC = sys.argv[sys.argv.index('--file') + 1] if '--file' in sys.argv else sorted(glob.glob('wo_reversal_*.json'))[-1]   # 11/7/2026: the engine names its own file
 recs = json.load(open(SRC)); mx = int(sys.argv[sys.argv.index('--max') + 1]) if '--max' in sys.argv else 10**9; dry = '--dry' in sys.argv
 LOG = open('wo_reversal_post.log', 'a'); REG = open('Writeoff_reversal_register_%s.csv' % stamp, 'a')

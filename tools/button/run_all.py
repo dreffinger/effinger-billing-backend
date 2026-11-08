@@ -405,22 +405,32 @@ class Run:
             s["lines"].append({"check": c.get("id"), "payer": (c.get("systemcarriername") or c.get("eracarriername") or "")[:30],
                                "checknumber": c.get("checknumber") or c.get("paymentnumber"), "amount": money(c.get("checkamount") or c.get("amount")),
                                "unposted": money(c.get("unpostedamount")), "stage": "before"})
-        api_rows = bool(before) and all(isinstance(c, dict) and c.get("paymentnumber") for c in before)
         before_ids = set(str(c.get("id")) for c in before if isinstance(c, dict))
         # the plain list of the before-checks for the helpers that take one (era_fallback_0913b.py --checks, era_co45_relink.py --meta);
-        # only API-shaped rows (with the check number) are handed over - the printed-line fallback rows would make the relink match blank check numbers
+        # only rows WITH a check number are handed over, row by row - a blank number would make the relink match blank-check payments
+        meta_rows = [c for c in before if isinstance(c, dict) and c.get("paymentnumber")]
+        meta_ids = set(str(c.get("id")) for c in meta_rows)
+        if len(meta_rows) < len(before):
+            self.warn(s, "%d listed check(s) carry no check number - left out of the CO-45 pass and the fallback this run" % (len(before) - len(meta_rows)))
         listf = None
-        if api_rows:
+        if meta_rows:
             listf = os.path.join("registers", "era_checks_list_%s.json" % self.stamp)
             try:
                 os.makedirs(os.path.join(self.ws, "registers"), exist_ok=True)
                 with open(os.path.join(self.ws, listf), "w") as fh:
-                    json.dump(before, fh, indent=1)
+                    json.dump(meta_rows, fh, indent=1)
             except (OSError, TypeError, ValueError) as ex:
                 self.warn(s, "could not write %s: %s" % (listf, ex))
                 listf = None
-        elif before:
-            self.warn(s, "the before-list rows carry no check number (printed-line fallback) - the CO-45 pass and the fallback are skipped this run")
+        helper_texts = []   # every helper's console text - check meta for checks that arrive mid-run is read from their 'check <id> <carrier> <number> $' lines
+
+        def check_meta_from(texts):
+            meta = {}
+            for text in texts:
+                for m in re.finditer(r"(?m)^\s*check (\d+) (\S+) (\S+) \$", text):
+                    if m.group(1) not in meta_ids and m.group(3) not in ("None", ""):
+                        meta[m.group(1)] = {"id": int(m.group(1)), "systemcarriercode": m.group(2), "paymentnumber": m.group(3)}
+            return meta
         # 11/7/2026: a pre-post copy of every listed check's remit cache - era_clear re-pulls checkdetails after the posts and the cache shrinks to the leftovers
         # (copies older than 14 days are removed first - the engine's cache keeps era_details between runs)
         for old in glob.glob(os.path.join(self.ws, "era_details", "*_prepost_*.json")):
@@ -454,7 +464,7 @@ class Run:
                     continue
                 if cur and re.match(r"\s*POST \d+ visits ", line) and cur not in ids:
                     ids.append(cur)
-                m = re.match(r"\s*POSTED check (\S+) [^:]*: (\d+) visits", line)
+                m = re.match(r"\s*POSTED check (\S+) .*?: (\d+) visits", line)
                 if m and int(m.group(2)) > 0 and m.group(1) not in ids:
                     ids.append(m.group(1))
             return ids
@@ -467,38 +477,65 @@ class Run:
             if not self.exists("era_co45_relink.py"):
                 self.warn(s, "era_co45_relink.py missing from the workspace - the CO-45 pass after %s was skipped" % why)
                 return
-            if not listf:
+            # the check list for --meta: the before rows with a number, plus the meta of checks that arrived mid-run (read from the helpers' own check lines)
+            extra = check_meta_from(helper_texts)
+            metaf = listf
+            if extra:
+                metaf = os.path.join("registers", "era_checks_meta_%s.json" % self.stamp)
+                try:
+                    with open(os.path.join(self.ws, metaf), "w") as fh:
+                        json.dump(meta_rows + list(extra.values()), fh, indent=1)
+                except (OSError, TypeError, ValueError):
+                    metaf = listf
+            if not metaf:
                 self.warn(s, "no check list with check numbers - the CO-45 pass after %s was skipped" % why)
                 return
+            known = meta_ids | set(extra)
             fixed = s["counts"].get("co45 lines corrected", 0)
-            left = 0
+            left = s["counts"].get("co45 lines for review", 0)
             for cid in ids:
-                argv = [cid, "--meta", listf]
+                if str(cid) not in known:
+                    self.warn(s, "check %s has no check number on record - the CO-45 pass skipped it" % cid)
+                    continue
+                argv = [cid, "--meta", metaf]
                 rc, text, log = self.helper("era_co45_relink.py", argv, timeout=600)
+                helper_texts.append(text)
                 m = re.search(r"SUMMARY DRY check \S+: (\d+) lines; corrected \d+ .*?review/left (\d+)", text)
                 if rc != 0 or not m:
                     self.warn(s, "era_co45_relink audit of %s rc %s: %s" % (cid, rc, self.ptail(text, 2)))
                     continue
                 n_dry = int(m.group(1))
-                left += int(m.group(2))
+                left_c = int(m.group(2)) + (0 if self.live else n_dry)
                 if n_dry and self.live:
                     rc, text, log = self.helper("era_co45_relink.py", argv + ["--live"], timeout=900)
+                    helper_texts.append(text)
                     m2 = re.search(r"SUMMARY LIVE check \S+: \d+ lines; corrected (\d+) .*?review/left (\d+)", text)
                     if m2:
                         fixed += int(m2.group(1))
-                        left += int(m2.group(2))
+                        left_c = int(m2.group(2))
                     if rc != 0 or not m2:
                         self.warn(s, "era_co45_relink live %s rc %s: %s" % (cid, rc, self.ptail(text, 2)))
-                elif n_dry:
-                    left += n_dry
+                    # a line whose Post-button payment was voided and whose ERA-linked re-post then faulted needs a hand right away
+                    regs = sorted(f for f in glob.glob(os.path.join(self.ws, "registers", "era_co45_relink_%s_*.json" % cid)) if not f.endswith("_dry.json"))
+                    if regs:
+                        try:
+                            for ln in (json.load(open(regs[-1])).get("lines") or []):
+                                res = str(ln.get("result", ""))
+                                if "FAULT" in res or "unverified" in res:
+                                    self.waiting.append("CO-45 relink check %s visit %s $%.2f: %s - the Post-button payment is voided, restore it by hand (payreasons.post_line)" % (cid, ln.get("vid"), money(ln.get("paid")), res))
+                        except (OSError, ValueError, AttributeError):
+                            pass
+                left += left_c
             s["counts"]["co45 lines corrected"] = fixed
-            if left:
+            s["counts"]["co45 lines for review"] = left
+            if left and self.live:
                 self.waiting.append("ERA CO-45 pass after %s: %d line(s) left for review (registers/era_co45_relink_*)" % (why, left))
 
         # (c) the Post button over every check with money
         posted_ids = []
         if self.exists("era_post.py"):
             rc, text, log = self.helper("era_post.py", ["--all-unposted"] + ([] if self.live else ["--dry"]), timeout=1800)
+            helper_texts.append(text)
             s["counts"]["era_post lines"] = len(re.findall(r"(?m)^\s*(?:POST|posted|OK)\b", text))
             posted_ids = posted_in(text)
             s["counts"]["checks the Post button posted or was offered"] = len(posted_ids)
@@ -515,7 +552,7 @@ class Run:
         if before and listf and self.exists("era_fallback_0913b.py"):
             rc_mid, text_mid, mid, cm = self.era_list("mid")
             still = set(str(c.get("id")) for c in mid if money(c.get("unpostedamount") if c.get("unpostedamount") is not None else c.get("checkamount") or c.get("amount")) > 0) if (mid or rc_mid == 0) else None
-            fb_checks = [c for c in before if still is None or str(c.get("id")) in still]
+            fb_checks = [c for c in meta_rows if still is None or str(c.get("id")) in still]
             if fb_checks:
                 fbf = os.path.join("registers", "era_fallback_list_%s.json" % self.stamp)
                 with open(os.path.join(self.ws, fbf), "w") as fh:
@@ -564,7 +601,8 @@ class Run:
             rc, text, log = self.helper("era_clear.py", [] if self.live else ["--dry"], timeout=1800)
             s["counts"]["checks dismissed"] = s["counts"].get("checks dismissed", 0) + len(re.findall(r"(?m)^\s*DISMISS\b", text))
             s["counts"]["checks held"] = len(re.findall(r"(?m)^\s*HOLD\b", text))
-            s["counts"]["denial lines recorded"] = s["counts"].get("denial lines recorded", 0) + sum(int(m.group(1)) for m in re.finditer(r"(?m)^\s*DENIALS \S+ [^:]*: (\d+) ", text))
+            helper_texts.append(text)
+            s["counts"]["denial lines recorded"] = s["counts"].get("denial lines recorded", 0) + sum(int(m.group(1)) for m in re.finditer(r"(?m)^\s*DENIALS \S+ .*?: (\d+) visit line", text))
             for m in re.finditer(r"(?m)^\s*HOLD (\S+)(.*)$", text):
                 hold_lines[m.group(1)] = "ERA check %s held by era_clear:%s" % (m.group(1), m.group(2)[:160])
             if not self.live:
@@ -575,17 +613,23 @@ class Run:
             return text
 
         if self.exists("era_clear.py"):
-            seen_rev = set((str(r.get("checkid")), str(r.get("visitid"))) for r in rev_rows())
             text = run_clear("first pass")
             co45(posted_in(text), "era_clear's own Post presses")
             # (e2) 11/7/2026: the write-off reversal pipeline era_clear feeds (a remit paying a visit whose charges were written off) runs here
-            # instead of only being named - live mode only, only the rows era_clear added THIS run, only checks that carry no other unposted
-            # money (safe_force, the 9/21 SWEEP RULE); wo_reversal_post.py voids the write-offs and presses Post on the check, dry first, then live
-            new_rows = [r for r in rev_rows() if r.get("checkid") and (str(r.get("checkid")), str(r.get("visitid"))) not in seen_rev and str(r.get("checkid")) in before_ids]
-            safe = [r for r in new_rows if r.get("safe_force") is True]
-            unsafe = [r for r in new_rows if r.get("safe_force") is not True]
+            # instead of only being named - live mode only, today's rows for checks still on the list (wo_reversal_post skips visits it already
+            # voided and re-reads each visit first), only checks that carry nothing else unposted (safe_force, the 9/21 SWEEP RULE);
+            # wo_reversal_post.py voids the write-offs and presses Post on the check, dry first, then live
+            rows_today = [r for r in rev_rows() if r.get("checkid") and str(r.get("checkid")) in before_ids]
+            safe = [r for r in rows_today if r.get("safe_force") is True]
+            unsafe = [r for r in rows_today if r.get("safe_force") is not True]
             if unsafe:
-                self.waiting.append("write-off reversal: %d written-off visit(s) on check(s) %s left for the routine - the check still carries other unposted lines (SWEEP RULE)" % (len(unsafe), ", ".join(sorted(set(str(r["checkid"]) for r in unsafe)))))
+                unsafe_f = os.path.join(self.ws, "wo_reversal_%s_unsafe.json" % self.stamp)
+                try:
+                    with open(unsafe_f, "w") as fh:
+                        json.dump(unsafe, fh, indent=1)
+                except OSError:
+                    pass
+                self.waiting.append("write-off reversal: %d written-off visit(s) on check(s) %s left for the routine - the check still carries other unposted lines (SWEEP RULE); rows in %s" % (len(unsafe), ", ".join(sorted(set(str(r["checkid"]) for r in unsafe))), os.path.basename(unsafe_f)))
             if safe and not self.live:
                 self.waiting.append("%d write-off reversal(s) would run in a live run (visits %s)" % (len(safe), " ".join(str(r.get("visitid")) for r in safe[:10])))
             elif safe and not self.exists("wo_reversal_post.py"):
@@ -599,10 +643,11 @@ class Run:
                     self.warn(s, "wo_reversal_post dry rc %s (see %s)" % (rc, os.path.basename(log)))
                 else:
                     rc, text, log = self.helper("wo_reversal_post.py", ["--file", dst], timeout=1500)
+                    helper_texts.append(text)
                     voided = re.findall(r"(?m)^\s*VOIDED (\S+) .*?era ([\d.]+) wos (\d+) ok=True", text)
                     failed = len(re.findall(r"(?m)^\s*(?:VOIDFAIL|void FAIL)\b", text))
                     skipped = len(re.findall(r"(?m)^\s*SKIP \S+ payment present", text))
-                    posts = re.findall(r"(?m)^\s*POSTED check (\S+) [^:]*: (\d+) visits \$([\d.]+)", text)
+                    posts = re.findall(r"(?m)^\s*POSTED check (\S+) .*?: (\d+) visits \$([\d.]+)", text)
                     posts = [p for p in posts if int(p[1]) > 0]
                     s["counts"]["write-off reversals (visits)"] = len(voided)
                     for vid, amt, nwo in voided:
@@ -625,10 +670,14 @@ class Run:
         else:
             self.warn(s, "era_clear.py missing from the workspace - the list was not cleaned")
         rc, text, after, ca = self.era_list("after")
-        if not after and rc != 0:
+        after_failed = not after and rc != 0
+        if after_failed:
             ca = dict(cb)
+            self.warn(s, "the ERA list could not be read after the step (rc %s) - the before totals stand in; held checks are listed from era_clear's HOLD lines" % rc)
         self.summary["era"]["after"] = ca
-        if self.live:
+        if self.live and after_failed:
+            self.waiting.extend(hold_lines.values())
+        elif self.live:
             # 11/7/2026: whatever still carries money after the whole step is reported once per check - the era_clear HOLD line when there is one
             # (it names the reason), a plain line otherwise; a check dismissed later in the step drops its stale HOLD line
             after_ids = {}
