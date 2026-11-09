@@ -1,0 +1,4 @@
+# captured_calls additions - 2026-11-09T0039Z (7:39 PM ET Sun 11/8, backend columns run, evening slot, ehpa cloud)
+No new call shapes this run (vocabulary +0). Lessons:
+- claimocity_gcs.py --install-key (11/9 00:45Z): the key install ALSO needs PYTHONPATH=/home/claude/pylib and CLOUDSDK_PYTHON=/usr/bin/python3 - without them the image's system cryptography panics under pyo3 ('Python API call failed' from hazmat/primitives/hashes.py) before the key is written, and the following listing exits 4 'key missing'. Same remedy as the 11/8 retry-dx lesson; set both variables for every claimocity_* command.
+- Quiet evening-slot shape: gcs 0 new + Columns 0/17/0/1 unchanged + ERA 0 checks + precheck --days 3 0 flagged = the standing 'current face sheets needed' email, the practice-database check doc (--check-result nothing_new), the sweep of the GitHub Actions engine reports since the last run, Neon load-writes, the register commit - no AMD write at all.
