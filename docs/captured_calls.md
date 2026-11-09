@@ -5913,3 +5913,32 @@ No new call shapes this run (vocabulary +0). Three lessons for the registry:
 1. **Claimocity feed verify step - Stedi discovery payer map.** `claimocity_verify.py` maps discovery payer names to AMD carrier codes through `STEDI_NAME_MAP`; UMR (the UnitedHealthcare TPA, AMD carrier UMR = car303242) had no entry, so a new HCA chart (pat17478349, F261109-03) whose discovery answered `UMR member ... Active Coverage planBegin 20260701` was HELD as "no active plan" although the payer was known. Fixed this run: `(r"\bUMR\b", "UMR")` added to the map; the plan was added by hand (`add_ins.add(pid, "car303242", <member>, "07/01/2026")`, chart order via `ins_update._set_order`, AMD 271 ACTIVE, visit insorder via `claimocity_verify.fast_set_insorder`). Helper: `feed_holds_1109_1239.py` (needs `FEED_STAMP=<stamp>` in the environment because importing claimocity_verify reads the stamp's registers at import time).
 2. **TRICARE East 271 under the Direct Care plan.** AMD's free 271 on a TRICARE East plan (car6872) can answer `EB*I` (non-covered) for service type 30 with `EB05 = PLAN 008 MILITARY HEALTH CARE SYSTEMS DIRECT CARE` plus C/G cost-share rows and a DTP 346 plan-begin date - that is a Direct-Care benefit line, not a coverage denial: TRI00 paid every SNF visit of the chart (pat17477946) since 9/28/2026. The verify step classifies it UNKNOWN -> "no active plan" hold; read the chart's payments (txh.fetch) before treating it as uninsured.
 3. **`claimocity_retry_dx.py --live` prints `gcs: auth failed ... _ffi.buffer`** when run without `PYTHONPATH=/home/claude/pylib CLOUDSDK_PYTHON=/usr/bin/python3` (the image's system cryptography module panics under pyo3 - the 11/3 lesson); its own answer ('nothing to retry') still stands because the batch registers are local, but set the two variables for every feed helper.
+
+# captured_calls additions - 2026-11-09T1839Z (1:39 PM ET Mon 11/9 backend billing run, ehpa cloud, Code routine, six-hourly slot)
+
+No new AMD / Stedi call shapes this run (vocabulary +0). Lessons for the runbook:
+
+- **gcloud + PYTHONPATH=/home/claude/pylib do not mix (11/9/2026 18:46Z).** The feed helper `claimocity_gcs.py --install-key` needs the
+  pylib cryptography (the image's system module panics under pyo3), but the SAME environment variable leaks into the `gcloud` subprocesses
+  it spawns for `auth activate-service-account` / `storage ls`: gcloud's bundled Python 3.14 then imports the pylib cryptography and its
+  bundled pyOpenSSL dies with `AttributeError: module 'lib' has no attribute 'GEN_EMAIL'` ("gcs: auth failed"). Recipe: run
+  `PYTHONPATH=/home/claude/pylib python3 claimocity_gcs.py --install-key ...` ONCE, then the listing/download runs WITHOUT PYTHONPATH
+  (`unset PYTHONPATH; python3 claimocity_gcs.py` -> "gcs: 22 objects ... 0 new, newest 20261109"). claimocity_retry_dx.py and
+  claimocity_ingest.py call the gcs helper too - same rule (bootstrap_workspace.sh prints CLOUDSDK_PYTHON=/usr/bin/python3 as the
+  alternative; not tested this run).
+- **bootstrap_workspace.sh layout can hang on `pip install -q pymupdf`** (best-effort step 8; 12 minutes on 11/9 with no output).
+  The helpers were all in place after ~2 minutes; killing that one pip child let the script finish normally ("workspace complete").
+  pymupdf is only needed for PDF OCR fallbacks - the run had none.
+- **Gmail RAW over the tool-result cap is fine:** a 190 KB phone JPEG comes back as a pointer file under tool-results/; 
+  `transcript_extract.py raw-attachments <messageId>=<dir>` follows the pointer and writes the attachment byte-exact (4 of 4 today).
+- **Pam's Brynwood admission records (PCC print, photographed):** fields that settled the payer without a lookup - "Primary Payer
+  Managed Care with Levels" + "Ins. Company" + "Insurance Policy #"; the "Medicaid #" column on a 56-year-old marketplace member was a
+  state record Stedi 77027 answers Inactive for (name on the Medicaid record differed: hyphenated maiden name) - never add a Medicaid
+  plan from the facility sheet alone. One readmit chart (pat21772) carried a retired HICN on its Medicare plan and a first-name spelling
+  that differs from the facility's; the UHC MA 271 answered ACTIVE on the chart spelling and listed the MBI the sheet printed - nothing
+  to change, recorded on the card.
+- **Stedi insurance discovery can answer a DENTAL plan as 'Active Coverage' (chart pat17478318, feed run 11/5):** 'CIGNA Dental Health,
+  Inc.' plan 'Dental HMO' was mapped to CIG09 and five HCA hospital visits went to Cigna medical, which rejected 'ENTITY NOT ELIGIBLE FOR
+  BENEFITS FOR SUBMITTED DATES OF SERVICE' (run 1700365). AMD's free 271 on that plan reads ACTIVE too - the tell is the EB lines: only
+  EB*1*30 'HM Dental HMO' + EB*1*35, no medical STC. claimocity_verify.py now skips discovery items whose plan/payer text says
+  DENTAL / VISION / LIFE (same clause as PDP / Part D). The chart's real payer waits on the HCA facesheet (board row).

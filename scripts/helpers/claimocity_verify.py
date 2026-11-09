@@ -17,6 +17,7 @@ STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every fe
 HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8133-5488-ad3a-bd2fb16f50f8/scratchpad/hl7/claimocity_oct")
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
+# 11/9/2026 (1:39 PM ET run): discovery items whose plan/payer text says DENTAL / VISION / LIFE are skipped like Part D - a Cigna Dental HMO hit had insured chart 17478318 and its hospital claims bounced 'not eligible'.
 import amd, elig_amd, stedi, add_ins, ins_update, resave, re, json, sys, os, time, collections
 os.environ.setdefault("DECEASED_CACHE", "/home/claude/unbilled/deceased_cache_local.json")
 import deceased_guard
@@ -184,7 +185,7 @@ def main():
                         ds = stedi.disc_summ(stedi.disc(first, last, msg.get("dob", "")[:8], "FL")); rec["discovery"] = ds
                         for it in ds.get("items") or []:
                             txt = ((it.get("plan") or "") + " " + (it.get("payer") or "")).upper()
-                            if re.search(r"PDP|PRESCRIPTION|PART D", txt) or not (it.get("status") or "").upper().startswith("ACTIVE") or not it.get("member"): continue
+                            if re.search(r"PDP|PRESCRIPTION|PART D|DENTAL|VISION|\bLIFE\b", txt) or not (it.get("status") or "").upper().startswith("ACTIVE") or not it.get("member"): continue   # 11/9/2026: a 'CIGNA Dental Health / Dental HMO' hit insured chart 17478318 - dental, vision and life hits are never a medical payer
                             code = map_payer(it.get("payer"), STEDI_NAME_MAP)
                             if code and any(code_of[p["id"]] == code for p in plans):
                                 rec["fixes"].append("discovery found %s but the chart already carries a %s plan (status %s) - not re-added" % (code, code, [status.get(p["id"]) for p in plans if code_of[p["id"]] == code])); continue

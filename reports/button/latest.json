@@ -1,26 +1,26 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-09T1719Z",
+ "stamp": "2026-11-09T1839Z-engine",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42663367379",
- "started": "2026-11-09T17:19:00Z",
- "ended": "2026-11-09T17:25:03Z",
+ "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "note": "scheduled columns (live) - Code routine 1839Z",
+ "run_url": "",
+ "started": "2026-11-09T18:52:30Z",
+ "ended": "2026-11-09T19:02:22Z",
  "summary": {
   "columns": {
    "before": {
     "charge_review": 0,
     "claim_inspector": 2,
     "unbilled": 0,
-    "exclusions": 1
+    "exclusions": 2
    },
    "after": {
     "charge_review": 0,
     "claim_inspector": 2,
     "unbilled": 0,
-    "exclusions": 1
+    "exclusions": 2
    }
   },
   "era": {
@@ -65,7 +65,7 @@
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-09 17:25 UTC"
+   "asof": "2026-11-09 19:02 UTC"
   }
  },
  "steps": [
@@ -77,24 +77,24 @@
    "counts": {
     "helpers copied": 1355,
     "registers": 1828,
-    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
+    "python": "/usr/local/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T17:19:00Z",
-   "ended": "2026-11-09T17:19:01Z"
+   "started": "2026-11-09T18:52:30Z",
+   "ended": "2026-11-09T18:52:31Z"
   },
   {
    "name": "columns",
    "title": "Claims Center columns",
    "status": "ok",
-   "summary": "CR 0->0, CI 2->2, Unbilled 0->0, Exclusions 1->1",
+   "summary": "CR 0->0, CI 2->2, Unbilled 0->0, Exclusions 2->2",
    "counts": {
     "charge review": 0,
     "claim inspector": 2,
     "unbilled": 0,
-    "exclusions": 1,
+    "exclusions": 2,
     "inspector advisories to bypass": 0,
     "inspector held (not advisory)": 2,
     "inspector bypasses sent": 0,
@@ -103,7 +103,9 @@
     "unbilled rows left alone": 0,
     "unbilled released": 0,
     "exclusions dup run 1700294": 0,
-    "exclusions crossover run 1700294": "see log"
+    "exclusions crossover run 1700294": "see log",
+    "exclusions dup run 1700365": 0,
+    "exclusions crossover run 1700365": "see log"
    },
    "dollars": {},
    "lines": [
@@ -118,11 +120,17 @@
      "kind": "AET12 CH FH  PREF0288:INVALID PAYER ID/CPID    814723941",
      "visits": 1,
      "ids": "v19455937"
+    },
+    {
+     "column": "exclusions run 1700365",
+     "kind": "CIG09 PA  ACK,REJCTD FOR INVAL [name] HAS INVAL INFO AS",
+     "visits": 1,
+     "ids": "v19460525"
     }
    ],
    "errors": [],
-   "started": "2026-11-09T17:19:01Z",
-   "ended": "2026-11-09T17:20:51Z"
+   "started": "2026-11-09T18:52:31Z",
+   "ended": "2026-11-09T18:55:47Z"
   },
   {
    "name": "era",
@@ -144,8 +152,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T17:20:51Z",
-   "ended": "2026-11-09T17:20:53Z"
+   "started": "2026-11-09T18:55:47Z",
+   "ended": "2026-11-09T18:55:51Z"
   },
   {
    "name": "packages",
@@ -156,8 +164,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T17:20:53Z",
-   "ended": "2026-11-09T17:20:53Z"
+   "started": "2026-11-09T18:55:51Z",
+   "ended": "2026-11-09T18:55:51Z"
   },
   {
    "name": "outstanding",
@@ -176,70 +184,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "FLORIDA MEDICARE",
+     "name": "[name]",
      "visits": 1482,
      "dollars": 190203.3,
      "oldest_days": 1090
     },
     {
      "carrier": "UNI20",
-     "name": "UNITED HEALTHCARE",
+     "name": "[name]",
      "visits": 151,
      "dollars": 30856.4,
      "oldest_days": 1186
     },
     {
      "carrier": "FLO99",
-     "name": "FLORIDA COMMUNITY CARE AVAIL",
+     "name": "[name]",
      "visits": 156,
      "dollars": 26639.58,
      "oldest_days": 427
     },
     {
      "carrier": "BCBS",
-     "name": "FLORIDA BLUE",
+     "name": "[name]",
      "visits": 299,
      "dollars": 18360.39,
      "oldest_days": 1057
     },
     {
      "carrier": "UHCMA",
-     "name": "UNITEDHEALTHCARE DUAL COMPLE",
+     "name": "[name]",
      "visits": 85,
      "dollars": 17284.4,
      "oldest_days": 1159
     },
     {
      "carrier": "HUM01",
-     "name": "HUMANA",
+     "name": "[name]",
      "visits": 66,
      "dollars": 11132.13,
      "oldest_days": 663
     },
     {
      "carrier": "VACCN",
-     "name": "OPTUM VA CCN",
+     "name": "[name]",
      "visits": 32,
      "dollars": 6024.22,
      "oldest_days": 975
     },
     {
      "carrier": "SUN01",
-     "name": "SUNSHINE STATE HEALTH PLAN",
+     "name": "[name]",
      "visits": 38,
      "dollars": 4703.18,
      "oldest_days": 49
     },
     {
      "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
+     "name": "[name]",
      "visits": 23,
      "dollars": 4603.0,
      "oldest_days": 359
     },
     {
      "carrier": "MCAD",
-     "name": "FLORIDA MEDICAID",
+     "name": "[name]",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 371
@@ -253,29 +261,29 @@
     },
     {
      "carrier": "RET01",
-     "name": "RETIRED RAILROAD MEDICARE",
+     "name": "[name]",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 202
     }
    ],
    "errors": [],
-   "started": "2026-11-09T17:20:53Z",
-   "ended": "2026-11-09T17:20:54Z"
+   "started": "2026-11-09T18:55:51Z",
+   "ended": "2026-11-09T18:55:53Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7823 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); RESOLVED 4511, WRITTEN-OFF 2976, RESUBMITTED 198, OPEN 138",
+   "summary": "7823 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4511, RESUBMITTED 198, OPEN 138",
    "counts": {
     "charts read": 852,
     "denial lines": 13298,
     "visits": 7823,
     "actionable": 74,
     "inside 12 months": 71,
-    "status RESOLVED": 4511,
     "status WRITTEN-OFF": 2976,
+    "status RESOLVED": 4511,
     "status RESUBMITTED": 198,
     "status OPEN": 138
    },
@@ -348,8 +356,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-09T17:20:54Z",
-   "ended": "2026-11-09T17:25:03Z"
+   "started": "2026-11-09T18:55:53Z",
+   "ended": "2026-11-09T19:02:22Z"
   }
  ],
  "packages": [],
