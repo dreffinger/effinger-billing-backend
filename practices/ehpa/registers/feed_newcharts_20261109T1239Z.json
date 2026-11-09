@@ -1,0 +1,49 @@
+{
+ "created": [
+  {
+   "pid": "pat17478347",
+   "chart": "F261109-01",
+   "feed_ids": [
+    "6aee99e1dfef44221c8bfab8",
+    "6aee99e1dfef44221c8bfab8"
+   ],
+   "plans": [],
+   "respparty": "resp21479902",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478348",
+   "chart": "F261109-02",
+   "feed_ids": [
+    "6aee0e5d813a9039cc51ed0e",
+    "6aee0e5d813a9039cc51ed0e"
+   ],
+   "plans": [],
+   "respparty": "resp21479903",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478349",
+   "chart": "F261109-03",
+   "feed_ids": [
+    "6aee0d33813a9039cc51ebc8",
+    "6aee0d33813a9039cc51ebc8"
+   ],
+   "plans": [],
+   "respparty": "resp21479904",
+   "respparty_named": true
+  },
+  {
+   "pid": "pat17478350",
+   "chart": "F261109-04",
+   "feed_ids": [
+    "6aedf94442b8c45d3a602f22",
+    "6aedf94442b8c45d3a602f22"
+   ],
+   "plans": [],
+   "respparty": "resp21479905",
+   "respparty_named": true
+  }
+ ],
+ "failed": []
+}

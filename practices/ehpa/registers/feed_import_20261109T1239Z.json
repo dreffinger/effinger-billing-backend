@@ -1,0 +1,225 @@
+{
+ "created": [
+  {
+   "feed_id": "6aee99e1dfef44221c8bfab8",
+   "pid": "pat17478347",
+   "visit": "vst19460537",
+   "charges": [
+    "charge23373255"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-09T12:46:56.380460",
+   "dos": "11/06/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aee0e5d813a9039cc51ed0e",
+   "pid": "pat17478348",
+   "visit": "vst19460538",
+   "charges": [
+    "charge23373256"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-09T12:47:00.355215",
+   "dos": "11/06/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aee0d33813a9039cc51ebc8",
+   "pid": "pat17478349",
+   "visit": "vst19460539",
+   "charges": [
+    "charge23373257"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-09T12:47:04.260287",
+   "dos": "11/06/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "visit": "vst19460540",
+   "charges": [
+    "charge23373258"
+   ],
+   "fees": [
+    "310.00"
+   ],
+   "at": "2026-11-09T12:47:08.341427",
+   "dos": "11/06/2026",
+   "cpts": [
+    "99223"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261107",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6ab6c25280d6e546e3c23986",
+   "pid": "pat17477946",
+   "visit": "vst19460541",
+   "charges": [
+    "charge23373259"
+   ],
+   "fees": [
+    "207.00"
+   ],
+   "at": "2026-11-09T12:47:13.102123",
+   "dos": "11/04/2026",
+   "cpts": [
+    "99316"
+   ],
+   "fac": "fac32",
+   "pos": "31",
+   "prof": "prof15",
+   "admit": "20260925",
+   "missing_dx": []
+  },
+  {
+   "feed_id": "6aee99e1dfef44221c8bfab8",
+   "pid": "pat17478347",
+   "visit": "vst19460542",
+   "charges": [
+    "charge23373260"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-09T12:47:15.607659",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6536ab03b626dc96365fc8de",
+   "pid": "pat22322",
+   "visit": "vst19460543",
+   "charges": [
+    "charge23373261"
+   ],
+   "fees": [
+    "160.00"
+   ],
+   "at": "2026-11-09T12:47:21.452266",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99233"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261105",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aee0e5d813a9039cc51ed0e",
+   "pid": "pat17478348",
+   "visit": "vst19460544",
+   "charges": [
+    "charge23373262"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-09T12:47:24.369307",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aedf94442b8c45d3a602f22",
+   "pid": "pat17478350",
+   "visit": "vst19460545",
+   "charges": [
+    "charge23373263"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-09T12:47:26.862808",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261107",
+   "missing_dx": [],
+   "admit_written": true
+  },
+  {
+   "feed_id": "6aee0d33813a9039cc51ebc8",
+   "pid": "pat17478349",
+   "visit": "vst19460546",
+   "charges": [
+    "charge23373264"
+   ],
+   "fees": [
+    "111.00"
+   ],
+   "at": "2026-11-09T12:47:29.402023",
+   "dos": "11/07/2026",
+   "cpts": [
+    "99232"
+   ],
+   "fac": "fac29",
+   "pos": "21",
+   "prof": "prof13",
+   "admit": "20261106",
+   "missing_dx": [],
+   "admit_written": true
+  }
+ ],
+ "skipped": [],
+ "failed": []
+}

@@ -1,0 +1,232 @@
+{
+ "pat17478347": {
+  "v": 3,
+  "visits": [
+   "vst19460537",
+   "vst19460542"
+  ],
+  "dos": [
+   "11/06/2026",
+   "11/07/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added HUM01 plan -> ins9521194 seq 1",
+   "chart order -> 1: insorder 1 via ins9521194 -> '1'",
+   "vst19460537 insorder 1: ok",
+   "vst19460542 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "HUM01",
+   "seq": "1",
+   "why": "Stedi discovery HUM01 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460537": "1",
+   "vst19460542": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478348": {
+  "v": 3,
+  "visits": [
+   "vst19460538",
+   "vst19460544"
+  ],
+  "dos": [
+   "11/06/2026",
+   "11/07/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added UNI20 plan -> ins9521195 seq 1",
+   "chart order -> 1: insorder 1 via ins9521195 -> '1'",
+   "vst19460538 insorder 1: ok",
+   "vst19460544 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "UNI20",
+   "seq": "1",
+   "why": "Stedi discovery UNI20 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460538": "1",
+   "vst19460544": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17478349": {
+  "v": 3,
+  "visits": [
+   "vst19460539",
+   "vst19460546"
+  ],
+  "dos": [
+   "11/06/2026",
+   "11/07/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [],
+  "hold": [
+   "no active plan: discovery found [('WELLCARE HEALTH PLANS', 'Inactive'), ('UMR', 'Active Coverage')]"
+  ],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "decision": "HOLD"
+ },
+ "pat17478350": {
+  "v": 3,
+  "visits": [
+   "vst19460540",
+   "vst19460545"
+  ],
+  "dos": [
+   "11/06/2026",
+   "11/07/2026"
+  ],
+  "cpts": [
+   "99223",
+   "99232"
+  ],
+  "checks": [],
+  "fixes": [
+   "discovery: added SUN01 plan -> ins9521196 seq 1",
+   "chart order -> 1: insorder 1 via ins9521196 -> '1'",
+   "vst19460540 insorder 1: ok",
+   "vst19460545 insorder 1: ok"
+  ],
+  "hold": [],
+  "insorder": "",
+  "deceased_flag": "",
+  "plans": [],
+  "feed_payers": [],
+  "lead": {
+   "code": "SUN01",
+   "seq": "1",
+   "why": "Stedi discovery SUN01 ACTIVE",
+   "qmb": false
+  },
+  "order": "1",
+  "applied": {
+   "vst19460540": "1",
+   "vst19460545": "1"
+  },
+  "decision": "RELEASE"
+ },
+ "pat17477946": {
+  "v": 3,
+  "visits": [
+   "vst19460541"
+  ],
+  "dos": [
+   "11/04/2026"
+  ],
+  "cpts": [
+   "99316"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520710",
+    "car": "TRI00",
+    "seq": "1",
+    "status": "UNKNOWN"
+   }
+  ],
+  "fixes": [],
+  "hold": [
+   "no active plan: discovery found nothing"
+  ],
+  "insorder": "1",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins9520710",
+    "car": "TRI00",
+    "seq": "1",
+    "end": ""
+   }
+  ],
+  "feed_payers": [
+   "TRI00"
+  ],
+  "decision": "HOLD"
+ },
+ "pat22322": {
+  "v": 3,
+  "visits": [
+   "vst19460543"
+  ],
+  "dos": [
+   "11/07/2026"
+  ],
+  "cpts": [
+   "99233"
+  ],
+  "checks": [
+   {
+    "plan": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "status": "ACTIVE"
+   }
+  ],
+  "fixes": [],
+  "hold": [],
+  "insorder": "2",
+  "deceased_flag": "",
+  "plans": [
+   {
+    "id": "ins499",
+    "car": "CAP07",
+    "seq": "1",
+    "end": "12/31/2025"
+   },
+   {
+    "id": "ins9520669",
+    "car": "FLO02",
+    "seq": "2",
+    "end": ""
+   }
+  ],
+  "feed_payers": [],
+  "lead": {
+   "code": "FLO02",
+   "seq": "2",
+   "why": "traditional Medicare ACTIVE, no MA replacement on the CMS 271",
+   "qmb": false
+  },
+  "order": "2",
+  "applied": {
+   "vst19460543": "2"
+  },
+  "decision": "RELEASE"
+ }
+}
