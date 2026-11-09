@@ -9,9 +9,11 @@
 # Register: registers/feed_void_visits.json (appends one record per visit: pid, vid, charges voided, billdate seen, when, mode).
 # Usage: python3 claimocity_void_visits.py pat...:vst... [pat...:vst... ...] [--live] [--why "<text>"]
 import amd, txh, void_tx, sys, re, json, os, datetime
-args = [a for a in sys.argv[1:] if not a.startswith("--")]
 live = "--live" in sys.argv
 why = sys.argv[sys.argv.index("--why") + 1] if "--why" in sys.argv else "duplicate of an encounter already in AdvancedMD"
+# 11/09/2026 fix: the --why VALUE must not be read as a pid:vid pair as well (it used to crash the run after the voids).
+_skip = {sys.argv.index("--why") + 1} if "--why" in sys.argv else set()
+args = [a for i, a in enumerate(sys.argv) if i >= 1 and not a.startswith("--") and i not in _skip]
 REG = "registers/feed_void_visits.json"
 reg = json.load(open(REG)) if os.path.exists(REG) else []
 amd.login_cached()

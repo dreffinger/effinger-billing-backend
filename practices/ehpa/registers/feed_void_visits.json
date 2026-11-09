@@ -1,63 +1,161 @@
 [
  {
-  "pid": "pat17477204",
-  "vid": "vst19459522",
+  "pid": "pat22858",
+  "vid": "vst19459901",
   "charges": [
    {
-    "id": "23372064",
-    "cpt": "99344",
-    "ok": null
-   }
-  ],
-  "billdate": "10/29/2026",
-  "why": "duplicate of an encounter already in AdvancedMD",
-  "at": "2026-10-31T02:38:14.309054+00:00",
-  "mode": "dry"
- },
- {
-  "pid": "pat17476748",
-  "vid": "vst19459523",
-  "charges": [
-   {
-    "id": "23372065",
-    "cpt": "99344",
-    "ok": null
-   }
-  ],
-  "billdate": "10/29/2026",
-  "why": "duplicate of an encounter already in AdvancedMD",
-  "at": "2026-10-31T02:38:15.042020+00:00",
-  "mode": "dry"
- },
- {
-  "pid": "pat17477204",
-  "vid": "vst19459522",
-  "charges": [
-   {
-    "id": "23372064",
-    "cpt": "99344",
+    "id": "23372510",
+    "cpt": "99233",
     "ok": true
    }
   ],
-  "billdate": "10/29/2026",
-  "why": "duplicate of an encounter already in AdvancedMD",
-  "at": "2026-10-31T02:39:35.075995+00:00",
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:48:47.916965+00:00",
   "mode": "live",
   "left_live": 0
  },
  {
-  "pid": "pat17476748",
-  "vid": "vst19459523",
+  "pid": "pat17476458",
+  "vid": "vst19459902",
   "charges": [
    {
-    "id": "23372065",
-    "cpt": "99344",
+    "id": "23372511",
+    "cpt": "99233",
     "ok": true
    }
   ],
-  "billdate": "10/29/2026",
-  "why": "duplicate of an encounter already in AdvancedMD",
-  "at": "2026-10-31T02:39:37.312484+00:00",
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:48:50.720346+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17478213",
+  "vid": "vst19459903",
+  "charges": [
+   {
+    "id": "23372512",
+    "cpt": "99232",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:48:53.492428+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat47979",
+  "vid": "vst19459904",
+  "charges": [
+   {
+    "id": "23372513",
+    "cpt": "99233",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:48:56.004845+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat20379",
+  "vid": "vst19459909",
+  "charges": [
+   {
+    "id": "23372518",
+    "cpt": "99233",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:48:58.422620+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17478262",
+  "vid": "vst19459910",
+  "charges": [
+   {
+    "id": "23372519",
+    "cpt": "99232",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:49:00.693312+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17478264",
+  "vid": "vst19459911",
+  "charges": [
+   {
+    "id": "23372520",
+    "cpt": "99232",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:49:03.295624+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17472922",
+  "vid": "vst19459912",
+  "charges": [
+   {
+    "id": "23372521",
+    "cpt": "99232",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:49:05.742912+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17474798",
+  "vid": "vst19459914",
+  "charges": [
+   {
+    "id": "23372523",
+    "cpt": "99233",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:49:08.579259+00:00",
+  "mode": "live",
+  "left_live": 0
+ },
+ {
+  "pid": "pat17478031",
+  "vid": "vst19459915",
+  "charges": [
+   {
+    "id": "23372524",
+    "cpt": "99233",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "phantom 11/07 twin created by the 11/03 feed run alongside the real 11/02 visit; stay had ended (no 11/06 visit, absent from the Claimocity 11/07 census)",
+  "at": "2026-11-09T05:49:11.137054+00:00",
   "mode": "live",
   "left_live": 0
  }
