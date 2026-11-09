@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-09T1239Z-engine",
+ "stamp": "2026-11-09T1320Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/2/0/1 -> 0/2/0/1; ERA 0 checks $0.00 -> 0 checks $0.00",
- "note": "scheduled columns run 2026-11-09T1239Z (live)",
- "run_url": "",
- "started": "2026-11-09T12:51:41Z",
- "ended": "2026-11-09T13:00:52Z",
+ "note": "scheduled-columns",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42624629041",
+ "started": "2026-11-09T13:20:46Z",
+ "ended": "2026-11-09T13:26:44Z",
  "summary": {
   "columns": {
    "before": {
@@ -65,7 +65,7 @@
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-09 13:00 UTC"
+   "asof": "2026-11-09 13:26 UTC"
   }
  },
  "steps": [
@@ -73,17 +73,17 @@
    "name": "bootstrap",
    "title": "Workspace from the repository",
    "status": "ok",
-   "summary": "1353 helpers into /home/claude/unbilled",
+   "summary": "1355 helpers into /home/claude/unbilled",
    "counts": {
-    "helpers copied": 1353,
+    "helpers copied": 1355,
     "registers": 1828,
-    "python": "/usr/local/bin/python3"
+    "python": "/opt/hostedtoolcache/Python/3.12.16/x64/bin/python3"
    },
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T12:51:41Z",
-   "ended": "2026-11-09T12:51:42Z"
+   "started": "2026-11-09T13:20:46Z",
+   "ended": "2026-11-09T13:20:47Z"
   },
   {
    "name": "columns",
@@ -121,8 +121,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-09T12:51:42Z",
-   "ended": "2026-11-09T12:54:57Z"
+   "started": "2026-11-09T13:20:47Z",
+   "ended": "2026-11-09T13:22:44Z"
   },
   {
    "name": "era",
@@ -144,8 +144,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T12:54:57Z",
-   "ended": "2026-11-09T12:55:01Z"
+   "started": "2026-11-09T13:22:44Z",
+   "ended": "2026-11-09T13:22:46Z"
   },
   {
    "name": "packages",
@@ -156,8 +156,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T12:55:01Z",
-   "ended": "2026-11-09T12:55:01Z"
+   "started": "2026-11-09T13:22:46Z",
+   "ended": "2026-11-09T13:22:46Z"
   },
   {
    "name": "outstanding",
@@ -176,70 +176,70 @@
    "lines": [
     {
      "carrier": "FLO02",
-     "name": "[name]",
+     "name": "FLORIDA MEDICARE",
      "visits": 1482,
      "dollars": 190203.3,
      "oldest_days": 1090
     },
     {
      "carrier": "UNI20",
-     "name": "[name]",
+     "name": "UNITED HEALTHCARE",
      "visits": 151,
      "dollars": 30856.4,
      "oldest_days": 1186
     },
     {
      "carrier": "FLO99",
-     "name": "[name]",
+     "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 156,
      "dollars": 26639.58,
      "oldest_days": 427
     },
     {
      "carrier": "BCBS",
-     "name": "[name]",
+     "name": "FLORIDA BLUE",
      "visits": 299,
      "dollars": 18360.39,
      "oldest_days": 1057
     },
     {
      "carrier": "UHCMA",
-     "name": "[name]",
+     "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 85,
      "dollars": 17284.4,
      "oldest_days": 1159
     },
     {
      "carrier": "HUM01",
-     "name": "[name]",
+     "name": "HUMANA",
      "visits": 66,
      "dollars": 11132.13,
      "oldest_days": 663
     },
     {
      "carrier": "VACCN",
-     "name": "[name]",
+     "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 6024.22,
      "oldest_days": 975
     },
     {
      "carrier": "SUN01",
-     "name": "[name]",
+     "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 38,
      "dollars": 4703.18,
      "oldest_days": 49
     },
     {
      "carrier": "CAP07",
-     "name": "[name]",
+     "name": "CAPITAL HEALTH PLAN",
      "visits": 23,
      "dollars": 4603.0,
      "oldest_days": 359
     },
     {
      "carrier": "MCAD",
-     "name": "[name]",
+     "name": "FLORIDA MEDICAID",
      "visits": 32,
      "dollars": 4409.1,
      "oldest_days": 371
@@ -253,29 +253,29 @@
     },
     {
      "carrier": "RET01",
-     "name": "[name]",
+     "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
      "dollars": 3764.0,
      "oldest_days": 202
     }
    ],
    "errors": [],
-   "started": "2026-11-09T12:55:01Z",
-   "ended": "2026-11-09T12:55:03Z"
+   "started": "2026-11-09T13:22:46Z",
+   "ended": "2026-11-09T13:22:48Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7823 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); RESOLVED 4511, WRITTEN-OFF 2976, RESUBMITTED 198, OPEN 138",
+   "summary": "7823 denied visits on 852 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4511, RESUBMITTED 198, OPEN 138",
    "counts": {
     "charts read": 852,
     "denial lines": 13298,
     "visits": 7823,
     "actionable": 74,
     "inside 12 months": 71,
-    "status RESOLVED": 4511,
     "status WRITTEN-OFF": 2976,
+    "status RESOLVED": 4511,
     "status RESUBMITTED": 198,
     "status OPEN": 138
    },
@@ -348,8 +348,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-09T12:55:03Z",
-   "ended": "2026-11-09T13:00:52Z"
+   "started": "2026-11-09T13:22:48Z",
+   "ended": "2026-11-09T13:26:44Z"
   }
  ],
  "packages": [],
