@@ -1,0 +1,15 @@
+[
+ {
+  "charge": "23351281",
+  "newfee": 141.0,
+  "seq": "3",
+  "after": {
+   "proccode": "pcode65119",
+   "fee": "256.00",
+   "allowed": "256.00",
+   "expected": "256.00",
+   "insportion": "256.00",
+   "insbalance": "256.00"
+  }
+ }
+]

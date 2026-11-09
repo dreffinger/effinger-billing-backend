@@ -1,0 +1,32 @@
+{
+ "pid": "23083",
+ "visit": "19443011",
+ "swap": {
+  "pcode65116": "pcode65119"
+ },
+ "seq": "3",
+ "result": "1 charges edited; 2 live (was 2) | freq1 + rebill seq 3 -> 204",
+ "after": [
+  {
+   "chg": "23351281",
+   "proccode": "99309",
+   "dos": "05/22/2026",
+   "fee": "256.00",
+   "insbal": "256.00",
+   "void": "0",
+   "billdate": "10/08/2026",
+   "carrier": "WEL04"
+  },
+  {
+   "chg": "23351282",
+   "proccode": "99497",
+   "dos": "05/22/2026",
+   "fee": "133.00",
+   "insbal": "133.00",
+   "void": "0",
+   "billdate": "10/08/2026",
+   "carrier": "WEL04"
+  }
+ ],
+ "why": "William 11/9/2026 board answer: try to rebill it as a 99309 and see if that pays"
+}

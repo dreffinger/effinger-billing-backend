@@ -1,0 +1,43 @@
+[
+ {
+  "why": "William 11/9/2026 (board row smith-myrtle-17478345): duplicate placeholder chart - put the visit in the proper chart; the old chart is the correct chart",
+  "source": {
+   "pid": "17478345",
+   "chart": "placeholder chart created by the feed from a placeholder DOB",
+   "visit": "19460486",
+   "charge": "23373192",
+   "voided": true
+  },
+  "target": {
+   "pid": "21798",
+   "chart": "HF254110183",
+   "visit": "vst19460607",
+   "charge": "charge23373374"
+  },
+  "copied": {
+   "proccode": "pcode65119",
+   "cpt": "99309",
+   "begindate": "11/05/2026",
+   "enddate": "11/05/2026",
+   "diagcodes": "dcode1034544992 dcode1034545337 dcode1034544892 dcode1034545095 dcode1034544432 dcode1034545371 dcode1037454019",
+   "modcodes": "",
+   "pos": "31",
+   "tos": "01",
+   "units": "1.0",
+   "fee": "141.00"
+  },
+  "ctx": {
+   "episode": "eps21799",
+   "profile": "prof15",
+   "facility": "fac34",
+   "refplan": "rplan21816",
+   "insorder": "1,2",
+   "onhcfa": "0",
+   "resp": "resp21168"
+  },
+  "eligibility": "pat21798 FLO02 ACTIVE (Part A/B since 2010-2011, QMB, WellCare PDP); SUN01 ACTIVE naming Medicare Part A primary",
+  "note": "the script's read-back guard (txh.fetch page 1) did not show the new charge and so skipped the void; the charge WAS live - verified by getchargedetaildataicd10 on the numeric visit id - and the source charge was then voided with claimocity_void_visits.py. Fix the guard to read the visit by its numeric id instead of the chart's tx history.",
+  "also_fixed": "claimocity_patient_map.json: 63f9dbe9340cfc171fe0a854 re-pointed pat17478345 -> pat21798 (the second Claimocity patient record for the same person; 6436c1479793d29423239b53 already pointed at pat21798), so future feed visits land on the old chart by themselves",
+  "still_open": "the placeholder chart 17478345 and five further same-name charts (17469615, 17472040, 17477383, 17477933, 12180395) are untouched - merging is a UI/AMD-support job; open balances remain on 17477383 ($74.64) and 17477933 ($16.93)"
+ }
+]

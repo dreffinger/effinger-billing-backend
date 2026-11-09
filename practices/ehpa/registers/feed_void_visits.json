@@ -158,5 +158,36 @@
   "at": "2026-11-09T05:49:11.137054+00:00",
   "mode": "live",
   "left_live": 0
+ },
+ {
+  "pid": "pat17478345",
+  "vid": "vst19460486",
+  "charges": [
+   {
+    "id": "23373192",
+    "cpt": "99309",
+    "ok": null
+   }
+  ],
+  "billdate": null,
+  "why": "duplicate placeholder chart - the 11/5/2026 99309 was re-entered on the real chart pat21798 as charge23373374; William 11/9/2026: put the visits in the proper chart, the old chart is correct",
+  "at": "2026-11-09T18:57:11.237836+00:00",
+  "mode": "dry"
+ },
+ {
+  "pid": "pat17478345",
+  "vid": "vst19460486",
+  "charges": [
+   {
+    "id": "23373192",
+    "cpt": "99309",
+    "ok": true
+   }
+  ],
+  "billdate": null,
+  "why": "duplicate placeholder chart - the 11/5/2026 99309 was re-entered on the real chart pat21798 as charge23373374; William 11/9/2026: put the visits in the proper chart, the old chart is correct",
+  "at": "2026-11-09T18:57:18.042099+00:00",
+  "mode": "live",
+  "left_live": 0
  }
 ]

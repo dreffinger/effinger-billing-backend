@@ -1,0 +1,43 @@
+[
+ {
+  "pid": "17478346",
+  "before": {
+   "address1": "<set>",
+   "address2": "<set>",
+   "city": "<set>",
+   "state": "<set>",
+   "zipcode": "<set>"
+  },
+  "after": {
+   "address1": "<set>",
+   "address2": "<set>",
+   "city": "<set>",
+   "state": "<set>",
+   "zipcode": "<set>"
+  },
+  "http": 500
+ },
+ {
+  "pid": "17478346",
+  "before": {
+   "address1": "<set>",
+   "address2": "<set>",
+   "city": "<set>",
+   "state": "<set>",
+   "zipcode": "<set>",
+   "email": "",
+   "homephone": ""
+  },
+  "after": {
+   "address1": "<set>",
+   "address2": "<set>",
+   "city": "<set>",
+   "state": "<set>",
+   "zipcode": "<set>"
+  },
+  "steps": [
+   "keep_line2=True clear_email=False -> 200 ",
+   "clear-line2 500"
+  ]
+ }
+]
