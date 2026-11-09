@@ -1,6 +1,6 @@
 {
  "schema": "feed-monitor/1",
- "generated": "2026-11-09T12:51:10Z",
+ "generated": "2026-11-09T18:52:52Z",
  "as_of": "2026-11-09",
  "coverage": {
   "files": [
@@ -428,21 +428,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 197,
-     "visits": 185,
-     "dollars": 33239.0
+     "lines": 127,
+     "visits": 118,
+     "dollars": 21145.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 9,
-     "visits": 9,
-     "dollars": 1844.0
+     "lines": 60,
+     "visits": 58,
+     "dollars": 10882.0
     },
     {
      "name": "Pamela G.",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 207.0
+     "lines": 20,
+     "visits": 19,
+     "dollars": 3263.0
     }
    ],
    "payer": [
@@ -485,52 +485,52 @@
    ],
    "top_dx": [
     {
-     "code": "M17.12",
-     "patients": 2
+     "code": "I10",
+     "patients": 29
     },
     {
-     "code": "M1712",
-     "patients": 2
+     "code": "E785",
+     "patients": 18
     },
     {
-     "code": "M17.11",
-     "patients": 2
+     "code": "I639",
+     "patients": 12
     },
     {
-     "code": "M1711",
-     "patients": 2
+     "code": "J449",
+     "patients": 10
     },
     {
-     "code": "M19.012",
-     "patients": 2
+     "code": "N390",
+     "patients": 9
     },
     {
-     "code": "M19012",
-     "patients": 2
+     "code": "M4802",
+     "patients": 8
     },
     {
-     "code": "M16.0",
-     "patients": 2
+     "code": "M48.02",
+     "patients": 8
     },
     {
-     "code": "M160",
-     "patients": 2
+     "code": "I4891",
+     "patients": 7
     },
     {
-     "code": "F39",
-     "patients": 1
+     "code": "R55",
+     "patients": 6
+    },
+    {
+     "code": "M6281",
+     "patients": 6
+    },
+    {
+     "code": "E119",
+     "patients": 6
     },
     {
      "code": "E039",
-     "patients": 1
-    },
-    {
-     "code": "W19XXXA",
-     "patients": 1
-    },
-    {
-     "code": "R531",
-     "patients": 1
+     "patients": 5
     }
    ],
    "days": [
@@ -848,21 +848,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1215,
-     "visits": 943,
-     "dollars": 200761.0
+     "lines": 868,
+     "visits": 633,
+     "dollars": 143690.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 9,
-     "visits": 9,
-     "dollars": 1844.0
+     "lines": 276,
+     "visits": 241,
+     "dollars": 46710.0
     },
     {
      "name": "Pamela G.",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 207.0
+     "lines": 81,
+     "visits": 79,
+     "dollars": 12412.0
     }
    ],
    "payer": [
@@ -905,52 +905,52 @@
    ],
    "top_dx": [
     {
-     "code": "M17.12",
-     "patients": 2
+     "code": "I10",
+     "patients": 110
     },
     {
-     "code": "M1712",
-     "patients": 2
+     "code": "E785",
+     "patients": 74
     },
     {
-     "code": "M17.11",
-     "patients": 2
-    },
-    {
-     "code": "M1711",
-     "patients": 2
-    },
-    {
-     "code": "M19.012",
-     "patients": 2
-    },
-    {
-     "code": "M19012",
-     "patients": 2
-    },
-    {
-     "code": "M16.0",
-     "patients": 2
-    },
-    {
-     "code": "M160",
-     "patients": 2
-    },
-    {
-     "code": "F39",
-     "patients": 1
+     "code": "I639",
+     "patients": 40
     },
     {
      "code": "E039",
-     "patients": 1
+     "patients": 36
     },
     {
-     "code": "W19XXXA",
-     "patients": 1
+     "code": "N390",
+     "patients": 35
     },
     {
-     "code": "R531",
-     "patients": 1
+     "code": "E119",
+     "patients": 34
+    },
+    {
+     "code": "J449",
+     "patients": 32
+    },
+    {
+     "code": "M6281",
+     "patients": 27
+    },
+    {
+     "code": "I4891",
+     "patients": 25
+    },
+    {
+     "code": "F0390",
+     "patients": 24
+    },
+    {
+     "code": "M4802",
+     "patients": 24
+    },
+    {
+     "code": "M48.02",
+     "patients": 24
     }
    ],
    "days": [
@@ -1429,21 +1429,21 @@
    "clinician": [
     {
      "name": "Clinician on file",
-     "lines": 1306,
-     "visits": 1027,
-     "dollars": 211756.0
+     "lines": 959,
+     "visits": 717,
+     "dollars": 154685.0
     },
     {
      "name": "Dr. Effinger (DO)",
-     "lines": 9,
-     "visits": 9,
-     "dollars": 1844.0
+     "lines": 276,
+     "visits": 241,
+     "dollars": 46710.0
     },
     {
      "name": "Pamela G.",
-     "lines": 1,
-     "visits": 1,
-     "dollars": 207.0
+     "lines": 81,
+     "visits": 79,
+     "dollars": 12412.0
     }
    ],
    "payer": [
@@ -1486,52 +1486,52 @@
    ],
    "top_dx": [
     {
-     "code": "M17.12",
-     "patients": 2
+     "code": "I10",
+     "patients": 110
     },
     {
-     "code": "M1712",
-     "patients": 2
+     "code": "E785",
+     "patients": 74
     },
     {
-     "code": "M17.11",
-     "patients": 2
-    },
-    {
-     "code": "M1711",
-     "patients": 2
-    },
-    {
-     "code": "M19.012",
-     "patients": 2
-    },
-    {
-     "code": "M19012",
-     "patients": 2
-    },
-    {
-     "code": "M16.0",
-     "patients": 2
-    },
-    {
-     "code": "M160",
-     "patients": 2
-    },
-    {
-     "code": "F39",
-     "patients": 1
+     "code": "I639",
+     "patients": 40
     },
     {
      "code": "E039",
-     "patients": 1
+     "patients": 36
     },
     {
-     "code": "W19XXXA",
-     "patients": 1
+     "code": "N390",
+     "patients": 35
     },
     {
-     "code": "R531",
-     "patients": 1
+     "code": "E119",
+     "patients": 34
+    },
+    {
+     "code": "J449",
+     "patients": 32
+    },
+    {
+     "code": "M6281",
+     "patients": 27
+    },
+    {
+     "code": "I4891",
+     "patients": 25
+    },
+    {
+     "code": "F0390",
+     "patients": 24
+    },
+    {
+     "code": "M4802",
+     "patients": 24
+    },
+    {
+     "code": "M48.02",
+     "patients": 24
     }
    ],
    "days": [
