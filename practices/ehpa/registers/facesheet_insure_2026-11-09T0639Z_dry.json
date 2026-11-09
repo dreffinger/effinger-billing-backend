@@ -1,0 +1,22 @@
+{
+ "stamp": "2026-11-09T0639Z",
+ "pid": "17478346",
+ "live": false,
+ "steps": [
+  {
+   "dob_before": "1929-09-24T00:00:00"
+  },
+  {
+   "plans_before": 0
+  },
+  {
+   "plan": "DRY: add_ins car6047 begin 10/01/2026; patient order = new seq; resave 2 visits insorder/preauth/onhcfa/hospfrom 11/06/2026; 271; release"
+  },
+  {
+   "visit_19460523": "insorder=1 preauth=None refplan=rplan18462709 live_charges=1"
+  },
+  {
+   "visit_19460531": "insorder=1 preauth=None refplan=rplan18462709 live_charges=1"
+  }
+ ]
+}

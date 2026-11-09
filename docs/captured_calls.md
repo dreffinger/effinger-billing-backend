@@ -5890,3 +5890,18 @@ No new call shapes this run (vocabulary +0). Lessons:
 No new call shapes this run (vocabulary +0). Lessons:
 - claimocity_gcs.py --install-key (11/9 00:45Z): the key install ALSO needs PYTHONPATH=/home/claude/pylib and CLOUDSDK_PYTHON=/usr/bin/python3 - without them the image's system cryptography panics under pyo3 ('Python API call failed' from hazmat/primitives/hashes.py) before the key is written, and the following listing exits 4 'key missing'. Same remedy as the 11/8 retry-dx lesson; set both variables for every claimocity_* command.
 - Quiet evening-slot shape: gcs 0 new + Columns 0/17/0/1 unchanged + ERA 0 checks + precheck --days 3 0 flagged = the standing 'current face sheets needed' email, the practice-database check doc (--check-result nothing_new), the sweep of the GitHub Actions engine reports since the last run, Neon load-writes, the register commit - no AMD write at all.
+
+# captured_calls additions - run 2026-11-09T0639Z (1:39 AM ET Mon 11/9/2026, six-hourly columns slot, ehpa cloud)
+
+No new AdvancedMD or Stedi call shapes this run (vocabulary +0). Lessons:
+
+- A hospital-facesheet authorization written through the full-visit `updvisitwithnewcharges` echo (`preauth="..."` on the visit
+  element) lands on the visit's REFERRAL PLAN (`<refplan ... preauth="...">` in getchargedetaildataicd10), not as a visit attribute -
+  a readback that compares `visit@preauth` reports a false "verify failed"; read the refplan element instead (the 9/8 VA finding, now
+  confirmed on an Aetna MA chart).
+- `resave._extins_xml(vis, hospfrom)` on a feed-created visit whose detail shows an EMPTY `<extins />` did not persist
+  `hospitalizationfrom` through `updvisitwithnewcharges` (readback still `<extins />`); the inspector pass's `updextrainsinfo` +
+  full-visit resave is the path that writes the admission date on such visits.
+- A chart the Claimocity feed creates can carry a wrong DOB (here 1929 for a 1949 patient); the HCA MedCity Visit Detail is the
+  source - `patient_patch.patch(pid, {"dob": "YYYY-MM-DD"})` PATCH answered 200 and the demographic read back the new date.
+- The quiet-slot shape stands: feed bucket 0 new -> one line; engine pass for the four columns + ERA; board file append-only.

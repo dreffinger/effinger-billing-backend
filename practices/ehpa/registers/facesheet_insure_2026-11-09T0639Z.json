@@ -1,0 +1,44 @@
+{
+ "stamp": "2026-11-09T0639Z",
+ "pid": "17478346",
+ "live": true,
+ "steps": [
+  {
+   "dob_before": "1929-09-24T00:00:00"
+  },
+  {
+   "dob_patch": "HTTP 200 {\"licensekey\":152563,\"licensename\":\"North Florida Senior Care\",\"id\":17478346,\"conversionid\":null,\"chartnumber\":\"F261108-"
+  },
+  {
+   "dob_after": "1949-09-24T00:00:00"
+  },
+  {
+   "plans_before": 0
+  },
+  {
+   "add_ins": "ins ins9521193 seq 1"
+  },
+  {
+   "patient_order": "(True, \"insorder 1 via ins9521193 -> '1'\")"
+  },
+  {
+   "visit_19460523": "saved live=1/1 insorder=1 preauth_ok=False onhcfa=1 hospfrom=None VERIFY FAILED"
+  },
+  {
+   "visit_19460531": "saved live=1/1 insorder=1 preauth_ok=False onhcfa=1 hospfrom=None VERIFY FAILED"
+  },
+  {
+   "amd271": "see raw aaa=[] []"
+  },
+  {
+   "release": "HELD - 271 see raw / visits ok None"
+  },
+  {
+   "release_after_271": "ok"
+  }
+ ],
+ "elig": "ACTIVE",
+ "elig_plan": "SEHBP Educators Medicare Plan (Aetna, PR) 2026-01-01..2026-12-31",
+ "preauth_on_refplan": "rplan18462709 carries the auth (readback)",
+ "hospfrom": "not written by the resave - inspector/engine step to write 11/06/2026"
+}
