@@ -813,11 +813,11 @@
   {
    "slug": "fm-service-line-profit",
    "name": "Profitability by service line, site and clinician",
-   "summary": "Knowing which parts of the practice make money: each service line, site, payer and clinician. Totals hide the fact that one line may be carrying another.",
+   "summary": "Knowing which parts of the practice make money: each service line (a kind of work, such as visits, procedures or care management), site, payer and clinician. Totals hide the fact that one line may be carrying another.",
    "good_looks_like": [
     "Revenue is reported by service line, site and clinician.",
     "Direct costs, mainly clinician time and travel, are assigned to each.",
-    "The practice knows the contribution of each line after its direct costs.",
+    "The practice knows each line's contribution: what it brings in less its own direct costs.",
     "Decisions to grow, fix or stop a line are made from these numbers."
    ],
    "failure_modes": [
@@ -862,12 +862,21 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with more than one site, service line or clinician. Visiting practices should include travel time as a cost of each site.",
-   "sources": [
-    "mgma-bok",
-    "aafp-finances"
+   "applies_when": "Any practice with more than one site, service line or clinician. Practices that travel to facilities or homes should count travel time as a cost of each site, and compare payment per visit within one setting, because Medicare pays the same service less in a facility.",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Has a service-line table and an invest, optimize, monitor or exit rule. Assumes an office practice: direct costs are staff, supplies and space, with no clinician time or travel."
+    }
    ],
-   "evidence_note": "Standard managerial accounting. No benchmark applies, because lines and costs differ by practice.",
+   "sources": [
+    "kaplan-porter-2011",
+    "sba-business-plan",
+    "mgma-app-2026",
+    "cms-pfs-2026",
+    "mgma-bok"
+   ],
+   "evidence_note": "Standard managerial accounting. Costing each service by the staff and clinician time it uses was set out for health care by Kaplan and Porter (Harvard Business Review, 2011). No benchmark applies, because lines and costs differ by practice.",
    "metrics": [
     {
      "slug": "fm-contribution-margin-by-line",
@@ -877,9 +886,11 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare lines with each other.",
+     "benchmark_note": "No public benchmark exists, because service lines and their costs differ by practice. Compare lines with each other, and each with its own trend. A line below zero is being paid for by the others.",
      "confidence": "none",
-     "data_hint": "Collections by code group and site, with clinician time from the schedule."
+     "data_hint": "Collections by code group and site, with clinician time from the schedule.",
+     "vendor_claim": "Each service line should show a positive contribution margin. A negative one means the line is being subsidized.",
+     "vendor_verdict": "Supported as arithmetic, not as a benchmark. Its direct costs are staff, supplies and space. Clinician time is not mentioned."
     },
     {
      "slug": "fm-revenue-per-encounter",
@@ -889,8 +900,11 @@
      "unit": "dollars",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. It moves with code mix, payer mix and denials, so read it by payer and setting.",
+     "benchmark_note": "No reliable public benchmark was found. It moves with code mix, payer mix, denials and setting: Medicare pays the same service less when it is done in a facility. Compare within one payer and setting, against your own trend.",
      "confidence": "none",
+     "sources": [
+      "cms-pfs-2026"
+     ],
      "data_hint": "Billing system collections and encounter counts."
     }
    ]
