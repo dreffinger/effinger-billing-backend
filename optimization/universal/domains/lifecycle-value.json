@@ -78,7 +78,7 @@
     "cfr-411-351",
     "cfr-411-357",
     "sba-sop-50-10",
-    "pya-checklist"
+    "pya-checklist-2010"
    ],
    "evidence_note": "The three approaches are standard appraisal practice. Multiples come from one valuation firm's stated ranges, marketplace sales quoted secondhand and an all-industry broker survey, so treat them as ranges. Fair market value limits are federal regulation (42 CFR 411.351, 411.357).",
    "metrics": [
@@ -203,7 +203,7 @@
     "coker-2017",
     "ecg-2023",
     "amga-2026",
-    "pya-checklist",
+    "pya-checklist-2010",
     "hallrender-meddir-2025"
    ],
    "evidence_note": "Normalization steps are standard valuation and diligence practice described by VMG Health, Coker and PYA. Market pay figures are survey medians from mostly large groups. No public benchmark exists for normalized earnings of small practices.",
@@ -321,7 +321,7 @@
    ],
    "sources": [
     "scope-2025",
-    "pya-checklist",
+    "pya-checklist-2010",
     "vmg-diligence",
     "medecon-selling-2026",
     "cms-pfs-2027",
@@ -364,7 +364,7 @@
      "benchmark_note": "No published benchmark was found. PYA's diligence checklist has buyers count active patients over time. Scope Research links higher multiples to capitated or shared-savings revenue, which it calls predictable and recurring. Track your own trend, by facility where relevant.",
      "confidence": "none",
      "sources": [
-      "pya-checklist",
+      "pya-checklist-2010",
       "scope-2025"
      ],
      "data_hint": "Billing system collections by patient, joined to first-visit date or to the facility census on the first day of the year."
@@ -449,7 +449,7 @@
     }
    ],
    "sources": [
-    "pya-checklist",
+    "pya-checklist-2010",
     "ecg-goodwill-2023",
     "scope-2025",
     "cfr-483-30",
@@ -471,7 +471,7 @@
      "benchmark_note": "No published threshold or discount was found. PYA's checklist tells buyers to test whether a few physicians produce a disproportionate share. A solo practice is at 100% by definition. Track the trend.",
      "confidence": "none",
      "sources": [
-      "pya-checklist",
+      "pya-checklist-2010",
       "cms-puf"
      ],
      "data_hint": "Billing system report of payments by rendering clinician. Medicare's public file shows the same split for Medicare claims."
@@ -521,7 +521,7 @@
    "actions": [
     {
      "action": "Adopt a diligence checklist and score it",
-     "detail": "Start from a published buyer's checklist, such as PYA's 43 items in 14 topics. Add enrollment, compliance, billing data and contract assignment items. Mark each one current, stale or missing.",
+     "detail": "Start from a published buyer's checklist, such as PYA's 47 items in 14 topics. Add enrollment, compliance, billing data and contract assignment items. Mark each one current, stale or missing.",
      "cadence": "quarterly",
      "effort": "medium",
      "impact": "high"
@@ -549,7 +549,7 @@
     },
     {
      "action": "Control what a prospect can see",
-     "detail": "Sign a confidentiality agreement first. Share summaries without patient identifiers where possible. The federal privacy rule (HIPAA) permits diligence disclosures but limits them to the minimum necessary.",
+     "detail": "Sign a confidentiality agreement first. Share summaries without patient identifiers where possible. The federal privacy rule (HIPAA) permits diligence disclosures to a buyer that is or will become a covered entity, limited to the minimum necessary.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -571,7 +571,7 @@
     }
    ],
    "sources": [
-    "pya-checklist",
+    "pya-checklist-2010",
     "vmg-diligence",
     "cfr-401-305",
     "cms-puf",
@@ -592,10 +592,10 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No published benchmark was found. Target 100% before approaching buyers. PYA's 2021 buyer checklist (43 items) is a starting list, to which enrollment, compliance and billing data items should be added.",
+     "benchmark_note": "No published benchmark was found. Target 100% before approaching buyers. PYA's buyer checklist (47 items, written in 2010) is a starting list, to which enrollment, compliance and billing data items should be added.",
      "confidence": "none",
      "sources": [
-      "pya-checklist"
+      "pya-checklist-2010"
      ],
      "data_hint": "The practice's own checklist, kept as a spreadsheet beside the secure folder.",
      "vendor_claim": "Finish the data room at least four weeks before diligence starts, following a 12-month preparation plan.",
@@ -689,7 +689,7 @@
     "coker-2017",
     "vmg-comp-fmv",
     "ecg-2023",
-    "pya-checklist",
+    "pya-checklist-2010",
     "aoa-selling-practice",
     "foley-pe-2025",
     "ibba-2026",
@@ -1066,7 +1066,7 @@
     "cms-ccm-faq",
     "cfr-401-305",
     "fcso-enroll",
-    "pya-checklist",
+    "pya-checklist-2010",
     "aoa-selling-practice"
    ],
    "evidence_note": "Enrollment, assignment, consent and overpayment rules are federal regulation, Medicare guidance and Florida statute. Integration sequencing is convention. No published data on revenue retained after small-practice acquisitions was found.",
