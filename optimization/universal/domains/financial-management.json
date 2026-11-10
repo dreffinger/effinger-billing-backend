@@ -345,7 +345,7 @@
    ],
    "failure_modes": [
     "All spare cash is distributed to the owner, and one slow month means borrowing at a high rate.",
-    "A payer or clearinghouse outage stops receipts for weeks and there is no cushion.",
+    "A payer or clearinghouse outage stops receipts for weeks, there is no cushion, and the owner covers payroll from personal funds.",
     "Estimated tax payments come as a surprise.",
     "Card processing and bank fees are never reviewed."
    ],
@@ -372,26 +372,41 @@
     },
     {
      "action": "Arrange a line of credit while it is not needed",
-     "detail": "Banks lend most easily to businesses that do not need the money.",
+     "detail": "Banks are less willing to talk once cash is already short. Experts advise credit that could cover three to six months of operating expenses.",
      "cadence": "once",
      "effort": "medium",
      "impact": "medium"
     },
     {
      "action": "Review bank and card fees yearly",
-     "detail": "Including the cost of payer virtual cards.",
+     "detail": "Include payer virtual cards, which carry a percentage fee. A health plan must pay by standard bank transfer when the practice asks (45 CFR 162.925, Centers for Medicare & Medicaid Services guidance letter GL-2022-04).",
      "cadence": "annual",
      "effort": "low",
      "impact": "low"
     }
    ],
-   "applies_when": "Every practice. Practices dependent on one payer, such as Medicare, need a larger cushion, because that payer can suspend payments during a review.",
+   "applies_when": "Every practice. One-payer practices need a larger cushion: Medicare may suspend payments for up to 180 days, and longer in fraud cases, when it has reliable information of an overpayment or a credible allegation of fraud (42 CFR 405.371 and 405.372). Practices with no front desk collect little at the visit, so nearly all cash waits on payers.",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Lays out a 13-week forecast: collections by payer lag, payments by date, rolling balance. Its reserve tiers of 30, 45 to 60 and 60 to 90 days have no source."
+    },
+    {
+     "item": "new-practice-launch-playbook",
+     "note": "For start-ups, sizes the reserve at four months of operating expenses. The worksheet leaves out owner pay and counts payer processing and payment as two separate delays."
+    }
+   ],
    "sources": [
     "amednews-2011",
+    "jpmci-cash-buffer-2016",
+    "ama-change-survey-2024",
+    "cfr-405-371",
+    "cms-vcc-eft-2022",
     "ama-new-practice-finance",
+    "sba-bank-account",
     "sba-finances"
    ],
-   "evidence_note": "No professional body publishes a cash standard for practices. The three-to-six-month figure is expert advice from 2011 and is widely repeated.",
+   "evidence_note": "No cash standard for practices was found. The three-to-six-month figure is expert advice from 2011. Measured small-business cash is far lower: a median of 30 days in health care (2015). After the 2024 clearinghouse outage, 55% of respondents to an informal survey used personal funds.",
    "metrics": [
     {
      "slug": "fm-days-cash-on-hand",
@@ -402,13 +417,17 @@
      "direction": "higher",
      "cadence": "monthly",
      "benchmark_best": "90 to 180 days",
+     "benchmark_typical": "about 30 days of outflows, median small health care business",
      "benchmark_red": "under 30 days",
-     "benchmark_note": "Expert advice reported by American Medical News in 2011: three to six months of cash or available credit. The red flag is a judgment. No formal standard exists.",
-     "confidence": "low",
+     "benchmark_note": "Best: experts quoted by American Medical News (2011) advised three to six months of cash or available credit. Measured: the JPMorgan Chase Institute found the median small health care business held 30 days of cash outflows (2015 data). The red flag is a judgment.",
+     "confidence": "medium",
      "sources": [
-      "amednews-2011"
+      "amednews-2011",
+      "jpmci-cash-buffer-2016"
      ],
-     "data_hint": "Bank balances and the income statement."
+     "data_hint": "Bank balances and the income statement.",
+     "vendor_claim": "At least 30 days of operating expenses in cash or available credit, 45 to 60 days to be conservative, 60 to 90 days ideally.",
+     "vendor_verdict": "Unverifiable: no source. Its 60 to 90 day ideal sits below the three to six months experts advised in 2011. Its 30-day floor matches the measured small-business median."
     },
     {
      "slug": "fm-cash-forecast-weeks",
@@ -418,9 +437,11 @@
      "unit": "count",
      "direction": "higher",
      "cadence": "weekly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Thirteen weeks is the common convention, since it covers a quarter.",
+     "benchmark_note": "No reliable public benchmark was found. Thirteen weeks is the common convention, since it covers a quarter. No data shows that it is the right length for a practice.",
      "confidence": "none",
-     "data_hint": "The forecast spreadsheet."
+     "data_hint": "The forecast spreadsheet.",
+     "vendor_claim": "A rolling 13-week cash forecast, updated weekly and reviewed with the owner at least quarterly.",
+     "vendor_verdict": "Partly supported: 13 weeks is a common convention that covers one quarter, but no published standard or data sets it."
     }
    ]
   },
@@ -429,7 +450,7 @@
    "name": "Debt and capital structure",
    "summary": "What the practice owes, at what cost, on what terms, and whether earnings cover the payments comfortably. It includes loans, equipment leases, credit lines and any money owed to or by the owner.",
    "good_looks_like": [
-    "One schedule lists every loan and lease with balance, rate, payment, maturity, covenants and personal guarantees.",
+    "One schedule lists every loan and lease with balance, rate, payment, end date, lender conditions (covenants) and personal guarantees.",
     "Earnings cover yearly debt payments with room to spare.",
     "High-cost debt is refinanced or paid down first.",
     "Borrowing is used for assets that last, not for operating losses."
@@ -437,7 +458,7 @@
    "failure_modes": [
     "Short-term, high-rate financing is used again and again to cover cash gaps.",
     "The owner has personally guaranteed debt without knowing it.",
-    "A loan covenant is breached and nobody noticed.",
+    "A lender condition (covenant), such as a minimum coverage ratio, is breached and nobody noticed.",
     "Equipment is leased at a cost far above buying it."
    ],
    "key_questions": [
@@ -449,14 +470,14 @@
    "actions": [
     {
      "action": "Build a debt schedule",
-     "detail": "Lender, balance, rate, payment, maturity, prepayment terms, covenants and guarantees.",
+     "detail": "Lender, balance, rate, payment, end date, prepayment terms, lender conditions and guarantees.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     },
     {
      "action": "Calculate debt service coverage",
-     "detail": "Earnings before interest and depreciation, after a market wage for owners, divided by yearly principal and interest.",
+     "detail": "Earnings before interest, taxes and depreciation, after a market wage for owners, divided by the year's principal and interest on all business debt.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "high"
@@ -476,13 +497,19 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Any practice with loans, leases or a credit line. Start-ups and practices that have been through a downturn most often carry expensive short-term debt worth refinancing.",
+   "applies_when": "Any practice with loans, leases or a credit line. Start-ups and practices that have been through a downturn are the likeliest to carry expensive short-term debt worth refinancing. A practice with no office and little equipment may owe almost nothing, and then this is a short yearly check.",
+   "vendor_refs": [],
    "sources": [
-    "ama-new-practice-finance",
     "sba-sop-50-10",
+    "cfr-13-120-160",
+    "cfr-13-120-214",
+    "fed-h15-2026",
+    "ama-new-practice-finance",
+    "amednews-2011",
+    "aafp-balance-sheet-2001",
     "sba-finances"
    ],
-   "evidence_note": "The coverage figure is what lenders are reported to expect. It is a lending convention, not a rule, and each bank sets its own.",
+   "evidence_note": "The 1.15 coverage floor is a Small Business Administration (SBA) rule for loans it guarantees (Standard Operating Procedure, or SOP, 50 10 8.1, October 2026). Other figures are lender convention. Owners of 20% or more generally must personally guarantee SBA loans (13 CFR 120.160).",
    "metrics": [
     {
      "slug": "fm-debt-service-coverage",
@@ -492,24 +519,25 @@
      "unit": "ratio",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_best": "1.5 or more",
-     "benchmark_red": "under 1.2",
-     "benchmark_note": "The AMA reports that lenders want coverage above 1.2 by a new practice's second year (2026). The 1.5 figure is a common lender comfort level, not a published standard.",
+     "benchmark_typical": "1.2 or more is what lenders look for",
+     "benchmark_red": "under 1.15, the SBA minimum for standard loans",
+     "benchmark_note": "The SBA requires at least 1.15 for its standard guaranteed loans and 1.10 for loans of $350,000 or less (SOP 50 10 8.1, October 2026). A physician lender quoted by the American Medical Association (2026) looks for above 1.2 by a new practice's second year.",
      "confidence": "medium",
      "sources": [
+      "sba-sop-50-10",
       "ama-new-practice-finance"
      ],
      "data_hint": "The income statement and the debt schedule."
     },
     {
      "slug": "fm-debt-to-ebitda",
-     "name": "Debt to normalized EBITDA",
-     "definition": "Total interest-bearing debt divided by yearly earnings after a market wage for owners.",
+     "name": "Debt to yearly earnings (normalized EBITDA)",
+     "definition": "Total interest-bearing debt divided by yearly earnings before interest, taxes, depreciation and amortization (EBITDA), after a market wage for owners. It says how many years of earnings the debt equals.",
      "formula": "Total debt / normalized EBITDA",
      "unit": "ratio",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Lower is safer. A figure above about 3 would concern most small-business lenders, by convention.",
+     "benchmark_note": "No reliable public benchmark for small practices was found. Lower is safer. Use your own trend, and read it beside debt service coverage, the measure lenders set a floor for.",
      "confidence": "none",
      "data_hint": "The debt schedule and the normalized earnings calculation."
     },
@@ -521,8 +549,12 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare with a current bank term-loan quote. A large gap means refinancing is worth pursuing.",
+     "benchmark_note": "No benchmark exists. Compare with a current bank quote. For reference, federal rules cap variable SBA loan rates at the prime rate plus 3 to 6.5 points, by loan size (13 CFR 120.214). Prime was 7.00% in early November 2026.",
      "confidence": "none",
+     "sources": [
+      "cfr-13-120-214",
+      "fed-h15-2026"
+     ],
      "data_hint": "The debt schedule."
     }
    ]
@@ -534,14 +566,15 @@
    "good_looks_like": [
     "The owner's salary is set deliberately and can be justified against market pay for the work done.",
     "Distributions happen only after the cash reserve and tax payments are covered.",
-    "Estimated taxes are scheduled, not discovered.",
-    "Loans between the owner and the practice are documented, carry interest, and have a repayment plan."
+    "Estimated taxes are on the calendar for all four payment periods. S corporation owners and partners usually owe them personally.",
+    "Loans between the owner and the practice have a written contract, a stated interest rate and a repayment term."
    ],
    "failure_modes": [
-    "An S corporation owner takes a low salary and large distributions, which the tax authority can recharacterize as wages.",
+    "An S corporation owner takes a low salary and large distributions, which the Internal Revenue Service (IRS) can reclassify as wages subject to payroll taxes.",
     "Draws exceed profit and show up as a growing loan from the practice to the owner.",
     "Personal expenses are paid by the practice with no record.",
-    "Retirement plan options that would save tax go unused."
+    "Retirement plan options that would save tax go unused.",
+    "Payroll taxes withheld from staff are spent to cover a cash gap, and the owner becomes personally liable for the unpaid amount."
    ],
    "key_questions": [
     "How much did the owner take last year in salary, distributions and benefits?",
@@ -552,7 +585,7 @@
    "actions": [
     {
      "action": "Review owner pay with the accountant yearly",
-     "detail": "Salary against market pay, the split with distributions, and the tax effect.",
+     "detail": "Salary against market pay for the owner's own clinical and management work, the split with distributions, and the tax effect.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -566,7 +599,7 @@
     },
     {
      "action": "Document and repay owner loans",
-     "detail": "A written note with interest and a schedule, or a plan to clear it.",
+     "detail": "A written contract with a stated interest rate, a repayment period and a consequence for not paying, which is what the IRS looks for. Or a plan to clear the balance.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -579,23 +612,31 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Owner-operated practices. The reasonable-pay question is specific to S corporations in the United States. Other entity types face different rules, so this needs an accountant who knows the entity.",
+   "applies_when": "Owner-operated practices. The low-salary risk applies to S corporations. In a C corporation the risk runs the other way: pay above a reasonable amount can be treated as a dividend (26 CFR 1.162-7). Partners are not employees and take no wages. Each entity type needs an accountant who knows it.",
+   "vendor_refs": [],
    "sources": [
     "irs-s-corp-compensation",
-    "aafp-finances"
+    "irs-paying-yourself",
+    "cfr-26-1-162-7",
+    "irs-estimated-taxes",
+    "irs-tfrp",
+    "aafp-vital-signs"
    ],
-   "evidence_note": "The reasonable-compensation requirement for S corporation owners is tax authority guidance. What counts as reasonable is a matter of facts and judgment.",
+   "evidence_note": "IRS guidance backed by court decisions requires S corporations to pay reasonable wages before distributions. What is reasonable depends on facts: the IRS lists factors and no percentage. Loans to owners need a written contract, stated interest and a repayment term.",
    "metrics": [
     {
      "slug": "fm-owner-total-take",
      "name": "Owner total compensation and distributions",
-     "definition": "Everything the owner received from the practice in a year: salary, distributions, benefits and net new loans.",
-     "formula": "Salary + distributions + benefits + increase in loans to owner",
+     "definition": "Everything the owner received from the practice in a year: salary, distributions, benefits, personal expenses the practice paid, and net new loans.",
+     "formula": "Salary + distributions + benefits and personal expenses paid by the practice + increase in loans to owner",
      "unit": "dollars",
      "direction": "info",
      "cadence": "annual",
      "benchmark_note": "Not a target. Compare it with earnings before owner pay. Taking more than the practice earns shows up as falling cash or a growing owner loan.",
      "confidence": "none",
+     "sources": [
+      "aafp-vital-signs"
+     ],
      "data_hint": "Payroll, the equity section of the balance sheet and the owner loan account."
     },
     {
@@ -606,8 +647,11 @@
      "unit": "dollars",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is zero or a documented, shrinking balance.",
+     "benchmark_note": "No public benchmark was found. The target from first principles is zero or a documented, shrinking balance. Without a contract, stated interest and a repayment term, the IRS may treat a loan to an owner as wages or a dividend.",
      "confidence": "none",
+     "sources": [
+      "irs-paying-yourself"
+     ],
      "data_hint": "The balance sheet."
     },
     {
@@ -618,8 +662,11 @@
      "unit": "percent",
      "direction": "range",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. No safe-harbor percentage exists. The test is whether wages are reasonable for the work performed.",
+     "benchmark_note": "No benchmark or safe percentage exists. The IRS asks what produced the receipts: money earned by the owner's own services should be paid as wages, while money earned by employees and equipment may be distributed.",
      "confidence": "none",
+     "sources": [
+      "irs-s-corp-compensation"
+     ],
      "data_hint": "Payroll and distribution records."
     }
    ]

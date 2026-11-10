@@ -431,6 +431,13 @@
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
+    },
+    {
+     "action": "Ask the local hospital about recruitment support for a physician hire",
+     "detail": "A hospital may fund relocation or guarantee income for a physician who moves into its area and joins the practice. Terms must be written and signed, carry no referral conditions, and pass the money to the physician (42 CFR 411.357(e)).",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
     }
    ],
    "applies_when": "Practices with more demand than clinician time. Delegation has limits: in a skilled nursing facility the physician personally makes the initial comprehensive visit and may delegate only alternate required visits (42 CFR 483.30), and state law sets supervision.",
@@ -447,7 +454,8 @@
     "mgma-stat-cred-2021",
     "oig-physician-cpg-2000",
     "fl-464-012",
-    "fl-464-0123"
+    "fl-464-0123",
+    "cfr-411-357"
    ],
    "evidence_note": "Pay medians are AMGA survey data from mostly large groups. Payment and visit rules are federal regulation. Supervision is state law: in Florida, nurse practitioners need a physician protocol unless registered for autonomous primary care (sections 464.012 and 464.0123). Break-even is the practice's own arithmetic.",
    "metrics": [
@@ -505,36 +513,39 @@
   {
    "slug": "gm-marketing-reputation",
    "name": "Marketing and reputation",
-   "summary": "How patients, families and referrers find and judge the practice: directory listings, online profiles and reviews, a website, and outreach. For referral-based practices, accuracy matters more than promotion.",
+   "summary": "How patients, families and referrers find and judge the practice: directory listings, online profiles and reviews, a website, and outreach. For referral-based practices, accuracy matters more than promotion. Healthcare marketing has its own federal rules.",
    "good_looks_like": [
     "The practice's name, address, phone, specialty and clinicians are correct in the national provider registry, payer directories and major online listings.",
     "Someone checks reviews and responds without disclosing patient information.",
     "Referrers have a simple way to reach the practice and know what it offers.",
-    "Marketing spend is small, tracked, and tied to a source of new patients."
+    "Marketing spend is small, tracked, and tied to a source of new patients.",
+    "A patient's name, photo or story appears in marketing only with signed authorization (45 CFR 164.508)."
    ],
    "failure_modes": [
-    "A wrong specialty code or address in a registry causes denials and misdirected referrals.",
+    "A wrong specialty code or address in the national provider registry or a payer file can cause denials, payment delays and misdirected referrals.",
     "A clinician who left years ago is still listed.",
-    "A reply to an online review confirms someone is a patient.",
-    "Money is spent on advertising with no way to tell whether it brought anyone in."
+    "A reply to an online review confirms someone is a patient, which discloses protected health information without permission (45 CFR 164.502(a)).",
+    "Money is spent on advertising with no way to tell whether it brought anyone in.",
+    "Gifts above nominal value, free services or routine copayment waivers are used to attract Medicare or Medicaid patients, or a marketer is paid per patient. Both invite federal penalties."
    ],
    "key_questions": [
     "Are our registry and directory entries correct for every clinician and location?",
     "Who reads and answers online reviews?",
     "Can a referrer find our phone number and services in under a minute?",
-    "What did we spend on marketing last year, and what came of it?"
+    "What did we spend on marketing last year, and what came of it?",
+    "Does anything we give patients or pay marketers depend on Medicare or Medicaid patients choosing us?"
    ],
    "actions": [
     {
      "action": "Correct registry and directory entries",
-     "detail": "The national provider registry, each payer's directory and the main online listings, for every clinician.",
+     "detail": "The national provider registry (changes are due within 30 days, 45 CFR 162.410), each payer's directory and the main online listings, for every clinician. Answer plan verification requests: commercial plans must re-verify every 90 days.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Assign someone to reviews",
-     "detail": "Monthly check, with replies that never confirm a patient relationship.",
+     "detail": "Monthly check. Replies never confirm that the writer is a patient or add any detail of care (45 CFR 164.502). Offer to talk by phone instead.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "low"
@@ -552,14 +563,32 @@
      "cadence": "monthly",
      "effort": "low",
      "impact": "low"
+    },
+    {
+     "action": "Screen every promotion against the patient-inducement and kickback rules",
+     "detail": "No routine copayment waivers or gifts above the Inspector General's nominal limit ($15 an item, $75 a year, never cash) to attract Medicare or Medicaid patients (42 CFR 1003.1000). No per-patient pay to outside marketers: no safe harbor covers it.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
     }
    ],
-   "applies_when": "Every practice, at different intensity. Office practices that depend on patient choice need active online presence. Facility-based practices mainly need accurate listings and direct outreach to decision makers.",
+   "applies_when": "Every practice, at different intensity. Office practices that depend on patient choice need an active online presence, while facility-based practices mainly need accurate listings and direct outreach to the people who arrange coverage.",
    "sources": [
     "cfr-162-410",
-    "cfr-424-516"
+    "cfr-424-516",
+    "usc-42-300gg-115",
+    "usc-42-300gg-139",
+    "cms-ma-directory-review-2018",
+    "cfr-164-502",
+    "cfr-164-508",
+    "cfr-1003-110",
+    "oig-nominal-gifts-2016",
+    "usc-42-1320a-7b",
+    "cfr-1001-952",
+    "mgma-stat-cred-2021",
+    "fl-458-331"
    ],
-   "evidence_note": "Keeping registry and enrollment records current is a regulatory duty. The rest is business practice with no measured benchmark.",
+   "evidence_note": "Registry updates, patient privacy, patient inducements and directory checks are federal law. States add advertising rules: in Florida, false or misleading advertising is a ground for discipline (section 458.331). Promotion itself is business practice with no measured benchmark.",
    "metrics": [
     {
      "slug": "gm-listing-accuracy",
@@ -569,27 +598,35 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%, since errors cause denials as well as lost referrals.",
-     "confidence": "none",
-     "data_hint": "A quarterly check of the national provider registry, each payer directory and main listings."
+     "benchmark_note": "No benchmark exists for a practice's own listings, so 100% is a first-principles target. CMS reviews of Medicare Advantage directories in 2016 to 2018 found errors at 45% to 55% of listed locations. Old data, and it measures plans, not practices.",
+     "confidence": "medium",
+     "data_hint": "A quarterly check of the national provider registry, each payer directory and main listings.",
+     "benchmark_best": "100% (target from first principles)",
+     "benchmark_typical": "45% to 55% of Medicare Advantage directory locations correct",
+     "sources": [
+      "cms-ma-directory-review-2018",
+      "cfr-162-410"
+     ]
     }
-   ]
+   ],
+   "vendor_refs": []
   },
   {
    "slug": "gm-partnerships",
    "name": "Partnerships and affiliations",
-   "summary": "Formal relationships that bring patients, revenue or services the practice could not build alone: accountable care organizations, health plans, hospitals, hospices, home health agencies, and management or contracting organizations.",
+   "summary": "Formal relationships that bring patients, revenue or services the practice could not build alone: accountable care organizations, health plans including special needs plans, hospitals, hospices, home health agencies, management services organizations and independent practice associations.",
    "good_looks_like": [
     "The practice can say what each partner provides and what it expects in return.",
     "Agreements are written, reviewed by counsel, and state how either side can leave.",
     "Any payment between the practice and a partner that refers patients is at fair market value for real services.",
-    "Partnership revenue and effort are tracked."
+    "Partnership revenue and effort are tracked.",
+    "The practice knows which accountable care organization its tax ID belongs to, what that membership pays, and when it can leave."
    ],
    "failure_modes": [
     "Joining an organization that takes a fee or a share of payment and delivers little.",
-    "Exclusive terms that block better options later.",
+    "Exclusive terms that block better options later. A tax ID whose visits count toward patient assignment can join only one Shared Savings Program organization (42 CFR 425.306).",
     "Payments that reward referrals in either direction.",
-    "Dependence on a partner that can end the arrangement on short notice."
+    "Dependence on a partner that can leave on short notice. A Medicare Advantage plan may end a contract without cause on 60 days' written notice (42 CFR 422.202(d))."
    ],
    "key_questions": [
     "Which organizations in our market need what we do?",
@@ -600,7 +637,7 @@
    "actions": [
     {
      "action": "Map potential partners",
-     "detail": "Plans, accountable care organizations, hospitals, hospices and agencies that serve the same patients.",
+     "detail": "Plans (including special needs plans for facility residents), accountable care organizations, hospitals, hospices and home health agencies that serve the same patients. From 2027 Medicare's LEAD model is aimed at small practices and high-needs patients.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -614,7 +651,7 @@
     },
     {
      "action": "Have counsel review every agreement",
-     "detail": "Exclusivity, termination, data sharing, and compliance with referral laws.",
+     "detail": "Exclusivity, termination notice, data sharing, and referral laws. Fees set as a share of revenue need special care: in Florida, split-fee arrangements for referred patients are grounds for discipline (section 458.331(1)(i)).",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -625,15 +662,29 @@
      "cadence": "quarterly",
      "effort": "low",
      "impact": "low"
+    },
+    {
+     "action": "Price accountable care membership in dollars",
+     "detail": "From 2027, clinicians in a Shared Savings Program or LEAD organization may bill modifier B2, adding 32% to eligible visits, against 16% for the general modifier. Compare that and any shared savings with the fees and duties.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
     }
    ],
-   "applies_when": "Practices of any size. Small practices use partnerships to reach value-based contracts and data they could not obtain alone. Facility-based practices are natural partners for plans and organizations responsible for nursing home residents.",
+   "applies_when": "Practices of any size: small practices use partnerships to reach contracts that reward quality and lower cost, and data they could not obtain alone. Facility-based practices suit plans and organizations responsible for nursing home residents, such as institutional special needs plans, but should confirm the 2027 visit modifier covers their codes, since the add-on it replaces was an office-visit code.",
    "sources": [
     "cfr-1001-952",
     "cfr-411-357",
-    "cms-pfs-2027"
+    "cms-pfs-2027",
+    "cfr-425-306",
+    "cfr-425-110",
+    "cms-ssp-py2024-results",
+    "cms-lead",
+    "cfr-422-2",
+    "cfr-422-202",
+    "fl-458-331"
    ],
-   "evidence_note": "Referral law limits are federal regulation. Whether a partnership pays off depends on its contract. Evidence on small-practice results in these programs is mixed.",
+   "evidence_note": "Referral law limits are federal regulation. In Medicare's Shared Savings Program, 75% of 476 organizations earned payments for 2024 and physician-led ones saved more per patient than hospital-led ones (CMS, 2025). What reaches a member practice depends on its contract.",
    "metrics": [
     {
      "slug": "gm-partner-revenue-share",
@@ -646,6 +697,16 @@
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Read it as a dependence measure as well as a growth measure.",
      "confidence": "none",
      "data_hint": "Revenue by source, mapped to agreements in the contract register."
+    }
+   ],
+   "vendor_refs": [
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Section 7 explains hospital recruitment support for a physician joining the practice. One bullet wrongly says support cannot flow through the practice. Nothing on accountable care organizations, plans or hospices."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Half a page: model the finances before a joint venture, hospital or private equity deal, and hire an advisor. No contract terms, legal tests or numbers."
     }
    ]
   },
