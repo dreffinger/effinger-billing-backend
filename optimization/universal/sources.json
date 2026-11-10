@@ -3959,5 +3959,59 @@
   "url": "https://www.justice.gov/opa/pr/doj-hhs-false-claims-act-working-group",
   "kind": "primary",
   "note": "July 2, 2025. Lists priority enforcement areas, including manipulation of electronic health record systems to drive inappropriate use of Medicare-covered products and services, and Medicare Advantage."
+ },
+ {
+  "slug": "mgma-provider-comp-2026",
+  "title": "2026 Provider Compensation and Productivity Data Report (2025 data)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://pages.mgma.com/rs/144-AMJ-639/images/2606-N36956D-2026%20Provider%20Compensation%20and%20Productivity%20Data%20Report%20MW%202.pdf?version=0",
+  "kind": "secondary",
+  "note": "Median total compensation for primary care physicians, 2025 data: $383,275 with supervisory duties and $322,865 without. By plan type: $345,852 on production-based plans and $314,404 on other plans. Median encounters in physician-owned primary care: 3,144."
+ },
+ {
+  "slug": "joa-medical-practices-bv-2005",
+  "title": "Medical practices: a BV Rx",
+  "publisher": "Journal of Accountancy (AICPA)",
+  "year": "2005",
+  "url": "https://www.journalofaccountancy.com/issues/2005/nov/medicalpracticesabvrx/",
+  "kind": "secondary",
+  "note": "November 2005. For medical practices, market-data multiples are weak evidence and income-approach methods are the main basis of value. Understating reasonable physician compensation overstates goodwill."
+ },
+ {
+  "slug": "irs-sale-of-business",
+  "title": "Sale of a business",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/sale-of-a-business",
+  "kind": "primary",
+  "note": "When a business is sold, each asset is treated as sold separately to figure gain or loss. Buyer and seller use the residual method to split the price among the assets. Page reviewed February 10, 2026."
+ },
+ {
+  "slug": "cfgi-pe-physician-2019",
+  "title": "Private Equity: Current and emerging financial due diligence considerations when acquiring physician practices",
+  "publisher": "CFGI",
+  "year": "2019",
+  "url": "https://www.cfgi.com/assets/CFGI-Private-Equity-Physician-Practices.pdf",
+  "kind": "secondary",
+  "note": "Advisory firm paper. A buyer has to settle how receivables and payables (working capital) are treated after the closing."
+ },
+ {
+  "slug": "usc-26-1366",
+  "title": "26 U.S.C. 1366: Pass-thru of items to shareholders",
+  "publisher": "U.S. Code",
+  "year": "2023",
+  "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapS-partII-sec1366.htm",
+  "kind": "primary",
+  "note": "Subsection (b): each item passed through to a shareholder of an S corporation keeps the character it had for the corporation."
+ },
+ {
+  "slug": "usc-26-1374",
+  "title": "26 U.S.C. 1374: Tax imposed on certain built-in gains",
+  "publisher": "U.S. Code",
+  "year": "2023",
+  "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapS-partIII-sec1374.htm",
+  "kind": "primary",
+  "note": "A corporate-level tax on built-in gains an S corporation recognizes during the recognition period. Subsection (d)(7): that period is the 5 years beginning with the first day of the first tax year as an S corporation. Subsection (c)(1): the tax does not apply to a corporation that has always been an S corporation."
  }
 ]

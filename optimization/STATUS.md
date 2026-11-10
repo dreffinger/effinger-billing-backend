@@ -10,7 +10,7 @@ Updated 2026-11-10, third pass. Branch `claude/practice-optimization-upo`, draft
 - **Postman.** Collection "ehpa Practice Optimization API" in My Workspace; the same seven requests are in `docs/api_vocabulary.json` and the generated collection file.
 
 ## Headline results
-- Valuation: enterprise value about $650,000 (range $400,000 to $1,000,000); normalized EBITDA $170,057; indicative owner proceeds $622,225 before tax and deal costs. Method and inputs are in `practices/ehpa/valuation.json`.
+- Valuation: enterprise value about $300,000 (range $50,000 to $680,000); normalized EBITDA $88,057 after a $435,000 loaded market wage; subtotal after cash, receivables and debt $257,225 before tax and deal costs. A first version said $650,000; two independent reviews found it used too low a wage, counted stipends no longer received and over-weighted marketplace sales. Method and inputs are in `practices/ehpa/valuation.json`.
 - Risk review: 13 findings in `practices/ehpa/risk_findings.json`. The largest is complex chronic care management billed for most of the census each month.
 - Purchased library: 52 of 60 documents reviewed. Of 96 claims checked against primary sources, 8 were supported, 55 partly right, 24 contradicted, 7 out of date and 2 could not be checked. Use it as an outline, not as a reference.
 

@@ -688,16 +688,16 @@
   "project_slug": "sale-readiness",
   "ord": 77,
   "title": "Separate recurring collections from recovery of old receivables each month",
-  "detail": "",
+  "detail": "Use payment dates and dates of service, together with the month-of-service pull in the monthly close project. Do not rely on the valuation until this is done.",
   "owner": "claude",
-  "due": "2027-01-31"
+  "due": "2026-12-19"
  },
  {
   "id": "ehpa-sale-readiness-03",
   "project_slug": "sale-readiness",
   "ord": 78,
   "title": "Choose a target year for stepping back",
-  "detail": "Most value-building steps take two to three years.",
+  "detail": "Plan three to five years ahead.",
   "owner": "william",
   "due": "2027-03-31"
  },

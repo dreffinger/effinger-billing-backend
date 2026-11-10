@@ -339,7 +339,7 @@
       "type": "list",
       "items": [
        "**Operating expense ratio: 44.7%.** Roughly 60% is typical for primary care. Lean staffing and automated billing explain the gap.",
-       "**The balance sheet shows $94,431 of cash and no receivables**, because cash basis leaves them out. About $90,000 of the $342,620 open is likely to turn into cash.",
+       "**The balance sheet shows $94,431 of cash and no receivables**, because cash basis leaves them out. About $75,000 of the $342,620 open is likely to turn into cash.",
        "**It also shows $162,121 that you owe the corporation.** That is cash you have already taken, recorded as a loan. It needs a plan, with the accountant, before year end.",
        "**Debt is $212,206, most of it at 13.99%.** Interest was nearly $30,000 for the year."
       ]
@@ -348,7 +348,7 @@
       "type": "callout",
       "tone": "key",
       "title": "Profit before and after your own wage",
-      "text": "$585,057 is what the practice earns before paying you. A physician doing your clinical work would cost about $369,000 with taxes and benefits. What is left, about $170,000 after removing some one-time collections, is the profit of the business as distinct from the wage for your work. Lenders and buyers look at that second number."
+      "text": "$585,057 is what the practice earns before paying you. A physician doing your clinical work would cost about $435,000 with taxes and benefits. What is left, about $88,000 after removing some one-time collections and stipends no longer received, is the profit of the business as distinct from the wage for your work. Lenders and buyers look at that second number."
      },
      {
       "type": "quiz",
@@ -478,7 +478,7 @@
    "Charge, allowed, paid and adjustments are different numbers. Only avoidable write-offs are lost money.",
    "Conventional billing targets are conventions. Compare yourself with measured results and with your own trend.",
    "This practice is fast (3-day charge lag, 18 days to payment) and leaky (30% of lines unpaid first time, 35% of receivables over 90 days).",
-   "Earnings before owner pay are $585,057. Earnings after a market wage are about $170,000. Both numbers matter.",
+   "Earnings before owner pay are $585,057. Earnings after a market wage are about $88,000. Both numbers matter.",
    "Revenue that would not survive a chart review is not revenue. Test it yourself first.",
    "Forty-five minutes a month with the scorecard is the whole CFO job."
   ]

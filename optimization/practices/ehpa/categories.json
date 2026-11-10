@@ -98,7 +98,7 @@
   "applicability": "core",
   "status": "green",
   "priority": 3,
-  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage, about $170,000 remains, a 17% margin.",
+  "assessment": "The practice is profitable: $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. After paying a physician a market wage for this workload, about $88,000 remains, a 9% margin.",
   "evidence": [
    "Operating margin before owner pay 55.3%",
    "Net income $336,858 after recorded doctor pay of $217,296"
@@ -145,7 +145,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The owner takes $180,000 a year in salary and more than that in distributions. Tax rules expect an owner who works full time in an S corporation to take reasonable pay as wages, and market pay for this work is roughly $300,000 to $340,000.",
+  "assessment": "The owner takes $180,000 a year in salary and more than that in distributions. Tax rules expect an owner who works full time in an S corporation to take reasonable pay as wages, and published 2025 figures for this work run from about $304,000 to $383,000. The valuation uses $383,275 because of the owner's workload.",
   "evidence": [
    "Nine months of 2026: salary $135,000, distributions $176,241",
    "Shareholder loan receivable $162,121"
@@ -1136,10 +1136,10 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Indicative enterprise value is about $650,000, within a range of $400,000 to $1,000,000. With cash and collectible receivables added and debt repaid, the owner would keep about $620,000 before tax and costs.",
+  "assessment": "Indicative enterprise value is about $300,000, within a range of about $50,000 to $680,000. With cash and collectible receivables added and debt repaid, about $257,000 would remain before tax, deal costs, unpaid bills and any personal tax balance.",
   "evidence": [
-   "Normalized earnings about $170,000",
-   "Small primary care practices sell for about 3 to 6 times such earnings"
+   "Normalized earnings about $88,000",
+   "One deal-data firm puts small primary care practices at 3 to 6 times such earnings; 2 to 4 times is used here"
   ],
   "next_step": "Refresh the estimate each year and get a formal appraisal before any negotiation."
  },
@@ -1148,10 +1148,10 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The practice earns $585,057 before owner pay, but a buyer subtracts a market wage for the physician and any income that will not repeat. That leaves about $170,000.",
+  "assessment": "The practice earns $585,057 before owner pay, but a buyer subtracts a market wage for the physician and any income that will not repeat. That leaves about $88,000, or up to about $170,000 if a buyer assumes a wage near the survey medians.",
   "evidence": [
-   "Market wage with taxes and benefits about $369,000",
-   "About $46,000 of 2026 collections estimated as one-time recovery"
+   "Market wage with taxes and benefits about $435,000",
+   "About $46,000 of 2026 collections treated as one-time recovery (a placeholder, not measured)"
   ],
   "next_step": "Separate recurring collections from recovered old receivables each month."
  },
@@ -1203,7 +1203,7 @@
   "applicability": "relevant",
   "status": "unknown",
   "priority": 3,
-  "assessment": "The owner's horizon is not written down. Most of what raises value takes two to three years, so the date matters now.",
+  "assessment": "The owner's horizon is not written down. An adviser quoted in Medical Economics (2026) frames succession on three to five years, so the date matters now.",
   "next_step": "Choose a target year and work back from it."
  },
  {

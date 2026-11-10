@@ -38,10 +38,10 @@
  {
   "metric_slug": "fm-margin-after-market-pay",
   "as_of": "2026-09-30",
-  "status": "green",
+  "status": "amber",
   "basis": "estimated",
-  "value": 16.8,
-  "note": "About $170,000 after a $369,000 loaded market wage for the physician and after removing an estimated $46,000 of one-time collections.",
+  "value": 8.8,
+  "note": "About $88,000 on revenue of $996,153, after a $435,000 loaded market wage for the physician, an estimated $46,000 of one-time collections and $16,000 of stipends no longer received.",
   "source": "ehpa-financials"
  },
  {
@@ -101,10 +101,10 @@
  {
   "metric_slug": "fm-debt-service-coverage",
   "as_of": "2026-09-30",
-  "status": "green",
+  "status": "amber",
   "basis": "estimated",
-  "value": 2.2,
-  "note": "Normalized earnings of $170,057 against about $77,900 a year of interest and scheduled principal. On actual owner pay the ratio is 4.7. Lenders look for 1.2 or more.",
+  "value": 1.13,
+  "note": "Normalized earnings of $88,057 against about $77,900 a year of interest and scheduled principal. That is below the 1.2 lenders look for. The figure moves with the wage assumed: at the family medicine median wage it is about 1.7. On actual owner pay the ratio is 4.7.",
   "source": "ehpa-financials"
  },
  {
@@ -112,8 +112,8 @@
   "as_of": "2026-09-30",
   "status": "green",
   "basis": "estimated",
-  "value": 1.25,
-  "note": "$212,206 of debt against normalized earnings of $170,057.",
+  "value": 2.41,
+  "note": "$212,206 of debt against normalized earnings of $88,057.",
   "source": "ehpa-financials"
  },
  {
@@ -149,7 +149,7 @@
   "status": "amber",
   "basis": "measured",
   "value": 43.4,
-  "note": "Salary runs $180,000 a year. Market pay for the same clinical work is about $300,000 to $340,000. Ask the accountant whether the salary is defensible as reasonable compensation.",
+  "note": "Salary runs $180,000 a year. Published 2025 figures for the same clinical work run from about $304,000 to $383,000, and the valuation uses $383,275. Ask the accountant whether the salary is defensible as reasonable compensation.",
   "source": "ehpa-financials"
  },
  {
@@ -1039,8 +1039,8 @@
   "as_of": "2026-11-10",
   "status": "na",
   "basis": "estimated",
-  "value": 650000,
-  "note": "Indicative. Range $400,000 to $1,000,000. See the valuation page.",
+  "value": 300000,
+  "note": "Indicative. Range about $50,000 to $680,000. See the valuation page.",
   "source": "ehpa-financials"
  },
  {
@@ -1057,8 +1057,8 @@
   "as_of": "2026-09-30",
   "status": "na",
   "basis": "estimated",
-  "value": 170057,
-  "note": "Range $123,000 to $239,000 depending on the market wage and on how much of the 2026 collections recur.",
+  "value": 88057,
+  "note": "Range about $17,000 to $170,000, depending on the market wage, stipends, third-quarter costs and how much of the 2026 collections recur.",
   "source": "ehpa-financials"
  },
  {
@@ -1073,10 +1073,10 @@
  {
   "metric_slug": "lv-recurring-revenue-share",
   "as_of": "2026-10-31",
-  "status": "green",
+  "status": "amber",
   "basis": "estimated",
-  "value": 62,
-  "note": "Nursing facility and assisted living residents, who are seen on a recurring schedule. Hospital work, 37.8%, depends on continuing referrals.",
+  "value_text": "26% to 62% of billed charges",
+  "note": "Estimated from billed charges, not collections. Nursing facility and assisted living visits are about 26% of charges. Complex care-management charges for those residents are another 36%. Those claims have paid about 42% of the time and are flagged in the risk review. Hospital work, 37.8%, depends on continuing referrals. No follow-up assisted living visits appear in the charge feed for this period. The share of collections has not been measured.",
   "source": "ehpa-neon"
  },
  {
@@ -1111,8 +1111,8 @@
   "as_of": "2026-11-10",
   "status": "na",
   "basis": "estimated",
-  "value": 622225,
-  "note": "Before tax and deal costs: value plus cash plus collectible receivables less debt.",
+  "value": 257225,
+  "note": "Before tax, deal costs, unpaid bills, any holdback and any personal tax balance: value plus cash plus collectible receivables less debt.",
   "source": "ehpa-financials"
  }
 ]
