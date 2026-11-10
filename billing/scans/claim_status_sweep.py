@@ -16,6 +16,8 @@
 # Never touches: AMD writes, balances, claims. Writes claimstatus_<date>.json (chart and visit ids, no names), the ledger, an unusable raw
 #   reply under patient_db/claimstatus_raw/ (never in git), and prints the run report: what was asked and answered, the hand-off list
 #   with age and dollars, the insurance-check list, payers left out, wordings the rules do not know, the caps, and the claims silent 60+ days.
+#   11/10/2026 (step 3): claimstatus_<date>.json is written again after EVERY claim, like the ledger - a run cut off half way (the Bash
+#   tool's time limit) keeps every answer it got where the runbook reads them, instead of answers that sit in the ledger only.
 # ---
 """Usage: python3 claim_status_sweep.py [--go] [--aging aging_latest.json] [--ledger PATH] [--new-ledger] [--carriers A,B] [--max N]
 Reads tonight's ageing file and the claim-status ledger and lists the claims that are DUE for a claim-status check (cs_rules.py).
@@ -78,9 +80,10 @@ def parse(argv, prog, doc, exact_helper=False):
     ap.add_argument("--max", type=int, default=None, help="at most N checks this run (never more than the run cap of %d)" % cs_rules.CAPS["run checks"])
     return ap.parse_args(argv)
 
-def run(o, prog, vids=None, force_exact=False, keep_every_raw=False):
+def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim=None):
     """The shared run of the claim-status helpers -> (exit code, run rows, report lines). No call before the ageing file and the ledger
-    are read and found good; with o.go False no call of any kind (no AdvancedMD login, no vendor check)."""
+    are read and found good; with o.go False no call of any kind (no AdvancedMD login, no vendor check). after_claim(rows), when given, is
+    called with the run rows after every claim's answer is saved in the ledger (the weekly helper writes its run file there)."""
     stedi.WHO = WHO if prog == "claim_status_sweep.py" else prog.replace(".py", "").replace("_", " ")
     today = datetime.date.today(); now = datetime.datetime.now(datetime.timezone.utc); stamp = now.strftime("%Y-%m-%dT%H%MZ"); month = today.strftime("%Y-%m")
     say = []
@@ -164,6 +167,9 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False):
         if "label" in rec: out.append(rec)
         try: led.save()
         except cs_rules.LedgerWriteError as e: p("STOPPED: %s - no further check is made tonight" % e); code = 3; break
+        if after_claim:
+            try: after_claim(out)                                    # a run cut off after this claim still leaves its answers in the run file
+            except Exception: pass
     handed = cs_rules.finish_run(led.changed, answers, today)
     for rec in out:
         L = led.changed.get("%s|%s" % (rec["visitid"], rec["carrier"]))
@@ -204,9 +210,10 @@ def write_rows(out, name):
 
 def main(argv=None, prog="claim_status_sweep.py", out_name="claimstatus_%s.json", doc=None):
     o = parse(sys.argv[1:] if argv is None else argv, prog, doc or __doc__)   # --help prints and exits; an unknown word is an error - before any call
-    code, out, say = run(o, prog)
+    name = out_name % datetime.date.today().strftime("%Y%m%d")
+    code, out, say = run(o, prog, after_claim=(lambda rows: write_rows(rows, name)) if o.go else None)   # 11/10/2026: the run file after every claim
     if o.go and code != 2:
-        name = out_name % datetime.date.today().strftime("%Y%m%d"); n = write_rows(out, name)
+        n = write_rows(out, name)
         print("  wrote %s (%d rows: chart and visit ids, no names)" % (name, n))
     return code
 if __name__ == "__main__": sys.exit(main())

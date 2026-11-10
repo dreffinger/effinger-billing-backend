@@ -183,6 +183,11 @@ def _real(j, how):
     answer: it is kept only as 'asked and failed today' and never as 'no death on record'."""
     if how == "failed": return False
     return how == "plain" or _plain_usable(j) or _codes(j) == ["72"] or bool(_death(j))
+def _hospice_line(x):
+    """11/10/2026 (look-ups part A, step 3): a hospice election in a Medicare answer is a Health Care Facility line (code X) for service type
+    45 - the hospice provider's line with its dates. The Part A lines (active coverage, deductible) list 45 among the many services they
+    cover for EVERY beneficiary (the vendor's own look-up example; both plain answers of 10/8/2026), so 45 on such a line is not hospice."""
+    return isinstance(x, dict) and x.get("code") == "X" and "45" in [str(s) for s in (x.get("serviceTypeCodes") or [])]
 def medicare_facts(j, how, number=None):
     """What medicare_store.py keeps of one answer: the facts every reader needs - never the Medicare number, a name, a birth date or an address."""
     m = med_summ(j)
@@ -190,7 +195,7 @@ def medicare_facts(j, how, number=None):
     differs = None
     if how in LOOKUP_KINDS and number and m["mbi"]: differs = (medicare_number(m["mbi"]) or str(m["mbi"]).strip().upper()) != number
     return {"active": any(x.get("code") == "1" for x in _parts(j)), "partA": m["partA"], "partB": m["partB"], "other": m["other"],
-            "hospice": any(isinstance(x, dict) and "45" in (x.get("serviceTypeCodes") or []) for x in ((j or {}).get("benefitsInformation") or [])),   # service type 45 = hospice
+            "hospice": any(_hospice_line(x) for x in ((j or {}).get("benefitsInformation") or [])),   # a code-X line for service type 45 (not the Part A line)
             "death": _death(j), "errors": m["errors"], "number_differs": differs}
 def _store():
     """The answer store module, or None when this workspace lacks it (a missing store is an empty store: the caller simply asks)."""

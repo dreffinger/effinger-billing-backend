@@ -22,6 +22,8 @@
 #       end a payer for the run; the commercial plan the vendor named is not switched off;
 #     - the caps: 150 checks or $25 a run, 400 checks or $100 a month, priced with the one price table, and the line that says how many due
 #       claims were left and why; one usage-log line per check;
+#     - a run cut off half way (the Bash tool's time limit) leaves every answer it got in claimstatus_<date>.json as well as the ledger, and a
+#       second start asks only the claims not yet answered (step 3);
 #     - no accidental run: --help, no --go, an unknown word or option = no call; --go asks; no text under nightly/live/ starts a sweep
 #       without --go, and the retired backlog sweep is gone from the Billing Button routine and the engine;
 #     - reading the answer: paid / finalized at $0 / denied / pending / not found (resend candidate) / no electronic answer (hand off) /
@@ -623,6 +625,30 @@ def t_concurrent():
     ON_SEND.append(meanwhile); sweep(ws, "--go"); d = ledger(ws)
     check("ledger: a row and a count another helper wrote while the run was asking are kept (5 + 1 = 6)", lambda: "123|ZZZ" in d["rows"] and CS.key(c["row"]) in d["rows"] and d["months"][TODAY.strftime("%Y-%m")]["checks"] == 6, d["months"])
 
+def t_cut_off():
+    # step 3: the Bash tool stops a command at its time limit; a run cut off half way must leave every answer it got where the runbook reads
+    # them (claimstatus_<date>.json), not in the ledger only (where a final answer would never be asked again - and never acted on)
+    reset(); ws = new_ws(); a = claim(sent=60); b = claim(sent=60); c = claim(sent=60); write_aging(ws, [a, b, c]); answer(a, PAID_A(a)); answer(b, PENDING_A(b))
+    n = [0]
+    def cut(url, body):
+        if "claimstatus" in url:
+            n[0] += 1
+            if n[0] == 3: raise KeyboardInterrupt("the time limit of the Bash tool (stand-in)")
+    ON_SEND.append(cut); was_cut = False
+    try: sweep(ws, "--go")
+    except KeyboardInterrupt: was_cut = True
+    del ON_SEND[:]
+    rf = {}
+    try: rf = {r["visitid"]: r for r in run_file(ws)}
+    except Exception: pass
+    check("cut-off: a run cut off at its third check leaves the two answers it got in claimstatus_<date>.json, with the action words the runbook reads",
+          lambda: was_cut and set(rf) == {a["vid"], b["vid"]} and rf[a["vid"]]["action"].startswith("PAID $") and rf[b["vid"]]["action"].startswith("PENDING"), (was_cut, rf))
+    check("cut-off: ... and in the ledger (the paid answer is final there, so the run file is the only place the runbook can still act on it)",
+          lambda: lrow(ws, a).get("final") is True and lrow(ws, b).get("answer") == "pending" and not lrow(ws, c))
+    reset(); answer(c, PENDING_A(c)); sweep(ws, "--go"); rf2 = {r["visitid"]: r for r in run_file(ws)}
+    check("cut-off: a second start the same night asks only the claim that was not answered, and the run file then holds all three",
+          lambda: asked_members() == [c["member"]] and set(rf2) == {a["vid"], b["vid"], c["vid"]} and rf2[a["vid"]]["action"].startswith("PAID $"), (asked_members(), sorted(rf2)))
+
 def t_full_and_exact():
     reset(); ws = new_ws(); a = claim(payer="HUM01", sent=60); b = claim(payer="SUN01", sent=60); write_aging(ws, [a, b])
     c1, o1, e1 = run_main("scripts/helpers/sweep_full.py", ["--help"], ws); c2, o2, e2 = run_main("scripts/helpers/sweep_full.py", [], ws); n = len(SENT)
@@ -812,7 +838,7 @@ def t_replay():
     check("replay: with the year rule as well even fewer checks are kept", lambda: y["kept"] < r["kept"])
 
 TESTS = [t_prices_caps, t_labels, t_need, t_waits, t_record_stop, t_files, t_cli, t_inputs, t_need_run, t_request_shape_and_log, t_ledger_run, t_stop_run,
-         t_payer_stop_and_caps, t_answers_run, t_concurrent, t_full_and_exact, t_clear_cli, t_engine, t_texts, t_copies, t_replay]
+         t_payer_stop_and_caps, t_answers_run, t_concurrent, t_cut_off, t_full_and_exact, t_clear_cli, t_engine, t_texts, t_copies, t_replay]
 _PATH = list(sys.path)
 def _run(t):
     try: t()

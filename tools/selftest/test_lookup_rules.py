@@ -12,7 +12,8 @@
 #       look-up and a report line; the SSN only when the caller gives one; med_summ reads both kinds of answer and a stored one;
 #     - the answer store: one answer per chart and day shared by every helper, each reader's own age rule, an answer about an earlier
 #       month never serves a later one, 'asked and failed today' stops a second purchase until the next day, no Medicare number, name or
-#       birth date in the file, writes in one step, a store that is missing or broken is an empty one, git ignores patient_db/;
+#       birth date in the file, writes in one step, a store that is missing or broken is an empty one, git ignores patient_db/; hospice
+#       only from a code-X line for service type 45 - the Part A line lists 45 for every beneficiary (step 3);
 #     - the guard: a date of death learned from a PLAIN answer blocks exactly as one from a look-up; a plain 'not found', an empty reply
 #       and a failed call are never kept as 'no death on record'; a failed call blocks nothing and is logged 'UNVERIFIED' as before; two
 #       helpers asking about one chart on one day make ONE paid call; the 30 days count from the day Medicare was asked; the chart's own
@@ -508,6 +509,13 @@ def t_med_summ():
     ma = newp(advantage=("TEST ADVANTAGE", "H" + str(4521))); hp = newp(hospice=True)
     check("client: the store's hospice fact is service type 45 - an Advantage plan whose id holds '45' is not hospice",
           lambda: ST.medicare_facts(a271(ma, ma["number"]), "plain")["hospice"] is False and ST.medicare_facts(a271(hp, hp["number"]), "plain")["hospice"] is True)
+    # step 3: a real Medicare answer lists hospice (45) among the services of its Part A lines for EVERY beneficiary (the vendor's own look-up
+    # example; the two plain answers of 10/8/2026) - only a code-X line for 45 (the hospice provider's line) is a hospice election
+    rp = newp(); real = a271(rp, rp["number"]); pa = [x for x in real["benefitsInformation"] if x.get("insuranceTypeCode") == "MA" and x.get("code") == "1"][0]
+    pa["serviceTypeCodes"] = ["30", "42", "45", "48", "49", "69", "76", "83", "A5", "A7", "AG", "BT", "BU", "BV"]
+    real["benefitsInformation"].append({"code": "C", "name": "Deductible", "insuranceTypeCode": "MA", "serviceTypeCodes": ["30", "42", "45", "48"], "benefitAmount": "0"})
+    check("client: a Part A line that lists hospice (45) among its covered services, as every Medicare answer does, is not hospice in the store; a code-X line for 45 is",
+          lambda: ST.medicare_facts(real, "plain")["hospice"] is False and ST.medicare_facts(a271(hp, hp["number"]), "lookup")["hospice"] is True)
     f = ST.medicare_facts(a271(p, p["number"]), "plain")
     check("client: the facts kept per answer: active, Part A / B, the Advantage plan (name, id, dates), hospice, date of death, errors - and nothing else",
           lambda: f["active"] is True and f["partA"] and f["partB"] and f["other"][0]["entity"] == [("TEST ADVANTAGE", "H" + str(4521))] and f["death"] == p["death8"]
