@@ -4637,11 +4637,11 @@
   "kind": "program_rule",
   "stakes": "medium",
   "verdict": "partly",
-  "correct_statement": "Limits vary by state, but federal rule caps ordinary fee-for-service claims at 12 months from the date of service, so 24 months is not a general limit; states may be shorter. Florida: 12 months for fee-for-service, 6 months for Medicaid managed care plans, and for Medicare crossovers the greater of 36 months from service or 12 months after Medicare adjudication.",
-  "source_title": "42 CFR 447.45(d); AHCA Florida Medicaid Provider Reimbursement Handbook, CMS-1500 (July 2008), ch. 1; Fla. Stat. ss. 409.967(2)(j), 641.3155",
+  "correct_statement": "Limits vary by state, but federal rule caps ordinary fee-for-service claims at 12 months from service, so 24 months is not a general limit; states may be shorter. Florida: 12 months for fee-for-service, 6 months by statute for Medicaid plans, and for Medicare crossovers 12 months from service or 6 months after the Medicare disposition notice, whichever is greater.",
+  "source_title": "42 CFR 447.45(d); Fla. Admin. Code r. 59G-1.052(15) (2018); AHCA Florida Medicaid Provider Reimbursement Handbook, CMS-1500 (2008), ch. 1; Fla. Stat. ss. 409.967(2)(j), 641.3155",
   "source_url": "https://www.ecfr.gov/current/title-42/section-447.45",
   "confidence": "medium",
-  "practice_impact": "For dual-eligible residents, Florida Medicaid crossover balances are not dead at 12 months, while Medicaid managed care plans run on a 6-month statutory clock; confirm each plan's crossover rule."
+  "practice_impact": "Dual-eligible crossover balances get 12 months from service or 6 months after Medicare's disposition, whichever is later; the 2008 AHCA handbook's 36-month figure conflicts with the 2018 rule, so do not rely on it."
  },
  {
   "id": "news-insider-06:C4",
