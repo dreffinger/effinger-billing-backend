@@ -32,16 +32,18 @@ Duplicates: should Gregg's pickup ever post the same files, `FEED_STAMP=<batch> 
 
 ## Place of service in the nursing buildings (William 11/10/2026 - practices/ehpa/rules.md)
 Claimocity can only send POS 31 for the five nursing buildings (Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes
-Southwood), so step 5 (claimocity_import.py) sets the real place of service per charge line when it enters the charge. Medicare allows
+Southwood), so step 5 (claimocity_import.py) sets the place of service per charge line by William's frequency rule when it enters the
+charge (an operating rule read from the visit pattern, not a check of the building's Part A list). Medicare allows
 31 for any resident and matches every 32 line to the facility's Part A claim, so 32 is given only where the chart shows the long-term
 pattern; whatever the chart does not show stays at the feed's 31, exactly what was billed before:
 - CCM 99487 / 99489 in one of those buildings -> POS 32 (long-term residents who are not being actively skilled). ALF / home CCM stays 13.
-  Exception: the line stays at the feed's 31, and is listed for William, when the chart shows that resident seen at skilled frequency,
-  admitted or readmitted in the same calendar month.
+  Exception: the line stays at the feed's 31, and is listed for William, when the chart shows in the same calendar month one of our
+  hospital visits or a nursing visit the rule reads as weekly, an admission, a discharge or a new stay.
 - A nursing facility visit (99304-99310, 99315-99316) -> POS 32 for the monthly visit: the previous nursing visit on the chart or in the
-  batch was 21 to 92 days earlier, was not a discharge, and none of our hospital visits falls in between. POS 31 when the resident is seen
-  once or twice a week (previous nursing visit no more than 14 days earlier), for an initial visit 99304-99306, the first nursing visit on
-  the chart, the first visit after a discharge, a hospital visit of ours or more than 92 days, and for a gap of 15 to 20 days.
+  batch was 21 to 92 days earlier, in the same building, not a discharge, with none of our hospital or home / ALF visits in between and
+  no initial visit known for the same day or the next two weeks. POS 31 when the resident is seen once or twice a week (previous nursing
+  visit no more than 14 days earlier), for an initial visit 99304-99306, a discharge visit 99315 / 99316, the first nursing visit on the
+  chart, the first visit of a new stay, and for a gap of 15 to 20 days.
   99497 / 99498 follow the visit line of the same date.
 - Hospital (21), HCA REHAB (fac67, 31 - never for a CCM visit, which is held for William), ALF / home (13) and unknown-building lines are
   entered exactly as before; so are the visits of a feed patient whose messages in one batch come from two buildings (reported, see below).
@@ -55,7 +57,8 @@ carries pos_feed / pos_lines / pos_why / pos_kind / pos_err per visit; the diges
 DID NOT RUN` (an old copy of the helper ran) and lines from a building the facility table does not know. Listed by chart for William, not
 held: CCM lines left at 31 and visits left at 31. Never move a 32 back to 31 in Charge Review or the Claim Inspector, and never change the
 place of service of a claim that was already submitted. A 32 line Medicare returns with reason code 58, or reprices to the facility rate,
-was a resident in a Part A stay: resubmit a returned line at 31, never again at 32, and name the chart in the report (rules.md, part 7).
+(remarks M77 / N692) was a resident in a Part A stay: resubmit a returned line at 31, never again at 32, and name the chart in the report
+(rules.md, part 7). Reason 58 from Medicare is never bypassed like an AdvancedMD advisory.
 Offline proof: `python3 tools/selftest/test_pos_rule.py` (no AMD, no network).
 
 ## Why it is safe to run every routine

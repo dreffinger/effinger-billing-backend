@@ -23,6 +23,7 @@ DENIAL_RULES = {
  "226": ("FIX",  "Records requested from provider - William follows up from the list (no auto action)"),
  "227": ("FIX",  "Info requested from patient not furnished - follow up"),
  "252": ("FIX",  "Attachment/document required - resubmit with the attachment"),
+ "58":  ("FIX",  "Place of service inconsistent - on a nursing-building line sent as 32 this is Medicare's Part A match (rules.md 11/10/2026, part 7): the resident was in a Part A stay, correct the line to 31 and send it again as a new claim, never again at 32, name the chart for William; on any other line read the RARC"),
  # --- coordination of benefits: bill the right payer ---
  "22":  ("COB",  "Wrong payer / COB - run the Stedi insurance cascade (MBI lookup / eligibility / discovery), then rebill the right payer (William 9/12)"),
  "109": ("COB",  "Not covered by this payer - Stedi insurance cascade to find the right payer, then rebill"),
