@@ -1632,6 +1632,262 @@
   "verdict": "not checked"
  },
  {
+  "id": "kpi-03-days-in-ar:C1",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Medicare typically pays within 14 days of a clean claim.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C2",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Some Medicare Advantage plans take 30 to 45 days [to pay a clean claim].",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C3",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Some Medicaid programs take 60 or more [days]; these are structural delays that cannot be fixed by the practice.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C4",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Aged AR that is not resolved within 90 to 120 days of service typically becomes uncollectable (filing window closed, appeal deadline passed, or account sent to collections).",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C5",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Any denial past the appeal window is not workable - it should be written off and documented as a process failure.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C6",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Every claim that fails on first submission adds 20 to 45 days to its AR age.",
+  "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C7",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "Raising clean claim rate from 87 to 94 percent 'will see days in AR drop by 5 to 8 days within 60 days without any other intervention'.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-03-days-in-ar:C8",
+  "item_slug": "kpi-03-days-in-ar",
+  "claim": "A contract paying 5 percent above market rate on a 45-day cycle 'may generate less actual cash per quarter' than one paying market rate on a 21-day cycle.",
+  "kind": "other",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C1",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "For most commercial payers, the appeal deadline is 90 to 180 days from service date.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C2",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "Clean claims submitted to most payers will pay or deny within 14 to 30 days.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C3",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "Payers with 365-day timely filing windows have claims that are genuinely recoverable at 150 or 180 days.",
+  "kind": "deadline",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C4",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "For 0-30 day claims, verification that the claim was received and is in process 'can be batch-checked via ERA rather than individually worked'.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C5",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "Historical recovery rate for the 120-plus day bucket is 'typically 30 to 50 percent for most independent practices'.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C6",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "Most practices use $100 minimum for collections referral.",
+  "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C7",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "When an account is referred to collections or written off, 'the documented contact history is the compliance record that demonstrates due diligence'.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-04-ar-aging-buckets:C8",
+  "item_slug": "kpi-04-ar-aging-buckets",
+  "claim": "A new provider whose claims concentrate in the 61-plus day buckets within their first 60 days has a credentialing gap (NPI not active with a payer, wrong taxonomy codes, or fee schedule not loaded).",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C1",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "Research across independent practices consistently shows the probability of collecting a patient balance in full drops from about 95% at time of service to 70-80% after a first statement, 50-60% after a second, and 30-40% in collections.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C2",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "A copay collection rate below 95% means the front desk is not collecting money the practice has an absolute right to collect at every visit.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C3",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "A POS collection rate above 90% is best practice, is achievable, and should be the target for every independent practice.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C4",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "A $200 balance sent through two statements and a collections referral yields $60 to $80 gross; after a typical 25 to 40 percent agency fee the net recovery is $36 to $60.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C5",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "Every patient with a known balance (copay, prior balance, or estimated deductible) is told the amount and asked for payment before they are roomed.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C6",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "For balances above $200 the front desk immediately offers a payment plan, such as $50 per month, with automated monthly charges to the card on file.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C7",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "Collectible means the patient is not on a payment plan, financial assistance program, or hardship waiver that legitimately defers collection; a written charity care policy with income thresholds lets the practice keep a firm standard.",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-05-pos-collection-rate:C8",
+  "item_slug": "kpi-05-pos-collection-rate",
+  "claim": "Without active management, most practices' POS collection rate settles between 60 and 70 percent, and a team trained to 90 percent can fall to 65 percent within 60 days of one experienced staff departure.",
+  "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C1",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "In many independent practices, patient responsibility now represents 20 to 35 percent of total revenue.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C2",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "Research consistently shows statements received within 30 days of service produce payment rates 25 to 35 percentage points higher than those received after 60 days.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C3",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "Every dollar that passes through the statement cycle costs $8 to $15 to collect and recovers at a fraction of face value.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C4",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "The collections agency recovers 20 to 35 cents on the dollar on average; recovery rates below 20 percent should prompt consideration of a different agency.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C5",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "Every account that meets the referral criteria (minimum balance, days from service, completed statement series, no active payment plan) is referred to collections without exception.",
+  "kind": "legal",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C6",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "A patient collection rate above 90% is best practice and is still achievable in a high-deductible environment; below 60% is structural failure.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C7",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "A written payment plan policy sets minimum payment, maximum duration and whether interest is charged; most practices charge no interest for plans under 12 months, with automatic monthly charges to a card on file.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "kpi-06-patient-collection-rate:C8",
+  "item_slug": "kpi-06-patient-collection-rate",
+  "claim": "ERA enrollment is free and is the single most impactful administrative change most practices have not completed.",
+  "kind": "program_rule",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
   "id": "kpi-07-write-off-rate-by-reason:C1",
   "item_slug": "kpi-07-write-off-rate-by-reason",
   "claim": "For write-offs coded 'denial appeal expired' or 'timely filing', the quarterly recovery review asks: 'Is there a balance transfer to patient responsibility that was never executed?'",
@@ -1880,6 +2136,70 @@
   "verdict": "not checked"
  },
  {
+  "id": "annual-revenue-cycle-assessment-guide:C1",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Our coders and providers are current on the 2021 E&M guideline changes and correctly apply the medical decision-making pathway.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C2",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Copays are collected at check-in, before the patient is roomed, at every visit, with no exceptions.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C3",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Patient responsibility now represents 25 to 35 percent of revenue in most independent practices, and that percentage is growing as high-deductible plans continue to dominate the market.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C4",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Total score 31, 46 (AT RISK): 'Likely costing $50,000, $150,000 annually in preventable revenue loss.' Total score 47, 61 (MODERATE): 'Likely $20K, $50K recoverable annually.'",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C5",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Our overall patient collection rate is at or above 90% of patient responsibility billed.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C6",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "We offer structured payment plans with automatic payment required, not open-ended 'send us what you can' arrangements.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C7",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Our patient payment portal allows a patient to click a link, see their balance, and complete payment in under two minutes, without requiring a username, password, or portal login.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "annual-revenue-cycle-assessment-guide:C8",
+  "item_slug": "annual-revenue-cycle-assessment-guide",
+  "claim": "Our charge lag standard is defined in writing (target: ≤48 hours for office encounters, ≤5 business days for hospital and procedure encounters) and monitored by provider.",
+  "kind": "benchmark",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
   "id": "billing-department-performance-management-playbook:C1",
   "item_slug": "billing-department-performance-management-playbook",
   "claim": "Industry benchmarks from MGMA and HFMA: median days in AR 45, 55 vs top quartile 30, 38; median clean claim rate 85, 90% vs >96%; median initial denial rate 8, 12% vs <5%.",
@@ -1940,6 +2260,70 @@
   "item_slug": "billing-department-performance-management-playbook",
   "claim": "A denial that must be appealed costs 25, 45 minutes of staff time and delays payment 30, 60 days; every dollar invested in denial prevention typically returns 3, 5x in avoided denial management cost.",
   "kind": "statistic",
+  "stakes": "low",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C1",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "Medicare's deadline is one year from the date of service. Most commercial payers range from 90 to 180 days, and some managed care contracts impose 60-day windows.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C2",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "Payers may deny for late filing and, 'absent a documented administrative error exception, those denials are final'; 'A timely filing denial is not an appeals opportunity. It is a forfeiture.'",
+  "kind": "regulatory",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C3",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "Review denials for timely filing reason codes - CO-29 on Medicare remits, or equivalent commercial denial codes.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C4",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "HFMA-aligned industry estimate: 1 to 5 percent of collectible revenue is lost to charge capture failure. On $2 million in collections, that is $20,000 to $100,000 per year.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C5",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "A gastroenterologist performs a colonoscopy with polyp removal - the primary procedure is billed, the polypectomy add-on is missed.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C6",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "Office 'injectable medications, diagnostic supplies, or procedure kits' are 'items that have specific HCPCS codes and separate reimbursement'; unbilled supplies and implants are costs 'your payer contracts allow you to recover'.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C7",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "'For a statistically meaningful sample, pull 25 to 30 encounters per provider being audited', chosen from highest-revenue service types, then 'extrapolate to annual volume to estimate the full-year revenue impact'.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "charge-capture-audit-playbook:C8",
+  "item_slug": "charge-capture-audit-playbook",
+  "claim": "The charge master 'should be reviewed at minimum annually' to confirm 'All CPT and HCPCS codes are current - codes are added, deleted, and revised annually'.",
+  "kind": "code_rule",
   "stakes": "low",
   "verdict": "not checked"
  },

@@ -288,7 +288,7 @@
      },
      {
       "type": "code",
-      "text": "upo.domains            13 rows   strategy, finance, revenue cycle, payers, compliance, ...\n  upo.categories      117 rows  one per area: what good looks like, failure modes, questions, actions\n    upo.metrics       198 rows  definition, formula, benchmark, source, confidence\nupo.sources                    every rule and benchmark cites one\nupo.vendor_items, vendor_claims  the purchased library, scored and fact-checked\nupo.practices                  one row per practice\n  upo.practice_categories      applies? standing? evidence, next step\n  upo.practice_metrics         this practice's value for a measure, with date and basis\n  upo.risk_findings, recommendations, projects, worklist_items, valuations",
+      "text": "upo.domains            13 rows   strategy, finance, revenue cycle, payers, compliance, ...\n  upo.categories      117 rows  one per area: what good looks like, failure modes, questions, actions\n    upo.metrics       200 rows  definition, formula, benchmark, source, confidence\nupo.sources                    every rule and benchmark cites one\nupo.vendor_items, vendor_claims  the purchased library, scored and fact-checked\nupo.practices                  one row per practice\n  upo.practice_categories      applies? standing? evidence, next step\n  upo.practice_metrics         this practice's value for a measure, with date and basis\n  upo.risk_findings, recommendations, projects, worklist_items, valuations",
       "caption": "The shape of the framework. Indentation shows what belongs to what."
      },
      {
@@ -446,7 +446,7 @@
   "takeaways": [
    "Five layers: sources, agents, one database, an interface, and a three-way mirror.",
    "A claim is a standard message built from service codes, diagnoses, a place of service and identifiers. The remittance tells you why each dollar was not paid.",
-   "The framework is data: 13 domains, 117 areas and 198 measures as rows, each with a source.",
+   "The framework is data: 13 domains, 117 areas and 200 measures as rows, each with a source.",
    "Change content by editing a file, checking it, previewing it and loading it.",
    "Agents repeat rules perfectly, so the rules need human approval, sampling and an outside read.",
    "Universal content and practice content are stored separately, which is what would let the same system serve another practice."

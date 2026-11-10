@@ -847,7 +847,7 @@
   "year": "2026",
   "url": "https://www.ecfr.gov/current/title-45/section-164.502",
   "kind": "primary",
-  "note": "The ban on selling protected health information does not cover a sale or merger of the practice and related due diligence. The minimum necessary standard applies. Text read through the eCFR API, version dated 2026-11-05."
+  "note": "General rules for using and disclosing protected health information. Paragraph (b): use and disclose only the minimum necessary. Paragraph (e): a business associate may handle the information only under a written contract. Paragraph (a)(5)(ii): the ban on selling protected health information, which does not cover the sale or merger of a practice and the due diligence for it. Text read through the eCFR API, version dated 2026-11-05."
  },
  {
   "slug": "cfr-164-316",
@@ -1870,7 +1870,7 @@
   "year": "2026",
   "url": "https://www.ecfr.gov/current/title-45/section-164.308",
   "kind": "primary",
-  "note": "Paragraph (a)(7): contingency plan with data backup, disaster recovery and emergency mode operation plans (required) and periodic testing and revision (addressable). Unchanged as of November 6, 2026."
+  "note": "Administrative safeguards of the HIPAA Security Rule. Paragraph (a)(1): risk analysis and risk management. Paragraph (a)(5): security awareness and training for every workforce member. Paragraph (a)(7): contingency plan with data backup, disaster recovery and emergency mode operation plans (required) and periodic testing and revision (addressable). Paragraph (b): written contracts with business associates. Unchanged as of November 6, 2026."
  },
  {
   "slug": "cfr-26-1-1361-1",
@@ -2627,5 +2627,320 @@
   "url": "https://www.ecfr.gov/current/title-45/section-149.420",
   "kind": "primary",
   "note": "An out-of-network clinician at an in-network facility may not bill a commercially insured patient more than in-network cost sharing, unless the notice and consent rules are met."
+ },
+ {
+  "slug": "hyman-2025",
+  "title": "Hyman, Litwack, Quallich, Schram, Skolarus, Modi. Turnover among early-career advanced practice clinicians. JAMA Network Open 8(5):e258638",
+  "publisher": "JAMA Network Open",
+  "year": "2025",
+  "url": "https://doi.org/10.1001/jamanetworkopen.2025.8638",
+  "kind": "secondary",
+  "note": "Read as the open-access full text in PubMed Central, PMC12053513. Medicare billing files for 217,487 clinicians who first billed from 2010 to 2021: 14.4% moved practices within 1 year (nurse practitioners 14.4%, physician assistants 15.4%) and 29.8% within 3 years."
+ },
+ {
+  "slug": "cms-qpp-2027",
+  "title": "Calendar Year 2027 Medicare Physician Fee Schedule Final Rule: Quality Payment Program Fact Sheet and Policy Comparison Table",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/content-management/resources/document/2102bc02-f514-4a1f-b318-925bbb6dbe56/download/file",
+  "kind": "primary",
+  "note": "Posted November 4, 2026. Threshold 75 points through the 2028 performance year. Scores of 18.75 or less take the full 9% cut. Traditional MIPS ends after the 2030 performance year. New core measure requirement, small practices exempt. Submission window for 2026 data: January 4 to March 31, 2027."
+ },
+ {
+  "slug": "cms-qpp-eligibility",
+  "title": "How MIPS Eligibility Is Determined (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/eligibility-participation/eligibility/determination",
+  "kind": "primary",
+  "note": "Low-volume threshold ($90,000, 200 patients, 200 services), eligible clinician types, new Medicare enrollees excluded, preliminary and final eligibility released each December, group participation brings in clinicians exempt as individuals, qualifying participants in advanced payment models excluded. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-special-statuses",
+  "title": "Special Statuses (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/eligibility-participation/eligibility/special-statuses",
+  "kind": "primary",
+  "note": "Small practice (15 or fewer clinicians): 6 quality bonus points, one improvement activity, Part B claims reporting, no promoting interoperability reporting required. Facility-based scoring requires 75% of services in a hospital (place of service 21, 22 or 23). Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-small-practice",
+  "title": "Small Practices (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/resources/small-practice",
+  "kind": "primary",
+  "note": "When promoting interoperability is reweighted for a small practice: quality 40%, cost 30%, improvement activities 30%. A qualifying submission (all required data, measures and attestations) voids the automatic reweighting. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-exceptions",
+  "title": "Exception Applications (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/eligibility-participation/eligibility/exceptions",
+  "kind": "primary",
+  "note": "Extreme and uncontrollable circumstances and promoting interoperability hardship applications are due December 31, 2026, 8 p.m. Eastern. Small practices are reweighted automatically and need not apply. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-traditional-mips",
+  "title": "Traditional MIPS overview and quality requirements (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/reporting-requirements/ways-to-report/traditional-mips",
+  "kind": "primary",
+  "note": "Report by March 31 of the following year. The adjustment applies in the year after submission. Six quality measures and 75% data completeness are on the quality requirements page under the same path. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-mvp-registration",
+  "title": "MVP Registration (Quality Payment Program website)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/mips/mvps/learn-about-mvp-registration",
+  "kind": "primary",
+  "note": "2026 registration window for MIPS Value Pathways: April 1 to November 30, 2026. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qpp-feedback-2025",
+  "title": "2025 MIPS Performance Feedback FAQs",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://qpp.cms.gov/content-management/resources/document/c0eb4559-53fa-498d-9e7e-e28358f57c5a/download/file",
+  "kind": "primary",
+  "note": "Posted September 21, 2026, updated October 29, 2026. About 60 days to request a targeted review. The 2025 window closes November 30, 2026. Payment adjustment information follows about a month after final scores."
+ },
+ {
+  "slug": "cfr-414-1305",
+  "title": "42 CFR 414.1305: Definitions (Merit-based Incentive Payment System)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.1305",
+  "kind": "primary",
+  "note": "Low-volume threshold and small practice definitions. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cms-qpp-benchmarks-2026",
+  "title": "MIPS quality measures and historical benchmarks for the 2026 performance year (qpp-measures-data)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://raw.githubusercontent.com/CMSgov/qpp-measures-data/develop/benchmarks/2026.json",
+  "kind": "primary",
+  "note": "CMS open data repository behind the Quality Payment Program website. Benchmarks built from 2024 data: measure 047 (advance care plan) registry average 82.98%, median 99.13%. Measure 238 (high-risk medications, two or more orders in one class) electronic record average 4.79%. Measure text read from measures/2026/measures-data.json in the same repository."
+ },
+ {
+  "slug": "cap-mips-remittance-2026",
+  "title": "2026 Medicare pay: check your remittance advices",
+  "publisher": "College of American Pathologists",
+  "year": "2026",
+  "url": "https://www.cap.org/advocacy/latest-news-and-practice-data/2026-medicare-pay-check-your-remittance-advices",
+  "kind": "secondary",
+  "note": "Positive MIPS adjustments appear with claim adjustment reason code 144, negative with 237, and remark code N807 may accompany either."
+ },
+ {
+  "slug": "cms-mcm-ch7",
+  "title": "Medicare Managed Care Manual, Chapter 7: Risk Adjustment (Rev. 118)",
+  "publisher": "CMS",
+  "year": "2014",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/mc86c07.pdf",
+  "kind": "primary",
+  "note": "Section 40: every diagnosis submitted must be documented in the medical record as the result of a face-to-face visit. Acceptable sources are hospital inpatient, hospital outpatient and physician services."
+ },
+ {
+  "slug": "cms-ma-announcement-2027",
+  "title": "Announcement of Calendar Year 2027 Medicare Advantage Capitation Rates and Part C and Part D Payment Policies",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/2027-announcement.pdf",
+  "kind": "primary",
+  "note": "April 6, 2026. 2027 payment uses diagnoses from 2026 dates of service. The 2024 risk model is kept for 2027. Diagnoses from audio-only visits and from chart reviews not linked to a visit are excluded. Video visits meet the face-to-face requirement."
+ },
+ {
+  "slug": "cms-hcc-mappings-2026",
+  "title": "2026 Midyear Final ICD-10-CM Mappings (risk adjustment model software)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/zip/2026-midyear-final-icd-10-mappings.zip",
+  "kind": "primary",
+  "note": "8,019 diagnosis codes count in the 2026 payment model by our count of the file. Essential hypertension (I10), hyperlipidemia (E78.5), coronary disease without angina (I25.10) and history of stroke (Z86.73) do not. Acute stroke (I63.9) does."
+ },
+ {
+  "slug": "cms-ra-eligible-codes-2026",
+  "title": "Medicare Risk Adjustment Model CPT/HCPCS Filtering Included List, Calendar Year 2026",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/zip/2026-medicare-risk-adjustment-eligible-cpt-hcpcs-codes.zip-1",
+  "kind": "primary",
+  "note": "Nursing facility visit codes 99304 to 99310 and home or residence visit codes 99341 to 99350 are on the included list, as are office visits."
+ },
+ {
+  "slug": "oig-ma-stroke-2026",
+  "title": "CMS Potentially Overpaid Medicare Advantage Organizations $462 Million Based on Certain Unsupported Acute Stroke Diagnosis Codes (A-02-23-01020)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/reports/all/2026/cms-potentially-overpaid-medicare-advantage-organizations-462-million-based-on-certain-unsupported-acute-stroke-diagnosis-codes/",
+  "kind": "primary",
+  "note": "Issued May 28, 2026. For all 97 sampled enrollees the acute stroke codes on physician records were not supported. Estimated $462 million for 2021."
+ },
+ {
+  "slug": "doj-ma-provider-2026",
+  "title": "Medicare Advantage Provider Complete Health to Pay $14,100,000 to Settle False Claims Act Suit",
+  "publisher": "U.S. Department of Justice",
+  "year": "2026",
+  "url": "https://www.justice.gov/opa/pr/medicare-advantage-provider-complete-health-pay-14100000-settle-false-claims-act-suit",
+  "kind": "primary",
+  "note": "August 3, 2026. A provider organization paid under risk-sharing contracts settled allegations that it caused false diagnosis codes to be submitted."
+ },
+ {
+  "slug": "cfr-425-605",
+  "title": "42 CFR 425.605: Calculation of shared savings and losses under the BASIC track",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-425.605",
+  "kind": "primary",
+  "note": "Paragraph (a)(1): CMS adjusts an organization's spending benchmark with prospective risk scores, with a cap on growth. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-425-110",
+  "title": "42 CFR 425.110: Number of ACO professionals and beneficiaries",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-425.110",
+  "kind": "primary",
+  "note": "An accountable care organization must have at least 5,000 assigned beneficiaries. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-425-600",
+  "title": "42 CFR 425.600: Selection of risk model",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-425.600",
+  "kind": "primary",
+  "note": "BASIC track glide path: levels A and B are one-sided (savings only), levels C to E share losses too. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-425-20",
+  "title": "42 CFR 425.20: Definitions (Medicare Shared Savings Program)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-425.20",
+  "kind": "primary",
+  "note": "An ACO participant is an entity identified by a Medicare-enrolled billing tax identification number. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cms-lead",
+  "title": "LEAD (Long-term Enhanced ACO Design) Model",
+  "publisher": "CMS Innovation Center",
+  "year": "2026",
+  "url": "https://www.cms.gov/priorities/innovation/innovation-models/lead",
+  "kind": "primary",
+  "note": "Successor to ACO REACH, which ends December 31, 2026. Runs January 1, 2027 to December 31, 2036. Aimed at small, independent and rural practices and high-needs patients. Page last modified November 6, 2026."
+ },
+ {
+  "slug": "cfr-422-2",
+  "title": "42 CFR 422.2: Definitions (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.2",
+  "kind": "primary",
+  "note": "Institutional special needs plans enroll people who live, or are expected to live, 90 days or longer in a long-term care facility, or who need that level of care. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cms-star-2027",
+  "title": "Medicare 2027 Part C and D Star Ratings Technical Notes",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/files/document/2027-star-ratings-technical-notes.pdf",
+  "kind": "primary",
+  "note": "Updated November 4, 2026. Cut points from 2025 data. Blood pressure control 84% (4 stars) and 90% (5 stars). Transitions of care 69% and 80%. Readmissions 8% or less for 5 stars. Medication review for special needs plans 96% and 99%. Eight measures exclude members 66 and over living long-term in an institution."
+ },
+ {
+  "slug": "cfr-483-80",
+  "title": "42 CFR 483.80: Infection control (long-term care facilities)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.80",
+  "kind": "primary",
+  "note": "Paragraph (d): the facility must offer each resident influenza and pneumococcal immunization and document it. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "yadav-2017",
+  "title": "Yadav KN, Gabler NB, Cooney E, et al. Approximately One In Three US Adults Completes Any Type Of Advance Directive For End-Of-Life Care. Health Affairs 2017;36(7):1244-1251",
+  "publisher": "Health Affairs",
+  "year": "2017",
+  "url": "https://doi.org/10.1377/hlthaff.2017.0175",
+  "kind": "secondary",
+  "note": "Systematic review of 150 studies published 2011 to 2016 covering 795,909 people: 36.7% had completed an advance directive (38.2% of patients with chronic illness). Abstract read through PubMed."
+ },
+ {
+  "slug": "ags-beers-2023",
+  "title": "American Geriatrics Society 2023 updated AGS Beers Criteria for potentially inappropriate medication use in older adults. J Am Geriatr Soc 2023;71(7):2052-2081",
+  "publisher": "American Geriatrics Society",
+  "year": "2023",
+  "url": "https://doi.org/10.1111/jgs.18372",
+  "kind": "primary",
+  "note": "Applies to adults 65 and older in all ambulatory, acute and institutional settings except hospice and end-of-life care. Abstract read through PubMed."
+ },
+ {
+  "slug": "bindman-cox-2018",
+  "title": "Bindman AB, Cox DF. Changes in Health Care Costs and Mortality Associated With Transitional Care Management Services After a Discharge Among Medicare Beneficiaries. JAMA Intern Med 2018;178(9):1165-1171",
+  "publisher": "JAMA Internal Medicine",
+  "year": "2018",
+  "url": "https://doi.org/10.1001/jamainternmed.2018.2572",
+  "kind": "primary",
+  "note": "Medicare claims 2013 to 2015, 18.8 million eligible discharges. Transitional care was billed after 7.0% of eligible discharges in 2015 and was associated with lower cost and mortality in days 31 to 60. Observational. Abstract read through PubMed."
+ },
+ {
+  "slug": "cms-geo-variation-2024",
+  "title": "Medicare Geographic Variation, by National, State and County (2014 to 2024)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-geographic-comparisons/medicare-geographic-variation-by-national-state-county",
+  "kind": "primary",
+  "note": "National, Original Medicare, 2024: 224.8 inpatient stays per 1,000 beneficiaries (220.1 at 65 and over). All-cause 30-day readmission rate 18.07% (17.29%). Emergency visits 590.5 per 1,000. Read through the data.cms.gov API."
+ },
+ {
+  "slug": "cms-nh-chain-2026",
+  "title": "Nursing Home Chain Performance Measures, September 2026 release (national row)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://data.cms.gov/quality-of-care/nursing-home-chain-performance-measures",
+  "kind": "primary",
+  "note": "National averages of Care Compare measures across 14,698 nursing homes: short-stay rehospitalization 23.7%, 1.9 hospitalizations per 1,000 long-stay resident days, long-stay antipsychotic use 15.4%, falls with major injury 3.2%, pressure ulcers 4.6%. Read through the data.cms.gov API."
+ },
+ {
+  "slug": "medpac-hospice-2026",
+  "title": "Report to the Congress: Medicare Payment Policy, March 2026, Chapter 10: Hospice services",
+  "publisher": "Medicare Payment Advisory Commission",
+  "year": "2026",
+  "url": "https://www.medpac.gov/wp-content/uploads/2026/03/Mar26_Ch10_MedPAC_Report_To_Congress_SEC.pdf",
+  "kind": "primary",
+  "note": "2024: 52.9% of Medicare decedents used hospice. Lifetime length of stay among decedents: median 19 days, average 99.6, 5 days at the 25th percentile, 291 at the 90th."
+ },
+ {
+  "slug": "cms-hrrp",
+  "title": "Hospital Readmissions Reduction Program",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/payment/prospective-payment-systems/acute-inpatient-pps/hospital-readmissions-reduction-program-hrrp",
+  "kind": "primary",
+  "note": "Payment reduction capped at 3% of base operating payments. Page last modified September 21, 2026."
+ },
+ {
+  "slug": "cms-snf-vbp",
+  "title": "Skilled Nursing Facility Value-Based Purchasing Program",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://www.cms.gov/medicare/quality/nursing-home-improvement/value-based-purchasing",
+  "kind": "primary",
+  "note": "CMS withholds 2% of skilled nursing facility Part A payments and returns 60% of the pool as incentives based on a readmission measure and others. Page last modified August 26, 2026."
+ },
+ {
+  "slug": "cms-puf-hcc-distribution-2024",
+  "title": "Distribution of HCC Risk Scores, Calendar Years 2013 to 2024 (resource of the Medicare Physician & Other Practitioners by Provider dataset)",
+  "publisher": "CMS",
+  "year": "2026",
+  "url": "https://data.cms.gov/sites/default/files/2026-05/MUP_PHY_RY26_P02_YTD24_HCCs_508.xlsx",
+  "kind": "primary",
+  "note": "2024, Original Medicare users of Part B services: average risk score 1.145, median 0.728, 75th percentile 1.28, 90th percentile 2.347."
  }
 ]

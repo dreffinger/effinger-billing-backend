@@ -66,7 +66,8 @@
    ],
    "sources": [
     "mgma-bok",
-    "baldrige"
+    "baldrige",
+    "mgma-stat-succession-2026"
    ],
    "evidence_note": "Standard management practice, reflected in the Medical Group Management Association (MGMA) body of knowledge and the Baldrige workforce criteria from the National Institute of Standards and Technology. No measured benchmark applies.",
    "metrics": [
@@ -78,8 +79,11 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100% for payroll, claim submission, credentialing and bank access.",
+     "benchmark_note": "No reliable public benchmark was found. For context, 33% of medical groups in a February 2026 MGMA poll had a succession plan for leadership positions. The target from first principles is 100% for payroll, claim submission, credentialing and bank access.",
      "confidence": "none",
+     "sources": [
+      "mgma-stat-succession-2026"
+     ],
      "data_hint": "The function chart, reviewed each quarter."
     }
    ]
@@ -159,7 +163,9 @@
     "cfr-424-526",
     "cfr-482-22",
     "oig-gcpg",
-    "oig-physician-cpg-2000"
+    "oig-physician-cpg-2000",
+    "aappr-2024",
+    "hyman-2025"
    ],
    "evidence_note": "Medicare's filing and effective-date rules are federal regulation. Processing standards are published by the Medicare contractor. Health plan timelines vary by contract and are not published. Screening follows Office of Inspector General guidance. Other hiring practices are professional judgment.",
    "metrics": [
@@ -186,8 +192,12 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. In a small practice count people, not percentages: each early departure is worth a review.",
-     "confidence": "none",
+     "benchmark_typical": "about 85% for early-career nurse practitioners and physician assistants",
+     "benchmark_note": "Medicare billing data for 217,487 early-career advanced practice clinicians, 2010 to 2021 (JAMA Network Open, 2025): 14.4% changed practices within a year of first billing. No first-year figure for staff or physicians was verified. In a small practice count people, not percentages.",
+     "confidence": "medium",
+     "sources": [
+      "hyman-2025"
+     ],
      "data_hint": "Payroll records."
     }
    ]
