@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-09T2318Z",
+ "stamp": "2026-11-10T0118Z",
  "mode": "live",
  "status": "ok",
  "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42719369021",
- "started": "2026-11-09T23:18:37Z",
- "ended": "2026-11-09T23:24:05Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42734801626",
+ "started": "2026-11-10T01:18:18Z",
+ "ended": "2026-11-10T01:24:44Z",
  "summary": {
   "columns": {
    "before": {
@@ -53,19 +53,19 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 341826.72,
-   "visits": 2689,
+   "total": 341782.63,
+   "visits": 2688,
    "charts": 489,
    "over_365": {
-    "n": 541,
-    "dollars": 24963.53
+    "n": 542,
+    "dollars": 25096.53
    }
   },
   "denials": {
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-09 23:24 UTC"
+   "asof": "2026-11-10 01:24 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T23:18:37Z",
-   "ended": "2026-11-09T23:18:37Z"
+   "started": "2026-11-10T01:18:18Z",
+   "ended": "2026-11-10T01:18:19Z"
   },
   {
    "name": "columns",
@@ -129,8 +129,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-09T23:18:37Z",
-   "ended": "2026-11-09T23:20:26Z"
+   "started": "2026-11-10T01:18:19Z",
+   "ended": "2026-11-10T01:20:31Z"
   },
   {
    "name": "era",
@@ -152,8 +152,8 @@
    },
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T23:20:26Z",
-   "ended": "2026-11-09T23:20:28Z"
+   "started": "2026-11-10T01:20:31Z",
+   "ended": "2026-11-10T01:20:33Z"
   },
   {
    "name": "packages",
@@ -164,22 +164,22 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-09T23:20:28Z",
-   "ended": "2026-11-09T23:20:28Z"
+   "started": "2026-11-10T01:20:33Z",
+   "ended": "2026-11-10T01:20:33Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2689 visits on 489 charts, $341826.72 open; 541 over a year ($24963.53)",
+   "summary": "2688 visits on 489 charts, $341782.63 open; 542 over a year ($25096.53)",
    "counts": {
-    "visits": 2689,
+    "visits": 2688,
     "charts": 489,
-    "over 365 days": 541
+    "over 365 days": 542
    },
    "dollars": {
-    "open insurance balance": 341826.72,
-    "over 365 days": 24963.53
+    "open insurance balance": 341782.63,
+    "over 365 days": 25096.53
    },
    "lines": [
     {
@@ -187,89 +187,89 @@
      "name": "FLORIDA MEDICARE",
      "visits": 1482,
      "dollars": 190203.3,
-     "oldest_days": 1090
+     "oldest_days": 1091
     },
     {
      "carrier": "UNI20",
      "name": "UNITED HEALTHCARE",
      "visits": 151,
      "dollars": 30856.4,
-     "oldest_days": 1186
+     "oldest_days": 1187
     },
     {
      "carrier": "FLO99",
      "name": "FLORIDA COMMUNITY CARE AVAIL",
      "visits": 156,
      "dollars": 26639.58,
-     "oldest_days": 427
+     "oldest_days": 428
     },
     {
      "carrier": "BCBS",
      "name": "FLORIDA BLUE",
      "visits": 299,
      "dollars": 18360.39,
-     "oldest_days": 1057
+     "oldest_days": 1058
     },
     {
      "carrier": "UHCMA",
      "name": "UNITEDHEALTHCARE DUAL COMPLE",
      "visits": 85,
      "dollars": 17284.4,
-     "oldest_days": 1159
+     "oldest_days": 1160
     },
     {
      "carrier": "HUM01",
      "name": "HUMANA",
      "visits": 66,
      "dollars": 11132.13,
-     "oldest_days": 663
+     "oldest_days": 664
     },
     {
      "carrier": "VACCN",
      "name": "OPTUM VA CCN",
      "visits": 32,
      "dollars": 6024.22,
-     "oldest_days": 975
+     "oldest_days": 976
     },
     {
      "carrier": "SUN01",
      "name": "SUNSHINE STATE HEALTH PLAN",
      "visits": 38,
      "dollars": 4703.18,
-     "oldest_days": 49
+     "oldest_days": 50
     },
     {
      "carrier": "CAP07",
      "name": "CAPITAL HEALTH PLAN",
      "visits": 23,
      "dollars": 4603.0,
-     "oldest_days": 359
+     "oldest_days": 360
     },
     {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 32,
      "dollars": 4409.1,
-     "oldest_days": 371
+     "oldest_days": 372
     },
     {
      "carrier": "CIG09",
      "name": "CIGNA HEALTH PLANS HMO/PPO/O",
      "visits": 29,
      "dollars": 4364.01,
-     "oldest_days": 175
+     "oldest_days": 176
     },
     {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
      "dollars": 3764.0,
-     "oldest_days": 202
+     "oldest_days": 203
     }
    ],
    "errors": [],
-   "started": "2026-11-09T23:20:28Z",
-   "ended": "2026-11-09T23:20:29Z"
+   "started": "2026-11-10T01:20:33Z",
+   "ended": "2026-11-10T01:20:35Z"
   },
   {
    "name": "denials",
@@ -356,8 +356,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-09T23:20:29Z",
-   "ended": "2026-11-09T23:24:05Z"
+   "started": "2026-11-10T01:20:35Z",
+   "ended": "2026-11-10T01:24:44Z"
   }
  ],
  "packages": [],
