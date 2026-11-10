@@ -314,8 +314,8 @@
    "payers-contracts"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
+  "claims_checked": 1,
+  "claims_supported": 1,
   "claims_partly": 0,
   "claims_contradicted": 0,
   "claims_outdated": 0,
@@ -397,11 +397,11 @@
    "quality-value"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
-  "claims_supported": 0,
+  "claims_checked": 3,
+  "claims_supported": 2,
   "claims_partly": 0,
   "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -486,11 +486,11 @@
    "technology-data-ai"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 1,
-  "claims_supported": 1,
-  "claims_partly": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 5,
   "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -2129,12 +2129,12 @@
    "rcm-front-end"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 5,
-  "claims_supported": 3,
+  "claims_checked": 8,
+  "claims_supported": 4,
   "claims_partly": 1,
   "claims_contradicted": 1,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "practice-closure-and-wind-down-revenue-cycle-playbook",
@@ -2215,12 +2215,12 @@
    "strategy-governance"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 7,
+  "claims_checked": 8,
   "claims_supported": 1,
   "claims_partly": 4,
   "claims_contradicted": 1,
   "claims_outdated": 1,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "rcm-outsourcing-evaluation-playbook",
@@ -2259,12 +2259,12 @@
    "growth-market"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_partly": 7,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "revenue-cycle-staffing-and-compensation-playbook",
@@ -2390,11 +2390,11 @@
    "strategy-governance"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
-  "claims_supported": 0,
+  "claims_checked": 6,
+  "claims_supported": 3,
   "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_contradicted": 1,
+  "claims_outdated": 2,
   "claims_unverifiable": 0
  },
  {
@@ -2475,9 +2475,9 @@
    "rcm-front-end"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 3,
+  "claims_checked": 8,
   "claims_supported": 3,
-  "claims_partly": 0,
+  "claims_partly": 5,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -3221,12 +3221,12 @@
    "financial-management"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics.",
-  "claims_checked": 2,
+  "claims_checked": 5,
   "claims_supported": 0,
-  "claims_partly": 2,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "news-pulse-05",
@@ -3301,9 +3301,9 @@
    "rcm-front-end"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 1,
-  "claims_supported": 1,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 4,
+  "claims_partly": 1,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -3342,11 +3342,11 @@
    "rcm-claims-ar"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 5,
+  "claims_supported": 2,
+  "claims_partly": 2,
   "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  }
 ]
