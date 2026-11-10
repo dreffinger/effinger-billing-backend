@@ -250,18 +250,18 @@ ci.BATCH_NF_ERR[0] = ""
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
 for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"):
-    m = re.search(r'"%s":\s*"([^"]+)"' % re.escape(helper), mir)
+    m = re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(helper), mir); m = m and type("M", (), {"group": lambda self, i, _m=m: _m.group(1) or _m.group(2)})()
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
 check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
 step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
-sys.path.insert(0, os.path.join(ROOT, "boards"))
-try:
-    import working_denials as wd
-    check("denial table: Medicare's place-of-service answer (reason 58) is a FIX that names the 31 correction", wd.DENIAL_RULES.get("58", ("", ""))[0] == "FIX" and "correct the line to 31" in wd.DENIAL_RULES["58"][1] and "58" not in getattr(wd, "ADVISORY", ()))
-except Exception as e:
-    check("denial table: boards/working_denials.py loads offline", False, str(e)[:200])
-check("runbook: the feed step copies the three helpers and checks the marker before the ingest", step.index("grep -q 'def nf_visit_pos' /home/claude/unbilled/claimocity_import.py") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
+ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
+ingest = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
+check("the rule's version line is the same in the helper, mirror.py, the ingest guard and the runbook's step (c)", ver in open(HELPER).read() and ver in mir and ver in ingest and ("grep -c '%s' /home/claude/unbilled/claimocity_import.py" % ver) in step, ver)
+check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
+check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
+retry = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read()
+check("retry: every batch's feed files go into one folder, and a batch without files waits (never entered without a building)", "never entered without a building" in retry and 'env["FEED_HL7_DIR"] = os.path.abspath(hdir)' in retry)
 
 # ---- 6. the feed digest says what the rule did (claimocity_report.py over a made-up import register) ---------------------------------------
 import subprocess

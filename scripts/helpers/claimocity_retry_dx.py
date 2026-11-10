@@ -104,7 +104,28 @@ for m in ready:
     if m["pid"] not in e["feed_ids"]: e["feed_ids"].append(m["pid"])
 json.dump(match, open("feed_match_%s.json" % rstamp, "w"), indent=1)
 batches = sorted({m["_batch"] for m in ready})
-env["FEED_HL7_DIR"] = os.path.abspath(os.path.join("hl7", batches[0]))
+# 11/10/2026: the import reads the building (and with it the place of service), the provider and the admission date from the raw files.
+# One batch folder was not enough: a visit of any other batch, or of a batch whose parsed file was on hand without its HL7 folder, was
+# entered with NO facility at the default 31. Every batch's files go into one folder; a batch whose files cannot be had is not retried.
+import shutil
+hdir = os.path.join("hl7", rstamp); os.makedirs(hdir, exist_ok=True); nohl7 = []
+for b in batches:
+    if not glob.glob(os.path.join("hl7", b, "*.hl7")):
+        names = [n for n, v in reg.get("files", {}).items() if v.get("stamp") == b]
+        if names:
+            os.makedirs(os.path.join("hl7", b), exist_ok=True)
+            subprocess.run([sys.executable, os.path.join(HERE, "claimocity_gcs.py"), "--fetch", ",".join(names), "--dest", os.path.join("hl7", b)], capture_output=True, text=True)
+            for f in glob.glob(os.path.join("hl7", b, "download__*.hl7")): os.replace(f, os.path.join("hl7", b, re.sub(r"^(download__)+", "", os.path.basename(f))))
+    got = glob.glob(os.path.join("hl7", b, "*.hl7"))
+    if not got: nohl7.append(b)
+    for f in got: shutil.copy(f, os.path.join(hdir, b + "_" + os.path.basename(f)))
+if nohl7:
+    ready = [m for m in ready if m["_batch"] not in nohl7]
+    batches = [b for b in batches if b not in nohl7]
+    print("retry-dx: batch(es) %s - the feed files are not on hand and could not be fetched; their visits wait for the next run (never entered without a building)" % ", ".join(nohl7))
+    json.dump(ready, open("feed_parsed_%s.json" % rstamp, "w"), indent=1)
+    if not ready: os.remove("feed_parsed_%s.json" % rstamp); sys.exit(0)
+env["FEED_HL7_DIR"] = os.path.abspath(hdir)
 print("retry-dx stamp %s | %d visit(s) from batch(es) %s now have usable codes%s | mode %s" % (rstamp, len(ready), ", ".join(batches), ("; %d still wait on %s" % (waiting, ", ".join(sorted(missing)))) if waiting else "", "LIVE" if live else "DRY"))
 step("import", [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"])
 if live:

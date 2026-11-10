@@ -98,6 +98,20 @@ if missing:
     if live: step("newcharts", [sys.executable, os.path.join(HERE, "claimocity_newcharts.py")])
     else: print("DRY: %d patient(s) would get a NEW chart (addpatient + IN1 insurance): %s" % (len(missing), ", ".join(k.split("|")[0][:4] + "*" for k in missing)[:200]))
 # ---- 5 import -------------------------------------------------------------------------------------------------------------------
+# 11/10/2026: the place-of-service rule lives in claimocity_import.py (marker = its POS_RULE_VERSION line, the one mirror.py protects). A workspace
+# copy without it is an OLD copy (a state bundle or a Drive download with a fresh date): the repository copy replaces it; when there is no
+# repository copy the import still runs (charges are never held for this) and the RESULT line says so.
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.2"'; REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"; pos_warn = ""
+def _has_rule(p):
+    try: return POS_RULE in open(p, errors="replace").read()
+    except OSError: return False
+if not _has_rule(os.path.join(HERE, "claimocity_import.py")):
+    if _has_rule(os.path.join(REPO_HELPERS, "claimocity_import.py")):
+        for _f in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"): shutil.copy2(os.path.join(REPO_HELPERS, _f), os.path.join(HERE, _f))
+        print("POS RULE: the workspace held an OLD claimocity_import.py (no current place-of-service rule) - replaced by the repository copy before the import")
+    else:
+        pos_warn = " | POS RULE NOT APPLIED: claimocity_import.py here is an OLD copy and no repository copy was found - nursing-building lines went in at the feed's 31"
+        print("POS RULE NOT APPLIED: claimocity_import.py in %s has no place-of-service rule and %s has no copy - say so at the top of the report" % (HERE, REPO_HELPERS))
 cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py"), "--all" if live else "--dry"]
 if limit: cmd += ["--limit", str(limit)]
 step("import", cmd)
@@ -124,6 +138,6 @@ for b in files:
     if live:
         reg["files"][b] = {"stamp": stamp, "sha256": sha(os.path.join(batch, b)), "messages": len(msgs), "at": utcnow().isoformat() + "Z"}
 print("RESULT stamp %s: files %d, messages %d, visits created %d, skipped %d, failed %d%s" % (
-    stamp, len(files), len(parsed), len(imp["created"]), len(imp["skipped"]), len(imp["failed"]), "" if live else " (DRY - nothing written, files not registered)"))
+    stamp, len(files), len(parsed), len(imp["created"]), len(imp["skipped"]), len(imp["failed"]), ("" if live else " (DRY - nothing written, files not registered)") + pos_warn))
 if live and os.path.exists("feed_digest_%s.md" % stamp): print("digest: feed_digest_%s.md" % stamp)
 finish(0)

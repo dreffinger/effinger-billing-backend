@@ -107,8 +107,10 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              "move_to_ins.py": "--no-rebill", "ins_update.py": "_set_order", "dx_primary_fix.py": "--visits",
              "approval_submit.py": "LASTFIRST", "payreasons.py": "10/6: no patient name", "columns_scan.py": "NAMEKEY",
              # 11/10/2026: the feed import carries William's place-of-service rule (CCM in a nursing building = 32, visits by frequency);
-             # a workspace copy from before the rule must never put the old all-31 code back on main
-             "claimocity_import.py": "def nf_visit_pos", "claimocity_report.py": "Place of service in the nursing buildings",
+             # a workspace copy from before the rule - or of an earlier version of it - must never go back on main. The marker is the
+             # helper's own POS_RULE_VERSION line: when the rule is revised, change it here, in the helper, in claimocity_ingest.py and in
+             # nightly/claimocity_feed_step.md step (c) together (tools/selftest/test_pos_rule.py checks that the four agree)
+             "claimocity_import.py": 'POS_RULE_VERSION = "2026-11-10.2"', "claimocity_report.py": "Place of service in the nursing buildings",
              "claimocity_inspector.py": "CCM at the hospital location"}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
