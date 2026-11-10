@@ -94,7 +94,8 @@ def main():
             fac = pos = None
             # 11/10/2026 (William's place-of-service rule): CCM at the hospital location is a wrong building, never an HCA REHAB stay -
             # it is not moved to fac67 / POS 31; the 4531 error stays and the visit is held for William like any other data error
-            if "4531" in pats and c.get("fac") == "fac29" and all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"]):
+            # 11/10/2026 (review): a visit the import itself flagged (pos_err - its building is in doubt) is never moved to HCA REHAB either; it is held
+            if "4531" in pats and c.get("fac") == "fac29" and all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):
                 fac, pos = "fac67", "31"; note.append("facility fac29 -> fac67 (HCA REHAB), POS 31")
             # 3. dx cascade on primary-position problems
             dx_notes = []

@@ -55,6 +55,8 @@ RAW = [("n1", B["n1"], "", [("99487", "20261031"), ("99489", "20261031")], NPI),
        ("m4", B["n1"], "", [("99309", "20261001")], NPI), ("m4", B["n2"], "", [("99309", "20261025")], NPI),
        # m5: one message with two dates, then an admission visit on the later date
        ("m5", B["n1"], "", [("99498", "20270121"), ("99309", "20270120")], NPI), ("m5", B["n1"], "", [("99306", "20270121")], NPI),
+       # m6: ONE hospital visit sent twice with a corrected admission date, then a nursing visit of the nurse practitioner (read last)
+       ("m6", B["h1"], "20261018", [("99232", "20261020")], NPI), ("m6", B["h1"], "20261019", [("99232", "20261020")], NPI), ("m6", B["n2"], "", [("99309", "20261025")], NP_NPI),
        # s1: the visit after three refused ones
        ("s1", B["n2"], "", [("99309", "20261113")], NPI)]
 open(os.path.join(tmp, "hl7", "b.hl7"), "w").write("".join(hl7(f, fac, adm, lines, npi) for f, fac, adm, lines, npi in RAW))
@@ -150,6 +152,10 @@ check("CCM stays 31 when the resident was seen twice within 14 days that month",
 check("CCM stays 31 when the resident came back from the hospital that month", L([("99487", "10/31/2026")], "31", True, HOSP_BETWEEN + [("99309", "10/20/2026")]) == ["31"])
 check("CCM stays 31 when one of our hospital visits falls in that month, even with no nursing visit after it", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99232", "10/25/2026")]) == ["31"])
 check("CCM is 32 when our hospital visits were in ANOTHER month and the month's visit is monthly", L([("99487", "10/31/2026")], "31", True, [("99232", "08/10/2026"), ("99306", "08/14/2026"), ("99309", "09/01/2026"), ("99309", "10/01/2026")]) == ["32"])
+check("CCM stays 31 in a month in which the practice saw the resident at home or in an assisted-living facility (out of the building that month)",
+      L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")]) == ["31"]
+      and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026"), ("99349", "10/20/2026")])[2] == ["ccm-skilled-month"])
+check("CCM is 32 when the home / ALF visit was in ANOTHER month and this month's visit is monthly", L([("99487", "10/31/2026")], "31", True, [("99349", "07/10/2026"), ("99306", "08/01/2026"), ("99309", "09/01/2026"), ("99309", "10/01/2026")]) == ["32"])
 check("CCM stays 31 in a month with a discharge visit", L([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99316", "10/12/2026")]) == ["31"])
 check("two visit lines on ONE day in a message: any 31 keeps the whole day, and its 99497, at 31", L([("99309", "11/02/2026"), ("99306", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["31", "31", "31"] and L([("99497", "11/02/2026"), ("99306", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["31", "31", "31"])
 check("CCM stays 31 when a visit that month followed one late the month before by 14 days or less", L([("99487", "10/31/2026")], "31", True, [("99309", "08/30/2026"), ("99309", "09/28/2026"), ("99309", "10/02/2026")]) == ["31"])
@@ -169,6 +175,10 @@ check("two visit lines in one message read each other without the batch list", L
 check("one of our home / ALF visits on the previous nursing visit's OWN day also means the resident left (31, away)", K("99309", "11/02/2026", [("99309", "10/03/2026"), ("99349", "10/03/2026")]) == "away" and P("99309", "11/02/2026", [("99309", "10/03/2026"), ("99349", "10/03/2026")]) == "31")
 check("a visit row that names another building for the previous visit is a move (31), the same building is not", K("99309", "11/02/2026", [("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC")]) == "monthly"
       and ci.nf_visit_kind("99309", "11/02/2026", [("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC")], "fac32")[0] == "moved" and ci.nf_visit_kind("99309", "11/02/2026", [("99309", "10/03/2026", "ASPIRE AT TALLAHASSEE")], "fac32")[0] == "monthly")
+_two = [("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC"), ("99309", "10/03/2026", "ASPIRE AT TALLAHASSEE")]
+check("the previous visit's day named under TWO buildings (chart and feed disagree) is unclear: a move (31) in either building; one building named twice is not",
+      ci.nf_visit_kind("99309", "11/02/2026", _two, "fac34")[0] == "moved" and ci.nf_visit_kind("99309", "11/02/2026", _two, "fac32")[0] == "moved" and ci.nf_visit_pos("99309", "11/02/2026", _two, "fac34")[0] == "31"
+      and ci.nf_visit_kind("99309", "11/02/2026", [("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC"), ("99309", "10/03/2026", "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC")], "fac34")[0] == "monthly")
 check("AdvancedMD's own facility names for the five buildings give the five building keys", [ci.building_key(n) for n in ("BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC", "ASPIRE AT TALLAHASSEE", "CENTRE POINTE HEALTH AND REHAB CENTER CENTRE POINT", "WESTMINSTER BERTRAND HEALTH CENTER", "PRUITT SOUTHWOOD")] == ["fac34", "fac32", "fac33", "fac58", "fac1350"]
       and [ci.building_key(B[k]) for k in ("n1", "n2", "n3")] == ["fac34", "fac32", "fac1350"] and ci.building_key("Centre Pointe Health And Rehab Center") == "fac33" and ci.building_key("Westminster Oaks-Bertrand Health Center") == "fac58")
 
@@ -237,6 +247,11 @@ b_h, i_h, pp_h = built("m2", [("99232", "20261020")]); b_a, i_a, pp_a = built("m
 check("build: hospital message of a patient who also has nursing messages: hospital facility, 21, its own admission date, the physician", i_h["fac"] == "fac29" and [q for _, q in pp_h] == ["21"] and 'hospitalizationfrom="10/18/2026"' in b_h and i_h["prof"] == "prof13" and i_h["pos_err"] == "", i_h)
 check("build: that patient's nursing messages: the nursing building, 31 (admission, then weekly), each under its own clinician, no admission date carried over", i_a["fac"] == "fac32" and i_f["fac"] == "fac32" and [q for _, q in pp_a + pp_f] == ["31", "31"] and (i_a["prof"], i_f["prof"]) == ("prof13", "prof15")
       and i_a["admit"] == "" and "hospitalizationfrom" not in b_a and i_a["pos_err"] == i_f["pos_err"] == "" and i_f["pos_kind"] == ["skilled"], (i_a, i_f))
+b6, i6, pp6 = built("m6", [("99232", "20261020")])
+check("build: a visit sent twice with a corrected admission date keeps its own building and clinician (the copies agree on both); the date the copies do not agree on is not guessed from them, and the visit is named for a check",
+      i6["fac"] == "fac29" and [q for _, q in pp6] == ["21"] and i6["prof"] == "prof13" and i6["pos_err"] == "" and i6["msg_own"] is False and ci.msg_agreed(msg("m6", [("99232", "20261020")])) == (B["h1"], NPI, None), i6)
+check("build: (the per-patient value alone would have put that hospital visit in the nursing building under the nurse practitioner)", ci.FACOF["m6"] == B["n2"] and ci.NPIOF["m6"] == NP_NPI)
+check("msg_agreed: a message the raw files do not hold has no agreed value; a message sent once has all three", ci.msg_agreed(msg("m6", [("99232", "20261021")])) == (None, None, None) and ci.msg_agreed(msg("m2", [("99232", "20261020")])) == (B["h1"], NPI, "20261018"))
 body, info, pp = built("m3", [("99487", "20261031")])
 check("build: the same lines sent from two buildings have no single answer: the last-read building is used as before and the visit is reported", info["msg_own"] is False and "2 buildings" in info["pos_err"] and [q for _, q in pp] == ["13"], (pp, info))
 check("seen_lines: the visit lines of a message that is not entered, with its building, for the register", ci.seen_lines(msg("m2", [("99232", "20261020")])) == [["99232", "10/20/2026", B["h1"]]] and ci.seen_lines(msg("n1", [("99487", "20261031")])) == [])
@@ -325,6 +340,11 @@ json.dump({"created": [], "failed": [], "skipped": [{"feed_id": "s1", "pid": "pa
           open(os.path.join(tmp, "registers", "feed_import_20261111T0000Z.json"), "w"))
 out, dry = run_dry()
 check("main --dry: visits an EARLIER batch could not enter are still read: the visit three days after them is weekly (31)", dry.get("pat201", [{}])[0].get("pos_lines") == ["31"] and dry["pat201"][0]["pos_kind"] == ["skilled"], dry)
+for _odd in (5, True, [5], [None], {"a": 1}, "x"):
+    json.dump({"created": [], "failed": [7, None, "x", {"lines": _odd}], "skipped": [{"feed_id": "z", "pid": "pat999", "why": "odd", "lines": _odd}, 3] + [{"feed_id": "s1", "pid": "pat201", "why": "unknown CPT 99310", "lines": [["99310", d, B["n2"]]]} for d in ("10/27/2026", "11/03/2026", "11/10/2026")]},
+              open(os.path.join(tmp, "registers", "feed_import_20261111T0000Z.json"), "w"))
+    out, dry = run_dry()
+    check("main --dry: an odd row or line (%r) in an earlier register is passed over - the rows after it are still read (31)" % (_odd,), dry.get("pat201", [{}])[0].get("pos_lines") == ["31"] and dry["pat201"][0]["pos_kind"] == ["skilled"], (dry, out[-300:]))
 os.remove(os.path.join(tmp, "registers", "feed_import_20261111T0000Z.json"))
 ci.PARSED[:] = [P_("n2", "two", [("99310", "20261102")])]
 out, dry = run_dry()
@@ -356,17 +376,21 @@ ci.PARSED[:] = BASE
 
 # ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
-for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"):
+for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_ingest.py", "claimocity_retry_dx.py"):
     m = re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(helper), mir); m = m and type("M", (), {"group": lambda self, i, _m=m: _m.group(1) or _m.group(2)})()
     check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
 insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
 check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
+check("inspector: a visit the import flagged (pos_err) is never moved to HCA REHAB either, and mirror.py's marker for the inspector is that sentence",
+      'not any(x in ("99487", "99489") for x in c["cpts"]) and not c.get("pos_err"):' in insp and '"claimocity_inspector.py": "is never moved to HCA REHAB either"' in mir and "is never moved to HCA REHAB either" in insp)
 step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
 ver = 'POS_RULE_VERSION = "%s"' % ci.POS_RULE_VERSION
 ingest = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_ingest.py")).read()
 check("the rule's version line is the same in the helper, mirror.py, the ingest guard and the runbook's step (c)", ver in open(HELPER).read() and ver in mir and ver in ingest and ("grep -c '%s' /home/claude/unbilled/claimocity_import.py" % ver) in step, ver)
 check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("claimocity_retry_dx.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
 check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
+check("ingest: when only some helpers could be replaced the result line names the ones that are still older copies; the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in ingest and "pos_warn" in ingest[ingest.index("FEED HELPERS NOT ALL CURRENT") - 200:ingest.index("FEED HELPERS NOT ALL CURRENT")]
+      and "FEED HELPERS NOT ALL CURRENT" in step and "the feed files are not on hand and could not be fetched' also goes under Holds" in step)
 retry = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read()
 check("retry: every batch's feed files go into one folder, and a batch without files waits (never entered without a building)", "never entered without a building" in retry and 'env["FEED_HL7_DIR"] = os.path.abspath(hdir)' in retry)
 
@@ -404,6 +428,8 @@ r, line = digest(rows)
 check("digest: asks for one read-back by hand when the answer did not echo the place of service", "read ONE 32 line back by hand" in r.stdout, r.stdout[-600:])
 r, line = digest(rows + [dict(reg_row(["99232"], "fac29", "21", ["21"]), msg_own=False)])
 check("digest: a visit that could not be matched to its own feed message is named for a check of clinician and building", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout and "charts: pat9 11/02/2026 99232" in r.stdout, r.stdout[-600:])
+r, line = digest([dict(rows[4], msg_own=False), rows[5]], stamp="1028")
+check("digest: the not-matched line is printed whatever the batch stamp looks like", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout, r.stdout[-500:])
 r, line = digest(rows + [OLD_ROW])
 check("digest: from 11/10/2026 on, a nursing-building row without the rule's fields means an old helper ran - said loudly", "PLACE OF SERVICE RULE DID NOT RUN on 1 visit(s)" in line, line)
 r, line = digest([OLD_ROW, rows[4], rows[5]], stamp="20261028T0623Z")
@@ -412,6 +438,18 @@ r, line = digest([rows[4], rows[5]])
 check("digest: no line when the batch had no nursing-building charge", r.returncode == 0 and line == "", r.stdout[-300:])
 r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lines=[None]), dict(reg_row(["99309"], "fac34", "31", ["32"]), pos_lines=[32], pos_kind=None), dict(reg_row(["99309", "99497"], "fac34", "31", ["32"]), pos_kind=["monthly"])])
 check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
+
+aud = tempfile.mkdtemp(prefix="posrule_aud_")
+json.dump({"created": [{"visit": "vst1", "pid": "pat1", "prof": "prof13", "fac": "fac29", "cpts": ["99309"], "dos": "10/05/2026", "charges": ["charge1"]},
+                       {"visit": "vst2", "pid": "pat1", "prof": "prof15", "fac": "fac34", "cpts": ["99309"], "dos": "10/12/2026", "charges": ["charge2"]},
+                       {"visit": "vst3", "pid": "pat2", "prof": "prof13", "fac": "fac29", "cpts": ["99487"], "dos": "10/31/2026", "charges": ["charge3"]},
+                       {"visit": "vst4", "pid": "pat3", "prof": "prof13", "fac": "fac29", "cpts": ["99232"], "dos": "10/20/2026", "charges": ["charge4"]}]}, open(os.path.join(aud, "feed_import_20261101T0000Z.json"), "w"))
+json.dump({"stamp": "20261101T0000Z", "rows": [{"v": "vst1", "p": "pat1", "d": "2026-10-05", "c": ["99309"], "prov": "Pamela G."}, {"v": "vst2", "p": "pat1", "d": "2026-10-12", "c": ["99309"], "prov": "Pamela G. (ARNP)"},
+                                              {"v": "vst3", "p": "pat2", "d": "2026-10-31", "c": ["99487"], "prov": "Dr. Effinger (DO)"}, {"v": "vst4", "p": "pat3", "d": "2026-10-20", "c": ["99232"], "prov": "Dr. Effinger (DO)"}]}, open(os.path.join(aud, "feed_recon_20261101T0000Z.json"), "w"))
+r = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud], capture_output=True, text=True)
+check("audit tool: lists the visit entered under the other clinician and the visits whose codes do not fit the building they were entered in", r.returncode == 0 and "entered under a different clinician: 1" in r.stdout
+      and "2 visit(s) whose codes do not fit the building" in r.stdout and "'nursing code at the hospital': 1" in r.stdout and "'care management at the hospital': 1" in r.stdout
+      and "charts with a nursing code entered at the hospital AND visits entered in a nursing building: 1" in r.stdout, r.stdout[-700:] + r.stderr[-300:])
 
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)

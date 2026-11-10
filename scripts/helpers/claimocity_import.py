@@ -67,7 +67,7 @@ def mdy(yyyymmdd):
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.3"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-10.4"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -87,8 +87,8 @@ def building_key(facname):
 SKILLED_GAP_DAYS = 14      # weekly / twice-weekly visits (feed 9/1-11/5/2026: 100 gaps of 1-7 days, 10 of 8-14, 6 of 15-20, 41 of 21-35, 9 longer)
 MONTHLY_MIN_DAYS = 21      # 32 needs the monthly pattern actually shown: previous nursing visit 21 ...
 MONTHLY_MAX_DAYS = 92      # ... to 92 days back (the 60-day schedule fits; longer than that is a new stay, not a monthly visit)
-BATCH_NF = {}              # chart -> {(cpt, DOS)} nursing and hospital visits in THIS feed batch (main() fills it); read with the chart's history
-BATCH_NF_ERR = [""]        # why the batch list could not be built (then the chart history alone is used) - reaches the DONE line
+BATCH_NF = {}              # chart -> {(cpt, DOS) or (cpt, DOS, building)}: nursing, hospital and home visits of THIS feed batch and the visits earlier batches could not enter (main() fills it); read with the chart's history
+BATCH_NF_ERR = [""]        # why the batch list could not be built (then no nursing-building line is 32 in this run) - reaches the DONE line
 FACS = {}                  # feed patient id -> every building name its messages carry in this batch
 MSGOF = {}                 # one feed message (see msg_key) -> {(building name, clinician NPI, admission date)} read from the raw files
 # what nf_visit_kind can answer: kind -> (place of service, the words for the register; %d = days since the previous nursing visit)
@@ -107,7 +107,7 @@ NF_KINDS = {
     "between":      ("31", "31 by rule: %d days since the previous nursing visit, between weekly and monthly"),
     "monthly":      ("32", "32 by rule: %d days since the previous nursing visit (the monthly visit)"),
 }
-# a visit of one of these kinds in the CCM's month (or one of our hospital visits that month) keeps the CCM at the feed's 31, for William
+# a visit of one of these kinds in the CCM's month (or one of our hospital or home / assisted-living visits that month) keeps the CCM at the feed's 31, for William
 SKILLED_KINDS = ("initial", "dischargeday", "first", "hospital", "away", "discharge", "moved", "preadmission", "skilled", "extra", "stale")
 def _day(mdy_s):
     return datetime.datetime.strptime(mdy_s, "%m/%d/%Y").date()
@@ -147,12 +147,12 @@ def _kind_at(day, codes, hist, here=None):
         if (d2 - q).days > MONTHLY_MAX_DAYS or (visits[q] & NF_DISCHARGE): return True
         if any(q <= h <= d2 for h in hosp) or any(q <= a <= d2 for a in home): return True
         wq = where.get(q)
-        return bool(here2 and wq and here2 not in wq)
+        return bool(here2 and wq and wq != {here2})      # a day that also names another building is not "the same building"
     prev = days[-1]; gap = (day - prev).days
     if any(prev <= h <= day for h in hosp): return "hospital", gap
     if any(prev <= a <= day for a in home): return "away", gap
     if visits[prev] & NF_DISCHARGE: return "discharge", gap
-    if here and where.get(prev) and here not in where[prev]: return "moved", gap
+    if here and where.get(prev) and where[prev] != {here}: return "moved", gap      # chart and feed name two buildings for that day: unclear, so 31
     if any(day < d <= day + datetime.timedelta(days=SKILLED_GAP_DAYS) and (visits[d] & NF_INITIAL) for d in visits): return "preadmission", gap
     if gap <= SKILLED_GAP_DAYS:
         i = len(days) - 1                                # walk back through the run of close visits to its first visit
@@ -174,11 +174,12 @@ def nf_visit_pos(cpt, dos_mdy, nf_history, here=None):
     kind, gap = nf_visit_kind(cpt, dos_mdy, nf_history, here); pos, text = NF_KINDS[kind]
     return pos, (text % gap if "%d" in text else text)
 def seen_at_skilled_frequency(dos_mdy, nf_history):
-    """True when the chart shows, in the calendar month of dos_mdy, one of our hospital visits or a nursing visit the rule reads as weekly,
-    an admission, a discharge or a new stay (any kind in SKILLED_KINDS). Then a CCM line of that month stays at the feed's 31, for William."""
+    """True when the chart shows, in the calendar month of dos_mdy, one of our hospital visits, one of our home / assisted-living visits (the
+    resident was out of the building that month) or a nursing visit the rule reads as weekly, an admission, a discharge or a new stay (any
+    kind in SKILLED_KINDS). Then a CCM line of that month stays at the feed's 31, for William."""
     day = _day(dos_mdy); hist = _history(nf_history); visits, where, hosp, home = hist
     same = lambda d: (d.year, d.month) == (day.year, day.month)
-    if any(same(h) for h in hosp): return True
+    if any(same(h) for h in hosp) or any(same(a) for a in home): return True      # the resident was in the hospital or out of the building that month
     for d in sorted(visits):
         if same(d) and _kind_at(d, visits[d], hist)[0] in SKILLED_KINDS: return True
     return False
@@ -196,7 +197,7 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
     out = []; why = []; kinds = []; by_day = {}
     for cpt, d in cpt_dos:
         if cpt in CCM:
-            if seen_at_skilled_frequency(d, hist): p, w, k = feed_pos, "31 kept: the chart shows a hospital visit or nursing visits in this CCM month that the rule reads as weekly, an admission or a new stay - for William", "ccm-skilled-month"
+            if seen_at_skilled_frequency(d, hist): p, w, k = feed_pos, "31 kept: the chart shows a hospital visit, a home / assisted-living visit, or nursing visits in this CCM month that the rule reads as weekly, an admission or a new stay - for William", "ccm-skilled-month"
             else: p, w, k = "32", "32 by rule: CCM in a nursing building", "ccm"
         elif cpt in NF_VISIT:
             k, gap = nf_visit_kind(cpt, d, hist, here); p, text = NF_KINDS[k]; w = text % gap if "%d" in text else text
@@ -211,8 +212,8 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
 def msg_building(msg):
     """The building name of a message for the visit history: its own, else the patient's when the batch shows only one, else ''."""
     try:
-        o = msg_own(msg)
-        if o: return o[0]
+        o = msg_agreed(msg)
+        if o[0] is not None: return o[0]
         f = FACS.get(msg.get("pid")) or ()
         return next(iter(f)) if len(f) == 1 else ""
     except Exception: return ""
@@ -251,6 +252,13 @@ def msg_own(msg):
         own = MSGOF.get(msg_key(msg.get("pid"), [(c.get("cpt"), c.get("dos")) for c in msg.get("FT1") or []])) or ()
         return next(iter(own)) if len(own) == 1 else None
     except Exception: return None
+def msg_agreed(msg):
+    """(building, NPI, admission date) of ONE parsed message value by value: what EVERY raw copy of the message says; None for a value the
+    copies do not agree on, or when the raw files do not hold the message. A visit sent twice with a corrected admission date keeps its building and clinician."""
+    try:
+        own = MSGOF.get(msg_key(msg.get("pid"), [(c.get("cpt"), c.get("dos")) for c in msg.get("FT1") or []])) or ()
+        return tuple((next(iter({o[i] for o in own})) if len({o[i] for o in own}) == 1 else None) for i in range(3))
+    except Exception: return (None, None, None)
 for f in sorted(glob.glob((HL7_DIR + "/*.hl7"))):       # sorted: "the last message read" is the same on every machine (the parser sorts too)
     raw = open(f, errors="replace").read().replace("\r", "\n")
     for b in re.split(r"(?m)^(?=MSH\|)", raw):
@@ -311,7 +319,8 @@ def same_encounter(cpt, dos, live):
     return any(lc in fam and ld == dos for lc, ld in live)
 def build(msg, ctx):
     fid = msg["pid"]; own = msg_own(msg)             # this message's own (building, clinician NPI, admission date) - None = not readable
-    facname, npi, admit = own if own else (FACOF.get(fid, ""), NPIOF.get(fid, ""), ADMIT.get(fid, ""))
+    _ag = msg_agreed(msg)                            # value by value: what every copy of the message says; the patient's last-read value only where the copies differ
+    facname = _ag[0] if _ag[0] is not None else FACOF.get(fid, ""); npi = _ag[1] if _ag[1] is not None else NPIOF.get(fid, ""); admit = _ag[2] if _ag[2] is not None else ADMIT.get(fid, "")
     fac, pos = FAC.get(facname, ("", "31"))
     nursing = facname in FAC and pos == "31"        # one of the practice's nursing buildings (never the unknown-building default)
     prof = PROFILE.get(npi, "prof13")
@@ -332,7 +341,7 @@ def build(msg, ctx):
     try:
         if nursing and BATCH_NF_ERR[0]:
             raise ValueError("the visits of this batch could not be listed (%s), so nothing shows this resident's pattern - kept at the feed's place of service" % BATCH_NF_ERR[0])
-        if not own and len(FACS.get(fid, ())) > 1 and (nursing or any(FAC.get(_n, ("", ""))[1] == "31" for _n in FACS[fid])):
+        if _ag[0] is None and len(FACS.get(fid, ())) > 1 and (nursing or any(FAC.get(_n, ("", ""))[1] == "31" for _n in FACS[fid])):
             raise ValueError("this feed patient has messages from %d buildings in this batch and this message's own building could not be read - "
                              "check the facility, the clinician and the place of service of this visit by hand" % len(FACS[fid]))
         hist = (list(ctx.get("nfrows") or ctx.get("live") or ()) + list(BATCH_NF.get(ctx.get("pid"), ()))) if nursing else ()   # the history is only read for a nursing building
@@ -389,10 +398,13 @@ def main():
         done |= {(r["feed_id"], r["dos"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id")}
         done |= {(r["feed_id"], r["dos_feed"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id") and r.get("dos_feed")}   # re-dated visits keep their feed DOS here
         if rf == REG: done |= {(r["feed_id"], None, None) for r in prior.get("skipped", [])}
-        try:
-            for r in list(prior.get("skipped") or []) + list(prior.get("failed") or []):
-                for _ln in r.get("lines") or []: prior_seen.append((r.get("pid"), list(_ln)))
-        except Exception: pass
+        for _k in ("skipped", "failed"):                 # row by row and line by line: an odd row or line is skipped, the rows after it are still read
+            _rows = prior.get(_k) if isinstance(prior, dict) else None
+            for r in (_rows if isinstance(_rows, list) else []):
+                try: _lns = r.get("lines"); _rp = r.get("pid")
+                except Exception: continue
+                for _ln in (_lns if isinstance(_lns, list) else []):
+                    if isinstance(_ln, (list, tuple)): prior_seen.append((_rp, list(_ln)))
     # deceased guard before any write: a DOS after the cached date of death is never entered (William's standing rule)
     _dc = {}
     for _p in [__import__("os").environ.get("DECEASED_CACHE", ""), "deceased_cache_local.json", "registers/deceased_cache.json"]:

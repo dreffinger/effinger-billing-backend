@@ -6,7 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-10.3"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-10.4"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -48,7 +48,7 @@ def _names(key, lead):
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
-        if _rule_stamp and x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x))
+        if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x))
         if x.get("pos_stored") is not None and x.get("pos_lines"):
             _ps["readback"] += 1
             if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), x["pos_lines"], x["pos_stored"]))
