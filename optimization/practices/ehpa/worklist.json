@@ -3,26 +3,26 @@
   "id": "ehpa-automation-controls-06",
   "project_slug": "automation-controls",
   "ord": 1,
-  "title": "Switch off three standing billing rules now",
-  "detail": "Turn off (1) re-dating a denied care-management claim, (2) resending any denied 99487 or 99489 line, and (3) the automatic write-off of balances over a year old. The billing software runs every 2 to 6 hours, so do this the day you read it. Each rule stays off until the attorney and the outside auditor have read it and you have approved it in writing.",
+  "title": "Pause the automatic write-off of balances over a year old",
+  "detail": "Turn off the rule that writes off balances over a year old until each balance has been checked against its filing and appeal limits. Some are still collectible. Approve yourself, in writing, any standing rule that changes a claim's date, code or balance.",
   "owner": "william",
-  "due": "2026-11-11"
+  "due": "2026-11-12"
  },
  {
   "id": "ehpa-ccm-footing-01",
   "project_slug": "ccm-footing",
   "ord": 2,
-  "title": "Hold the November care-management batch",
-  "detail": "Do not send the month-end 99487 and 99489 claims. Release a claim only when that patient's consent, care plan and logged minutes are on file.",
+  "title": "Set place of service on November's care-management claims from each resident's status",
+  "detail": "Before the month-end batch goes out, mark each nursing facility resident as in a Medicare Part A stay (place of service 31) or a long-term resident (32), from the facility's list. Assisted living stays 13. In 2026 Medicare allows $142.98 against $80.71 for the first hour and $77.47 against $44.58 for each added half hour. Where a facility has not yet sent its list, leave that facility's lines as they are and correct them when it arrives.",
   "owner": "claude",
-  "due": "2026-11-12"
+  "due": "2026-11-25"
  },
  {
   "id": "ehpa-ccm-footing-04",
-  "project_slug": "ccm-footing",
+  "project_slug": "coding-audit",
   "ord": 3,
-  "title": "Engage a healthcare attorney",
-  "detail": "Do this before anyone reads a chart for these reviews. Ask your malpractice insurer or the Florida Bar Lawyer Referral Service for two attorneys who handle Medicare billing reviews. Share this risk review. Ask the attorney to direct the care-management sample, the coding audit and any review of past claims. A review the attorney directs can be privileged if its results stay with the attorney. Write down the date the attorney is engaged.",
+  "title": "Engage a healthcare attorney before the visit-level audit",
+  "detail": "Do this before anyone reads a chart for the coding audit. Ask your malpractice insurer or the Florida Bar Lawyer Referral Service for two attorneys who handle Medicare billing reviews. Ask the attorney to direct the coding audit and any review of past visit claims. A review the attorney directs can be privileged if its results stay with the attorney. Write down the date the attorney is engaged.",
   "owner": "william",
   "due": "2026-11-17"
  },
@@ -30,26 +30,26 @@
   "id": "ehpa-ccm-footing-02",
   "project_slug": "ccm-footing",
   "ord": 4,
-  "title": "Attorney-directed look at 30 random patient-months",
-  "detail": "Start only after the attorney is engaged, and do it the way the attorney directs. For each: consent and its date, care plan, time log by person and day, the physician's decision making. The results go to the attorney.",
-  "owner": "attorney",
+  "title": "Withdrawn: attorney-directed look at care-management records",
+  "detail": "Withdrawn at the owner's direction on November 10, 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
+  "owner": "william",
   "due": "2026-11-24"
  },
  {
   "id": "ehpa-ccm-footing-03",
   "project_slug": "ccm-footing",
   "ord": 5,
-  "title": "Add up logged minutes against the hours the staff and the physician worked",
-  "detail": "Start only after the attorney is engaged. One month of minutes billed compared with the hours each staff member and the physician worked. Start from payroll. October's claims assert about 364 hours of care-management time, the full working month of about two people. Staff pay for the first nine months of 2026 was $154,534, including the nurse practitioner. List each person, the hours worked in October and the hours spent on care management. Include any outside company that does this work, with its contract and invoices. The results go to the attorney.",
-  "owner": "attorney",
+  "title": "Withdrawn: comparison of logged minutes with hours worked",
+  "detail": "Withdrawn at the owner's direction on November 10, 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
+  "owner": "william",
   "due": "2026-11-24"
  },
  {
   "id": "ehpa-ccm-footing-05",
   "project_slug": "ccm-footing",
   "ord": 6,
-  "title": "Decide the code going forward",
-  "detail": "Per patient, from the records: complex care management (60 logged minutes and moderate or high complexity), standard care management (20 logged minutes), advanced primary care management (G0557, or G0558 for Qualified Medicare Beneficiaries), or none. Advanced primary care management is a monthly code with no minute count. It has its own conditions, including consent, round-the-clock access and quality reporting, and the same clinician cannot bill it in the same month as chronic or transitional care management. Have the attorney or auditor confirm the conditions before the first claim. Where there is no time log for the month, neither chronic care management code is billed.",
+  "title": "Withdrawn: choice of code per patient from the records",
+  "detail": "Withdrawn at the owner's direction on November 10, 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "owner": "william",
   "due": "2026-11-27"
  },
@@ -67,7 +67,7 @@
   "project_slug": "ccm-footing",
   "ord": 8,
   "title": "Find out why Medicare denies some care-management lines as the wrong provider type",
-  "detail": "38 complex-code lines since June were denied with reason 170 and remark N95. Tell the attorney first. Then call First Coast's provider line, or have a staff member call, and ask what triggers it.",
+  "detail": "38 complex-code lines since June were denied with reason 170 and remark N95. Call First Coast's provider line, or have a staff member call, and ask what triggers it and whether the place of service on the claim is part of it.",
   "owner": "william",
   "due": "2026-11-24"
  },
@@ -76,7 +76,7 @@
   "project_slug": "ccm-footing",
   "ord": 9,
   "title": "Check each patient's status before a care-management claim is built",
-  "detail": "If the patient died, left the practice's care or elected hospice during the month, bill only when the full time was logged before that day. Never use a date of service after the date of death. Hold claims for any patient who was in a Part A skilled stay during the month until First Coast has answered.",
+  "detail": "If the patient died, left the practice's care or elected hospice during the month, bill only when the full time was logged before that day. Never use a date of service after the date of death. Mark each resident's place of service from the facility's list: 31 in a Part A skilled stay, 32 otherwise.",
   "owner": "claude",
   "due": "2026-11-27"
  },
@@ -93,14 +93,14 @@
   "id": "ehpa-ccm-footing-10",
   "project_slug": "ccm-footing",
   "ord": 11,
-  "title": "Get the attorney's written advice on care-management claims already paid",
-  "detail": "Include which months to review and whether a wider sample is needed.",
-  "owner": "attorney",
+  "title": "Withdrawn: attorney's written advice on care-management claims already paid",
+  "detail": "Withdrawn at the owner's direction on November 10, 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
+  "owner": "william",
   "due": "2026-12-18"
  },
  {
   "id": "ehpa-ccm-footing-11",
-  "project_slug": "ccm-footing",
+  "project_slug": "coding-audit",
   "ord": 12,
   "title": "Have the attorney set, in writing, the dates that govern any refund",
   "detail": "The rule gives 60 days to report and return an overpayment once it is identified. A prompt, good-faith review of related claims pauses that deadline, for no more than 180 days after the first overpayment was identified (title 42 of the Code of Federal Regulations, section 401.305). The attorney decides when each clock starts. As an outer guide only: counted from this report, November 10, 2026, day 60 is January 9, 2027 and day 180 is May 9, 2027. Put the attorney's dates on the calendar, and send any audit finding of an overpayment to the attorney the same week.",
@@ -109,12 +109,12 @@
  },
  {
   "id": "ehpa-ccm-footing-12",
-  "project_slug": "ccm-footing",
+  "project_slug": "sale-readiness",
   "ord": 13,
-  "title": "Write one page for the attorney on why revenue fell from 2023 to 2025",
-  "detail": "Do this after the attorney is engaged. List the sites, services and staff that were lost and why. Say why complex care management stopped in 2024 and when and why it started again, including any payer letter, record request or denial pattern at the time.",
+  "title": "Write one page on why revenue fell from 2023 to 2025",
+  "detail": "List the sites, services and staff that were lost and why, and what brought revenue back in 2026. A buyer or a lender will ask, and the budget needs it.",
   "owner": "william",
-  "due": "2026-11-24"
+  "due": "2026-12-18"
  },
  {
   "id": "ehpa-coding-audit-01",
@@ -165,8 +165,8 @@
   "id": "ehpa-coding-audit-06",
   "project_slug": "coding-audit",
   "ord": 19,
-  "title": "Ask the auditor to include 10 advance care planning notes and 10 care-management records",
-  "detail": "Both services have high national error rates for missing documentation of time.",
+  "title": "Ask the auditor to include 10 advance care planning notes",
+  "detail": "Advance care planning has a high national error rate for missing documentation of time.",
   "owner": "william",
   "due": "2026-11-24"
  },
@@ -238,7 +238,7 @@
   "project_slug": "census-status",
   "ord": 27,
   "title": "Set place of service 31 or 32 from the census",
-  "detail": "Applies to visits now. For care management, change nothing yet. Moving a line from code 31 to code 32 raises the allowed amount from about $79 to about $140, so it waits for the care-management review. Ask the attorney, and ask First Coast in writing, whether care management may be billed for a month in which the resident was in a Medicare Part A skilled stay. A 2016 Medicare question-and-answer sheet said no. The current one, last updated in 2022, says care management can be billed for nursing facility residents and does not repeat that limit.",
+  "detail": "Applies to visits and to care management. In 2026 Medicare allows $114.90 against $99.58 for a follow-up visit under code 32, and $142.98 against $80.71 for the first hour of complex care management. Ask First Coast in writing whether care management may be billed for a month in which the resident was in a Medicare Part A skilled stay. A 2016 Medicare question-and-answer sheet said no. The current one, last updated in 2022, says care management can be billed for nursing facility residents and does not repeat that limit.",
   "owner": "claude",
   "due": "2026-12-04"
  },
@@ -246,8 +246,8 @@
   "id": "ehpa-census-status-04",
   "project_slug": "census-status",
   "ord": 28,
-  "title": "Count how many of the last three months' claims carried the wrong setting",
-  "detail": "Report the number and the payment difference in each direction for the attorney.",
+  "title": "Count how many of the past year's claims carried the wrong setting",
+  "detail": "By month, code and payer, with the payment difference in each direction and the date each claim was first paid. This sizes the look-back.",
   "owner": "claude",
   "due": "2026-12-10"
  },
@@ -255,8 +255,8 @@
   "id": "ehpa-census-status-05",
   "project_slug": "census-status",
   "ord": 29,
-  "title": "Correct 2026 nursing facility visits for long-term residents billed as skilled stays",
-  "detail": "Medicare paid these 12% to 15% less under code 31 in 2026. Correct each one by a reopening request to First Coast, changing the place of service. First Coast takes these requests through its SPOT portal (Secure Provider Online Tool) or its Reopening Gateway. The limit is one year from the date the claim was first paid, so the oldest 2026 claims reach it in January 2027. After a year First Coast reopens only for good cause and may refuse. Build the list from the facilities' skilled-stay dates. The attorney approves the list, in both directions, and says whether to wait for the coding audit. A person sends each batch. Do not net money recovered this way against any refund owed on other claims.",
+  "title": "Decide whether to ask Medicare to reopen claims billed as skilled stays for long-term residents",
+  "detail": "A paid claim is corrected by a reopening request to First Coast that changes the place of service, through its SPOT portal (Secure Provider Online Tool) or its Reopening Gateway. The limit is one year from the date the claim was first paid, so the oldest claims reach it soon. After a year First Coast reopens only for good cause and may refuse. Weigh the money against the attention: a batch of requests that each raise payment invites Medicare to look at those claims, and a reopened claim can be reviewed again. Before any claim is changed, have the facility's stay dates on file for that resident, apply one written rule to every affected claim, and start with a small batch. A person sends each batch. Do not net money recovered this way against any refund owed on other claims.",
   "owner": "william",
   "due": "2026-12-31"
  },
@@ -337,7 +337,7 @@
   "project_slug": "ar-recovery",
   "ord": 38,
   "title": "Work the 74 actionable denials worth $13,463",
-  "detail": "From the latest billing run. Leave out every care-management line while that billing is on hold. Leave out any fix that changes a code, a date, a modifier, a diagnosis or the place of service until a person has approved it.",
+  "detail": "From the latest billing run. Leave out any fix that changes a code, a date, a modifier, a diagnosis or the place of service until a person has approved it.",
   "owner": "claude",
   "due": "2026-11-20"
  },
@@ -526,7 +526,7 @@
   "project_slug": "operating-rhythm",
   "ord": 59,
   "title": "Build the 2027 budget with four scenarios",
-  "detail": "Steady, loss of the largest site, a second nurse practitioner, and care management cut by half or stopped. Price the 2027 Medicare changes code by code, not as a flat 2.31% cut: hospital visits fall 3% to 5% and nursing facility visits billed as a skilled stay rise 10% to 12%.",
+  "detail": "Steady, loss of the largest site, a second nurse practitioner, and care-management collections falling by half. Price the 2027 Medicare changes code by code, not as a flat 2.31% cut: hospital visits fall 3% to 5% and nursing facility visits billed as a skilled stay rise 10% to 12%.",
   "owner": "william",
   "due": "2026-12-31"
  },

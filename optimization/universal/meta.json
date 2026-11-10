@@ -20,10 +20,11 @@
    "headline": [
     "**Profitable and lean.** $585,057 before owner pay on $1,058,153 of revenue in the last twelve months. Operating cost is 44.7% of revenue.",
     "**Worth about $300,000 today** as a business (range about $50,000 to $680,000). Buyers pay for the profit left after a physician is paid a market wage for this workload. That profit is about $88,000 a year. This is a planning estimate. It depends most on that wage and on how the billing reviews come out.",
-    "**Five billing patterns need a chart review before anyone else asks:** complex care management billed for 257 patients in October 2026, visit levels far above national patterns, advance care planning billed with no tested record of time, every nursing facility visit billed as a skilled stay, and initial visits billed by the nurse practitioner.",
+    "**The largest money on the table is place of service.** Every nursing facility claim says the resident is in a skilled stay. For long-term residents the correct code pays more in 2026: $142.98 against $80.71 for the first hour of complex care management. At October's volume and today's paid rate that is worth roughly $30,000 to $60,000 a year on care management alone.",
+    "**Four billing patterns need a chart review before anyone else asks:** visit levels far above national patterns, advance care planning billed with no tested record of time, every nursing facility claim billed as a skilled stay, and initial visits billed by the nurse practitioner.",
     "**Money is leaking before and after the claim goes out.** One charge in nine has no payer when it is entered. 30% of recent claim lines paid nothing, and two thirds of those carry one denial code, the one Medicare gives most often on care-management lines. $342,620 is open with 35% older than 90 days.",
     "**Dated items:** the Medicaid provider agreement renewal is due December 1, 2026. Decide by early December how to report 2026 data to Medicare's quality program. That data is due March 31, 2027. Salary and owner-loan decisions with the accountant are needed before December 31. Medicare claims that were never accepted expire one year after the date of service, so some from late 2025 expire each week.",
-    "**First four moves:** switch off the three standing rules that re-date and resend denied care-management claims and write off old balances, hold the next care-management batch, engage a healthcare attorney before any chart review starts, and have the attorney commission an outside coding audit."
+    "**First four moves:** get each nursing facility's list of residents in a Medicare Part A stay and set place of service from it, pause the automatic write-off of old balances, engage a healthcare attorney before the visit-level audit starts, and file the Medicaid renewal due December 1."
    ],
    "tiles": [
     {
@@ -51,7 +52,7 @@
    "lead": "Patterns in the practice's own billing data that an auditor's software would also see, set beside the rule each one touches. **A pattern is a reason to look at charts. It is not a finding that anything was billed wrongly.**",
    "how_to_use": [
     "Read the findings in order. Critical and high come first.",
-    "Engage a healthcare attorney first, so that the reviews of past claims are directed by counsel. Do not wait for those reviews to stop what is already in doubt: hold the monthly care-management batch, switch off the rules that re-date and resend denied care-management claims and write off old balances, and set place of service on new claims from each facility's census. Do not move visit levels up or down to match national averages. The note for that day decides the level.",
+    "Engage a healthcare attorney first, so that the reviews of past visit claims are directed by counsel. Set place of service on new claims from each facility's census now. Do not move visit levels up or down to match national averages. The note for that day decides the level.",
     "The billing database holds claims, not clinical notes. Every finding here still has to be tested against the charts.",
     "When a review that the attorney directs is finished, its result goes to the attorney, not into this application. On the work list record only that the step is complete, and the date. For the other reviews, record the result and the date on the work list."
    ],

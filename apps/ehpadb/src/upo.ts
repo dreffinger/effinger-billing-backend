@@ -7,6 +7,8 @@
 //   GET  /api/upo/practice/:code       one practice's application: standing per category, metric values, risk findings,
 //                                      recommendations, projects, the work list and the valuation
 //   POST /api/upo/practice/:code/worklist/:id   {status, note} - the ONLY write: the owner moves a work-list row along
+//   Work-list rows are never deleted on a reload, so an item that is retired has its title changed to start with "Withdrawn:"
+//   and every read here leaves those rows out.
 // The practice tables hold aggregates only (dollars, counts, rates) - never a patient name, date of birth or member id.
 import type { Hono } from "hono";
 import type { Pool } from "pg";
@@ -56,10 +58,10 @@ const PRACTICE_SQL = `select json_build_object(
   'recommendations', ${arr(`select r.id, r.ord, r.kind, r.category_slug, c.name as category, r.title, r.why, r.what, r.impact_low, r.impact_high, r.impact_basis, r.effort, r.horizon, r.owner, r.project_slug, r.confidence
                             from upo.recommendations r left join upo.categories c on c.slug = r.category_slug where r.practice = $1 order by r.ord`)},
   'projects', ${arr(`select p.slug, p.ord, p.title, p.objective, p.category_slug, p.priority, p.status, p.impact_low, p.impact_high, p.impact_note, p.owner, p.start_by, p.target_date, p.success_measures, p.steps,
-                            (select count(*) from upo.worklist_items w where w.practice = p.practice and w.project_slug = p.slug) as items,
-                            (select count(*) from upo.worklist_items w where w.practice = p.practice and w.project_slug = p.slug and w.status = 'done') as items_done
+                            (select count(*) from upo.worklist_items w where w.practice = p.practice and w.project_slug = p.slug and w.title not like 'Withdrawn:%') as items,
+                            (select count(*) from upo.worklist_items w where w.practice = p.practice and w.project_slug = p.slug and w.status = 'done' and w.title not like 'Withdrawn:%') as items_done
                      from upo.projects p where p.practice = $1 order by p.ord`)},
-  'worklist', ${arr(`select w.id, w.project_slug, w.ord, w.title, w.detail, w.owner, w.due, w.status, w.note, w.updated_at, w.updated_by from upo.worklist_items w where w.practice = $1 order by w.ord`)},
+  'worklist', ${arr(`select w.id, w.project_slug, w.ord, w.title, w.detail, w.owner, w.due, w.status, w.note, w.updated_at, w.updated_by from upo.worklist_items w where w.practice = $1 and w.title not like 'Withdrawn:%' order by w.ord`)},
   'valuations', ${arr(`select v.as_of, v.method, v.low, v.base, v.high, v.inputs, v.bridge, v.notes from upo.valuations v
                        where v.practice = $1 and v.as_of = (select max(as_of) from upo.valuations where practice = $1) order by (v.method = 'summary') desc, v.method`)},
   'meta', coalesce((select json_object_agg(key, value) from upo.meta where key like 'practice:' || $1 || ':%'), '{}'::json)
@@ -75,7 +77,7 @@ const SUMMARY_SQL = `select json_build_object(
       'areas_amber', (select count(*) from upo.practice_categories where practice = p.code and status = 'amber' and applicability <> 'not_applicable'),
       'areas_green', (select count(*) from upo.practice_categories where practice = p.code and status = 'green' and applicability <> 'not_applicable'),
       'risks_high', (select count(*) from upo.risk_findings where practice = p.code and severity in ('critical', 'high')),
-      'work_open', (select count(*) from upo.worklist_items where practice = p.code and status not in ('done', 'dropped')),
+      'work_open', (select count(*) from upo.worklist_items where practice = p.code and status not in ('done', 'dropped') and title not like 'Withdrawn:%'),
       'projects_now', (select count(*) from upo.projects where practice = p.code and priority = 'now'),
       'value_low', v.low, 'value_base', v.base, 'value_high', v.high)
     from upo.practices p left join lateral (select low, base, high from upo.valuations where practice = p.code and method = 'summary' order by as_of desc limit 1) v on true

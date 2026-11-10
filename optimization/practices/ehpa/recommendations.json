@@ -2,29 +2,31 @@
  {
   "id": "ehpa-rec-01",
   "ord": 1,
-  "kind": "risk",
-  "category_slug": "cc-time-based-codes",
-  "title": "Hold complex care-management billing until records support each claim",
-  "why": "In October 2026, 257 patients were billed a code that asserts at least 60 minutes of care-management time each, by the practice's staff or the physician himself. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
+  "kind": "revenue",
+  "category_slug": "cc-place-of-service",
+  "title": "Bill care management under each resident's correct place of service",
+  "why": "Every nursing facility claim says the resident is in a Medicare Part A skilled stay (place of service 31). For a long-term resident the correct code is 32, and in 2026 Medicare allows more under it: $142.98 against $80.71 for the first hour of complex care management and $77.47 against $44.58 for each added half hour. The practice's own remittances show both rates being paid.",
   "what": [
-   "Hold the November batch and engage the attorney",
-   "Attorney-directed look at 30 patient-months",
-   "Bill only from a time log, at the code the minutes support"
+   "Get each facility's list of residents in a Part A stay, with dates",
+   "Set place of service from it on every new claim",
+   "Size the past year before deciding whether to ask Medicare to reopen paid claims"
   ],
-  "impact_basis": "At October's volume and today's 42% to 50% paid rate, these claims would bring in about $165,000 a year. If every line were paid it would be about $370,000. The review protects that revenue and limits repayment of past claims.",
+  "impact_basis": "October 2026 had 112 Medicare fee-for-service first-hour lines and 96 add-on lines billed as skilled stays. If every one of those residents was a long-term resident and every claim paid, the difference is about $10,100 a month in allowed amount. About 42% to 50% of these lines are paid today, so a realistic figure is $30,000 to $60,000 a year. Place of service is a fact about the resident, so the gain exists only for residents who were not in a Part A stay. The matching gain on visits is counted under the census recommendation.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "william",
   "project_slug": "ccm-footing",
-  "confidence": "high that review is needed; the outcome is unknown"
+  "confidence": "high on the rates; low on the share of residents who are long-term until the facilities' lists arrive",
+  "impact_low": 30000,
+  "impact_high": 60000
  },
  {
   "id": "ehpa-rec-07",
   "ord": 2,
   "kind": "risk",
   "category_slug": "cr-overpayments",
-  "title": "Bring in a healthcare attorney before the reviews begin",
-  "why": "Once a review shows an overpayment, a 60-day clock starts. A review directed by an attorney can be privileged if its results stay with the attorney, and its timing is documented.",
+  "title": "Bring in a healthcare attorney before the visit-level audit begins",
+  "why": "Once a review shows an overpayment, a 60-day clock starts. A review directed by an attorney can be privileged if its results stay with the attorney, and its timing is documented. This applies to the audit of visit levels and advance care planning.",
   "what": [
    "Engage the attorney",
    "Have the attorney hire the auditor",
@@ -34,7 +36,7 @@
   "effort": "low",
   "horizon": "this month",
   "owner": "william",
-  "project_slug": "ccm-footing",
+  "project_slug": "coding-audit",
   "confidence": "high"
  },
  {
@@ -89,7 +91,7 @@
    "Place of service set from it",
    "Hospice status flagged automatically; the clinician chooses the modifier"
   ],
-  "impact_basis": "For 2026 visits only. Medicare allows $13 to $15 more for a follow-up visit to a long-term resident when the claim carries place of service 32. At October's pace that adds about $10,000 to $20,000 on Medicare fee-for-service visits if half to all of them were to long-term residents, and more if Medicare Advantage plans pay the same way. From 2027 Medicare pays these visits the same under either code. Do not count higher care-management payments until the review in recommendation 1 is done. Fewer wrong-payer denials are not valued here.",
+  "impact_basis": "For 2026 visits only. Medicare allows $13 to $15 more for a follow-up visit to a long-term resident when the claim carries place of service 32. At October's pace that adds about $10,000 to $20,000 on Medicare fee-for-service visits if half to all of them were to long-term residents, and more if Medicare Advantage plans pay the same way. From 2027 Medicare pays these visits the same under either code. The larger gain, on care management, is counted under the place-of-service recommendation. Fewer wrong-payer denials are not valued here.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "claude",

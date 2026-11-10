@@ -2,28 +2,27 @@
  {
   "slug": "ccm-footing",
   "ord": 1,
-  "title": "Put care management on a defensible footing",
-  "objective": "Bill care management only where consent, a care plan and logged time support the code, and settle what to do about past claims.",
+  "title": "Care management: correct place of service and collect what is billed",
+  "objective": "Bill care management under each resident's correct place of service, and find out why more than half of the lines go unpaid.",
   "category_slug": "cc-time-based-codes",
   "priority": "now",
-  "impact_low": null,
-  "impact_high": null,
-  "impact_note": "Protects a revenue line of about $165,000 a year at October's volume and today's paid rate (about $370,000 if every line were paid) and limits repayment exposure.",
+  "impact_low": 30000,
+  "impact_high": 60000,
+  "impact_note": "Place of service on care-management lines for long-term residents, at today's paid rate. The line itself is about $165,000 a year at October's volume and today's paid rate, and about $370,000 if every line were paid, so each 10 points of paid rate is worth roughly $37,000 a year.",
   "owner": "william",
   "start_by": "2026-11-11",
   "target_date": "2026-12-18",
   "success_measures": [
-   "No care-management claim is sent for November 2026 or any later month unless it traces to a consent, a care plan and a time log",
-   "Total minutes billed in a month do not exceed the hours the staff and the physician had available",
-   "The attorney has given written advice on past claims"
+   "Every care-management claim carries the place of service that matches the resident's status that month",
+   "The share of care-management lines paid within 60 days is measured each month and rises",
+   "The reason for each denied line is known and worked"
   ],
   "steps": [
-   "Hold November's batch",
-   "Engage the attorney",
-   "Attorney-directed look at 30 patient-months",
-   "Decide which code each patient's records support",
-   "Build the time log and consent fields",
-   "Review of past claims as the attorney directs"
+   "Get Part A stay lists from the five facilities",
+   "Set place of service on new care-management claims",
+   "Ask First Coast what the wrong-provider-type denials mean",
+   "Work the unpaid lines by reason",
+   "Decide on a look-back once it is sized"
   ]
  },
  {
