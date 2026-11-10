@@ -61,7 +61,7 @@
     },
     {
      "item": "geriatrics-companion-guide",
-     "note": "Puts 55% to 75% of a geriatric panel in Medicare Advantage with no source. Wrongly says those plans need not follow Medicare's coverage rules."
+     "note": "Claims 55% to 75% of geriatric patients are in Medicare Advantage, with no source. Wrongly says those plans need not follow Medicare's coverage rules."
     }
    ],
    "sources": [
@@ -80,7 +80,7 @@
      "unit": "percent",
      "direction": "info",
      "cadence": "quarterly",
-     "benchmark_note": "Not a target. It measures dependence. AMA survey, 2016 data: physicians' patients averaged 43% commercial, 29% Medicare and 17% Medicaid. More than half (55%) of eligible Medicare beneficiaries were in Medicare Advantage in 2026 (KFF). Above half on one payer, model its rate changes yearly.",
+     "benchmark_note": "Not a target. American Medical Association survey, 2016 data: physicians' patients averaged 43% commercial, 29% Medicare and 17% Medicaid. KFF: 55% of eligible Medicare beneficiaries were in Medicare Advantage in 2026. Above half on one payer, model its rate changes yearly.",
      "confidence": "none",
      "sources": [
       "ama-patient-mix-2017",
@@ -202,20 +202,22 @@
     "Each plan's rates for the practice's top codes are expressed as a percentage of Medicare's rate for the same locality and setting.",
     "The practice knows what it offers each plan: access, quality results, coverage of sites the plan must serve.",
     "Requests are made in writing, with data, well before renewal.",
-    "Terms other than rates are negotiated too: filing limits, appeal rights, amendment notice."
+    "Terms other than rates are negotiated too: filing limits, appeal rights, amendment notice.",
+    "The practice knows what leaving a network would change. Outside a Medicare Advantage network, a clinician must accept Original Medicare's amount as payment in full (42 CFR 422.214)."
    ],
    "failure_modes": [
     "A plan pays below Medicare and nobody has calculated it.",
     "The practice asks for more with no data and accepts the first refusal.",
     "A rate increase is won and never loaded, so underpayments go unnoticed.",
     "Charges are set below a plan's allowed amount. Plans and Medicare pay the lesser of the charge or the fee schedule, so the practice caps its own payment.",
-    "Competing practices agree among themselves on the fees to ask of a plan. Fee agreements among competing physicians are price fixing, illegal in itself under the Sherman Act."
+    "Competing practices agree among themselves on the fees to ask of a plan. Fee agreements among competing physicians are price fixing, illegal in itself under federal antitrust law."
    ],
    "key_questions": [
     "For our top 15 codes, what does each plan pay as a percent of Medicare?",
     "Which plan is furthest below the others?",
     "What do we offer that a plan needs?",
-    "Are our charges above every plan's allowed amount?"
+    "Are our charges above every plan's allowed amount?",
+    "Is each plan's rate tied to the current Medicare fee schedule or to an old year, and does it rise each year?"
    ],
    "actions": [
     {
@@ -227,7 +229,7 @@
     },
     {
      "action": "Write the case before asking",
-     "detail": "Volume, access, quality and cost results, and the specific rates requested.",
+     "detail": "Volume, access, quality and cost results, the specific rates and yearly increase requested, and the point at which the practice would leave the network.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "medium"
@@ -276,9 +278,10 @@
     "uhc-admin-guide-2026",
     "maricopa-1982",
     "ama-contract-checklist",
-    "cms-pfs-2027"
+    "cms-pfs-2027",
+    "cfr-422-214"
    ],
-   "evidence_note": "Method is professional practice. Measured averages exist: commercial preferred provider plans paid 147% of Medicare for clinician services in 2024 (MedPAC), and Medicaid paid 75% (KFF). Commercial in-network rates have been public by federal rule since 2022. The antitrust rule is Supreme Court precedent.",
+   "evidence_note": "Method is professional practice. Measured averages: commercial preferred provider plans paid 147% of Medicare for clinician services in 2024 (Medicare Payment Advisory Commission, MedPAC), Medicaid 75% (KFF). Commercial in-network rates are public by federal rule since 2022. The antitrust rule is Supreme Court precedent.",
    "metrics": [
     {
      "slug": "pc-rate-vs-medicare",
@@ -289,7 +292,7 @@
      "direction": "higher",
      "cadence": "annual",
      "benchmark_typical": "commercial about 147%, Medicare Advantage about 97%, Medicaid about 75% of Medicare",
-     "benchmark_note": "Measured national averages, not targets. MedPAC, 2024: commercial preferred provider plans 147% of Medicare, from 124% for care management visits to 213% for CT scans. Trish, 2007 to 2012 claims: Medicare Advantage 97% for an office visit. KFF, 2024: Medicaid 75% (Florida 64%).",
+     "benchmark_note": "Measured averages, not targets. MedPAC, 2024: commercial preferred provider plans 147% of Medicare, from 124% for care management visits to 213% for CT scans. A 2017 study of 2007 to 2012 claims: Medicare Advantage 97% for an office visit. KFF, 2024: Medicaid 75% (Florida 64%).",
      "confidence": "medium",
      "sources": [
       "medpac-mar26-ch4",
@@ -306,18 +309,20 @@
   {
    "slug": "pc-credentialing",
    "name": "Credentialing and enrollment",
-   "summary": "Getting each clinician enrolled with Medicare, Medicaid and every plan, at every location, before they see patients, and keeping those enrollments current. A claim is payable only if the clinician was enrolled on the date of service.",
+   "summary": "Getting each clinician enrolled with Medicare, Medicaid and every plan, at every location, before they see patients, and keeping those enrollments current. Most payers pay only for services on or after the enrollment effective date.",
    "good_looks_like": [
-    "A tracker lists every clinician, payer and location with status, effective date and next revalidation or recredentialing date.",
-    "Applications are filed the day a clinician's offer is signed.",
+    "A tracker lists every clinician, payer and location with status, effective date and next revalidation or recredentialing date, plus hospital privileges and their renewal dates.",
+    "Plan applications start when a clinician's offer is signed. The Medicare application is filed no more than 60 days before the start date, because earlier ones can be returned.",
     "Revalidation and recredentialing requests are answered well before the deadline.",
-    "Changes of address, ownership or clinicians are reported within the required time."
+    "Changes of location, ownership or clinicians are reported within the required time, including each new facility where patients are seen.",
+    "The shared credentialing profile that health plans draw on (the CAQH Provider Data Portal) is re-attested every 120 days."
    ],
    "failure_modes": [
-    "A clinician sees patients for months before enrollment is effective, and the visits cannot be billed.",
+    "A clinician sees patients for months before an application is filed. Medicare looks back 30 days at most and some plans not at all, so the visits go unpaid.",
     "A recredentialing letter goes to an old address and the plan terminates the practice.",
-    "A new location is never added to the enrollment record.",
-    "The clinician's national provider record lists the wrong specialty or address."
+    "A new office or facility is never added to the Medicare enrollment record, though a new practice location must be reported within 30 days.",
+    "The clinician's National Provider Identifier record lists an old specialty or address. Changes must be reported to the national registry within 30 days.",
+    "A clinician who bills Medicare nothing for six months, or misses a revalidation, may be deactivated. Medicare pays nothing for services given while deactivated."
    ],
    "key_questions": [
     "Is every clinician enrolled and current with every payer we bill?",
@@ -334,36 +339,64 @@
      "impact": "high"
     },
     {
-     "action": "File at offer acceptance and follow up weekly",
-     "detail": "Medicare's effective date depends on the filing date, with only a short look-back.",
+     "action": "File early and follow up weekly",
+     "detail": "Start plan applications at offer acceptance. File with Medicare within the 60 days before the start date. Billing starts on the later of filing date or first service, with at most a 30-day look-back (42 CFR 424.520 to 424.526).",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
-     "action": "Calendar every revalidation 120 days ahead",
-     "detail": "Including the profile used by health plans, which must be re-attested regularly.",
+     "action": "Calendar every renewal date",
+     "detail": "Medicare revalidation every 5 years (due dates are posted seven months ahead, no extensions), plan recredentialing at least every 3 years, Medicaid at least every 5, the CAQH profile every 120 days, and hospital privileges on each hospital's cycle.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Report changes on time",
-     "detail": "Medicare requires reports of ownership and location changes within 30 days and most other changes within 90.",
+     "detail": "Medicare requires reports of ownership changes, adverse legal actions and added, changed or closed practice locations within 30 days, and all other changes within 90 (42 CFR 424.516).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Reassign each clinician's Medicare payment to the practice",
+     "detail": "Each clinician enrolls individually and reassigns payment to the group on the same application (form CMS-855I, or online). The separate reassignment form was discontinued.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice that bills insurers. Each clinician needs separate enrollment with Medicare, with Medicaid where dual-eligible patients are seen, and with each plan.",
+   "applies_when": "Every practice that bills insurers: each clinician needs separate enrollment with Medicare, with Medicaid where dual-eligible patients are seen, and with each plan. Facility-based practices list each hospital, nursing facility or assisted living community as a Medicare practice location, and home-visit practices state that care is given in patients' homes.",
+   "vendor_refs": [
+    {
+     "item": "credentialing-and-re-credentialing-management-playbook",
+     "note": "Adds a clinician-by-payer calendar with early triggers and a status tracker. Says to file with Medicare 90 days ahead, though an application over 60 days early can be returned."
+    },
+    {
+     "item": "new-practice-launch-playbook",
+     "note": "Adds an enrollment order for a new practice. Says Medicare may be filed only 30 days ahead (the rule is 60) and names the discontinued reassignment form."
+    }
+   ],
    "sources": [
-    "fcso-enroll",
-    "cfr-424-516",
     "cfr-424-520",
     "cfr-424-521",
-    "caqh-providers"
+    "cfr-424-526",
+    "cfr-424-515",
+    "cfr-424-516",
+    "cfr-424-540",
+    "cms-revalidation",
+    "cms-855i-form",
+    "fcso-enroll",
+    "caqh-providers",
+    "cfr-422-204",
+    "cfr-455-410",
+    "cfr-455-414",
+    "cfr-162-410",
+    "mgma-stat-cred-2021",
+    "cfr-482-22"
    ],
-   "evidence_note": "Medicare's rules are federal regulation, and its contractor publishes processing times. Plan credentialing timelines are set by each plan and are not published.",
+   "evidence_note": "Medicare's rules are federal regulation, and its contractor publishes processing standards. Medicare Advantage plans must recredential at least every 3 years (42 CFR 422.204). Plans publish no processing times. Medical Group Management Association (MGMA) poll, 2021: waits up to 100 days.",
    "metrics": [
     {
      "slug": "pc-enrollment-current",
@@ -379,20 +412,23 @@
     },
     {
      "slug": "pc-credentialing-days",
-     "name": "Days from application to billable",
-     "definition": "Calendar days from submitting a complete enrollment application to the date the clinician can be paid by that payer.",
-     "formula": "Effective or approval date - complete application date, by payer",
+     "name": "Days from application to approval",
+     "definition": "Calendar days from submitting a complete enrollment application to the payer's approval, when claims for that clinician can first be sent.",
+     "formula": "Approval date - complete application date, by payer",
      "unit": "days",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_best": "15 days for Medicare online applications",
+     "benchmark_best": "15 days for a clean online Medicare application",
      "benchmark_typical": "up to 50 days for Medicare",
-     "benchmark_note": "First Coast, Medicare's contractor in Florida: 95% of clean online applications processed in 15 days and all within 50. Health plans publish no figures and often take longer.",
+     "benchmark_note": "First Coast (Medicare's Florida contractor) processing standards, 2026: 95% of clean online applications in 15 days, all within 50, and 50 to 85 days when more information is needed. Plans publish no standards. MGMA members reported waits of up to 100 days (2021).",
      "confidence": "medium",
-     "data_hint": "The enrollment tracker.",
      "sources": [
-      "fcso-enroll"
-     ]
+      "fcso-enroll",
+      "mgma-stat-cred-2021"
+     ],
+     "data_hint": "The enrollment tracker: application and approval dates for each clinician and payer.",
+     "vendor_claim": "All priority payers approved within 120 days of application, with escalation at 90 days. Medicare typically takes 30 to 45 days.",
+     "vendor_verdict": "Unverifiable for plans, which publish no standards. For Medicare the contractor's own standard is faster: 15 days for most clean online applications."
     },
     {
      "slug": "pc-credentialing-denial-rate",
@@ -402,9 +438,15 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. These are fully preventable, so the target is zero.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. These denials are preventable, so the target is zero. MGMA poll, August 2021 (425 practices): 54% saw credentialing denials rising.",
      "confidence": "none",
-     "data_hint": "Remittance reason codes for provider not eligible or not enrolled."
+     "sources": [
+      "mgma-stat-cred-2021",
+      "x12-carc"
+     ],
+     "data_hint": "Remittance reason codes 185, B7, 208 and 242: clinician not eligible, not certified on the date of service, identifier not matched, not a network provider.",
+     "vendor_claim": "Target 0%: the library treats every credentialing denial as a preventable lapse.",
+     "vendor_verdict": "Supported as a first-principles target. No published benchmark exists."
     }
    ]
   },
@@ -416,12 +458,13 @@
     "Someone reads the summary of the final rule each November and lists what changes for the practice's codes.",
     "The top codes are repriced at next year's rates before the year starts.",
     "The practice knows whether each service is paid at the facility or non-facility rate, and why.",
-    "Participation status is a deliberate choice."
+    "Participation status is a deliberate choice, reviewed between mid-November and December 31, when Medicare allows changes.",
+    "Staff know the standing cuts: 2% off Medicare's share (sequestration), and 85% of the physician rate when a nurse practitioner or physician assistant bills under their own number."
    ],
    "failure_modes": [
     "The conversion factor falls and the practice learns it from its January deposits.",
-    "A place-of-service error pays the wrong rate for years.",
-    "A code is deleted or replaced on January 1 and claims are rejected for weeks.",
+    "A place-of-service error pays the wrong rate for years. When the higher rate was paid in error, the difference is an overpayment that must be returned.",
+    "A code is deleted or replaced on January 1 and claims are rejected for weeks. Example: in 2027 the visit complexity add-on G2211 becomes a modifier.",
     "Budgeting assumes last year's rates."
    ],
    "key_questions": [
@@ -433,14 +476,14 @@
    "actions": [
     {
      "action": "Read the final rule summary each November",
-     "detail": "CMS publishes a fact sheet. Note the conversion factor and any policy touching the practice's services.",
+     "detail": "The Centers for Medicare & Medicaid Services (CMS) publishes a fact sheet. Note the conversion factor and any policy touching the practice's services.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Reprice the top codes",
-     "detail": "Next year's rate by code and place of service, times this year's volume.",
+     "detail": "Next year's rate by code, locality and place of service, times this year's volume. CMS posts the new values with the final rule.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -454,20 +497,44 @@
     },
     {
      "action": "Check place of service on a sample",
-     "detail": "Facility and non-facility rates differ, sometimes by a third.",
+     "detail": "Facility and non-facility rates can differ by a third for care management codes. Nursing facility visits paid less in a Part A skilled stay (place of service 31) during 2026 and pay the same from 2027.",
      "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Decide Medicare participation each year",
+     "detail": "A non-participating clinician is paid 5% less and may charge patients no more than 115% of that reduced amount (42 CFR 414.48). Changes are allowed from mid-November to December 31.",
+     "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice that bills Original Medicare. The effect of each year's rule depends on the practice's code mix and settings: recent rules have treated services in facility settings differently from office services.",
+   "applies_when": "Every practice that bills Original Medicare. The effect of each year's rule depends on code mix and setting: the 2026 rule cut practice expense payment for services in facilities, and the 2027 rule restores equal payment for nursing facility visits whether or not the patient is in a Part A stay.",
+   "vendor_refs": [
+    {
+     "item": "fee-schedule-optimization-playbook",
+     "note": "Gives the 2026 conversion factors correctly and a yearly update cycle. Counts only hospital outpatient and surgery centers as facility settings, missing skilled nursing stays, and omits the limiting charge."
+    },
+    {
+     "item": "universal-specialty-billing-framework",
+     "note": "Treats Traditional Medicare as stable from year to year. The 2026 and 2027 rules changed conversion factors, facility payment and how the visit add-on is billed."
+    }
+   ],
    "sources": [
     "cms-pfs-2026",
     "cms-pfs-2027",
+    "fr-pfs-2027-final",
     "cfr-414-56",
-    "cms-cpm-ch12"
+    "cfr-414-52",
+    "cms-cpm-ch12",
+    "cfr-414-48",
+    "cms-participation",
+    "fcso-sequestration",
+    "cfr-401-305",
+    "cms-puf"
    ],
-   "evidence_note": "The fee schedule and its yearly changes are federal rulemaking. The 2026 conversion factors are $33.40 and $33.57. The 2027 rule sets $32.63 and $32.95, a 2.31% cut.",
+   "evidence_note": "The fee schedule and its yearly changes are federal rulemaking. 2026 conversion factors: $33.40, and $33.57 for qualifying alternative payment model participants. 2027: $32.63 (down 2.31%) and $32.95 (down 1.83%), because a one-year 2.5% increase ends.",
    "metrics": [
     {
      "slug": "pc-fee-schedule-impact",
@@ -477,74 +544,107 @@
      "unit": "dollars",
      "direction": "info",
      "cadence": "annual",
-     "benchmark_note": "For 2027 the conversion factor falls 2.31% for most clinicians (CMS final rule, November 2026). Code-level and setting-level changes can add to or offset that.",
+     "benchmark_note": "Not a target. For 2027 the conversion factor falls 2.31% for most clinicians and 1.83% for qualifying alternative payment model participants (CMS final rule, November 2026). Code and setting changes add to or offset that, so reprice your own codes.",
      "confidence": "high",
-     "data_hint": "Volume by code and place of service from the billing system, with the Medicare fee schedule lookup for both years.",
      "sources": [
-      "cms-pfs-2027"
-     ]
+      "cms-pfs-2027",
+      "fr-pfs-2027-final"
+     ],
+     "data_hint": "Volume by code and place of service from the billing system, with the Medicare fee schedule lookup for both years."
     }
    ]
   },
   {
    "slug": "pc-medicare-advantage",
    "name": "Medicare Advantage operations",
-   "summary": "Working with private Medicare plans: confirming network status, meeting each plan's authorization and referral rules, tracking slower and less certain payment, and disputing denials. Each plan is a separate set of rules.",
+   "summary": "Working with private Medicare plans: confirming network status, meeting each plan's authorization and referral rules, tracking payment timing and denials, and disputing denials. Each plan is a separate set of rules.",
    "good_looks_like": [
     "A one-page sheet per plan lists network status, authorization and referral rules, filing limit, dispute process and contacts.",
     "Enrollment in a plan is confirmed monthly for continuing patients.",
     "Denials are tracked by plan and disputed through the contract's process.",
-    "The practice knows what happens to billing when a plan member elects hospice."
+    "The practice knows what happens to billing when a plan member elects hospice.",
+    "Staff know the federal rules plans must follow: Medicare's national and local coverage rules apply, and a service approved in advance cannot later be denied as not medically necessary."
    ],
    "failure_modes": [
-    "Staff assume a plan follows Original Medicare's rules and are surprised by denials.",
+    "Staff assume a plan works like Original Medicare and miss its authorization, referral, network and filing rules.",
     "A patient switches plans and the practice bills the old one for months.",
-    "Denials are written off, although most disputed denials are overturned.",
-    "Claims for a plan member on hospice keep going to the plan."
+    "Denials are written off, although 57% of Medicare Advantage claim denials were later overturned in a study of 2019 claims.",
+    "Claims for a plan member on hospice keep going to the plan.",
+    "Staff give a plan member Original Medicare's advance notice of non-coverage. Contracted clinicians may not use that form for plan members. Ask the plan for a coverage decision instead."
    ],
    "key_questions": [
     "For each plan, are we in network, and what needs authorization or a referral?",
     "What is each plan's denial rate and average days to pay?",
     "How many denials did we dispute last quarter, and how many did we win?",
-    "Do we re-check plan enrollment every month?"
+    "Do we re-check plan enrollment every month?",
+    "Does any plan contract carry a bonus or shared-savings addendum, and who tracks what it requires?"
    ],
    "actions": [
     {
      "action": "Write a one-page sheet per plan",
-     "detail": "Network status, product types, authorization and referral rules, filing and dispute deadlines, contacts.",
+     "detail": "Network status, product types, authorization and referral rules, filing and dispute deadlines, contacts. Out of network, covered services are paid at no less than Original Medicare's amount, which the clinician must accept as payment in full.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Track denials and days to pay by plan",
-     "detail": "Monthly, beside Original Medicare for comparison.",
+     "detail": "Monthly, beside Original Medicare for comparison. Also log authorization requests: since 2026 plans must answer a standard request within 7 calendar days (42 CFR 422.568).",
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Dispute denials systematically",
-     "detail": "Use the contract's dispute process and cite Medicare coverage rules, which plans must follow.",
+     "detail": "Use the contract's dispute process. Cite the rules: plans must follow Medicare's national and local coverage decisions (42 CFR 422.101) and may not deny an approved service later for medical necessity (42 CFR 422.138).",
      "cadence": "weekly",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Handle hospice elections",
-     "detail": "From the election date Original Medicare pays, and claims need the hospice modifiers.",
+     "detail": "From the election date Original Medicare, not the plan, pays. Professional claims need modifier GV (attending physician not employed by the hospice) or GW (unrelated to the terminal illness).",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
+    },
+    {
+     "action": "Re-check plan enrollment at the start of each month",
+     "detail": "Nursing facility residents staying 90 days or more may change plans at any time, and people with both Medicare and Medicaid once a month. Check plan, hospice status and Medicaid status together.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "high"
     }
    ],
-   "applies_when": "Any practice with Medicare-age patients. Residents of nursing facilities and people with both Medicare and Medicaid can change plans during the year, so enrollment has to be re-checked monthly.",
+   "applies_when": "Any practice with Medicare patients: more than half of eligible beneficiaries (55% in 2026) are in these plans. Facility-based practices face more switching, since long-stay nursing facility residents may change plans at any time and people with both Medicare and Medicaid monthly, so enrollment is re-checked every month.",
+   "vendor_refs": [
+    {
+     "item": "medicare-advantage-operational-playbook",
+     "note": "Adds a per-plan rule inventory and claim checkpoints. Wrongly says a plan may recoup for medical necessity after approving the service, and presents the patient's appeal ladder as the practice's."
+    },
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Adds plan-by-plan protocols for the largest plans. Wrongly says plans need not follow Medicare's rules and tells staff to use Original Medicare's advance notice form for plan members."
+    }
+   ],
    "sources": [
     "vabson-2025",
     "kff-ma-pa",
+    "kff-ma-2026",
+    "cfr-422-101",
+    "cfr-422-138",
+    "cfr-422-568",
+    "cfr-422-520",
+    "cfr-422-402",
+    "cfr-422-214",
+    "cfr-422-62",
+    "cfr-422-2",
+    "cms-dual-sep",
+    "cms-ma-appeals-guidance",
+    "cms-ma-noncontract",
     "cms-cpm-ch11"
    ],
-   "evidence_note": "Denial and overturn rates are from a peer-reviewed study of 2019 claims and from KFF's analysis of plan data. Federal rules, not state prompt-payment laws, govern these plans.",
+   "evidence_note": "Denial and overturn rates are from a peer-reviewed study of 2019 claims and from KFF's analysis of 2024 plan data. Federal rules, not state prompt-payment laws, govern these plans. Contracted clinicians dispute payment under the contract. The federal appeal path belongs to the patient.",
    "metrics": [
     {
      "slug": "pc-ma-denial-rate",
@@ -554,13 +654,15 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_typical": "about 17% nationally",
-     "benchmark_note": "Health Affairs, 2025, using 2019 claims: plans denied 17% of initial claims and 57% of denials were later overturned. Set targets by plan, not as one blended figure.",
+     "benchmark_typical": "about 17% of first claims (2019 claims)",
+     "benchmark_note": "Health Affairs, 2025, using 2019 claims from plans covering 30% of the market: 17% of first claims denied, and 57% of denials later overturned. Measured, not a target. Set targets by plan, not as one blended figure.",
      "confidence": "medium",
-     "data_hint": "Remittances grouped by plan.",
      "sources": [
       "vabson-2025"
-     ]
+     ],
+     "data_hint": "Remittances grouped by plan.",
+     "vendor_claim": "The purchased library sets a dashboard target of under 6% for the Medicare Advantage denial rate.",
+     "vendor_verdict": "Unverifiable as a target, and far below the one large measurement (17% of first claims in 2019). No source is given."
     },
     {
      "slug": "pc-ma-revenue-share",
@@ -570,8 +672,11 @@
      "unit": "percent",
      "direction": "info",
      "cadence": "quarterly",
-     "benchmark_note": "Not a target. A rising share means more of the practice's revenue depends on contracts, authorization rules and dispute work.",
+     "benchmark_note": "Not a target. A rising share means more revenue depends on contracts, authorization rules and dispute work. For context, 55% of eligible Medicare beneficiaries were in these plans in 2026 (KFF).",
      "confidence": "none",
+     "sources": [
+      "kff-ma-2026"
+     ],
      "data_hint": "Payments by payer class."
     }
    ]
@@ -581,16 +686,17 @@
    "name": "Medicaid and dual-eligible rules",
    "summary": "The rules for patients who have Medicaid, alone or alongside Medicare. They decide whether any secondary payment arrives, whether the patient may be billed, and which managed care plan is responsible.",
    "good_looks_like": [
-    "Every clinician who sees dual-eligible patients is enrolled with the state Medicaid program.",
-    "Staff know that Qualified Medicare Beneficiaries may not be billed for Medicare cost sharing.",
-    "Coinsurance that Medicaid will not pay is posted as a contractual adjustment, not left as a balance.",
+    "Every clinician who sees dual-eligible patients (those with both Medicare and Medicaid) is enrolled with the state Medicaid program.",
+    "Staff know that Qualified Medicare Beneficiaries, a low-income Medicaid group, may not be billed Medicare cost sharing, even when Medicaid pays nothing and even in a Medicare Advantage plan.",
+    "For protected patients, coinsurance that Medicaid will not pay is posted as a contractual adjustment, not left as a balance.",
     "The practice knows each Medicaid managed care plan's filing limit and payment method."
    ],
    "failure_modes": [
-    "A clinician is not enrolled with Medicaid, so crossover claims are rejected and nothing is paid.",
-    "Patients protected by federal law receive statements for coinsurance.",
+    "A clinician is not enrolled with Medicaid, so the claims Medicare passes on to Medicaid (crossover claims) are rejected and nothing is paid.",
+    "Patients protected by federal law receive statements for coinsurance. Money collected must be refunded, and the practice risks sanctions.",
     "Uncollectible dual-eligible balances inflate receivables for years.",
-    "A Medicaid plan's short filing limit is missed."
+    "A Medicaid plan's short filing limit is missed.",
+    "Staff treat every patient with Medicaid as protected, or none. The federal ban names Qualified Medicare Beneficiaries. For other categories, check the eligibility answer and state rules first."
    ],
    "key_questions": [
     "Are all our clinicians enrolled with Medicaid?",
@@ -601,7 +707,7 @@
    "actions": [
     {
      "action": "Enroll every clinician with Medicaid",
-     "detail": "And calendar its revalidation.",
+     "detail": "States must let Medicare-enrolled clinicians enroll so cost-sharing claims can be processed (42 CFR 455.410). Revalidation comes at least every 5 years. In Florida, enrollment takes effect the day the agency receives the application.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -622,18 +728,33 @@
     },
     {
      "action": "Know each Medicaid plan's rules",
-     "detail": "Filing limit, crossover handling and whether it pays electronically.",
+     "detail": "Filing limit, crossover handling and whether it pays electronically. Federal rules cap a state program's filing limit at 12 months from service (42 CFR 447.45). States and managed care plans may set shorter limits, such as 180 days.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Practices serving low-income older or disabled patients, including most nursing facility practices. State rules differ. In Florida, Medicaid pays nothing on Medicare coinsurance when Medicare's payment already meets Medicaid's own rate.",
+   "applies_when": "Practices serving low-income older or disabled patients, including most nursing facility practices, since 11% of dual-eligible people live in an institution against 2% of other Medicare beneficiaries. State rules differ: in Florida, Medicaid pays nothing on Medicare coinsurance when Medicare's payment already meets Medicaid's own rate, and long-term care is paid through managed care plans.",
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Adds the reminder that Medicaid's payment, often zero, settles a protected patient's claim. Stretches the billing ban to every dual-eligible patient and says Medicare is always primary."
+    }
+   ],
    "sources": [
     "cms-qmb",
-    "fl-409-907"
+    "fl-409-908",
+    "fl-409-907",
+    "fl-409-967",
+    "fl-409-978",
+    "macpac-crossover-2025",
+    "duals-databook-2025",
+    "cfr-455-410",
+    "cfr-455-414",
+    "cfr-447-45",
+    "cfr-422-504"
    ],
-   "evidence_note": "The ban on billing Qualified Medicare Beneficiaries is federal law. State payment rules on crossover claims vary, and most states limit them in a similar way.",
+   "evidence_note": "The billing ban for Qualified Medicare Beneficiaries is federal law, even when Medicaid pays nothing. State crossover rules vary: 41 states pay only up to the Medicaid rate for physician services (MACPAC, the federal Medicaid payment commission, May 2025).",
    "metrics": [
     {
      "slug": "pc-dual-share",
@@ -643,12 +764,14 @@
      "unit": "percent",
      "direction": "info",
      "cadence": "annual",
-     "benchmark_note": "Not a target. CMS publishes each clinician's share for fee-for-service patients. A high share means much coinsurance is uncollectible by law.",
+     "benchmark_typical": "about 20% of Medicare beneficiaries nationally (2022)",
+     "benchmark_note": "Not a target. Federal payment commissions' data book (MedPAC and MACPAC), 2022 data: 20% of Medicare beneficiaries were dually eligible, and 11% of them lived in an institution. Medicare publishes each clinician's count for fee-for-service patients. More protected patients means more uncollectible coinsurance.",
      "confidence": "high",
-     "data_hint": "Eligibility data, or the CMS public file by clinician.",
      "sources": [
+      "duals-databook-2025",
       "cms-puf"
-     ]
+     ],
+     "data_hint": "Eligibility data, or Medicare's public file by clinician, which counts beneficiaries with both Medicare and Medicaid."
     },
     {
      "slug": "pc-crossover-yield",
@@ -658,8 +781,11 @@
      "unit": "percent",
      "direction": "info",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Expect a low figure in states with lesser-of payment rules. Its use is to confirm crossovers are being processed at all.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Expect a low figure in the 41 states with lesser-of rules for physician services (MACPAC, May 2025). Its use is to confirm crossover claims are being processed at all.",
      "confidence": "none",
+     "sources": [
+      "macpac-crossover-2025"
+     ],
      "data_hint": "Secondary remittances from Medicaid against Medicare cost sharing."
     }
    ]
@@ -667,12 +793,12 @@
   {
    "slug": "pc-policy-monitoring",
    "name": "Payment policy monitoring",
-   "summary": "Watching for rule changes that alter what gets paid: Medicare's yearly rule, the regional contractor's coverage policies and review topics, plan policy bulletins and yearly code updates. Each change should become a written rule in the billing process.",
+   "summary": "Watching for rule changes that alter what gets paid: Medicare's yearly rule, the regional contractor's coverage policies and review topics, plan policy bulletins and code updates. Each change should become a written rule in the billing process.",
    "good_looks_like": [
     "One person is responsible for reading payer and contractor updates on a schedule.",
     "Each relevant change is turned into a dated entry in the practice's billing rules.",
     "The contractor's list of services under targeted review is checked against what the practice bills.",
-    "Yearly code changes are loaded before January."
+    "Code changes are loaded on their own calendars: procedure codes January 1, diagnosis codes October 1 (with an April update), and bundling edits each quarter."
    ],
    "failure_modes": [
     "The practice learns of a policy change from a wave of denials.",
@@ -689,7 +815,7 @@
    "actions": [
     {
      "action": "Assign a monthly policy review",
-     "detail": "Contractor news, coverage policy changes, the review topic list and each plan's bulletins.",
+     "detail": "Contractor news, coverage policy changes, the review topic list, each plan's bulletins and Medicare's weekly newsletter for providers. Local coverage decisions are posted at least 45 days before they take effect, so a monthly check catches each one.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
@@ -703,7 +829,7 @@
     },
     {
      "action": "Check billed services against review topics",
-     "detail": "If a high-volume service is listed, audit it before the contractor does.",
+     "detail": "Medicare contractors post the services under targeted review, each marked active or inactive. If a high-volume service is listed, audit a sample before the contractor does.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "high"
@@ -714,15 +840,36 @@
      "cadence": "once",
      "effort": "low",
      "impact": "medium"
+    },
+    {
+     "action": "Load code updates on schedule",
+     "detail": "Procedure codes each January 1, diagnosis codes each October 1 and April 1, bundling edits each quarter. Confirm the billing system or its vendor has loaded each set.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Those using automated billing should treat each policy change as a change to the automation's rules, reviewed before release.",
+   "applies_when": "Every practice, whatever the setting: what differs is the watch list, which for facility-based practices centers on visit codes, care management and place-of-service rules. Those using automated billing should treat each policy change as a change to the automation's rules, reviewed before release.",
+   "vendor_refs": [
+    {
+     "item": "news-insider-07",
+     "note": "Shows how to turn one rule change into desk routines. Applies the 2026 seven-day authorization deadline to all payers. It binds Medicare Advantage and Medicaid plans, and excludes drugs."
+    },
+    {
+     "item": "prior-authorization-control-kit-workbook",
+     "note": "Adds a ready payer change log sheet for recording each policy change with its source and date. Its risk flags misfire on closed cases, so weekly counts overstate."
+    }
+   ],
    "sources": [
     "fcso-tpe",
+    "cms-pim-ch13",
+    "cms-mln-connects",
+    "cms-icd10",
+    "cms-ncci-ptp",
     "cms-pfs-2027",
     "oig-gcpg"
    ],
-   "evidence_note": "Federal compliance guidance expects practices to keep current with payer rules. Contractors publish their review topics, so monitoring them is straightforward.",
+   "evidence_note": "Federal compliance guidance recommends reviewing policies at least once a year for changes in law and program requirements (Office of Inspector General, 2023). Contractors publish their review topics, and local coverage decisions carry 45 days' notice by statute, so monitoring is straightforward.",
    "metrics": [
     {
      "slug": "pc-policy-review-cadence",
@@ -732,8 +879,12 @@
      "unit": "count",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Monthly is a reasonable standard, with a yearly read of the Medicare fee schedule rule.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Federal compliance guidance asks for a policy review at least once a year. Monthly is a reasonable standard here, because local coverage decisions take effect at least 45 days after posting.",
      "confidence": "none",
+     "sources": [
+      "oig-gcpg",
+      "cms-pim-ch13"
+     ],
      "data_hint": "The rulebook's change log."
     }
    ]
@@ -741,18 +892,20 @@
   {
    "slug": "pc-other-payers",
    "name": "Veterans, military, commercial and out-of-network payers",
-   "summary": "The smaller payers, each with its own gatekeeping: Veterans Affairs community care, the military health plan, workers' compensation, small commercial plans, and patients seen out of network or with no insurance.",
+   "summary": "The smaller payers, each with its own gatekeeping: Veterans Affairs community care, the military health plan (TRICARE), workers' compensation, small commercial plans, and patients seen out of network or with no insurance.",
    "good_looks_like": [
     "For each small payer the practice has decided to participate properly or not at all.",
-    "Veterans Affairs community care visits have an authorization on file before the service.",
-    "Out-of-network and self-pay patients get the notices the law requires.",
-    "Write-offs for unenrolled payers are counted, so the cost of not enrolling is known."
+    "Veterans Affairs community care visits have an authorization on file before the service, and the claim goes where the referral says.",
+    "Self-pay and uninsured patients get a good-faith estimate for scheduled care, and out-of-network patients get the notices the law requires.",
+    "Write-offs for unenrolled payers are counted, so the cost of not enrolling is known.",
+    "Staff know Medicare is primary for patients who also have the military health plan, so those claims go to Medicare first."
    ],
    "failure_modes": [
     "A clinician sees patients from a payer that has never credentialed them, and every claim is written off.",
-    "Veterans' visits are billed with no authorization number.",
-    "An out-of-network bill breaks surprise-billing rules.",
-    "Small-plan claims are abandoned because each needs a phone call."
+    "Veterans' visits are billed with no authorization, or later than 180 days after the service, the limit set by federal law.",
+    "An out-of-network clinician at an in-network hospital bills a commercially insured patient beyond cost sharing. Federal law bans this, and hospitalists cannot use the consent exception.",
+    "Small-plan claims are abandoned because each needs a phone call.",
+    "A clinician with no Medicare Advantage contract bills a plan member more than Medicare allows. Non-contracted clinicians must accept Original Medicare's amount as payment in full."
    ],
    "key_questions": [
     "Which payers do we bill without being enrolled or contracted?",
@@ -770,32 +923,59 @@
     },
     {
      "action": "Decide for each: enroll or stop",
-     "detail": "Enroll where volume justifies it. Otherwise refer or schedule those patients differently.",
+     "detail": "Enroll where volume justifies it. Veterans Affairs community care generally pays no more than Medicare's rate (38 CFR 17.4035). Otherwise refer or schedule those patients differently.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "medium"
     },
     {
      "action": "Require authorization for veterans' community care",
-     "detail": "Record the authorization number before the visit.",
+     "detail": "All non-urgent, non-emergency care needs Veterans Affairs approval in advance. Record the referral number before the visit, send the claim where the referral says, and file within 180 days.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
     },
     {
-     "action": "Give required notices to self-pay patients",
-     "detail": "A good-faith estimate for scheduled services.",
+     "action": "Give self-pay patients a good-faith estimate",
+     "detail": "Within 1 business day when care is scheduled at least 3 business days ahead, within 3 business days when scheduled at least 10 ahead or on request (45 CFR 149.610).",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
+    },
+    {
+     "action": "Bill Medicare first for military health plan members",
+     "detail": "For a patient with both, Medicare is always primary. Claims to the military plan must be filed within one year of the service (32 CFR 199.7 and 199.8).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "low"
     }
    ],
-   "applies_when": "Practices with a scattering of patients outside their main payers. Federal surprise-billing rules mainly concern out-of-network care at hospitals and surgery centers for commercially insured patients, so they touch facility-visit practices only at the edges.",
-   "sources": [
-    "cfr-424-44",
-    "fl-627-6131"
+   "applies_when": "Practices with a scattering of patients outside their main payers. Federal surprise-billing rules cover out-of-network care at hospitals and surgery centers for commercially insured patients, so they bind hospital-based clinicians but not visits in nursing facilities, assisted living or the home, while the estimate duty for self-pay patients applies everywhere.",
+   "vendor_refs": [
+    {
+     "item": "federal-idr-playbook",
+     "note": "Adds a workflow for disputing out-of-network payments from commercial plans. Tells readers to price offers against Medicare rates, which the arbitrator may not consider (45 CFR 149.510)."
+    },
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "Its out-of-network chapter treats leaving networks as a revenue choice. Omits the federal balance billing ban at in-network hospitals and the Medicare Advantage payment-in-full rule."
+    }
    ],
-   "evidence_note": "Rules differ by payer and are set by statute, regulation and program manuals. This area is guidance on managing the long tail, with no benchmark.",
+   "sources": [
+    "va-claims",
+    "usc-38-1703d",
+    "cfr-38-17-4035",
+    "cfr-32-199-7",
+    "cfr-32-199-8",
+    "cfr-45-149-30",
+    "cfr-45-149-420",
+    "cfr-45-149-610",
+    "cfr-45-149-620",
+    "cfr-45-149-510",
+    "cfr-422-214",
+    "fl-627-64194"
+   ],
+   "evidence_note": "Rules are set by statute and regulation: 38 U.S.C. 1703D and the Veterans Affairs claims guide, 32 CFR part 199 for the military plan, 45 CFR part 149 for surprise billing and estimates. In Florida, section 627.64194 adds a state ban. No benchmark exists.",
    "metrics": [
     {
      "slug": "pc-out-of-network-share",

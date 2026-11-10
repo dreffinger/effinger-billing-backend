@@ -14,7 +14,7 @@
    ],
    "failure_modes": [
     "No buy-sell agreement, or one with a stale price. A death, disability or divorce leaves the remaining owners negotiating with an estate or a former spouse.",
-    "An S corporation pays its physician-owner a low salary and large distributions. The IRS can reclassify distributions as wages subject to employment taxes.",
+    "An S corporation pays its physician-owner a low salary and large profit distributions. The IRS can reclassify distributions as wages subject to employment taxes.",
     "A change of ownership is not reported to Medicare within 30 days (42 CFR 424.516(d)). Unreported changes can lead to deactivated or revoked billing privileges (42 CFR 424.540(a)(2), 424.535(a)(9)).",
     "Ownership breaks state law. Florida generally requires a clinic license unless licensed practitioners, or they and close family, own the whole practice (section 400.9905(4)(g)). California bars physician limited liability companies.",
     "A change of ownership that also changes the tax identification number generally requires a new Medicare enrollment application (42 CFR 424.550(c)). Unplanned, this interrupts billing."
@@ -43,7 +43,7 @@
     },
     {
      "action": "Sign or update a buy-sell agreement",
-     "detail": "Cover death, disability, retirement, loss of license, exclusion from federal health programs and divorce. Fix a price formula and funding. In Florida an owner who loses a license must give up the shares at once (section 621.10).",
+     "detail": "Cover death, disability, retirement, lost license, exclusion from federal health programs and divorce. Fix a price formula and funding. In a Florida professional association or company, an owner who loses a license must give up the shares immediately (section 621.10).",
      "cadence": "once",
      "effort": "high",
      "impact": "high"
@@ -163,7 +163,7 @@
     },
     {
      "action": "Read the Medicare payment rule before setting the plan",
-     "detail": "The final physician fee schedule rule is usually released around the start of November. For 2027 it also changes practice expense payment for visits to patients in a Part A skilled nursing stay.",
+     "detail": "The final physician fee schedule rule is usually released around the start of November. For 2027 it also ends the lower practice expense payment for nursing facility visits to patients in a Part A skilled stay.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -193,7 +193,8 @@
     "mgma-stat-strategic-plan-2017",
     "mgma-stat-strategic-plan-2018",
     "sba-business-plan",
-    "cms-pfs-2027"
+    "cms-pfs-2027",
+    "fr-pfs-2027-final"
    ],
    "evidence_note": "Planning method is convention, drawn from the Baldrige criteria and small-business guidance. Measured data are thin: in Medical Group Management Association polls, 61% of 1,212 leaders (2017) and 58% (2018) said their organization had a 12-month strategic plan.",
    "metrics": [
@@ -362,7 +363,7 @@
    ],
    "failure_modes": [
     "One trusted person collects, posts, adjusts and reconciles unreviewed. In a 2010 Medical Group Management Association survey, about 83% of 688 practice managers had worked where employee theft occurred.",
-    "Small Medicare balances are written off automatically. Routine cost-sharing waivers can violate the beneficiary inducement law (42 U.S.C. 1320a-7a(a)(5)). Exceptions: individual financial need, or reasonable collection efforts (42 CFR 1003.110).",
+    "Small Medicare balances are written off automatically. Routinely waiving copays and deductibles can violate the beneficiary inducement law. Exceptions: individual financial need, or reasonable collection efforts (42 CFR 1003.1000(a), 1003.110).",
     "Policies were bought as a binder and never read. Written policy and actual practice differ, which an auditor or a buyer will notice.",
     "A billing company or software agent changes codes or resubmits claims on its own. The physician remains responsible to Medicare for claims sent in the physician's name.",
     "Staff do not know their limits. Small decisions wait for the owner, and large ones get made without the owner."
@@ -411,7 +412,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. With few staff, the owner's monthly review of adjustments, refunds and bank activity stands in for a second employee, and with no front desk taking payments those reviews are the main control. State law can limit delegation: California's medical board says a licensed physician should decide coding and billing procedures and the terms for contracting with payers.",
+   "applies_when": "Every practice, though with few staff the owner's monthly review of adjustments, refunds and bank activity stands in for a second employee, and with no front desk taking payments those reviews are the main control. State law can limit delegation: California's medical board says a licensed physician should decide coding and billing procedures and the terms for contracting with payers.",
    "vendor_refs": [
     {
      "item": "performance-system-release-notes",
@@ -440,7 +441,7 @@
     "cfr-1003-110",
     "oig-waiver-1994"
    ],
-   "evidence_note": "Office of Inspector General guidance (2000, 2023) and 45 CFR 164.316 are published standards. The federal AI Risk Management Framework, which is voluntary, calls for documented roles and human oversight. The theft figure is one 2010 survey. Approval limits are the owner's choice.",
+   "evidence_note": "Office of Inspector General guidance (2000, 2023) and 45 CFR 164.316 are published standards. The federal Artificial Intelligence Risk Management Framework, which is voluntary, calls for documented roles and human oversight. The theft figure is one 2010 survey. Approval limits are the owner's choice.",
    "metrics": [
     {
      "slug": "sg-policies-reviewed",
@@ -528,7 +529,7 @@
    "vendor_refs": [
     {
      "item": "stark-antikickback-playbook",
-     "note": "Recommends an inventory of every financial arrangement with a referral source, screened yearly. Errs on details: says medical directorships must meet a safe harbor and misstates lease rules."
+     "note": "Recommends an inventory of every financial arrangement with a referral source, screened yearly. Errs on details: treats optional kickback safe harbors as mandatory for medical directorships and misstates lease rules."
     },
     {
      "item": "payer-contract-intelligence-playbook",
@@ -725,7 +726,7 @@
    "summary": "The outside professionals a small practice uses in place of departments it cannot afford: accountant, healthcare attorney, banker, insurance broker, coding auditor and security support. Know what each is for, when to call and what it costs.",
    "good_looks_like": [
     "A one-page list names each advisor, what they handle, how they charge and the date of the last conversation.",
-    "The accountant delivers statements at least quarterly, and the owner knows their level: compiled (no assurance), reviewed (limited assurance) or audited.",
+    "The accountant delivers financial statements every month, or at least every quarter, and the owner knows their level: compiled (no assurance), reviewed (limited assurance) or audited.",
     "A healthcare attorney reviews any agreement with a referral partner, any ownership change and any possible overpayment before the practice acts.",
     "An independent coding audit is done at least once a year, the interval the Office of Inspector General (OIG) recommends for small practices.",
     "The banker sees year-end statements every year, and the insurance broker reviews every coverage type and limit with the owner annually."
@@ -775,7 +776,7 @@
     },
     {
      "action": "Brief the banker and the insurance broker yearly",
-     "detail": "Send year-end statements to the banker before credit is needed, and review each policy's limits with the broker. For a new practice, lenders look for projected cash flow above 1.2 times loan payments by the second year.",
+     "detail": "Send the banker year-end statements before credit is needed. Review each policy's limits with the broker. One lender told the American Medical Association (2026) that a new practice needs projected cash flow above 1.2 times loan payments by year two.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -793,7 +794,7 @@
     },
     {
      "item": "stark-antikickback-playbook",
-     "note": "Right instinct: send any flagged arrangement to a healthcare attorney before acting, and stop when a possible violation surfaces. Several of its own legal statements are wrong."
+     "note": "Right instinct: send any flagged arrangement to a healthcare attorney before acting, and get counsel before reporting a possible violation. Several of its own legal statements are wrong."
     },
     {
      "item": "rcm-outsourcing-evaluation-playbook",
@@ -818,8 +819,11 @@
      "unit": "dollars",
      "direction": "info",
      "cadence": "annual",
-     "benchmark_note": "No public benchmark was found. Compare with your own prior year and with the work delivered. A year with nothing spent on legal or coding review is a warning sign, not a saving.",
+     "benchmark_note": "No public benchmark was found. The Medical Group Management Association's cost survey collects legal, consulting and professional fees, but its results are sold, not public. Compare with your prior year and the work delivered. Spending nothing on legal or coding review is a warning sign.",
      "confidence": "none",
+     "sources": [
+      "mgma-cost-survey-2017-questions"
+     ],
      "data_hint": "General ledger accounts for legal, accounting and professional fees, checked against vendor payment history."
     }
    ]

@@ -43,7 +43,7 @@
     },
     {
      "action": "Learn the lender's rules before pricing a physician-to-physician sale",
-     "detail": "For Small Business Administration loans (SOP 50 10 8.1, October 2026) the lender must order an independent valuation when the price exceeds $350,000 or buyer and seller are closely related. Price above the appraised value must come from buyer equity.",
+     "detail": "For Small Business Administration loans (lending rules SOP 50 10 8.1, October 2026) the lender needs an independent valuation when the price exceeds $350,000 or the parties are closely related. Price above the appraised value must come from buyer equity.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -56,7 +56,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice with an owner. Larger groups are priced on earnings by investors. Hospital-based and facility-based practices own few tangible assets and do not own their facility relationships, so value rests on transferable earnings and on clinicians who stay. Solo practices face the same transfer question.",
+   "applies_when": "Every practice with an owner. Larger groups are priced on earnings by investors. Hospital-based and facility-based practices own few tangible assets and do not own their facility relationships, so their value, like a solo practice's, rests on transferable earnings and on clinicians who stay.",
    "vendor_refs": [
     {
      "item": "practice-valuation-playbook",
@@ -169,7 +169,7 @@
     },
     {
      "action": "Export revenue by date of service every quarter",
-     "detail": "Save charges and payments by service date and by payment date. This is the data a buyer's quality of earnings review uses to convert cash-basis revenue.",
+     "detail": "Save charges and payments by service date and by payment date. This is the data a buyer's accountants use, in a quality of earnings review, to convert cash-basis revenue.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "medium"
@@ -212,7 +212,7 @@
      "slug": "lv-normalized-ebitda",
      "name": "Normalized EBITDA",
      "definition": "Earnings before interest, taxes, depreciation and amortization (EBITDA), restated with owners paid a market salary and personal or one-time items removed.",
-     "formula": "Net income + interest + taxes + depreciation and amortization + owner pay and perquisites + one-time costs - one-time revenue - market pay, payroll tax and benefits for owner clinical work",
+     "formula": "Net income + interest + taxes + depreciation and amortization + owner pay and personal benefits + one-time costs - one-time revenue - market pay, payroll tax and benefits for owner clinical work",
      "unit": "dollars",
      "direction": "higher",
      "cadence": "annual",
@@ -257,7 +257,7 @@
     "Flat volume under falling fee schedules. Medicare's 2027 conversion factor drops 2.31% for most clinicians, so standing still means shrinking.",
     "One facility or referral source supplies most patients under a handshake arrangement that ends when the owner leaves.",
     "Books good enough only to file taxes. A buyer cannot compare periods and prices the uncertainty.",
-    "A code distribution far from peers with no audit to explain it. Buyers assume repayment risk and cut price or demand escrow.",
+    "A code distribution far from peers with no audit to explain it. Buyers assume repayment risk and cut price or hold part of it in escrow.",
     "Revenue that depends almost entirely on fee-for-service Medicare or Medicaid, which published deal commentary links to lower multiples."
    ],
    "key_questions": [
@@ -496,7 +496,7 @@
   {
    "slug": "lv-sale-readiness",
    "name": "Sale readiness and due diligence",
-   "summary": "Being able to hand a buyer clean financial statements, billing data, contracts and compliance records on request. Problems the owner finds and fixes cost far less than problems a buyer finds, which reduce price, add escrow or end the deal.",
+   "summary": "Being able to hand a buyer clean financial statements, billing data, contracts and compliance records on request. Problems the owner finds and fixes cost far less than problems a buyer finds, which reduce price, tie up part of it in escrow or end the deal.",
    "good_looks_like": [
     "Three years of monthly financial statements exist, with receivables and unpaid bills listed even though the books are cash basis.",
     "A secure folder holds current copies of every diligence item, each with a responsible person and a date last checked.",
@@ -542,7 +542,7 @@
     },
     {
      "action": "Restate the last three years on an accrual basis",
-     "detail": "Ask the accountant to list receivables, payables and accrued payroll at each year end, so a buyer's quality of earnings review ties to your numbers.",
+     "detail": "Ask the accountant to list receivables, payables and accrued payroll at each year end, so the buyer's accountants, in their quality of earnings review, reach the same numbers.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "medium"
@@ -611,15 +611,15 @@
     "The owner can name the realistic buyer types for this practice and what each pays for: assets, earnings, clinician capacity or patient panels.",
     "Every offer is compared on cash at closing, contingent payments, post-sale pay, employment term and restrictions, not on headline price.",
     "An accountant has modeled after-tax proceeds for an asset sale and an equity sale, including how the price would be allocated.",
-    "A written plan covers enrollment filings, payer and facility consents, and who collects receivables, with dates tied to the closing.",
+    "A written plan covers enrollment filings, any state transaction notice, payer and facility consents, and who collects receivables, with dates tied to the closing.",
     "Health care counsel has confirmed the terms meet fair market value and referral rules when the buyer is a hospital or other referral partner."
    ],
    "failure_modes": [
     "Accepting a higher price in exchange for lower pay after the sale without doing the arithmetic. Price and post-sale pay move in opposite directions.",
-    "A price paid to a hospital's seller in installments that vary with volume. The self-referral exception for a practice sale needs the total fixed before the first payment.",
+    "A hospital pays the price in installments that vary with volume. The self-referral exception for a practice sale needs the total fixed before the first payment.",
     "Assuming the Medicare number transfers. Billing privileges cannot be sold, and a new tax ID generally requires a new enrollment.",
     "Forgetting that receivables of a cash-basis practice are taxed as ordinary income and that the seller usually keeps and must collect them.",
-    "Signing a letter of intent before tax and legal review, which fixes the asset or equity form and the price allocation."
+    "Signing a letter of intent before tax and legal review. Its terms on asset or equity form and price allocation are hard to reopen later."
    ],
    "key_questions": [
     "How many buyer types have you identified that have bought a practice like yours?",
@@ -638,7 +638,7 @@
     },
     {
      "action": "Model after-tax proceeds for each structure",
-     "detail": "With the accountant, allocate the price across the Internal Revenue Service (IRS) Form 8594 asset classes. Goodwill built by the practice is usually capital gain. Receivables for services are ordinary income.",
+     "detail": "With the accountant, allocate the price across the Internal Revenue Service (IRS) Form 8594 asset classes. Self-built goodwill is usually capital gain and receivables for services are ordinary income. A C corporation may be taxed twice.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -665,7 +665,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any owner weighing an offer or planning a sale. Hospital and health system buyers are held to fair market value. Facility-based practices should expect small upfront payments with value delivered through employment or retention terms, since facility relationships are not owned.",
+   "applies_when": "Any owner weighing an offer or planning a sale. Facility-based practices may see small upfront payments, with value delivered through employment or retention terms, since facility relationships are not owned. Some states require notice of larger sales 30 to 180 days before closing.",
    "vendor_refs": [
     {
      "item": "practice-valuation-playbook",
@@ -705,7 +705,9 @@
     "fl-409-907",
     "fl-400-9905",
     "ftc-noncompete-removal-2026",
-    "ecg-goodwill-2023"
+    "ecg-goodwill-2023",
+    "parsons-state-notice-2025",
+    "hlc-state-transaction-2026"
    ],
    "evidence_note": "Enrollment, referral-law and tax allocation points are regulation or Internal Revenue Service publications. Buyer behavior and typical terms come from advisers and one all-industry survey. Terms of small medical practice sales are not published.",
    "metrics": [
@@ -713,7 +715,7 @@
      "slug": "lv-net-proceeds-estimate",
      "name": "Estimated net proceeds to the owner",
      "definition": "Cash the owner would keep from a sale after debt, deal costs, malpractice tail coverage and taxes, with contingent payments listed separately.",
-     "formula": "Cash at closing + receivables kept and collected by the seller - debt payoff - advisory and legal fees - tail coverage - estimated taxes. List earn-outs and rollover equity separately.",
+     "formula": "Cash at closing + receivables kept and collected by the seller - debt payoff - advisory and legal fees - tail coverage - estimated taxes. List contingent payments (earn-outs) and equity in the buyer (rollover equity) separately.",
      "unit": "dollars",
      "direction": "higher",
      "cadence": "annual",
@@ -734,7 +736,7 @@
      "direction": "higher",
      "cadence": "annual",
      "benchmark_typical": "83% to 92% across deal sizes, all industries",
-     "benchmark_note": "International Business Brokers Association and M&A Source survey, second quarter 2026: sales under $50 million, all industries. Not specific to medical practices. Investor deals can put up to 40% in rollover equity (Foley 2025).",
+     "benchmark_note": "International Business Brokers Association and M&A Source survey, second quarter 2026: sales under $50 million, all industries. Not specific to medical practices. Investor deals can leave up to 40% of value in the buyer's equity, called rollover equity (Foley 2025).",
      "confidence": "medium",
      "sources": [
       "ibba-2026",
@@ -779,7 +781,7 @@
     },
     {
      "action": "Create an emergency continuity file",
-     "detail": "List system access, bank signers, payroll steps, facility contacts and a covering physician. In Florida, the medical board rule expects an executor to have record access, including passwords (rule 64B8-10.001).",
+     "detail": "List system access, bank signers, payroll steps, facility contacts and a covering physician. In Florida, a Board of Medicine rule requires physicians to ensure their executor can access records, including passwords (rule 64B8-10.001).",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -806,7 +808,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every owner needs the emergency file at any age. The dated plan matters most within ten years of exit and in solo practices. Facility-based practices must also name who would take over as attending physician and as medical director.",
+   "applies_when": "Every owner needs the emergency file at any age. The dated plan matters most within ten years of exit and in solo practices. Facility-based practices should also name who would take over as attending physician and as medical director.",
    "vendor_refs": [
     {
      "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
@@ -882,21 +884,21 @@
     },
     {
      "action": "Build a backward timeline from the first patient day",
-     "detail": "After the entity come National Provider Identifiers, payer applications, bank and electronic payment setup, systems and test claims. Start health plan credentialing about 120 days ahead. It can take up to 180.",
+     "detail": "After the entity come National Provider Identifiers, payer applications, bank and electronic payment setup, systems and test claims. Start health plan credentialing at least 120 days ahead. It can take up to 180.",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "File Medicare inside the 60-day window",
-     "detail": "Submit online with the participation agreement (Form CMS-460) and the electronic funds transfer form (CMS-588). Medicare's standard is 95% of clean online applications processed in 15 days and all in 50.",
+     "detail": "Submit online with the participation agreement (Form CMS-460) and the electronic funds transfer form (CMS-588). Medicare's standard is 95% of clean online applications processed in 15 days and all in 50. Requests for more information add about 35 days.",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Write a 12-month cash forecast and fund the low point",
-     "detail": "List fixed costs, debt payments and minimum owner pay by month. Assume collections start late. Hold three to six months of cost in cash or committed credit. Lenders test debt coverage of 1.15 or more.",
+     "detail": "List fixed costs, debt payments and minimum owner pay by month. Assume collections start late. Hold three to six months of cost in cash or committed credit. Small Business Administration loans need projected debt coverage of 1.15.",
      "cadence": "monthly",
      "effort": "medium",
      "impact": "high"
@@ -948,7 +950,7 @@
      "benchmark_best": "6 months or more",
      "benchmark_typical": "3 to 6 months",
      "benchmark_red": "Under 3 months",
-     "benchmark_note": "American Medical News (American Medical Association), 2011: experts advised three to six months of cash or credit for any practice. No practice association standard exists. Slow payer enrollment can require more.",
+     "benchmark_note": "American Medical News (American Medical Association), 2011: experts advised three to six months of cash or credit for any practice. Advice, not measured data, and not specific to start-ups. Slow payer enrollment can require more.",
      "confidence": "low",
      "sources": [
       "amednews-2011",
@@ -1005,20 +1007,20 @@
    "actions": [
     {
      "action": "Choose the enrollment route from the deal structure",
-     "detail": "Equity purchase keeping the tax ID: report the ownership change within 30 days. Asset purchase with a new tax ID: file a new Medicare application, with reassignments on Form CMS-855I, before closing.",
+     "detail": "Equity purchase keeping the tax ID: report the ownership change within 30 days. Asset purchase with a new tax ID: file a new Medicare application, with reassignments on Form CMS-855I, in the 60 days before closing.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "File state Medicaid notices on time",
-     "detail": "Rules vary by state. In Florida, the seller's notice and the buyer's application are due at least 60 days before the change, or both become liable for all overpayments (section 409.907).",
+     "detail": "Rules vary by state. In Florida, the seller's notice and the buyer's application are due at least 60 days before the change, or both become jointly liable for all overpayments and fines (section 409.907).",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     },
     {
-     "action": "Run a written cutover checklist",
+     "action": "Run a written changeover checklist",
      "detail": "Cover identifiers on claims, clearinghouse and remittance enrollments, electronic funds transfer, bank accounts, portal access and facility notices. Check the first claim batch by hand before sending.",
      "cadence": "per event",
      "effort": "medium",
@@ -1118,7 +1120,7 @@
    "actions": [
     {
      "action": "Build the closing calendar from the notice rules",
-     "detail": "Check state board rules and every contract. The American Academy of Family Physicians suggests notifying patients, payers and hospitals 60 to 90 days ahead. Medicare Advantage contracts require 60 days' written notice.",
+     "detail": "Check state board rules and every contract. The American Academy of Family Physicians suggests notifying patients, payers and hospitals 60 to 90 days ahead. Ending a Medicare Advantage contract without cause takes at least 60 days' written notice.",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
@@ -1132,13 +1134,13 @@
     },
     {
      "action": "Set record custody for the longest required period",
-     "detail": "Name a custodian in writing. Florida's board minimum is five years from the last patient contact. Medicare requires seven years for orders and referrals, and Medicare Advantage plans can audit for ten.",
+     "detail": "Name a custodian in writing. Florida's minimum is five years from last contact for medical doctors and two years after closing for osteopathic physicians. Medicare requires seven years for orders and referrals. Medicare Advantage plans can audit for ten.",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
     },
     {
-     "action": "Fund and staff a run-out period",
+     "action": "Fund and staff a run-out period after closing",
      "detail": "Keep billing access, the bank account and electronic payments open. File remaining claims within each payer's limit, 12 months for Medicare. Compare cash collected with expected collectible value monthly.",
      "cadence": "monthly",
      "effort": "medium",
@@ -1146,13 +1148,13 @@
     },
     {
      "action": "Close out coverage, registrations and filings",
-     "detail": "Get tail coverage or a waiver in writing. Report the Medicare withdrawal within 90 days of stopping. Notify the Drug Enforcement Administration promptly. File final payroll and income tax returns before dissolving the entity.",
+     "detail": "Get tail coverage or a waiver in writing. Report the Medicare withdrawal within 90 days of stopping. Notify the Drug Enforcement Administration promptly. File final payroll and income tax returns, plus Form 966 if a corporation dissolves.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice or site that is closing, and any clinician leaving a payer or facility. Facility-based practices must also arrange a new attending physician for each resident and give each facility time to replace a medical director.",
+   "applies_when": "Any practice or site that is closing, and any clinician leaving a payer or facility. Facility-based practices should also give each facility time to assign a new attending physician for every resident and to replace a medical director.",
    "vendor_refs": [
     {
      "item": "practice-closure-and-wind-down-revenue-cycle-playbook",

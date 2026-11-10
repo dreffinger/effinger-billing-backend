@@ -6,8 +6,8 @@
    "name": "Bookkeeping and monthly close",
    "summary": "Recording every dollar in and out, reconciling the records to the bank, and closing the books on a fixed date each month. Without a monthly close the owner is steering by the bank balance.",
    "good_looks_like": [
-    "The chart of accounts separates clinician pay, staff pay, billing costs, rent, supplies and owner items.",
-    "Bank and card accounts are reconciled every month.",
+    "The chart of accounts (the list of categories each transaction is filed under) separates clinician pay, staff pay, billing costs, rent, supplies and owner items.",
+    "Bank and card accounts are reconciled, meaning matched line by line to the bank's own statement, every month.",
     "Books are closed by a set date, such as the 15th of the following month.",
     "Collections in the books tie to payments posted in the billing system."
    ],
@@ -21,7 +21,7 @@
     "By what date each month are last month's books closed?",
     "Are all bank and card accounts reconciled monthly, and by whom?",
     "Do collections in the books equal payments posted in billing?",
-    "Is the accounting on a cash or accrual basis, and do we know what that hides?"
+    "If the books are on a cash basis (money recorded only when it moves), do we read a receivables report beside them?"
    ],
    "actions": [
     {
@@ -53,13 +53,21 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Cash-basis books are common and acceptable for small practices, but they leave out receivables and unpaid bills, so the owner needs a receivables report beside them.",
-   "sources": [
-    "aafp-finances",
-    "sba-finances",
-    "aicpa-comp-review-audit"
+   "applies_when": "Every practice. Cash-basis books are common, and the Internal Revenue Service allows them for most small practices (Publication 538), but they leave out receivables and unpaid bills, so read a receivables report beside them. Practices with no front desk handle little cash but still must tie electronic deposits to posted payments.",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Insists on a monthly income statement and a four-week review cycle. Silent on closing the books, reconciling bank accounts, the balance sheet and cash versus accrual accounting."
+    }
    ],
-   "evidence_note": "General accounting practice and small-business guidance. An accountant's compilation gives no assurance, a review limited assurance and an audit the most.",
+   "sources": [
+    "sba-finances",
+    "irs-p538",
+    "sba-bank-account",
+    "aicpa-comp-review-audit",
+    "cfo-apqc-close-2018"
+   ],
+   "evidence_note": "General accounting practice and guidance from the Small Business Administration and the Internal Revenue Service, not measured data. An accountant's compilation gives no assurance, a review limited assurance and an audit high but not absolute assurance.",
    "metrics": [
     {
      "slug": "fm-days-to-close",
@@ -69,8 +77,11 @@
      "unit": "days",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A common working standard for small businesses is 10 to 15 days.",
+     "benchmark_note": "No benchmark for medical practices was found. The benchmarking group APQC found that 2,300 organizations took a median of 6.4 calendar days to finish monthly statements once the ledger was totaled, and the slowest quarter 10 or more (CFO.com, 2018). Use your own trend.",
      "confidence": "none",
+     "sources": [
+      "cfo-apqc-close-2018"
+     ],
      "data_hint": "The bookkeeper's close checklist."
     },
     {
@@ -81,7 +92,7 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is zero.",
+     "benchmark_note": "No public benchmark was found. The target from first principles is zero: every account matched to its statement each month.",
      "confidence": "none",
      "data_hint": "The reconciliation report in the accounting system."
     }
@@ -95,7 +106,7 @@
     "The owner reviews an income statement, balance sheet and cash summary monthly, against budget and the prior year.",
     "Profit is looked at twice: before owner pay, and after a market wage for the owner's clinical work.",
     "A short list of ratios is tracked the same way every month.",
-    "Large variances get a one-sentence explanation."
+    "Large differences from budget or from last year get a one-sentence explanation."
    ],
    "failure_modes": [
     "The owner looks only at the bank balance and collections.",
@@ -104,7 +115,7 @@
     "Each year's statements use different categories, so nothing can be compared."
    ],
    "key_questions": [
-    "What was our margin last month before owner pay, and after a market wage for owners?",
+    "What was our margin (profit as a share of revenue) last month before owner pay, and after a market wage for owners?",
     "Do we see a balance sheet every month?",
     "Which three ratios do we watch, and what are they now?",
     "Can we explain each large change from last year?"
@@ -132,37 +143,58 @@
      "impact": "medium"
     },
     {
-     "action": "Write one line on each large variance",
+     "action": "Write one line on each large difference from budget",
      "detail": "Kept with the statements for next year's comparison.",
      "cadence": "monthly",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. For owner-operated practices the split between the owner's wage and the business's profit is the most important adjustment, because it decides what the practice is worth and what a lender will finance.",
+   "applies_when": "Every practice. For owner-operated practices the split between the owner's wage and the business's profit is the most important adjustment, because it decides what the practice is worth and what a lender will finance. Practices with no office carry little overhead, so published office-practice margins will look low beside theirs.",
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Its five-layer path from charges to net income is a usable outline. Its benchmark ranges are unsourced, and operating margin is never defined as before or after owner pay."
+    },
+    {
+     "item": "kpi-08-net-collection-rate",
+     "note": "Turns the collection-rate gap into dollars for the owner, which is useful. Its 97% target has no source. Billing companies report average net collection of 85% to 93%."
+    }
+   ],
    "sources": [
     "aafp-vital-signs",
-    "mgma-stat-margin",
     "mgma-fin-ops-2025",
-    "aafp-finances"
+    "mgma-app-2026",
+    "mgma-glossary",
+    "mgma-stat-margin",
+    "aafp-balance-sheet-2001",
+    "medecon-five-ratios-2021",
+    "healio-data-points-2024",
+    "aafp-finances",
+    "hbma-2024",
+    "scope-2025",
+    "iconic-multiples"
    ],
-   "evidence_note": "Professional guidance from the AAFP and MGMA. Published ratios for small practices are old or come from large groups, so the practice's own trend matters more than any outside number.",
+   "evidence_note": "Professional guidance from the American Academy of Family Physicians (AAFP) and the Medical Group Management Association (MGMA). Published ratios are old or come from member surveys of groups of all sizes, so the practice's own trend matters more than any outside number.",
    "metrics": [
     {
      "slug": "fm-operating-margin",
      "name": "Operating margin before owner compensation",
      "definition": "Earnings before owner pay, interest, taxes and depreciation, as a share of net revenue.",
-     "formula": "(Net revenue - operating expenses excluding owner pay) / net revenue",
+     "formula": "(Net revenue - operating expenses, leaving out owner pay, depreciation and interest) / net revenue",
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_typical": "30% to 40% in family medicine",
-     "benchmark_note": "Derived from the AAFP's figure that expenses run 60% to 70% of collections (2009). Old, and lean or automated practices run higher. Use your own trend.",
+     "benchmark_typical": "30% to 40% of collections in family medicine",
+     "benchmark_note": "AAFP's Family Practice Management (2009) put a full-time family physician's pre-tax income at 30% to 40% of collections. MGMA 2025 medians imply about 40% left after operating cost in single-specialty practices with no advanced practice clinicians. Both describe office practices.",
      "confidence": "low",
-     "data_hint": "The income statement, with owner pay shown on its own line.",
      "sources": [
-      "aafp-vital-signs"
-     ]
+      "aafp-vital-signs",
+      "mgma-app-2026"
+     ],
+     "data_hint": "The income statement, with owner pay shown on its own line.",
+     "vendor_claim": "Operating margin of 15% to 25% of net revenue for a solo practice, with under 10% a red flag.",
+     "vendor_verdict": "Unverifiable: no source, and it never says whether owner pay has been deducted, so it cannot be compared with any published figure."
     },
     {
      "slug": "fm-margin-after-market-pay",
@@ -172,8 +204,12 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Buyers and lenders value this figure, not profit before owner pay.",
+     "benchmark_note": "No reliable public benchmark was found. Use your own trend. Institutional buyers price a multiple of this figure. Buyers who will work in the practice use earnings before owner pay, at a lower multiple. Do not mix the two.",
      "confidence": "none",
+     "sources": [
+      "scope-2025",
+      "iconic-multiples"
+     ],
      "data_hint": "The income statement plus a named salary survey for the owner's specialty."
     },
     {
@@ -184,25 +220,35 @@
      "unit": "ratio",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No published standard for practices. A common small-business convention is to stay above 1. On cash-basis books, add collectible receivables and unpaid bills by hand.",
-     "confidence": "none",
+     "benchmark_best": "about 2 or more",
+     "benchmark_red": "under 1",
+     "benchmark_note": "Convention, not data. AAFP's Family Practice Management (2001) reports that banks treat about 2 to 1 as the gold standard. Medical Economics (2021) treats under 1 as the warning. On cash-basis books, add collectible receivables and unpaid bills by hand.",
+     "confidence": "low",
+     "sources": [
+      "aafp-balance-sheet-2001",
+      "medecon-five-ratios-2021"
+     ],
      "data_hint": "The balance sheet."
     },
     {
      "slug": "fm-revenue-per-fte-clinician",
      "name": "Net revenue per full-time clinician",
      "definition": "Net revenue divided by the number of full-time physicians, or by all full-time clinicians. State which.",
-     "formula": "Net revenue / full-time clinicians",
+     "formula": "Net revenue / full-time-equivalent physicians, or / all full-time-equivalent clinicians",
      "unit": "dollars",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_typical": "about $760,000 per physician in primary care",
-     "benchmark_note": "MGMA, 2024 data, per physician and including revenue from advanced practice clinicians they work with. Not comparable to a per-clinician figure.",
+     "benchmark_typical": "about $760,000 per physician, or $490,000 to $555,000 per clinician, primary care",
+     "benchmark_note": "MGMA medians: $760,383 per physician in primary care (2024 data), counting revenue from the advanced practice clinicians around them. Per clinician, primary care ran about $489,000 to $555,000 depending on team mix (2025 data). State which you use.",
      "confidence": "medium",
-     "data_hint": "The income statement and payroll.",
      "sources": [
-      "mgma-fin-ops-2025"
-     ]
+      "mgma-fin-ops-2025",
+      "mgma-app-2026",
+      "mgma-glossary"
+     ],
+     "data_hint": "The income statement and payroll.",
+     "vendor_claim": "Net revenue per full-time physician of $350,000 to $500,000 for solo practices, up to $400,000 to $770,000 for groups of six or more.",
+     "vendor_verdict": "Unverifiable: unsourced ranges the vendor says it widened to fit. Only the top figure resembles MGMA's primary care median of $760,383."
     }
    ]
   },
@@ -352,10 +398,10 @@
      "benchmark_red": "under 30 days",
      "benchmark_note": "Expert advice reported by American Medical News in 2011: three to six months of cash or available credit. The red flag is a judgment. No formal standard exists.",
      "confidence": "low",
-     "data_hint": "Bank balances and the income statement.",
      "sources": [
       "amednews-2011"
-     ]
+     ],
+     "data_hint": "Bank balances and the income statement."
     },
     {
      "slug": "fm-cash-forecast-weeks",
@@ -443,10 +489,10 @@
      "benchmark_red": "under 1.2",
      "benchmark_note": "The AMA reports that lenders want coverage above 1.2 by a new practice's second year (2026). The 1.5 figure is a common lender comfort level, not a published standard.",
      "confidence": "medium",
-     "data_hint": "The income statement and the debt schedule.",
      "sources": [
       "ama-new-practice-finance"
-     ]
+     ],
+     "data_hint": "The income statement and the debt schedule."
     },
     {
      "slug": "fm-debt-to-ebitda",
@@ -643,11 +689,11 @@
      "benchmark_typical": "roughly 60%",
      "benchmark_note": "No current MGMA median is public. About 60% is attributed to MGMA in trade press (2026), and the AAFP gave 60% to 70% of collections for family medicine (2009). Treat as a rough guide.",
      "confidence": "low",
-     "data_hint": "The income statement.",
      "sources": [
       "aafp-vital-signs",
       "mgma-stat-margin"
-     ]
+     ],
+     "data_hint": "The income statement."
     },
     {
      "slug": "fm-staff-cost-ratio",
@@ -660,10 +706,10 @@
      "benchmark_typical": "30% to 34% in primary care",
      "benchmark_note": "MGMA, 2025 data, office-based primary care at the median. State whether advanced practice clinicians are included. They are not in MGMA's figure.",
      "confidence": "medium",
-     "data_hint": "Payroll and the income statement.",
      "sources": [
       "mgma-app-2026"
-     ]
+     ],
+     "data_hint": "Payroll and the income statement."
     },
     {
      "slug": "fm-cost-to-collect",
@@ -675,10 +721,10 @@
      "cadence": "quarterly",
      "benchmark_note": "HFMA defines the measure and publishes no target. No reliable small-practice benchmark was found. Always read it beside the net collection rate, since cheap billing that collects less is no saving.",
      "confidence": "low",
-     "data_hint": "Billing-related lines of the income statement over collections.",
      "sources": [
       "hfma-map-keys"
-     ]
+     ],
+     "data_hint": "Billing-related lines of the income statement over collections."
     }
    ]
   },

@@ -53,25 +53,31 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice that wants to grow or needs to replace lost volume. Office practices size the market by population. Facility-based practices size it by facilities and beds and by who decides physician coverage in each.",
+   "applies_when": "Every practice that wants to grow or must replace lost volume: office practices size the market by population, facility-based practices by facilities, beds and who arranges physician coverage. In nursing homes each resident may choose an attending physician (42 CFR 483.10(d)), so a coverage agreement does not guarantee patients.",
    "sources": [
     "mgma-bok",
     "sba-business-plan",
-    "mgma-stat-margin"
+    "mgma-stat-margin",
+    "mgma-stat-revenue-2026",
+    "cfr-483-10"
    ],
-   "evidence_note": "Planning practice from general business guidance and the MGMA body of knowledge. No benchmark for growth applies across practices, because costs and payment rates move differently each year.",
+   "evidence_note": "Planning practice from general business guidance (SBA) and the MGMA body of knowledge, not from measured outcomes. No growth benchmark applies across practices. MGMA polls show how many groups grew in a year, which is context and not a target.",
    "metrics": [
     {
      "slug": "gm-revenue-growth",
      "name": "Year-over-year net revenue growth",
-     "definition": "Change in net revenue for a period compared with the same period a year earlier, with one-time collections shown separately.",
+     "definition": "Change in net revenue (what the practice actually collected) for a period compared with the same period a year earlier, with one-time collections shown separately.",
      "formula": "(Net revenue this period - same period last year) / same period last year",
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The practical test is whether revenue is growing faster than operating cost.",
+     "benchmark_note": "No reliable benchmark exists. Context: in MGMA polls of June 2026, 47% of 221 groups reported year-to-date revenue above 2025 and 36% below, while 84% reported higher costs. The practical test is revenue growing faster than operating cost.",
      "confidence": "none",
-     "data_hint": "The income statement, with a note of any one-time collections."
+     "data_hint": "The income statement, with a note of any one-time collections.",
+     "sources": [
+      "mgma-stat-revenue-2026",
+      "mgma-stat-margin"
+     ]
     },
     {
      "slug": "gm-market-share",
@@ -83,9 +89,10 @@
      "cadence": "annual",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Its use is to show how much room remains and whether growth must come from new sites or from deeper share at current ones.",
      "confidence": "none",
-     "data_hint": "The practice's census and a public list of facilities or population data."
+     "data_hint": "The practice's census, plus Medicare's Care Compare list of nursing homes, the state's licensed facility list, or Census population data by age."
     }
-   ]
+   ],
+   "vendor_refs": []
   },
   {
    "slug": "gm-service-lines",
@@ -101,7 +108,8 @@
     "A program is billed for most patients before the staff, logs and consent process exist.",
     "A time-based service is billed with no record of the time.",
     "Revenue projections from a vendor selling the program are taken at face value.",
-    "The service is added, then quietly lapses because nobody owns it."
+    "The service is added, then quietly lapses because nobody owns it.",
+    "Nearly every care-management patient is billed the complex code, which is about 8% of base care-management claims nationally (2024 Medicare data), and the practice stands out to reviewers."
    ],
    "key_questions": [
     "Which covered services do our patients qualify for that we do not provide?",
@@ -112,7 +120,7 @@
    "actions": [
     {
      "action": "List eligible but unserved patients for each candidate service",
-     "detail": "Annual wellness visits, transitional care after discharge to home or assisted living, standard chronic care management, advance care planning.",
+     "detail": "Annual wellness visits, transitional care after discharge to home or assisted living, chronic care management or the monthly advanced primary care management codes, advance care planning.",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
@@ -137,16 +145,29 @@
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
+    },
+    {
+     "action": "Check self-referral rules before adding tests, imaging, therapy or equipment",
+     "detail": "Laboratory, imaging, therapy and equipment are designated health services under the physician self-referral law. The in-office exception (42 CFR 411.355(b)) sets who performs the service, where and who bills. Have counsel review vendor-run programs.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
     }
    ],
-   "applies_when": "Any practice with an established patient base. Rules differ by setting: transitional care applies to discharges to a community setting, and care-management payment depends on the place of service.",
+   "applies_when": "Any practice with an established patient base. Setting matters: transitional care needs a discharge to home, a domiciliary, a rest home or assisted living, and care management, billable for facility residents, pays roughly a third less where the facility rate applies, such as a hospital or Part A skilled stay.",
    "sources": [
     "cms-mln-ccm",
     "cms-ccm-faq",
     "cms-apcm",
-    "cms-cert-2025"
+    "cms-tcm",
+    "cms-cert-2025",
+    "cms-cpm-ch12",
+    "cms-puf",
+    "cfr-411-355",
+    "cfr-411-351",
+    "cms-cognitive-assessment"
    ],
-   "evidence_note": "Coverage rules are CMS manuals and booklets. Medicare's own reviews find high error rates for care management and advance care planning, mostly for missing documentation, so the caution about workflow first is well supported.",
+   "evidence_note": "Coverage rules come from CMS booklets and web pages. CMS's 2025 improper payment data show error rates of 65% for basic chronic care management (99490) and 30% for advance care planning (99497), about nine-tenths from insufficient documentation, so workflow first is well supported.",
    "metrics": [
     {
      "slug": "gm-new-service-revenue-share",
@@ -160,6 +181,20 @@
      "confidence": "none",
      "data_hint": "Collections by code from the billing system, grouped by service."
     }
+   ],
+   "vendor_refs": [
+    {
+     "item": "geriatrics-companion-guide",
+     "note": "Sizes care-management, wellness and cognitive-assessment revenue by volume times rate. Wrong that 99483 can be billed with a same-day office visit or advance care planning, and lists retired code G0505."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Section 11 has a sound six-question costing checklist for a new service: start-up cost, ramp, real payer rates, staffing, break-even. Silent on coverage rules, documentation and audits."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Explains self-referral limits on in-office laboratory, imaging and therapy and on vendor turnkey programs. Wrong that the in-office exception needs a group practice: a solo physician qualifies."
+    }
    ]
   },
   {
@@ -170,19 +205,20 @@
     "The practice knows where each new patient came from.",
     "Each important source has a named contact in the practice and a record of recent contact.",
     "The practice knows what each source values, such as response time or communication with families, and measures it.",
-    "No single source accounts for a share of revenue the practice could not survive losing."
+    "No single source accounts for a share of revenue the practice could not survive losing.",
+    "Any paid role at a referral source, such as a medical directorship, has a signed agreement, fair market value pay and a log of the time worked."
    ],
    "failure_modes": [
     "A facility changes administrator and the new one brings a different physician group.",
     "The owner personally holds every relationship and nothing is written down.",
-    "The practice offers gifts, free services or payments to referral sources, which federal law prohibits.",
+    "The practice gives gifts, free services or payments to win referrals. For Medicare and Medicaid patients that can be a felony under the Anti-Kickback Statute (42 USC 1320a-7b(b)).",
     "A source stops referring and nobody asks why."
    ],
    "key_questions": [
     "Which three sources send us the most patients, and what share of revenue is each?",
     "Who at each source decides, and when did we last speak with them?",
     "What do they want from us that we could measure?",
-    "Is anything of value going to a referral source?"
+    "Is anything of value passing between us and a referral source, in either direction?"
    ],
    "actions": [
     {
@@ -201,26 +237,30 @@
     },
     {
      "action": "Agree service standards and report on them",
-     "detail": "For example, new residents seen within 72 hours and calls returned within an hour.",
+     "detail": "Set your own, for example new residents seen within 72 hours and calls returned within an hour. The federal floor is only a physician visit every 30 days for the first 90 days (42 CFR 483.30(c)).",
      "cadence": "quarterly",
      "effort": "medium",
      "impact": "high"
     },
     {
-     "action": "Have counsel review anything of value given to a source",
-     "detail": "Meals, gifts, free staff time and directorship pay all fall under the kickback and self-referral rules.",
+     "action": "Have counsel review anything of value exchanged with a referral source",
+     "detail": "Meals, gifts, free staff time and directorship pay fall under the kickback and self-referral rules. Safe harbors (42 CFR 1001.952) expect written terms, fair market value and no link to referral volume.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice that receives patients from others. For facility-based practices the facility is both site and referral source, and its leaders decide which physicians see its residents.",
+   "applies_when": "Every practice that receives patients from others. In facility-based practice referrals run both ways: facility leaders steer residents to physicians, physicians admit and order services there, and each resident keeps the right to choose an attending physician (42 CFR 483.10(d)).",
    "sources": [
+    "usc-42-1320a-7b",
     "cfr-1001-952",
     "cfr-411-357",
-    "oig-nf-guidance-2024"
+    "oig-nf-guidance-2024",
+    "cfr-483-10",
+    "cfr-483-30",
+    "fl-817-505"
    ],
-   "evidence_note": "The limits on payments to referral sources are federal statute and regulation. Relationship management itself is business practice with no measured benchmark.",
+   "evidence_note": "The limits on payments to referral sources are federal statute and regulation. States add their own: in Florida, section 817.505 bans paying to induce patient referrals whoever the payer is. Relationship management itself is business practice with no measured benchmark.",
    "metrics": [
     {
      "slug": "gm-referral-concentration",
@@ -230,7 +270,7 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. As a rule of thumb, losing any one source should not remove more revenue than the practice's cash reserve can cover for three months.",
+     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A first-principles test, not a published standard: losing any one source should not remove more revenue than the practice's cash reserve can cover for three months.",
      "confidence": "none",
      "data_hint": "The referral source field in the billing system, or revenue by site."
     },
@@ -245,6 +285,16 @@
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend.",
      "confidence": "none",
      "data_hint": "New-patient and initial-visit codes by month, or first date of service per patient."
+    }
+   ],
+   "vendor_refs": [
+    {
+     "item": "kpi-action-guide-vol2-specialty",
+     "note": "Chapter 14 covers a referral log, 24-hour patient contact, reports back to referrers and volume trends by source. Its 70% to 85% conversion target is unsourced. Nothing on facility relationships."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Plain-language screen for leases, directorships, gifts and vendor deals with referral sources. States the 60-day overpayment rule in its pre-2025 form and credits it to the wrong statute."
     }
    ]
   },
@@ -261,13 +311,13 @@
    "failure_modes": [
     "A site is added as a favor and never reaches enough volume to cover the trip.",
     "Existing sites lose attention and their volume falls by as much as the new one adds.",
-    "The new location is not added to Medicare or plan enrollment before billing starts.",
+    "The new location, including a newly served facility, is not reported to Medicare within 30 days. Failure to report is a ground for revoking enrollment (42 CFR 424.535(a)(9)).",
     "A lease is signed for space the practice's model does not need."
    ],
    "key_questions": [
     "How many patients would this site bring in the first three months and at maturity?",
     "Which clinician goes, on which days, and what stops if they do?",
-    "Is the location enrolled with every payer before the first visit?",
+    "Has the location been reported to Medicare (within 30 days) and to every plan?",
     "At what volume does the site cover its cost, and by when?"
    ],
    "actions": [
@@ -286,8 +336,8 @@
      "impact": "medium"
     },
     {
-     "action": "Add the location to enrollments first",
-     "detail": "Medicare requires practice location changes to be reported. Plans have their own rules.",
+     "action": "Report the new location to Medicare and each plan",
+     "detail": "Medicare wants each new practice location, including facilities visited, reported within 30 days (42 CFR 424.516(d)). File no more than 60 days ahead or it may be returned. A site in another Medicare contractor's region needs a separate application.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
@@ -300,12 +350,14 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Practices considering another office, facility or county. For visiting practices, travel time is the main cost. For office practices, it is the lease and front-desk staff.",
+   "applies_when": "Practices considering another office, facility or county. For visiting practices travel time is the main cost and each facility counts as a practice location for Medicare, while for office practices the main cost is the lease and front-desk staff.",
    "sources": [
     "cfr-424-516",
-    "fcso-enroll"
+    "cfr-424-526",
+    "cfr-424-535",
+    "cms-855b-form"
    ],
-   "evidence_note": "Enrollment reporting duties are federal regulation. Site economics are arithmetic from the practice's own yield and costs.",
+   "evidence_note": "Enrollment reporting duties are federal regulation and the instructions on Medicare's enrollment forms. Site economics are arithmetic from the practice's own yield and costs, with no published benchmark.",
    "metrics": [
     {
      "slug": "gm-months-to-breakeven-site",
@@ -315,9 +367,17 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Compare with the written case for that site.",
+     "benchmark_note": "No reliable public benchmark was found. Compare each site with its own written case, and sites with each other.",
      "confidence": "none",
-     "data_hint": "Collections and clinician days by site."
+     "data_hint": "Collections and clinician days by site.",
+     "vendor_claim": "A second office is worth opening only if it can cover its costs within a year and a half on realistic volume.",
+     "vendor_verdict": "Unverifiable. No source is given and none was found. It assumes a leased office and says nothing about visiting practices with little fixed cost."
+    }
+   ],
+   "vendor_refs": [
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Section 11 lists tests for a second office and a three-scenario model at 60%, 80% and 100% of target volume. Thresholds are unsourced. Ignores Medicare location reporting and visiting practices."
     }
    ]
   },

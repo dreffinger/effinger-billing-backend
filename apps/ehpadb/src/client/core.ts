@@ -33,7 +33,11 @@ async function token(): Promise<string> {
 
 async function answer<T>(r: Response): Promise<T> {
   if (r.status === 401) { tokenCache = null; throw new Error("Session expired - sign in again."); }
-  if (r.status === 403) throw new Error("This account is not allowed to see the practice data.");
+  if (r.status === 403) {   // the server says which gate refused: an address that is not on the list, or one that was never confirmed
+    let why = "";
+    try { why = String((await r.json())?.error || ""); } catch { /* not JSON */ }
+    throw new Error(why ? why.charAt(0).toUpperCase() + why.slice(1) + (/[.!?]$/.test(why) ? "" : ".") : "This account is not allowed to see the practice data.");
+  }
   if (!r.ok) {
     let msg = "";
     try { msg = (await r.json())?.error || ""; } catch { /* not JSON */ }

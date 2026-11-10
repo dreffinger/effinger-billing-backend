@@ -7,7 +7,7 @@
    "summary": "The electronic health record and the billing system (often sold together as a practice management system) that the practice runs on. The questions are fit, cost, and how much of what is already paid for is actually used.",
    "good_looks_like": [
     "The systems fit how the practice works: office schedule, hospital rounds, facility census or home visits.",
-    "The practice uses the eligibility, claim scrubbing, remittance posting and reporting features it already pays for.",
+    "The practice uses the eligibility, automatic claim checking, remittance posting and reporting features it already pays for.",
     "Total yearly cost per clinician is known, including add-on modules and per-claim fees.",
     "Data can be exported in full without the vendor's help."
    ],
@@ -53,7 +53,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Clinicians who work in hospitals or nursing facilities often chart in the facility's record, so the practice's own system is mainly for billing. Check that it handles census-based charge capture, several places of service and mobile use, which office-oriented products often do poorly.",
+   "applies_when": "Every practice. Clinicians who work in hospitals or nursing facilities often chart in the facility's record, so the practice's own system is mainly for billing and must handle census-based charge capture, several places of service and mobile use, which office-oriented products often do poorly.",
    "vendor_refs": [
     {
      "item": "rcm-technology-buyers-playbook",
@@ -61,7 +61,7 @@
     },
     {
      "item": "news-insider-01",
-     "note": "Argues for reconfiguring before replacing and gives a short audit of claim edits. Wrongly treats any denial of a scrubbed claim as proof the edits are misconfigured."
+     "note": "Argues for reconfiguring before replacing and gives an audit of claim edits. Wrongly treats denials of checked claims as proof the edits are misconfigured. Many denials no edit can catch."
     },
     {
      "item": "kpi-10-cost-to-collect",
@@ -74,7 +74,7 @@
     "mgma-bok",
     "cfr-170-315-b10"
    ],
-   "evidence_note": "Management practice, plus one federal rule: certified health records must include a data export (45 CFR 170.315(b)(10)). MGMA's free cost figures date from 2015 to 2022 and use different definitions, so they show rough scale, not a target.",
+   "evidence_note": "Management practice, plus one federal rule: certified health records must include a data export (45 CFR 170.315(b)(10)). Free cost figures from the Medical Group Management Association (MGMA) date from 2015 to 2022, use different definitions, and show rough scale only.",
    "metrics": [
     {
      "slug": "td-it-cost-per-clinician",
@@ -90,25 +90,29 @@
       "hci-mgma-it-2017",
       "mgma-stat-hit-costs-2023"
      ],
-     "data_hint": "A year of vendor invoices from the accounting system."
+     "data_hint": "A year of vendor invoices from the accounting system.",
+     "vendor_claim": "Technology typically runs about 10% to 15% of total billing cost. Above 20% with no saving in staff time signals poor return.",
+     "vendor_verdict": "Unverifiable. No source is given, the base is billing cost rather than clinicians, and it counts billing tools only."
     }
    ]
   },
   {
    "slug": "td-integrations",
    "name": "Integrations and data flow",
-   "summary": "How information moves between the health record, billing system, clearinghouse, payers, bank, accounting and outside facilities. Every place a person retypes data is a place for delay and error.",
+   "summary": "How information moves between the health record, billing system, clearinghouse (the service that passes claims to payers), payers, bank, accounting and outside facilities. Every place a person retypes data is a place for delay and error.",
    "good_looks_like": [
     "Eligibility, claims, claim status, remittances and deposits all move electronically for every payer that offers it.",
     "Charges flow from the point of care to the billing system without retyping.",
     "The practice has a simple diagram of what connects to what.",
-    "A failed transfer raises an alert the same day."
+    "A failed transfer raises an alert the same day.",
+    "The practice has standing access to the records of the hospitals and facilities where its patients are seen, by portal, remote login or a health information exchange."
    ],
    "failure_modes": [
     "Remittances arrive on paper for a payer that offers them electronically.",
     "A census or schedule is typed from one system into another, and names or dates drift.",
     "An interface stops and nobody notices until claims are missing.",
-    "Accounting gets monthly totals by hand, so books and billing never agree."
+    "Accounting gets monthly totals by hand, so books and billing never agree.",
+    "A plan pays by virtual credit card, the practice pays a card fee on each payment, and nobody asks for bank transfer instead."
    ],
    "key_questions": [
     "For which payers do we still receive paper remittances or checks?",
@@ -119,7 +123,7 @@
    "actions": [
     {
      "action": "Enroll every payer for electronic remittance and deposit",
-     "detail": "Work down the payer list by dollars. Record enrollment dates.",
+     "detail": "Work down the payer list by dollars. Record enrollment dates. A health plan must use the standard electronic remittance and bank transfer when a practice asks, even if it now pays by virtual credit card (45 CFR 162.925).",
      "cadence": "once",
      "effort": "medium",
      "impact": "high"
@@ -144,13 +148,35 @@
      "cadence": "daily",
      "effort": "low",
      "impact": "high"
+    },
+    {
+     "action": "Ask vendors about the 2027 payer interfaces",
+     "detail": "Medicare Advantage, Medicaid and federal marketplace plans must offer prior authorization and provider data interfaces, generally from January 1, 2027 (federal rule CMS-0057-F). Ask when your health record will connect.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Facility-based practices also depend on getting census, face sheets and status changes from hospitals and nursing homes, usually through portals or reports that need a routine.",
-   "sources": [
-    "caqh-2024"
+   "applies_when": "Every practice. Facility-based practices also depend on getting the census, face sheets (the facility's page of patient and insurance details) and status changes from hospitals and nursing homes, usually through portals or reports that need a routine.",
+   "vendor_refs": [
+    {
+     "item": "news-insider-07",
+     "note": "Prompts the practice to ask its vendors about electronic prior authorization. Wrongly says payers must already offer it. The federal deadline is January 1, 2027, for certain plans only."
+    },
+    {
+     "item": "performance-system-release-notes",
+     "note": "Admits the purchased workbooks connect to no health record, billing system or clearinghouse and need every figure typed in. An example of the re-entry this area warns about."
+    }
    ],
-   "evidence_note": "Cost and time savings from electronic transactions are measured each year by CAQH. Which connections to build first is judgment.",
+   "sources": [
+    "caqh-2025",
+    "caqh-2024",
+    "cfr-162-925",
+    "cms-vcc-eft-2022",
+    "cms-0057-fact-sheet",
+    "cfr-422-122"
+   ],
+   "evidence_note": "A health plan's duty to use standard electronic transactions on request is federal regulation. Labor cost per transaction is measured each year by CAQH, an industry group that surveys health plans and providers. Which connections to build first is judgment.",
    "metrics": [
     {
      "slug": "td-manual-reentry-points",
@@ -160,12 +186,13 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No benchmark. The reason to count: CAQH found an electronic eligibility check cost $2.00 against $8.57 by hand, and claim status $3.64 against $13.80 (2023 data).",
-     "confidence": "low",
-     "data_hint": "The data-flow diagram, reviewed with the people who do the work.",
+     "benchmark_note": "No benchmark for the count. Why count: CAQH's 2025 Index put a medical provider's average cost at $8.03 per manual transaction against $2.65 electronic. Its 2024 Index (2023 data) showed eligibility at $8.57 against $2.00 and claim status at $13.80 against $3.64.",
+     "confidence": "none",
      "sources": [
+      "caqh-2025",
       "caqh-2024"
-     ]
+     ],
+     "data_hint": "The data-flow diagram, reviewed with the people who do the work."
     }
    ]
   },
@@ -221,18 +248,28 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice, at a scale that fits. A two-clinician practice may need only a monthly export and a spreadsheet with fixed definitions. A practice with automation can keep a small database.",
+   "applies_when": "Every practice, at a scale that fits: a two-clinician practice may need only a monthly export and a spreadsheet with fixed definitions, while one with automation can keep a small database. A practice that uses a billing company should still hold its own copy of the data.",
+   "vendor_refs": [
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Good test: have the vendor run denial rate by payer, days in receivables and net collection rate live. Treats first-pass acceptance and clean claim rate as one measure."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Right that a practice should keep its own access to billing data and recompute a billing company's figures. Its own definition of days in receivables is non-standard."
+    }
+   ],
    "sources": [
     "hfma-map-keys",
     "mgma-glossary"
    ],
-   "evidence_note": "Standard definitions exist from HFMA and MGMA and should be adopted where they fit. No benchmark exists for analytics itself.",
+   "evidence_note": "Standard definitions exist: the 29 MAP Keys of the Healthcare Financial Management Association (HFMA) and the DataDive glossary of the Medical Group Management Association (MGMA). Adopt them where they fit. HFMA defines measures but sets no targets. No benchmark exists for analytics itself.",
    "metrics": [
     {
      "slug": "td-kpi-automation",
      "name": "Scorecard measures produced automatically",
      "definition": "Share of the practice's scorecard measures that are calculated from source data without anyone typing a number.",
-     "formula": "Measures calculated automatically / measures on the scorecard",
+     "formula": "Measures calculated automatically / measures on the scorecard x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
@@ -244,20 +281,20 @@
      "slug": "td-data-latency",
      "name": "Hours from an event to its appearance in reports",
      "definition": "Time between something happening, such as a payment posting, and that fact showing in the practice's reports.",
-     "formula": "Report refresh time - event time, typical case",
+     "formula": "Time a fact first appears in the reports - time the event happened, in hours. Use the median of a small sample",
      "unit": "count",
      "direction": "lower",
      "cadence": "monthly",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Daily refresh is enough for most management decisions. Work queues need same-day data.",
      "confidence": "none",
-     "data_hint": "Load logs or the timestamp on each report."
+     "data_hint": "Load logs or the timestamp on each report, compared with posting times in the billing system."
     }
    ]
   },
   {
    "slug": "td-automation-ai",
    "name": "Automation and AI agents",
-   "summary": "Using rules engines, scheduled routines and artificial intelligence (AI) agents to do clerical revenue cycle work: checking coverage, entering charges, posting payments, following up claims and producing reports.",
+   "summary": "Using rules engines, scheduled routines and artificial intelligence (AI) agents to do clerical billing work: checking coverage, entering charges, posting payments, following up claims and producing reports.",
    "good_looks_like": [
     "Automation is applied first to high-volume clerical steps with clear rules.",
     "Each automated step has a written rule, a log of what it did, and a person who owns it.",
@@ -306,30 +343,45 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Any practice with repetitive clerical volume. The smaller the staff, the larger the relative gain and the larger the dependence on whoever built it.",
-   "sources": [
-    "caqh-2024",
-    "nist-ai-rmf"
+   "applies_when": "Any practice with repetitive clerical volume: the smaller the staff, the larger the relative gain and the dependence on whoever built it. Practices with no front desk gain most from automated coverage checks and census-to-charge matching, because nobody sees the patient's insurance card.",
+   "vendor_refs": [
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Sound priority: automate steps that prevent rework, such as coverage checks and charge capture. Its automatic write-off of small balances ignores the rule against routine waiver of Medicare cost sharing."
+    },
+    {
+     "item": "news-insider-01",
+     "note": "Points to a feature many systems have: routing denials to work lists by reason code. Says almost nobody uses it and results show in 30 days, with no data."
+    }
    ],
-   "evidence_note": "Savings from electronic and automated transactions are measured by CAQH. Evidence on AI agents in billing is early and mostly from vendors, so measure your own results.",
+   "sources": [
+    "caqh-2025",
+    "caqh-2024",
+    "nist-ai-rmf",
+    "oig-waiver-1994"
+   ],
+   "evidence_note": "Savings from electronic transactions are measured each year by CAQH, an industry group whose 2025 Index found about one-quarter of providers using AI, mostly for administrative tasks. Evidence on AI agents in billing is early and mostly from vendors, so measure your own results.",
    "metrics": [
     {
      "slug": "td-automation-rate",
      "name": "Routine transactions completed without human work",
      "definition": "Share of a defined set of routine transactions, such as eligibility checks, charge entries or payment postings, completed by automation with no manual step.",
-     "formula": "Transactions completed automatically / transactions of that type",
+     "formula": "Transactions completed automatically / transactions of that type x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. Track it by transaction type. A high rate is only good if the correction rate stays low.",
+     "benchmark_note": "No benchmark for a practice's own automation rate was found. Nearest public figure: CAQH's 2025 Index shows the share handled fully electronically at medical plans, 96% for eligibility checks, 81% for claim status and 40% for prior authorization. Track by transaction type.",
      "confidence": "none",
+     "sources": [
+      "caqh-2025"
+     ],
      "data_hint": "Automation run logs and billing system user fields."
     },
     {
      "slug": "td-automation-exception-rate",
      "name": "Automated actions later corrected or reversed",
      "definition": "Share of automated actions that a person or a payer later had to correct, reverse or redo.",
-     "formula": "Automated actions corrected or reversed / automated actions",
+     "formula": "Automated actions corrected or reversed / automated actions x 100",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -342,7 +394,7 @@
   {
    "slug": "td-ai-governance",
    "name": "Controls for automation and AI",
-   "summary": "The rules that keep automated billing safe: what software may do alone, what needs a person, how actions are logged and tested, and who answers for errors. The practice is responsible for every claim, however it was prepared.",
+   "summary": "The rules that keep billing work done by software or artificial intelligence (AI) safe: what it may do alone, what needs a person, how actions are logged and tested, and who answers for errors. The practice is responsible for every claim, however it was prepared.",
    "good_looks_like": [
     "A written policy lists which actions automation may take alone and which need approval.",
     "Any change to a code, modifier, diagnosis, date, place of service or rendering clinician is approved by a qualified person and tied to the record.",
@@ -350,28 +402,29 @@
     "New or changed rules are tested on a copy before they touch live claims."
    ],
    "failure_modes": [
-    "An agent changes a code or modifier to clear a payer edit and resubmits, with no one checking the note.",
+    "An AI agent changes a code or modifier to get past a payer's claim check and resubmits, with no one checking the note.",
     "One wrong rule repeats across hundreds of claims before anyone looks.",
     "Documentation drafted by an AI scribe is signed in bulk without being read.",
-    "Patient data is sent to a tool with no business associate agreement."
+    "Patient data is sent to an AI tool whose vendor has signed no business associate agreement, which the Health Insurance Portability and Accountability Act (HIPAA) requires first (45 CFR 164.502(e)).",
+    "Software is set so the higher-paid code is always billed. A wound-care group agreed to pay $45 million in 2025 over allegations that included this."
    ],
    "key_questions": [
     "Which automated actions can change what is billed, and who approves each?",
     "When did a person last sample automated actions against the charts?",
-    "Does every vendor or tool that sees patient data have a signed agreement?",
+    "Does every vendor or AI tool that sees patient data have a signed business associate agreement?",
     "Do clinicians read and sign AI-drafted notes individually?"
    ],
    "actions": [
     {
      "action": "Write the permitted-actions policy",
-     "detail": "Clerical fixes may run alone. Anything that changes what is billed needs logged human approval.",
+     "detail": "Clerical fixes may run alone. Anything that changes what is billed needs logged human approval. Medicare's electronic billing agreement holds the practice responsible for claims sent by its employees or agents (Claims Processing Manual, chapter 24, section 30.2).",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Sample automated actions monthly",
-     "detail": "A fixed number, chosen at random, compared with the source record. Record the result.",
+     "detail": "A fixed number, chosen at random, compared with the source record, including the hospital's or facility's chart where the note lives. Record the result.",
      "cadence": "monthly",
      "effort": "medium",
      "impact": "high"
@@ -392,27 +445,40 @@
     },
     {
      "action": "Require individual sign-off on AI-drafted notes",
-     "detail": "Medicare requires the practitioner to review and sign documentation captured by AI.",
+     "detail": "Medicare requires the practitioner's signature on a note captured by AI, as confirmation that it adequately documents the care (Program Integrity Manual, chapter 3, section 3.3.2.4).",
      "cadence": "daily",
      "effort": "low",
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice using automation, AI scribes or AI agents in documentation or billing. The duty to supervise also applies when a vendor runs the automation.",
+   "applies_when": "Any practice using automation, AI scribes or AI agents in documentation or billing, including when a billing company or software vendor runs the automation. State law can say the same: in Florida, the Medicaid statute makes the provider responsible for preparing and submitting each claim (section 409.913).",
+   "vendor_refs": [
+    {
+     "item": "performance-system-release-notes",
+     "note": "Shows simple change control: a revision log kept before release and a rule separating minor from major changes. Reports no testing of the changed workbooks."
+    },
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Like 22 other documents, carries one line saying AI-generated drafts need review by a qualified person. The library gives no policy, log or sampling method for automated billing."
+    }
+   ],
    "sources": [
     "usc-31-3729",
-    "doj-vohra-2025",
+    "cms-cpm-ch24",
     "cms-pim-ch3",
+    "doj-vohra-2025",
+    "doj-hhs-fca-wg-2025",
+    "cfr-164-502",
     "nist-ai-rmf",
     "fl-409-913"
    ],
-   "evidence_note": "The legal standard is statute: reckless disregard is enough for false claims liability. Medicare's manual requires practitioner sign-off on AI-captured notes. No federal guidance specific to AI claim correction was found.",
+   "evidence_note": "Reckless disregard suffices for false claims liability (31 U.S.C. 3729), Medicare's billing agreement makes the practice answerable for its agents' claims, and practitioners must sign AI-captured notes. No federal guidance on AI claim correction was found. Enforcers named health record manipulation a priority in 2025.",
    "metrics": [
     {
      "slug": "td-human-review-coverage",
      "name": "High-risk automated actions with documented human review",
      "definition": "Share of automated actions that change what is billed, or write off a balance, that carry a logged approval by a qualified person.",
-     "formula": "High-risk automated actions with logged approval / high-risk automated actions",
+     "formula": "High-risk automated actions with logged approval / high-risk automated actions x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
@@ -425,12 +491,13 @@
   {
    "slug": "td-cybersecurity",
    "name": "Cybersecurity",
-   "summary": "Protecting systems and patient data from loss, theft and ransomware. Small practices are frequent targets, and a single compromised password can stop billing for weeks.",
+   "summary": "Protecting systems and patient data from loss, theft and ransomware. Small practices are targeted too and can suffer proportionally greater damage. The 2024 clearinghouse attack that disrupted claims nationwide began with stolen sign-in details used on a portal without multi-factor sign-in.",
    "good_looks_like": [
-    "Every account that can reach patient data or money uses multi-factor sign-in.",
-    "Each person has their own account with only the access the job needs.",
+    "Every account that can reach patient data or money uses multi-factor sign-in, meaning a password plus a second proof such as a phone code.",
+    "Each person has their own account, which the Security Rule of the Health Insurance Portability and Accountability Act (HIPAA) requires (45 CFR 164.312), with only the access the job needs.",
     "Devices are encrypted, patched and able to be wiped if lost.",
-    "There is a written plan for a breach or ransomware event, and the cyber insurer's phone number is on it."
+    "There is a written plan for a breach or ransomware event, and the cyber insurer's phone number is on it.",
+    "Staff are trained to spot fake email, and the email system filters and flags messages from outside senders."
    ],
    "failure_modes": [
     "A shared password for the billing system or the bank.",
@@ -454,7 +521,7 @@
     },
     {
      "action": "Remove unused accounts and rotate exposed keys",
-     "detail": "Review all users and access keys. Replace any key that was ever shared in a message.",
+     "detail": "Review all users and access keys, the passwords that software uses to reach other systems. Replace any that was ever pasted into a message.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "high"
@@ -468,29 +535,53 @@
     },
     {
      "action": "Write a one-page incident plan",
-     "detail": "Who to call, how to isolate systems, how to keep billing going, and the insurer's hotline.",
+     "detail": "Who to call, how to isolate systems, how to keep billing going, the insurer's hotline, and the HIPAA duty to tell patients whose data was exposed no later than 60 days after discovery (45 CFR 164.404).",
      "cadence": "annual",
      "effort": "low",
      "impact": "high"
+    },
+    {
+     "action": "Complete a security risk analysis",
+     "detail": "HIPAA requires one but sets no interval (45 CFR 164.308(a)(1)). The free federal Security Risk Assessment Tool guides a small practice through it, though using it does not prove compliance. Redo it yearly and when systems change.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
     }
    ],
-   "applies_when": "Every practice. Those using cloud systems and software agents have fewer servers to protect but more accounts and access keys to control.",
+   "applies_when": "Every practice: those using cloud systems and automated tools have fewer servers to protect but more accounts and access keys to control. Clinicians who work in hospitals and facilities carry patient data on phones and laptops, so device controls matter more.",
+   "vendor_refs": [
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Sound focus on shared logins, role-based access and vendor agreements. Wrongly says current guidance requires a yearly risk analysis and that unencrypted email always breaks the Security Rule."
+    }
+   ],
    "sources": [
     "cfr-164-308",
-    "hhs-hipaa-security-nprm-2025"
+    "cfr-164-312",
+    "cfr-164-404",
+    "hhs-hipaa-security-nprm-2025",
+    "fedreg-rin-0945-aa22",
+    "hhs-cpg-2024",
+    "hhs-hicp-tv1-2023",
+    "witty-senate-2024",
+    "onc-sra-tool"
    ],
-   "evidence_note": "The HIPAA Security Rule requires risk analysis and safeguards but leaves most specifics to the practice. A proposed update with firmer requirements is not final.",
+   "evidence_note": "HIPAA rules require a risk analysis, unique user accounts and breach notice and leave most other specifics to the practice. The Department of Health and Human Services (HHS) publishes voluntary goals. A 2025 proposal requiring multi-factor sign-in was not final as of November 2026.",
    "metrics": [
     {
      "slug": "td-mfa-coverage",
      "name": "Accounts protected by multi-factor sign-in",
      "definition": "Share of user accounts with access to patient data or money that require a second factor to sign in.",
-     "formula": "Accounts with multi-factor sign-in enforced / accounts with such access",
+     "formula": "Accounts with multi-factor sign-in enforced / accounts with such access x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%. Cyber insurers increasingly require it.",
+     "benchmark_note": "No measured benchmark was found. The target from first principles is 100%. HHS lists multi-factor sign-in among its essential, voluntary cybersecurity goals for health care (2024), and the 2025 proposed Security Rule would require it. Compare with your own trend.",
      "confidence": "none",
+     "sources": [
+      "hhs-cpg-2024",
+      "hhs-hipaa-security-nprm-2025"
+     ],
      "data_hint": "The user list in each system's administration settings."
     }
    ]
@@ -502,7 +593,7 @@
    "good_looks_like": [
     "Needs are written down before any demonstration is watched.",
     "References are called, and they are practices of similar size and type.",
-    "Contracts state price increases, service levels, data ownership, export on exit and a business associate agreement.",
+    "Contracts state price increases, service levels, data ownership, export on exit and a business associate agreement, the privacy contract federal law requires of any vendor that handles patient data.",
     "Each critical vendor gets a yearly review of cost, performance and security."
    ],
    "failure_modes": [
@@ -534,45 +625,74 @@
     },
     {
      "action": "Negotiate exit terms up front",
-     "detail": "Data export format, cost and timing, in the contract.",
+     "detail": "Agree export format, cost and timing in writing. Charging for the standard export when you switch systems, or a conversion fee not agreed in writing at purchase, can be information blocking by a certified health record developer (45 CFR 171.302).",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
      "action": "Review each critical vendor yearly",
-     "detail": "Cost against budget, outages, support quality, security attestations.",
+     "detail": "Cost against budget, outages, support quality, security attestations, and a check of the federal exclusion list for billing and staffing contractors.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. State law can add requirements: Florida, for example, requires patient information stored offsite to be kept in the continental United States, its territories or Canada.",
+   "applies_when": "Every practice. State law can add requirements: Florida, for example, requires providers that use certified electronic health record technology to keep patient information stored offsite or in the cloud within the continental United States, its territories or Canada (section 408.051).",
+   "vendor_refs": [
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Useful list of ten contract clauses that favor vendors and a 90-day evaluation plan. Its 180-day renewal notice advice is ambiguous. Omits business associate terms and federal export rules."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "For billing companies: write data ownership into the contract, with full data handed over 30 days after notice of termination. Its fee ranges and performance floors cite no source."
+    },
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Lists required business associate contract terms and a yearly review. Wrongly ties return or destruction of data to a breach. The rule ties it to the end of the contract."
+    },
+    {
+     "item": "performance-system-release-notes",
+     "note": "Shows why update terms matter: the purchase covers one version only and excludes future updates and new editions."
+    }
+   ],
    "sources": [
     "cfr-164-308",
+    "cfr-164-504",
+    "cfr-170-315-b10",
+    "cfr-171-302",
     "fl-408-051",
+    "hhs-hicp-tv1-2023",
+    "hhs-hipaa-security-nprm-2025",
     "oig-gcpg"
    ],
-   "evidence_note": "The requirement for business associate agreements is federal regulation. Data-location rules are state law. Selection practice is professional guidance.",
+   "evidence_note": "Business associate agreements and their required terms are federal regulation (45 CFR 164.308(b) and 164.504(e)). Data-location rules are state law. Selection and monitoring steps follow voluntary federal guidance for small health care organizations and general contract practice.",
    "metrics": [
     {
      "slug": "td-vendor-reviews-current",
      "name": "Critical vendors reviewed in the last 12 months",
      "definition": "Share of vendors the practice could not operate without that have had a documented review of cost, performance, contract terms and security within a year.",
-     "formula": "Critical vendors reviewed in the last 12 months / critical vendors",
+     "formula": "Critical vendors reviewed in the last 12 months / critical vendors x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "annual",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is all of them, once a year.",
+     "benchmark_note": "No measured benchmark was found. The first-principles target is every critical vendor, once a year. Federal guidance for small practices suggests quarterly or twice-yearly reviews of an outsourced technology provider, and the 2025 proposed Security Rule would require yearly written security verification.",
      "confidence": "none",
-     "data_hint": "The vendor register."
+     "sources": [
+      "hhs-hicp-tv1-2023",
+      "hhs-hipaa-security-nprm-2025"
+     ],
+     "data_hint": "The vendor register.",
+     "vendor_claim": "Judge each new technology vendor against written benchmarks at 6, 12 and 24 months after signing.",
+     "vendor_verdict": "Unverifiable. A sensible schedule with no source behind it. No public benchmark exists, so the yearly target here is set from first principles."
     }
    ]
   },
   {
    "slug": "td-business-continuity",
    "name": "Business continuity and disaster recovery",
-   "summary": "Keeping care and billing going when a system, a vendor, a building or a key person is unavailable. Clearinghouse and vendor outages have stopped claim flow across the country for weeks.",
+   "summary": "Keeping care and billing going when a system, a vendor, a building or a key person is unavailable. Two months after the 2024 clearinghouse attack, three-quarters of respondents to an informal American Medical Association survey still had trouble submitting claims.",
    "good_looks_like": [
     "Backups of critical data are made automatically, stored separately, and restored in a test at least yearly.",
     "A one-page downtime plan covers loss of the health record, the billing system, the clearinghouse and the office.",
@@ -580,7 +700,7 @@
     "Written procedures let a second person run each critical task."
    ],
    "failure_modes": [
-    "The practice learns its backups are unusable on the day it needs them.",
+    "Backups prove unusable on the day they are needed. In a 2026 Medical Group Management Association poll, 19% of leaders were very confident of recovering quickly from a cyberattack.",
     "A clearinghouse outage stops all claims and there is no alternative route and no cash cushion.",
     "Everything depends on one person's laptop or one person's memory.",
     "A storm closes the office and nobody can reach schedules or phone lists."
@@ -589,7 +709,8 @@
     "When did we last restore a backup as a test?",
     "If our clearinghouse were down for three weeks, how would we submit claims and meet payroll?",
     "Could someone else run billing next week with the written procedures?",
-    "Where is the plan kept, and can we reach it without our own systems?"
+    "Where is the plan kept, and can we reach it without our own systems?",
+    "Has our billing system vendor confirmed it can route claims through a second clearinghouse?"
    ],
    "actions": [
     {
@@ -608,7 +729,7 @@
     },
     {
      "action": "Arrange a fallback for claims and cash",
-     "detail": "A second clearinghouse connection or payer portals, and an unused credit line.",
+     "detail": "A second clearinghouse connection or payer portals, and an unused credit line. In 2024 Medicare's relief was an advance of up to 30 days of payments, recovered from later claims over 90 days.",
      "cadence": "once",
      "effort": "medium",
      "impact": "medium"
@@ -621,12 +742,26 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice. Cloud systems reduce the risk of losing data but increase dependence on vendors and on internet access.",
+   "applies_when": "Every practice: cloud systems reduce the risk of losing data but increase dependence on vendors and internet access. Practices that work in hospitals and nursing facilities also depend on those facilities' systems and should know their downtime procedures for notes and orders.",
+   "vendor_refs": [
+    {
+     "item": "rcm-technology-buyers-playbook",
+     "note": "Good questions for vendors: downtime hours and longest outage last year, and what an uptime promise excludes. Nothing on backups, restore tests or a clearinghouse outage."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Treats continuity only as a planned change of billing company, with a 90-day exit plan. Does not cover a sudden loss of the vendor."
+    }
+   ],
    "sources": [
     "cfr-164-308",
+    "hhs-hipaa-security-nprm-2025",
+    "ama-chc-survey-2024",
+    "cms-chopd-2024",
+    "mgma-stat-cyber-2026",
     "sba-prepare-emergencies"
    ],
-   "evidence_note": "The HIPAA Security Rule requires a contingency plan with backup and recovery. How often to test is left to the practice.",
+   "evidence_note": "The Health Insurance Portability and Accountability Act (HIPAA) Security Rule requires a contingency plan with backup and disaster recovery (45 CFR 164.308(a)(7)) and leaves test frequency to the practice. A 2025 proposal would require yearly plan tests and monthly test restores. Fallback advice is judgment.",
    "metrics": [
     {
      "slug": "td-restore-test-age",
@@ -636,8 +771,11 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A reasonable standard is at least once a year and after any change of backup method.",
+     "benchmark_note": "No measured benchmark was found. A reasonable floor is a test restore at least once a year and after any change of backup method. The 2025 proposed Security Rule, not final, would require monthly test restores and recovery of critical systems within 72 hours.",
      "confidence": "none",
+     "sources": [
+      "hhs-hipaa-security-nprm-2025"
+     ],
      "data_hint": "The continuity plan's test log."
     }
    ]
@@ -647,7 +785,7 @@
    "name": "Data governance and records",
    "summary": "Who may see and change which data, how long records are kept, and who is responsible for their accuracy. It covers medical records, billing records and the procedures that describe how the practice works.",
    "good_looks_like": [
-    "A written retention schedule covers medical, billing and business records, using the longest period that applies.",
+    "A written retention schedule covers medical, billing and business records, using the longest period that applies, which is often 10 years for a practice with Medicare Advantage contracts.",
     "User access is reviewed on a schedule and removed the day someone leaves.",
     "One person is responsible for the accuracy of each key data set.",
     "Patient details are kept out of systems that have no agreement to hold them."
@@ -655,8 +793,9 @@
    "failure_modes": [
     "Records are destroyed too early for an audit, or kept forever with no plan.",
     "Access accumulates: people keep rights from roles they left years ago.",
-    "Patient details end up in email, chat or a code repository.",
-    "Nobody owns the payer list or the fee schedule, so both drift."
+    "Patient details end up in personal email, text messages, chat, a shared drive or an artificial intelligence tool with no agreement to hold them.",
+    "Nobody owns the payer list or the fee schedule, so both drift.",
+    "A clinician's notes live only in a hospital's or nursing home's record, and the practice cannot produce them when an auditor asks years later."
    ],
    "key_questions": [
     "How long do we keep medical records, billing records and remittances, and why?",
@@ -667,21 +806,21 @@
    "actions": [
     {
      "action": "Write a retention schedule",
-     "detail": "List record types with the governing rule. Medicare overpayments can be pursued for six years, and Medicare Advantage contracts often require ten.",
+     "detail": "List record types with the governing rule. Medicare requires 7 years for orders and referrals (42 CFR 424.516), Medicare Advantage plans require 10 (42 CFR 422.504), and state law sets the medical record minimum.",
      "cadence": "once",
      "effort": "low",
      "impact": "medium"
     },
     {
-     "action": "Review access twice a year",
-     "detail": "Print the user list for each system and confirm each person and role.",
+     "action": "Review who has access to each system",
+     "detail": "Print the user list for each system and confirm each person and role. Quarterly suits a small practice. Six months is the outer limit. Also do it whenever someone leaves.",
      "cadence": "quarterly",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Keep patient details out of unapproved tools",
-     "detail": "Use an automatic check before files leave the billing environment.",
+     "detail": "Name the approved tools in writing and train staff. Where files are exported or shared by software, add an automatic check that blocks patient identifiers.",
      "cadence": "daily",
      "effort": "medium",
      "impact": "high"
@@ -694,13 +833,29 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. Retention periods come from state medical record law, Medicare rules and payer contracts, so the schedule differs by state and payer mix.",
+   "applies_when": "Every practice. Retention periods come from state medical record law, Medicare rules and payer contracts, so the schedule differs by state and payer mix: in Florida, for example, physicians must keep records at least five years from the last patient contact (Rule 64B8-10.002) and Medicaid records five years from the service (section 409.913).",
+   "vendor_refs": [
+    {
+     "item": "hipaa-revenue-cycle-playbook",
+     "note": "Covers role-based access, individual logins and removing departed staff. Overstates one rule: says minimum necessary can only be met by system lock-out, where the regulation asks for reasonable efforts."
+    },
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Gives state retention periods (its Florida entry is right) and the 10-year Medicare Advantage rule. Wrongly bases a six-year Medicare claim-record rule on 45 CFR 164.316, which covers security documents."
+    }
+   ],
    "sources": [
+    "cfr-424-516",
+    "cfr-422-504",
     "cfr-401-305",
     "cfr-164-316",
-    "fl-456-057"
+    "cfr-164-308",
+    "cfr-164-502",
+    "fl-rule-64b8-10-002",
+    "fl-409-913",
+    "sba-prepare-emergencies"
    ],
-   "evidence_note": "Retention periods are set by state law, federal regulation and contracts. The six-year lookback for Medicare overpayments is regulation. Access review frequency is judgment.",
+   "evidence_note": "Retention periods are regulation and contract: 7 years for Medicare orders and referrals, 10 years under Medicare Advantage contracts, 6 years for federal security policy documents, and state law for medical records. The six-year overpayment lookback is regulation. Access review frequency is judgment.",
    "metrics": [
     {
      "slug": "td-access-review-age",
@@ -710,9 +865,15 @@
      "unit": "count",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. A reasonable standard is every six months and whenever someone leaves.",
+     "benchmark_note": "No measured benchmark exists. The federal Security Rule expects access rights to be reviewed but sets no interval (45 CFR 164.308(a)(4)). A reasonable standard is every three to six months and at each departure. A 2025 proposal would end access within an hour of departure.",
      "confidence": "none",
-     "data_hint": "The access review log."
+     "sources": [
+      "cfr-164-308",
+      "hhs-hipaa-security-nprm-2025"
+     ],
+     "data_hint": "The access review log.",
+     "vendor_claim": "Check access settings and logins in a yearly self-audit, and review system activity logs every quarter.",
+     "vendor_verdict": "Partly supported. The Security Rule requires regular review of system activity and expects review of access rights, but names no interval. Both frequencies are the vendor's choice."
     }
    ]
   }
