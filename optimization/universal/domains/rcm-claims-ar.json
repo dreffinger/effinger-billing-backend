@@ -104,7 +104,7 @@
      "benchmark_best": "95% or more (convention, no data behind it)",
      "benchmark_typical": "93% to 94% (measured first-pass acceptance)",
      "benchmark_red": "under 85% (below a 2021 hospital target)",
-     "benchmark_note": "HFMA defines the measure and sets no target. A PwC hospital scorecard (2021) used 85% or more. A 2024 survey by HBMA, the Healthcare Business Management Association, found 93% to 94% of claims accepted by the clearinghouse on first pass, a looser measure.",
+     "benchmark_note": "HFMA defines the measure and sets no target. The 95% convention has no dataset. PwC's 2021 hospital scorecard used 85% or more. The Healthcare Business Management Association (HBMA) 2024 survey found 93% to 94% accepted by the clearinghouse on first pass, a looser measure.",
      "confidence": "low",
      "sources": [
       "hfma-map-keys",
