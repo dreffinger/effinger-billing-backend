@@ -68,7 +68,7 @@
     "**Quality, scored 1 to 5 after reading each document in full:** 1 scored 1, 29 scored 2, 30 scored 3. None scored 4 or 5.",
     "**Best use:** as a checklist of topics and worksheets. The operating routines (daily queues, root-cause logs, reconciliation steps) are sound and transfer to any practice.",
     "**Do not rely on it for rules or numbers.** Benchmarks are unsourced, several code and deadline statements are wrong, and almost nothing addresses Medicare facility-based billing.",
-    "**Claims checked against primary sources so far: 442 of 445 extracted.** 211 partly, 93 contradicted, 74 supported, 43 unverifiable, 21 outdated.",
+    "**All 445 rules and numbers extracted from the documents were checked against primary sources.** 212 partly, 94 contradicted, 74 supported, 44 unverifiable, 21 outdated.",
     "**The vendor's free newsletter was read too: 21 issues published from May to November 2026.** Quality: 11 scored 2, 10 scored 3. Of 105 news claims checked against the original announcement or rule: 29 supported, 55 partly, 8 contradicted, 3 outdated, 10 unverifiable. It is where the vendor reports dated news (new rules, deadlines, payer announcements), which the purchased documents lack. Each item is checked in the table below."
    ]
   }

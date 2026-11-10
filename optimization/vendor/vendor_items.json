@@ -528,12 +528,12 @@
    "clinical-operations"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 5,
+  "claims_checked": 8,
   "claims_supported": 2,
-  "claims_partly": 2,
-  "claims_contradicted": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 2,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "behavioralhealth-companion-guide",

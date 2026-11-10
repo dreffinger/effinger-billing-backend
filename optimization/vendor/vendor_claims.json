@@ -123,7 +123,7 @@
   "kind": "statistic",
   "stakes": "high",
   "verdict": "supported",
-  "correct_statement": "The figures match CMS's Supplemental Background reports: providers prevailed in 77% (first half) and 82% (second half) of 2023 payment determinations, 84% and 85% in 2024, and 88% in the first half of 2025. The newest report shows 85% for the second half of 2025, so the rate is no longer rising; 17-22% of determinations are defaults.",
+  "correct_statement": "The figures match CMS's Supplemental Background reports: providers prevailed in 77% (first half) and 82% (second half) of 2023 payment determinations, 84% and 85% in 2024, and 88% in the first half of 2025. The newest report shows 85% for the second half of 2025, so the rate is no longer rising; 15-22% of determinations are defaults.",
   "source_title": "CMS, Supplemental Background on Federal Independent Dispute Resolution Public Use Files: Jan.-June 2023, July-Dec. 2023, Jan.-June 2024, July-Dec. 2024, Jan.-June 2025 (Jan. 21, 2026) and July-Dec. 2025 (July 22, 2026)",
   "source_url": "https://www.cms.gov/nosurprises/policies-and-resources/reports",
   "confidence": "high",
@@ -162,7 +162,7 @@
   "kind": "deadline",
   "stakes": "high",
   "verdict": "partly",
-  "correct_statement": "The three timeframes are right, but today the open negotiation notice goes directly to the plan or issuer on the Departments' standard form, by email or paper, not through a CMS portal. Portal submission becomes mandatory only 90 days after CMS announces that function, expected spring 2027. The portal is nsa-idr.cms.gov; the vendor's address did not resolve.",
+  "correct_statement": "The three timeframes are right, but today the open negotiation notice goes directly to the plan or issuer on the Departments' standard form, by email or paper, not through a CMS portal. Portal submission becomes mandatory only 90 days after CMS announces that function, expected from spring 2027. The portal is at nsa-idr.cms.gov; the vendor's address could not be reached.",
   "source_title": "CMS Federal IDR Process Guidance for Disputing Parties (December 2023 update), secs. 3.2 and 4; eCFR 45 CFR 149.510(b) and (h)(2) (current to Nov. 5, 2026); CMS Federal IDR Operations Final Rules Implementation Timeline Guide (Aug. 7, 2026); CMS payment disputes page (modified Sept. 15, 2026)",
   "source_url": "https://www.cms.gov/files/document/federal-idr-guidance-disputing-parties-march-2023.pdf",
   "confidence": "high",
@@ -812,8 +812,8 @@
   "kind": "regulatory",
   "stakes": "high",
   "verdict": "contradicted",
-  "correct_statement": "Only the first limb holds: MA coordinated care plans may require prior authorization where Traditional Medicare does not. Since 2024 they must follow NCDs and LCDs, may add public, evidence-based internal criteria only where Medicare criteria are not fully established, may not deny basic benefits on other criteria, and may not later deny an authorized service for medical necessity.",
-  "source_title": "eCFR 42 CFR 422.101(b)-(c), 422.138 and 422.616(e) (current to Nov. 6, 2026); CY 2024 Medicare Advantage final rule, 88 FR 22120 (Apr. 12, 2023); CY 2026 final rule amendments, 90 FR 15910-15911 (Apr. 15, 2025)",
+  "correct_statement": "Only the first part holds: MA plans may require prior authorization where Traditional Medicare does not. Since 2024 they must follow NCDs and LCDs, may add public, evidence-based criteria only where Medicare's are not fully established, may not deny basic benefits on other criteria, and may not later deny an authorized service for medical necessity, absent fraud or good cause.",
+  "source_title": "eCFR 42 CFR 422.101(b)-(c), 422.138 and 422.616(e) (current to Nov. 6, 2026); CY 2024 Medicare Advantage final rule, 88 FR 22120 (Apr. 12, 2023); CY 2026 final rule amendments, 90 FR 15910-15911 (Apr. 15, 2025); CY 2027 final rule, 91 FR 17384 (Apr. 6, 2026), which left these provisions unchanged",
   "source_url": "https://www.ecfr.gov/current/title-42/section-422.101",
   "confidence": "high",
   "practice_impact": "High for a Medicare Advantage-heavy panel: appeal by citing the NCD or First Coast LCD plus 422.101(c)(1)(i)(A), and contest any clawback of a pre-authorized service under 422.138(c), rather than accepting plan-specific criteria as lawful."
@@ -838,11 +838,11 @@
   "kind": "code_rule",
   "stakes": "high",
   "verdict": "partly",
-  "correct_statement": "The record must show a significant, separately identifiable E/M service above and beyond the procedure's usual pre- and post-service work, and unrelated to the decision to perform a minor procedure. It need not address a separate or unrelated problem: Medicare and CPT say different diagnoses are not required, and the E/M may concern the same condition.",
-  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) ch. 12, sec. 30.6.6.B (Rev. 13753, issued May 7, 2026); Medicare NCCI Policy Manual ch. I, secs. D and E.1.b (revision date Jan. 1, 2026)",
+  "correct_statement": "The record must show a significant, separately identifiable E/M service beyond the procedure's usual pre- and post-service work. It need not concern a separate or unrelated problem: different diagnoses are not required. New from January 1, 2027: Medicare pays 80% for all but the highest-valued service when an office E/M with modifier 25 accompanies a 0-day global procedure.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) ch. 12, sec. 30.6.6.B (Rev. 13753, issued May 7, 2026); Medicare NCCI Policy Manual ch. I, secs. D and E.1.b (revision date Jan. 1, 2026); CY 2027 Physician Fee Schedule final rule, 91 FR 70992 (Nov. 9, 2026) and CMS fact sheet (Nov. 4, 2026)",
   "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c12.pdf",
   "confidence": "high",
-  "practice_impact": "The vendor's stricter 'unrelated problem' test would make the practice drop or lose valid same-day visit-plus-procedure claims (for example a facility visit with debridement); appeals should document the extra E/M work, not a second diagnosis."
+  "practice_impact": "The vendor's 'unrelated problem' test would make staff drop or lose valid same-day visit-plus-procedure claims; the 2027 20% reduction covers only office codes 99202-99215, not the practice's nursing-facility or home visit codes."
  },
  {
   "id": "universal-specialty-billing-framework:C4",
@@ -863,7 +863,12 @@
   "claim": "Payment variance of more than 3% on any code warrants a payer inquiry; a variance consistent over multiple months warrants a formal underpayment dispute and, if unresolved, a state insurance commissioner complaint.",
   "kind": "legal",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 3% trigger is unsourced; MGMA's audit guidance sets no threshold. In Florida, DFS reviews only prompt-pay violations by state-regulated insurers and HMOs, and refers disputes over payment amount to the AHCA claim dispute resolution program (s. 408.7057). Neither reaches self-funded ERISA or FEHB plans, and DFS cannot assist with Medicare Advantage. Underpayment claims expire after 12 months.",
+  "source_title": "Florida Department of Financial Services, Division of Consumer Services, 'Medical Providers' and 'Need Our Help?' pages (fetched Nov. 10, 2026); AHCA, Statewide Provider and Health Plan Claim Dispute Resolution Program FAQ; Fla. Stat. 627.6131(19) and 408.7057 (2026); 42 CFR 422.402; CMS Provider Complaints Form page (modified Feb. 18, 2026); MGMA Stat (Feb. 11, 2025)",
+  "source_url": "https://myfloridacfo.com/division/consumers/medicalprovider",
+  "confidence": "medium",
+  "practice_impact": "For a Medicare and Medicare Advantage panel the commissioner step does not exist: use the plan's contract dispute process and CMS's Medicare Advantage provider complaint form; for Florida-regulated commercial plans, underpayment disputes of $500 or more go to the voluntary Capitol Bridge program within 12 months."
  },
  {
   "id": "universal-specialty-billing-framework:C6",
@@ -884,7 +889,12 @@
   "claim": "A physician spending three to five hours per week on authorization-related activities is generating $3,000 to $12,000 per week in lost clinical revenue in most specialty practices.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "The vendor cites no source and none was found. It assumes $1,000 to $2,400 of revenue per physician hour, about three to six times what MGMA's medians imply (roughly $330 to $440 an hour, or $1,000 to $2,200 for three to five hours). The AMA reports 13 hours a week for physicians and staff combined, not physician hours alone.",
+  "source_title": "No traceable origin for the statistic; context from MGMA, 2025 Financials and Operations Data Report (Sept. 4, 2025) and 2025 AMA prior authorization physician survey (published May 2026)",
+  "source_url": "https://www.mgma.com/2025-financials-and-operations",
+  "confidence": "medium",
+  "practice_impact": "Do not use the vendor's range in a business case: nursing-facility visits seldom need prior authorization, and the practice should multiply its own measured physician hours by its own collections per clinical hour."
  },
  {
   "id": "universal-specialty-billing-framework:C8",
@@ -892,7 +902,12 @@
   "claim": "Medical necessity denials are the most common denial type in specialty billing, and medical necessity, bundling and modifier disputes account for the majority of specialty claim denial volume in most practices.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No data located support this, and the vendor cites none. Available rankings put eligibility and missing-information problems first; medical necessity is 6% of hospital denials (Change Healthcare, 2022), 5% of marketplace in-network denials (KFF, 2024) and the top reason for 7.1% of billing companies (HBMA, 2024). First Coast's most frequent Florida Part B denials are NCCI, duplicate and bundling codes.",
+  "source_title": "HBMA RCM Advisor, Data Science Committee Denials Survey Results (Q2 2024); Optum, 'Actionable Insights & Strategies From the Change Healthcare 2022 Denial Index' (HFMA Texas, May 2023); KFF, 'Claims Denials and Appeals in ACA Marketplace Plans in 2024' (Mar. 24, 2026); First Coast, 'Using web tools to handle top denied claims in your practice' (July 28, 2026)",
+  "source_url": "https://www.hbma.org/rcmadvisor/quarter-2-2024-volume-29-issue-2/data-science-committee-denials-survey-results",
+  "confidence": "medium",
+  "practice_impact": "Rank denials from the practice's own remittance codes before adopting the vendor's three-pattern framework; for facility visits billed to Medicare in Florida, eligibility, Medicare Advantage enrollment, hospice, duplicate and NCCI edits are likelier leaders than medical necessity."
  },
  {
   "id": "behavioralhealth-companion-guide:C1",
