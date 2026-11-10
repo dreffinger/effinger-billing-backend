@@ -68,7 +68,7 @@
     }
    ],
    "sources": [
-    "vmg-fundamentals",
+    "vmg-fundamentals-2012",
     "vmg-comp-fmv",
     "coker-2017",
     "ecg-2023",
@@ -132,11 +132,11 @@
     "The same schedule is produced every year, so three years can be compared."
    ],
    "failure_modes": [
-    "Adding back all owner pay and stopping there. That is seller's discretionary earnings, which takes a much lower multiple than earnings after a market salary.",
+    "Adding back all owner pay and stopping there. That is seller's discretionary earnings, which takes a lower multiple than earnings after a market salary.",
     "Add-backs with no paperwork. Buyers and lenders strike them, and every dollar removed is multiplied in the price.",
     "Counting growth that has not happened yet, such as a new clinician's future volume, as if it were already earned.",
     "Cash-basis books hide unpaid bills and receivables, so one strong collection month or a delayed payable distorts the year.",
-    "Stipends counted as recurring earnings without written agreements and time records, so a buyer discounts or excludes them."
+    "Stipends counted as recurring earnings without written agreements and time records, so a buyer may discount or exclude them."
    ],
    "key_questions": [
     "What would it cost per year to hire a clinician to do your clinical work, including payroll tax and benefits?",
@@ -148,7 +148,7 @@
    "actions": [
     {
      "action": "Prepare a normalization schedule with your accountant",
-     "detail": "Start from net income. Add interest, taxes, depreciation and owner pay. Add documented personal and one-time costs. Remove one-time revenue. Subtract market pay, payroll tax and benefits for the owners' clinical work.",
+     "detail": "Start from net income. Add interest, taxes, depreciation, amortization and owner pay. Add documented personal and one-time costs. Remove one-time revenue. Subtract market pay, payroll tax and benefits for the owners' clinical work.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
@@ -212,7 +212,7 @@
      "slug": "lv-normalized-ebitda",
      "name": "Normalized EBITDA",
      "definition": "Earnings before interest, taxes, depreciation and amortization (EBITDA), restated with owners paid a market salary and personal or one-time items removed.",
-     "formula": "Net income + interest + taxes + depreciation + owner pay and perquisites + one-time costs - one-time revenue - market pay, payroll tax and benefits for owner clinical work",
+     "formula": "Net income + interest + taxes + depreciation and amortization + owner pay and perquisites + one-time costs - one-time revenue - market pay, payroll tax and benefits for owner clinical work",
      "unit": "dollars",
      "direction": "higher",
      "cadence": "annual",
@@ -223,7 +223,7 @@
       "coker-2017",
       "vmg-diligence"
      ],
-     "data_hint": "Accountant's income statement, payroll records, and a compensation survey for the owner's specialty."
+     "data_hint": "Accountant's income statement, payroll records, and a compensation survey for the owner's specialty. Add back only owner pay that was expensed, not profit distributions."
     },
     {
      "slug": "lv-addbacks-share",
@@ -233,7 +233,7 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "annual",
-     "benchmark_note": "No published threshold was found. VMG Health (2024) says buyers focus on seller-favorable adjustments and forward-looking items. Keep a document behind every add-back and expect unsupported ones to be removed.",
+     "benchmark_note": "No published threshold was found. VMG Health (2024) says buy-side reviewers focus on forward-looking adjustments, which tend to favor the seller. Keep a document behind every add-back. The ratio means nothing when normalized EBITDA is zero or negative.",
      "confidence": "none",
      "sources": [
       "vmg-diligence"

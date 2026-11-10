@@ -112,13 +112,14 @@
     "One folder holds every payer contract, amendment and fee schedule.",
     "A register lists each contract's effective date, renewal date, notice period, filing limit and appeal deadline.",
     "Fee schedules are loaded where payments can be checked against them.",
-    "Payer notices of amendment are read and answered before their deadline."
+    "Payer notices of amendment are read and answered before their deadline.",
+    "Staff know the notice rules. In Florida, a health maintenance organization owes 30 days' written notice of payment schedule changes and 60 days' notice before ending a contract without cause."
    ],
    "failure_modes": [
-    "The practice cannot find its contract, so it cannot dispute an underpayment.",
-    "A plan changes rates by a notice that takes effect unless objected to within 30 days, and nobody reads it.",
+    "The practice cannot find its contract, so it cannot dispute an underpayment in time. In Florida the limit is 12 months after the payment for state-regulated plans.",
+    "A plan changes rates by a mailed or posted notice that takes effect unless the practice objects within the contract's window, and nobody reads it.",
     "A contract renews automatically for years at an old rate.",
-    "Filing limits differ by plan and staff apply one rule to all."
+    "Filing limits differ by payer (12 months for Original Medicare, 6 months for Florida-regulated plans, contract terms for Medicare Advantage) and staff apply one rule to all."
    ],
    "key_questions": [
     "Do we hold a signed contract and current fee schedule for every plan we bill?",
@@ -136,7 +137,7 @@
     },
     {
      "action": "Build the contract register",
-     "detail": "Dates, notice periods, filing and appeal limits, amendment clause, contact.",
+     "detail": "Dates, notice periods, filing and appeal limits, amendment clause, contact, and plan type (state-regulated, employer self-funded, Medicare Advantage, Medicaid), since different laws apply to each.",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
@@ -150,19 +151,34 @@
     },
     {
      "action": "Log and answer payer notices",
-     "detail": "Record the date received and the response deadline for every amendment or policy notice.",
-     "cadence": "monthly",
+     "detail": "Record the date received and the reply deadline for every amendment or policy notice, including those posted on plan websites. Object in writing while the window is open.",
+     "cadence": "weekly",
      "effort": "low",
      "impact": "medium"
     }
    ],
    "applies_when": "Every practice that contracts with health plans. Medicare fee-for-service has no negotiated contract, but its fee schedule should be loaded the same way.",
+   "vendor_refs": [
+    {
+     "item": "payer-contract-intelligence-playbook",
+     "note": "Adds a clause reading list and a contract register. Its typical state payment deadline (30 to 45 days) is not Florida's 20, and it never says self-funded plans escape state law."
+    },
+    {
+     "item": "news-insider-02",
+     "note": "Adds a control for amendment notices: one owner, a dated log, calendared reply dates. Calls silent acceptance simply legal and cites no state or Medicare Advantage notice rule."
+    }
+   ],
    "sources": [
     "fl-627-6131",
     "fl-641-3155",
-    "cfr-424-44"
+    "fl-641-315",
+    "cfr-424-44",
+    "cfr-422-202",
+    "cfr-422-520",
+    "ama-contract-checklist",
+    "ama-payor-contracting"
    ],
-   "evidence_note": "Filing limits and prompt-payment duties come from contracts, state statute and federal regulation. Florida's statutes are cited as an example of state rules. Each state differs.",
+   "evidence_note": "Regulation and statute. Medicare Advantage plans must give written notice of material rule changes and 60 days' notice before ending a contract without cause (42 CFR 422.202). Florida examples: sections 627.6131, 641.3155 and 641.315. State laws usually do not reach employer self-funded plans.",
    "metrics": [
     {
      "slug": "pc-contracts-on-file",
@@ -174,7 +190,7 @@
      "cadence": "annual",
      "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
      "confidence": "none",
-     "data_hint": "The contract register."
+     "data_hint": "The contract register, checked against the list of payers billed in the last 12 months."
     }
    ]
   },
