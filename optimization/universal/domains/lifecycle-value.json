@@ -17,7 +17,7 @@
     "Quoting multiples paid for large investor-backed platforms when the practice has one or two clinicians, then rejecting realistic offers.",
     "Using a percent-of-revenue rule alone. Two practices with equal revenue can have very different earnings and prices.",
     "Expecting a hospital to pay for referrals. Federal rules hold it to fair market value, which often means equipment plus an employment contract.",
-    "Relying on an appraisal prepared for the seller. A buyer's bank must obtain its own, and a lower figure reprices or delays the deal."
+    "Relying on an appraisal prepared for the seller. A lender on a Small Business Administration loan must order its own, and a lower figure reprices or delays the deal."
    ],
    "key_questions": [
     "Do you have a written estimate of practice value dated within the last 12 months?",
@@ -43,7 +43,7 @@
     },
     {
      "action": "Learn the lender's rules before pricing a physician-to-physician sale",
-     "detail": "For Small Business Administration loans (SOP 50 10 8.1, October 2026) the lender needs an independent valuation when the price exceeds $350,000 or the parties are related. Price above it must come from buyer equity.",
+     "detail": "For Small Business Administration loans (SOP 50 10 8.1, October 2026) the lender must order an independent valuation when the price exceeds $350,000 or buyer and seller are closely related. Price above the appraised value must come from buyer equity.",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -56,11 +56,11 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Every practice with an owner. Larger groups are priced on earnings by investors. Solo, hospital-based and facility-based practices own few tangible assets and do not own their facility relationships, so value rests on transferable earnings and on clinicians who stay.",
+   "applies_when": "Every practice with an owner. Larger groups are priced on earnings by investors. Hospital-based and facility-based practices own few tangible assets and do not own their facility relationships, so value rests on transferable earnings and on clinicians who stay. Solo practices face the same transfer question.",
    "vendor_refs": [
     {
      "item": "practice-valuation-playbook",
-     "note": "Explains earnings times a multiple and gives a table of multiples. Its 7 times examples overstate small practices, and it never subtracts a market salary for the owner."
+     "note": "Explains earnings times a multiple and gives a table of multiples. Its 7 times examples overstate small practices. It mentions adjusting for owner pay but never shows the market-salary deduction."
     },
     {
      "item": "practice-financial-intelligence-playbook",
@@ -80,7 +80,7 @@
     "sba-sop-50-10",
     "pya-checklist"
    ],
-   "evidence_note": "The three approaches are standard appraisal practice. Multiples come from one deal database, marketplace listings quoted secondhand and an all-industry broker survey, so treat them as ranges. Fair market value limits are federal regulation (42 CFR 411.351, 411.357).",
+   "evidence_note": "The three approaches are standard appraisal practice. Multiples come from one valuation firm's stated ranges, marketplace sales quoted secondhand and an all-industry broker survey, so treat them as ranges. Fair market value limits are federal regulation (42 CFR 411.351, 411.357).",
    "metrics": [
     {
      "slug": "lv-enterprise-value",
@@ -93,7 +93,7 @@
      "benchmark_best": "5 to 10 times EBITDA, groups with $5 to $50 million revenue",
      "benchmark_typical": "3 to 6 times EBITDA, or about 2 times owner earnings",
      "benchmark_red": "Tangible assets only, when no earnings remain after market pay",
-     "benchmark_note": "Scope Research 2025 (primary care deals since 2010): 3 to 6 times EBITDA under $5 million revenue. BizBuySell sold listings 2021 to 2025, quoted by Iconic: median 2.05 times owner earnings, 0.62 times revenue. Other specialties differ.",
+     "benchmark_note": "Scope Research, May 2025: stated ranges for primary care, 3 to 6 times EBITDA under $5 million revenue, underlying deals not shown. BizBuySell sales 2021 to 2025, quoted by Iconic: median 2.05 times owner earnings, 0.62 times revenue. Other specialties differ.",
      "confidence": "medium",
      "sources": [
       "scope-2025",
@@ -103,7 +103,7 @@
      ],
      "data_hint": "Earnings from the accountant's statements after adjustments. Multiples from a current appraisal or the published sources cited here.",
      "vendor_claim": "Small or solo primary care sells for 3 to 5 times EBITDA. The library's worked examples use 7 times.",
-     "vendor_verdict": "Partly supported. The range matches Scope Research, but the library skips the market salary deduction and its 7 times examples do not fit small practices."
+     "vendor_verdict": "Partly supported. Close to Scope Research's 3 to 6 times, but the library never shows the market salary deduction, and its 7 times examples do not fit small practices."
     },
     {
      "slug": "lv-valuation-age",
