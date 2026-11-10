@@ -107,6 +107,8 @@ batches = sorted({m["_batch"] for m in ready})
 # 11/10/2026: the import reads the building (and with it the place of service), the provider and the admission date from the raw files.
 # One batch folder was not enough: a visit of any other batch, or of a batch whose parsed file was on hand without its HL7 folder, was
 # entered with NO facility at the default 31. Every batch's files go into one folder; a batch whose files cannot be had is not retried.
+# The import finds each message's OWN building, clinician and admission date in that folder by the message's patient id and its
+# (code, DOS) lines (claimocity_import.msg_own), so a hospital visit of one batch and a nursing visit of another keep their own.
 import shutil
 hdir = os.path.join("hl7", rstamp); os.makedirs(hdir, exist_ok=True); nohl7 = []
 for b in batches:

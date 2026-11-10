@@ -5,6 +5,11 @@
 #   25 on 99497 / 99489 as the practice's existing charges carry it, facility/POS/profile copied from how the feed's own
 #   earlier visits look in AMD. Charges enter Charge Review (approval=1, inspector on) like any feed charge.
 # Dedupe: a feed line whose patient already has a live (non-void) charge with the same CPT + DOS is skipped.
+# Clinician, building and admission date (11/10/2026): each visit takes them from ITS OWN feed message (MSH-4, PV1-7, PV1-44), found by
+#   the message's patient id and its (code, DOS) lines. Until then ONE value per feed PATIENT was used - the last message read - so in a
+#   batch that held a resident's CCM (the physician's) and the nurse practitioner's visits, the visits went in under the physician (149
+#   visits in the October batches; registers/feed_recon_* name each message's own clinician). The per-patient value is now only the
+#   fallback for a message the raw files do not answer exactly once, and that fallback is counted and reported.
 # Place of service (William 11/10/2026, STANDING - practices/ehpa/rules.md): Claimocity can only send 31 for the nursing buildings, so the
 #   place of service is set here per charge line BY WILLIAM'S FREQUENCY RULE (nobody has checked the building's Part A list): CCM
 #   99487/99489 -> 32; a nursing facility visit -> 32 for the monthly visit, 31 when the resident is seen once or twice a week or the
@@ -56,11 +61,13 @@ def mdy(yyyymmdd):
 #                                 nursing visit on the chart, the first visit after a discharge, after one of our hospital visits or after
 #                                 more than MONTHLY_MAX_DAYS (a new stay), and for a gap between weekly and monthly (nothing shown).
 #   any other line (99497/8)   -> the place of service of the visit line of the SAME date in the message, else the feed's.
-# Only a line in a KNOWN nursing building (FAC says 31) of a feed patient whose messages all come from ONE building is ever changed.
+# Only a line in a KNOWN nursing building (FAC says 31) is ever changed, and each message is read with ITS OWN building: a feed patient
+# whose messages come from two buildings is handled message by message. Only when a message's own building cannot be read and the
+# patient shows two buildings does the rule step aside for that visit - and says so (POS RULE NOT APPLIED).
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.2"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-10.3"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -82,7 +89,8 @@ MONTHLY_MIN_DAYS = 21      # 32 needs the monthly pattern actually shown: previo
 MONTHLY_MAX_DAYS = 92      # ... to 92 days back (the 60-day schedule fits; longer than that is a new stay, not a monthly visit)
 BATCH_NF = {}              # chart -> {(cpt, DOS)} nursing and hospital visits in THIS feed batch (main() fills it); read with the chart's history
 BATCH_NF_ERR = [""]        # why the batch list could not be built (then the chart history alone is used) - reaches the DONE line
-FACS = {}                  # feed patient id -> every building name its messages carry in this batch (the rule steps aside when there are two)
+FACS = {}                  # feed patient id -> every building name its messages carry in this batch
+MSGOF = {}                 # one feed message (see msg_key) -> {(building name, clinician NPI, admission date)} read from the raw files
 # what nf_visit_kind can answer: kind -> (place of service, the words for the register; %d = days since the previous nursing visit)
 NF_KINDS = {
     "initial":      ("31", "31 by rule: initial visit"),
@@ -137,12 +145,12 @@ def _kind_at(day, codes, hist, here=None):
         if i < 0: return True
         q = days[i]
         if (d2 - q).days > MONTHLY_MAX_DAYS or (visits[q] & NF_DISCHARGE): return True
-        if any(q <= h <= d2 for h in hosp) or any(q < a <= d2 for a in home): return True
+        if any(q <= h <= d2 for h in hosp) or any(q <= a <= d2 for a in home): return True
         wq = where.get(q)
         return bool(here2 and wq and here2 not in wq)
     prev = days[-1]; gap = (day - prev).days
     if any(prev <= h <= day for h in hosp): return "hospital", gap
-    if any(prev < a <= day for a in home): return "away", gap
+    if any(prev <= a <= day for a in home): return "away", gap
     if visits[prev] & NF_DISCHARGE: return "discharge", gap
     if here and where.get(prev) and here not in where[prev]: return "moved", gap
     if any(day < d <= day + datetime.timedelta(days=SKILLED_GAP_DAYS) and (visits[d] & NF_INITIAL) for d in visits): return "preadmission", gap
@@ -200,8 +208,25 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
             if d in by_day: out[i] = by_day[d]; why[i] = "same place of service as the visit line of that day"; kinds[i] = "with-visit"
             else: out[i] = feed_pos
     return out, why, kinds
+def msg_building(msg):
+    """The building name of a message for the visit history: its own, else the patient's when the batch shows only one, else ''."""
+    try:
+        o = msg_own(msg)
+        if o: return o[0]
+        f = FACS.get(msg.get("pid")) or ()
+        return next(iter(f)) if len(f) == 1 else ""
+    except Exception: return ""
+def seen_lines(msg):
+    """[[code, 'MM/DD/YYYY', building name]]: the nursing, hospital and home visit lines of a message that is NOT entered (a code the table
+    does not have, no usable diagnosis, a fault). They go into the register row so a LATER batch still knows the feed showed them."""
+    try:
+        bn = msg_building(msg)
+        return [[c["cpt"], mdy(c["dos"][:8]), bn] for c in msg.get("FT1") or []
+                if (c.get("cpt") in NF_VISIT or c.get("cpt") in HOSP_VISIT or c.get("cpt") in HOME_VISIT) and len(c.get("dos") or "") >= 8]
+    except Exception: return []
 def count_pos(info, stats):
     """The DONE-line counters for one message that was entered (or would be, in a dry run)."""
+    if info.get("msg_own") is False: stats["feed message not matched to its own raw message - the patient's last-read building / clinician used"] += 1
     if info.get("pos_err"):
         stats["POS RULE NOT APPLIED (entered at the feed's place of service)"] += 1; return
     for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
@@ -210,21 +235,38 @@ def count_pos(info, stats):
         elif k == "ccm-skilled-month": stats["POS 31 CCM kept for William (weekly visits, admission or new stay that month)"] += 1
         elif k == "monthly": stats["POS 32 nursing visit (monthly)"] += 1
         elif k in ("extra", "between"): stats["POS 31 nursing visit (kept at 31: neither pattern shown)"] += 1
+        elif k == "moved": stats["POS 31 nursing visit (previous nursing visit in another building)"] += 1
         elif k and k != "with-visit": stats["POS 31 nursing visit (weekly, admission or new stay)"] += 1
 # facility per feed message (MSH-4) and provider NPI per message (PV1-7) re-read from the raw files
 import glob
-FACOF = {}; NPIOF = {}; ADMIT = {}
-for f in glob.glob((HL7_DIR + "/*.hl7")):
+FACOF = {}; NPIOF = {}; ADMIT = {}      # per feed PATIENT, the last message read: only the fallback since 11/10/2026 (see msg_own)
+def msg_key(pid, pairs):
+    """What names ONE feed message inside a batch: the feed patient id and its (code, DOS) lines - the same whether they are read from
+    the raw file here or from the parsed file (feed_parse_dft reads FT1-4 and FT1-25 the same way)."""
+    return (str(pid or ""), tuple(sorted((str(c or ""), str(d or "")[:8]) for c, d in pairs)))
+def msg_own(msg):
+    """(building name, clinician NPI, admission date) of ONE parsed message, or None when the raw files do not give exactly one answer
+    for it (no such message, or the same lines sent from two buildings / by two clinicians): then the per-patient values are used."""
+    try:
+        own = MSGOF.get(msg_key(msg.get("pid"), [(c.get("cpt"), c.get("dos")) for c in msg.get("FT1") or []])) or ()
+        return next(iter(own)) if len(own) == 1 else None
+    except Exception: return None
+for f in sorted(glob.glob((HL7_DIR + "/*.hl7"))):       # sorted: "the last message read" is the same on every machine (the parser sorts too)
     raw = open(f, errors="replace").read().replace("\r", "\n")
     for b in re.split(r"(?m)^(?=MSH\|)", raw):
         if not b.startswith("MSH|"): continue
         msh = b.split("\n")[0].split("|"); fac = msh[3].split("^")[-1]; pid = None
+        _npi = _adm = ""; _ft = []
         for line in b.split("\n"):
             s = line.split("|")
             if s[0] == "PID": pid = s[3]; FACOF[pid] = fac; FACS.setdefault(pid, set()).add(fac)
             if s[0] == "PV1" and pid:
-                NPIOF[pid] = s[7].split("^")[0] if len(s) > 7 else ""
-                ADMIT[pid] = s[44] if len(s) > 44 else ""
+                NPIOF[pid] = _npi = s[7].split("^")[0] if len(s) > 7 else ""
+                ADMIT[pid] = _adm = s[44] if len(s) > 44 else ""
+            if s[0] == "FT1": _ft.append((s[25].split("^")[0] if len(s) > 25 else "", s[4] if len(s) > 4 else ""))
+        try:
+            if pid: MSGOF.setdefault(msg_key(pid, _ft), set()).add((fac, _npi, _adm))
+        except Exception: pass
 _ctx = {}
 def chart_ctx(pid):
     """episode, respparty, refplan, insorder, live {(cpt,dos)} from the chart's own history/detail."""
@@ -268,9 +310,11 @@ def same_encounter(cpt, dos, live):
     if not fam: return False
     return any(lc in fam and ld == dos for lc, ld in live)
 def build(msg, ctx):
-    fid = msg["pid"]; facname = FACOF.get(fid, ""); fac, pos = FAC.get(facname, ("", "31"))
+    fid = msg["pid"]; own = msg_own(msg)             # this message's own (building, clinician NPI, admission date) - None = not readable
+    facname, npi, admit = own if own else (FACOF.get(fid, ""), NPIOF.get(fid, ""), ADMIT.get(fid, ""))
+    fac, pos = FAC.get(facname, ("", "31"))
     nursing = facname in FAC and pos == "31"        # one of the practice's nursing buildings (never the unknown-building default)
-    prof = PROFILE.get(NPIOF.get(fid, ""), "prof13")
+    prof = PROFILE.get(npi, "prof13")
     lines = []
     for c in msg["FT1"]:
         cpt = c["cpt"]
@@ -286,9 +330,11 @@ def build(msg, ctx):
     # place of service per line (11/10/2026 rule); any failure = the feed's place of service for every line, exactly as before the rule
     pos_err = ""; lkind = [""] * len(lines)
     try:
-        if nursing and len(FACS.get(fid, ())) > 1:
-            raise ValueError("this feed patient has messages from %d buildings in this batch and the feed keeps one building per patient - "
-                             "check the facility and the place of service of this visit by hand" % len(FACS[fid]))
+        if nursing and BATCH_NF_ERR[0]:
+            raise ValueError("the visits of this batch could not be listed (%s), so nothing shows this resident's pattern - kept at the feed's place of service" % BATCH_NF_ERR[0])
+        if not own and len(FACS.get(fid, ())) > 1 and (nursing or any(FAC.get(_n, ("", ""))[1] == "31" for _n in FACS[fid])):
+            raise ValueError("this feed patient has messages from %d buildings in this batch and this message's own building could not be read - "
+                             "check the facility, the clinician and the place of service of this visit by hand" % len(FACS[fid]))
         hist = (list(ctx.get("nfrows") or ctx.get("live") or ()) + list(BATCH_NF.get(ctx.get("pid"), ()))) if nursing else ()   # the history is only read for a nursing building
         lpos, lwhy, lkind = pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist, fac if nursing else None)
         if len(lpos) != len(lines) or any(p not in ("31", "32", pos) for p in lpos): raise ValueError("unexpected place of service %r" % (lpos,))
@@ -308,8 +354,8 @@ def build(msg, ctx):
                 '<diagcodelist>%s</diagcodelist></charge>') % (ctx["resp"], d, d, " ".join(dcodes), mod, d, PCODE[c["cpt"]], cpos, c["units"] or "1", fee, fee, fee, fee,
                 "".join('<diagcode id="%s"/>' % re.sub(r"\D", "", x) for x in dcodes))
     ext = ""
-    if any(c in HOSP for c in cpts) and ADMIT.get(fid):
-        ext = '<extins hospitalizationfrom="%s"/>' % mdy(ADMIT[fid][:8])
+    if any(c in HOSP for c in cpts) and admit:
+        ext = '<extins hospitalizationfrom="%s"/>' % mdy(admit[:8])
     onh = "1" if ext else "0"
     # two-step create (proven 10/28/2026 on pat17476917 vst19458732): addvisit <appt> makes the empty visit, then
     # updvisitwithnewcharges on that visit id adds the charges. VISIT_ID is substituted by the caller.
@@ -323,8 +369,9 @@ def build(msg, ctx):
     create = amd.msg("addvisit", "chargeentry", {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
                      "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, appt)
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
-    return (create, body), {"dos": dos, "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos, "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err,
-                            "prof": prof, "admit": ADMIT.get(fid, ""), "missing_dx": sorted(missing_dx)}
+    # dos_lines: every line's own date (a message can carry two); msg_own: False = building / clinician came from the per-patient fallback
+    return (create, body), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
+                            "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx)}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
@@ -334,7 +381,7 @@ def main():
     # EVERY earlier batch register counts (a visit re-dated after its import, e.g. the CCI 24078 re-dates, no longer matches the feed DOS
     # in AMD, so the live check alone would create it again - 10/29/2026 dry run).
     import glob as _glob
-    done = set()
+    done = set(); prior_seen = []        # prior_seen: (chart, [code, DOS, building]) visit lines earlier batches saw but did not enter
     for rf in _glob.glob("registers/feed_import_*.json"):
         if rf.endswith("_decisions.json"): continue
         try: prior = json.load(open(rf))
@@ -342,6 +389,10 @@ def main():
         done |= {(r["feed_id"], r["dos"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id")}
         done |= {(r["feed_id"], r["dos_feed"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id") and r.get("dos_feed")}   # re-dated visits keep their feed DOS here
         if rf == REG: done |= {(r["feed_id"], None, None) for r in prior.get("skipped", [])}
+        try:
+            for r in list(prior.get("skipped") or []) + list(prior.get("failed") or []):
+                for _ln in r.get("lines") or []: prior_seen.append((r.get("pid"), list(_ln)))
+        except Exception: pass
     # deceased guard before any write: a DOS after the cached date of death is never entered (William's standing rule)
     _dc = {}
     for _p in [__import__("os").environ.get("DECEASED_CACHE", ""), "deceased_cache_local.json", "registers/deceased_cache.json"]:
@@ -358,13 +409,20 @@ def main():
         for _m in PARSED:
             _p = MATCH.get(_m["name"].upper().strip() + "|" + _m["dob"][:8], {}).get("resolved")
             if not _p: continue
+            _bn = msg_building(_m)                               # the message's own building: a visit in another building is then seen as a move
             for _c in _m.get("FT1") or []:
-                if (_c.get("cpt") in NF_VISIT or _c.get("cpt") in HOSP_VISIT or _c.get("cpt") in HOME_VISIT) and len(_c.get("dos") or "") >= 8: BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8])))
+                if (_c.get("cpt") in NF_VISIT or _c.get("cpt") in HOSP_VISIT or _c.get("cpt") in HOME_VISIT) and len(_c.get("dos") or "") >= 8:
+                    BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8]), _bn) if _bn else (_c["cpt"], mdy(_c["dos"][:8])))
+        for _p, _ln in prior_seen:      # a visit an earlier batch could not enter still happened: the feed showed it
+            try:                        # row by row: an odd row in an old register is skipped, it never switches the rule off
+                if isinstance(_p, str) and _p and len(_ln) >= 2 and isinstance(_ln[0], str) and isinstance(_ln[1], str) and (_ln[0] in NF_VISIT or _ln[0] in HOSP_VISIT or _ln[0] in HOME_VISIT):
+                    BATCH_NF.setdefault(_p, set()).add((_ln[0], _ln[1], _ln[2]) if len(_ln) > 2 and isinstance(_ln[2], str) and _ln[2] else (_ln[0], _ln[1]))
+            except Exception: continue
     except Exception as e:
         BATCH_NF.clear(); BATCH_NF_ERR[0] = str(e)[:120] or type(e).__name__
-        print("POS RULE: batch visit list not built (%s) - the chart history alone is used" % BATCH_NF_ERR[0])
+        print("POS RULE: batch visit list not built (%s) - nursing-building lines stay at the feed's 31 this run (POS RULE NOT APPLIED)" % BATCH_NF_ERR[0])
     n = 0; stats = collections.Counter()
-    if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - chart history alone used"] += 1
+    if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31"] += 1
     for msg in PARSED:
         fid = msg["pid"]
         if one and fid != one: continue
@@ -382,7 +440,8 @@ def main():
                 stats["deceased chart - held"] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": "deceased flag on chart - William"}); continue
             body, info = build(msg, ctx)
             if body is None:
-                stats["skip: " + info] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": info}); continue
+                stats["skip: " + info] += 1
+                reg["skipped"].append(dict({"feed_id": fid, "pid": pid, "why": info}, **({} if info == "all lines already in AMD" else {"lines": seen_lines(msg)}))); continue
             n += 1
             if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
             if dry:
@@ -391,15 +450,24 @@ def main():
             r0 = amd.post(create, timeout=120)
             vm = re.search(r'<visit id="(vst\d+)"', r0)
             if not vm:
-                stats["FAULT create"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "err": "addvisit: " + re.sub(r"\s+", " ", r0[:500])})
+                stats["FAULT create"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "err": "addvisit: " + re.sub(r"\s+", " ", r0[:500])})
                 print("FAULT addvisit", pid, info["dos"], re.sub(r"\s+", " ", r0[:200])); json.dump(reg, open(REG, "w"), indent=1); continue
             r = amd.post(body.replace("%VISIT%", vm.group(1)), timeout=180)
             if "Fault" in r or 'success="0"' in r:
-                stats["FAULT"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "empty_visit": vm.group(1), "err": re.sub(r"\s+", " ", r[:600])})
+                stats["FAULT"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "err": re.sub(r"\s+", " ", r[:600])})
                 print("FAULT", pid, info["dos"], info["cpts"], re.sub(r"\s+", " ", r[:300]))
             else:
                 vid = re.search(r'<visit id="(vst\d+)"', r); cids = re.findall(r'<charge id="(charge\d+)"', r)
                 fees = re.findall(r'<charge [^>]* fee="([^"]*)"', r)
+                # what AdvancedMD stored: its answer echoes the charges - compare their place of service with what was sent (any order).
+                # pos_stored None = the answer did not carry it for every line (then nothing is claimed either way)
+                try:
+                    _st = re.findall(r'<charge id="charge\d+"[^>]*?\bpos="(\d+)"', r)
+                    info["pos_stored"] = _st if len(_st) == len(info["pos_lines"]) else None
+                    if info["pos_stored"] is not None and sorted(_st) != sorted(info["pos_lines"]):
+                        stats["ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE (stored differs from sent)"] += 1
+                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", info["pos_lines"], "stored", _st)
+                except Exception: info["pos_stored"] = None
                 if info["admit"] and any(c in HOSP for c in info["cpts"]):
                     # the extins child is ignored on create - write the admission date with the proven updextrainsinfo shape
                     for cpt in info["cpts"]:
@@ -409,20 +477,23 @@ def main():
                             re_ = amd.post(amd.msg("updextrainsinfo", "chargeentry", {"visitid": vm.group(1), "nocookie": "1"}, ext), timeout=120)
                             info["admit_written"] = "Fault" not in re_ and 'hospitalizationfrom="%s"' % mdy(info["admit"][:8]) in re_
                 reg["created"].append({"feed_id": fid, "pid": pid, "visit": vid.group(1) if vid else "", "charges": cids, "fees": fees, "at": datetime.datetime.utcnow().isoformat(), **info})
-                for cpt in info["cpts"]: ctx["live"].add((cpt, info["dos"]))
+                for cpt, _d in zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"])): ctx["live"].add((cpt, _d))   # each line under its OWN date
                 stats["created"] += 1; stats["charge lines"] += len(cids); count_pos(info, stats)
                 print("OK", pid, info["dos"], info["cpts"], vid.group(1) if vid else "?", cids, fees)
             json.dump(reg, open(REG, "w"), indent=1)
             time.sleep(0.6)
         except Exception as e:
-            stats["error"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
+            stats["error"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "lines": seen_lines(msg), "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
             json.dump(reg, open(REG, "w"), indent=1)
         if n % 25 == 0 and n: print("progress", n, dict(stats))
     # 10/29 05:49Z lesson: a live batch whose every line was already in AMD created nothing and so wrote NO import register (verify,
     # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
-    print("POS RULE: CCM 32 x%d, CCM left 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown building x%d" % (
+    if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched"):
+        print("POS CHECK: AdvancedMD stored another place of service x%d; not matched to its own message x%d" % (_pk("ADVANCEDMD DID NOT KEEP"), _pk("feed message not matched")))
+    # one SHORT line (the ingest shows 110 characters of each of the last three log lines): 91 characters with one-digit counts
+    print("POS RULE: CCM 32 x%d, CCM 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown bldg x%d" % (
         _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))
     print("DONE", dict(stats))
 if __name__ == "__main__": main()

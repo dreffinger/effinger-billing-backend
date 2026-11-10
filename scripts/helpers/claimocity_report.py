@@ -6,6 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
+POS_REPORT_VERSION = "2026-11-10.3"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -37,32 +38,60 @@ L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
 _NURSING_FAC = {"fac34", "fac32", "fac33", "fac58", "fac1350"}                       # Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood
-_rule_stamp = bool(re.match(r"^2\d{7}T", STAMP)) and STAMP[:8] >= "20261110"         # batches from the day the rule began
+_st8 = re.sub(r"[^0-9TZ]", "", STAMP)                                               # 2026-11-10T1319Z and 20261110T1319Z are the same batch
+_rule_stamp = bool(re.match(r"^2\d{7}T", _st8)) and _st8[:8] >= "20261110"          # batches from the day the rule began
+_who = collections.defaultdict(list)                                                  # what kind of line -> the charts (chart number, date, codes - no name)
+def _tag(x): return "%s %s %s" % (x.get("pid") or "?", x.get("dos") or "?", "+".join(str(c) for c in (x.get("cpts") or [])))
+def _names(key, lead):
+    v = _who.get(key) or []
+    if v: L("  - %s: %s%s" % (lead, "; ".join(v[:30]), (" (+%d more - see the import register)" % (len(v) - 30)) if len(v) > 30 else ""))
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
-        if x.get("pos_err"): _ps["err"] += 1; continue
+        if _rule_stamp and x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x))
+        if x.get("pos_stored") is not None and x.get("pos_lines"):
+            _ps["readback"] += 1
+            if sorted(str(v) for v in x["pos_stored"]) != sorted(str(v) for v in x["pos_lines"]): _ps["notkept"] += 1; _who["notkept"].append("%s sent %s stored %s" % (_tag(x), x["pos_lines"], x["pos_stored"]))
+        if x.get("pos_err"): _ps["err"] += 1; _who["err"].append("%s (%s)" % (_tag(x), str(x["pos_err"])[:70])); continue
         if not x.get("pos_lines"):
-            if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1
+            if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1; _who["norule"].append(_tag(x))
             continue
         if x.get("pos_feed") != "31": continue
         if not x.get("fac"):
-            _ps["nofac"] += sum(1 for c in _c if c in _NFV or c in _CCM); continue
+            _n = sum(1 for c in _c if c in _NFV or c in _CCM); _ps["nofac"] += _n
+            if _n: _who["nofac"].append(_tag(x))
+            continue
         _k = x.get("pos_kind") or []
         for _i, (_cpt, _p) in enumerate(zip(_c, x.get("pos_lines") or [])):
-            if _cpt in _CCM: _ps["ccm%s" % _p] += 1
+            _kind = _k[_i] if _i < len(_k) else ""
+            if _cpt in _CCM:
+                _ps["ccm%s" % _p] += 1
+                if _kind == "ccm-skilled-month" and _tag(x) not in _who["ccm31"]: _who["ccm31"].append(_tag(x))
             elif _cpt in _NFV:
                 _ps["nf%s" % _p] += 1
-                if _i < len(_k) and _k[_i] in ("extra", "between"): _ps["nfleft"] += 1
-    if any(_ps.values()):
-        L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s." % (
+                if _kind in ("extra", "between"): _ps["nfleft"] += 1; _who["nfleft"].append(_tag(x))
+                if _kind == "moved": _ps["nfmoved"] += 1
+    if any(_ps[k] for k in _ps if k not in ("readback", "notown")):
+        L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
-            (" (and %d kept at 31 because the chart shows weekly visits, an admission or a new stay that month - for William, see pos_why in the import register)" % _ps["ccm31"]) if _ps["ccm31"] else "",
+            (" (and %d kept at 31 because the chart shows weekly visits, an admission or a new stay that month - not held: they go out at 31 with the next claim run unless William changes them first)" % _ps["ccm31"]) if _ps["ccm31"] else "",
             _ps["nf32"], _ps["nf31"],
             (" (%d of them kept at 31 because the chart shows neither pattern - see pos_why)" % _ps["nfleft"]) if _ps["nfleft"] else "",
+            (" (%d of them because the previous nursing visit was in another building)" % _ps["nfmoved"]) if _ps["nfmoved"] else "",
             ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's place of service, see pos_err in the import register and rules.md 11/10/2026" % _ps["err"]) if _ps["err"] else "",
             ("; %d CCM / nursing-visit line(s) came from a building the facility table does not know - entered at 31 with no facility" % _ps["nofac"]) if _ps["nofac"] else "",
             ("; PLACE OF SERVICE RULE DID NOT RUN on %d visit(s) in the nursing buildings - the import helper in this workspace is an old copy (rules.md 11/10/2026)" % _ps["norule"]) if _ps["norule"] else ""))
+        _names("err", "TOP OF THE REPORT - rule not applied, check by hand before the claim run")
+        _names("norule", "TOP OF THE REPORT - rule did not run (old helper)")
+        _names("nofac", "TOP OF THE REPORT - building the facility table does not know")
+        _names("ccm31", "for William, not held - CCM kept at 31 (pos_kind ccm-skilled-month)")
+        _names("nfleft", "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between)")
+        if _ps["notkept"]:
+            L("  - TOP OF THE REPORT - ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on %d of %d visit(s) read back:" % (_ps["notkept"], _ps["readback"])); _names("notkept", "sent / stored")
+        elif _ps["readback"]: L("  - AdvancedMD's own answer shows the place of service as sent on all %d visit(s) it echoed." % _ps["readback"])
+        elif _ps["ccm32"] or _ps["nf32"]: L("  - AdvancedMD's answer did not echo the place of service: read ONE 32 line back by hand (runbook, 'first batch that enters a 32 line').")
+    if _ps["notown"]:
+        L("- Clinician and building: %d visit(s) could not be matched to their own feed message, so the patient's last-read building and clinician were used - TOP OF THE REPORT, check them by hand:" % _ps["notown"]); _names("notown", "charts")
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))
