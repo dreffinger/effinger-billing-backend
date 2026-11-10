@@ -65,11 +65,12 @@ What the run does with it: the precondition in step (c), then nothing by hand. T
 xN, CCM left 31 xN, visits 32 xN, visits 31 xN, not applied xN, unknown building xN` - before DONE; registers/feed_import_<stamp>.json
 carries pos_feed / pos_lines / pos_why / pos_kind / pos_err per visit; the digest has one line, "Place of service in the nursing buildings
 (11/10/2026 rule)" - it goes into the report after the feed line. At the TOP of the report, with the chart ids: `POS RULE NOT APPLIED`
-(those visits went in at the feed's place of service - one cause is the same patient, date and codes arriving under two buildings: the
-import log then also has `BUILDING AMBIGUOUS <chart> <date> <codes> ...`, its DONE line a `building ambiguous` count and the visit's
-register row a `site_unresolved` text; outside the nursing buildings such a visit carries only those three - check its facility by
-hand), `PLACE OF SERVICE RULE DID NOT RUN` (an old copy of the helper ran) and lines from a building the facility table does not know.
-Listed by chart for William, not held: CCM lines left at 31 and visits left at 31. Never move a 32 back to 31 in Charge Review or the Claim Inspector, and never change the
+(those visits went in at the feed's place of service), `BUILDING AMBIGUOUS` (the feed sent the same patient, date and codes under two
+buildings, so the visit kept the patient-level building: the digest line counts them, the import log has `BUILDING AMBIGUOUS <chart>
+<date> <codes> ...` and the visit's register row a `site_unresolved` text naming the two buildings - its facility is checked by hand; in
+a nursing building it is a POS RULE NOT APPLIED as well), `PLACE OF SERVICE RULE DID NOT RUN` (an old copy of the helper ran) and lines
+from a building the facility table does not know. Listed by chart for William, not held: CCM lines left at 31 and visits left at 31.
+Never move a 32 back to 31 in Charge Review or the Claim Inspector, and never change the
 place of service of a claim that was already submitted. A 32 line Medicare returns with reason code 58, or reprices to the facility rate,
 (remarks M77 / N692) was a resident in a Part A stay: resubmit a returned line at 31, never again at 32, and name the chart in the report
 (rules.md, part 7). Reason 58 from Medicare is never bypassed like an AdvancedMD advisory.

@@ -297,6 +297,11 @@ r, line = digest([rows[4], rows[5]])
 check("digest: no line when the batch had no nursing-building charge", r.returncode == 0 and line == "", r.stdout[-300:])
 r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lines=[None]), dict(reg_row(["99309"], "fac34", "31", ["32"]), pos_lines=[32], pos_kind=None), dict(reg_row(["99309", "99497"], "fac34", "31", ["32"]), pos_kind=["monthly"])])
 check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
+AMB = "same patient, date and codes under 2 buildings in this batch - the patient-level building, provider and admission date were used"
+r, line = digest([rows[5], dict(reg_row(["99487"], "fac37", "13", ["13"]), site_unresolved=AMB)])
+check("digest: a visit whose building is uncertain is named even when no nursing building is involved", r.returncode == 0 and "BUILDING AMBIGUOUS on 1 visit(s)" in line and "POS RULE NOT APPLIED" not in line, line or r.stdout[-300:])
+r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["31"], err=AMB), site_unresolved=AMB), dict(reg_row(["99487"], "fac37", "13", ["13"]), site_unresolved=AMB)])
+check("digest: ... in a nursing building it is counted as POS RULE NOT APPLIED too", "POS RULE NOT APPLIED on 1 visit(s)" in line and "BUILDING AMBIGUOUS on 2 visit(s)" in line and "CCM lines entered as 32: 2" in line, line)
 
 # ---- 7. building, provider and admission date per MESSAGE (11/10/2026): two buildings, one feed patient ---------------------------------
 # Until now the importer kept the three per feed PATIENT (PID-3) and the last message read won, so a patient with messages from two
@@ -311,6 +316,8 @@ def per_message_cases():
     import atexit, shutil, socket, hashlib, datetime
     def no_network(*a, **k): raise AssertionError("network use in an offline self-test")
     socket.socket = no_network; socket.create_connection = no_network
+    os.environ.pop("DECEASED_CACHE", None)                                # a run shell's own cache must never decide what these invented charts get
+    sys.dont_write_bytecode = True
     PARSER = os.path.join(ROOT, "scripts", "helpers", "feed_parse_dft_1028.py")
     TMP = tempfile.mkdtemp(prefix="posrule_site_"); atexit.register(shutil.rmtree, TMP, ignore_errors=True)
     STAMP = "20261110T0000Z"; MSGTIME = "11/10/2026 1:00:00 AM"
@@ -458,10 +465,13 @@ def per_message_cases():
     }
     TWO = ("a1_ccm", "a1_hosp", "a2_hosp", "a2_ccm", "a7_ccm", "a7_hosp", "b3_ccm", "b3_nurs", "b4_nurs", "b4_ccm")      # the two-building patients of A and B
     def not_in_files(parsed):
-        """two parsed entries with no message in the files: one of patient 8 (one building there), one of patient 2 (two buildings there)"""
+        """three parsed entries with no message in the files: of patient 8 (one building there), of patient 2 (two buildings there) and of
+        patient 20, who is not in the files at all"""
         out = []
-        for n, d, cpt in ((8, 2, "99487"), (2, 3, "99308")):
-            m = dict(next(x for x in parsed if x["pid"] == fid(n))); m["FT1"] = [{"dos": day(d), "posted": day(d + 1), "units": "1", "dx": "I10", "cpt": cpt}]; out.append(m)
+        for n, d, cpt in ((8, 2, "99487"), (2, 3, "99308"), (20, 4, "99487")):
+            m = dict(next(x for x in parsed if x["pid"] == fid(min(n, 8)))); m["FT1"] = [{"dos": day(d), "posted": day(d + 1), "units": "1", "dx": "I10", "cpt": cpt}]
+            if n == 20: m.update(pid=fid(20), name="ZZ" + "INVENTED" + "ABSENT, TESTCASE", dob="19" + "310" + "704")
+            out.append(m)
         return out
     ws = workspace("mixed")
     write(ws, day(0) + "aaaa0000.hl7", [M[k] for k in TWO + ("c5_hosp", "c5_alf", "c5_nurs", "c9_nurs", "c9_alf")], eol="\r")
@@ -471,8 +481,8 @@ def per_message_cases():
           mod.amd is amd and mod.txh is txh and mod.resave is resave and reg is None and not [b for b in sent if re.search(r'action="(addvisit|updvisitwithnewcharges|updextrainsinfo)"', b)])
     mod, reg, sent, log = run(ws, extra=not_in_files)
     V = visits(sent)
-    check("7: every message is entered once (20 visits; each pair of twins in C, and the re-sent message of D, is one visit)", len(reg["created"]) == 20 and len(V) == 20 and not reg["failed"] and N["login"] == 2, (len(reg["created"]), len(V), reg["failed"], N))
-    check("7: the building is read from MSH index 3 (last ^ part), as proven against the FAC table - never the next field", all(r["fac"] for r in reg["created"]), [r["fac"] for r in reg["created"]])
+    check("7: every message is entered once (21 visits; each pair of twins in C, and the re-sent message of D, is one visit)", len(reg["created"]) == 21 and len(V) == 21 and not reg["failed"] and N["login"] == 2, (len(reg["created"]), len(V), reg["failed"], N))
+    check("7: the building is read from MSH index 3 (last ^ part), as proven against the FAC table - never the next field", all(r["fac"] for r in reg["created"] if r["feed_id"] != fid(20)), [r["fac"] for r in reg["created"]])
     # A
     for n, nb, hcpt in ((1, NURS[0], "99232"), (2, NURS[1], "99233")):
         c = one(V, n, -2, "99487", "99489"); h = one(V, n, 0, hcpt); rc = row(reg, n, -2, "99487", "99489")
@@ -492,11 +502,13 @@ def per_message_cases():
               v and v["facility"] == F(nb) and v["pos"][0] in ("31", "32") and v["profile"] == PROF_B and rv.get("pos_err") == "" and rv.get("pos_kind") not in (None, [""]), (where(v), rv))
     # C
     t5 = one(V, 5, -2, "99487"); r5 = row(reg, 5, -2, "99487"); h5 = one(V, 5, 1, "99232"); t9 = one(V, 9, -2, "99487"); r9 = row(reg, 9, -2, "99487")
-    check("7C same patient + date + codes under two buildings keeps the patient-level building (the last message read), as before",
-          t5 and t5["facility"] == F(NURS[0]) and t9 and t9["facility"] == F(ALF[1]) and t9["pos"] == ["13"], (where(t5), where(t9)))
+    check("7C same patient + date + codes under two buildings keeps the patient-level building and provider (the last message read), as before",
+          t5 and t5["facility"] == F(NURS[0]) and t5["profile"] == PROF_B and t9 and t9["facility"] == F(ALF[1]) and t9["pos"] == ["13"] and t9["profile"] == PROF_A, (where(t5), where(t9)))
     check("7C ... a nursing building there: entered at the feed's 31, POS RULE NOT APPLIED (the narrowed two-building guard)",
           t5 and t5["pos"] == ["31"] and "same patient, date and codes under 2 buildings" in r5.get("pos_err", "") and r5.get("pos_lines") == ["31"], (where(t5), r5))
-    check("7C ... reported in the register row whatever the building", all("same patient, date and codes under 2 buildings" in r.get("site_unresolved", "") for r in (r5, r9)) and r9.get("pos_err") == "", (r5, r9))
+    check("7C ... reported in the register row whatever the building, with the two buildings it was sent from",
+          all("same patient, date and codes under 2 buildings" in r.get("site_unresolved", "") for r in (r5, r9)) and r9.get("pos_err") == ""
+          and all(b in r5.get("site_unresolved", "") for b in (ALF[0], NURS[0])) and all(b in r9.get("site_unresolved", "") for b in (ALF[1], NURS[1])), (r5, r9))
     check("7C the same patient's other message is still resolved per message", h5 and h5["facility"] == F(HOSPITAL) and h5["pos"] == ["21"] and h5["ext"] == us(ADM1), where(h5))
     # D
     d0, d1, d5 = one(V, 6, 0, "99223"), one(V, 6, 1, "99232"), one(V, 6, 5, "99223")
@@ -508,6 +520,9 @@ def per_message_cases():
           p8 and p8["facility"] == F(ALF[1]) and p8["pos"] == ["13"] and p8["profile"] == PROF_B and "site_unresolved" not in r8, (where(p8), r8))
     check("7D ... and when its patient has two buildings in the files: patient-level value as before, reported, the rule not applied",
           p2 and p2["facility"] == F(NURS[1]) and p2["pos"] == ["31"] and p2["profile"] == PROF_B and "not in the batch's HL7 files" in r2.get("site_unresolved", "") and "2 buildings" in r2.get("pos_err", ""), (where(p2), r2))
+    p20 = one(V, 20, 4, "99487"); r20 = row(reg, 20, 4, "99487")
+    check("7D ... and of a patient who is not in the files at all: no facility, the default 31, as before, unreported as a building question",
+          p20 and p20["facility"] == "" and p20["pos"] == ["31"] and "site_unresolved" not in r20 and r20.get("pos_err") == "", (where(p20), r20))
     p10 = one(V, 10, 0, "99232"); r10 = row(reg, 10, 0, "99232")
     check("7D the same message twice from one building is one visit with the provider and admission date of the copy read last, unreported",
           p10 and p10["facility"] == F(HOSPITAL) and p10["profile"] == PROF_B and p10["ext"] == us(ADM2) and "site_unresolved" not in r10 and r10.get("pos_err") == "", (where(p10), r10))
@@ -518,6 +533,10 @@ def per_message_cases():
     check("7C + 7D POS RULE NOT APPLIED only for the two of them that sit in a nursing building - never again for a patient just because of two buildings",
           [l.split()[4] for l in log.splitlines() if l.startswith("POS RULE NOT APPLIED ")] == [chart(5), chart(2)] and "not applied x2" in log and [r["pid"] for r in reg["created"] if r.get("pos_err")] == [chart(5), chart(2)],
           [l[:60] for l in log.splitlines() if l.startswith("POS RULE")])
+    rep = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=ws, env=dict(os.environ, FEED_STAMP=STAMP), capture_output=True, text=True)
+    dline = next((l for l in rep.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
+    check("7C + 7D the feed digest names them: BUILDING AMBIGUOUS on 3 visits, POS RULE NOT APPLIED on the 2 in a nursing building",
+          rep.returncode == 0 and "BUILDING AMBIGUOUS on 3 visit(s)" in dline and "POS RULE NOT APPLIED on 2 visit(s)" in dline, dline or rep.stderr[-300:])
     site = getattr(mod, "site_of", None); parsed = json.load(open(os.path.join(ws, "feed_parsed_%s.json" % STAMP)))
     check("7: site_of(message) -> (building, provider key, admission date, why) for every parsed message; why only for C's twins and D's second message",
           callable(site) and all(len(site(m)) == 4 for m in parsed) and [m["pid"] for m in parsed if site(m)[3]] == [fid(5), fid(5), fid(9), fid(9), fid(2)],

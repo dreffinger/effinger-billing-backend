@@ -41,6 +41,7 @@ _rule_stamp = bool(re.match(r"^2\d{7}T", STAMP)) and STAMP[:8] >= "20261110"    
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
+        if x.get("site_unresolved"): _ps["amb"] += 1          # the visit's building itself is uncertain (claimocity_import.site_of) - whatever the building
         if x.get("pos_err"): _ps["err"] += 1; continue
         if not x.get("pos_lines"):
             if _rule_stamp and x.get("fac") in _NURSING_FAC and any(c in _NFV or c in _CCM for c in _c): _ps["norule"] += 1
@@ -55,14 +56,16 @@ try:
                 _ps["nf%s" % _p] += 1
                 if _i < len(_k) and _k[_i] in ("extra", "between"): _ps["nfleft"] += 1
     if any(_ps.values()):
-        L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s." % (
+        L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
             (" (and %d kept at 31 because the chart shows weekly visits, an admission or a new stay that month - for William, see pos_why in the import register)" % _ps["ccm31"]) if _ps["ccm31"] else "",
             _ps["nf32"], _ps["nf31"],
             (" (%d of them kept at 31 because the chart shows neither pattern - see pos_why)" % _ps["nfleft"]) if _ps["nfleft"] else "",
             ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's place of service, see pos_err in the import register and rules.md 11/10/2026" % _ps["err"]) if _ps["err"] else "",
             ("; %d CCM / nursing-visit line(s) came from a building the facility table does not know - entered at 31 with no facility" % _ps["nofac"]) if _ps["nofac"] else "",
-            ("; PLACE OF SERVICE RULE DID NOT RUN on %d visit(s) in the nursing buildings - the import helper in this workspace is an old copy (rules.md 11/10/2026)" % _ps["norule"]) if _ps["norule"] else ""))
+            ("; PLACE OF SERVICE RULE DID NOT RUN on %d visit(s) in the nursing buildings - the import helper in this workspace is an old copy (rules.md 11/10/2026)" % _ps["norule"]) if _ps["norule"] else "",
+            ("; BUILDING AMBIGUOUS on %d visit(s) - the feed sent the same patient, date and codes under two buildings (or the message was not in the feed files), so the "
+             "patient-level building was used: check the facility and the place of service of each by hand, see site_unresolved in the import register" % _ps["amb"]) if _ps["amb"] else ""))
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))

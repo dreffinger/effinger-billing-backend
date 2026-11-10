@@ -14,8 +14,9 @@
 #   found by feed patient + first date of service + CPT set (site_of below). Before, the last message read for the PATIENT decided
 #   every visit of that patient in the batch, so a patient seen in two buildings had all visits entered under one (care management at
 #   the hospital with place of service 21, a nursing visit at an assisted-living facility) and the place-of-service rule stepped aside
-#   for all of them. Only when the feed sends the same patient + date + codes under two buildings is the patient-level value still
-#   used: that visit is reported - log line BUILDING AMBIGUOUS, a DONE count, site_unresolved in its register row - and, in a nursing
+#   for all of them. The patient-level value is still used only where a message cannot be matched: the same patient + date + codes
+#   under two buildings, or a message that is not in the batch's files. Whenever that patient has two buildings in the batch the visit
+#   is reported - log line BUILDING AMBIGUOUS, a DONE count, site_unresolved in its register row, the feed digest - and, in a nursing
 #   building, entered at the feed's place of service as POS RULE NOT APPLIED. Self-test: tools/selftest/test_pos_rule.py section 7.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
@@ -228,11 +229,11 @@ def count_pos(info, stats):
 # FT1 CPT codes) - FT1 read exactly as feed_parse_dft_1028.py reads it (s[4] = date, s[25] up to the ^ = CPT), so the key of a
 # feed_parsed_<stamp>.json entry finds its own message here. FACS (above) = every building a patient has in the batch.
 # The building is msh[3] (last ^ part), the reading proven against the FAC table; feed_parse_dft reads the NEXT field for its census -
-# do not switch either without checking a real file.
+# do not switch either without checking a real file. The files are read as UTF-8, like the parser, so both sides see the same characters.
 import glob
 FACOF = {}; NPIOF = {}; ADMIT = {}; SITES = {}
 for f in glob.glob((HL7_DIR + "/*.hl7")):
-    raw = open(f, errors="replace").read().replace("\r", "\n")
+    raw = open(f, encoding="utf-8", errors="replace").read().replace("\r", "\n")
     for b in re.split(r"(?m)^(?=MSH\|)", raw):
         if not b.startswith("MSH|"): continue
         msh = b.split("\n")[0].split("|"); fac = msh[3].split("^")[-1]; pid = None; _npi = _admit = None
@@ -249,10 +250,11 @@ for f in glob.glob((HL7_DIR + "/*.hl7")):
 def site_of(msg):
     """(building, provider NPI, admission date, why) for ONE feed message (an entry of feed_parsed_<stamp>.json).
     The message's own three when its key names exactly one building (sent twice from that building - a re-send - the copy read last).
-    Otherwise the patient-level three, exactly as before 11/10/2026 -
-    and why says so when that patient has more than one building in the batch (same patient, same date, same codes under two
-    buildings; or a message that is not in the batch's files): the one case where the patient-level building can be the wrong one.
-    why is "" everywhere else. build() reports a visit with a why and never applies the place-of-service rule to it."""
+    Otherwise the patient-level three, exactly as before 11/10/2026: the same patient + date + codes under two buildings, or a message
+    that is not in the batch's files. why gives the reason whenever that patient has more than one building in the batch - the
+    patient-level building is then a guess - and is "" everywhere else. (A message that is not in the files while its patient has
+    one building there, or none, is entered as before, unreported: the ingest and the diagnosis retry always hand over the files of
+    the messages they enter.) build() reports a visit with a why and never applies the place-of-service rule to it."""
     fid = msg["pid"]; building, npi, admit, why = FACOF.get(fid, ""), NPIOF.get(fid, ""), ADMIT.get(fid, ""), ""
     ft = msg.get("FT1") or []
     found = SITES.get((fid, ft[0]["dos"][:8], tuple(sorted(c["cpt"] for c in ft))), []) if ft else []
@@ -264,6 +266,7 @@ def site_of(msg):
         why = ("same patient, date and codes under %d buildings in this batch" % len(names) if names
                else "message not in the batch's HL7 files and the patient has %d buildings there" % len(FACS[fid]))
         why += " - the patient-level building, provider and admission date were used: check the facility and the place of service of this visit by hand"
+        why += " (sent from: %s)" % " | ".join(names) if names else " (the patient's buildings there: %s)" % " | ".join(sorted(FACS[fid]))
     return building, npi, admit, why
 _ctx = {}
 def chart_ctx(pid):
