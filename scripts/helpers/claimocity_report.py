@@ -6,7 +6,7 @@ HL7_DIR = _os.environ.get("FEED_HL7_DIR", "/tmp/claude-0/-home-claude/b8abe0d4-8
 DXCACHE = _os.environ.get("FEED_DX_CACHE", "dx_cache_feed.json")   # ICD-10 -> dcode map shared by every run (null = not in AMD's table)
 CHART_PREFIX = _os.environ.get("FEED_CHART_PREFIX", "F" + STAMP)   # chart-number series for charts this run creates
 import json, os, re, collections, datetime
-POS_REPORT_VERSION = "2026-11-10.4"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
+POS_REPORT_VERSION = "2026-11-10.5"     # the place-of-service block below; mirror.py PROTECTED names this line - change it with every revision of the block
 reg = json.load(open(("registers/feed_import_%s.json" % STAMP))); newc = json.load(open(("registers/feed_newcharts_%s.json" % STAMP))) if os.path.exists(("registers/feed_newcharts_%s.json" % STAMP)) else {"created": [], "failed": []}
 insp = json.load(open(("registers/feed_inspector_%s.json" % STAMP))) if os.path.exists(("registers/feed_inspector_%s.json" % STAMP)) else {}
 fix = json.load(open(("registers/feed_fixholds_%s.json" % STAMP))) if os.path.exists(("registers/feed_fixholds_%s.json" % STAMP)) else {}
@@ -33,7 +33,8 @@ L = lines.append
 L("# Claimocity backlog import - digest %s UTC (chat session, William 10/28 02:23 ET: enter all encounters and bill them out)" % datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M"))
 L("")
 L("## Import")
-L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; 0 faults." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]), format(fees, ",.2f"), len(reg["skipped"])))
+_qlines = sum(1 for x in reg["created"] if isinstance(x.get("quality_codes"), list) and x.get("quality_codes") and x.get("quality_charge"))    # no-charge quality lines are not charge lines
+L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; 0 faults." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"])))
 L("- CPT mix: " + ", ".join("%s x%d" % (k, v) for k, v in cpts.most_common()))
 # place of service in the nursing buildings (William 11/10/2026, rules.md): what the import's per-line rule did in this batch
 _ps = collections.Counter(); _NFV = {"99304", "99305", "99306", "99307", "99308", "99309", "99310", "99315", "99316"}; _CCM = {"99487", "99489"}
@@ -100,6 +101,44 @@ try:
         L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["nofacother"]); _names("nofacother", "charts")
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
+# quality code (William 11/10/2026, rules.md): the advance-care-plan code 1123F that rides, at no charge, with Medicare visits of patients 65 and older
+try:
+    _qg = reg.get("quality_gate") if isinstance(reg.get("quality_gate"), dict) else {}
+    _qc = lambda x: isinstance(x, dict) and isinstance(x.get("quality_codes"), list) and bool(x.get("quality_codes"))
+    _qa = [x for x in reg["created"] if _qc(x) and x.get("quality_charge")]                      # entered with the line
+    _qn = [x for x in reg["created"] if isinstance(x, dict) and x.get("quality_not_stored")]     # the visit was stored, the line was not
+    _qr = [x for x in reg["created"] if isinstance(x, dict) and x.get("quality_refused")]        # refused with the line, entered without it
+    _qf = [x for x in (reg.get("failed") or []) if isinstance(x, dict) and x.get("stored") and isinstance(x.get("info"), dict) and "quality_tried" in x["info"]]   # refused, NOT sent again
+    _pend = [str(v) for v in (_qg.get("pending") or [])] if isinstance(_qg.get("pending"), list) else []
+    _dead = [d for d in (_qg.get("dead_zero_lines") or []) if isinstance(d, list)] if isinstance(_qg.get("dead_zero_lines"), list) else []
+    if _qa or _qn or _qr or _qf or _qg.get("off") or _qg.get("notes") or _qg.get("proof") or _qg.get("wait") or _dead or _qg.get("reset"):
+        _pf = _qg.get("proof") if isinstance(_qg.get("proof"), dict) else {}
+        _days = None
+        try:
+            _d1 = re.search(r"(\d{8})T", re.sub(r"[^0-9TZ]", "", str(_qg.get("pending_since") or ""))); _d2 = re.search(r"(\d{8})T", _st8)
+            if _d1 and _d2: _days = (datetime.datetime.strptime(_d2.group(1), "%Y%m%d") - datetime.datetime.strptime(_d1.group(1), "%Y%m%d")).days
+        except Exception: _days = None
+        L("- Quality code 1123F (advance care plan, Medicare measure 047; a line that pays nothing): on %d visit(s) in this batch, line amount $%s; %s." % (
+            len(_qa), _qg.get("fee") or "0.00",
+            ("every eligible visit carries it - a quality line was seen billed to insurance (visit %s, %s)" % (_pf.get("visit"), _pf.get("billed"))) if _qg.get("confirmed") and _pf else
+            "every eligible visit carries it - a quality line was seen billed to insurance in an earlier run" if _qg.get("confirmed") else
+            ("PILOT, waiting - no line was added in this run: the visit(s) that carry the first line(s) are not billed yet (%s)" % ", ".join(_pend[:6])) if _qg.get("wait") else
+            "PILOT - at most %s visit(s) carry it, then no more until one such line is seen billed to insurance in AdvancedMD" % (_qg.get("pilot_cap") or 3)))
+        if _qa: L("  - carried by: %s%s" % ("; ".join("%s %s %s" % (x.get("pid"), x.get("visit"), x.get("quality_charge") or "?") for x in _qa[:30]), (" (+%d more)" % (len(_qa) - 30)) if len(_qa) > 30 else ""))
+        if _qa and not _qg.get("confirmed"): L("  - first lines: when Medicare's remittance for one of these visits arrives, remark N620 on the 1123F line means Medicare counted it (reason 246 with it is acceptance, not a denial).")
+        if _qg.get("wait") and _days is not None and _days >= 3:
+            L("  - TOP OF THE REPORT - the quality-code pilot has waited %d days: the visit(s) carrying its first line(s) are still not billed (%s). Look at them in AdvancedMD (Claim Inspector? insurance?) and tell William - he decides whether the line comes off." % (_days, ", ".join(_pend[:6])))
+        if _qr: L("  - TOP OF THE REPORT - QUALITY CODE NOT ACCEPTED by AdvancedMD on %d visit(s); each visit was entered without it: %s" % (len(_qr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("quality_refused"))[:80]) for x in _qr[:10])))
+        if _qn: L("  - TOP OF THE REPORT - AdvancedMD stored %d visit(s) WITHOUT the quality line that was sent with it (the visit itself is entered): %s" % (len(_qn), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _qn[:10])))
+        if _qf: L("  - TOP OF THE REPORT - %d visit(s) were refused with the quality line and NOT sent again, because the chart shows part of the visit or could not be read - enter or check them by hand: %s" % (
+            len(_qf), "; ".join("%s (empty visit %s; chart shows %s)" % (x.get("pid"), x.get("empty_visit"), str(x.get("stored"))[:80]) for x in _qf[:10])))
+        if _qg.get("off"): L("  - TOP OF THE REPORT - the quality code is OFF: %s" % str(_qg["off"])[:220])
+        if _dead: L("  - %d earlier quality line(s) at $0.00 never went out on a claim (AdvancedMD leaves a $0.00 line off). Each of those patients gets the code again, at one cent, with the next visit; the dead $0.00 lines can be voided in AdvancedMD: %s%s" % (
+            len(_dead), "; ".join(" ".join(str(v) for v in d[:3]) for d in _dead[:12]), (" (+%d more)" % (len(_dead) - 12)) if len(_dead) > 12 else ""))
+        if _qg.get("reset"): L("  - the pilot was started again in this run (QUALITY_CODE=reset).")
+        for _n in (_qg.get("notes") if isinstance(_qg.get("notes"), list) else [])[:5]: L("  - %s" % str(_n)[:220])
+except Exception as _e:                                    # never stops the digest
+    L("- Quality code 1123F: this line could not be built (%s) - read quality_gate in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))
 L("")
 L("## Cascade insurance check (AMD 271 per plan + deceased guard + Stedi discovery when nothing active)")

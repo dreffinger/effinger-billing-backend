@@ -130,7 +130,7 @@ if nohl7:
 env["FEED_HL7_DIR"] = os.path.abspath(hdir)
 # 11/10/2026 (review): the retry enters charges with the same import helper as the ingest, so it checks that helper the same way. It never
 # holds a visit for this (rules.md part 6): an old helper is said in the RESULT line and goes to the top of the report.
-POS_RULE = 'POS_RULE_VERSION = "2026-11-10.4"'; pos_warn = ""
+POS_RULE = 'POS_RULE_VERSION = "2026-11-10.5"'; pos_warn = ""
 try: _current = POS_RULE in open(os.path.join(HERE, "claimocity_import.py"), errors="replace").read()
 except OSError: _current = False
 if not _current:

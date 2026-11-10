@@ -15,6 +15,8 @@
 #   99487/99489 -> 32; a nursing facility visit -> 32 for the monthly visit, 31 when the resident is seen once or twice a week or the
 #   chart shows a new stay; whatever the chart does not show stays 31.
 #   ALF / home (13), hospital (21) and unknown-building lines are entered exactly as before. See NF_KINDS / nf_visit_kind / pos_lines below.
+# Quality code (William 11/10/2026, STANDING - practices/ehpa/rules.md): the advance-care-plan code 1123F goes on as a no-charge line, once
+#   per patient per year, with the next visit of every patient 65 or older whose first plan is Medicare Part B. See QUALITY_* below.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -67,7 +69,7 @@ def mdy(yyyymmdd):
 # Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
 # in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
 # never stops for this rule.
-POS_RULE_VERSION = "2026-11-10.4"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
+POS_RULE_VERSION = "2026-11-10.5"       # change this line with EVERY revision of the rule - mirror.py PROTECTED, the runbook grep (step c) and the ingest guard name it
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
 NF_DISCHARGE = {"99315", "99316"}
@@ -91,6 +93,73 @@ BATCH_NF = {}              # chart -> {(cpt, DOS) or (cpt, DOS, building)}: nurs
 BATCH_NF_ERR = [""]        # why the batch list could not be built (then no nursing-building line is 32 in this run) - reaches the DONE line
 FACS = {}                  # feed patient id -> every building name its messages carry in this batch
 MSGOF = {}                 # one feed message (see msg_key) -> {(building name, clinician NPI, admission date)} read from the raw files
+# ---- QUALITY CODE: ADVANCE CARE PLAN, Medicare measure 047 (William 11/10/2026, STANDING - practices/ehpa/rules.md) -------------------------
+# "yes for all: billing adds 1123F automatically, once per patient, to the next Medicare claim for every patient 65 and older." 1123F says an
+# advance care plan or a surrogate decision-maker is documented in the chart - William's statement for every patient the practice follows. CMS
+# counts the code from the Medicare Part B claim itself: a no-charge line on the SAME claim as an eligible visit, once per patient per year
+# (2026 claims specification of measure 047). It pays nothing. The line goes into the SAME create call as the visit's charges (a second call on
+# the visit that left the other charges out would void them). If AdvancedMD refuses a visit that carries the line, the visit is entered again
+# without it and no further line is tried in that run: a reporting code never holds a charge.
+# PILOT: nobody has yet seen how AdvancedMD treats a no-charge line. So the first run puts the line on at most QUALITY_PILOT visits and later
+# runs add NONE until the outcome of those lines is known (a read of each line's charge detail):
+#   - a quality line is listed as billed to insurance            -> proven: from then on every eligible visit carries it (no cap);
+#   - the visit was billed and its $0.00 line was left off        -> new lines carry $0.01 (CMS allows either); a new pilot of QUALITY_PILOT;
+#     the patients whose $0.00 line never went out get the code again with their next visit (their dead lines are listed for voiding);
+#   - AdvancedMD refuses the visit with the line, or stores the visit without it -> $0.01 next run; the same at $0.01 -> the code is OFF
+#     until William says to start again (run once with QUALITY_CODE=reset; QUALITY_CODE=off keeps it off for one run).
+# Every state is read from the import registers (each run writes "quality_gate"), so a fresh machine knows where things stand.
+QUALITY_CODE = "1123F"; QUALITY_PCODE = "pcode65441"       # AdvancedMD's own id for 1123F (lookupproccode 11/10/2026)
+QUALITY_SAME = {"1123F", "1124F"}                          # either one on the chart in the same year = already reported
+QUALITY_PILOT = 3                                            # visits that may carry the line before one has been seen billed (then: no cap)
+QUALITY_LOOKS = 6                                            # earlier quality lines read per run while the outcome is open (two reads each)
+QUALITY_MIN_AGE = 65
+MEDICARE_B = "car6085"                                       # FLORIDA MEDICARE (payer code FLO02) - the plan a Medicare Part B claim goes to
+# the measure's eligible visit codes (2026 specification); CCM, advance care planning and discharge codes are not among them
+QUALITY_VISITS = set("99304 99305 99306 99307 99308 99309 99310 99341 99342 99344 99345 99347 99348 99349 99350 99221 99222 99223 99231 99232 99233 "
+                     "99234 99235 99236 99202 99203 99204 99205 99212 99213 99214 99215".split())
+# this run's state (main() fills it from the registers). done: (chart, year) already coded; dead: (chart, code, DOS) of $0.00 lines that never
+# went out on a claim; wait: earlier pilot lines whose outcome is still open - no new line this run
+def _quality_fresh(): return {"fee": "0.00", "confirmed": False, "off": "", "wait": False, "added": 0, "done": set(), "dead": set(), "dead_rows": [],
+                              "pending": [], "pending_since": "", "proof": None, "notes": [], "zero_not_billed": False, "reset": False, "twice": 0}
+QUALITY = _quality_fresh()
+def _mdy_day(s):
+    try: return datetime.datetime.strptime((s or "")[:10], "%m/%d/%Y").date()
+    except Exception: return None
+def medicare_first(ctx, dos_mdy):
+    """True when the chart's FIRST plan in billing order is Medicare Part B and is in force on that date (ctx['plans'] rows: plan id, carrier,
+    begin date, end date, sequence; ctx['insorder'] = the sequences in billing order)."""
+    day = _mdy_day(dos_mdy); first = (str(ctx.get("insorder") or "").replace(" ", "").split(",") or [""])[0]
+    if day is None or not first: return False
+    for row in ctx.get("plans") or ():
+        try: _pid, car, beg, end, seq = row[:5]
+        except Exception: continue
+        if str(seq) != first: continue
+        b = _mdy_day(beg); e = _mdy_day(end)
+        return car == MEDICARE_B and (b is None or b <= day) and (not (end or "").strip() or (e is not None and e >= day))
+    return False
+def quality_due(msg, ctx, lines):
+    """Index of the visit line the advance-care-plan code rides with, or None. Everything must be shown: an eligible visit code in THIS message,
+    age 65 or more on that date (the feed's date of birth), Medicare Part B first on the chart, no 1123F / 1124F on the chart or in this run
+    for that year, the code not switched off, no earlier pilot line still waiting for its outcome, and room under the pilot cap."""
+    if QUALITY["off"] or QUALITY.get("wait") or (not QUALITY["confirmed"] and QUALITY["added"] >= QUALITY_PILOT): return None
+    i = next((k for k, c in enumerate(lines) if c.get("cpt") in QUALITY_VISITS), None)
+    if i is None: return None
+    d8 = re.sub(r"\D", "", str(lines[i].get("dos") or ""))[:8]; dob = re.sub(r"\D", "", str(msg.get("dob") or ""))[:8]
+    if len(d8) != 8 or len(dob) != 8 or not ("1900" < dob[:4] <= d8[:4]): return None      # no birth date, or the 01/01/1900 placeholder: age not shown
+    age = int(d8[:4]) - int(dob[:4]) - (1 if d8[4:] < dob[4:] else 0)
+    if age < QUALITY_MIN_AGE or age > 115: return None
+    if not medicare_first(ctx, mdy(d8)): return None
+    if (ctx.get("pid"), d8[:4]) in QUALITY["done"]: return None
+    dead = QUALITY.get("dead") or ()                      # a $0.00 line AdvancedMD left off the claim is on the chart but was never reported
+    if any(c in QUALITY_SAME and str(d or "")[-4:] == d8[:4] and (ctx.get("pid"), c, d) not in dead
+           for c, d in (r[:2] for r in ctx.get("live") or () if len(r) >= 2)): return None
+    return i
+def quality_undo(info, pid):
+    """A visit that was built with the quality line was not created after all: its slot under the pilot cap and its once-a-year mark are freed."""
+    try:
+        if info.get("quality_dos"):
+            QUALITY["added"] = max(0, QUALITY["added"] - 1); QUALITY["done"].discard((pid, str(info["quality_dos"])[-4:]))
+    except Exception: pass
 # what nf_visit_kind can answer: kind -> (place of service, the words for the register; %d = days since the previous nursing visit)
 NF_KINDS = {
     "initial":      ("31", "31 by rule: initial visit"),
@@ -209,6 +278,84 @@ def pos_lines(cpt_dos, feed_pos, nursing, nf_history, here=None):
             if d in by_day: out[i] = by_day[d]; why[i] = "same place of service as the visit line of that day"; kinds[i] = "with-visit"
             else: out[i] = feed_pos
     return out, why, kinds
+def _bills(charge_id, pcode=None):
+    """What AdvancedMD's charge detail says about ONE charge (a read): the dates it was billed to insurance ([] = never billed), or None when
+    the charge is not in the answer, is void, or (pcode given) carries another procedure."""
+    cid = re.sub(r"\D", "", str(charge_id or ""))
+    if not cid: return None
+    root = ET.fromstring(resave.detail(cid))
+    for c in root.iter("charge"):
+        if re.sub(r"\D", "", c.get("id") or "") != cid: continue
+        if c.get("void") == "1" or (pcode and c.get("proccode") not in (None, "", pcode)): return None
+        out = [b.get("billeddate") for b in c.findall("insbilllist/insbill") if b.get("billeddate")]
+        if not out and c.get("insbilled") == "1" and (c.get("datebilled") or "").strip(): out = [c.get("datebilled").strip()[:10]]
+        return out
+    return None
+def chart_lines_now(pid):
+    """(code, DOS) of every live charge on the chart right now - one read of the chart's history, the same lines chart_ctx calls live."""
+    out = set()
+    for c in txh.fetch(re.sub(r"\D", "", pid)).iter("charge"):
+        a = c.attrib
+        if a.get("void") == "1" or (a.get("fee") or "").startswith("-"): continue
+        out.add((a.get("proccode"), a.get("dos")))
+    return out
+def quality_state(regs, look, reset=False):
+    """Fill QUALITY from the earlier import registers (oldest first). regs = [(file name, register)]. See the PILOT comment above for the
+    states. look=False (a dry run) reads nothing in AdvancedMD: earlier lines whose outcome is open then simply mean 'wait'. reset=True
+    (QUALITY_CODE=reset, William's word) starts the pilot again: refusals and open lines of earlier runs no longer count - but a line that
+    exists still counts for 'once per patient per year'. Nothing here can stop the import: the caller turns any error into 'no line this run'."""
+    q = _quality_fresh(); fee = "0.00"; off = ""; notes = []; rows = []; allrows = []; confirmed_at = set(); znb_seen = False
+    def _gate(reg): g = reg.get("quality_gate") if isinstance(reg, dict) else None; return g if isinstance(g, dict) else {}
+    for name, reg in sorted(regs, key=lambda x: str(x[0])):
+        try:
+            g = _gate(reg)
+            if g.get("reset"): fee = "0.00"; off = ""; rows = []; confirmed_at = set(); znb_seen = False      # the pilot was started again in that run
+            if g.get("zero_not_billed"): fee = "0.01"; znb_seen = True
+            if g.get("confirmed") and g.get("fee") in ("0.00", "0.01"): confirmed_at.add(g["fee"])
+            for r in (reg.get("created") if isinstance(reg.get("created"), list) else []):
+                if not isinstance(r, dict): continue
+                qc = r.get("quality_codes") if isinstance(r.get("quality_codes"), list) else []
+                qid = r.get("quality_charge") if isinstance(r.get("quality_charge"), str) else ""
+                f = str(r.get("quality_refused_fee") or r.get("quality_not_stored") or r.get("quality_fee") or "0.00")
+                if r.get("quality_refused") or r.get("quality_not_stored"):
+                    what = "refused a visit that carried the code" if r.get("quality_refused") else "stored a visit without its quality line"
+                    if f == "0.00": fee = "0.01"
+                    else: off = "AdvancedMD %s with a one-cent charge too (%s) - a person has to look" % (what, _os.path.basename(str(name)))
+                elif qc and qid: rows.append((name, r)); allrows.append((name, r))
+        except Exception: continue
+    if reset: fee = "0.00"; off = ""; rows = []; confirmed_at = set(); znb_seen = False; notes.append("the pilot was started again in this run (QUALITY_CODE=reset)")
+    confirmed = fee in confirmed_at; proof = None; znb = False; wait = False
+    pending = [(n, r) for n, r in rows if str(r.get("quality_fee") or "0.00") == fee]
+    if not confirmed and not off and pending:
+        if not look: wait = True; notes.append("dry run: %d earlier quality line(s) were not looked up - a live run reads them" % len(pending))
+        else:
+            unknown = max(0, len(pending) - QUALITY_LOOKS)
+            for name, r in pending[:QUALITY_LOOKS]:
+                try: ql = _bills(r.get("quality_charge"), QUALITY_PCODE); first = _bills((r.get("charges") or [None])[0])
+                except Exception as e:
+                    unknown += 1; notes.append("could not read the earlier quality line of visit %s (%s)" % (r.get("visit"), type(e).__name__)); continue
+                if ql:
+                    confirmed = True; proof = {"register": _os.path.basename(str(name)), "visit": r.get("visit"), "charge": r.get("quality_charge"), "billed": ql[0], "fee": fee}; break
+                if ql is None: notes.append("the quality line of visit %s is no longer on the chart (void or changed)" % r.get("visit")); continue
+                if first:                                 # the visit went out on a claim, its quality line did not
+                    if fee == "0.00": znb = True; notes.append("visit %s was billed %s without its $0.00 quality line - new lines carry $0.01" % (r.get("visit"), first[0]))
+                    else: off = "AdvancedMD billed visit %s (%s) without its one-cent quality line too - a person has to look" % (r.get("visit"), first[0])
+                    break
+                unknown += 1                              # not billed yet: the answer is still out
+            if not confirmed and not znb and not off and unknown: wait = True
+    if znb: fee = "0.01"; znb_seen = True; pending = []
+    for name, r in allrows:                               # once per patient per year - from the registers too, whatever the chart history shows
+        try:
+            d = str(r.get("quality_dos") or r.get("dos") or ""); pid = r.get("pid")
+            if not isinstance(pid, str) or len(d) < 4: continue
+            if znb_seen and fee == "0.01" and str(r.get("quality_fee") or "0.00") == "0.00":
+                q["dead"].add((pid, QUALITY_CODE, d)); q["dead_rows"].append([pid, r.get("visit"), r.get("quality_charge")])
+            else: q["done"].add((pid, d[-4:]))
+        except Exception: continue
+    q.update(fee=fee, confirmed=confirmed, off=off, wait=wait, proof=proof, notes=notes, zero_not_billed=znb_seen and fee == "0.01", reset=bool(reset),
+             pending=[r.get("visit") for _, r in pending] if (wait or (pending and not confirmed)) else [],
+             pending_since=_os.path.basename(str(pending[0][0])) if (pending and not confirmed) else "")
+    QUALITY.clear(); QUALITY.update(q)
 def msg_building(msg):
     """The building name of a message for the visit history: its own, else the patient's when the batch shows only one, else ''."""
     try:
@@ -351,7 +498,10 @@ def build(msg, ctx):
         if len(lpos) != len(lines) or any(p not in ("31", "32", pos) for p in lpos): raise ValueError("unexpected place of service %r" % (lpos,))
     except Exception as e:
         lpos = [pos] * len(lines); lwhy = ["rule error"] * len(lines); lkind = [""] * len(lines); pos_err = str(e)[:200] or type(e).__name__
-    for c, cpos in zip(lines, lpos):
+    try: qi = quality_due(msg, ctx, lines)                # the visit line the advance-care-plan quality code rides with (None = no code)
+    except Exception: qi = None
+    qchg = ""
+    for _k, (c, cpos) in enumerate(zip(lines, lpos)):
         dcodes = []
         for code in c["dx"].split("^"):
             if DX.get(code): dcodes.append(DX[code])
@@ -364,25 +514,36 @@ def build(msg, ctx):
                 'units="%s" netfee="0" fee="%s" allowed="%s" patportion="0.00" insportion="%s" patbalance="0.00" insbalance="%s" finclasscode="MC" lineitemnote="">'
                 '<diagcodelist>%s</diagcodelist></charge>') % (ctx["resp"], d, d, " ".join(dcodes), mod, d, PCODE[c["cpt"]], cpos, c["units"] or "1", fee, fee, fee, fee,
                 "".join('<diagcode id="%s"/>' % re.sub(r"\D", "", x) for x in dcodes))
+        if _k == qi and cpos != "23":      # same date, place of service and diagnoses as its visit line; no charge; never a modifier (the measure leaves out the emergency department, 23)
+            qchg = ('<charge id="" respparty="%s" begindate="%s" enddate="%s" diagcodes="%s" modcodes="" aging="%s" billins="1" proccode="%s" cobcode="" pos="%s" tos="01" '
+                    'units="1" netfee="0" fee="%s" allowed="%s" patportion="0.00" insportion="%s" patbalance="0.00" insbalance="%s" finclasscode="MC" lineitemnote="">'
+                    '<diagcodelist>%s</diagcodelist></charge>') % (ctx["resp"], d, d, " ".join(dcodes), d, QUALITY_PCODE, cpos, QUALITY["fee"], QUALITY["fee"], QUALITY["fee"], QUALITY["fee"],
+                    "".join('<diagcode id="%s"/>' % re.sub(r"\D", "", x) for x in dcodes))
     ext = ""
     if any(c in HOSP for c in cpts) and admit:
         ext = '<extins hospitalizationfrom="%s"/>' % mdy(admit[:8])
     onh = "1" if ext else "0"
     # two-step create (proven 10/28/2026 on pat17476917 vst19458732): addvisit <appt> makes the empty visit, then
     # updvisitwithnewcharges on that visit id adds the charges. VISIT_ID is substituted by the caller.
-    vis = ('<visit id="%%VISIT%%" date="%s" profile="%s" facility="%s" refplan="%s" insorder="%s" onhcfa="%s" acceptassign="1" forcepaper="0" force="1">'
-           '<chargelist>%s</chargelist>%s</visit>') % (dos, prof, fac, ctx["refplan"], ctx["insorder"], onh, chg, ext)
-    body = amd.msg("updvisitwithnewcharges", "chargeentry",
-                   {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
-                    "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, vis)
+    def _body(charges):
+        vis = ('<visit id="%%VISIT%%" date="%s" profile="%s" facility="%s" refplan="%s" insorder="%s" onhcfa="%s" acceptassign="1" forcepaper="0" force="1">'
+               '<chargelist>%s</chargelist>%s</visit>') % (dos, prof, fac, ctx["refplan"], ctx["insorder"], onh, charges, ext)
+        return amd.msg("updvisitwithnewcharges", "chargeentry",
+                       {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
+                        "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, vis)
+    plain = _body(chg)                                     # the visit exactly as before the quality code existed
+    body = _body(chg + qchg) if qchg else plain            # the quality line is LAST in the list
+    if qchg: QUALITY["added"] += 1; QUALITY["done"].add((ctx.get("pid"), re.sub(r"\D", "", str(lines[qi].get("dos") or ""))[:4]))
     appt = ('<appt id="" patient="%s" episode="%s" date="%s" profile="%s" facility="%s" refplan="%s" insorder="%s" onhcfa="%s" '
             'acceptassign="1" forcepaper="0" isappt="0" note="" billingnote="" referenceid=""/>') % (ctx["pid"], ctx["episode"], dos, prof, fac, ctx["refplan"], ctx["insorder"], onh)
     create = amd.msg("addvisit", "chargeentry", {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
                      "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, appt)
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
     # dos_lines: every line's own date (a message can carry two); msg_own: False = building / clinician came from the per-patient fallback
-    return (create, body), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
-                            "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx)}
+    # quality_codes: the reporting code that rides with this visit (never in cpts: the register dedupe keys on the message's own codes)
+    return (create, body, plain), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
+                            "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx),
+                            **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8])} if qchg else {})}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
@@ -393,10 +554,12 @@ def main():
     # in AMD, so the live check alone would create it again - 10/29/2026 dry run).
     import glob as _glob
     done = set(); prior_seen = []        # prior_seen: (chart, [code, DOS, building]) visit lines earlier batches saw but did not enter
+    prior_regs = []                      # (file name, register) of every earlier batch: the quality code's state is read from them
     for rf in _glob.glob("registers/feed_import_*.json"):
         if rf.endswith("_decisions.json"): continue
         try: prior = json.load(open(rf))
         except Exception: continue
+        if rf != REG and isinstance(prior, dict): prior_regs.append((rf, prior))
         done |= {(r["feed_id"], r["dos"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id")}
         done |= {(r["feed_id"], r["dos_feed"], tuple(sorted(r["cpts"]))) for r in prior.get("created", []) if r.get("feed_id") and r.get("dos_feed")}   # re-dated visits keep their feed DOS here
         if rf == REG: done |= {(r["feed_id"], None, None) for r in prior.get("skipped", [])}
@@ -435,6 +598,11 @@ def main():
     except Exception as e:
         BATCH_NF.clear(); BATCH_NF_ERR[0] = str(e)[:120] or type(e).__name__
         print("POS RULE: batch visit list not built (%s) - nursing-building lines stay at the feed's 31 this run (POS RULE NOT APPLIED)" % BATCH_NF_ERR[0])
+    _qenv = (__import__("os").environ.get("QUALITY_CODE") or "").strip().lower()      # "off" = no line in this run; "reset" = start the pilot again (William's word)
+    try: quality_state(prior_regs, look=not dry, reset=(_qenv == "reset"))
+    except Exception as e:      # the state could not be read: NO line in this run (an unknown state is never treated as a fresh pilot)
+        QUALITY.clear(); QUALITY.update(_quality_fresh()); QUALITY["off"] = "this run: the state of the quality code could not be read (%s)" % type(e).__name__
+    if _qenv == "off": QUALITY["off"] = QUALITY["off"] or "this run: switched off (QUALITY_CODE=off)"
     n = 0; stats = collections.Counter()
     if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31"] += 1
     for msg in PARSED:
@@ -462,14 +630,36 @@ def main():
             if info.get("prof_default"): print("POS CHECK clinician not known", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile; for William")
             if not info.get("fac"): print("POS CHECK no facility", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service; for William")
             if dry:
-                print("DRY", pid, info); stats["dry"] += 1; count_pos(info, stats); continue
-            create, body = body
+                print("DRY", pid, info); stats["dry"] += 1; stats["dry quality"] += 1 if info.get("quality_codes") else 0; count_pos(info, stats); continue
+            create, body, plain = body
             r0 = amd.post(create, timeout=120)
             vm = re.search(r'<visit id="(vst\d+)"', r0)
             if not vm:
+                quality_undo(info, pid)
                 stats["FAULT create"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "err": "addvisit: " + re.sub(r"\s+", " ", r0[:500])})
                 print("FAULT addvisit", pid, info["dos"], re.sub(r"\s+", " ", r0[:200])); json.dump(reg, open(REG, "w"), indent=1); continue
             r = amd.post(body.replace("%VISIT%", vm.group(1)), timeout=180)
+            if ("Fault" in r or 'success="0"' in r) and info.get("quality_codes"):
+                # A visit that carried the quality line was refused. A reporting code never holds a charge: the SAME visit goes in without the
+                # line - but only when a fresh read of the chart shows that nothing of this visit was stored (a second send would double it).
+                _why = re.sub(r"\s+", " ", r[:200]); _fee0 = info.get("quality_fee"); _mine = set(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))) | {(QUALITY_CODE, info.get("quality_dos"))}
+                quality_undo(info, pid); info["quality_codes"] = []; info["quality_tried"] = _fee0
+                try: _stored = sorted(chart_lines_now(pid) & _mine)
+                except Exception as e: _stored = ["chart not read: %s" % type(e).__name__]
+                if _stored:
+                    QUALITY["off"] = QUALITY["off"] or "this run: a visit with the code was refused and the chart could not be shown free of it"
+                    stats["FAULT"] += 1; stats["QUALITY CODE: visit refused and NOT sent again (the chart shows part of it, or could not be read)"] += 1
+                    reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "stored": [list(x) if isinstance(x, tuple) else x for x in _stored],
+                                          "err": "refused with the quality line; not sent again because the chart shows %s - a person has to look: %s" % (_stored, _why)})
+                    print("FAULT", pid, info["dos"], info["cpts"], "refused with the quality line; chart shows", _stored); json.dump(reg, open(REG, "w"), indent=1); continue
+                r = amd.post(plain.replace("%VISIT%", vm.group(1)), timeout=180)
+                if "Fault" in r or 'success="0"' in r:      # refused without the line as well: the quality code is not the cause
+                    QUALITY["twice"] += 1
+                    if QUALITY["twice"] >= 2: QUALITY["off"] = QUALITY["off"] or "this run: two visits were refused with and without the code - no further line tried"
+                else:
+                    info["quality_refused"] = _why; info["quality_refused_fee"] = _fee0
+                    QUALITY["off"] = QUALITY["off"] or "this run: AdvancedMD refused a visit that carried the code"
+                    stats["QUALITY CODE NOT ACCEPTED by AdvancedMD - the visit was entered without it"] += 1; print("QUALITY CODE REFUSED", pid, info["dos"], _why[:160])
             if "Fault" in r or 'success="0"' in r:
                 stats["FAULT"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "err": re.sub(r"\s+", " ", r[:600])})
                 print("FAULT", pid, info["dos"], info["cpts"], re.sub(r"\s+", " ", r[:300]))
@@ -493,9 +683,23 @@ def main():
                                    'autoaccident="0" otheraccident="0" pregnant="0" outsidelab="0"/>') % (cpt, mdy(info["admit"][:8]))
                             re_ = amd.post(amd.msg("updextrainsinfo", "chargeentry", {"visitid": vm.group(1), "nocookie": "1"}, ext), timeout=120)
                             info["admit_written"] = "Fault" not in re_ and 'hospitalizationfrom="%s"' % mdy(info["admit"][:8]) in re_
+                if info.get("quality_codes"):
+                    _q = re.findall(r'<charge id="(charge\d+)"[^>]*?\bproccode="%s"' % QUALITY_PCODE, r) + re.findall(r'<charge [^>]*?\bproccode="%s"[^>]*?\bid="(charge\d+)"' % QUALITY_PCODE, r)
+                    info["quality_charge"] = _q[0] if _q else (cids[-1] if len(cids) > len(info["cpts"]) else "")
+                    if not info["quality_charge"]:      # the visit was stored, the line was not: the next run reads this like a refusal
+                        quality_undo(info, pid); info["quality_not_stored"] = info.get("quality_fee") or "0.00"; info["quality_codes"] = []
+                        stats["QUALITY CODE: AdvancedMD stored the visit WITHOUT the line"] += 1
+                        QUALITY["off"] = QUALITY["off"] or "this run: AdvancedMD stored a visit without its quality line"
+                    else:                               # "fees" stays one amount per message code (feed_monitor pairs them in order); the line's own amount is quality_fee
+                        try:
+                            _i = cids.index(info["quality_charge"])
+                            if len(fees) == len(cids): fees = fees[:_i] + fees[_i + 1:]
+                        except Exception: pass
                 reg["created"].append({"feed_id": fid, "pid": pid, "visit": vid.group(1) if vid else "", "charges": cids, "fees": fees, "at": datetime.datetime.utcnow().isoformat(), **info})
                 for cpt, _d in zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"])): ctx["live"].add((cpt, _d))   # each line under its OWN date
-                stats["created"] += 1; stats["charge lines"] += len(cids); count_pos(info, stats)
+                if info.get("quality_codes") and info.get("quality_charge"):
+                    ctx["live"].add((QUALITY_CODE, info.get("quality_dos") or info["dos"])); stats["quality code 1123F added (advance care plan)"] += 1
+                stats["created"] += 1; stats["charge lines"] += len(cids) - (1 if info.get("quality_charge") else 0); count_pos(info, stats)
                 print("OK", pid, info["dos"], info["cpts"], vid.group(1) if vid else "?", cids, fees)
             json.dump(reg, open(REG, "w"), indent=1)
             time.sleep(0.6)
@@ -505,7 +709,15 @@ def main():
         if n % 25 == 0 and n: print("progress", n, dict(stats))
     # 10/29 05:49Z lesson: a live batch whose every line was already in AMD created nothing and so wrote NO import register (verify,
     # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
+    reg["quality_gate"] = {"code": QUALITY_CODE, "fee": QUALITY["fee"], "confirmed": bool(QUALITY["confirmed"]), "proof": QUALITY.get("proof"), "zero_not_billed": bool(QUALITY.get("zero_not_billed")),
+                           "off": QUALITY["off"], "wait": bool(QUALITY.get("wait")), "pending": list(QUALITY.get("pending") or []), "pending_since": QUALITY.get("pending_since") or "", "dead_zero_lines": list(QUALITY.get("dead_rows") or []),
+                           "reset": bool(QUALITY.get("reset")), "pilot_cap": None if QUALITY["confirmed"] else QUALITY_PILOT, "notes": list(QUALITY.get("notes") or [])}
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
+    _qn = stats["dry quality"] if dry else stats["quality code 1123F added (advance care plan)"]
+    print("QUALITY 1123F: %s x%d visit(s), line amount $%s, %s%s" % ("would be on" if dry else "on", _qn, QUALITY["fee"],
+          "no cap (a quality line was seen billed)" if QUALITY["confirmed"] else
+          ("pilot: waiting for the outcome of %d earlier line(s) - none added" % len(QUALITY.get("pending") or []) if QUALITY.get("wait") else "pilot: at most %d visit(s) until one is seen billed" % QUALITY_PILOT),
+          ("; OFF - " + QUALITY["off"]) if QUALITY["off"] else ""))
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
         # one SHORT line, like the next one (89 characters with one-digit counts)
