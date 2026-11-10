@@ -14,9 +14,12 @@
 #          check). The answer is shared with the pre-claim check through medicare_store.py: an answer any helper got in the last 30 days
 #          is used (and its own date counts for the 30 days) - but only when it was asked on or after the claim's date of service (or
 #          today, for a date still to come): an answer asked BEFORE that date cannot know of a death since, so Medicare is asked again
-#          (one plain check; the same holds for the cache's own entry) - and a chart whose call failed today is not bought again today
+#          (one plain check; the same holds for the cache's own entry) unless that answer already shows a date of death, which is used
+#          as it is with no call (a death is never undone) - and a chart whose call failed today is not bought again today
 #          (it stays 'unverified', exactly as before). A date of death a Medicare answer carried during this very check (a plain answer
-#          with error 61 and the date, then a look-up that failed) blocks this claim at once. A care-management
+#          with error 61 and the date, then a look-up that failed) blocks this claim at once; so does a date of death any answer kept in
+#          the store shows, whatever its age or month of service, when the guard's own call fails (11/10/2026 re-check fix: the store
+#          and this cache travel apart - the cache may be lost, unreadable or scrubbed to '[DOB]'). A care-management
 #          chart with no Medicare plan keeps the look-up by name, counted as 'guard, no Medicare plan on the chart'. The cache is
 #          written one chart at a time into the ONE file it is configured with (DECEASED_CACHE, else the default below), read again just
 #          before the write and replaced in one step, so nothing another helper learned meanwhile is lost. No own request, no key file.
@@ -85,6 +88,17 @@ def _asked_before(j, dos_iso):
     today, for a date of service still to come) - it cannot know of a death since then, so the guard asks Medicare again."""
     asked = str(((j or {}).get("stored") or {}).get("asked") or "") if isinstance(j, dict) else ""
     return bool(asked) and asked < min(str(dos_iso or ""), datetime.date.today().isoformat())
+def _stored_death(pid):
+    """11/10/2026 (re-check fix): the date of death any Medicare answer kept in the answer store (medicare_store.py) shows for this chart,
+    whatever its age or month of service - a death is never undone, so it still blocks when the guard's own call fails (the store and this
+    cache travel apart: the cache may be lost, unreadable or scrubbed to '[DOB]'). -> YYYY-MM-DD or None."""
+    try:
+        import sys
+        if HERE not in sys.path: sys.path.append(HERE)
+        import medicare_store
+        d = medicare_store.death(pid)
+        return _iso(d) if d else None
+    except Exception: return None
 def stedi_lookup(pid, dos_iso):
     """Medicare record for pid as of dos -> (dod or None, ok)."""
     import amd, stedi
@@ -101,8 +115,8 @@ def stedi_lookup(pid, dos_iso):
     try:
         if hasattr(stedi, "medicare"):
             j, how = stedi.medicare(first, last.strip(), dob8, **ask, max_age_days=MAX_AGE_DAYS)
-            if how != "failed" and _asked_before(j, dos_iso):          # a shared answer asked BEFORE this date of service: asked again, fresh
-                j, how = stedi.medicare(first, last.strip(), dob8, **ask)
+            if how != "failed" and not dod_from_271(j) and _asked_before(j, dos_iso):   # a shared answer asked BEFORE this date of service: asked again, fresh
+                j, how = stedi.medicare(first, last.strip(), dob8, **ask)            # (re-check fix: one that already shows a death is used as it is - a death is never undone)
         else:                       # an older client in this workspace: the look-up as before, through the client
             j, how = stedi.mbi(first, last.strip(), dob8, "FL", dos_iso.replace("-", ""), pid=pid), "lookup"
         errs = [str(e).split(" ")[0] for e in stedi.med_summ(j)["errors"]]
@@ -129,6 +143,7 @@ def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
             try: seen = (_load().get(pid) or {}).get("dod")
             except Exception: seen = None
             if seen and re.match(r"\d{4}-\d{2}-\d{2}$", str(seen)): dod = seen
+        if not ok and not dod: dod = _stored_death(pid)     # 11/10/2026 (re-check fix): a death an answer in the store already shows still blocks
         if ok or dod:
             rec = {"dod": dod, "checked": _ASKED.pop(pid, None) or datetime.date.today().isoformat(), "src": "stedi-medicare-271" if dod else "stedi: no death on record"}
             c[pid] = rec; _put(pid, rec)

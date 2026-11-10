@@ -13,7 +13,8 @@
 #   and nothing is asked (11/5: a probe started it with a word it did not know and it bought 40 lookups over its 14-day default window).
 #   A shared answer is taken only when it was asked about the visit's own calendar month (rule (a) adds an Advantage plan and rebills on
 #   what this check says). When the shared answer is a lookup that found the chart's number differs from Medicare's, ONE lookup is bought
-#   to read Medicare's number for rule (d) - the store keeps no Medicare number.
+#   to read Medicare's number for rule (d) - the store keeps no Medicare number; when Medicare cannot answer that lookup (42, 79, 80) the
+#   row says so in the same words and is not kept for the month either (11/10/2026 re-check fix).
 # Never touches: AMD writes, claims, balances. Output = precheck_<date>.json + board rows for the exceptions.
 # ---
 """Usage: python3 precheck.py [--days 14] [--max 150] [--dry]
@@ -84,6 +85,7 @@ def main():
                     j, how = stedi.medicare(first, last, dobc, **ask)
                 if j.get("stored") and how in stedi.LOOKUP_KINDS and j.get("number_differs"):    # the store keeps no number and rule (d) needs Medicare's: ONE lookup (the store keeps its answer)
                     j, how = stedi.mbi(first, last, dobc, ask["state"], dos, pid=pid), "lookup after plain"
+                    if {str(e.get("code")) for e in (j.get("errors") or []) if isinstance(e, dict)} & stedi.MEDICARE_DOWN: how = "failed"   # 42 / 79 / 80: not kept for the month (re-check fix)
                 if j.get("stored"): n -= 1                                                        # read back from the store: no new paid call
                 if how == "failed" and not j.get("errors"): raise RuntimeError("Medicare check failed (%s)" % j.get("failed"))   # as a failed lookup before: ERROR, nothing cached
                 m = stedi.med_summ(j); lookup = how in stedi.LOOKUP_KINDS

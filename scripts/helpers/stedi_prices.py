@@ -6,9 +6,10 @@
 #   lines on the statement, each on its own ladder. October 2026 as billed - claim status 6,770 = $889.50; look-ups 986 without SSN +
 #   78 with SSN = $783.50; discovery 187 = $237.00; eligibility 505 = $113.25 - price() gives exactly these.
 #   NOT priced here (11/10/2026 review): two statement lines that no call through stedi.py makes - the coordination-of-benefits check
-#   (stedi.py has no such call; September's 3, $3.00, came from dated one-off scripts) and the payer pass-through fee (at cost, about
-#   $0.04 a call: $14.92 in September, $6.00 in October). So a month priced by stedi_usage.py comes out a few dollars under the
-#   statement (this table on September's units: $1,862.05 against the statement's $1,879.97; on October's: $2,023.25 against $2,029.25).
+#   (stedi.py has no such call and no committed helper makes one; September's statement shows 3, $3.00) and the payer pass-through
+#   fee (at cost, about $0.04 a call: $14.92 in September, $6.00 in October). So a month priced by stedi_usage.py comes out a few
+#   dollars under the statement (this table on September's units: $1,862.05 against the statement's $1,879.97; on October's:
+#   $2,023.25 against $2,029.25).
 # Never touches: anything - no file, no network. Change the table here when the vendor's prices or a custom plan change.
 LADDERS = {                                    # kind -> [(last call of the tier in the month, price per call)]; None = no upper end
     "eligibility":         [(250, 0.30), (3500, 0.15), (10000, 0.10), (None, 0.08)],

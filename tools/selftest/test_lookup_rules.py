@@ -29,7 +29,10 @@
 #     - (11/10/2026 review fixes) the look-up goes with the chart's own last name, suffix and all; after a refusal of our provider number
 #       the run sends no more plain checks; an answer asked before the claim's date of service is asked again by the guard; a date of
 #       death a plain answer carried during the check blocks that claim; the pre-claim check never caches a failed call; an old-style
-#       chart number still 'differs'; the store keeps the Advantage plan line; a temporary file of an atomic write is git-ignored.
+#       chart number still 'differs'; the store keeps the Advantage plan line; a temporary file of an atomic write is git-ignored;
+#     - (11/10/2026 re-check fixes) a death the answer store already holds blocks the claim with no call when the guard's cache lacks it,
+#       and still blocks when the guard's own call fails (also an answer about last month's visit); a failed look-up for a stored
+#       'number differs' answer is not kept in the pre-claim check's cache for the month.
 # Run: python3 tools/selftest/test_lookup_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback
 import importlib.abc, importlib.machinery
@@ -781,6 +784,34 @@ def t_guard_review():
     r = guard_check(pid, iso(ago(5)))
     check("guard: a plain answer with error 61 and a date of death, then a look-up that times out -> THIS claim is blocked by that date, not logged UNVERIFIED (review N1)",
           lambda: kinds() == ["CMS", "MBILUNOSSN"] and r[0] is True and "after date of death %s" % iso(ago(10)) in r[1] and DG.LOG == [], (kinds(), r, DG.LOG))
+    # re-check NEW-1: the answer store already holds a death (an answer asked BEFORE the claim's date of service); the guard's own cache
+    # lacks it (lost, cut off, or scrubbed to the gate's placeholder); Medicare is down (42, a time-out) or would answer - the death is
+    # used as it is: the claim is blocked, no call is bought, no UNVERIFIED line
+    res = []
+    for cache in ("lost", "cut off", "scrubbed"):
+        for now in (("answer", err_answer("42")), ("timeout",), None):
+            reset(); p = newp(death=ago(4)); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); dos = ago(2)
+            askp(p, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0)                  # a plain answer that shows the death
+            store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(3))))       # asked BEFORE the claim's date of service
+            if cache == "lost": os.remove(DCACHE)
+            else:
+                with open(DCACHE, "w") as fh: fh.write('{"' + pid + '": {"do' if cache == "cut off" else json.dumps({pid: {"dod": "[DOB]", "checked": iso(ago(3)), "src": "stedi-medicare-271"}}))
+            if now: OVERRIDE[("CMS", p["number"])] = now; OVERRIDE[("MBILUNOSSN", p["last"])] = now
+            del SENT[:]; r = guard_check(pid, iso(dos)); res.append((cache, now and now[0], r, kinds(), list(DG.LOG)))
+    check("guard: a death the answer store already holds (asked before the claim's date of service), the guard's cache lost, cut off or scrubbed, Medicare down or not -> blocked by that death, no call bought, no UNVERIFIED line (re-check NEW-1)",
+          lambda: len(res) == 9 and all(x[2][0] is True and "after date of death %s" % iso(ago(4)) in x[2][1] and x[3] == [] and x[4] == [] for x in res), [x for x in res if not (x[2][0] is True and x[3] == [])][:3])
+    # ... and when the store's month rule hides that answer (it was about last month's visit) and the guard's own call fails, the death
+    # any kept answer shows still blocks the claim (medicare_store.death)
+    res = []
+    for now in (("answer", err_answer("42")), ("timeout",)):
+        reset(); last_month = first_of_month(TODAY) - datetime.timedelta(days=5); p = newp(death=last_month - datetime.timedelta(days=5))
+        pid = chart(cid(), p, plans=[("car6085", "", p["number"])])
+        askp(p, dos=ymd(last_month), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)
+        OVERRIDE[("CMS", p["number"])] = now; OVERRIDE[("MBILUNOSSN", p["last"])] = now; del SENT[:]
+        r = guard_check(pid, iso(first_of_month(TODAY)), proc="99490"); res.append((now[0], r, kinds(), list(DG.LOG), _try(lambda: MS.death(pid))))
+    check("guard: a death in a stored answer about LAST month's visit, the guard's cache lost, and its own call for this month's claim fails (42 / time-out) -> still blocked by that death, not UNVERIFIED (re-check NEW-1)",
+          lambda: all(x[1][0] is True and "after date of death %s" % iso(last_month - datetime.timedelta(days=5)) in x[1][1] and x[2] == ["CMS"] and x[3] == [] for x in res)
+          and res[0][4] == ymd(last_month - datetime.timedelta(days=5)), res)
 
 def t_guard_number():
     reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", mdy(ago(400)), WRONG[0]), ("car6085", "", spaced(p["number"])), ("car6404", "", "M" + "5" * 9)])
@@ -962,6 +993,17 @@ def t_precheck_store():
     check("pre-claim: another helper's failed Medicare call earlier the same day (42) prints the same words but is NOT kept in its cache for the month - the next night asks and finds the Advantage plan (review S2)",
           lambda: n1 == 0 and r1["result"] == "not found on Medicare: 42 " + DESC["42"] and not any(k.startswith(pid + "|") for k in cache1)
           and kinds() == ["CMS"] and r2["result"].startswith("ADVANTAGE PLAN on DOS: TEST ADVANTAGE") and not r2.get("cached"), (n1, r1.get("result"), sorted(cache1), kinds(), r2.get("result")))
+    # re-check NEW-3: the ONE look-up bought for a stored 'number differs' answer (an old-style number, an outdated Medicare-shaped one)
+    # comes back 42 - the same words, but NOT kept in its cache for the month: the next run asks again and raises MBI MISMATCH
+    res = []
+    for number in (old_style, WRONG[3]):
+        reset(); ws = new_ws(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", number)]); unpaid(pid, "FLO02", dos)
+        guard_check(pid, iso(dos)); del SENT[:]; OVERRIDE[("MBILUNOSSN", p["last"])] = ("answer", err_answer("42"))
+        precheck(ws); r1 = rows(ws)[pid]; k1 = kinds(); cache1 = json.loads(text_of(os.path.join(ws, "precheck_cache.json")) or "{}")
+        OVERRIDE.clear(); del SENT[:]; precheck(ws); r2 = rows(ws)[pid]
+        res.append((k1, r1.get("result"), any(k.startswith(pid + "|") for k in cache1), kinds(), r2.get("result"), "MBI MISMATCH chart %s vs CMS %s" % (number, p["number"])))
+    check("pre-claim: the ONE look-up bought for a stored 'number differs' answer comes back 42 -> 'not found on Medicare: 42 ...' as before, NOT kept for the month; the next run asks again and raises MBI MISMATCH (re-check NEW-3)",
+          lambda: all(x[0] == ["MBILUNOSSN"] and x[1] == "not found on Medicare: 42 " + DESC["42"] and x[2] is False and x[3] == ["MBILUNOSSN"] and x[4] == x[5] for x in res), [x[:5] for x in res])
 
 def t_ten_charts():
     reset(); dos = ago(1); C = []

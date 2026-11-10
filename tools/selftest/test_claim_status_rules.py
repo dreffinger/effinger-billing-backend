@@ -35,7 +35,10 @@
 #     - (11/10/2026 review fixes) an answer naming only other visits, or an exact-date answer with several claims none ours, is 'not
 #       matched' and never final; four unusable answers in a row hand a claim off even when no try counted, and a payer that answers
 #       nobody is proposed for CS_OFF; a final answer with nothing posted is listed again; a new ledger counts its checks once; the
-#       hand-off and switched-off lists are printed whole.
+#       hand-off and switched-off lists are printed whole;
+#     - (11/10/2026 re-check fix) a payer that answers its other claims is never proposed for CS_OFF because one claim always comes back
+#       empty, and that claim's hand-off reason does not say the payer answered nothing; a payer that answers nobody is proposed until
+#       one of its claims answers again.
 # Run: python3 tools/selftest/test_claim_status_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback, collections
 import importlib.abc, importlib.machinery
@@ -712,6 +715,34 @@ def t_review_fixes():
     first5 = sorted(x["member"] for x in eight[:5]); last3 = sorted(x["member"] for x in eight[5:])
     check("payers: a payer that answers nobody, run after run -> its first five claims are handed off after four runs, the other three are then asked, and the report proposes the payer for CS_OFF (review CS-4)",
           lambda: per_run[:4] == [first5] * 4 and per_run[4] == last3 and all(lrow(ws, x).get("stopped") for x in eight[:5]) and "PROPOSE FOR CS_OFF: UNI20 - 5 claim(s)" in out, (per_run, out[-600:]))
+    # re-check NEW-2: ONE claim that always comes back empty while its payer answered its other claim ('pending', the first night) is
+    # handed off - but the payer is NEVER proposed for CS_OFF, and the hand-off reason does not say the payer answered nothing
+    reset(); ws = new_ws(); a = claim(sent=80); b = claim(sent=80); write_aging(ws, [a, b]); answer(a, EMPTY_A); answer(b, PENDING_A(b)); outs = []
+    for week in range(6):
+        code, out, err = sweep(ws, "--go"); outs.append(out)
+        if not lrow(ws, a).get("stopped"): set_asked(ws, a, 8)
+        set_asked(ws, b, 8)
+    check("payers: one claim that always comes back empty while its payer answered its other claim is handed off, but the payer is NEVER proposed for CS_OFF and the reason does not say it answered nothing (re-check NEW-2)",
+          lambda: lrow(ws, a).get("stopped") and not any("PROPOSE FOR CS_OFF" in o for o in outs) and lrow(ws, a).get("stop_why") == "four answers in a row with no usable content"
+          and not lrow(ws, a).get("payer_quiet"), (lrow(ws, a).get("stop_why"), [l for o in outs for l in o.splitlines() if "PROPOSE" in l][:2]))
+    # ... while a payer that answers nobody IS proposed, the night its claims are handed off - and no more once another of its claims
+    # gets a usable answer ('pending'), not even in the report of that night
+    reset(); ws = new_ws(); x = claim(sent=80); y = claim(sent=80); write_aging(ws, [x, y]); answer(x, EMPTY_A); answer(y, EMPTY_A)
+    for week in range(4):
+        code, out1, err = sweep(ws, "--go")
+        for c2 in (x, y):
+            if not lrow(ws, c2).get("stopped"): set_asked(ws, c2, 8)
+    z = claim(sent=80); write_aging(ws, [x, y, z]); answer(z, PENDING_A(z)); code, out2, err = sweep(ws, "--go"); code, out3, err = sweep(ws, "--go")
+    check("payers: a payer that answers nobody is proposed for CS_OFF the night its claims are handed off; once another of its claims answers ('pending') the line is gone, that night too (re-check NEW-2)",
+          lambda: "PROPOSE FOR CS_OFF: UNI20 - 2 claim(s)" in out1 and lrow(ws, x).get("payer_quiet") is True and lrow(ws, z).get("answer") == "pending"
+          and "PROPOSE FOR CS_OFF" not in out2 and "PROPOSE FOR CS_OFF" not in out3, ([l for l in (out1 + out2 + out3).splitlines() if "PROPOSE" in l][:3], lrow(ws, z).get("answer")))
+    # the rule itself: a usable answer from the payer BEFORE the quiet hand-off does not stop the proposal; one on that day or after it does
+    led_rows = {"1|UNI20": {"payer": "UNI20", "stopped": iso(ago(7)), "payer_quiet": True, "history": [[iso(ago(d)), "no usable answer"] for d in (28, 21, 14, 7)]},
+                "2|UNI20": {"payer": "UNI20", "history": [[iso(ago(30)), "pending"]]}, "3|AET07": {"payer": "AET07", "history": [[iso(ago(1)), "pending"]]}}
+    ho = [dict(key="1|UNI20", row={"payer": "UNI20"}, ledger=led_rows["1|UNI20"])]
+    later = json.loads(json.dumps(led_rows)); later["2|UNI20"]["history"].append([iso(ago(3)), "pending"])
+    check("payers: propose_off reads the payer's own evidence - another payer's answer and the payer's own answer from before the quiet hand-off leave the proposal; its answer after the hand-off ends it (re-check NEW-2)",
+          lambda: CS.propose_off(led_rows, ho) == {"UNI20": 1} and CS.propose_off(later, ho) == {}, led_rows)
     # CS-5: a final answer nobody acted on is listed again (no call)
     reset(); ws = new_ws(); pd_ = claim(sent=100, dos=120, bal=250.0); write_aging(ws, [pd_]); answer(pd_, PAID_A(pd_, 250.0)); sweep(ws, "--go")
     reset(); code, out, err = sweep(ws, "--go"); tail = out.split("FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER")[-1]

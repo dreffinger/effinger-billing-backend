@@ -13,7 +13,8 @@
 #   an Advantage or other plan named in the answer (name, payer id, dates), hospice, a date of death, the error codes, and whether a
 #   look-up showed the chart's number to differ from Medicare's. NEVER keeps the Medicare number, a name, a birth date, an address or the
 #   raw answer; anything shaped like a Medicare number is blanked before a write. A list keeps at most 20 items; the plan lines (U, R)
-#   are put first, so the cut falls on the other lines before an Advantage plan.
+#   are put first, so the cut falls on the other lines before an Advantage plan. death(pid) gives the deceased-patient guard the date of
+#   death any kept answer shows, whatever its age or month of service (a death is never undone - 11/10/2026 re-check fix).
 # Never touches: AdvancedMD, the vendor, the guard's own cache (deceased_cache.json).
 import os, re, json, datetime, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -107,3 +108,12 @@ def put(pid, summary, how, who, dos):
 def _age(asked, today):
     try: return (today - datetime.date.fromisoformat(str(asked))).days
     except Exception: return 10 ** 6
+def death(pid):
+    """11/10/2026 (re-check fix): the earliest date of death (YYYYMMDD) any kept answer for this chart shows, else None - whatever the
+    answer's age or month of service: a death is never undone. The deceased-patient guard reads it when its own call fails. Never raises."""
+    try:
+        rec = _load()["charts"].get(_key(pid))
+        days = sorted(d for d in (_d8(a.get("death")) for a in (rec or {}).get("answers") or [] if isinstance(a, dict)) if d)
+        return days[0] if days else None
+    except Exception:
+        return None

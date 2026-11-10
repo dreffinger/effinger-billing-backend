@@ -19,6 +19,8 @@
 #     sent again or a person clears its row (python3 cs_rules.py --clear <visit id>). An empty answer counts toward the two only when
 #     another claim of the same payer answered that night; four answers in a row with no usable content end the asking either way
 #     (11/10/2026 review fix: a claim that always comes back empty, or a payer that answers nobody, is no longer bought every week).
+#     A payer is proposed for CS_OFF only on evidence about the payer itself (propose_off: on the four nights one of its claims was last
+#     asked it answered no claim at all, and has answered none since - 11/10/2026 re-check fix).
 #     A claim with a final answer on file and still nothing posted for its payer is listed again in every report (no call is made).
 #   - READING THE ANSWER: paid / finalized at $0 / denied / pending / not found (may be resent, as before) / no electronic answer (the
 #     payer cannot give the status electronically: stop and hand off) / not matched (date of service, member id, too many matches - and,
@@ -339,10 +341,33 @@ def finish_run(rows, answers, today):
         else: L["pending_row"] = 0; L["unusable_row"] = 0
         if not L.get("stopped"):
             if int(L.get("unusable_row") or 0) >= STOP_AFTER[UNUSABLE]: stop(L, today, "two answers in a row with no usable content"); out.append(k)
-            elif int(L.get("nousable_row") or 0) >= STOP_AFTER_ANY: stop(L, today, "four answers in a row with no usable content (its payer answered no other claim on those nights)"); out.append(k)
+            elif int(L.get("nousable_row") or 0) >= STOP_AFTER_ANY:
+                quiet = not int(L.get("unusable_row") or 0)      # (re-check fix) none of the four counted: the payer answered no other claim on those nights
+                stop(L, today, "four answers in a row with no usable content" + (" (its payer answered no other claim on those nights)" if quiet else ""))
+                if quiet: L["payer_quiet"] = True                # evidence about the PAYER - propose_off reads it
+                out.append(k)
             elif int(L.get("pending_row") or 0) >= STOP_AFTER[PENDING]: stop(L, today, "three 'pending' answers in a row"); out.append(k)
         elif L.get("stopped") == today.isoformat() and k not in out: out.append(k)
     return out
+def propose_off(ledger_rows, handed_off):
+    """11/10/2026 (re-check fix): the payers to propose for CS_OFF -> {payer code: its claims on the hand-off list}. Only on evidence about
+    the PAYER, never about one claim: one of its claims was handed off after four answers in a row with no usable content on nights when
+    the payer answered no other claim either (payer_quiet, set by finish_run), and no claim of that payer has had a usable answer since
+    that day (every answer the ledger keeps counts, tonight's too). A payer that answers its other claims while one claim always comes
+    back empty is never proposed."""
+    quiet, n, seen = {}, collections.Counter(), set()
+    for d in handed_off or []:
+        L = d.get("ledger") or {}; r = d.get("row") or {}; k = d.get("key") or key(r)
+        if k in seen: continue
+        seen.add(k); payer = str(r.get("payer") or L.get("payer") or "").strip(); n[payer] += 1
+        if L.get("payer_quiet"): quiet[payer] = max(quiet.get(payer, ""), str(L.get("stopped") or ""))
+    last_good = collections.defaultdict(str)              # payer -> the last day any of its claims got a usable answer
+    for L in (ledger_rows or {}).values():
+        if not isinstance(L, dict): continue
+        for h in L.get("history") or []:
+            if isinstance(h, (list, tuple)) and len(h) > 1 and h[1] != UNUSABLE:
+                p = str(L.get("payer") or "").strip(); last_good[p] = max(last_good[p], str(h[0]))
+    return {p: n[p] for p, day in quiet.items() if day > last_good[p]}
 def clear(L, today):
     """A person re-opens a row (a handed-off claim): its answers are forgotten, its history is kept; it is asked again by need."""
     L = dict(L or {})

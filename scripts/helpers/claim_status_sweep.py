@@ -20,8 +20,11 @@
 #   with age and dollars, the insurance-check list, payers left out, wordings the rules do not know, the caps, and the claims silent 60+ days.
 #   11/10/2026 (review fixes): the hand-off list and the switched-off payers' claims are printed whole; a claim with a final answer on
 #   file and still nothing posted for its payer is listed in every report ('FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER',
-#   no call); a payer whose claims are on the hand-off list because it answered nothing on four runs in a row is named in every report
-#   while they stay there ('PROPOSE FOR CS_OFF' - a person switches it off in cs_rules.py; the helper never does).
+#   no call); a payer with claims on the hand-off list is named in a 'PROPOSE FOR CS_OFF' line only on evidence about the payer itself:
+#   on the four nights one of those claims was last asked the payer answered none of its claims, and it has answered none since
+#   (cs_rules.propose_off; 11/10/2026 re-check fix - a payer that answers its other claims is never proposed because one claim always
+#   comes back empty; in a live run the line is printed at the end, with tonight's answers on record). A person switches it off in
+#   cs_rules.py; the helper never does.
 #   11/10/2026 (step 3): claimstatus_<date>.json is written again after EVERY claim, like the ledger - a run cut off half way (the Bash
 #   tool's time limit) keeps every answer it got where the runbook reads them, instead of answers that sit in the ledger only.
 # ---
@@ -101,6 +104,11 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim
     carriers = [c.strip() for c in (getattr(o, "carriers", "") or "").split(",") if c.strip()]
     pl = cs_rules.plan(rows, led.rows(), today, CAR2STEDI, carriers=carriers, vids=vids)
     due = pl["due"]; caps = cs_rules.Caps(led.month_checks(month), o.max)
+    def propose(extra=()):
+        # 11/10/2026 (re-check fix): a payer is proposed for CS_OFF only on evidence about the payer itself (cs_rules.propose_off), with
+        # every answer on record - in a live run tonight's too, so the line is printed at the END of the run
+        for payer, n in sorted(cs_rules.propose_off(led.rows(), list(pl["handed_off"]) + list(extra)).items()):
+            p("  PROPOSE FOR CS_OFF: %s - %d claim(s) on the hand-off list; on the four nights one of them was last asked the payer answered none of its claims, and it has answered none since; switch it off in cs_rules.py CS_OFF (with the date and the reason) unless vendor support fixes it" % (payer, n))
     p("%s - claim-status check by need, %s (ageing file of %s: %d unpaid claims; ledger %s)" % (prog, today.isoformat(), asof.strftime("%Y-%m-%d %H:%M UTC"), pl["rows"], led.path))
     p("  claims silent 60 or more days since they were last sent, with nothing posted for their payer: %d" % pl["silent60"])
     p("  due tonight: %d; not due: %s" % (len(due), ", ".join("%s %d" % kv for kv in pl["waits"].most_common()) or "none") + ("; rows lacking a field: %d" % pl["skipped"] if pl["skipped"] else ""))
@@ -114,12 +122,11 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim
     if pl["handed_off"]:
         p("  STILL ON THE HAND-OFF LIST - ask the payer by portal or phone (%d):" % len(pl["handed_off"]))
         for d in pl["handed_off"]: p("    " + _who_line(d["row"], today) + " - handed off %s: %s" % (d["ledger"].get("stopped"), d["ledger"].get("stop_why")))
-        mute = collections.Counter(str(d["row"].get("payer") or "").strip() for d in pl["handed_off"] if str(d["ledger"].get("stop_why") or "").startswith("four answers in a row"))
-        for payer, n in sorted(mute.items()): p("  PROPOSE FOR CS_OFF: %s - %d claim(s) handed off because the payer answered nothing on four runs in a row; switch it off in cs_rules.py CS_OFF (with the date and the reason) unless vendor support fixes it" % (payer, n))
     if pl.get("final_open"):
         p("  FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER - post the remit or work the denial (%d):" % len(pl["final_open"]))
         for d in pl["final_open"]: p("    " + _who_line(d["row"], today) + " - '%s' asked %s (%s)" % (d["ledger"].get("answer"), d["ledger"].get("asked"), d["ledger"].get("why")))
     if not o.go:
+        propose()                                                    # a dry run asks nothing: the proposal rests on the answers on record
         sim = cs_rules.Caps(caps.before, o.max); fit = 0
         while fit < len(due) and sim.next_ok()[0]: sim.count(); fit += 1
         p("DRY RUN - nothing was asked and no call was made (add --go to ask). %d claim(s) are due; the caps would let %d be asked tonight%s:" % (len(due), fit, "" if fit == len(due) else " (%s)" % sim.next_ok()[1]))
@@ -197,6 +204,8 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim
         p("  HAND OFF TONIGHT - ask the payer by portal or phone (%d):" % len(hand))
         rows_by = {cs_rules.key(r): r for r in rows}
         for rec in hand: p("    " + _who_line(rows_by.get("%s|%s" % (rec["visitid"], rec["carrier"]), {"pid": rec["patientid"], "visitid": rec["visitid"], "payer": rec["carrier"], "dos": rec["dos"], "bal": rec["balance"]}), today) + " - " + rec["action"][len("HAND OFF - "):])
+    tonight = {cs_rules.key(r): r for r in rows}
+    propose([dict(key=k, row=tonight.get(k) or {}, ledger=led.rows().get(k) or {}) for k in handed])
     ins = [rec for rec in out if rec.get("label") == cs_rules.NOT_ELIGIBLE]
     if ins:
         p("  INSURANCE CHECK - not eligible on the date of service (a coverage problem, never a resend) (%d):" % len(ins))

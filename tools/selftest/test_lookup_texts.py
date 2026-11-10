@@ -19,7 +19,9 @@
 #     - the Billing Button page, the desktop app and the engine's documentation no longer say the engine's sweep buys checks;
 #     - (11/10/2026 review fixes) no text says the look-up is bought 'only when' the chart lacks a number; the provider-number refusals,
 #       the aging_refresh.py timeout, the exact-date sentence, the new hand-off reason and report lines, the STEP 6 ledger copy, rule (f)
-#       of the Button and the price table's limits are stated as the code has them.
+#       of the Button and the price table's limits are stated as the code has them;
+#     - (11/10/2026 re-check fixes) the guard paragraph of the skill, the CS_OFF proposal and the fourth hand-off reason in STEP 2 and the
+#       sweep, rule (f) after a refusal of our provider number, and the price table's coordination-of-benefits sentence say what the code does.
 # Run: python3 tools/selftest/test_lookup_texts.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, re, json, glob, types, datetime
 import importlib.abc, importlib.machinery
@@ -299,8 +301,11 @@ def t_review_texts():
           and "an answer whose claims all carry other visits' account numbers" in _header(SRC["claim_status_sweep.py"]) and "the answer names only other claims" in SRC["cs_rules.py"])
     lits = " | ".join(re.findall(r'"([^"\n]*)"', SRC["claim_status_sweep.py"]))
     check("review texts: STEP 2 names the fourth hand-off reason, the 'PROPOSE FOR CS_OFF' line and the 'FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER' lines - all printed by the helper, with cs_rules.STOP_AFTER_ANY = 4 (claim-status CS-3, CS-4, CS-5)",
-          lambda: CS.STOP_AFTER_ANY == 4 and "four unusable answers in a row when the payer answered no other claim on those nights" in STEP2 and "PROPOSE FOR CS_OFF" in STEP2 and "PROPOSE FOR CS_OFF" in lits
+          lambda: CS.STOP_AFTER_ANY == 4 and "four unusable answers in a row whether or not the payer answered another claim those nights" in STEP2 and "PROPOSE FOR CS_OFF" in STEP2 and "PROPOSE FOR CS_OFF" in lits
           and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in STEP2 and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in lits and "four answers in a row with no usable content" in SRC["cs_rules.py"])
+    check("review texts: STEP 2, the sweep's header and its PROPOSE FOR CS_OFF line name a payer only on evidence about the payer itself - none says a payer 'answered nothing on four runs in a row' (re-check NEW-2)",
+          lambda: not any("answered nothing" in t for t in (STEP2, lits, _header(SRC["claim_status_sweep.py"]))) and "a payer that answers its other claims is never named" in STEP2
+          and "the payer answered none of its claims, and it has answered none since" in lits and "cs_rules.propose_off(" in SRC["claim_status_sweep.py"] and "def propose_off(" in SRC["cs_rules.py"])
     STEP6 = STEP(CAS, "STEP 6 - ", "\nREPORT:")
     check("review texts: STEP 6 copies the Sunday ledger back where the mirror is done, and a person's clear is made in the repository's ledger (ops N8)",
           lambda: "(on Sundays registers/claim_status_ledger.json over practices/ehpa/registers/claim_status_ledger.json" in STEP6
@@ -322,6 +327,15 @@ def t_review_texts():
     moved = [n for n in tests if GATE.redact(_read(n), {}, code=True) != _read(n)]
     check("review texts: the privacy gate's tree rules (what mirror.py runs on changed files) leave the two rule self-tests unchanged - their invented literals are built gate-safe (ops N3)",
           lambda: moved == [], moved)
+    # the re-check of 11/10/2026: the new findings' words
+    check("review texts: the skill's guard paragraph says an answer that already shows a date of death is used as it is, and a death a kept answer shows still blocks when a call fails - as deceased_guard.py does (re-check NEW-1)",
+          lambda: "unless that answer already shows a date of death: a death is never undone" in guard_par and "unless a Medicare answer already kept in medicare_store.py shows the date of death: that death still blocks" in guard_par
+          and "def death(" in _read("scripts/helpers/medicare_store.py") and "_stored_death(pid)" in _read("scripts/helpers/deceased_guard.py") and "not dod_from_271(j) and _asked_before(" in _read("scripts/helpers/deceased_guard.py"), guard_par[-400:])
+    fs, fb = rule(STEP1, "f"), rule(BB6, "f")
+    check("review texts: rule (f) in STEP 1 and in the Billing Button says only the look-up is asked once Medicare has refused our provider number earlier in the run (the client's _PLAIN_OFF) (re-check NEW-5)",
+          lambda: "Medicare had refused our provider number earlier in that run" in fs and "Medicare has not refused our provider number earlier in that run" in fb and "if _PLAIN_OFF: number = None" in SRC["stedi.py"], (fs[:400], fb[:400]))
+    check("review texts: the price table's header says no committed helper makes a coordination-of-benefits check - not where September's came from (re-check NEW-7)",
+          lambda: "one-off scripts" not in _header(SRC["stedi_prices.py"]) and "no committed helper makes one" in _header(SRC["stedi_prices.py"]), _header(SRC["stedi_prices.py"])[-500:])
 
 for t in (t_commands, t_precheck, t_claim_status, t_usage_and_prices, t_skill_and_docs, t_review_texts):
     try: t()
