@@ -11,7 +11,7 @@ that are already in `docs/captured_calls.md`, and they write to the practice dat
 |---|---|---|---|---|
 | 1. Transaction history: every charge, payment with its adjustment codes, write-off and unapplied credit, every page | `gettxhistory` | `txhistory` | chart | `amd_pull.py enumerate`, `amd_pull.py pull` |
 | 2. Charge detail: place of service as billed, units, diagnoses, modifiers, allowed and expected, claim numbers, billing history | `getchargedetaildataicd10` | `chargedetail` | chart | `amd_pull2.py detail` |
-| 3. Chart facts: insurance plans (payer, dates, order), sex, birth year, ZIP, deceased and inactive flags, ageing buckets | `getdemographic` | `chartfacts` | chart | `amd_pull2.py demog` |
+| 3. Chart facts: insurance plans (payer, dates, order), sex, birth year (1936 and earlier stored as 1936), state, deceased and inactive flags, ageing buckets | `getdemographic` | `chartfacts` | chart | `amd_pull2.py demog` |
 
 Typed tables: `amd_history.sql` creates schema `amd` (views `amd.v_*` read the documents live; the materialized views `amd.charts`,
 `amd.charges`, `amd.payments`, `amd.payment_reasons`, `amd.writeoffs` are indexed copies), `amd_refresh.sql` refreshes them after a
@@ -24,6 +24,10 @@ load, `amd_analysis.sql` adds `amd.facility_settings`, `amd.charge_outcomes` and
 - Copied by allow-list. No patient or responsible-party name, no Social Security number, no full birth date, no street address, phone,
   e-mail, member id, group number or free-text note is written to a document. Chart ids, dates of service, codes, payer codes,
   buildings and dollars are.
+- Since November 10, 2026 the chart-facts layer also leaves out ZIP code, city, marital status and the raw deceased value (it keeps
+  a yes/no flag), and stores birth years of 1936 or earlier as 1936. `coarsen_chartfacts.py` rewrote the documents pulled before that.
+- The result is pseudonymous, not anonymous: a chart id can be tied to a name through other data the practice holds. Treat every
+  table built from these documents as patient data.
 - The database must carry the HIPAA marker (`ops.settings` hipaa_enabled = true); `neon_db.py load-docs` refuses otherwise.
 
 ## How to run (paths)

@@ -2,12 +2,15 @@
 # PLAIN ENGLISH (AdvancedMD pull, layers 2 and 3 - William 11/10/2026: "pull all data from advanced md not just back 2 years and update
 #   it all to the database").
 # Decides: nothing about billing. READS ONLY, two calls that are already in the registry (docs/captured_calls.md):
-#     getdemographic            (one call per chart)  -> insurance plans (payer, dates, order), sex, birth YEAR, ZIP, deceased / inactive
-#                                                        flags, account ageing buckets          -> collection chartfacts
+#     getdemographic            (one call per chart)  -> insurance plans (payer, dates, order), sex, birth YEAR (1936 = 1936 or earlier), state,
+#                                                        deceased / inactive flags, account ageing buckets -> collection chartfacts
+#                                                        (11/10/2026 privacy review: no ZIP code, no city, no marital status - a chart is not to
+#                                                        be singled out by sex + birth year + ZIP; this layer is still PATIENT-LEVEL data)
 #     getchargedetaildataicd10  (one call per charge) -> place of service as billed, units, diagnoses, modifiers, allowed and expected
 #                                                        amounts, claim numbers, billing history -> collection chargedetail
-#   Documents are keyed by the chart id. Copied by ALLOW-LIST: no patient or responsible-party name, no SSN, no full birth date, no street
-#   address, phone, e-mail, member id, group number or free-text note is ever written.
+#   Documents are keyed by the chart id. Copied by ALLOW-LIST ONLY (every element; an attribute that is not on a list is left out and its
+#   NAME is counted in the log): no patient or responsible-party name, no SSN, no full birth date, no street address, ZIP, city, phone,
+#   e-mail, member id, group number or free-text note is ever written.
 # Rules: never logs in (uses the session an earlier amd.login_cached() left; a dead session stops it, exit 3); HTTP 429 / 5xx = wait and
 #   retry, then stop (exit 4); paced; resumable (state/progress_<layer>.jsonl); a STOP file in state/ ends it cleanly.
 # Survives a lost machine: documents are written into staging folders of 200 charts in the order they finish (docs_<layer>/sNNNNN/), the
@@ -56,25 +59,41 @@ STATE = os.path.join(S, "state"); LOG = os.path.join(S, "pull2.log")
 base.LOG = LOG
 log = base.log; xml_call = base.xml_call; iso = base.iso; utc = base.utc; amd = base.amd
 def keep(el, names): return {k: el.attrib[k] for k in names if k in el.attrib and el.attrib[k] != ""}
-def safe_all(el): return {k: v for k, v in el.attrib.items() if v != "" and not re.search(r"name|note|ssn|subscriber|address|phone|email|user", k, re.I)}
+LEFT_OUT = {}      # element kind -> {attribute name: times seen} of what the allow-lists left out (names only, for the log)
+def allow(el, names, kind):
+    """The listed attributes of one element; every other attribute is left out and its NAME counted (11/10/2026 privacy review: an allow-list
+    for every element - a list of forbidden words would let a new attribute such as a birth date or a member number through)."""
+    out = {}
+    for k, v in el.attrib.items():
+        if v == "": continue
+        if k in names: out[k] = v
+        else: LEFT_OUT.setdefault(kind, {}); LEFT_OUT[kind][k] = LEFT_OUT[kind].get(k, 0) + 1
+    return out
+EXTINS_KEEP = ("id", "hospitalizationfrom", "hospitalizationto", "emergency", "employment", "autoaccident", "otheraccident", "accidentstate", "outsidelab", "payprov", "patsignature",
+               "epsdt", "resubmissioncode", "dateofinjury", "datesimilarsymptom", "datelastseen", "unabletoworkfrom", "unabletoworkto", "pregnant")
+REBILL_KEEP = ("id", "date", "billeddate", "rebilldate", "carrier", "carrierfid", "sequence", "claimid", "claimrun", "paperedi", "type", "status", "demand")
+STMT_KEEP = ("id", "date", "statementdate", "amount", "type", "batch", "status")
 
 # ---- layer 3: chart facts (getdemographic) ---------------------------------------------------------------------------------------
-PAT_KEEP = ("id", "deceased", "inactive", "inactivestatus", "respparty", "profile", "insorder", "sex", "finclasscode", "maritalstatus", "relationship", "hipaarelationship", "isinvoiceentity")
+PAT_KEEP = ("id", "inactive", "inactivestatus", "respparty", "profile", "insorder", "sex", "finclasscode", "relationship", "hipaarelationship", "isinvoiceentity")      # no raw deceased value (it could be a date), no marital status
 PLAN_KEEP = ("id", "carrier", "begindate", "enddate", "copay", "copaytype", "coverage", "relationship", "hipaarelationship", "sequence", "mspcode", "payerid", "deductible", "deductiblemet",
              "yearendmonth", "eligibilitystatusid", "eligibilitychangedat", "eligibilitycreatedat", "eligibilityresponsedate", "claimcount", "eligibilitystc", "finclasscode")
 RESP_KEEP = ("id", "accttype", "sendstmt", "stmtrestart", "holdreasoncode", "billcycle", "fincharge", "stmtformat", "balancefwd", "lastpmtdate", "lastpmtamount", "laststmtdate", "laststmtamount", "paymentplanbalance", "ispaperless")
 REFPLAN_KEEP = ("id", "refprov", "type", "refplanstatus", "facility", "begindate", "enddate", "maxvisits", "usedvisits", "status", "sequence", "ismain")
 BUCKET_KEEP = ("buckettype", "current", "past30", "past60", "past90", "past120", "unapplied", "total")
+OLDEST_YEAR = 1936      # a birth year of 1936 or earlier (age 90 and over in 2026) is stored as 1936, with birth_year_capped = 1
 def birth_year(dob):
-    m = re.search(r"(19|20)\d{2}", dob or ""); return m.group(0) if m else ""
+    m = re.search(r"(19|20)\d{2}", dob or ""); return (str(max(int(m.group(0)), OLDEST_YEAR)) if m else "")
+def birth_capped(dob):
+    m = re.search(r"(19|20)\d{2}", dob or ""); return "1" if (m and int(m.group(0)) <= OLDEST_YEAR) else "0"
 def demog_doc(pid):
     root = ET.fromstring(xml_call('<ppmdmsg action="getdemographic" class="demographics" msgtime="%s" patientid="%s" nocookie="1"/>' % (amd._msgtime(), pid)))
     p = root.find(".//patientlist/patient")
     if p is None: raise ValueError("no patient in the answer: " + " ".join((e.text or "")[:80] for e in root.iter("Error"))[:160])
     d = {"_written": iso(), "chart": "pat" + pid, "source": "AdvancedMD getdemographic", "patient": keep(p, PAT_KEEP)}
-    d["patient"]["birth_year"] = birth_year(p.get("dob")); d["patient"]["deceased_flag"] = "1" if (p.get("deceased") or "") not in ("", "0") else "0"
+    d["patient"]["birth_year"] = birth_year(p.get("dob")); d["patient"]["birth_year_capped"] = birth_capped(p.get("dob")); d["patient"]["deceased_flag"] = "1" if (p.get("deceased") or "") not in ("", "0") else "0"
     ad = p.find("address")
-    if ad is not None: d["patient"]["zip"] = (ad.get("zip") or "")[:5]; d["patient"]["state"] = ad.get("state") or ""; d["patient"]["city"] = ad.get("city") or ""
+    if ad is not None: d["patient"]["state"] = ad.get("state") or ""      # the state only: no ZIP code, no city
     d["plans"] = [keep(x, PLAN_KEEP) for x in p.findall("insplanlist/insplan")]
     d["referral_plans"] = [keep(x, REFPLAN_KEEP) for x in p.findall("refplanlist/refplan")]
     d["ageing"] = [keep(x, BUCKET_KEEP) for x in p.findall("arbucketlist/arbucket")]
@@ -105,11 +124,11 @@ def detail_one(cid):
     d["payments"] = [keep(p, PAY_KEEP) for p in c.findall("paymentlist/payment")]
     d["writeoffs"] = [keep(w, WO_KEEP) for w in c.findall("writeofflist/writeoff")]
     d["insbills"] = [keep(b, BILL_KEEP) for b in c.findall("insbilllist/insbill")]
-    d["rebills"] = [safe_all(r) for r in (c.find("rebilllist") if c.find("rebilllist") is not None else [])]
-    d["statements"] = [safe_all(s) for s in (c.find("statementlist") if c.find("statementlist") is not None else [])]
+    d["rebills"] = [allow(r, REBILL_KEEP, "rebill") for r in (c.find("rebilllist") if c.find("rebilllist") is not None else [])]
+    d["statements"] = [allow(s, STMT_KEEP, "statement") for s in (c.find("statementlist") if c.find("statementlist") is not None else [])]
     vd = keep(v, VISIT_KEEP); vd["facility_code"] = facs.get(v.get("facility"), ""); vd["profile_code"] = profs.get(v.get("profile"), "")
     ex = v.find("extins")
-    if ex is not None and ex.attrib: vd["extins"] = safe_all(ex)
+    if ex is not None and ex.attrib: vd["extins"] = allow(ex, EXTINS_KEEP, "extins")
     vd["insurance_order"] = [{"carrier": o.get("carrier"), "carrier_code": cars.get(o.get("carrier"), ""), "sequence": o.get("sequence"), "ordinal": o.get("ordinal")} for o in v.findall("insuranceorderlist/insuranceorder")]
     d["visit_id"] = vd.get("id", "")
     return d, vd
@@ -209,6 +228,7 @@ if CMD in ("demog", "detail"):
     [t.start() for t in ts]; [t.join() for t in ts]
     left = q.qsize()
     log("%s %s: %d charts this run (%d errors), %d items in %.0f min; %d charts still to do%s" % (CMD, "DONE" if not base._stop.is_set() and left == 0 else "STOPPED", stats["charts"], stats["errors"], stats["items"], (time.time() - t0) / 60, left, (" - " + base._why[0]) if base._why[0] else ""))
+    if LEFT_OUT: log("attributes the allow-lists left out (names and counts only): %s" % json.dumps(LEFT_OUT, sort_keys=True)[:900])
     sys.exit(0 if (not base._stop.is_set() and left == 0) else (3 if "expired" in base._why[0] else 4))
 else:
     for layer in ("chartfacts", "chargedetail"):
