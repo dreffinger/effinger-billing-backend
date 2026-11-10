@@ -356,7 +356,7 @@
   "status": "unknown",
   "basis": "unknown",
   "value_text": "Not measured yet",
-  "note": "Time logs for care management and advance care planning are in the clinical record and have not been sampled.",
+  "note": "Advance care planning notes have not been checked for a statement of minutes. The outside audit will include 10 of them. Care-management claims are not part of that check. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "source": "ehpa-neon"
  },
  {
@@ -661,8 +661,8 @@
   "as_of": "2026-11-07",
   "status": "red",
   "basis": "measured",
-  "value": 7,
-  "note": "Subsequent and initial hospital care, subsequent and initial nursing facility care, both discharge-day families, and complex versus standard care management. The two discharge-day families rest on only 7 and 3 visits in the current feed, but the 2019 to 2023 public data show the same pattern. New-patient residence visits were all billed at one level (31 of 31) and are not counted.",
+  "value": 6,
+  "note": "Subsequent and initial hospital care, subsequent and initial nursing facility care, and both discharge-day families. The two discharge-day families rest on only 7 and 3 visits in the current feed, but the 2019 to 2023 public data show the same pattern. New-patient residence visits were all billed at one level (31 of 31) and are not counted. Care-management claims are not counted either. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "source": "cms-puf"
  },
  {
@@ -670,8 +670,8 @@
   "as_of": "2026-10-31",
   "status": "red",
   "basis": "estimated",
-  "value": 90,
-  "note": "Hospital and nursing facility visits plus complex care management, by charges: about 90% ($190,000 of $211,062 in the charge feed). Care management alone is 36%. Medicare measured improper payment rates of 12% to 14% of dollars for those visit types, 22.7% for the top subsequent hospital code 99233 and 25.5% for the top initial nursing facility code 99306.",
+  "value": 54,
+  "note": "Hospital and nursing facility visits, by charges: about 54% (about $114,000 of $211,062 in the charge feed). Medicare measured improper payment rates of 12% to 14% of dollars for those visit types, 22.7% for the top subsequent hospital code 99233 and 25.5% for the top initial nursing facility code 99306. Care-management claims, 36% of charges, are not counted here. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "source": "ehpa-neon"
  },
  {
@@ -680,7 +680,7 @@
   "status": "red",
   "basis": "measured",
   "value": 0,
-  "note": "No review has been opened. Three patterns in the risk review could each mean Medicare paid more than the records support, and each warrants one: complex care management, visit levels and advance care planning.",
+  "note": "No review has been opened. Two patterns in the risk review could each mean Medicare paid more than the records support, and each warrants one: visit levels and advance care planning.",
   "source": "ehpa-neon"
  },
  {
@@ -733,8 +733,8 @@
   "as_of": "2026-11-09",
   "status": "unknown",
   "basis": "unknown",
-  "value_text": "Not measured yet",
-  "note": "Consent for care management has not been verified for the 257 patients billed in October.",
+  "value_text": "Not measured",
+  "note": "Complex care management was billed for 257 patients in October 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. No count has been made from the records and none is planned.",
   "source": "ehpa-neon"
  },
  {
@@ -770,7 +770,7 @@
   "status": "red",
   "basis": "estimated",
   "value": 12600,
-  "note": "As billed, about 25,000 work units a year for two clinicians: roughly 19,000 for the physician and 6,300 for the nurse practitioner. Medians are 6,505 for family physicians and 4,647 for primary care nurse practitioners (AMGA, 2025). Code levels and care-management volume drive the gap.",
+  "note": "As billed, about 25,000 work units a year for two clinicians: roughly 19,000 for the physician and 6,300 for the nurse practitioner. Medians are 6,505 for family physicians and 4,647 for primary care nurse practitioners (American Medical Group Association, 2025). About 8,100 of the physician's units are care management. Before care management, his visits alone carry 1.25 to 1.7 times the median, and code levels drive that gap.",
   "source": "ehpa-neon"
  },
  {
@@ -821,19 +821,19 @@
  {
   "metric_slug": "co-care-mgmt-enrollment",
   "as_of": "2026-10-31",
-  "status": "red",
+  "status": "na",
   "basis": "measured",
   "value": 79,
-  "note": "257 patients billed complex care management out of 326 seen. Nationally the complex code is about 8% of care-management claims.",
+  "note": "257 of the 326 patients seen in October 2026 were billed complex care management, 213 of them with the add-on code. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. This is a count for reference with no rating, because the framework has no benchmark for it.",
   "source": "ehpa-neon"
  },
  {
   "metric_slug": "co-care-mgmt-minutes",
   "as_of": "2026-10-31",
-  "status": "red",
-  "basis": "estimated",
-  "value_text": "Not measured. The codes billed imply 85 minutes a patient",
-  "note": "The codes billed in October imply 21,810 minutes, about 364 hours, which is the full time of about two people. Time by the practice's staff counts, and so does the physician's own care-management time. Staff pay is about $206,000 a year including the nurse practitioner. An auditor would ask who logged the hours. Documented minutes have not been checked.",
+  "status": "unknown",
+  "basis": "unknown",
+  "value_text": "Not measured",
+  "note": "The practice database holds claims, not time logs, so it cannot show logged minutes for October's care-management claims. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "source": "ehpa-neon"
  },
  {
@@ -1076,7 +1076,7 @@
   "status": "amber",
   "basis": "estimated",
   "value_text": "26% to 62% of billed charges",
-  "note": "Estimated from billed charges, not collections. Nursing facilities are 42.6% of charges and assisted living 19.3%, about 62% together. Nursing facility and assisted living visits are about 26% of charges. Complex care-management charges for those residents are another 36%. Those claims have paid about 42% of the time and are flagged in the risk review. Hospital work, 37.8%, depends on continuing referrals. No follow-up assisted living visits appear in the charge feed for this period. The share of collections has not been measured.",
+  "note": "Estimated from billed charges, not collections. Nursing facilities are 42.6% of charges and assisted living 19.3%, about 62% together. Nursing facility and assisted living visits are about 26% of charges. Complex care-management charges for those residents are another 36%. Those claims have paid about 42% of the time. Hospital work, 37.8%, depends on continuing referrals. No follow-up assisted living visits appear in the charge feed for this period. The share of collections has not been measured.",
   "source": "ehpa-neon"
  },
  {

@@ -33,9 +33,9 @@
    "technology-data-ai"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 3,
+  "claims_supported": 1,
+  "claims_partly": 2,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -193,9 +193,9 @@
    "rcm-claims-ar"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 3,
+  "claims_supported": 1,
+  "claims_partly": 2,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -234,10 +234,10 @@
    "people-compensation"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 4,
+  "claims_partly": 2,
+  "claims_contradicted": 2,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -314,10 +314,10 @@
    "payers-contracts"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 1,
+  "claims_checked": 8,
   "claims_supported": 1,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 3,
+  "claims_contradicted": 4,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -397,10 +397,10 @@
    "quality-value"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 3,
+  "claims_checked": 8,
   "claims_supported": 2,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 1,
+  "claims_contradicted": 4,
   "claims_outdated": 1,
   "claims_unverifiable": 0
  },
@@ -528,10 +528,10 @@
    "clinical-operations"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 5,
+  "claims_supported": 2,
+  "claims_partly": 2,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -570,10 +570,10 @@
    "clinical-operations"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 4,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -612,10 +612,10 @@
    "growth-market"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 3,
+  "claims_contradicted": 4,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -779,11 +779,11 @@
    "clinical-operations"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 1,
+  "claims_contradicted": 5,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -822,10 +822,10 @@
    "quality-value"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 3,
   "claims_outdated": 0,
   "claims_unverifiable": 0
  },
@@ -990,11 +990,11 @@
    "technology-data-ai"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 4,
+  "claims_contradicted": 2,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -1033,11 +1033,11 @@
    "growth-market"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_partly": 1,
+  "claims_contradicted": 6,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -1116,12 +1116,12 @@
    "people-compensation"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 1,
-  "claims_supported": 1,
-  "claims_partly": 0,
+  "claims_checked": 8,
+  "claims_supported": 3,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "kpi-03-days-in-ar",
@@ -1448,12 +1448,12 @@
    "growth-market"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 3,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 4
  },
  {
   "slug": "annual-revenue-cycle-assessment-guide",
@@ -1784,11 +1784,11 @@
    "growth-market"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 8,
+  "claims_supported": 1,
+  "claims_partly": 6,
   "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -1826,9 +1826,9 @@
    "financial-management"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 6,
   "claims_contradicted": 0,
   "claims_outdated": 0,
   "claims_unverifiable": 0
@@ -1958,12 +1958,12 @@
    "compliance-risk"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 5,
+  "claims_contradicted": 1,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "credentialing-and-re-credentialing-management-playbook",
@@ -2085,12 +2085,12 @@
    "clinical-operations"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
+  "claims_partly": 4,
+  "claims_contradicted": 3,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 1
  },
  {
   "slug": "practice-acquisition-revenue-cycle-integration-playbook",
@@ -2171,11 +2171,11 @@
    "financial-management"
   ],
   "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 3,
+  "claims_contradicted": 2,
+  "claims_outdated": 1,
   "claims_unverifiable": 0
  },
  {
@@ -2303,12 +2303,12 @@
    "technology-data-ai"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
+  "claims_checked": 8,
   "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_partly": 5,
   "claims_contradicted": 0,
-  "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_outdated": 1,
+  "claims_unverifiable": 2
  },
  {
   "slug": "telehealth-revenue-cycle-playbook",
@@ -2390,9 +2390,9 @@
    "strategy-governance"
   ],
   "verdict": "A usable outline. Check every rule and number before acting.",
-  "claims_checked": 6,
+  "claims_checked": 8,
   "claims_supported": 3,
-  "claims_partly": 0,
+  "claims_partly": 2,
   "claims_contradicted": 1,
   "claims_outdated": 2,
   "claims_unverifiable": 0
@@ -2431,12 +2431,12 @@
    "technology-data-ai"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 4,
   "claims_contradicted": 0,
   "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_unverifiable": 2
  },
  {
   "slug": "payer-contract-intelligence-playbook",
@@ -2517,12 +2517,12 @@
    "people-compensation"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Little of it fits a facility-based practice.",
-  "claims_checked": 0,
-  "claims_supported": 0,
-  "claims_partly": 0,
-  "claims_contradicted": 0,
-  "claims_outdated": 0,
-  "claims_unverifiable": 0
+  "claims_checked": 8,
+  "claims_supported": 2,
+  "claims_partly": 1,
+  "claims_contradicted": 1,
+  "claims_outdated": 1,
+  "claims_unverifiable": 3
  },
  {
   "slug": "news-insider-01",

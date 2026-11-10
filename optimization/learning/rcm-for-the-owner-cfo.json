@@ -440,13 +440,13 @@
      },
      {
       "type": "p",
-      "text": "Medicare measures error rates by service. For fiscal 2025 it found that 12.7% of the dollars paid for nursing facility visits and 13.8% of the dollars paid for subsequent hospital visits were paid in error, against 5.3% for established-patient office visits. For 99233, the code this practice bills most, the figure was 22.7%, and 43% of the sampled lines had an error. The practice's level mix sits far above national patterns in seven code families. That does not mean the claims are wrong. It means the practice should test them itself, through an attorney, before a contractor does."
+      "text": "Medicare measures error rates by service. For fiscal 2025 it found that 12.7% of the dollars paid for nursing facility visits and 13.8% of the dollars paid for subsequent hospital visits were paid in error, against 5.3% for established-patient office visits. For 99233, the code this practice bills most, the figure was 22.7%, and 43% of the sampled lines had an error. The practice's level mix sits far above national patterns in six code families. That does not mean the claims are wrong. It means the practice should test them itself, through an attorney, before a contractor does."
      },
      {
       "type": "list",
       "items": [
        "An independent audit of 10 notes per code family per clinician is the cheapest insurance the practice can buy.",
-       "Care management billed from a time log, at the code the minutes support.",
+       "Advance care planning notes that state the minutes, who took part and that the talk was voluntary.",
        "Place of service set from each facility's skilled-stay census."
       ]
      }
@@ -462,7 +462,7 @@
        "**Statements (10 minutes).** Revenue, expenses and earnings against budget and against the same month last year. One sentence on why each large variance happened.",
        "**Receivables (10 minutes).** Total, days, share older than 90 days, by payer. What is the plan for the oldest $20,000?",
        "**Denials and first-pass rate (5 minutes).** Top cause by dollars. What upstream fix was made last month and did it work?",
-       "**Compliance (5 minutes).** Level mix against national, care-management minutes against the hours the staff and the physician had, audit findings, expiring enrollments.",
+       "**Compliance (5 minutes).** Level mix against national, audit findings, expiring enrollments.",
        "**Work list (10 minutes).** What was finished, what is stuck, and one decision written down."
       ]
      },

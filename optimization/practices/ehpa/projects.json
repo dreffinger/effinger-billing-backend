@@ -61,7 +61,7 @@
   "priority": "now",
   "impact_low": 10000,
   "impact_high": 25000,
-  "impact_note": "One time, for 2026 visits. Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are not counted until the care-management review is done.",
+  "impact_note": "One time, for 2026 visits. Correct setting codes, recovery of 2026 visits underpaid at the skilled-stay rate, and fewer wrong-payer denials. Higher care-management payments are counted under the care-management project.",
   "owner": "claude",
   "start_by": "2026-11-11",
   "target_date": "2026-12-31",
@@ -247,7 +247,7 @@
    "A monthly sample of 25 automated actions reviewed and logged"
   ],
   "steps": [
-   "Switch off three standing billing rules",
+   "Pause the automatic write-off of balances over a year old",
    "Close sign-up",
    "Rotate keys",
    "Approval for claim-changing rules",

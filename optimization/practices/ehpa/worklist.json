@@ -57,8 +57,8 @@
   "id": "ehpa-ccm-footing-06",
   "project_slug": "ccm-footing",
   "ord": 7,
-  "title": "Make consent and minutes required before a claim is built",
-  "detail": "The billing routine refuses to create a care-management claim without both.",
+  "title": "Keep each month's consent, care plan and time log where they can be pulled by patient and month",
+  "detail": "The billing routine stores, with each care-management claim, a note of where that month's records are kept. No claim waits on this.",
   "owner": "claude",
   "due": "2026-11-27"
  },
@@ -184,7 +184,7 @@
   "project_slug": "coding-audit",
   "ord": 21,
   "title": "Write down how a visit level gets from the note to the claim, and what changed in 2024 and in 2026",
-  "detail": "Do this for the attorney, after the attorney is engaged. The physician's share of top-level hospital follow-ups was 64.5% in 2023, 1.3% in 2024 and 73.7% now. For each period record who picked the code, in which tool, and whether the tool offers a default level. Do the same for how patients get onto the monthly care-management list. The attorney shares it with the auditor.",
+  "detail": "Do this for the attorney, after the attorney is engaged. The physician's share of top-level hospital follow-ups was 64.5% in 2023, 1.3% in 2024 and 73.7% now. For each period record who picked the code, in which tool, and whether the tool offers a default level. The attorney shares it with the auditor.",
   "owner": "william",
   "due": "2026-11-24"
  },
@@ -553,7 +553,7 @@
   "project_slug": "operating-rhythm",
   "ord": 62,
   "title": "Name one person to keep this work list",
-  "detail": "A staff member or an outside project manager keeps the list, chases each item and reports to you each week. Until mid-December keep for yourself only what needs your judgment or signature: engaging the attorney, signing the Medicaid renewal, approving which billing rules are switched off, and deciding the care-management code once the attorney-directed sample is done. Hand the facility calls, the plan portal access and the accounting link to that person or to the nurse practitioner. Leave the database key change with whoever already administers the database.",
+  "detail": "A staff member or an outside project manager keeps the list, chases each item and reports to you each week. Until mid-December keep for yourself only what needs your judgment or signature: engaging the attorney, signing the Medicaid renewal, and approving any billing rule that changes a claim's date, code or balance. Hand the facility calls, the plan portal access and the accounting link to that person or to the nurse practitioner. Leave the database key change with whoever already administers the database.",
   "owner": "william",
   "due": "2026-11-20"
  },
@@ -589,7 +589,7 @@
   "project_slug": "compliance-program",
   "ord": 66,
   "title": "Have the auditor read the billing rulebook's high-risk rules",
-  "detail": "Any rule that changes a code, date, modifier, diagnosis, place of service or balance.",
+  "detail": "Any rule that changes a code, date, modifier, diagnosis, place of service or balance, except the rules for care-management claims. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
   "owner": "william",
   "due": "2026-12-18"
  },
@@ -850,7 +850,7 @@
   "project_slug": "finance-cleanup",
   "ord": 95,
   "title": "Set a cash floor and start a 13-week cash forecast",
-  "detail": "A cash floor is the lowest bank balance you allow before owner draws pause. Ninety days of spending is about $177,000, and cash was $94,431 on September 30, 2026. Agree with the accountant what owner distributions are paid until the floor is reached and the care-management sample has been read. A 13-week forecast is one row a week of expected deposits and payments. Ask the accountant for a template.",
+  "detail": "A cash floor is the lowest bank balance you allow before owner draws pause. Ninety days of spending is about $177,000, and cash was $94,431 on September 30, 2026. Agree with the accountant what owner distributions are paid until the floor is reached. A 13-week forecast is one row a week of expected deposits and payments. Ask the accountant for a template.",
   "owner": "william",
   "due": "2026-12-04"
  },

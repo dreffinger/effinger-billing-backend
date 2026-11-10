@@ -45,7 +45,7 @@
   "kind": "risk",
   "category_slug": "cr-coding-audits",
   "title": "Commission an independent audit of visit levels",
-  "why": "Seven code families sit far above national patterns. In Medicare's 2025 review the practice's most-billed visit code (99233) had a 22.7% improper-payment rate, and the code it bills for every nursing facility admission (99306) had 25.5%. No chart audit is on record.",
+  "why": "Six families of visit codes sit far above national patterns. In Medicare's 2025 review the practice's most-billed visit code (99233) had a 22.7% improper-payment rate, and the code it bills for every nursing facility admission (99306) had 25.5%. No chart audit is on record.",
   "what": [
    "Attorney engages a certified auditor",
    "10 random notes per code family per clinician",
@@ -293,7 +293,7 @@
   "title": "Put guard rails on the billing agents",
   "why": "The agents are an advantage. A wrong rule repeats on every claim, so the rules that change codes, dates, modifiers, diagnoses, places of service or balances need a second pair of eyes.",
   "what": [
-   "Switch off the three standing rules, close open sign-up and replace the shared key",
+   "Pause the automatic write-off of old balances, close open sign-up and replace the shared key",
    "Approval for claim-changing rules",
    "Monthly sample of 25 actions"
   ],

@@ -53,7 +53,7 @@
    "how_to_use": [
     "Read the findings in order. Critical and high come first.",
     "Engage a healthcare attorney first, so that the reviews of past visit claims are directed by counsel. Set place of service on new claims from each facility's census now. Do not move visit levels up or down to match national averages. The note for that day decides the level.",
-    "The billing database holds claims, not clinical notes. Every finding here still has to be tested against the charts.",
+    "The billing database holds claims, not clinical notes. Every finding here still has to be tested against the charts, except the last one, on care-management claims. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims.",
     "When a review that the attorney directs is finished, its result goes to the attorney, not into this application. On the work list record only that the step is complete, and the date. For the other reviews, record the result and the date on the work list."
    ],
    "foot": "Management information and education, not legal or coding advice. If a chart review shows Medicare was overpaid, federal law requires reporting and returning the money within 60 days of identifying it. A prompt, good-faith review of related claims pauses those 60 days, for no more than 180 days after the first overpayment was identified."
@@ -68,7 +68,7 @@
     "**Quality, scored 1 to 5 after reading each document in full:** 1 scored 1, 29 scored 2, 30 scored 3. None scored 4 or 5.",
     "**Best use:** as a checklist of topics and worksheets. The operating routines (daily queues, root-cause logs, reconciliation steps) are sound and transfer to any practice.",
     "**Do not rely on it for rules or numbers.** Benchmarks are unsourced, several code and deadline statements are wrong, and almost nothing addresses Medicare facility-based billing.",
-    "**Claims checked against primary sources so far: 282 of 445 extracted.** 139 partly, 51 supported, 50 contradicted, 28 unverifiable, 14 outdated.",
+    "**Claims checked against primary sources so far: 442 of 445 extracted.** 211 partly, 93 contradicted, 74 supported, 43 unverifiable, 21 outdated.",
     "**The vendor's free newsletter was read too: 21 issues published from May to November 2026.** Quality: 11 scored 2, 10 scored 3. Of 105 news claims checked against the original announcement or rule: 29 supported, 55 partly, 8 contradicted, 3 outdated, 10 unverifiable. It is where the vendor reports dated news (new rules, deadlines, payer announcements), which the purchased documents lack. Each item is checked in the table below."
    ]
   }

@@ -40,12 +40,12 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The billing agents follow a written rulebook, so decisions are consistent and logged. Some rules carry audit risk and were written without a coder's or attorney's review: automatic write-offs, re-dating and resending care-management claims, and how visit levels reach the claim.",
+  "assessment": "The billing agents follow a written rulebook, so decisions are consistent and logged. Two things in it carry audit risk and were written without a coder's or attorney's review: the automatic write-off of old balances, and how visit levels reach the claim. Another rule re-dates a care-management claim to month end after a frequency denial and resends it. Like any rule that changes a claim's date, code or balance, it needs the owner's written approval.",
   "evidence": [
    "$40,686 of balances over a year old written off on November 2, 2026 under a standing rule",
    "A frequency denial on a care-management claim is re-dated to month end and resent"
   ],
-  "next_step": "Switch off the re-dating, resending and automatic write-off rules now. Have the outside coding auditor and the attorney read every high-risk rule before it runs again."
+  "next_step": "Pause the automatic write-off of balances over a year old now. Have the outside coding auditor and the attorney read that rule before it runs again, and read how visit levels reach the claim. Approve in writing any rule that changes a claim's date, code or balance."
  },
  {
   "category_slug": "sg-key-relationships",
@@ -114,7 +114,7 @@
   "evidence": [
    "Net effect on Medicare revenue is small, between about -$5,000 and +$7,000 a year, with hospital visits down 3% to 5% and nursing facility visits billed as a skilled stay up 10% to 12%"
   ],
-  "next_step": "Build a 2027 budget with four cases: steady, loss of the largest site, a second nurse practitioner, and care management cut by half or stopped."
+  "next_step": "Build a 2027 budget with four cases: steady, loss of the largest site, a second nurse practitioner, and care-management collections falling by half."
  },
  {
   "category_slug": "fm-cash-treasury",
@@ -303,7 +303,7 @@
   "applicability": "core",
   "status": "unknown",
   "priority": 1,
-  "assessment": "Not tested. Whether the notes support the levels and the time-based services billed is the central open question for this practice.",
+  "assessment": "Not tested. Whether the notes support the visit levels and the advance care planning billed is the central open question for this practice.",
   "evidence": [
    "No chart audit on record"
   ],
@@ -358,15 +358,15 @@
  {
   "category_slug": "cc-time-based-codes",
   "applicability": "core",
-  "status": "red",
+  "status": "amber",
   "priority": 1,
-  "assessment": "Complex chronic care management was billed for 257 patients in October 2026, usually with the add-on code. Each claim says the practice's staff, or the physician himself, spent at least 60 minutes on that patient's care management that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 hours a month.",
+  "assessment": "Two time-based services are billed here. Complex chronic care management (code 99487) was billed for 257 patients in October 2026, 213 of them with the add-on code (99489). The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. Only about 42% of those lines have been paid since June. Advance care planning (code 99497) was billed on 62 encounters, and whether each note states the minutes and who took part has not been checked. The rating is amber for two reasons: the low paid rate and the unchecked advance care planning notes.",
   "evidence": [
    "257 patients billed the complex code in October 2026, 213 with the add-on",
    "42% of lines paid since June 2026",
-   "Nationally the complex code is about 8% of care-management claims"
+   "Advance care planning billed on 62 encounters, about 8% of face-to-face visits"
   ],
-  "next_step": "Pause automatic billing of the complex code until each claim is backed by consent, a care plan and a dated time log."
+  "next_step": "Set the place of service on each care-management claim from the resident's status, and work the unpaid lines by denial reason. Put the minutes, who took part and a statement that the talk was voluntary in every advance care planning note."
  },
  {
   "category_slug": "cc-fee-schedule",
@@ -646,11 +646,11 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "The practice is a statistical outlier in seven code families, and the comparison uses public data that any auditor, plan or buyer can pull.",
+  "assessment": "The practice is a statistical outlier in six code families, and the comparison uses public data that any auditor, plan or buyer can pull.",
   "evidence": [
-   "Six code families above the national share of the highest code by 20 points or more, and a seventh (subsequent nursing facility visits) 95.6% at the second-highest code against 48.8% nationally",
-   "As billed, the physician's work units run near three times the family medicine median",
-   "The Florida Medicare contractor lists care management (99490, 99491) and hospital visits (99221 to 99223, 99231 to 99233) as active targeted reviews"
+   "Five code families above the national share of the highest code by 20 points or more, and a sixth (subsequent nursing facility visits) 95.6% at the second-highest code against 48.8% nationally",
+   "As billed, the physician's work units run near three times the family medicine median. Before care management, his visits alone carry 1.25 to 1.7 times the median",
+   "The Florida Medicare contractor lists hospital visits (99221 to 99223, 99231 to 99233) as an active targeted review"
   ],
   "next_step": "Review the outlier table every quarter. Keep the routine audit results that explain it, as the attorney advises."
  },
@@ -659,12 +659,12 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "No review is open, yet three patterns could each point to money that must be returned if charts do not support the claims: complex care management, visit levels and advance care planning. The 60-day clock starts when a practice knows of an overpayment or recklessly disregards the signs of one.",
+  "assessment": "No review is open, yet two patterns could each point to money that must be returned if charts do not support the claims: visit levels and advance care planning. The 60-day clock starts when a practice knows of an overpayment or recklessly disregards the signs of one.",
   "evidence": [
    "60 days to report and return once identified. A prompt, good-faith review of related claims pauses the 60 days, for no more than 180 days after the first overpayment was identified",
    "Six-year lookback"
   ],
-  "next_step": "Have the attorney open and direct the review, and write down when it began."
+  "next_step": "Have the attorney open and direct the review of visit levels and advance care planning, and write down when it began."
  },
  {
   "category_slug": "cr-referral-laws",
@@ -704,9 +704,9 @@
   "category_slug": "cr-patient-notices",
   "applicability": "core",
   "status": "unknown",
-  "priority": 1,
-  "assessment": "Care management requires each patient's consent, recorded before care management starts. Whether that record exists for the 257 patients billed in October has not been checked.",
-  "next_step": "Have consent checked in the attorney-directed look at 30 patient-months. Then make a recorded consent a condition of every new care-management claim."
+  "priority": 3,
+  "assessment": "Care management needs each patient's consent, recorded before it starts. Complex care management was billed for 257 patients in October 2026. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. The status stays unknown for a different reason: the Advance Beneficiary Notice forms in use have not been checked against the version Medicare has required since May 12, 2026.",
+  "next_step": "Check that every Advance Beneficiary Notice form is the version marked 'Exp. 03/31/2029'."
  },
  {
   "category_slug": "cr-audit-response",
@@ -742,7 +742,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. Medicare gives each service a number of work units that measure clinician effort. As billed, the physician's work units are nearly three times the family medicine median (about 19,000 against 6,505) and the nurse practitioner's are about a third above hers (6,300 against 4,647). Care management accounts for about 8,100 of the physician's units. It is the same pattern the risk review flags.",
+  "assessment": "Both clinicians are busy: about 16 visits a day for the physician and 13 for the nurse practitioner. Medicare gives each service a number of work units that measure clinician effort. As billed, the physician's work units are nearly three times the family medicine median (about 19,000 against 6,505) and the nurse practitioner's are about a third above hers (6,300 against 4,647). Care management accounts for about 8,100 of the physician's units. Before care management, his visits alone carry 1.25 to 1.7 times the median. That remaining gap is the visit-level pattern the risk review flags.",
   "evidence": [
    "About 25,000 work units a year as billed, against medians of 6,505 and 4,647"
   ],
@@ -775,23 +775,23 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "The team is one physician, one nurse practitioner and very little support staff. That keeps cost low. It also raises the question of who performs the care-management hours being billed.",
+  "assessment": "The team is one physician, one nurse practitioner and very little support staff. That keeps cost low. It is rated amber because who does which task is not written down and almost no role has a backup.",
   "evidence": [
    "Staff pay about $206,000 a year including the nurse practitioner"
   ],
-  "next_step": "List who does each care-management task and how many hours each person has."
+  "next_step": "Write a who-does-what table: visit types and tasks down the side, roles across the top."
  },
  {
   "category_slug": "co-care-management",
   "applicability": "core",
-  "status": "red",
+  "status": "amber",
   "priority": 1,
-  "assessment": "Care management is being billed at large scale, but it is not yet visible as a program with enrolled patients, care plans, staff, and a monthly cycle of logged work.",
+  "assessment": "Complex care management (code 99487) was billed for 257 of the 326 patients seen in October 2026, 213 of them with the add-on code (99489). The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. What needs work is collection. Only about 42% of these lines have been paid since June, and 152 of October's lines carry place of service 31, the code for a skilled stay, which pays less than the code for a long-term resident. That is why the rating is amber.",
   "evidence": [
-   "79% of patients seen in October were billed the complex code",
-   "The claims imply about 364 hours of care-management time a month"
+   "257 patients billed the complex code in October 2026, 213 with the add-on",
+   "About 42% of lines paid since June 2026. 152 of October's lines carry place of service 31"
   ],
-  "next_step": "Rebuild it as a program: eligibility list, consent, care plan, time log, and a monthly check of minutes billed against the hours the staff and the physician had available."
+  "next_step": "Set the place of service on each claim from the resident's status, and work the unpaid lines by denial reason."
  },
  {
   "category_slug": "co-access-scheduling",
@@ -928,8 +928,8 @@
   "applicability": "relevant",
   "status": "unknown",
   "priority": 5,
-  "assessment": "Few staff. Pay and hours by person are not in the data. They matter here because care-management claims assert about 364 hours a month of time by staff or by the physician himself.",
-  "next_step": "Get pay and hours by person for October."
+  "assessment": "Few staff. Pay and hours by person are not in the data, so staff pay cannot yet be compared with the local market.",
+  "next_step": "Get pay and hours by person from payroll, and compare each role with local pay once a year."
  },
  {
   "category_slug": "pp-accountability",
@@ -985,7 +985,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 4,
-  "assessment": "The billing system, the rounding and charge tool and the eligibility service fit a facility-based practice and work together for charges. The data names no health record system. It is not known where the practice's own notes, care plans, consents and care-management time logs are kept, or whether the practice can produce them without a facility's help.",
+  "assessment": "The billing system, the rounding and charge tool and the eligibility service fit a facility-based practice and work together for charges. The data names no health record system. Where the practice keeps its own notes, care plans, consents and care-management time logs is not written down, and it is not known whether the practice can produce a visit note without a facility's help.",
   "next_step": "Write down where each kind of record is kept. Review the cost and use of each system once a year."
  },
  {
@@ -1020,9 +1020,9 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Agents work from written rules and ask for approval on some actions. Missing are a monthly human sample of what they did and an outside review of the rules that carry audit risk.",
+  "assessment": "Agents work from written rules and ask for approval on some actions. Missing are a monthly human sample of what they did, and an outside review of the two things that carry audit risk: the automatic write-off of old balances and how visit levels reach the claim. Any rule that changes a claim's date, code or balance also needs the owner's written approval.",
   "evidence": [
-   "Automatic write-off and claim re-dating rules are in force"
+   "An automatic write-off rule is in force. So is a rule that re-dates a care-management claim to month end after a frequency denial and resends it"
   ],
   "next_step": "Sample 25 automated actions a month and record the result."
  },
@@ -1074,7 +1074,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Several services the patients already qualify for are not being delivered or billed: annual wellness visits, transitional care for patients going home or to assisted living, and standard care management where the complex code is not supported.",
+  "assessment": "Two services the patients already qualify for are not being delivered or billed: annual wellness visits, and transitional care for patients going home or to assisted living.",
   "evidence": [
    "Wellness visits were billed through 2023"
   ],

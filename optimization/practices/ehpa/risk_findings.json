@@ -6,7 +6,7 @@
   "severity": "high",
   "likelihood": "high",
   "category_slug": "cc-visit-leveling",
-  "what_we_see": "Subsequent hospital visits were billed at the top level (99233) 73.7% of the time, against 37.2% nationally. Every initial hospital visit was the top level (99223), against 59.5%. Subsequent nursing facility visits were the second-highest level (99309) 95.6% of the time, against 48.8%, and every initial nursing facility visit was the top level (99306), against 48.5%. Both discharge-day families were billed only at the longer code. All 31 assisted living visits were billed with a new-patient code (99344), 25 of them by the nurse practitioner, and none with an established-patient code, although 103 assisted living residents were billed care management in October. In CMS data the physician's top-level share of hospital follow-up visits was 64.5% in 2023, 1.3% in 2024 and is 73.7% now. As billed, the physician's work units run near three times the family medicine median. In October there were 218 visits to 135 nursing facility residents, 1.6 each. Fourteen residents were seen four or more times. Each visit needs a medical reason in the note. Visits with no documented reason for their frequency were the most common failure in the Inspector General's 2026 audit, which sampled residents seen three or more times in a month.",
+  "what_we_see": "Subsequent hospital visits were billed at the top level (99233) 73.7% of the time, against 37.2% nationally. Every initial hospital visit was the top level (99223), against 59.5%. Subsequent nursing facility visits were the second-highest level (99309) 95.6% of the time, against 48.8%, and every initial nursing facility visit was the top level (99306), against 48.5%. Both discharge-day families were billed only at the longer code. All 31 assisted living visits were billed with a new-patient code (99344), 25 of them by the nurse practitioner, and none with an established-patient code, although 103 assisted living residents were billed care management in October. In CMS data the physician's top-level share of hospital follow-up visits was 64.5% in 2023, 1.3% in 2024 and is 73.7% now. As billed, the physician's work units run near three times the family medicine median. Before care management, his visits alone carry 1.25 to 1.7 times the median. In October there were 218 visits to 135 nursing facility residents, 1.6 each. Fourteen residents were seen four or more times. Each visit needs a medical reason in the note. Visits with no documented reason for their frequency were the most common failure in the Inspector General's 2026 audit, which sampled residents seen three or more times in a month.",
   "rule": "The level of a visit must follow the complexity of medical decision making, or total time, that the note documents for that day, and the service must be medically necessary. A sick population can justify a high average. It does not justify the same level on nearly every visit.",
   "exposure": "The difference between adjacent levels is roughly $20 to $45 a visit. On about 6,000 visits a year, a finding that half were one level high would be on the order of $60,000 to $100,000 a year, and Medicare contractors extrapolate from samples. Nationally, 25.5% of the dollars paid for the top initial nursing facility code, which this practice bills on every admission, were improper in Medicare's 2025 review. In Medicare's 2025 review, 22.7% of payments for the top subsequent hospital code (99233), the practice's most-billed visit code, were improper. The Florida Medicare contractor lists hospital visits (99221 to 99223 and 99231 to 99233) as an active targeted review. In July 2026 the Inspector General reported on 60 sampled patient-months of nursing home visits, each with 3 to 10 visits, paid by another contractor in 2018 and 2019. Forty-two failed review: 24 because the visits were not medically necessary, 13 for coding and 10 for missing or insufficient records. A nationwide audit of these services opened in April 2026.",
   "recommended_review": "Through the attorney, hire an independent certified auditor to review 10 notes per code family for each clinician, about 80 to 100 notes, chosen at random from the last six months. Ask for under-coding as well as over-coding. Include 10 assisted living visits and check each patient's history for an earlier visit by the practice. Agree with the attorney beforehand what error rate will trigger a larger, statistically valid sample. The Inspector General's self-disclosure protocol asks for at least 100 claims.",
@@ -91,11 +91,11 @@
   "severity": "high",
   "likelihood": "high",
   "category_slug": "cr-program",
-  "what_we_see": "The practice has written billing rules and runs the monthly exclusion check. Nothing else of a compliance program is evidenced: no named compliance contact, no training record, no audit, no log of problems found and fixed. Billing is run by software agents under standing rules that include automatic write-offs and re-dating denied care-management claims.",
+  "what_we_see": "The practice has written billing rules and runs the monthly exclusion check. Nothing else of a compliance program is evidenced: no named compliance contact, no training record, no audit, no log of problems found and fixed. Billing is run by software agents under standing rules that include automatic write-offs.",
   "rule": "A compliance program is voluntary for a small practice, but federal guidance describes seven elements and treats a working program as evidence of good faith. The duty to return overpayments is not voluntary. Since 2025 it is triggered when a practice knows of an overpayment, deliberately avoids learning of one, or recklessly disregards the signs.",
   "exposure": "Without a program the practice cannot show that an error was an honest mistake caught by its own controls. That record is one of the things that can make the difference between a refund and penalties.",
   "recommended_review": "With the attorney, write a short program sized to two clinicians. Start with the audit, because its results decide everything else.",
-  "control": "A named compliance contact who, where possible, is not the owner and does not prepare claims (a staff member or an outside consultant), reporting to the owner each quarter. An annual training hour, a quarterly chart audit, a log of issues and corrections, and a yearly review of the billing rulebook by the auditor.",
+  "control": "A named compliance contact who, where possible, is not the owner and does not prepare claims (a staff member or an outside consultant), reporting to the owner each quarter. An annual training hour, a quarterly chart audit, a log of issues and corrections, and a yearly review by the auditor of the billing rules for visits and write-offs.",
   "sources": [
    {
     "title": "General Compliance Program Guidance",
@@ -216,7 +216,7 @@
   "what_we_see": "Agents enter charges, send claims, post payments, re-send denied claims and write off old balances every few hours under a written rulebook. Rules include writing off balances over a year old ($40,686 on November 2, 2026) and re-dating a care-management claim to month end after a frequency denial. This application also allows anyone to create a sign-in. Since a check added on November 10, 2026, only an approved address that has been confirmed can see data.",
   "rule": "The practice is responsible for every claim submitted in its name, whoever or whatever prepares it. Under the False Claims Act, knowing includes reckless disregard, with no proof of intent needed. Florida's Medicaid law gives the provider an affirmative duty to supervise the preparation and submission of claims. Changing a code, date, modifier or diagnosis after a denial is acceptable only when the record supports the change and a qualified person has checked it. A Medicare denial is a payment decision. It stands unless it is reopened or appealed. A claim is sent again only when it was rejected as incomplete or when First Coast's instructions for that denial say to resubmit. Re-sending paid or denied claims produces duplicate denials, and the share of claims denied is one of the things Medicare weighs when it decides whether to revoke billing privileges. Routinely waiving Medicare copayments and deductibles is unlawful. A patient's balance may be written off for documented hardship or after a real effort to collect has failed. The opposite rule applies to Qualified Medicare Beneficiaries, a group that includes most dual-eligible patients nationally: federal law forbids billing them for Medicare cost sharing at all. Every write-off therefore needs a reason code.",
   "exposure": "An automated rule that is wrong is wrong on every claim it touches, and it leaves a complete log of having done so. In 2025 a physician group paid $45 million over allegations that its billing software was set to bill the higher-paid service every time.",
-  "recommended_review": "Have the coding auditor read every rule that changes a code, date, modifier, diagnosis, place of service or balance. Sample 25 automated actions against the charts. Confirm that the automatic write-off rule touches insurance balances only and records a reason. List every rule that re-sends a claim Medicare has already paid or denied. Check each against First Coast's instructions: reopening, appeal or, where allowed, a corrected new claim.",
+  "recommended_review": "Have the coding auditor read every rule that changes a code, date, modifier, diagnosis, place of service or balance, and sample 25 automated actions against the charts. The rules for care-management claims, and the actions taken under them, are left out of that reading and that sample. The owner confirmed on November 10, 2026 that consent, care plans and time records are on file for these claims. Confirm that the automatic write-off rule touches insurance balances only and records a reason. List every rule that re-sends a claim Medicare has already paid or denied. Check each against First Coast's instructions: reopening, appeal or, where allowed, a corrected new claim.",
   "control": "The owner's written approval for any rule that changes a claim's code, date, modifier, diagnosis, place of service or balance. A monthly sample of automated actions. Open sign-up turned off and access keys rotated.",
   "sources": [
    {
@@ -321,34 +321,6 @@
    {
     "title": "Frequently Asked Questions About Practitioner Billing for Chronic Care Management Services",
     "url": "https://www.cms.gov/files/document/chronic-care-management-faqs.pdf"
-   },
-   {
-    "title": "Frequently Asked Questions about Billing Medicare for Chronic Care Management Services (March 17, 2016)",
-    "url": "https://www.cms.gov/medicare/medicare-fee-for-service-payment/hospitaloutpatientpps/downloads/payment-chronic-care-management-services-faqs.pdf"
-   },
-   {
-    "title": "2025 Medicare Fee-for-Service Supplemental Improper Payment Data",
-    "url": "https://www.cms.gov/files/document/nov-2025-medicare-ffs-supplemental-improper-payment-data-2025922.pdf"
-   },
-   {
-    "title": "Targeted Probe and Educate, Part B: active review topics",
-    "url": "https://medicare.fcso.com/medical-review/tpe/part-b"
-   },
-   {
-    "title": "Enforcement action: five-year exclusion for chronic care management claims not rendered (Florida)",
-    "url": "https://oig.hhs.gov/fraud/enforcement/dr-nathan-hanflink-and-pain-management-institute-agreed-to-be-excluded-for-5-years-for-allegedly-violating-the-civil-monetary-penalties-law-by-submitting-claims-for-chronic-care-management-services-not-rendered/"
-   },
-   {
-    "title": "Medicare continues to make overpayments for chronic care management services",
-    "url": "https://oig.hhs.gov/reports/all/2021/medicare-continues-to-make-overpayments-for-chronic-care-management-services-costing-the-program-and-its-beneficiaries-millions-of-dollars/"
-   },
-   {
-    "title": "Medicare Physician and Other Practitioners public use files (by provider, by provider and service, by geography and service)",
-    "url": "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners"
-   },
-   {
-    "title": "42 CFR 401.305: Reporting and returning overpayments",
-    "url": "https://www.ecfr.gov/current/title-42/section-401.305"
    }
   ]
  }

@@ -166,19 +166,19 @@
         "Complex chronic care management",
         "As for standard, with moderate or high complexity decisions",
         "60 minutes a month of logged time by staff or the billing clinician",
-        "257 patients in October 2026. Under review"
+        "257 patients in October 2026, 213 with the add-on code. About 42% of lines paid"
        ]
       ]
      },
      {
       "type": "p",
-      "text": "The honest size of this lever is modest: about a dozen wellness visits a month and a few transitional care services, worth about $21,000 to $41,000 a year. The larger number sitting in care management is real only to the extent the work is done and logged."
+      "text": "The honest size of this lever is modest: about a dozen wellness visits a month and a few transitional care services, worth about $21,000 to $41,000 a year. The larger number sits in care management: about $165,000 a year at October's volume and today's paid rate, and about $370,000 if every line were paid."
      },
      {
       "type": "callout",
       "tone": "risk",
       "title": "Growth that destroys value",
-      "text": "A monthly program billed for most of the census at the highest code looks like growth on the income statement and like a repayment liability to an auditor or buyer. Build the program first: enrolled patients, consent, care plans, a time log, staff with the hours to do it. Then bill what the log supports. A smaller program that survives review is worth more than a large one that does not."
+      "text": "A new service adds value only when each claim meets its rule. Otherwise the money is denied, or paid and later taken back. A wellness visit repeated within 12 months is denied. Advance care planning with no minutes in the note can be denied in full. Transitional care is not payable when the patient goes to a nursing facility. Write the template and the checklist for each service before the first claim goes out."
      },
      {
       "type": "quiz",
@@ -363,7 +363,7 @@
       "rows": [
        [
         "Now to January",
-        "Coverage, enrollment, aged receivables, deposits. Outside audit. Care management rebuilt as a program. 2027 budget and repricing.",
+        "Coverage, enrollment, aged receivables, deposits. Outside audit. Care management billed under the correct place of service. 2027 budget and repricing.",
         "It is the cheapest money and it removes the risk under everything else"
        ],
        [
@@ -390,7 +390,7 @@
    "Fix leakage first: it is nearly all margin and makes every other lever worth more.",
    "Every ten additional residents under care are worth about $13,000 to $19,000 a year at today's payments. The figure reaches $31,000 only if care management is paid for every resident every month.",
    "A nurse practitioner covers her cost at about 12 visits a day. Profit starts above that, after a ramp of several months.",
-   "Monthly programs are worth only what the logged work supports.",
+   "A monthly program is worth what gets paid. Care management is paid on about 42% of lines today.",
    "Prefer growth that lowers dependence on the owner and on the largest site.",
    "Never trade anything of value for referrals."
   ]
