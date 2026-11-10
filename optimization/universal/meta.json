@@ -61,14 +61,14 @@
  {
   "key": "library:summary",
   "value": {
-   "lead": "The purchased CleanClaimRx library, read in full and scored. It was used as an outline to make sure the universal framework misses nothing, and every rule or number it states was treated as unverified until found in a primary source.",
+   "lead": "The purchased CleanClaimRx library and every issue of the vendor's free newsletter, read in full and scored. It was used as an outline to make sure the universal framework misses nothing, and every rule or number it states was treated as unverified until found in a primary source.",
    "verdict": [
     "**60 documents, 2,566 pages, list price $1,032 for the bundles bought.** Every document was written by an AI system with no named author, sources or dates on its numbers.",
-    "**Quality, scored 1 to 5 after reading each document in full:** 1 scored 1, 28 scored 2, 29 scored 3. None scored 4 or 5.",
+    "**Quality, scored 1 to 5 after reading each document in full:** 1 scored 1, 29 scored 2, 30 scored 3. None scored 4 or 5.",
     "**Best use:** as a checklist of topics and worksheets. The operating routines (daily queues, root-cause logs, reconciliation steps) are sound and transfer to any practice.",
     "**Do not rely on it for rules or numbers.** Benchmarks are unsourced, several code and deadline statements are wrong, and almost nothing addresses Medicare facility-based billing.",
-    "**Claims checked against primary sources so far: 96 of 429 extracted.** 55 partly, 24 contradicted, 8 supported, 7 outdated, 2 unverifiable.",
-    "2 documents have not been reviewed yet."
+    "**Claims checked against primary sources so far: 96 of 445 extracted.** 55 partly, 24 contradicted, 8 supported, 7 outdated, 2 unverifiable.",
+    "**The vendor's free newsletter was read too: 10 issues published from May to November 2026.** Quality: 5 scored 2, 5 scored 3.  It is where the vendor reports dated news (new rules, deadlines, payer announcements), which the purchased documents lack. Each item is checked in the table below."
    ]
   }
  }

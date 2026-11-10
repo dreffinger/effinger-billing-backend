@@ -174,7 +174,7 @@
     {
      "slug": "fe-registration-error-rate",
      "name": "Claims rejected or denied for registration errors",
-     "definition": "Share of claims rejected by the clearinghouse or denied by the payer because of patient identity, subscriber or demographic errors.",
+     "definition": "Share of claims rejected by the clearinghouse, the service that forwards claims to payers, or denied by the payer, because of patient identity, subscriber or demographic errors.",
      "formula": "Claims rejected or denied for registration reasons / claims submitted",
      "unit": "percent",
      "direction": "lower",
@@ -185,7 +185,7 @@
       "experian-2026",
       "x12-carc"
      ],
-     "data_hint": "Clearinghouse rejection reports, plus remittance reason codes 31 (patient not identified as insured) and 140 (identification number and name do not match).",
+     "data_hint": "Clearinghouse rejection reports, plus reason codes on the payer's payment report: 31 (patient not identified as insured) and 140 (identification number and name do not match).",
      "vendor_claim": "The purchased front-end playbook sets a target of under 2% of claims denied for registration reasons and calls over 5% a systematic problem.",
      "vendor_verdict": "Unverifiable. No source is given, and it counts payer denials only, missing the clearinghouse rejections where many of these errors surface."
     }
@@ -200,7 +200,7 @@
     "Patients under ongoing care are re-checked at the start of every month.",
     "The full answer from the payer is stored as proof.",
     "When no coverage is found, a search for other coverage, including Medicaid, is run before the patient is treated as self-pay.",
-    "The check confirms the plan type, whether the clinician is in its network, and whether a referral or authorization is needed."
+    "Staff also confirm the plan type, that the clinician is in the plan's network, and whether a referral or authorization is needed."
    ],
    "failure_modes": [
     "Coverage is checked once at intake and never again, so a January plan change produces months of denials.",
@@ -267,7 +267,7 @@
     "conifer-kpi-2023",
     "x12-carc"
    ],
-   "evidence_note": "Health plans must answer an electronic eligibility inquiry (45 CFR 162.925). CAQH, an industry nonprofit, measured the cost of each method. The Healthcare Financial Management Association (HFMA) defines the verification rate and sets no target. The common 98% target traces to a vendor white paper.",
+   "evidence_note": "Health plans must answer an electronic eligibility inquiry (45 CFR 162.925). CAQH's yearly industry survey measured the cost of each method. The Healthcare Financial Management Association (HFMA) defines the verification rate and sets no target. The common 98% target traces to a vendor white paper.",
    "metrics": [
     {
      "slug": "fe-eligibility-verified-rate",
@@ -291,7 +291,7 @@
      "slug": "fe-eligibility-denial-rate",
      "name": "Denials for coverage or eligibility",
      "definition": "Share of claims denied because coverage had ended, had not begun, or the patient was not eligible for the service on that date.",
-     "formula": "Claims denied for eligibility reasons / claims adjudicated",
+     "formula": "Claims denied for eligibility reasons / claims processed by payers",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -300,12 +300,12 @@
      "sources": [
       "x12-carc"
      ],
-     "data_hint": "Remittance reason codes 26 (before coverage began), 27 (after coverage ended), 200 (lapse in coverage) and 177 (eligibility requirements not met)."
+     "data_hint": "Denial reason codes on the payer's payment report: 26 (before coverage began), 27 (after coverage ended), 200 (lapse in coverage) and 177 (eligibility requirements not met)."
     },
     {
      "slug": "fe-no-payer-rate",
      "name": "Encounters with no payer on file at charge entry",
-     "definition": "Share of encounters that reach charge entry with no identified, verified payer.",
+     "definition": "Share of encounters that reach charge entry, the step where the visit's billing codes are recorded, with no identified, verified payer.",
      "formula": "Encounters with no payer at charge entry / encounters",
      "unit": "percent",
      "direction": "lower",
@@ -321,7 +321,7 @@
    "name": "Coverage status that changes who pays",
    "summary": "Facts about a patient on the date of service that change the payer, the place of service or whether a service is payable: a Medicare Part A skilled stay, hospice election, Medicare Advantage enrollment, another primary payer, and Qualified Medicare Beneficiary status.",
    "good_looks_like": [
-    "For each date of service the practice knows whether a nursing facility patient was in a Part A skilled stay.",
+    "For each date of service the practice knows whether a nursing facility patient was in a Part A skilled stay, the stay Medicare pays the facility for.",
     "Hospice election dates and the hospice's name are recorded the day they are learned.",
     "Medicare Advantage enrollment and plan changes are caught by the monthly check.",
     "Qualified Medicare Beneficiaries, low-income patients whose Medicare deductibles and coinsurance may not be billed to them, are flagged."
@@ -330,7 +330,8 @@
     "Every nursing facility visit gets one place-of-service code because nobody tracks Part A stays. Coding a Part A patient as a long-stay resident can create an overpayment that Medicare recovers.",
     "A Medicare Advantage member elects hospice and claims keep going to the plan, which denies them.",
     "A claim goes to Medicare when a workers' compensation or employer plan was primary.",
-    "Statements are sent to patients the practice is forbidden to bill."
+    "Statements are sent to patients the practice is forbidden to bill.",
+    "In a Part A stay the practice bills Medicare for a test's technical part. With few exceptions, only professional services are separately payable. The facility pays for the rest."
    ],
    "key_questions": [
     "Do we know, for each nursing facility visit, whether the patient was in a Part A stay that day?",
@@ -375,11 +376,11 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Essential for practices that see nursing facility, hospice or dual-eligible patients. Office and hospital-based practices meet the same issues less often, mainly with Medicare Advantage switches and other primary payers such as workers' compensation or auto insurance.",
+   "applies_when": "Essential for practices that see nursing facility or hospice patients, or patients with both Medicare and Medicaid. Office and hospital-based practices meet the same issues less often, mainly with Medicare Advantage switches and other primary payers such as workers' compensation or auto insurance.",
    "vendor_refs": [
     {
      "item": "front-end-rcm-playbook",
-     "note": "Says a Medicare Secondary Payer questionnaire must be completed, a duty Medicare states for hospitals. Practices must ask about other coverage. Silent on hospice, Part A stays and protected beneficiaries."
+     "note": "Requires a completed Medicare Secondary Payer questionnaire, a duty Medicare states for hospitals. Practices must ask about other coverage. Silent on hospice, Part A stays and protected beneficiaries."
     },
     {
      "item": "medicare-advantage-operational-playbook",
@@ -389,6 +390,7 @@
    "sources": [
     "cms-cpm-ch12",
     "cms-cpm-ch11",
+    "cms-snf-cb",
     "cms-qmb",
     "cms-mln-msp",
     "cms-mln-check-eligibility",
@@ -402,8 +404,8 @@
     {
      "slug": "fe-wrong-payer-denial-rate",
      "name": "Denials for wrong payer or changed coverage status",
-     "definition": "Share of claims denied because another payer was responsible, the patient was in a Medicare Advantage plan or hospice, or benefits needed coordination.",
-     "formula": "Claims denied for other-payer, managed-care, hospice or coordination reasons / claims adjudicated",
+     "definition": "Share of claims denied because another payer was responsible, the patient was in a Medicare Advantage plan or hospice, or two payers had to settle which pays first.",
+     "formula": "Claims denied for other-payer, managed-care, hospice or payer-order reasons / claims processed by payers",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -412,7 +414,7 @@
      "sources": [
       "x12-carc"
      ],
-     "data_hint": "Remittance reason codes 22 (another payer may cover), 24 (covered by a managed care plan), 109 (send to the correct payer) and B9 (patient in hospice)."
+     "data_hint": "Denial reason codes on the payment report: 22 (another payer may cover), 24 (covered by a managed care plan), 109 (send to the correct payer) and B9 (patient in hospice)."
     }
    ]
   },
@@ -476,7 +478,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Practices with Medicare Advantage, Medicaid managed care, commercial or Veterans Affairs community care patients. Veterans Affairs must approve care in advance unless it is urgent or an emergency. Visits in hospitals and nursing facilities seldom need their own authorization, but HMO (health maintenance organization) plans may require a referral from the assigned primary care physician.",
+   "applies_when": "Practices with Medicare Advantage, Medicaid managed care, commercial or Veterans Affairs community care patients. Veterans Affairs must approve care in advance unless it is urgent or an emergency. Visits in hospitals and nursing facilities usually need no authorization of their own, though plans differ, and HMO (health maintenance organization) plans may require a referral from the assigned primary care physician.",
    "vendor_refs": [
     {
      "item": "prior-authorization-management-playbook",
@@ -508,7 +510,7 @@
     "hfma-map-keys",
     "x12-carc"
    ],
-   "evidence_note": "KFF measured Medicare Advantage denial and appeal rates from 2024 plan reports. From 2026, Medicare Advantage and Medicaid plans must decide standard requests in seven calendar days and urgent ones in 72 hours (CMS-0057-F; 42 CFR 422.568, 422.572). Drugs, marketplace and employer plans are excluded.",
+   "evidence_note": "Medicare Advantage denial and appeal rates are measured from 2024 plan reports. From 2026, Medicare Advantage and Medicaid plans must decide standard requests in seven calendar days and urgent ones in 72 hours (CMS-0057-F, 42 CFR 422.568, 422.572). Drugs, marketplace and employer plans are excluded.",
    "metrics": [
     {
      "slug": "fe-auth-obtained-rate",
@@ -531,7 +533,7 @@
      "slug": "fe-auth-denial-rate",
      "name": "Denials for missing authorization or referral",
      "definition": "Share of claims denied because prior authorization or a required referral was absent or invalid.",
-     "formula": "Claims denied for authorization or referral reasons / claims adjudicated",
+     "formula": "Claims denied for authorization or referral reasons / claims processed by payers",
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
@@ -541,7 +543,7 @@
       "kff-ma-pa",
       "x12-carc"
      ],
-     "data_hint": "Remittance reason codes 197 (authorization absent), 198 (authorization exceeded), 284 and 296 (authorization does not match service or provider) and 288 (referral absent).",
+     "data_hint": "Denial reason codes on the payment report: 197 (authorization absent), 198 (authorization exceeded), 284 and 296 (authorization does not match service or provider) and 288 (referral absent).",
      "vendor_claim": "The purchased front-end playbook sets authorization denials under 3% of all claims and flags over 5%. The Medicare Advantage playbook says under 5%.",
      "vendor_verdict": "Unverifiable. No source, and a share of all claims is not comparable between practices that need few authorizations and those that need many."
     }
@@ -561,7 +563,7 @@
    "failure_modes": [
     "A Medicare claim is denied as not medically necessary and, with no notice signed in advance, the patient cannot be billed.",
     "The Medicare notice is used for Medicare Advantage patients, where it has no effect.",
-    "Medicare cost sharing is waived routinely, which federal guidance treats as unlawful.",
+    "Medicare deductibles and coinsurance are waived routinely, which federal guidance treats as unlawful.",
     "A self-pay patient is billed $400 or more above the estimate, which gives the patient a federal right to dispute the bill.",
     "The Medicare notice is handed to every patient as routine. Medicare treats routine notices as ineffective."
    ],
@@ -570,7 +572,7 @@
     "Do self-pay patients get a written estimate before scheduled services?",
     "Is our financial hardship policy written, and are decisions documented?",
     "Do we ever waive copayments or deductibles as a routine?",
-    "If our clinicians are out of network at a hospital where they work, do we ever bill insured patients more than in-network cost sharing?"
+    "If our clinicians are out of network at a hospital where they work, do we ever bill insured patients more than their in-network share?"
    ],
    "actions": [
     {
@@ -596,7 +598,7 @@
     },
     {
      "action": "Never waive cost sharing routinely",
-     "detail": "Waive only for documented individual hardship, after a good-faith effort to collect, or where the law forbids billing.",
+     "detail": "Waive a patient's deductible, coinsurance or copayment only for documented individual hardship, after a good-faith effort to collect, or where the law forbids billing.",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
@@ -638,7 +640,7 @@
    "metrics": [
     {
      "slug": "fe-estimates-given-rate",
-     "name": "Self-pay or scheduled services given a written estimate",
+     "name": "Self-pay services given a written estimate on time",
      "definition": "Share of services for uninsured or self-pay patients, scheduled at least 3 business days ahead or with an estimate requested, for which a written good-faith estimate was given on time.",
      "formula": "Qualifying self-pay services with an on-time estimate on file / qualifying self-pay services",
      "unit": "percent",
@@ -669,7 +671,7 @@
     "Staff are uncomfortable asking, so copayments are billed later by statement, at extra cost and with less chance of payment.",
     "The amount due is unknown at check-in because eligibility was not checked.",
     "Cash and card receipts are not reconciled at day end.",
-    "Qualified Medicare Beneficiaries, who may not be charged Medicare cost sharing, are asked to pay at the desk.",
+    "Qualified Medicare Beneficiaries, who may not be charged Medicare deductibles or coinsurance, are asked to pay at the desk.",
     "Estimated amounts are collected before the insurer has processed the claim, and the overpayments that result are not refunded."
    ],
    "key_questions": [
@@ -708,7 +710,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Office practices with a front desk. It does not apply to hospital and facility rounding, where no payment is collected at the visit. For nursing facility residents much cost sharing is covered by a secondary payer or may not be billed. Those practices should measure what share of billable patient balances their statements collect.",
+   "applies_when": "Office practices with a front desk. It does not apply to hospital and facility rounding, where no payment is collected at the visit. For nursing facility residents much of the patient's share is covered by a secondary payer or may not be billed. Those practices should measure what share of billable patient balances their statements collect.",
    "vendor_refs": [
     {
      "item": "kpi-05-pos-collection-rate",
@@ -746,7 +748,7 @@
       "hfma-map-keys"
      ],
      "data_hint": "Daily collection log compared with copayments due on the schedule.",
-     "vendor_claim": "The purchased library gives three different targets: over 90% of known patient amounts (KPI guides), 65% to 75% (front-end playbook), and 95% or more of copayments.",
+     "vendor_claim": "The purchased library gives three different targets: over 90% of known patient amounts in its measure guides, 65% to 75% in its front-end playbook, and 95% or more of copayments.",
      "vendor_verdict": "Unverifiable. No source is cited and the targets disagree. Measured reality is far lower: 72% of copayments in 2024 (MGMA)."
     }
    ]

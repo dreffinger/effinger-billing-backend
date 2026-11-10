@@ -129,7 +129,7 @@
     "No written plan. Decisions follow the latest request from a facility, payer or vendor, and the owner's time goes to whatever is urgent.",
     "Too many priorities. Ten goals with no owners or dates end the year with none finished.",
     "Growth is chosen without checking capacity, enrollment lead time or cash, so a new site or clinician loses money for months.",
-    "The plan ignores payment changes already published. The 2027 Medicare conversion factor falls 2.31% to $32.63, so a budget built on 2026 rates will miss.",
+    "The plan ignores payment changes already published. The 2027 Medicare conversion factor for most clinicians falls 2.31% to $32.63, so a budget built on 2026 rates will miss.",
     "Nothing is ever stopped. Low-value sites, payers or services keep absorbing clinician hours because the plan never says what to give up."
    ],
    "key_questions": [
@@ -200,8 +200,8 @@
     {
      "slug": "sg-annual-priorities-done",
      "name": "Annual priorities completed",
-     "definition": "Share of the priorities set at the start of the year that met their written measure of done by year end. Priorities dropped on purpose are reported separately, not counted as completed.",
-     "formula": "Priorities completed by year end / priorities set at the start of the year x 100",
+     "definition": "Share of the priorities set at the start of the year that have met their written measure of done, counted each quarter and at year end. Priorities dropped on purpose are reported separately, not counted as completed.",
+     "formula": "Priorities completed so far this year / priorities set at the start of the year x 100",
      "unit": "percent",
      "direction": "higher",
      "cadence": "quarterly",
@@ -222,7 +222,7 @@
    "good_looks_like": [
     "A one-page scorecard shows each measure for this month, last month, the same month last year and the target.",
     "The owner holds a review on a fixed day every month covering profit, cash, receivables, production, people and compliance, and it ends with written decisions.",
-    "Every decision has one owner, one next action and one due date, and open items are read first at the next review.",
+    "Every decision names one responsible person, the next step and a due date, and open items are read first at the next review.",
     "Each measure has one written definition and one data source, so the number does not change with the person who runs it.",
     "Every quarter the compliance contact reports to the owner, the forecast is redone and the scorecard is compared with outside benchmarks."
    ],
@@ -281,7 +281,7 @@
    "vendor_refs": [
     {
      "item": "performance-system-start-here",
-     "note": "Sound rule: every open item has one owner, one next action and one due date, reviewed weekly and monthly. Built for a front desk with appointments, and gives no targets."
+     "note": "Sound rule: every open case needs a single named owner, a next step and a deadline, checked weekly and monthly. Built around front-desk appointments, and gives no targets."
     },
     {
      "item": "billing-department-performance-management-playbook",
@@ -289,7 +289,7 @@
     },
     {
      "item": "practice-financial-intelligence-playbook",
-     "note": "Four-week monthly cycle ending in an owner briefing that asks for decisions, plus a 14-measure dashboard. Office-practice assumptions, and several figures are unsourced."
+     "note": "Four-week monthly cycle with an owner briefing in week three that asks for decisions, plus a 14-measure dashboard. Office-practice assumptions, and several figures are unsourced."
     },
     {
      "item": "denial-control-kit-workbook",
@@ -315,7 +315,7 @@
      "cadence": "quarterly",
      "benchmark_best": "12 of 12",
      "benchmark_red": "fewer than 4 of 12",
-     "benchmark_note": "Guidance, not measurement. The American Academy of Family Physicians' journal (2009) describes a monthly review. Office of Inspector General guidance (2023) expects compliance reports to the owner at least quarterly. No survey of actual meeting frequency was found.",
+     "benchmark_note": "Guidance, not measurement. A 2009 article in the American Academy of Family Physicians' journal describes a monthly financial review. The red line follows the 2023 Office of Inspector General advice that compliance be reported to the owner at least quarterly. No survey found.",
      "confidence": "medium",
      "sources": [
       "aafp-vital-signs",

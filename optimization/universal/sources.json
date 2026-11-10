@@ -2320,7 +2320,7 @@
   "year": "2026",
   "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0501/Sections/0501.171.html",
   "kind": "primary",
-  "note": "Notice to affected individuals no later than 30 days after determining a breach. Notice to the Department of Legal Affairs when 500 or more people in Florida are affected. A third-party agent must notify the covered entity within 10 days."
+  "note": "Notice to affected individuals no later than 30 days after determining a breach. Notice to the Department of Legal Affairs when 500 or more people in Florida are affected. A third-party agent must notify the covered entity within 10 days. A practice that gives notice as its federal regulator's rules require (for a medical practice, the HIPAA breach rule) is deemed to meet the Florida notice requirement, and must still send a timely copy to the Department of Legal Affairs when the breach is large enough to require one."
  },
  {
   "slug": "cfr-1001-1901",
@@ -2942,5 +2942,266 @@
   "url": "https://data.cms.gov/sites/default/files/2026-05/MUP_PHY_RY26_P02_YTD24_HCCs_508.xlsx",
   "kind": "primary",
   "note": "2024, Original Medicare users of Part B services: average risk score 1.145, median 0.728, 75th percentile 1.28, 90th percentile 2.347."
+ },
+ {
+  "slug": "raffoul-panel-2016",
+  "title": "Raffoul M, Moore M, Kamerow D, Bazemore A. A Primary Care Panel Size of 2500 Is neither Accurate nor Reasonable. J Am Board Fam Med 2016;29(4):496-499",
+  "publisher": "Journal of the American Board of Family Medicine",
+  "year": "2016",
+  "url": "https://doi.org/10.3122/jabfm.2016.04.150317",
+  "kind": "secondary",
+  "note": "Review from the Robert Graham Center: the often-quoted panel of 2,500 patients arose anecdotally with no research basis, and later studies found it infeasible. Abstract read through PubMed."
+ },
+ {
+  "slug": "ahrq-cgcahps-chartbook-2019",
+  "title": "CAHPS Clinician and Group Survey Database: 2019 Chartbook",
+  "publisher": "Agency for Healthcare Research and Quality",
+  "year": "2020",
+  "url": "https://www.ahrq.gov/sites/default/files/wysiwyg/cahps/cahps-database/2019_cg_cahps_chartbook.pdf",
+  "kind": "primary",
+  "note": "Adult Survey 3.0 combined results from 2,002 practice sites and 330,390 respondents, surveys collected January 2019 to June 2020: access 65%, provider communication 85%, office staff 79%, care coordination 74%, provider rated 9 or 10 by 79%. Published October 2020."
+ },
+ {
+  "slug": "oig-heat-training",
+  "title": "HEAT Provider Compliance Training",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2011",
+  "url": "https://oig.hhs.gov/compliance/provider-compliance-training/",
+  "kind": "primary",
+  "note": "Free video series (about four minutes each) and 16 webcast modules recorded May 18, 2011, covering fraud and abuse laws, compliance program basics, exclusions and documentation. Predates the 2025 change to the overpayment rule. Read November 10, 2026."
+ },
+ {
+  "slug": "aaa-medmal-types-2008",
+  "title": "Types of Medical Malpractice Insurance Policies (fact sheet)",
+  "publisher": "American Academy of Actuaries",
+  "year": "2008",
+  "url": "https://actuary.org/wp-content/uploads/2017/11/medmal_fact_march08.4.pdf",
+  "kind": "secondary",
+  "note": "Occurrence policies cover events during the policy period whenever the claim is reported. Claims-made policies cover events on or after the retroactive date that are reported during the policy period. Gaps are closed by extended reporting (tail) coverage from the expiring insurer or prior acts (nose) coverage from the next one."
+ },
+ {
+  "slug": "cfr-29-2510-3-3",
+  "title": "29 CFR 2510.3-3: Employee benefit plan (plans without employees)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-29/section-2510.3-3",
+  "kind": "primary",
+  "note": "A plan that covers only a sole owner, an owner and spouse, or partners is not an employee benefit plan under title I of the Employee Retirement Income Security Act, so the bonding rule reaches plans that cover employees. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "fedreg-rin-0945-aa22",
+  "title": "Federal Register documents filed under RIN 0945-AA22 (HIPAA Security Rule update)",
+  "publisher": "Office of the Federal Register",
+  "year": "2026",
+  "url": "https://www.federalregister.gov/api/v1/documents.json?conditions%5Bregulation_id_number%5D=0945-AA22&order=newest",
+  "kind": "primary",
+  "note": "Queried November 10, 2026: the only document under this rulemaking number is the proposed rule of January 6, 2025 (document 2024-30983). No final rule had been published."
+ },
+ {
+  "slug": "fedreg-pfs-2027-final",
+  "title": "Medicare and Medicaid Programs; CY 2027 Payment Policies Under the Physician Fee Schedule (final rule, CMS-1848-F, 91 FR 70992)",
+  "publisher": "CMS, Federal Register",
+  "year": "2026",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2026-11-09/html/2026-22743.htm",
+  "kind": "primary",
+  "note": "Published November 9, 2026, effective January 1, 2027. Removes the Security Risk Analysis measure from the Promoting Interoperability category beginning with the 2027 performance period by amending 42 CFR 414.1375(b)(2)(ii)(A) to apply only through the 2028 payment year. States that the January 2025 HIPAA Security Rule proposal had not been finalized. Makes no change to 42 CFR 401.305, the self-referral rules or the nursing facility visit rules."
+ },
+ {
+  "slug": "oig-work-plan",
+  "title": "Work Plan",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/reports/work-plan/",
+  "kind": "primary",
+  "note": "The work planning process is dynamic and projects are added through the year, so the list is not an annual document. Archives cover 1997 to 2024. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-tpe-qa",
+  "title": "Targeted Probe and Educate (TPE) Q&As",
+  "publisher": "CMS",
+  "year": "2018",
+  "url": "https://www.cms.gov/Research-Statistics-Data-and-Systems/Monitoring-Programs/Medicare-FFS-Compliance-Programs/Medical-Review/Downloads/TPE-QAs.pdf",
+  "kind": "primary",
+  "note": "Answer 9: the error percentage that counts as a high denial rate varies with the service under review and may vary by contractor, and moving to another round depends on improvement from round to round. The PDF carries no date in its text; its file was created May 24, 2018. Linked from the CMS program page. Read November 10, 2026."
+ },
+ {
+  "slug": "ngs-tpe-2022",
+  "title": "Targeted Probe and Educate (presentation by National Government Services to an HFMA chapter, winter 2022)",
+  "publisher": "National Government Services (Medicare Administrative Contractor), hosted by HFMA",
+  "year": "2022",
+  "url": "https://www.hfma.org/wp-content/uploads/2023/07/nationalgovernmentservices-compliancewinter2022-mari.pdf",
+  "kind": "secondary",
+  "note": "One contractor's description of its own process, presented December 1, 2022 by its Part A outreach staff: a payment error rate under about 15% after a round ends the review, over about 15% leads to education and another round. Non-responses count as errors and the rate is not adjusted for appeal results. Slides, not policy, and may have changed. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-qso-22-15",
+  "title": "QSO-22-15-NH & NLTC & LSC: Update to COVID-19 Emergency Declaration Blanket Waivers for Specific Providers",
+  "publisher": "CMS Center for Clinical Standards and Quality",
+  "year": "2022",
+  "url": "https://www.cms.gov/files/document/qso-22-15-nh-nltc-lsc.pdf",
+  "kind": "primary",
+  "note": "Memo of April 7, 2022. Ended, 30 days after publication, the waivers of 42 CFR 483.30 that had let nursing home physician visits be done by telehealth, let any required visit be delegated, and let physicians delegate tasks they must do personally. The in-person rule therefore comes from the facility regulation, apart from Medicare's telehealth payment limits. Read November 10, 2026."
+ },
+ {
+  "slug": "cfr-45-149-430",
+  "title": "45 CFR 149.430 and 149.30: Provider and facility disclosure of patient protections against balance billing; definitions",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-149.430",
+  "kind": "primary",
+  "note": "A provider who furnishes services at a hospital, hospital outpatient department, critical access hospital or ambulatory surgical center must give commercially insured patients a one-page notice of balance billing protections, post it and put it on any website. The provider is covered if the facility does this under a written agreement. Providers who do not work at such facilities are exempt. Text read through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "healthicity-survey-2017",
+  "title": "2017 Healthcare Compliance and Auditing Survey Report",
+  "publisher": "Healthicity (compliance software vendor)",
+  "year": "2017",
+  "url": "https://www.healthicity.com/hubfs/healthicity/Resources/Surveys/2017%20Auditing%20And%20Compliance%20Annual/2017%20Healthcare%20Compliance%20and%20Audting%20Survey%20Report%20-%20Healthicity.pdf",
+  "kind": "secondary",
+  "note": "Vendor survey of compliance and auditing staff: 88% said their organization had a formal compliance program and 12% said it did not, and half of the 12% worked in small physician practices of 1 to 25 physicians. Self-selected respondents and old data, so it gives no rate for small practices. Read November 10, 2026."
+ },
+ {
+  "slug": "cfr-455-410",
+  "title": "42 CFR 455.410: Enrollment and screening of providers (Medicaid)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-455.410",
+  "kind": "primary",
+  "note": "Paragraph (d): the state Medicaid agency must allow enrollment of all Medicare-enrolled providers and suppliers for processing claims for Medicare cost sharing, even for provider types the state does not otherwise recognize. Read through the eCFR API, November 10, 2026."
+ },
+ {
+  "slug": "advancedmd-claim-scrubbing",
+  "title": "Claim scrubbing (product page)",
+  "publisher": "AdvancedMD",
+  "year": "2026",
+  "url": "https://www.advancedmd.com/medical-billing/software/claims-management/claims-scrubbing/",
+  "kind": "secondary",
+  "note": "Vendor marketing: guarantees a minimum 95% first-pass clean claim acceptance rate. Cited only as an example of where the 95% convention is repeated. No data given. Read November 10, 2026."
+ },
+ {
+  "slug": "cfr-424-36",
+  "title": "42 CFR 424.36: Signature requirements (Medicare claims)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.36",
+  "kind": "primary",
+  "note": "The beneficiary signs the claim authorization. If the beneficiary cannot, a guardian, a relative who handles their affairs, or a representative of an institution that gave other care may sign. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-422-62",
+  "title": "42 CFR 422.62: Election of coverage under an MA plan",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.62",
+  "kind": "primary",
+  "note": "Paragraph (a)(4): a person living in a long-term care facility may at any time join a Medicare Advantage plan, change plans or return to Original Medicare. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-423-38",
+  "title": "42 CFR 423.38: Enrollment periods (Medicare Part D)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-423.38",
+  "kind": "primary",
+  "note": "Paragraphs (c)(4) and (c)(35): people with the low-income subsidy may move into a stand-alone drug plan once a month, and full-benefit dually eligible people may move into an integrated plan once a month. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cms-mln-check-eligibility",
+  "title": "Checking Medicare Eligibility (MLN8816413)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2025",
+  "url": "https://www.cms.gov/files/document/mln8816413-checking-medicare-eligibility.pdf",
+  "kind": "primary",
+  "note": "Fact sheet dated November 2025. A check needs the Medicare number, name and birth date. The answer shows Medicare Advantage plan, Medicare Secondary Payer, hospice and skilled nursing periods and Qualified Medicare Beneficiary status."
+ },
+ {
+  "slug": "cms-getting-mbis",
+  "title": "Getting MBIs: how providers get patients' Medicare Beneficiary Identifiers",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/training-education/partner-outreach-resources/new-medicare-card/getting-mbis",
+  "kind": "primary",
+  "note": "The Medicare contractor's portal looks up a Medicare number from first name, last name, birth date and Social Security number. Page last modified September 10, 2024. Read November 10, 2026."
+ },
+ {
+  "slug": "conifer-kpi-2023",
+  "title": "Top KPIs Physician Practices Should be Monitoring (white paper hosted by MGMA)",
+  "publisher": "Conifer Health Solutions",
+  "year": "2023",
+  "url": "https://www.mgma.com/getkaiasset/64027d0a-cff9-43c6-8b43-17d6588d2413/PRCM-KPIWhitePaper-Final-19April23.pdf",
+  "kind": "secondary",
+  "note": "Vendor white paper. Source of the 98% insurance verification target, for which it cites a trade press article and no data."
+ },
+ {
+  "slug": "cms-0057-fact-sheet",
+  "title": "CMS Interoperability and Prior Authorization Final Rule (CMS-0057-F) fact sheet",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/cms-interoperability-prior-authorization-final-rule-cms-0057-f",
+  "kind": "primary",
+  "note": "Dated January 17, 2024. Medicare Advantage, Medicaid and CHIP payers must decide prior authorization requests in 72 hours (urgent) or seven calendar days (standard) and give a specific reason for denials, generally from January 1, 2026. Marketplace plans are excluded from the time limits. Drugs are excluded."
+ },
+ {
+  "slug": "cfr-422-568",
+  "title": "42 CFR 422.568: Standard timeframes and notice requirements for organization determinations (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.568",
+  "kind": "primary",
+  "note": "Paragraph (b)(1)(ii): from January 1, 2026, seven calendar days for a standard request subject to the prior authorization rules. The plan may extend by up to 14 days in limited cases. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cfr-422-572",
+  "title": "42 CFR 422.572: Timeframes and notice requirements for expedited organization determinations (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.572",
+  "kind": "primary",
+  "note": "Paragraph (a)(1): an expedited decision is due no later than 72 hours after the request. Read through the eCFR API, text in effect November 6, 2026."
+ },
+ {
+  "slug": "cms-ffs-prior-auth",
+  "title": "Prior Authorization and Pre-Claim Review Initiatives (Medicare fee-for-service)",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/data-research/monitoring-programs/medicare-fee-service-compliance-programs/prior-authorization-and-pre-claim-review-initiatives",
+  "kind": "primary",
+  "note": "Current Original Medicare programs: certain hospital outpatient department services, repetitive scheduled non-emergency ambulance transport, certain equipment and supplies, and review demonstrations. Page last modified September 15, 2025."
+ },
+ {
+  "slug": "va-community-care-claims",
+  "title": "Submitting claims for Veteran care (Community Care)",
+  "publisher": "U.S. Department of Veterans Affairs",
+  "year": "2026",
+  "url": "https://www.va.gov/COMMUNITYCARE/revenue-ops/Veteran-Care-Claims.asp",
+  "kind": "primary",
+  "note": "All non-urgent and non-emergent care requires authorization from VA in advance. Emergency care can be authorized if VA is notified within 72 hours. Page last updated October 20, 2026."
+ },
+ {
+  "slug": "medicare-gov-hmo",
+  "title": "Health Maintenance Organization (HMO) plans",
+  "publisher": "Medicare.gov (CMS)",
+  "year": "2026",
+  "url": "https://www.medicare.gov/health-drug-plans/health-plans/your-coverage-options/HMO",
+  "kind": "primary",
+  "note": "In most HMO plans the member chooses a primary care doctor and in most cases needs a referral to use a specialist. Read November 10, 2026."
+ },
+ {
+  "slug": "cms-gfe-sample",
+  "title": "Sample Good Faith Estimate for Uninsured (or Self-Pay) Individuals",
+  "publisher": "CMS",
+  "year": "2023",
+  "url": "https://www.cms.gov/files/document/nsa-sample-good-faith-estimate.pdf",
+  "kind": "primary",
+  "note": "Revision dated August 2023. Shows the required content. Providers need not use this exact form if theirs includes the required information. The model notices are listed on the CMS No Surprises resources page."
+ },
+ {
+  "slug": "cms-gfe-uninsured-fact-sheet",
+  "title": "What is Considered \"Health Insurance\"? Determining When Uninsured (or Self-Pay) Good Faith Estimate Rules Apply",
+  "publisher": "CMS",
+  "year": "2024",
+  "url": "https://www.cms.gov/files/document/fact-sheet-what-is-considered-health-insurance.pdf",
+  "kind": "primary",
+  "note": "File dated December 2024. No estimate is required for services scheduled fewer than 3 business days ahead. People covered by Medicare, Medicaid or another federal program are not entitled to an estimate, even for services the program does not cover."
  }
 ]

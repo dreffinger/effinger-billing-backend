@@ -2651,18 +2651,18 @@
   "quality_score": 3,
   "specificity_score": 3,
   "practice_relevance_score": 3,
-  "summary": "A single-topic deadline alert. It says CMS reissued the Advance Beneficiary Notice of Noncoverage (Form CMS-R-131) in March 2026 with a 60-day changeover, so that from May 12, 2026 a notice given on the prior version no longer lets a practice bill the patient after a Medicare denial. It gives a basic account of what the notice does, names three...",
+  "summary": "Deadline alert: the renewed Medicare ABN form (CMS-R-131) became mandatory May 12, 2026 after a 60-day changeover. Explains the notice's purpose, three common errors (old version, late signature, use outside Original Medicare) and three same-day actions. Date corroborated by secondary sources; scope and legal effect are overstated; no modifiers, citations or tools.",
   "top_ideas": [
-   "Keep a register of every government-mandated patient notice the practice uses: form number, version identifier, source link, date installed, next expected renewal.",
-   "Record the date and evidence of each compliance template change.",
-   "Give the notice before the service with time to decide; never afterwards and never as a routine blanket form.",
-   "Gate ABN use on payer type: Original Medicare only."
+   "Keep a register of mandated patient notices with version identifier, source link, install date and next renewal, and check it on a schedule.",
+   "Gate ABN use on payer type: Original Medicare only; Medicare Advantage members need the plan's own coverage determination.",
+   "Deliver the notice before the service with time to decide; never afterwards and never as a blanket waiver.",
+   "Look back at Medicare medical-necessity and frequency denials and check each for a valid notice and the right modifier."
   ],
   "red_flags": [
-   "Scope error: the issue says a notice must be given whenever Medicare may deny a service as 'not covered, or otherwise excluded' and that without one there is no way...",
-   "Overstated finality: 'legally unenforceable', 'not appealable', 'gone'. What an invalid notice costs is the ability to shift liability to the patient under the limitation-on-liability rules (Social Security Act section 1879)....",
-   "One-day ambiguity it does not acknowledge: secondary sources found by web search on 2026-11-10 agree on OMB approval on March 13, 2026 and a changeover ending May 12, 2026, but...",
-   "'Download the current version dated March 2026': the form carries an OMB expiration date in its footer (reported as 03/31/2029), not a March 2026 issue date. Staff told to look..."
+   "Says an ABN is required for any non-covered or excluded service; for statutory exclusions it is voluntary and the patient can be billed without one.",
+   "Absolute wording ('legally unenforceable', 'not appealable') overstates: the denial stays appealable, and secondary sources differ on May 12 versus May 13.",
+   "Tells staff to find a form 'dated March 2026'; the form is identified by its OMB expiration date (reported as 03/31/2029).",
+   "No modifiers, dual-eligible or representative-signature guidance and no citation; 'courts have consistently held' is unsourced; the tools sit behind a paid product."
   ],
   "domains": [
    "compliance-risk",
@@ -2689,18 +2689,18 @@
   "quality_score": 2,
   "specificity_score": 3,
   "practice_relevance_score": 1,
-  "summary": "A one-topic how-to urging small practices to use the No Surprises Act arbitration process (Federal IDR) for underpaid out-of-network claims. Its hook is that clinicians win about 80% of disputes, credited to unnamed CMS data. It frames the decision as a $115 fee plus staff time against the payment gap, suggests batching small claims, summarises the Texas Medical Association litigation...",
+  "summary": "How-to pitch for No Surprises Act arbitration: an 80% provider win rate, a $115 fee, the pending QPA lawsuit, four 'statutory factors' and a 90-day remittance screen. It misses the final rule published five days earlier, misstates negotiation timing and two factors, and omits arbitrator fees and scope limits. Almost irrelevant to this practice's payer mix.",
   "top_ideas": [
-   "Before pursuing any dispute or appeal, do the arithmetic: likely recovery times realistic odds, minus every fee and the staff time.",
-   "Screen remittances on a schedule for payments below the expected amount, using a rule (eligible claim type plus dollar threshold) to build a worklist.",
-   "In final-offer arbitration, submit the figure most likely to beat the other side's and back it with evidence on the factors the decision-maker may weigh.",
-   "Keep a dated watch list of open rulemaking and litigation, and keep meeting running deadlines meanwhile."
+   "Do expected-value arithmetic before any dispute or appeal: recovery times realistic odds, minus all fees and staff time.",
+   "Screen remittances on a schedule for payments below the expected amount, using a claim-type filter plus a dollar threshold.",
+   "In final-offer arbitration submit the figure most likely to be chosen, not the highest defensible one.",
+   "Keep a dated watch list of rulemaking and litigation built from primary sources, and keep meeting running deadlines meanwhile."
   ],
   "red_flags": [
-   "Missed the main news. A web search on 2026-11-10 of law-firm and CMS summaries shows the Federal IDR Operations final rule was announced May 28, 2026 and published June 4,...",
-   "$115 fee: the same sources report the administrative fee fell to $15 per party for disputes initiated on or after June 11, 2026, two days after the issue date.",
-   "Cost math is incomplete. Besides the administrative fee, each side fronts the certified arbitrator's fee (a few hundred dollars to over $1,000 depending on entity and batching) and the loser...",
-   "Open-negotiation timing is wrong. Under 45 CFR 149.510 a party must send an open-negotiation notice within 30 business days of the initial payment or denial, and the 30-business-day negotiation period..."
+   "Dated June 9, 2026 yet ignores the IDR Operations final rule published June 4; its $115 fee reportedly fell to $15 on June 11.",
+   "Open-negotiation timing is wrong: 30 business days from when the notice is sent, itself due within 30 business days of payment; 'you can still file' misleads.",
+   "Two of four 'statutory factors' are misstated, and the cost math omits the arbitrator fee the losing party forfeits.",
+   "States no scope limits: the process excludes Medicare, Medicare Advantage, Medicaid, VA, Tricare and non-hospital settings, so it barely touches this practice."
   ],
   "domains": [
    "rcm-claims-ar",
@@ -2727,23 +2727,179 @@
   "quality_score": 3,
   "specificity_score": 3,
   "practice_relevance_score": 4,
-  "summary": "An evergreen how-to on losing claims to payer filing deadlines; it reports no news. It lists typical limits by payer type (Medicare 12 months, commercial 90 to 180 days, Medicaid 90 days to 24 months, Medicare Advantage 90 to 180 days), says the clock runs from the date of service and that a rejected submission does not preserve the deadline,...",
+  "summary": "Evergreen how-to on filing deadlines with no news: typical limits by payer type, four exposure points (rejections, secondary claims, eligibility errors, credentialing delays), a daily-rejection and deadline-flag workflow, triage for aged claims and a weekly audit. Workflow is sound; legal statements are partly wrong (contract-not-law, Medicaid 24 months, denial finality).",
   "top_ideas": [
-   "Work every clearinghouse and payer front-end rejection on the day it appears, with one named owner and a daily cut-off.",
-   "Hold a sourced payer limit table: initial filing, corrected claim, secondary claim and appeal windows, each with its source document and the date it was checked.",
-   "Stamp each claim with its filing deadline when it is created, and stamp the secondary deadline when the primary is sent.",
-   "Flag aging claims by share of the filing window used (60%, 80%, 90%) and send the last tier to a human."
+   "Work every clearinghouse and payer front-end rejection the day it appears, with one named owner.",
+   "Stamp each claim with its payer-specific filing deadline at creation, and the secondary deadline when the primary is sent.",
+   "Flag aging claims by share of filing window used (60/80/90%) plus a days-remaining floor, and escalate the last tier to a human.",
+   "Maintain a sourced, dated payer limit table covering initial, corrected, secondary and appeal windows; code late-filing write-offs by root cause."
   ],
   "red_flags": [
-   "'Set by contract, not by law' is wrong. Original Medicare's limit is statutory (Affordable Care Act section 6404; 42 CFR 424.44: one calendar year after the date of service). Federal...",
-   "Medicaid 'up to 24 months' conflicts with the 12-month federal ceiling for initial claims; longer periods exist only for exceptions such as Medicare crossovers, retroactive eligibility and court-ordered payment.",
-   "The date-of-service clock is stated as universal. Secondary claims are commonly measured from the primary payer's decision or remittance date, and wrong-payer cases often run from when the correct insurer...",
-   "Rejections and denials are blurred. A front-end rejection or unprocessable claim does not count as filed, but an adjudicated denial (for example for a missing modifier) usually has its own..."
+   "'Set by contract, not by law' is wrong: Medicare's one-year limit is statutory and federal rules cap Medicaid filing at 12 months.",
+   "Medicaid range of 'up to 24 months' conflicts with the 12-month federal ceiling for initial claims.",
+   "Blurs rejections with denials, which usually have separate correction and appeal windows; says denials are final, then offers an exception route.",
+   "Offers patient billing after late filing and mentions billing under another provider's NPI without the compliance warnings both need; no news content or sources."
   ],
   "domains": [
    "rcm-claims-ar",
    "rcm-front-end",
    "payers-contracts",
+   "technology-data-ai"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-07",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 07: PA Rules Changed. Here's Your New Workflow.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 591,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 3,
+  "practice_relevance_score": 2,
+  "summary": "How-to issue claiming federal prior authorization rules changed on 1 January 2026 (72-hour urgent and 7-day standard payer decisions, mandatory FHIR electronic authorization) and turning that into desk routines: log submission dates, flag urgent requests, check vendor support, document late responses. Names the rule but omits which payers are covered and states the electronic duty a year early.",
+  "top_ideas": [
+   "Keep a provable submission record (date, channel, payer reference number) for every authorization request so a missed payer deadline can be shown.",
+   "Run expedited requests on a separate flagged path with written clinical urgency criteria.",
+   "Set an internal reminder two days before the payer's decision deadline and log deadline misses by plan.",
+   "Ask EHR and clearinghouse vendors what electronic authorization they support now and for the January 2027 payer interface deadline."
+  ],
+  "red_flags": [
+   "Says payers must already support FHIR electronic prior authorization; the federal API compliance date is January 1, 2027.",
+   "Applies the 72-hour and 7-day limits to all payers; they bind only Medicare Advantage, Medicaid and CHIP plans, exclude drugs, and never touch commercial plans or traditional Medicare.",
+   "Says the rule was finalized January 1, 2026; it was issued January 2024. Also wrong that no decision timelines existed before 2026.",
+   "Relies on an unnamed CMS complaint mechanism; omits deadline extensions, appeal as the real remedy, and the denial-reason and public-reporting duties that began in 2026."
+  ],
+  "domains": [
+   "rcm-front-end",
+   "payers-contracts",
+   "technology-data-ai",
+   "compliance-risk"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Little of it fits a facility-based practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-08",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 08: How to Read an EOB Like a Payer Auditor",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 639,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 4,
+  "summary": "Primer on reviewing remittances before posting: compare allowed amounts with the contracted fee schedule, separate contractual write-offs from patient responsibility, watch for repeat shortfalls by procedure code, test bundling denials against NCCI edits, and chase zero-payment lines. Sensible but basic; no news, dates, numbers or sources, one mislabelled code, and it assumes manual EOB reading rather than electronic remittances.",
+  "top_ideas": [
+   "Hold each payer's contracted fee schedule and compare every allowed amount against it at line level before accepting a contractual write-off.",
+   "Track shortfalls by payer and procedure code; a repeat on the same code is a systemic underpayment to dispute.",
+   "Put zero-payment lines in a review queue instead of letting them post as write-offs.",
+   "Check group codes and line balancing before posting so write-offs and patient or secondary balances are never swapped."
+  ],
+  "red_flags": [
+   "Labels CO-B15 a bundling flag; it means a required qualifying service was not received or adjudicated, which a distinct-service modifier does not fix.",
+   "Check 3 benchmarks allowed against billed charges, which proves nothing; only the contracted or fee-schedule amount is a valid comparator.",
+   "Claims payers often issue zero-pay lines with no reason code; electronic remittances must balance with coded adjustments, and no evidence is given.",
+   "Offers modifier 59 and X modifiers as a fix with no documentation or audit-risk warning; ignores Qualified Medicare Beneficiary and secondary-payer handling of patient responsibility."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "payers-contracts",
+   "rcm-charge-coding",
+   "compliance-risk"
+  ],
+  "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-09",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 09: Denied Claims Nobody Appealed: The $20K/Month Math Most Practices Ignore",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 956,
+  "list_price_usd": 0,
+  "quality_score": 2,
+  "specificity_score": 2,
+  "practice_relevance_score": 4,
+  "summary": "How-to on appealing denials: which categories to pursue or skip, a four-part appeal letter, a weekly 30-minute review, a template library for the top five reason codes and deadline logging on receipt. The headline's $20K-a-month calculation never appears (the text says $2,500), no deadlines or appeal levels are given, and several routes are wrong for Medicare.",
+  "top_ideas": [
+   "Triage denials by expected return into appeal, corrected claim, rebill to the right payer, or prevention only.",
+   "Build appeals in four parts: exact denial reason and policy cited, documentation answering each criterion, governing coverage authority, explicit request for reversal and payment.",
+   "Log every denial with its appeal deadline on the day it arrives; review new denials on a fixed cycle by reason code with named owners.",
+   "Maintain appeal templates and documentation checklists for the highest-volume denial reason codes."
+  ],
+  "red_flags": [
+   "Headline promises $20K-a-month math; the text has no calculation and cites only $2,500 a month. Neither figure is sourced.",
+   "Tells readers to appeal duplicate denials and resubmit corrected claims; for traditional Medicare, exact duplicates carry no appeal rights and denied claims need reopening or redetermination.",
+   "Names the AMA as a specialty society with clinical guidelines and ignores Medicare coverage determinations, the controlling authority for Medicare and Medicare Advantage appeals.",
+   "Calls deadline tracking non-negotiable but states no appeal deadline or level; time-saving and success-rate figures are unsourced."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "payers-contracts",
+   "rcm-charge-coding",
+   "people-compensation"
+  ],
+  "verdict": "Unreliable on rules and numbers. Use only as a list of topics. Fits this practice.",
+  "claims_checked": 0,
+  "claims_supported": 0,
+  "claims_partly": 0,
+  "claims_contradicted": 0,
+  "claims_outdated": 0,
+  "claims_unverifiable": 0
+ },
+ {
+  "slug": "news-insider-10",
+  "vendor": "CleanClaimRx",
+  "bundle": "Free newsletter",
+  "title": "Insider News 10: Payer Underpayments Are Not Denials. That's Why You're Missing Them.",
+  "doc_type": "Newsletter issue",
+  "pages": null,
+  "words": 1008,
+  "list_price_usd": 0,
+  "quality_score": 3,
+  "specificity_score": 3,
+  "practice_relevance_score": 4,
+  "summary": "A how-to issue, not a news issue. It separates a contractual adjustment (charge minus contracted rate) from an underpayment (payer pays less than the contracted rate) and argues that underpayments vanish because posting zeroes the balance in one step. The method: hold each payer's contracted fee schedule in the practice-management system, compare payments with the contracted rate by code, payer...",
+  "top_ideas": [
+   "Run underpayments as their own work queue, separate from denials and from contractual write-offs, by testing each remittance line against the expected allowable.",
+   "Keep a dated rate table for every payer inside the billing system or the agents' own database, and refresh it whenever a contract or the Medicare schedule changes.",
+   "Check every paid line automatically instead of a 25 to 30 claim sample, and keep a small human-reviewed sample as a control test of the automation.",
+   "Sort shortfalls into one-off errors and repeating patterns, and send each repeating pattern to the payer once as a project listing all affected claims and total dollars."
+  ],
+  "red_flags": [
+   "The audit compares the payment received with the contracted rate. The valid comparison is the payer's allowed amount against the contracted allowable: payment is net of deductible, coinsurance and copay,...",
+   "The '3 to 7 percent leakage' figure has no source and is written as if introduced earlier ('the 3 to 7 percent'); it appears nowhere else in the saved text.",
+   "A 25 to 30 claim sample is called statistically meaningful with no basis. Spread over several payers and codes it gives a handful of claims per payer-code pair and cannot...",
+   "The modifier list mixes unlike things. Modifiers 59 and 91 do not themselves carry a payment reduction, and where a plan halves a modifier-25 visit it is usually a published..."
+  ],
+  "domains": [
+   "rcm-claims-ar",
+   "payers-contracts",
+   "rcm-charge-coding",
    "technology-data-ai"
   ],
   "verdict": "A usable outline. Check every rule and number before acting. Fits this practice.",

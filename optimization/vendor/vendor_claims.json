@@ -4278,5 +4278,165 @@
   "kind": "program_rule",
   "stakes": "high",
   "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-07:C1",
+  "item_slug": "news-insider-07",
+  "claim": "As of January 1, 2026, CMS finalized its Prior Authorization rule under the CMS Interoperability and Prior Authorization Final Rule",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-07:C2",
+  "item_slug": "news-insider-07",
+  "claim": "Urgent PA requests: Payers must now respond within 72 hours. Standard PA requests: Payers must respond within 7 calendar days.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-07:C3",
+  "item_slug": "news-insider-07",
+  "claim": "Electronic PA (ePA): Covered payers must now support electronic prior authorization through standardized HL7 FHIR APIs.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-07:C4",
+  "item_slug": "news-insider-07",
+  "claim": "CMS has a complaint mechanism, and patterns of non-compliance are being tracked.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-07:C5",
+  "item_slug": "news-insider-07",
+  "claim": "The 72-hour window only kicks in if the request is properly marked urgent.",
+  "kind": "program_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-08:C1",
+  "item_slug": "news-insider-08",
+  "claim": "CO (Contractual Obligation) adjustments are write-offs. PR (Patient Responsibility) codes mean the patient owes it.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-08:C2",
+  "item_slug": "news-insider-08",
+  "claim": "The CO-45 adjustment, Charges exceed your contractual amount, gets accepted at face value every single day.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-08:C3",
+  "item_slug": "news-insider-08",
+  "claim": "Bundling Flags (CO-97 / CO-B15) ... CO-97 means the service is included in another allowance.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-08:C4",
+  "item_slug": "news-insider-08",
+  "claim": "If an unbundling modifier applies, 59, XE, XS, XU, XP, and wasn't on the claim, that's a corrected claim waiting to happen.",
+  "kind": "code_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-08:C5",
+  "item_slug": "news-insider-08",
+  "claim": "An EOB line with a $0.00 payment and no denial code is a data entry ghost, and payers produce them more often than you think.",
+  "kind": "other",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-09:C1",
+  "item_slug": "news-insider-09",
+  "claim": "Denied Claims Nobody Appealed: The $20K/Month Math Most Practices Ignore (title) versus: The appeal program that recovers $2,500 per month does not require new staff or new software.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-09:C2",
+  "item_slug": "news-insider-09",
+  "claim": "If your practice submitted one claim and the payer denied it as a duplicate, the denial is a payer error... submit the appeal with the clearinghouse confirmation of single submission, and recover the payment.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-09:C3",
+  "item_slug": "news-insider-09",
+  "claim": "Modifier missing, wrong place of service code, procedure and diagnosis mismatch, these denials are frequently correctable on resubmission and should never be written off without a corrected claim submission.",
+  "kind": "program_rule",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-09:C4",
+  "item_slug": "news-insider-09",
+  "claim": "Find the clinical practice guideline from the relevant specialty society, AMA, AAFP, ACS, specialty-specific, that supports medical necessity for the denied service.",
+  "kind": "regulatory",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-09:C5",
+  "item_slug": "news-insider-09",
+  "claim": "These denials have high appeal success rates when the documentation is complete and the appeal is written in the payer's clinical language.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-10:C1",
+  "item_slug": "news-insider-10",
+  "claim": "The dispute window is typically 90 to 180 days from the payment date, check your contract.",
+  "kind": "deadline",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-10:C2",
+  "item_slug": "news-insider-10",
+  "claim": "If your new contracted rate is higher than the old rate and claims from January are processing at December rates, every one of those claims is an underpayment.",
+  "kind": "payment_rate",
+  "stakes": "high",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-10:C3",
+  "item_slug": "news-insider-10",
+  "claim": "Your contract may specify full payment for a 25-modifier evaluation and management service performed on the same day as a procedure. The payer's system may apply a 50 percent reduction by default.",
+  "kind": "code_rule",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-10:C4",
+  "item_slug": "news-insider-10",
+  "claim": "That gap is where the 3 to 7 percent leakage lives.",
+  "kind": "statistic",
+  "stakes": "medium",
+  "verdict": "not checked"
+ },
+ {
+  "id": "news-insider-10:C5",
+  "item_slug": "news-insider-10",
+  "claim": "Systematic errors are recoverable retroactively, often back to the date the error began.",
+  "kind": "legal",
+  "stakes": "medium",
+  "verdict": "not checked"
  }
 ]
