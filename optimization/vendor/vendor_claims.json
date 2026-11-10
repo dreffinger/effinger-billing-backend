@@ -117,7 +117,12 @@
   "claim": "Per the January 28, 2026 Federal Register update (91 FR 3672): Tier 1 $145-$73,011, cap $36,505; Tier 2 $1,461-$73,011, cap $146,053; Tier 3 $14,602-$73,011, cap $365,052; Tier 4 $73,011-$2,190,294, cap $2,190,294.",
   "kind": "penalty",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Per-violation ranges and the $2,190,294 figure match the HHS rule of January 28, 2026 (91 FR 3665, HIPAA rows at 3672), still current on 2026-11-10. That rule sets a $2,190,294 calendar-year cap for every tier; the lower Tier 1-3 caps are unofficial inflation-adjusted figures from OCR's 2019 enforcement-discretion notice ($25,000, $100,000, $250,000), not Federal Register amounts.",
+  "source_title": "HHS, Annual Civil Monetary Penalties Inflation Adjustment, 91 FR 3665 (Jan. 28, 2026), amending 45 CFR 102.3; OCR Notification of Enforcement Discretion, 84 FR 18151 (Apr. 30, 2019)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-2026-01-28/html/2026-01688.htm",
+  "confidence": "high",
+  "practice_impact": "Exposure figures are right for 2026, but the low annual caps are OCR policy that can be withdrawn without rulemaking; the binding cap is $2,190,294 per provision per year."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C2",
@@ -125,7 +130,12 @@
   "claim": "As of the 2026 Unified Agenda the Security Rule proposal is not final; HHS moved it to its Long-Term Actions agenda and now targets July 2027 for final action, past the originally anticipated May 2026 date.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. The Security Rule proposal (RIN 0945-AA22; 90 FR 898, January 6, 2025) is not final as of 2026-11-10; 45 CFR part 164 was last amended in 2024. The 2026 Unified Agenda lists it under Long-Term Actions with final action 07/2027; the Spring 2025 agenda had it at Final Rule Stage with final action 05/2026. Agenda dates are non-binding targets.",
+  "source_title": "OIRA/Reginfo.gov Unified Agenda, RIN 0945-AA22, HIPAA Security Rule to Strengthen the Cybersecurity of Electronic Protected Health Information (2026 and Spring 2025 editions)",
+  "source_url": "https://www.reginfo.gov/public/do/eAgendaViewRule?pubId=202510&RIN=0945-AA22",
+  "confidence": "high",
+  "practice_impact": "The existing Security Rule still governs; proposed mandates (multi-factor authentication, encryption, asset inventory, annual compliance audit) are not yet enforceable, though OCR still enforces risk analysis now."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C3",
@@ -133,7 +143,12 @@
   "claim": "The risk analysis must be conducted at implementation of any new billing technology, on significant changes, and, under current OCR guidance and the proposed NPRM, at least annually.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The current Security Rule requires an accurate and thorough risk analysis, updated as needed when the environment or operations change; it sets no fixed interval, and OCR's guidance says frequency varies by entity. Only the unfinalized 2025 proposal would require review at least every 12 months. MIPS Promoting Interoperability separately requires a yearly analysis or review.",
+  "source_title": "45 CFR 164.308(a)(1)(ii)(A), 164.306(e), 164.316(b)(2)(iii) (eCFR); HHS Security Rule NPRM, 90 FR 898 (Jan. 6, 2025); OCR Guidance on Risk Analysis (2010) as quoted; NIST SP 800-66r2",
+  "source_url": "https://www.ecfr.gov/current/title-45/section-164.308",
+  "confidence": "high",
+  "practice_impact": "Annual review is sound practice and is needed each year for the MIPS attestation, but it is not a current HIPAA mandate; OCR penalizes absent or stale analyses, not a missed anniversary."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C4",
@@ -141,7 +156,12 @@
   "claim": "Receive and document the BA's breach notification. Note the date of receipt, this starts the covered entity's own notification clock.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "True only when the business associate is an independent contractor. If it acts as the practice's agent under federal common law of agency, its discovery is imputed to the practice and the 60-day clock runs from the day the business associate discovered (or should have discovered) the breach, not from receipt of its notice (45 CFR 164.404(a)(2); 78 FR 5655).",
+  "source_title": "HHS Omnibus Final Rule, 78 FR 5566, 5655-5656 (Jan. 25, 2013); 45 CFR 164.404(a)(2) and 164.410 (eCFR)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-2013-01-25/html/2013-01073.htm",
+  "confidence": "high",
+  "practice_impact": "A billing company working under the practice's direction may be an agent; if it sits on a breach for weeks, the practice's 60 days may already be running. The agreement should require notice within days."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C5",
@@ -149,7 +169,12 @@
   "claim": "Breaches involving fewer than 500 individuals are reported to HHS annually, by March 1 of the year after discovery; the practice must keep a written log and submit it by that date.",
   "kind": "deadline",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Deadline right in substance: breaches under 500 individuals must be reported to HHS within 60 days after the end of the calendar year of discovery (March 1, 2027 for 2026 discoveries; February 29 in leap years such as 2028). The log is kept internally for six years, not submitted: each breach is reported individually through OCR's online breach portal.",
+  "source_title": "45 CFR 164.408(c) (eCFR); HHS Omnibus Final Rule, 78 FR 5566, 5654 (Jan. 25, 2013)",
+  "source_url": "https://www.ecfr.gov/current/title-45/section-164.408",
+  "confidence": "high",
+  "practice_impact": "Misdirected statements or claim files that qualify as breaches each need their own portal entry by March 1, 2027, plus patient notice within 60 days of discovery; keep the log six years."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C6",
@@ -157,7 +182,12 @@
   "claim": "Review each BAA: does it postdate January 25, 2013 (Omnibus Rule effective date)? A BAA that was signed before the 2013 Omnibus Rule does not meet current requirements.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "January 25, 2013 is the Omnibus Rule's publication date, not its effective date (March 26, 2013; compliance date September 23, 2013). Agreements signed before January 25, 2013 were grandfathered only until September 22, 2014 at the latest, so an unrevised one is presumptively deficient today, but compliance turns on the agreement's content (45 CFR 164.504(e)), not its signature date.",
+  "source_title": "HHS Omnibus Final Rule, 78 FR 5566 (Jan. 25, 2013); 45 CFR 164.532(d)-(e) and 164.504(e) (eCFR)",
+  "source_url": "https://www.ecfr.gov/current/title-45/section-164.532",
+  "confidence": "high",
+  "practice_impact": "Audit each billing, clearinghouse and IT vendor agreement for the required terms (breach reporting, Security Rule compliance, subcontractor flow-down); a post-2013 date alone does not prove compliance."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C7",
@@ -165,7 +195,12 @@
   "claim": "The permissible fee is a cost-based fee covering the labor to copy and the supplies used, not a flat fee or a per-page fee; $1 per page likely exceeds the limit for electronic records.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The patient-access fee must be reasonable and cost-based: only labor for copying, supplies, postage, and an agreed summary. A flat fee is allowed: OCR guidance accepts up to $6.50 for electronic copies of electronic records in lieu of calculating cost, and rejects per-page charges for such records. State caps such as Florida's $1 per page are only a ceiling.",
+  "source_title": "45 CFR 164.524(c)(4) (eCFR); HHS Privacy Rule NPRM, 86 FR 6446, 6469-70 (Jan. 21, 2021) describing OCR's 2016 Access Guidance; Omnibus Rule, 78 FR 5566, 5636; Fla. Admin. Code R. 64B8-10.003",
+  "source_url": "https://www.ecfr.gov/current/title-45/section-164.524",
+  "confidence": "high",
+  "practice_impact": "A simple compliant policy for portal or emailed billing and chart copies is a flat fee of $6.50 or less (or free); charging Florida's $1 per page to patients for electronic records invites an OCR complaint."
  },
  {
   "id": "hipaa-revenue-cycle-playbook:C8",
@@ -173,7 +208,12 @@
   "claim": "A covered entity must provide access within 30 days of the request, with a single 30-day extension on written notice; OCR's Right of Access Initiative, launched in 2019, has produced more than 54 enforcement actions.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. A covered entity must act on an access request within 30 days of receipt, with one extension of up to 30 days if, within the first 30 days, it gives the individual a written statement of the reasons and a completion date (45 CFR 164.524(b)(2)). OCR's Right of Access Initiative reached its 56th enforcement action in October 2026.",
+  "source_title": "45 CFR 164.524(b)(2) (eCFR, last amended 2014); HIPAA Journal reports of OCR announcements, Aug. 28 and Oct. 9, 2026 (HHS press pages could not be fetched)",
+  "source_url": "https://www.ecfr.gov/current/title-45/section-164.524",
+  "confidence": "high",
+  "practice_impact": "Requests for billing records count. A 2021 proposal to cut the deadline to 15 days is still pending at final-rule stage, and OCR's first case under the initiative was a Florida hospital."
  },
  {
   "id": "medicare-abn-compliance-playbook:C1",
@@ -413,7 +453,12 @@
   "claim": "To diagnose front-end failures, filter denials for CO-4 (service inconsistent with modifier), CO-16 (information missing), CO-22 (coordination of benefits), CO-27 (expenses after coverage terminated) and PR-27 (expenses incurred prior to coverage date).",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Four descriptors are close to X12 wording (4, 16, 22, 27). 'PR-27' is wrong: code 27 always means expenses incurred after coverage terminated; 'prior to coverage' is code 26. Code 4 is a modifier (coding) error, not a registration error, and the list omits the missing-authorization code, 197. The 30% trigger has no published source.",
+  "source_title": "X12 External Code Source 139, Claim Adjustment Reason Codes (retrieved Nov. 10, 2026); First Coast Service Options, 'Tips to prevent RUC CO4' (Sept. 16, 2026)",
+  "source_url": "https://x12.org/codes/claim-adjustment-reason-codes",
+  "confidence": "high",
+  "practice_impact": "A denial filter built on this list would miss prior-to-coverage denials (code 26) and authorization denials (197), and would count modifier errors as registration failures."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C2",
@@ -421,7 +466,12 @@
   "claim": "Clearinghouse rejections: if ANSI error codes 004 (subscriber not eligible), 005 (invalid subscriber ID), or 021 (missing required information) exceed 40% of rejection volume, you have a registration accuracy problem.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No ANSI X12 code set gives 004 or 005 those meanings. As interchange (TA1) codes, 004, 005 and 021 are file-format errors. As claim status codes, 4 and 5 were retired in 2008 and 21 is 'Missing or invalid information'. Subscriber rejections use status codes such as 33, 88, 109 or 164. The 40% threshold has no published source.",
+  "source_title": "X12 External Code Source 508, Claim Status Codes, and Claim Status Category Codes (retrieved Nov. 10, 2026); Indiana Health Coverage Programs TA1/999 5010 Companion Guide v1.8; First Coast 5010 reject code lookup help guide (June 26, 2025)",
+  "source_url": "https://x12.org/codes/claim-status-codes",
+  "confidence": "high",
+  "practice_impact": "Staff sorting a rejection report by these numbers would mislabel rejections; Florida Medicare rejections arrive as category, status and entity codes (for example A7:164:IL), and clearinghouse numbers are vendor-specific."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C3",
@@ -429,7 +479,12 @@
   "claim": "Medicare Advantage prior authorization requirements that exceed clinical guidelines and medical necessity criteria that differ from published LCDs are payer design choices; cross-payer denial comparisons support a complaint to the state insurance commissioner.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Since 2024 Medicare Advantage plans must follow national and local coverage determinations and may add criteria only where Medicare's are not fully established; prior authorization may only confirm diagnoses or medical necessity. State insurance regulators have no authority over these complaints: federal law preempts them. Providers complain to CMS through its online form, opened December 22, 2025.",
+  "source_title": "42 CFR 422.101, 422.138 and 422.402 (eCFR current to Nov. 6, 2026); CMS HPMS memo, 'Complaints Tracking Module Updates for Managing Provider Complaints' (Dec. 22, 2025) and CMS Provider Complaints Form page (modified Feb. 18, 2026); Florida DFS Division of Consumer Services",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.101",
+  "confidence": "high",
+  "practice_impact": "High: most of a Florida geriatrics practice's denials are Medicare Advantage; a state complaint goes nowhere, while criteria stricter than the local coverage determination are a federal violation reportable to CMS."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C4",
@@ -437,7 +492,12 @@
   "claim": "Contracted payment terms for most commercial payers are 30 days for electronic claims; a payer consistently exceeding them can be escalated, and state insurance commissioners take timely payment violations seriously.",
   "kind": "legal",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Thirty days is a common benchmark, not a rule. Florida law gives state-regulated insurers and HMOs 20 days to pay, deny or contest an electronic claim (40 days paper), with 12% interest when overdue, and contracts cannot waive it. State regulators cannot act on self-funded employer plans (71% of covered workers in 2026), Medicare or Medicare Advantage.",
+  "source_title": "Fla. Stat. 627.6131 and 641.3155 (2026); 42 CFR 422.520 and 422.402 (eCFR current to Nov. 6, 2026); KFF 2026 Employer Health Benefits Survey, section 10; Florida DFS Division of Consumer Services",
+  "source_url": "https://www.flsenate.gov/Laws/Statutes/2026/627.6131",
+  "confidence": "high",
+  "practice_impact": "Limited: a Medicare and Medicare Advantage practice has little state-regulated commercial volume; late Medicare Advantage payment is a CMS or contract matter, not one for the Florida regulator."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C5",
@@ -445,7 +505,12 @@
   "claim": "Quarterly write-off audits can recover timely filing write-offs where the payer may accept a late filing with documentation of prior submission attempts; recovery rates on audited write-offs typically run 10 to 20 percent.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Commercial and Medicare Advantage plans reverse timely-filing denials only on proof the claim was received and accepted within the limit; rejected submissions do not count. Original Medicare accepts no such proof: only four regulatory exceptions extend its one-year deadline, and unprocessable claims were never filed. The 10-20% recovery figure has no traceable published source.",
+  "source_title": "42 CFR 424.44 (eCFR current to Nov. 6, 2026); First Coast Service Options timely filing FAQ; 2026 UnitedHealthcare Care Provider Administrative Guide, ch. 10 'Proof of claim timely filing'",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "medium",
+  "practice_impact": "For Florida Medicare claims a timely-filing write-off is almost never recoverable; budget no 10-20% recovery, and keep payer acceptance reports for Medicare Advantage claims."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C6",
@@ -453,7 +518,12 @@
   "claim": "Current published data (2024-2025) puts the national average patient collection rate at about 34% to 48%; 45-50% or better is strong, target-level performance and 80% or more is top-quartile.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 34-48% range matches Kodiak Solutions' hospital and health-system data, not a national average for physician practices: insured patients paid 34.5% of balances in 2024 on one measure, and 45.1% (2024) and 42.4% (2025) on another. No published benchmark makes 45-50% a target or 80% the top quartile; physician-office balances, being smaller, are collected at higher rates.",
+  "source_title": "Kodiak Solutions, 'State of the healthcare revenue cycle' (Mar. 2026) and RCA benchmarking analysis (Feb. 2025); Ippolito et al., JAMA Health Forum 2025;6(8):e252284 (via PubMed, doi:10.1001/jamahealthforum.2025.2284); Chernew and Bush, Health Affairs Forefront (May 4, 2017)",
+  "source_url": "https://kodiaksolutions.cdn.prismic.io/kodiaksolutions/ac_GVpGXnQHGZP-S_KPIBenchmarkingReportMar2026.pdf",
+  "confidence": "medium",
+  "practice_impact": "Hospital figures are a poor yardstick for a nursing-facility practice whose patient balances are mostly Part B coinsurance paid by Medigap or Medicaid; the tiers are vendor labels, not benchmarks."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C7",
@@ -461,7 +531,12 @@
   "claim": "Cost-to-collect benchmarks for independent practices range from 3% to 8%; a best-in-class range of roughly 2% to 4% is commonly cited by HFMA for the most efficient revenue cycle operations.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "No published benchmark sets 3-8% for independent practices. An AAFP estimate from MGMA survey data put billing costs at 4% to 8.9% of net revenue; billing companies charge roughly 4-10% of collections; a JAMA study measured 14.5% for primary care visits. HFMA's figures (2% best practice, about 3.5-3.7% average) are hospital benchmarks using a narrower cost definition.",
+  "source_title": "HFMA, 'Ask the Expert Answer: Calculating Cost-to-Collect' (updated Nov. 29, 2022); HFMA MAP Keys FM-6; Ask FPM, Fam Pract Manag 2004;11(7):63; Physicians Practice, 'Outsourcing Your Billing' (Feb. 1, 2010); Tseng et al., JAMA 2018;319(7):691-697 (via PubMed, doi:10.1001/jama.2017.19148); TechTarget on HFMA survey (Sept. 15, 2022)",
+  "source_url": "https://www.hfma.org/revenue-cycle/kpis/7284/",
+  "confidence": "medium",
+  "practice_impact": "A small Medicare practice landing above 4% is not failing against a real benchmark; the 2-4% stretch target is a hospital figure that omits coding and IT costs."
  },
  {
   "id": "kpi-action-guide-vol1-core10:C8",
@@ -469,7 +544,12 @@
   "claim": "Without a formal charge reconciliation process, the gap between encounters and charges is typically 1% to 3% of total encounter volume.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published study or benchmark gives a 1-3% encounter-to-charge gap; the figure has no traceable origin. Reference points: a 2018 MD Anderson internal audit of clinics lacking full reconciliation found unbilled open encounters under 1% of annual encounters; HFMA consultants put hospital charge-capture loss at up to 1% of net revenue; a 2008 trade article claimed 3-5% of practice revenue.",
+  "source_title": "No traceable source for the 1-3% figure. UT MD Anderson Cancer Center Internal Audit 17-101, 'Charge Capture - Houston Area Locations' (Feb. 8, 2018); HFMA, 'Capturing All Charges: the Operational Reality' (Sept. 20, 2019); Physicians Practice, 'Billing Problems? Consider Your Charge Ticket' (Nov. 1, 2008)",
+  "source_url": "https://utsystem.edu/sites/default/files/documents/ut-system-reports/2018/utmdacc-charge-capture-houston-area-locations-report/utmdacc-charge-capture-houston-area-locations-report.pdf",
+  "confidence": "medium",
+  "practice_impact": "Reconciling facility visit logs against charges is worthwhile for nursing-home rounding, but measure the practice's own gap; do not plan revenue recovery around an unsourced 1-3%."
  },
  {
   "id": "kpi-action-guide-vol2-specialty:C1",
@@ -477,7 +557,12 @@
   "claim": "Medicare allows retroactive claims submission for dates of service during the enrollment period under specific conditions.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. For physicians and non-physician practitioners, billing privileges begin on the later of the date the contractor received an application it later approved or the date services began at the location, and billing may reach back up to 30 days earlier (90 for a declared disaster). Earlier services are unpayable; claims are due within one year. Unchanged for 2027.",
+  "source_title": "42 CFR 424.520, 424.521 and 424.44 (eCFR current to Nov. 6, 2026); First Coast Service Options, 'Determining your Medicare effective date' (Feb. 18, 2026); CY 2027 Physician Fee Schedule final rule, 91 FR 70992 (Nov. 9, 2026) (no amendment to these sections)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.521",
+  "confidence": "high",
+  "practice_impact": "A new clinician's nursing-facility visits are payable only from the application receipt date (or 30 days before); file the application before or on the first day of rounds and hold claims until approval."
  },
  {
   "id": "kpi-action-guide-vol2-specialty:C2",
@@ -1613,7 +1698,12 @@
   "claim": "CARC 16 (claim lacks information) or CARC 252 (referring/ordering provider not found): missing NPI, missing authorization number, or incomplete claim data. This is a claim completion problem, usually a practice management system configuration issue.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "CARC 16 is right: 'Claim/service lacks information or has submission/billing error(s).' CARC 252 is wrong: X12 defines it as 'An attachment/other documentation is required to adjudicate this claim/service.' Missing NPI is CARC 206-208; an ineligible referring or ordering provider is 183/184. Medicare reports missing referring/ordering names or NPIs as CO-16 with remark codes N264/N265/N285/N286.",
+  "source_title": "X12 External Code Source 139, Claim Adjustment Reason Codes (retrieved Nov. 10, 2026); CMS Medicare Claims Processing Manual (Pub. 100-04) ch. 1 §§80.3.1-80.3.2.1.2 (Rev. 13725, Apr. 10, 2026)",
+  "source_url": "https://x12.org/codes/claim-adjustment-reason-codes",
+  "confidence": "high",
+  "practice_impact": "A CARC 252 denial means the payer wants records or an attachment, so send documentation instead of changing PM settings; Medicare CO-16 returns flagged unprocessable (alert N211) cannot be appealed and must be corrected and resubmitted within one year of service."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C2",
@@ -1621,7 +1711,12 @@
   "claim": "CARC 96 (non-covered charge) or CARC 167 (this diagnosis is not covered) is a front-end coverage verification failure or a diagnosis code problem; CARC 96, 167 and 272 are grouped as 'coverage and eligibility' front-end denial patterns.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The descriptors for CARC 96 and 167 match X12, and CARC 272 is 'Coverage/program guidelines were not met.' All three are coverage codes; none is an eligibility code. Eligibility and wrong-payer denials carry CARC 26, 27, 31, 177, 109, 22 or 24. In Florida Medicare, CARC 96 mostly marks statutorily excluded services, which eligibility checks cannot prevent.",
+  "source_title": "X12 Claim Adjustment Reason Codes (retrieved Nov. 10, 2026); First Coast Service Options, 'Top claim errors' (Aug. 14, 2026), 'Tips to prevent CARC PR 96' (Feb. 16, 2026), 'Tips to prevent RUC CO 24' (June 29, 2026) and 'RUC CO 109' (Mar. 12, 2025)",
+  "source_url": "https://medicare.fcso.com/claims/top-claim-errors",
+  "confidence": "high",
+  "practice_impact": "Same-day eligibility checks will not cut CARC 96/167/272 denials; they prevent CO-24 (Medicare Advantage enrollment), CO-109 (Part A skilled nursing stay or wrong contractor), CO-22 (Medicare secondary) and B9 (hospice), which the vendor's list omits."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C3",
@@ -1629,7 +1724,12 @@
   "claim": "CARC 50 (non-covered services because this is not deemed a 'medical necessity' by the payer) is a documentation or medical-necessity-criteria problem, not a prior-authorization problem.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "The CARC 50 wording matches X12, and missing authorization has its own codes (197, 198, 284, 39). Two caveats: Florida's Medicare contractor issues CO/PR-50 when the billed diagnosis is not covered under an LCD or NCD, so it is usually a diagnosis-to-policy mismatch; and a Medicare Advantage plan may not deny for medical necessity a service it prior-authorized.",
+  "source_title": "X12 Claim Adjustment Reason Codes (retrieved Nov. 10, 2026); First Coast Service Options, 'Tips to prevent CARC CO 50/PR 50' (Feb. 21, 2025); eCFR 42 CFR 422.138 (current as of Nov. 6, 2026); Medicare Claims Processing Manual ch. 30 §50",
+  "source_url": "https://medicare.fcso.com/claims/denials-tips/co-pr-50",
+  "confidence": "medium",
+  "practice_impact": "For Medicare visits, check the diagnosis against First Coast LCDs and NCDs and obtain a signed ABN when denial is expected, because without proper notice the patient cannot be billed; for Medicare Advantage, cite any prior-authorization approval in the appeal."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C4",
@@ -1637,7 +1737,12 @@
   "claim": "CARC 197 (precertification/authorization/notification absent): the claim was submitted without an authorization that this payer requires; either a workflow failure or a policy change making authorization newly required.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "CARC 197 is the no-authorization code. Its current X12 wording, since May 1, 2018, is 'Precertification/authorization/notification/pre-treatment absent.' Related codes the vendor omits: 198 (authorization exceeded), 284 (number valid but does not apply to the billed services) and 39 (denied when authorization was requested). Old CARC 15 was retired May 1, 2018.",
+  "source_title": "X12 External Code Source 139, Claim Adjustment Reason Codes (retrieved Nov. 10, 2026)",
+  "source_url": "https://x12.org/codes/claim-adjustment-reason-codes",
+  "confidence": "high",
+  "practice_impact": "Usable as written for Medicare Advantage and commercial plans; Original Medicare requires no prior authorization for nursing-facility or office visits, so CARC 197 should appear only on plan claims. Track 198 and 284 with it."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C5",
@@ -1645,7 +1750,12 @@
   "claim": "CARC 18 (duplicate claim) or CARC 97 (payment included in another service): your billing team is submitting the same claim twice, or the payer considers a billed service bundled into another.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Both descriptors match X12 in substance: CARC 18 is 'Exact duplicate claim/service' and CARC 97 means the benefit is included in the payment for another adjudicated service. They ranked first and second among First Coast's Part B denials for April-June 2026. Duplicates also come from repeat services lacking modifiers and refiled whole claims; Medicare reports NCCI bundling under CARC 236.",
+  "source_title": "X12 Claim Adjustment Reason Codes (retrieved Nov. 10, 2026); First Coast Service Options, 'Top claim errors' (Aug. 14, 2026), 'Tips to prevent CARC OA18' (June 29, 2026), 'Tips on how to avoid billing a duplicate claim' (Nov. 1, 2024); Medicare Claims Processing Manual ch. 1 §120",
+  "source_url": "https://medicare.fcso.com/claims/top-claim-errors",
+  "confidence": "high",
+  "practice_impact": "Directly relevant: these were First Coast's two most common Part B denials in April-June 2026. Resubmit only corrected lines or use a SPOT clerical reopening, let the first claim finish processing before rebilling, and add repeat-service modifiers for same-day repeat services."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C6",
@@ -1653,7 +1763,12 @@
   "claim": "CARC 29 (the time limit for filing has expired): the claim was submitted after the payer's timely filing deadline. This is a charge entry lag problem.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "CARC 29 is quoted correctly. Charge-entry lag is only one cause: rejected or corrected claims resubmitted late, wrong-payer billing and late secondary claims also trigger it. Original Medicare allows one calendar year from the service date; Florida law gives six months for state-regulated insurers and HMOs (90 days after the primary's determination for secondary claims).",
+  "source_title": "X12 Claim Adjustment Reason Codes; eCFR 42 CFR 424.44 (current as of Nov. 6, 2026); First Coast, 'Tips to prevent RUC CO 16' (Mar. 12, 2025); Fla. Stat. 627.6131(3)(b) and 641.3155(2)(b) (2026); Marting R, 'The Cure for Claims Denials,' Fam Pract Manag 2015;22(2):7-10",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "high",
+  "practice_impact": "With a one-year Medicare limit, CARC 29 in a mostly Medicare practice more likely means rejected claims never resubmitted or services first billed to the wrong payer than slow charge entry; work the rejection queue, and watch the shorter plan deadlines."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C7",
@@ -1661,7 +1776,12 @@
   "claim": "In a typical practice with eight to twelve contracted payers, the top two denial-generating payers account for 60 to 70 percent of total denial volume.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published source gives this figure; it reads as a vendor rule of thumb. Public denial data report denial rates by payer, not a practice's top-two share. That share mostly tracks claim volume: in a Medicare-heavy practice the largest payer leads denial counts even with a low rate. Rank payers by denial rate against their share of claims instead.",
+  "source_title": "KFF, 'Claims Denials and Appeals in ACA Marketplace Plans in 2024' (Mar. 24, 2026); searches of MGMA, HFMA, HBMA, AAPC and trade press, Nov. 10, 2026",
+  "source_url": "https://www.kff.org/patient-consumer-protections/claims-denials-and-appeals-in-aca-marketplace-plans-in-2024/",
+  "confidence": "medium",
+  "practice_impact": "Little: do not treat 60-70% as a benchmark. A geriatrics practice billing mainly Original Medicare and a few Medicare Advantage plans should expect its top two payers to produce most denials simply because they produce most claims."
  },
  {
   "id": "kpi-01-denial-rate-by-payer:C8",
@@ -1669,7 +1789,12 @@
   "claim": "Ten re-worked denials per biller per day is sustainable. Fifty is not.",
   "kind": "benchmark",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No industry standard sets these numbers. HFMA's expert panel says productivity should be built from measured time per task; one hospital CFO there reports a follow-up goal of 50-63 accounts worked per day. A DecisionHealth survey found practice coders, alongside other duties, appeal about 4 denials a day (9 in primary care). Set the quota from your own time study.",
+  "source_title": "HFMA, 'Ask the Experts: Billing Staff Metrics' (Oct. 7, 2015; updated Nov. 29, 2022); DecisionHealth, 'Today's Medical Practice Coding Productivity Benchmarks' white paper (survey data through 2016); ACDIS, 'Q&A: Measuring productivity for denials specialists' (Oct. 15, 2020)",
+  "source_url": "https://www.hfma.org/revenue-cycle/kpis/42618/",
+  "confidence": "medium",
+  "practice_impact": "Little: use it only as a starting guess. A clerical correction in First Coast's SPOT portal and a written appeal with records take very different amounts of time, so a single per-day quota misleads; time both task types and set separate targets."
  },
  {
   "id": "kpi-02-clean-claim-rate:C1",
@@ -1685,7 +1810,12 @@
   "claim": "A rejection happens before adjudication: the clearinghouse or payer finds a technical or structural problem and returns the claim without processing it. A denial happens after adjudication.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. In Medicare, a claim with missing or invalid required data is \"returned as unprocessable\": it is not an initial determination, is not denied and carries no appeal rights, so it must be corrected and resubmitted as a new claim. X12 status category A3 likewise means rejected and not entered into the adjudication system. Denials follow adjudication and are appealable.",
+  "source_title": "CMS Medicare Claims Processing Manual (Pub. 100-04) ch. 1 §80.3.1-80.3.2 (Rev. 13725, 04-10-26); First Coast, What you should do with claims returned as unprocessable (2025); X12 Claim Status Category Codes",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+  "confidence": "high",
+  "practice_impact": "First Coast returns defective Part B claims with remark MA130; appealing them wastes up to 60 days and risks the one-year filing limit, so correct and refile as new claims."
  },
  {
   "id": "kpi-02-clean-claim-rate:C3",
@@ -2157,7 +2287,12 @@
   "claim": "For write-offs coded 'denial appeal expired' or 'timely filing', the quarterly recovery review asks: 'Is there a balance transfer to patient responsibility that was never executed?'",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "A missed filing or appeal deadline cannot be shifted to the patient. Medicare: the provider 'may not charge the beneficiary' beyond the deductible and coinsurance otherwise due. Medicare Advantage enrollees may not be held liable beyond plan cost sharing, plan contracts say the same, and Medicaid requires payment in full. Only amounts remittances code as patient responsibility (PR) are billable.",
+  "source_title": "CMS Medicare Claims Processing Manual (Pub. 100-04) ch. 1 §§30.3, 60.5, 70.4 (Rev. 13725, Apr. 10, 2026); Medicare Managed Care Manual ch. 4 §170; eCFR 42 CFR 422.504(g) and 447.15 (current as of Nov. 6, 2026); Fla. Stat. 641.3154 (2026); 2026 UnitedHealthcare Care Provider Administrative Guide; Marting R, Fam Pract Manag 2015;22(2):7-10",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+  "confidence": "high",
+  "practice_impact": "High: billing Medicare, Medicare Advantage or dual-eligible nursing-facility patients for claims the practice filed or appealed late can violate the assignment agreement and plan contracts and require refunds; limit this review step to PR-coded deductible, coinsurance, valid-ABN and excluded-service balances."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C2",
@@ -2165,7 +2300,12 @@
   "claim": "Rejected claims, claims returned before adjudication, restart their AR clock when resubmitted, but the original service date governs the timely filing deadline.",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct on the deadline. A Medicare claim returned as unprocessable is not considered filed, cannot be appealed, and must be resubmitted within one calendar year of the service date; UnitedHealthcare likewise applies its filing limit to corrected claims. Whether the A/R clock restarts is a software setting, not a rule: HFMA ages physician receivables from the date of service.",
+  "source_title": "CMS Medicare Claims Processing Manual ch. 1 §§70.2.3, 80.3.1 (Rev. 13725, Apr. 10, 2026); eCFR 42 CFR 424.44 and 405.926(s); First Coast, 'Tips to prevent RUC CO 16' (Mar. 12, 2025); 2026 UnitedHealthcare Care Provider Administrative Guide; HFMA MAP Keys (2023 ed.)",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+  "confidence": "medium",
+  "practice_impact": "Useful: work First Coast unprocessable returns (CO-16, CO-24, CO-109) promptly and age A/R from the service date so they stay visible. The vendor's 90-day example fits some plan contracts, not Medicare's one-year limit."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C3",
@@ -2173,7 +2313,12 @@
   "claim": "Every denial that is categorized as appealable must have an appeal filed within 30 days of receipt ... A filed appeal stops the clock on the appeal deadline.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Thirty days is an internal target, not law, and filing does not freeze every clock. Medicare allows 120 days from receipt of the determination for a redetermination, then 180 days for reconsideration; Medicare Advantage non-contract providers get 65 days from the remittance date. UnitedHealthcare gives 12 months total for both steps. Medicare's unprocessable and timely-filing denials cannot be appealed.",
+  "source_title": "eCFR 42 CFR 405.926, 405.942, 405.952, 405.962, 405.980, 422.582 (current as of Nov. 6, 2026); CMS, 'Parts C & D Enrollee Grievances, Organization/Coverage Determinations, and Appeals Guidance' (effective July 6, 2026); 2026 UnitedHealthcare Care Provider Administrative Guide (effective Apr. 1, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-405.942",
+  "confidence": "high",
+  "practice_impact": "A 30-day target sits inside the main deadlines here, but calendar each appeal level separately, send clerical errors and duplicate denials to First Coast as reopenings, and correct and resubmit unprocessable claims, since an 'appeal' on those is dismissed while the filing limit keeps running."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C4",
@@ -2181,7 +2326,12 @@
   "claim": "Accounts written off as 'denial appeal expired' may have a secondary recovery path, including 'a small claims or arbitration option for large amounts'.",
   "kind": "legal",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Rarely, and not for Medicare. Medicare denials can be challenged only through the administrative appeals process; a missed deadline is cured only by a good-cause extension or a reopening request. Plan contracts typically make timely internal appeals a precondition to arbitration. Florida small claims court is capped at $8,000, so it is not a forum for large amounts.",
+  "source_title": "42 U.S.C. 405(h) and 1395ii; eCFR 42 CFR 405.942(b), 405.980, 405.1136 (current as of Nov. 6, 2026); 2026 UnitedHealthcare Care Provider Administrative Guide ch. 10; Florida Small Claims Rules (Florida Bar, July 1, 2026); Fla. Stat. 408.7057 (2026); Federal Register notices 2025-21879 and 2026-19016",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-405.1136",
+  "confidence": "medium",
+  "practice_impact": "For a Medicare-heavy practice the real second chances are a good-cause late redetermination request or a reopening request (one year for any reason, four for good cause); federal court requires a Council decision and $1,960 in controversy ($2,000 from 2027). Florida-regulated plans: the state claim dispute program, within 12 months of the plan's final determination."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C5",
@@ -2189,7 +2339,12 @@
   "claim": "Any timely filing write-off is a 100% preventable revenue loss, the claim was never denied for clinical or coverage reasons.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Mostly preventable, not always. Medicare itself recognizes late filings outside the provider's control (contractor error, retroactive entitlement, retroactive Medicaid or Medicare Advantage recoupment) and extends the deadline for them. Florida's six-month clock starts only once the provider has the correct insurer. And a claim never adjudicated was never found payable, so the full amount is not certain lost revenue.",
+  "source_title": "eCFR 42 CFR 424.44(b) and 405.926(n) (current as of Nov. 6, 2026); CMS Medicare Claims Processing Manual ch. 1 §§70.4, 70.7 (Rev. 13725); Fla. Stat. 627.6131(3)(b) (2026); New York State Comptroller, Report 2016-S-50, SUNY Upstate Medical University Billing Practices (Feb. 17, 2017)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "high",
+  "practice_impact": "Before writing off a Medicare timely-filing denial, check for a 424.44(b) exception (relevant to dual-eligible and plan-switching patients) and for proof the original claim was accepted in time; do not count these write-offs as revenue that was certain."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C6",
@@ -2197,7 +2352,12 @@
   "claim": "Bad debt (uncollected patient): below 3% of net revenue is acceptable; 3% to 5% is a warning zone; above 5% of net revenue is the action threshold.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "These bands echo old consultant rules of thumb, not a published benchmark. A 2003 trade article put bad debt at 3-5% with alarm above 5%; a 2014 university audit cited an HFMA target under 2-3% of revenue. Denominators differ (HFMA's metric divides by gross revenue; MGMA's analyses use dollars per physician). Kodiak's 2025 median, hospital-centred, was 1.3%.",
+  "source_title": "Part B Insider (Multispecialty) Coding Alert, 'How to Benchmark Your A/R' (Oct. 6, 2003); UT Southwestern Office of Internal Audit, Report 14:10A (Nov. 19, 2014); HFMA MAP Keys AR-7 (2023 ed.); MGMA, 'Data Mine: Predicting bad debt with key revenue cycle metrics'; Kodiak Solutions release (Mar. 31, 2026)",
+  "source_url": "https://www.aapc.com/codes/coding-newsletters/my-part-b-coding-alert/how-to-benchmark-your-ar-article",
+  "confidence": "medium",
+  "practice_impact": "Use 3% and 5% only as loose alarms. Many nursing-facility patients are dual eligible, and Qualified Medicare Beneficiaries cannot be billed Medicare cost sharing at all, so those balances are not bad debt; the practice's own trend is the better yardstick."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C7",
@@ -2205,7 +2365,12 @@
   "claim": "Timely filing write-offs above 0.5% of gross charges and expired-appeal denial write-offs above 1% of gross charges are action thresholds; preventable write-offs should be less than 5 percent of total write-offs.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published benchmark sets these figures; an HFMA 'Ask the Experts' respondent knew of no industry standard for timely-filing losses. Traceable references use net revenue, not gross charges: an HFMA standard of 1-2% of net patient service revenue for uncollectible write-offs (per a 2017 state audit), a best-practice denial write-off rate under 0.5%, and Kodiak's 2025 median final-denial rate, 2.7%.",
+  "source_title": "HFMA, 'Ask the Experts: Timely filing measurement' (May 14, 2019; updated Nov. 29, 2022); New York State Comptroller Report 2016-S-50 (Feb. 17, 2017); UT Southwestern Office of Internal Audit Report 14:10A (Nov. 19, 2014); HFMA MAP Keys AR-6 (2023 ed.); Kodiak Solutions release (Mar. 31, 2026)",
+  "source_url": "https://www.hfma.org/revenue-cycle/kpis/ask-the-experts-timely-filing-measurement/",
+  "confidence": "medium",
+  "practice_impact": "Treat the cut-offs as the vendor's opinion. They also conflict: a practice sitting at both action thresholds (1.5% of gross charges) still passes the 'under 5% of total write-offs' test whenever total write-offs exceed 30% of charges. Track denial write-offs against net revenue instead."
  },
  {
   "id": "kpi-07-write-off-rate-by-reason:C8",
@@ -2213,7 +2378,12 @@
   "claim": "The recovery rate from these retrospective reviews is typically 10 to 15 percent of the dollar amount reviewed.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published study or benchmark supports a typical 10-15% recovery from retrospective write-off reviews; searches found only vendor marketing. For Medicare, the main payer here, prospects are narrow: untimely-filing denials cannot be appealed, an expired appeal needs a good-cause extension or a discretionary reopening, and the balance cannot be moved to the patient.",
+  "source_title": "eCFR 42 CFR 405.926, 405.942(b), 405.980, 424.44(b) (current as of Nov. 6, 2026); searches of HFMA, MGMA, AAPC and trade press, Nov. 10, 2026",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-405.926",
+  "confidence": "medium",
+  "practice_impact": "Do not budget on 10-15%. In a Medicare-heavy book, recoveries come mainly from clerical-error reopenings, 424.44(b) filing exceptions, proof of timely filing sent to plans and secondary payers never billed; measure one quarter's actual yield before committing staff time."
  },
  {
   "id": "kpi-08-net-collection-rate:C1",
@@ -2221,7 +2391,12 @@
   "claim": "Net Collection Rate = (Payments Received) / (Charges Billed minus Contractual Adjustments).",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "The formula matches AAFP and MGMA: payments net of refunds and credits, divided by charges net of approved contractual adjustments, times 100, ideally over a 12-month window. MGMA's denominator also removes charity and courtesy adjustments. AAFP's floor is 95%, with top performers at 99% or more; the vendor's 97% best-practice label is its own.",
+  "source_title": "AAFP, Managing practice finances (Adjusted collection rate), fetched Nov. 10, 2026; MGMA DataDive Definitions Glossary (2025), 'Adjusted Fee-for-Service Collection Percentage'",
+  "source_url": "https://www.aafp.org/practice-operations/practice-finances",
+  "confidence": "high",
+  "practice_impact": "Formula is safe to use; net out refunds, match payments to the same service period, and never post timely-filing or denial write-offs as contractual, or the rate is flattered."
  },
  {
   "id": "kpi-08-net-collection-rate:C2",
@@ -2229,7 +2404,12 @@
   "claim": "A 5 percent improvement in clean claim rate typically produces a 1 to 2 percent improvement in net collection rate with a 60-day lag.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No MGMA, HFMA or peer-reviewed source links a 5-point clean-claim gain to a 1-2 point net-collection gain or a 60-day lag; the figure has no traceable origin. It assumes 20-40% of non-clean claims are never collected. HFMA's clean claim rate counts claims passing edits before submission, and failed edits are normally fixed, not lost.",
+  "source_title": "No traceable source for the statistic; HFMA MAP Keys, Clean Claim Rate (CL-1) (hfma.org, fetched Nov. 10, 2026); Premier Inc., 'Claims Adjudication Costs Providers $25.7 Billion' (Feb. 24, 2025)",
+  "source_url": "https://www.hfma.org/data-and-insights/map-initiative/map-keys/",
+  "confidence": "medium",
+  "practice_impact": "Do not budget revenue from this ratio; measure the practice's own unpaid-after-denial dollars by payer instead."
  },
  {
   "id": "kpi-08-net-collection-rate:C3",
@@ -2237,7 +2417,12 @@
   "claim": "Patient responsibility is commonly estimated at roughly 20 to 35 percent of net collectible revenue for most practices ... A patient collection rate of 75 percent means ... a direct 5 to 9 percent drag on net collection rate.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The arithmetic follows from its premise, but the premise is inflated. Patients paid 8.5% of U.S. physician and clinical services spending out of pocket in 2024. Measured patient-responsibility shares for insured patients reach about 23-25% of allowed amounts at most; nothing supports 35% or 'most practices'. At realistic shares, 75% patient collection costs roughly 2-6 points.",
+  "source_title": "CMS National Health Expenditure Accounts, Table 8, Physician and Clinical Services Expenditures by Source of Funds (2024 data; nhe-tables.zip downloaded Nov. 10, 2026); Kodiak Solutions benchmarking reports (Mar. and June 2026); Medical Economics on the AMA National Health Insurer Report Card (July 10, 2013); KFF, 'A Snapshot of Sources of Coverage Among Medicare Beneficiaries' (Dec. 19, 2025)",
+  "source_url": "https://www.cms.gov/data-research/statistics-trends-and-reports/national-health-expenditure-data/historical",
+  "confidence": "medium",
+  "practice_impact": "Overstated for facility geriatrics: 87% of traditional Medicare beneficiaries had supplemental coverage in 2023 (KFF) and dual-eligible QMB patients cannot be billed, so patient-pay is a small share of revenue."
  },
  {
   "id": "kpi-08-net-collection-rate:C4",
@@ -2245,7 +2430,12 @@
   "claim": "A practice with a net collection rate of 97 percent ... commands a higher valuation multiple than a peer practice at 89 percent with the same clinical volume.",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No transaction data or valuation standard ties net collection rate to the multiple. Appraisers set the earnings multiple from comparable deals, practice attributes, market factors and perceived risk. Some M&A advisers claim strong revenue-cycle metrics earn a premium multiple but cite no data; buyers also say they pay more for revenue-cycle upside. Higher collections do raise the earnings being valued.",
+  "source_title": "Medical Economics, 'Selling a medical practice: Planning tips for physicians' (Apr. 10, 2026); SovDoc, 'Essential revenue cycle KPIs for healthcare practice owners' (Oct. 23, 2025; adviser marketing, no data); VMG Health, 'How Post-Transaction Physician Compensation Structure Affects Fair Market Value of Physician Practices' (Feb. 22, 2024; copy saved earlier this session, re-fetch returned 403). No reliable source found for the multiple claim.",
+  "source_url": "https://www.medicaleconomics.com/view/selling-a-medical-practice-planning-tips-for-physicians",
+  "confidence": "medium",
+  "practice_impact": "Higher collections raise the earnings a buyer capitalizes; a premium multiple on top is an adviser's sales claim, not a documented market fact, so do not model one."
  },
  {
   "id": "kpi-08-net-collection-rate:C5",
@@ -2253,7 +2443,12 @@
   "claim": "A primary care practice with 45 percent Medicaid volume will have a structurally lower achievable net collection rate ... because Medicaid's lower rates and higher administrative burden create a different collection environment.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Half right. Billing friction does make Medicaid harder to collect: physicians lose an estimated 18% of Medicaid revenue to billing problems versus 4.7% for Medicare and 2.4% for commercial insurers. Lower Medicaid rates are not a reason: net collection rate is measured after contractual adjustments, so fee levels drop out. No benchmark quantifies a 45%-Medicaid ceiling.",
+  "source_title": "Dunn, Gottlieb, Shapiro, Sonnenstuhl & Tebaldi, 'A Denial a Day Keeps the Doctor Away', NBER Working Paper 29010 (rev. Jan. 2023; Quarterly Journal of Economics 2024;139(1):187-233); Gottlieb, Shapiro & Dunn, Health Affairs 2018;37(4):619-626, https://doi.org/10.1377/hlthaff.2017.1325 (PubMed PMID 29608348); AAFP, Managing practice finances",
+  "source_url": "https://www.nber.org/papers/w29010",
+  "confidence": "high",
+  "practice_impact": "Medicaid matters here as the secondary payer for dual eligibles: Florida Medicaid often pays nothing on the Medicare coinsurance (s. 409.908(13)) and QMB patients cannot be billed, so how that write-off is coded moves the rate."
  },
  {
   "id": "kpi-08-net-collection-rate:C6",
@@ -2261,7 +2456,12 @@
   "claim": "The percentage of AR over 120 days is the most predictive leading indicator of net collection rate. [Unworked aged AR] will become write-offs within one to two quarters.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "A/R over 120 days is a recognized collectability indicator (AAFP, HFMA, MGMA), but no source ranks it 'most predictive', and no rule turns aged balances into write-offs in one to two quarters. Medicare claims can be filed for one year after service and denials appealed within 120 days of the notice; Florida-regulated insurers must be billed within six months.",
+  "source_title": "AAFP, Managing practice finances (fetched Nov. 10, 2026); HFMA MAP Keys, Aged A/R (AR-1); MGMA Stat, 'Days in A/R holds steady for most practices, but payer pressure persists in 2026' (July 30, 2026); 42 CFR 424.44 and 405.942; Fla. Stat. 627.6131. No source found for 'most predictive' or the one-to-two-quarter horizon.",
+  "source_url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+  "confidence": "medium",
+  "practice_impact": "Track the over-120 share by payer, but with Medicare's one-year filing window an old balance is often still collectible; work it before writing it off."
  },
  {
   "id": "kpi-08-net-collection-rate:C7",
@@ -2269,7 +2469,12 @@
   "claim": "The decomposition in Section 2 will almost always reveal one component that contributes 40 to 60 percent of the total collection gap.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No MGMA, HFMA or published study supports a 40-60% share for one component; the figure has no traceable origin and reads as a rule of thumb. The nearest data is opinion polling: 48% of medical group leaders named denials and appeals as their largest source of revenue leakage and 23% front-end issues, which says nothing about dollar shares.",
+  "source_title": "No traceable source for the statistic; MGMA Stat, 'Days in A/R holds steady for most practices, but payer pressure persists in 2026' (July 30, 2026), citing the Jan. 6, 2026 MGMA Stat poll",
+  "source_url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+  "confidence": "medium",
+  "practice_impact": "Little: run the decomposition on the practice's own write-off and adjustment codes and rank the components by dollars, without expecting one to dominate."
  },
  {
   "id": "kpi-09-charge-lag:C1",
@@ -2277,7 +2482,12 @@
   "claim": "Every payer has a timely filing deadline - typically 90 days, 180 days, or one year from service date, depending on the payer.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Broadly right, but several limits are set by law, not the payer. Medicare fee-for-service: one calendar year from the date of service. Medicaid: 12 months. Florida-regulated insurers and HMOs: six months by statute, secondary claims 90 days after the primary's determination, not waivable by contract. Contracted Medicare Advantage and commercial limits are commonly 90 or 180 days.",
+  "source_title": "42 CFR 424.44 and 447.45 (eCFR current to Nov. 6, 2026); Fla. Stat. 627.6131 and 641.3155 (2026); First Coast timely filing FAQ; Cigna 'When to File Your Claims' (fetched Nov. 10, 2026); UnitedHealthcare 2026 Care Provider Administrative Guide; Humana 2026 Provider Manual; Fla. Admin. Code r. 59G-1.052(15)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "high",
+  "practice_impact": "Medicare allows one year and Florida Medicaid crossover claims at least 12 months; the short clocks sit in contracted Medicare Advantage agreements (often 90 to 180 days), so read each contract."
  },
  {
   "id": "kpi-09-charge-lag:C2",
@@ -2285,7 +2495,12 @@
   "claim": "some Medicare Advantage plans require submission within 90 days, some commercial payers within 60 days",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "True for some plans. Wellpoint Medicare Advantage gives participating providers 90 days and nonparticipating providers 12 months; Humana's Medicare default is one year. Sixty-day commercial limits exist but are rare (Magellan's behavioral-health standard); Cigna's participating-provider limit is 90 days. Claims to Florida-regulated insurers and HMOs are due within six months, and a contract cannot shorten that.",
+  "source_title": "Wellpoint Medicare Advantage Reimbursement Policy G-06050, Claims Timely Filing (approved 06/03/2025; April 2026 print); Magellan Health, Claims Filing Procedures (fetched Nov. 10, 2026); Fla. Stat. 627.6131 and 641.3155 (2026); UnitedHealthcare 2026 Administrative Guide; Humana 2026 Provider Manual",
+  "source_url": "https://www.provider.wellpoint.com/docs/gpp/WLP_CARE_RP_ClaimsTimelyFiling.pdf",
+  "confidence": "medium",
+  "practice_impact": "Florida statute gives six months for state-regulated insurers and HMOs (self-funded and Medicare Advantage plans are outside it); the real exposure is 90-day clauses in contracted Medicare Advantage agreements."
  },
  {
   "id": "kpi-09-charge-lag:C3",
@@ -2293,7 +2508,12 @@
   "claim": "For any service within 30 days of its timely filing deadline: enter the charge immediately and submit the claim the same day, regardless of documentation completeness; most payers allow medical record submissions to support pending claims.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Federal guidance and Florida Medicaid law say the opposite: document, then bill. Medicare expects services documented when rendered; OIG says submit claims only when documentation supports them; Florida Medicaid claims must rest on records made at the time of service. Payers accept records on pended claims (Medicare 45 days, Florida insurers 35), but these must already support the codes billed.",
+  "source_title": "OIG Compliance Program Guidance for Third-Party Medical Billing Companies, 63 FR 70138 (Dec. 18, 1998) and for Individual and Small Group Physician Practices, 65 FR 59434 (Oct. 5, 2000); Medicare Program Integrity Manual (PIM) Ch. 3 s.3.3.2.5 (Rev. 13971); Medicare Claims Processing Manual Ch. 12 s.30.6.1.A; 42 U.S.C. 1395l(e); Fla. Stat. 409.913(7)(f) and 627.6131(4)(c) (2026); First Coast, Responding to ADRs (Sept. 22, 2026)",
+  "source_url": "https://www.govinfo.gov/content/pkg/FR-1998-12-18/html/98-33565.htm",
+  "confidence": "high",
+  "practice_impact": "Dangerous for a Medicare-heavy facility practice: billing nursing-facility or hospital visits before the note is complete invites denial, repayment and possible False Claims Act exposure. Finish the note, then file."
  },
  {
   "id": "kpi-09-charge-lag:C4",
@@ -2301,7 +2521,12 @@
   "claim": "A claim that misses the timely filing deadline because someone was waiting for a complete note is not recoverable at any documentation quality level.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for Medicare: a late-filing denial is not an initial determination and cannot be appealed, and the four extensions (Medicare error, retroactive entitlement, Medicaid recoupment, retroactive Medicare Advantage disenrollment) do not cover a provider's own delay. The patient can be charged only the usual deductible and coinsurance. Commercial plans generally reconsider only with proof of timely submission or extraordinary circumstances.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) Ch. 1 ss.70.4, 70.7 (Rev. 12909; chapter Rev. 13725, 04-10-26); 42 CFR 424.44(b) and 405.926(n) (eCFR current to Nov. 6, 2026); First Coast timely filing FAQ; Cigna 'When to File Your Claims'; UnitedHealthcare 2026 Care Provider Administrative Guide",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+  "confidence": "high",
+  "practice_impact": "A late Medicare claim forfeits the Medicare payment and cannot be shifted to the patient; the fix is same-week notes, not filing claims on unfinished documentation."
  },
  {
   "id": "kpi-09-charge-lag:C5",
@@ -2309,7 +2534,12 @@
   "claim": "Same day or next day (0-1 days) is best practice; 1-2 days acceptable; 3-5 days is the action threshold; above 5 days is a significant problem.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "No MGMA or HFMA standard sets these tiers; they are the vendor's. MGMA (July 2026) advises closing encounters within 72 hours and posting charges within two days, against a three- to seven-day lag across the sector. HFMA counts a charge as late when posted more than 3 days after service. Same-day entry is a stretch goal.",
+  "source_title": "MGMA Stat, 'Days in A/R holds steady for most practices, but payer pressure persists in 2026' (July 30, 2026); HFMA MAP Keys, Total Charge Lag Days (PB-4) and Late Charges as a Percentage of Total Charges (CL-2) (hfma.org, fetched Nov. 10, 2026); MGMA DataDive Practice Operations Data Report (Aug. 2023)",
+  "source_url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+  "confidence": "high",
+  "practice_impact": "Facility rounding charges usually lag office charges; MGMA's 72-hour note plus two-day posting standard is defensible, and missing the vendor's 0-1 day tier is not evidence of failure."
  },
  {
   "id": "kpi-09-charge-lag:C6",
@@ -2317,7 +2547,12 @@
   "claim": "A practice with a 4-day average charge lag has every claim starting its AR clock 4 days late. The practice reports 42 days in AR. The effective AR age - from service date to payment - is 46 days.",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "The arithmetic holds for the standard ratio: MGMA counts a charge in A/R only once it is invoiced, so days in A/R exclude pre-posting lag. Aging reports run from date of service already include it. MGMA calls a three- to seven-day lag the sector norm, so a 4-day lag does not put the practice behind benchmark peers.",
+  "source_title": "MGMA DataDive Definitions Glossary (2025), Accounts Receivable and Days in A/R definitions; HFMA MAP Keys (AR-1, PB-4, FM-1) (fetched Nov. 10, 2026); MGMA Stat, 'Days in A/R holds steady for most practices, but payer pressure persists in 2026' (July 30, 2026)",
+  "source_url": "https://www.mgma.com/getkaiasset/8dd9987a-755a-4943-a5bc-98a5690ff99e/2505-D33056D-2025%20MGMA%20DataDive%20Definitions%20Glossary-Letter-V3-NM.pdf",
+  "confidence": "medium",
+  "practice_impact": "Check whether the billing system ages A/R from service date or posting date before adding lag to days in A/R; do not add it twice."
  },
  {
   "id": "kpi-09-charge-lag:C7",
@@ -2325,7 +2560,12 @@
   "claim": "hospital progress notes completed within 24 hours of the encounter, operative notes completed and dictated within 24 hours of the procedure, discharge summaries completed within 24 hours of discharge",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Reasonable internal targets, not legal standards. Medicare hospital rules require the operative report written or dictated immediately after surgery, so 24 hours is too loose; records must be promptly completed and finished within 30 days of discharge. Nursing-facility physicians must write, sign and date a progress note at each visit. Medicare billing guidance says document 'as soon as practicable'.",
+  "source_title": "42 CFR 482.24, 482.51 and 483.30 (eCFR current to Nov. 6, 2026); Medicare Claims Processing Manual Ch. 12 s.30.6.1.A (chapter Rev. 13753, 05-07-26); Fla. Admin. Code r. 64B8-9.003(5) (late entries); MGMA Stat (July 30, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-482.51",
+  "confidence": "high",
+  "practice_impact": "For nursing-facility rounding the binding rule is a signed, dated progress note at each visit (42 CFR 483.30(b)); Florida requires late entries to be labeled, dated and timed."
  },
  {
   "id": "kpi-09-charge-lag:C8",
@@ -2333,7 +2573,12 @@
   "claim": "The monthly surgical charge reconciliation shows a discrepancy rate below 2 percent... A reconciliation discrepancy rate above 5 percent means the intraoperative charge capture workflow is not functioning consistently.",
   "kind": "benchmark",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published benchmark sets 2% or 5% thresholds for surgical charge reconciliation; the figures have no traceable origin. HFMA recommends reconciling charges but gives no target rate; the nearest published figure is a consultant estimate that hospitals lose as much as 1% of net revenue to charge-capture problems. Treat the thresholds as the vendor's own rule of thumb.",
+  "source_title": "No traceable source for the thresholds; HFMA, 'Capturing All Charges: the Operational Reality' (Sept. 20, 2019, updated Nov. 7, 2022); HFMA MAP Keys (no reconciliation-rate key)",
+  "source_url": "https://www.hfma.org/revenue-cycle/charge-capture/capturing-all-charges-the-operational-reality/",
+  "confidence": "medium",
+  "practice_impact": "Little for a non-surgical practice; the useful analogue is reconciling each facility's rounding list or census against entered charges every day."
  },
  {
   "id": "kpi-10-cost-to-collect:C1",
@@ -2509,7 +2754,12 @@
   "claim": "Industry benchmarks from MGMA and HFMA: median days in AR 45, 55 vs top quartile 30, 38; median clean claim rate 85, 90% vs >96%; median initial denial rate 8, 12% vs <5%.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "These are not published MGMA or HFMA quartiles. MGMA family medicine medians cited at a 2026 MGMA chapter conference: clean claims 85.0%, first-submission denials 7.08%, and 69.81 net days in A/R, roughly 35 on gross charges by my estimate. MGMA says under 5% denials is achievable. HFMA publishes definitions, not free quartiles; its clean-claim measure counts scrubber edits.",
+  "source_title": "MGMA Stat, 'Days in A/R holds steady for most practices, but payer pressure persists in 2026' (July 30, 2026); Forvis Mazars, 'Know Your KPIs, Cash Flow and Claims Optimization', Kansas MGMA Annual Conference (Apr. 22, 2026), citing MGMA DataDive 2025 Financials and Operations and 2024 Practice Operations; HFMA MAP Keys (2026); AAFP, 'Managing practice finances' (2026); Kodiak Solutions, 'State of the healthcare revenue cycle' (Mar. 2026)",
+  "source_url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026",
+  "confidence": "medium",
+  "practice_impact": "Benchmark against MGMA specialty medians and the practice's own trend, and fix one days-in-A/R basis first: net-charge and gross-charge versions differ about twofold, so the vendor's 45-55 'median' can make a normal practice look fast or slow."
  },
  {
   "id": "billing-department-performance-management-playbook:C2",
@@ -2517,7 +2767,12 @@
   "claim": "For a practice billing $4 million annually, the difference between median and top-quartile performance on these three metrics 'can represent $200,000 to $400,000 in additional annual collections'; called 'the documented revenue gap.'",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No MGMA, HFMA or other study documents a $200,000-$400,000 gap for a $4 million practice. The figure is the vendor's own arithmetic, which double-counts clean-claim and denial gains and treats faster payment as new revenue. Kodiak's 2025 data put the median-to-top-quartile gap at about 1.6% of net revenue (final denials plus bad debt): roughly $64,000 on $4 million.",
+  "source_title": "No source found for the claim (searched MGMA, HFMA, AAFP, Kodiak and trade press). Comparators: Kodiak Solutions, 'State of the healthcare revenue cycle' (Mar. 2026); Forvis Mazars at Kansas MGMA (Apr. 22, 2026), citing MGMA DataDive 2025 Financials and Operations; AAFP, 'Managing practice finances' (2026)",
+  "source_url": "https://kodiaksolutions.cdn.prismic.io/kodiaksolutions/ac_GVpGXnQHGZP-S_KPIBenchmarkingReportMar2026.pdf",
+  "confidence": "medium",
+  "practice_impact": "Do not size a billing budget or justify a vendor fee on this figure; the practice's own denial write-offs and bad debt set the real ceiling on recoverable revenue, and that is likely a small fraction of the claimed amount."
  },
  {
   "id": "billing-department-performance-management-playbook:C3",
@@ -2525,7 +2780,12 @@
   "claim": "Benchmark targets by practice size: small (<3 providers) days in AR 35, 45, clean claim 90, 93%, denial 7, 10%, net collection 94, 96%, AR over 90 days <20%; large (10+) days in AR 40, 52, net collection 96, 98%.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No MGMA, HFMA or other published benchmark stratifies these five measures by provider count; the table has no traceable source. MGMA family medicine medians cited at a 2026 MGMA chapter conference differ: net collection 97.13%, A/R over 90 days 27.86% (worse than every vendor band), clean claims 85.0%, first-pass denials 7.08%. MGMA's standard ageing benchmark is A/R over 120 days.",
+  "source_title": "No source found for the table. Comparators: Forvis Mazars, 'Know Your KPIs, Cash Flow and Claims Optimization', Kansas MGMA Annual Conference (Apr. 22, 2026), citing MGMA DataDive 2025 Financials and Operations (2024 data) and 2024 Practice Operations (2023 data); AAFP, 'Managing practice finances' (2026); MGMA, 'Understanding cost and revenue data'",
+  "source_url": "https://s3.amazonaws.com/amo_hub_content/Association1992/files/KS%20MGMA%20Annual%20Conference%20-%20Know%20Your%20KPIs%2C%20Cash%20Flow%20and%20Claims%20Optimization%20-%20April%202026%20(1).pdf",
+  "confidence": "medium",
+  "practice_impact": "A small practice using this table could accept a net collection rate at or below the MGMA median and AAFP's 95% floor, yet be told its A/R ageing is a 'crisis' at a level the median family practice reports."
  },
  {
   "id": "billing-department-performance-management-playbook:C4",
@@ -2533,7 +2793,12 @@
   "claim": "Clean claim rate: the percentage of claims submitted that are accepted by the payer on first pass without rejection, denial, or request for additional information.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "No single standard exists. HFMA's MAP Key counts claims that pass claim-scrubber edits with no manual intervention before submission; it does not measure payer denials. The vendor's version is closer to a first-pass payment rate. Medicare's 'clean claim' needs no outside development and can still be denied. Benchmarks differ accordingly: MGMA family medicine median 85%, HFMA-style about 97%.",
+  "source_title": "HFMA MAP Keys, Clean Claim Rate (CL-1) (hfma.org, copyright 2026); Medicare Claims Processing Manual, Ch. 1, s. 80.2 (Rev. 13725); Forvis Mazars, 'Know Your KPIs, Cash Flow and Claims Optimization', Kansas MGMA Annual Conference (Apr. 22, 2026), citing MGMA DataDive 2024 Practice Operations and HBI Professional Benchmarks 2024",
+  "source_url": "https://www.hfma.org/data-and-insights/map-initiative/map-keys/",
+  "confidence": "medium",
+  "practice_impact": "A billing vendor can report a 97% clean claim rate on scrubber edits while payers still deny 7% or more of claims; write one definition into any billing contract and track first-pass denials separately."
  },
  {
   "id": "billing-department-performance-management-playbook:C5",
@@ -2541,7 +2806,12 @@
   "claim": "Each payer has timely filing limits, and denials based on timely filing are almost never overturned.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Limits exist but differ: Medicare allows one calendar year from the date of service; Florida-regulated insurers and HMOs must allow 6 months by statute; others follow contract. Medicare timely-filing denials cannot be appealed, though four regulatory exceptions extend the deadline. Commercial and Medicare Advantage plans reverse them on proof of timely submission. No data support 'almost never'.",
+  "source_title": "42 CFR 424.44 and 405.926(n) (eCFR current to Nov. 6, 2026); First Coast Service Options timely filing FAQ; Fla. Stat. 627.6131(3)(b) and (10) and 641.3155(2)(b) (2026 Florida Statutes); UnitedHealthcare 2026 Care Provider Administrative Guide, 'Proof of claim timely filing'",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "high",
+  "practice_impact": "Most of a geriatrics practice's claims are Medicare with a one-year window, so timely-filing losses are avoidable; keep clearinghouse acceptance reports, the proof that reverses Medicare Advantage and commercial timely-filing denials."
  },
  {
   "id": "billing-department-performance-management-playbook:C6",
@@ -2549,7 +2819,12 @@
   "claim": "CARC (Claim Adjustment Reason Code) and RARC (Remittance Advice Remark Code) on every denial explanation of benefits 'tell you exactly why the claim was denied.'",
   "kind": "code_rule",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Every adjustment on a HIPAA electronic remittance (835) carries a group code and a claim adjustment reason code. Remark codes are supplemental: required with some reason codes, absent on many denials. Many reason codes are generic (16, 96), giving a category, not an exact cause. The code sets are mandated for electronic remittances, not for every paper explanation of benefits.",
+  "source_title": "Medicare Claims Processing Manual, Ch. 22 Remittance Advice, ss. 60.2, 60.3, 80.2 (Rev. 11427); X12 Claim Adjustment Reason Codes list; 45 CFR 162.1602 and 162.1603 (eCFR current to Nov. 5, 2026), adopting the CORE 360 Uniform Use of CARCs and RARCs (835) Rule",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c22.pdf",
+  "confidence": "high",
+  "practice_impact": "Categorising denials by group code, reason code and remark code works for First Coast and Medicare Advantage 835s, but generic codes such as CO-16 still need the remark code or a payer call before a root cause is assigned."
  },
  {
   "id": "billing-department-performance-management-playbook:C7",
@@ -2557,7 +2832,12 @@
   "claim": "For 1, 2 providers: 1, 2 billing staff covering all functions, or outsourced. Full outsourcing is often more cost-effective at this size.",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No MGMA, HFMA, AMA or peer-reviewed data show full outsourcing is 'often more cost-effective' for one- or two-provider practices. Trade guidance gives a rule of thumb of one in-house billing person per two providers, outsourcing fees of roughly 4-10% of collections (higher for primary care), and warns outsourcing may cost as much as in-house. It is a break-even calculation.",
+  "source_title": "No authoritative source found (searched MGMA, AAFP, AMA, HFMA, PubMed). Comparators: Physicians Practice, 'How many staff members does my practice actually need?' (Mar. 13, 2026) and 'Outsourcing Your Billing' (2010); Medical Economics, 'Practice Pointers: Outsource billing? Here's how' (May 23, 2003); MGMA Stat, 'Automating and outsourcing medical practice revenue cycle management' (Nov. 2024)",
+  "source_url": "https://www.physicianspractice.com/view/how-many-staff-members-does-my-practice-actually-need-",
+  "confidence": "medium",
+  "practice_impact": "Compare a vendor's percentage fee on the practice's actual collections with the loaded cost of its billing staff; front-end work such as facility census and face-sheet capture stays with the practice either way."
  },
  {
   "id": "billing-department-performance-management-playbook:C8",
@@ -2565,7 +2845,12 @@
   "claim": "A denial that must be appealed costs 25, 45 minutes of staff time and delays payment 30, 60 days; every dollar invested in denial prevention typically returns 3, 5x in avoided denial management cost.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No published source gives 25-45 minutes per appealed denial or a 3-5x return on prevention; the vendor itself calls the multiplier its own observation. Published figures: about $25 to rework a claim (MGMA, 2021); $57.23 per denied claim fought, with about three review rounds of 45-60 days each (Premier, 2023 hospital data). Medicare redeterminations are decided within 60 days.",
+  "source_title": "No source found for the minutes or the multiplier. Comparators: MGMA Stat, '6 keys to addressing denials in your medical practice's revenue cycle' (Mar. 2021); Premier Inc., 'Claims Adjudication Costs Providers $25.7 Billion' (Feb. 2025); 42 CFR 405.950 (eCFR current to Nov. 6, 2026)",
+  "source_url": "https://www.mgma.com/mgma-stats/6-keys-to-addressing-denials-in-your-medical-practice-s-revenue-cycle",
+  "confidence": "medium",
+  "practice_impact": "Little: prevention is still cheaper than appeals, but staffing and return-on-investment plans should use the practice's own denial counts; a Medicare appeal can add up to 60 days at each level."
  },
  {
   "id": "charge-capture-audit-playbook:C1",
@@ -2677,7 +2962,12 @@
   "claim": "Time-based pathway: 99202/99212: 15, 29 min | 99203/99213: 30, 44 min | 99204/99214: 45, 59 min | 99205/99215: 60, 74 min.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Those ranges were the 2021-2023 new-patient times only. Established-patient codes are lower: 99212 10, 99213 20, 99214 30, 99215 40 minutes. Since January 1, 2024 CPT uses minimums that 'must be met or exceeded', not ranges: new patient 99202 15, 99203 30, 99204 45, 99205 60. Nursing facility and home visit codes have their own thresholds.",
+  "source_title": "AMA, CPT E/M Office or Other Outpatient (99202-99215) Code and Guideline Changes (effective Jan. 1, 2021); AAFP, 'Time and medical decision making levels for E/M CPT codes' (page copyright 2026); CMS, 2025 Medicare Fee-for-Service Supplemental Improper Payment Data, Tables K1-K2 (posted Jan. 2026); CMS MLN Booklet MLN006764 (May 2026), Table 3; AAPC, 'CPT 2024: Prep For These E/M Descriptor Revisions' (Oct. 19, 2023)",
+  "source_url": "https://www.ama-assn.org/system/files/2019-06/cpt-office-prolonged-svs-code-changes.pdf",
+  "confidence": "high",
+  "practice_impact": "Following the table would undercode time-based established visits (30 minutes is 99214, not 99213); the practice's nursing facility (99304-99310) and home or residence (99341-99350) codes use different thresholds the table omits, e.g. 99309 30 and 99310 45 minutes."
  },
  {
   "id": "coding-audit-playbook:C2",
@@ -2685,7 +2975,12 @@
   "claim": "E&M MDM Score Key: 0, 2 pts = Level 2 | 3, 4 pts = Level 3 | 5, 7 pts = Level 4 | 8, 9 pts = Level 5.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "CPT has no additive point scale: the MDM level is the one that two of the three elements meet or exceed, as the playbook's own footnote concedes. The summed key gives a different level in 18 of 64 combinations (12 too low, 6 too high); moderate problems plus moderate risk with no data scores 4, 'Level 3', but is moderate.",
+  "source_title": "AMA, CPT E/M Code and Guideline Changes effective January 1, 2023, Table 1 'Levels of Medical Decision Making' (still the current revision per AMA's CPT E/M page, Nov. 2026); First Coast Service Options, 'Medical Decision Making and the Impact of Prescription Drug Management' (Sept. 23, 2026)",
+  "source_url": "https://www.ama-assn.org/system/files/2023-e-m-descriptors-guidelines.pdf",
+  "confidence": "high",
+  "practice_impact": "The commonest geriatric pattern (two stable chronic illnesses, prescription drug management, little data) is moderate MDM (99309, 99349) but scores as low on this key, so an audit built on it would report false coding errors in both directions."
  },
  {
   "id": "coding-audit-playbook:C3",
@@ -2693,7 +2988,12 @@
   "claim": "Rubric criteria: Risk 'Low (prescription drug management, minor surgery with identified risk)'; Data 'Extensive (independent interpretation of results OR discussion of management with external provider)'; Problems 'High (... new problem with uncertain prognosis ...)'.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "All three are wrong under the CPT MDM table. Prescription drug management and minor surgery with identified risk factors are moderate risk, not low. Independent interpretation of a test or discussion with an external clinician each meets only moderate data; extensive data needs two of three categories. One undiagnosed new problem with uncertain prognosis is a moderate problem, not high.",
+  "source_title": "AMA, CPT E/M Code and Guideline Changes effective January 1, 2023, Table 1 'Levels of Medical Decision Making'; AMA, Table 2 CPT E/M Office Revisions, Level of Medical Decision Making (effective Jan. 1, 2021)",
+  "source_url": "https://www.ama-assn.org/system/files/2023-e-m-descriptors-guidelines.pdf",
+  "confidence": "high",
+  "practice_impact": "The rubric under-scores risk on nearly every medication-managed geriatric visit and over-scores data and problems, so it would mislabel correct nursing facility and home visit codes as errors and could justify unsupported high-level codes."
  },
  {
   "id": "coding-audit-playbook:C4",
@@ -2701,7 +3001,12 @@
   "claim": "Listed as an undercoding pattern: 'Failing to capture the complexity of prescription drug management, particularly controlled substances, as a high-risk MDM element.'",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Prescription drug management, including prescribing oral controlled substances, is a moderate-risk example in the CPT MDM table, not high. The high-risk drug examples are drug therapy requiring intensive monitoring for toxicity and parenteral controlled substances. Risk is one of three elements and cannot set the level alone. The playbook's own rubric scores prescription drug management as low.",
+  "source_title": "AMA, CPT E/M Code and Guideline Changes effective January 1, 2023, Table 1 'Levels of Medical Decision Making'; First Coast Service Options, 'Medical Decision Making and the Impact of Prescription Drug Management' (Sept. 23, 2026)",
+  "source_url": "https://medicare.fcso.com/evaluation-and-management/medical-decision-making-and-impact-prescription-drug-management",
+  "confidence": "high",
+  "practice_impact": "Treating routine opioid or benzodiazepine prescribing as high risk would push nursing facility visits toward 99310 and home visits toward 99350 without support: an overcoding and repayment exposure with Florida's Medicare contractor, not recovered revenue."
  },
  {
   "id": "coding-audit-playbook:C5",
@@ -2709,7 +3014,12 @@
   "claim": "'New patient codes require higher MDM thresholds but are consistently coded at lower levels out of unfamiliarity.'",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "New and established office codes use identical MDM thresholds at each level (99203/99213 low, 99204/99214 moderate, 99205/99215 high); only time thresholds are higher for new patients. Medicare data show no systematic undercoding: in 2025, 64% of new-patient office visits were billed at level 4 or 5 versus 62% of established, and audits find upcoding far exceeds downcoding.",
+  "source_title": "AMA, Table 2 CPT E/M Office Revisions, Level of Medical Decision Making (effective Jan. 1, 2021); CMS, CY 2025 Evaluation & Management (E&M) Codes by Specialty (Medicare Part B national data; my calculation); CMS, 2025 Medicare Fee-for-Service Supplemental Improper Payment Data, Tables F5 and K3 (posted Jan. 2026)",
+  "source_url": "https://www.cms.gov/data-research/statistics-trends-reports/medicare-fee-service-parts-b-utilization-reports/medicare-utilization-part-b/evaluation-management-em-codes-specialty-reports",
+  "confidence": "high",
+  "practice_impact": "Little direct revenue: the practice bills nursing facility and home codes, not office new-patient codes. The risk runs the other way: CERT 2025 found improper payment rates of 25.5% on 99306 and 24.6% on 99310, mostly incorrect coding."
  },
  {
   "id": "coding-audit-playbook:C6",
@@ -2717,7 +3027,12 @@
   "claim": "'OIG's own published guidance for physician practices suggests a 5, 10 record minimum per payer'; a sample of 25-30 records is said to give 'a stronger statistical base' for a comprehensive internal audit.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "OIG's 2000 guidance for individual and small group physician practices, still listed as its physician guidance, suggests five or more records per federal payer or five to ten per physician, and says there is no set formula. Twenty-five to 30 risk-selected charts is a reasonable probe, not a statistical base; OIG requires at least 100 randomly sampled items for damages.",
+  "source_title": "OIG Compliance Program Guidance for Individual and Small Group Physician Practices, 65 FR 59434, 59437 (Oct. 5, 2000), still listed on OIG's Compliance Guidance page (Nov. 2026); OIG General Compliance Program Guidance (Nov. 2023), small entities 'should conduct at least an annual audit', no sample size given; HHS-OIG Health Care Fraud Self-Disclosure Protocol (updated Oct. 15, 2026); 42 CFR 401.305(d)(1) (eCFR current to Nov. 6, 2026); CMS Targeted Probe and Educate page (20-40 claims per round)",
+  "source_url": "https://oig.hhs.gov/documents/compliance-guidance/801/physician.pdf",
+  "confidence": "high",
+  "practice_impact": "A small facility-based group can meet OIG's guide with five to ten charts per clinician a year; any repayment figure must rest on a statistically valid random sample, not on 25 to 30 hand-picked high-risk charts."
  },
  {
   "id": "coding-audit-playbook:C7",
@@ -2725,7 +3040,12 @@
   "claim": "False Claims Act (31 U.S.C. §§ 3729-3733) imposes civil liability of up to three times the amount of the false claim plus penalties per claim; 'knowingly' includes reckless disregard.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The Act imposes three times the government's damages, not three times the claim amount (reducible to two times for self-disclosure within 30 days with cooperation), plus a civil penalty of $14,308 to $28,619 per claim for penalties assessed after July 3, 2025, unchanged for 2026. 'Knowingly' covers actual knowledge, deliberate ignorance or reckless disregard; specific intent is not required.",
+  "source_title": "31 U.S.C. 3729(a)(1)-(2), (b)(1) (Cornell LII copy opened Nov. 10, 2026; also quoted in 28 CFR 85.5 Table 1, footnote 3); 28 CFR 85.5, Table 1 (eCFR current to Nov. 6, 2026); DOJ notice, Civil Monetary Penalties Inflation Adjustments for 2026, 91 FR 43405 (July 15, 2026); Mintz summary of U.S. ex rel. Zafirov v. Florida Medical Associates (11th Cir. Sept. 1, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-28/chapter-I/part-85/section-85.5",
+  "confidence": "high",
+  "practice_impact": "For low-dollar visit codes the per-claim penalty dominates: 100 knowingly upcoded nursing facility visits carry $1.43 million to $2.86 million in penalties plus trebled overpayments. Whistleblower suits remain available in Florida after the Eleventh Circuit's September 1, 2026 Zafirov ruling."
  },
  {
   "id": "coding-audit-playbook:C8",
@@ -2733,7 +3053,12 @@
   "claim": "OIG's Self-Disclosure Protocol 'provides a mechanism for practices to voluntarily report and repay overpayments, typically at a reduced multiplier' compared with a government-initiated investigation.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "OIG's protocol (updated October 15, 2026) is for potential fraud, not plain overpayments or errors; those must be reported and returned to the Medicare contractor within 60 days of identification, with up to 180 days to investigate. Inside the protocol OIG generally requires at least 1.5 times single damages, a $20,000 minimum settlement and a 100-item sample.",
+  "source_title": "HHS-OIG Health Care Fraud Self-Disclosure Protocol (updated Oct. 15, 2026), sections 1.B, 2.C, 3.B and 8; 42 CFR 401.305 (eCFR current to Nov. 6, 2026; amended 89 FR 98553); First Coast Service Options, 'Overpayment request submission reminders' (Oct. 12, 2026)",
+  "source_url": "https://oig.hhs.gov/documents/self-disclosure-info/11951/hhs-oig-self-disclosure-protocol.pdf",
+  "confidence": "high",
+  "practice_impact": "Ordinary audit findings are refunded to First Coast at single damages with its voluntary refund form (six-year lookback); the OIG protocol costs at least $20,000 and is for conduct that may be fraud, so counsel should pick the channel before the 60-day clock runs."
  },
  {
   "id": "denial-management-playbook:C1",
@@ -3453,7 +3778,12 @@
   "claim": "Claims submitted during a Medicare deactivation period are not retroactively compensable after billing privileges are reactivated; the gap is a permanent revenue loss, not a delay.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct in substance. Medicare pays nothing for items or services furnished while billing privileges are deactivated (42 CFR 424.540(e), 424.555(b)); reactivation takes effect only on the date the contractor receives the reactivation application it later approves (424.540(d)(2)). The bar turns on date of service, not claim submission date; deactivation may be backdated to the date non-compliance began (424.540(d)(1)(ii)).",
+  "source_title": "42 CFR 424.540 Deactivation of Medicare billing privileges (eCFR, current through 2026-11-06); CMS Revalidations (Renewing Your Enrollment)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.540",
+  "confidence": "high",
+  "practice_impact": "A missed revalidation or unanswered First Coast request leaves facility visits unpaid from the deactivation date until a complete reactivation application is received; patients cannot be billed for them."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C2",
@@ -3461,7 +3791,12 @@
   "claim": "Medicare sets the effective date as the later of the application filing date or the date services first began at the enrolled location; retroactive billing is permitted up to 30 days prior when circumstances precluded advance enrollment.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for physicians, non-physician practitioners and their groups. Effective date is the later of the filing date of an application the contractor subsequently approves or the date services first began at a new practice location (42 CFR 424.520(d)). Retrospective billing reaches back 30 days if circumstances precluded earlier enrollment, or 90 days for a Presidentially declared disaster (424.521(a)).",
+  "source_title": "42 CFR 424.520 Effective date of Medicare billing privileges; 42 CFR 424.521 Request for payment by certain provider and supplier types (eCFR, current through 2026-11-06)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.521",
+  "confidence": "high",
+  "practice_impact": "For a new physician or nurse practitioner, visits more than 30 days before the Medicare effective date are unpayable; a rejected or returned application resets the filing date."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C3",
@@ -3469,7 +3804,12 @@
   "claim": "Start commercial payer credentialing a minimum of 120 days before a new provider is scheduled to see patients. Start Medicare enrollment 90 days out. [Onboarding table: submit Medicare PECOS enrollment 120 days before start.]",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 120-day commercial lead time is an industry rule of thumb, not a rule. The Medicare advice is wrong and self-contradictory (90 versus 120 days): a contractor may return, without appeal rights, a physician or practitioner application received more than 60 days before the effective date listed on it (42 CFR 424.526(a)(2)). File Medicare within 60 days of start.",
+  "source_title": "42 CFR 424.526 Return of a provider's or supplier's enrollment application (eCFR, current through 2026-11-06); First Coast, CMS-855 enrollment application processing timeframes (Feb. 18, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.526",
+  "confidence": "high",
+  "practice_impact": "Following the playbook's 120-day table gets a new clinician's CMS-855I and reassignment returned by First Coast; the 60-day window plus 30-day retrospective billing is the real Medicare timeline."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C4",
@@ -3477,7 +3817,12 @@
   "claim": "Most providers revalidate Medicare enrollment every five years (DMEPOS suppliers every three); due dates are published on the Medicare Revalidation List at data.cms.gov and are updated seven months before the deadline.",
   "kind": "deadline",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. Providers and suppliers other than DMEPOS revalidate every 5 years (42 CFR 424.515); DMEPOS suppliers every 3 years (424.57(g)); CMS may require off-cycle revalidation. CMS posts due dates on the Medicare Revalidation List (data.cms.gov/revalidation) seven months in advance; revalidations filed more than 7 months early are returned; contractor notices arrive about 3-4 months before the due date.",
+  "source_title": "CMS, Revalidations (Renewing Your Enrollment), page last modified 07/29/2025; 42 CFR 424.515, 424.57(g), 424.526(a)(8)",
+  "source_url": "https://www.cms.gov/medicare/enrollment-renewal/providers-suppliers/revalidations",
+  "confidence": "high",
+  "practice_impact": "Each clinician and the group should be looked up on the Revalidation List; due dates more than seven months out are not yet posted, so the lookup should be repeated quarterly."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C5",
@@ -3485,7 +3830,12 @@
   "claim": "CMS launched PECOS 2.0 in late 2025, replacing the legacy enrollment portal; legacy PECOS credentials and workflows do not transfer automatically and the transition requires account re-configuration.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No CMS source shows PECOS 2.0 replacing legacy PECOS in late 2025. On 2026-11-10 the provider login at pecos.cms.hhs.gov is still the legacy application (version 7.59), and CMS's July 2026 enrollment manual still treats PECOS 2.0 as awaiting implementation. CMS's own PECOS 2.0 FAQ says logins (I&A user ID and password), connections and existing records will carry over.",
+  "source_title": "CMS, PECOS 2.0 FAQs (PDF, modified June 2025); Medicare Program Integrity Manual ch. 10 (Rev. 13717, 07-08-26) sec. 10.3; live PECOS login page fetched 2026-11-10",
+  "source_url": "https://www.cms.gov/files/document/pecos-20-faqs.pdf",
+  "confidence": "high",
+  "practice_impact": "No account re-configuration project is needed; keep each clinician's I&A login, surrogacy connections and the authorized official current and keep using the existing PECOS site."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C6",
@@ -3493,7 +3843,12 @@
   "claim": "CAQH ProView requires re-attestation every 120 days; a profile not attested within 120 days moves to Expired status. Illinois operates on a 180-day window, the only state with a different standard.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct on the rule. Profiles must be re-attested every 120 days, every 180 days for Illinois providers, the only exception CAQH names; a profile not attested in time moves to Expired (Expired Attestation) status. The product name is out of date: ProView became the CAQH Provider Data Portal in 2023, and CAQH now operates as DataSpring.",
+  "source_title": "DataSpring (CAQH) Resources FAQs, fetched 2026-11-10; CAQH Provider Data Portal Provider User Guide v43 (08/22/2023), sections 8.2-8.3",
+  "source_url": "https://www.caqh.org/resources",
+  "confidence": "high",
+  "practice_impact": "Florida clinicians are on the 120-day cycle; a lapsed attestation stalls commercial and Medicare Advantage credentialing and recredentialing files."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C7",
@@ -3501,7 +3856,12 @@
   "claim": "Medicare allows billing under the supervising physician's NPI for locum arrangements that meet the Q6 modifier requirements.",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Medicare lets the absent regular physician (or the group, under that physician's NPI), not a \"supervising\" physician, bill a substitute physician's visits with modifier Q6 if the regular physician is unavailable and pays the substitute per diem, for no more than 60 continuous days. Physicians only (plus physical therapists in shortage or rural areas), not nurse practitioners or physician assistants.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) ch. 1 sec. 30.2.11 (chapter Rev. 13725, 04-10-26); First Coast, Reciprocal billing and fee-for-time compensation arrangements (Oct. 29, 2024)",
+  "source_url": "https://medicare.fcso.com/billing/reciprocal-billing-and-fee-time-compensation-arrangements-formerly-locum-tenens",
+  "confidence": "high",
+  "practice_impact": "Q6 cannot cover a nurse practitioner or physician assistant, a new hire awaiting enrollment, or coverage beyond 60 days; misuse is a false certification that risks revocation of billing privileges."
  },
  {
   "id": "credentialing-and-re-credentialing-management-playbook:C8",
@@ -3509,7 +3869,12 @@
   "claim": "Medicaid does not grant retroactive effective dates in most circumstances; unlike Medicare, there is generally no retroactive billing right for services before the enrollment effective date.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "This is state-specific, so the generalization fails. Florida sets the Medicaid enrollment effective date at the date AHCA receives the application, not the approval date, and backdates to the date of service only for emergency services and out-of-state providers. Several other states do allow retroactive enrollment before the application date, up to one year in Ohio and Oregon.",
+  "source_title": "Florida Statutes s. 409.907(9)(a) (2026); Florida Medicaid Provider Enrollment Policy (Feb. 2026) sec. 2.14; MACPAC June 2026 Report to Congress, ch. 7",
+  "source_url": "https://www.flsenate.gov/Laws/Statutes/2026/409.907",
+  "confidence": "high",
+  "practice_impact": "For Florida Medicaid and dual-eligible crossover claims, payment runs from the day AHCA receives the application, so file before a new clinician's first visit; there is no 30-day look-back."
  },
  {
   "id": "new-practice-launch-playbook:C1",
@@ -3685,7 +4050,12 @@
   "claim": "Medicare participation does not transfer in an asset acquisition, the acquiring entity must enroll in Medicare under its own NPI and PTAN, and the acquired providers must be enrolled under the new entity's NPI and group in PECOS.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for physician practices. A supplier may not sell its Medicare billing number or let another entity use it, and an ownership change that changes the tax ID requires a new enrollment by the buyer. Each clinician then reassigns benefits to the buyer on Form CMS-855I. A buyer already enrolled adds the location and reassignments instead.",
+  "source_title": "42 CFR 424.550 (eCFR current to Nov. 6, 2026); Medicare Program Integrity Manual ch. 10, sec. 10.3.1.2.1 and 10.6.1.1.3.2 (Rev. 13717, July 8, 2026); Form CMS-855B (12/2025)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.550",
+  "confidence": "high",
+  "practice_impact": "If the practice is bought or sold as assets, the buyer's enrollment and every clinician's reassignment must be filed anew with First Coast; the seller's Medicare number cannot be carried over."
  },
  {
   "id": "practice-acquisition-revenue-cycle-integration-playbook:C2",
@@ -3693,7 +4063,12 @@
   "claim": "This process takes 30 to 60 days from completed application submission. During the Medicare enrollment gap, claims submitted to Medicare under the new entity will be rejected.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "CMS requires contractors to finish 95% of clean online applications within 15 days and all within 50 (50 and 85 days when follow-up is needed), so 30 to 60 days is an estimate. Claims must wait but are not lost: billing privileges start on the filing date or first service date, whichever is later, with 30 days' retrospective billing.",
+  "source_title": "Medicare Program Integrity Manual ch. 10, sec. 10.5 and 10.6.2 (Rev. 13717, July 8, 2026); 42 CFR 424.520(d) and 424.521(a); First Coast Service Options, 'CMS-855 enrollment application processing timeframes' (Feb. 18, 2026)",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/pim83c10.pdf",
+  "confidence": "high",
+  "practice_impact": "In a Florida asset purchase the buyer should file with First Coast by closing, hold Medicare claims until approval, then bill back to the effective date; the gap is a cash-flow delay, not lost revenue."
  },
  {
   "id": "practice-acquisition-revenue-cycle-integration-playbook:C3",
@@ -3701,7 +4076,12 @@
   "claim": "The right path: begin PECOS enrollment 90+ days before close; target enrollment approval at or before close.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Filing that early gets a physician-group application returned. The contractor may return, with no appeal rights, an application received more than 60 days before the effective date listed on it (90 days before the sale for change-of-ownership filings by certified facilities). File within 60 days of closing; late approval still pays back to the filing date.",
+  "source_title": "42 CFR 424.526 (eCFR current to Nov. 6, 2026); Medicare Program Integrity Manual ch. 10, sec. 10.4.1.4.2 (Rev. 13415, effective Oct. 20, 2025)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.526",
+  "confidence": "high",
+  "practice_impact": "Following the playbook's 90-day lead would get a First Coast application returned and force a refiling, resetting the filing date that fixes when Medicare starts paying."
  },
  {
   "id": "practice-acquisition-revenue-cycle-integration-playbook:C4",
@@ -3709,7 +4089,12 @@
   "claim": "NEVER attempt to bill Medicare under the acquired practice's legacy credentials after the ownership change has occurred, this creates False Claims Act exposure for the acquirer.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for asset purchases: the seller may not let the buyer use its Medicare billing number, CMS may revoke enrollment for it, and knowingly false claims carry False Claims Act liability. In a stock purchase the practice entity is unchanged and keeps billing under its own number, reporting the ownership change within 30 days.",
+  "source_title": "42 CFR 424.550(a), 424.535(a)(7), 424.516(d)(1)(i) (eCFR current to Nov. 6, 2026); Form CMS-855B (12/2025), section 14; CY 2027 home health final rule, 91 FR 72022 (Nov. 9, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.535",
+  "confidence": "high",
+  "practice_impact": "After an asset sale closes, Medicare claims for the buyer's services must wait for the buyer's own First Coast enrollment; billing them under the seller's number risks revocation and fraud liability."
  },
  {
   "id": "practice-acquisition-revenue-cycle-integration-playbook:C5",
@@ -3717,7 +4102,12 @@
   "claim": "Compliance issues from the pre-close period can become the acquirer's problem in an asset acquisition if not identified and addressed in the deal structure.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct as a risk statement. An asset buyer usually does not assume the seller's liabilities, but OIG expressly recognizes successor liability from buying another entity, and a buyer that accepts assignment of a Medicare provider agreement takes the seller's Medicare debt. A physician practice that enrolls anew takes no assigned agreement, so its exposure is narrower.",
+  "source_title": "HHS-OIG Health Care Fraud Self-Disclosure Protocol (updated Oct. 15, 2026); Form CMS-855B (12/2025); 42 CFR 489.18(c)-(d)",
+  "source_url": "https://oig.hhs.gov/documents/self-disclosure-info/11951/hhs-oig-self-disclosure-protocol.pdf",
+  "confidence": "high",
+  "practice_impact": "A buyer or seller of the practice should expect a pre-close coding audit, disclosure warranties and indemnity for past Medicare and Medicare Advantage billing, as the playbook advises."
  },
  {
   "id": "practice-acquisition-revenue-cycle-integration-playbook:C6",
@@ -3813,7 +4203,12 @@
   "claim": "E&M code distribution, the count and percentage of visits billed at each level (99211, 99215 for established patients, 99201, 99205 for new patients)",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "outdated",
+  "correct_statement": "CPT 99201 was deleted effective January 1, 2021. New-patient office visits are 99202-99205; established-patient visits are 99211-99215. Those are office/outpatient codes: a facility-based practice's distribution screen should use the nursing facility family (99304-99306 initial, 99307-99310 subsequent, 99315-99316 discharge; 99318 was deleted in 2023).",
+  "source_title": "AMA, CPT E/M Office or Other Outpatient (99202-99215) and Prolonged Services Code and Guideline Changes (effective Jan. 1, 2021); CMS 2026 National Physician Fee Schedule Relative Value File, October release; CY 2027 PFS final rule (CMS-1848-F) Addendum B",
+  "source_url": "https://www.ama-assn.org/system/files/2019-06/cpt-office-prolonged-svs-code-changes.pdf",
+  "confidence": "high",
+  "practice_impact": "The template's code set is five years stale and office-based; a nursing-facility geriatrics practice must profile 99304-99310 against CMS specialty data, or the pre-sale coding screen measures the wrong codes."
  },
  {
   "id": "practice-valuation-playbook:C2",
@@ -3821,7 +4216,12 @@
   "claim": "The False Claims Act creates civil liability for submitting false or fraudulent claims to government healthcare programs ... with treble damages and program exclusion as potential penalties.",
   "kind": "penalty",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The Act imposes three times the government's damages plus a civil penalty for every false claim, currently $14,308 to $28,619 each (no 2026 increase), which the claim omits. Exclusion is not a False Claims Act penalty: it is a separate HHS-OIG administrative remedy under Social Security Act section 1128(b)(7), usually released in exchange for integrity obligations.",
+  "source_title": "28 CFR 85.5 (eCFR, current to Nov. 6, 2026); 31 U.S.C. 3729; DOJ notice, Civil Monetary Penalties Inflation Adjustments for 2026, 91 FR 43405 (July 15, 2026); HHS-OIG, Criteria for implementing section 1128(b)(7) exclusion authority (Apr. 18, 2016); 42 CFR 1001.901",
+  "source_url": "https://www.ecfr.gov/current/title-28/chapter-I/part-85/section-85.5",
+  "confidence": "high",
+  "practice_impact": "Per-claim penalties scale with claim count, so a high-volume nursing-facility visit practice faces exposure far above the overpaid dollars; exclusion, though a separate OIG action, would end Medicare and Medicaid billing."
  },
  {
   "id": "practice-valuation-playbook:C3",
@@ -3829,7 +4229,12 @@
   "claim": "Voluntary self-disclosure to CMS or other agencies may be appropriate for significant Medicare overpayments, a legal decision requiring healthcare M&A counsel",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Returning an identified Medicare overpayment is mandatory, whatever its size: report and return within 60 days of identification (deadline suspended up to 180 days for a timely good-faith investigation), six-year lookback. Plain errors are refunded to the contractor (First Coast). CMS's protocol covers only Stark violations; potential fraud goes to OIG's protocol or DOJ's 2026 pilot.",
+  "source_title": "42 CFR 401.305 (eCFR, current to Nov. 6, 2026); HHS-OIG Health Care Fraud Self-Disclosure Protocol (updated Oct. 15, 2026); CMS Self-Referral Disclosure Protocol page; DOJ press release 26-1218, Healthcare FCA Self-Disclosure Pilot Program (Oct. 22, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-401.305",
+  "confidence": "high",
+  "practice_impact": "A pre-sale coding audit that finds overpaid Medicare claims starts a 60-day federal clock; treating repayment as optional turns a billing error into False Claims Act liability a buyer will price or refuse."
  },
  {
   "id": "practice-valuation-playbook:C4",
@@ -3837,7 +4242,12 @@
   "claim": "in an asset sale, the seller typically retains the pre-close AR; in a stock sale, the AR stays with the entity.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Broadly right, but negotiable. In physician-practice asset sales receivables are usually an excluded asset the seller keeps; Medicare will not pay a seller's receivables to a buyer. Some deals instead price on a working-capital target that includes them. In a stock sale the entity keeps its receivables and liabilities, so the buyer benefits unless the price adjusts.",
+  "source_title": "American Osteopathic Association, Selling a Solo Medical Practice; Morgan Lewis, A \"Friendly\" Guide to Private Equity Acquisitions of Physician Practices (Health Law Handbook, Sept. 2023); Gordon Feinblatt, Sale to Private Equity Part 3 (2021); 42 CFR 424.80",
+  "source_url": "https://osteopathic.org/practicing-medicine/business-of-medicine/selling-a-practice/",
+  "confidence": "medium",
+  "practice_impact": "With mostly Medicare receivables that cannot be paid to a buyer, the owner should expect to keep and collect pre-close AR in an asset deal, and must negotiate price credit for it in a stock deal."
  },
  {
   "id": "practice-valuation-playbook:C5",
@@ -3845,7 +4255,12 @@
   "claim": "Stark Law and Anti-Kickback: are all physician compensation arrangements, space and equipment leases, and referral relationships structured within applicable safe harbors?",
   "kind": "legal",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The review is necessary but the legal test is misdescribed. Stark has exceptions, not safe harbors; it is strict liability, so a compensation arrangement or lease tied to designated-health-service referrals must meet every element of an exception (42 CFR 411.355-411.357). Anti-kickback safe harbors (42 CFR 1001.952) are voluntary; missing one is not automatically illegal.",
+  "source_title": "42 CFR 411.353 and 411.357; 42 CFR 1001.952 (eCFR, current to Nov. 6, 2026); HHS-OIG General Compliance Program Guidance (Nov. 2023), sections on the Federal anti-kickback statute and Physician Self-Referral Law",
+  "source_url": "https://oig.hhs.gov/documents/compliance-guidance/1135/HHS-OIG-GCPG-2023.pdf",
+  "confidence": "high",
+  "practice_impact": "Medical-director contracts and any payments between the practice and nursing facilities, home health agencies, labs or therapy vendors must be tested under the right standard; a checklist asking only about safe harbors misses Stark's all-elements exception test."
  },
  {
   "id": "practice-valuation-playbook:C6",
@@ -3853,7 +4268,12 @@
   "claim": "private equity completing 79 physician practice deals in Q1 2025 alone ... (FOCUS Investment Banking; Sofer Advisors) ... the median healthcare services EV/EBITDA multiple compressed to roughly 11.5x in 2025 from 14.5x in 2024",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "Neither figure holds against primary trackers. LevinPro counted 66 private-equity physician-group deals in Q1 2025, with dental dominating practice-management deals. PitchBook/StepStone put the median private-equity entry multiple for healthcare services at 13.5x in 2024 and 13.6x in 2025; the 11.5x/14.5x pair appears to be FOCUS's public-company median. Practice-management deal flow roughly halved in 2026.",
+  "source_title": "PitchBook, Q2 2026 Healthcare Services Report (Aug. 14, 2026), PE benchmarking from SPI by StepStone; LevinPro HC Q1 2025 data reported by ABF Journal (Apr. 17, 2025); Bass, Berry & Sims, Healthcare Trends & Transactions Q1 2025; STAT (Aug. 17, 2026)",
+  "source_url": "https://pitchbook.brightspotcdn.com/7b/53/6ae3fbf84f12bfd344a7ae0a691a/q2-2026-healthcare-services-report-gusting-macroeconomic-headwinds-impede-progress.pdf",
+  "confidence": "medium",
+  "practice_impact": "The market backdrop is copied from marketing blogs and describes large platforms or public companies; it says nothing reliable about a small nursing-facility geriatrics practice, and buyer demand in 2026 is weaker than the text implies."
  },
  {
   "id": "practice-valuation-playbook:C7",
@@ -3861,7 +4281,12 @@
   "claim": "Primary care, small/solo: typical EBITDA multiple 3, 5x; primary care, scaled/platform: 6, 10x+, with value-based care outperformers reaching double-digit multiples.",
   "kind": "benchmark",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "These are advisor rules of thumb, not transaction data. Published advisor ranges are similar (small practices 3-6x EBITDA, mid-size groups 5-10x, value-based platforms 10-20x), but EBITDA means earnings after a market-rate physician salary, often near zero in a solo practice. One-to-four-provider clinics typically sell for about 1.5-3.1x owner cash flow, or asset value to hospital buyers.",
+  "source_title": "Scope Research, Primary Care Physician Practice Valuation Multiples and M&A Trends 2025; Coker, practice valuation in physician-hospital transactions (2017); ECG Management Consultants / AHLA, Determining the True Value of Primary Care Practices (Feb. 2023)",
+  "source_url": "https://www.scoperesearch.co/post/primary-care-physician-practice-valuation-multiples-and-m-a-trends-2025",
+  "confidence": "medium",
+  "practice_impact": "A small fee-for-service Medicare geriatrics group sits in the bottom band; applying 3-5x to owner take-home instead of EBITDA after market physician pay would overstate the practice's value severalfold."
  },
  {
   "id": "practice-valuation-playbook:C8",
@@ -4245,7 +4670,12 @@
   "claim": "Medicare Advantage plans are not required to pay Medicare fee schedule rates. They are required to cover Medicare-covered services, but the rates at which they pay for those services are set by the plan’s contract with participating providers",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for contracted providers: the statute bars CMS from requiring a particular price structure in plan-provider contracts, and plans pay contracted providers under the contract's terms. A floor applies only without a contract: the plan must pay a non-contracted provider the Original Medicare amount, which the provider must accept as payment in full.",
+  "source_title": "42 U.S.C. 1395w-24(a)(6)(B)(iii); 42 CFR 422.520(b), 422.100(b)(2), 422.214(a) (eCFR current to Nov. 6, 2026); CMS, 'MA Payment Guide for Out of Network Payments'",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.520",
+  "confidence": "high",
+  "practice_impact": "A Medicare Advantage offer below 100% of Medicare should be weighed against the no-contract position: Original Medicare amounts for care the plan covers out of network, though HMO plans typically cover little routine out-of-network care."
  },
  {
   "id": "payer-contract-intelligence-playbook:C3",
@@ -4285,7 +4715,12 @@
   "claim": "roughly 54 percent of eligible Medicare beneficiaries were enrolled in MA plans in 2025, rising to about 55 percent in 2026, per KFF.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "KFF reports that 54% of eligible Medicare beneficiaries (those with both Part A and Part B) were in Medicare Advantage in 2025, 34.1 million of 62.8 million, and 55% in 2026, 35.2 million of 64.2 million. KFF notes enrollment growth slowed in 2026.",
+  "source_title": "KFF, 'Medicare Advantage in 2026: Enrollment Update and Key Trends' (June 5, 2026, updated July 1, 2026); KFF, 'A Snapshot of Sources of Coverage Among Medicare Beneficiaries' (Dec. 19, 2025)",
+  "source_url": "https://www.kff.org/medicare/medicare-advantage-in-2026-enrollment-update-and-key-trends/",
+  "confidence": "high",
+  "practice_impact": "The figure is right, so Medicare Advantage plans are likely more than half of a Florida geriatrics practice's Medicare patients and their contract terms deserve the attention the playbook asks for."
  },
  {
   "id": "payer-contract-intelligence-playbook:C8",
@@ -4293,7 +4728,12 @@
   "claim": "Medicare Advantage plans impose prior authorization requirements that traditional Medicare does not, for services that traditional Medicare covers without authorization.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "True in general. Nearly all Medicare Advantage enrollees (99% in 2026) are in plans requiring prior authorization for some services; traditional Medicare generally requires none. Traditional Medicare is not authorization-free, though: it applies it to certain hospital outpatient, ambulance and equipment items, and, in Florida since January 2026, certain surgery-center procedures.",
+  "source_title": "KFF, 'Medicare Advantage in 2026: Premiums, Out-of-Pocket Limits, Supplemental Benefits, and Prior Authorization' (June 5, 2026); 42 CFR 422.138; CMS, 'Prior Authorization and Pre-Claim Review Initiatives'",
+  "source_url": "https://www.kff.org/medicare/medicare-advantage-in-2026-premiums-out-of-pocket-limits-supplemental-benefits-and-prior-authorization/",
+  "confidence": "high",
+  "practice_impact": "Counting authorization workload by plan, as the playbook suggests, is sound; skilled nursing stays (95% of enrollees) and home health (90%) are the services a facility-based geriatrics practice will meet most."
  },
  {
   "id": "prior-authorization-management-playbook:C1",
@@ -4950,7 +5390,12 @@
   "claim": "The dispute window is typically 90 to 180 days from the payment date, check your contract.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Most major payers allow longer. UnitedHealthcare: 12 months from the original EOB. Florida Blue: one year from the remittance advice. Humana: 18 months. Aetna: 180 calendar days. Florida statute lets physicians claim underpayments from insurers and HMOs within 12 months of payment. Original Medicare: 120 days to appeal, one year to reopen.",
+  "source_title": "Fla. Stat. 627.6131(19) and 641.3155(17) (2026); UnitedHealthcare 2026 Care Provider Administrative Guide ch. 10; Florida Blue Manual for Physicians and Providers; Humana 2026 Provider Manual; Aetna 'Disputes and appeals overview'; 42 CFR 405.942, 405.980",
+  "source_url": "https://www.flsenate.gov/Laws/Statutes/2026/627.6131",
+  "confidence": "high",
+  "practice_impact": "A 90-180 day cutoff would abandon recoverable underpayments: look back a full 12 months for Florida insurers and HMOs, and use 120 days (appeal) or one year (reopening) for Medicare."
  },
  {
   "id": "news-insider-10:C2",
@@ -4958,7 +5403,12 @@
   "claim": "If your new contracted rate is higher than the old rate and claims from January are processing at December rates, every one of those claims is an underpayment.",
   "kind": "payment_rate",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Only for services dated on or after the day the higher rate takes effect under the contract. December services processed in January are correctly paid at the old rate. Medicare implements its fee schedule January 1 and adjusts misprocessed claims if the physician requests it. Commercial contracts may update on other dates or stay pegged to an earlier Medicare schedule.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04) ch. 23 §30.1; CMS CY 2026 Physician Fee Schedule final rule fact sheet (Oct. 31, 2025); AMA Private Practice Toolkit, 'Payor Contracting 101'",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c23.pdf",
+  "confidence": "medium",
+  "practice_impact": "Audit January payments by date of service against each contract's stated effective date; CMS's 2026 practice-expense change lowered indirect cost allocations for facility-setting services, so the new rate is not always higher."
  },
  {
   "id": "news-insider-10:C3",
@@ -4966,7 +5416,12 @@
   "claim": "Your contract may specify full payment for a 25-modifier evaluation and management service performed on the same day as a procedure. The payer's system may apply a 50 percent reduction by default.",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Reductions of 50% tied to modifier 25 exist, but as published payer policies, not hidden system defaults. UnitedHealthcare pays 50% of a modifier-25 problem-oriented visit billed with a preventive visit unless the contract supersedes its policy. Medicare pays a modifier-25 visit in full on top of the procedure. A policy-based reduction is not automatically an underpayment.",
+  "source_title": "UnitedHealthcare Commercial Reimbursement Policy 2026R0013C, Preventive Medicine and Screening Policy, Professional; Medicare Claims Processing Manual ch. 12 §30.6.6.B; Horizon BCBSNJ Modifier -25 policy (rev. Aug. 27, 2026)",
+  "source_url": "https://www.uhcprovider.com/content/dam/provider/docs/public/policies/comm-reimbursement/COMM-Preventive-Medicine-and-Screening-Policy.pdf",
+  "confidence": "medium",
+  "practice_impact": "Little for Medicare fee-for-service, which pays modifier-25 visits in full; for commercial and Medicare Advantage plans, read the payer's published modifier-25 policy before disputing a reduced visit."
  },
  {
   "id": "news-insider-10:C4",
@@ -4974,7 +5429,12 @@
   "claim": "That gap is where the 3 to 7 percent leakage lives.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "No traceable study puts payer underpayments at 3 to 7 percent of practice revenue; the issue cites none. The closest published figures: HFMA's 3-5% of hospital net revenue for all leakage (missed charges, inefficiency and underpayments), footnoted to a blog post, and the AMA's 2013 report card finding 7.1% of commercial claims processed inaccurately. Neither measures physician-practice underpayments.",
+  "source_title": "HFMA, 'Why AI is such a promising tool for eliminating a hospital's revenue leakage' (Jan. 30, 2026); Medical Economics on the AMA National Health Insurer Report Card (July 10, 2013); MGMA Stat, 'Regular auditing of payer payments crucial to ensure accurate reimbursement' (Feb. 11, 2025)",
+  "source_url": "https://www.hfma.org/technology/ai/why-ai-is-such-a-promising-tool-for-eliminating-a-hospitals-revenue-leakage/",
+  "confidence": "medium",
+  "practice_impact": "Do not size a recovery project on 3-7% of revenue; measure the practice's own variance by auditing paid claims against contracted and Medicare fee schedule rates."
  },
  {
   "id": "news-insider-10:C5",
@@ -4982,7 +5442,12 @@
   "claim": "Systematic errors are recoverable retroactively, often back to the date the error began.",
   "kind": "legal",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Recovery reaches back only as far as the governing deadline, not to when the error began. Florida bars physician underpayment claims against insurers and HMOs more than 12 months after payment; UnitedHealthcare allows 12 months and Humana 18. Medicare corrects fee-schedule errors back to January 1 of the current year on request and reopens claims within one year.",
+  "source_title": "Fla. Stat. 627.6131(19) and 641.3155(17) (2026); Medicare Claims Processing Manual ch. 23 §30.1; 42 CFR 405.980; UnitedHealthcare 2026 Care Provider Administrative Guide; Humana 2026 Provider Manual",
+  "source_url": "https://www.flsenate.gov/Laws/Statutes/2026/627.6131",
+  "confidence": "high",
+  "practice_impact": "Size recovery targets to the allowed look-back (12 months for Florida insurers and HMOs, one year for Medicare reopenings), and file early: each month of delay drops the oldest claims out of reach."
  },
  {
   "id": "news-insider-11:C1",
@@ -5004,7 +5469,7 @@
   "kind": "regulatory",
   "stakes": "medium",
   "verdict": "partly",
-  "correct_statement": "No federal rule requires a post-denial peer-to-peer. CMS calls such discussions voluntary for Medicare Advantage plans, and UnitedHealthcare and Humana require them before an MA denial; afterwards only an appeal or reopening can change it. Florida requires state-regulated insurers to offer a telephone appeal to their physician for medical-necessity claim denials, answered within 15 business days.",
+  "correct_statement": "No federal rule requires a post-denial peer-to-peer. CMS calls such discussions voluntary for Medicare Advantage plans, and UnitedHealthcare and Humana require them before an MA denial; afterwards only an appeal or reopening can change it. Florida's s. 627.6141 (individual health policies) requires a physician-level appeal, by telephone if wished, for medical-necessity claim denials, answered within 15 business days.",
   "source_title": "CMS Parts C & D Enrollee Grievances, Organization/Coverage Determinations, and Appeals Guidance (eff. July 6, 2026) s. 40; UnitedHealthcare 2026 Care Provider Administrative Guide ch. 7; Humana 2026 Provider Manual; Fla. Stat. 627.6141 (2026)",
   "source_url": "https://www.cms.gov/medicare/appeals-and-grievances/mmcag/downloads/parts-c-and-d-enrollee-grievances-organization-coverage-determinations-and-appeals-guidance.pdf",
   "confidence": "medium",
@@ -5017,7 +5482,7 @@
   "kind": "statistic",
   "stakes": "medium",
   "verdict": "partly",
-  "correct_statement": "The range matches published averages for all appealed prior-authorization denials, not practices with a 'structured process': insurers' 2025 CMS-mandated metrics show 67% overturned in Medicare Advantage, 47% in Medicaid managed care and 43% on HealthCare.gov, ranging by insurer from 16% to over 90%. KFF's separate MA data show 80.7% in 2024. No source compares practices with and without a process.",
+  "correct_statement": "The range matches published averages for all appealed prior-authorization denials, not practices with a 'structured process': insurers' 2025 CMS-mandated metrics show 67% overturned in Medicare Advantage, 47% in Medicaid managed care and 43% on HealthCare.gov, ranging by insurer from 16% to over 90%. KFF's separate MA data show 80.7% in 2024. Neither dataset isolates practices with a structured process.",
   "source_title": "KFF, 'Prior Authorization Metrics Provide New Insights Into Insurer Practices, but Gaps Remain' (Aug. 13, 2026); KFF, 'Medicare Advantage Insurers Made Nearly 53 Million Prior Authorization Determinations in 2024' (Jan. 28, 2026)",
   "source_url": "https://www.kff.org/patient-consumer-protections/prior-authorization-metrics-provide-new-insights-into-insurer-practices-but-gaps-remain/",
   "confidence": "medium",
@@ -5099,7 +5564,7 @@
   "source_title": "CMS Transmittal 13968 (Pub 100-20), CR 14464, ICD-10 and Other Coding Revisions to NCDs, October 2026; MLN Matters MM14464",
   "source_url": "https://www.cms.gov/files/document/r13968otn.pdf",
   "confidence": "high",
-  "practice_impact": "Little for facility-based geriatrics E/M; relevant only if the practice bills bone density, cardiac PET, ICD implants, NGS, aprepitant or CAR-T services. Not lab or DME NCDs as the issue implies."
+  "practice_impact": "Little for facility-based geriatrics E/M; matters only if the practice bills bone density studies, cardiac PET, ICD implants, next-generation sequencing, aprepitant or CAR-T. No DME NCDs are in this update."
  },
  {
   "id": "news-insider-12:C5",
@@ -5107,7 +5572,12 @@
   "claim": "When CMS updates the national code set, many commercial payers update their Local Coverage Determinations and coverage policies in the same cycle.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Commercial payers do not have Local Coverage Determinations. LCDs are Medicare policies issued only by Medicare Administrative Contractors (First Coast Service Options in Florida), which revise LCD billing-and-coding articles for new ICD-10 codes effective October 1, sometimes publishing weeks afterward. Commercial payers keep their own medical policies on their own schedules. Medicare Advantage plans must follow NCDs and LCDs.",
+  "source_title": "42 CFR 400.202 and 422.101(b) (eCFR, current to Nov. 5, 2026); CMS Medicare Coverage Database, First Coast article A56841, 'Billing and Coding: Vitamin D; 25 hydroxy' (rev. R5, published 10/22/2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-400.202",
+  "confidence": "high",
+  "practice_impact": "Check First Coast's billing-and-coding articles in the Medicare Coverage Database after October 1 as well as before: its vitamin D article was revised October 22, 2026, retroactive to October 1. Commercial payers publish medical policies, not LCDs."
  },
  {
   "id": "news-insider-13:C1",
@@ -5115,7 +5585,12 @@
   "claim": "Medicare allows one year [from the date of service to file a claim].",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for Original Medicare: a claim must be received within 1 calendar year after the date of service (the line-item 'From' date on professional claims), with narrow exceptions. An untimely-filing denial cannot be appealed. Medicare Advantage plans are not bound by this and set their own limits by contract.",
+  "source_title": "42 CFR 424.44 (eCFR, current to Nov 6, 2026); Medicare Claims Processing Manual (Pub. 100-04), ch. 1, ss. 70-70.4",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+  "confidence": "high",
+  "practice_impact": "Fee-for-service visits from late 2025 expire day by day through year-end with no appeal right; Medicare Advantage claims for the same residents follow each plan's own contract limit, often shorter, so check those first."
  },
  {
   "id": "news-insider-13:C2",
@@ -5123,7 +5598,12 @@
   "claim": "Commercial payers typically allow 90 to 180 days from the date of service.",
   "kind": "deadline",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Fair as a rule of thumb: UnitedHealthcare allows participating providers at least 90 days and Humana's commercial default is 90 days, each subject to contract or state law. In Florida, statute gives providers 6 months to bill state-regulated insurers and HMOs and bars waiving it by contract; self-funded plans follow the contract.",
+  "source_title": "UnitedHealthcare 2026 Care Provider Administrative Guide, 'Time limits for filing claims'; Humana provider site, Claims Submissions; Florida Statutes ss. 627.6131, 641.3155 (2026)",
+  "source_url": "https://www.uhcprovider.com/content/dam/provider/docs/public/admin-guides/2026-UHC-Administrative-Guide.pdf",
+  "confidence": "medium",
+  "practice_impact": "Little for a Medicare-heavy facility practice; where commercial or HMO coverage is primary, Florida's 6-month statutory window may rescue a claim a payer denies at 90 days."
  },
  {
   "id": "news-insider-13:C3",
@@ -5131,7 +5611,12 @@
   "claim": "Check CAQH attestation dates, re-attestation is required every 120 days.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct: providers must re-attest their CAQH Provider Data Portal profile every 120 days (180 days in Illinois) or the profile status changes to Expired. Plans using directory confirmation prompt quarterly, so some providers attest every 90 days. CAQH rebranded as DataSpring on June 7, 2026; the portal keeps the CAQH name.",
+  "source_title": "DataSpring, powered by CAQH: Resources/FAQs (Directory Management) and 'CAQH Rebrands as DataSpring' (June 7, 2026)",
+  "source_url": "https://www.dataspring.com/resources",
+  "confidence": "high",
+  "practice_impact": "Calendar each clinician's 120-day attestation; an Expired profile stalls Medicare Advantage and commercial recredentialing for Florida plans that pull from the portal."
  },
  {
   "id": "news-insider-13:C4",
@@ -5139,7 +5624,12 @@
   "claim": "Credentialing typically takes 60 to 90 days for Medicare and 90 to 120 days for most commercial payers.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Unsourced rules of thumb, and long for Medicare. CMS requires contractors to finish 95% of online initial enrollments in 15 days, or 50 days when development is needed, and all within 85. UnitedHealthcare and Cigna quote about 45 to 60 days for credentialing, plus contract loading, so 90 to 120 days end to end is plausible.",
+  "source_title": "CMS Medicare Program Integrity Manual (Pub. 100-08), ch. 10, s. 10.5 (Rev. 13415, eff. 10-20-25); First Coast Service Options, 'CMS-855 enrollment application processing timeframes' (Feb 18, 2026); UnitedHealthcare 'Join our network' medical provider FAQ; Cigna Healthcare credentialing page; 42 CFR 424.520(d), 424.521(a)",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/pim83c10.pdf",
+  "confidence": "medium",
+  "practice_impact": "For a new clinician, Medicare billing can start from the application receipt date with up to 30 days of back-billing, so file in PECOS before the start date; allow three to four months for each Medicare Advantage and commercial plan."
  },
  {
   "id": "news-insider-13:C5",
@@ -5147,7 +5637,12 @@
   "claim": "Payer-specific revalidation requirements for Medicare and Medicaid ... carry hard deadlines and loss of billing privileges if missed.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. Medicare suppliers must revalidate every 5 years by the posted due date; missing it brings a stay of enrollment (claims rejected), then deactivation back-dated to the due date, with no payment for services furnished while deactivated. States must revalidate Medicaid providers at least every 5 years and generally must terminate those that fail to submit timely information.",
+  "source_title": "42 CFR 424.515, 424.540, 424.541, 455.414, 455.416 (eCFR, current to Nov 6, 2026); First Coast Service Options, 'Revalidation overview' (Aug 24, 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.540",
+  "confidence": "high",
+  "practice_impact": "Look up every clinician and the group on the CMS Medicare Revalidation List now; a missed due date means unpaid Part B visits from that date until First Coast receives the reactivation application, and that gap cannot be billed later."
  },
  {
   "id": "news-insider-14:C1",
@@ -5155,7 +5650,12 @@
   "claim": "In September, Oracle Health announced five AI tools aimed at catching problems before the claim goes out: prior authorization, documentation integrity, charge capture, professional fee coding and appeals.",
   "kind": "other",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Accurate. On September 23, 2026 Oracle Health announced five embedded AI capabilities for its revenue cycle products: prior authorization, clinical documentation integrity, charge capture and integrity, professional-fee coding and appeal management. They were announced as planned for release 'in the coming months', not as available, and the appeals tool works after denial.",
+  "source_title": "Oracle press release, 'Oracle Health Advances Revenue Cycle Management with AI' (Oracle Health and Life Sciences Summit, Orlando, Sep 23, 2026)",
+  "source_url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
+  "confidence": "high",
+  "practice_impact": "little"
  },
  {
   "id": "news-insider-14:C2",
@@ -5163,7 +5663,12 @@
   "claim": "Ensemble, which runs revenue cycle operations for more than 200 hospitals, partnered with Penelope Health to feed payer policy rules into its workflows upstream.",
   "kind": "statistic",
   "stakes": "low",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Accurate. Ensemble announced a strategic partnership with Penelope Health on September 24, 2026 to integrate Penelope's structured payer-policy data into Ensemble's revenue cycle intelligence engine. Ensemble's release says it manages end-to-end revenue cycle operations for health systems 'including more than 200 hospitals'. The release names both companies as platform partners of the same investor, Thoreau.",
+  "source_title": "Ensemble Health Partners, 'Ensemble and Penelope Health Announce Strategic Partnership' (Cincinnati and New York, Sep 24, 2026)",
+  "source_url": "https://www.ensemblehp.com/blog/ensemble-and-penelope-health-announce-strategic-partnership/",
+  "confidence": "high",
+  "practice_impact": "little"
  },
  {
   "id": "news-insider-14:C3",
@@ -5171,7 +5676,12 @@
   "claim": "Tanya Sanderson, senior director of denial management at Stanford Health Care, put it plainly: 'If you're not pushing for appropriate reimbursement, then, yeah, you can have a great denial rate.'",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Accurate. Becker's reported the quote, name and title as given: Tanya Sanderson, RN, senior director of denial management at Stanford Health Care, speaking on a four-person panel at Becker's 11th Annual Health IT + Digital Health + RCM Conference, in an article published September 18, 2026.",
+  "source_title": "Becker's Hospital Review, 'Revenue cycle leaders: It's time to retire denial rate as a standalone metric' (Madeline Scheetz, Sep 18, 2026), read through the publisher's public content API because the web page blocks automated readers",
+  "source_url": "https://www.beckershospitalreview.com/finance/revenue-cycle-management/revenue-cycle-leaders-its-time-to-retire-denial-rate-as-a-standalone-metric/",
+  "confidence": "high",
+  "practice_impact": "Little; it is an opinion from a hospital panel. The usable point is to read denial rate next to appeal overturn rate and net collections."
  },
  {
   "id": "news-insider-14:C4",
@@ -5179,7 +5689,12 @@
   "claim": "Sources: Becker's Hospital Review (Scheetz, Sep 18, 2026; Marcey, Sep 18, 2026; Dyrda, Sep 23, 2026; Cass, Sep 30, 2026); TechTarget (LaPointe, Sep 24, 2026).",
   "kind": "other",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "All five citations exist with matching bylines and dates. One caveat: 'Marcey' is not Becker's reporting. It is a contributed opinion article by Doug Marcey, chief technology officer of billing vendor Coronis Health, and it is the source of the newsletter's 'wave of automated denials' framing, which it offers without data.",
+  "source_title": "Becker's Hospital Review articles of Sep 18, 23 and 30, 2026 (publisher's public content API); TechTarget RevCycle Management, 'Oracle Health launches 5 AI revenue cycle tools to prevent denials' (Sep 24, 2026)",
+  "source_url": "https://www.beckershospitalreview.com/finance/revenue-cycle-management/the-other-side-of-the-claim-is-already-using-ai-what-payer-adoption-means-for-hospital-revenue-cycle-strategy/",
+  "confidence": "high",
+  "practice_impact": "Little; treat the issue's 'payer AI mass denial' warning as a vendor's opinion and test it against your own denial data by payer and code."
  },
  {
   "id": "news-insider-14:C5",
@@ -5187,7 +5702,12 @@
   "claim": "As one panelist noted, many teams still assume every denial costs about $25 to work.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Accurately reported, but $25 is an assumption, not a measured benchmark. The speaker was Debi Lasswell, a vendor executive (Longtail), who said the assumption is not necessarily true anymore. Premier's hospital survey put the average cost of fighting a denial at $43.84 per claim in 2022 and $57.23 in 2023.",
+  "source_title": "Becker's Hospital Review, 'Revenue cycle leaders: It's time to retire denial rate as a standalone metric' (Sep 18, 2026); Premier Inc., 'Claims Adjudication Costs Providers $25.7 Billion' (Feb 24, 2025)",
+  "source_url": "https://www.beckershospitalreview.com/finance/revenue-cycle-management/revenue-cycle-leaders-its-time-to-retire-denial-rate-as-a-standalone-metric/",
+  "confidence": "high",
+  "practice_impact": "Set any small-balance write-off threshold from the practice's own measured cost per appeal; batching templated appeals on repetitive low-dollar facility-visit denials can make them worth working."
  },
  {
   "id": "news-pulse-01:C1",
@@ -5195,7 +5715,12 @@
   "claim": "CMS approved an updated CMS-R-131, the Advance Beneficiary Notice of Noncoverage, on March 13, 2026. ... The transition deadline is May 12, 2026.",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "The dates hold. OMB, not CMS, approved the revised CMS-R-131 on March 10, 2026 (expires 03/31/2029); CMS announced it March 13, 2026 and made it mandatory from May 12, 2026, when the prior version expired. Today only the Exp. 03/31/2029 form is valid for Original Medicare.",
+  "source_title": "CMS MLN Connects Newsletter, March 19, 2026; OMB/OIRA ICR 202511-0938-004 (control no. 0938-0566); Noridian JD DME notice 'CMS Releases Updated ABN'",
+  "source_url": "https://www.cms.gov/training-education/medicare-learning-network/newsletter/mln-connects-newsletter-march-19-2026",
+  "confidence": "high",
+  "practice_impact": "Every ABN signed since May 12, 2026 must be the Exp. 03/31/2029 version; check paper stock, EHR templates and any facility-supplied packets, and spot-audit ABNs issued since that date."
  },
  {
   "id": "news-pulse-01:C2",
@@ -5203,7 +5728,12 @@
   "claim": "A practice that delivers a non-covered Medicare service to a beneficiary using an outdated ABN cannot bill the patient and forfeits the revenue permanently.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Overstated. A wrong-version ABN 'could' be invalidated, case by case, leaving the practice liable; then it cannot collect and must refund. That applies only where an ABN is mandatory (chiefly medical-necessity denials). Statutorily excluded, never-covered services can be billed to the patient with no ABN at all.",
+  "source_title": "Medicare Claims Processing Manual (Pub. 100-04), ch. 30, ss. 50.2.1, 50.5, 50.8, 50.9",
+  "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c30.pdf",
+  "confidence": "high",
+  "practice_impact": "Old-version ABNs on medical-necessity denials (repeat visits, frequency-limited labs) put the write-off and refund on the practice; never-covered services such as routine foot care stay billable to the patient with modifier GY."
  },
  {
   "id": "news-pulse-01:C3",
@@ -5211,7 +5741,12 @@
   "claim": "The One Big Beautiful Bill Act, moving through Congress as of publication, proposes Medicaid work requirements, more frequent eligibility redeterminations, restrictions on state Medicaid financing mechanisms, and removal of enhanced federal matching funds.",
   "kind": "legal",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "The bill was not pending in May 2026: H.R. 1 became Public Law 119-21 on July 4, 2025. It enacted work requirements and six-month renewals for expansion adults starting no later than January 1, 2027, provider-tax and state-directed-payment limits, and ended the temporary expansion-incentive match; the 90% expansion match itself remains.",
+  "source_title": "Public Law 119-21 (139 Stat. 72), H.R. 1, 119th Congress, enacted July 4, 2025 (GovInfo text), Secs. 71107, 71110, 71112, 71114-71116, 71119",
+  "source_url": "https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm",
+  "confidence": "high",
+  "practice_impact": "Little direct effect: Florida has not expanded Medicaid and the work and six-month-renewal rules target expansion adults, not the 65+ and dual-eligible residents a facility practice sees; watch Medicaid-pending long-term-care residents and Florida directed-payment changes instead."
  },
  {
   "id": "news-pulse-01:C4",
@@ -5219,7 +5754,12 @@
   "claim": "The Congressional Budget Office projects 11.8 to 17 million Americans losing Medicaid coverage over the next several years under the provisions as written.",
   "kind": "statistic",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Wrong scope and stale. CBO's 11.8 million was the rise in uninsured people by 2034 under the Senate bill, from all coverage sources; 17 million was KFF's total adding non-bill policies. For the enacted law CBO estimates 10 million more uninsured in 2034, 7.5 million of them from the Medicaid changes.",
+  "source_title": "KFF, 'How Will the 2025 Reconciliation Law Affect the Uninsured Rate in Each State?' (updated Aug 20, 2025), citing CBO publication 61570; KFF Quick Take, July 1, 2025 (cbo.gov itself blocked automated access)",
+  "source_url": "https://www.kff.org/uninsured/how-will-the-2025-reconciliation-law-affect-the-uninsured-rate-in-each-state/",
+  "confidence": "medium",
+  "practice_impact": "Little: the coverage losses fall mainly on working-age expansion adults, and Florida is a non-expansion state; elderly and dual-eligible nursing-facility patients are largely outside these estimates."
  },
  {
   "id": "news-pulse-01:C5",
@@ -5227,7 +5767,12 @@
   "claim": "A practice may bill claims as in-network while the plan adjudicates them as out-of-network. The difference in reimbursement can be 40 to 60 percent of contracted rate.",
   "kind": "payment_rate",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "The 40 to 60 percent figure has no traceable source. By rule, a non-contracted provider treating a Medicare Advantage enrollee is owed what Original Medicare would allow, and contracted MA physician rates sit close to Medicare (about 97% in one PubMed-indexed study). The real exposures are HMO denials of unauthorized out-of-network care and higher PPO cost-sharing.",
+  "source_title": "42 CFR 422.214 (eCFR, current to Nov 6, 2026); CMS, MA Payment Guide for Out of Network Payments (4/15/2015); PubMed: Trish et al., JAMA Intern Med 2017;177(9):1287-1295, https://doi.org/10.1001/jamainternmed.2017.2679",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.214",
+  "confidence": "medium",
+  "practice_impact": "Verify contract status with each MA plan and pull remits by plan: out-of-network handling shows up as authorization denials or shifted cost-sharing (uncollectible from dual-eligible residents), not as a flat 40-60% rate cut."
  },
  {
   "id": "news-pulse-02:C1",
@@ -5235,7 +5780,12 @@
   "claim": "On July 5, 2026, CMS launches the ACCESS model, a voluntary, ten-year alternative payment model targeting Medicare beneficiaries with chronic conditions including hypertension, diabetes, chronic musculoskeletal pain, and depression.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct. ACCESS is a voluntary CMS Innovation Center model that began July 5, 2026 and runs through June 30, 2036. It covers Original Medicare only (not Medicare Advantage, PACE or hospice enrollees) in four tracks; heart failure, COPD, substance use and tobacco tracks are added April 1, 2027. It is not an Advanced APM.",
+  "source_title": "CMS Innovation Center, ACCESS Model web page (modified Oct 28, 2026); ACCESS Request for Applications v1.1 (Feb 12, 2026), including Appendix D",
+  "source_url": "https://www.cms.gov/priorities/innovation/innovation-models/access",
+  "confidence": "high",
+  "practice_impact": "Small: enrollment is limited to Original Medicare, and the model's required clinical exclusions remove long-term nursing home residents 66 and older, frail patients 81 and older, moderate-to-severe dementia and hospice or palliative patients, which is most of a facility-based panel."
  },
  {
   "id": "news-pulse-02:C2",
@@ -5243,7 +5793,12 @@
   "claim": "The organizations participating are not hospitals, physician groups, or health systems. They are digital health platforms... Most of them have never operated inside Medicare before.",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Half right. CMS says most of the 160+ participants had not previously served Medicare beneficiaries. But every participant must be a Medicare Part B-enrolled provider or supplier with a physician Medical Director, and CMS's list includes ordinary physician groups, a health center and a hospital system, several in Florida. A practice may itself apply.",
+  "source_title": "CMS Innovation Center, ACCESS Model Participants (last updated November 3, 2026); ACCESS Request for Applications v1.1; NPPES NPI Registry entries for the named organizations",
+  "source_url": "https://www.cms.gov/priorities/innovation/access-model-participants",
+  "confidence": "high",
+  "practice_impact": "The newsletter frames ACCESS only as outside competition; in fact a Florida internal medicine group serving elders (Palm Beach Elder Care) is a participant, so joining, or billing the co-management codes, is an option the newsletter hides."
  },
  {
   "id": "news-pulse-02:C3",
@@ -5251,7 +5806,12 @@
   "claim": "The ACCESS model does not prohibit practices from continuing to bill CCM for enrolled patients. (CCM codes named: 99490, 99491, 99439.)",
   "kind": "code_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Correct for a practice that is not the patient's ACCESS organization: other providers keep billing Medicare under standard rules, and CCM is not on the substitute-spend list. Exceptions: an ACCESS participant or affiliate may bill only ACCESS G-codes for its aligned patients, and may not furnish contracted care management billed through another practice for them.",
+  "source_title": "CMS ACCESS Technical Frequently Asked Questions; ACCESS RFA v1.1 Appendix E; ACCESS Co-Management Payment (CMP) Billing Guidance; MLN909188 Chronic Care Management Services (June 2025)",
+  "source_url": "https://www.cms.gov/priorities/innovation/access-technical-frequently-asked-questions",
+  "confidence": "high",
+  "practice_impact": "CCM revenue on Original Medicare patients is not cut off by ACCESS, but a CCM vendor that is itself an ACCESS participant cannot keep doing practice-billed CCM for patients it enrolls, so ask vendors now. Co-management codes add $30 per care-update review, up to three a year per track."
  },
  {
   "id": "news-pulse-02:C4",
@@ -5259,7 +5819,12 @@
   "claim": "The Improving Seniors' Timely Access to Care Act required CMS to implement electronic prior authorization standards for MA plans by January 1, 2026, with decision times of 72 hours for urgent and 7 days for standard requests.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "That Act is not law: H.R. 3514 was only ordered reported by Ways and Means (July 15, 2026) and S. 1816 sits in Senate Finance. The 72-hour and 7-calendar-day limits come from CMS rule CMS-0057-F, effective January 1, 2026; the electronic Prior Authorization API is not required until January 1, 2027. Drugs are excluded.",
+  "source_title": "42 CFR 422.568, 422.572 and 422.122 (eCFR, current to Nov 6, 2026); CMS-0057-F final rule, 89 FR 8758 (Feb 8, 2024); GPO govinfo bill status for S. 1816 and H.R. 3514, 119th Congress",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.122",
+  "confidence": "high",
+  "practice_impact": "Cite 42 CFR 422.568(b)(1)(ii) and 422.572(a)(1), not the unpassed Act, when a Medicare Advantage plan misses a deadline; expect real EHR-connected electronic authorization only from January 1, 2027, and the 7 days can be extended by 14."
  },
  {
   "id": "news-pulse-02:C5",
@@ -5267,7 +5832,12 @@
   "claim": "CMS Star Ratings for MA plans will be published in October 2026. Plans rated below 3.5 stars face significant financial penalties and higher risk of market exit or product consolidation.",
   "kind": "penalty",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 2027 Star Ratings were published October 8, 2026 and affect 2028 payments. There is no penalty: the bonus line is 4 stars (5-point benchmark increase); below 3.5 stars the rebate share falls from 65% to 50%. CMS can terminate a contract rated under 3 stars for three consecutive years.",
+  "source_title": "CMS fact sheet, 2027 Medicare Advantage and Part D Star Ratings (Oct 8, 2026); 42 CFR 422.258(d)(7), 422.266(a)(2)(ii), 422.510(a)(4)(xi) (eCFR, current to Nov 6, 2026)",
+  "source_url": "https://www.cms.gov/newsroom/fact-sheets/2027-medicare-advantage-part-d-star-ratings",
+  "confidence": "high",
+  "practice_impact": "Use the actual 2027 ratings now on Medicare Plan Finder to rank Florida plans; watch plans under 4 stars (lost bonus) as well as those under 3.5, since both squeeze benefits and provider contracts for 2028."
  },
  {
   "id": "news-pulse-03:C1",
@@ -5275,7 +5845,12 @@
   "claim": "The Improving Seniors' Timely Access to Care Act required MA plans, by January 1, 2026, to accept prior authorization requests electronically, answer urgent requests within 72 hours and standard within 7 days, and give real-time decisions for routinely approved services.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No such law exists; the bill is still pending in Congress, and its own text would start electronic prior authorization in plan year 2028 and only study real-time decisions. What took effect January 1, 2026 by CMS regulation is the 72-hour and 7-calendar-day decision limits and denial reasons. Electronic APIs start January 1, 2027.",
+  "source_title": "S. 1816, Improving Seniors' Timely Access to Care Act of 2025 (introduced text, GPO govinfo); CMS fact sheet on CMS-0057-F; CMS Electronic Prior Authorization page (modified Oct 21, 2026)",
+  "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119s1816is/html/BILLS-119s1816is.htm",
+  "confidence": "high",
+  "practice_impact": "Plans had no 2026 duty to take electronic requests or give real-time answers, so portal friction is not a violation; only late decisions (over 72 hours or 7 calendar days) and denials without a specific reason are complaint-worthy today."
  },
  {
   "id": "news-pulse-03:C2",
@@ -5283,7 +5858,12 @@
   "claim": "CMS will incorporate electronic prior authorization compliance into MA Star Ratings beginning with the 2027 measurement cycle; plans not meeting response time standards will face rating penalties.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No Star Ratings measure on electronic prior authorization exists or has been finalized. CMS instead removed the appeals-timeliness measures from Star Ratings for the 2027 measurement year (2029 ratings). The 2027 Electronic Prior Authorization measure is a MIPS Promoting Interoperability measure for clinicians: optional in 2027, required from 2028.",
+  "source_title": "CMS 2027 Star Ratings Measures and Weights; 42 CFR 422.164(c); CY 2027 MA and Part D final rule, 91 FR 17384 (Apr 6, 2026); CY 2027 Physician Fee Schedule final rule, 91 FR 70992 (Nov 9, 2026); CMS-0057-F, 89 FR 8758 at 8894",
+  "source_url": "https://www.cms.gov/files/document/2027-star-ratings-measures.pdf",
+  "confidence": "high",
+  "practice_impact": "Complaints will not lower a plan's stars through any prior authorization measure. The only 2027-2028 electronic prior authorization measure sits on the clinician side (MIPS); practices of 15 or fewer clinicians are automatically reweighted out of that category."
  },
  {
   "id": "news-pulse-03:C3",
@@ -5291,7 +5871,12 @@
   "claim": "If a balance on an account opened April 2023 to December 2024, over 180 days old, traces to a service date after a Medicaid disenrollment event, it is almost certainly uncollectable and should be reviewed for write-off.",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Reviewing these balances is sensible, but 'almost certainly uncollectable' has no source. KFF found 47% of people disenrolled in 2023 were back on Medicaid and 28% had other coverage. Re-check eligibility and other payers for the service date first; Florida's fee-for-service Medicaid accepts Medicare crossover claims for 36 months, and QMB patients cannot be billed.",
+  "source_title": "KFF Survey of Medicaid Unwinding (Apr 12, 2024); Florida Medicaid Provider Reimbursement Handbook, CMS-1500 (Rule 59G-4.001); Florida MMA 1115 Special Terms and Conditions (June 25, 2025); 42 CFR 435.916, 447.45(d), 1003.110",
+  "source_url": "https://www.kff.org/medicaid/kff-survey-of-medicaid-unwinding/",
+  "confidence": "medium",
+  "practice_impact": "For dual-eligible residents these balances are mostly Medicare coinsurance: verify Medicaid or QMB status on the service date and the 36-month crossover window before writing off, and document hardship or collection effort rather than blanket write-offs."
  },
  {
   "id": "news-pulse-03:C4",
@@ -5299,7 +5884,12 @@
   "claim": "The second audit risk is specific to practices that implemented the 2023 E/M coding changes, particularly the shift to medical decision-making as the primary documentation standard (codes cited: 99214, 99215).",
   "kind": "code_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The year is wrong for the codes cited. Office visits 99202-99215 moved to level selection by medical decision-making or total time on January 1, 2021. The January 1, 2023 changes extended that to most other families, including nursing facility (99304-99310) and home or residence (99341-99350) visits. Time is an equal alternative to MDM.",
+  "source_title": "CMS Fact Sheet, PFS Payment for Office/Outpatient E/M Visits (Jan 11, 2021); MLN006764 Evaluation and Management Services (May 2026)",
+  "source_url": "https://www.cms.gov/files/document/mln006764-evaluation-management-services.pdf",
+  "confidence": "high",
+  "practice_impact": "The 2023 changes are the ones that govern this practice's own codes (nursing facility and home or residence visits), which the newsletter never mentions; templates should support MDM or documented total time for 99304-99310 and 99341-99350."
  },
  {
   "id": "news-pulse-03:C5",
@@ -5307,7 +5897,12 @@
   "claim": "Compare your 12-month E/M distribution to CMS published specialty norms. If your 99215 rate is more than 15, 20 percentage points above the specialty average, your documentation needs to be airtight.",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "unverifiable",
+  "correct_statement": "The 15-20 point threshold has no traceable source. CMS publishes utilization data, not 'norms'; Florida's Medicare contractor, First Coast, supplies peer E/M distribution reports on request. CMS 2025 data put 99215 at about 7.5% of established office visits for internal medicine, 4.9% family practice and 22% geriatric medicine, so that margin flags only extreme outliers.",
+  "source_title": "CMS Physician/Supplier Procedure Summary, calendar year 2025 (data.cms.gov, modified Aug 11, 2026); First Coast Service Options, Requesting a comparative billing report - Part B providers (medicare.fcso.com/billing/requesting-comparative-billing-report-part-b-providers); CMS Medicare Fee-for-Service Compliance Programs page (modified Nov 2, 2026)",
+  "source_url": "https://data.cms.gov/summary-statistics-on-use-and-payments/physiciansupplier-procedure-summary",
+  "confidence": "medium",
+  "practice_impact": "This practice bills nursing facility codes, not 99215: in 2025 the top level 99310 was about 12% of subsequent nursing facility visits for geriatric medicine, 7% internal medicine, 8% nurse practitioners (Florida: 3%, 7%, 6%). Request First Coast's E&M report per individual provider number."
  },
  {
   "id": "news-pulse-04:C1",
@@ -5315,7 +5910,12 @@
   "claim": "The CMS Medicare plan landscape data for 2027 will be published in October.",
   "kind": "deadline",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "CMS released the 2027 Medicare Advantage and Part D landscape on September 28, 2026, not in October (2026 landscape: Sept 26, 2025). Medicare Plan Finder carried 2027 plans by October 1; open enrollment runs Oct 15 to Dec 7, 2026. The landscape file lists plans, premiums and benefits by county; it does not show provider-network changes.",
+  "source_title": "CMS press release, 'Medicare Advantage and Medicare Prescription Drug Programs Expected to Remain Stable in 2027' (Sept 28, 2026); CMS 2027 MA and Part D Landscape State-by-State Fact Sheets",
+  "source_url": "https://www.cms.gov/newsroom/press-releases/medicare-advantage-medicare-prescription-drug-programs-expected-remain-stable-2027",
+  "confidence": "high",
+  "practice_impact": "Florida loses 51 MA plans for 2027 (611 to 560); the data to spot exiting plans was available from Sept 28, and network terminations must be checked with each plan, not in the landscape file."
  },
  {
   "id": "news-pulse-04:C2",
@@ -5331,7 +5931,12 @@
   "claim": "Payer contracts renew January 1, meaning rate changes, network changes, and prior authorization requirement updates all take effect simultaneously. Open enrollment runs October through December",
   "kind": "program_rule",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Member benefit years and Medicare fee schedules reset January 1, but provider agreements renew on their own contract dates, and MA plans can change rules on 30 days' notice or end contracts on 60 days' notice year-round. Medicare open enrollment: Oct 15 to Dec 7. HealthCare.gov: Nov 1, 2026 to Jan 15, 2027. Nursing-facility residents may switch MA plans monthly.",
+  "source_title": "42 CFR 422.62, 422.111, 422.202 (eCFR current to Nov 6, 2026); CMS Plan Year 2027 Marketplace Plans and Prices Fact Sheet (Oct 30, 2026); AMA Payor Contracting 101 toolkit",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.62",
+  "confidence": "high",
+  "practice_impact": "High for facility-based geriatrics: long-term care residents can change MA plans in any month, so eligibility must be re-verified monthly, not just in January; contract renewal dates must be read from each agreement."
  },
  {
   "id": "news-pulse-04:C4",
@@ -5355,7 +5960,12 @@
   "claim": "For each MA plan in your network, verify the October enrollment deadline for providers who are not yet enrolled. ... A provider locked out of MA network participation for Q4 loses revenue that is not recoverable",
   "kind": "deadline",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "contradicted",
+  "correct_statement": "No federal rule sets an October deadline or a Q4 lock-out for clinicians joining Medicare Advantage networks. Plans credential year-round and must update online directories within 30 days; October 15 is the plan's deadline to deliver directories to enrollees. PPO plans must pay out-of-network claims at Original Medicare amounts; unauthorized HMO claims can be denied. Any cutoff is plan-specific.",
+  "source_title": "42 CFR 422.204, 422.2267(e)(11), 422.4(a)(1)(v), 422.214 (eCFR current to Nov 6, 2026); Medicare Managed Care Manual, Chapter 6, sections 60.3 and 100",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-422.204",
+  "confidence": "medium",
+  "practice_impact": "Do not treat October as a federal cutoff: submit each plan's application as soon as a clinician is hired, ask the plan in writing for its effective-date policy, and bill PPO patients out-of-network meanwhile."
  },
  {
   "id": "news-pulse-05:C2",
@@ -5363,7 +5973,12 @@
   "claim": "Most payers require CAQH re-attestation every 120 days. When a provider's profile expires, payers that use CAQH as their primary verification source will automatically suspend active credentialing status.",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "The 120-day cycle is right, but it is CAQH's own portal rule (180 days in Illinois); a missed attestation only changes the portal status to Expired. No source shows payers automatically suspending credentialing: UnitedHealthcare says a stale profile delays applications and triggers notices at three-year recredentialing. CAQH became DataSpring in June 2026; ProView is now the CAQH Provider Data Portal.",
+  "source_title": "DataSpring (formerly CAQH) Resources FAQ; UnitedHealthcare 'Credentialing and recredentialing for health care professionals' FAQ (PCA-1-26-01522, Oct 14, 2026)",
+  "source_url": "https://www.dataspring.com/resources",
+  "confidence": "medium",
+  "practice_impact": "Keep every clinician's attestation current (calendar 90 days to match the quarterly directory email), but an expired profile is a recredentialing and directory risk, not an instant claims shut-off; ask each plan for its written policy."
  },
  {
   "id": "news-pulse-05:C3",
@@ -5371,7 +5986,12 @@
   "claim": "Medicare Advantage plans run on 90-day processing windows that are not negotiable. Commercial payers vary from 60 to 90 days ... Medicaid timelines vary by state, most states run 45 to 60 days",
   "kind": "benchmark",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "These are unsourced rules of thumb, not fixed windows. No CMS rule gives Medicare Advantage plans a 90-day processing period. Published standards: UnitedHealthcare 14 to 45 days once the application is complete, plus up to 60 days to load the contract; Cigna 45 to 60 days; Florida Medicaid plans 60 days; Medicare (First Coast) 15 to 50 days online.",
+  "source_title": "UnitedHealthcare Credentialing FAQ (Oct 14, 2026) and State and Federal Regulatory Addendum (Rev 9/2026); Cigna Healthcare credentialing page; First Coast 'CMS-855 enrollment application processing timeframes' (Feb 18, 2026); 42 CFR 422.204; Medicare Managed Care Manual ch. 6 s. 60.3",
+  "source_url": "https://www.uhcprovider.com/content/dam/provider/docs/public/resources/join-network/Credentialing-FAQs.pdf",
+  "confidence": "medium",
+  "practice_impact": "Budget 60 to 120 days end to end for Medicare Advantage and commercial plans, but get each plan's posted standard in writing; Medicare and Florida Medicaid applications protect revenue from the filing date, so file those first."
  },
  {
   "id": "news-pulse-05:C4",
@@ -5379,7 +5999,12 @@
   "claim": "A location change triggers re-credentialing with many payers and re-enrollment under the new address with Medicare and Medicaid.",
   "kind": "regulatory",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "A move must be reported, but it is an update, not a new enrollment. Medicare: report a changed, added or deleted practice location within 30 days through PECOS or the CMS-855, or risk deactivation. Florida Medicaid: report changes in writing within 30 days. Health plans handle address changes as demographic updates; federal rules require recredentialing only every three years.",
+  "source_title": "42 CFR 424.516 and 424.540 (eCFR current to Nov 6, 2026); First Coast Service Options, 'How to change or add a practice mailing address'; Florida Medicaid Provider Enrollment Policy (Rule 59G-1.060, Feb 2026)",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.516",
+  "confidence": "high",
+  "practice_impact": "High: each nursing facility or ALF where clinicians see patients is a practice location; adding or dropping one must reach First Coast within 30 days, or billing privileges can be deactivated retroactively."
  },
  {
   "id": "news-pulse-05:C5",
@@ -5387,7 +6012,12 @@
   "claim": "The revenue is not recoverable in most cases, timely filing windows expire while the enrollment is pending, and most payers will not retroactively process claims predating enrollment completion beyond a limited grace period.",
   "kind": "program_rule",
   "stakes": "high",
-  "verdict": "not checked"
+  "verdict": "partly",
+  "correct_statement": "Wrong for the government payers that dominate geriatrics. Medicare billing privileges date from the application filing date (or first service date, if later), with 30 days of retroactive billing and one year to file claims. Florida Medicaid enrollment is effective the day the agency receives the application. Commercial and Medicare Advantage plans usually do not backdate network status.",
+  "source_title": "42 CFR 424.520, 424.521, 424.44 (eCFR current to Nov 6, 2026); Florida Statutes 409.907(9)(a), 641.3155(2)(b) (2026); First Coast, 'Determining your Medicare effective date'",
+  "source_url": "https://www.ecfr.gov/current/title-42/section-424.520",
+  "confidence": "high",
+  "practice_impact": "High: file the PECOS and Florida Medicaid applications before a clinician's first visit and hold the claims; that revenue is recoverable. The real exposure is Medicare Advantage and commercial plans, which pay out-of-network or deny until the effective date."
  },
  {
   "id": "news-pulse-06:C1",
@@ -5395,7 +6025,12 @@
   "claim": "CMS updates these edits every quarter. The next update, Version 32.3, takes effect October 1, 2026, under Change Request 14516, issued June 30, 2026.",
   "kind": "regulatory",
   "stakes": "medium",
-  "verdict": "not checked"
+  "verdict": "supported",
+  "correct_statement": "Confirmed. CMS Transmittal 13829 (CR 14516, dated June 30, 2026) set NCCI PTP Version 32.3 effective October 1, 2026, implemented October 5. That update has now passed: the next one is Version 33.0, effective January 1, 2027 (CR 14611, Transmittal 13946, issued September 17, 2026, implementation January 4, 2027).",
+  "source_title": "CMS Manual System, Pub 100-04, Transmittal 13829, Change Request 14516 (June 30, 2026); CMS Medicare NCCI Procedure to Procedure (PTP) Edits page (last modified 09/01/2026); Transmittal 13946, CR 14611",
+  "source_url": "https://www.cms.gov/medicare/regulations-guidance/transmittals/2026-transmittals/r13829cp",
+  "confidence": "high",
+  "practice_impact": "The October edits are already live; the claim scrubber should be on v32.3 now and loaded with v33.0 before January 1, 2027, when the new E/M and CPT code year also starts."
  },
  {
   "id": "news-pulse-06:C2",

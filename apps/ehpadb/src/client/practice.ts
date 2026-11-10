@@ -159,7 +159,7 @@ async function pageValuation(): Promise<string> {
     ${Array.isArray(s.bridge) && s.bridge.length ? block("From the practice's value to cash at closing", table([{ h: "Step" }, { h: "Amount", num: true, w: "18%" }, { h: "Why" }], s.bridge.map((r) => [r.kind === "total" ? `<strong>${esc(r.label)}</strong>` : esc(r.label), r.amount === undefined || r.amount === null ? "" : r.kind === "total" ? `<strong>${esc(usd(r.amount))}</strong>` : esc(usd(r.amount)), rich(r.note || "")]))) : ""}
     ${inputPairs.length ? block("Inputs and assumptions", kv(inputPairs)) : ""}
     ${others.map((v) => block(v.method, `${v.notes ? `<p>${rich(v.notes)}</p>` : ""}${pairsOf(v.inputs).length ? kv(pairsOf(v.inputs)) : ""}`, range(v.low, v.high))).join("")}
-    ${s.notes ? block("What moves the number", `<p>${rich(s.notes)}</p>`) : ""}
+    ${s.notes ? block("What moves the number", String(s.notes).split(/\n{2,}/).map((para) => `<p>${rich(para)}</p>`).join("")) : ""}
     <p class="foot">Not an appraisal, and not tax or legal advice. A sale to a hospital, health system or other business the practice sends patients to must be consistent with fair market value and may not reflect referrals. Such buyers normally get an independent appraisal to show this. See the learning module on maximizing sale value for how buyers think.</p>`;
 }
 
