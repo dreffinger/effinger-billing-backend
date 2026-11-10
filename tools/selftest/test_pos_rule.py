@@ -2,13 +2,17 @@
 # PLAIN ENGLISH (offline self-test of the place-of-service rule, 11/10/2026)
 # Decides: nothing. Loads scripts/helpers/claimocity_import.py with stand-in amd / resave / txh modules in a throwaway folder
 #   (no AMD, no network, no patient data - every id, building message and chart here is invented) and proves William's rule:
-#     - CCM 99487/99489 in one of the five nursing buildings is entered as place of service 32, never 31;
+#     - CCM 99487/99489 in one of the five nursing buildings is entered as place of service 32 - except that it stays at the feed's 31,
+#       listed for William, when the chart shows the resident seen at skilled frequency, admitted or readmitted in that calendar month;
 #     - ALF / home CCM keeps 13, hospital lines keep 21, an unknown building keeps the old default - nothing else changes;
-#     - a nursing facility visit is 31 when the resident is seen once or twice a week (previous nursing visit no more than
-#       14 days earlier), when it is an initial visit, or when it is the first nursing visit on the chart; 32 for the monthly visit;
-#     - 99497 on the same visit takes the visit's place of service; modifier 25, fees, dedupe and the hospital admission date are as before;
-#     - a failure inside the rule falls back to the feed's place of service and is reported, the import carries on;
-#     - the feed digest carries one line saying what the rule did; mirror.py never lets an old copy of the helper back onto main.
+#     - a nursing facility visit is 32 only for the monthly visit (previous nursing visit 21 to 92 days earlier, not a discharge, no
+#       hospital visit of ours in between); it is 31 when the resident is seen once or twice a week, for an initial visit, the first
+#       nursing visit on the chart, the first visit of a new stay, and whenever the chart shows neither pattern;
+#     - 99497 follows the visit line of the same date; modifier 25, fees, dedupe and the hospital admission date are as before;
+#     - a feed patient with messages from two buildings, and any failure inside the rule, fall back to the feed's place of service and are
+#       reported - the import carries on;
+#     - the feed digest carries one line saying what the rule did, shouts when an old helper ran, and mirror.py never lets a copy of the
+#       three helpers without the rule back onto main; the runbook copies them from the repository before every ingest.
 # Run: python3 tools/selftest/test_pos_rule.py   (exit 1 on any failure)
 import os, sys, json, types, tempfile, importlib.util, io, re, contextlib
 import xml.etree.ElementTree as ET
@@ -58,37 +62,64 @@ spec = importlib.util.spec_from_file_location("claimocity_import", HELPER); ci =
 
 # ---- 1. the visit rule, as a pure function -----------------------------------------------------------------------------------------
 P = lambda cpt, dos, hist: ci.nf_visit_pos(cpt, dos, hist)[0]
-check("initial visit 99306 is 31 whatever came before", P("99306", "11/02/2026", [("99309", "09/01/2026")]) == "31")
+K = lambda cpt, dos, hist: ci.nf_visit_kind(cpt, dos, hist)[0]
+MONTHLY = [("99309", "09/05/2026"), ("99309", "10/03/2026")]
+check("initial visit 99306 is 31 whatever came before", P("99306", "11/02/2026", [("99309", "09/01/2026")]) == "31" and K("99306", "11/02/2026", MONTHLY) == "initial")
 check("initial visit 99304 / 99305 are 31", P("99304", "11/02/2026", []) == "31" and P("99305", "11/02/2026", []) == "31")
-check("monthly visit (30 days after the last one) is 32", P("99309", "11/02/2026", [("99309", "09/05/2026"), ("99309", "10/03/2026")]) == "32")
-check("twice-weekly visit (3 days after the last one) is 31", P("99309", "10/04/2026", [("99306", "10/01/2026")]) == "31")
+check("monthly visit (30 days after the last one) is 32", P("99309", "11/02/2026", MONTHLY) == "32" and K("99309", "11/02/2026", MONTHLY) == "monthly")
+check("the 60-day schedule is 32", P("99309", "12/02/2026", [("99309", "10/03/2026")]) == "32")
+check("twice-weekly visit (3 days after the last one) is 31, skilled", P("99309", "10/04/2026", [("99306", "10/01/2026")]) == "31" and K("99309", "10/04/2026", [("99306", "10/01/2026")]) == "skilled")
 check("weekly visit (7 days after the last one) is 31", P("99310", "10/08/2026", [("99306", "10/01/2026")]) == "31")
-check("14 days after the last visit is still 31", P("99309", "10/15/2026", [("99309", "10/01/2026")]) == "31")
-check("15 days after the last visit is 32", P("99309", "10/16/2026", [("99309", "10/01/2026")]) == "32")
-check("first nursing visit on the chart is 31 (new admission)", P("99309", "10/01/2026", []) == "31")
+check("14 days after the last visit is still 31", P("99309", "10/15/2026", [("99306", "10/01/2026")]) == "31")
+check("15 to 20 days is neither weekly nor monthly: left at 31", [P("99309", d, [("99309", "10/01/2026"), ("99309", "09/01/2026")]) for d in ("10/16/2026", "10/21/2026")] == ["31", "31"] and K("99309", "10/16/2026", [("99309", "10/01/2026")]) == "between")
+check("21 days is the first monthly gap (32), 92 the last, 93 is a new stay (31)", [P("99309", d, [("99309", "07/01/2026")]) for d in ("07/22/2026", "10/01/2026", "10/02/2026")] == ["32", "32", "31"])
+check("a year since the last nursing visit is not 'the monthly visit' (31, stale)", P("99309", "10/15/2026", [("99306", "08/20/2025"), ("99309", "09/01/2025")]) == "31" and K("99309", "10/15/2026", [("99309", "09/01/2025")]) == "stale")
+check("the first visit after a discharge visit is a new stay (31)", P("99309", "10/13/2026", [("99306", "09/01/2026"), ("99309", "09/04/2026"), ("99316", "09/08/2026")]) == "31" and K("99309", "10/13/2026", [("99316", "09/08/2026")]) == "discharge")
+HOSP_BETWEEN = [("99309", "10/03/2026"), ("99223", "10/10/2026"), ("99232", "10/12/2026"), ("99239", "10/16/2026")]
+check("the first visit back after one of our hospital visits is a new skilled stay (31)", P("99309", "10/20/2026", HOSP_BETWEEN) == "31" and K("99309", "10/20/2026", HOSP_BETWEEN) == "hospital")
+check("a hospital visit BEFORE the previous nursing visit does not count", P("99309", "11/02/2026", [("99232", "09/20/2026"), ("99309", "10/03/2026")]) == "32")
+check("the visits after a return from the hospital are skilled, not 'extra'", K("99309", "10/23/2026", HOSP_BETWEEN + [("99309", "10/20/2026")]) == "skilled")
+check("first nursing visit on the chart is 31 (new admission)", P("99309", "10/01/2026", []) == "31" and K("99309", "10/01/2026", []) == "first")
 check("first monthly visit after a skilled stay ends is 32", P("99309", "11/28/2026", [("99306", "10/01/2026"), ("99309", "10/04/2026"), ("99309", "10/29/2026")]) == "32")
+check("an extra visit on a monthly resident is left at 31 and says so", P("99309", "11/05/2026", MONTHLY + [("99309", "11/02/2026")]) == "31" and K("99309", "11/05/2026", MONTHLY + [("99309", "11/02/2026")]) == "extra")
 check("a visit entered out of order still reads the last EARLIER visit", P("99309", "10/08/2026", [("99306", "10/01/2026"), ("99309", "10/11/2026")]) == "31")
 check("later visits never count (a 99306 after this date is ignored)", P("99309", "11/02/2026", [("99309", "10/03/2026"), ("99306", "11/20/2026")]) == "32")
 check("a visit on the same day is not 'previous'", P("99309", "11/02/2026", [("99309", "11/02/2026"), ("99309", "10/03/2026")]) == "32")
-check("CCM / hospital / home lines in the history are not nursing visits", P("99309", "11/02/2026", [("99487", "10/30/2026"), ("99232", "10/31/2026"), ("99349", "11/01/2026"), ("99309", "10/03/2026")]) == "32")
-check("bad history rows are skipped, not fatal", P("99309", "11/02/2026", [(None, None), ("99309", ""), ("99309", "not a date"), ("99309", None), ("99309", "10/03/2026")]) == "32")
-check("discharge day 99316 follows the same rule (skilled)", P("99316", "10/20/2026", [("99309", "10/17/2026")]) == "31")
+check("CCM and home lines in the history are not nursing visits", P("99309", "11/02/2026", [("99487", "10/30/2026"), ("99349", "11/01/2026"), ("99309", "10/03/2026")]) == "32")
+check("bad history rows are skipped, not fatal", P("99309", "11/02/2026", [(None, None), ("99309", ""), ("99309", "not a date"), ("99309", None), ("99309",), 7, ("99309", "10/03/2026", "x"), ("99309", "10/03/2026")]) == "32")
+check("discharge day 99316 follows the same rule (skilled)", P("99316", "10/20/2026", [("99306", "10/14/2026"), ("99309", "10/17/2026")]) == "31")
 check("discharge day 99316 follows the same rule (long-term)", P("99316", "10/20/2026", [("99309", "09/17/2026")]) == "32")
 check("the rule crosses a year end", P("99309", "01/02/2027", [("99306", "12/28/2026")]) == "31" and P("99309", "01/29/2027", [("99309", "12/28/2026")]) == "32")
 check("the reason never carries a date", not any(re.search(r"\d{1,2}/\d{1,2}/\d{4}", ci.nf_visit_pos(c, d, h)[1]) for c, d, h in
-      [("99306", "11/02/2026", []), ("99309", "11/02/2026", []), ("99309", "11/02/2026", [("99309", "10/30/2026")]), ("99309", "11/02/2026", [("99309", "10/03/2026")])]))
-check("the gap constant is 14 days", ci.SKILLED_GAP_DAYS == 14)
+      [("99306", "11/02/2026", []), ("99309", "11/02/2026", []), ("99309", "11/02/2026", [("99309", "10/30/2026")]), ("99309", "11/02/2026", MONTHLY), ("99309", "10/20/2026", HOSP_BETWEEN),
+       ("99309", "10/13/2026", [("99316", "09/08/2026")]), ("99309", "10/15/2026", [("99309", "09/01/2025")]), ("99309", "10/16/2026", [("99309", "10/01/2026")])]))
+check("32 is only ever the 'monthly' kind", [k for k, (p, _) in ci.NF_KINDS.items() if p == "32"] == ["monthly"])
+check("the day limits are 14 / 21 / 92", (ci.SKILLED_GAP_DAYS, ci.MONTHLY_MIN_DAYS, ci.MONTHLY_MAX_DAYS) == (14, 21, 92))
 
 # ---- 2. one message, every line ------------------------------------------------------------------------------------------------------
 L = lambda lines, feed, nursing, hist=(): ci.pos_lines(lines, feed, nursing, hist)[0]
 check("ALF CCM keeps 13", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "13", False) == ["13", "13"])
+check("ALF CCM is untouched even with an admission visit on the chart", L([("99487", "10/31/2026")], "13", False, [("99306", "10/12/2026")]) == ["13"])
 check("hospital lines keep 21", L([("99232", "10/31/2026")], "21", False) == ["21"])
 check("nursing-building CCM is 32 on both lines", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "31", True) == ["32", "32"])
-check("nursing-building CCM is 32 even when the resident was just seen", L([("99487", "10/31/2026")], "31", True, [("99309", "10/29/2026")]) == ["32"])
+check("nursing-building CCM is 32 after ONE monthly visit that month", L([("99487", "10/31/2026")], "31", True, [("99309", "10/29/2026"), ("99309", "09/30/2026")]) == ["32"])
+check("CCM with no nursing visit on the chart is 32", L([("99487", "10/31/2026")], "31", True, []) == ["32"])
+check("CCM stays 31 when the resident had an admission visit that month", L([("99487", "10/31/2026"), ("99489", "10/31/2026")], "31", True, [("99306", "10/12/2026")]) == ["31", "31"])
+check("CCM stays 31 when the resident was seen twice within 14 days that month", L([("99487", "10/31/2026")], "31", True, [("99309", "09/04/2026"), ("99309", "10/06/2026"), ("99309", "10/09/2026")]) == ["31"])
+check("CCM stays 31 when the resident came back from the hospital that month", L([("99487", "10/31/2026")], "31", True, HOSP_BETWEEN + [("99309", "10/20/2026")]) == ["31"])
+check("CCM stays 31 when a visit that month followed one late the month before by 14 days or less", L([("99487", "10/31/2026")], "31", True, [("99309", "08/30/2026"), ("99309", "09/28/2026"), ("99309", "10/02/2026")]) == ["31"])
+check("CCM is 32 when the close visits were in ANOTHER month", L([("99487", "10/31/2026")], "31", True, [("99306", "08/03/2026"), ("99309", "08/06/2026"), ("99309", "10/05/2026")]) == ["32"])
+check("CCM is 32 when that month's visits are monthly or 15-20 days apart", L([("99487", "10/31/2026")], "31", True, [("99309", "09/01/2026"), ("99309", "10/01/2026"), ("99309", "10/17/2026")]) == ["32"])
+_w = ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99306", "10/12/2026")])
+check("a CCM line left at 31 names William, carries no date, and its kind says why", "William" in _w[1][0] and not re.search(r"\d{1,2}/\d{1,2}/\d{4}", _w[1][0]) and _w[2] == ["ccm-skilled-month"])
 check("monthly visit + 99497: both 32", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
 check("weekly visit + 99497: both 31", L([("99309", "11/02/2026"), ("99497", "11/02/2026")], "31", True, [("99309", "10/29/2026")]) == ["31", "31"])
 check("99497 listed BEFORE its visit still follows the visit", L([("99497", "11/02/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "32"])
 check("99497 alone in a nursing building keeps the feed's 31", L([("99497", "11/02/2026")], "31", True) == ["31"])
+check("99497 follows the visit of ITS OWN date, whatever the line order", L([("99309", "11/02/2026"), ("99309", "11/05/2026"), ("99497", "11/05/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "31", "31"]
+      and L([("99497", "11/05/2026"), ("99309", "11/05/2026"), ("99309", "11/02/2026")], "31", True, [("99309", "10/03/2026")]) == ["31", "31", "32"])
+check("99497 dated a day with no visit keeps the feed's 31", L([("99309", "11/02/2026"), ("99497", "11/03/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "31"])
+check("two visit lines in one message read each other without the batch list", L([("99309", "11/02/2026"), ("99309", "11/05/2026")], "31", True, [("99309", "10/03/2026")]) == ["32", "31"])
 
 # ---- 3. build(): the charge XML that would go to AMD -----------------------------------------------------------------------------------
 def ctx(live=()): return {"live": set(live), "episode": "eps9", "resp": "resp9", "refplan": "", "insorder": "1", "pid": "pat9"}
@@ -99,7 +130,7 @@ def built(fid, lines, live=()):
     return out[1], info, re.findall(r'proccode="(pcode\d+)" cobcode="" pos="(\d+)"', out[1])
 body, info, pp = built("n1", [("99487", "20261031"), ("99489", "20261031")])
 check("build: Brynwood CCM goes out as 32 / 32", [p for _, p in pp] == ["32", "32"], pp)
-check("build: register keeps the feed's 31 beside the 32", info["pos"] == "32" and info["pos_feed"] == "31" and info["pos_lines"] == ["32", "32"] and info["pos_err"] == "" and info["fac"] == "fac34", info)
+check("build: register keeps the feed's 31 beside the 32", info["pos"] == "32" and info["pos_feed"] == "31" and info["pos_lines"] == ["32", "32"] and info["pos_kind"] == ["ccm", "ccm"] and info["pos_err"] == "" and info["fac"] == "fac34", info)
 check("build: 99489 still carries modifier 25 beside 99487", 'modcodes="mcode7"' in body and body.count('modcodes=""') == 1)
 check("build: fees unchanged (206.00 / 109.00)", 'fee="206.00"' in body and 'fee="109.00"' in body)
 body, info, pp = built("a1", [("99487", "20261031"), ("99489", "20261031")])
@@ -109,15 +140,19 @@ check("build: hospital visit still 21 with its admission date", [p for _, p in p
 body, info, pp = built("h1", [("99487", "20261031")])
 check("build: CCM that arrives from the hospital is NOT touched (21)", [p for _, p in pp] == ["21"], pp)
 body, info, pp = built("u1", [("99487", "20261031")])
-check("build: unknown building keeps the old default 31 and no facility", [p for _, p in pp] == ["31"] and info["fac"] == "" and info["pos_lines"] == ["31"], (pp, info))
+check("build: unknown building keeps the old default 31 and no facility", [p for _, p in pp] == ["31"] and info["fac"] == "" and info["pos_lines"] == ["31"] and info["pos_err"] == "", (pp, info))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026"), ("99487", "10/31/2026")])
-check("build: Aspire monthly 99309 goes out as 32", [p for _, p in pp] == ["32"] and info["pos"] == "32" and "long-term" in info["pos_why"][0], (pp, info))
+check("build: Aspire monthly 99309 goes out as 32", [p for _, p in pp] == ["32"] and info["pos"] == "32" and "long-term" in info["pos_why"][0] and info["pos_kind"] == ["monthly"], (pp, info))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99306", "10/26/2026"), ("99309", "10/29/2026")])
 check("build: Aspire twice-weekly 99309 goes out as 31", [p for _, p in pp] == ["31"] and "skilled" in info["pos_why"][0], (pp, info))
+body, info, pp = built("n2", [("99309", "20261020")], live=[("99309", "10/03/2026"), ("99232", "10/12/2026")])
+check("build: back from the hospital (our 99232 on the chart) goes out as 31", [p for _, p in pp] == ["31"] and info["pos_kind"] == ["hospital"], (pp, info))
 body, info, pp = built("n3", [("99306", "20261102")], live=[("99309", "09/01/2026")])
 check("build: Oakes Southwood 99306 goes out as 31", [p for _, p in pp] == ["31"], pp)
 body, info, pp = built("n2", [("99309", "20261102"), ("99497", "20261102")], live=[("99309", "10/03/2026")])
 check("build: monthly visit + 99497 -> 32 / 32, modifier 25 on 99497", [p for _, p in pp] == ["32", "32"] and body.count('modcodes="mcode7"') == 1, pp)
+body, info, pp = built("n2", [("99487", "20261031")], live=[("99306", "10/12/2026"), ("99309", "10/15/2026")])
+check("build: CCM for a resident admitted that month stays 31 and is marked for William", [p for _, p in pp] == ["31"] and info["pos_kind"] == ["ccm-skilled-month"] and info["pos_err"] == "", (pp, info))
 ci.BATCH_NF.clear(); ci.BATCH_NF["pat9"] = {("99306", "10/30/2026")}
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
 check("build: a visit elsewhere in the SAME batch counts as history (31)", [p for _, p in pp] == ["31"], (pp, info))
@@ -126,14 +161,29 @@ out, why, pp = built("n2", [("99309", "20261102")], live=[("99309", "11/02/2026"
 check("build: dedupe is as before (line already on the chart is skipped)", out is None and why == "all lines already in AMD", why)
 out, why, pp = built("n2", [("99999", "20261102")])
 check("build: unknown CPT is refused as before", out is None and why.startswith("unknown CPT"), why)
-_real = ci.nf_visit_pos
-ci.nf_visit_pos = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom"))
+ci.FACS["n2"] = {"Aspire of Tallahassee", "HCA Florida Capital Hospital"}
+body, info, pp = built("n2", [("99487", "20261031")])
+check("build: a feed patient with messages from two buildings is entered as before (31) and reported", [p for _, p in pp] == ["31"] and "2 buildings" in info["pos_err"] and info["pos_lines"] == ["31"], (pp, info))
+ci.FACS["n2"] = {"Aspire of Tallahassee"}
+ci.FACS["a1"] = {"Azalea Gardens ALF", "Aspire of Tallahassee"}
+body, info, pp = built("a1", [("99487", "20261031")])
+check("build: the two-building guard never touches a non-nursing message", [p for _, p in pp] == ["13"] and info["pos_err"] == "", (pp, info))
+ci.FACS["a1"] = {"Azalea Gardens ALF"}
+_real = ci.nf_visit_kind
+ci.nf_visit_kind = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("boom"))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
 check("build: a failure in the rule falls back to the feed's 31 and says so", [p for _, p in pp] == ["31"] and info["pos_err"] == "boom" and info["pos_lines"] == ["31"] and info["pos_why"] == ["rule error"], (pp, info))
-ci.nf_visit_pos = lambda *a, **k: ("11", "x")
+ci.nf_visit_kind = lambda *a, **k: (_ for _ in ()).throw(ValueError())
+body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
+check("build: an error with no text is still reported", [p for _, p in pp] == ["31"] and info["pos_err"] == "ValueError", (pp, info))
+ci.nf_visit_kind = _real
+_realpl = ci.pos_lines
+ci.pos_lines = lambda cd, fp, n, h: (["11"] * len(cd), [""] * len(cd), [""] * len(cd))
 body, info, pp = built("n2", [("99309", "20261102")], live=[("99309", "10/03/2026")])
 check("build: an impossible place of service from the rule is refused (31, reported)", [p for _, p in pp] == ["31"] and info["pos_err"] != "", (pp, info))
-ci.nf_visit_pos = _real
+ci.pos_lines = _realpl
+body, info, pp = built("a1", [("99487", "20261031")], live=[(None, None), ("x",), 7])
+check("build: odd rows in the chart history cannot touch an ALF message", [p for _, p in pp] == ["13"] and info["pos_err"] == "", (pp, info))
 
 # ---- 4. main() --dry over a small batch: the batch's own visits are read, counters print, nothing is posted but reads --------------------
 NAME = lambda k: "zz test " + k                                         # not a person: the match key the ingest builds is name|dob
@@ -144,55 +194,76 @@ ci.PARSED[:] = [
     {"pid": "n2", "name": NAME("two"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99309", "dos": "20261105", "dx": "I10", "units": "1"}]},
     {"pid": "n3", "name": NAME("three"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99306", "dos": "20261103", "dx": "I10", "units": "1"}]},
     {"pid": "a1", "name": NAME("four"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99487", "dos": "20261031", "dx": "I10", "units": "1"}]},
+    {"pid": "u1", "name": NAME("five"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99487", "dos": "20261031", "dx": "I10", "units": "1"}]},
 ]
 ci.MATCH.clear()
-for k, pid in (("one", "pat101"), ("two", "pat102"), ("three", "pat103"), ("four", "pat104")):
+for k, pid in (("one", "pat101"), ("two", "pat102"), ("three", "pat103"), ("four", "pat104"), ("five", "pat105")):
     ci.MATCH[NAME(k).upper().strip() + "|" + DOBK] = {"resolved": pid}
-CHART.update({"102": [("99309", "10/03/2026")], "101": [], "103": [], "104": []})
-POSTS.clear(); buf = io.StringIO(); argv = sys.argv[:]; sys.argv = ["claimocity_import.py", "--dry"]
-with contextlib.redirect_stdout(buf): ci.main()
-sys.argv = argv; out = buf.getvalue()
-dry = {}
-for ln in out.splitlines():
-    m = re.match(r"DRY (pat\d+) (\{.*\})$", ln)
-    if m: dry.setdefault(m.group(1), []).append(eval(m.group(2)))      # the helper prints its own dict; this is its own output, no outside data
-check("main --dry: five messages reach build", sum(len(v) for v in dry.values()) == 5, out[-600:])
+CHART.update({"102": [("99309", "10/03/2026")], "101": [], "103": [], "104": [], "105": []})
+def run_dry():
+    POSTS.clear(); buf = io.StringIO(); argv = sys.argv[:]; sys.argv = ["claimocity_import.py", "--dry"]; ci.BATCH_NF.clear(); ci.BATCH_NF_ERR[0] = ""; ci._ctx.clear()
+    with contextlib.redirect_stdout(buf): ci.main()
+    sys.argv = argv; out = buf.getvalue(); dry = {}
+    for ln in out.splitlines():
+        m = re.match(r"DRY (pat\d+) (\{.*\})$", ln)
+        if m: dry.setdefault(m.group(1), []).append(eval(m.group(2)))      # the helper prints its own dict; this is its own output, no outside data
+    return out, dry
+out, dry = run_dry()
+check("main --dry: six messages reach build", sum(len(v) for v in dry.values()) == 6, out[-600:])
 check("main --dry: nursing CCM 32/32, ALF CCM 13", dry.get("pat101", [{}])[0].get("pos_lines") == ["32", "32"] and dry.get("pat104", [{}])[0].get("pos_lines") == ["13"], dry)
 p102 = sorted(dry.get("pat102", []), key=lambda d: d["dos"])
-check("main --dry: monthly visit 32, then the visit 3 days later in the same batch 31", [d["pos_lines"] for d in p102] == [["32"], ["31"]], p102)
+check("main --dry: monthly visit 32, then the extra visit 3 days later in the same batch left at 31", [d["pos_lines"] for d in p102] == [["32"], ["31"]] and p102[1]["pos_kind"] == ["extra"], p102)
 check("main --dry: 99306 is 31", dry.get("pat103", [{}])[0].get("pos_lines") == ["31"], dry.get("pat103"))
-check("main --dry: counters name the rule's results", "POS 32 CCM (nursing building)" in out and "POS 32 nursing visit (long-term)" in out and "POS 31 nursing visit (skilled)" in out and "POS RULE NOT APPLIED" not in out, out[-400:])
+last3 = out.strip().splitlines()[-3:]
+check("main --dry: one short POS RULE line sits within the last three log lines", any(l.startswith("POS RULE: CCM 32 x2, CCM left 31 x0, visits 32 x1, visits 31 x2, not applied x0, unknown building x1") for l in last3) and len(next(l for l in last3 if l.startswith("POS RULE:"))) <= 110, last3)
+check("main --dry: the DONE counters name the rule's results", all(k in out for k in ("POS 32 CCM (nursing building)", "POS 32 nursing visit (long-term)", "POS 31 nursing visit (skilled)", "POS 31 nursing visit (left at 31", "POS RULE: building not in the facility table")) and "POS RULE NOT APPLIED" not in out, out[-500:])
 check("main --dry: nothing but reads was sent (no addvisit / updvisitwithnewcharges)", not any("addvisit" in b or "updvisitwithnewcharges" in b for b in POSTS), len(POSTS))
 check("main --dry: no import register is written", not os.path.exists(os.path.join(tmp, "registers", "feed_import_SELFTEST.json")))
+ci.PARSED.append({"pid": "n3", "name": NAME("six"), "dob": DOBK, "file": "f", "FT1": [{"cpt": "99309", "dos": "20261104", "dx": "I10", "units": "1"}]})
+ci.MATCH[NAME("six").upper().strip() + "|" + DOBK] = {"resolved": ["not", "a", "chart"]}      # a match row the batch list cannot use
+out, dry = run_dry(); ci.PARSED.pop(); del ci.MATCH[NAME("six").upper().strip() + "|" + DOBK]
+check("main --dry: when the batch visit list cannot be built it is emptied, said and counted - and the run goes on", "batch visit list not built" in out and "POS RULE: batch visit list not built - chart history alone used" in out and ci.BATCH_NF == {} and "DONE" in out, out[-400:])
+ci.BATCH_NF_ERR[0] = ""
 
-# ---- 5. the mirror keeps this helper: a workspace copy without the rule never overwrites the repository's ---------------------------------
+# ---- 5. the mirror keeps these helpers: a workspace copy without the rule never overwrites the repository's ------------------------------
 mir = open(os.path.join(ROOT, "tools", "mirror", "mirror.py")).read()
-m = re.search(r'"claimocity_import\.py":\s*"([^"]+)"', mir)
-check("mirror.py protects claimocity_import.py with a marker", bool(m), "no PROTECTED entry")
-check("the marker is in the helper", bool(m) and m.group(1) in open(HELPER).read(), m.group(1) if m else "")
+for helper in ("claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py"):
+    m = re.search(r'"%s":\s*"([^"]+)"' % re.escape(helper), mir)
+    check("mirror.py protects %s with a marker that is in the file" % helper, bool(m) and m.group(1) in open(os.path.join(ROOT, "scripts", "helpers", helper)).read(), m.group(1) if m else "no PROTECTED entry")
+insp = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read()
+check("inspector: a CCM visit at the hospital location is never moved to HCA REHAB / 31", 'all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"])' in insp)
+step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read()
+check("runbook: the feed step copies the three helpers and checks the marker before the ingest", step.index("grep -q 'def nf_visit_pos' /home/claude/unbilled/claimocity_import.py") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
 
 # ---- 6. the feed digest says what the rule did (claimocity_report.py over a made-up import register) ---------------------------------------
 import subprocess
 rep_dir = tempfile.mkdtemp(prefix="posrule_rep_"); os.makedirs(os.path.join(rep_dir, "registers"))
-def reg_row(cpts, fac, feed, lines, err=""):
+def reg_row(cpts, fac, feed, lines, kinds=None, err=""):
     return {"feed_id": "x", "pid": "pat9", "visit": "vst1", "charges": ["charge%d" % i for i in range(len(cpts))], "fees": ["1.00"] * len(cpts), "dos": "11/02/2026",
-            "cpts": cpts, "fac": fac, "pos": lines[0], "pos_feed": feed, "pos_lines": lines, "pos_why": [""] * len(cpts), "pos_err": err}
-rows = [reg_row(["99487", "99489"], "fac34", "31", ["32", "32"]), reg_row(["99309"], "fac32", "31", ["32"]), reg_row(["99309", "99497"], "fac32", "31", ["31", "31"]),
-        reg_row(["99306"], "fac33", "31", ["31"]), reg_row(["99487"], "fac37", "13", ["13"]), reg_row(["99232"], "fac29", "21", ["21"]),
-        {"feed_id": "y", "pid": "pat8", "visit": "vst2", "charges": ["charge9"], "fees": ["1.00"], "dos": "10/01/2026", "cpts": ["99309"], "fac": "fac34", "pos": "31"}]   # a row from before the rule
-json.dump({"created": rows, "skipped": [], "failed": []}, open(os.path.join(rep_dir, "registers", "feed_import_SELFTEST.json"), "w"))
-r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP="SELFTEST"), capture_output=True, text=True)
-line = next((l for l in r.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
+            "cpts": cpts, "fac": fac, "pos": lines[0], "pos_feed": feed, "pos_lines": lines, "pos_why": [""] * len(cpts), "pos_kind": kinds or [""] * len(cpts), "pos_err": err}
+OLD_ROW = {"feed_id": "y", "pid": "pat8", "visit": "vst2", "charges": ["charge9"], "fees": ["1.00"], "dos": "10/01/2026", "cpts": ["99309"], "fac": "fac34", "pos": "31"}   # a row written by the helper from before the rule
+rows = [reg_row(["99487", "99489"], "fac34", "31", ["32", "32"], ["ccm", "ccm"]), reg_row(["99309"], "fac32", "31", ["32"], ["monthly"]),
+        reg_row(["99309", "99497"], "fac32", "31", ["31", "31"], ["skilled", "with-visit"]), reg_row(["99306"], "fac33", "31", ["31"], ["initial"]),
+        reg_row(["99487"], "fac37", "13", ["13"]), reg_row(["99232"], "fac29", "21", ["21"])]
+def digest(rows, stamp="20261110T1319Z"):
+    json.dump({"created": rows, "skipped": [], "failed": []}, open(os.path.join(rep_dir, "registers", "feed_import_%s.json" % stamp), "w"))
+    r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP=stamp), capture_output=True, text=True)
+    return r, next((l for l in r.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
+r, line = digest(rows)
 check("digest: the report still runs with the new register fields", r.returncode == 0, r.stderr[-300:])
-check("digest: one line - CCM 32 x2, visits 32 x1, visits 31 x2, no error note", "CCM lines entered as 32: 2;" in line and "(monthly, long-term): 1;" in line and "first visit): 2." in line and "NOT APPLIED" not in line and "left at 31" not in line, line)
-rows2 = rows + [reg_row(["99487"], "fac34", "31", ["31"], err="boom")]
-json.dump({"created": rows2, "skipped": [], "failed": []}, open(os.path.join(rep_dir, "registers", "feed_import_SELFTEST.json"), "w"))
-r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP="SELFTEST"), capture_output=True, text=True)
-line = next((l for l in r.stdout.splitlines() if "Place of service in the nursing buildings" in l), "")
-check("digest: a visit the rule could not be applied to is named as such", "POS RULE NOT APPLIED on 1 visit(s)" in line, line)
-json.dump({"created": [rows[-1], rows[4], rows[5]], "skipped": [], "failed": []}, open(os.path.join(rep_dir, "registers", "feed_import_SELFTEST.json"), "w"))
-r = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")], cwd=rep_dir, env=dict(os.environ, FEED_STAMP="SELFTEST"), capture_output=True, text=True)
-check("digest: no line when the batch had no nursing-building charge entered under the rule", r.returncode == 0 and "Place of service in the nursing buildings" not in r.stdout, r.stdout[-300:])
+check("digest: one line - CCM 32 x2, visits 32 x1, visits 31 x2, nothing else", "CCM lines entered as 32: 2;" in line and "(monthly, long-term): 1;" in line and line.rstrip().endswith("nursing visits 31: 2."), line)
+r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["31", "31"], ["ccm-skilled-month"] * 2), reg_row(["99309"], "fac32", "31", ["31"], ["extra"])])
+check("digest: CCM lines and visits left at 31 are counted and explained", "CCM lines entered as 32: 2 (and 2 left at 31 because the chart shows the resident seen at skilled frequency" in line and "nursing visits 31: 3 (1 of them left at 31 because nothing on the chart shows monthly or skilled" in line, line)
+r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["31"], err="boom"), reg_row(["99487", "99309"], "", "31", ["31", "31"])])
+check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named", "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service" in line and "2 CCM / nursing-visit line(s) came from a building the facility table does not know" in line, line)
+r, line = digest(rows + [OLD_ROW])
+check("digest: from 11/10/2026 on, a nursing-building row without the rule's fields means an old helper ran - said loudly", "PLACE OF SERVICE RULE DID NOT RUN on 1 visit(s)" in line, line)
+r, line = digest([OLD_ROW, rows[4], rows[5]], stamp="20261028T0623Z")
+check("digest: a batch from before the rule gets no line", r.returncode == 0 and line == "", r.stdout[-300:])
+r, line = digest([rows[4], rows[5]])
+check("digest: no line when the batch had no nursing-building charge", r.returncode == 0 and line == "", r.stdout[-300:])
+r, line = digest(rows + [dict(reg_row(["99487"], "fac34", "31", ["32"]), pos_lines=[None]), dict(reg_row(["99309"], "fac34", "31", ["32"]), pos_lines=[32], pos_kind=None), dict(reg_row(["99309", "99497"], "fac34", "31", ["32"]), pos_kind=["monthly"])])
+check("digest: odd values in a register never stop the report", r.returncode == 0 and line != "", r.stderr[-300:])
 
 print("\n%d check(s) failed" % len(FAILS) if FAILS else "\nall checks passed")
 sys.exit(1 if FAILS else 0)

@@ -6,9 +6,9 @@
 #   earlier visits look in AMD. Charges enter Charge Review (approval=1, inspector on) like any feed charge.
 # Dedupe: a feed line whose patient already has a live (non-void) charge with the same CPT + DOS is skipped.
 # Place of service (William 11/10/2026, STANDING - practices/ehpa/rules.md): Claimocity can only send 31 for the nursing buildings, so the
-#   real place of service is set here per charge line: CCM 99487/99489 -> 32; a nursing facility visit -> 31 when the resident is being
-#   seen once or twice a week (skilled: the previous nursing visit was no more than 14 days earlier), 32 for the monthly long-term visit.
-#   ALF / home (13), hospital (21) and unknown-building lines are entered exactly as before. See nf_visit_pos / pos_lines below.
+#   real place of service is set here per charge line: CCM 99487/99489 -> 32; a nursing facility visit -> 32 for the monthly long-term
+#   visit, 31 when the resident is seen once or twice a week or the chart shows a new stay; whatever the chart does not show stays 31.
+#   ALF / home (13), hospital (21) and unknown-building lines are entered exactly as before. See NF_KINDS / nf_visit_kind / pos_lines below.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -39,55 +39,139 @@ def mdy(yyyymmdd):
     return "%s/%s/%s" % (yyyymmdd[4:6], yyyymmdd[6:8], yyyymmdd[0:4])
 # ---- PLACE OF SERVICE IN THE NURSING BUILDINGS (William 11/10/2026, STANDING - practices/ehpa/rules.md) -------------------------------
 # The five nursing buildings arrive from Claimocity as POS 31 whatever the resident's status ("that is the only way we have to do it in
-# claimocity"), so the real place of service is decided here, per charge line, when the charge is entered:
-#   CCM 99487 / 99489                   -> 32 always: every CCM the practice does in a nursing building is on a long-term resident who is
-#                                          not being actively skilled. ALF / home CCM keeps its home location (13) - not touched here.
-#   nursing facility visit 99304-99316  -> 31 when the resident is SKILLED ("the ones being billed once or twice weekly in a snf should be
-#                                          billed place of service 31 because they are being skilled and we see them twice a week"):
-#                                          the previous nursing visit was no more than SKILLED_GAP_DAYS earlier, or the line is an initial
-#                                          visit 99304-99306, or it is the first nursing visit on the chart (treated as a new admission)
-#                                       -> 32 otherwise ("the snf residents that are being billed monthly face to face visits should be
-#                                          place of service 32 ltc"): the previous nursing visit was more than SKILLED_GAP_DAYS earlier
-#   any other line of the message (99497 / 99498) -> the place of service of the visit line it rides with, else the feed's
-# Only a line in a KNOWN nursing building (FAC says 31) is ever changed. Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the
-# unknown-building default are entered exactly as before. Any error in the rule falls back to the feed's place of service for the whole
-# message and is counted as "POS RULE NOT APPLIED" - the import never stops for this rule.
+# claimocity"), so the real place of service is decided here, per charge line, when the charge is entered. Medicare's own line: 31 is
+# always allowed; 32 is for a resident who is not in a Part A stay, and every 32 line is matched to the facility's Part A claim. So 32 is
+# given only where the chart SHOWS the long-term pattern, and everything unclear keeps the feed's 31 - exactly what was billed before.
+#   CCM 99487 / 99489          -> 32: "all the ccm services performed in the nursing facility setting by us are done on our long term
+#                                 residents that are not being actively skilled". ALF / home CCM keeps its home location (13).
+#                                 Exception: the chart shows the resident seen at skilled frequency, admitted or readmitted in the CCM's
+#                                 own calendar month -> the line stays at the feed's 31 and is listed for William.
+#   nursing facility visit     -> 32 for "the snf residents that are being billed monthly face to face visits": the previous nursing visit
+#   99304-99310, 99315, 99316     was MONTHLY_MIN_DAYS to MONTHLY_MAX_DAYS earlier, was not a discharge, and none of our hospital visits
+#                                 falls in between.
+#                              -> 31 for "the ones being billed once or twice weekly ... because they are being skilled": the previous
+#                                 nursing visit was no more than SKILLED_GAP_DAYS earlier; and 31 for an initial visit 99304-99306, the first
+#                                 nursing visit on the chart, the first visit after a discharge, after one of our hospital visits or after
+#                                 more than MONTHLY_MAX_DAYS (a new stay), and for a gap between weekly and monthly (nothing shown).
+#   any other line (99497/8)   -> the place of service of the visit line of the SAME date in the message, else the feed's.
+# Only a line in a KNOWN nursing building (FAC says 31) of a feed patient whose messages all come from ONE building is ever changed.
+# Hospital (21), ALF / home (13), HCA REHAB (the inspector step) and the unknown-building default are entered exactly as before. Any error
+# in the rule falls back to the feed's place of service for the whole message and is counted as "POS RULE NOT APPLIED" - the import
+# never stops for this rule.
 CCM = {"99487", "99489"}
 NF_INITIAL = {"99304", "99305", "99306"}
-NF_VISIT = NF_INITIAL | {"99307", "99308", "99309", "99310", "99315", "99316"}
-SKILLED_GAP_DAYS = 14      # weekly / twice-weekly visits sit 3-7 days apart, monthly visits 21-35 (feed 9/1-11/5/2026: 100 gaps of 1-7 days, 41 of 21-35, 16 between)
-BATCH_NF = {}              # chart -> {(cpt, DOS)} nursing facility visits in THIS feed batch (main() fills it); read together with the chart's history
+NF_DISCHARGE = {"99315", "99316"}
+NF_VISIT = NF_INITIAL | NF_DISCHARGE | {"99307", "99308", "99309", "99310"}
+HOSP_VISIT = {"99221", "99222", "99223", "99231", "99232", "99233", "99234", "99235", "99236", "99238", "99239"}
+SKILLED_GAP_DAYS = 14      # weekly / twice-weekly visits sit 3-7 days apart (feed 9/1-11/5/2026: 100 gaps of 1-7 days, 41 of 21-35, 16 between)
+MONTHLY_MIN_DAYS = 21      # 32 needs the monthly pattern actually shown: previous nursing visit 21 ...
+MONTHLY_MAX_DAYS = 92      # ... to 92 days back (the 60-day schedule fits; longer than that is a new stay, not a monthly visit)
+BATCH_NF = {}              # chart -> {(cpt, DOS)} nursing and hospital visits in THIS feed batch (main() fills it); read with the chart's history
+BATCH_NF_ERR = [""]        # why the batch list could not be built (then the chart history alone is used) - reaches the DONE line
+FACS = {}                  # feed patient id -> every building name its messages carry in this batch (the rule steps aside when there are two)
+# what nf_visit_kind can answer: kind -> (place of service, the words for the register; %d = days since the previous nursing visit)
+NF_KINDS = {
+    "initial":   ("31", "initial visit - skilled"),
+    "first":     ("31", "no earlier nursing visit on the chart - treated as a new admission"),
+    "skilled":   ("31", "skilled: seen %d days after the previous nursing visit (weekly or more)"),
+    "extra":     ("31", "seen %d days after the previous nursing visit, no admission visit at the start of this run of visits - left at 31 (an extra visit on a long-term resident?)"),
+    "hospital":  ("31", "first nursing visit after one of our hospital visits (%d days after the previous nursing visit) - treated as a new skilled stay"),
+    "discharge": ("31", "the previous nursing visit, %d days earlier, was a discharge - treated as a new admission"),
+    "stale":     ("31", "%d days since the previous nursing visit - not a monthly pattern, treated as a new admission"),
+    "between":   ("31", "%d days since the previous nursing visit - between weekly and monthly, left at 31"),
+    "monthly":   ("32", "long-term: %d days since the previous nursing visit (the monthly visit)"),
+}
+SKILLED_KINDS = ("initial", "first", "skilled", "extra", "hospital", "discharge", "stale")   # a visit of one of these kinds in the CCM's month keeps the CCM at 31
 def _day(mdy_s):
     return datetime.datetime.strptime(mdy_s, "%m/%d/%Y").date()
-def nf_visit_pos(cpt, dos_mdy, nf_history):
-    """(pos, why) for ONE nursing facility visit line in a nursing building. nf_history: iterable of (cpt, 'MM/DD/YYYY') - every nursing
-    facility visit known for the resident (the chart's live charges + this feed batch). Pure: no AMD call, no file. why carries no date."""
-    if cpt in NF_INITIAL: return "31", "initial visit - skilled"
-    day = _day(dos_mdy); prev = None
-    for c, d in nf_history:
-        if c not in NF_VISIT or not d: continue
+def _history(nf_history, upto):
+    """({day: {nursing codes}}, [days of our hospital visits]) from (cpt, 'MM/DD/YYYY') rows dated on or before upto; odd rows are skipped."""
+    visits = {}; hosp = []
+    for row in nf_history:
+        try: c, d = row[0], row[1]
+        except Exception: continue
+        if not d or (c not in NF_VISIT and c not in HOSP_VISIT): continue
         try: dd = _day(d)
         except Exception: continue
-        if dd < day and (prev is None or dd > prev): prev = dd
-    if prev is None: return "31", "no earlier nursing visit on the chart - treated as a new admission"
-    gap = (day - prev).days
-    if gap <= SKILLED_GAP_DAYS: return "31", "skilled: seen %d days after the previous nursing visit (weekly or more)" % gap
-    return "32", "long-term: %d days since the previous nursing visit (the monthly visit)" % gap
+        if dd > upto: continue
+        if c in HOSP_VISIT: hosp.append(dd)
+        else: visits.setdefault(dd, set()).add(c)
+    return visits, hosp
+def _kind_at(day, initial, visits, hosp):
+    """(kind, days since the previous nursing visit) for a nursing visit on `day`; visits / hosp as _history returns them."""
+    if initial: return "initial", 0
+    days = sorted(d for d in visits if d < day)
+    if not days: return "first", 0
+    prev = days[-1]; gap = (day - prev).days
+    def new_stay(i):                                    # is the visit of days[i] the start of a stay?
+        if (visits[days[i]] & NF_INITIAL) or i == 0: return True
+        q = days[i - 1]
+        return (days[i] - q).days > MONTHLY_MAX_DAYS or bool(visits[q] & NF_DISCHARGE) or any(q < h <= days[i] for h in hosp)
+    if any(prev < h <= day for h in hosp): return "hospital", gap
+    if visits[prev] & NF_DISCHARGE: return "discharge", gap
+    if gap <= SKILLED_GAP_DAYS:
+        i = len(days) - 1
+        while not new_stay(i) and (days[i] - days[i - 1]).days <= SKILLED_GAP_DAYS: i -= 1
+        return ("skilled" if new_stay(i) else "extra"), gap
+    if gap > MONTHLY_MAX_DAYS: return "stale", gap
+    if gap < MONTHLY_MIN_DAYS: return "between", gap
+    return "monthly", gap
+def nf_visit_kind(cpt, dos_mdy, nf_history):
+    """(kind, days) for ONE nursing facility visit line in a nursing building - see NF_KINDS. nf_history: iterable of (cpt, 'MM/DD/YYYY'),
+    every nursing and hospital visit known for the resident (the chart's live charges + this feed batch). Pure: no AMD call, no file."""
+    day = _day(dos_mdy); visits, hosp = _history(nf_history, day)
+    return _kind_at(day, cpt in NF_INITIAL, visits, hosp)
+def nf_visit_pos(cpt, dos_mdy, nf_history):
+    """(pos, why) for ONE nursing facility visit line in a nursing building. why carries no date."""
+    kind, gap = nf_visit_kind(cpt, dos_mdy, nf_history); pos, text = NF_KINDS[kind]
+    return pos, (text % gap if "%d" in text else text)
+def seen_at_skilled_frequency(dos_mdy, nf_history):
+    """True when the chart shows, in the calendar month of dos_mdy, a nursing visit the rule reads as skilled, an admission or a new stay
+    (any kind in SKILLED_KINDS). Then a CCM line of that month stays at the feed's 31 and is listed for William."""
+    day = _day(dos_mdy)
+    last = (datetime.date(day.year + (day.month == 12), day.month % 12 + 1, 1) - datetime.timedelta(days=1))
+    visits, hosp = _history(nf_history, last)
+    for d in sorted(visits):
+        if (d.year, d.month) != (day.year, day.month): continue
+        if _kind_at(d, bool(visits[d] & NF_INITIAL), visits, hosp)[0] in SKILLED_KINDS: return True
+    return False
 def pos_lines(cpt_dos, feed_pos, nursing, nf_history):
     """Place of service for every line of ONE feed message. cpt_dos = [(cpt, 'MM/DD/YYYY')] in line order; nursing = the message comes from
-    one of the practice's nursing buildings. Returns ([pos per line], [why per line])."""
-    if not nursing: return [feed_pos] * len(cpt_dos), [""] * len(cpt_dos)
-    out = []; why = []; visit = None
+    one of the practice's nursing buildings. Returns ([pos per line], [why per line], [kind per line])."""
+    n = len(cpt_dos)
+    if not nursing: return [feed_pos] * n, [""] * n, [""] * n
+    hist = set()
+    for row in nf_history:
+        try: hist.add((row[0], row[1]))
+        except Exception: continue
     for cpt, d in cpt_dos:
-        if cpt in CCM: p, w = "32", "CCM in a nursing building - long-term resident"
+        if cpt in NF_VISIT: hist.add((cpt, d))            # the message's own visit lines count as history for each other
+    out = []; why = []; kinds = []; by_day = {}
+    for cpt, d in cpt_dos:
+        if cpt in CCM:
+            if seen_at_skilled_frequency(d, hist): p, w, k = feed_pos, "CCM left at 31: the chart shows the resident seen at skilled frequency, admitted or readmitted this month - for William", "ccm-skilled-month"
+            else: p, w, k = "32", "CCM in a nursing building - long-term resident", "ccm"
         elif cpt in NF_VISIT:
-            p, w = nf_visit_pos(cpt, d, nf_history)
-            if visit is None: visit = p
-        else: p, w = None, ""
-        out.append(p); why.append(w)
-    for i, p in enumerate(out):
-        if p is None: out[i] = visit or feed_pos; why[i] = "same place of service as the visit line" if visit else ""
-    return out, why
+            k, gap = nf_visit_kind(cpt, d, hist); p, text = NF_KINDS[k]; w = text % gap if "%d" in text else text
+            by_day.setdefault(d, p)
+        else: p, w, k = None, "", ""
+        out.append(p); why.append(w); kinds.append(k)
+    for i, (cpt, d) in enumerate(cpt_dos):
+        if out[i] is None:
+            if d in by_day: out[i] = by_day[d]; why[i] = "same place of service as the visit line of that day"; kinds[i] = "with-visit"
+            else: out[i] = feed_pos
+    return out, why, kinds
+def count_pos(info, stats):
+    """The DONE-line counters for one message that was entered (or would be, in a dry run)."""
+    if info.get("pos_err"):
+        stats["POS RULE NOT APPLIED (entered at the feed's place of service)"] += 1; return
+    for cpt, p, k in zip(info["cpts"], info["pos_lines"], info.get("pos_kind") or [""] * len(info["cpts"])):
+        if info.get("pos_feed") == "31" and not info.get("fac") and (cpt in CCM or cpt in NF_VISIT): stats["POS RULE: building not in the facility table - entered at the feed's 31"] += 1
+        elif k == "ccm": stats["POS 32 CCM (nursing building)"] += 1
+        elif k == "ccm-skilled-month": stats["POS 31 CCM left for William (resident seen at skilled frequency that month)"] += 1
+        elif k == "monthly": stats["POS 32 nursing visit (long-term)"] += 1
+        elif k in ("extra", "between"): stats["POS 31 nursing visit (left at 31: nothing shows monthly or skilled)"] += 1
+        elif k and k != "with-visit": stats["POS 31 nursing visit (skilled)"] += 1
 # facility per feed message (MSH-4) and provider NPI per message (PV1-7) re-read from the raw files
 import glob
 FACOF = {}; NPIOF = {}; ADMIT = {}
@@ -98,7 +182,7 @@ for f in glob.glob((HL7_DIR + "/*.hl7")):
         msh = b.split("\n")[0].split("|"); fac = msh[3].split("^")[-1]; pid = None
         for line in b.split("\n"):
             s = line.split("|")
-            if s[0] == "PID": pid = s[3]; FACOF[pid] = fac
+            if s[0] == "PID": pid = s[3]; FACOF[pid] = fac; FACS.setdefault(pid, set()).add(fac)
             if s[0] == "PV1" and pid:
                 NPIOF[pid] = s[7].split("^")[0] if len(s) > 7 else ""
                 ADMIT[pid] = s[44] if len(s) > 44 else ""
@@ -160,13 +244,16 @@ def build(msg, ctx):
     cpts = [c["cpt"] for c in lines]
     missing_dx = set()
     # place of service per line (11/10/2026 rule); any failure = the feed's place of service for every line, exactly as before the rule
-    pos_err = ""
+    pos_err = ""; lkind = [""] * len(lines)
     try:
-        hist = set(ctx.get("live") or ()) | set(BATCH_NF.get(ctx.get("pid"), ()))
-        lpos, lwhy = pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist)
+        if nursing and len(FACS.get(fid, ())) > 1:
+            raise ValueError("this feed patient has messages from %d buildings in this batch and the feed keeps one building per patient - "
+                             "check the facility and the place of service of this visit by hand" % len(FACS[fid]))
+        hist = (set(ctx.get("live") or ()) | set(BATCH_NF.get(ctx.get("pid"), ()))) if nursing else ()   # the history is only read for a nursing building
+        lpos, lwhy, lkind = pos_lines([(c["cpt"], mdy(c["dos"][:8])) for c in lines], pos, nursing, hist)
         if len(lpos) != len(lines) or any(p not in ("31", "32", pos) for p in lpos): raise ValueError("unexpected place of service %r" % (lpos,))
     except Exception as e:
-        lpos = [pos] * len(lines); lwhy = ["rule error"] * len(lines); pos_err = str(e)[:160]
+        lpos = [pos] * len(lines); lwhy = ["rule error"] * len(lines); lkind = [""] * len(lines); pos_err = str(e)[:200] or type(e).__name__
     for c, cpos in zip(lines, lpos):
         dcodes = []
         for code in c["dx"].split("^"):
@@ -196,7 +283,7 @@ def build(msg, ctx):
     create = amd.msg("addvisit", "chargeentry", {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
                      "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, appt)
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
-    return (create, body), {"dos": dos, "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos, "pos_why": lwhy, "pos_err": pos_err,
+    return (create, body), {"dos": dos, "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos, "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err,
                             "prof": prof, "admit": ADMIT.get(fid, ""), "missing_dx": sorted(missing_dx)}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
@@ -225,17 +312,19 @@ def main():
         v = _dc.get(re.sub(r"\D", "", pid)) or {}
         d = v.get("dod") or ""
         return d if re.match(r"\d{4}-\d{2}-\d{2}$", d) else None
-    # nursing facility visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
+    # nursing and hospital visits of THIS batch per chart: the place-of-service rule reads them together with the chart's own history,
     # so the result does not depend on the order the messages are entered in
     try:
         for _m in PARSED:
             _p = MATCH.get(_m["name"].upper().strip() + "|" + _m["dob"][:8], {}).get("resolved")
             if not _p: continue
             for _c in _m.get("FT1") or []:
-                if _c.get("cpt") in NF_VISIT and len(_c.get("dos") or "") >= 8: BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8])))
+                if (_c.get("cpt") in NF_VISIT or _c.get("cpt") in HOSP_VISIT) and len(_c.get("dos") or "") >= 8: BATCH_NF.setdefault(_p, set()).add((_c["cpt"], mdy(_c["dos"][:8])))
     except Exception as e:
-        print("POS RULE: batch visit list not built (%s) - the chart history alone is used" % str(e)[:120])
+        BATCH_NF.clear(); BATCH_NF_ERR[0] = str(e)[:120] or type(e).__name__
+        print("POS RULE: batch visit list not built (%s) - the chart history alone is used" % BATCH_NF_ERR[0])
     n = 0; stats = collections.Counter()
+    if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - chart history alone used"] += 1
     for msg in PARSED:
         fid = msg["pid"]
         if one and fid != one: continue
@@ -255,14 +344,9 @@ def main():
             if body is None:
                 stats["skip: " + info] += 1; reg["skipped"].append({"feed_id": fid, "pid": pid, "why": info}); continue
             n += 1
-            if info.get("pos_err"):
-                stats["POS RULE NOT APPLIED (entered at the feed's place of service)"] += 1; print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
-            elif info.get("pos_feed") == "31" and info.get("fac"):
-                for _cpt, _p in zip(info["cpts"], info["pos_lines"]):
-                    if _cpt in CCM: stats["POS %s CCM (nursing building)" % _p] += 1
-                    elif _cpt in NF_VISIT: stats["POS %s nursing visit (%s)" % (_p, "long-term" if _p == "32" else "skilled")] += 1
+            if info.get("pos_err"): print("POS RULE NOT APPLIED", pid, info["dos"], info["cpts"], info["pos_err"])
             if dry:
-                print("DRY", pid, info); stats["dry"] += 1; continue
+                print("DRY", pid, info); stats["dry"] += 1; count_pos(info, stats); continue
             create, body = body
             r0 = amd.post(create, timeout=120)
             vm = re.search(r'<visit id="(vst\d+)"', r0)
@@ -286,7 +370,7 @@ def main():
                             info["admit_written"] = "Fault" not in re_ and 'hospitalizationfrom="%s"' % mdy(info["admit"][:8]) in re_
                 reg["created"].append({"feed_id": fid, "pid": pid, "visit": vid.group(1) if vid else "", "charges": cids, "fees": fees, "at": datetime.datetime.utcnow().isoformat(), **info})
                 for cpt in info["cpts"]: ctx["live"].add((cpt, info["dos"]))
-                stats["created"] += 1; stats["charge lines"] += len(cids)
+                stats["created"] += 1; stats["charge lines"] += len(cids); count_pos(info, stats)
                 print("OK", pid, info["dos"], info["cpts"], vid.group(1) if vid else "?", cids, fees)
             json.dump(reg, open(REG, "w"), indent=1)
             time.sleep(0.6)
@@ -297,5 +381,8 @@ def main():
     # 10/29 05:49Z lesson: a live batch whose every line was already in AMD created nothing and so wrote NO import register (verify,
     # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
+    _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
+    print("POS RULE: CCM 32 x%d, CCM left 31 x%d, visits 32 x%d, visits 31 x%d, not applied x%d, unknown building x%d" % (
+        _pk("POS 32 CCM"), _pk("POS 31 CCM"), _pk("POS 32 nursing"), _pk("POS 31 nursing"), _pk("POS RULE NOT APPLIED"), _pk("POS RULE: building")))
     print("DONE", dict(stats))
 if __name__ == "__main__": main()

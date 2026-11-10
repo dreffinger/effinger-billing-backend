@@ -108,7 +108,8 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              "approval_submit.py": "LASTFIRST", "payreasons.py": "10/6: no patient name", "columns_scan.py": "NAMEKEY",
              # 11/10/2026: the feed import carries William's place-of-service rule (CCM in a nursing building = 32, visits by frequency);
              # a workspace copy from before the rule must never put the old all-31 code back on main
-             "claimocity_import.py": "def nf_visit_pos"}
+             "claimocity_import.py": "def nf_visit_pos", "claimocity_report.py": "Place of service in the nursing buildings",
+             "claimocity_inspector.py": "CCM at the hospital location"}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)

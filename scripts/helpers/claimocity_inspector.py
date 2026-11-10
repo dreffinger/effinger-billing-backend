@@ -3,6 +3,7 @@
 #   117065068 Hospitalization From Date empty -> admission = the feed's PV1 admit date, else the visit's own 99223 DOS, else the
 #              most recent 99223 within 45 days on the chart (gettxhistory); updextrainsinfo per CPT, then full-echo resave to reinspect.
 #   Pattern 4531 (99309 at the hospital location) -> the HCA SNF unit: facility fac67 (HCA REHAB), charge POS 31, resave.
+#              (11/10/2026: never for a CCM visit - CCM at the hospital location is a wrong building and is held for William.)
 #   Pattern 20389 / primary-position dx (sequela, external cause, Z secondary-only, 'code first' manifestation) -> William's
 #              9/14 cascade (dx_primary_fix.plan): delete the code, else move it behind the condition code, else I10 first; full-echo
 #              dx save; the visit is re-listed and the leftover advisories bypassed with fresh ids.
@@ -91,7 +92,9 @@ def main():
                     OUT["held"].append({"visit": vid, "pid": c["pid"], "why": "no admission anchor (no PV1 admit, no 99223 within 45 days)"}); print("HOLD", vid, "no admit anchor"); continue
             # 2. location: SNF codes sent by HCA -> HCA REHAB unit
             fac = pos = None
-            if "4531" in pats and c.get("fac") == "fac29" and all(x not in HOSP for x in c["cpts"]):
+            # 11/10/2026 (William's place-of-service rule): CCM at the hospital location is a wrong building, never an HCA REHAB stay -
+            # it is not moved to fac67 / POS 31; the 4531 error stays and the visit is held for William like any other data error
+            if "4531" in pats and c.get("fac") == "fac29" and all(x not in HOSP for x in c["cpts"]) and not any(x in ("99487", "99489") for x in c["cpts"]):
                 fac, pos = "fac67", "31"; note.append("facility fac29 -> fac67 (HCA REHAB), POS 31")
             # 3. dx cascade on primary-position problems
             dx_notes = []
