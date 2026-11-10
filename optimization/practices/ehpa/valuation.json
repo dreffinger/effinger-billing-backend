@@ -2,17 +2,21 @@
  {
   "as_of": "2026-11-10",
   "method": "summary",
-  "low": 400000,
-  "base": 650000,
-  "high": 1000000,
+  "low": 50000,
+  "base": 300000,
+  "high": 680000,
   "inputs": [
    [
     "Revenue, last twelve months to September 30, 2026",
     1058153
    ],
    [
-    "Less estimated one-time recovery of old receivables",
+    "Less one-time recovery of old receivables (placeholder, not measured)",
     -46000
+   ],
+   [
+    "Less medical director stipends no longer received ($48,000 in the last twelve months, about $32,000 a year now)",
+    -16000
    ],
    [
     "Operating expenses (staff, nurse practitioner, billing, rent, other)",
@@ -20,37 +24,53 @@
    ],
    [
     "Earnings before any owner pay (seller's discretionary earnings)",
-    539057
+    523057
    ],
    [
     "Less a market wage for the physician's clinical work, with payroll tax and benefits",
-    -369000
+    -435000
    ],
    [
     "Normalized EBITDA",
-    170057
+    88057
    ],
    [
     "Normalized EBITDA, low to high case",
-    "$123,057 to $239,057"
+    "About $17,000 to $170,000, most likely about $88,000. High: a $369,000 loaded wage and all $48,000 of stipends. Most likely: a $435,000 loaded wage and stipends at $32,000 a year. Low: the same, with the whole third-quarter jump in collections treated as one-time ($73,881) and billing cost at the third-quarter rate. None of these cases includes a cut to care management or visit levels. None assumes the third quarter's pace lasts. If it did, earnings would be about $279,000, but part of that quarter's collections is one-time recovery of old receivables."
    ],
    [
     "Market wage used",
-    "$325,000 base. Published 2025 figures: family medicine median $342,411 (AMGA), geriatrics average $304,411 (Doximity), primary care $314,404 to $345,852 (MGMA)."
+    "$383,275 base: the 2025 median for primary care physicians with supervisory duties (Medical Group Management Association, MGMA). The owner works with a nurse practitioner. As billed, the owner's visits carry 1.25 to 1.7 times the work units of the median family physician, before care management. Other 2025 figures: family medicine median $342,411 (American Medical Group Association); primary care $314,404 to $345,852 (MGMA); geriatrics average $304,411 (Doximity, self-reported). With payroll tax and benefits, about $435,000. Each $10,000 of base wage moves the earnings-method value by about $34,000."
+   ],
+   [
+    "Check on sustainable revenue",
+    "Not yet reconciled. The $46,000 is a placeholder equal to about 15% of third-quarter collections. Third-quarter collections ran $73,881 above the average of the three quarters before, which ran at about $936,000 a year. The plan's own estimates (visits about $600,000 a year, care management up to $160,000, stipends $32,000) total about $800,000. Measure recurring collections by payment date and date of service before relying on this page. Each $10,000 that does not recur removes $10,000 of earnings and about $30,000 of value on the earnings method."
+   ],
+   [
+    "Check on costs",
+    "The third quarter of 2026 ran higher: $138,497, a rate of $553,988 a year against $473,096 for the twelve months. About half of the increase is billing services and software ($26,790 in the quarter, a rate of $107,160 a year against $63,573). If the higher billing cost is permanent, earnings are about $44,000 a year lower than shown. Revenue was also higher that quarter, so confirm both before relying on this page."
    ],
    [
     "How the conclusion is weighted",
-    "Half on the EBITDA method (what a group or platform buyer pays), a quarter on the revenue cross-check, a quarter on the owner-operator method. The weighted figure is $647,750, rounded to $650,000."
+    "Three quarters on the EBITDA method (earnings before interest, taxes, depreciation and amortization, after a market wage). Appraisal guidance treats those earnings as the main basis for valuing a medical practice. One quarter on the marketplace revenue check at its lower-quartile multiple (0.42). That data is not split by specialty or setting, and this practice has one physician and facility relationships it does not own. The owner-operator method uses the same marketplace data and is shown as a ceiling with no weight. Three quarters of $264,000 plus one quarter of $418,000 is $302,500, rounded to $300,000."
+   ],
+   [
+    "How the range is set",
+    "Low case, about $50,000: earnings after a market wage are near zero and a buyer pays for equipment and little else. High case, about $680,000: a buyer assumes a wage near the survey medians ($325,000 base) and counts all $48,000 of stipends, so earnings are about $170,000, and pays 4 times. All three cases assume the owner stays on under contract through a transition."
+   ],
+   [
+    "How this estimate changed",
+    "A first version of this page put the value at about $650,000. Two independent reviews found that it used a wage too low for the owner's workload, counted stipends no longer received, and gave half the weight to marketplace sales of ordinary office practices. Both reviews reached about $300,000."
    ],
    [
     "Books",
-    "Cash basis and unaudited. No receivables or payables are on the balance sheet, so receivables are added separately below."
+    "Cash basis and unaudited. No receivables or payables are on the balance sheet, so receivables are added separately below and unpaid bills are not shown."
    ]
   ],
   "bridge": [
    {
     "label": "Enterprise value, most likely",
-    "amount": 650000,
+    "amount": 300000,
     "note": "What a buyer would pay for the practice as a going concern, with no cash and no debt."
    },
    {
@@ -60,33 +80,38 @@
    },
    {
     "label": "Plus receivables the seller collects",
-    "amount": 90000,
-    "note": "$342,620 is open at billed charges. After contractual discounts and aging, about $70,000 to $110,000 should turn into cash. In an asset sale the seller normally keeps receivables."
+    "amount": 75000,
+    "note": "$342,620 was open at billed charges on November 9, 2026. The practice has not yet measured its collection rate, so this is a rough estimate from the age of the balances and the share of recent claims that paid: about $60,000 to $90,000 should turn into cash. About $76,000 of the balance is probably October's care-management batch, and those claims have paid about 42% of the time. In a small asset sale the seller normally keeps receivables. An investor-backed buyer may ask for part of them to stay as working capital, which would lower this line."
    },
    {
     "label": "Less debt paid off at closing",
     "amount": -212206,
-    "note": "Equipment and working-capital note $187,206 at 13.99% and a family trust loan of $25,000."
+    "note": "Bankers Healthcare Group note $187,206 (13.99% per the owner's records) and a family trust loan of $25,000, both at September 30, 2026. A prepayment charge, if the note has one, would add to this."
    },
    {
-    "label": "Indicative proceeds to the owner, before tax and deal costs",
-    "amount": 622225,
+    "label": "Subtotal, before the items in the next row",
+    "amount": 257225,
     "kind": "total",
-    "note": "Legal and broker costs commonly run 5% to 10% of price. The $162,121 the owner owes the corporation does not change this total, but it must be cleared before a sale and clearing it has a tax cost. Ask the accountant now."
+    "note": "Value plus cash plus collectible receivables, less debt. This is not what the owner keeps."
+   },
+   {
+    "label": "Still to come off, not estimated here",
+    "amount": null,
+    "note": "Bills and payroll unpaid at closing (the books are cash basis, so none are shown); legal, accounting and broker fees (get written quotes; no figure is assumed here); federal income tax on the gain, which is figured asset by asset (the long-term capital gain rate is 15% or 20% depending on taxable income, and the accountant should confirm which parts qualify); any part of the price a buyer holds back against billing risk; malpractice tail coverage if the policy is claims-made; and repayment of past claims if a review finds overpayments. Any personal tax balance is outside the practice, but sale proceeds are the likely source to pay it. The $162,121 the owner owes the corporation does not change the subtotal, but it must be cleared before a sale and clearing it has a tax cost. Ask the accountant now."
    }
   ],
-  "notes": "**Three things hold the number down, and all three can be changed.** First, earnings after a market wage are thin: buyers pay for what is left after someone else is paid to do the owner's work, and that is about $170,000, not the $585,000 the books show before the owner is paid. Second, the owner personally produces 76.8% of charges and holds the facility relationships, so most of the goodwill would leave with the owner unless the owner stays on under contract. Third, the billing patterns in the risk review (complex care management volume, visit levels, place of service) would be found in any buyer's diligence and would be priced as a discount, an escrow or a reason to walk away. **What moves it up:** every additional $100,000 of sustainable earnings is worth roughly $300,000 at this multiple. A clean outside coding audit, a second and third clinician carrying the census, written facility agreements, monthly accrual-basis statements and two years of growth are what move a buyer from 3 times earnings toward 4 or 5. As an illustration only: revenue of $1.4 million with $330,000 of normalized earnings at 4 to 5 times would be worth about $1.3 to $1.6 million. **What moves it down:** if care-management billing cannot be supported and stops, earnings fall by up to the amount it collects and past payments may have to be returned. That is the low case."
+  "notes": "**Read this first.** The estimate uses the last twelve months only. That was the best year for earnings before owner pay since 2023: $585,057, against $400,401 in 2025 and $503,428 in 2024. Revenue fell 30% in 2024 and 23% in 2025. On calendar 2025 figures the same method leaves little or nothing after a market wage. A buyer will want proof that the 2026 recovery lasts. **Three things hold the number down, and all three can be changed.** First, earnings after a market wage are thin: buyers pay for what is left after someone else is paid to do the owner's work, and that is about $88,000, not the $585,000 the books show before the owner is paid. Second, the owner personally produces 76.8% of charges and holds the facility relationships, so most of the goodwill would leave with the owner unless the owner stays on under contract. Third, the billing patterns in the risk review (complex care management volume, visit levels, place of service) would be found in any buyer's diligence and would be priced as a discount, an escrow or a reason to walk away. The remaining $32,000 of stipends is pay for the owner's own hours as a medical director. Whoever pays a stipend chooses its own medical director, so a buyer may not count it. **What moves it up:** at 3 times earnings, each $100,000 of proven yearly earnings adds about $300,000 to an earnings-based offer. A clean outside coding audit, a second and third clinician carrying the census, written facility agreements, monthly accrual-basis statements and two years of growth are what move a buyer from 3 times earnings toward 4 or 5. As an illustration only: revenue of $1.4 million with $330,000 of normalized earnings at 4 to 5 times would be worth about $1.3 to $1.65 million. **What moves it down:** three things, and each is large next to the earnings a buyer pays for. Care management: the risk review puts this billing at up to $160,000 a year, and the practice cannot yet say how much of the last twelve months' collections it supplied. Visit levels: the risk review puts a finding that half of visits were one level high at $60,000 to $100,000 a year. Billing cost: the third quarter ran at a rate of $107,000 a year against $64,000 for the twelve months. In the low case, earnings after a market wage are near zero and a buyer pays for equipment and little else, about $50,000. Repayment of past claims would come on top and stays with the seller. Public Medicare data show about $490,000 allowed for complex care-management claims under the owner for 2021 to 2023. That is the size of the line for those years, not an estimate of what is owed. **What this means for the owner:** today the practice is worth far more to its owner, about $523,000 a year before the owner's own pay, than to a buyer. The work that raises the price is the same work that makes the practice safer to own: billing the records support, earnings that do not depend on one person, and books a stranger can verify."
  },
  {
   "as_of": "2026-11-10",
   "method": "Normalized EBITDA multiple",
-  "low": 340000.0,
-  "base": 510000.0,
-  "high": 680000.0,
+  "low": 176000,
+  "base": 264000,
+  "high": 352000,
   "inputs": [
    [
     "Normalized EBITDA",
-    170057
+    88057
    ],
    [
     "Multiple applied",
@@ -94,25 +119,25 @@
    ],
    [
     "Evidence",
-    "Reported sales of small primary care practices (revenue under $5 million): 3 to 6 times EBITDA (Scope Research, 2025). Taken down one turn for a single physician, government fee-for-service payers and facility relationships the practice does not own."
+    "Scope Research, a healthcare deal-data firm, said in 2025 that small primary care practices (revenue under $5 million) usually sell for 3 to 6 times EBITDA (earnings before interest, taxes, depreciation and amortization). It shows no individual sales behind that range and notes that most small-practice sales are never announced. No published sale prices were found for one-physician, facility-based practices. The 2 to 4 times used here is a judgment: one turn below that range for a single physician, government fee-for-service payers and facility relationships the practice does not own."
    ],
    [
     "Stretch case",
-    "5 to 6 times (about $850,000 to $1,020,000) needs a strategic buyer in post-acute or senior care, the owner staying for several years, and documented, transferable relationships."
+    "5 to 6 times (about $440,000 to $530,000 on earnings of $88,057) would need a buyer that pays for growth, the owner staying for several years, and documented, transferable relationships. No such buyer has been identified. If the buyer is a hospital, nursing facility operator, home health agency, hospice or other business the owner sends patients to, the federal self-referral and anti-kickback laws in practice hold the price to fair market value, with nothing paid for referrals. For a hospital, the total price must be fixed before the first payment, so an earn-out tied to later revenue does not fit the exception for a one-time sale. Do not plan on this case. Have a healthcare attorney review any offer from a buyer of that kind."
    ]
   ],
-  "notes": "The method a medical group, health system or investor-backed platform would use. It pays for earnings that remain after every clinician, including the owner, is paid a market wage."
+  "notes": "The method a medical group, health system or investor-backed platform would use. It pays for earnings that remain after every clinician, including the owner, is paid a market wage. The price holds only if the owner, or a replacement, works for that wage after the sale. The owner now takes about $415,000 a year in salary and distributions, more than the base wage assumed here. Each $10,000 of yearly pay above that wage lowers the price by about $34,000 at 3 times. A hospital's appraiser will use the pay the hospital actually agrees to, not a survey figure."
  },
  {
   "as_of": "2026-11-10",
   "method": "Owner-operator earnings multiple",
-  "low": 787000.0,
-  "base": 943000.0,
-  "high": 1105000.0,
+  "low": 764000,
+  "base": 915000,
+  "high": 1072000,
   "inputs": [
    [
     "Earnings before any owner pay",
-    539057
+    523057
    ],
    [
     "Multiple applied",
@@ -120,31 +145,31 @@
    ],
    [
     "Evidence",
-    "Medical practices sold through a national business marketplace, 2021 to 2025: median 2.05 times owner earnings, middle half 1.46 to 2.94 (BizBuySell data quoted by Iconic, 2026). The lower half of that range is used because one physician produces most of the earnings."
+    "Medical practices sold through a national business marketplace, 2021 to 2025, with no split by specialty or setting: median 2.05 times owner earnings, middle half 1.46 to 2.94 (BizBuySell data quoted by Iconic, 2026). In 2025 the median sale price in that data was $485,000 and median owner earnings were $227,196. This practice's owner earnings are more than twice that and come mostly from the owner's own work. Read this method as a ceiling. At the high figure, payments on a 10-year loan at 10% for 90% of the price would be covered about 0.6 times by earnings of $88,057. Lenders look for 1.2."
    ]
   ],
-  "notes": "The method an individual physician buying the practice to run it would use. It gives the highest answer because the buyer is also buying a job. Few physicians buy facility-based practices this way, so it carries a quarter of the weight."
+  "notes": "The method an individual physician buying the practice to run it would use. It gives the highest answer because the buyer is also buying a job. Few physicians buy facility-based practices this way, so it is shown as a ceiling and carries no weight."
  },
  {
   "as_of": "2026-11-10",
   "method": "Revenue multiple (cross-check)",
-  "low": 425000.0,
-  "base": 628000.0,
-  "high": 921000.0,
+  "low": 418000,
+  "base": 618000,
+  "high": 906000,
   "inputs": [
    [
     "Sustainable revenue",
-    1012153
+    996153
    ],
    [
     "Multiple applied",
-    "0.42 to 0.91 times, most likely 0.62"
+    "0.42 to 0.91 times; the weighting uses 0.42"
    ],
    [
     "Evidence",
     "Sold medical practices, 2021 to 2025: median 0.62 times revenue, middle half 0.42 to 0.91 (same marketplace data). Small primary care listings ask 0.7 to 1.15 times (Scope Research, 2025; asking prices, not sales)."
    ]
   ],
-  "notes": "A rough check only. Revenue multiples ignore margin, and this practice's margin before owner pay is unusually high."
+  "notes": "A rough check only. Revenue multiples ignore margin and who does the work. The conclusion uses the low end of this range, because the data is not split by specialty or setting and this practice has one physician and facility relationships it does not own."
  }
 ]
