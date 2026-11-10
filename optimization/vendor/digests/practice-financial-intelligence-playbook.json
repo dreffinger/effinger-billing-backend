@@ -1,0 +1,1267 @@
+{
+  "slug": "practice-financial-intelligence-playbook",
+  "title": "Practice Financial Intelligence Playbook: The Financial Operating System for Independent Practices (CleanClaimRx Playbook Series, capstone)",
+  "doc_type": "playbook",
+  "pages": 76,
+  "audience": "States three audiences: the solo or small-practice physician-owner, the practice administrator, and multi-provider group leadership. In practice the body speaks in second person to a salaried practice administrator who reports to a physician-owner; the disclaimer separately calls it workflow material for billing teams.",
+  "summary": "Capstone of the CleanClaimRx series that tries to tie revenue-cycle operations to practice finance. Its method is a twelve-section framework: a five-layer waterfall from gross charges to net income; encounter-based break-even and service-line contribution margin; a 13-week rolling cash forecast with reserve targets; a provider capacity and utilization model; a 14-metric monthly dashboard; payer-mix and contract economics; valuation by EBITDA or revenue multiple with a list of value drivers and destroyers (including a compliance-exposure table); external benchmarking; a map of operational events to delayed cash effects; an investment-case format; growth modeling for new providers, sites and service lines; and a 30-60-90 day rollout wrapped in a four-week monthly management cycle. It assumes an office-based practice with a front desk, appointment templates, commercial payers and a non-physician administrator. Numbers are unsourced ranges; no worksheets or files are supplied.",
+  "outline": [
+    {
+      "section": "Read This First: Scope and Disclaimer (unnumbered)",
+      "gist": "Positions the document as the library capstone; excludes tax, entity and retirement topics; names three audiences; generic disclaimer attributes benchmarks to MGMA and penalty tables."
+    },
+    {
+      "section": "Section 1: The Reframe - Revenue Cycle Is a Financial System",
+      "gist": "One-page argument that billing failures are financial events affecting income, cash and investment capacity; no method or data."
+    },
+    {
+      "section": "Section 2: Practice Financial Architecture - The Five Layers",
+      "gist": "Waterfall from gross charges through contractual adjustments, allowed amount and collections to net income, plus an expense-ratio table with red-flag thresholds."
+    },
+    {
+      "section": "Section 3: Break-Even Analysis and Profitability by Service Line",
+      "gist": "Four-step encounter break-even formula with worked example, then service-line contribution margin and an invest, optimize, monitor or exit rule."
+    },
+    {
+      "section": "Section 4: Cash Flow Forecasting and Management",
+      "gist": "Explains the revenue-to-cash lag, a three-part 13-week rolling forecast, timing levers the administrator controls, and reserve targets in days of expense."
+    },
+    {
+      "section": "Section 5: Provider Capacity and Productivity Analysis",
+      "gist": "Capacity worksheet from clinical hours to monthly encounters, utilization bands, revenue yield per provider, a specialty wRVU table and a mid-level ROI example."
+    },
+    {
+      "section": "Section 6: The Practice Financial Dashboard - 14 Metrics That Matter",
+      "gist": "Table of fourteen monthly metrics with targets, red flags and responses; guidance on color status, trend display and a narrative summary."
+    },
+    {
+      "section": "Section 7: Payer Mix Intelligence and Its Financial Consequences",
+      "gist": "Payment by payer class relative to Medicare, encounter-share versus revenue-share tracking, annual contract evaluation criteria, and questions to answer before terminating a payer."
+    },
+    {
+      "section": "Section 8: Practice Valuation - What Drives It and What Destroys It",
+      "gist": "EBITDA, revenue and asset valuation methods with multiple ranges; value drivers and destroyers; compliance-exposure table, monitoring program and audit response steps."
+    },
+    {
+      "section": "Section 9: Financial Benchmarking - What Good Actually Looks Like",
+      "gist": "Lists benchmark sources, a size-tiered table of revenue, cost, margin and AR figures, and a three-question test for interpreting gaps."
+    },
+    {
+      "section": "Section 10: Connecting Operational Decisions to Financial Outcomes",
+      "gist": "Event-to-cash-lag map, five-step investment case with a flawed portal example, briefing scripts, a four-week monthly leadership cycle and a standing report list."
+    },
+    {
+      "section": "Section 11: Financial Planning for Practice Growth",
+      "gist": "Ramp and cash-drain table for new providers, criteria and three-scenario model for a second site, service-line checklist, brief acquisition or partnership caution."
+    },
+    {
+      "section": "Section 12: Implementation - The 30-60-90 Day Financial Intelligence Plan",
+      "gist": "Sequenced rollout: baselines and break-even first, dashboard and cash forecast second, then capacity review, owner briefing and rough valuation; five priority actions."
+    }
+  ],
+  "framework_elements": [
+    "Charge-to-cash revenue waterfall (five layers)",
+    "Fee schedule (chargemaster) level review",
+    "Charge capture reconciliation",
+    "Adjustment and write-off category review",
+    "Allowed-versus-collected gap reporting (net collection rate)",
+    "Operating expense ratio benchmarking by category",
+    "Practice break-even analysis",
+    "Service-line profitability and invest/optimize/monitor/exit decisions",
+    "13-week rolling cash flow forecast with dated disbursement calendar",
+    "Cash reserve policy and line-of-credit use",
+    "Claim follow-up, denial turnaround and posting timeliness standards",
+    "Provider capacity and utilization model",
+    "Revenue yield per encounter by provider",
+    "wRVU productivity benchmarking",
+    "New-provider ROI and ramp model",
+    "Growth scenario modeling (second site, new service line)",
+    "Monthly KPI dashboard with status, trend and narrative",
+    "Three-month trend rule before acting",
+    "Payer mix analysis (visit share versus revenue share)",
+    "Annual payer contract financial review",
+    "Payer concentration and termination analysis",
+    "Practice valuation estimate (EBITDA, revenue, asset methods)",
+    "Value-driver and sale-readiness management",
+    "Key-person (provider revenue concentration) risk",
+    "Compliance monitoring (coding audit, denial pattern review, risk assessment, training log)",
+    "Audit and repayment-demand response protocol",
+    "External benchmarking with measurement/market/performance gap test",
+    "Operational event-to-cash lag mapping",
+    "Investment case and payback analysis",
+    "Monthly financial management cycle and owner briefing"
+  ],
+  "processes": [
+    {
+      "name": "Monthly financial leadership cycle",
+      "steps": [
+        "Week 1: pull the 14 dashboard metrics and compare current month, prior month and three-month trend",
+        "Week 1: refresh the 13-week cash forecast with actual receipts and disbursements, review denial patterns, compute break-even variance",
+        "Week 2: find the root cause of every red or deteriorating metric and write a dated response",
+        "Week 2: review open compliance items, audit responses and payer disputes that affect finances",
+        "Week 3: brief the physician-owner, leading with cash position and break-even, and leave with decisions",
+        "Week 4: update the 90-day operating forecast, check next month's schedule for capacity gaps, pre-empt payer and vendor issues"
+      ],
+      "owner_role": "Practice administrator (the physician-owner acting as CFO where there is no administrator)",
+      "cadence": "Monthly, in four weekly stages"
+    },
+    {
+      "name": "Break-even and service-line profitability analysis",
+      "steps": [
+        "List actual fixed monthly costs line by line from the P&L",
+        "Estimate variable cost per encounter",
+        "Compute net revenue per encounter over a representative period",
+        "Divide fixed costs by contribution margin per encounter to get break-even volume",
+        "Compare actual monthly volume with break-even and report the cushion or shortfall to the owner",
+        "Allocate direct costs to each service line and compute contribution margin and net profitability",
+        "Classify each line as invest, optimize, monitor (90-day limit) or exit/restructure, checking first for loss-leader effects"
+      ],
+      "owner_role": "Practice administrator",
+      "cadence": "Variance reviewed monthly; break-even inputs recalculated quarterly or when the cost structure changes"
+    },
+    {
+      "name": "13-week rolling cash flow forecast",
+      "steps": [
+        "Measure the average lag from encounter to payment for each major payer",
+        "Project collections by applying expected collection rates to AR by aging bucket, then add patient payments and known one-time items",
+        "Place every disbursement on its calendar date: payroll, rent, vendors, debt service, insurance premiums, estimated taxes",
+        "Roll opening cash forward week by week for 13 weeks",
+        "Flag projected gaps and prepare a response for any gap within 45 days",
+        "Replace forecast weeks with actuals and re-roll"
+      ],
+      "owner_role": "Practice administrator",
+      "cadence": "Updated weekly; reviewed with the owner at least quarterly (monthly under the leadership cycle)"
+    },
+    {
+      "name": "Revenue leakage controls: charge capture audit and write-off review",
+      "steps": [
+        "Reconcile the encounter log to charges posted, by provider",
+        "Check the fee schedule against payer allowables",
+        "Review adjustment and write-off categories each month",
+        "Confirm balances coded as contractual are truly contractual; flag any that should have been appealed or billed onward",
+        "Quantify the gap between allowed amount and collections and report it"
+      ],
+      "owner_role": "Not assigned in the document ('someone in your organization'); implied practice administrator",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Provider capacity, utilization and yield analysis",
+      "steps": [
+        "Define scheduled clinical hours per provider and subtract administrative and documentation time",
+        "Multiply net billable hours by encounters per hour to get monthly capacity",
+        "Divide actual encounters by capacity to get utilization",
+        "Diagnose the cause of utilization below 80% or above 95% before acting",
+        "Compare net revenue per encounter across providers and investigate gaps of about 10% (coding, procedure mix, documentation, payer mix)",
+        "Compare annual wRVUs with specialty benchmarks",
+        "Confirm existing capacity is used before adding a provider"
+      ],
+      "owner_role": "Practice administrator",
+      "cadence": "Monthly productivity report; full capacity review scheduled for days 61-90 of the rollout"
+    },
+    {
+      "name": "Payer mix and contract financial review",
+      "steps": [
+        "Compute each payer's share of encounters and share of net revenue",
+        "Watch the spread and the 12-month trailing trend for drift",
+        "Evaluate each contract yearly on rate adequacy versus cost per encounter, payment speed and denial rate, concentration above 25% of net revenue, rate-increase history and termination notice terms",
+        "Before recommending termination, answer the five questions on patient overlap, true margin, capacity backfill, patient communication and revenue replacement"
+      ],
+      "owner_role": "Practice administrator",
+      "cadence": "Payer mix monthly (the text also says quarterly); contract evaluation annually"
+    },
+    {
+      "name": "Compliance monitoring and audit response",
+      "steps": [
+        "Audit a random sample of 25-30 claims per provider each quarter against documentation and track E/M level distribution",
+        "Review denial reason codes monthly for signs of coding problems rather than billing errors",
+        "Complete and document an annual assessment of the five highest financial risk areas and the control over each",
+        "Document annual staff training on HIPAA, coding accuracy and internal protocols",
+        "On any audit: name one point of contact, meet the deadline, review records before sending, evaluate repayment demands before paying, and involve a healthcare attorney for government audits or demands above $25,000"
+      ],
+      "owner_role": "Not assigned; implied practice administrator with outside healthcare counsel",
+      "cadence": "Quarterly, monthly and annual components; audit response as needed"
+    },
+    {
+      "name": "Investment case and growth decision modeling",
+      "steps": [
+        "State the problem as the dollar cost of the current performance gap",
+        "Cost the solution fully: implementation, running cost and disruption during transition",
+        "Project how much of the gap closes and over what period",
+        "Compute the payback period",
+        "Set the metric to report at 90 days, 6 months and 12 months",
+        "For a new provider, model mature volume, revenue per encounter, fully loaded cost and ramp, and confirm cash reserves cover the ramp",
+        "For a new site, run conservative (60%), base (80%) and optimistic (100%) volume scenarios before signing a lease"
+      ],
+      "owner_role": "Practice administrator, with a healthcare-specific financial adviser for transactions",
+      "cadence": "Per decision"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Five-layer financial architecture table",
+      "description": "Each revenue layer from gross charges to net income with what it represents and the diagnostic question to ask."
+    },
+    {
+      "name": "Operating expense benchmark table (Table 1, labelled 'corrected')",
+      "description": "Seven expense categories as a typical percent of net revenue with red-flag thresholds; a note admits the ranges were adjusted so they sum plausibly."
+    },
+    {
+      "name": "Break-even calculator (four steps plus worked example)",
+      "description": "Fixed costs divided by contribution margin per encounter; the example yields 559 encounters a month."
+    },
+    {
+      "name": "Break-even decision examples",
+      "description": "Three what-if illustrations: fewer encounters, an added mid-level provider, a new service line."
+    },
+    {
+      "name": "Service-line profitability metric table",
+      "description": "Five measures from gross revenue to net profitability with an action threshold for each."
+    },
+    {
+      "name": "Service-line decision framework",
+      "description": "Four-way rule (invest, optimize, monitor for 90 days, exit or restructure) with a loss-leader caveat."
+    },
+    {
+      "name": "13-week cash flow forecast model (described, not supplied)",
+      "description": "Three components in prose: projected collections, dated disbursements and a rolling weekly cash position."
+    },
+    {
+      "name": "Cash flow lever table",
+      "description": "Six timing levers with effect and how to activate them, including follow-up at 21/45/60 days and posting standards."
+    },
+    {
+      "name": "Cash reserve target tiers",
+      "description": "Minimum 30, conservative 45-60 and optimal 60-90 days of operating expense."
+    },
+    {
+      "name": "Owner cash-flow conversation script",
+      "description": "Four-part format: what was collected, what the bank shows, why they differ, and the 90-day outlook with actions."
+    },
+    {
+      "name": "Provider capacity worksheet",
+      "description": "Table from scheduled hours to net billable hours to monthly encounter capacity; the only item with a blank 'Your Practice' column to fill in."
+    },
+    {
+      "name": "Specialty productivity benchmark table",
+      "description": "Median, 75th percentile and red-flag annual wRVUs for seven specialties."
+    },
+    {
+      "name": "Capacity decision framework",
+      "description": "Five questions to answer before adding provider capacity."
+    },
+    {
+      "name": "Mid-level provider ROI example",
+      "description": "Worked revenue-minus-loaded-cost illustration for a nurse practitioner or physician assistant."
+    },
+    {
+      "name": "14-metric financial dashboard table",
+      "description": "Metric, target, red flag and response for each of fourteen monthly measures."
+    },
+    {
+      "name": "Dashboard presentation format",
+      "description": "Color status, current/prior/three-month trend columns, a fill-in narrative paragraph and one action per red metric."
+    },
+    {
+      "name": "Payer reimbursement comparison table",
+      "description": "Six payer classes with typical payment relative to Medicare and a planning implication."
+    },
+    {
+      "name": "Managed care contract evaluation criteria",
+      "description": "Five annual review criteria: rate adequacy, payment performance, concentration, escalation history and termination terms."
+    },
+    {
+      "name": "Payer termination decision questions",
+      "description": "Five questions on patient overlap, true margin, capacity backfill, patient communication and revenue replacement."
+    },
+    {
+      "name": "Valuation method summary",
+      "description": "EBITDA multiple, revenue multiple and asset-based approaches with indicative multiple ranges by practice type."
+    },
+    {
+      "name": "Revenue-cycle value driver table",
+      "description": "Six factors, each showing what raises and what lowers practice value."
+    },
+    {
+      "name": "Compliance failure exposure table",
+      "description": "Six risks with stated financial exposure, detection route and prevention step."
+    },
+    {
+      "name": "Compliance monitoring program outline",
+      "description": "Quarterly coding audit, monthly denial pattern review, annual risk assessment and documented annual training."
+    },
+    {
+      "name": "Audit response protocol",
+      "description": "Five-step checklist for handling record requests and repayment demands."
+    },
+    {
+      "name": "Benchmark source list",
+      "description": "MGMA survey and DataDive, HFMA, state medical society and specialty society surveys."
+    },
+    {
+      "name": "Benchmark table by practice size",
+      "description": "Six financial measures for solo, 2-5 physician and 6+ physician practices."
+    },
+    {
+      "name": "Benchmark gap test and briefing script",
+      "description": "Three questions (measurement, market or performance gap) and a sample dollar-first briefing to the owner."
+    },
+    {
+      "name": "Operational event to financial outcome map",
+      "description": "Ten operational events with their financial consequence and typical time lag."
+    },
+    {
+      "name": "Investment case framework",
+      "description": "Five-step business-case format with a patient payment portal example whose arithmetic is faulty."
+    },
+    {
+      "name": "Variance briefing script",
+      "description": "Model explanation of a collections shortfall: amount, cause, fix under way, expected recovery and timeline."
+    },
+    {
+      "name": "Monthly financial leadership cycle",
+      "description": "Week-by-week routine: collect data, diagnose, brief the owner, plan forward."
+    },
+    {
+      "name": "Financial reporting infrastructure list",
+      "description": "Seven standing reports with the frequency each should be reviewed."
+    },
+    {
+      "name": "New provider ramp table",
+      "description": "Time to 50% and full capacity and cash drain for four provider scenarios."
+    },
+    {
+      "name": "Second location criteria and three-scenario model",
+      "description": "Five go/no-go conditions and 60/80/100% volume scenarios to run before signing a lease."
+    },
+    {
+      "name": "Service line financial evaluation checklist",
+      "description": "Six questions on startup cost, ramp, payer rates, staffing, margin and 18-month cash position."
+    },
+    {
+      "name": "30-60-90 day implementation plan",
+      "description": "Sequenced tasks: baselines and break-even, then dashboard and cash forecast, then capacity review, owner briefing and valuation estimate."
+    },
+    {
+      "name": "Five priority actions table",
+      "description": "Short list of the highest-impact habits with a one-line rationale each."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Net collection rate",
+      "definition": "Cash actually received from payers and patients as a share of net charges (the allowed amount)",
+      "formula": "Collections / net charges (allowed amount); given in words only, with no rule for matching payments to dates of service",
+      "target": "95-98% (size table: solo 93-97%, 2-5 physicians 94-98%, 6+ physicians 95-98%)",
+      "red_flag": "Below 92% on the dashboard; below 90% called a systematic problem in Section 2 and value-destroying in Section 8",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in AR (total)",
+      "definition": "",
+      "formula": "",
+      "target": "30-45 days (size table: solo 35-50, 2-5 physicians 32-45, 6+ physicians 28-42; under 40 said to support value)",
+      "red_flag": "Over 55 days on the dashboard; over 60 days in the valuation table",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 90 days",
+      "definition": "Receivables older than 90 days as a percent of total AR",
+      "formula": "",
+      "target": "Below 15%",
+      "red_flag": "Over 25%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Initial denial rate",
+      "definition": "",
+      "formula": "",
+      "target": "Below 5% (a sample script elsewhere cites 5-7% as the industry benchmark)",
+      "red_flag": "Over 10% on the dashboard; over 12% in the valuation table",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-pass resolution rate",
+      "definition": "",
+      "formula": "",
+      "target": "Above 95%",
+      "red_flag": "Below 88%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net revenue per encounter",
+      "definition": "Average revenue yield per encounter, overall and by provider",
+      "formula": "Total net revenue for a representative period / total encounters in that period",
+      "target": "Specialty-specific; no figure given",
+      "red_flag": "Declining trend; a 10% difference between providers at equal volume is called worth investigating",
+      "source_cited": "none"
+    },
+    {
+      "name": "Provider utilization rate",
+      "definition": "Actual monthly encounters as a percent of theoretical monthly encounter capacity",
+      "formula": "Actual monthly encounters / monthly encounter capacity",
+      "target": "85-95%",
+      "red_flag": "Below 80% (recoverable revenue) or above 95% (retention and access risk)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Monthly encounters versus break-even",
+      "definition": "Actual monthly encounter volume compared with break-even volume",
+      "formula": "Actual encounters minus break-even encounters",
+      "target": "Above break-even",
+      "red_flag": "Within 10% of break-even",
+      "source_cited": "none"
+    },
+    {
+      "name": "Operating margin %",
+      "definition": "Implied only: collections less operating expenses as a share of net revenue; whether physician-owner pay is deducted is never stated",
+      "formula": "",
+      "target": "15-25% of net revenue (size table: solo 15-25%, 2-5 physicians 18-28%, 6+ physicians 22-32%)",
+      "red_flag": "Below 10%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Cash reserve (days of operating expense)",
+      "definition": "Liquid cash, and by the text's wording also available credit, expressed as days of operating expenses",
+      "formula": "",
+      "target": "45-60 days on the dashboard; tiers of 30 (minimum), 45-60 (conservative) and 60-90 (optimal)",
+      "red_flag": "Below 30 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge capture rate",
+      "definition": "Share of services rendered that reach the billing system as charges, tested by comparing the encounter log with posted charges",
+      "formula": "",
+      "target": "99-100%",
+      "red_flag": "Below 98%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient AR over 90 days",
+      "definition": "Patient-responsibility receivables older than 90 days as a percent of patient AR",
+      "formula": "",
+      "target": "Below 20% of patient AR",
+      "red_flag": "Over 35%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer mix by percent of net revenue",
+      "definition": "Each payer category's share of net revenue, tracked beside its share of encounters",
+      "formula": "",
+      "target": "Monitor the monthly trend",
+      "red_flag": "Medicare or Medicaid share trending up",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue per wRVU versus specialty benchmark",
+      "definition": "",
+      "formula": "",
+      "target": "At or above benchmark",
+      "red_flag": "Printed as 'below 85th percentile' (almost certainly an error)",
+      "source_cited": "MGMA named as the comparison source; no figure, year or table"
+    },
+    {
+      "name": "Break-even encounters",
+      "definition": "Monthly encounter volume at which contribution margin covers fixed costs",
+      "formula": "Fixed monthly costs / (net revenue per encounter minus variable cost per encounter); example $95,000 / ($185 - $15) = 559",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Contribution margin per encounter",
+      "definition": "Net revenue per encounter less variable cost per encounter",
+      "formula": "Net revenue per encounter minus variable cost per encounter (example $170)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Variable cost per encounter",
+      "definition": "Costs that move with patient volume, such as supplies and volume-based billing costs",
+      "formula": "",
+      "target": "Stated as typically $8-$25 where supply use is low",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Contractual adjustment rate",
+      "definition": "Gap between billed charges and contracted payment as a percent of gross charges",
+      "formula": "",
+      "target": "Described as commonly 60-70% of gross charges",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net charges (allowed amount) as percent of gross charges",
+      "definition": "Allowed amount after contractual reductions relative to gross charges",
+      "formula": "",
+      "target": "Described as 30-40% for primary care and internal medicine; trend said to matter more than level",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Fee schedule level relative to Medicare",
+      "definition": "The practice's charge amounts as a multiple of the Medicare fee schedule",
+      "formula": "",
+      "target": "At least 200-250% of Medicare",
+      "red_flag": "Anything lower",
+      "source_cited": "none"
+    },
+    {
+      "name": "Provider compensation as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "45-55%",
+      "red_flag": "Over 60%",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Staff payroll and benefits as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "22-28%",
+      "red_flag": "Over 32%",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Rent and occupancy as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "6-9%",
+      "red_flag": "Over 11%",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Medical supplies as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "4-7%",
+      "red_flag": "No threshold; specialty dependent, watch the trend",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Billing and IT as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "5-8%",
+      "red_flag": "Over 10%",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Malpractice insurance as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "2-4%",
+      "red_flag": "No threshold; specialty dependent",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Other overhead as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "4-7%",
+      "red_flag": "No threshold; audit annually",
+      "source_cited": "none (MGMA named only in the general disclaimer)"
+    },
+    {
+      "name": "Annual wRVUs per provider",
+      "definition": "Work relative value units produced per year, compared with specialty median and 75th percentile",
+      "formula": "",
+      "target": "Median / 75th percentile: family medicine ~5,200 / 6,100; internal medicine 4,000 / 4,900; pediatrics 3,800 / 4,600; cardiology 6,500 / 8,200; orthopedics 7,200 / 9,100; OB/Gyn 5,100 / 6,400; neurology 4,100 / 5,200",
+      "red_flag": "Below 3,200 / 3,000 / 2,900 / 5,000 / 5,500 / 3,800 / 3,100 respectively",
+      "source_cited": "'MGMA-derived benchmark data' for the family medicine row only; no year or table"
+    },
+    {
+      "name": "Net billable clinical hours per week",
+      "definition": "Scheduled clinical hours less administrative and documentation time",
+      "formula": "Scheduled clinical hours minus non-patient administrative hours minus documentation hours (example 36 - 4 - 5 = 27)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Monthly encounter capacity",
+      "definition": "Theoretical number of encounters a provider can deliver in a month",
+      "formula": "Net billable hours per week x encounters per clinical hour x weeks per month (example 27 x 2.2, about 236 a month, which implies 4.0 weeks per month)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Service-line contribution margin",
+      "definition": "Service-line net revenue less directly allocated staff, supply and space costs",
+      "formula": "Service-line net revenue minus allocated direct costs",
+      "target": "Positive",
+      "red_flag": "Negative (the line is being subsidized)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Service-line net profitability",
+      "definition": "Contribution of a service line after overhead allocation",
+      "formula": "",
+      "target": "",
+      "red_flag": "Persistently negative",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer concentration",
+      "definition": "One payer's share of net revenue",
+      "formula": "",
+      "target": "",
+      "red_flag": "More than 25% of net revenue from one payer",
+      "source_cited": "none"
+    },
+    {
+      "name": "Encounter share versus revenue share by payer",
+      "definition": "Difference between a payer category's percent of encounters and its percent of net revenue",
+      "formula": "",
+      "target": "",
+      "red_flag": "Divergence, or a low-paying category's encounter share rising over 12 months",
+      "source_cited": "none"
+    },
+    {
+      "name": "Physician revenue concentration",
+      "definition": "Share of net revenue generated by a single physician",
+      "formula": "",
+      "target": "Revenue spread across several providers",
+      "red_flag": "75-80% or more from one physician",
+      "source_cited": "none"
+    },
+    {
+      "name": "EBITDA multiple",
+      "definition": "Practice value expressed as a multiple of earnings before interest, taxes, depreciation and amortization",
+      "formula": "Value = EBITDA x multiple",
+      "target": "Stated range 2x-6x; primary care 3-5x",
+      "red_flag": "A poor revenue cycle is said to cost 0.5-1.5 turns",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue multiple",
+      "definition": "Practice value as a multiple of net revenue",
+      "formula": "Value = net revenue x multiple",
+      "target": "Stated range 0.5x-1.5x",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net revenue per FTE physician",
+      "definition": "",
+      "formula": "",
+      "target": "Solo $350K-$500K; 2-5 physicians $380K-$550K; 6+ physicians $400K-$770K",
+      "red_flag": "",
+      "source_cited": "'MGMA Better Performers data for primary care groups' for the top figure only; no year or table"
+    },
+    {
+      "name": "Operating cost as percent of net revenue",
+      "definition": "",
+      "formula": "",
+      "target": "Solo 75-85%; 2-5 physicians 72-82%; 6+ physicians 68-78%",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Staff cost per FTE physician",
+      "definition": "",
+      "formula": "",
+      "target": "Solo $130K-$180K; 2-5 physicians $120K-$165K; 6+ physicians $110K-$155K",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Patient balance collection rate",
+      "definition": "",
+      "formula": "",
+      "target": "78% called the benchmark in a worked example",
+      "red_flag": "Example practice sits at 62%",
+      "source_cited": "none"
+    },
+    {
+      "name": "AR over 180 days",
+      "definition": "Receivables older than 180 days, treated as a due-diligence warning sign",
+      "formula": "",
+      "target": "",
+      "red_flag": "'Significant' balances (no number given)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claim follow-up age triggers",
+      "definition": "Claim age at which unpaid claims are worked, escalated, then appealed or re-billed",
+      "formula": "",
+      "target": "Work at 21 days, escalate at 45, appeal or re-bill at 60",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial resolution turnaround",
+      "definition": "Days from receipt of a denial to resolution and resubmission",
+      "formula": "",
+      "target": "Within 14 days",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payment posting lag",
+      "definition": "Time from remittance receipt to posting",
+      "formula": "",
+      "target": "Electronic remittances same day; paper EOBs within 48 hours",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Charge entry and claim submission lag",
+      "definition": "Time from encounter to charge entry and to claim submission",
+      "formula": "",
+      "target": "Charge entry same or next day; submission within 72 hours of the encounter",
+      "red_flag": "Any submission backlog",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer payment speed on clean claims",
+      "definition": "Whether a payer pays clean claims within 30 days, used as a contract evaluation criterion",
+      "formula": "",
+      "target": "Within 30 days",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payback period",
+      "definition": "Point at which cumulative financial benefit exceeds the total cost of an investment",
+      "formula": "The example computes monthly cost / monthly gain x 30 days, a nonstandard and misleading calculation",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "E/M level distribution",
+      "definition": "Share of visits billed at each evaluation and management level per provider, tracked over time",
+      "formula": "",
+      "target": "",
+      "red_flag": "A fixed pattern for 12 months (example: 80% 99213 and 15% 99214)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Open slot rate",
+      "definition": "Unfilled share of schedule template slots",
+      "formula": "",
+      "target": "",
+      "red_flag": "15% used as the example of permanent revenue loss",
+      "source_cited": "none"
+    },
+    {
+      "name": "New-provider ramp time",
+      "definition": "Months for a new provider to reach 50% and full capacity",
+      "formula": "",
+      "target": "Physician in established market: 3-4 and 9-18 months; physician new to market: 6-9 and 18-36; experienced NP/PA: 1-2 and 4-8; new NP/PA: 2-4 and 6-12",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Site utilization before expansion",
+      "definition": "Utilization of the primary location, used as a go/no-go test for a second site",
+      "formula": "",
+      "target": "90% or higher with consistent demand",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Cash is usually received 30 to 90 days after the encounter.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The fee schedule should sit at a minimum of 200-250% of Medicare; anything lower leaks revenue.",
+      "section": "Section 2 (repeated in Section 12)",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 2% charge capture failure on $3 million of gross charges equals $60,000 of revenue never billed.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Contractual adjustments commonly run 60-70% of gross charges, leaving net charges at 30-40% of gross for primary care and internal medicine.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Net collection rate benchmark is 95-98%; practices below 90% have a systematic problem.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Provider compensation is typically 45-55% of net revenue (red flag over 60%) and staff payroll and benefits 22-28% (red flag over 32%).",
+      "section": "Section 2, Table 1",
+      "source_cited": "MGMA Cost and Revenue Survey named only in the general disclaimer"
+    },
+    {
+      "claim": "Rent and occupancy 6-9% (red flag over 11%), medical supplies 4-7%, billing and IT 5-8% (red flag over 10%), malpractice 2-4%, other overhead 4-7% of net revenue.",
+      "section": "Section 2, Table 1",
+      "source_cited": "MGMA Cost and Revenue Survey named only in the general disclaimer"
+    },
+    {
+      "claim": "Variable cost runs $8-$25 per encounter for practices without heavy supply use.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payers process claims in 14-45 days, remittances post 1-3 days later, and patient balances take a further 30-90 days to collect.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The cash effect of a volume drop arrives 60-90 days later (45-75 days in the Section 10 table).",
+      "section": "Section 4 and Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Cash reserves should be at least 30 days of operating expenses, 45-60 days to be conservative and 60-90 days ideally.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unpaid claims should be worked at 21 days, escalated at 45 and appealed or re-billed at 60; denials resolved within 14 days; electronic remittances posted same day and paper EOBs within 48 hours.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Provider utilization should be 85-95%; below 80% is recoverable revenue and above 95% a retention and access risk.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Family medicine median production is about 5,200 wRVUs a year with a 75th percentile of 6,100.",
+      "section": "Section 5",
+      "source_cited": "'MGMA-derived benchmark data' (no year or table)"
+    },
+    {
+      "claim": "Median annual wRVUs: internal medicine 4,000, pediatrics 3,800, cardiology 6,500, orthopedics 7,200, OB/Gyn 5,100, neurology 4,100.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A full-time physician with 27 net billable hours a week at 2.2 encounters an hour has capacity of about 236 encounters a month.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A mid-level provider seeing 350 encounters a month at $110 net revenue produces $38,500 against a fully loaded cost of $18,000-$22,000 a month.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Operating margin should be 15-25% of net revenue; below 10% is a red flag.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Charge capture should be 99-100%, and patient AR older than 90 days should be under 20% of patient AR.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial PPO and HMO plans pay 110-145% of Medicare.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage pays 85-110% of Medicare and Medicaid pays 50-80% of Medicare depending on the state.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Workers' compensation and auto pay 100-200% of Medicare; self-pay accounts often collect only 20-40%.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A payer above 25% of net revenue is a concentration risk; most contracts require 90-180 days' notice to terminate; a contract untouched for 3+ years is almost certainly underpriced.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "EBITDA multiples for independent practices typically run 2x-6x: primary care 3-5x, specialty 4-6x, behavioral health 3-5x, urgent care 4-7x, multispecialty 5-8x.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Revenue multiples for physician practices typically run 0.5x-1.5x net revenue.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A poorly managed revenue cycle can cut the EBITDA multiple by 0.5 to 1.5 turns.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "False Claims Act exposure of roughly $14K-$28K per claim (2024-25) plus treble amounts; Stark penalties of $15K-$100K per violation; HIPAA $100-$50,000 per violation, up to $1.9M per category per year.",
+      "section": "Section 8, compliance exposure table",
+      "source_cited": "False Claims Act penalty tables named in the general disclaimer; nothing cited for Stark or HIPAA"
+    },
+    {
+      "claim": "Net revenue per FTE physician is $350K-$500K solo, $380K-$550K for 2-5 physicians and $400K-$770K for 6+ physicians, the ceiling tied to a reported range of about $667,995-$769,939.",
+      "section": "Section 9",
+      "source_cited": "'MGMA Better Performers data for primary care groups' (no year or table)"
+    },
+    {
+      "claim": "Operating cost is 75-85% of net revenue for solo practices, 72-82% for 2-5 physician groups and 68-78% for 6+; staff cost per FTE physician runs $110K-$180K depending on size.",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A new physician in an established market drains $8K-$20K a month early in a 9-18 month ramp ($75K-$280K cumulative); an experienced NP or PA drains $3K-$8K a month and usually breaks even within 6 months.",
+      "section": "Section 11",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "E/M up-coding (systematic): Repayment + 3x penalties under FCA; ~$14K-$28K per claim (2024-25 inflation-adjusted)",
+      "kind": "penalty",
+      "stakes": "high",
+      "section": "Section 8, compliance exposure table",
+      "why": "This sizes the worst-case exposure from a coding error pattern. The statute imposes three times the government's damages plus a per-claim penalty that is re-indexed every year, so both the 'repayment + 3x penalties' wording and a 2024-25 range may misstate liability as of late 2026."
+    },
+    {
+      "id": "C2",
+      "claim": "Stark Law violations: $15K-$100K per violation; False Claims Act exposure",
+      "kind": "penalty",
+      "stakes": "high",
+      "section": "Section 8, compliance exposure table",
+      "why": "Medical-director stipends and facility relationships are exactly the arrangements self-referral and kickback law reach. The figures look like the original statutory amounts before inflation indexing, which would understate current penalties by roughly half, and the larger exposure (refund of every tainted claim) is not stated."
+    },
+    {
+      "id": "C3",
+      "claim": "HIPAA breach - unsecured PHI: $100-$50,000 per violation; up to $1.9M per category/year",
+      "kind": "penalty",
+      "stakes": "medium",
+      "section": "Section 8, compliance exposure table",
+      "why": "Billing runs through AI agents under a business associate agreement, so HIPAA penalty sizing feeds security and vendor decisions. The per-violation range appears to be the pre-indexing statutory tier and the cap a 2022-era figure; current tiers are higher and vary by culpability."
+    },
+    {
+      "id": "C4",
+      "claim": "Timely filing failure: 100% denial; no appeal pathway. Prevention: Submission within 72 hours of encounter",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 8, compliance exposure table",
+      "why": "If staff or automated agents treat every timely-filing denial as final, recoverable claims are written off. Medicare's one-year limit has regulatory exceptions, and Medicare Advantage, Medicaid, VA and Tricare each have their own limits and reconsideration routes."
+    },
+    {
+      "id": "C5",
+      "claim": "Typical reimbursement vs. Medicare: Medicare Advantage 85-110% of Medicare; Medicaid 50-80% of Medicare (state-dependent)",
+      "kind": "payment_rate",
+      "stakes": "high",
+      "section": "Section 7, payer category table",
+      "why": "Roughly 45% of this practice's charges are Medicare Advantage, Medicaid managed care and dual-eligibles. If plans in fact pay at or below traditional Medicare, or Florida Medicaid sits under the stated band and pays little on crossover coinsurance, payer-mix and service-line margins built on this table are wrong."
+    },
+    {
+      "id": "C6",
+      "claim": "For independent physician practices, multiples typically range from 2x to 6x [EBITDA]; Primary care: 3-5x. Revenue multiples for physician practices typically range from 0.5x to 1.5x net revenue",
+      "kind": "statistic",
+      "stakes": "high",
+      "section": "Section 8, How Medical Practices Are Valued",
+      "why": "The owner wants to maximize sale value and the 90-day plan tells readers to apply these multiples. Unsourced ranges applied to earnings not normalized for a market-rate physician salary could overstate value several-fold and distort sale, partnership or succession decisions."
+    },
+    {
+      "id": "C7",
+      "claim": "Family Medicine median updated to ~5,200 wRVUs/year per recent MGMA-derived benchmark data; 75th percentile 6,100. Internal Medicine median 4,000; 75th percentile 4,900",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 5, Productivity Benchmarks by Specialty",
+      "why": "wRVU medians drive productivity targets and compensation design for the physician and the nurse practitioner. Only the family medicine row was revised; the other rows may reflect an older survey or a lower percentile, and none describes a facility-based geriatrics practice."
+    },
+    {
+      "id": "C8",
+      "claim": "Set your fee schedule at a minimum of 200-250% of Medicare. Anything lower is a structural leak.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 2, Layer 1 (repeated as a Days 1-30 action in Section 12)",
+      "why": "The plan orders an immediate fee schedule change on this basis. For a practice paid almost entirely on fixed government and Medicare Advantage schedules the multiple may add no revenue while inflating gross charges, receivables and self-pay bills, and charge-setting interacts with Medicare limiting-charge rules for non-participating providers."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "financial-management",
+      "weight": 0.37,
+      "topics": [
+        "charge-to-cash waterfall",
+        "operating expense ratios",
+        "break-even and contribution margin",
+        "service-line profitability",
+        "13-week cash forecast",
+        "cash reserve targets",
+        "monthly P&L and close-to-briefing cycle",
+        "investment case and payback"
+      ]
+    },
+    {
+      "domain": "lifecycle-value",
+      "weight": 0.13,
+      "topics": [
+        "EBITDA, revenue and asset valuation methods",
+        "value drivers and destroyers",
+        "provider revenue concentration (key-person risk)",
+        "process documentation for transferability",
+        "due-diligence red flags",
+        "acquisition or partnership evaluation"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.1,
+      "topics": [
+        "provider capacity model",
+        "utilization rate",
+        "revenue yield per encounter by provider",
+        "wRVU productivity",
+        "schedule template gaps",
+        "mid-level provider use"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "payer mix by visit share and revenue share",
+        "payment relative to Medicare by payer class",
+        "annual contract evaluation",
+        "payer concentration risk",
+        "termination decision and notice periods"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.08,
+      "topics": [
+        "new-provider ramp and cash drain",
+        "second location criteria and scenarios",
+        "service-line launch checklist",
+        "hospital, private equity or joint-venture offers"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.07,
+      "topics": [
+        "net collection rate and AR aging",
+        "claim follow-up cadence",
+        "denial turnaround and root-cause review",
+        "payment posting timeliness",
+        "write-off category review",
+        "patient balance collection"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.06,
+      "topics": [
+        "financial exposure of compliance failures",
+        "quarterly coding audit",
+        "annual risk assessment and training log",
+        "audit and repayment-demand response"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.03,
+      "topics": [
+        "charge capture completeness",
+        "fee schedule level",
+        "E/M level distribution"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "14-metric dashboard design",
+        "standing report set and review frequency",
+        "trend versus point-in-time analysis"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.02,
+      "topics": [
+        "monthly owner briefing and decision rhythm",
+        "administrator-owner communication"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.01,
+      "topics": [
+        "provider compensation as share of revenue",
+        "administrator as financial lead",
+        "staffing cost ratios"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Report a monthly charge-to-cash waterfall (gross charges, contractual adjustments, allowed, collected, net income) and state the allowed-minus-collected gap in dollars.",
+      "why": "It separates pricing, contract, collection and cost problems that a single collections figure hides.",
+      "applies_to_practice": "yes",
+      "note": "Build it from AdvancedMD charge, adjustment and payment reports, cut by payer and by place of service. Match payments to dates of service or the ratio will swing from month to month."
+    },
+    {
+      "idea": "Review adjustment and write-off codes every month to find denials or collectible balances posted as contractual.",
+      "why": "This is the one leak that never appears on a denial or aging report.",
+      "applies_to_practice": "yes",
+      "note": "It doubles as a control over automated posting: sample the AI agents' adjustments line by line rather than only totalling them."
+    },
+    {
+      "idea": "Reconcile services rendered to charges posted, by provider.",
+      "why": "Missed charges are invisible to every downstream report.",
+      "applies_to_practice": "yes",
+      "note": "For facility work the source record is the hospital and nursing-facility census and rounding list, not an appointment schedule. The same check can confirm monthly care-management time thresholds were met before billing."
+    },
+    {
+      "idea": "Keep a 13-week rolling cash forecast with every outflow on its calendar date, refreshed weekly with actuals.",
+      "why": "It shows shortfalls weeks ahead and is the standard small-business treasury tool.",
+      "applies_to_practice": "yes",
+      "note": "Medicare fee-for-service pays on a predictable cycle and stipends are fixed inflows, so accuracy should be good. Model Medicare Advantage and Medicaid lags separately."
+    },
+    {
+      "idea": "Express break-even in units of work and report the monthly cushion or shortfall.",
+      "why": "It turns schedule and staffing choices into dollar terms the owner can weigh.",
+      "applies_to_practice": "partly",
+      "note": "One average 'encounter' is too blunt here. Subtract stipend income from fixed costs first, then compute by visit type or per rounding day."
+    },
+    {
+      "idea": "Compute contribution margin by service line and classify each as invest, optimize, monitor or exit.",
+      "why": "It reveals cross-subsidies and directs scarce provider time to the best use.",
+      "applies_to_practice": "yes",
+      "note": "Lines would be hospital, skilled nursing and nursing facility, assisted living, chronic care management, wellness and advance-care-planning visits, and directorships. Allocate provider hours and travel time rather than space."
+    },
+    {
+      "idea": "Track each payer's share of visits beside its share of net revenue on a trailing 12-month basis.",
+      "why": "A widening spread exposes payers that consume capacity without paying for it.",
+      "applies_to_practice": "yes",
+      "note": "Run it plan by plan for the Medicare Advantage carriers and separately for dual-eligibles. Ignore the document's rule that a rising government share is itself a red flag."
+    },
+    {
+      "idea": "Use a one-page dashboard with color status, three-month trend, a short narrative and one named response per red metric, and wait for three months of trend before changing operations.",
+      "why": "It forces interpretation and action instead of a data dump, and damps over-reaction to a single month.",
+      "applies_to_practice": "partly",
+      "note": "Swap office metrics (slot utilization, patient AR aging, point-of-service items) for charge lag, visits per rounding day, secondary and crossover AR, and enrolled care-management patients."
+    },
+    {
+      "idea": "Write every spending or hiring proposal the same way: dollar cost of the problem, full cost of the fix, expected return, payback, and the metric to report at 90 days, 6 months and 12 months.",
+      "why": "It gives one consistent test for automation, staffing and service-line bets.",
+      "applies_to_practice": "yes",
+      "note": "Use standard payback (investment divided by periodic net gain). The document's own worked example is arithmetically wrong and should not be copied."
+    },
+    {
+      "idea": "Manage sale-readiness drivers continuously: provider revenue concentration, written transferable processes, consistent monthly financials, stable revenue-cycle metrics and a clean compliance record.",
+      "why": "These are what buyers discount for, and they take years to build.",
+      "applies_to_practice": "yes",
+      "note": "With one physician and one nurse practitioner, key-person concentration is the dominant discount. The document names the risk but offers no remedy and never normalizes earnings for owner pay."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The management skeleton (waterfall, break-even, cash forecast, monthly review cycle, valuation drivers) fits an owner learning to act as CFO and is reusable in a practice-optimization service. But most worked numbers and several whole topics assume an office practice with a front desk, appointment templates, rent, commercial contracts and a salaried administrator. Nothing addresses facility-based rounding, a Medicare-dominant payer mix, nurse-practitioner payment rules, care-management programs, stipend income or automated billing.",
+    "sections_that_do_not_apply": [
+      "Section 4 lever on collecting copays and estimated balances at time of service (no front desk; many patients are dual-eligible)",
+      "Section 5 capacity worksheet and schedule-template or open-slot utilization (work is census-driven rounding, not appointment slots)",
+      "Section 5 specialty wRVU table (no geriatrics or facility-based row)",
+      "Section 2 rent, occupancy and medical-supply expense benchmarks (minimal office footprint)",
+      "Sections 2 and 12 instruction to set fees at 200-250% of Medicare (almost no percent-of-charge payers)",
+      "Section 6 metric 13 red flag for rising Medicare or Medicaid share, and metric 12 patient AR aging (little patient-pay revenue)",
+      "Section 7 commercial-rate comparisons, the 25% payer-concentration rule and the payer-termination analysis as written (Medicare fee-for-service is 55% of charges and is not a negotiable contract)",
+      "Section 10 map rows on front-desk eligibility, schedule templates and patient-balance collections, and the patient payment portal example",
+      "Section 11 second-location lease criteria",
+      "Advice framed for a salaried administrator managing upward to the owner"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "No benchmark carries a citation, survey year or table reference. The disclaimer's blanket attribution to MGMA and penalty tables cannot be traced to any individual figure.",
+      "Five in-text notes admit that figures were 'corrected', 'widened', 'raised', 'updated' or declared 'canonical' after the fact so the document agrees with itself (expense table, family medicine wRVUs, utilization thresholds, revenue per physician, ramp cash drain). Ranges tuned to add up are not survey data.",
+      "Expense table: categories including provider compensation sum to 88% at the low ends and 118% at the high ends of net revenue. That cannot coexist with the 15-25% operating margin target or the 75-85% operating-cost benchmark. 'Operating margin' is never defined as before or after physician-owner pay.",
+      "Valuation: EBITDA is never normalized for a market-rate physician salary. An owner following the 90-day instruction would multiply total take-home by 3-5x and badly overstate value. Fair-market-value and commercial-reasonableness limits on hospital buyers go unmentioned.",
+      "Saying asset-based valuation is mainly for wind-downs is misleading: small practices bought by hospitals are often priced largely on tangible assets and workforce because normalized earnings are thin (reviewer's understanding; verify).",
+      "False Claims Act exposure is worded as 'repayment + 3x penalties'. The statute imposes three times the government's damages plus a separate per-claim penalty; the printed range is labelled 2024-25.",
+      "Stark figures ($15K-$100K) appear to be the original statutory amounts rather than the inflation-indexed ones (roughly double, as the reviewer recalls), and 'per violation' blurs per-service and per-scheme penalties. The Anti-Kickback Statute is absent altogether.",
+      "HIPAA figures pair what looks like the pre-indexing $100-$50,000 tier with a $1.9M cap matching the 2022 adjustment. Penalties attach to rule violations by culpability tier, not to a breach as such.",
+      "'Timely filing: no appeal pathway' is overbroad. Medicare's one-year limit has regulatory exceptions, and other payers accept reconsideration with proof of timely filing.",
+      "The follow-up rule 'appeal or re-bill at 60' invites duplicate claim submissions, which Medicare contractors deny and monitor. Status inquiry, corrected claim or formal appeal are the proper routes.",
+      "The portal payback example is wrong three ways: it applies a 10-point rate change to an AR balance as if that were monthly cash, uses 10 points when its own benchmark gap is 16, and reports a 'payback period' of 1.4 days by dividing monthly cost by monthly gain.",
+      "Dashboard metric 14 sets the red flag for revenue per wRVU at 'below 85th percentile', which would leave most practices permanently red. It probably meant 85% of benchmark.",
+      "wRVU table: only family medicine was revised (4,200 to about 5,200). The other 'medians' look 20-30% below published medians as the reviewer recalls them and probably share the same low-percentile or pre-2021 vintage. Verify before any compensation use.",
+      "Full-time physician capacity of about 236 encounters a month (computed with 4.0 weeks per month) is roughly 2,800 visits a year. That cannot yield the 5,200 wRVU 'median' without averaging about 1.8 wRVU per visit.",
+      "The mid-level ROI ignores that Medicare pays nurse practitioners and physician assistants 85% of the physician fee schedule under their own number, and ignores incident-to and split/shared limits. The $18K-$22K monthly loaded cost is unsourced and looks high.",
+      "The 99213 illustration prices a visit under a 'direct primary care arrangement', a model that charges periodic fees and does not normally bill per CPT code.",
+      "Timing of estimated tax payments and provider draws is listed among levers said to be wholly within the administrator's control. Federal estimated-tax dates are fixed and late payment draws penalties; the scope note says tax is excluded.",
+      "'2% of $3M gross charges = $60,000 of revenue' treats gross charges as revenue. At the document's own 30-40% net-to-gross ratio the loss would be $18K-$24K.",
+      "Break-even is defined in prose as revenue equal to fixed costs; the formula that follows is the correct contribution-margin version.",
+      "The annual 'five highest risks' memo is called primary evidence of good-faith compliance. That oversells a one-page list; it is neither a compliance program nor a HIPAA security risk analysis.",
+      "Claims that AAFP, ACP and most specialty societies publish annual practice-management benchmarks, and that MGMA DataDive is 'real-time', are doubtful.",
+      "The Days 1-30 step says to compute net collection rate and denial rate from an AR aging report, which lacks the payment, adjustment and denial data needed.",
+      "'A poor revenue cycle cuts the multiple by 0.5-1.5 turns', the 62% versus 78% patient-collection figures and the $8-$25 variable cost per encounter read as invented; none has a source."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Expense table (Section 2) sums to 88-118% of net revenue including provider pay, yet the dashboard targets a 15-25% operating margin and Section 9 puts operating cost at 68-85%.",
+      "'Net revenue' is the bottom line in the five-layer table (collections minus operating expenses) but the top line everywhere else (per-encounter yield, expense ratios, payer mix).",
+      "A full-time physician's capacity is about 236 encounters a month, while mid-level examples assume 300 and 350 a month and the break-even example needs 559.",
+      "Staff cost: red flag above 32% of net revenue in Section 2, but the Section 9 solo benchmarks ($130K-$180K staff cost on $350K-$500K revenue) work out to about 36-37%.",
+      "Thresholds drift: net collection problem at below 90% or below 92%; denial target below 5% versus a 5-7% 'industry benchmark'; red flags at 10% denials and 55 AR days versus 12% and 60 in the valuation table.",
+      "Revenue-to-cash lag is given as 30-90, 60-90 and 45-75 days in different sections.",
+      "New-provider ramp: 6-18 months physician and 3-9 months mid-level (Section 5); a 6-month ramp with 3-9 months negative (Section 10); 9-18 or 18-36 months and 4-8 or 6-12 months (Section 11).",
+      "EBITDA multiples 'typically' 2x-6x, but the same passage lists urgent care up to 7x and multispecialty up to 8x.",
+      "Payer mix is reviewed monthly (dashboard, report list) and quarterly (Section 7); the cash forecast goes to the owner 'at least quarterly' (Section 4) and monthly (Section 10).",
+      "Revenue per wRVU: target 'at or above benchmark', red flag 'below 85th percentile', while Section 9 says the goal is top quartile.",
+      "Mid-level ROI: $38,500 less $22,000 is $16,500, not the $16,000 printed.",
+      "The portal example cites a 16-point gap to benchmark (62% versus 78%) but models 10 points, then treats a share of the AR balance as monthly cash.",
+      "New-physician drain of $8K-$20K a month 'tapering' over 9-18 months is said to reconcile with $75K-$280K cumulative; a linear taper gives about $36K-$180K and a flat rate $72K-$360K.",
+      "The scope note excludes tax strategy and calls the piece billing-team material, yet it lists tax-payment timing as a cash lever and addresses owners and administrators.",
+      "Gross charges are called largely symbolic, then 2% of gross charges is counted as $60,000 of lost revenue.",
+      "Cash is called a leading indicator in the very sentence that describes it trailing operations by 60-90 days; Section 6 says a dashboard measures the past.",
+      "Break-even is described in words as revenue equal to fixed costs but calculated (correctly) with contribution margin."
+    ],
+    "time_sensitive_or_outdated": [
+      "The False Claims Act per-claim range is labelled '2024-25'; the amounts are re-indexed annually, so a November 2026 reader needs the current table.",
+      "The HIPAA annual cap of $1.9M corresponds to the 2022 indexing; later adjustments are higher.",
+      "Stark amounts are the unindexed statutory figures.",
+      "wRVU benchmarks carry no survey year. Office visit values were raised in 2021 and hospital, nursing-facility and home visit values in 2023, so older medians understate current production.",
+      "The MGMA 'Better Performers' revenue range and every size-tier benchmark lack a year.",
+      "Illustrative 99213 payments and payer-to-Medicare ratios are undated. The Medicare conversion factor and practice-expense rules change each January (the 2026 rule cut practice-expense payment for facility-setting services, as the reviewer recalls; verify), and none of that is discussed.",
+      "EBITDA and revenue multiples are undated; physician-practice deal pricing and state transaction-review and corporate-practice rules shifted during 2022-2026.",
+      "The audit section ignores the Medicare 60-day overpayment refund rule, including the revisions that took effect in 2025.",
+      "Uses the dated term 'mid-level provider' throughout."
+    ],
+    "ai_generation_signals": [
+      "Reviewer-style patch notes left in reader-facing text: 'Table 1 (corrected)', 'widened from the original publication', 'the previously stated 4,200 figure', 'Canonical utilization thresholds used throughout this playbook', 'ceiling raised from $650K to $770K', 'has been widened accordingly so it reconciles'.",
+      "The payback example argues with itself ('an even stronger business case than a slower payback would be'), the mark of a model defending a patched number rather than an analyst checking it.",
+      "A cross-reference to 'Table 6' although tables are not numbered in the document.",
+      "A pull-quote aphorism closes nearly every section in the same 'X is not Y. It is Z.' cadence; several are logically hollow.",
+      "Uniform round-number ranges for every benchmark, punctuated by one burst of false precision ($667,995-$769,939).",
+      "Boilerplate disclaimer about reviewing 'AI-generated drafts' that has nothing to do with this document's content.",
+      "No author, credential, date, version or reference list.",
+      "Category errors a practitioner would not make: per-visit pricing for direct primary care, an '85th percentile' red flag, a 1.4-day payback period.",
+      "About 11,000 words spread over 76 pages (roughly 145 words a page); several pages hold only a quotation or a few lines.",
+      "Motivational passages about the administrator's career ('indispensable' versus 'replaceable') recur across sections."
+    ],
+    "missing_for_real_use": [
+      "Citations, survey years and table references for every benchmark.",
+      "Formulas and data-source definitions for days in AR, net collection rate (denominator and time matching), denial rate, first-pass rate, charge capture rate, operating margin and EBITDA; no yellow-zone thresholds.",
+      "Any actual template: no spreadsheet for the 13-week forecast, dashboard, break-even, service-line allocation or valuation. The 'tools' are prose tables.",
+      "Core accounting practice: cash versus accrual basis, chart of accounts, month-end close checklist, bank and deposit reconciliation to posted payments, budgeting, internal controls and segregation of duties.",
+      "Valuation mechanics: normalizing owner compensation, add-backs, fair market value and commercial reasonableness, treatment of AR in a sale, asset versus stock structure, earnout terms, how to reduce key-person risk.",
+      "Compliance essentials: Anti-Kickback Statute, exclusion screening, the 60-day overpayment rule, Medicare appeal levels and deadlines, recoupment and extrapolation, self-disclosure, the seven elements of a compliance program.",
+      "Medicare-specific economics: 85% payment for nurse practitioners and physician assistants, incident-to and split/shared rules, sequestration, participating status, quality-program adjustments, Medicare Advantage risk adjustment and value-based contracts, dual-eligible cost-sharing limits and Medicaid crossover payment.",
+      "Anything on facility-based or post-acute models: census-based capacity, place-of-service payment differences, care-management and wellness programs, medical-director agreements and stipend revenue.",
+      "Credentialing and payer enrollment lag in the new-provider ramp model, usually the largest driver of early cash drain.",
+      "Role assignment beyond 'the administrator': nothing for practices without one, or with outsourced or automated billing; no governance for AI despite the disclaimer.",
+      "Mapping of each metric to practice-management system reports or queries.",
+      "Tax, entity structure and owner-pay planning (excluded by the scope note but essential to an owner acting as CFO)."
+    ]
+  }
+}

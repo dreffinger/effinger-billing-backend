@@ -1,0 +1,702 @@
+{
+ "slug": "ent-companion-guide",
+ "title": "CleanClaimRx Specialty Companion Guide: ENT (Otolaryngology) - Two Complete Revenue Cycles, One Independent Practice",
+ "doc_type": "specialty",
+ "pages": 46,
+ "audience": "Independent otolaryngology (ENT) practices: physician-owners and their billing teams. The only explicit statement is that the reader is assumed to have read the vendor's 'Universal Specialty Billing Framework' first.",
+ "summary": "Eight-section specialty overlay to the vendor's universal billing framework. Its thesis is that an ENT practice runs two revenue cycles: a carefully managed surgical one and a high-volume office one (nasal endoscopy, laryngoscopy, cerumen removal, audiology, allergy) that is billed by habit and leaks revenue. It covers payer behaviour by patient population, CPT tables for office, surgical, audiology and allergy services, global-period modifiers, five prior-authorization categories (pediatric tonsillectomy, adult sinus surgery, allergy immunotherapy, cochlear implant, hypoglossal nerve stimulator), four documentation failures, four denial patterns and five revenue opportunities, then closes with five operating standards and five look-back audit actions. The central method is template-driven documentation that triggers charges, a pre-submission authorization checklist, an authorization-expiry calendar, a payer-by-code bilateral-modifier table and 30- and 90-day self-audits. No sources, forms or finished templates are included, and a meaningful share of the code-level content is wrong.",
+ "outline": [
+  {
+   "section": "Section 1: The Reframe - ENT Is Two Complete Practices Under One Roof",
+   "gist": "Surgical billing gets careful handling while high-volume office procedures are billed by default; the office side is where revenue leaks."
+  },
+  {
+   "section": "Section 2: The Payer Mix Reality in ENT",
+   "gist": "Pediatric Medicaid tonsillectomy necessity rules versus adult commercial and Medicare Advantage surgical authorization; payer-dynamics table and eight questions to ask each payer."
+  },
+  {
+   "section": "Section 3: The Procedure Code Risk Profile in ENT",
+   "gist": "CPT tables for office endoscopy, laryngoscopy, cerumen, surgery, audiology and allergy, plus global-period modifiers 24, 58, 78 and 79; several entries are wrong."
+  },
+  {
+   "section": "Section 4: Prior Authorization in ENT - Five Authorization Landscapes",
+   "gist": "Documentation packages for pediatric tonsillectomy, sinus surgery, allergy immunotherapy, cochlear implant and hypoglossal nerve stimulator authorizations, each with different criteria and failure points."
+  },
+  {
+   "section": "Section 5: The Documentation Failures Unique to ENT",
+   "gist": "Four note failures: endoscopy buried in the visit note, vague tonsillectomy operative notes, ungraded allergy tests, sinus surgery notes lacking sinus-by-sinus detail."
+  },
+  {
+   "section": "Section 6: The Denial Patterns Unique to ENT",
+   "gist": "Tonsillectomy necessity denials with an appeal triage, global-period procedure denials, expired immunotherapy authorizations, and bilateral-modifier denials."
+  },
+  {
+   "section": "Section 7: The Revenue Opportunities Most ENT Practices Are Missing",
+   "gist": "Separate endoscopy billing, sinus component capture, office balloon sinuplasty, audiology charge audit and stroboscopy coding, each with unsourced dollar estimates."
+  },
+  {
+   "section": "Section 8: What Revenue Cycle Excellence Looks Like in ENT",
+   "gist": "Five 'non-negotiable' operating standards and a five-action look-back audit list; argues excellence is systematic checklists, triggers, tables and calendars, not new staff."
+  }
+ ],
+ "framework_elements": [
+  "Service-line segmentation of the revenue cycle (surgical, office, ancillary)",
+  "Workflow differentiation by patient population, procedure type and payer category",
+  "Per-payer intelligence question set",
+  "Payer-specific medical-necessity criteria library",
+  "Prospective medical-necessity evidence capture (running qualifying-episode count)",
+  "Pre-submission prior-authorization completeness checklist",
+  "Imaging and test currency check before authorization",
+  "Conservative-treatment failure documentation (drug, dose, duration, outcome)",
+  "Authorization-expiry tracking calendar with renewal alert",
+  "Active-authorization confirmation before claim release",
+  "Authorization lead-time planning for complex cases",
+  "Procedure code reference table with documentation requirement per code",
+  "Separately identifiable procedure note standard (procedure distinct from visit)",
+  "Template-triggered charge capture",
+  "Component-by-component operative note standard",
+  "Structured test-result templates (allergy grid, audiology report)",
+  "Global-period tracking and modifier selection (24, 58, 78, 79)",
+  "Bilateral modifier reference table by code and payer",
+  "Denial pattern classification by root cause",
+  "Appeal triage rule (appeal only when the record meets payer criteria)",
+  "Appeal cover letter itemizing supporting record entries",
+  "Performed-versus-billed reconciliation audit for ancillary tests",
+  "Operative note versus billed code audit",
+  "Look-back claim audits (30/90 days) with annualized gap quantification",
+  "First-submission authorization approval rate tracking",
+  "Monthly denial tracking by modifier reason",
+  "Lapsed-authorization exposure review (retroactive authorization, recoupment risk)",
+  "Ancillary service-line revenue assessment (audiology, allergy)",
+  "Site-of-service shift evaluation (office-based procedure versus operating room)",
+  "Under-coding detection for higher-value code variants"
+ ],
+ "processes": [
+  {
+   "name": "Office procedure documentation and charge trigger (nasal endoscopy)",
+   "steps": [
+    "Add a required, clearly separated procedure section to the office visit template",
+    "Record scope type, structures examined, findings at each site and impression",
+    "Have completion of that section generate the endoscopy charge",
+    "Pull 30 days of office claims and compute the share of documented endoscopies that were billed",
+    "Annualize the gap and monitor capture going forward"
+   ],
+   "owner_role": "Not assigned; physician documents, billing team builds the rule and runs the look-back",
+   "cadence": "Every encounter; one-time 30-day look-back"
+  },
+  {
+   "name": "Sinus surgery (FESS) authorization checklist",
+   "steps": [
+    "Confirm CT falls inside the payer's currency window",
+    "Confirm the medical-management record names drugs, doses, durations and outcomes",
+    "Confirm severity documentation: symptom duration, exacerbations, endoscopic findings, a score if the payer uses one",
+    "Submit only when all three are present",
+    "Review 90 days of past submissions and tag each denial with the missing element",
+    "Track first-submission approval rate monthly"
+   ],
+   "owner_role": "Not assigned; authorization or billing staff implied",
+   "cadence": "Every submission; monthly tracking; one-time 90-day look-back"
+  },
+  {
+   "name": "Prospective tonsillectomy necessity documentation",
+   "steps": [
+    "At every acute throat visit record date, findings, test result and treatment to the payer's standard",
+    "Keep a running count of qualifying episodes in the chart",
+    "Build the authorization from the record, not from parental recall",
+    "For a sleep-disordered-breathing indication, obtain the payer-required sleep study first"
+   ],
+   "owner_role": "All treating providers",
+   "cadence": "Every acute visit for a surgical candidate"
+  },
+  {
+   "name": "Tonsillectomy denial appeal triage",
+   "steps": [
+    "Pull one to three years of throat-infection entries",
+    "Test each episode against the payer's qualifying definition",
+    "Recount qualifying episodes",
+    "If the threshold is met, appeal with a cover letter listing each episode and its record reference",
+    "If not met, do not appeal; counsel the family and document prospectively",
+    "If denials recur, deploy an acute-visit documentation template"
+   ],
+   "owner_role": "Not assigned; billing or appeals staff with the physician implied",
+   "cadence": "Per denial"
+  },
+  {
+   "name": "Allergy immunotherapy authorization calendar",
+   "steps": [
+    "Load every immunotherapy patient's authorization expiry date into a tracker",
+    "Fire a renewal alert 45 days before expiry and submit the renewal then",
+    "Confirm a live authorization before each injection claim is released",
+    "One-time sweep: find lapsed authorizations, request retroactive authorization where allowed, assess recoupment exposure on paid claims"
+   ],
+   "owner_role": "Billing team",
+   "cadence": "Continuous; 45-day alert; one-time sweep of active patients"
+  },
+  {
+   "name": "Bilateral modifier reference table",
+   "steps": [
+    "List the ten most-billed bilateral codes",
+    "Confirm with each of the top three payers whether they want modifier 50, RT/LT lines or units",
+    "Record the answer by code and payer",
+    "Apply the table to every bilateral claim",
+    "Review any modifier-related bilateral denial against the table and update it"
+   ],
+   "owner_role": "Billing team",
+   "cadence": "Build once; monthly denial review"
+  },
+  {
+   "name": "Global-period modifier selection",
+   "steps": [
+    "Check whether the encounter falls inside a surgical global period",
+    "Classify the service: unrelated visit (24), unrelated procedure (79), staged or related procedure (58), return to operating room for a complication (78)",
+    "Append the modifier and bill separately billable work instead of writing off every post-operative encounter"
+   ],
+   "owner_role": "Not assigned; coder or biller implied",
+   "cadence": "Every post-operative encounter"
+  },
+  {
+   "name": "Performed-versus-billed look-back audits (audiology tests, sinus operative notes)",
+   "steps": [
+    "Pull 30 days of audiology encounters and match each test performed to a billed code",
+    "Check that each report supports its code",
+    "Quantify the discrepancy and build a report template that drives charges",
+    "Review the last 30 sinus operative notes against the codes billed",
+    "Where a code lacks note support the guide says leave the note alone and fix billing going forward (it omits any refund step)",
+    "Adopt a sinus-by-sinus operative template"
+   ],
+   "owner_role": "Billing team with audiologist and surgeon",
+   "cadence": "One-time look-back, then template-driven"
+  }
+ ],
+ "tools_templates": [
+  {
+   "name": "Payer / patient population table",
+   "description": "Six rows pairing each payer category with its main ENT revenue-cycle issue; descriptive only."
+  },
+  {
+   "name": "Eight Payer Intelligence Questions for ENT",
+   "description": "Question list to put to each payer on necessity criteria, authorization, global periods, bilateral modifiers and coverage of specific procedures."
+  },
+  {
+   "name": "Office diagnostic and minor procedure CPT table",
+   "description": "About 20 endoscopy, laryngoscopy, cerumen and exam codes with a one-line billing note each; contains errors."
+  },
+  {
+   "name": "Surgical CPT table",
+   "description": "About 20 tonsil, sinus, nasal, thyroid, parotid and ear surgery codes with documentation notes; several descriptors are wrong."
+  },
+  {
+   "name": "Audiology and allergy CPT table",
+   "description": "About 19 hearing-test, implant-programming, allergy-test and immunotherapy codes with documentation notes; some mislabelled."
+  },
+  {
+   "name": "Sinus surgery authorization checklist (three items)",
+   "description": "CT currency, specific medical-management record, clinical severity; stated in prose only, no form supplied."
+  },
+  {
+   "name": "Tonsillectomy appeal management framework",
+   "description": "Four-step triage for necessity denials: pull episodes, recount, appeal only if the threshold is met, otherwise rebuild prospectively."
+  },
+  {
+   "name": "Global-period modifier rules",
+   "description": "Prose summary of when modifiers 24, 58, 78 and 79 apply."
+  },
+  {
+   "name": "Three bilateral billing approaches",
+   "description": "Bullet list contrasting modifier 50, RT/LT lines and two units of the same code."
+  },
+  {
+   "name": "Five Non-Negotiable Operational Standards",
+   "description": "Endoscopy charge trigger, sinus authorization checklist, infection documentation protocol, bilateral modifier table, immunotherapy authorization calendar."
+  },
+  {
+   "name": "Prioritized Five-Action Implementation List",
+   "description": "Five look-back audits (30 days of visits, 90 days of authorizations, active immunotherapy list, top ten bilateral codes, last 30 operative notes); not a dated 30/60/90-day plan."
+  },
+  {
+   "name": "Missed-endoscopy revenue arithmetic",
+   "description": "One worked example, not a reusable calculator."
+  },
+  {
+   "name": "Templates described but NOT supplied",
+   "description": "Endoscopy procedure note, throat-infection visit template, allergy test grid, sinus-by-sinus operative note, audiology report, bilateral modifier table and authorization calendar are all left for the reader to build."
+  }
+ ],
+ "metrics": [
+  {
+   "name": "Endoscopy charge-capture rate",
+   "definition": "Share of office encounters with a documented nasal endoscopy where 31231 or a higher endoscopy code was billed separately",
+   "formula": "encounters with endoscopy billed / encounters with endoscopy performed (implied; not written as a formula)",
+   "target": "100% - no endoscopy performed without being separately billed",
+   "red_flag": "Worked example assumes only 40% captured",
+   "source_cited": "none"
+  },
+  {
+   "name": "First-submission sinus surgery authorization approval rate",
+   "definition": "Share of sinus-surgery authorization requests approved on first submission, tracked monthly",
+   "formula": "",
+   "target": "Approaches 90% once the three-item checklist is used",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "First-submission sinus surgery authorization denial rate",
+   "definition": "Denied first submissions over the last 90 days, each classified by which of three required elements was missing",
+   "formula": "",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Expired-authorization denials (allergy immunotherapy)",
+   "definition": "Injection claims denied because the authorization period had lapsed",
+   "formula": "",
+   "target": "Zero",
+   "red_flag": "Any occurrence",
+   "source_cited": "none"
+  },
+  {
+   "name": "Authorization renewal lead time",
+   "definition": "Days before expiry at which the renewal alert fires and the request is submitted",
+   "formula": "",
+   "target": "45 days before expiration",
+   "red_flag": "Renewal started at or after the expiry date",
+   "source_cited": "none"
+  },
+  {
+   "name": "Modifier-related bilateral procedure denials",
+   "definition": "Monthly count of bilateral-procedure denials caused by the modifier or units method used",
+   "formula": "",
+   "target": "Zero",
+   "red_flag": "Any such denial triggers a review of the reference table",
+   "source_cited": "none"
+  },
+  {
+   "name": "Audiology performed-versus-billed discrepancy",
+   "definition": "Gap between tests performed in a session and codes on the claim across a 30-day sample",
+   "formula": "tests performed minus codes billed (implied)",
+   "target": "",
+   "red_flag": "Described only as 'material' in practices never audited",
+   "source_cited": "none"
+  },
+  {
+   "name": "Sinus operative-note support for billed codes",
+   "definition": "Share of billed sinus component codes with matching sinus-specific text in the last 30 operative notes",
+   "formula": "",
+   "target": "Every billed code supported",
+   "red_flag": "Any code billed without matching note text",
+   "source_cited": "none"
+  },
+  {
+   "name": "Running qualifying-infection count (tonsillectomy candidates)",
+   "definition": "Throat-infection episodes documented to payer standard, kept as a running total in the chart",
+   "formula": "",
+   "target": "Meets the payer threshold before authorization is requested (7 in one year, 5 a year for two years, or 3 a year for three years)",
+   "red_flag": "Count reconstructed from parental recall",
+   "source_cited": "Paradise criteria (named, no citation)"
+  },
+  {
+   "name": "Annualized missed-endoscopy revenue",
+   "definition": "Projected yearly revenue lost from endoscopies performed but not billed",
+   "formula": "missed endoscopies per day x payment per endoscopy x clinic days (example: 24 x $115 = $2,760 a day, $718,000 a year, which implies 260 clinic days)",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  }
+ ],
+ "numeric_claims": [
+  {
+   "claim": "Paradise criteria: 7 or more throat infections in one year, 5 a year for two consecutive years, or 3 a year for three consecutive years, used by many Medicaid programs as the minimum standard",
+   "section": "Section 2",
+   "source_cited": "Paradise criteria (named, no citation)"
+  },
+  {
+   "claim": "Tonsillectomy with adenoidectomy is among the most frequently performed pediatric operations and among the most frequently denied for medical necessity by Medicaid programs and plans",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Adult ENT surgery needs prior authorization from virtually every commercial payer and most Medicare Advantage plans",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Sinus surgery authorization needs failed medical management of 4 to 12 weeks depending on payer",
+   "section": "Sections 2 and 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Most payers require sinus CT within 6 to 12 months of the authorization request",
+   "section": "Sections 2 and 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Revenue gap per missed nasal endoscopy is 'commonly cited' at $75 to $150 (labelled a planning estimate, not a verified figure)",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "ENT operations carry 0-, 10- or 90-day global periods, and sinus surgery is treated as 90-day",
+   "section": "Sections 3 and 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "An incomplete sinus surgery authorization is denied outright and resubmission adds two to four weeks",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "With a checklist, first-submission approval for sinus surgery will approach 90 percent",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Most Medicaid programs and commercial payers require a sleep study with AHI or ODI thresholds before authorizing pediatric tonsillectomy for sleep apnea",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Most payers authorize allergy immunotherapy for 6 months, 12 months, sometimes up to 3 years; elsewhere 'typically 12 months'",
+   "section": "Sections 4 and 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "CMS cochlear implant criteria: bilateral moderate-to-profound sensorineural hearing loss, documented lack of benefit from hearing aids, specific audiometric thresholds",
+   "section": "Section 4",
+   "source_cited": "CMS named, no coverage determination cited"
+  },
+  {
+   "claim": "Cochlear implant authorization takes 30 to 60 days from initial evaluation",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Hypoglossal nerve stimulator criteria: AHI between 15 and 65, BMI below 32 (some payers up to 35), CPAP failure, no complete concentric palatal collapse on sleep endoscopy",
+   "section": "Section 4",
+   "source_cited": "FDA indications named, no citation"
+  },
+  {
+   "claim": "The hypoglossal nerve stimulator is one of the fastest-growing surgical procedures in ENT",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Allergy immunotherapy is given weekly or monthly over a three to five year course",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Modifier 50 pays 150 percent of the unilateral fee; RT and LT lines pay 100 percent each",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A bilateral modifier reference table takes one hour to build and prevents bilateral denials permanently",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Diagnostic nasal endoscopy is performed at the majority of ENT office visits and is separately billable in the majority of those encounters",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Medicare rate for 31231 is $115 per procedure",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Two physicians, 20 endoscopy visits a day each, 40 percent billed: 24 missed a day, $2,760 a day, $718,000 a year - called a conservative estimate",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A fully documented multi-component sinus operation pays $300 to $700 more per case than a single-code case at Medicare rates",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Office balloon sinuplasty pays Medicare rates of $400 to $600 per sinus",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Laryngoscopy with stroboscopy (31579) pays $100 to $200 more than diagnostic laryngoscopy (31575) at Medicare rates",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "The ENT office generates more billing encounters per week than the operating room",
+   "section": "Section 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Renewal should start 45 days before an immunotherapy authorization expires",
+   "section": "Sections 6 and 8",
+   "source_cited": "none"
+  }
+ ],
+ "checkable_claims": [
+  {
+   "id": "C1",
+   "claim": "31231 nasal endoscopy, diagnostic: unilateral or bilateral; modifier 50 if bilateral. 31235 (with sphenoid sinusoscopy) is separately billable with 31231 if both performed.",
+   "kind": "code_rule",
+   "stakes": "high",
+   "section": "Section 3 (office procedure table)",
+   "why": "The guide's largest revenue claim rests on 31231. If the code already covers both sides and is bundled into other same-family endoscopy codes, this guidance produces improper bilateral and unbundled billing."
+  },
+  {
+   "id": "C2",
+   "claim": "A nasal endoscopy for post-operative debridement falls in the 90-day global period for FESS and is billable only with modifier 58 (staged) or 79 (unrelated).",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 3 (global period) and Section 6 (denial pattern 2)",
+   "why": "If Medicare assigns endoscopic sinus surgery codes a 0-day global, the modifier rule is wrong, and unnecessary modifier 58/79 use is itself an audit finding."
+  },
+  {
+   "id": "C3",
+   "claim": "Modifier 50 is billed once at 150 percent of the unilateral fee; two separate lines with RT and LT are each paid at 100 percent of the unilateral fee.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 6 (denial pattern 4)",
+   "why": "Bilateral payment logic applies to any procedural practice. If RT/LT lines are still subject to the bilateral reduction, revenue expectations and the suggested reference table are wrong."
+  },
+  {
+   "id": "C4",
+   "claim": "31255 is endoscopic anterior ethmoidectomy with middle turbinate resection, an add-on component; 31267 is endoscopic middle meatal antrostomy; component codes 31254, 31255, 31267, 31276 and 31287 are each billed for the sinus work documented.",
+   "kind": "code_rule",
+   "stakes": "high",
+   "section": "Section 3 (surgical table), Section 5, Section 7",
+   "why": "If 31255 is total ethmoidectomy and 31267 requires tissue removal, the 'capture every component' advice leads to overcoding; it also ignores combination codes introduced in 2018."
+  },
+  {
+   "id": "C5",
+   "claim": "69631 is tympanoplasty without mastoidectomy with ossicular chain reconstruction; 69641 tympanoplasty with mastoidectomy with ossicular chain reconstruction; 69660 stapedectomy with footplate drill-out; 42415 total parotidectomy with facial nerve preservation; 92602 cochlear implant programming age 7 and over.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 3 (surgical and audiology tables)",
+   "why": "Each looks one code off from the CPT descriptor; a practice coding from this table would misreport ear, parotid and implant-programming services."
+  },
+  {
+   "id": "C6",
+   "claim": "Inspire hypoglossal nerve stimulator: FDA indications and payer criteria align closely - AHI between 15 and 65, BMI below 32 (some payers up to 35), CPAP failure, no complete concentric collapse at the palate on drug-induced sleep endoscopy.",
+   "kind": "regulatory",
+   "stakes": "medium",
+   "section": "Section 4 (landscape 5)",
+   "why": "FDA labeling and Medicare contractor policies have changed since the device's early years; stale thresholds would wrongly exclude or include candidates."
+  },
+  {
+   "id": "C7",
+   "claim": "31231 pays a Medicare rate of $115 per procedure; in-office balloon sinuplasty pays Medicare rates of $400 to $600 per sinus; 31579 pays $100 to $200 more than 31575 at Medicare rates.",
+   "kind": "payment_rate",
+   "stakes": "medium",
+   "section": "Section 7 (opportunities 1, 3 and 5)",
+   "why": "Every revenue projection in the guide, including $718,000 a year from endoscopy alone, depends on these undated, unsourced amounts; site of service changes them several-fold."
+  },
+  {
+   "id": "C8",
+   "claim": "69210 is removal of impacted cerumen requiring instrumentation, one ear, and simple irrigation is not billable; 69209 is removal of cerumen using irrigation, one ear, at lower reimbursement.",
+   "kind": "code_rule",
+   "stakes": "low",
+   "section": "Section 3 (office procedure table)",
+   "why": "The only ENT service this geriatric practice is likely to bill in facilities. The impaction requirement, same-ear exclusivity and Medicare's single payment for both ears need confirming."
+  }
+ ],
+ "domain_map": [
+  {
+   "domain": "rcm-charge-coding",
+   "weight": 0.45,
+   "topics": [
+    "CPT selection for office, surgical, audiology and allergy services",
+    "global-period and bilateral modifiers",
+    "procedure and operative note standards",
+    "template-triggered charge capture",
+    "performed-versus-billed audits"
+   ]
+  },
+  {
+   "domain": "rcm-front-end",
+   "weight": 0.25,
+   "topics": [
+    "prior-authorization packages by service category",
+    "pre-submission checklist",
+    "authorization-expiry calendar",
+    "prospective medical-necessity evidence"
+   ]
+  },
+  {
+   "domain": "rcm-claims-ar",
+   "weight": 0.12,
+   "topics": [
+    "denial patterns by root cause",
+    "appeal triage",
+    "retroactive authorization",
+    "monthly denial tracking"
+   ]
+  },
+  {
+   "domain": "payers-contracts",
+   "weight": 0.08,
+   "topics": [
+    "payer mix by patient population",
+    "per-payer policy questions",
+    "payer-specific modifier and coverage rules"
+   ]
+  },
+  {
+   "domain": "compliance-risk",
+   "weight": 0.05,
+   "topics": [
+    "audit defensibility of notes",
+    "unsupported codes",
+    "recoupment exposure on lapsed authorizations"
+   ]
+  },
+  {
+   "domain": "growth-market",
+   "weight": 0.05,
+   "topics": [
+    "office-based balloon sinuplasty",
+    "audiology and voice service lines"
+   ]
+  }
+ ],
+ "adopt": [
+  {
+   "idea": "Run each service line as its own revenue cycle with its own documentation standard, charge-capture rule and audit",
+   "why": "Leakage hides in high-volume, low-dollar lines that are managed by habit while attention goes to big-ticket work",
+   "applies_to_practice": "yes",
+   "note": "For this practice the lines are hospital visits, skilled nursing and nursing facility visits, assisted living visits, chronic care management, wellness and advance care planning, and medical-director stipends."
+  },
+  {
+   "idea": "Structured note section whose completion creates the charge",
+   "why": "Ties billing to documented work and removes reliance on someone remembering to add a code",
+   "applies_to_practice": "yes",
+   "note": "Fits advance-care-planning time, care-management minutes, prolonged time and cerumen removal. Make the trigger create a charge for review, not an unconditional bill: necessity, bundling and modifier checks still apply."
+  },
+  {
+   "idea": "Expiry calendar with a lead-time alert and a hard stop on claims without a live authorization",
+   "why": "Expired-authorization denials are entirely preventable with tracking",
+   "applies_to_practice": "partly",
+   "note": "Few of the practice's services need authorization, but the same control fits other expiring items: Medicare Advantage referrals, credentialing and revalidation dates, facility agreements, certifications."
+  },
+  {
+   "idea": "Payer-by-code rule table owned by billing and updated whenever a denial shows a rule changed",
+   "why": "Turns scattered payer quirks into one maintained reference that staff or AI agents apply consistently",
+   "applies_to_practice": "yes",
+   "note": "Rows for this practice: place of service, nurse practitioner billing, split or shared visits, telehealth modifiers, facility visit frequency limits, care-management and wellness-visit edits by payer."
+  },
+  {
+   "idea": "Completeness checklist run before anything goes to a payer for review (authorization, appeal, records request)",
+   "why": "The guide's own analysis is that most denials come from missing elements, not inappropriate care",
+   "applies_to_practice": "partly",
+   "note": "Most useful for Medicare Advantage records requests and appeals."
+  },
+  {
+   "idea": "Capture medical-necessity evidence as structured data when the care happens instead of reconstructing it later",
+   "why": "Evidence rebuilt under deadline from memory loses appeals",
+   "applies_to_practice": "partly",
+   "note": "Analogues: skilled-need documentation, condition support for risk adjustment, time logs."
+  },
+  {
+   "idea": "Appeal triage: appeal only when the record meets the payer's written criteria and itemize the supporting entries; otherwise fix the process",
+   "why": "Stops effort being spent on unwinnable appeals and feeds root causes back to documentation",
+   "applies_to_practice": "yes",
+   "note": "Good rule for the AI billing agents' denial queue."
+  },
+  {
+   "idea": "Standing list of policy questions put to every payer",
+   "why": "Forces the practice to learn each plan's rules before claims fail",
+   "applies_to_practice": "yes",
+   "note": "Rewrite the eight questions for facility-based geriatrics and ask them of each Medicare Advantage and Medicaid plan."
+  },
+  {
+   "idea": "Look-back reconciliation of services documented against codes billed, with the gap annualized",
+   "why": "Sizes the problem in dollars and sets priorities",
+   "applies_to_practice": "yes",
+   "note": "Daily census-to-claim reconciliation is the facility-practice equivalent. Use real working days and actual payer rates, not the guide's arithmetic."
+  },
+  {
+   "idea": "Name one preventive control for each recurring denial pattern and track that pattern toward zero",
+   "why": "Converts denial work from rework into prevention",
+   "applies_to_practice": "yes",
+   "note": ""
+  }
+ ],
+ "practice_relevance": {
+  "score": 1,
+  "why": "Content is surgical and office otolaryngology: tonsillectomy, sinus surgery, audiology, allergy, implants. A facility-based geriatric practice performs none of it apart from occasional cerumen removal. Only the generic control patterns transfer, and the document would need full re-verification before being used with any ENT client of a future advisory service.",
+  "sections_that_do_not_apply": [
+   "Section 2 (pediatric Medicaid tonsillectomy and adult sinus surgery authorization)",
+   "Section 3 (ENT code tables and global-period surgery rules, except the cerumen-removal rows)",
+   "Section 4 (all five authorization categories)",
+   "Section 5 (all four ENT documentation failures)",
+   "Section 6 (tonsillectomy, global-period, immunotherapy and bilateral denial patterns as written)",
+   "Section 7 (all five revenue opportunities)",
+   "Section 8 standards and actions as written (only the control design generalizes)"
+  ]
+ },
+ "quality": {
+  "score": 2,
+  "specificity": 3,
+  "accuracy_concerns": [
+   "31231 is defined as 'unilateral or bilateral', so the table's 'modifier 50 if bilateral' and Section 1's complaint about a missing laterality modifier would produce improper bilateral billing of the guide's flagship code.",
+   "The table says 31235 is separately billable with 31231. A diagnostic endoscopy is bundled into other endoscopy codes of the same family; 31231 is a 'separate procedure' code.",
+   "Sections 3 and 6 put sinus surgery in a 90-day global period and require modifier 58 or 79 for post-operative debridement. Medicare assigns the endoscopic sinus surgery codes a 0-day global; modifier 79 is needed only when a concurrent 90-day procedure such as septoplasty was done.",
+   "Wrong descriptors: 31255 is total ethmoidectomy, not anterior ethmoidectomy with turbinate resection and not an add-on; 31267 requires removal of tissue from the maxillary sinus (plain antrostomy is 31256); 42415 is lateral-lobe parotidectomy with nerve dissection (total is 42420); 69631 and 69641 are WITHOUT ossicular chain reconstruction (69632 and 69642 are with); 69660 is ordinary stapedectomy (footplate drill-out is 69661); 92602 is reprogramming under age 7 (age 7 and over is 92603/92604).",
+   "31254 and 31255 are listed together as separately billable components; they are alternatives (partial versus total ethmoidectomy) on the same side. The combination codes added in 2018 (31253, 31257, 31259, 31298) and the multiple-endoscopy payment reduction are never mentioned, so the 'three codes, substantially higher revenue' pitch is unreliable.",
+   "Modifier 25 is never mentioned, although a same-day visit plus endoscopy is not payable without it. The guide treats endoscopy at 'the majority' of visits as automatically billable and sets a rule that no endoscopy goes unbilled, with no medical-necessity test per scope and no acknowledgement that frequent visit-plus-scope billing is an audit target.",
+   "Allergy and audiology rows are loose or wrong: 95165 is preparation and provision of antigen billed per dose prepared, not 'allergy shots' administered (injections are 95115/95117); 95115 is one injection, not 'single antigen'; 92568 is not an add-on code; 92570 also includes reflex decay; 92587 is a limited diagnostic emissions test, not the newborn screen (92558).",
+   "Cerumen rows contradict themselves (irrigation 'not billable', then an irrigation code) and omit that both codes require impaction and that Medicare pays 69210 once whether one ear or two is treated.",
+   "Bilateral section says RT and LT lines are each paid at 100%; payers that want RT/LT generally still apply the bilateral reduction. It also uses tonsillectomy as a bilateral-modifier example although its codes are inherently bilateral.",
+   "Claims tonsillectomy technique (cold, cautery, coblation) matters for billing; CPT tonsillectomy codes vary by age and by whether adenoids are removed, not by technique.",
+   "Dollar figures are unsourced and undated. $115 for 31231 matches neither the office nor the facility Medicare amount as I recall them (roughly $190-$200 and about $60); $400-$600 per balloon sinus looks far below Medicare office-setting amounts, which include the device; the stroboscopy and sinus-case differences have no basis shown. All need checking against the fee schedule for a stated year and locality.",
+   "The $718,000 projection needs 260 clinic days a year for both physicians, an endoscopy on every visit and all-Medicare pricing - in a specialty the guide itself says has operating days and a pediatric Medicaid base.",
+   "'Most Medicaid programs and commercial payers' requiring a sleep study before pediatric tonsillectomy for sleep-disordered breathing is overstated; many policies and the specialty guideline accept clinical criteria for otherwise healthy children.",
+   "Hypoglossal nerve stimulator thresholds reflect the device's original label; FDA widened the apnea-index and body-mass limits in 2023 and Medicare contractor policies have used BMI under 35.",
+   "Action 5 says that when billed codes lack operative-note support the practice should just correct billing going forward. It never mentions the duty to report and refund identified overpayments (Medicare's 60-day rule) - a compliance hole.",
+   "Says a one-line 'normal findings' note meets the minimum standard for a billable endoscopy, and that an endoscopy mentioned inside the visit note becomes 'legally' part of the visit; neither statement is supported by any cited rule.",
+   "Says Medicaid plan criteria are 'often stricter than state standard' without noting that federal managed-care rules generally require plan necessity definitions to be no more restrictive than the state program's."
+  ],
+  "generic_filler": "medium",
+  "internal_contradictions": [
+   "Section 3 calls the $75-$150 per-endoscopy figure an unverified planning estimate; Section 7 then uses $115 as 'a Medicare rate' and calls the $718,000 result 'not a theoretical calculation' and 'conservative'.",
+   "Section 3 says simple irrigation is not billable, and the very next row lists an irrigation code (69209) as billable.",
+   "Section 4's introduction names the fourth and fifth categories as 'audiology and hearing aid' and 'sleep surgery'; the body covers cochlear implants and a single implant device.",
+   "Section 5 sets a detailed endoscopy note standard, then says a note reading only 'normal findings' meets the minimum.",
+   "Section 4 says immunotherapy authorizations run 6 months to 3 years; Section 6 says typically 12 months and describes the denied claims as the last three months of the authorization period when it means the months after it lapsed.",
+   "Section 8 says none of the fixes need new software, yet Standard 1 requires an automatic charge-capture rule and Standard 5 a tracked alert system.",
+   "31255 is labelled an 'add-on component' in the Section 3 table but treated as an independently billable same-session component in Section 5.",
+   "31254, 31276 and 92502 each appear twice across the office and surgical tables with different wording."
+  ],
+  "time_sensitive_or_outdated": [
+   "Laryngoscopy descriptors use 'flexible fiberoptic' wording that CPT dropped in 2017, and the sinus section ignores the 2018 combination codes - the source material reads as pre-2018.",
+   "Hearing-aid codes 92590-92595: I believe CPT deleted these for 2026 in favour of a new hearing-device code family (verify); Medicare does not cover hearing aids or fitting exams in any case.",
+   "Hypoglossal nerve stimulator thresholds (AHI 15-65, BMI under 32) predate the 2023 FDA label expansion; payer policies have been moving since.",
+   "All Medicare dollar figures are undated. The conversion factor changed every year from 2021 to 2026, and the 2026 fee schedule (as I understand it) added an efficiency cut to procedure work values and lowered facility-setting practice-expense payment.",
+   "The physician-referral question for audiology ignores Medicare's 2023 limited direct-access rule (modifier AB).",
+   "Medicare Advantage authorization content ignores the 2024 rule tying plan criteria to traditional Medicare coverage rules and the 2026 prior-authorization decision deadlines."
+  ],
+  "ai_generation_signals": [
+   "No author, credential, date, citation, policy number or payer document anywhere.",
+   "Same skeleton as the sibling neurology guide: 'The Reframe', eight payer questions, five authorization 'landscapes', four documentation failures, four denial patterns, five opportunities, five 'non-negotiable' standards, five actions.",
+   "Slogan cadence: 'Build the template. Use the template. Bill the code with confidence.'; 'The revenue is immediate and permanent.'",
+   "Confident descriptors that are exactly one code off (69631/69632, 69641/69642, 69660/69661, 92602/92603, 42415/42420) - a typical language-model error pattern.",
+   "A stock hedge ('a planning estimate rather than a precise verified figure') bolted onto round dollar ranges.",
+   "Round-number scenarios (two physicians, 20 visits, 40 percent) presented as observation.",
+   "List numbering duplicated ('1. Standard 1:').",
+   "Reference to 'every other authorization expiration denial in this series' shows series-wide boilerplate."
+  ],
+  "missing_for_real_use": [
+   "Modifier 25 rules and a medical-necessity and frequency policy for office endoscopy.",
+   "Bundling edits, multiple-endoscopy and multiple-procedure payment reductions, modifier 51/59/XS guidance and the current sinus combination codes.",
+   "Any actual template, form, appeal letter or the modifier table itself.",
+   "Payer-specific citations (state Medicaid criteria, Medicare Advantage policies, national or local coverage determination numbers) and the fee-schedule year and locality behind each dollar figure.",
+   "Facility versus office payment, surgery-center and hospital outpatient economics, and supply cost for office balloon procedures.",
+   "What to do about past claims found unsupported: refund obligations and disclosure.",
+   "Medicare-specific audiology and allergy rules (ordering, direct access, supervision, antigen dose definition).",
+   "Owners, staffing, timelines, a KPI dashboard and any standard revenue-cycle benchmarks; none are given.",
+   "Hearing-aid dispensing economics, in-office imaging and biologic drug billing, which matter to real ENT practices."
+  ]
+ }
+}

@@ -1,9 +1,11 @@
-// PLAIN ENGLISH: the ehpa Practice Database app, a Neon Function next to the practice's Postgres. It serves ONE page ("/", no
-// data in it), the browser script (/app.js), and JSON views (/api/*) read from the ehpa.* views. Every /api request must carry a
-// Neon Auth JWT (Authorization: Bearer) that verifies against the branch's JWKS AND belong to an email in ALLOWED_EMAILS; anything
-// else is 401/403 before a query runs. Each allowed request is written to ops.app_access_log (who, what, when, status) - the
-// access trail HIPAA asks for. The database role is the one Neon injects (DATABASE_URL, pooled); the code only ever SELECTs from
-// ehpa.*/ops.* and INSERTs into ops.app_access_log. The function's native URL is public by design; auth is the gate.
+// PLAIN ENGLISH: the ehpa applications, a Neon Function next to the practice's Postgres. It serves ONE page ("/", no data in
+// it), the browser script (/app.js), and JSON (/api/*): the dashboard views read from ehpa.* (views.ts) and the Universal
+// Practice Optimization bundles read from upo.* (upo.ts). Every /api request must carry a Neon Auth JWT (Authorization: Bearer)
+// that verifies against the branch's JWKS AND belong to an email in ALLOWED_EMAILS; anything else is 401/403 before a query
+// runs. Each allowed request is written to ops.app_access_log (who, what, when, status) - the access trail HIPAA asks for.
+// The database role is the one Neon injects (DATABASE_URL, pooled); the code SELECTs from ehpa.*/ops.*/upo.*, INSERTs into
+// ops.app_access_log, and UPDATEs one thing: the status and note of a work-list row (upo.ts). The function's native URL is
+// public by design; auth is the gate.
 import { Hono } from "hono";
 import { Pool } from "pg";
 import { attachDatabasePool, waitUntil } from "@neon/functions";
@@ -11,6 +13,7 @@ import { createRemoteJWKSet, jwtVerify, decodeJwt } from "jose";
 import { CLIENT_JS } from "./generated/client-bundle";
 import { pageHtml } from "./page";
 import { VIEWS, runView } from "./views";
+import { registerUpo } from "./upo";
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL, max: 5 });
 attachDatabasePool(pool);
@@ -20,6 +23,7 @@ const JWKS_URL = process.env.NEON_AUTH_JWKS_URL || "";
 const jwks = JWKS_URL ? createRemoteJWKSet(new URL(JWKS_URL)) : null;
 const ALLOWED = (process.env.ALLOWED_EMAILS || "").toLowerCase().split(",").map((s) => s.trim()).filter(Boolean);
 const IDLE = process.env.SESSION_IDLE_MINUTES || "30";
+const PRACTICE = /^[a-z0-9]{2,20}$/.test(process.env.PRACTICE_CODE || "") ? (process.env.PRACTICE_CODE as string) : "ehpa";   // the practice "My practice" opens
 
 type Vars = { user: { id: string; email: string } };
 const app = new Hono<{ Variables: Vars }>();
@@ -35,7 +39,7 @@ app.use("*", async (c, next) => {
 });
 
 app.get("/health", (c) => c.text("ok"));
-app.get("/", (c) => c.html(pageHtml(AUTH_BASE, IDLE)));
+app.get("/", (c) => c.html(pageHtml(AUTH_BASE, IDLE, PRACTICE)));
 app.get("/app.js", (c) => c.body(CLIENT_JS, 200, { "content-type": "text/javascript; charset=utf-8" }));
 
 // ---- the gate: a verified Neon Auth JWT whose email is allowed --------------------------------------------------------------
@@ -96,6 +100,8 @@ app.get("/api/view/:name", async (c) => {
     return c.json({ error: "the database answered with an error for this view" }, 500);
   }
 });
+
+registerUpo(app, pool, PRACTICE);
 
 app.notFound((c) => c.text("not found", 404));
 export default app;

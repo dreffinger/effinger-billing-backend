@@ -1,0 +1,805 @@
+{
+  "slug": "universal-specialty-billing-framework",
+  "title": "The Universal Specialty Billing Framework: A Complete Foundation for Specialty Revenue Cycle Intelligence",
+  "doc_type": "specialty",
+  "pages": 53,
+  "audience": "Independent specialty practices, especially procedure-heavy ones: billing teams, billing managers, practice administrators and physician owners. Presented as mandatory first reading for buyers of the vendor's specialty companion guides. No author, credential or date is given.",
+  "summary": "Foundation volume of the vendor's specialty guide series. It argues that specialty billing differs from primary care because revenue sits in fewer, higher-value claims that draw more payer scrutiny, stricter documentation demands and more modifier and bundling exposure. Its central method is 'payer intelligence': a per-payer map built from eight operational questions, a monthly payment-variance check against contracted rates, a four-dimension risk rating of the top thirty procedure codes (audit, bundling, modifier dependency, global period), a four-part prior authorization program with a 24-hour submission standard, coder-to-provider documentation feedback within 48 hours, step lists for three denial types (medical necessity, bundling, modifier disputes) and a quarterly 90-minute review that includes a physician owner. It is prose only: no fillable templates, no code-level rules beyond one short modifier table, no deadlines, no targets, and one sourced statistic. Nearly every example is surgical.",
+  "outline": [
+    {
+      "section": "Introduction: Why Specialty Billing Demands a Different Intelligence",
+      "gist": "Positions the document as the base layer for every specialty guide, lists seven topics, and claims frameworks rather than staff or budget separate strong practices."
+    },
+    {
+      "section": "Section One: Why Specialty Billing Is a Different Game",
+      "gist": "Four structural differences from primary care: revenue concentration per claim, payer scrutiny, documentation intensity, modifier complexity. Seven-row comparison table with no data."
+    },
+    {
+      "section": "Section Two: Specialty-Specific Payer Mix Dynamics",
+      "gist": "Payer mix as a risk portfolio; Medicare Advantage as hardest payer; eight-question payer map; monthly payment-variance check; choosing which contracts to keep."
+    },
+    {
+      "section": "Section Three: Procedure Code Complexity and Risk Architecture",
+      "gist": "Rate top thirty codes on audit, bundling, modifier and global-period risk; OIG, recovery audit and CMS transmittals as audit signals; eight-row modifier table."
+    },
+    {
+      "section": "Section Four: Prior Authorization as an Operational Discipline",
+      "gist": "Four failure modes and a four-part program: requirements matrix, payer-specific templates, 24-hour submission, denial tracking. KFF appeal statistic and a physician-time cost estimate."
+    },
+    {
+      "section": "Section Five: Documentation Standards That Protect Specialty Revenue",
+      "gist": "Three documentation failures; write to payer criteria; procedure note order of indication, findings, procedure, outcome; supporting-document checklist; 48-hour coder feedback; compliance boundary."
+    },
+    {
+      "section": "Section Six: The Three Universal Denial Patterns",
+      "gist": "Step lists for medical necessity, bundling and modifier-dispute denials: pre-bill checks, written denial rationale, NCCI indicator test, peer-to-peer, tracking by payer."
+    },
+    {
+      "section": "Section Seven: Building Specialty-Specific Payer Intelligence",
+      "gist": "Four layers (contract, behavioral, regulatory, relationship) with a contract summary, two reports, monitoring calendar and contact directory; use in negotiation; quarterly review."
+    },
+    {
+      "section": "How to Use This Framework with the Specialty Companion Guides",
+      "gist": "Five questions each companion guide will answer and the planned build order; geriatrics sits in the last tier with no content."
+    }
+  ],
+  "framework_elements": [
+    "Revenue concentration analysis (dollar exposure per claim)",
+    "Payer mix analysis by payer class",
+    "Medicare Advantage plan-specific management",
+    "Payer intelligence map (eight questions per payer)",
+    "Payment variance and underpayment detection",
+    "Underpayment dispute and escalation path",
+    "Payer portfolio decisions (credential, negotiate, terminate)",
+    "Procedure code risk profile (four dimensions)",
+    "Audit-target monitoring (OIG Work Plan, recovery audit topics, CMS transmittals)",
+    "Bundling and NCCI edit management",
+    "Written modifier policy and modifier reference",
+    "Global period tracking and separate-billing policy",
+    "Authorization requirements matrix",
+    "Payer-specific clinical summary templates",
+    "24-hour authorization submission standard",
+    "Authorization tracking with expiration alerts and claim linkage",
+    "Authorization denial and appeal log",
+    "Physician time cost quantification",
+    "Payer-criteria documentation tools (templates, phrase libraries)",
+    "Procedure note standard (indication, findings, procedure, outcome)",
+    "Pre-service supporting documentation checklist",
+    "Encounter-level documentation feedback loop (48 hours)",
+    "Pre-bill medical necessity documentation check",
+    "Medical necessity denial management and peer-to-peer review",
+    "Bundling denial triage (correct versus incorrect edit) and appeal",
+    "Pre-bill modifier audit and modifier denial tracking by payer",
+    "Contract intelligence summary per payer",
+    "Behavioral intelligence reports (denial pattern, payment variance)",
+    "Regulatory tracking calendar with named monitor",
+    "Payer contact directory and quarterly intelligence review with physician owner"
+  ],
+  "processes": [
+    {
+      "name": "Payer intelligence map (eight questions per payer)",
+      "steps": [
+        "Pick the top five payers",
+        "List each payer's authorization requirements for the top twenty codes and how often that list changes",
+        "Record the payer's medical necessity criteria for the highest-volume services and where they depart from clinical guidelines",
+        "Calculate first-pass denial rate by procedure category over the trailing twelve months",
+        "Measure average days to payment on clean claims against contract terms",
+        "Log post-payment audit activity from the last two years",
+        "Document the appeals route and the practice's win rate by denial type",
+        "Write down known bundling and modifier policies for common code combinations",
+        "Name the provider relations contact and the date of the last conversation"
+      ],
+      "owner_role": "Not assigned in the document; implied billing manager or practice administrator",
+      "cadence": "Living document; revisited in the quarterly intelligence review"
+    },
+    {
+      "name": "Monthly payment variance check and underpayment escalation",
+      "steps": [
+        "Pull the twenty highest-volume codes for the month",
+        "Compare average payment received with the contracted rate, per payer",
+        "Open a payer inquiry for any code more than 3% off",
+        "File a formal underpayment dispute when the gap persists for several months",
+        "Escalate unresolved disputes to the state insurance regulator"
+      ],
+      "owner_role": "Not assigned; implied billing manager",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Specialty code risk profile",
+      "steps": [
+        "Pull CPT utilization and select the top thirty codes",
+        "Rate each code low, moderate or high on audit risk, bundling risk, modifier dependency and global period complexity",
+        "Flag codes rated high on two or more dimensions",
+        "Point documentation review, modifier policy, coding audits and provider training at the flagged codes"
+      ],
+      "owner_role": "Experienced coder",
+      "cadence": "One-time build of two to three hours; no refresh interval stated"
+    },
+    {
+      "name": "Prior authorization management program",
+      "steps": [
+        "Identify the authorization need when the physician orders the service",
+        "Hand the case to the authorization team the same day",
+        "Look up the payer and service in the requirements matrix",
+        "Complete the payer-specific clinical summary template criterion by criterion",
+        "Submit within 24 hours of the clinical decision",
+        "Track status and expiration with alerts, linked to scheduling and billing",
+        "On denial, compare the rationale with the record and the payer's criteria",
+        "Appeal or request peer-to-peer inside the payer's window",
+        "Log payer, procedure, denial reason, dates and appeal outcome",
+        "Review the log after six to twelve months for payer patterns"
+      ],
+      "owner_role": "Authorization team; physician for peer-to-peer calls",
+      "cadence": "Per order with continuous tracking; pattern review once six to twelve months of data exist"
+    },
+    {
+      "name": "Coder-to-provider documentation feedback loop (CDI)",
+      "steps": [
+        "Brief providers on the purpose so feedback is read as revenue protection, not criticism",
+        "Review each encounter note against the code selected and the payer's criteria",
+        "Send the provider a note naming what was documented, what the claim needed and example wording",
+        "Deliver the note within 48 hours of the encounter",
+        "Watch documentation-driven denials and E/M coding accuracy over the following 60 to 90 days"
+      ],
+      "owner_role": "Coder or coding supervisor",
+      "cadence": "Per encounter, within 48 hours"
+    },
+    {
+      "name": "Medical necessity denial management",
+      "steps": [
+        "Before billing, confirm the record addresses the payer's stated criteria for the service",
+        "At denial, obtain the written rationale and the policy cited; refuse verbal explanations",
+        "Compare the cited criteria with the record and decide whether to appeal",
+        "Appeal with the specific record elements, or add a physician letter and supplemental records where there is a gap",
+        "Request peer-to-peer for strong high-value cases and prepare the physician with the criteria beforehand",
+        "Log every denial by payer and procedure and review for patterns"
+      ],
+      "owner_role": "Billing team with the treating physician; no single owner named",
+      "cadence": "Per claim; pattern review ongoing"
+    },
+    {
+      "name": "Bundling and modifier dispute management",
+      "steps": [
+        "Identify whether the edit is a published NCCI edit or the payer's own logic; request the policy if proprietary",
+        "Check the NCCI modifier indicator: 1 can be bypassed with a supported modifier, 0 cannot",
+        "Confirm the original record shows each service as distinct and separately necessary",
+        "Apply the correct modifier under a written practice modifier policy",
+        "Run a pre-bill audit on a sample of claims carrying modifiers",
+        "Appeal citing the specific edit, its indicator, the record passages and the coding authority",
+        "Track modifier denial rates by payer and raise outliers in contract talks"
+      ],
+      "owner_role": "Coders and billing team; no single owner named",
+      "cadence": "Per claim; pre-bill audit on a sample (frequency not stated)"
+    },
+    {
+      "name": "Quarterly specialty intelligence review, fed by monthly regulatory monitoring",
+      "steps": [
+        "Assign a person to scan CMS transmittals, MAC updates, the OIG Work Plan, CPT releases and specialty society guidance each month",
+        "Flag changes that touch the practice's code mix before they reach claims",
+        "Confirm and update the payer contact directory each quarter",
+        "Review contract compliance: are payers paying contracted rates and on time",
+        "Review payer-specific denial trends",
+        "Review regulatory changes from the last 90 days",
+        "Review relationship status and open issues needing escalation",
+        "Decide appeal strategy, negotiation positions and network participation"
+      ],
+      "owner_role": "Billing manager, practice administrator and at least one physician owner",
+      "cadence": "Monthly monitoring; quarterly 90-minute review"
+    }
+  ],
+  "tools_templates": [
+    "Primary care versus specialty risk table — seven qualitative rows (revenue concentration, authorization burden, documentation intensity, modifier complexity, audit risk, medical necessity scrutiny, coding-change impact); no data behind any cell",
+    "Eight-question payer intelligence map — a question list only; no layout, fields or worked example",
+    "High-audit-risk profile checklist — five traits of codes likely to draw audits (high value with volume growth, subjective documentation rules, inconsistently bundled combinations, newly covered services, site-of-service payment differences)",
+    "Modifier reference table — eight rows (25, 59, XE/XS/XP/XU, 51, 22, 50, AS, RT/LT) with purpose and a qualitative risk label; the AS row is wrong",
+    "Specialty code risk profile rubric — top thirty codes rated low/moderate/high on four dimensions, with high on two or more marking a priority code; described, no worksheet",
+    "Global period controls — per-procedure global period reference list, a billing-system flag keyed to prior procedure dates and a written policy for separately billable care; described only",
+    "Authorization requirements matrix — field list (required or not, documentation needed, payer criteria, submission method and timeline, authorization window, escalation contact); no template",
+    "Payer-specific clinical summary templates — recommended checklist-style request forms per payer and service; none supplied",
+    "Authorization denial and appeal tracker — six fields (payer, procedure, denial reason, denial date, appeal filed date, outcome); no template",
+    "Physician authorization-time cost calculator — a single formula: weekly physician hours on authorization work times average hourly clinical revenue",
+    "Pre-service supporting documentation checklist — per high-value procedure category, the records that must be on file before the service; described only",
+    "Documentation feedback note script — three-part message pattern: what was documented, what the claim required, wording that would have supported it",
+    "Procedure note structure — indication, findings, procedure, outcome, with one sample opening sentence for a lumbar disc case",
+    "Medical necessity denial framework — five numbered steps from pre-bill check to pattern tracking",
+    "Bundling denial framework — five numbered steps built around the NCCI modifier indicator",
+    "Modifier dispute framework — four numbered steps: written modifier policy, pre-bill audit, appeal approach by modifier, denial tracking by payer",
+    "Contract intelligence summary — field list per payer (rate method, payment terms, timely filing window, authorization rules, audit rights and notice, dispute process); no template",
+    "Monthly denial pattern report and payment variance report — two recommended reports defined in a sentence each; no layout or query logic",
+    "Regulatory tracking calendar — monthly monitoring assignments across five source types; no calendar supplied",
+    "Payer contact directory — four contact types per payer, refreshed quarterly; no template",
+    "Quarterly specialty intelligence review agenda — four topics, 90 minutes, three named attendee roles",
+    "Companion-guide question list and build order — five questions each specialty guide will answer and the planned release sequence",
+    "Not included anywhere: a 30/60/90-day plan, scoring spreadsheet, appeal letter, call script or fillable form"
+  ],
+  "metrics": [
+    {
+      "name": "First-pass denial rate by payer and procedure category",
+      "definition": "Share of the practice's claims a payer denies on first submission, split by procedure category, over the trailing twelve months",
+      "formula": "",
+      "target": "",
+      "red_flag": "A payer-specific rate moving the wrong way at the quarterly review (no number given)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days to payment for clean claims, by payer",
+      "definition": "Average days from clean-claim submission to payment, compared with the contract's payment terms",
+      "formula": "",
+      "target": "Within contracted payment terms",
+      "red_flag": "Illustration only: a payer with a 30-day standard paying in 52 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Appeals success rate by payer and denial type",
+      "definition": "Historical share of appeals won, tracked per payer and per denial type",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payment variance to contract (top twenty codes)",
+      "definition": "Monthly comparison of average payment received with the contracted rate for the twenty highest-volume codes, per payer",
+      "formula": "Implied, never written out: (contracted rate - average payment received) / contracted rate",
+      "target": "Within 3% of the contracted rate",
+      "red_flag": "More than 3% on any code triggers a payer inquiry; a gap lasting several months triggers a formal dispute",
+      "source_cited": "none"
+    },
+    {
+      "name": "Authorization submission turnaround",
+      "definition": "Elapsed time from the clinical decision or order to submission of the authorization request",
+      "formula": "",
+      "target": "24 hours",
+      "red_flag": "Authorization work starting at scheduling rather than at ordering",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-submission authorization approval rate",
+      "definition": "Share of authorization requests approved on first submission; named as a number to show owners, not defined further",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Authorization denial rate by payer and service",
+      "definition": "Share of authorization requests denied, tracked by payer, procedure and denial reason",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicare Advantage prior-authorization appeal overturn rate",
+      "definition": "Share of appealed Medicare Advantage prior-authorization denials overturned fully or partly; quoted as an external fact, not a practice target",
+      "formula": "",
+      "target": "Reported: 80.7% in 2024; above 80% each year 2019-2024; 83.2% in 2022",
+      "red_flag": "Only about one in ten denials is appealed",
+      "source_cited": "AMA article 'Over 80% of prior auth appeals succeed', citing KFF analysis of CMS data"
+    },
+    {
+      "name": "Physician time cost of prior authorization",
+      "definition": "Weekly clinical revenue forgone because physicians spend hours on authorization work",
+      "formula": "Physician hours per week on authorization activity x average hourly clinical revenue",
+      "target": "",
+      "red_flag": "Illustration: three to five hours a week said to equal $3,000-$12,000 a week",
+      "source_cited": "none"
+    },
+    {
+      "name": "Documentation feedback turnaround",
+      "definition": "Time from encounter to delivery of provider-specific, encounter-specific documentation feedback",
+      "formula": "",
+      "target": "Within 48 hours",
+      "red_flag": "Feedback delivered only as monthly or quarterly aggregate reports",
+      "source_cited": "none"
+    },
+    {
+      "name": "Documentation-driven denials",
+      "definition": "Denials traceable to documentation gaps; expected to fall once the feedback loop runs",
+      "formula": "",
+      "target": "Measurable reduction within 60-90 days (no number)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Modifier denial rate by payer",
+      "definition": "Share of claims carrying a given modifier that a payer denies or reduces",
+      "formula": "",
+      "target": "",
+      "red_flag": "Illustration: one payer denying modifier 25 at 35% while others average 8%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medical necessity denials by payer and procedure",
+      "definition": "Denials logged per payer and procedure so that elevated payer-procedure combinations stand out",
+      "formula": "",
+      "target": "",
+      "red_flag": "Specific payers denying specific procedures at elevated rates (no number)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Overall claim denial rate",
+      "definition": "Not defined; 7% is used only to show that the same rate carries far more dollars in a surgical practice than in primary care",
+      "formula": "",
+      "target": "",
+      "red_flag": "7% is the example of a problem level",
+      "source_cited": "none"
+    },
+    {
+      "name": "Code risk rating",
+      "definition": "Low, moderate or high rating of each of the top thirty codes on audit, bundling, modifier-dependency and global-period risk",
+      "formula": "Count of dimensions rated high, per code",
+      "target": "",
+      "red_flag": "High on two or more dimensions marks a priority code",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net yield by payer",
+      "definition": "Named but never defined; to be weighed with administrative burden, denial rate and days to payment when judging a payer relationship",
+      "formula": "",
+      "target": "",
+      "red_flag": "Rates below the practice's cost-to-collect threshold (also undefined)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Peer-to-peer value threshold",
+      "definition": "Claim value above which physician time on a prepared peer-to-peer call is said to pay off",
+      "formula": "",
+      "target": "Claims above $1,000",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer contact directory currency",
+      "definition": "How recently each payer contact was confirmed",
+      "formula": "",
+      "target": "Confirmed quarterly",
+      "red_flag": "Eighteen months out of date",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A primary care billing day might hold sixty encounters averaging $85 to $150 each in net collections.",
+      "section": "Section One — The Revenue Concentration Problem",
+      "source_cited": "none (illustration)"
+    },
+    {
+      "claim": "A spine surgeon's billing day might hold eight encounters (two office visits, six procedures) worth $400 to $8,000 net per claim.",
+      "section": "Section One — The Revenue Concentration Problem",
+      "source_cited": "none (illustration)"
+    },
+    {
+      "claim": "A 7% denial rate is only a process problem in primary care but may put hundreds of thousands of dollars at risk in an orthopedic surgery practice.",
+      "section": "Section One — The Revenue Concentration Problem",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Practices able to answer all eight payer questions for their top five payers are practicing strategic payer management.",
+      "section": "Section Two — The Eight Questions",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 10% underpayment on a $12,000 procedure equals $1,200 on one claim.",
+      "section": "Section Two — The Contractual Underpayment Problem",
+      "source_cited": "none (arithmetic illustration)"
+    },
+    {
+      "claim": "A payment variance above 3% on any of the top twenty codes warrants a payer inquiry.",
+      "section": "Section Two — The Contractual Underpayment Problem",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare global periods are 0, 10 or 90 days depending on the procedure.",
+      "section": "Section Three — Global Period Complexity",
+      "source_cited": "none (attributed generally to Medicare)"
+    },
+    {
+      "claim": "Rating the top thirty codes on four risk dimensions takes an experienced coder two to three hours.",
+      "section": "Section Three — Building Your Specialty Code Risk Profile",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Modifier 25 is the most commonly disputed modifier in specialty billing.",
+      "section": "Section Three — modifier table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "80.7% of appealed Medicare Advantage prior-authorization denials were overturned fully or partly in 2024.",
+      "section": "Section Four — Failure Four",
+      "source_cited": "AMA article 'Over 80% of prior auth appeals succeed', citing KFF analysis of CMS data"
+    },
+    {
+      "claim": "The overturn rate exceeded 80% in every year from 2019 through 2024 and was 83.2% in 2022.",
+      "section": "Section Four — Failure Four",
+      "source_cited": "Same AMA/KFF citation"
+    },
+    {
+      "claim": "Only about one in ten Medicare Advantage prior-authorization denials is appealed.",
+      "section": "Section Four — Failure Four",
+      "source_cited": "Same AMA/KFF citation"
+    },
+    {
+      "claim": "The standard from clinical decision to authorization submission is 24 hours.",
+      "section": "Section Four — Component Three",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A well-built request template takes fifteen minutes to complete and wins approval more often than a narrative summary.",
+      "section": "Section Four — Component Two",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Six to twelve months of logged authorization denials yields a usable payer-specific pattern analysis.",
+      "section": "Section Four — Component Four",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In most specialty practices a physician spending three to five hours a week on authorization work loses $3,000 to $12,000 a week in clinical revenue.",
+      "section": "Section Four — Physician Time and the Prior Authorization Tax",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Prior authorization is the single most operationally consuming challenge in specialty billing; the AMA's annual survey is said to show rising volume and complexity, with no figures quoted.",
+      "section": "Section Four — introduction and The Scope of the Problem",
+      "source_cited": "AMA annual prior authorization survey (named; no year or figures)"
+    },
+    {
+      "claim": "A payer's lumbar surgery criteria may require six weeks of failed conservative therapy with documented functional outcome measures and concordant imaging.",
+      "section": "Section Five — Failure One",
+      "source_cited": "none (illustration)"
+    },
+    {
+      "claim": "The most effective documentation feedback is delivered within 48 hours of the encounter.",
+      "section": "Section Five — The CDI Feedback Loop That Works",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Practices that build the feedback loop consistently see documentation quality improve within 60 to 90 days.",
+      "section": "Section Five — The CDI Feedback Loop That Works",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medical necessity denials are the most common denial type in specialty billing.",
+      "section": "Section Six — Universal Denial Pattern One",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medical necessity, bundling and modifier disputes account for the majority of specialty denial volume in most practices.",
+      "section": "Section Six — introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Prepared peer-to-peer calls succeed often enough to justify physician time on claims above $1,000.",
+      "section": "Section Six — Medical Necessity framework, step 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "NCCI edits with modifier indicator 1 can be bypassed with a supported modifier; indicator 0 edits can never be unbundled.",
+      "section": "Section Six — Bundling framework, step 2",
+      "source_cited": "NCCI named as the rule set; no manual or table cited"
+    },
+    {
+      "claim": "A payer denying modifier 25 on 35% of claims while other payers average 8% needs payer-specific handling.",
+      "section": "Section Six — Modifier Dispute framework, step 4",
+      "source_cited": "none (illustration)"
+    },
+    {
+      "claim": "A payer that publishes a 30-day payment standard but pays in 52 days is not compliant.",
+      "section": "Section Seven — introduction",
+      "source_cited": "none (illustration)"
+    },
+    {
+      "claim": "A contract summary lets a manager answer a rate question in two minutes instead of thirty.",
+      "section": "Section Seven — Layer One: Contract Intelligence",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payer contacts should be confirmed quarterly; a directory eighteen months old is useless.",
+      "section": "Section Seven — Layer Four: Relationship Intelligence",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Twelve months of payer-specific denial, variance and payment-speed data materially strengthens a contract renegotiation.",
+      "section": "Section Seven — Contract Negotiation",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The quarterly specialty intelligence review takes 90 minutes and covers four areas.",
+      "section": "Section Seven — Putting It All Together",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Medicare Advantage plans have the authority to impose prior authorization requirements that exceed traditional Medicare's, to apply medical necessity criteria that differ from published LCDs, and to conduct post-payment audits using criteria not in the original coverage policy.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section Two — The Medicare Advantage Problem in Specialty Practice",
+      "why": "Medicare Advantage plans carry a large share of the practice's non-fee-for-service revenue. Since January 2024 federal rules (42 CFR 422.101(b)-(c), 422.138) bind plans to NCDs, LCDs and Traditional Medicare coverage criteria and limit later denial of services the plan pre-approved. A practice that accepts the document's premise will not cite those rules and will under-contest improper denials."
+    },
+    {
+      "id": "C2",
+      "claim": "CMS data analyzed by KFF shows that 80.7% of appealed Medicare Advantage prior-authorization denials were overturned in full or in part in 2024 (above 80% every year 2019-2024), yet only about one in ten denials is ever appealed.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section Four — Failure Four: Inadequate Appeals and Escalation",
+      "why": "It is the only sourced number in the document and the basis for its appeal-by-default advice. It describes pre-service authorization denials that someone chose to appeal, not claim payment denials. Applied to all denials it would overstate expected recoveries and misdirect appeal effort."
+    },
+    {
+      "id": "C3",
+      "claim": "Modifier 25 denials require documentation that the E&M was for a separately identifiable problem not related to the procedure.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section Six — Modifier Dispute Management Framework, step 3",
+      "why": "The practice bills same-day E/M with wellness visits and minor procedures. CPT and the NCCI Policy Manual do not require a different diagnosis or an unrelated problem. Following the document's stricter test would suppress legitimate modifier 25 billing or build appeals on the wrong standard."
+    },
+    {
+      "id": "C4",
+      "claim": "An NCCI edit with a modifier indicator of '1' can be separately billed when a modifier appropriately documents distinct services; if the modifier indicator is '0,' the services cannot be unbundled regardless of circumstances.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section Six — Bundling Denial Management Framework, step 2",
+      "why": "This is the document's decision rule for appeal versus write-off on edit denials. If misstated, the practice wastes appeals or abandons collectible revenue, and a bypass modifier on a non-bypassable pair is a compliance exposure. The document also leaves out indicator 9 and medically unlikely edits."
+    },
+    {
+      "id": "C5",
+      "claim": "Payment variance of more than 3% on any code warrants a payer inquiry; a variance consistent over multiple months warrants a formal underpayment dispute and, if unresolved, a state insurance commissioner complaint.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section Two — The Contractual Underpayment Problem",
+      "why": "State insurance regulators generally lack jurisdiction over Medicare Advantage, self-funded ERISA plans, Medicaid managed care, Tricare and VA, which are essentially all of this practice's non-Medicare payers. Relying on that route would burn time while contractual dispute deadlines run. The 3% trigger is also unsourced."
+    },
+    {
+      "id": "C6",
+      "claim": "Modifier AS: Assistant surgeon (PA/NP/CRNA); high risk in surgical specialties, credentialing and payer policy dependent.",
+      "kind": "code_rule",
+      "stakes": "low",
+      "section": "Section Three — The Modifiers That Matter Most in Specialty Billing (table)",
+      "why": "The HCPCS descriptor names physician assistants, nurse practitioners and clinical nurse specialists, not CRNAs. It does not touch this practice's billing, but a wrong descriptor in an eight-row reference table is a direct test of how far the document's code detail can be trusted."
+    },
+    {
+      "id": "C7",
+      "claim": "A physician spending three to five hours per week on authorization-related activities is generating $3,000 to $12,000 per week in lost clinical revenue in most specialty practices.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section Four — Physician Time and the Prior Authorization Tax",
+      "why": "The figure implies roughly $600 to $4,000 of collections per physician hour and is the document's business case for staffing an authorization program. If inflated, any return-on-investment case built on it is wrong; this practice earns a few hundred dollars per clinician hour."
+    },
+    {
+      "id": "C8",
+      "claim": "Medical necessity denials are the most common denial type in specialty billing, and medical necessity, bundling and modifier disputes account for the majority of specialty claim denial volume in most practices.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section Six — introduction and Universal Denial Pattern One",
+      "why": "The whole denial framework rests on this ranking, with no data. If eligibility, missing-information, authorization, duplicate and timely-filing denials dominate volume, as most published breakdowns suggest, a universal framework copied from this document would leave the largest denial categories with no process."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "payers-contracts",
+      "weight": 0.34,
+      "topics": [
+        "payer mix as a risk portfolio",
+        "Medicare Advantage plan-specific behavior",
+        "eight-question payer intelligence map",
+        "contract intelligence summary",
+        "payment variance against contracted rates",
+        "data-backed renegotiation",
+        "network participation and termination decisions",
+        "payer contact directory",
+        "payment-policy and regulatory monitoring"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.22,
+      "topics": [
+        "code risk profile across four dimensions",
+        "modifier reference and written modifier policy",
+        "NCCI bundling edits",
+        "global period tracking",
+        "procedure note standard",
+        "coder-to-provider documentation feedback",
+        "pre-bill modifier audit"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.18,
+      "topics": [
+        "medical necessity denial management",
+        "bundling denial triage and appeal",
+        "modifier dispute appeals",
+        "peer-to-peer review",
+        "denial pattern tracking by payer and reason",
+        "underpayment disputes"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.14,
+      "topics": [
+        "prior authorization requirements matrix",
+        "payer-specific request templates",
+        "24-hour submission standard",
+        "authorization tracking and expiration",
+        "authorization denial appeals"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.07,
+      "topics": [
+        "audit-target monitoring (OIG, recovery audit, CMS transmittals)",
+        "documentation as the compliance boundary",
+        "overpayment exposure from global-period and bundling errors",
+        "modifier misuse risk"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.03,
+      "topics": [
+        "quarterly payer review with physician owner",
+        "owner authority over payer decisions"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.02,
+      "topics": [
+        "physician time lost to authorization work",
+        "provider engagement in documentation feedback"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Keep one living file per payer recording how the payer actually behaves: authorization or referral rules for the practice's main services, coverage criteria, first-pass denial rate, days to pay, audit history, appeal route and win rate, edit policies and a named contact.",
+      "why": "Turns scattered denial experience into something the owner and the billing agents can act on, and supplies hard evidence for contract talks.",
+      "applies_to_practice": "yes",
+      "note": "Build for First Coast (Medicare), each Medicare Advantage plan (UnitedHealthcare, Humana, Capital Health Plan, Florida Blue), each Medicaid managed care plan, VA community care and Tricare. Replace the 'top twenty procedures' question with facility-visit rules: attending or primary-care assignment, referral numbers, visit frequency limits, coverage of care management and wellness visits, crossover behavior."
+    },
+    {
+      "idea": "Write a one-page operational summary of every payer contract: rate basis, payment terms, timely filing limit, authorization rules, audit and recoupment rights, dispute steps, renewal and termination dates.",
+      "why": "Rates and deadlines cannot be enforced if nobody can find them, and a buyer will ask for exactly this in diligence.",
+      "applies_to_practice": "yes",
+      "note": "Add assignment and change-of-control clauses and the percent-of-Medicare rate for each Medicare Advantage contract. Store with the payer file so the agents can test claims against it."
+    },
+    {
+      "idea": "Each month, compare what payers allowed with what the contract or fee schedule says they should allow, by payer and code, and pursue systematic gaps.",
+      "why": "Underpayments on small E/M claims are invisible one at a time but accumulate across thousands of visits.",
+      "applies_to_practice": "yes",
+      "note": "Compare allowed amounts, not payments, and account for sequestration, the 85% nurse-practitioner rate and cost-sharing. Agents can test every remittance line rather than twenty codes. Drop the document's 3% trigger: any repeatable shortfall deserves a query. Escalate through the contract's dispute clause, not a state regulator."
+    },
+    {
+      "idea": "Rate the practice's core codes for risk and concentrate documentation checks, audits and training on the worst scorers.",
+      "why": "Puts limited review effort where an error costs most or is most likely to be audited.",
+      "applies_to_practice": "partly",
+      "note": "The surgical dimensions do not fit. Use audit risk, overlap risk (care management versus transitional care, wellness and advance care planning), modifier dependency (25, 33, split or shared, hospice modifiers) and time or frequency thresholds. The practice's entire code set is about thirty codes, so rate all of them."
+    },
+    {
+      "idea": "Give each clinician specific feedback on a specific note within 48 hours: what was written, what the code needed, and what would have supported it.",
+      "why": "Fast, concrete feedback changes documentation habits; monthly denial statistics do not.",
+      "applies_to_practice": "yes",
+      "note": "A natural job for the billing agents at charge review, with separate feedback streams for the physician and the nurse practitioner. Focus on visit-level support (decision-making or time), care-management minutes and advance-care-planning time. Feedback must improve what is recorded about the actual patient, never hand out stock phrases to paste."
+    },
+    {
+      "idea": "Before appealing an edit or bundling denial, classify it by rule: fixable with a corrected claim, appealable with records, or correctly denied and written off. Log the outcome by payer and reason.",
+      "why": "Stops both blanket appeals and blanket write-offs and builds the data that shows which appeals pay.",
+      "applies_to_practice": "partly",
+      "note": "Few procedure-pair edits arise here, but the same triage fits duplicate, frequency, same-day same-specialty, hospice and eligibility denials, which the document does not cover. Use remittance reason codes from AdvancedMD as the classification key."
+    },
+    {
+      "idea": "Maintain a matrix of which payer needs an authorization or referral for which service, with expiration tracking tied to the claim.",
+      "why": "Authorization denials can only be prevented before the visit, and an approval that never reaches the claim is worthless.",
+      "applies_to_practice": "partly",
+      "note": "Prior authorization is rare for this practice's services. The matrix is still needed for VA community care referrals, Tricare referrals, HMO primary-care and referral rules, and any Medicare Advantage plan that requires notification for facility care."
+    },
+    {
+      "idea": "Assign monthly monitoring of rule changes to a named owner with a fixed source list, and pass on only the changes that touch the practice's codes.",
+      "why": "Otherwise rule changes arrive as denials weeks later.",
+      "applies_to_practice": "yes",
+      "note": "Source list for this practice: CMS transmittals and MLN articles, First Coast coverage articles and bulletins, the annual physician fee schedule rule, the OIG Work Plan (updated on a rolling basis, not annually), recovery audit topics for the region, CPT changes, Florida Medicaid alerts and each Medicare Advantage plan's provider bulletins. Well suited to an agent with human sign-off."
+    },
+    {
+      "idea": "Hold a quarterly 90-minute payer review with the physician-owner present: contract compliance, denial trends, rule changes, contacts and escalations, with decisions recorded.",
+      "why": "Appeal strategy, negotiation stance and network participation need owner authority and should not be delegated to a summary report.",
+      "applies_to_practice": "yes",
+      "note": "Fits the owner's CFO operating rhythm. With no billing manager or administrator, the agents prepare the packet and the owner decides."
+    },
+    {
+      "idea": "Treat payers as a portfolio: compute net yield and cost to serve for each and decide which contracts to renegotiate, defend or leave.",
+      "why": "Shows where administrative effort is not repaid and gives a factual basis for rate negotiation.",
+      "applies_to_practice": "partly",
+      "note": "With 55% Medicare fee-for-service and patients placed by facilities, there is little freedom to drop payers. The analysis still matters for Medicare Advantage renegotiation and for valuation, where payer concentration and contract quality affect price."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "Written for procedure-heavy specialties with high-dollar claims, heavy prior authorization and surgical modifiers. This practice is the opposite profile: high-volume, low-dollar facility E/M visits plus care-management codes, 55% Medicare fee-for-service, almost no prior authorization and no global surgery. Roughly a third of the content transfers: the Medicare Advantage discussion (after correction), the per-payer intelligence file, contract summaries, payment-variance checks, denial tracking by payer and reason, the monitoring calendar and the quarterly owner review. Nothing is written for geriatrics, nursing-facility or care-management billing, and the vendor places geriatrics in its last build tier. It has some value as a skeleton for an advisory service aimed at procedural specialties.",
+    "sections_that_do_not_apply": [
+      "Section One revenue-concentration premise: the practice is the high-volume, low-dollar profile the document calls primary care",
+      "Section Three global period complexity, the assistant-surgeon, bilateral and multiple-procedure modifiers, implant and operative examples",
+      "Section Four prior authorization program as written: facility visits, care management, advance care planning and wellness visits rarely need payer pre-approval",
+      "Section Four physician-time cost figures: far above this practice's revenue per clinician hour",
+      "Section Five operative and procedure report standard and surgical supporting-document packets",
+      "Section Six bundling pattern and modifier 22, 50 and 59 disputes: few procedure-pair edits occur in this code set",
+      "Section Two escalation to a state insurance commissioner: the practice's payers are Medicare, Medicare Advantage, Medicaid managed care, VA and Tricare",
+      "Section Two and Seven advice to drop unprofitable payers: limited room when facilities place the patients and Medicare is 55% of charges",
+      "Closing build order: no geriatrics guide exists to apply the framework"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 2,
+    "accuracy_concerns": [
+      "Section Two states that Medicare Advantage plans have authority to apply medical-necessity criteria that differ from LCDs and to audit after payment on criteria outside the coverage policy. That is out of step with federal rules effective 1 January 2024 (CMS-4201-F; 42 CFR 422.101(b)-(c) and 422.138): plans must follow NCDs, LCDs and Traditional Medicare coverage rules for basic benefits, may add internal criteria only where Medicare's are not fully established and must publish them, and generally may not later deny a pre-approved service for lack of medical necessity. Extra prior authorization and Part B step therapy remain permitted. The document never mentions these rules, which are a provider's best appeal argument. Verify against current regulation text.",
+      "Section Six says a modifier 25 denial is answered by showing the E/M addressed a problem not related to the procedure. CPT and the NCCI Policy Manual do not require a different diagnosis or an unrelated problem; the test is significant, separately identifiable work beyond the procedure's usual pre- and post-service work. The document's version is stricter than the rule.",
+      "The modifier table defines AS as assistant surgeon for 'PA/NP/CRNA'. The HCPCS descriptor covers physician assistants, nurse practitioners and clinical nurse specialists. CRNAs are not billed with AS.",
+      "The same table is thin for something billed as the modifiers that matter most: it omits the global-package modifiers (24, 57, 58, 78, 79), physician assistant-surgeon and co-surgery modifiers (80, 82, 62), professional and technical splits (26, TC) and repeat-procedure modifiers, although the text discusses global periods, co-surgery and component billing. It does not say how Medicare handles modifier 51 (several contractors tell providers not to append it; verify with First Coast).",
+      "Section Three calls the OIG Work Plan an annual publication that sorts priorities by specialty and procedure category. OIG moved to a web-based plan updated on a rolling, roughly monthly basis in 2017, and its items are organized by program and topic.",
+      "Section Six asserts with no data that medical necessity is the most common specialty denial and that medical necessity, bundling and modifier disputes make up most denial volume. Published denial-cause breakdowns I am aware of rank eligibility and registration, missing or invalid claim data, authorization, duplicates and timely filing above these. The framework has no process for any of them.",
+      "The $3,000-$12,000 weekly loss from three to five physician hours implies roughly $600 to $4,000 of collections per physician hour. That is plausible only for top-end proceduralists, yet it is presented as typical of most specialty practices with no source. This practice, at about $1.0-1.1 million net revenue across two clinicians, generates roughly $250 to $350 per clinician hour (my estimate).",
+      "The payment variance test compares average payment received with the contracted rate. Payment is the wrong comparator: it is lowered by patient cost-sharing, sequestration, multiple-procedure and assistant reductions and non-physician rates. The valid test is allowed amount against expected allowed, line by line. The 3% trigger has no source.",
+      "Recommends a state insurance commissioner complaint for unresolved underpayment without saying that state insurance regulators generally have no authority over Medicare Advantage (federal preemption), self-funded employer plans (ERISA), Medicaid managed care, Tricare or VA. For many practices that removes most of the payer list.",
+      "Treats every remedy as an appeal. It never separates a corrected claim or clerical reopening (the usual fix for a missing modifier) from a formal appeal, and gives no appeal levels or filing limits for Medicare, Medicare Advantage or commercial plans.",
+      "NCCI coverage stops at procedure-to-procedure edits. The indicator rule given (1 can be bypassed, 0 cannot) is right, but indicator 9, medically unlikely edits, add-on code edits and Medicaid NCCI are missing, and bundling is defined as a payer tactic rather than as one code's work already being included in another.",
+      "Global periods are given correctly as 0, 10 or 90 days, but the other global indicators, the day-before-surgery rule for major procedures and transfer-of-care billing are not mentioned.",
+      "Payer intent is stated as fact: prior authorization is said to be designed so that a share of appropriate care is abandoned and to be a deliberate revenue suppression mechanism, and reviewers are said to look for reasons to pay less. No evidence is offered. The AMA survey is invoked but none of its numbers are quoted.",
+      "Advises building templates and phrase libraries that place payer-required language in the record, with no warning about cloned or pre-filled text. Stock medical-necessity wording that is not true for the individual patient is an audit and false-claims exposure; the general compliance paragraph does not address it.",
+      "Says the X modifiers (XE, XS, XP, XU) are increasingly required by payers in place of 59, naming no payer or policy. Medicare still accepts 59 (verify)."
+    ],
+    "generic_filler": "high",
+    "internal_contradictions": [
+      "The introduction mocks general guidance aimed at a primary care practice billing 99213s and the risk table rates primary care as the low-complexity case, yet the build order makes Primary Care and Family Medicine the first 'specialty' companion guide and calls it underserved by specialty-level content.",
+      "Section Two calls Traditional Medicare stable enough that this year's rules largely hold next year; Section One says a Medicare modifier rule that was right last year may have changed, and the risk table says annual CPT changes hit specialties hard.",
+      "Section Four names prior authorization the single most consuming billing problem and a major denial source, but Section Six's three 'universal' patterns, said to cover most denial volume, include no authorization denial pattern (nor eligibility, duplicates or timely filing).",
+      "The modifier table states the modifier 25 standard correctly (significant, separately identifiable E/M); the Section Six appeal guidance swaps in a requirement that the problem be unrelated to the procedure.",
+      "Section Four prices physician time at an implied $600-$4,000 per hour, while Section Six says a prepared peer-to-peer call repays the physician's time on any claim above $1,000. At the document's own hourly figure a $1,000 claim would often not cover the call and its preparation.",
+      "Section Two says payment verification on complex claims needs a more sophisticated process; Section Seven says the variance and denial reports need no sophisticated analytics, only discipline.",
+      "Titled 'universal' and 'complete', but the four-dimension risk architecture (global periods, implants, assistant surgeons, operative reports) is surgical and does not fit several specialties on the vendor's own build list, such as behavioral health, primary care, pediatrics and geriatrics.",
+      "Prior authorization is described as friction engineered to defeat appropriate care, yet the remedy assumes payers approve requests that are complete and matched to criteria, which is how a criteria-based review behaves."
+    ],
+    "time_sensitive_or_outdated": [
+      "The Medicare Advantage section ignores the utilization-management rules effective 1 January 2024 (CMS-4201-F) and later contract-year rules; the line that Medicare Advantage is getting worse takes no account of them.",
+      "No mention of the CMS Interoperability and Prior Authorization rule (CMS-0057-F): from 1 January 2026 Medicare Advantage, Medicaid and CHIP plans must decide standard requests within seven calendar days and expedited requests within 72 hours (drugs excluded), give a specific denial reason and publish yearly metrics (first due 31 March 2026); electronic prior authorization interfaces are due 1 January 2027. A document generated in September 2026 should lead its authorization chapter with this.",
+      "Calls the OIG Work Plan annual; it has been updated on a rolling basis since 2017.",
+      "The KFF figure uses 2024 data published in January 2026 and matches KFF's release; it is current as of November 2026 and will be superseded when 2025 data appears.",
+      "No rule in the document carries a year: no CPT year, fee schedule year or policy effective date. A reader cannot tell what is current.",
+      "The remark that Medicare rules learned this year largely apply next year sits badly with the 2026 physician fee schedule, which changed conversion factors and the practice-expense treatment of facility-setting services (verify the effect on hospital and skilled nursing visits).",
+      "Traditional Medicare is portrayed as outside the prior authorization problem; the WISeR model began testing prior authorization for selected Traditional Medicare services in six states in January 2026 (Florida is not one of them; verify).",
+      "The companion guides are described as still being built; which exist is unknown, and geriatrics is in the last tier.",
+      "Nothing on current E/M leveling rules (medical decision-making or time), revised for office visits in 2021 and for hospital and nursing facility visits in 2023, despite repeated references to E/M level selection."
+    ],
+    "ai_generation_signals": [
+      "PDF metadata reportedly names an AI agent product as generator (September 2026); the text has no author, credential, edition or date.",
+      "Relentless 'not X, it is Y' antithesis sentences, and a boxed aphorism closing every section.",
+      "Symmetric numbered scaffolding throughout: four dimensions, four failures, four components, three failures, three patterns, four layers, eight questions.",
+      "Round, unsourced operating numbers: 3%, 24 hours, 48 hours, 60-90 days, 90 minutes, fifteen minutes, two to three hours, $1,000.",
+      "One citation in 53 pages, to a web article by title with a secondary attribution chain (AMA citing KFF citing CMS) and precise decimals; it reads like a retrieved search snippet dropped into otherwise source-free prose.",
+      "One stock clinical scenario (spine surgery: lumbar disc disease, L4-L5, six weeks of conservative care) carries most of the worked examples.",
+      "Phrases recur across sections, for example the reviewer 'who was not in the room' three times.",
+      "Recall-type errors a credentialed coder would be unlikely to make: AS modifier assigned to CRNAs, OIG Work Plan called annual, modifier 25 standard misstated.",
+      "Roughly 10,000 words spread over 53 pages; cover, contents, call-out boxes and page furniture inflate the length.",
+      "Forward marketing for unreleased companion guides inside the body text."
+    ],
+    "missing_for_real_use": [
+      "Any actual template: the payer map, authorization matrix, code risk worksheet, denial tracker, contract summary, monitoring calendar and review agenda are all described in sentences and none is supplied.",
+      "Targets or benchmarks for the metrics it tells the reader to track (denial rate, first-submission approval, appeal success, days to payment).",
+      "Deadlines and routes: appeal levels and filing limits for Medicare, Medicare Advantage, Medicaid managed care, Tricare, VA and commercial plans; timely filing limits; prompt-pay rules.",
+      "Remittance reason codes (CARC and RARC) mapped to the three denial patterns, so denials can actually be classified from remittance data.",
+      "Worked examples with real codes, payers and dollars; sample appeal letters; a peer-to-peer preparation sheet.",
+      "The denial types that dominate E/M-heavy and facility-based practices: eligibility and coverage changes, duplicates, frequency limits, hospice status, credentialing and enrollment gaps, timely filing, coordination of benefits and crossover problems.",
+      "Anything on evaluation and management leveling, time-based codes, care management, wellness visits, advance care planning, split or shared visits, nurse-practitioner billing rules or place of service.",
+      "Citations to rules: 42 CFR Part 422 for Medicare Advantage, the NCCI Policy Manual, the Medicare Claims Processing Manual, state prompt-pay law, ERISA limits.",
+      "Roles, staffing ratios, workload estimates or cost for the programs it prescribes; owners are mostly implied.",
+      "How to produce the reports from a practice management system or clearinghouse, and how to automate them.",
+      "Compliance guardrails for payer-language templates, for who may sign appeals and letters of medical necessity, and for refunding overpayments when global-period or bundling errors are found.",
+      "Mechanics of leaving a payer (notice periods, patient continuity, network adequacy leverage) to back its advice to consider termination.",
+      "A references list, version date and reviewer credentials."
+    ]
+  }
+}

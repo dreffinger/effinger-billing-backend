@@ -1,0 +1,774 @@
+{
+  "slug": "oncology-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Oncology",
+  "doc_type": "specialty",
+  "pages": 51,
+  "audience": "Independent medical oncology practices (owners, administrators, billing and authorization staff) that buy and bill infused drugs and have already read the vendor's 'Universal Specialty Billing Framework'. No author, credential or date is given.",
+  "summary": "A specialty add-on for independent medical oncology. Its thesis: margin sits in buy-and-bill drug spread, so revenue cycle work must pair drug-claim precision (code, units, NDC, waste) with accurate professional billing (infusion hierarchy, visit levels, care-management codes). It follows the fixed eight-part template: reframe, payer mix with an eight-question payer map, drug and administration code tables, four authorization categories, four documentation failures, four denial patterns, five revenue opportunities, then five standards and a five-step action list. The operating ideas are sensible (reconcile claims to the administration record, trigger authorization review on regimen change, confirm biomarker evidence first, review drug margins quarterly). The reference content is not trustworthy: wrong units and obsolete or mislabeled codes, a wrong time threshold for complex chronic care management, a blanket push toward the highest visit level, and no mention of the JZ modifier or sequestration. Only the care-management and advance-care-planning passages touch geriatrics.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Oncology Revenue Cycle Is a Drug Problem First and a Billing Problem Second",
+      "gist": "Drug spread under buy-and-bill is the margin; practices need drug-claim precision and professional-fee accuracy together. Scope is medical oncology."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Oncology",
+      "gist": "Medicare pays drugs at ASP plus 6 percent, Medicare Advantage methods vary by contract, commercial plans layer drug authorizations; eight questions to answer per payer."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in Oncology",
+      "gist": "Three drug-claim accuracy rules, a 24-drug HCPCS table with units, an 18-code administration table with hierarchy rules, and advice to code visits high."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Oncology - The Most Complex Authorization Environment in Outpatient Medicine",
+      "gist": "Four authorization streams: treatment regimen, supportive-care drugs, oral agents through specialty pharmacy, and routine-versus-investigational splits for clinical trials."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Oncology",
+      "gist": "Administration record not matching the claim, biomarker results missing at authorization, regimen rationale versus NCCN category, and under-documented infusion-day visits."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Oncology",
+      "gist": "Off-label drug denials, administration hierarchy errors, ESA coverage-criteria denials, and regimen changes made without a new authorization."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Oncology Practices Are Missing",
+      "gist": "Drug waste billing with JW, chronic care management, principal illness navigation, advance care planning, and financial counseling with assistance programs."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Oncology",
+      "gist": "Five standards (reconciliation, regimen-change trigger, biomarker checklist, monthly care-management review, quarterly drug margin analysis) and five audit-first actions."
+    }
+  ],
+  "framework_elements": [
+    "Supply (drug) margin tracking: acquisition cost versus reimbursement",
+    "Reimbursement methodology verification in payer contracts",
+    "Payer intelligence map (fixed question set per payer)",
+    "Drug claim accuracy: HCPCS code, billing units, NDC",
+    "Discarded-drug documentation and JW billing",
+    "Administration code hierarchy (initial, sequential, concurrent, add-on)",
+    "Visit leveling by medical decision making or time",
+    "Claim-to-administration-record reconciliation before submission",
+    "Treatment regimen authorization",
+    "Supportive-care drug authorization",
+    "Medical-versus-pharmacy benefit coordination for oral agents",
+    "Clinical trial billing split (routine versus investigational)",
+    "Pre-authorization evidence checklist (biomarkers)",
+    "Guideline-concordance rationale in authorization requests",
+    "Regimen-change authorization trigger",
+    "Off-label use coverage verification with compendia support",
+    "Peer-to-peer escalation before service",
+    "Coverage-criteria compliance for high-scrutiny drugs (ESA)",
+    "Monthly care-management eligibility review",
+    "Principal illness navigation billing",
+    "Advance care planning capture",
+    "Care plan and monthly staff time log",
+    "Financial counseling and patient-assistance enrollment",
+    "Quarterly drug margin analysis with purchasing review",
+    "Quarterly administration-coding audit",
+    "90-day retrospective audits with corrected claims",
+    "Treatment-plan templates carrying pre-built code sequences",
+    "Timely filing limits by claim type",
+    "Alternative payment model awareness (Enhancing Oncology Model)",
+    "Overpayment and False Claims Act exposure awareness"
+  ],
+  "processes": [
+    {
+      "name": "Infusion-day drug billing reconciliation",
+      "steps": [
+        "Finalize the medication administration record",
+        "Compare billed drug, dose, units and NDC with the record",
+        "Check start and stop times against the administration codes billed",
+        "Route any documented waste to JW review",
+        "Sign off before the claim is released"
+      ],
+      "owner_role": "Billing staff with infusion nursing and pharmacy (document names no owner)",
+      "cadence": "Every infusion day, before claim submission"
+    },
+    {
+      "name": "Regimen-change authorization trigger",
+      "steps": [
+        "Define triggering changes: new agent, substitution, dose change past a set threshold, schedule change",
+        "Send every such change to the authorization team through one shared trigger",
+        "Decide whether a new authorization is required",
+        "Submit the request immediately",
+        "Tell the oncologist if approval will not arrive before the next dose"
+      ],
+      "owner_role": "Authorization team and clinical team jointly",
+      "cadence": "Per treatment-plan change, before the next administration"
+    },
+    {
+      "name": "Targeted-therapy authorization with biomarker checklist",
+      "steps": [
+        "Confirm pathology, stage and biomarker reports are final and in the chart",
+        "Assemble regimen, cycle length, duration, rationale and prior therapy history",
+        "Explain any departure from the preferred guideline category",
+        "Submit the request",
+        "Flag any case with pending results for immediate follow-up"
+      ],
+      "owner_role": "Authorization staff",
+      "cadence": "Per authorization and at each renewal"
+    },
+    {
+      "name": "Quarterly drug margin analysis",
+      "steps": [
+        "List every drug on the practice formulary",
+        "Compare acquisition cost with Medicare's ASP-based payment and each contracted payer rate",
+        "Flag negative or near-zero margins",
+        "Refer flagged drugs to purchasing contract review and the clinical committee"
+      ],
+      "owner_role": "Revenue cycle lead, escalating to pharmacy and purchasing leadership",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Drug waste (JW) billing workflow",
+      "steps": [
+        "Record the discarded amount in the preparation record",
+        "Bill administered units on one line and discarded units with JW on another",
+        "Check that the two lines add up to the vial quantity",
+        "Audit the last 90 days and file corrected claims for unbilled waste"
+      ],
+      "owner_role": "Pharmacy and billing staff",
+      "cadence": "Every single-dose vial preparation; one-time 90-day look-back"
+    },
+    {
+      "name": "Monthly care-management billing review",
+      "steps": [
+        "Pull the list of patients on active treatment",
+        "Screen each for two or more chronic conditions and for navigation needs",
+        "Confirm a care plan is on file",
+        "Have clinical staff log time each month",
+        "Bill the code set that matches the time and complexity"
+      ],
+      "owner_role": "Clinical staff and billing staff",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Off-label use management",
+      "steps": [
+        "Check the payer's off-label policy before treatment",
+        "Obtain authorization in advance rather than after administration",
+        "Cite the compendium listing, literature and patient-specific rationale",
+        "Escalate to peer-to-peer review before administering if denied"
+      ],
+      "owner_role": "Authorization team with the oncologist",
+      "cadence": "Per off-label order"
+    },
+    {
+      "name": "Administration-code hierarchy review",
+      "steps": [
+        "Map every administration code to a specific drug",
+        "Mark the sequence and whether each infusion was sequential or concurrent",
+        "Confirm only one initial code per encounter",
+        "Build correct code sequences into regimen templates",
+        "Audit quarterly"
+      ],
+      "owner_role": "Coder or billing staff",
+      "cadence": "Every infusion claim; quarterly audit"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer category table",
+      "description": "Six rows pairing each payer type with its main oncology revenue cycle dynamic."
+    },
+    {
+      "name": "Oncology-Specific Payer Intelligence Map",
+      "description": "Eight questions to answer for every payer (drug payment method, authorization lists, step therapy, biomarker proof, supportive drugs, trials, oral agents, filing limits)."
+    },
+    {
+      "name": "Common chemotherapy drug J-code table",
+      "description": "Twenty-four drugs with HCPCS code and billing-unit note; contains unit and code errors and two terminated-code notes."
+    },
+    {
+      "name": "Chemotherapy administration code table",
+      "description": "Eighteen CPT codes with one-line billing notes; two descriptors are wrong (96423, 99601)."
+    },
+    {
+      "name": "Regimen authorization required-elements list",
+      "description": "Five items an initial regimen authorization should contain."
+    },
+    {
+      "name": "Supportive-care drug authorization criteria",
+      "description": "Bulleted criteria for growth factors, ESAs and bone-modifying agents."
+    },
+    {
+      "name": "Off-label denial management framework",
+      "description": "Four numbered steps from policy check to peer-to-peer."
+    },
+    {
+      "name": "Regimen-change trigger framework",
+      "description": "Narrative rule for which plan changes should prompt authorization review."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Five standing controls: reconciliation, regimen-change trigger, biomarker checklist, monthly care-management review, quarterly margin analysis."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "Five first steps built on 30- and 90-day audits; no owners or dates."
+    },
+    {
+      "name": "Tools described but not supplied",
+      "description": "Biomarker checklist, reconciliation sign-off form, care plan, monthly time log, benefit coordination protocol, trial billing split and margin worksheet are prescribed but none is provided."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Drug reimbursement spread (margin per drug)",
+      "definition": "Difference between what the practice is paid for a drug and what it pays to acquire it",
+      "formula": "payer reimbursement (Medicare ASP + 6%, or contracted rate) minus acquisition cost, per drug",
+      "target": "Positive margin; reviewed every quarter",
+      "red_flag": "Negative or near-zero margin; ASP falling while contract price holds",
+      "source_cited": "none"
+    },
+    {
+      "name": "Denial rate",
+      "definition": "Named only; the document says every practice knows it but gives no definition or target",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Claim-to-MAR reconciliation sign-off",
+      "definition": "Whether each drug claim was checked against the finalized administration record before submission",
+      "formula": "",
+      "target": "Every drug claim; none submitted without sign-off",
+      "red_flag": "Billed dose, units or times differ from the record",
+      "source_cited": "none"
+    },
+    {
+      "name": "JW waste billing capture",
+      "definition": "Encounters with documented single-dose vial waste where discarded units were billed with JW",
+      "formula": "",
+      "target": "All documented waste billed",
+      "red_flag": "Documented waste with no JW line on the claim",
+      "source_cited": "none"
+    },
+    {
+      "name": "Drug waste share of vial value",
+      "definition": "Portion of a vial discarded for high-cost biologics",
+      "formula": "",
+      "target": "10-40 percent stated as typical range",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unbilled waste amount (90-day audit)",
+      "definition": "Dollar value of documented waste not billed in the look-back period",
+      "formula": "sum of discarded units not billed x payment per unit",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Care-management billing coverage",
+      "definition": "Qualifying active-treatment patients with a care-management claim each month",
+      "formula": "",
+      "target": "Every qualifying patient every month",
+      "red_flag": "Eligible patient with no care plan, time log or claim",
+      "source_cited": "none"
+    },
+    {
+      "name": "CCM monthly clinical staff time",
+      "definition": "Minutes of care-management time logged per patient per month",
+      "formula": "",
+      "target": "At least 20 minutes (the document applies this to complex CCM, which is wrong)",
+      "red_flag": "No time log",
+      "source_cited": "none"
+    },
+    {
+      "name": "PIN revenue per patient per month",
+      "definition": "Payment for principal illness navigation codes",
+      "formula": "",
+      "target": "$80-$130 per patient per month",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Infusion-visit E/M level mix",
+      "definition": "Distribution of visit levels billed on infusion days",
+      "formula": "",
+      "target": "99214 or 99215 'almost always' (the document's claim)",
+      "red_flag": "Default coding at 99213 or 99214",
+      "source_cited": "none"
+    },
+    {
+      "name": "Biomarker documentation confirmed before authorization",
+      "definition": "Targeted-therapy requests checked for finalized biomarker results before submission",
+      "formula": "",
+      "target": "All targeted-therapy requests",
+      "red_flag": "Denial for missing biomarker documentation",
+      "source_cited": "none"
+    },
+    {
+      "name": "Treatment delay from authorization denials",
+      "definition": "Days of delay and revenue impact for each authorization denied for missing documentation",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Authorization turnaround time by drug and payer",
+      "definition": "Time a payer takes to decide a drug authorization, recorded in the payer map",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administration coding audit cadence",
+      "definition": "How often infusion code hierarchy is audited",
+      "formula": "",
+      "target": "Quarterly",
+      "red_flag": "Two initial codes on one encounter",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Under buy-and-bill, drugs are bought at ASP minus a percentage and billed at ASP plus 6 percent.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare pays physician-administered drugs at ASP plus 6 percent; CMS recalculates ASP quarterly.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Some Medicare Advantage plans pay a percentage of AWP or rates materially below traditional Medicare.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare and most commercial payers require the NDC on drug claims.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unit definitions: carboplatin J9045 per 50 mg, cisplatin J9060 per 10 mg, fluorouracil J9190 per 500 mg, gemcitabine J9201 per 200 mg, oxaliplatin J9263 per 0.5 mg.",
+      "section": "Section 3, J-code table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Bevacizumab J9035 is billed per mg.",
+      "section": "Section 3, J-code table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Subcutaneous trastuzumab is billed under Q5117.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Liposomal doxorubicin is billed under J9001.",
+      "section": "Section 3, J-code table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "J9265 was terminated effective 12/31/2014 and J2505 deleted effective 12/31/2021.",
+      "section": "Section 3, J-code table",
+      "source_cited": "CMS named; no document cited"
+    },
+    {
+      "claim": "Cyclophosphamide J9070 is billed per 100 mg and 'has been reported as terminated'.",
+      "section": "Section 3, J-code table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Denosumab (Xgeva) J0897 is dosed quarterly.",
+      "section": "Section 3, J-code table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "96413 is used once per encounter for the first drug; every later drug takes 96417.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "96423 is an additional sequential infusion of the same drug.",
+      "section": "Section 3, administration table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "96416 applies to infusions over 8 hours; an IV push is under 15 minutes; initial hydration covers 31 minutes or more.",
+      "section": "Section 3, administration table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "99601 is home chemotherapy infusion billed per diem.",
+      "section": "Section 3, administration table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "96368 can be billed only once per encounter.",
+      "section": "Section 6, Denial Pattern 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Oncology clinical work supports 99214 or 99215 at nearly every encounter; most practices default to 99213 or 99214.",
+      "section": "Sections 3 and 5",
+      "source_cited": "2021 AMA E/M guidelines named"
+    },
+    {
+      "claim": "Growth-factor prophylaxis is approved only when febrile neutropenia risk exceeds 20 percent.",
+      "section": "Section 4",
+      "source_cited": "ASCO guidelines named; no document cited"
+    },
+    {
+      "claim": "ESA coverage requires non-myeloid malignancy, myelosuppressive chemotherapy and hemoglobin below 10 g/dL at initiation.",
+      "section": "Section 6, Denial Pattern 3",
+      "source_cited": "CMS coverage criteria named; NCD not cited"
+    },
+    {
+      "claim": "Oral chemotherapy parity laws have been enacted in most states.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payers typically cover NCCN Category 1 and 2A regimens without challenge.",
+      "section": "Section 5",
+      "source_cited": "NCCN named; no document cited"
+    },
+    {
+      "claim": "Medicare covers off-label oncology use supported by peer-reviewed literature or compendia (NCCN, DrugDex, Clinical Pharmacology).",
+      "section": "Section 6, Denial Pattern 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A denied off-label drug can cost hundreds to tens of thousands of dollars per administration.",
+      "section": "Section 6, Denial Pattern 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Peer-to-peer review resolves a significant percentage of off-label denials.",
+      "section": "Section 6, Denial Pattern 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Drug waste can equal 10 to 40 percent of a vial's value.",
+      "section": "Section 7, Opportunity 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The Enhancing Oncology Model covers six cancer types (seven are then listed).",
+      "section": "Section 7, Opportunity 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Complex CCM (99487, 99489) is billable with at least 20 minutes of clinical staff time a month.",
+      "section": "Section 7, Opportunity 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "99487 pays about $132-144 and 99489 about $70-79; 99490 pays about $62 and 99439 about $47.",
+      "section": "Section 7, Opportunity 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "PIN codes G0023 and G0024 were created in 2024 and pay $80-$130 per patient per month; 150 patients yield $144,000-$234,000 a year.",
+      "section": "Section 7, Opportunity 3",
+      "source_cited": "CMS named; no document cited"
+    },
+    {
+      "claim": "ACP is billed with 99497 for the first 30 minutes and 99498 for each additional 30 minutes.",
+      "section": "Section 7, Opportunity 4",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Complex Chronic Care Management (CCM) - 99487 and 99489 - is billable for patients with two or more chronic conditions ... when the practice provides at least 20 minutes of clinical staff care management time per month.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 2",
+      "why": "The practice bills complex CCM monthly. CMS sets 60 minutes of clinical staff time plus moderate or high complexity decision making for 99487; billing it on 20 minutes is an overpayment on every claim."
+    },
+    {
+      "id": "C2",
+      "claim": "complex CCM (99487) pays approximately $132-144 for the first 60 minutes, and $70-79 for each additional 30 minutes (99489) ... 99490 pays approximately $62/month, with add-on code 99439 at approximately $47",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 2",
+      "why": "Feeds revenue projections and expected-payment checks. The amounts are undated national office-setting figures; actual payment depends on year, Florida locality, facility setting and sequestration."
+    },
+    {
+      "id": "C3",
+      "claim": "G0023 (first 60 minutes of navigation per month), G0024 (each additional 30 minutes) ... The revenue is $80 to $130 per patient per month ... For a practice with 150 active patients ... $144,000 to $234,000",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 3",
+      "why": "A possible new service line. The projection assumes every patient receives 60 or more minutes every month and ignores the initiating visit, consent, coinsurance and staff training requirements."
+    },
+    {
+      "id": "C4",
+      "claim": "covered by Medicare under codes 99497 (first 30 minutes) and 99498 (each additional 30 minutes) ... the note must state that an ACP conversation occurred, describe the nature of the discussion, and document the time spent.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 4",
+      "why": "The practice bills ACP. CMS also expects documentation that the discussion was voluntary and who took part, and CPT time minimums apply; these codes have drawn federal audit attention."
+    },
+    {
+      "id": "C5",
+      "claim": "high-complexity MDM: multiple chronic conditions with exacerbation risk, prescription drug management with adverse effect monitoring, and independent interpretation of test results. That is a 99215 by MDM criteria, regardless of visit length.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3 (repeated in Sections 5 and 8)",
+      "why": "The AMA table rates prescription drug management as moderate risk, and reviewing lab results is not independent interpretation. Coding to this advice inflates visit levels and invites audit; the same table governs the practice's own visits."
+    },
+    {
+      "id": "C6",
+      "claim": "Trastuzumab IV (J9355) and trastuzumab subcutaneous (Q5117) are different codes. Table: Bevacizumab (Avastin) J9035, billed per mg; Doxorubicin, liposomal, J9001.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, drug billing rules and J-code table",
+      "why": "HCPCS lists J9035 per 10 mg, Q5117 as an intravenous biosimilar and J9001 as deleted. A tenfold unit error on a high-cost drug is a large overpayment, and the check tests the whole table's reliability."
+    },
+    {
+      "id": "C7",
+      "claim": "Medicare and most commercial payers allow billing for the discarded portion of single-use vials when the waste is documented in the medical record and the claim includes a JW modifier",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 1",
+      "why": "JW has been mandatory on Medicare claims since 2017 and JZ (no waste) since July 2023. Presenting waste reporting as optional and omitting JZ leaves claims non-compliant."
+    },
+    {
+      "id": "C8",
+      "claim": "the patient must have a non-myeloid malignancy, must be receiving myelosuppressive chemotherapy, and the hemoglobin must be below 10 g/dL at the time of initiation ... myeloid malignancy (AML, MDS, CML) ... outside Medicare coverage criteria",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 6, Denial Pattern 3",
+      "why": "NCD 110.21 governs. It excludes AML, CML and erythroid cancers but leaves other uses, including MDS, to the local contractor; misstating it risks wrongful denial of covered care or non-compliant billing."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.34,
+      "topics": [
+        "drug HCPCS codes, units and NDC",
+        "infusion administration hierarchy",
+        "visit leveling by decision making",
+        "JW waste billing",
+        "claim-to-record reconciliation"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.22,
+      "topics": [
+        "regimen and drug prior authorization",
+        "biomarker evidence checklist",
+        "medical versus pharmacy benefit coordination",
+        "regimen-change trigger",
+        "financial counseling and assistance programs"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.13,
+      "topics": [
+        "drug reimbursement methodology by payer",
+        "Medicare Advantage contract terms",
+        "payer intelligence map",
+        "off-label and compendia policies",
+        "step therapy"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.1,
+      "topics": [
+        "chronic care management",
+        "principal illness navigation",
+        "advance care planning",
+        "navigator and financial counselor roles"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.08,
+      "topics": [
+        "ESA coverage criteria",
+        "overpayment and False Claims Act exposure",
+        "clinical trial billing",
+        "administration-record audit defense"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.06,
+      "topics": [
+        "drug margin analysis",
+        "acquisition cost versus ASP",
+        "write-offs on denied drugs"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.05,
+      "topics": [
+        "denial patterns",
+        "appeals with literature support",
+        "peer-to-peer review",
+        "corrected claims after audits"
+      ]
+    },
+    {
+      "domain": "quality-value",
+      "weight": 0.02,
+      "topics": [
+        "Enhancing Oncology Model mention"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Review the whole active census every month against care-management code eligibility, with a care plan on file and a staff time log.",
+      "why": "The clinical work often already happens; without a log and a monthly sweep it is never billed.",
+      "applies_to_practice": "yes",
+      "note": "The practice already bills complex CCM. Use CMS thresholds (60 minutes for 99487, 20 for 99490), consent rules and the limits on billing during inpatient or Part A skilled nursing stays, not this document's numbers."
+    },
+    {
+      "idea": "Bill advance care planning whenever a qualifying goals-of-care conversation is held and properly documented.",
+      "why": "Serious-illness populations have these conversations routinely and seldom code them.",
+      "applies_to_practice": "yes",
+      "note": "Document voluntary participation, who was present, what was discussed and the minutes (at least 16 for 99497); the document's documentation list is incomplete."
+    },
+    {
+      "idea": "Consider principal illness navigation (G0023/G0024) for patients with one serious high-risk condition where trained auxiliary staff do navigation work.",
+      "why": "A newer Medicare code family many practices have not adopted.",
+      "applies_to_practice": "partly",
+      "note": "The practice has no navigator staff and most patients live in facilities. Requires an initiating visit, consent and trained personnel; treat the revenue estimate as inflated."
+    },
+    {
+      "idea": "Reconcile each claim to the source clinical record before submission and require a sign-off.",
+      "why": "Catches mismatches before they become denials or overpayment findings.",
+      "applies_to_practice": "yes",
+      "note": "The analog is census or visit log to charge reconciliation, and logged minutes to care-management codes billed."
+    },
+    {
+      "idea": "Create a trigger so any clinical change that alters payer requirements notifies billing or authorization before the next service.",
+      "why": "Most of these denials come from a communication gap, not a clinical error.",
+      "applies_to_practice": "partly",
+      "note": "Useful for level-of-care changes, payer switches during a facility stay, and hospice or home health elections that change what can be billed."
+    },
+    {
+      "idea": "Keep a fixed question set that must be answered for every payer and refreshed whenever the service mix changes.",
+      "why": "Makes payer knowledge complete and comparable across plans.",
+      "applies_to_practice": "yes",
+      "note": "Rewrite the eight questions for geriatrics: care-management coverage, wellness visit rules, facility visit frequency, telehealth, filing limits, appeal levels."
+    },
+    {
+      "idea": "Read every contract for all reimbursement components, not just headline professional fee rates.",
+      "why": "An unexamined component can pay below cost for years.",
+      "applies_to_practice": "yes",
+      "note": "For Medicare Advantage contracts check how care-management codes, vaccines, injectables and any quality or stipend payments are paid."
+    },
+    {
+      "idea": "Analyze margin at the item or service-line level every quarter and escalate losers to whoever controls the cost.",
+      "why": "Billing staff cannot fix an underwater item but they are positioned to surface it.",
+      "applies_to_practice": "partly",
+      "note": "Translate to profitability by site, payer and service type; the practice carries little or no drug inventory."
+    },
+    {
+      "idea": "Audit visit levels against medical decision making and fix note templates where documentation falls short.",
+      "why": "Habitual coding patterns drift away from the work actually done.",
+      "applies_to_practice": "partly",
+      "note": "Run it as a two-sided accuracy audit. Do not adopt the document's premise that the top level is almost always supported."
+    },
+    {
+      "idea": "Use a checklist to confirm required evidence is in the chart before sending an authorization request.",
+      "why": "Prevents avoidable administrative denials and treatment delay.",
+      "applies_to_practice": "partly",
+      "note": "Authorization volume is low in this practice; the pattern suits any payer documentation request."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "Drug buy-and-bill, infusion coding and oncology authorizations do not exist in a facility-based geriatrics practice. Three passages touch services the practice bills or could add (complex chronic care management, advance care planning, principal illness navigation), plus visit-level logic. Those are exactly where the document is wrong or incomplete, so its value is as a list of rules to verify, not as guidance.",
+    "sections_that_do_not_apply": [
+      "Section 1: buy-and-bill drug spread",
+      "Section 2: drug reimbursement methodology by payer (the contract-review habit transfers; the content does not)",
+      "Section 3: J-code and chemotherapy administration tables",
+      "Section 4: all four authorization categories",
+      "Section 5: Documentation Failures 1 to 3",
+      "Section 6: all four denial patterns",
+      "Section 7: Opportunity 1 (drug waste) and Opportunity 5 (manufacturer assistance)",
+      "Section 8: Standards 1, 2, 3 and 5 and Actions 1, 4 and 5"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 4,
+    "accuracy_concerns": [
+      "Complex CCM threshold is wrong: the text says 99487/99489 are billable with at least 20 minutes of clinical staff time. CMS requires 60 minutes for 99487 plus moderate or high complexity decision making and a new or substantially revised care plan; 20 minutes is the 99490 threshold. Consent, coinsurance and the one-biller-per-month rule are omitted, as are the principal care management codes (99424-99427) that fit a single-condition cancer patient.",
+      "Bevacizumab J9035 is listed as billed per mg. The HCPCS unit is 10 mg, so the table would produce tenfold overbilling.",
+      "'Trastuzumab subcutaneous (Q5117)' is wrong: Q5117 is an intravenous biosimilar; the subcutaneous product has its own code (J9356).",
+      "Liposomal doxorubicin is listed under J9001, a code deleted more than a decade ago (current code Q2050), in a table that flags other terminated codes.",
+      "Cyclophosphamide J9070 was discontinued in 2024 (code listings give a 3/31/2024 termination) and replaced by 5 mg-unit codes (J9071-J9075); the table keeps it with a hedge instead of naming the replacement.",
+      "96423 is described as a sequential infusion of the same drug. It is the intra-arterial infusion add-on; no chemotherapy code exists for the service described.",
+      "99601 is described as chemotherapy home infusion per diem. It is a per-visit code (up to 2 hours), not generally payable by Medicare; per diem home infusion uses S codes.",
+      "Hierarchy rule is misstated: it says the first drug given takes the initial code. For physician offices the initial code reflects the main reason for the encounter regardless of order. Sequential push codes (96375, 96376) are missing; 96360 is shown as billable with chemotherapy when hydration after an initial chemo code is reported with 96361 and concurrent hydration is not billable.",
+      "A 45-minute infusion billed with the first-hour code is given as an example of a mismatch; 96413 covers up to one hour, so that is correct coding.",
+      "Visit-level advice is unsound: prescription drug management is moderate risk on the AMA table, lab review is not independent interpretation, and 'exacerbation risk' is not exacerbation. High risk can rest on drug therapy requiring intensive toxicity monitoring, which is never named. Nothing on modifier 25 for a visit on an infusion day, or on G2211.",
+      "ASP plus 6 percent is stated without sequestration; Medicare's net payment is roughly ASP plus 4.3 percent. Purchasing is described as 'ASP minus a percentage', which is not how acquisition pricing works.",
+      "Says Medicare requires the NDC on drug claims. Medicare fee-for-service generally needs it only for unlisted-code and Medicaid crossover claims; Medicaid and many commercial and Medicare Advantage plans require it.",
+      "JW is framed as an optional revenue opportunity. Medicare has required JW since 2017 and JZ (no waste) since July 2023; single-dose container claims without one of them are returned. JZ is never mentioned.",
+      "ESA rule is misstated. NCD 110.21 (read directly) applies the hemoglobin under 10 g/dL test before initiation or maintenance and excludes AML, CML and erythroid cancers; it does not name MDS and leaves other uses to the local contractor, yet the document lists MDS as outside coverage. Claim modifiers and hemoglobin reporting are omitted.",
+      "The Enhancing Oncology Model is said to cover six cancer types; seven are listed, and the model has seven.",
+      "Xgeva is described as dosed quarterly; labeled dosing is every four weeks.",
+      "'BTK mutation' documentation for ibrutinib is not a labeling or coverage requirement, and ibrutinib is an oral pharmacy-benefit drug. Pembrolizumab does not need a PD-L1 result for many indications.",
+      "PIN revenue of $144,000-$234,000 assumes all 150 patients get at least 60 minutes of navigation every month all year. It omits the initiating visit, consent, coinsurance and training requirements and counts 'insurance navigation' as billable time, which the code's service elements do not clearly include.",
+      "ACP documentation list omits the voluntary nature of the discussion, who took part and the 16-minute minimum; it urges frequent billing with no mention of audit history on these codes.",
+      "Financial counseling section promotes copay assistance without saying manufacturer copay support cannot be used for Medicare, Medicaid or Tricare patients. Oral parity laws do not reach self-funded plans or Medicare Part D.",
+      "Rituximab biosimilars are called 'emerging' with 'J-codes'; they have been on the market for years under Q codes."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Complex CCM needs 'at least 20 minutes', and two sentences later 99487 is said to pay for 'the first 60 minutes'.",
+      "'Six cancer types' is followed by a list of seven.",
+      "Visit level shifts between sections: Section 3 says infusion-visit decision making 'is a 99215'; Section 5 says 99215 'or at minimum 99214'; Section 8 says 99214 or 99215.",
+      "Section 5 says an authorization filed before the biomarker result will be denied and Standard 3 forbids filing without it, yet the same section tells staff to file with whatever is available and supplement later.",
+      "The table defines 96413 as up to one hour, but the text treats a 45-minute infusion billed that way as an error.",
+      "The table flags two codes as terminated, yet presents deleted J9001 as current and keeps discontinued J9070.",
+      "Section 1 promises to note where radiation oncology intersects; radiation oncology never appears again.",
+      "Section 5 treats billing a full vial without waste documentation as an overpayment, while Section 7 says practices fail to bill waste at all; the two opposite failure modes are never reconciled."
+    ],
+    "time_sensitive_or_outdated": [
+      "HCPCS codes change quarterly: J9070 was discontinued in 2024, J9001 is long deleted, and biosimilar and subcutaneous immunotherapy codes added in 2024-2026 are absent.",
+      "JZ modifier requirement (July 2023) and the discarded-drug refund program are absent.",
+      "Sequestration and Inflation Reduction Act effects are absent: biosimilar add-on of 8 percent, inflation-rebate coinsurance adjustments, the Part D out-of-pocket cap that began in 2025, Part B drugs entering price negotiation for 2028.",
+      "CCM and PIN dollar figures are undated; the 2026 fee schedule brought two conversion factors, an efficiency adjustment and practice-expense changes, and facility rates differ from office rates.",
+      "Advanced primary care management codes (G0556-G0558, 2025) and the G2211 add-on (2024) are not mentioned.",
+      "Enhancing Oncology Model description ignores the one-year gap after the prior model ended in June 2022 and later CMS changes to payment and timeline.",
+      "Medicare Advantage rules in force since 2024 (coverage criteria tied to traditional Medicare, approvals valid for the course of treatment, 90-day transition) and 2026 decision deadlines are not mentioned.",
+      "The emphasis on ESA audits reflects the 2007-2012 period.",
+      "Ibrutinib's indications were narrowed in 2023."
+    ],
+    "ai_generation_signals": [
+      "Identical eight-section skeleton, 'Five Non-Negotiable Operational Standards' and 'Prioritized Five-Action Implementation List' as the OB/Gyn guide, ending in an aphorism box.",
+      "Inline hedges that read like an automated fact-check pass layered over a first draft ('has been reported as terminated', 'verify current rates', 'rather than assuming a fixed 12-month cycle').",
+      "Superlatives reused across the series: this specialty too has the most complex coding and authorization environment in outpatient medicine.",
+      "Constant 'not X, it is Y' rhetoric and absolutes ('None of them have the time log').",
+      "Plausible-sounding but wrong specifics: the 96423 descriptor, the Q5117 route, BTK mutation testing, six versus seven cancer types.",
+      "A promise of radiation oncology content that never arrives.",
+      "Round-number projections that multiply cleanly but assume 100 percent uptake.",
+      "No author, credential, date or citation; 51 pages for about 7,800 words."
+    ],
+    "missing_for_real_use": [
+      "No actual templates: reconciliation log, biomarker checklist, care plan, time log, payer matrix and margin worksheet are all left to the reader.",
+      "No citations to the HCPCS quarterly file, ASP pricing file, CPT infusion guidelines, NCD 110.21, the Medicare Benefit Policy Manual or CMS booklets.",
+      "Modifier 25 on infusion-day visits, JZ, sequential push codes, facility versus physician hierarchy rules, NDC format and unit-of-measure rules.",
+      "Care-management compliance elements: consent, coinsurance, initiating visit, supervision, auxiliary staff training, no double-counting of time across codes, limits during facility stays.",
+      "Anti-Kickback limits on assistance programs and billing rules for free-drug programs.",
+      "Clinical trial claim mechanics (trial number, Q0/Q1 modifiers, Z00.6, coverage analysis).",
+      "Payer-mandated white bagging, in-office dispensing, biosimilar strategy and inventory-to-charge reconciliation.",
+      "KPI definitions and targets, staffing ratios, denial codes and appeal language.",
+      "Radiation oncology, promised in Section 1."
+    ]
+  }
+}

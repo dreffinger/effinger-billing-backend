@@ -1,0 +1,765 @@
+{
+  "slug": "cardiology-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Cardiology",
+  "doc_type": "specialty",
+  "pages": 42,
+  "audience": "Addressed to cardiologists and owners of independent cardiology practices (non-invasive, interventional and device work) and their billing teams. It assumes the reader has already read the vendor's Universal Specialty Billing Framework. No author, credential, date or code-set year is given.",
+  "summary": "Companion to the vendor's universal billing framework, applied to independent cardiology. Its thesis is that cardiology under-collects because billing infrastructure does not match the specialty's complexity: professional versus technical component billing, supervision rules, interventional and device coding, heavy prior authorization, and services performed but never billed. It covers payer mix (Medicare and Medicare Advantage dominance), code tables for non-invasive testing, catheterization and PCI, and devices, four authorization tiers, four documentation failures, four denial patterns and five revenue opportunities (remote device monitoring, technical component, advance care planning, cardiac rehabilitation, transitional care management), then five operating standards and five look-back audits. Central method: a service-to-code-to-modifier-to-supervision billing map, indication-driven order templates, registries with billing triggers, and pre-procedure coverage checklists. Roughly a third of the code-table rows and most dollar figures are wrong or outdated, and no sources are cited.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Cardiology Does Not Have a Billing Problem. It Has a Complexity Management Problem.",
+      "gist": "Claims cardiology under-bills because its billing infrastructure is too generic for component, supervision, device and rehabilitation rules."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Cardiology",
+      "gist": "Medicare concentration, Medicare Advantage authorization burden, alleged procedure-specific commercial credentialing, a payer table and eight payer questions."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in Cardiology",
+      "gist": "Code tables for non-invasive diagnostics, catheterization and PCI, and devices, centered on global versus professional versus technical billing."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Cardiology",
+      "gist": "Four tiers: diagnostic imaging, catheterization with dual authorization for possible PCI, implantable devices with coverage waiting periods, cardiac rehabilitation referrals."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Cardiology",
+      "gist": "Unverified supervision level, echo reports that do not support the code, unsigned remote interrogation reports, thin add-on procedure documentation."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Cardiology",
+      "gist": "Imaging medical-necessity denials, silent underpayment from the wrong component modifier, ICD waiting-period denials, cardiac rehabilitation eligibility gaps."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Cardiology Practices Are Missing",
+      "gist": "Remote device monitoring, technical component for owned equipment, advance care planning, an in-house cardiac rehabilitation program, transitional care management."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Cardiology",
+      "gist": "Five operating standards (billing map, order templates, monitoring registry, implant checklist, rehabilitation tracker) and five look-back audits."
+    }
+  ],
+  "framework_elements": [
+    "Payer intelligence map (fixed question set per payer)",
+    "Medicare and Medicare Advantage concentration assessment",
+    "Diagnostic service billing map (code, modifier, supervision level)",
+    "Professional versus technical component assignment by site and equipment ownership",
+    "Fee schedule locality verification",
+    "Supervision level verification and documentation",
+    "Imaging accreditation as a condition of technical billing",
+    "Procedure-level payer credentialing check",
+    "Coder competency by code environment",
+    "Authorization tiering by service type",
+    "Indication-driven order templates aligned to appropriateness criteria",
+    "Authorization tracking (dates, expirations, concurrent review)",
+    "Combined authorization for a procedure and its likely follow-on",
+    "Device implant pre-authorization checklist against national coverage criteria",
+    "Coverage exception documentation in note, report and claim",
+    "Structured report template with completeness checklist",
+    "Signed and dated interpretation report for every billed study",
+    "Period-based service registry with billing trigger",
+    "Periodic device interrogation report and physician sign-off",
+    "Add-on procedure documentation standard",
+    "Denial reason tracking by service and payer",
+    "Detection of claims paid at the wrong amount",
+    "Duplicate technical claim risk control",
+    "Referral completion tracker for qualifying events",
+    "In-house program economics versus referring out",
+    "Advance care planning capture",
+    "Transitional care management capture",
+    "Discharge identification feed",
+    "Fixed-window look-back audits to size opportunities",
+    "Compliance escalation for discovered non-covered services"
+  ],
+  "processes": [
+    {
+      "name": "Diagnostic service billing map and component audit",
+      "steps": [
+        "List every diagnostic service the practice performs",
+        "Record for each the code, the modifier (global, 26 or TC) based on site and equipment ownership, and the supervision level",
+        "Pull the last 90 days of in-office diagnostic claims",
+        "Flag studies done on owned equipment but billed professional-only",
+        "Quantify the payment difference",
+        "Update the map whenever location or equipment ownership changes"
+      ],
+      "owner_role": "Not specified (billing lead with physician sign-off implied)",
+      "cadence": "One-time 90-day look-back, then on any change in site or ownership"
+    },
+    {
+      "name": "Tiered prior authorization with indication templates",
+      "steps": [
+        "Build an order template per imaging service that prompts for the appropriateness elements payers expect",
+        "Compare the indication with the payer's own criteria before submitting",
+        "For a diagnostic catheterization likely to lead to PCI, request both authorizations together",
+        "Track authorization dates, expirations and concurrent-review triggers for Medicare Advantage patients",
+        "On denial, obtain the specific criterion cited and appeal against it",
+        "Log denial reasons by service and payer and revise templates"
+      ],
+      "owner_role": "Ordering physician and authorization staff (not specified)",
+      "cadence": "Every order; denial log reviewed continuously"
+    },
+    {
+      "name": "Device implant pre-authorization checklist",
+      "steps": [
+        "Assemble indication evidence by device type (rhythm documentation, ejection fraction with date, medical therapy, cardiac history)",
+        "Check national coverage waiting periods after infarction and revascularization",
+        "If an exception applies, document it in the operative note, implant report and claim",
+        "Confirm payer authorization before scheduling",
+        "Review the last 10 ICD implants and refer any unsupported case to compliance"
+      ],
+      "owner_role": "Implanting physician with billing and compliance (not specified)",
+      "cadence": "Every planned implant; one-time 10-case look-back"
+    },
+    {
+      "name": "Remote device monitoring billing registry",
+      "steps": [
+        "Enroll every remotely monitored patient with device type, enrollment date and billing period",
+        "Fire a billing task at the end of each period",
+        "Generate a structured report (device, period, transmissions, findings, interpretation)",
+        "Physician reviews and signs",
+        "Submit the period code",
+        "Look back for patients with no billed period in more than 95 days"
+      ],
+      "owner_role": "Device clinic staff, interpreting physician and billing (not specified)",
+      "cadence": "Every 90 days per device according to the document (the actual period is 30 days for some device types)"
+    },
+    {
+      "name": "Echo report template and code selection",
+      "steps": [
+        "Physicians and billing review the report template against complete-study requirements",
+        "Add a structured element checklist",
+        "Require a stated reason for any missing element",
+        "Select the complete or limited code from what is documented",
+        "Re-review the last 30 days of studies billed as limited"
+      ],
+      "owner_role": "Physicians and billing team jointly",
+      "cadence": "One-time rebuild plus a 30-day sample, then every study"
+    },
+    {
+      "name": "Transitional care management capture",
+      "steps": [
+        "Identify every discharge from a cardiac hospitalization",
+        "Make and document patient contact within two business days",
+        "Schedule the face-to-face visit within 7 or 14 days according to complexity",
+        "Bill 99495 or 99496 in place of the ordinary visit code",
+        "Look back 60 days to size missed revenue"
+      ],
+      "owner_role": "Not specified (care coordinator and billing implied)",
+      "cadence": "Every discharge; one-time 60-day look-back"
+    },
+    {
+      "name": "Cardiac rehabilitation referral tracking",
+      "steps": [
+        "Flag each patient with a qualifying cardiac event",
+        "Issue the referral",
+        "Track authorization and enrollment",
+        "Report how many qualifying patients are enrolled at any time"
+      ],
+      "owner_role": "Not specified",
+      "cadence": "Per qualifying event; running count"
+    },
+    {
+      "name": "Advance care planning capture",
+      "steps": [
+        "Treat goals-of-care conversations with advanced-disease patients as a billable service",
+        "Document that planning was discussed, what was covered and the minutes spent",
+        "Bill 99497 and, for added time, 99498"
+      ],
+      "owner_role": "Treating physician or other qualified clinician",
+      "cadence": "Per qualifying conversation"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer category table",
+      "description": "Six payer types with the main revenue-cycle dynamic for each; descriptive only."
+    },
+    {
+      "name": "Eight payer intelligence questions (cardiology)",
+      "description": "Question list on authorization, credentialing, component billing, supervision, device policy, rehabilitation coverage, filing and audit activity; no form supplied."
+    },
+    {
+      "name": "Non-invasive diagnostic code table",
+      "description": "Nineteen rows covering ECG, echo, TEE, stress testing, nuclear and ambulatory ECG with a billing note each; several descriptors are wrong."
+    },
+    {
+      "name": "Invasive and interventional code table",
+      "description": "Fourteen rows covering catheterization, flow reserve and PCI; includes wrong descriptors and codes deleted in 2026."
+    },
+    {
+      "name": "Device code table",
+      "description": "Fourteen rows covering pacemaker, ICD and loop-recorder implantation and interrogation; several codes mislabeled."
+    },
+    {
+      "name": "Four authorization tiers",
+      "description": "Imaging, catheterization, devices, cardiac rehabilitation, each with typical documentation needs."
+    },
+    {
+      "name": "Device authorization documentation list",
+      "description": "Required evidence by device type (pacemaker, ICD, subcutaneous ICD, loop recorder)."
+    },
+    {
+      "name": "Supervision level list by service",
+      "description": "Narrative assignment of general or direct supervision to nuclear, stress and echo services; outdated and internally inconsistent."
+    },
+    {
+      "name": "Echo completeness checklist (concept)",
+      "description": "Recommends adding a structured element checklist to the report template; the checklist is not supplied."
+    },
+    {
+      "name": "Remote interrogation report element list",
+      "description": "Five items each periodic report should contain."
+    },
+    {
+      "name": "Flow reserve documentation example",
+      "description": "A weak and a strong sample sentence showing what supports the add-on code."
+    },
+    {
+      "name": "Imaging denial four-step framework",
+      "description": "Order templates, cross-check payer criteria, appeal to the cited rationale, track reasons by service and payer."
+    },
+    {
+      "name": "Component modifier mapping (concept)",
+      "description": "Written map of each diagnostic service to global, 26 or TC; described, not supplied."
+    },
+    {
+      "name": "Cardiac rehabilitation denial reason list",
+      "description": "Four reasons claims are denied; two conflict with Medicare's covered indications."
+    },
+    {
+      "name": "Revenue arithmetic examples",
+      "description": "Worked estimates for remote monitoring, nuclear technical component, cardiac rehabilitation and transitional care; inputs unsourced."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Billing map, order templates, monitoring registry, implant checklist, rehabilitation referral tracker."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "Five look-back audits (90-day diagnostics, monitoring list, 10 ICD cases, 60-day discharges, 30-day echo sample); no owners or dates."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "In-office studies billed professional-only",
+      "definition": "Diagnostic studies performed on practice-owned equipment but billed with modifier 26, over the last 90 days, with the payment difference",
+      "formula": "count of such claims; sum of (global payment - professional payment)",
+      "target": "None stated (zero implied)",
+      "red_flag": "Any in-office study on owned equipment billed with modifier 26",
+      "source_cited": "none"
+    },
+    {
+      "name": "Technical component share of payment",
+      "definition": "Portion of the global payment attributable to the technical component",
+      "formula": "technical payment / global payment",
+      "target": "",
+      "red_flag": "Document's figures: 40-55% for echo, 55-65% for nuclear stress (both look understated)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days since last billed remote interrogation period",
+      "definition": "Elapsed days since a period code was last billed for each remotely monitored device patient",
+      "formula": "today - date of last billed period code",
+      "target": "",
+      "red_flag": "More than 95 days",
+      "source_cited": "none"
+    },
+    {
+      "name": "Remote monitoring revenue per patient per period",
+      "definition": "Payment per monitored patient for each billing period",
+      "formula": "",
+      "target": "",
+      "red_flag": "Stated as $75-$150 per 90 days in Section 7 and $150-$300 per quarter in Section 3",
+      "source_cited": "none"
+    },
+    {
+      "name": "ICD implants meeting coverage waiting period or documented exception",
+      "definition": "Share of the last 10 ICD implants that satisfied the waiting period or carried a documented exception",
+      "formula": "compliant cases / 10",
+      "target": "All cases (implied)",
+      "red_flag": "Any implant inside the waiting period without a documented exception",
+      "source_cited": "none"
+    },
+    {
+      "name": "Transitional care capture",
+      "definition": "Discharges in the last 60 days with documented two-business-day contact and a timely visit billed as transitional care rather than an ordinary visit",
+      "formula": "discharges billed 99495 or 99496 / qualifying discharges",
+      "target": "Contact within 2 business days; visit within 14 days (99495) or 7 days (99496)",
+      "red_flag": "Follow-up visit billed as a standard E/M",
+      "source_cited": "none"
+    },
+    {
+      "name": "Transitional care revenue uplift per encounter",
+      "definition": "Extra payment from billing the transitional care code instead of a standard follow-up visit",
+      "formula": "transitional care payment - standard visit payment",
+      "target": "",
+      "red_flag": "Document's figure: $80 to $150 per encounter",
+      "source_cited": "none"
+    },
+    {
+      "name": "Echo studies billed limited that support the complete code",
+      "definition": "Studies in a 30-day sample billed as 93308 that would support 93306 under a proper template",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Qualifying patients enrolled in cardiac rehabilitation",
+      "definition": "Count of patients with a qualifying event who were referred and enrolled",
+      "formula": "enrolled / qualifying (implied)",
+      "target": "None; practice should know the number at any time",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicare Advantage denial or delay rate versus traditional Medicare",
+      "definition": "Relative rate at which Medicare Advantage plans deny or delay diagnostic cardiology services",
+      "formula": "",
+      "target": "",
+      "red_flag": "Stated as two to three times the traditional Medicare rate",
+      "source_cited": "none (text says the data is consistent, names none)"
+    },
+    {
+      "name": "Denial reasons by diagnostic service and payer",
+      "definition": "Tally of denial reasons cut by service and payer, used to fix order templates",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicare and Medicare Advantage share of revenue",
+      "definition": "Payer concentration measure",
+      "formula": "Medicare plus Medicare Advantage revenue / total revenue",
+      "target": "",
+      "red_flag": "Described as typically 50-70% for independent cardiology",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Most independent cardiology practices derive 50 to 70 percent of revenue from Medicare or Medicare Advantage",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare Advantage plans deny or delay diagnostic cardiology services at two to three times the rate of traditional Medicare",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The technical component of an echocardiogram is typically 40 to 55 percent of total reimbursement",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Ambulatory ECG codes 93241-93247 are a new code structure from 2021 that replaces older Holter codes",
+      "section": "Section 3",
+      "source_cited": "none (table note attributes descriptors to CMS)"
+    },
+    {
+      "claim": "Remote monitoring codes 93294, 93297, 93298 and 93299 are billed once per 90-day period per device",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unbilled remote monitoring leaves $150 to $300 per patient per quarter",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A mid-size cardiology practice may manage hundreds of authorization requests per month",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most Medicare Advantage plans require prior authorization for echo, stress testing and nuclear cardiology",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS requires 40 days after MI and 90 days after revascularization before a primary prevention ICD; this is the most common ICD authorization denial reason",
+      "section": "Sections 4 and 6",
+      "source_cited": "none (refers to CMS coverage criteria without a document number)"
+    },
+    {
+      "claim": "Non-ischemic cardiomyopathy has no ICD waiting period",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Heart failure was added to Medicare cardiac rehabilitation coverage in 2014",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "For Medicare, cardiac rehabilitation must begin within 12 months of the qualifying event",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Nuclear cardiology requires direct supervision; echocardiography requires only general supervision",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A limited echo pays about $150 against about $350 for a complete study",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Remote interrogation pays $75 to $150 per 90-day period at Medicare rates; 200 patients yield $15,000 to $30,000 per quarter and $60,000 to $120,000 per year",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The technical component of a nuclear stress test is 55 to 65 percent of total reimbursement",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare pays approximately $800 to $1,200 for the technical component of 78452",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Ten nuclear studies a week billed professional-only forfeit $8,000 to $12,000 per week",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most commercial payers require ICANL accreditation for nuclear technical billing",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "ACP codes: 99497 covers the first 30 minutes and 99498 each additional 30 minutes",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare pays approximately $86 for 99497 and $75 for 99498",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The vast majority of cardiologists who hold goals-of-care conversations do not bill for them",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare pays for up to 36 cardiac rehabilitation sessions, expandable to 72 with medical necessity documentation",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Cardiac rehabilitation pays approximately $35 to $50 per session",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 50-patient cardiac rehabilitation program generates $63,000 to $90,000 a year at Medicare rates",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Transitional care codes 99495 and 99496 pay $180 to $280 for the 30-day period",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Transitional care requires contact within two business days and a face-to-face visit within 14 days (99495) or 7 days (99496)",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Transitional care pays $80 to $150 more per encounter than a standard follow-up visit",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Any remotely monitored patient more than 95 days past the last billed interrogation period should have a claim filed",
+      "section": "Section 8",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "TCM codes 99495 and 99496 pay $180 to $280; they require patient contact within two business days of discharge and a face-to-face visit within 14 days (99495) or 7 days (99496); bill them instead of the standard E/M.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 5: Transitional Care Management",
+      "why": "Directly usable by this practice. The stated elements look right, but the document omits conditions (one billing clinician per discharge, discharge to a community setting, medication reconciliation, global-period conflicts) that decide whether a claim survives review."
+    },
+    {
+      "id": "C2",
+      "claim": "Medicare covers advance care planning (99497 first 30 minutes, 99498 each additional 30 minutes) when performed face-to-face by a physician or other qualified health professional; Medicare pays approximately $86 for 99497 and $75 for 99498.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 3: Advance Care Planning",
+      "why": "Advance care planning is a core service line for this practice. The rates look like older national figures and vary by place of service; minimum time and cost-sharing rules are not stated."
+    },
+    {
+      "id": "C3",
+      "claim": "The 90-day billing period codes (93294, 93297, 93298, 93299) are billed once per 90-day period per device; at Medicare rates they pay $75 to $150 per 90-day period depending on device type.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3 (Device Billing) and Section 7 (Opportunity 1)",
+      "why": "As I know the code set, 93297 and 93298 are 30-day codes, 93299 was deleted in 2020 and the ICD code is 93295. A registry built on this text would under-bill loop recorders and submit an invalid code."
+    },
+    {
+      "id": "C4",
+      "claim": "CMS requires a 40-day post-MI and 90-day post-revascularization waiting period for primary prevention ICD implantation; a patient with non-ischemic cardiomyopathy, for example, does not have a waiting period.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 4 (Tier 3) and Section 6 (Denial Pattern 3)",
+      "why": "National Coverage Determination 20.4 applies the same exclusions to non-ischemic cardiomyopathy and adds three months of optimal medical therapy. An implant scheduled on the document's reading could be non-covered."
+    },
+    {
+      "id": "C5",
+      "claim": "Nuclear cardiology (78451-78454) requires direct supervision: the physician must be immediately available in the office suite, and a study performed while the supervising physician is at a different office location is not payable; echocardiography requires only general supervision.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 5, Documentation Failure 1",
+      "why": "Supervision level decides whether the technical component is payable. CMS made real-time audio-video presence a permanent way to meet direct supervision from January 2026, and the document elsewhere calls the nuclear standard general, so the statement is at least outdated."
+    },
+    {
+      "id": "C6",
+      "claim": "The technical component of a nuclear stress test is 55 to 65 percent of total reimbursement; Medicare pays approximately $800 to $1,200 for the technical component of 78452; ICANL accreditation is required by most commercial payers.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 2: Technical Component Revenue",
+      "why": "Used to justify owning imaging equipment. Physician fee schedule amounts I know are roughly a third to half of this, and Medicare itself requires accreditation for advanced imaging technical billing."
+    },
+    {
+      "id": "C7",
+      "claim": "For Medicare, the cardiac rehab program must begin within 12 months of the qualifying event; Medicare pays for up to 36 sessions (expandable to 72) at approximately $35 to $50 per session, $63,000 to $90,000 a year for 50 patients.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 4 (Tier 4) and Section 7 (Opportunity 4)",
+      "why": "The 12-month limit applies, as I know the regulation, only to myocardial infarction, and office-based session payments I know are about $17 to $26. If so, the case for running a program is overstated."
+    },
+    {
+      "id": "C8",
+      "claim": "92921 and 92929 are PCI add-on codes for each additional branch (92929 the most common multi-vessel PCI add-on); 93452 is left heart catheterization with coronary angiography; 93461 is right and left heart cath with coronary angiography and ventriculography.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, Invasive Diagnostic and Interventional Procedures",
+      "why": "A quick test of whether the code tables can be trusted. Society and coding summaries report the branch add-on codes were deleted on January 1, 2026, and the catheterization descriptors do not match the code set I know."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.38,
+      "topics": [
+        "professional versus technical component modifiers",
+        "code selection for diagnostics, procedures and devices",
+        "report documentation that supports the code",
+        "period-based charge capture",
+        "supervision level as a billing condition",
+        "add-on code documentation"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.18,
+      "topics": [
+        "authorization tiers by service",
+        "indication-driven order templates",
+        "combined authorization requests",
+        "authorization tracking for Medicare Advantage"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.12,
+      "topics": [
+        "medical-necessity denial management",
+        "appeals aimed at the cited criterion",
+        "underpayment detection where no denial occurs",
+        "denial reason tracking by service and payer"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.12,
+      "topics": [
+        "supervision requirements",
+        "national coverage criteria and waiting periods",
+        "imaging accreditation",
+        "overpayment exposure from unsupported claims",
+        "signed report requirement"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "Medicare and Medicare Advantage concentration",
+        "payer intelligence questions",
+        "credentialing scope",
+        "device and implant payment policy"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.06,
+      "topics": [
+        "transitional care management",
+        "advance care planning",
+        "referral completion tracking",
+        "remote monitoring registry"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.04,
+      "topics": [
+        "in-office diagnostic service line",
+        "in-house cardiac rehabilitation program"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Run every hospital or facility discharge through a transitional care checklist: discharge feed, contact within two business days, visit inside the 7- or 14-day window, then bill the transitional care code rather than an ordinary visit.",
+      "why": "Higher payment for work already being done, and a measurable care-transition standard.",
+      "applies_to_practice": "yes",
+      "note": "Requires discharge to a community setting. CMS's booklet lists home, domiciliary, nursing home and assisted living, while a skilled nursing facility stay is a setting the patient is discharged from, so the skilled versus long-term-care distinction decides eligibility for this panel; confirm with the Medicare contractor. Only one clinician can bill per discharge."
+    },
+    {
+      "idea": "Audit advance care planning capture: every goals-of-care conversation documented with content, participants and minutes, and billed with 99497/99498.",
+      "why": "The practice already delivers this service; capture rate is easy to measure against the panel.",
+      "applies_to_practice": "yes",
+      "note": "Payment differs by place of service; confirm minimum minutes and how it combines with same-day visits and the wellness visit."
+    },
+    {
+      "idea": "Keep a registry with a period-end billing trigger for any service paid per time period.",
+      "why": "Recurring period codes get missed when billing depends on memory; a registry turns the claim into a scheduled event.",
+      "applies_to_practice": "yes",
+      "note": "Direct fit for monthly chronic care management, annual wellness eligibility dates, required nursing facility visit intervals and certification cycles."
+    },
+    {
+      "idea": "Maintain one billing map tying each service to its code, modifier, place of service, supervision or incident-to rule and who may perform it, updated whenever sites or staffing change.",
+      "why": "Makes the rules explicit and reviewable and stops silent errors inherited from old habits.",
+      "applies_to_practice": "yes",
+      "note": "Here the map should cover place-of-service codes by facility type, nurse practitioner direct versus shared billing, and care-management codes."
+    },
+    {
+      "idea": "Hunt for errors that pay rather than deny: wrong modifier, wrong place of service, wrong level.",
+      "why": "Denial work never finds claims paid at the wrong amount; only a targeted audit does.",
+      "applies_to_practice": "yes",
+      "note": "Check skilled versus long-term nursing facility place-of-service coding, physician versus nurse practitioner rates, and Medicare Advantage payments against contract."
+    },
+    {
+      "idea": "Size each opportunity with a fixed look-back sample (last 90 days of claims, last 10 cases, last 60 days of discharges) before building a permanent process.",
+      "why": "Produces a dollar figure and an error rate that justify the work.",
+      "applies_to_practice": "yes",
+      "note": "Well suited to agent-run billing: each look-back is a repeatable query against practice-management data."
+    },
+    {
+      "idea": "Before scheduling a coverage-restricted service, check the written coverage criteria and record any exception in the note and on the claim.",
+      "why": "Prevents non-covered services instead of appealing them afterwards.",
+      "applies_to_practice": "partly",
+      "note": "Analogs here: wellness visit eligibility, care-management consent, home health and hospice certification requirements."
+    },
+    {
+      "idea": "Use order templates that capture the payer's required clinical elements at ordering, appeal against the exact criterion cited, and log denial reasons by service and payer.",
+      "why": "Cuts first-pass authorization failures and shows which payer or template is the problem.",
+      "applies_to_practice": "partly",
+      "note": "Useful for Medicare Advantage authorizations the practice initiates; denial logging by reason and payer applies fully."
+    },
+    {
+      "idea": "Request authorization for a planned procedure and its likely follow-on procedure together.",
+      "why": "Avoids retroactive authorization fights when the second step happens in the same session.",
+      "applies_to_practice": "no",
+      "note": "Procedural practices only; worth keeping in a universal framework."
+    },
+    {
+      "idea": "Track referrals to evidence-based programs as a managed list: referred, authorized, enrolled.",
+      "why": "Closes the loop on care that improves outcomes; a quality and relationship measure more than a revenue one.",
+      "applies_to_practice": "partly",
+      "note": "The same tracker fits therapy, home health, hospice and cardiac rehabilitation referrals for the practice's own patients."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice performs no echo, nuclear, catheterization or device work and owns no diagnostic equipment, so about nine-tenths of the content does not apply. Two short subsections are directly relevant (advance care planning and transitional care management), the Medicare Advantage authorization discussion is loosely relevant, and the registry, billing-map and look-back-audit patterns transfer to care management and facility visit billing.",
+    "sections_that_do_not_apply": [
+      "Section 2 passages on interventional credentialing and implant billing",
+      "Section 3 in full (echo, stress, nuclear, catheterization, PCI and device code tables)",
+      "Section 4, Tiers 1-4 (imaging, catheterization, device and cardiac rehabilitation authorization)",
+      "Section 5 in full (imaging supervision, echo reports, device interrogation reports, catheterization add-ons)",
+      "Section 6 in full (imaging denials, component billing, ICD waiting period, cardiac rehabilitation eligibility)",
+      "Section 7, Opportunities 1, 2 and 4 (remote device monitoring, technical component, running a cardiac rehabilitation program)",
+      "Section 8, Standards 1-5 and Actions 1-3 and 5 as written (only the transitional care action applies directly)"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 4,
+    "accuracy_concerns": [
+      "Remote device monitoring is mis-coded throughout. As I know the code set, 93294 (pacemaker) and 93295 (ICD) are the 90-day professional codes with 93296 as the technical code; 93297 (physiologic monitor) and 93298 (loop recorder) are 30-day codes; 93299 was deleted effective 2020. The guide calls 93297 the ICD code, lists 93297-93299 as 90-day codes and never mentions 93296.",
+      "Catheterization descriptors are wrong: 93452 and 93453 do not include coronary angiography, and the description given for 93461 fits 93460 (93461 adds bypass-graft angiography).",
+      "Echo family errors: 93312 is the complete transesophageal study including interpretation, not a technical component; 93313 is not an add-on; 93350 includes interpretation and report; 93243 and 93247 are scanning-analysis components rather than global services; the 2021 extended-monitoring codes replaced temporary Category III codes, not the Holter codes.",
+      "Device table errors: 33213 is generator insertion with existing dual leads (replacement is 33228); 33262 is the single-lead ICD generator change (dual is 33263); 93291 is loop-recorder interrogation (in-person pacemaker interrogation is 93288).",
+      "PCI: 92921 and 92929 were never separately paid by Medicare and were deleted January 1, 2026 with new code 92930 added (per society and coding summaries found November 2026). Calling 92929 the common multi-vessel add-on confuses branches with separate major arteries. OCT is reported with 92978/92979 themselves, not with special modifiers.",
+      "ICD coverage: states non-ischemic cardiomyopathy has no waiting period. NCD 20.4 (read in the CMS coverage database, November 2026) requires three months of optimal medical therapy for that group and applies the same 40-day and 3-month exclusions; the listed exceptions are a concurrent pacemaker indication and device replacement. The mandatory shared decision-making encounter for primary prevention is never mentioned.",
+      "Supervision: requires the physician physically in the office suite for nuclear studies. CMS allowed real-time audio-video presence from 2020 and made it permanent for diagnostic tests effective January 1, 2026; qualified non-physician practitioners may also supervise. The per-code supervision level should be read from the fee schedule indicator, which the guide never cites.",
+      "Accreditation is framed as a commercial-payer requirement layered on a Medicare supervision rule. Medicare itself requires accreditation to bill the technical component of advanced imaging, including nuclear, in office settings; 'ICANL' is a retired name for what is now IAC Nuclear/PET.",
+      "Payment figures look inflated or mis-sourced: nuclear technical component $800-$1,200 (physician fee schedule amounts I know are about $350-$400); echo technical share 40-55% (about two-thirds) and nuclear 55-65% (about four-fifths); cardiac rehabilitation $35-$50 per session (office rates about $17-$26); remote monitoring $75-$150 or $150-$300 per quarter (about $55-$65 for pacemaker or ICD, professional plus technical). The $150 versus $350 echo comparison is not Medicare.",
+      "Cardiac rehabilitation rules: the 12-month window applies only to myocardial infarction; stable angina and stable chronic heart failure are covered indications in their own right, yet Section 6 lists them as denial reasons unless tied to a recent event or procedure.",
+      "Says Medicare Advantage denies or delays cardiac diagnostics at two to three times the traditional Medicare rate. No source is named, and traditional Medicare has no prior authorization for these tests, so the comparison is not meaningful.",
+      "Claims commercial payers credential interventional cardiologists procedure by procedure. Procedure privileges are granted by hospitals; payer credentialing is generally by specialty. Unsupported.",
+      "The transitional care section omits rules that decide payability: one billing clinician per discharge, discharge must be to a community setting, medication reconciliation by the visit date, and no billing inside the same clinician's surgical global period (device implants carry 90-day globals).",
+      "States that a study with any missing element must be billed as limited. CPT's echo instructions, as I know them, allow the complete code when a structure cannot be visualized despite effort and the reason is documented.",
+      "Tells readers to file a claim for any monitored patient more than 95 days past the last billed period without first confirming that a signed report exists for that period."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Nuclear supervision is 'direct' in Section 5 but 'Medicare's general supervision standard' in Section 7 and in payer question 4.",
+      "Unbilled remote monitoring is worth $150-$300 per patient per quarter in Section 3 and $75-$150 per 90-day period in Section 7.",
+      "The list of 90-day remote codes differs between Section 3 (93294, 93297, 93298, 93299) and Section 5 (adds 93295); the table labels 93297 as the ICD code.",
+      "Heart failure and stable angina are qualifying conditions for cardiac rehabilitation in Section 4 and reasons for denial in Section 6.",
+      "Cardiac rehabilitation is presented as an authorization tier and a denial pattern, then described as neither: a referral gap that yields no revenue to the referring practice unless it runs its own program.",
+      "Echo guidance says missing elements force the limited code, then says to document why an element is missing and code from the documentation.",
+      "Section 1 says the opportunity is not to fight the system; Section 2 is framed around Medicare Advantage aggression."
+    ],
+    "time_sensitive_or_outdated": [
+      "PCI branch add-on codes 92921 and 92929 are presented as current; they were deleted January 1, 2026, and new codes 92930 and 92945 are not mentioned. A guide generated in September 2026 should not carry them.",
+      "93299 is presented as current; it was deleted effective 2020.",
+      "Direct supervision is described under the pre-2020 physical-presence rule; virtual presence became permanent for diagnostic tests on January 1, 2026.",
+      "The ICANL name was retired years ago.",
+      "Ambulatory ECG codes are described as a new 2021 structure.",
+      "Payment amounts are undated; the advance care planning figures match roughly 2021-2022 national rates. The 2026 fee schedule changed the conversion factor, added an efficiency adjustment and revised practice-expense allocation.",
+      "'AUC-compliant' is used loosely; CMS rescinded its own appropriate use criteria program rules in the 2024 fee schedule, so the term now means society criteria and payer vendor guidelines only (verify).",
+      "No mention that non-physician practitioners may supervise cardiac rehabilitation since 2024, or of coverage conditions for leadless pacemakers (verify)."
+    ],
+    "ai_generation_signals": [
+      "Same eight-section skeleton and closing devices as the behavioral health guide, and it refers to that guide, which points to a batch-generated series.",
+      "A disclaimer under the ambulatory ECG table says descriptors are reproduced as documented by CMS and should be verified: a hedge attached to descriptors that are in fact wrong.",
+      "Code tables with fluent but incorrect descriptors and thin one-line billing notes (for example 'verify ICD not indicated').",
+      "Deleted and obsolete items presented as current (93299, PCI add-ons, ICANL), consistent with stale training data rather than a 2026 code book.",
+      "Round revenue arithmetic that multiplies cleanly but starts from unsourced rates.",
+      "Cross-references that do not match (Section 7 cites Section 6 for a point first made in Section 3).",
+      "No author, date, citation or code-set year."
+    ],
+    "missing_for_real_use": [
+      "Citations and a code-set year; the tables cannot be used without checking every row against the current CPT book.",
+      "Office evaluation and management coding, the largest revenue line in cardiology, plus shared-visit and incident-to rules.",
+      "Correct-coding edits, unit limits, global periods and modifier guidance beyond 26 and TC.",
+      "Drug and supply billing for stress agents, radiopharmaceuticals and echo contrast.",
+      "Self-referral and anti-markup rules that govern in-office imaging, which matter more than locality checks.",
+      "The Medicare accreditation requirement and per-code supervision indicators.",
+      "Coverage determinations that carry registry or shared decision-making conditions (ICD, transcatheter valve procedures, appendage closure, leadless pacemakers).",
+      "Care-management codes that fit cardiology (principal care management, chronic care management, remote physiologic monitoring).",
+      "Named authorization vendors and how their criteria differ from society appropriateness criteria.",
+      "Any actual template: the billing map, order templates, registry layout, implant checklist and echo checklist are described only.",
+      "Standard revenue-cycle metrics, owners, staffing and timelines.",
+      "Conditions for transitional care and advance care planning billing (who may bill, time minimums, place-of-service payment differences)."
+    ]
+  }
+}

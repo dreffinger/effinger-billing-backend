@@ -1,0 +1,786 @@
+{
+  "slug": "medicare-abn-compliance-playbook",
+  "title": "Medicare ABN Compliance Playbook: The Form Nobody Completes Correctly - and the Revenue Nobody Recovers (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "compliance",
+  "pages": 65,
+  "audience": "Billing and compliance teams at independent practices that bill Original Medicare fee-for-service. The cover disclaimer says it is written so billing and compliance teams can build workflows; the closing footer says billing teams. No specialty, size or setting is specified, and the workflow assumes an office with a front desk and scheduled appointments.",
+  "summary": "A 65-page vendor guide to the Medicare Advance Beneficiary Notice (Form CMS-R-131) for fee-for-service patients. It splits notices into a mandatory track (covered services expected to be denied for medical necessity, frequency, custodial care, therapy thresholds or hospice eligibility) and a voluntary track (never-covered or uncertain services), walks the form field by field, lists five common failures, sets out timing, language, representative, refusal and retention rules, and describes consequences of a missing notice. Its method is: audit twelve months of Medicare denials against ABN files to size lost patient billing, build a service-specific trigger list from that denial history, move identification and delivery ahead of the encounter, apply GA/GX/GY/GZ modifiers, then reconcile denials to an ABN log monthly. It ends with three sample completions, a 90-day plan and two checklists. Several core statements conflict with CMS instructions, so it cannot be used unverified.",
+  "outline": [
+    {
+      "section": "Front matter (cover disclaimer and 'Important' box)",
+      "gist": "General not-legal-advice disclaimer; states the form was revised in March 2026 and older versions are no longer acceptable."
+    },
+    {
+      "section": "Introduction: What the ABN Is, What It Costs to Get Wrong",
+      "gist": "Frames the ABN as the mechanism shifting liability to the patient; asserts most practices do it wrong and forfeit billing rights; previews two tracks."
+    },
+    {
+      "section": "Section 1: The Regulatory Foundation - Mandatory vs. Voluntary ABNs",
+      "gist": "Cites Manual chapter 30 and Social Security Act section 1879; defines mandatory and voluntary notices; excludes Medicare Advantage; touches dual eligibles and form approval dates."
+    },
+    {
+      "section": "Section 2: When a Mandatory ABN Is Required - The Service Trigger List",
+      "gist": "Five triggers: medical necessity under NCD or LCD, frequency limits, custodial care, therapy thresholds, hospice eligibility; notice must precede the service."
+    },
+    {
+      "section": "Section 3: When a Voluntary ABN Is Appropriate - Protecting Billing Rights",
+      "gist": "Covers statutory exclusions and uncertain coverage; argues skipping a voluntary notice forfeits patient billing and urges issuing more of them; mentions modifier GY."
+    },
+    {
+      "section": "Section 4: The ABN Form Requirements - CMS-R-131 Field by Field",
+      "gist": "Walks fields A through H plus signature: notifier, patient name, identifier, service description, reason, cost estimate, three patient options, additional information, refusal handling."
+    },
+    {
+      "section": "Section 5: The Five Most Common ABN Compliance Failures",
+      "gist": "Wrong notice type for non-covered services, expired form version, notice given after the service, blanket notices, and incomplete fields, especially the cost estimate."
+    },
+    {
+      "section": "Section 6: The ABN Delivery Requirements - Timing, Language, and Patient Rights",
+      "gist": "Advance timing with time to decide, language and verbal review, prohibited delivery practices, refusal documentation, authorized representatives, patient copy and five-year retention."
+    },
+    {
+      "section": "Section 7: What Happens When the ABN Is Missing or Invalid",
+      "gist": "Says the provider absorbs the denied charge permanently; lists nine conditions that invalidate a notice, cites remark codes, and warns against billing the patient."
+    },
+    {
+      "section": "Section 8: Your ABN Penalty Risk Audit",
+      "gist": "Five steps: pull twelve months of Medicare denials by code, match to notices on file, total billed amounts, find concentrations, check form versions."
+    },
+    {
+      "section": "Section 9: The ABN Compliance Workflow",
+      "gist": "Five stages: pre-appointment identification, preparation, delivery and signature, modifier assignment (GA, GX, GY, GZ), and monthly post-service audit against the notice log."
+    },
+    {
+      "section": "Section 10: The ABN Template - Completed Sample and Blank",
+      "gist": "Three hypothetical completed examples (echocardiogram, bone density scan, routine eye exam) and a blank field guide; tells readers to download the real form from CMS."
+    },
+    {
+      "section": "90-Day ABN Compliance Implementation Plan",
+      "gist": "Month 1 audit, form update and trigger list; Month 2 workflow build, training, log and pilot; Month 3 rollout, first reconciliation and recurring reviews."
+    },
+    {
+      "section": "Quick-Reference Checklist 1: ABN Program Launch",
+      "gist": "Twenty-three launch items across form and documentation, trigger list and coverage review, workflow, training, and monitoring."
+    },
+    {
+      "section": "Quick-Reference Checklist 2: Per-Encounter ABN Checklist",
+      "gist": "Twenty-one per-encounter items across pre-encounter, form completion, delivery, and post-delivery, ending with modifier assignment."
+    },
+    {
+      "section": "Closing",
+      "gist": "Restates the argument, repeats that lost amounts are unrecoverable, and cross-sells the vendor's No Surprises Act playbook and annual assessment guide."
+    }
+  ],
+  "framework_elements": [
+    "ABN applicability determination (Original Medicare only)",
+    "Payer-type gate before notice (fee-for-service vs Medicare Advantage vs Medicaid or dual)",
+    "Mandatory versus voluntary notice classification",
+    "Mandatory-trigger identification (medical necessity, frequency, custodial care, therapy threshold, hospice eligibility)",
+    "NCD and LCD coverage lookup by service and diagnosis",
+    "Frequency-limit tracking by patient and service",
+    "Statutory-exclusion list maintenance",
+    "Service-specific ABN trigger list",
+    "Pre-service (pre-visit) notice identification",
+    "Form version control (OMB approval and expiration)",
+    "Field-by-field form completion standard",
+    "Patient cost estimate for potentially non-covered service",
+    "Advance-timing control (no notice after the service)",
+    "Verbal review and patient question handling",
+    "Patient option selection without steering",
+    "Language access (Spanish form, interpreter)",
+    "Authorized-representative handling",
+    "Refusal-to-sign documentation",
+    "Patient copy and record retention",
+    "ABN log or tracking register",
+    "Clinical-to-billing handoff of notice status and option chosen",
+    "Liability modifier assignment (GA, GX, GY, GZ)",
+    "Patient-billing restriction when notice is missing or invalid",
+    "Baseline exposure audit (denials matched to notices on file)",
+    "Forfeited-revenue quantification",
+    "Denial concentration analysis by provider, service and reason",
+    "Monthly denial-to-notice reconciliation",
+    "Quarterly trigger-list and coverage-policy update",
+    "Staff and provider training with documentation",
+    "Role ownership assignment and 90-day implementation plan"
+  ],
+  "processes": [
+    {
+      "name": "Pre-service ABN identification",
+      "steps": [
+        "Screen each scheduled Original Medicare service against NCD or LCD covered indications",
+        "Check the patient's history for frequency-limit conflicts",
+        "Check whether the service is categorically excluded from Medicare",
+        "Compare the next-day schedule to the practice trigger list",
+        "Produce a pre-visit list of patients who need a notice"
+      ],
+      "owner_role": "Billing or clinical team (the document does not choose one)",
+      "cadence": "Daily, during end-of-day preparation for the next day's schedule"
+    },
+    {
+      "name": "ABN preparation",
+      "steps": [
+        "Fill in notifier, patient name, identifier, service description, reason and cost estimate before the visit",
+        "Use a conservative dollar range when the cost varies",
+        "Send the notice ahead by mail, portal or advance contact where possible",
+        "For needs arising at the point of care, complete the form before the service starts"
+      ],
+      "owner_role": "Designated staff role, to be assigned by the practice",
+      "cadence": "Per flagged encounter"
+    },
+    {
+      "name": "ABN delivery and signature",
+      "steps": [
+        "Explain why Medicare may not pay, the options and the estimated cost",
+        "Answer questions and allow time to decide",
+        "Present all three options without steering or pre-selecting",
+        "Have the patient or authorized representative choose, sign and date",
+        "Give a copy immediately and keep the original",
+        "Record date, time, service, staff member and option chosen",
+        "If the patient refuses to sign, annotate the refusal, date, time and witness on the form"
+      ],
+      "owner_role": "Front-desk or clinical support staff",
+      "cadence": "Per encounter, before the service"
+    },
+    {
+      "name": "Billing modifier assignment",
+      "steps": [
+        "Receive notice type and patient option from the delivering staff",
+        "Append GA when a required notice is signed and Medicare is to be billed",
+        "Append GY, with GX when a voluntary notice was given, for statutorily excluded services",
+        "Append GZ when a required notice was not obtained and do not bill the patient",
+        "Submit no claim when the patient chose self-pay without Medicare billing or declined the service"
+      ],
+      "owner_role": "Billing team",
+      "cadence": "Per claim"
+    },
+    {
+      "name": "Monthly post-service audit (denial-to-ABN-log reconciliation)",
+      "steps": [
+        "Run the month's Medicare denial report",
+        "Compare medical-necessity and frequency denials to the ABN log",
+        "Treat each denial without a logged notice as a workflow failure",
+        "Track failures by service type and provider",
+        "Update the trigger list, training or system flags accordingly"
+      ],
+      "owner_role": "Billing team, reported at the monthly billing meeting",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "ABN penalty risk audit (baseline exposure)",
+      "steps": [
+        "Pull twelve months of Medicare denials filtered to CO-50, CO-96, CO-119 and PR-204",
+        "Locate the notice for each denied encounter and rate it valid, invalid or missing",
+        "Sum billed amounts for denials with missing or invalid notices",
+        "Break results down by provider, service code and denial reason",
+        "Inventory every paper and electronic form version in use",
+        "Repeat six months after implementation and compare"
+      ],
+      "owner_role": "Not specified (practice leadership or billing lead implied)",
+      "cadence": "Once before implementation; repeat at six months"
+    },
+    {
+      "name": "Trigger-list build and maintenance",
+      "steps": [
+        "List every CPT or HCPCS code with medical-necessity, frequency or non-coverage denials",
+        "Attach the governing NCD or LCD, covered indications, frequency limits and exceptions",
+        "Confirm MAC jurisdiction and the correct LCD database",
+        "Compile a separate list of statutorily excluded services",
+        "Review new denial codes monthly and update the list quarterly"
+      ],
+      "owner_role": "Not specified (billing lead with provider input implied)",
+      "cadence": "Monthly review; quarterly update"
+    },
+    {
+      "name": "Form version control",
+      "steps": [
+        "Collect every paper and electronic copy of the notice in use",
+        "Read the OMB control number and expiration date on each",
+        "Download the current form from the CMS website",
+        "Withdraw all earlier versions, including templates inside electronic systems and portals"
+      ],
+      "owner_role": "Not specified",
+      "cadence": "At program launch; no recurring cadence stated"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Mandatory trigger table",
+      "description": "Two-column table mapping each of the five mandatory triggers to the practice settings where it most often arises."
+    },
+    {
+      "name": "Field E reason table",
+      "description": "Seven quoted 'reason' statements with guidance on when to tick each; does not match the actual CMS form, which has a free-text reason column."
+    },
+    {
+      "name": "Field-by-field completion guide (A-H, signature and date)",
+      "description": "Narrative instructions for each form field, including refusal-to-sign handling."
+    },
+    {
+      "name": "List of prohibited delivery practices",
+      "description": "Five bullets on what delivery must not look like (no real choice, routine intake signature, distressed patients, pre-selected option, service not going to be provided)."
+    },
+    {
+      "name": "List of conditions that invalidate an ABN",
+      "description": "Nine bullets used as the validity test in the audit (old form, blank or vague fields, late delivery, blanket form, no verbal review, coercion, no patient copy)."
+    },
+    {
+      "name": "Five-step ABN penalty risk audit",
+      "description": "Procedure for pulling twelve months of denials, matching to notices, totaling billed amounts, analyzing concentration and checking form versions; no worksheet supplied."
+    },
+    {
+      "name": "Five-stage ABN compliance workflow",
+      "description": "Identification, preparation, delivery, modifier assignment and monthly post-service audit, described in prose."
+    },
+    {
+      "name": "Billing modifier table and modifier notes",
+      "description": "Six scenario rows mapping notice type and patient option to GA, GY, GZ or no claim, with a note on pairing GX with GY."
+    },
+    {
+      "name": "Completed sample ABN - medical necessity (echocardiogram)",
+      "description": "Hypothetical field entries for a diagnosis outside LCD indications; estimate $485-$620; shows an MBI in Field C."
+    },
+    {
+      "name": "Completed sample ABN - frequency limit (bone density scan)",
+      "description": "Hypothetical field entries for a repeat scan at 14 months against a 24-month limit; estimate $220-$310."
+    },
+    {
+      "name": "Completed sample ABN - voluntary, statutory exclusion (routine eye exam with refraction)",
+      "description": "Hypothetical field entries for a never-covered service; estimate $130-$175."
+    },
+    {
+      "name": "Blank ABN completion template",
+      "description": "One-line prompts per field; explicitly a completion guide and not a substitute for the CMS form."
+    },
+    {
+      "name": "90-Day ABN Compliance Implementation Plan",
+      "description": "Three months with seven tasks each: assessment and form update; workflow build and training; rollout, monitoring and calibration."
+    },
+    {
+      "name": "Quick-Reference Checklist 1: ABN Program Launch",
+      "description": "Twenty-three tick-box items in five groups (form and documentation, trigger list, workflow, training, monitoring)."
+    },
+    {
+      "name": "Quick-Reference Checklist 2: Per-Encounter ABN Checklist",
+      "description": "Twenty-one tick-box items in four groups (pre-encounter, form completion, delivery, post-delivery)."
+    },
+    {
+      "name": "ABN log (described, not supplied)",
+      "description": "Tracker fields named only: date, patient, service, option selected, staff member; no layout or file provided."
+    },
+    {
+      "name": "Service-specific ABN trigger list (described, not supplied)",
+      "description": "Practice-built list of codes with medical-necessity or frequency denials and their coverage rules; no template provided."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Historical revenue forfeiture",
+      "definition": "Total billed amount of Medicare denials in the audit period for which no valid ABN was on file",
+      "formula": "Sum of billed amounts for twelve months of denials (CO-50, CO-96, CO-119, PR-204) whose notice is rated missing or invalid",
+      "target": "",
+      "red_flag": "Any non-zero amount; the document says it is typically larger than expected",
+      "source_cited": "none"
+    },
+    {
+      "name": "ABN validity status per denied encounter",
+      "definition": "Each relevant denial classified as having a valid, invalid or missing notice",
+      "formula": "",
+      "target": "",
+      "red_flag": "Invalid or missing",
+      "source_cited": "none"
+    },
+    {
+      "name": "ABN-related denial concentration",
+      "definition": "Distribution of ABN-relevant denials by provider, by CPT or HCPCS code and by denial reason",
+      "formula": "Counts grouped by provider, service code and reason category",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Workflow gap count",
+      "definition": "Medical-necessity or frequency denials on trigger-list services with no matching ABN log entry",
+      "formula": "Monthly count of such denials",
+      "target": "0 implied (not stated as a number)",
+      "red_flag": "Any such denial",
+      "source_cited": "none"
+    },
+    {
+      "name": "Post-implementation ABN forfeiture rate (called compliance ROI)",
+      "definition": "Forfeiture in the 90 days after rollout compared with the pre-implementation baseline",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Six-month re-audit delta",
+      "definition": "Change in audit result when the baseline audit is repeated six months after full implementation; presented as the return on the program",
+      "formula": "Baseline audit result minus six-month audit result",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Baseline denial rate",
+      "definition": "Denial rate recorded for before-and-after comparison; named in Checklist 1 without a definition and mislabeled there as post-implementation",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "The updated Form CMS-R-131 was approved by OMB on March 13, 2026.",
+      "section": "Introduction; Sections 1 and 4",
+      "source_cited": "OMB/CMS named; no citation or link"
+    },
+    {
+      "claim": "OMB approval of the current form runs through March 31, 2029.",
+      "section": "Introduction; Sections 1, 4, 8, 10; both checklists",
+      "source_cited": "OMB/CMS named; no citation or link"
+    },
+    {
+      "claim": "The updated form became mandatory on May 12, 2026; any prior version is now a compliance failure.",
+      "section": "Front matter; Introduction; Sections 1, 4, 5, 7, 8; 90-day plan",
+      "source_cited": "CMS named; no citation or link"
+    },
+    {
+      "claim": "The form carries OMB Control Number 0938-0566.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The current approved version is described 'as of April 2026'.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The ABN is governed by Medicare Claims Processing Manual, Chapter 30, beginning at Section 50.",
+      "section": "Section 1",
+      "source_cited": "Medicare Claims Processing Manual (named, no link)"
+    },
+    {
+      "claim": "Authority traces to Section 1879 of the Social Security Act.",
+      "section": "Sections 1 and 7",
+      "source_cited": "Social Security Act section 1879 (named)"
+    },
+    {
+      "claim": "There are five mandatory ABN triggers.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Bone density scans are covered every 24 months for most indications.",
+      "section": "Sections 2 and 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Hospice eligibility depends on a prognosis of six months or less.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Form CMS-R-131 has eight labeled fields (A through H), plus signature and date.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Field E offers seven reason statements, one or more of which must be checked.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Field G gives the patient three options.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A cost estimate may be a range, for example $150-$300.",
+      "section": "Section 4",
+      "source_cited": "CMS guidance referenced generally in Section 5; no citation"
+    },
+    {
+      "claim": "'Thirty years of revenue cycle work identifies five failure patterns'.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS makes the form available in English and Spanish.",
+      "section": "Section 6",
+      "source_cited": "CMS named; no link"
+    },
+    {
+      "claim": "ABNs must be retained a minimum of five years from the date of service, longer if state law requires.",
+      "section": "Section 6; Checklist 1",
+      "source_cited": "'Medicare's general medical record retention standard' (no citation)"
+    },
+    {
+      "claim": "Nine circumstances make an ABN invalid.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Common remark codes when the notice is missing include N563 and CO-96.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Audit filter codes are CO-50, CO-96, CO-119 (frequency limit exceeded) and PR-204.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Audit lookback is the prior 12 months; rerun six months after full implementation.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Any form with an expiration date before March 31, 2029 is a prior version.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "'Every practice that bills Medicare issues ABNs. Most of them are wrong.' (no figure given)",
+      "section": "Cover; Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Sample estimate for an echocardiogram: $485-$620 (hypothetical).",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Sample estimate for a bone density scan: $220-$310, prior scan 14 months earlier (hypothetical).",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Sample estimate for a routine eye exam with refraction: $130-$175 (hypothetical).",
+      "section": "Section 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Pilot the workflow on the two to three service types with the highest trigger frequency.",
+      "section": "90-day plan, Month 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Trigger list to be updated quarterly, timed to the MAC's LCD update cycle.",
+      "section": "90-day plan, Month 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Example of an unacceptable service description: CPT code 97001 for a physical therapy evaluation.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Domain 9 of the vendor's Annual Revenue Cycle Assessment Guide scores ABN program compliance.",
+      "section": "Section 8; Closing",
+      "source_cited": "Vendor's own product"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "CMS released an updated Form CMS-R-131 on March 13, 2026, with OMB approval valid through March 31, 2029; it became mandatory May 12, 2026 and use of any prior version is a compliance failure.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 1 (Form Version Alert); repeated in front matter, Introduction, Sections 4, 5, 7, 8",
+      "why": "Notice validity is tied to using the current approved form. If these dates are wrong, a practice may be relying on a form contractors no longer accept, or discarding one that is still valid; every notice since the stated date would be affected."
+    },
+    {
+      "id": "C2",
+      "claim": "A voluntary ABN for a statutorily excluded service is not required, but without one the practice cannot bill the patient if the service is later denied; an unissued voluntary ABN is a guaranteed revenue forfeiture.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 3 (Category 1: Statutory Exclusions); also Introduction, Sections 1 and 7",
+      "why": "CMS policy is understood to treat the voluntary notice as a courtesy with no effect on liability, so patients owe for never-covered services either way. If the document is wrong, practices would write off collectible balances and the audit would overstate losses."
+    },
+    {
+      "id": "C3",
+      "claim": "When a mandatory ABN is missing or invalid, the result is a billing prohibition that is permanent, non-appealable and complete; there is no administrative remedy, no reconsideration pathway and no recovery mechanism, and the denial is final.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 7; also Introduction and Section 2",
+      "why": "Providers have appeal rights on medical-necessity denials and on the liability finding, and many such denials are correctable diagnosis or coding errors. Treating them as final leads to writing off recoverable revenue."
+    },
+    {
+      "id": "C4",
+      "claim": "Field C should hold the patient's Medicare Beneficiary Identifier (MBI), or HICN for older beneficiaries not yet transitioned to MBI; the field is optional but completing it is strongly recommended.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4 (Field C); Section 10 samples; Checklist 2",
+      "why": "CMS form instructions are understood to bar Medicare numbers and Social Security numbers from the notice. Following the document would print the MBI on every notice and patient copy, creating identity-theft exposure and a non-conforming form."
+    },
+    {
+      "id": "C5",
+      "claim": "Field E consists of reason boxes, one or more of which must be checked (seven quoted reasons are listed); an ABN with an unchecked reason box is invalid.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4 (Field E); Sections 5 and 7; Checklist 2",
+      "why": "The CMS form's reason area is understood to be free text, with check boxes only for the three patient options. Staff trained to look for reason boxes may leave the plain-language reason inadequate, which is what actually defeats a notice."
+    },
+    {
+      "id": "C6",
+      "claim": "Blanket ABNs, including a single ABN issued at the start of a course of treatment or calendar year, are not valid under CMS policy; a service-specific ABN must be issued before each service for which denial is anticipated.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 5 (Failure 4: The Blanket ABN)",
+      "why": "CMS is understood to allow one notice for an extended or repetitive course of the same listed services for up to one year. If the document is wrong, practices carry needless per-visit paperwork or wrongly treat valid notices as void."
+    },
+    {
+      "id": "C7",
+      "claim": "When a voluntary ABN is issued for a service later denied, the claim should carry modifier GY to indicate the patient has been notified and may be billed; mandatory ABN situations use GA.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3 (Billing Note); contradicted by Section 9 modifier notes",
+      "why": "GX, not GY, is the voluntary-notice modifier; GY only marks a statutory exclusion. The document gives two different instructions. Wrong modifiers change how the claim adjudicates and who is shown as liable."
+    },
+    {
+      "id": "C8",
+      "claim": "For dually eligible patients an ABN may still be required, and Medicaid rules in most states prohibit billing Medicaid beneficiaries for Medicare medical-necessity denials without a separate, valid financial liability agreement under Medicaid.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 1 (The ABN and Medicaid)",
+      "why": "Practices with dual-eligible patients need the exact rule. CMS form instructions carry specific dual-eligible steps and federal QMB rules restrict billing; a vague or wrong statement risks improper billing of protected patients and state Medicaid violations."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "compliance-risk",
+      "weight": 0.5,
+      "topics": [
+        "ABN patient-notice program",
+        "form validity and version control",
+        "delivery, language and representative rules",
+        "refusal documentation",
+        "record retention",
+        "exposure audit",
+        "training records",
+        "prohibited patient billing"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.15,
+      "topics": [
+        "pre-service identification of non-covered services",
+        "payer-type check before notice",
+        "frequency-limit checks",
+        "patient cost estimates",
+        "financial clearance"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.12,
+      "topics": [
+        "denial analysis by reason code",
+        "monthly denial-to-notice reconciliation",
+        "patient billing rights after denial",
+        "write-offs for provider-liable denials"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.1,
+      "topics": [
+        "GA, GX, GY, GZ modifiers",
+        "diagnosis-to-service coverage checks under NCD and LCD",
+        "clinical-to-billing handoff"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.08,
+      "topics": [
+        "Original Medicare versus Medicare Advantage notice rules",
+        "dual-eligible limits",
+        "LCD and NCD policy monitoring"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.03,
+      "topics": [
+        "practice-management flags for trigger services",
+        "notice log as a data source"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.02,
+      "topics": [
+        "role ownership for notice steps",
+        "staff and provider training"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Derive a service-specific trigger list from the practice's own Medicare denial history and map each code to its NCD or LCD covered diagnoses and frequency limits.",
+      "why": "Turns an abstract rule into a short, testable list and focuses effort on the few services that actually produce medical-necessity or frequency denials.",
+      "applies_to_practice": "partly",
+      "note": "For this practice the list is short: annual wellness visit and other preventive frequency limits, plus anything outside First Coast LCD indications. Implement as a pre-bill rule in the agent workflow rather than a scheduling flag."
+    },
+    {
+      "idea": "Reconcile medical-necessity and frequency denials every month against a log of notices issued.",
+      "why": "A cheap detective control that shows whether the preventive step works and surfaces new coverage rules early.",
+      "applies_to_practice": "yes",
+      "note": "Agents can run it from AdvancedMD denial data. Add a first step the document omits: decide whether each denial is a fixable coding or diagnosis error before calling it a notice failure."
+    },
+    {
+      "idea": "Confirm payer type before any liability notice: the Medicare form is only for Original Medicare.",
+      "why": "Using the Medicare form for a Medicare Advantage or Medicaid patient gives no protection and misstates the patient's rights.",
+      "applies_to_practice": "yes",
+      "note": "About 45% of charges are not Original Medicare. The document stops at the warning; the plan-side process (pre-service organization determination for Medicare Advantage) must be written separately."
+    },
+    {
+      "idea": "Use a modifier decision table (GA, GX, GY, GZ) driven by documented notice status and the option the patient chose.",
+      "why": "Makes the claim state truthfully whether notice was given, which decides who is liable for a denial.",
+      "applies_to_practice": "partly",
+      "note": "Encode as a claim-scrubber rule: GA only when a signed notice is on file; GZ when a required notice was not obtained. Use the Section 9 definitions, not the Section 3 billing note, and confirm against CMS."
+    },
+    {
+      "idea": "Run form-version control: one named owner, an inventory of every place the form lives (paper, templates, e-sign tools), checked against the CMS website.",
+      "why": "Outdated versions can be treated as invalid, and templates buried in software are easy to miss.",
+      "applies_to_practice": "yes",
+      "note": "Add a recurring calendar check ahead of each OMB expiration date; the document only does this once at launch."
+    },
+    {
+      "idea": "Do a baseline review of twelve months of Medicare denials by code, provider and service, and repeat it after six months.",
+      "why": "Sizes the problem before effort is spent and gives a before-and-after measure.",
+      "applies_to_practice": "partly",
+      "note": "Useful as a denial-pattern review. Do not use the document's dollar method: exclude patient-responsibility and correctable denials, value at expected collections, and list any patient payments that must be refunded."
+    },
+    {
+      "idea": "Keep a notice log recording date, patient, service, reason, option chosen, who delivered it and the modifier used, stored with the signed form for at least five years.",
+      "why": "Provides audit evidence and the data source for the monthly reconciliation.",
+      "applies_to_practice": "partly",
+      "note": "Volume will be low; a simple table in the billing backend is enough. Check Florida record-retention rules for a longer period."
+    },
+    {
+      "idea": "Issue the notice ahead of the encounter whenever the trigger is known in advance.",
+      "why": "Gives the patient or representative real time to decide and avoids rushed bedside paperwork.",
+      "applies_to_practice": "yes",
+      "note": "For facility residents with off-site representatives this is the only practical route. The document does not cover CMS rules for telephone or mailed notice to representatives; those must be added."
+    },
+    {
+      "idea": "Use a per-encounter completion checklist: plain-language service description, specific reason, dollar estimate, patient chooses the option, verbal review, copy given, refusal documented.",
+      "why": "Most defective notices fail on these basics, and a checklist suits a task performed rarely.",
+      "applies_to_practice": "partly",
+      "note": "Rebuild it from the CMS form instructions: drop the MBI step and the reason 'boxes', and add the cost-estimate tolerance and dual-eligible instructions."
+    },
+    {
+      "idea": "Review coverage policy quarterly, update the trigger list when the MAC changes an LCD, and document staff and provider training.",
+      "why": "Coverage rules change and a static list decays; training records are standard compliance-program evidence.",
+      "applies_to_practice": "yes",
+      "note": "Fold into payment-policy monitoring for First Coast Service Options rather than running a separate ABN meeting."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice's revenue is almost entirely facility-based evaluation and management, care management, advance care planning and wellness visits. Those services rarely call for an ABN; the main live use is an annual wellness visit that may fall inside the frequency window because another provider already billed one, plus the occasional family-requested service not expected to be covered. Only about 55% of charges are Original Medicare, and the notice has no role for Medicare Advantage, Medicaid managed care, VA or Tricare. The document's delivery model (front desk, scheduling flags, patient portal) does not fit bedside work with cognitively impaired residents whose representatives are off-site, and it gives no guidance on dual eligibles beyond one vague paragraph. It still justifies a short written policy, a GA/GX/GY/GZ claim-edit rule and form-version control, and the topic is a required module for any practice-optimization service.",
+    "sections_that_do_not_apply": [
+      "Section 2, Trigger 4 (therapy threshold)",
+      "Section 2, Trigger 5 (hospice, non-terminal beneficiary)",
+      "Section 2, Trigger 3 as written (custodial care framed for home health and hospice)",
+      "Section 3 statutory-exclusion examples (dental, eyeglasses, hearing aids, cosmetic surgery)",
+      "Section 9 Stages 1-3 as written (front desk, next-day schedule review, scheduling flags, patient portal)",
+      "Section 10 samples (echocardiogram, bone density scan, routine eye exam)",
+      "90-day plan and Checklist 1 items aimed at front-desk staff and scheduling-system flags",
+      "The whole document for the roughly 45% of charges that are Medicare Advantage, Medicaid managed care, VA or Tricare"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Core premise of the voluntary track is wrong. The document says a practice cannot bill a patient for a statutorily excluded service unless a voluntary ABN was given (Introduction, Sections 1, 3, 7, third sample). CMS manual chapter 30 section 50 treats the voluntary notice as a courtesy with no effect on liability; the beneficiary owes for never-covered services with or without it, and Medicare posts those denials as patient responsibility.",
+      "Defines 'voluntary' to include 'uncertain coverage'. Under CMS policy a genuine expectation of a medical-necessity denial for a normally covered service puts the notice on the mandatory side, and generalized uncertainty does not justify a notice at all.",
+      "Field C: tells staff to enter the MBI (or an HICN) and builds that into all three samples and the per-encounter checklist. CMS form instructions say Medicare numbers and Social Security numbers must not appear on the notice; the field is for an internal number such as a chart number.",
+      "Field E is described as seven pre-printed reason check boxes with quoted wording, and an 'unchecked box' is said to void the notice. The CMS form has a free-text reason column; its only check boxes are the three options in G. The quoted reasons, including 'setting' and 'provider type', look invented and are not medical-necessity grounds.",
+      "Says a single ABN at the start of a course of treatment is invalid and one is needed before each service. CMS allows one notice to cover an extended or repetitive course of the same listed services for up to one year.",
+      "States that a denial without an ABN is final, non-appealable and has no reconsideration pathway. Providers can appeal medical-necessity denials and the liability finding, can correct diagnosis or coding errors, and section 1879 also protects a provider who did not know and could not reasonably have known.",
+      "Section 3 says modifier GY tells Medicare the patient was notified and may be billed. GY only marks a statutorily excluded service; GX is the voluntary-notice modifier. Section 9 states it correctly, so the document gives two different instructions.",
+      "Suggests a voluntary ABN protects the right to bill for a service that may be bundled and denied as duplicate. Bundling (NCCI edit) and unit-limit (MUE) denials are coding denials; CMS policy bars using an ABN to shift them to the beneficiary.",
+      "Recommends issuing ABNs for a whole list of services whether or not a denial is expected and says more ABNs is nearly always better. That is the routine-notice practice CMS prohibits, with narrow exceptions, and treats as ineffective.",
+      "Refusal to sign: says staff must record date, time and a witness. CMS requires annotating the refusal and giving a copy; a witness is optional. The 'patient initials' and 'staff witnesses' steps in the templates are also not CMS requirements.",
+      "Field A is said to have to be the billing entity; CMS allows the notifier to differ from the biller if the form says whom to contact about billing. Field B is said to risk voiding the notice on any name discrepancy; CMS says a misspelling or missing initial does not invalidate it.",
+      "Field count is wrong: the form has ten lettered blanks, A through J (I is signature, J is date), not eight plus signature. Section 4 also says every field must be complete for validity while calling C and H optional.",
+      "Lists routine vision and hearing exams as frequency-limited services on the mandatory track; they are statutory exclusions, as Section 3 itself says.",
+      "Custodial-care trigger uses 'no expectation of medical improvement' and extends the idea to office management of stable chronic conditions. Coverage turns on need for skilled care, not improvement (Jimmo settlement), and ordinary physician visits to stable or long-stay patients are not custodial care. This is misleading for nursing-facility practices.",
+      "Introduction says giving the ABN at the front desk after the service was scheduled violates the timing rule, and Section 2 says the same of a notice given in the exam room. The rule is delivery before the service with enough time to decide, without duress; scheduling and rooming are not the test.",
+      "Audit method overstates loss. It counts every CO-50, CO-96, CO-119 and PR-204 denial as a notice failure, prices it at billed charges and declares it unrecoverable. PR-coded denials are billable to the patient, many CO-50 denials are correctable, CO-119 is a benefit-maximum code (frequency denials often post under CO-151), and billed charges are not collectible value.",
+      "Tells readers the audit findings are 'not a compliance action item'. If the audit finds patients who were billed or paid without a valid notice, or GA modifiers used with no notice on file, refunds and corrections are due; the document never says so.",
+      "Dual-eligible paragraph is vague ('most states') and omits the CMS form instruction for dual eligibles (Option 1 with struck-through payment language) and the federal QMB billing prohibition.",
+      "Says voluntary notices follow the same completion and delivery standards as mandatory ones; CMS says a voluntary notice needs no option selection or signature.",
+      "Mandatory trigger list omits home health (homebound status, intermittent skilled care) and DMEPOS supplier triggers while presenting itself as the complete list.",
+      "Says Medicare Advantage plans have their own notice rules but never states the actual mechanism (a pre-service organization determination and plan-issued denial notice), leaving readers with nothing to act on.",
+      "Remark code N563 is called common for these denials; unverified. Physician medical-necessity denials without a notice normally post as CO-50 with limitation-of-liability remark codes.",
+      "Unsupported assertions presented as fact: 'most' ABNs are wrong, 'thirty years of revenue cycle work', MAC audits 'keep finding the same failures'. No data, author or source.",
+      "Form revision dates (March 13, 2026 approval, May 12, 2026 mandatory date, March 31, 2029 expiration) are plausible but could not be confirmed in this read and carry no CMS link; they must be checked on the CMS Beneficiary Notices Initiative page.",
+      "Closing describes the No Surprises Act as extending the same notice architecture to 'non-Medicare patients' within a 'Medicare compliance framework'; the good-faith-estimate rules cover uninsured and self-pay patients, not non-Medicare patients generally."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 3 billing note: GY signals the patient was notified and may be billed. Section 9 modifier notes: GX signals the voluntary notice, GY only the exclusion.",
+      "Sections 1, 3 and 7 say no voluntary ABN means the patient cannot be billed; Section 9 describes GY as statutorily excluded with 'no ABN legally required'. Never reconciled.",
+      "Section 6 prohibits routine ABNs without a specific anticipated denial; Section 3 endorses ABNs for a whole service list 'regardless of whether a specific denial is expected'.",
+      "Introduction treats front-desk delivery after scheduling as a timing violation; Section 6 accepts front-desk delivery on arrival and Section 9 allows point-of-care notices before the service.",
+      "Section 2 says a notice given once the patient is in the exam room is invalid; Section 9 says a need arising during the appointment can be handled with a form completed before the service.",
+      "Section 2 lists routine vision and hearing exams as frequency-limited (mandatory track); Section 3 lists them as statutory exclusions (voluntary track).",
+      "Section 5 Failure 1 is titled as if issuing ABNs for non-covered services is the error; Section 3 tells practices to issue them for every non-covered service.",
+      "Section 4 says every field must be completed for a valid notice, then calls Field C and Field H optional.",
+      "Section 1 hedges that an expired form 'may not' satisfy the requirement; Sections 5 and 7 state flatly that it does not.",
+      "90-day plan says the audit is finished before Month 1, then lists completing the audit as the first Month 1 task.",
+      "Checklist 1 asks for a 'post-implementation baseline'; Section 8 defines the baseline as pre-implementation.",
+      "Section 7 insists the consequence is 'not a fine' and the Introduction says 'not penalized'; Section 8 is titled a 'Penalty Risk Audit'.",
+      "Section 8 says audit findings are not a compliance action item; Section 7 says billing patients without a valid notice triggers repayment demands and possible referral.",
+      "Body claims to reflect current approved form requirements; the closing footer says the material may not reflect the most recent version of any requirement."
+    ],
+    "time_sensitive_or_outdated": [
+      "Form revision facts (approved March 13, 2026; mandatory May 12, 2026; expires March 31, 2029) need confirmation on the CMS site; a leftover 'as of April 2026' shows the text was patched after first drafting.",
+      "Refers to an HICN for beneficiaries 'not transitioned' to the MBI; the HICN transition ended December 31, 2019.",
+      "Uses 'therapy cap' language; the caps were repealed in 2018 and replaced by the KX modifier threshold, which changes every year and is not quantified here.",
+      "Example code 97001 was deleted from CPT in 2017.",
+      "Custodial-care wording predates the Jimmo manual clarifications of 2013-2014.",
+      "Denial and remark codes are updated several times a year; the codes listed are not tied to a dated source.",
+      "LCD and NCD content, frequency limits and MAC policies change; none is cited by number, so nothing can be checked for currency.",
+      "No mention of anything dated after spring 2026; a reader in November 2026 cannot tell whether later CMS changes were considered."
+    ],
+    "ai_generation_signals": [
+      "No named author, credential or reviewer, yet an unattributed claim of 'thirty years of revenue cycle work'.",
+      "Closing footer refers to 'AI-generated draft' material and reads like a template pasted from another product.",
+      "The same form-deadline sentence appears eight times and the 2029 expiry date at least nine times in near-identical wording.",
+      "Runs of short dramatic sentences and triads ('Not after the denial. Not after the appeal. Not ever.') stand in for citations.",
+      "Confident quotation of form text that is not on the form (seven reason boxes).",
+      "Stale training-era details (HICN, therapy cap, CPT 97001) mixed with 2026 dates.",
+      "Sample forms use fictional practices with 555 phone numbers and the specimen MBI that CMS publishes.",
+      "Sections contradict one another on modifiers, timing and routine notices, consistent with sections generated separately and never reconciled.",
+      "Low density: about 11,500 words over 65 pages, checklists that restate the body, and four cross-sells to other vendor products.",
+      "No links, manual subsection numbers, CFR citations or NCD/LCD identifiers anywhere."
+    ],
+    "missing_for_real_use": [
+      "Links and exact citations: the CMS form and its instructions, Manual chapter 30 section 50 subsections, 42 CFR 411.400-411.408, the CMS MLN booklet on advance written notices.",
+      "Dual-eligible and QMB handling, including the form's special Option 1 instructions and when Medicaid adjudication must come first.",
+      "How patient liability is handled for Medicare Advantage (pre-service organization determination and plan denial notice), Medicaid managed care, Tricare and VA.",
+      "The CMS good-faith tolerance for cost estimates, how to bundle several items into one estimate, and what to write when cost cannot be known in advance.",
+      "The rule allowing one notice for a repetitive course of treatment for up to a year, and when a new notice is required.",
+      "Telephone, mail, email and electronic-signature delivery rules; notice to representatives of incapacitated or facility-resident patients; who qualifies as a representative under state law.",
+      "The ban on ABNs in emergencies or under duress (EMTALA), covered by one bullet only.",
+      "Collecting at time of service under Options 1 and 2, and refund duties and deadlines when Medicare later pays or the notice proves defective.",
+      "Provider appeal rights and the provider-side 'did not know' protection under section 1879.",
+      "Coding denials (NCCI edits, MUEs, duplicates) where an ABN cannot shift liability.",
+      "Who delivers the notice when one entity orders and another bills (laboratory, imaging, DME).",
+      "A usable trigger-list template and ABN log template; both are only described.",
+      "A primary-care or geriatrics service list (wellness-visit and screening frequencies, routine foot care, screening labs) and any facility-based or no-front-desk workflow.",
+      "Permitted customizations of the form (pre-printed items and reasons, one-page limit, readability) and rules for electronic versions.",
+      "Other facility notices a practice will meet (SNF ABN for Part A, Notice of Medicare Non-Coverage, hospital-issued notices) so staff do not confuse them.",
+      "Metric formulas and targets, named roles, time estimates and a sample policy document."
+    ]
+  }
+}

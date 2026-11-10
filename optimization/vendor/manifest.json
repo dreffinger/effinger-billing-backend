@@ -1,0 +1,544 @@
+{
+ "docs": [
+  {
+   "slug": "performance-system-start-here",
+   "file": "01_CleanClaimRx_Performance_System_Start_Here_REBUILT",
+   "bundle": "CleanClaimRx_Performance_System",
+   "type": "system",
+   "pages": 7,
+   "words": 1624,
+   "lines": 288
+  },
+  {
+   "slug": "front-end-control-kit-workbook",
+   "file": "03_CleanClaimRx_Front-End_Control_Kit_REBUILT.xlsx",
+   "bundle": "CleanClaimRx_Performance_System",
+   "type": "workbook",
+   "pages": null,
+   "words": 1783,
+   "lines": 310
+  },
+  {
+   "slug": "prior-authorization-control-kit-workbook",
+   "file": "05_CleanClaimRx_Prior_Authorization_Control_Kit_REBUILT.xlsx",
+   "bundle": "CleanClaimRx_Performance_System",
+   "type": "workbook",
+   "pages": null,
+   "words": 2495,
+   "lines": 455
+  },
+  {
+   "slug": "denial-control-kit-workbook",
+   "file": "07_CleanClaimRx_Denial_Control_Kit_REBUILT.xlsx",
+   "bundle": "CleanClaimRx_Performance_System",
+   "type": "workbook",
+   "pages": null,
+   "words": 1774,
+   "lines": 159
+  },
+  {
+   "slug": "performance-system-release-notes",
+   "file": "10_CleanClaimRx_Performance_System_Release_Notes_REBUILT",
+   "bundle": "CleanClaimRx_Performance_System",
+   "type": "system",
+   "pages": 4,
+   "words": 774,
+   "lines": 146
+  },
+  {
+   "slug": "federal-idr-playbook",
+   "file": "CleanClaimRx_Federal_IDR_Playbook_REBUILT",
+   "bundle": "Full_Compliance_Series_-_All_5_Compliance_Playbooks",
+   "type": "compliance",
+   "pages": 66,
+   "words": 9969,
+   "lines": 2074
+  },
+  {
+   "slug": "hipaa-revenue-cycle-playbook",
+   "file": "CleanClaimRx_HIPAA_Revenue_Cycle_Playbook_REBUILT",
+   "bundle": "Full_Compliance_Series_-_All_5_Compliance_Playbooks",
+   "type": "compliance",
+   "pages": 75,
+   "words": 11621,
+   "lines": 2196
+  },
+  {
+   "slug": "medicare-abn-compliance-playbook",
+   "file": "CleanClaimRx_Medicare_ABN_Compliance_Playbook_REBUILT",
+   "bundle": "Full_Compliance_Series_-_All_5_Compliance_Playbooks",
+   "type": "compliance",
+   "pages": 65,
+   "words": 11457,
+   "lines": 2219
+  },
+  {
+   "slug": "no-surprises-act-playbook",
+   "file": "CleanClaimRx_No_Surprises_Act_Playbook_REBUILT",
+   "bundle": "Full_Compliance_Series_-_All_5_Compliance_Playbooks",
+   "type": "compliance",
+   "pages": 56,
+   "words": 8186,
+   "lines": 1821
+  },
+  {
+   "slug": "stark-antikickback-playbook",
+   "file": "CleanClaimRx_Stark_AntiKickback_Playbook_REBUILT",
+   "bundle": "Full_Compliance_Series_-_All_5_Compliance_Playbooks",
+   "type": "compliance",
+   "pages": 81,
+   "words": 13727,
+   "lines": 2492
+  },
+  {
+   "slug": "kpi-action-guide-vol1-core10",
+   "file": "CCRx_KPI_Action_Guide_Vol1_Core10_REBUILT",
+   "bundle": "KPI_Action_Guide_-_Complete_Bundle",
+   "type": "kpi_guide",
+   "pages": 85,
+   "words": 16781,
+   "lines": 2793
+  },
+  {
+   "slug": "kpi-action-guide-vol2-specialty",
+   "file": "CCRx_KPI_Action_Guide_Vol2_Specialty_REBUILT",
+   "bundle": "KPI_Action_Guide_-_Complete_Bundle",
+   "type": "kpi_guide",
+   "pages": 58,
+   "words": 11691,
+   "lines": 1924
+  },
+  {
+   "slug": "universal-specialty-billing-framework",
+   "file": "CCRx_Universal_Specialty_Billing_Framework_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 53,
+   "words": 10466,
+   "lines": 1873
+  },
+  {
+   "slug": "behavioralhealth-companion-guide",
+   "file": "CleanClaimRx_BehavioralHealth_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 38,
+   "words": 6504,
+   "lines": 1220
+  },
+  {
+   "slug": "cardiology-companion-guide",
+   "file": "CleanClaimRx_Cardiology_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 42,
+   "words": 7144,
+   "lines": 1408
+  },
+  {
+   "slug": "ent-companion-guide",
+   "file": "CleanClaimRx_ENT_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 46,
+   "words": 8012,
+   "lines": 1549
+  },
+  {
+   "slug": "geriatrics-companion-guide",
+   "file": "CleanClaimRx_Geriatrics_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 37,
+   "words": 6578,
+   "lines": 1280
+  },
+  {
+   "slug": "neurology-companion-guide",
+   "file": "CleanClaimRx_Neurology_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 42,
+   "words": 7260,
+   "lines": 1345
+  },
+  {
+   "slug": "obgyn-companion-guide",
+   "file": "CleanClaimRx_OBGyn_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 41,
+   "words": 6578,
+   "lines": 1262
+  },
+  {
+   "slug": "oncology-companion-guide",
+   "file": "CleanClaimRx_Oncology_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 51,
+   "words": 7833,
+   "lines": 1499
+  },
+  {
+   "slug": "orthopedics-companion-guide",
+   "file": "CleanClaimRx_Orthopedics_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 44,
+   "words": 8078,
+   "lines": 1439
+  },
+  {
+   "slug": "pediatrics-companion-guide",
+   "file": "CleanClaimRx_Pediatrics_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 40,
+   "words": 7797,
+   "lines": 1403
+  },
+  {
+   "slug": "primarycare-companion-guide",
+   "file": "CleanClaimRx_PrimaryCare_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 40,
+   "words": 8416,
+   "lines": 1398
+  },
+  {
+   "slug": "radiologylab-companion-guide",
+   "file": "CleanClaimRx_RadiologyLab_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 50,
+   "words": 8393,
+   "lines": 1576
+  },
+  {
+   "slug": "rheumatology-companion-guide",
+   "file": "CleanClaimRx_Rheumatology_Companion_Guide_REBUILT",
+   "bundle": "Specialty_Companion_Guide_-_Complete_Bundle",
+   "type": "specialty",
+   "pages": 40,
+   "words": 7235,
+   "lines": 1329
+  },
+  {
+   "slug": "kpi-01-denial-rate-by-payer",
+   "file": "CleanClaimRx_KPI_01_Denial_Rate_by_Payer_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 23,
+   "words": 4252,
+   "lines": 691
+  },
+  {
+   "slug": "kpi-02-clean-claim-rate",
+   "file": "CleanClaimRx_KPI_02_Clean_Claim_Rate_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 25,
+   "words": 4526,
+   "lines": 749
+  },
+  {
+   "slug": "kpi-03-days-in-ar",
+   "file": "CleanClaimRx_KPI_03_Days_in_AR_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 24,
+   "words": 4510,
+   "lines": 715
+  },
+  {
+   "slug": "kpi-04-ar-aging-buckets",
+   "file": "CleanClaimRx_KPI_04_AR_Aging_Buckets_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 27,
+   "words": 4742,
+   "lines": 792
+  },
+  {
+   "slug": "kpi-05-pos-collection-rate",
+   "file": "CleanClaimRx_KPI_05_POS_Collection_Rate_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 27,
+   "words": 5109,
+   "lines": 837
+  },
+  {
+   "slug": "kpi-06-patient-collection-rate",
+   "file": "CleanClaimRx_KPI_06_Patient_Collection_Rate_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 27,
+   "words": 4974,
+   "lines": 830
+  },
+  {
+   "slug": "kpi-07-write-off-rate-by-reason",
+   "file": "CleanClaimRx_KPI_07_Write_Off_Rate_by_Reason_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 30,
+   "words": 5135,
+   "lines": 869
+  },
+  {
+   "slug": "kpi-08-net-collection-rate",
+   "file": "CleanClaimRx_KPI_08_Net_Collection_Rate_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 26,
+   "words": 4923,
+   "lines": 819
+  },
+  {
+   "slug": "kpi-09-charge-lag",
+   "file": "CleanClaimRx_KPI_09_Charge_Lag_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 26,
+   "words": 4938,
+   "lines": 807
+  },
+  {
+   "slug": "kpi-10-cost-to-collect",
+   "file": "CleanClaimRx_KPI_10_Cost_to_Collect_REBUILT",
+   "bundle": "The_KPI_Prescription_-_Complete_Series_Bundle",
+   "type": "kpi_rx",
+   "pages": 29,
+   "words": 5374,
+   "lines": 885
+  },
+  {
+   "slug": "annual-revenue-cycle-assessment-guide",
+   "file": "CCRx_Annual_Revenue_Cycle_Assessment_Guide_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 48,
+   "words": 7439,
+   "lines": 1729
+  },
+  {
+   "slug": "billing-department-performance-management-playbook",
+   "file": "CCRx_Billing_Department_Performance_Management_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 64,
+   "words": 8479,
+   "lines": 1836
+  },
+  {
+   "slug": "charge-capture-audit-playbook",
+   "file": "CCRx_Charge_Capture_Audit_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 44,
+   "words": 6080,
+   "lines": 1290
+  },
+  {
+   "slug": "coding-audit-playbook",
+   "file": "CCRx_Coding_Audit_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 52,
+   "words": 7059,
+   "lines": 1662
+  },
+  {
+   "slug": "denial-management-playbook",
+   "file": "CCRx_Denial_Management_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 69,
+   "words": 11426,
+   "lines": 2105
+  },
+  {
+   "slug": "fee-schedule-optimization-playbook",
+   "file": "CCRx_Fee_Schedule_Optimization_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 63,
+   "words": 8865,
+   "lines": 1780
+  },
+  {
+   "slug": "medicare-advantage-operational-playbook",
+   "file": "CCRx_Medicare_Advantage_Operational_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 69,
+   "words": 10486,
+   "lines": 2165
+  },
+  {
+   "slug": "payer-rate-negotiation-playbook",
+   "file": "CCRx_Payer_Rate_Negotiation_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 73,
+   "words": 10841,
+   "lines": 2162
+  },
+  {
+   "slug": "physician-compensation-negotiation-guide",
+   "file": "CCRx_Physician_Compensation_Negotiation_Guide_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 58,
+   "words": 9439,
+   "lines": 1812
+  },
+  {
+   "slug": "practice-financial-intelligence-playbook",
+   "file": "CCRx_Practice_Financial_Intelligence_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 76,
+   "words": 10929,
+   "lines": 2403
+  },
+  {
+   "slug": "provider-compensation-design-playbook",
+   "file": "CCRx_Provider_Compensation_Design_Playbook_REBUILT_v2",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 59,
+   "words": 9995,
+   "lines": 2000
+  },
+  {
+   "slug": "rcm-technology-buyers-playbook",
+   "file": "CCRx_RCM_Technology_Buyers_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 40,
+   "words": 6112,
+   "lines": 1335
+  },
+  {
+   "slug": "credentialing-and-re-credentialing-management-playbook",
+   "file": "CleanClaimRx-Credentialing-and-Re-Credentialing-Management-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 38,
+   "words": 10093,
+   "lines": 1558
+  },
+  {
+   "slug": "new-practice-launch-playbook",
+   "file": "CleanClaimRx-New-Practice-Launch-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 28,
+   "words": 7126,
+   "lines": 1128
+  },
+  {
+   "slug": "patient-collections-playbook",
+   "file": "CleanClaimRx-Patient-Collections-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 24,
+   "words": 4864,
+   "lines": 855
+  },
+  {
+   "slug": "practice-acquisition-revenue-cycle-integration-playbook",
+   "file": "CleanClaimRx-Practice-Acquisition-Revenue-Cycle-Integration-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 36,
+   "words": 9358,
+   "lines": 1373
+  },
+  {
+   "slug": "practice-closure-and-wind-down-revenue-cycle-playbook",
+   "file": "CleanClaimRx-Practice-Closure-and-Wind-Down-Revenue-Cycle-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 34,
+   "words": 9624,
+   "lines": 1352
+  },
+  {
+   "slug": "practice-valuation-playbook",
+   "file": "CleanClaimRx-Practice-Valuation-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 41,
+   "words": 10912,
+   "lines": 1592
+  },
+  {
+   "slug": "rcm-outsourcing-evaluation-playbook",
+   "file": "CleanClaimRx-RCM-Outsourcing-Evaluation-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 38,
+   "words": 10365,
+   "lines": 1540
+  },
+  {
+   "slug": "revenue-cycle-staffing-and-compensation-playbook",
+   "file": "CleanClaimRx-Revenue-Cycle-Staffing-and-Compensation-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 33,
+   "words": 7377,
+   "lines": 1291
+  },
+  {
+   "slug": "telehealth-revenue-cycle-playbook",
+   "file": "CleanClaimRx-Telehealth-Revenue-Cycle-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 32,
+   "words": 6748,
+   "lines": 1134
+  },
+  {
+   "slug": "value-based-care-revenue-cycle-implications-playbook",
+   "file": "CleanClaimRx-Value-Based-Care-Revenue-Cycle-Implications-Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 40,
+   "words": 10722,
+   "lines": 1607
+  },
+  {
+   "slug": "front-end-rcm-playbook",
+   "file": "CleanClaimRx_Front-End_RCM_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 69,
+   "words": 11172,
+   "lines": 2064
+  },
+  {
+   "slug": "payer-contract-intelligence-playbook",
+   "file": "CleanClaimRx_Payer_Contract_Intelligence_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 61,
+   "words": 10870,
+   "lines": 1893
+  },
+  {
+   "slug": "prior-authorization-management-playbook",
+   "file": "CleanClaimRx_Prior_Authorization_Management_Playbook_REBUILT",
+   "bundle": "The_Playbook_Series_-_Complete_Bundle",
+   "type": "playbook",
+   "pages": 52,
+   "words": 7143,
+   "lines": 1603
+  }
+ ]
+}

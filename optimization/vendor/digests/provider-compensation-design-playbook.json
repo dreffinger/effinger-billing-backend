@@ -1,0 +1,869 @@
+{
+ "slug": "provider-compensation-design-playbook",
+ "title": "Provider Compensation Design Playbook (CleanClaimRx Operational Playbook Series)",
+ "doc_type": "playbook",
+ "pages": 59,
+ "audience": "Practice administrators, physician owners, group executives and operational leaders who design, evaluate, renegotiate or defend provider compensation models; it also names private-equity operators standardizing pay across acquired practices. Assumes operational literacy but no legal expertise.",
+ "summary": "A 59-page primer on designing and documenting physician pay. It explains work RVUs and dollars-per-wRVU conversion factors, how to read MGMA and AMGA percentile data, and four model types (percentage of collections, wRVU rate, salary plus incentive, hybrid) with their failure modes. Its central method: benchmark each physician's pay against production, keep the two aligned, confirm collections can fund the rate, add a few non-cliff incentives (productivity, quality, access, citizenship), and record everything in a written policy and signed agreements reviewed every year. A Stark Law section frames pay as a fair-market-value compliance matter. Later sections cover recruitment and retention, practice-type variations, renegotiation, private-equity transactions, a 90-day plan, three checklists and two templates. Despite the title it covers physicians only, cites no sources, uses constructed benchmark figures, and overstates or misstates several Stark rules.",
+ "outline": [
+  {
+   "section": "Important Notice and Stark Law Note",
+   "gist": "Disclaims legal advice; asserts every arrangement with a referring physician must continuously meet fair-market-value and commercial-reasonableness tests."
+  },
+  {
+   "section": "Introduction: The Comp Model Is a Compliance Document",
+   "gist": "Argues small practices treat pay as a private deal when it carries Stark exposure; defines audience, limits and companion titles."
+  },
+  {
+   "section": "Section 1: RVU Fundamentals - What wRVUs Actually Measure",
+   "gist": "Explains work, practice-expense and malpractice RVUs, the dollars-per-wRVU rate, what wRVUs miss, and five perverse incentives of productivity pay."
+  },
+  {
+   "section": "Section 2: Reading Benchmark Data - MGMA, AMGA, and How Not to Be Misled by Medians",
+   "gist": "Describes the two surveys, warns against paying everyone the median, urges pay-to-production alignment, regional adjustment and formal valuation opinions when needed."
+  },
+  {
+   "section": "Section 3: Comp Model Architectures",
+   "gist": "Compares collections-based, wRVU-based, salary-plus-incentive and hybrid models, giving each one's best fit and characteristic failure mode."
+  },
+  {
+   "section": "Section 4: Stark Law Fair Market Value - What It Requires and Where Practices Get Exposed",
+   "gist": "Summarizes fair market value, commercial reasonableness, the volume/value rule, writing requirements, and two claimed traps: above-market owner pay and informal call coverage."
+  },
+  {
+   "section": "Section 5: Designing the Incentive Structure",
+   "gist": "Four incentive domains (productivity, quality, access, citizenship), suggested weights, and why threshold cliffs distort behavior; prefers continuous or tiered rates."
+  },
+  {
+   "section": "Section 6: The Retention and Recruitment Dimension",
+   "gist": "Transparency, first-year income floors, pay-equity checks, and non-compete and tail-coverage economics as retention and recruiting levers."
+  },
+  {
+   "section": "Section 7: Comp Models by Practice Type",
+   "gist": "Short notes for solo, small-group, large-group, hospital-employed and private-equity settings; undocumented small-group arrangements flagged as the main risk."
+  },
+  {
+   "section": "Section 8: Renegotiating an Existing Comp Arrangement",
+   "gist": "Triggers for renegotiation and a five-step process: benchmark, summarize, meet one-on-one, phase in, document; plus handling physician reactions."
+  },
+  {
+   "section": "Section 9: The PE and Acquisition Context",
+   "gist": "How owner pay affects earnings and buyer perception, contents of a post-sale employment agreement, and 12-24 month post-close pay integration."
+  },
+  {
+   "section": "Section 10: Building the Comp Policy Document",
+   "gist": "Five components of a written policy (model, benchmarks, fair-market-value attestation, governance, special circumstances) and an annual review cycle."
+  },
+  {
+   "section": "90-Day Comp Model Review and Design Plan",
+   "gist": "Three 30-day phases of five steps each: assess and benchmark, design and draft, communicate and execute."
+  },
+  {
+   "section": "Checklists and Templates",
+   "gist": "Three yes/no checklists, a blank one-page physician summary table and a timed annual review agenda."
+  },
+  {
+   "section": "Related Resources",
+   "gist": "Pointers to four other titles from the same vendor, one of them not yet published."
+  }
+ ],
+ "framework_elements": [
+  "wRVU productivity measurement",
+  "Conversion factor setting (dollars per wRVU)",
+  "Effective conversion factor calculation (total pay per wRVU)",
+  "Compensation benchmarking against survey percentiles",
+  "Pay-to-production alignment test",
+  "Regional benchmark adjustment and rationale",
+  "Compensation architecture selection",
+  "Affordability test: compensation cost versus net revenue",
+  "Fair-market-value review",
+  "Commercial-reasonableness analysis",
+  "Referral-neutrality check on pay formulas",
+  "Written, signed, unexpired agreement control",
+  "Owner service pay versus ownership distributions",
+  "Call coverage and administrative stipend documentation",
+  "Productivity incentive and threshold design (no cliffs)",
+  "Quality incentive",
+  "Access incentive",
+  "Citizenship (non-clinical contribution) incentive",
+  "Coding audit before incentive payout",
+  "Perverse-incentive risk review",
+  "New-hire ramp-up income floor",
+  "Part-time, leave and retirement-transition pay rules",
+  "Pay-equity review of model outcomes",
+  "Non-compete and tail-coverage terms",
+  "One-page individual compensation summary",
+  "Compensation policy document",
+  "Compensation governance: authority, committee, dispute process",
+  "Annual compensation model review",
+  "Compensation renegotiation process",
+  "Transaction pay normalization and post-close integration"
+ ],
+ "processes": [
+  {
+   "name": "Benchmark and pay-to-production alignment analysis",
+   "steps": [
+    "Obtain current-year MGMA and AMGA data for each specialty and region",
+    "List each physician's total compensation including base, incentives and benefits",
+    "Record each physician's annual wRVU production",
+    "Compute effective dollars per wRVU",
+    "Compare compensation percentile with production percentile",
+    "Flag anyone more than 15% off benchmark or above the 75th percentile without matching production",
+    "Write down any geographic rationale for departures from national data"
+   ],
+   "owner_role": "Practice administrator or group executive, with valuation support",
+   "cadence": "Annually and before any renegotiation or transaction"
+  },
+  {
+   "name": "Compensation documentation audit",
+   "steps": [
+    "Collect every employment and compensation agreement plus any informal arrangement",
+    "Confirm each is written, signed by all parties and unexpired",
+    "Confirm base, rate, thresholds and incentives are stated explicitly",
+    "List undocumented, unsigned or expired arrangements as exposure",
+    "Brief healthcare counsel and agree a remediation order"
+   ],
+   "owner_role": "Practice administrator with healthcare counsel",
+   "cadence": "Days 1-30 of the 90-day plan, then at each annual review"
+  },
+  {
+   "name": "Conversion factor calibration and affordability test",
+   "steps": [
+    "Choose the target percentile range for the cohort",
+    "Set a trial dollars-per-wRVU rate or collections percentage",
+    "Multiply by expected production to get total compensation cost",
+    "Check that net revenue under the practice's payer mix can fund that cost",
+    "Stress-test at 25th and 90th percentile production",
+    "Adjust until outcomes are benchmark-consistent at median production"
+   ],
+   "owner_role": "Practice administrator or finance lead with physician leadership",
+   "cadence": "At model design and at each annual review"
+  },
+  {
+   "name": "Incentive structure design",
+   "steps": [
+    "Name the specific behaviors the practice wants to change",
+    "Pick no more than three domains from productivity, quality, access and citizenship",
+    "Choose measures the clinician controls and that are reported promptly",
+    "Size weights so they matter (quality 10-15%, citizenship 3-8%)",
+    "Use a continuous or tiered rate instead of a cliff bonus",
+    "If a threshold is used, set it near current cohort production",
+    "Require a coding audit before incentive pay is calculated",
+    "Pay citizenship amounts only for documented participation"
+   ],
+   "owner_role": "Physician owners or compensation committee",
+   "cadence": "At design; results checked annually; access measured quarterly or annually"
+  },
+  {
+   "name": "Fair-market-value and commercial-reasonableness self-assessment",
+   "steps": [
+    "Total each referring physician's compensation across all components",
+    "Benchmark the total against the relevant specialty percentile",
+    "Document production support for pay above the 75th percentile",
+    "Confirm no component varies with referral volume or value",
+    "Document and value call-coverage arrangements",
+    "Analyze owner service pay separately from ownership distributions",
+    "Complete a commercial-reasonableness analysis",
+    "Send above-market or complex arrangements to outside counsel"
+   ],
+   "owner_role": "Practice administrator with healthcare counsel; valuation firm for formal opinions",
+   "cadence": "Annually and before any transaction"
+  },
+  {
+   "name": "Renegotiating an existing arrangement",
+   "steps": [
+    "Run the benchmark analysis before raising the subject",
+    "Write a plain-language summary of the current model, the data and the proposed changes",
+    "Meet each physician individually before any group session",
+    "Phase in meaningful reductions, for example over a 12-month step-down",
+    "Sign a new written agreement before the change takes effect",
+    "Obtain legal review where the physician is a referral source"
+   ],
+   "owner_role": "Physician owner or practice administrator",
+   "cadence": "When triggered: more than 15% off benchmark, transaction preparation, changed physician mix, no review in two years, or a compliance concern"
+  },
+  {
+   "name": "Compensation policy document and annual review",
+   "steps": [
+    "Describe the model and its parameters so pay can be recomputed",
+    "Record benchmark sources, survey year and target percentile range",
+    "Add a dated fair-market-value attestation naming outside reviewers",
+    "Define who can change the model, review frequency and the dispute process",
+    "Write rules for part-time work, leave, ramp-up and retirement transitions",
+    "Hold the annual review using the seven-item agenda",
+    "Record every change and its rationale"
+   ],
+   "owner_role": "Governing body or compensation committee with healthcare counsel",
+   "cadence": "Annual"
+  },
+  {
+   "name": "90-day compensation review and design plan",
+   "steps": [
+    "Days 1-30: collect documents, benchmark, flag misalignment, check documentation status, engage counsel",
+    "Days 31-60: confirm architecture, calibrate rates, design incentives, draft the policy, prepare individual summaries",
+    "Days 61-90: meet individually, hold a group review, execute agreements after legal sign-off, set the review calendar, assemble the compliance file"
+   ],
+   "owner_role": "Practice administrator or group executive, with legal and valuation support at milestones",
+   "cadence": "One-time project, followed by the annual cycle"
+  }
+ ],
+ "tools_templates": [
+  {
+   "name": "Checklist 1: Comp Model Documentation Audit",
+   "description": "Nine yes/no items on whether agreements are written, signed, unexpired, explicit, reviewed for fair market value and benchmarked within 12 months."
+  },
+  {
+   "name": "Checklist 2: FMV Self-Assessment - Physician Compensation",
+   "description": "Eight yes/no items covering total-pay benchmarking, justification above the 75th percentile, referral neutrality, call coverage, owner pay versus distributions and counsel review."
+  },
+  {
+   "name": "Checklist 3: New Comp Model Design Quality Review",
+   "description": "Ten pre-launch checks: architecture fit, benchmark-consistent rate, three-domain limit, threshold level, ramp-up, special cases, self-calculability, stress test, legal review, written policy."
+  },
+  {
+   "name": "Template: Comp Model One-Pager - Physician Summary",
+   "description": "Blank 15-field table (architecture, base, rate, threshold, three incentives, maximum pay, prior-year wRVUs, estimated pay, MGMA median comparison, term); no formulas and no filled example."
+  },
+  {
+   "name": "Template: Annual Comp Model Review Agenda",
+   "description": "Seven timed agenda items totalling 100 minutes: production, benchmarks, misalignment, incentive results, policy gaps, documentation status, approvals."
+  },
+  {
+   "name": "90-Day Comp Model Review and Design Plan",
+   "description": "Three 30-day phases with five steps each: assess and benchmark, design and draft, communicate and execute."
+  },
+  {
+   "name": "Renegotiation process framework (Section 8)",
+   "description": "Five-step sequence for changing an existing arrangement: benchmark, summarize, one-on-one meetings, transition period, documentation."
+  },
+  {
+   "name": "Comp policy document outline (Section 10)",
+   "description": "Five required components of a written compensation policy; headings and one-paragraph descriptions only, no sample wording."
+  },
+  {
+   "name": "RVU element glossary (table, Section 1)",
+   "description": "Six-row table defining wRVU, conversion factor, total production, annual pay, practice-expense RVU and malpractice RVU."
+  },
+  {
+   "name": "Primary care percentile table (Section 2)",
+   "description": "Four-row illustrative table of wRVUs and total pay at the 25th, 50th, 75th and 90th percentiles; constructed from the Section 1 rate range, not from a survey."
+  },
+  {
+   "name": "Architecture comparison table (Section 3)",
+   "description": "Four-row summary of best fit and key trade-off for each compensation model type."
+  }
+ ],
+ "metrics": [
+  {
+   "name": "wRVU production",
+   "definition": "Total work relative value units a physician generates across all services in a period; reflects effort and intensity, not revenue.",
+   "formula": "Sum of wRVUs for all services in the period",
+   "target": "Illustrative primary care: about 3,500 (25th percentile), 4,500 (median), 5,500 (75th), 6,500 (90th) per year",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Conversion factor (dollars per wRVU)",
+   "definition": "Dollar amount paid to the physician for each wRVU produced.",
+   "formula": "Productivity pay = total wRVUs x conversion factor (plus any base or incentive)",
+   "target": "$45-$65 nationally; primary care $45-$55; proceduralists $55-$65 or more",
+   "red_flag": "Rate set without confirming the practice's net revenue can fund it",
+   "source_cited": "none"
+  },
+  {
+   "name": "Effective conversion factor",
+   "definition": "A physician's actual total compensation expressed per wRVU produced, used to compare with benchmarks.",
+   "formula": "Total compensation / annual wRVUs (implied; the document never writes it out)",
+   "target": "Within 15% of the benchmark",
+   "red_flag": "More than 15% above or below the benchmark",
+   "source_cited": "none"
+  },
+  {
+   "name": "Total compensation percentile",
+   "definition": "Where total pay (base, incentives, benefits) sits in the specialty survey distribution.",
+   "formula": "",
+   "target": "Roughly equal to the physician's production percentile; illustrative primary care $157,500 / $220,500 / $286,000 / $357,500 at the 25th / 50th / 75th / 90th",
+   "red_flag": "Pay above the 75th percentile with production near the 50th, or above the 75th without documented production",
+   "source_cited": "MGMA and AMGA named generically; no edition or year; dollar figures labelled illustrative"
+  },
+  {
+   "name": "Pay-to-production alignment",
+   "definition": "Gap between a physician's compensation percentile and production percentile.",
+   "formula": "",
+   "target": "Aligned (median production paid at about the median, and so on)",
+   "red_flag": "Misalignment beyond 15% of the benchmark range",
+   "source_cited": "none"
+  },
+  {
+   "name": "Collections-based compensation rate",
+   "definition": "Share of the net collections attributed to a physician that is paid as compensation; the worked example uses 45%.",
+   "formula": "Net collections x percentage",
+   "target": "",
+   "red_flag": "Payer mix differs across physicians, so equal work produces unequal pay",
+   "source_cited": "none"
+  },
+  {
+   "name": "Base-to-incentive split (salary plus incentive)",
+   "definition": "How much pay is guaranteed base versus at-risk incentive.",
+   "formula": "",
+   "target": "Base at the 50th-60th percentile productivity equivalent with total potential reaching the 75th-90th percentile (the same section also says base is often the 25th or 50th percentile)",
+   "red_flag": "Base so high the bonus does not motivate, or so low it causes financial anxiety",
+   "source_cited": "none"
+  },
+  {
+   "name": "Quality incentive weight",
+   "definition": "Portion of total compensation tied to clinical quality measures.",
+   "formula": "Quality bonus / total compensation",
+   "target": "10%-15% of total compensation",
+   "red_flag": "About 2% of pay: too small to change behavior",
+   "source_cited": "none"
+  },
+  {
+   "name": "Citizenship incentive weight",
+   "definition": "Portion of potential compensation paid for documented non-clinical contribution (committees, mentoring, peer review).",
+   "formula": "",
+   "target": "3%-8% of total potential compensation",
+   "red_flag": "Paid automatically without documented participation",
+   "source_cited": "none"
+  },
+  {
+   "name": "Number of incentive domains",
+   "definition": "Count of separate incentive categories in the model.",
+   "formula": "",
+   "target": "No more than three for most practices",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Productivity threshold level",
+   "definition": "wRVU level above which productivity incentive begins.",
+   "formula": "",
+   "target": "About the cohort's current average (checklist says median) production, or no threshold at all",
+   "red_flag": "Aspirational threshold, or a cliff or lump-sum bonus at the threshold",
+   "source_cited": "none"
+  },
+  {
+   "name": "Days to third next available appointment",
+   "definition": "Access measure taken at physician panel level, reviewed quarterly or annually.",
+   "formula": "",
+   "target": "",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "First-year income guarantee level",
+   "definition": "Minimum pay for a newly hired physician during ramp-up.",
+   "formula": "",
+   "target": "25th-40th percentile for the specialty; any repayment tied to about 24 months of service after the guarantee period",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Tail coverage cost",
+   "definition": "Cost of extended-reporting malpractice coverage when a physician leaves.",
+   "formula": "Multiple of the annual malpractice premium",
+   "target": "One to three times the annual premium (stated as typical cost, not a goal)",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Benchmark review recency",
+   "definition": "Time since the model was last compared with current survey data.",
+   "formula": "",
+   "target": "Within the last 12 months",
+   "red_flag": "No formal review in more than two years",
+   "source_cited": "none"
+  },
+  {
+   "name": "Agreement documentation status",
+   "definition": "Whether every compensation arrangement sits in a written, signed, unexpired agreement with explicit parameters.",
+   "formula": "",
+   "target": "All arrangements",
+   "red_flag": "Any undocumented, unsigned or expired arrangement",
+   "source_cited": "none"
+  },
+  {
+   "name": "Stress-test result at 25th and 90th percentile production",
+   "definition": "Model pay computed at low and high production to confirm sensible outcomes.",
+   "formula": "",
+   "target": "Appropriate outcomes at both ends",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Above-market compensation gap",
+   "definition": "Amount by which a physician-owner's pay exceeds the fair-market-value figure for specialty and productivity.",
+   "formula": "Actual pay - fair-market-value pay (example: $600,000 - $350,000 = $250,000)",
+   "target": "",
+   "red_flag": "Any gap; the document calls it annual Stark exposure",
+   "source_cited": "none"
+  },
+  {
+   "name": "Transition period for pay reductions",
+   "definition": "Time allowed to step a physician down to a lower-paying model.",
+   "formula": "",
+   "target": "12 months",
+   "red_flag": "",
+   "source_cited": "none"
+  },
+  {
+   "name": "Post-close compensation integration period",
+   "definition": "Time to move acquired physicians from legacy pay to the buyer's model.",
+   "formula": "",
+   "target": "12-24 months, inside a 3-5 year employment term",
+   "red_flag": "Pay model first explained after closing",
+   "source_cited": "none"
+  }
+ ],
+ "numeric_claims": [
+  {
+   "claim": "Conversion factors nationally run about $45-$65 per wRVU.",
+   "section": "Section 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Primary care conversion factors fall around $45-$55 per wRVU.",
+   "section": "Section 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Proceduralists command $55-$65 per wRVU or more.",
+   "section": "Section 1",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Primary care 25th percentile: about 3,500 wRVUs and $157,500 total compensation.",
+   "section": "Section 2 table",
+   "source_cited": "none (labelled illustrative)"
+  },
+  {
+   "claim": "Primary care median: about 4,500 wRVUs and $220,500.",
+   "section": "Section 2 table",
+   "source_cited": "none (labelled illustrative)"
+  },
+  {
+   "claim": "Primary care 75th percentile: about 5,500 wRVUs and $286,000.",
+   "section": "Section 2 table",
+   "source_cited": "none (labelled illustrative)"
+  },
+  {
+   "claim": "Primary care 90th percentile: about 6,500 wRVUs and $357,500.",
+   "section": "Section 2 table",
+   "source_cited": "none (labelled illustrative)"
+  },
+  {
+   "claim": "Implied rate rises from $45.00 per wRVU at the 25th percentile to $55.00 at the 90th.",
+   "section": "Section 2 table note",
+   "source_cited": "none"
+  },
+  {
+   "claim": "MGMA reports compensation and wRVU production at the 25th, 50th, 75th and 90th percentiles.",
+   "section": "Section 2",
+   "source_cited": "MGMA survey named generically; no edition"
+  },
+  {
+   "claim": "Paying above the 75th percentile for 50th-percentile production is not a valid fair-market-value defense.",
+   "section": "Section 2",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Worked example: $800,000 of net collections at a 45% rate pays $360,000.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Worked example: 5,000 wRVUs at $55 pays $275,000.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Guaranteed base salary is often set at the 25th or 50th percentile of the specialty benchmark.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Common design: base at the 50th-60th percentile productivity equivalent, total potential reaching the 75th-90th percentile.",
+   "section": "Section 3",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Stark exceptions require arrangements to be in writing, set in advance, signed, and for at least one year.",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "An owner paid $600,000 where fair market value is $350,000 carries $250,000 of annual exposure.",
+   "section": "Section 4",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A quality bonus of 2% of pay is negligible; 10%-15% gets attention.",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Citizenship components are typically 3%-8% of total potential compensation.",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Physicians whose production usually falls 10%-20% short of a threshold tend to give up on the bonus.",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Tier example: $55 per wRVU above the 60th percentile and $58 on all wRVUs above the 75th.",
+   "section": "Section 5",
+   "source_cited": "none"
+  },
+  {
+   "claim": "First-year guarantees are typically set at the 25th-40th percentile for the specialty.",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Repayment obligations are typically tied to 24 months of service after the guarantee period.",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Tail coverage can cost one to three times the annual malpractice premium.",
+   "section": "Section 6",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Small groups are 2-10 physicians; large groups are 10 or more.",
+   "section": "Section 7",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Renegotiate when rates or total pay are more than 15% above or below benchmark (repeated in the 90-day plan and review agenda).",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A model not formally reviewed for more than two years warrants renegotiation.",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "A 12-month step-down is a reasonable transition for pay reductions.",
+   "section": "Section 8",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Physician retention is among the most important drivers of practice value in the first 24 months after closing.",
+   "section": "Section 9",
+   "source_cited": "none ('widely regarded')"
+  },
+  {
+   "claim": "Post-sale employment agreements typically run three to five years; pay integration takes 12-24 months.",
+   "section": "Section 9",
+   "source_cited": "none"
+  },
+  {
+   "claim": "Incentive models should have no more than three domains.",
+   "section": "90-Day Plan and Checklist 3",
+   "source_cited": "none"
+  }
+ ],
+ "checkable_claims": [
+  {
+   "id": "C1",
+   "claim": "Stark exceptions require that compensation arrangements be set in advance, in writing, for a period of at least one year. They must be signed by all parties. Oral arrangements do not qualify.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Section 4: Documentation Requirements",
+   "why": "Requirements differ by exception. As I understand 42 CFR 411.357, the employment exception needs no writing or minimum term, and writings and signatures have a 90-day grace period. A wrong universal rule produces both false alarms and missed gaps when the practice reviews its facility stipend and employment contracts."
+  },
+  {
+   "id": "C2",
+   "claim": "Arrangements that have lapsed \u2014 where the written agreement has expired but the arrangement continues \u2014 lose their Stark exception protection until a new agreement is executed.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Section 4: Documentation Requirements",
+   "why": "CMS has allowed indefinite holdover on unchanged terms since the 2016 fee schedule rule for leases and personal-service arrangements. If the statement is outdated, an expired medical-director agreement is not automatically a violation requiring refund or self-disclosure; if it is right, every lapse is."
+  },
+  {
+   "id": "C3",
+   "claim": "Compensation under a Stark exception cannot be determined in a manner that takes into account the volume or value of referrals. This prohibition is absolute. A productivity bonus based partly on referral volume \u2014 even indirectly \u2014 violates Stark.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Section 4: The Volume and Value Prohibition",
+   "why": "Group-practice rules permit profit shares and productivity bonuses indirectly related to designated health services, and the 2020 final rule defines the test narrowly. An 'absolute' reading would misdirect bonus design in any practice with in-house ancillaries and in any practice-optimization advice given to other practices."
+  },
+  {
+   "id": "C4",
+   "claim": "A physician-owner earning $600,000 per year in a market where the FMV for their specialty and productivity is $350,000 has a $250,000 annual exposure that does not disappear because the physician holds an ownership stake.",
+   "kind": "legal",
+   "stakes": "high",
+   "section": "Section 4: The Two Most Common Stark Traps for Small Practices",
+   "why": "An owner's earnings from their own practice are normally protected through the in-office ancillary and group-practice rules, which carry no survey-based cap. If the claim is wrong, a solo owner is steered toward a limit that does not exist and away from the tests, tax rules and valuation logic that actually govern owner pay."
+  },
+  {
+   "id": "C5",
+   "claim": "The FMV standard is met when compensation falls within the range supported by objective, commercially reasonable evidence \u2014 typically benchmark survey data from recognized sources such as MGMA or AMGA.",
+   "kind": "regulatory",
+   "stakes": "high",
+   "section": "Section 4: The Fair Market Value Standard",
+   "why": "CMS has said surveys are not a safe harbor and that no percentile is automatically compliant. Treating a survey range as proof gives false comfort on medical-director stipends, future physician employment agreements and any sale-related employment terms."
+  },
+  {
+   "id": "C6",
+   "claim": "Nationally, conversion factors generally range from approximately $45 to $65 per wRVU... A primary care physician may have a conversion factor in the $45 to $55 range. A proceduralist may command $55 to $65 or higher.",
+   "kind": "benchmark",
+   "stakes": "high",
+   "section": "Section 1: The Conversion Factor",
+   "why": "No source or year is given and the figures look dated against recent MGMA and AMGA pay-per-wRVU data. Using them would mis-set clinician pay rates and distort the owner-pay normalization that drives a practice valuation."
+  },
+  {
+   "id": "C7",
+   "claim": "Typical primary care (illustrative): 25th percentile ~3,500 wRVUs/year and ~$157,500; median ~4,500 and ~$220,500; 75th ~5,500 and ~$286,000; 90th ~6,500 and ~$357,500 total comp.",
+   "kind": "benchmark",
+   "stakes": "medium",
+   "section": "Section 2: The Median Problem (table)",
+   "why": "The table is back-solved from the $45-$55 range rather than drawn from a survey, and its median sits far below recently published primary-care medians. Benchmarking pay or normalizing owner compensation from it would understate market pay by a wide margin."
+  },
+  {
+   "id": "C8",
+   "claim": "wRVUs do not reflect administrative work, care coordination, supervision of mid-levels, teaching, committee participation, or any non-clinical contribution a physician makes to the practice.",
+   "kind": "code_rule",
+   "stakes": "medium",
+   "section": "Section 1: What wRVUs Do Not Measure",
+   "why": "Chronic care management, transitional care and advance care planning codes carry work RVUs, and incident-to or split/shared billing credits supervised work to the billing clinician. For a practice billing complex chronic care management monthly, treating this as non-wRVU work risks double-paying it or mis-crediting productivity between physician and nurse practitioner."
+  }
+ ],
+ "domain_map": [
+  {
+   "domain": "people-compensation",
+   "weight": 0.45,
+   "topics": [
+    "compensation model types",
+    "wRVU rates and thresholds",
+    "survey benchmarking",
+    "incentive design",
+    "new-hire income floors",
+    "renegotiation process",
+    "pay transparency",
+    "part-time and leave rules",
+    "non-compete and tail coverage"
+   ]
+  },
+  {
+   "domain": "compliance-risk",
+   "weight": 0.22,
+   "topics": [
+    "Stark fair market value",
+    "commercial reasonableness",
+    "volume/value of referrals",
+    "written and signed agreements",
+    "call coverage arrangements",
+    "owner pay versus distributions",
+    "coding risk created by productivity pay"
+   ]
+  },
+  {
+   "domain": "lifecycle-value",
+   "weight": 0.1,
+   "topics": [
+    "owner pay normalization and earnings",
+    "documentation as a diligence signal",
+    "post-sale employment agreement",
+    "post-close pay integration",
+    "physician retention after sale"
+   ]
+  },
+  {
+   "domain": "strategy-governance",
+   "weight": 0.07,
+   "topics": [
+    "compensation policy governance",
+    "compensation committee",
+    "annual review calendar",
+    "dispute resolution"
+   ]
+  },
+  {
+   "domain": "financial-management",
+   "weight": 0.06,
+   "topics": [
+    "affordability of pay against net revenue",
+    "payer mix effect on funding pay",
+    "owner draws versus practice funding"
+   ]
+  },
+  {
+   "domain": "clinical-operations",
+   "weight": 0.03,
+   "topics": [
+    "productivity measurement",
+    "access measures",
+    "non-clinical work"
+   ]
+  },
+  {
+   "domain": "quality-value",
+   "weight": 0.03,
+   "topics": [
+    "quality incentive weights",
+    "measure selection"
+   ]
+  },
+  {
+   "domain": "rcm-charge-coding",
+   "weight": 0.02,
+   "topics": [
+    "over- and under-coding under productivity pay",
+    "coding audit before bonus"
+   ]
+  },
+  {
+   "domain": "growth-market",
+   "weight": 0.02,
+   "topics": [
+    "recruitment guarantees",
+    "retention levers"
+   ]
+  }
+ ],
+ "adopt": [
+  {
+   "idea": "Run an affordability test before adopting any dollars-per-wRVU rate: the rate times expected wRVUs against the net revenue those wRVUs actually bring in.",
+   "why": "A productivity rate lifted from a survey can exceed what the payer mix pays, building a deficit into the pay plan.",
+   "applies_to_practice": "yes",
+   "note": "Critical here. By my rough estimate (not from the document; verify against the current fee schedule) Medicare pays on the order of $45-$55 per wRVU for hospital and nursing-facility visits, and 85% of that when the nurse practitioner bills directly, so the document's $45-$65 rates would absorb most or all of the revenue. Model revenue per wRVU by payer, place of service and billing clinician first."
+  },
+  {
+   "idea": "Pay production at one continuous rate; avoid cliffs and lump-sum threshold bonuses.",
+   "why": "Cliffs invite sandbagging, year-end volume chasing and coding pressure; a flat rate is easier to explain and audit.",
+   "applies_to_practice": "yes",
+   "note": "Applies to the nurse practitioner's incentive and any future hire. If tiers are used, pay the higher rate only on wRVUs above the tier, not retroactively on all of them as the document's own example does."
+  },
+  {
+   "idea": "Audit coding before incentive pay is computed, watching for under-coding as well as over-coding.",
+   "why": "Productivity pay rewards higher visit levels; checking first avoids paying bonuses on work that would not survive review.",
+   "applies_to_practice": "yes",
+   "note": "The document gives no mechanics. Define the sample, the visit-level distribution check and the pass mark, and build the step into the in-house billing agents' monthly cycle."
+  },
+  {
+   "idea": "Write a short compensation policy (model, parameters, benchmark source and year, who can change it, special cases) separate from individual agreements, plus a one-page summary each clinician can use to recompute their own pay.",
+   "why": "Removes ambiguity, prevents disputes and is among the first documents a buyer or counsel will request.",
+   "applies_to_practice": "yes",
+   "note": "A two-clinician practice needs two or three pages, not a manual. Add the fee-schedule year whose wRVU values are used, which the document omits."
+  },
+  {
+   "idea": "Hold a documented annual compensation review against current survey data and put it on the governance calendar.",
+   "why": "Creates a dated record that pay was checked, catches drift, and forces an explicit decision every year.",
+   "applies_to_practice": "yes",
+   "note": "Use advanced-practice-provider survey cuts for the nurse practitioner and record the survey year. Do not use the document's own numbers as the benchmark."
+  },
+  {
+   "idea": "Separate the owner's pay for clinical work, pay for management and medical-director work, and profit from ownership.",
+   "why": "Lets earnings be normalized credibly for valuation and shows what a buyer would need to pay a replacement clinician and manager.",
+   "applies_to_practice": "yes",
+   "note": "The document presents this as Stark exposure, which appears wrong for a solo owner. The real payoffs are sale-price analysis, reasonable-compensation tax planning and knowing true practice profit."
+  },
+  {
+   "idea": "Keep every arrangement with a party that sends or receives referrals in a current, signed agreement with documented fair-market-value support.",
+   "why": "Informal or lapsed arrangements are a routine finding in compliance reviews and buyer diligence.",
+   "applies_to_practice": "partly",
+   "note": "The document discusses only call coverage. For this practice the live items are medical-director stipends and any coverage deals with hospitals and nursing facilities: keep time logs and have counsel confirm which Stark exception and Anti-Kickback safe harbor each one relies on."
+  },
+  {
+   "idea": "Stress-test the pay model at low and high production and against the real roster before launch.",
+   "why": "Exposes unaffordable payouts, accidental pay cuts and odd results at the extremes.",
+   "applies_to_practice": "yes",
+   "note": "Add scenarios the document does not consider: losing a facility's census, nurse practitioner leave, and fee-schedule changes to facility-visit payment."
+  },
+  {
+   "idea": "Limit incentives to at most three domains, using measures the clinician controls and weights large enough to matter.",
+   "why": "Tiny or uncontrollable incentives add administration without changing behavior.",
+   "applies_to_practice": "partly",
+   "note": "Access and citizenship measures are office and large-group concepts. Candidates here: timely documentation and charge submission, care-management enrollment and completion, wellness-visit and advance-care-planning completion, quality-program measures. Do not pay for diagnosis capture."
+  },
+  {
+   "idea": "For new hires, set a time-limited first-year income floor and settle tail-coverage and restrictive-covenant terms in the agreement.",
+   "why": "Ramp-up is predictable, and clear exit economics reduce early turnover and later disputes.",
+   "applies_to_practice": "partly",
+   "note": "Relevant when adding a clinician for growth. A facility census ramps differently from an office panel, and Florida restrictive-covenant law needs to be checked with counsel."
+  }
+ ],
+ "practice_relevance": {
+  "score": 3,
+  "why": "Useful as a primer on wRVU pay mechanics, incentive pitfalls, compensation documentation and how owner pay is normalized in a sale, all of which the owner needs for paying the nurse practitioner, hiring for growth and preparing for valuation. But it is written for multi-physician groups, hospital employers and private-equity platforms whose doctors refer to in-house ancillary services. A one-owner, one-nurse-practitioner facility-based practice with (as far as the context shows) no in-house lab, imaging or therapy has little of the Stark exposure the document centers on. Its real exposure, medical-director stipends and other dealings with hospitals and nursing facilities, is mainly an Anti-Kickback and personal-services-contract question and gets only an indirect mention. Nothing addresses nurse practitioner pay, facility rounding productivity, credit for care-management or wellness-visit work, Medicare-heavy revenue per wRVU, or the tax treatment of owner pay.",
+  "sections_that_do_not_apply": [
+   "Section 3: collections-split models among partners (no partners)",
+   "Section 4: group-practice and in-house ancillary referral scenarios (no designated health services billed, as far as the context shows)",
+   "Section 5: access incentives (panel openness, third next available appointment) and citizenship or committee pay",
+   "Section 6: demographic-cohort equity analysis (two clinicians)",
+   "Section 7: large group, hospital-employed and private-equity platform subsections",
+   "Section 8: partner renegotiation mechanics (single owner)",
+   "Section 9: post-close integration guidance written from the acquirer's side"
+  ]
+ },
+ "quality": {
+  "score": 2,
+  "specificity": 3,
+  "accuracy_concerns": [
+   "Core thesis overreaches. It says any compensation arrangement with a referring physician must meet fair market value and commercial reasonableness. Those tests belong to particular exceptions (employment, personal services, fair-market-value compensation). The exceptions that protect physician-owned practices, in-office ancillary services and the group-practice compensation rules, contain no fair-market-value test.",
+   "'Common Trap 1' treats an owner earning $600,000 against a $350,000 survey value as carrying $250,000 a year of Stark exposure. That is not how the law treats an owner's earnings from their own practice, and Section 7 repeats the error for solo practices. The genuine reasons to separate pay from profit, tax and valuation, are never mentioned. (C4)",
+   "Documentation rules are stated as universal: written, signed, one-year term, oral never qualifies. As I understand the regulations, the bona fide employment exception requires no writing or minimum term, the one-year condition is met if the arrangement in fact lasts a year, and writings and signatures have a 90-day grace period. (C1)",
+   "States that an expired agreement loses protection until re-signed. CMS has allowed indefinite holdover on unchanged, still-compliant terms since the 2016 fee schedule rule for leases and personal-service arrangements. (C2)",
+   "Calls the volume/value prohibition 'absolute' and stretches it to anything 'indirect'. Group-practice rules expressly allow profit shares and productivity bonuses indirectly related to designated health services, and the 2020 final rule narrowed the test to formulas that use referrals as a variable. (C3)",
+   "Says fair market value is satisfied when pay sits inside MGMA or AMGA survey ranges. CMS has said surveys are a starting point, not a safe harbor, and that no percentile is automatically compliant or non-compliant. (C5)",
+   "Says a formal valuation opinion is 'required' for certain Stark transactions. No Stark provision requires an appraisal; it is prudent practice, not a legal requirement.",
+   "Describes Stark as directly barring Medicare or Medicaid referrals without noting that the Medicaid reach works through denial of federal matching funds and was never implemented by regulation. Penalties, the refund duty, False Claims Act exposure and the CMS self-disclosure protocol are never mentioned.",
+   "Benchmark numbers are constructed. The percentile table was back-solved from the $45-$55 range (its footnote says it was made consistent with Section 1). The $220,500 primary-care median is roughly a quarter or more below medians in recent MGMA and AMGA releases (about $300,000 or higher), and $45-$65 per wRVU looks like mid-2010s data. (C6, C7)",
+   "Treats compensation, wRVU and dollars-per-wRVU percentiles as matched pairs and implies the rate rises with production. In survey data those are separate distributions, low producers often show higher pay per wRVU, and multiplying a high-percentile rate by high-percentile volume overshoots the compensation table. The tiered-rate example invites exactly that stacking.",
+   "Geography: asserts the Northeast and California support above-benchmark pay. Survey regional cuts have generally shown the East lowest and the South and Midwest highest, the reverse of what is implied.",
+   "'Every CPT code has a wRVU value' is false; many codes carry no work RVU. Saying wRVUs do not capture care coordination or supervision ignores care-management, transitional-care and advance-care-planning codes and incident-to and split/shared billing. (C8)",
+   "Section 9 valuation logic is muddled: normalizing above-market owner pay down to market raises adjusted earnings rather than lowering them, and it changes price, not the 'multiple'. The pay-cut-for-purchase-price trade at the heart of private-equity deals is not explained.",
+   "'Uncompensated call coverage' is presented as one of the two most common small-practice Stark traps with no support. The exchange-for-referrals concern it describes is an Anti-Kickback concept, yet the Anti-Kickback Statute itself receives no analysis.",
+   "Behavioral and retention claims (transparency lengthens tenure, employer-paid tail coverage keeps physicians, physicians slow down after hitting a threshold) are presented as research findings with no study named."
+  ],
+  "generic_filler": "medium",
+  "internal_contradictions": [
+   "Section 5 argues against threshold cliffs, then offers a tier example in which crossing the 75th percentile earns the higher rate 'throughout', which reads as a retroactive rate on every wRVU: a cliff worth thousands of dollars for one extra wRVU.",
+   "Section 5 warns that a threshold at current production acts as a pay cut, immediately labels a threshold at current average production best practice, then recommends having no threshold. Checklist 3 says median where the text says average.",
+   "The Introduction correctly says owners rely on the in-office ancillary and group-practice rules; Sections 4 and 7 then impose a fair-market-value cap on owner compensation.",
+   "Section 3 puts the usual base salary at the 25th or 50th percentile, then two paragraphs later gives the common range as the 50th-60th percentile.",
+   "Section 1 promises that Section 5 supplies design responses to all five distortions; Section 5 covers only thresholds and citizenship, and 'coding audit triggers' are never defined anywhere.",
+   "Section 2 says the conversion factor, not the target percentile, keeps pay aligned with production, yet its own table needs a different rate at every percentile ($45 to $55) to work.",
+   "Checklist 2 asks for production 'justifying above-median compensation' for physicians above the 75th percentile, mixing two different thresholds."
+  ],
+  "time_sensitive_or_outdated": [
+   "Stark documentation and holdover statements reflect pre-2016 rules. Nothing from the December 2020 final rule appears: the commercial-reasonableness definition, objective volume/value test, 90-day writing and signature grace period, limited-remuneration exception, value-based exceptions, or the group-practice profit-share changes effective 2022.",
+   "Dollar-per-wRVU ranges and the percentile table carry no survey year and look about a decade old; survey benchmarks change every year, as the document itself admits.",
+   "No mention of fee-schedule changes that move wRVU counts directly: the 2021 office-visit revaluation, the 2023 hospital and nursing-facility visit revaluation, the 2024 complexity add-on code, and (as I understand the 2026 final rule) the efficiency adjustment, facility practice-expense change and dual conversion factors. A wRVU plan must state which year's values it uses.",
+   "Survey titles are legacy names (AMGA 'Compensation and Financial Survey', MGMA 'Physician Compensation and Production Report'), a sign of stale source material.",
+   "Non-compete discussion contains no law at all, despite the vacated federal rule and the wave of state physician non-compete statutes in 2024-2025; Florida has its own rules.",
+   "'Mid-level' terminology is dated.",
+   "Refers readers to a 'forthcoming' guide and four companion titles whose existence and content cannot be confirmed from this document."
+  ],
+  "ai_generation_signals": [
+   "No author, credentials, citations, regulation numbers, survey editions or dates anywhere in 59 pages.",
+   "A self-auditing footnote under the percentile table explains that the numbers were made consistent with an earlier section: evidence the figures were generated to match, not sourced.",
+   "Section 9 carries an awkward parenthetical, repeated in the next subsection, reconciling a 12-24 month period with a 3-5 year term; it reads like an automated consistency patch.",
+   "The same compliance notice, worded as 'this section discusses', is pasted onto the front-matter page and Section 4.",
+   "Callout boxes restate the paragraph directly above them almost word for word (both 'Common Trap' boxes, the Stark notes).",
+   "Uniformly round, unsourced rules of thumb (15%, 3-8%, 10-15%, 12 months, 24 months, three domains) and a review agenda timed to exactly 100 minutes.",
+   "Constant 'not X, it is Y' aphorisms and symmetrical triads; nearly every section ends in a cross-sell.",
+   "Five cross-references to other vendor titles, one unpublished, and a broken internal cross-reference from Section 1 to Section 5.",
+   "Title says 'Provider' while the body says 'physician' throughout; the brand tagline about getting claims paid has nothing to do with the subject."
+  ],
+  "missing_for_real_use": [
+   "Any citation: statute and regulation sections, rule dates, advisory opinions, survey editions.",
+   "Nurse practitioner and physician assistant pay: separate benchmarks, the 85% Medicare payment rate, incident-to and split/shared credit, supervision or collaboration costs.",
+   "Facility-based practice design: hospital and nursing-facility rounding productivity, census-driven volume, medical-director stipends and time logs, credit for care-management, advance-care-planning and wellness-visit work.",
+   "A worked financial model: revenue per wRVU by payer and place of service, overhead allocation, break-even rate, compensation-to-collections ratio.",
+   "Owner pay as a tax and entity question: wages versus distributions, reasonable compensation, retirement-plan design.",
+   "Anti-Kickback safe harbors, state self-referral, fee-splitting and patient-brokering laws (Florida has all three), penalties, and refund and self-disclosure mechanics.",
+   "Group-practice profit-share and productivity-bonus mechanics for practices with in-house ancillaries, which are the actual Stark rules for owners.",
+   "wRVU plumbing: which fee-schedule year, modifier adjustments, time-based and care-management codes, telehealth, unbilled work, and credit when a claim is denied.",
+   "Sample contract language, a bonus calculation worksheet, a coding-audit protocol with sample sizes and pass marks, and defined quality measures with targets.",
+   "Private-equity deal mechanics: pay reduction traded for purchase price, rollover equity, earn-outs, pay resets after the initial term.",
+   "Value-based and Medicare Advantage pay design: panel or risk-adjusted models, shared-savings distribution, guardrails against paying for diagnosis coding.",
+   "Part-time, leave, call and retirement-transition policies are named but not designed; no calculator, spreadsheet, tracker or scoring rubric is included."
+  ]
+ }
+}

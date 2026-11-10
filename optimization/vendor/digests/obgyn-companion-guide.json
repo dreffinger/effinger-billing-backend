@@ -1,0 +1,706 @@
+{
+  "slug": "obgyn-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: OB/Gyn",
+  "doc_type": "specialty",
+  "pages": 41,
+  "audience": "OB/Gyn practice owners, managers and billing staff who have already read the vendor's 'Universal Specialty Billing Framework'. No author, credential or date is given.",
+  "summary": "A specialty add-on to the vendor's generic billing framework. Its thesis: an OB/Gyn practice runs three separate revenue cycles (maternity global package, gynecology office visits, gynecologic surgery) and loses money by pushing all three through one workflow. It follows a fixed eight-part template: reframe, payer mix, code risk tables, prior authorization, four documentation failures, four denial patterns, five revenue opportunities, then five operating standards and a five-step action list built on 90-day look-back audits. The operating ideas are reasonable (written payer-specific rules, visit counters, operative-note prompts, pre-bill edit checks, cost-sharing scripts at scheduling). The technical content is not reliable: it misuses the antepartum-only codes in its headline recommendation, mislabels several CPT and HCPCS codes, misstates Medicare eligibility and preventive coverage, and gives uncited revenue figures. No working templates are included. Almost nothing applies directly to a facility-based geriatrics practice.",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - OB/Gyn Is Not One Specialty. It Is Three Billing Environments in One Practice",
+      "gist": "Maternity global billing, gynecology office visits and gynecologic surgery follow different rules; running all three through one workflow and one skill set leaks revenue."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in OB/Gyn",
+      "gist": "Medicaid maternity pays below cost, commercial global-package handling varies by contract, Medicare gynecology needs separate rules; includes a six-row payer challenge table."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in OB/Gyn",
+      "gist": "Tables of what the global obstetric package includes, 14 obstetric and 13 surgical CPT codes with billing notes, plus preventive-versus-problem visit coding."
+    },
+    {
+      "section": "Section 4: Prior Authorization in OB/Gyn - Three Different Authorization Landscapes",
+      "gist": "Maternity intake verification and delivery notice, the documentation file for hysterectomy authorization, and diagnosis mismatches on LEEP authorizations."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to OB/Gyn",
+      "gist": "Untracked antepartum visit counts, operative notes lacking code-determining detail, extra postpartum visits never billed, LEEP records missing the pathology chain."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to OB/Gyn",
+      "gist": "Split global packages, preventive-versus-diagnostic errors, surgical bundling denials and procedures that differ from the authorization, each with a prevention routine."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most OB/Gyn Practices Are Missing",
+      "gist": "Extra antepartum visits, postpartum depression management, ultrasound technical component, contraceptive device plus insertion billing, and office hysteroscopy, with uncited dollar estimates."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in OB/Gyn",
+      "gist": "Five operating standards and a five-step starter list built on visit counting, 90-day claim look-backs, an operative-note review and a scheduling script."
+    }
+  ],
+  "framework_elements": [
+    "Separate workflow per billing environment (service line)",
+    "Payer-by-payer reference document for bundled packages",
+    "Coverage and benefit verification at first visit",
+    "Payer notification of a delivery or admission event",
+    "Referral and co-management authorization ownership",
+    "Surgical prior-authorization file assembly",
+    "Authorization-to-claim diagnosis and procedure matching",
+    "Intraoperative change notification to authorization staff",
+    "Retroactive authorization requests",
+    "Visit counter with threshold flag for bundled packages",
+    "Capture of services outside a global package",
+    "Transfer-of-care (split package) billing protocol",
+    "Structured operative note template with code-determining prompts",
+    "Preventive-plus-problem visit coding with modifier 25",
+    "Medicare preventive and screening code selection",
+    "ABN use for frequency-limited Medicare services (named only)",
+    "Pre-bill NCCI edit check on multi-procedure claims",
+    "Device-plus-procedure charge pairing audit",
+    "Cost-sharing counseling at scheduling",
+    "Self-pay package deposit and scope counseling",
+    "Problem-visit capture during a global period",
+    "Screening-to-management documentation (depression)",
+    "Professional versus technical component billing for in-office imaging",
+    "Imaging accreditation",
+    "Site-of-service choice for procedures (office versus operating room)",
+    "Quarterly charge-capture and coding audits",
+    "90-day retrospective claim review with corrected claims",
+    "Joint billing-clinician documentation review",
+    "Patient billing complaint tracking",
+    "Payer-mix margin awareness (below-cost Medicaid lines)"
+  ],
+  "processes": [
+    {
+      "name": "Antepartum visit counting and overage flag",
+      "steps": [
+        "Flag high-risk pregnancies at intake",
+        "Count every antepartum visit in an EHR field or tracking sheet",
+        "Raise a billing review when the count passes 13",
+        "Bill the extra visits (document says 59425/59426; standard guidance is problem E/M codes for complications)",
+        "Audit counts and separately billable capture quarterly"
+      ],
+      "owner_role": "Billing staff with clinical intake (document names no owner)",
+      "cadence": "Every prenatal visit; quarterly audit"
+    },
+    {
+      "name": "Global package verification at maternity intake",
+      "steps": [
+        "Verify plan coverage of the global package, rate, visits included and postpartum window at the first prenatal visit",
+        "Counsel the patient on expected financial responsibility",
+        "Flag likely split-package cases early",
+        "Put delivery notification into the hospital workflow",
+        "Settle who holds any maternal-fetal medicine referral authorization",
+        "Obtain authorization for scheduled cerclage or version where required"
+      ],
+      "owner_role": "Front desk or intake staff with billing",
+      "cadence": "Per new obstetric patient; notification within 24-48 hours of delivery"
+    },
+    {
+      "name": "Split-package (transfer of care) handling",
+      "steps": [
+        "Write a transfer protocol recording visits, who bills which component and the handoff date",
+        "On transfer out, bill the antepartum-only component promptly",
+        "On transfer in, obtain records with the visit count and confirm the split before billing delivery",
+        "Flag every delivery where the delivering physician did not give all antepartum care"
+      ],
+      "owner_role": "Billing staff",
+      "cadence": "Per transfer event"
+    },
+    {
+      "name": "Hysterectomy authorization file",
+      "steps": [
+        "Document failed conservative treatment from the first presentation",
+        "Attach imaging with size and location of pathology",
+        "Match the diagnosis code exactly to the pathology",
+        "Confirm surgeon and approach meet the payer's rules",
+        "Submit the complete file before scheduling"
+      ],
+      "owner_role": "Authorization staff with the surgeon",
+      "cadence": "Per surgical case"
+    },
+    {
+      "name": "Intraoperative finding notification",
+      "steps": [
+        "Surgeon reports any procedure added or changed from what was authorized",
+        "Authorization team notifies the payer in real time or within 24 hours",
+        "Request retroactive authorization",
+        "Keep a record of the notification"
+      ],
+      "owner_role": "Surgeon and authorization team",
+      "cadence": "Per case with a deviation"
+    },
+    {
+      "name": "Pre-bill surgical code review against NCCI edits",
+      "steps": [
+        "List the planned code combination for the encounter",
+        "Check each code pair against NCCI edits",
+        "Add a modifier only where a distinct site or procedure is documented",
+        "Maintain a list of the practice's recurring pairs that need review",
+        "Submit the claim"
+      ],
+      "owner_role": "Coder or billing staff",
+      "cadence": "Every multi-procedure surgical claim; 90-day look-back at start"
+    },
+    {
+      "name": "Preventive-plus-problem visit handling",
+      "steps": [
+        "Warn the patient at scheduling that a separate concern may create an added charge",
+        "Clinician documents the problem work separately from the preventive service",
+        "Bill the preventive code plus a problem E/M with modifier 25",
+        "Use Medicare-specific preventive and screening codes for Medicare patients",
+        "Track unexpected-charge complaints for 90 days and revise the script"
+      ],
+      "owner_role": "Front desk, clinician and coder",
+      "cadence": "Every well-woman visit"
+    },
+    {
+      "name": "Quarterly LARC billing audit",
+      "steps": [
+        "Pull every IUD and implant insertion for the period",
+        "Confirm both the device code and the insertion code were billed",
+        "Confirm both were paid",
+        "Rebill any missing component",
+        "Report dollars recovered"
+      ],
+      "owner_role": "Billing staff",
+      "cadence": "Quarterly; first pass covers the last 90 days"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer/population challenge table",
+      "description": "Six rows pairing each payer group (Medicaid maternity, commercial OB, commercial GYN, Medicare, Medicare Advantage, self-pay) with its main revenue cycle problem."
+    },
+    {
+      "name": "Global obstetric package inclusion table",
+      "description": "Six rows contrasting what the document says is inside the global package with what is separately billable; contains errors (newborn care, overage codes)."
+    },
+    {
+      "name": "High-risk obstetric code reference",
+      "description": "Fourteen CPT codes with a one-line billing consideration each."
+    },
+    {
+      "name": "Gynecologic surgical code reference",
+      "description": "Thirteen CPT codes with bundling notes; the 58572 descriptor is wrong."
+    },
+    {
+      "name": "Maternity intake authorization checklist",
+      "description": "Four numbered gaps to close before or at the first prenatal visit (coverage, delivery notice, referral ownership, cerclage/version authorization)."
+    },
+    {
+      "name": "Hysterectomy authorization documentation list",
+      "description": "Four elements payers are said to require (conservative treatment, imaging correlation, diagnosis specificity, surgeon credentialing)."
+    },
+    {
+      "name": "Split-package management framework",
+      "description": "Four numbered steps for transfers of obstetric care."
+    },
+    {
+      "name": "Well-woman scheduling script",
+      "description": "One sentence of sample front-desk language about a possible added charge; not a full script."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "List of five standing controls (payer reference document, visit tracker, operative note template, counseling protocol, quarterly LARC audit)."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "Five first steps, mostly 90-day look-back audits; the closest thing to a start-up plan, with no owners or dates."
+    },
+    {
+      "name": "Tools described but not supplied",
+      "description": "Antepartum visit counter, payer-by-payer global package reference, structured operative note template, transfer-of-care protocol, intraoperative notification protocol and LARC audit worksheet are prescribed but none is provided."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Antepartum visit count per pregnancy",
+      "definition": "Running count of prenatal visits compared with the number the global package includes",
+      "formula": "count of antepartum visits per patient",
+      "target": "13 included; billing review triggered at visit 14",
+      "red_flag": "High-risk patient past 13 visits with no separate claim",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unbilled antepartum overage revenue",
+      "definition": "Estimated yearly revenue from visits beyond the global count",
+      "formula": "deliveries x share high-risk x average extra visits x payment per visit (150 x 30% x 4 x $80-$120)",
+      "target": "$14,400-$21,600 a year in the illustration",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "LARC device-and-procedure capture",
+      "definition": "Whether each IUD or implant insertion has both the device code and the insertion code billed and paid",
+      "formula": "",
+      "target": "Both components on every insertion (implied 100%)",
+      "red_flag": "Either component missing or unpaid",
+      "source_cited": "none"
+    },
+    {
+      "name": "LARC audit recovery",
+      "definition": "Dollars recovered by the quarterly LARC audit",
+      "formula": "",
+      "target": "$500-$2,000 per quarter stated as routine",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Unexpected-charge complaint rate",
+      "definition": "Patient complaints about surprise charges after preventive-plus-problem visits",
+      "formula": "",
+      "target": "Significant drop within 90 days of introducing the scheduling script",
+      "red_flag": "No drop, meaning the script needs rewriting",
+      "source_cited": "none"
+    },
+    {
+      "name": "Delivery notification timeliness",
+      "definition": "Time from delivery to payer notification",
+      "formula": "",
+      "target": "Within 24-48 hours",
+      "red_flag": "Missed window delays claim processing and lengthens receivables",
+      "source_cited": "none"
+    },
+    {
+      "name": "Intraoperative deviation notification time",
+      "definition": "Time from an unplanned or changed procedure to notifying the authorization team",
+      "formula": "",
+      "target": "Real time, no later than 24 hours",
+      "red_flag": "No documented notification",
+      "source_cited": "none"
+    },
+    {
+      "name": "NCCI pre-bill check coverage",
+      "definition": "Share of multi-procedure surgical encounters checked against NCCI edits before submission",
+      "formula": "",
+      "target": "Every multi-procedure surgical claim",
+      "red_flag": "Code pairs denied for a missing modifier",
+      "source_cited": "none"
+    },
+    {
+      "name": "Operative-note documentation gaps",
+      "definition": "Note gaps that caused coder queries or code downgrades in the last six months",
+      "formula": "",
+      "target": "Top three gaps get dictation-template prompts",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Ultrasound technical-component revenue",
+      "definition": "Added yearly revenue from billing ultrasound globally instead of professional component only",
+      "formula": "scans per week x 52 x technical-component payment",
+      "target": "$60,000-$100,000 or more a year at 20 scans per week",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Audit cadence for obstetric charge capture",
+      "definition": "How often antepartum counts, separately billable procedures and postpartum billing are audited",
+      "formula": "",
+      "target": "Quarterly",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Medicaid covers 40 to 50 percent of births in many U.S. markets and more than 60 percent in some.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicaid global obstetric payment is below the cost of care in most states.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicare patients are by definition over 65, and Medicare does not cover obstetric services.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payers want delivery notification within 24 to 48 hours ('some' payers in Section 2, 'most' in Section 4).",
+      "section": "Sections 2 and 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The global package includes up to 13 antepartum visits for both vaginal and cesarean delivery.",
+      "section": "Sections 3 and 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The global package includes one postpartum office visit within six weeks.",
+      "section": "Sections 3 and 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "59425 covers 4-6 and 59426 covers 7 or more 'additional' antepartum visits beyond the global count.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "High-risk patients may have 18, 20 or more antepartum visits.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Vaginal hysterectomy code choice turns on a uterine weight of 250 grams.",
+      "section": "Sections 3 and 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "58572 is laparoscopic hysterectomy for a uterus of 250 g or less with removal of tubes and ovaries.",
+      "section": "Sections 3 and 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most payers require prior authorization for cerclage and for external cephalic version.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Hysterectomy authorization needs at least one failed alternative treatment on record.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Many payers credential surgeons separately for open, laparoscopic and robotic hysterectomy.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "150 deliveries, 30 percent high-risk, 4 extra visits each gives 180 visits; at $80-$120 that is $14,400-$21,600 a year.",
+      "section": "Section 7, Opportunity 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Postpartum depression screening is recommended by ACOG and required by most quality programs.",
+      "section": "Section 7, Opportunity 2",
+      "source_cited": "ACOG named; no document cited"
+    },
+    {
+      "claim": "A standard obstetric ultrasound (76805) pays about $120 in total under Medicare, split about equally between professional and technical components.",
+      "section": "Section 7, Opportunity 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A practice doing 20 ultrasounds a week gains $60,000 to $100,000 or more a year by billing the technical component.",
+      "section": "Section 7, Opportunity 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Most commercial payers require AIUM or equivalent accreditation to bill the ultrasound technical component.",
+      "section": "Section 7, Opportunity 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Ultrasound accreditation takes three to six months and pays back within the first year.",
+      "section": "Section 7, Opportunity 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "LARC billing uses device codes J7296, J7297, J7298, J7300, J7301 or J7307 with procedure codes 58300, 58301, 11981, 11982 or 11983.",
+      "section": "Section 7, Opportunity 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A physician can complete four office hysteroscopies in a morning versus two operating-room cases.",
+      "section": "Section 7, Opportunity 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A quarterly LARC audit routinely recovers $500 to $2,000 per quarter.",
+      "section": "Section 8, Standard 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An NCCI edit check takes five minutes per surgical claim.",
+      "section": "Section 6, Denial Pattern 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unplanned intraoperative procedures should be reported to the authorization team within 24 hours.",
+      "section": "Section 6, Denial Pattern 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Readers who see their gaps are ahead of where most peers will be in five years.",
+      "section": "Section 1",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Visits beyond that count ... are separately billable using CPT 59425 (4-6 additional antepartum visits) or 59426 (7 or more additional antepartum visits).",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 5, Documentation Failure 1 (repeated in Sections 3, 7 and 8)",
+      "why": "This is the document's top revenue recommendation. CPT and ACOG guidance treat 59425/59426 as antepartum-only codes for a provider who does not deliver; billing them alongside a global code is unbundling and creates repayment exposure."
+    },
+    {
+      "id": "C2",
+      "claim": "58572: Laparoscopic hysterectomy, uterus 250g or less, with BSO - BSO included; do not bill 58661 separately.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, gynecologic surgical code table (repeated in Section 6)",
+      "why": "CPT defines 58572 as uterus over 250 g without adnexal removal. Coding from this table selects a code the service does not support."
+    },
+    {
+      "id": "C3",
+      "claim": "Medicare ... covers ... annual well-woman exams under the Medicare preventive benefit ... gynecologic preventive services (pap smear G0101, pelvic exam Q0091).",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Sections 2 and 3 (preventive vs. diagnostic)",
+      "why": "The two descriptors appear reversed, and Medicare screening pelvic and Pap coverage is every 24 months for most women rather than annual. Errors cause denials and missed ABNs; relevant to any Medicare primary-care practice."
+    },
+    {
+      "id": "C4",
+      "claim": "Medicare does not cover obstetric services for its beneficiaries (Medicare patients are, by definition, over 65 and not pregnant).",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 2, Medicare in the GYN Practice",
+      "why": "Medicare enrolls disabled and ESRD beneficiaries under 65 and pays for pregnancy care. A false eligibility premise shows the Medicare content cannot be taken on trust."
+    },
+    {
+      "id": "C5",
+      "claim": "Included in Global OB Package: Postpartum office visit (one, within 6 weeks) ... Routine newborn care (professional, if same physician).",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, global package table",
+      "why": "Newborn care is billed for the infant as a separate patient, and CPT bundles all routine postpartum care rather than a single visit. Wrong package boundaries cause both lost revenue and improper separate billing."
+    },
+    {
+      "id": "C6",
+      "claim": "A standard obstetric ultrasound (76805) has a total Medicare payment of approximately $120 - split roughly equally between professional and technical components ... billing the technical component ... requires AIUM ... accreditation or equivalent, which most commercial payers require.",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Opportunity 3",
+      "why": "Drives an equipment and accreditation decision and a $60,000-$100,000 projection. Medicare's accreditation mandate covers advanced imaging rather than ultrasound, and the component split is not equal."
+    },
+    {
+      "id": "C7",
+      "claim": "N80.0 (endometriosis of uterus) and N80.1 (endometriosis of ovary) are different authorization submissions even in the same patient.",
+      "kind": "code_rule",
+      "stakes": "low",
+      "section": "Section 4, Gynecologic Surgical Authorization",
+      "why": "Both became non-billable category headers when the endometriosis codes were expanded (confirmed against the FY2027 code set). A claim or authorization at this level rejects, and it dates the source material."
+    },
+    {
+      "id": "C8",
+      "claim": "The correct billing: 99395-99397 (preventive, age-appropriate) with modifier 25 on the additional E&M code (99212-99215) for the separately identified problem.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, Preventive vs. Diagnostic in GYN",
+      "why": "The same rule governs an annual wellness visit plus a problem visit in this practice. Confirm modifier placement, the documentation standard and the omitted new-patient and adolescent code ranges."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.42,
+      "topics": [
+        "global obstetric package boundaries",
+        "surgical code selection and bundling",
+        "modifier 25 on preventive plus problem visits",
+        "operative note documentation",
+        "device plus procedure charge capture",
+        "NCCI edits"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.2,
+      "topics": [
+        "benefit verification at first visit",
+        "prior authorization for surgery",
+        "delivery notification",
+        "cost-sharing counseling at scheduling",
+        "self-pay deposits"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.13,
+      "topics": [
+        "split-package duplicate denials",
+        "bundling denials",
+        "authorization mismatch denials",
+        "corrected claims after look-back audits"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "payer-specific package processing",
+        "Medicaid maternity rates",
+        "credentialing claims",
+        "Medicare versus commercial preventive rules"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.08,
+      "topics": [
+        "in-office ultrasound technical component",
+        "office hysteroscopy",
+        "LARC services"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.04,
+      "topics": [
+        "quarterly coding audits",
+        "recoupment risk from miscoded preventive visits",
+        "ABN mention"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.03,
+      "topics": [
+        "physician time efficiency by site of service",
+        "high-risk patient flagging"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Give each distinct billing environment its own written workflow instead of one generic process.",
+      "why": "Rules, payer behavior and documentation needs differ by service line, and skill in one does not carry over to another.",
+      "applies_to_practice": "yes",
+      "note": "Here the environments are hospital inpatient, skilled nursing and nursing facility, assisted living and home, and time-based care-management codes."
+    },
+    {
+      "idea": "Keep a payer-by-payer reference sheet for bundled or specially processed services and review it at every contract renewal.",
+      "why": "Turns tribal knowledge about each plan's quirks into rules a new hire or an AI agent can follow.",
+      "applies_to_practice": "yes",
+      "note": "Build it for UnitedHealthcare, Humana, Capital Health Plan, Florida Blue, the Medicaid plans, VA and Tricare, covering care management, wellness visits, ACP and facility visits."
+    },
+    {
+      "idea": "Attach a running counter to any service with an included quantity or frequency limit, with an automatic flag at the threshold.",
+      "why": "Thresholds get missed when nobody is counting; a counter turns a rule into an alert.",
+      "applies_to_practice": "partly",
+      "note": "No maternity work, but the mechanism fits wellness-visit eligibility dates, monthly care-management minutes, ACP minutes and required nursing-facility visit intervals."
+    },
+    {
+      "idea": "When a preventive visit also addresses a problem, document and bill the problem work separately with modifier 25 and tell the patient in advance about possible cost-sharing.",
+      "why": "Captures legitimate work and heads off billing complaints.",
+      "applies_to_practice": "yes",
+      "note": "The direct analog is an annual wellness visit plus a problem-oriented visit on the same day; verify Medicare and plan rules rather than relying on this document."
+    },
+    {
+      "idea": "Run every multi-code claim through NCCI edits before submission and keep a list of the practice's recurring code pairs.",
+      "why": "Cheap prevention for predictable bundling denials.",
+      "applies_to_practice": "yes",
+      "note": "Should be an automated scrubber rule in the AI billing pipeline, including Medicaid NCCI and payer-specific edits."
+    },
+    {
+      "idea": "Open each improvement with a 90-day retrospective audit that sizes the leak, rebills what is still within filing limits and justifies a permanent control.",
+      "why": "Produces a dollar figure and a baseline instead of an assumption.",
+      "applies_to_practice": "yes",
+      "note": "Check each payer's corrected-claim and timely-filing limits first; the document does not."
+    },
+    {
+      "idea": "Have clinicians and billing staff design note templates together so they prompt for the facts that decide code selection.",
+      "why": "Notes written only for clinical continuity often cannot support the code billed.",
+      "applies_to_practice": "yes",
+      "note": "Applies to facility visit notes, care-management time logs and ACP notes."
+    },
+    {
+      "idea": "Use a written handoff protocol whenever care is split between providers, recording who bills which component and from what date.",
+      "why": "Prevents duplicate-claim denials when two parties bill overlapping packages.",
+      "applies_to_practice": "partly",
+      "note": "Relevant to physician and nurse practitioner split visits, covering providers, attending changes at facilities and one-biller-per-month care-management codes."
+    },
+    {
+      "idea": "Notify the authorization or billing function immediately when the service delivered differs from what was authorized.",
+      "why": "Retroactive approval is far more likely when a contemporaneous notice exists.",
+      "applies_to_practice": "partly",
+      "note": "Few of the practice's own services need authorization; mainly relevant to Medicare Advantage facility stays and ordered services."
+    },
+    {
+      "idea": "Evaluate equipment-based ancillary services for technical-component revenue.",
+      "why": "Owning the equipment can capture revenue otherwise referred out.",
+      "applies_to_practice": "no",
+      "note": "Facility-based practice with no office; the document's ultrasound numbers are also unreliable."
+    }
+  ],
+  "practice_relevance": {
+    "score": 1,
+    "why": "The practice has no obstetric, gynecologic surgery, office procedure or imaging work and almost no point-of-service collections. Only operating patterns transfer: separate workflows per billing environment, threshold counters, modifier 25 logic for a wellness visit plus a problem visit, pre-bill edit checks and look-back audits. The Medicare passages that might have applied are wrong.",
+    "sections_that_do_not_apply": [
+      "Section 2: Medicaid maternity and commercial global-package content",
+      "Section 3: obstetric and gynecologic surgical code tables",
+      "Section 4: maternity, hysterectomy and LEEP authorization",
+      "Section 5: all four documentation failures in their specifics",
+      "Section 6: split global package, surgical bundling and authorization-mismatch denials",
+      "Section 7: all five revenue opportunities",
+      "Section 8: Standards 1, 2, 3 and 5 and Actions 1, 3 and 4"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Headline recommendation is wrong: it tells practices to bill 59425/59426 for visits past 13 on top of a global code. Those codes are for a provider who gives antepartum care only (one unit for 4-6 or 7+ visits). Extra visits for complications are billed as problem E/M visits; extra routine visits are not billable. Repeated in Sections 3, 5, 7 and 8.",
+      "58572 is described as uterus 250 g or less with BSO. CPT defines it as uterus over 250 g; 58571 is 250 g or less with tubes or ovaries and 58573 is over 250 g with tubes or ovaries. Repeated in Section 6.",
+      "G0101 and Q0091 descriptors are swapped (G0101 is the screening pelvic and breast exam; Q0091 is Pap specimen collection). Medicare has no 'annual well-woman exam'; screening pelvic/Pap is every 24 months unless high risk.",
+      "'Medicare patients are, by definition, over 65' and 'Medicare does not cover obstetric services' are both false. Medicare enrolls disabled and ESRD beneficiaries under 65 and pays for pregnancy and delivery care.",
+      "Routine newborn care is listed inside the maternity global package. Newborn care belongs to a separate patient and is billed separately.",
+      "'One postpartum visit within six weeks' understates CPT, which bundles routine postpartum hospital and office care; payer windows vary.",
+      "Cerclage 'placement or removal (59320, 59325)': both codes are placement (vaginal and abdominal). Removal has its own code.",
+      "Colposcopy coding is muddled: 57420 (vaginal colposcopy) is cited as the code bundled into LEEP, when the cervical colposcopy family starts at 57452; 57460 (loop biopsy) and 57461 (loop conization) are blurred.",
+      "N80.0 and N80.1, offered as models of diagnosis specificity, are category headers that are not valid for claims (verified against the FY2027 ICD-10-CM set).",
+      "Ultrasound: says technical-component billing needs accreditation that most commercial payers require and that Medicare payment splits equally. Medicare's accreditation mandate covers CT, MRI and nuclear imaging, not ultrasound; payer rules vary; fee schedule values put the technical component well above half. Practices that own the machine normally bill globally already.",
+      "Payer 'credentialing' of surgeons by approach (open, laparoscopic, robotic) is presented as common. Approach-specific privileges are granted by hospitals, and robotic cases use the laparoscopic CPT codes. This looks invented.",
+      "'Most payers' requiring prior authorization for cerclage and external cephalic version, and routine LEEP authorizations, are asserted with no source and do not match typical payer authorization lists.",
+      "Postpartum depression: proposes modifier 25 on a visit that is itself inside the global (no E/M is billed for it), and never names the screening code or the behavioral health integration codes it alludes to.",
+      "Office hysteroscopy: claims the gain is not in procedure reimbursement, ignoring the large office (non-facility) payment differential that is the real economic driver.",
+      "Treats Medicaid as paying a global obstetric fee everywhere; many state programs and plans require itemized or split billing.",
+      "Preventive code range given (99395-99397) covers established adult patients only; new-patient and adolescent codes are omitted."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "The code table defines 59425/59426 as antepartum-only, partial-package codes, while four other passages use them for 'additional' visits on top of a global.",
+      "Antepartum overage is called the largest missed revenue item at $14,400-$21,600 a year, yet the ultrasound item is valued at $60,000-$100,000 or more.",
+      "Overage revenue is priced per visit ($80-$120 x 180 visits) although the codes it names are single-unit bundles covering a range of visits.",
+      "Section 2 says 'some' payers require delivery notice within 24-48 hours; Section 4 says 'most'.",
+      "Office hysteroscopy reimbursement is called substantially higher, then the benefit is said not to lie in procedure reimbursement.",
+      "58571 and 58572 are both described as 250 g or less with adnexal removal.",
+      "LARC is 'among the highest-reimbursement office procedures', yet the audit that catches missed components is said to recover only $500-$2,000 a quarter.",
+      "Says Medicare covers an annual well-woman exam, then says Medicare preventive rules differ and lists separate screening codes that are not annual."
+    ],
+    "time_sensitive_or_outdated": [
+      "ICD-10-CM endometriosis codes N80.0 and N80.1 were expanded in October 2022 and are no longer billable at that level.",
+      "The single six-week postpartum visit model predates ACOG's 2018 postpartum guidance and the 12-month Medicaid postpartum coverage most states have adopted.",
+      "The 76805 Medicare payment and $80-$120 commercial visit rate are undated; the 2026 physician fee schedule changed conversion factors and practice-expense allocation.",
+      "No mention of prior-authorization decision deadlines that took effect in 2026 for Medicare Advantage and Medicaid managed care plans.",
+      "No mention of good-faith estimate duties for self-pay maternity packages under the No Surprises Act.",
+      "HCPCS device codes and payer authorization lists change quarterly; the document carries no 'as of' date."
+    ],
+    "ai_generation_signals": [
+      "Identical eight-section skeleton, 'Five Non-Negotiable Operational Standards' and 'Prioritized Five-Action Implementation List' as the oncology guide, ending in an aphorism box.",
+      "Superlatives recycled across the series: each specialty is declared the most complex in outpatient medicine.",
+      "Constant 'this is not X, it is Y' constructions and sweeping absolutes about what 'most practices' do.",
+      "Tidy round-number scenarios with no source (150 deliveries, 30 percent, 4 visits; 20 scans a week).",
+      "Confident but wrong code descriptors (58572, G0101/Q0091, 59320/59325) typical of pattern completion rather than a codebook.",
+      "Cross-reference to an 'Orthopedics Companion Guide', suggesting one template filled in per specialty.",
+      "No author, credential, date, citation, payer name or state anywhere; roughly 160 words per page across 41 pages."
+    ],
+    "missing_for_real_use": [
+      "None of the tools it prescribes is supplied: no visit counter, operative note template, payer reference matrix, transfer protocol or audit worksheet; the scheduling script is one sentence.",
+      "No citations to CPT guidelines, ACOG coding guidance, the NCCI policy manual, CMS manuals or any payer policy.",
+      "Modifiers other than 25 (22, 24, 51, 59 and X modifiers, assistant surgeon, TH), multiple-gestation delivery coding and surgical global periods.",
+      "State Medicaid maternity billing rules, and the sterilization consent and hysterectomy acknowledgment forms that drive Medicaid surgical denials.",
+      "Medicare screening frequency limits and how to use an ABN, although ABNs are named.",
+      "Quality-reporting codes for prenatal and postpartum visits and the depression screening code.",
+      "KPI definitions, benchmarks, staffing roles and system configuration steps.",
+      "Appeal language, denial reason codes and corrected-claim filing limits for the look-back audits it recommends."
+    ]
+  }
+}

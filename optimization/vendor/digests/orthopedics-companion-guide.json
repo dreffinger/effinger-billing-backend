@@ -1,0 +1,746 @@
+{
+  "slug": "orthopedics-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Orthopedics",
+  "doc_type": "specialty",
+  "pages": 44,
+  "audience": "Not stated outright. Written for orthopedic practices - surgeons, coders, authorization staff, billing leads and practice managers - and it assumes the reader has already read the vendor's 'Universal Specialty Billing Framework'.",
+  "summary": "Specialty overlay to the vendor's Universal Specialty Billing Framework. Its thesis: orthopedic practices lose money through imprecision, not low volume. It describes six payer environments (Medicare, Medicare Advantage, commercial PPO and HMO, workers' compensation, auto/PIP), coding risk in spine, joint replacement, arthroscopy, fracture care, injections and nerve blocks, implant billing, surgical prior authorization, four documentation failures, four denial patterns and five revenue opportunities, then a five-item priority list. The central method is front-loaded documentation: record conservative-care history and functional scores at the first visit, dictate operative reports with diagnosis, findings, procedure and post-operative diagnosis, build authorization packets criterion by criterion, and have a trained coder read every operative report for add-on codes before submission. It contains two summary tables but no usable tools, cites no sources, sets almost no numeric targets, and several coding statements conflict with CPT, NCCI and Medicare payment rules.",
+  "outline": [
+    {
+      "section": "Section 1: The Assumption That Is Costing Orthopedic Practices the Most",
+      "gist": "Argues revenue loss comes from imprecise coding, authorization and documentation rather than low volume; makes four unsourced superlative claims about the specialty."
+    },
+    {
+      "section": "Section 2: The Orthopedic Payer Mix Reality",
+      "gist": "Treats Medicare, Medicare Advantage, commercial, workers' compensation and auto/PIP as separate billing environments needing separate workflows; six-row risk table."
+    },
+    {
+      "section": "Section 3: The Orthopedic Procedure Code Risk Profile",
+      "gist": "Coding traps in spine surgery, add-on codes, joint replacement, arthroscopy bundling and fracture global periods; table of risk codes by category."
+    },
+    {
+      "section": "Section 4: Implant Billing - The Revenue Dimension Most Orthopedic Practices Mismanage",
+      "gist": "Implants are usually facility-billed; surgeon documentation must identify devices; markup rules vary by payer; recommends a per-payer policy and annual audit."
+    },
+    {
+      "section": "Section 5: Prior Authorization in Orthopedics",
+      "gist": "Capture conservative-care history and functional scores early, build criterion-by-criterion packets for spine and joint cases, prepare peer-to-peer calls from the record."
+    },
+    {
+      "section": "Section 6: The Documentation Failures Unique to Orthopedics",
+      "gist": "Four failures: operative reports without findings, missing outside conservative-care records, undocumented injury mechanism, post-operative visits lacking global-period context."
+    },
+    {
+      "section": "Section 7: The Denial Patterns Unique to Orthopedics",
+      "gist": "Four patterns: spine medical-necessity mismatch, excessive multiple-procedure reductions, authorization-procedure mismatch, global-period violations; one control proposed for each."
+    },
+    {
+      "section": "Section 8: The Revenue Opportunities Most Orthopedic Practices Are Missing",
+      "gist": "Five opportunities: raise E/M levels, capture add-on codes, bill all injection components, physician-billed physical medicine codes, audit readiness."
+    },
+    {
+      "section": "Section 9: Closing - What Orthopedic Revenue Cycle Excellence Actually Looks Like (with Priority List)",
+      "gist": "Restates the precision theme and lists five ordered actions said to raise revenue within 90 days in any size practice."
+    }
+  ],
+  "framework_elements": [
+    "Payer-class segmentation of the revenue cycle (own workflow, KPIs and cadence per payer type)",
+    "Medicare Advantage plan-specific authorization matrix",
+    "Coverage policy (LCD) currency monitoring",
+    "Post-payment audit response protocol",
+    "Workers' compensation billing workflow (state fee schedule, adjuster authorization, causation documentation)",
+    "Auto liability / PIP billing (state rate caps, payer sequencing, lien arrangements)",
+    "Procedure-category coding risk profile",
+    "Operative report documentation standard (four elements)",
+    "Pre-submission operative report review for add-on codes",
+    "Bundling and modifier reference maintained annually",
+    "Global period management (fracture care, post-operative visits)",
+    "Post-operative visit note standard (surgery date, global end date, related or unrelated)",
+    "Implant documentation and invoice reconciliation",
+    "Per-payer implant markup and pass-through policy",
+    "Annual implant billing audit",
+    "Conservative-care history capture at initial evaluation",
+    "Prior-treatment records request standard",
+    "Patient-reported outcome scores as medical-necessity evidence",
+    "Criteria-mapped authorization package",
+    "Peer-to-peer preparation protocol",
+    "Intraoperative change notification (authorization-procedure match)",
+    "Injury mechanism documentation for trauma, workers' compensation and auto cases",
+    "Payer-specific medical-necessity checklist per procedure",
+    "Multiple-procedure reduction payment audit (underpayment detection)",
+    "E/M level distribution benchmarking with encounter-specific feedback",
+    "Injection procedure charge-capture audit",
+    "Physician-billed physical medicine services",
+    "Audit readiness program (internal audits, response team, legal resource)",
+    "New-coder onboarding on specialty coding references",
+    "Monthly monitoring of priority actions"
+  ],
+  "processes": [
+    {
+      "name": "Pre-submission operative report review for add-on and secondary codes",
+      "steps": [
+        "Send every operative report to an orthopedic-trained coder before the claim is built",
+        "Read the whole report, not only the primary procedure",
+        "Check for extra spinal levels, graft type and harvest method, imaging guidance, assistant surgeon and additional arthroscopic procedures",
+        "Add each supported code and confirm the report documents it",
+        "Run a one-time review of the last 90 days of spine and arthroscopy cases to size missed revenue"
+      ],
+      "owner_role": "Orthopedic coder / billing team",
+      "cadence": "Every surgical case; one-time 90-day look-back"
+    },
+    {
+      "name": "Conservative-care capture at the initial evaluation",
+      "steps": [
+        "Build visit templates for the highest-volume surgical indications",
+        "Record prior physical therapy with dates and provider, medications tried and failed, injections and duration of relief",
+        "Record a functional score (KOOS, HOOS, DASH or WOMAC) at the first and each later visit",
+        "Reuse this record as the base of any later authorization request"
+      ],
+      "owner_role": "Physician, supported by clinic staff",
+      "cadence": "Every new patient with a likely surgical indication"
+    },
+    {
+      "name": "Prior-treatment records request",
+      "steps": [
+        "Request outside therapy, primary care and injection records at the first visit",
+        "Log receipt in the chart",
+        "Cite the records specifically in the pre-operative evaluation"
+      ],
+      "owner_role": "Front office / medical records staff",
+      "cadence": "Each new likely-surgical patient"
+    },
+    {
+      "name": "Criteria-mapped authorization package and peer-to-peer preparation",
+      "steps": [
+        "Obtain the payer's written criteria for the procedure",
+        "Address each criterion in order with a pointer to imaging reports, therapy records, injection notes and exam findings",
+        "Submit the structured packet rather than a letter plus loose records",
+        "If denied, brief the surgeon with the criteria, matching record elements, plain-language imaging findings and functional scores",
+        "Surgeon cites the record, not memory, on the call"
+      ],
+      "owner_role": "Authorization team and operating surgeon",
+      "cadence": "Each elective surgical authorization and each denial"
+    },
+    {
+      "name": "Intraoperative change notification",
+      "steps": [
+        "Surgeon flags any material difference between the procedure performed and the one authorized",
+        "Billing is told on the day of surgery",
+        "Payer is contacted to amend the authorization before the claim goes out",
+        "Operative report states the findings that forced the change",
+        "Use that record on appeal if the payer refuses a retroactive change"
+      ],
+      "owner_role": "Surgeon, authorization staff and billing",
+      "cadence": "Day of surgery, as needed"
+    },
+    {
+      "name": "Quarterly multiple-procedure reduction payment audit",
+      "steps": [
+        "Pull paid surgical claims with three or more procedure codes",
+        "Compare the payer's reductions with contract terms and modifier 51 rules",
+        "Flag any add-on code that was paid at a reduced rate",
+        "File written disputes citing the contract and the add-on designation"
+      ],
+      "owner_role": "Billing / payment posting team",
+      "cadence": "Quarterly"
+    },
+    {
+      "name": "Implant billing policy and annual audit",
+      "steps": [
+        "Write a per-payer rule sheet covering markup, required documentation and claim process",
+        "Sample high-cost implant cases across facility relationships",
+        "Confirm the device is identified in the operative report, the billed amount equals the invoice and the device is not already packaged",
+        "Update the policy yearly and at each contract renewal"
+      ],
+      "owner_role": "Practice or ASC billing lead with compliance",
+      "cadence": "Annual audit (about one day); policy review yearly and at contract renewal"
+    },
+    {
+      "name": "E/M distribution review with encounter-level feedback",
+      "steps": [
+        "Run the E/M level distribution for each provider",
+        "Compare with a specialty benchmark (none supplied)",
+        "Flag providers far below benchmark",
+        "Hold documentation-improvement conversations using specific encounters within 30 days",
+        "Monitor monthly; expect 60 to 90 days for the distribution to shift"
+      ],
+      "owner_role": "Billing lead / documentation reviewer with each physician",
+      "cadence": "Initial pull, feedback within 30 days, monthly monitoring"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer type risk and priority table",
+      "description": "Included. Six payer types (Traditional Medicare, Medicare Advantage, commercial PPO, commercial HMO, workers' compensation, auto/PIP) with main revenue risk and management priority."
+    },
+    {
+      "name": "Procedure category coding risk table",
+      "description": "Included. Six procedure categories with primary coding risk and five example CPT codes each."
+    },
+    {
+      "name": "Four-element operative report standard",
+      "description": "Included as a rule: pre-operative diagnosis, intra-operative findings, procedure performed (by level), post-operative diagnosis."
+    },
+    {
+      "name": "Operative report review checklist for add-on codes",
+      "description": "Included as a five-item list (extra levels, graft type and harvest, imaging guidance, assistant surgeon, additional arthroscopic procedures); no form."
+    },
+    {
+      "name": "Peer-to-peer preparation list",
+      "description": "Included as four items: payer criteria, matching record elements, imaging in plain language, functional impairment data."
+    },
+    {
+      "name": "Post-operative visit note standard",
+      "description": "Included as a rule: state the surgery date, the global period end date and whether the visit relates to the surgery."
+    },
+    {
+      "name": "Audit readiness protocol",
+      "description": "Included as four components (annual internal audits, response team and timeline, provider standards reference, legal resource); no template."
+    },
+    {
+      "name": "Orthopedic Revenue Cycle Priority List",
+      "description": "Included. Five ordered actions: spine operative standard, conservative-care protocol, add-on code look-back, E/M distribution review, separate workers' compensation workflow."
+    },
+    {
+      "name": "Initial evaluation conservative-care template",
+      "description": "Described only. Reader is told to build one for knee OA, hip OA, lumbar stenosis, rotator cuff tear and cervical radiculopathy."
+    },
+    {
+      "name": "Spine surgery medical-necessity checklist",
+      "description": "Described only. Should map documentation to each major payer's criteria; no criteria supplied."
+    },
+    {
+      "name": "Plan-specific authorization matrix",
+      "description": "Named in the payer table only; not supplied."
+    },
+    {
+      "name": "Fracture care coding reference",
+      "description": "Described only: global period per fracture code, included and excluded services, modifier requirements."
+    },
+    {
+      "name": "Arthroscopy bundling reference",
+      "description": "Described only; to be updated with each annual CPT change."
+    },
+    {
+      "name": "Implant billing policy",
+      "description": "Described only: per-payer markup rule, documentation and claim submission process."
+    },
+    {
+      "name": "Intraoperative change notification protocol",
+      "description": "Described only as three steps (notify billing same day, contact payer before the claim, document findings)."
+    },
+    {
+      "name": "Workers' compensation workflow kit",
+      "description": "Described only: state fee schedule references, adjuster contact directory, causation documentation standard."
+    },
+    {
+      "name": "Scripts, scoring rubrics, calculators, trackers, 30/60/90-day plan",
+      "description": "None included. Results are promised within 90 days but no phased plan is given."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "E/M level distribution by provider",
+      "definition": "Each provider's mix of E/M codes by level compared with an orthopedic surgery benchmark",
+      "formula": "",
+      "target": "At benchmark; the benchmark itself is never given",
+      "red_flag": "More than 15 points below benchmark at the 99214 and 99215 levels",
+      "source_cited": "none"
+    },
+    {
+      "name": "E/M undercoding revenue gap",
+      "definition": "Revenue lost when complex new-patient evaluations are coded 99203 or 99204 rather than 99205",
+      "formula": "$80-$120 per encounter x new patients per day x working days (example: 10 a day = $800-$1,200 a day = $200,000-$300,000 a year, implying 250 days)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-submission authorization approval rate",
+      "definition": "Share of surgical authorization requests approved without resubmission or peer-to-peer; described only as 'materially' or 'significantly' higher with structured packets",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Spine surgery denial rate",
+      "definition": "Denial rate on spine surgery authorizations and claims",
+      "formula": "",
+      "target": "Described only as well below the specialty average; no figure",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Missed add-on code revenue",
+      "definition": "Add-on codes supported by the operative report but not billed, measured by re-reading the last 90 days of spine and arthroscopy cases",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Operative report standard compliance",
+      "definition": "Share of operative reports containing pre-operative diagnosis, intra-operative findings, procedure at each level and post-operative diagnosis",
+      "formula": "",
+      "target": "Every report; compliance audited quarterly",
+      "red_flag": "Findings stated generically without specifics",
+      "source_cited": "none"
+    },
+    {
+      "name": "Multiple-procedure reduction payment errors",
+      "definition": "Paid surgical claims with three or more codes where payer reductions do not match modifier 51 rules or add-on codes were reduced",
+      "formula": "",
+      "target": "No reduction applied to add-on codes; reviewed quarterly",
+      "red_flag": "Any add-on code paid at a reduced rate",
+      "source_cited": "none"
+    },
+    {
+      "name": "Injection billing component capture",
+      "definition": "Injection claims missing a guidance code despite documented imaging guidance, or missing an E/M despite a documented separate evaluation; quarterly audit",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Implant charge support",
+      "definition": "Sampled high-cost implant cases where the charge is backed by operative documentation, equals the invoice and is not already packaged",
+      "formula": "",
+      "target": "All sampled cases; annual audit of about one day",
+      "red_flag": "Billed amount above invoice; device not identified in the operative report",
+      "source_cited": "none"
+    },
+    {
+      "name": "Workers' compensation KPIs",
+      "definition": "A separate KPI set and collection rate for workers' compensation claims; mentioned but never defined",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Cost to collect including Medicare Advantage administrative load",
+      "definition": "Named as where staff time consumed by MA plans should be counted; not defined in this guide",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Peer-to-peer success rate",
+      "definition": "Share of peer-to-peer reviews that overturn a denial; mentioned only qualitatively",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Post-payment audit pass rate",
+      "definition": "Share of audited claims upheld; described only as 'high' for well-documented practices",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Time to revenue improvement",
+      "definition": "Time for the five priority actions to produce measurable revenue gain",
+      "formula": "",
+      "target": "Within 90 days, for a practice of any size",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "One spine surgery can produce $15,000 to $40,000 in professional fees.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A denied lumbar fusion authorization is a $15,000 to $40,000 revenue event rather than a $150 billing problem.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A documentation failure costs $30 on a 99213 and $15,000 to $40,000 on a lumbar fusion.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A two-level lumbar fusion with posterior instrumentation and iliac crest graft carries four to six separately reportable codes; missing one forfeits thousands of dollars.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The orthopedic payer mix amounts to four to six distinct billing environments.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Payers typically require at least six weeks of conservative care for acute presentations, often longer for elective fusion.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Capturing conservative-care history at the first visit costs two minutes per encounter.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "KOOS, HOOS, DASH or WOMAC take five minutes to administer and score.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Requesting prior treatment records costs fifteen minutes of administrative time per patient and protects thousands of dollars per surgical case.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Standard multiple-procedure payment is 100% for the highest-value procedure, 50% for the second and 25% for the third and later procedures.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Coding a complex new spine evaluation as 99203 or 99204 instead of 99205 loses $80 to $120 per encounter.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "At ten new patients a day, E/M undercoding equals $800 to $1,200 a day, or $200,000 to $300,000 a year.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Correcting an orthopedic E/M distribution takes 60 to 90 days of encounter-specific feedback.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An annual internal implant billing audit takes one day per year.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Missed add-on codes in a spine-heavy practice are worth thousands of dollars per affected case.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Providers more than 15 points below benchmark at 99214 and 99215 should get documentation-improvement conversations within 30 days.",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The five priority actions produce measurable revenue improvement within 90 days in a practice of any size.",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Fracture care codes carry either 90-day or 10-day global periods, and some non-surgical fracture codes carry 90 days.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Orthopedics has the highest revenue concentration per claim of any outpatient specialty and the highest prior authorization burden outside oncology.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "In a practice doing 50 spine cases a month, full operative report review finds missed add-on codes on a 'meaningful share' of cases (no figure given).",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Injection billing audits typically recover many times their cost (no figure given).",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The unnamed author claims thirty years of observing orthopedic practices.",
+      "section": "Section 1",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "An ultrasound-guided injection 'revenue stack' is the injection code (20610, 20611, 27096 or other) plus ultrasound guidance code 76942 plus a separately identifiable E&M; the guidance code is the component most often missed.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 8, Opportunity Three (also Section 3 table)",
+      "why": "If wrong, a practice following the audit advice adds 76942 to codes that already include guidance, creating systematic unbundling, overpayments and false-claims exposure. The CPT descriptors for 20611 and 27096 and the NCCI edits should settle it."
+    },
+    {
+      "id": "C2",
+      "claim": "Surgeons frequently perform multiple separately reportable arthroscopic procedures in one session, e.g. 'a meniscectomy and a chondroplasty'; modifier 59 or XS may override an NCCI edit for anatomically distinct sites within the same joint.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, Arthroscopy",
+      "why": "Meniscectomy codes 29880/29881 are generally understood to include chondroplasty, and NCCI limits modifier 59 within one joint, especially the shoulder. Teaching the opposite drives improper unbundling on the highest-volume orthopedic procedure family."
+    },
+    {
+      "id": "C3",
+      "claim": "Under modifier 51, standard multiple procedure payment rules are 'typically 100% for the highest-value procedure, 50% for the second procedure, 25% for the third and subsequent procedures.'",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 7, Denial Pattern Two",
+      "why": "Medicare's published rule is 100% then 50% for the second through fifth procedures. A 25% third tier sets wrong expected payments, hides Medicare and Medicare Advantage underpayments and distorts contract modeling."
+    },
+    {
+      "id": "C4",
+      "claim": "Spine add-on codes for additional levels (22614, 22632, 22634) and for 'bone graft procurement (20931, 20936, 20937, 20938)' are separately reportable, full-value codes not subject to multiple procedure reduction.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, Add-On Codes in Spine Surgery",
+      "why": "20936 (like 20930) carries bundled status with no separate Medicare payment, and 20931 is allograft rather than harvested graft. Counting them as recoverable revenue overstates the opportunity and prompts groundless appeals."
+    },
+    {
+      "id": "C5",
+      "claim": "For implants billed by practice-owned facilities, pass-through and markup rules vary by payer: 'Medicare has specific rules limiting implant markup.'",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4, Implant Pass-Through and Markup Rules",
+      "why": "Medicare generally packages implants into the facility payment instead of paying invoice plus markup. A practice-owned ASC budgeting or billing on a supposed markup rule would misprice cases and risk improper billing."
+    },
+    {
+      "id": "C6",
+      "claim": "97000-series physical medicine codes (therapeutic exercise, therapeutic activities, manual therapy, neuromuscular reeducation) 'are billable when performed by or incident to a physician' if documentation supports necessity and time and payer policy permits.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 8, Opportunity Four",
+      "why": "Medicare pays incident-to therapy only when delivered by staff meeting therapist qualifications under a certified plan of care, and in-office therapy must satisfy the Stark ancillary-services exception. Billing without those conditions is an overpayment."
+    },
+    {
+      "id": "C7",
+      "claim": "A complex new spine evaluation with outside-record review, detailed exam and imaging/conservative/surgical plan 'supports a 99205'; coding it 99203 or 99204 forfeits $80 to $120 per encounter, or $200,000 to $300,000 a year at ten new patients daily.",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 8, Opportunity One",
+      "why": "Office E/M level has depended on decision making or time since 2021, and 99205 needs high complexity or 60 minutes. A blanket push to 99205 backed by unsourced dollar gains is an upcoding and audit risk for any practice."
+    },
+    {
+      "id": "C8",
+      "claim": "Medicare Advantage plans add prior authorization for orthopedic procedures 'that traditional Medicare does not require authorization for' and apply 'medical necessity criteria that differ from Medicare's published LCDs.'",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 2, Medicare and Medicare Advantage",
+      "why": "Since 2024 MA plans must apply Medicare coverage criteria where they exist, and Traditional Medicare does require prior authorization for some outpatient spine and facet services. Both facts change appeal strategy for a Medicare Advantage-heavy practice."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.4,
+      "topics": [
+        "surgical CPT risk by procedure category",
+        "add-on code capture",
+        "modifier and bundling rules",
+        "global period compliance",
+        "operative report standard",
+        "E/M leveling",
+        "injection coding",
+        "implant charge support"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.18,
+      "topics": [
+        "surgical prior authorization",
+        "conservative-care documentation at intake",
+        "prior records request",
+        "peer-to-peer preparation",
+        "authorization-procedure matching"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.14,
+      "topics": [
+        "payer-class segmentation",
+        "Medicare Advantage criteria and audits",
+        "workers' compensation fee schedules",
+        "auto/PIP rate caps",
+        "implant markup contract terms",
+        "coverage policy monitoring"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.13,
+      "topics": [
+        "denial pattern analysis",
+        "multiple-procedure reduction underpayment audit",
+        "authorization mismatch appeals",
+        "written payment disputes"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.12,
+      "topics": [
+        "post-payment audit readiness",
+        "global period overpayment risk",
+        "implant billing audit",
+        "internal documentation audits",
+        "legal escalation for overpayment demands"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.03,
+      "topics": [
+        "dedicated workers' compensation biller",
+        "specialty-trained coder",
+        "new-coder training on references"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Run each payer class as its own small revenue cycle with a separate rule sheet, work queue, KPIs and review cadence.",
+      "why": "A single undifferentiated workflow hides payer-specific failure modes; segmented reporting shows where money is actually lost.",
+      "applies_to_practice": "yes",
+      "note": "Map to Medicare fee-for-service (First Coast), each of the four Medicare Advantage plans, Florida Medicaid managed care and duals, VA and Tricare."
+    },
+    {
+      "idea": "Capture the evidence a payer will later demand at the first encounter, through templates, instead of reconstructing it at authorization or appeal.",
+      "why": "Contemporaneous documentation is cheap; reconstructed documentation is weak under audit.",
+      "applies_to_practice": "partly",
+      "note": "Analogues: CCM consent and care plan, advance care planning time and voluntariness, wellness visit elements, necessity statements for frequent facility visits."
+    },
+    {
+      "idea": "Answer payer criteria point by point, each with a pointer to the supporting record, in authorizations, records requests and appeals.",
+      "why": "Reviewers approve what they can verify quickly; narrative letters make them hunt.",
+      "applies_to_practice": "partly",
+      "note": "Few prior authorizations in facility visits, but the format suits Medicare Advantage record requests, appeals and pre-payment reviews."
+    },
+    {
+      "idea": "Before a claim leaves, have a trained reviewer read the full note for secondary and add-on services.",
+      "why": "Charge-capture misses come from coding only the headline service.",
+      "applies_to_practice": "partly",
+      "note": "Geriatric analogues: prolonged-service add-ons, advance care planning with a wellness visit, CCM add-on units, transitional care. AI agents can do this on every note."
+    },
+    {
+      "idea": "Quarterly audit of payer-applied payment reductions against contract and Medicare rules, with written disputes.",
+      "why": "Reduced payments post as paid claims, so they never surface as denials.",
+      "applies_to_practice": "yes",
+      "note": "Generalize to expected-versus-allowed variance by payer and code: nurse practitioner rate, sequestration, Medicare Advantage fee schedule loading errors."
+    },
+    {
+      "idea": "Compare each provider's E/M level distribution with a published benchmark and give feedback using specific encounters.",
+      "why": "Encounter-level examples change documentation habits; memos and general training do not.",
+      "applies_to_practice": "yes",
+      "note": "Use CMS utilization data for hospital and nursing facility visit families, test for over- as well as under-coding, and drop the guide's assumption that the answer is always higher."
+    },
+    {
+      "idea": "Same-day notice to billing whenever the service delivered differs from what was scheduled or authorized.",
+      "why": "A mismatch caught before submission can be corrected; after denial it needs an appeal.",
+      "applies_to_practice": "partly",
+      "note": "Analogue here: status and location changes such as observation versus inpatient, Part A skilled stay versus long-term care, hospice election, plan change."
+    },
+    {
+      "idea": "Standing audit-readiness protocol: annual internal audit of the highest-risk services, a named response team with deadlines, documentation standards reviewed with each provider yearly, legal resource identified in advance.",
+      "why": "Audit letters carry short clocks; preparation decides the outcome.",
+      "applies_to_practice": "yes",
+      "note": "High-risk services here: top-level hospital and nursing facility visits, CCM and complex CCM, advance care planning, wellness visits, split/shared visits, medical-director arrangements."
+    },
+    {
+      "idea": "Request prior records at intake and cite them in the note.",
+      "why": "Evidence held by another provider does not count unless it sits in your record.",
+      "applies_to_practice": "partly",
+      "note": "Obtain hospital discharge summaries and prior diagnoses at facility admission to support medical necessity, transitional care and risk-adjustment documentation."
+    },
+    {
+      "idea": "Reuse the overlay skeleton: payer mix, code risk profile, authorization, documentation failures, denial patterns, revenue opportunities, priority list.",
+      "why": "A serviceable outline for specialty playbooks in a practice-optimization service.",
+      "applies_to_practice": "partly",
+      "note": "Adopt the skeleton only; every coding statement would have to be rebuilt from primary sources before client use."
+    }
+  ],
+  "practice_relevance": {
+    "score": 1,
+    "why": "The practice performs no surgery, implants, fracture care, workers' compensation or surgical prior authorization, so roughly nine-tenths of the content does not apply. What transfers is method only (payer segmentation, criteria-mapped packets, underpayment audits, E/M distribution feedback, audit readiness) plus a shallow Medicare Advantage discussion. The section skeleton could seed a consulting playbook, but the coding content is not reliable enough to reuse with an orthopedic client.",
+    "sections_that_do_not_apply": [
+      "Section 2: workers' compensation and auto liability/PIP material (the Medicare Advantage paragraphs apply only in general terms)",
+      "Section 3: the whole procedure code risk profile (spine, joint replacement, arthroscopy, fracture care, injections, nerve blocks)",
+      "Section 4: implant billing",
+      "Section 5: surgical authorization specifics (conservative care, spine and joint criteria, outcome scores); only the packet method transfers",
+      "Section 6: operative report, fracture mechanism and global-period documentation",
+      "Section 7: all four denial patterns in their surgical form",
+      "Section 8: Opportunities Two to Four (add-on codes, injection billing, physical medicine codes)",
+      "Section 9: priority items 1, 3 and 5"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Injection 'revenue stack' (Section 8, Opportunity Three; Section 3 table): tells practices to add ultrasound guidance code 76942 to 20610, 20611 or 27096 and to audit for 'missed' guidance codes. 20611 by definition includes ultrasound guidance and CPT bars 76942 with 20610/20611; 27096 includes fluoroscopic or CT guidance. Following the advice creates systematic unbundling.",
+      "Arthroscopy (Section 3): offers meniscectomy plus chondroplasty as an example of separately reportable procedures. Since 2012 codes 29880/29881 include chondroplasty in any compartment; alongside those codes Medicare's G0289 is limited to loose or foreign body removal in a different compartment.",
+      "Arthroscopy (Section 3): says modifier 59 or XS can override NCCI edits for distinct sites within one joint, with no limits. NCCI treats the shoulder as a single anatomic structure and most same-shoulder arthroscopy pairs cannot be unbundled; this modifier use is a standing audit target.",
+      "Multiple procedure payment (Section 7): gives the standard as 100% / 50% / 25%. Medicare pays 100% for the highest-valued procedure and 50% for the second through fifth; arthroscopy families follow a separate multiple-endoscopy rule the guide never mentions. Payment audits built on the guide's figures will be wrong for Medicare and Medicare Advantage.",
+      "Bone graft codes (Section 3): labels 20931 (structural allograft) as graft 'procurement' and presents 20936 as incremental revenue. Under the Medicare fee schedule 20930 and 20936 are bundled with no separate payment. Instrumentation codes are selected by segments spanned, not billed per additional level as the text implies.",
+      "Spine case value: '$15,000 to $40,000 in professional fees' appears three times with no source. That range looks like billed charges or facility payment. By my estimate Medicare surgeon payment for a one- or two-level instrumented lumbar fusion is roughly $3,000 to $5,000, so the return-on-effort framing is inflated several-fold for a Medicare-heavy book (verify against the fee schedule).",
+      "E/M (Section 8, Opportunity One): cites a detailed examination as support for 99205. Examination has not determined office E/M level since 2021; 99205 needs high-complexity decision making or at least 60 minutes. Presenting every new patient as under-coded by one or two levels invites upcoding, and no benchmark source is named.",
+      "E/M benchmark test (Section 9): flags providers 'more than 15 points below benchmark' at 99215. Orthopedic use of 99215 is, as far as I know, in the low single digits of established visits, so that test cannot be failed; the action item also switches from the new-patient codes used in the dollar example to established-patient codes.",
+      "Fracture care (Section 3): says billing visits separately instead of the global fracture code requires modifier 57. Modifier 57 belongs on the E/M billed with a 90-day global procedure, not on itemized visits. Split-care modifiers 54/55, modifiers 58 and 78, and tracking code 99024 are never mentioned.",
+      "Global period (Section 6, Failure Four; Section 7, Pattern Four): the wording implies a post-operative visit becomes billable by adding modifier 24 or 79. Those modifiers apply only to genuinely unrelated services; attaching them to related care is a false claim, not a fix.",
+      "Physical medicine codes (Section 8, Opportunity Four): 'incident to a physician' is offered without Medicare's conditions: the person delivering therapy must meet therapist qualifications (assistants and athletic trainers do not), a certified plan of care and therapy modifiers apply, and in-house therapy must fit the Stark in-office ancillary exception.",
+      "Implants (Section 4): 'Medicare has specific rules limiting implant markup' is misleading. Medicare generally packages implant cost into the ASC, outpatient or DRG payment and does not pay invoice plus markup. The claim that manufacturer and catalog-number detail is a contractual requirement in most commercial agreements has no support.",
+      "Prior authorization (Section 2): implies Traditional Medicare requires no authorization for orthopedic procedures. Hospital outpatient prior authorization has applied to cervical fusion with disc removal since July 2021 and facet joint interventions since July 2023, and the WISeR model added authorization for selected services in six states from 2026.",
+      "Medicare Advantage criteria (Section 2): treats plan criteria that differ from LCDs as a fact of life. Since 2024 federal rules require MA plans to follow national and local coverage determinations where they exist; that is the strongest appeal argument available and it is absent.",
+      "Joint replacement (Section 3): 'cemented versus uncemented' is not a distinction in the CPT codes a surgeon bills; it matters only for hospital inpatient procedure coding.",
+      "Section 1 superlatives (highest revenue per claim of any outpatient specialty, highest authorization burden outside oncology, most aggressive audit targeting) are asserted with no data."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Authorization burden is 'highest outside of oncology' in Section 1, 'highest-volume, highest-stakes' in the Section 5 title, and only 'one of the heaviest' in the Section 5 text.",
+      "Section 3 says spine risk is not caused by code complexity, while Sections 1 and 3 call orthopedic coding among the most complex in surgery.",
+      "Section 4 says the practice usually does not bill implants (the facility does), yet its title and call-out call implant billing the largest revenue variable practices mismanage, and the recommended audit needs facility invoices a practice would not hold.",
+      "Section 7 promises four denial patterns in addition to the 'universal' three (medical necessity, bundling, modifiers); Pattern One is medical necessity and Pattern Four is a modifier and global-package issue, so they are the same patterns.",
+      "Section 7 closes by saying orthopedic denials 'are not billing errors', but Pattern Two is described as payer payment error and Pattern Four as billing violations.",
+      "Section 3 says missed add-on codes are not a coder knowledge problem; Section 8 prescribes an orthopedic-trained coder as the fix.",
+      "The E/M opportunity is priced on new-patient codes (99203-99205) in Section 8, but the Section 9 action item measures established-patient codes (99214/99215).",
+      "A first-person claim of thirty years of observation sits in a document with no named author that file metadata attributes to an AI agent."
+    ],
+    "time_sensitive_or_outdated": [
+      "No date, version or code-year stamp anywhere; the reader cannot tell which CPT year the examples reflect.",
+      "Ultrasound guidance billed separately with a major joint injection reflects coding from before 2015, when 20611 was created.",
+      "Meniscectomy plus chondroplasty as separate services reflects coding from before 2012.",
+      "The 100/50/25 multiple-procedure reduction is an older convention still used by some commercial and workers' compensation schedules, not current Medicare policy.",
+      "E/M leveling by examination detail predates the 2021 office-visit rules.",
+      "Silent on the Medicare Advantage coverage-criteria rule (effective 2024) and the federal prior authorization decision deadlines that took effect in January 2026 (72 hours expedited, 7 calendar days standard).",
+      "Silent on Traditional Medicare prior authorization for hospital outpatient spine and facet services (2021, 2023) and the 2026 WISeR model.",
+      "Silent on 2026 changes that hit orthopedic economics directly: the mandatory TEAM episode model (joint replacement, hip fracture, spinal fusion), the start of the inpatient-only list phase-out, and the 2026 fee schedule's efficiency adjustment and facility practice-expense reduction.",
+      "Names only RAC as the Medicare post-payment auditor; current exposure also runs through TPE, UPIC, SMRC and CERT reviews."
+    ],
+    "ai_generation_signals": [
+      "Unattributed first-person authority ('Thirty years of watching...') with no author, credential or organizational history.",
+      "The rhetorical template 'X is not a Y problem. It is a Z problem' recurs at least eight times, and every section ends with an aphoristic call-out box.",
+      "Vague quantifiers where data should be: 'a meaningful share', 'materially higher', 'significantly higher rate', 'many times over'.",
+      "A sentence built like a statistic with the number missing (50 spine cases a month yields missed codes on 'a meaningful share').",
+      "Round, unsupported time costs (two minutes, five minutes, fifteen minutes, one day a year) and one dollar range repeated verbatim three times.",
+      "Plausible-sounding but wrong code pairings stated with full confidence.",
+      "Heavy repetition: add-on codes covered twice almost identically (Sections 3 and 8), conservative care three times (Sections 5, 6, 7), global periods three times (Sections 3, 6, 7).",
+      "No sources, dates, payer names, state names, LCD numbers or worked claim examples.",
+      "Format differs from the sibling pediatrics guide (no table of contents, no disclaimer, different numbering style), which points to separate generation runs without editorial control."
+    ],
+    "missing_for_real_use": [
+      "No actual tools: every checklist, matrix, template and protocol is something the reader is told to build.",
+      "No payer criteria sources (LCD numbers, plan medical policies, commercial criteria sets) and no contractor-specific content.",
+      "No modifier reference covering 25, 58, 78, 79, 54/55, 62, 80/82/AS, 50/RT/LT or 22, and nothing on NCCI edit tables, unit limits or the multiple-endoscopy rule.",
+      "No site-of-service or patient-status guidance (inpatient versus outpatient joint replacement, two-midnight rule, ASC-covered procedures) and nothing on bundled or episode payment.",
+      "Major orthopedic revenue lines are absent: DME and orthotics, casting supplies, X-ray professional and technical billing, injectable drugs and viscosupplements, assistant-at-surgery and physician assistant billing, split/shared and incident-to rules.",
+      "No Medicare Secondary Payer rules for workers' compensation, auto and liability cases involving Medicare patients.",
+      "No Stark or Anti-Kickback treatment of in-office ancillaries, surgeon-owned ASCs or physician-owned implant distributors.",
+      "No KPI definitions, baselines or targets; the only quantified opportunity is the E/M example.",
+      "No audit mechanics: sampling, extrapolation, appeal levels and deadlines, the 60-day overpayment rule.",
+      "No state-specific workers' compensation or PIP rules, forms or timelines (nothing for Florida).",
+      "No guidance on over-coding risk; every E/M and add-on recommendation points upward."
+    ]
+  }
+}

@@ -1,0 +1,873 @@
+{
+  "slug": "payer-contract-intelligence-playbook",
+  "title": "Payer Contract Intelligence Playbook: How to Read, Negotiate, and Manage Payer Contracts in Independent Practice",
+  "doc_type": "playbook",
+  "pages": 61,
+  "audience": "Practice owners, administrators and office managers in independent medical practices (cover page). The series-wide disclaimer instead calls it workflow material for billing teams.",
+  "summary": "A 61-page guide that treats payer contracts as the cap on what any revenue cycle can collect. It covers the clauses that most affect payment (fee schedule by reference, unilateral amendment, most-favored-nation, clean-claim definition, prompt payment, termination and run-out), then a method: express each payer's rate for the top 25 codes as a percentage of local Medicare, compare against your best payer and outside ranges, estimate each payer's cost-to-serve, assess leverage (network access, volume, quality data, a believable willingness to leave), renegotiate in writing with data, insist on a signed amendment and check the loaded rates, and terminate when the numbers say so. Further sections cover Medicare Advantage contracts, post-signature administration (registry, quarterly payment audits, prompt-pay interest, amendment notices, credentialing calendar) and out-of-network status as a choice. It has three reference tables, three objection scripts and an eight-step priority list, but no forms, clause language, worked examples or citations.",
+  "outline": [
+    {
+      "section": "Front matter and disclaimer",
+      "gist": "Cover, contents, and a series-wide notice: educational only, not legal or payer-policy advice, and AI-generated drafts need qualified review."
+    },
+    {
+      "section": "Section 1: The Reframe - Your Contracts Are the Ceiling on Everything Your Revenue Cycle Can Achieve",
+      "gist": "Contracts cap collectible revenue; most practices leave them unread for years; fix contracts first, then tune the revenue cycle."
+    },
+    {
+      "section": "Section 2: Reading a Payer Contract - The Provisions That Actually Determine What You Get Paid",
+      "gist": "Explains fee schedule references, unilateral amendment, most-favored-nation, prompt payment, clean-claim and termination clauses and what to ask for; ends with a summary table."
+    },
+    {
+      "section": "Section 3: Fee Schedule Benchmarking - Knowing What Your Rates Should Be Before You Negotiate",
+      "gist": "Payer-by-code matrix of rates as a percentage of Medicare, best-payer and purchased benchmarks, cost-to-serve by payer, and an unsourced specialty range table."
+    },
+    {
+      "section": "Section 4: Leverage - What Independent Practices Actually Have and How to Use It",
+      "gist": "Four levers: network access the payer must maintain, claim volume, quality data, and a credible willingness to terminate, called the strongest."
+    },
+    {
+      "section": "Section 5: The Negotiation - From Opening Position to Signed Amendment",
+      "gist": "Open in writing 6 to 12 months before renewal, argue current versus market versus request, answer three stock objections, secure and verify a signed amendment."
+    },
+    {
+      "section": "Section 6: The Termination Decision - When Walking Away Is the Right Business Answer",
+      "gist": "A four-number financial test, the administrative-burden case, and patient communication on leaving a network; asserts the revenue hit is usually smaller than feared."
+    },
+    {
+      "section": "Section 7: Medicare Advantage Contracting - The Special Complexity of Your Fastest-Growing Payer Category",
+      "gist": "Plan rates are contractual, not the Medicare schedule; compare top codes with Medicare, cost out authorization work, screen value-based offers with three questions."
+    },
+    {
+      "section": "Section 8: Contract Administration - Managing Your Contracts After They Are Signed",
+      "gist": "Contract registry reviewed monthly, quarterly payment verification on 20 to 30 claims per payer, credentialing calendar, and a six-function cadence table."
+    },
+    {
+      "section": "Section 9: Out-of-Network Strategy - When Not Being in a Network Is a Business Decision, Not a Default",
+      "gist": "Presents out-of-network status as a pricing choice in some specialties and markets, with single case agreements as a middle path; behavioral health is the example."
+    },
+    {
+      "section": "Section 10: Closing - Building a Contract Management Function That Compounds Over Time",
+      "gist": "Contract management as a continuous function; says counsel is rarely needed; lists eight priority actions in order and closes with exhortation."
+    }
+  ],
+  "framework_elements": [
+    "Payer contract inventory and registry",
+    "Fee schedule exhibit and methodology review (percent of Medicare versus percent of charges)",
+    "Pre-signature revenue modeling on top codes",
+    "Unilateral amendment clause limits",
+    "Payer notice and amendment intake log",
+    "Most-favored-nation clause screen",
+    "Clean-claim definition review",
+    "Prompt-payment terms and interest recovery",
+    "Termination clause review (with and without cause, notice periods)",
+    "Post-termination claims run-out",
+    "Effective rate as percent of Medicare matrix (payer by code)",
+    "Market and best-payer rate benchmarking",
+    "Cost-to-serve by payer",
+    "Payer administrative burden profile",
+    "Network access and volume leverage assessment",
+    "Quality and outcomes profile for payers",
+    "Credible termination posture",
+    "Renegotiation calendar and written initiation",
+    "Negotiation case and code prioritization",
+    "Payer objection handling and phased increases",
+    "Signed amendment and loaded-rate verification",
+    "Termination financial analysis",
+    "Patient notification and transition on network exit",
+    "Medicare Advantage rate comparison against Medicare",
+    "Medicare Advantage prior authorization burden costing",
+    "Value-based arrangement screen (data, workflow, downside risk)",
+    "Contract-rate payment verification audit",
+    "Credentialing and recredentialing calendar",
+    "Network participation versus out-of-network decision",
+    "Single case agreements"
+  ],
+  "processes": [
+    {
+      "name": "Contract registry build and monthly review",
+      "steps": [
+        "Locate every signed payer contract and amendment",
+        "Log payer contacts, contract and fee schedule effective dates, renewal or auto-renewal terms, termination notice, prompt-pay terms and interest rate, amendment notice rules, appeal provisions and document location",
+        "Each month flag contracts within 12 months of renewal",
+        "Log every payer notice on receipt, read it within 30 days and decide whether to object or terminate inside the window",
+        "Flag payers with outsized denial or administrative burden and unresolved late-payment issues",
+        "Set a reminder 9 months before each renewal date"
+      ],
+      "owner_role": "Practice owner or administrator (document names no owner; describes the review as a 30-minute administrative task)",
+      "cadence": "Build once; review monthly; notices handled on receipt"
+    },
+    {
+      "name": "Pre-signature contract review",
+      "steps": [
+        "Obtain the payer's current rates for the top 25 codes by volume before signing",
+        "Model annual revenue under the proposed schedule using actual code mix and volume",
+        "Compare with current payment from that payer or comparable payers",
+        "Identify whether rates key off Medicare or billed charges and how they can change",
+        "Review amendment, most-favored-nation, clean-claim, prompt-pay, termination and run-out clauses against the quick-reference table",
+        "Negotiate: schedule attached, at least 90 days' notice, changes limited to those required by law, exit right if rates fall, clean claim defined by HIPAA data elements",
+        "Decline to sign if the terms cannot be made acceptable"
+      ],
+      "owner_role": "Practice owner or administrator",
+      "cadence": "Every new contract, renewal or proposed amendment"
+    },
+    {
+      "name": "Rate benchmarking and cost-to-serve analysis",
+      "steps": [
+        "List the top 25 codes by volume",
+        "For each payer divide its payment per code by the local Medicare rate",
+        "Assemble a payer-by-code matrix and rank the gaps",
+        "Use the highest-paying payer and any purchased data as the market reference",
+        "Estimate each payer's cost-to-serve: clinical cost, administrative work (eligibility, authorizations, claims, denials, contracting) and collection risk",
+        "Compute net revenue relative to administrative cost for each payer",
+        "Pick the first renegotiation target: largest gap with a renewal inside 12 months"
+      ],
+      "owner_role": "Administrator or billing lead (not specified)",
+      "cadence": "Baseline now; refresh before each negotiation cycle"
+    },
+    {
+      "name": "Renegotiation cycle",
+      "steps": [
+        "Quantify leverage: payer members served, share of local specialty capacity, claims and dollars paid, quality data on a one-page profile",
+        "Send a written request to provider relations or contracting 6 to 12 months before renewal with the rate analysis attached, asking for a meeting within 30 days",
+        "Present current rate, market rate and the specific request, in that order, with data",
+        "Lead with two or three high-gap, high-volume code groups",
+        "Decline the first offer; answer objections with the code-level gap and offer a phased path over two terms",
+        "Obtain a signed amendment stating rates and effective date",
+        "Check every code on the amendment against what was agreed before signing",
+        "Update the registry and set the next 9-month reminder"
+      ],
+      "owner_role": "Practice owner or administrator",
+      "cadence": "Each contract cycle, or whenever rates fall well below benchmark"
+    },
+    {
+      "name": "Termination decision and patient transition",
+      "steps": [
+        "Gather payer revenue, cost-to-serve, revenue expected to be retained or to migrate after exit, and administrative savings",
+        "Weigh non-financial burden: share of denials, authorizations and staff problem-solving time against share of revenue",
+        "Check the notice period and post-termination claim terms in the contract",
+        "Give the payer written notice",
+        "Tell affected patients the effective date, their options and how the practice will support the transition",
+        "Leave the door open to re-contracting on better terms"
+      ],
+      "owner_role": "Practice owner",
+      "cadence": "When a payer falls below cost-to-serve or negotiation fails; bottom two payers by revenue reviewed as a priority action"
+    },
+    {
+      "name": "Payment verification audit and prompt-pay monitoring",
+      "steps": [
+        "Each quarter pull a random 20 to 30 claims per payer",
+        "Compare the remittance for each line with the contracted rate",
+        "Total shortfalls by payer and by code and look for repeated patterns",
+        "Request payment of shortfalls and have the payer correct its loaded schedule",
+        "Each month compute days to payment by payer and compare with the applicable prompt-pay deadline",
+        "Request interest on late-paid clean claims and track the payer's response",
+        "After any amendment, reconcile the payer's loaded rates to the negotiated ones"
+      ],
+      "owner_role": "Billing team or administrator (not specified)",
+      "cadence": "Audit quarterly; days-to-payment monthly; rate reconciliation at each amendment"
+    },
+    {
+      "name": "Medicare Advantage plan participation review",
+      "steps": [
+        "Get each plan's rates for the top 25 codes",
+        "Compute the difference from local Medicare rates",
+        "Count monthly authorization requests for plan members versus traditional Medicare patients and cost the staff time",
+        "Add that cost to the plan's cost-to-serve",
+        "For value-based offers ask: can we track the measures, can our workflow hit the targets, what happens financially if we miss",
+        "Model financial scenarios and get experienced review before signing"
+      ],
+      "owner_role": "Practice owner",
+      "cadence": "Before accepting or renewing any Medicare Advantage contract"
+    },
+    {
+      "name": "Credentialing calendar",
+      "steps": [
+        "List every provider against every payer with status and expiration date",
+        "Review the calendar monthly",
+        "Start recredentialing 90 to 120 days before expiration",
+        "Start new-provider applications with all payers on the first day of employment (the document's rule; too late in practice)",
+        "Prevent lapses so claims are not denied for a non-credentialed provider"
+      ],
+      "owner_role": "Office manager or credentialing lead (not specified)",
+      "cadence": "Monthly review"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Contract Provision Quick Reference (table)",
+      "description": "Seven clauses with what to look for and what to negotiate: fee schedule, unilateral amendment, most-favored-nation, clean claim, prompt payment, termination without cause, post-termination claims."
+    },
+    {
+      "name": "Specialty Rate Benchmarks: Illustrative Starting Ranges (table)",
+      "description": "Commercial rates as a percentage of Medicare for six specialties with a review threshold for each; unsourced and self-labelled illustrative."
+    },
+    {
+      "name": "Payer objection responses (three scripts)",
+      "description": "Suggested wording for 'our rates are competitive', 'we don't negotiate with individual practices' and 'we can offer a 2-3% increase'."
+    },
+    {
+      "name": "Contract Administration Function Summary (table)",
+      "description": "Six recurring functions with frequency and typical failure mode."
+    },
+    {
+      "name": "Contract Management Implementation Priority List",
+      "description": "Eight ordered actions, from building the registry to setting 9-month renewal reminders."
+    },
+    {
+      "name": "Contract registry field list (prose only)",
+      "description": "Names the fields to capture per contract; no template or layout supplied."
+    },
+    {
+      "name": "Payer-by-code effective rate matrix (described only)",
+      "description": "Method for a top-25-code grid of each payer's rate as a percentage of Medicare; no worksheet supplied."
+    },
+    {
+      "name": "Cost-to-serve analysis (described only)",
+      "description": "Lists the cost components per payer; no worksheet, allocation method or worked example."
+    },
+    {
+      "name": "Renegotiation request letter (described only)",
+      "description": "States what the letter should contain; no sample letter."
+    },
+    {
+      "name": "One-page practice quality profile (described only)",
+      "description": "Suggested summary of quality metrics to hand to payers; no template."
+    },
+    {
+      "name": "Four-number termination analysis (described only)",
+      "description": "Inputs for the exit decision; the stated formula is incomplete and points the wrong way."
+    },
+    {
+      "name": "Patient network-change notice outline (described only)",
+      "description": "Content points for the patient communication; no sample letter."
+    },
+    {
+      "name": "Three-question screen for value-based Medicare Advantage offers",
+      "description": "Data capability, clinical workflow, downside risk."
+    },
+    {
+      "name": "Credentialing calendar (described only)",
+      "description": "Provider-by-payer status and expiration tracker; no template."
+    },
+    {
+      "name": "Not included",
+      "description": "No checklists, sample contract language, letter templates, calculators, scoring rubric, tracker file or 30/60/90-day plan anywhere in the document."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Effective rate as a percentage of Medicare (per code, per payer)",
+      "definition": "What a payer pays for a code relative to the Medicare Physician Fee Schedule amount for the same code in the practice's area, computed for the top 25 codes and arranged as a payer-by-code matrix.",
+      "formula": "Payer payment for the code / local Medicare rate for the code (does not say allowed versus paid, or facility versus non-facility rate)",
+      "target": "None fixed. The scripted negotiation example targets 115% of Medicare; primary care range given as roughly 100-130%.",
+      "red_flag": "Primary care below 100%; the script treats 87% as clearly under market; 60% is called a business-model problem.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Commercial rates as a percentage of Medicare (market level)",
+      "definition": "Typical commercial payment relative to Medicare across specialties and markets.",
+      "formula": "",
+      "target": "Roughly 110-160% of Medicare 'typically'; national averages said to run from roughly 120% to over 250%.",
+      "red_flag": "",
+      "source_cited": "Milliman and the Urban Institute named for the wider range (no title, year or link); the 110-160% range has no source"
+    },
+    {
+      "name": "Commercial rate range by specialty (percentage of Medicare)",
+      "definition": "Illustrative starting ranges and review thresholds for six specialties.",
+      "formula": "",
+      "target": "Primary care 100-130%; orthopedics 120-160%; behavioral health 80-120%; cardiology 120-155%; OB/Gyn 110-145%; neurology 105-135%.",
+      "red_flag": "Primary care below 100%; orthopedic surgical codes below 110%; behavioral health below 85%; high-value cardiac procedures below 115%.",
+      "source_cited": "none (the neurology row is labelled unconfirmed in the table itself)"
+    },
+    {
+      "name": "Rate gap to benchmark",
+      "definition": "Difference between the current effective rate and the benchmark (market range or best-paying payer) for a code or payer; the widest gaps set opening positions and target payers.",
+      "formula": "Benchmark percentage of Medicare minus current percentage of Medicare (implied, not written)",
+      "target": "",
+      "red_flag": "Largest gap with a renewal date inside 12 months is the first renegotiation target.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days to payment by payer",
+      "definition": "Average days a payer takes to pay, calculated monthly for each payer.",
+      "formula": "",
+      "target": "Inside the state prompt-pay deadline (stated as typically 30-45 days electronic, 45-60 days paper); 21 days used as the low-burden example.",
+      "red_flag": "Average consistently beyond the state deadline; 55 days used as the high-burden example.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate by payer",
+      "definition": "Not defined; used as a marker of payer administrative burden.",
+      "formula": "",
+      "target": "97% (illustrative low-burden payer)",
+      "red_flag": "Below 80% (illustrative high-burden payer)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Prior authorization denial rate / denial rate by payer",
+      "definition": "Not defined; the text moves from 'prior authorization denial rate' for one payer to plain 'denial rate' for the other.",
+      "formula": "",
+      "target": "3% (illustrative low-burden payer)",
+      "red_flag": "18% (illustrative high-burden payer)",
+      "source_cited": "none"
+    },
+    {
+      "name": "Cost-to-serve by payer",
+      "definition": "Total cost of serving one payer's patients: clinical cost of care, administrative cost of the relationship (eligibility checks, prior authorization, claim submission, denial work, contracting) and collection risk, set against the revenue that payer produces.",
+      "formula": "Clinical cost + administrative cost + collection risk, compared with payer revenue (no allocation method given)",
+      "target": "",
+      "red_flag": "Revenue below cost-to-serve; negative or near-zero net margin after administrative cost starts a termination analysis.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net revenue per unit of administrative cost",
+      "definition": "A payer's net revenue relative to what it costs administratively to manage that payer; presented as the figure that matters most when comparing payers.",
+      "formula": "Payer net revenue / payer administrative cost (implied, not written)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Administrative burden share versus revenue share",
+      "definition": "A payer's share of total denials, prior authorization volume and billing staff problem-resolution time compared with its share of revenue.",
+      "formula": "",
+      "target": "",
+      "red_flag": "Example: 8% of revenue with 25% of denials, 30% of authorization volume and 40% of staff problem-resolution time.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Termination net financial effect",
+      "definition": "Exit test built from four inputs: payer revenue, cost-to-serve, revenue expected to migrate or be retained after exit, and administrative savings.",
+      "formula": "Payer revenue - cost-to-serve - revenue migration (as written; administrative savings listed but not used)",
+      "target": "Document says a net positive result means terminate; the logic is unsound as written.",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Underpayment against contracted rate",
+      "definition": "Sampled claims where payment is below the contracted rate for the code, totalled by payer and by code.",
+      "formula": "Contracted rate - amount paid per sampled claim line; 20-30 random claims per payer each quarter",
+      "target": "Implied zero",
+      "red_flag": "Any shortfall; a repeated shortfall on specific codes signals a loading error. Systematic underpayment of 2-5% of contracted rates is offered as an illustration.",
+      "source_cited": "CleanClaimRx modeled estimate (self-described as not verified)"
+    },
+    {
+      "name": "Payer member and capacity share (patient access leverage)",
+      "definition": "Number of the payer's members who are active patients and the share of the payer's local specialty capacity the practice represents.",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer volume",
+      "definition": "Claims submitted, billed charges and paid amount per payer per year, used to price a rate request.",
+      "formula": "Requested percentage increase x annual paid claims (example: 10% x $800,000 = $80,000)",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicare Advantage rate adjustment",
+      "definition": "Difference, positive or negative, between a plan's rates and local Medicare rates for the top 25 codes.",
+      "formula": "Plan rate versus Medicare rate per code",
+      "target": "",
+      "red_flag": "95% of Medicare on the highest-volume codes combined with authorization and credentialing burden.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicare Advantage prior authorization burden",
+      "definition": "Monthly authorization requests for plan members versus traditional Medicare patients, with staff time costed and added to cost-to-serve.",
+      "formula": "Authorization requests x staff time x cost of time (implied)",
+      "target": "",
+      "red_flag": "Example: three times the authorization work of traditional Medicare can outweigh a 105% rate.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Renegotiation lead time",
+      "definition": "How far ahead of renewal the practice starts renegotiation.",
+      "formula": "",
+      "target": "6-12 months before renewal; calendar reminder at 9 months; registry flags contracts within 12 months of renewal.",
+      "red_flag": "Starting about 30 days before renewal.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Amendment notice handling time",
+      "definition": "Time from receipt of a payer amendment notice to reading and logging it.",
+      "formula": "",
+      "target": "Read within 30 days of receipt; respond inside the termination window.",
+      "red_flag": "Notice unread until payments change.",
+      "source_cited": "none"
+    },
+    {
+      "name": "Credentialing lead time",
+      "definition": "How far before expiration recredentialing starts, and when new-provider credentialing starts.",
+      "formula": "",
+      "target": "Recredentialing 90-120 days before expiration; new providers on the first day of employment.",
+      "red_flag": "Within 90 days of expiration and not started; lapsed credentialing.",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Some payer contracts have gone five, eight or twelve years without renegotiation.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A contract paying 60% of Medicare is described as well below typical commercial benchmarks.",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Unilateral amendment notice periods are typically 30 to 90 days, with silence treated as acceptance.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Missing amendment notices can cost a practice hundreds of thousands of dollars per year.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A contract at 130% of billed charges may pay less than one at 115% of Medicare.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "State prompt-pay deadlines are typically 30 to 45 days for electronic claims and 45 to 60 days for paper, with interest owed after that.",
+      "section": "Section 2",
+      "source_cited": "none (no statute named)"
+    },
+    {
+      "claim": "Without-cause termination typically needs 90 to 180 days' notice.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Post-termination claim processing should be secured for a defined period, typically 12 to 24 months.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial rates typically run roughly 110% to 160% of Medicare.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "National average commercial-to-Medicare ratios range from roughly 120% to over 250%.",
+      "section": "Section 3",
+      "source_cited": "Milliman and the Urban Institute (named only; no title, year or link)"
+    },
+    {
+      "claim": "Best-payer example: one payer at 145% of Medicare and another at 105% for the same service.",
+      "section": "Section 3",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "High-burden payer profile: 18% prior authorization denial rate, clean claim rate under 80%, 55 days to payment. Low-burden profile: 3% denial rate, 97% clean claim rate, 21 days.",
+      "section": "Section 3",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "Primary care / family medicine commercial range roughly 100-130% of Medicare; below 100% warrants a closer look.",
+      "section": "Section 3 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Orthopedics roughly 120-160%; below 110% on surgical codes may indicate below-market pricing.",
+      "section": "Section 3 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Behavioral health roughly 80-120%; below 85% may reflect chronic underpayment.",
+      "section": "Section 3 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Cardiology roughly 120-155% (review below 115% on high-value procedures); OB/Gyn roughly 110-145%.",
+      "section": "Section 3 table",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Neurology roughly 105-135%, flagged in the table itself as not confirmed against any neurology-specific public source.",
+      "section": "Section 3 table",
+      "source_cited": "none (self-declared unverified)"
+    },
+    {
+      "claim": "A 10% rate increase equals $80,000 a year on $800,000 of paid claims (Section 4) and $100,000 a year on $1,000,000 of payer revenue (Section 10).",
+      "section": "Sections 4 and 10",
+      "source_cited": "none (arithmetic)"
+    },
+    {
+      "claim": "Renegotiation should start 6 to 12 months before renewal, with a meeting requested within 30 days and a reminder set 9 months ahead.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 2-3% increase is the standard opening counter-offer from most commercial payers.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A 3% increase moves a code from 87% to 90% of Medicare; the scripted target is 115%.",
+      "section": "Section 5",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "A 1% fee schedule entry error on a high-volume code group can cost thousands of dollars a year.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Example payer: 8% of revenue but 25% of denials, 30% of prior authorization volume and 40% of billing staff problem-resolution time.",
+      "section": "Section 6",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "About 54% of eligible Medicare beneficiaries were in Medicare Advantage plans in 2025 and about 55% in 2026.",
+      "section": "Section 7",
+      "source_cited": "KFF (named; no report title or date)"
+    },
+    {
+      "claim": "A plan paying 105% of Medicare with three times the authorization work may be worth less than one paying 95% with little authorization.",
+      "section": "Section 7",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "Systematic underpayment of 2% to 5% of contracted rates could mean tens of thousands of dollars a year for a practice with about $1 million in contracted payer revenue.",
+      "section": "Section 8",
+      "source_cited": "CleanClaimRx modeled estimate (self-described as unverified)"
+    },
+    {
+      "claim": "Quarterly payment audit sample of 20 to 30 claims per payer (20 per payer for the top three payers in the priority list).",
+      "section": "Sections 8 and 10",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Recredentialing should start 90 to 120 days before expiration.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Contract management takes 30 minutes a month and protects hundreds of thousands of dollars a year.",
+      "section": "Section 8",
+      "source_cited": "none"
+    },
+    {
+      "claim": "45% to 60% of behavioral health clinicians are out of network with at least some commercial payers, the highest rate of any outpatient specialty.",
+      "section": "Section 9",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Most states have prompt payment laws that require payers to process clean claims within defined timeframes — typically 30 to 45 days for electronic claims and 45 to 60 days for paper claims.",
+      "kind": "deadline",
+      "stakes": "medium",
+      "section": "Section 2: Timely Payment Provisions",
+      "why": "The document builds a monthly interest-invoicing routine on this. Deadlines and interest are state-specific (Florida's are 20 days electronic and 40 days paper with 12% interest), and state laws do not cover self-funded employer plans, traditional Medicare, Tricare, VA or contracted Medicare Advantage claims, where the contract's own prompt-pay clause governs. Applying the wrong rule wastes effort and misses the term that actually needs negotiating."
+    },
+    {
+      "id": "C2",
+      "claim": "Medicare Advantage plans are not required to pay Medicare fee schedule rates. They are required to cover Medicare-covered services, but the rates at which they pay for those services are set by the plan’s contract with participating providers",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 7: The MA Rate Structure",
+      "why": "True for contracted providers but incomplete. Federal rules require plans to pay non-contracted providers at least the original Medicare amount and require those providers to accept it as payment in full. That fixes the walk-away alternative in every Medicare Advantage negotiation and termination decision for this practice's four plans."
+    },
+    {
+      "id": "C3",
+      "claim": "In the right circumstances, [out-of-network status] is a deliberate business strategy that generates higher per-service revenue, eliminates the administrative burden of network participation, and gives the practice pricing autonomy that in-network contracts do not permit.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 9: Out-of-Network Strategy (introduction)",
+      "why": "For hospital-based and government-program patients the claim is largely false: the No Surprises Act and Florida law bar balance billing by out-of-network clinicians at in-network hospitals, Medicare caps charges unless the physician opts out, Medicare Advantage non-contract payment equals Medicare, and Medicaid and dual-eligible patients cannot be billed. Acting on it could create violations and penalties."
+    },
+    {
+      "id": "C4",
+      "claim": "The practice has an ethical and, in most states, a legal obligation to notify patients who will be affected by the termination — patients who are currently in active treatment or who have upcoming appointments",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 6: Managing the Termination",
+      "why": "No law is cited. Member-notice duties mostly fall on plans, while continuity-of-care laws can oblige the practice to keep treating at contract terms after exit. Getting either wrong affects exit timing, cash flow and abandonment exposure, especially for hospital and facility residents who cannot easily change clinicians."
+    },
+    {
+      "id": "C5",
+      "claim": "For new providers, initiate credentialing with all relevant payers on the first day of employment ... Credentialing lags create revenue gaps that are not recoverable.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 8: Credentialing",
+      "why": "Starting applications on day one guarantees weeks or months of unbillable visits for a new physician or nurse practitioner, which bears directly on growth plans. Medicare permits limited retroactive billing and some plans grant retroactive effective dates, so the blanket 'not recoverable' rule should be replaced with payer-specific ones."
+    },
+    {
+      "id": "C6",
+      "claim": "Public benchmarking sources (including Milliman and the Urban Institute) show that actual commercial-to-Medicare rate ratios vary widely by state and market — national averages can range from roughly 120 percent to over 250 percent of Medicare",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 3: Specialty Rate Benchmarks",
+      "why": "This is the only sourced support for the document's negotiation targets. The upper figure looks like a hospital facility ratio (Milliman's 2025 national estimates: about 263% outpatient facility, 209% inpatient, 148% professional), so targets built on it would be unrealistic for physician fees. The check should establish the professional-services range by source and year, including what primary care actually receives."
+    },
+    {
+      "id": "C7",
+      "claim": "roughly 54 percent of eligible Medicare beneficiaries were enrolled in MA plans in 2025, rising to about 55 percent in 2026, per KFF.",
+      "kind": "statistic",
+      "stakes": "low",
+      "section": "Section 7: Medicare Advantage Contracting (introduction)",
+      "why": "A dated statistic tied to a named source. A search suggests KFF's 2026 update does report 55% (about 35.2 million of 64.2 million people with Parts A and B), so this one likely holds; confirm at the source. The conclusion drawn from it, that Medicare Advantage is already the most important contract for most independent practices, does not follow and is untrue for a practice that is majority traditional Medicare."
+    },
+    {
+      "id": "C8",
+      "claim": "Medicare Advantage plans impose prior authorization requirements that traditional Medicare does not, for services that traditional Medicare covers without authorization.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 7: MA Prior Authorization",
+      "why": "Traditional Medicare does run some prior authorization programs, and federal rules effective 2024 and January 2026 limit how plans may apply authorization and how fast they must decide. The cost-to-serve comparison the document recommends, and any appeal strategy, should rest on the current rules."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "payers-contracts",
+      "weight": 0.62,
+      "topics": [
+        "contract clause review",
+        "fee schedule methodology",
+        "rate benchmarking against Medicare",
+        "leverage assessment",
+        "renegotiation process",
+        "termination decision",
+        "Medicare Advantage contracting",
+        "credentialing calendar",
+        "out-of-network and single case agreements",
+        "contract registry and renewal calendar"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.13,
+      "topics": [
+        "contract-rate payment verification",
+        "underpayment recovery",
+        "prompt-pay interest",
+        "clean-claim definition",
+        "days to payment by payer",
+        "post-termination claims"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.08,
+      "topics": [
+        "cost-to-serve by payer",
+        "payer profitability",
+        "revenue modeling of a proposed fee schedule",
+        "cross-subsidy between payers"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.06,
+      "topics": [
+        "contracts as managed assets",
+        "network participation strategy",
+        "monthly contract review rhythm",
+        "walk-away discipline"
+      ]
+    },
+    {
+      "domain": "quality-value",
+      "weight": 0.04,
+      "topics": [
+        "quality data as negotiating leverage",
+        "value-based Medicare Advantage arrangements",
+        "downside risk screening"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.02,
+      "topics": [
+        "charge master upkeep under charge-based contracts",
+        "fee schedule reconciliation after amendments"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.02,
+      "topics": [
+        "patient notice on network exit",
+        "most-favored-nation clause legality",
+        "reliance on non-legal guidance"
+      ]
+    },
+    {
+      "domain": "growth-market",
+      "weight": 0.02,
+      "topics": [
+        "local market position and specialty access",
+        "network adequacy as leverage"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.01,
+      "topics": [
+        "prior authorization workload by payer"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Keep one contract registry covering every payer agreement, with dates, notice periods, prompt-pay terms, amendment rules and where the document lives, and review it monthly.",
+      "why": "Renewal windows, exit deadlines and silent amendments are missed because nobody owns the calendar. A registry makes them routine and auditable, and a buyer will ask for it.",
+      "applies_to_practice": "yes",
+      "note": "Cover the four Medicare Advantage plans, the Florida Medicaid plans, the VA community-care administrator and Tricare. Add fields the document omits: products covered, which Medicare fee schedule year the rates follow, nurse-practitioner rate, timely filing, recoupment look-back, sequestration treatment, assignment on sale. Store it where the billing agents can read it."
+    },
+    {
+      "idea": "Build a payer-by-code matrix of allowed amounts as a percentage of the local Medicare rate for the top 25 codes.",
+      "why": "It turns 'are we paid fairly' into one number per code and payer and shows exactly where to focus.",
+      "applies_to_practice": "yes",
+      "note": "Use allowed amounts from remittances, not paid amounts. Use First Coast locality rates with the correct facility or non-facility value for each place of service and the 85% nurse-practitioner rate. Twenty-five codes cover nearly all of this practice's revenue. Expect Medicare Advantage near 100%; anything below is the finding."
+    },
+    {
+      "idea": "Check every remittance line against the contracted allowed amount instead of sampling 20 to 30 claims a quarter.",
+      "why": "Loaded-rate errors repeat by code, so full coverage finds them sooner and sizes them exactly. Software makes sampling unnecessary.",
+      "applies_to_practice": "yes",
+      "note": "Agents can run this on every electronic remittance posted in AdvancedMD. Compare allowed with allowed and account for patient cost-sharing, sequestration, multiple-procedure and nurse-practitioner reductions. File disputes inside each plan's deadline rather than sending an 'invoice'."
+    },
+    {
+      "idea": "Log and read every payer notice, bulletin and manual update on arrival, with the response deadline recorded.",
+      "why": "Amendments take effect by silence. The only protection is noticing inside the objection or termination window.",
+      "applies_to_practice": "yes",
+      "note": "Route payer mail, portal messages and plan bulletins to one intake. An agent can summarize each change, estimate the dollar effect from the code matrix and flag the last day to object."
+    },
+    {
+      "idea": "Rank payers by cost-to-serve and administrative burden, not only by rate.",
+      "why": "Two payers at the same nominal rate can differ widely in denials, rework, record requests and payment speed. That difference is the real margin.",
+      "applies_to_practice": "partly",
+      "note": "Authorization work is light for hospital and facility visits and agent labor is cheap, so measure denial and downcoding rates, record requests, days to pay, uncollectible cost-sharing on dual-eligibles and owner time per payer rather than staff hours."
+    },
+    {
+      "idea": "Ask to narrow unilateral amendment rights: schedule attached to the contract, at least 90 days' notice, and an exit right if rates are cut.",
+      "why": "It turns a floating promise into a fixed one and keeps the ability to leave before a cut applies.",
+      "applies_to_practice": "partly",
+      "note": "National plans rarely change their paper for a two-clinician group; the local plan may. Also ask which Medicare fee schedule year the rates follow and whether a floor applies, because Medicare changed conversion factors and facility-setting values for 2026 and pegged contracts inherit that."
+    },
+    {
+      "idea": "Prepare a one-page leverage profile for each plan: its members served, facilities covered, dollars paid, and quality and utilization results.",
+      "why": "Plans respond to access they would have to replace and to results that help their own ratings and costs.",
+      "applies_to_practice": "yes",
+      "note": "Facility-based geriatric coverage is scarce. Show hospital, skilled nursing and assisted living coverage, readmission and care-transition results, advance care planning and wellness visit completion, and accurate diagnosis documentation, all of which feed plan star ratings and risk scores."
+    },
+    {
+      "idea": "Negotiate by code family with a specific number and a phased path, and treat nothing as agreed until a signed amendment has been checked code by code and confirmed on the first remittances.",
+      "why": "A narrow, quantified request is easier for a contract analyst to approve than an across-the-board ask, and rate loads are done by a different team that makes errors.",
+      "applies_to_practice": "partly",
+      "note": "Negotiable revenue here is the Medicare Advantage and Medicaid plan share only. Realistic asks: parity with or a small premium over Medicare on facility visit and care-management codes, full-rate payment for the nurse practitioner, quality bonuses."
+    },
+    {
+      "idea": "Maintain a provider-by-payer credentialing and enrollment calendar with lead times.",
+      "why": "Lapses and late starts produce denials for services already delivered, and much of that money cannot be recovered.",
+      "applies_to_practice": "yes",
+      "note": "Track both clinicians across Medicare, each plan, Florida Medicaid, hospital and facility privileges, licenses and DEA registration. Correct the document's timing: start new-hire applications at offer acceptance, months before the start date, not on day one."
+    },
+    {
+      "idea": "Screen any value-based or risk offer with three questions: can we track the measures, can our workflow hit them, and what do we lose if we miss.",
+      "why": "Upside-only bonuses are worth taking. Downside risk without data is a way to lose money.",
+      "applies_to_practice": "yes",
+      "note": "Relevant to Medicare Advantage quality programs, institutional special needs plans and any accountable-care participation. Model scenarios before signing and get experienced review."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The contract-administration half transfers well: registry, notice log, rate matrix against Medicare, remittance-to-contract checking, credentialing calendar, and the Medicare Advantage framing (plan rates are contractual, so compare them with Medicare and count the burden). Those fit a practice whose only negotiable revenue sits with four Medicare Advantage plans and Medicaid plans. The rate-negotiation, termination and out-of-network half is written for commercially insured, office-based specialties. About 55% of this practice's charges are traditional Medicare on a fixed schedule, commercial volume is negligible, and the patients are hospital and facility residents covered by Medicare, Medicaid or both, where federal law rather than market pricing sets what can be charged in or out of network. The document is silent on Medicare participation status, non-contract Medicare Advantage payment, dual-eligible cost-sharing, Medicaid, VA and Tricare, nurse-practitioner rates, place of service, facility relationships and medical-director agreements. It is a usable skeleton for the payers-contracts domain and for a service offered to commercially insured practices; it is not safe to act on as written here.",
+    "sections_that_do_not_apply": [
+      "Section 9 (out-of-network and private-pay strategy, single case agreements) for Medicare, Medicare Advantage, Medicaid and dual-eligible patients",
+      "Section 3 specialty benchmark table and the commercial 110-160% range (orthopedics, behavioral health, cardiology, OB/Gyn, neurology; almost no commercial volume here)",
+      "Section 2 most-favored-nation discussion (rare in small-practice and Medicare Advantage agreements)",
+      "Section 2 state prompt-pay discussion as written (does not govern traditional Medicare, contracted Medicare Advantage claims, VA or Tricare)",
+      "Section 6 assumption that patients of a terminated payer stay on as self-pay or switch coverage at open enrollment",
+      "Section 7 prior authorization costing (light for hospital and facility evaluation and management visits)",
+      "Section 4 advice to build credibility by terminating smaller contracts (facilities expect an attending who accepts every plan their residents carry)"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Section 2 uses a contract paying '130 percent of billed charges' as its example. No payer pays more than the bill; charge-based contracts pay a discount off charges. The example suggests the author does not understand charge-based reimbursement.",
+      "The 'lesser of billed charges or contract rate' clause, present in almost every agreement and the reason a charge master must sit above the highest allowed amount, is never mentioned.",
+      "Prompt payment is presented as a general state-law right at 30-45 days electronic and 45-60 days paper. Deadlines vary; Florida's are 20 days for electronic claims and 40 days for paper to pay, deny or contest, with 12% simple interest (ss. 627.6131 and 641.3155; the 20-day and 12% terms were confirmed by search, but the statute site could not be opened from this session, so confirm the current text). More important, state laws do not reach self-funded employer plans, traditional Medicare, Tricare or VA, and for contracted Medicare Advantage claims federal rules leave prompt payment to the contract (42 CFR 422.520). None of these limits is stated.",
+      "The prompt-pay test offered is a payer's average days to payment. The legal test is claim by claim, clean claims only, counted from receipt. Interest is normally due automatically with the late payment; the remedy for non-payment is a dispute or regulator complaint, not an invoice. The statement that most payers will not pay interest unless asked is unsupported.",
+      "Section 8 defines an underpayment as any claim where the amount paid is below the contracted rate. Paid amounts are routinely lower because of deductibles, coinsurance, copays, sequestration, multiple-procedure and non-physician reductions. The comparison has to be allowed amount against contracted allowed amount.",
+      "Section 6's termination test is wrong as written: it lists four inputs, uses three, and says to terminate when payer revenue minus cost-to-serve minus migrated revenue is positive. A positive result means the payer still contributes more than leaving would recover, which argues for staying. It also ignores that allocated fixed costs do not disappear on exit.",
+      "Section 9 sells out-of-network status as higher revenue and pricing freedom without a word on the No Surprises Act (in force since 2022; bars balance billing by out-of-network clinicians at in-network hospitals, and hospitalist-type services cannot use the consent exception), state bans such as Florida's, Medicare's limiting charge, opt-out and mandatory-claim rules, or the Medicaid and dual-eligible billing prohibitions.",
+      "Section 7 is right that contracted Medicare Advantage rates are negotiable but omits the rule that defines the alternative: a non-contracted provider is paid the original Medicare amount and must accept it as payment in full (42 CFR 422.214). Leaving a Medicare Advantage network changes access and steerage, not price.",
+      "'Traditional Medicare does not' require prior authorization is overbroad (certain hospital outpatient services, equipment, ambulance transport, and a six-state model from January 2026), and the section ignores federal limits on plan authorization practices effective 2024 and 2026.",
+      "Section 6 says practices have a legal duty in most states to notify patients of a network exit. No law is cited; member-notice duties sit mainly with the plan (for Medicare Advantage, 42 CFR 422.111(e)). The document misses the obligation that can bind the practice: continuity-of-care rules requiring continued treatment at contract terms after termination (a federal 90-day rule for commercial plans; Florida HMO law up to six months, as I recall; verify).",
+      "Section 8 tells practices to start new-provider credentialing on the first day of employment. Payer credentialing takes months, so that guarantees unbillable work; applications should start at offer acceptance. 'Not recoverable' is also too absolute: Medicare allows billing back 30 days before the enrollment effective date and some plans grant retroactive dates. Nothing on CAQH attestation, Medicare revalidation or the three-year recredentialing cycle.",
+      "Every benchmark range is unsourced. The '120 percent to over 250 percent' statement credits Milliman and the Urban Institute without title or year. The top of that range is a hospital facility figure, not a physician-fee one: Milliman's 2025 national estimates are about 263% of Medicare for outpatient facility and 209% for inpatient, against about 148% for professional services (MedPAC reports about 140%), and primary care visits sit lower still. A national average that varies 'by geography' is incoherent.",
+      "MGMA is listed as a publisher of market rate data; its data products are mainly compensation, cost, operations and procedure-volume surveys, and I could not confirm that any reports payer-allowed amounts by code. A search found no Optum product called 'Market Edge' (Optum sells fee analyzers built on charge data). Verify before buying anything on this list.",
+      "Unsourced statistics presented as fact: 45-60% of behavioral health clinicians out of network; 2-3% as the standard opening counter-offer; practices 'consistently report' that termination hurts less than feared; terminated payers come back on better terms.",
+      "Dollar claims are inflated for a small practice: missed notices costing hundreds of thousands a year; contract management protecting hundreds of thousands a year.",
+      "Section 2 warns that claims for services during the contract term may be denied later because the provider is out of network when the claim is processed. Claims are adjudicated by date of service. The real post-exit risks (run-out filing limits, recoupment and offset, continuity obligations) are not discussed.",
+      "Section 3 tells the practice to use its best payer's rates as the benchmark in talks with other payers (without naming the payer) and never mentions that contracts usually contain confidentiality clauses covering rates, or that sharing rate information with competing practices raises antitrust problems.",
+      "Section 7 infers from a 55% enrollment share that Medicare Advantage is already the most important contracting relationship for most independent practices. That does not follow: many practices have little Medicare volume, and this one is majority traditional Medicare.",
+      "Section 4's idea that terminating small contracts signals resolve to other payers assumes payers can observe a practice's dealings with their competitors; no evidence is offered.",
+      "The effective-rate formula divides 'what you are currently paid' by the Medicare rate without saying allowed versus paid, facility versus non-facility rate, or how to treat non-physician practitioners. Each choice changes the ratio.",
+      "Section 10 says no legal training or outside counsel is needed for most of this. Clause negotiation, most-favored-nation enforceability, termination and patient-notice duties are legal questions, and the document's own errors show why review is needed."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 4's heading calls patient access the only leverage that moves payers; the same section then presents volume and quality levers and names the termination threat the most powerful one.",
+      "Section 3 calls Medicare a 'floor' benchmark, yet its own table puts behavioral health at 80-120% of Medicare and other sections discuss contracts at 60%, 87% and 95% of Medicare.",
+      "Section 10 calls every negotiated dollar a 'permanent' improvement; Section 2 says payers can cut the schedule by notice and that Medicare-pegged rates move every year.",
+      "Section 8's callout says contract management takes 30 minutes a month. That figure was given for the registry review alone; the same section adds monthly prompt-pay and credentialing reviews and quarterly audits, and other sections add code-level matrices, cost studies and negotiations.",
+      "Section 10 says counsel is rarely needed; the disclaimer says the material is not legal advice and needs qualified review, and Section 7 says to consult someone experienced before signing value-based terms.",
+      "Audit sample: 20 to 30 claims for every payer each quarter in Section 8; 20 claims for the top three payers in Section 10.",
+      "The termination test names four numbers and computes with three; as written, a profitable payer passes the test for termination.",
+      "Section 3 says the practice's own payer data is a more reliable market benchmark than purchased data, in the same section that warns a practice without outside benchmarks can lock in a below-market rate without knowing it.",
+      "Section 2 advises pushing for longer without-cause notice (180 days preferred) while Section 4 rests the leverage model on a fast, believable exit and the amendment window (30-90 days) requires being able to leave before a cut takes effect."
+    ],
+    "time_sensitive_or_outdated": [
+      "Medicare Advantage share (54% in 2025, about 55% in 2026) appears to match KFF's published updates per a search; KFF's site was not reachable from this session. The figure dates quickly, depends on the denominator (other sources report lower shares), and growth slowed in 2026.",
+      "The out-of-network section reads as if written before the No Surprises Act (2022) and state balance-billing laws.",
+      "Benchmarking ignores the payer Transparency in Coverage rate files (public since July 2022), now the most direct source of actual negotiated commercial rates by code and provider.",
+      "The Medicare Advantage authorization discussion ignores the 2024 Medicare Advantage rule on coverage criteria, the federal rule shortening plan decision times from January 2026, and the traditional Medicare authorization model that began in six states in January 2026.",
+      "Recommends percent-of-Medicare analysis without noting that the 2026 Medicare schedule introduced two conversion factors and lowered facility-setting practice-expense values, which flows into any contract pegged to current-year Medicare.",
+      "The value-based section does not reflect the 2026 completion of the Medicare Advantage risk-model transition or current star-rating measures.",
+      "Commercial rate ranges carry no data year.",
+      "State prompt-pay deadlines and interest rates vary and are amended often; the generalization must be checked state by state."
+    ],
+    "ai_generation_signals": [
+      "A fact-checker's note left inside the published benchmark table: the neurology row is labelled as not independently confirmed against a public source.",
+      "Hedge boilerplate bolted onto numbers, such as calling the underpayment figure a modeled estimate rather than a verified one.",
+      "Series-wide disclaimer about HIPAA compliance and reviewing 'AI-generated drafts', unrelated to this document's content.",
+      "No author, credential, date, statute, regulation or case citation anywhere; sources appear only as organization names.",
+      "The 'X is not Y. It is Z.' sentence pattern recurs throughout, and every section closes with an aphorism box restating it.",
+      "Round, invented-looking illustrative figures (8/25/30/40%; 18% versus 3%; 55 versus 21 days; 45-60%).",
+      "A nonsensical example (130% of billed charges) and an incoherent phrase about national averages varying by geography.",
+      "About 10,900 words spread over 61 pages; Sections 1 and 10 are almost entirely exhortation.",
+      "Generic specialty examples (orthopedics, behavioral health) with no payer names, code-level examples or state specifics."
+    ],
+    "missing_for_real_use": [
+      "Sample contract language or redlines for any clause the reader is told to negotiate.",
+      "Letter templates: renegotiation request, objection to amendment, termination notice, patient notice, underpayment dispute, interest demand.",
+      "A registry template, rate-matrix worksheet, cost-to-serve worksheet with an allocation method, or one worked example with real codes.",
+      "Clauses never covered: lesser-of, timely filing, overpayment recoupment and offset look-back, audit and record requests, incorporation of the provider manual and payment policies, claim edits and downcoding, dispute resolution and arbitration, all-products and affiliate clauses, rental networks, confidentiality, indemnification, assignment and change of control, hold-harmless, continuity of care, new-code pricing, escalators, the Medicare schedule year and sequestration treatment, non-physician practitioner rates, telehealth, retroactive credentialing dates.",
+      "The scope of prompt-pay laws (self-funded plans, federal programs) and how they are enforced (state regulator, statutory dispute programs).",
+      "Government-program rules: Medicare participation status and limiting charge, Medicare Advantage non-contract payment and termination-notice rules, Medicaid managed care, dual-eligible cost-sharing, Tricare and VA community care.",
+      "The No Surprises Act and state balance-billing law, including good-faith estimates for self-pay patients.",
+      "How small practices actually gain leverage: independent practice associations, clinically integrated networks, accountable care organizations, and the antitrust limits on sharing rates or negotiating jointly.",
+      "Payer rate transparency files as a benchmark source; how to pull Medicare rates by locality and place of service.",
+      "Deadlines and channels for underpayment disputes, payer escalation paths and realistic timelines.",
+      "A defensible termination model (contribution margin, avoidable versus fixed cost, backfill of freed capacity) with thresholds.",
+      "Anything for facility-based practice: hospital, skilled nursing and assisted living visit codes, institutional special needs plans, facility relationships, medical-director agreements.",
+      "The risk-adjustment and star-rating economics that determine what a Medicare Advantage plan will pay for.",
+      "Named owners and time budgets for each function, and how software or agents can automate the checks.",
+      "What happens to contracts on a practice sale (assignment, change of control, buyer rate differences)."
+    ]
+  }
+}

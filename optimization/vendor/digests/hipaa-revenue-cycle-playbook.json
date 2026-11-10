@@ -1,0 +1,447 @@
+{
+  "slug": "hipaa-revenue-cycle-playbook",
+  "title": "HIPAA Privacy and Security for Revenue Cycle Playbook",
+  "doc_type": "compliance",
+  "pages": 75,
+  "audience": "Billing and compliance teams at independent physician practices. It names the practice administrator, billing manager or compliance officer as the working owner and tells readers to bring in a healthcare attorney for any consequential decision.",
+  "summary": "A 75-page, roughly 11,600-word guide to how HIPAA's Privacy, Security and Breach Notification Rules touch billing work. Its central method is a six-domain self-audit (vendor agreements, minimum-necessary access, patient access to billing records, breach handling, Security Rule controls for billing systems, and vendor oversight), followed by a recurring calendar of annual, quarterly and event-triggered tasks and a three-month start-up plan. The core argument is that the weak point in small practices is stale or missing business associate agreements and shared logins, not clinical privacy lapses. It also summarizes the pending Security Rule rewrite, federal enforcement patterns from 2024 to early 2026, and the civil penalty tiers. It supplies two checklists but no policy templates, forms, sample contract language or regulatory citations, and it says nothing specific about AI agents, state law or facility-based practice.",
+  "outline": [
+    {"section": "Front matter: Before You Use This Playbook", "gist": "Three stacked disclaimers: educational only, not legal advice, rules change, consult counsel; one stray sentence about reviewing AI-generated drafts."},
+    {"section": "Introduction: The HIPAA Compliance Gap Nobody Is Auditing", "gist": "Argues the main gap in small practices is stale or missing vendor agreements; explains scope, limits and reading order."},
+    {"section": "Section 1: HIPAA and the Revenue Cycle", "gist": "Shows how much patient data flows through claims, remittances and denial work, and why generic privacy training misses billing-specific duties."},
+    {"section": "Section 2: Business Associate Agreements", "gist": "Defines business associates in billing, lists required agreement terms, flags pre-2013 templates, and summarizes the pending Security Rule rewrite."},
+    {"section": "Section 3: The Minimum Necessary Standard", "gist": "Applies minimum-necessary to internal billing access: role definitions, unique logins, routine versus one-off disclosures, remote work, role-specific training records."},
+    {"section": "Section 4: Patient Financial Record Access (Right of Access)", "gist": "Billing records fall under the patient access right: 30-day response, one written extension, format, cost-based fees, personal representatives, request log."},
+    {"section": "Section 5: Breach Notification in Billing Contexts", "gist": "Treats common billing mistakes as possible breaches; covers the three exceptions, four-factor assessment, notification deadlines and the small-breach log."},
+    {"section": "Section 6: The HIPAA Security Rule for Billing Technology", "gist": "Safeguards for billing systems: risk analysis, unique credentials, audit logs, clearinghouse and portal vendor evidence, encrypted email."},
+    {"section": "Section 7: Managing Business Associates", "gist": "Ongoing vendor oversight: annual review, subcontractor flow-down, steps when a vendor reports a breach, and who must notify patients."},
+    {"section": "Section 8: OCR Enforcement Trends and Penalty Structure", "gist": "Enforcement snapshot for 2024 to early 2026: risk-analysis and access initiatives, two billing-vendor settlements, improper disclosures, four-tier penalty table."},
+    {"section": "Section 9: Your Revenue Cycle HIPAA Compliance Audit", "gist": "A 37-item checkbox audit across six domains, to be run yearly and after any breach, vendor change or system change."},
+    {"section": "Section 10: The HIPAA Compliance Calendar for Billing Operations", "gist": "Recurring task calendar: six annual, three quarterly and six event-triggered activities, with one named owner."},
+    {"section": "90-Day Implementation Plan", "gist": "Month 1 audit and name a Security Officer; month 2 fix agreements, access and policies and do the risk analysis; month 3 train and schedule."},
+    {"section": "Quick-Reference Checklists", "gist": "Checklist 1 walks the agreement audit in three steps; Checklist 2 tests staff access, data handling, access requests, breach reporting and training records."},
+    {"section": "Closing: The Compliance Obligation Is Already Being Managed", "gist": "Restates that billing work is compliance work whether or not it is managed, and points to sibling products."}
+  ],
+  "framework_elements": [
+    "Business associate (vendor) inventory",
+    "Agreement in place before any patient data is shared",
+    "Agreement content review against required terms",
+    "Agreement remediation and renegotiation",
+    "Subcontractor flow-down clause check",
+    "Annual business associate review",
+    "Vendor security evidence collection (SOC 2, attestation, questionnaire)",
+    "Role definitions for billing access (minimum necessary)",
+    "Unique user credentials and shared-login elimination",
+    "Access provisioning and immediate deactivation on staff change",
+    "Remote-work device and connection controls",
+    "Written policy for routine billing uses of patient data",
+    "Case-by-case review of non-routine disclosure requests",
+    "Role-specific HIPAA training with training records",
+    "Patient access request intake and routing",
+    "Access request log and 30-day clock tracking",
+    "Written extension notice procedure",
+    "Cost-based copy fee schedule",
+    "Personal representative verification",
+    "Internal incident reporting channel with named contact",
+    "Four-factor breach risk assessment",
+    "Breach log and annual small-breach submission to HHS",
+    "Individual, HHS and media notification",
+    "Response to a vendor-reported breach",
+    "Security risk analysis",
+    "Risk management plan with documented risk decisions",
+    "Security Officer designation",
+    "Audit log configuration and quarterly review",
+    "Encrypted transmission, device encryption and session time-out",
+    "Compliance calendar with one named owner and annual six-domain audit"
+  ],
+  "processes": [
+    {
+      "name": "Business associate agreement audit and remediation",
+      "steps": [
+        "List every vendor or contractor that creates, receives, stores or transmits patient data for the practice",
+        "Confirm a fully signed agreement is on file for each",
+        "Check each agreement for the required terms: permitted uses, safeguards and Security Rule duty, incident and breach reporting, subcontractor flow-down, patient-rights support, HHS access, termination and return or destruction",
+        "Flag missing, unsigned or deficient agreements and rank by data volume (billing and clearinghouse vendors first)",
+        "Stop sending patient data to any vendor with no agreement until one is signed",
+        "Request updated agreements, record the request date, and use the HHS sample provisions as the reference",
+        "Send high-volume or high-risk agreements to counsel before signing"
+      ],
+      "owner_role": "Practice administrator or designated compliance owner",
+      "cadence": "Annual; also at every vendor onboarding and contract renewal"
+    },
+    {
+      "name": "Role-based access set-up for billing systems (minimum necessary)",
+      "steps": [
+        "Define each billing role and the patient data it actually needs",
+        "Issue a unique login to every user and retire shared credentials",
+        "Configure system permissions to match the role definitions and document the configuration",
+        "Compare live settings to the role definitions and remove excess access",
+        "Apply the same controls to remote work: managed devices and secure connections",
+        "Deactivate credentials immediately when someone leaves and adjust on any role change"
+      ],
+      "owner_role": "Billing manager with the Security Officer",
+      "cadence": "At set-up and on every staffing change; confirmed in the annual audit"
+    },
+    {
+      "name": "Patient request for billing records (right of access)",
+      "steps": [
+        "Recognize a request for statements, claims history or payment records as a legal access request and route it to the assigned owner",
+        "Log date received, requester, relationship, records requested and format requested",
+        "Verify identity and, where relevant, personal-representative authority",
+        "Assemble the billing records that sit in the designated record set",
+        "Deliver in the requested format within 30 days, charging no more than a cost-based fee",
+        "If more time is needed, send a written extension notice with the reason inside the first 30 days (one extension only)",
+        "Record the delivery date and keep the log as evidence"
+      ],
+      "owner_role": "Not named; billing staff route to an assigned request owner",
+      "cadence": "Per request; log reviewed in the annual audit"
+    },
+    {
+      "name": "Incident triage, breach risk assessment and notification",
+      "steps": [
+        "Report any misdirected or unauthorized disclosure to the named internal contact",
+        "Start the four-factor risk assessment within 24 hours of discovery",
+        "Check whether one of the three regulatory exceptions applies",
+        "Document the assessment and the conclusion, whatever the outcome",
+        "If it is a breach, notify affected individuals without unreasonable delay and within 60 days of discovery",
+        "Report to HHS: within 60 days for 500 or more people, otherwise through the annual small-breach submission",
+        "Notify media when more than 500 residents of one state or jurisdiction are affected",
+        "Enter the event in the breach log with dates, data types, counts and corrective steps"
+      ],
+      "owner_role": "Compliance owner (practice administrator or billing manager)",
+      "cadence": "Per incident; breach log reviewed quarterly; small-breach submission each year by March 1"
+    },
+    {
+      "name": "Security risk analysis and risk management",
+      "steps": [
+        "Scope every system that holds or moves billing data: record system, practice-management system, clearinghouse portal, payment portal, email, remote devices",
+        "Identify threats and vulnerabilities to confidentiality, integrity and availability",
+        "Write up the findings as a formal, dated analysis",
+        "Decide and record the response to each risk: control implemented or risk accepted",
+        "Repeat before any new billing technology goes live and after significant operational change",
+        "Bring in an outside consultant if in-house knowledge is thin"
+      ],
+      "owner_role": "Security Officer",
+      "cadence": "Annual, plus before go-live of new systems and after significant change"
+    },
+    {
+      "name": "Annual business associate review",
+      "steps": [
+        "Confirm the agreement is current and still matches the services provided",
+        "Ask what security incidents or breaches occurred during the year",
+        "Collect evidence of security posture: SOC 2 report, attestation or completed questionnaire",
+        "Confirm subcontractor agreements are in place",
+        "Document the conversation; go deep for high-volume vendors, lighter for low-risk ones",
+        "Require a cure for any material violation and end the relationship if it is not cured"
+      ],
+      "owner_role": "Practice administrator or compliance owner",
+      "cadence": "Annual"
+    },
+    {
+      "name": "Response to a breach reported by a vendor",
+      "steps": [
+        "Record the vendor's notice and the date it was received",
+        "Establish which patients and which data are involved",
+        "Run the four-factor assessment",
+        "Send individual notices within 60 days; the vendor may send them only if the agreement makes it the practice's agent for that purpose",
+        "Report to HHS on the 500-plus or small-breach track",
+        "Decide whether the event is a material violation of the agreement that calls for corrective action or termination"
+      ],
+      "owner_role": "Compliance owner",
+      "cadence": "Event-triggered"
+    },
+    {
+      "name": "Compliance calendar, six-domain audit and training",
+      "steps": [
+        "Name one person as owner of the calendar",
+        "Schedule the annual items: risk analysis, risk management review, agreement audit, role-specific training, small-breach submission, security policy review",
+        "Schedule the quarterly items: audit-log review, breach-log review, new-hire training check",
+        "Define the triggered items: new vendor, contract renewal, new technology, staffing change, suspected breach, vendor incident",
+        "Run the 37-item audit at least yearly and after any breach, vendor change or major system change",
+        "Deliver billing-specific training and keep records of date, content and attendee",
+        "Document every finding and completion as the compliance record"
+      ],
+      "owner_role": "Practice administrator or compliance officer",
+      "cadence": "Annual, quarterly and event-triggered"
+    }
+  ],
+  "tools_templates": [
+    {"name": "Revenue Cycle HIPAA Compliance Audit (Section 9)", "description": "37 unscored checkbox items in six domains: agreements (7), minimum necessary (6), right of access (6), breach notification (6), Security Rule for billing technology (7), vendor oversight (5)."},
+    {"name": "Checklist 1: BAA Audit Checklist", "description": "Three steps and 24 items: 12 vendor categories to identify, 9 agreement-content checks, 3 remediation actions."},
+    {"name": "Checklist 2: Billing Staff HIPAA Compliance Checklist", "description": "19 items in five groups: access and credentials, data handling, right of access, breach recognition and reporting, training documentation."},
+    {"name": "HIPAA Compliance Calendar (Section 10)", "description": "Task list of six annual, three quarterly and six event-triggered activities; a list, not a dated calendar or tracker."},
+    {"name": "90-Day Implementation Plan", "description": "Three monthly phases of five tasks each: audit and assess, remediate and document, train and establish ongoing operations."},
+    {"name": "2026 civil monetary penalty tier table", "description": "Four-row reference table of per-violation ranges and annual caps by culpability tier, with a footnote on the enforcement-discretion caps."},
+    {"name": "Patient access request log (field list only)", "description": "Prose list of fields to capture: date received, requester and relationship, records and format requested, extension notice date, delivery date. No form supplied."},
+    {"name": "Small-breach log (field list only)", "description": "Prose list of fields: breach date, discovery date, data type, what happened, number affected, safeguards added. No form supplied."},
+    {"name": "Four-factor breach risk assessment (factors only)", "description": "Names the four regulatory factors and two worked contrasts for a misdirected mailing; no worksheet, scoring or decision rule."},
+    {"name": "Billing-error breach trigger list", "description": "Seven everyday billing mistakes that should prompt a breach risk assessment (misdirected mail, wrong-payer claim, wrong-recipient email, lost device and similar)."},
+    {"name": "Annual business associate review questions", "description": "Five questions in prose covering agreement currency, scope change, incidents, security evidence and subcontractor agreements."},
+    {"name": "Not included", "description": "No scripts, forms, scoring rubrics, calculators, sample agreement language, policy templates, training content or vendor questionnaire."}
+  ],
+  "metrics": [
+    {"name": "Patient access request turnaround", "definition": "Days from receipt of a records request (including billing records) to delivery", "formula": "delivery date minus date received", "target": "30 days or less; up to 60 only with one written extension notice sent inside the first 30 days", "red_flag": "Any request past 30 days with no documented extension notice; no request log at all", "source_cited": "none"},
+    {"name": "Individual breach notification time", "definition": "Days from discovery of a breach to notice to affected individuals", "formula": "notice date minus discovery date", "target": "Without unreasonable delay and no more than 60 days", "red_flag": "Investigation running for months before anyone is told", "source_cited": "none"},
+    {"name": "HHS reporting, breach of 500 or more", "definition": "Time to report a large breach to HHS", "formula": "", "target": "Within 60 days of discovery", "red_flag": "", "source_cited": "none"},
+    {"name": "HHS reporting, breaches under 500", "definition": "Annual submission of small breaches discovered in the prior calendar year", "formula": "", "target": "By March 1 of the following year", "red_flag": "No breach log kept; billing errors handled as customer service only", "source_cited": "none"},
+    {"name": "Breach risk assessment start time", "definition": "Time from discovery of a possible breach to starting the four-factor assessment", "formula": "", "target": "Within 24 hours", "red_flag": "Open-ended investigations; incidents logged but never assessed", "source_cited": "none"},
+    {"name": "Business associate agreement coverage", "definition": "Vendors handling patient data that have a signed, current, complete agreement", "formula": "vendors with compliant agreement divided by all vendors handling patient data", "target": "All of them (implied 100%)", "red_flag": "Unsigned agreements, pre-2013 templates, or vendors with no agreement", "source_cited": "none"},
+    {"name": "Agreement review cadence", "definition": "How often each agreement is re-read against current requirements", "formula": "", "target": "Annually and at each contract renewal", "red_flag": "Agreement signed at onboarding and never reviewed", "source_cited": "none"},
+    {"name": "Shared login credentials", "definition": "Count of shared usernames in billing systems", "formula": "", "target": "Zero", "red_flag": "Any shared login; inability to say who accessed a record", "source_cited": "none"},
+    {"name": "Departed-staff credential deactivation", "definition": "Time from departure to removal of system access", "formula": "", "target": "Immediately on departure", "red_flag": "Active credentials for former staff", "source_cited": "none"},
+    {"name": "Security risk analysis recency", "definition": "Age of the last formal risk analysis covering billing technology", "formula": "", "target": "Completed within the past 12 months, and before go-live of any new billing system", "red_flag": "Analysis dating from the original record-system installation and never updated", "source_cited": "none"},
+    {"name": "Billing staff HIPAA training currency", "definition": "Staff with documented, role-specific training", "formula": "", "target": "All staff within the past 12 months; new hires before independent access to patient data", "red_flag": "Only generic training on file, two or more years old", "source_cited": "none"},
+    {"name": "Audit log review frequency", "definition": "How often system activity logs for billing systems are reviewed", "formula": "", "target": "Quarterly", "red_flag": "Logs not configured or never reviewed; off-hours or out-of-role access", "source_cited": "none"},
+    {"name": "Vendor security posture confirmation", "definition": "Age of the latest security evidence from the billing vendor (attestation, SOC 2 report, questionnaire)", "formula": "", "target": "Within the past 12 months", "red_flag": "Vendor has never provided any evidence", "source_cited": "none"},
+    {"name": "Six-domain HIPAA audit cadence", "definition": "Frequency of the full revenue cycle HIPAA audit", "formula": "", "target": "At least annually and after any billing data breach, vendor change or significant system change", "red_flag": "", "source_cited": "none"},
+    {"name": "Workstation and device safeguards", "definition": "Session time-out configured on billing workstations and encryption on portable devices holding billing data", "formula": "", "target": "All workstations and all portable devices", "red_flag": "", "source_cited": "none"}
+  ],
+  "numeric_claims": [
+    {"claim": "January 25, 2013 is given as the Omnibus Rule effective date; agreements before it are said to run on the old framework", "section": "Section 2; Section 9; Checklist 1", "source_cited": "none"},
+    {"claim": "HHS published the Security Rule proposal in January 2025, described as the first update since 2003", "section": "Section 2", "source_cited": "none"},
+    {"claim": "As of the 2026 Unified Agenda the proposal is not final; moved to Long-Term Actions with a July 2027 target, against an earlier May 2026 date", "section": "Section 2", "source_cited": "2026 Unified Agenda (named, no citation)"},
+    {"claim": "Right of Access Initiative began in 2019 and has produced more than 54 enforcement actions", "section": "Section 4; Section 8", "source_cited": "none"},
+    {"claim": "Access must be given within 30 days; one 30-day extension with written notice; 60 days is the outer limit", "section": "Section 4", "source_cited": "none"},
+    {"claim": "A $1-per-page charge likely exceeds what HIPAA allows for electronic records", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Affected individuals must be notified within 60 days of discovery", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Breaches of 500 or more go to HHS within 60 days; smaller ones are reported annually by March 1 of the following year", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Media notice is required when more than 500 people in one state or jurisdiction are affected", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Worked example: discovery on March 15 means individual notice is due by May 14", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Risk analysis failure has been cited in the majority of OCR enforcement actions since 2024", "section": "Section 6", "source_cited": "none"},
+    {"claim": "OCR's Risk Analysis Initiative began in late 2024 and was widened to risk management in 2026", "section": "Section 6; Section 8", "source_cited": "none"},
+    {"claim": "Ten OCR settlement agreements in the first five months of 2025, all involving a missing or stale risk analysis", "section": "Section 6", "source_cited": "none"},
+    {"claim": "Risk analysis must be done at least annually under current OCR guidance and the proposed rule", "section": "Section 6", "source_cited": "none"},
+    {"claim": "Shared credentials are the single most common Security Rule violation in billing operations", "section": "Section 6", "source_cited": "none"},
+    {"claim": "Multiple revenue cycle vendors suffered breaches in 2024 and 2025 (none named in that passage)", "section": "Section 7", "source_cited": "none"},
+    {"claim": "22 OCR enforcement actions in 2024 and 21 in 2025, called the most active period in the agency's history", "section": "Section 8", "source_cited": "none"},
+    {"claim": "Risk Analysis Initiative settlements through mid-2025 ranged from roughly $10,000 to $3 million", "section": "Section 8", "source_cited": "none (text concedes figures vary by source)"},
+    {"claim": "Elgon Information Systems settled for $80,000 in January 2025 after ransomware exposed data of over 31,000 patients", "section": "Section 8", "source_cited": "none"},
+    {"claim": "Comstar LLC, an ambulance billing and collections vendor, settled with OCR in May 2025 after a ransomware incident", "section": "Section 8", "source_cited": "none"},
+    {"claim": "OCR's Director confirmed in early 2026 that enforcement will be sustained", "section": "Section 8", "source_cited": "none"},
+    {"claim": "Tier 4 maximum annual penalty is $2,190,294 as of the January 28, 2026 inflation adjustment", "section": "Section 8", "source_cited": "91 FR 3672 (January 28, 2026)"},
+    {"claim": "Tier 1 (no knowledge): $145 to $73,011 per violation, annual cap $36,505", "section": "Section 8", "source_cited": "91 FR 3672; OCR Notice of Enforcement Discretion (named, not cited)"},
+    {"claim": "Tier 2 (reasonable cause): $1,461 to $73,011 per violation, annual cap $146,053", "section": "Section 8", "source_cited": "91 FR 3672; OCR Notice of Enforcement Discretion (named, not cited)"},
+    {"claim": "Tier 3 (willful neglect, corrected): $14,602 to $73,011 per violation, annual cap $365,052", "section": "Section 8", "source_cited": "91 FR 3672; OCR Notice of Enforcement Discretion (named, not cited)"},
+    {"claim": "Tier 4 (willful neglect, not corrected): $73,011 to $2,190,294 per violation, annual cap $2,190,294", "section": "Section 8", "source_cited": "91 FR 3672"},
+    {"claim": "Corrective action plans typically bring two to three years of OCR oversight", "section": "Section 8", "source_cited": "none"},
+    {"claim": "A thorough six-domain audit takes one day", "section": "Section 9", "source_cited": "none"},
+    {"claim": "The four-factor assessment should start within 24 hours of discovering a possible breach", "section": "Section 10", "source_cited": "none (the document's own standard)"},
+    {"claim": "Illustration: a practice billing 200 claims a day transmits patient data to health plans 200 times a day", "section": "Section 1", "source_cited": "none (illustrative)"}
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Per the January 28, 2026 Federal Register update (91 FR 3672): Tier 1 $145-$73,011, cap $36,505; Tier 2 $1,461-$73,011, cap $146,053; Tier 3 $14,602-$73,011, cap $365,052; Tier 4 $73,011-$2,190,294, cap $2,190,294.",
+      "kind": "penalty",
+      "stakes": "high",
+      "section": "Section 8: OCR Enforcement Trends and Penalty Structure",
+      "why": "Penalty exposure sizes the compliance budget and any risk register. Every figure equals the August 2024 amount multiplied by 1.02598, so the table is internally consistent with a single adjustment, but the citation, the date, whether a later adjustment has superseded it, and whether the lower annual caps from the 2019 enforcement-discretion notice still apply must be confirmed against the Federal Register and 45 CFR 160.404."
+    },
+    {
+      "id": "C2",
+      "claim": "As of the 2026 Unified Agenda the Security Rule proposal is not final; HHS moved it to its Long-Term Actions agenda and now targets July 2027 for final action, past the originally anticipated May 2026 date.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 2: Business Associate Agreements (The Security Rule NPRM)",
+      "why": "A final rule would make multi-factor authentication, encryption, an asset inventory, yearly risk analysis and yearly written vendor verification mandatory on a fixed timetable. If the agenda status is wrong or has moved by November 2026, technology spending and vendor contract terms are being planned against the wrong date."
+    },
+    {
+      "id": "C3",
+      "claim": "The risk analysis must be conducted at implementation of any new billing technology, on significant changes, and, under current OCR guidance and the proposed NPRM, at least annually.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 6: The HIPAA Security Rule for Billing Technology (The Risk Analysis Requirement)",
+      "why": "As I know the current rule, it sets no fixed interval; OCR guidance describes periodic, ongoing review with annual as one option, and a 12-month mandate exists only in the proposal. Risk analysis is the most-cited enforcement failure, so a framework has to separate what is required from what is recommended. Section 2 of the same document treats annual analysis as a proposed change."
+    },
+    {
+      "id": "C4",
+      "claim": "Receive and document the BA's breach notification. Note the date of receipt — this starts the covered entity's own notification clock.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 7: Managing Business Associates (Responding to a BA Breach)",
+      "why": "Under 45 CFR 164.404(a)(2) a breach known to an agent of the covered entity is treated as known to the covered entity, so where a vendor acts as the practice's agent the 60 days can run from the vendor's own discovery rather than from receipt of its notice. This practice bills through AI agents under a business associate agreement, so the distinction sets its real deadline."
+    },
+    {
+      "id": "C5",
+      "claim": "Breaches involving fewer than 500 individuals are reported to HHS annually, by March 1 of the year after discovery; the practice must keep a written log and submit it by that date.",
+      "kind": "deadline",
+      "stakes": "medium",
+      "section": "Section 5: Breach Notification in Billing Contexts (timelines; Small Breaches and the Annual Log)",
+      "why": "The regulation, as I know it, says no later than 60 days after the end of the calendar year. That is March 1 in ordinary years but February 29 in a leap year (2028, for breaches discovered in 2027), and each breach is entered separately in the HHS portal rather than sent as one log. A hard-coded March 1 calendar entry can be a day late."
+    },
+    {
+      "id": "C6",
+      "claim": "Review each BAA: does it postdate January 25, 2013 (Omnibus Rule effective date)? A BAA that was signed before the 2013 Omnibus Rule does not meet current requirements.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 2 (What a Compliant BAA Must Contain; The Pre-Omnibus BAA Problem); Section 9 Audit Domain 1; Checklist 1",
+      "why": "January 25, 2013 was the Federal Register publication date. As I know it, the rule took effect March 26, 2013 with compliance by September 23, 2013 and a grandfather period for older agreements to September 22, 2014. Compliance turns on what the agreement says, not when it was signed, so an audit keyed to the date can pass deficient later agreements and fail adequate earlier ones."
+    },
+    {
+      "id": "C7",
+      "claim": "The permissible fee is a cost-based fee covering the labor to copy and the supplies used, not a flat fee or a per-page fee; $1 per page likely exceeds the limit for electronic records.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4: Patient Financial Record Access (Format and Delivery)",
+      "why": "HHS guidance, as I know it, lets a provider charge a flat fee of up to $6.50 for electronic copies instead of calculating cost, and postage is also chargeable; the cap applies to the individual's own requests. Florida has its own copy-charge rules as well. A wrong fee policy either invites an access complaint or leaves permitted cost recovery unused."
+    },
+    {
+      "id": "C8",
+      "claim": "A covered entity must provide access within 30 days of the request, with a single 30-day extension on written notice; OCR's Right of Access Initiative, launched in 2019, has produced more than 54 enforcement actions.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 4 (The 30-Day Rule); Section 8 (Right of Access)",
+      "why": "Record requests from surrogates, guardians and estate representatives are routine in geriatric practice, so this deadline is a live obligation. Confirm that 30 days is still the federal standard in November 2026 (a 2021 proposal would cut it to 15), that Florida law or the information-blocking rule does not require faster release, and that the enforcement count is real."
+    }
+  ],
+  "domain_map": [
+    {"domain": "compliance-risk", "weight": 0.68, "topics": ["business associate agreements", "minimum necessary standard", "patient right of access to billing records", "breach risk assessment and notification", "Security Rule risk analysis", "civil penalty tiers", "federal enforcement trends", "compliance audit and calendar"]},
+    {"domain": "technology-data-ai", "weight": 0.17, "topics": ["role-based access control", "unique logins and audit logs", "encryption and secure email", "device and remote-work security", "vendor security evidence", "proposed Security Rule changes (multi-factor authentication, asset inventory)"]},
+    {"domain": "people-compensation", "weight": 0.06, "topics": ["role-specific HIPAA training and records", "access changes at hiring and departure", "naming a Security Officer and calendar owner", "oversight of an outsourced billing company"]},
+    {"domain": "rcm-claims-ar", "weight": 0.05, "topics": ["misdirected statements and explanations of benefits", "claims sent to the wrong payer", "data shared with collections vendors", "patient requests for itemized bills and account history"]},
+    {"domain": "strategy-governance", "weight": 0.04, "topics": ["vendor contract inventory and renewal review", "single named accountability", "operating rhythm for recurring compliance tasks"]}
+  ],
+  "adopt": [
+    {
+      "idea": "Keep one register of every vendor that touches patient data, showing agreement status, signature date, content checks and renewal date, reviewed yearly and at every onboarding or renewal.",
+      "why": "Missing or thin vendor agreements are cheap to fix and expensive to explain after an incident; the register also becomes diligence material for a buyer.",
+      "applies_to_practice": "yes",
+      "note": "For this practice the list must reach beyond the practice-management vendor and clearinghouse to AI model and agent-platform vendors, their sub-processors, cloud storage, email, e-signature and eligibility-data services. The document never mentions AI vendors."
+    },
+    {
+      "idea": "Audit what each agreement says, not just whether one exists: Security Rule duty, incident and breach reporting, subcontractor flow-down, return or destruction of data, cooperation on patient rights.",
+      "why": "A signed but hollow agreement gives no protection; content is the legal test.",
+      "applies_to_practice": "yes",
+      "note": "Add terms the document does not specify: an incident-notice window measured in days, limits on using data for model training, retention and deletion terms, and insurance. Counsel should set these."
+    },
+    {
+      "idea": "Give every user its own identity with role-scoped permissions, ban shared logins, and remove access the day someone leaves.",
+      "why": "Without individual identities there is no audit trail and no way to scope an incident.",
+      "applies_to_practice": "yes",
+      "note": "Extend the rule to software: each AI agent, service account and API key needs its own identity, least-privilege scope and logged activity. The document only pictures human billing staff."
+    },
+    {
+      "idea": "Treat everyday billing mistakes (statement to the wrong address, claim to the wrong payer, email to the wrong recipient) as incidents that get a written four-factor assessment started within a day and an entry in a running log.",
+      "why": "Small errors are the most common breach source in billing, and a documented assessment is the only defense for deciding not to notify.",
+      "applies_to_practice": "yes",
+      "note": "Add agent-caused events: an agent sending data to the wrong recipient or into a tool with no agreement. Layer Florida's shorter state notice clock on top of the federal one."
+    },
+    {
+      "idea": "Log every request for records, including billing records, with dates, requester authority and delivery, and manage it against the 30-day clock with a written extension when needed.",
+      "why": "Access complaints are a standing enforcement program and the log is the evidence.",
+      "applies_to_practice": "yes",
+      "note": "Geriatric patients mean requests from health care surrogates, attorneys-in-fact, guardians and estate representatives; with no front desk, the intake channel and authority check need to be defined explicitly."
+    },
+    {
+      "idea": "Do a written security risk analysis every year and before any new billing technology goes live, and keep a log of the decision taken on each risk.",
+      "why": "It is the most-cited enforcement failure and the foundation the other safeguards hang from.",
+      "applies_to_practice": "yes",
+      "note": "Each new agent, integration or data connection should count as new technology. The free HHS risk assessment tool, which the document does not mention, can structure the work."
+    },
+    {
+      "idea": "Run compliance from a calendar with one named owner: annual, quarterly and event-triggered tasks, each closed with evidence.",
+      "why": "Turns obligations that otherwise sit in a binder into scheduled, checkable work.",
+      "applies_to_practice": "yes",
+      "note": "The physician-owner is the accountable person by default; agents can schedule tasks and collect evidence, but sign-off stays human."
+    },
+    {
+      "idea": "Review high-volume vendors once a year: scope changes, incidents, security evidence such as a SOC 2 report, and subcontractors.",
+      "why": "The duty to act on a vendor's known violations presupposes knowing the vendor's posture.",
+      "applies_to_practice": "yes",
+      "note": "Most relevant for the practice-management vendor, the clearinghouse and the AI vendors."
+    },
+    {
+      "idea": "Review system access logs quarterly for out-of-role or unusual access.",
+      "why": "Detects snooping and compromised accounts and shows the audit-control safeguard is operating.",
+      "applies_to_practice": "partly",
+      "note": "Agents work around the clock, so off-hours activity is not a useful signal here; define anomalies as access outside the task scope, unusual volumes or new destinations."
+    },
+    {
+      "idea": "Tie training to the job actually done and keep records of who was trained on what and when, before independent access to patient data.",
+      "why": "Role-appropriate training with records is what the rules ask for and what investigators request first.",
+      "applies_to_practice": "partly",
+      "note": "With two clinicians and no billing staff, the human training load is small; the analogue for agents is documented instructions, guardrails and test evidence."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "The duties covered bind every covered entity, and the vendor-agreement, risk-analysis, breach-handling and access-request material applies directly. But the document is written for an office with human billing staff, a front desk, an outside billing company, a patient payment portal and a collections agency. This practice has none of those: billing is run in-house by AI agents, patient balances are small, and patient data moves mainly between facilities and the practice. AI vendors, facility-based workflows, Medicare-specific overlays and Florida law are not addressed, so the owner gets a sound skeleton and has to supply the parts that matter most to him.",
+    "sections_that_do_not_apply": [
+      "Section 3 passage on remote billing staff using home computers (the equivalent question is where AI agents run and what they can reach)",
+      "Front-desk and overheard-conversation controls in Section 8 and Checklist 2",
+      "Billing-company relationship management in Section 7 (billing is in-house; applies only by analogy to AI vendors)",
+      "Patient payment portal and card-data discussion in Section 6 (almost no portal or point-of-service collections)",
+      "Collections-agency material in Section 2 (little or no outsourced collections)",
+      "Month 3 staff-training step as written (there are no billing staff to train)"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Calls January 25, 2013 the Omnibus Rule effective date. That was publication; the rule took effect March 26, 2013 with compliance by September 23, 2013, and older agreements were grandfathered to September 22, 2014.",
+      "Declares every agreement signed before 2013 non-compliant today. The test is content, not date. It also credits the 2013 rule with creating vendor liability and vendor breach reporting that came from the 2009 HITECH Act and the 2009 breach rule.",
+      "Says access fees may not be flat. HHS guidance allows a flat fee of up to $6.50 for electronic copies as an alternative to costing; postage is also allowed; a 2020 court ruling limits the fee cap to requests made by the individual. None of this appears.",
+      "Attributes an 'at least annually' risk analysis duty to current OCR guidance. The current rule has no fixed interval; 12 months is in the proposed rule only.",
+      "Says the practice's clock starts when the vendor's breach notice arrives. Where the vendor is the practice's agent, the vendor's discovery is imputed and the clock starts earlier. It also omits that a vendor has up to 60 days to notify unless the agreement shortens it.",
+      "States the small-breach deadline as March 1. The rule is 60 days after year-end, which is February 29 in leap years, and breaches are entered individually in the HHS portal rather than submitted as a log. The required log contents listed are the vendor's own, not the regulation's.",
+      "Lists payment processing vendors as business associates without the statutory carve-out for financial institutions that only process payments, and says the agreement must cover card-data security, which is a separate contractual matter.",
+      "Treats any patient data sent by ordinary email as a Security Rule failure unless encrypted end to end. Encryption is an addressable specification, end-to-end is not the legal standard, and a patient may choose unencrypted email after being warned of the risk.",
+      "Presents 'generic annual training does not satisfy the requirement' and yearly retraining as rules. The regulations require training suited to job function, at hire and on material change, plus a security awareness program; there is no annual mandate.",
+      "Describes minimum necessary as a system configuration requirement met only by technical lock-out. The rule requires reasonable efforts through policies and role-based limits, and HHS acknowledges flexibility for small practices.",
+      "Claims most OCR investigations end in settlement. Most are closed through technical assistance or voluntary corrective action with no payment; settlements dominate only among the few cases that involve money.",
+      "Links criminal referral to willful neglect. Willful neglect is a civil penalty tier; criminal liability attaches to knowingly obtaining or disclosing patient data under a separate statute.",
+      "Says return or destruction of data is required 'upon breach'. The regulation requires it at the end of the contract where feasible and separately allows termination for a material violation.",
+      "Calls the proposal the first Security Rule update since 2003; the rule was amended in 2013.",
+      "Unsupported assertions stated as fact: shared credentials as the single most common Security Rule violation (OCR itself points to risk analysis); 2024 and 2025 as the most active enforcement years ever (trade-press tallies I recall show a similar count in 2022 and far higher dollar totals in 2018); a pattern of access complaints leading to findings of broader failures.",
+      "Enforcement numbers (22 actions in 2024, 21 in 2025, more than 54 access actions, ten settlements in five months, a $10,000 to $3 million range) carry no source. The $3 million top figure matches a January 2025 phishing settlement that, as I recall, OCR did not label as part of the Risk Analysis Initiative.",
+      "For calibration: the core mechanics (required agreement terms, 30-day access rule, three breach exceptions, four-factor test, 60-day individual notice, 500-person thresholds, the March 15 to May 14 example, and the two named vendor settlements) match the rules and press releases as I know them. The errors sit at the edges, but several are the kind that end up hard-coded in a policy."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 2 first says a pre-2013 agreement is non-compliant by definition, then says signature date is not the test and content is.",
+      "Section 2 presents annual risk analysis as something the proposed rule would add; Section 6 says current OCR guidance already requires it annually.",
+      "The text sends readers to 'Section 9, Checklist 1' for the agreement audit. Section 9 holds 'Audit Domain 1' (7 items); Checklist 1 sits in a separate section (24 items) and the two lists differ.",
+      "Front matter says the material is not compliance advice and does not make a practice compliant; the closing says the playbook gives the reader 'the system'.",
+      "Section 8's title promises to show where billing-related complaints come from; it contains no complaint data.",
+      "The audit is said to take one day, yet the 90-day plan spends month 1 on that audit plus an agreement audit, and the agreement audit alone depends on vendor responses."
+    ],
+    "time_sensitive_or_outdated": [
+      "Security Rule rulemaking status (Long-Term Actions, July 2027 target) is a snapshot; check the current Unified Agenda before relying on it.",
+      "Penalty amounts are adjusted every year; the table is as of January 2026 and the next adjustment is due around early 2027.",
+      "Enforcement tallies stop in early 2026; nothing from the following months is reflected.",
+      "The claim that the Risk Analysis Initiative widened to risk management in 2026, and the Director's statement, are undated and unsourced.",
+      "Silent on Privacy Rule changes with a February 16, 2026 compliance date (notice of privacy practices updates tied to the substance-use-disorder records rule), which had already passed when the document was generated.",
+      "Silent on the 2021 proposal to shorten the access deadline to 15 days and on information-blocking rules that already push faster release of electronic records, including billing records.",
+      "The headline problem, pre-2013 agreement templates, is a twelve-year-old issue whose grandfather period ended in 2014. The live agreement issues of 2026 (AI and cloud sub-processors, offshore access, incident-notice windows, model-training use, contingency terms after the Change Healthcare outage) are missing.",
+      "The largest revenue cycle vendor breach on record, Change Healthcare in February 2024, is never named; the text only alludes to unnamed vendors."
+    ],
+    "ai_generation_signals": [
+      "Penalty table is headed 'Corrected Figures', an editing artifact that implies an earlier wrong version.",
+      "Hedge that settlement amounts 'vary by source and reporting period' when the amounts are fixed in public press releases.",
+      "Oddly vague-yet-precise counts such as 'more than 54' enforcement actions, repeated verbatim in two sections.",
+      "Three overlapping disclaimers up front; the third talks about reviewing AI-generated drafts, which has nothing to do with this document's content.",
+      "Relentless 'not X, it is Y' sentence pattern, heavy dash use, and slogan endings ('Call it what it is').",
+      "Identical section template throughout: definition, shaded call-out, bullets; the same points (shared logins, 30-day rule, agreement terms) are restated three or four times.",
+      "No author, no credentials, no regulation section numbers anywhere; one Federal Register cite in 75 pages.",
+      "A clause about finalization slipping to 2027 is bolted onto the end of a paragraph that already said so, which reads like a patch edit.",
+      "Cross-selling references to four sibling products in place of substance (technology buyer's guide, annual assessment guide, a No Surprises Act playbook, a staffing playbook).",
+      "Broken cross-reference ('Section 9, Checklist 1') and a section title that the content does not deliver on."
+    ],
+    "missing_for_real_use": [
+      "Regulatory citations: not one 45 CFR section number, so no statement can be traced to its source.",
+      "Templates: no sample agreement clauses, access request form or log, breach assessment worksheet, breach log, risk analysis template, policy text, training content or vendor security questionnaire. The free HHS risk assessment tool is not mentioned.",
+      "Anything on AI or automation: AI vendors as business associates, model-training and retention terms, identities and logging for software agents, sub-processors, data sent to tools with no agreement.",
+      "State law: Florida's 30-day breach notice statute and attorney general notice, state rules on record copy charges and release of records.",
+      "Everyday billing privacy questions: what may be told to a family member involved in care or payment, caller verification, voicemail, text and email with patients and families, the patient's right to block disclosure to a plan when paying in full out of pocket, authorizations, accounting of disclosures.",
+      "Payer-side minimum necessary: responding to record requests and audits from Medicare contractors, Medicare Advantage plans and risk-adjustment chart retrievals.",
+      "The HIPAA transaction and code set standards (electronic claims, remittances, eligibility), which are the part of HIPAA most directly about billing.",
+      "Security basics: required versus addressable specifications, multi-factor authentication as current practice, backup and downtime planning, patching, phishing, an incident response plan, cyber insurance, and the 2021 law that credits recognized security practices when penalties are set.",
+      "Program basics: Privacy Officer designation, complaint process, sanctions policy, six-year document retention, notice content and substitute notice for breaches.",
+      "Facility-based practice issues: data exchange with hospitals and nursing facilities, access to facility record systems, the medical-director role (where the practice may itself be the facility's business associate), mobile devices on rounds, paper face sheets.",
+      "Negotiating targets for agreements: notice window in days, indemnity, insurance, audit rights, offshore restrictions.",
+      "Measurement: no scorecard or key indicators beyond pass or fail checkboxes; none of the usual revenue cycle benchmarks appear.",
+      "The fuller content of the proposed Security Rule: mandatory encryption at rest and in transit, the end of the addressable category, vulnerability scans and penetration tests, 72-hour restoration, 24-hour vendor notice on contingency-plan activation."
+    ]
+  }
+}

@@ -1,0 +1,795 @@
+{
+  "slug": "pediatrics-companion-guide",
+  "title": "CleanClaimRx Specialty Companion Guide: Pediatrics",
+  "doc_type": "specialty",
+  "pages": 40,
+  "audience": "Billing teams at independent pediatric practices (its disclaimer calls it educational and workflow material for billing teams), with instructions aimed at front desk staff and physicians as well. Assumes the reader has the vendor's 'Universal Specialty Billing Framework'.",
+  "summary": "Specialty overlay for independent pediatric practices. Its thesis: revenue is capped by billing habits, not Medicaid rates. It covers Medicaid, managed-care, CHIP and commercial dynamics; age-based preventive codes; billing a problem visit with modifier 25 at well visits; vaccine administration and component counting; developmental and behavioral screening codes; telephone, online and after-hours codes; Medicaid plan authorization for referrals, behavioral health and ADHD drugs; four documentation failures; four denial patterns; and five revenue opportunities including pediatric chronic care management. Method: audit recent claims against notes, price the gap, then hard-wire fixes with templates, automatic charge triggers, a front-desk script, per-plan reference sheets and eligibility checks at every encounter. It ends with five standing standards and a five-step action list. It has real code tables and worked arithmetic but no sources, and several rules are wrong or overstated (90472 per component, modifier 33 as after-hours, audio-only code range, VFC product-code billing).",
+  "outline": [
+    {
+      "section": "Section 1: The Reframe - Pediatrics Does Not Have a Revenue Problem, It Has a Payer Mix Problem",
+      "gist": "Claims pediatric revenue is capped by billing habits (well-visit, vaccine, screening, care-management capture), not payer rates, despite a title blaming payer mix."
+    },
+    {
+      "section": "Section 2: The Payer Mix Reality in Pediatrics",
+      "gist": "Medicaid, managed-care plans, CHIP and commercial preventive-benefit rules; a payer table and eight questions to answer for each payer."
+    },
+    {
+      "section": "Section 3: The Procedure Code Risk Profile in Pediatrics",
+      "gist": "Code tables and rules for preventive visits, same-day problem visits, vaccine administration, screening instruments, and telephone, online and after-hours services."
+    },
+    {
+      "section": "Section 4: Prior Authorization in Pediatrics",
+      "gist": "Medicaid plan authorization for specialist referrals, behavioral health carve-outs, ABA, psychiatric crises, vaccine coverage checks and recurring ADHD drug approvals."
+    },
+    {
+      "section": "Section 5: The Documentation Failures Unique to Pediatrics",
+      "gist": "Four failures: incomplete well-visit components, undelineated modifier 25 problem notes, counseling not attributed to the physician, chronic care folded into well visits."
+    },
+    {
+      "section": "Section 6: The Denial Patterns Unique to Pediatrics",
+      "gist": "Four patterns: Medicaid eligibility, vaccine administration coding, preventive visit frequency, behavioral health referral without authorization; a management framework for each."
+    },
+    {
+      "section": "Section 7: The Revenue Opportunities Most Pediatric Practices Are Missing",
+      "gist": "Five opportunities with dollar arithmetic: modifier 25 problem visits, screening codes, vaccine add-on units, after-hours telephone billing, pediatric chronic care management."
+    },
+    {
+      "section": "Section 8: What Revenue Cycle Excellence Looks Like in Pediatrics",
+      "gist": "Five standing operational standards and a five-step prioritized implementation list built on claim look-back audits."
+    }
+  ],
+  "framework_elements": [
+    "Per-plan managed-care payer reference document",
+    "Payer intelligence questionnaire (eight questions per payer)",
+    "Eligibility verification at every encounter (at scheduling and again on the service date)",
+    "Eligibility-gap escalation and re-enrollment assistance",
+    "Cost-sharing collection for CHIP and commercial families",
+    "Age-based preventive visit code selection",
+    "Same-day preventive plus problem visit billing (modifier 25)",
+    "Advance notice to families of a possible separate charge",
+    "Vaccine administration coding (counseling versus non-counseling codes, component counting)",
+    "Vaccine product billing and VFC stock segregation",
+    "Vaccine coverage verification before the visit",
+    "Counseling attribution in documentation (who performed the work)",
+    "Developmental, behavioral and risk screening charge capture",
+    "Template required fields with automatic charge triggers",
+    "Telephone and online digital E/M billing",
+    "After-hours service coding",
+    "On-call encounter documentation routed to billing",
+    "Referral authorization workflow for specialists",
+    "Behavioral health carve-out mapping",
+    "Crisis placement contact list",
+    "Recurring medication prior authorization template",
+    "Well-visit component documentation standard",
+    "Chronic condition management billed separately at well visits",
+    "Preventive visit frequency control in scheduling",
+    "Quarterly vaccine component billing audit",
+    "Claim look-back audit with annualized gap and refiling within timely filing",
+    "Chronic care management enrollment (consent, care plan, time log)",
+    "Monthly billed-versus-documented screening report",
+    "Payer credentialing and supervision rules for nurse practitioners and physician assistants",
+    "Payer telehealth and audio-only coverage policy tracking"
+  ],
+  "processes": [
+    {
+      "name": "Preventive visit plus problem visit (modifier 25) workflow",
+      "steps": [
+        "Front desk tells the family at scheduling or check-in that a problem addressed at a well visit may create a separate charge",
+        "Physician documents the problem in a distinct, labeled section with its own assessment and plan",
+        "Bill the age-based preventive code plus 99212-99215 with modifier 25 on one claim",
+        "Pull 30 days of well-visit claims, find notes with an unbilled problem, price the gap and annualize it"
+      ],
+      "owner_role": "Front desk, physicians and billing team",
+      "cadence": "Every well visit; one-time 30-day look-back"
+    },
+    {
+      "name": "Vaccine administration coding and component audit",
+      "steps": [
+        "Choose counseling codes (90460/90461) or non-counseling codes (90471-90474) based on who counseled",
+        "Count components of each combination vaccine when using the counseling codes",
+        "Bill product codes only for privately purchased stock, never as a charge for VFC vaccine",
+        "Review 90 days of claims comparing units billed with component counts",
+        "Fix the billing rules in the practice-management system and refile corrected claims inside timely filing"
+      ],
+      "owner_role": "Billing team",
+      "cadence": "Every vaccine claim; quarterly audit"
+    },
+    {
+      "name": "Screening instrument charge capture",
+      "steps": [
+        "Add structured fields for instrument, score and clinical action to each age-specific well-visit template",
+        "Set a rule so completed fields drop the matching code (96110, 96127, 96160 or 96161)",
+        "Run a monthly report of codes billed against screens documented"
+      ],
+      "owner_role": "Physicians, EHR administrator and billing team",
+      "cadence": "Every well visit; monthly report"
+    },
+    {
+      "name": "Medicaid eligibility verification at every encounter",
+      "steps": [
+        "Run an automated eligibility check at scheduling",
+        "Repeat the check at check-in on the date of service",
+        "Train staff to read verification error messages and escalate likely re-enrollments",
+        "Assign a coordinator to contact families with recurring coverage gaps before visits and help them re-enroll"
+      ],
+      "owner_role": "Front desk / care coordinator",
+      "cadence": "Every visit"
+    },
+    {
+      "name": "Managed-care payer reference document",
+      "steps": [
+        "List every Medicaid plan covering the practice's patients",
+        "Record each plan's authorization requirements, timely filing limit, resubmission and appeal process, behavioral health vendor and phone number, and plan-specific modifiers",
+        "Distribute to front desk and billing staff",
+        "Update when a plan issues a provider bulletin and review on a fixed schedule"
+      ],
+      "owner_role": "Billing team",
+      "cadence": "Continuous upkeep; quarterly review; at contract renewal"
+    },
+    {
+      "name": "Referral and behavioral health authorization",
+      "steps": [
+        "Identify which plans require authorization for which specialist types",
+        "Obtain the authorization before the specialist appointment and send the number to the specialist",
+        "Route behavioral health referrals to the plan's behavioral health vendor",
+        "Keep an after-hours contact for urgent psychiatric placement"
+      ],
+      "owner_role": "Referral coordinator / front office",
+      "cadence": "Each referral"
+    },
+    {
+      "name": "After-hours telephone encounter billing",
+      "steps": [
+        "On-call physician writes a brief note for each call involving medical decision-making",
+        "Make the note visible to the billing team",
+        "Billing checks payer coverage and code rules and submits qualifying calls"
+      ],
+      "owner_role": "On-call physician and billing team",
+      "cadence": "Each qualifying call"
+    },
+    {
+      "name": "Pediatric chronic care management start-up",
+      "steps": [
+        "Pick the 15 most complex patients with two or more chronic conditions",
+        "Confirm eligibility and obtain guardian consent",
+        "Write a care plan for each",
+        "Log clinical staff time every month and bill months that reach 20 minutes",
+        "Track revenue added to justify expanding the program"
+      ],
+      "owner_role": "Physician lead with clinical staff",
+      "cadence": "Monthly"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Payer category table",
+      "description": "Included. Six payer categories (Medicaid fee-for-service, Medicaid managed care, CHIP, employer commercial, marketplace commercial, self-pay) with the main revenue-cycle dynamic for each."
+    },
+    {
+      "name": "Eight Payer Intelligence Questions",
+      "description": "Included. Questionnaire on plan authorization rules, filing and appeal timelines, same-day E/M policy, vaccine administration payment, screening coverage, telehealth, after-hours services and nurse practitioner / physician assistant credentialing."
+    },
+    {
+      "name": "Preventive visit code table",
+      "description": "Included. 99381-99385 and 99391-99395 by age band with billing notes."
+    },
+    {
+      "name": "Vaccine administration code table",
+      "description": "Included. 90460, 90461 and 90471-90474 with notes; contains errors on age limit and route."
+    },
+    {
+      "name": "Screening and assessment code table",
+      "description": "Included. 96110, 96112, 96113, 96127, 96160, 96161, G0444, 99408 and 99409 with example instruments."
+    },
+    {
+      "name": "Patient communication imperative (call-out)",
+      "description": "Included as a requirement only. Says to build and train a front-desk script about separate charges; no script supplied."
+    },
+    {
+      "name": "Example counseling documentation wording for 90460",
+      "description": "Included. One inadequate and one adequate sample phrase."
+    },
+    {
+      "name": "Compliance risk call-out for 90460",
+      "description": "Included. Warns of recoupment and tells the practice to audit counseling documentation."
+    },
+    {
+      "name": "Medicaid eligibility denial management framework",
+      "description": "Included. Four steps: verify every encounter, train on error messages, same-day check, coordinator for chronic gaps."
+    },
+    {
+      "name": "Revenue arithmetic examples",
+      "description": "Included. Four worked calculations (modifier 25, screening, vaccine add-on units, after-hours calls); informal, not a calculator."
+    },
+    {
+      "name": "Five Non-Negotiable Operational Standards",
+      "description": "Included. Modifier 25 workflow, vaccine component audit, screening charge trigger, real-time eligibility check, per-plan reference document."
+    },
+    {
+      "name": "Prioritized Five-Action Implementation List",
+      "description": "Included. Each action is a claim look-back or build task with a follow-up fix; no dates beyond 'next billing week'."
+    },
+    {
+      "name": "Managed-care payer reference document",
+      "description": "Described only. Fields listed: authorization rules, timely filing, behavioral health carve-out and phone number, resubmission process."
+    },
+    {
+      "name": "ADHD medication authorization request template",
+      "description": "Described only."
+    },
+    {
+      "name": "Well-visit note template with problem-visit and screening sections",
+      "description": "Described only."
+    },
+    {
+      "name": "Crisis authorization contact list",
+      "description": "Described only."
+    },
+    {
+      "name": "CCM consent, care plan and time log",
+      "description": "Described only as missing infrastructure to build."
+    },
+    {
+      "name": "Scripts, scoring rubrics, calculators, trackers, 30/60/90-day plan",
+      "description": "None actually supplied."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "Modifier 25 capture on well visits",
+      "definition": "Well-child visits where the note shows a problem was addressed, compared with those where a separate E/M with modifier 25 was billed",
+      "formula": "Unbilled problem visits in a 30-day claim sample x average E/M payment, projected to a year",
+      "target": "Bill the E/M on every encounter where a problem was addressed (the guide's standard; it skips the CPT significance test)",
+      "red_flag": "Only the preventive code billed when the note documents a problem",
+      "source_cited": "none"
+    },
+    {
+      "name": "Well-visit problem rate (assumption)",
+      "definition": "Share of well visits that include a separately identified problem, used in the revenue example",
+      "formula": "",
+      "target": "40% assumed",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Vaccine add-on unit accuracy",
+      "definition": "Add-on administration units billed compared with the component count of each combination vaccine",
+      "formula": "Missed units x payment per unit, annualized (example: 30 visits x 2 units x $12 x 260 days)",
+      "target": "Every component counted; undercounting corrected within the billing quarter",
+      "red_flag": "One 90461 unit billed per combination vaccine",
+      "source_cited": "none"
+    },
+    {
+      "name": "Per-vaccine underbilling amount",
+      "definition": "Value of add-on units missed on each combination vaccine",
+      "formula": "Missed 90461 units x $10-$20",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Screening charge capture rate",
+      "definition": "Screening codes billed compared with screening instruments documented, from a monthly report",
+      "formula": "Screening codes billed / screenings documented",
+      "target": "Automatic charge for every documented screen (100% implied)",
+      "red_flag": "Instrument used clinically with no code submitted",
+      "source_cited": "none"
+    },
+    {
+      "name": "Revenue per screening",
+      "definition": "Payment per screening instrument or per well visit",
+      "formula": "Screens x rate (examples: 50 a week x $15-$30; 3,000 visits x $25)",
+      "target": "$15-$30 per instrument; $15-$45 per visit; $25 average",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicaid eligibility verification coverage",
+      "definition": "Share of encounters with eligibility checked through an automated system at check-in",
+      "formula": "",
+      "target": "Every encounter",
+      "red_flag": "Verification done monthly or weekly instead of per visit",
+      "source_cited": "none"
+    },
+    {
+      "name": "Medicaid eligibility denials",
+      "definition": "Claims denied because the child was not eligible on the date of service; called the highest-volume and most preventable denial type",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "90460 documentation support",
+      "definition": "Share of 90460 claims whose note attributes vaccine counseling to the physician or qualified professional",
+      "formula": "",
+      "target": "Every 90460 claim",
+      "red_flag": "Counseling attributed to nursing staff",
+      "source_cited": "none"
+    },
+    {
+      "name": "Billable after-hours calls",
+      "definition": "Telephone encounters with medical decision-making documented by the on-call physician and billed",
+      "formula": "Calls per week x average payment x 52 (example: 10 x $35 = $18,200 a year)",
+      "target": "",
+      "red_flag": "Calls that exist only in the physician's memory",
+      "source_cited": "none"
+    },
+    {
+      "name": "CCM monthly clinical staff time",
+      "definition": "Care-management minutes logged per enrolled patient per calendar month",
+      "formula": "",
+      "target": "At least 20 minutes",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "CCM enrolled cohort and revenue added",
+      "definition": "Number of complex patients enrolled and the revenue the program produces",
+      "formula": "",
+      "target": "Start with 15 patients; 20 to 30 candidates in any practice",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "ABA authorization turnaround",
+      "definition": "Days from referral to authorization of applied behavior analysis",
+      "formula": "",
+      "target": "Stated as running to 60-90 days (a description, not a target)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "First-submission approval rate for ADHD medication authorizations",
+      "definition": "Mentioned qualitatively as higher when a standard request template is used",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Payer reference document review cadence",
+      "definition": "How often each Medicaid plan reference sheet is reviewed",
+      "formula": "",
+      "target": "Quarterly (action list); at contract renewal (Standard 5); on each provider bulletin (Section 2)",
+      "red_flag": "Plan rules managed from institutional memory",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "Medicaid and CHIP cover about 40 percent of children nationally and more than 60 or 70 percent in many markets.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Commercial insurance covers a minority of patients in most independent pediatric practices but a disproportionate share of revenue.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The ACA requires commercial plans to cover well-child visits with zero cost-sharing.",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "DTaP has three components: one 90460 unit plus two 90461 units.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Vaccine product codes run from 90633 to 90749.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "AAP recommends formal developmental screening at 9, 18 and 30 months and autism screening at 18 and 24 months.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Behavioral/emotional screening is recommended annually from infancy and depression screening annually for adolescents.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "G0444 annual depression screening is a 15-minute, Medicare-covered service.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "SBIRT codes: 99408 for 15-30 minutes, 99409 for 31 minutes or more.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Screening codes pay $15 to $30 per instrument; 50 screenings a week yields $39,000 to $78,000 a year.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Documenting a screen adds about 30 seconds.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CPT 99441-99443 were deleted effective January 1, 2025 and replaced by audio-only codes 98008-98015.",
+      "section": "Sections 3 and 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Online digital E/M codes 99421-99423 cover 5-10, 11-20 and 21-30 minutes cumulated over 7 days.",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "ABA authorization can take 60 to 90 days from referral.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "ADHD affects about 10 percent of school-age children; a 1,500-patient practice has roughly 150 patients on ADHD medication, each needing at least annual prior authorization.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Referral authorization failure is one of the leading causes of specialist claim denials in Medicaid managed-care markets.",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Missing growth measurements are the most common audit finding in pediatric preventive care.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A practice billing 90460 at 30 well visits a day faces recoupment across every encounter in the audit period, not only the sample.",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Medicaid eligibility denials are the highest-volume denial type in Medicaid-heavy pediatric practices.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Well-child periodicity: 0-15 days, 1, 2, 4, 6, 9, 12, 15, 18, 24 and 30 months, then annually from age 3.",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Two physicians at 15 well visits a day with 40 percent including a problem gives 12 extra E/M visits a day at $85: $1,020 a day, $265,200 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Modifier 25 problem visits are the single largest revenue recovery opportunity in independent pediatrics.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Screening revenue is $15 to $45 per well visit; 3,000 well visits at $25 gives $75,000 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Each missed 90461 unit is worth roughly $10 to $20; MMRV has four components and pentavalent combinations five.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "30 well visits a day with 2 missed add-on units at $12 each is $720 a day, $187,200 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "10 billable after-hours calls a week at $35 is $350 a week, $18,200 a year.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CCM requires two or more chronic conditions lasting at least 12 months and at least 20 minutes of clinical staff time per calendar month.",
+      "section": "Section 7",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The 20 to 30 highest-complexity patients in any pediatric practice are CCM candidates; the action list starts with 15.",
+      "section": "Sections 7 and 8",
+      "source_cited": "none"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "DTaP has three components: bill '90460 x1 + 90461 x2 (or 90471 x1 + 90472 x2)'; Standard 2 says 90461 and 90472 add-on units 'are counted per component, not per injection.'",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 3; Section 8, Standard 2",
+      "why": "Codes 90471-90474 are defined per vaccine administered, not per component. Applying component counting to 90472, as the guide's 'non-negotiable' standard instructs, overbills every non-counseled combination vaccine and creates repayment liability."
+    },
+    {
+      "id": "C2",
+      "claim": "A problem raised at a well-child visit (ear, rash, behavioral concern) is billable as 99212-99215 with modifier 25 alongside the preventive code; standard: bill the modifier 25 E&M 'on every encounter where a problem was addressed.'",
+      "kind": "code_rule",
+      "stakes": "high",
+      "section": "Section 3, Preventive Plus Problem Visit; Section 8, Standard 1",
+      "why": "CPT allows the extra E/M only for a significant, separately identifiable problem, and payers scrutinize or discount it. A bill-every-time rule invites audits; the same logic governs wellness visit plus problem visit billing in adult practices."
+    },
+    {
+      "id": "C3",
+      "claim": "Billing the vaccine product code (e.g., 90700) for a VFC-supplied vaccine 'is a compliance violation'; the practice 'may bill only the administration fee for VFC vaccines.' VFC covers Medicaid-eligible, uninsured and underinsured children.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 6, Denial Pattern 2; Section 4, Vaccine Prior Authorization",
+      "why": "Many state Medicaid programs require the vaccine product code (zero charge or a state modifier) in order to pay the VFC administration fee, and underinsured children qualify only at designated sites. Following the guide literally could cause denials or VFC violations."
+    },
+    {
+      "id": "C4",
+      "claim": "98008-98015 audio-only E&M codes are billable for calls with established patients involving medical decision-making, not if a visit follows within 24 hours; most commercial payers cover them; they replaced 99441-99443 deleted January 1, 2025; after-hours calls average $35 (98008-98010).",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, After-Hours, Telephone, and Telehealth Services; Section 7, Opportunity 4",
+      "why": "98008-98011 are new-patient codes, the series needs more than 10 minutes of medical discussion, and Medicare does not recognize it. A practice with a large Medicare book would generate denials by adopting these codes."
+    },
+    {
+      "id": "C5",
+      "claim": "'After-hours modifier 33 or add-on code 99050-99060' can be billed as an after-hours supplement for services outside normal business hours where the practice has established after-hours availability.",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 3, After-Hours, Telephone, and Telehealth Services",
+      "why": "Modifier 33 is the preventive-services (zero cost-sharing) modifier, not an after-hours modifier. Misusing it can wrongly waive patient cost-sharing or trigger denials; Medicare also bundles 99050-99060."
+    },
+    {
+      "id": "C6",
+      "claim": "CCM eligibility is 'two or more chronic conditions expected to last at least 12 months'; it requires at least 20 minutes of clinical staff time per calendar month, a care plan and patient/guardian consent; school forms and specialist coordination count.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 7, Opportunity 5",
+      "why": "The practice bills chronic care management monthly. The guide omits the risk-of-decline criterion and Medicare's added conditions and treats administrative forms as qualifying time; relying on it could produce unsupported claims."
+    },
+    {
+      "id": "C7",
+      "claim": "If an audit finds 90460 billed where the physician did not personally counsel, 'the recoupment applies to every encounter in the audit period - not just the sample.'",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 5, Documentation Failure 3 (Compliance Risk box)",
+      "why": "Extrapolation is conditional under Medicare law and varies by payer and state, and the exposure is the payment difference between codes. The real rule matters for sizing audit risk in any practice."
+    },
+    {
+      "id": "C8",
+      "claim": "G0444 is listed as 'Annual depression screening, 15 min', Medicare-covered; 99421-99423 online digital E&M are described as 5-10, 11-20 and 21-30 minutes cumulative over 7 days, requiring patient-initiated contact.",
+      "kind": "code_rule",
+      "stakes": "low",
+      "section": "Section 3, screening code table and telehealth bullets",
+      "why": "The practice bills wellness visits, where G0444 is a common companion code. If the service is 5 to 15 minutes, a 15-minute belief causes missed billing; wrong descriptors also show the source is not current."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.45,
+      "topics": [
+        "age-based preventive codes",
+        "same-day problem visit with modifier 25",
+        "vaccine administration and component counting",
+        "screening code capture",
+        "telephone, online and after-hours codes",
+        "documentation standards behind each code"
+      ]
+    },
+    {
+      "domain": "rcm-front-end",
+      "weight": 0.17,
+      "topics": [
+        "eligibility verification every encounter",
+        "referral and behavioral health authorization",
+        "advance notice of patient cost-sharing",
+        "vaccine coverage verification",
+        "medication prior authorization template"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.15,
+      "topics": [
+        "Medicaid managed-care plan rules",
+        "CHIP cost-sharing",
+        "per-plan reference document",
+        "payer intelligence questions",
+        "VFC program rules",
+        "nurse practitioner credentialing by payer"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.08,
+      "topics": [
+        "eligibility denials",
+        "vaccine code denials and silent underpayments",
+        "frequency denials",
+        "corrected-claim refiling within timely filing"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.08,
+      "topics": [
+        "counseling attribution for 90460",
+        "VFC product billing",
+        "audit recoupment exposure",
+        "modifier 25 documentation"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.05,
+      "topics": [
+        "chronic care management program",
+        "after-hours triage workflow",
+        "care coordinator for coverage gaps",
+        "referral coordination"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.02,
+      "topics": [
+        "template required fields",
+        "automatic charge-capture rules",
+        "automated eligibility checks"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Keep a reference sheet for every managed-care plan (authorization list, timely filing, resubmission and appeal steps, carve-outs, plan-specific modifiers), owned by billing and updated on each provider bulletin.",
+      "why": "Plan rules held in memory produce avoidable denials whenever memory is wrong or the person is absent.",
+      "applies_to_practice": "yes",
+      "note": "Build for the UnitedHealthcare, Humana, Capital Health Plan and Florida Blue Medicare Advantage products and each Florida Medicaid plan; AI agents can keep it current."
+    },
+    {
+      "idea": "Use a standard payer questionnaire, adapted from the guide's eight questions, for every payer.",
+      "why": "Forces the practice to learn each payer's actual policy before claims are denied.",
+      "applies_to_practice": "yes",
+      "note": "Swap pediatric items for same-day wellness visit plus E/M policy, CCM and advance care planning coverage and cost-sharing, telehealth and audio-only rules, nurse practitioner credentialing and supervision documentation."
+    },
+    {
+      "idea": "Verify eligibility at every encounter, with a second check on the service date and an escalation path for coverage gaps.",
+      "why": "Coverage changes between visits are the most preventable source of denials.",
+      "applies_to_practice": "yes",
+      "note": "For facility work: at census capture and monthly for long-stay residents; watch Medicare Advantage plan switches, Part A stay status, hospice election and dual-eligible status."
+    },
+    {
+      "idea": "Same-day preventive plus problem workflow: delineated documentation, modifier 25, and advance notice to the patient or family about possible cost-sharing.",
+      "why": "Captures legitimately separate work while heading off billing complaints.",
+      "applies_to_practice": "yes",
+      "note": "Direct analogue is the annual wellness visit plus a problem-oriented visit; apply the CPT 'significant, separately identifiable' test the guide leaves out."
+    },
+    {
+      "idea": "Hard-wire charge capture: required template fields (instrument, score, action) trigger the code, and a monthly report compares codes billed with services documented.",
+      "why": "Removes reliance on memory and gives a clean leakage measure.",
+      "applies_to_practice": "yes",
+      "note": "Apply to depression and alcohol screening with wellness visits, advance care planning, cognitive assessment and CCM time; billed-versus-documented is a ready KPI."
+    },
+    {
+      "idea": "Look-back audit method: sample 30 to 90 days of claims for one service line, compare notes with codes, price the gap per encounter, annualize, fix the system rule, refile within timely filing.",
+      "why": "Turns a vague suspicion of leakage into a number and a fix.",
+      "applies_to_practice": "yes",
+      "note": "A sound generic diagnostic for the practice and for a consulting offer; use payer-specific allowed amounts rather than the guide's flat commercial rates."
+    },
+    {
+      "idea": "When a code depends on who performed the work, make the note say who did it, and audit that attribution.",
+      "why": "Attribution failures convert a correct service into a recoupable one.",
+      "applies_to_practice": "yes",
+      "note": "Applies to CCM clinical-staff versus provider time, split/shared hospital and nursing facility visits, and nurse practitioner versus physician billing."
+    },
+    {
+      "idea": "Start care management with a small high-complexity cohort (consent, care plan, time log) and expand on demonstrated revenue.",
+      "why": "Limits start-up effort and builds proof before scaling.",
+      "applies_to_practice": "partly",
+      "note": "The practice already bills complex CCM; use this as an enrollment and time-logging discipline check against Medicare's full requirements, not the guide's abbreviated list."
+    },
+    {
+      "idea": "Route non-visit clinical work (on-call calls, messages) into documented encounters that billing can see.",
+      "why": "Undocumented work can never be billed or counted toward time-based services.",
+      "applies_to_practice": "partly",
+      "note": "Medicare does not pay 98008-98015; the value is capturing time for CCM, transitional care contacts and any virtual check-in or audio-only visits Medicare allows."
+    },
+    {
+      "idea": "Maintain an after-hours escalation directory for each payer and key facility.",
+      "why": "Urgent authorizations and placements fail when nobody knows whom to call.",
+      "applies_to_practice": "partly",
+      "note": "Useful for urgent Medicare Advantage authorizations, skilled nursing placement and discharge appeals."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "The practice has no pediatric patients, vaccines, VFC, CHIP or well-child visits, so the code content does not apply. Several workflows do transfer to a facility-based geriatric practice: same-day preventive plus problem billing (wellness visit analogue), screening charge capture, eligibility checks at every encounter, per-plan reference sheets for Medicare Advantage and Medicaid plans, and a care-management enrollment routine. The chronic care management section is too thin and incomplete to rely on for Medicare billing, and the audio-only codes it promotes are not payable by Medicare.",
+    "sections_that_do_not_apply": [
+      "Section 2: CHIP and the child preventive-benefit discussion",
+      "Section 3: preventive code table by child age, vaccine administration codes, pediatric screening instruments, pediatric after-hours triage",
+      "Section 4: subspecialist referral authorization, ABA, pediatric psychiatric placement, vaccine coverage and VFC, ADHD medication authorization",
+      "Section 5: Failures 1 and 3 (well-child components, vaccine counseling)",
+      "Section 6: Patterns 2 to 4 (vaccine codes, preventive frequency, behavioral health referral)",
+      "Section 7: Opportunities 2 to 4 in their pediatric form",
+      "Section 8: Standard 2 and Action 2 (vaccine component audit)"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 4,
+    "accuracy_concerns": [
+      "Vaccine administration (Section 7; Section 8, Standard 2): counts 90472 units per component ('90471 x1 + 90472 x2' for DTaP). Codes 90471-90474 are per vaccine administered; only 90460/90461 count components. The guide's own Section 3 table says 90472 is per additional injected vaccine. A practice following Standard 2 would overbill every non-counseled combination vaccine.",
+      "Modifier 33 (Section 3): presented as an after-hours modifier. Modifier 33 marks ACA-mandated preventive services for zero cost-sharing and has nothing to do with after-hours care. Codes 99050-99060 are stand-alone special-service codes that Medicare and many payers bundle.",
+      "Audio-only codes (Sections 3 and 7): 98008-98011 are new-patient codes and 98012-98015 established; the guide prices calls from the practice's own patients with 98008-98010. The series requires more than 10 minutes of medical discussion, which most triage calls will not reach. The 24-hour exclusion belonged to the deleted 99441-99443 (and now to 98016). Medicare does not pay 98000-98015, and 'most commercial payers cover these' is unsupported. Calls handled by a nurse triage service are not billable E/M services at all.",
+      "VFC (Sections 4 and 6): 'billing the product code is a compliance violation' is too absolute. Many state Medicaid programs require the product code (zero or nominal charge, or a state modifier) to identify the vaccine and pay the administration fee. The eligibility list omits American Indian/Alaska Native children and the rule that underinsured children qualify only at FQHCs, RHCs or deputized sites.",
+      "Vaccine add-on revenue (Section 7, Opportunity 3): the $187,200 figure ignores that VFC administration fees are capped per vaccine and many Medicaid programs pay nothing for 90461, and it assumes combination vaccines at every one of 30 daily well visits. In a specialty the guide itself calls Medicaid-dominated, the estimate is badly overstated.",
+      "Modifier 25 (Sections 3, 7, 8): says a problem raised at a well visit is billable and sets a standard of billing 'on every encounter where a problem was addressed'. CPT requires a significant problem needing additional work; minor issues belong to the preventive service. Several commercial payers reduce the same-day E/M (commonly by half) and some Medicaid plans do not pay both. The $265,200 example uses full commercial rates, a 40% problem rate and 260 working days, and calls that conservative.",
+      "90460 (Section 3 table, Section 5): the table says 'under 18' and 'first vaccine'; the code applies through age 18 and to the first component of each vaccine. The guide slides from 'physician or other qualified health professional' to physician-only counseling, though nurse practitioner or physician assistant counseling qualifies. The table also describes 90471 as covering intranasal vaccines, which belong to 90473.",
+      "Audit exposure (Section 5): states that recoupment 'applies to every encounter in the audit period'. Extrapolation is conditional (Medicare requires a sustained or high error level or failed education; Medicaid and commercial rules vary), and the exposure on 90460 versus 90471 is the payment difference, not the whole encounter.",
+      "Screening revenue (Sections 3 and 7): $15-$30 per instrument is high for 96127 and 96160/96161, which Medicare's fee schedule values at roughly $3-$5 (verify); many Medicaid plans bundle screens into the well-visit rate or cap units. Nothing on unit limits, NCCI edits or modifier requirements.",
+      "Code table details: 99423 is 21 minutes or more, not 21-30; G0444 is a 5-to-15-minute service; the product range 90633-90749 excludes current products such as meningococcal 90619-90621 and RSV antibody 90380/90381; CRAFFT is placed under 96127 while substance-use tools are placed under 96160.",
+      "CCM (Section 7, Opportunity 5): omits the requirement that the conditions place the patient at significant risk of death, acute decompensation or functional decline; counts school form completion as care-management time; says nothing on whether Medicaid or commercial plans pay 99490 for children, on monthly cost-sharing, or on Medicare's added conditions (initiating visit, round-the-clock access, care plan shared with the patient).",
+      "ADHD arithmetic (Section 4): applies a 10% school-age prevalence to all 1,500 active patients, assumes every diagnosed child is medicated, and claims each needs at least annual prior authorization; first-line generics commonly need none.",
+      "Well-visit documentation (Section 5): an incomplete preventive note is called 'a lower-level service', but preventive codes are tiered by age, not level. BMI percentile 'at every well-child visit' is wrong for children under 2, who are tracked by weight-for-length.",
+      "Frequency denials (Section 6): says out-of-schedule well visits 'will be denied' without noting that federal EPSDT law requires Medicaid to cover medically necessary interperiodic screens.",
+      "Behavioral health (Sections 4 and 6): the scenario in which a specialist is denied because the pediatrician obtained authorization from the wrong entity is atypical; outpatient behavioral health is usually self-referral with the treating provider handling authorization, and emergency psychiatric stabilization does not need prior authorization.",
+      "Unsupported statistics: the 40% national Medicaid/CHIP share (roughly right, but unsourced), the 60-90 day ABA timeline, 'most common audit finding', and 'most practices bill only the preventive code'."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 1's title blames payer mix; its text says the ceiling is set by billing habits, not payer rates.",
+      "The Section 3 table says 90472 is one unit per additional injected vaccine; Section 7 and Standard 2 count 90472 per component.",
+      "Audio-only codes are introduced as 'new/established' then limited to established patients, and the revenue example cites the new-patient range 98008-98010.",
+      "Section 3 says most commercial payers cover the audio-only codes; Section 7 repeats that and then ends with 'verify payer coverage'.",
+      "ADHD: every one of about 150 patients is said to need annual prior authorization, yet the next sentences limit authorization to brand-name and non-first-line drugs.",
+      "The plan reference document is to be updated on each provider bulletin (Section 2), at each contract renewal (Standard 5) and quarterly (Action 3).",
+      "Medicaid and CHIP cover about 40% of children nationally, yet commercial coverage is said to be the minority in most independent practices.",
+      "Revenue examples use inconsistent practices: 3,000 well visits a year in Opportunity 2 versus 30 a day (about 7,800 a year) in Opportunities 1 and 3; $15-$30 per instrument in Section 3 versus $15-$45 per visit in Section 7.",
+      "Opportunity 1 is called conservative while applying commercial rates in a specialty the guide describes as Medicaid-dominated, and the same paragraph admits the figure is lower with high Medicaid volume.",
+      "A Section 4 heading says the pediatric practice loses 'specialist revenue' from referral authorization gaps; the text shows the specialist's claim is denied, not the pediatrician's.",
+      "The payer table tells practices to counsel uninsured families on vaccine costs; Section 4 says uninsured children receive VFC vaccine at no cost.",
+      "Section 6 says out-of-schedule well visits will be denied, then says some children may qualify for an additional preventive visit.",
+      "Section 3 names office-visit E/M coding as one of four risk areas and never discusses it.",
+      "The disclaimer says the material is not coding or payer-policy advice, while the body issues coding mandates labeled 'not optional' and 'non-negotiable'."
+    ],
+    "time_sensitive_or_outdated": [
+      "No date or code-year stamp; the disclaimer concedes the material may not reflect current requirements.",
+      "Applies the 24-hour / next-appointment exclusion from deleted 99441-99443 to the replacement audio-only codes, where it does not belong.",
+      "Promotes 98008-98015 without noting that Medicare assigned the series invalid status when it was created in 2025 and, to my knowledge, still does not pay it.",
+      "The eligibility-churn narrative predates mandatory 12-month continuous eligibility for children in Medicaid and CHIP (January 2024) and ignores later federal Medicaid changes.",
+      "Vaccine content omits COVID-19 vaccine administration, RSV antibody product and administration codes, and the 2025-2026 changes to federal childhood vaccine recommendations (the AAP schedule now diverges from the CDC's), which affect VFC coverage and payer edits; needs current verification.",
+      "G0444 is shown as a 15-minute service; the current descriptor is, to my knowledge, 5 to 15 minutes.",
+      "99423 is shown as 21-30 minutes; the descriptor is 21 minutes or more.",
+      "Problem-visit documentation is framed as history, examination and decision making; office E/M level has rested on decision making or time since 2021.",
+      "Treats behavioral health carve-outs as the norm; several states have moved to integrated plans.",
+      "The care-management discussion stops at basic CCM and ignores principal care management and the newer advanced primary care management codes."
+    ],
+    "ai_generation_signals": [
+      "The disclaimer itself refers to 'AI-generated' drafts and disowns coding and payer-policy accuracy.",
+      "Round illustrative scenarios engineered to large annual totals ($265,200, $187,200, $75,000, $39,000-$78,000, $18,200), each multiplied by 260 days or 52 weeks with no source.",
+      "'As documented in Section 4/5/6' is used to point back at assertions that were never documented.",
+      "Confident but wrong code facts (modifier 33, 98008-98010, 90472 per component, 99423 time band, 90471 route).",
+      "A non-standard acronym, 'BHMO', is used throughout.",
+      "The same topics are restated in up to six sections (the preventive-plus-problem visit in Sections 1, 2, 3, 5, 7 and 8; vaccine component counting in 3, 6, 7 and 8).",
+      "Unsupported superlatives ('most common audit finding', 'single largest revenue recovery opportunity', 'highest-volume denial type').",
+      "Invented-looking content requirements attached to preventive codes (school readiness screening, puberty counseling).",
+      "The Section 1 title contradicts its own text, a sign of headline and body generated separately.",
+      "No author, sources, dates, state examples or payer names."
+    ],
+    "missing_for_real_use": [
+      "The front-desk script is called mandatory and is not provided; neither are the plan reference sheet, note template, authorization template or audit worksheet.",
+      "No state-specific Medicaid or VFC billing rules (product code at zero charge or with a state modifier, state administration fee, whether 90461 is paid).",
+      "No payer policy facts on same-day preventive plus E/M (reduction policies, plans that do not pay both), screening unit limits, NCCI edits or modifier 59 requirements.",
+      "Office-visit E/M leveling, named as one of four risk areas, is never covered.",
+      "Ancillary capture promised in Section 1 is absent: in-office labs, hearing and vision screening, fluoride varnish, nebulizer treatments and similar services; no newborn hospital care codes either.",
+      "No diagnosis coding guidance (well visit with or without abnormal findings, vaccine and screening Z codes), which drives payment of same-day services.",
+      "No vaccine purchasing and inventory economics (private versus VFC stock, borrowing rules, buying groups).",
+      "No quality-incentive or value-based content (well-visit and immunization measures, managed-care bonus programs, EPSDT reporting).",
+      "No KPI baselines or benchmarks and no sampling method for the audits it prescribes.",
+      "The CCM section lacks payer coverage for children, cost-sharing implications and the full requirement set.",
+      "No compliance threshold for modifier 25 (what counts as significant and separately identifiable)."
+    ]
+  }
+}

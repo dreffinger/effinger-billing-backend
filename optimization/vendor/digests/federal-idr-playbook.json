@@ -1,0 +1,475 @@
+{
+  "slug": "federal-idr-playbook",
+  "title": "Federal IDR Playbook - No Surprises Act Independent Dispute Resolution: How to Challenge a Payer's Out-of-Network Payment - and Win (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "compliance",
+  "pages": 66,
+  "audience": "Billing and compliance teams at independent practices with meaningful out-of-network volume against commercial health plans. The cover disclaimer names billing and compliance teams, the footer says billing teams, and the 90-day plan addresses practice leadership. No specialty or size is specified; the examples and the specialty table are about emergency, anesthesia, radiology and procedural services, with primary care rated low volume.",
+  "summary": "A 66-page vendor guide urging independent practices to use the No Surprises Act federal independent dispute resolution (IDR) process to contest out-of-network payments from commercial health plans. It covers eligibility screening, the 30-business-day open negotiation, the four-business-day initiation window, baseball-style arbitration, the qualifying payment amount (QPA) and its litigation history, the statutory 'additional circumstances', offer construction from benchmarks, an expected-value test for deciding whether to file, batching to spread fixed costs, a status-coded dispute log, a monthly metric review, a 90-day rollout and four checklists. The central method: triage every out-of-network remittance, start negotiation on time, file only when win-probability-weighted recovery exceeds fees plus staff time, batch the rest, and submit a short, evidence-backed offer that is more credible than the payer's. The argument leans on a claimed 85-88% provider win rate, a $15 administrative fee and an August 2026 appellate ruling, none tied to a citation.",
+  "outline": [
+    {"section": "Cover and disclaimer", "gist": "Title page; says the material is general education, not legal advice, and that rules, penalties and guidance change over time."},
+    {"section": "Introduction", "gist": "Claims providers win 85-88% of disputes, most independent practices never file, and the only question is whether dollars justify fees and staff time."},
+    {"section": "Section 2: The Litigation Landscape", "gist": "TMA I-IV history; says the en banc Fifth Circuit resolved QPA methodology for providers on August 11, 2026; advises filing on the statutory factors."},
+    {"section": "Section 3: How the Federal IDR Process Works", "gist": "Eligibility table, open negotiation, initiation data, baseball-style mechanics, strategy do and don't table, business-day timeline and fee schedule."},
+    {"section": "Section 4: The QPA Problem", "gist": "How the QPA is built from 2019 rates, why it runs low, what the claimed ruling changes, and how to use the payer's disclosure."},
+    {"section": "Section 5: The Statutory Factors", "gist": "Table of six 'statutory factors' with documentation tips; argues patient acuity moves awards most; lead with the encounter story."},
+    {"section": "Section 6: Submission Strategy", "gist": "Three steps: choose benchmarks (Medicare, contracted rates, FAIR Health, CMS outcomes), compute the offer (knee replacement example), write a five-part brief."},
+    {"section": "Section 7: The IDR ROI Calculation", "gist": "Nine-line expected-value worksheet; breakeven recovery about $294 under the $15 fee; filing bands; a $24,000-a-month illustration."},
+    {"section": "Section 8: Claim Batching", "gist": "Six batching criteria including a 50-item cap; per-claim cost table for one, five and twenty claims; urges batch-first tracking."},
+    {"section": "Section 9: Specialty-Specific IDR Patterns", "gist": "Table of eight specialties: dispute volume, median prevailing offer as a multiple of QPA, strongest factors."},
+    {"section": "Section 10: Your IDR Dispute Log and Tracking Framework", "gist": "Ten log fields, ten status codes and a nine-metric monthly performance review with targets."},
+    {"section": "Section 11: Your 90-Day IDR Implementation Plan", "gist": "Three phases: find the existing pipeline (days 1-21), build workflow and file (22-60), review outcomes and set cadence (61-90)."},
+    {"section": "Section 12: Quick-Reference Checklists", "gist": "Four checklists: pre-filing eligibility and ROI, open negotiation, IDR submission, outcome review."},
+    {"section": "Closing", "gist": "Repeats the win-rate pitch, declares the QPA litigation won, urges practices to file; ends with the AI-draft review disclaimer."}
+  ],
+  "framework_elements": [
+    "Out-of-network remittance triage for dispute rights",
+    "Dispute eligibility screen (service type, plan type, federal versus state jurisdiction)",
+    "Payer benchmark (QPA) disclosure capture and written request",
+    "Payment-versus-benchmark spread analysis",
+    "Open negotiation notice and counteroffer",
+    "Business-day deadline calendar for each dispute stage",
+    "Arbitration initiation data package",
+    "Arbitrator (IDR entity) selection tracking",
+    "Final-offer (baseball-style) offer strategy",
+    "Benchmark evidence assembly",
+    "Statutory additional-circumstances documentation",
+    "Encounter-specific acuity narrative",
+    "Five-part submission brief standard",
+    "Expected-value (ROI) test before filing",
+    "Minimum viable dispute threshold",
+    "Claim batching and batch-eligibility check",
+    "Batch versus single cost comparison",
+    "Dispute log with status codes",
+    "Monthly dispute performance review",
+    "Named dispute coordinator role",
+    "Retrospective pipeline scan",
+    "Quarterly batching review",
+    "Loss review and template improvement loop",
+    "Award payment verification and posting",
+    "Leadership revenue-recovery reporting",
+    "Regulatory, fee and litigation monitoring",
+    "Network-participation evidence file",
+    "Specialty outcome benchmarking",
+    "Determination error and reopening review",
+    "Human review of AI-generated drafts before submission"
+  ],
+  "processes": [
+    {
+      "name": "Out-of-network remittance triage and eligibility screen",
+      "steps": [
+        "Review every out-of-network ERA or EOB within five business days of receipt",
+        "Confirm service type: emergency, non-emergency at an in-network facility, or air ambulance",
+        "Confirm plan type and whether federal or state dispute resolution governs",
+        "Capture the payer's disclosed QPA or request it in writing",
+        "Compute the spread between payment, QPA and the practice's benchmark rate",
+        "Run the expected-value test and look for batchable look-alike claims",
+        "Enter the claim in the dispute log or mark it INELIGIBLE with the reason"
+      ],
+      "owner_role": "Named IDR coordinator (one billing staff member)",
+      "cadence": "Per remittance; within five business days of receipt"
+    },
+    {
+      "name": "Open negotiation",
+      "steps": [
+        "Confirm the payer's actual paid amount from the ERA or EOB",
+        "Set a defensible counteroffer from benchmark data, not billed charges",
+        "Send the open negotiation notice within 30 business days of the initial payment or denial (the document says through the CMS portal)",
+        "Request QPA disclosure in writing if it was not provided",
+        "Log the notice date; calendar the 30-business-day close and the four-business-day initiation window",
+        "Mark the claim PEND-NEG",
+        "If the payer agrees, record amount and date and mark SETTLED"
+      ],
+      "owner_role": "IDR coordinator",
+      "cadence": "Per claim; notice due within 30 business days of initial payment"
+    },
+    {
+      "name": "IDR initiation and arbitrator selection",
+      "steps": [
+        "When negotiation closes unresolved, mark NEG-CLOSE and treat as urgent",
+        "Assemble initiation data: NPI and tax ID as billed, payer, plan and administrator, patient identifiers, dates of service, codes and modifiers, paid amount, offer, negotiation date and outcome",
+        "Initiate in the federal portal within four business days",
+        "Agree on a certified IDR entity within three business days or accept the assigned one",
+        "Pay the administrative fee and mark IDR-FILED"
+      ],
+      "owner_role": "IDR coordinator",
+      "cadence": "Per dispute; four-business-day window after negotiation closes"
+    },
+    {
+      "name": "Offer construction and submission",
+      "steps": [
+        "Assemble benchmarks (the document lists Medicare allowable, other payers' contracted rates, FAIR Health data and CMS outcome data)",
+        "Compare the QPA with the benchmark and note any payment below the QPA",
+        "Choose the one or two strongest statutory factors and document them for this encounter",
+        "Set an offer above the QPA that is more credible than the payer's likely number, not the maximum",
+        "Write a brief of five pages or fewer in five parts: offer, benchmarks, factors, QPA analysis, attachments",
+        "Attach targeted evidence rather than the full chart",
+        "Submit within 10 business days of arbitrator selection and mark OFFER-SUBMITTED"
+      ],
+      "owner_role": "IDR coordinator drafts; a qualified reviewer (provider, coder or compliance resource) checks any AI-generated draft per the document's disclaimer",
+      "cadence": "Per dispute; 10-business-day window"
+    },
+    {
+      "name": "Expected-value (ROI) test before filing",
+      "steps": [
+        "Record the payer's initial payment (A) and the planned offer (B)",
+        "Compute recovery if won (C = B minus A)",
+        "Weight recovery by win probability (D = C x 0.85)",
+        "Add the practice's administrative fee (E = $15)",
+        "Add the probability-weighted arbitrator fee (F = estimated $350 x 0.20)",
+        "Add staff cost (G = hours x hourly rate)",
+        "Total expected cost (H = E + F + G) and net value (I = D minus H)",
+        "File singly if I is positive; otherwise hold for a batch"
+      ],
+      "owner_role": "IDR coordinator",
+      "cadence": "Before every filing; described as a five-minute calculation"
+    },
+    {
+      "name": "Claim batching",
+      "steps": [
+        "Group pending claims by payer and plan, service code, billing NPI and service category",
+        "Confirm each claim has separately completed open negotiation",
+        "Keep the batch within the stated 50-line-item cap",
+        "Compare per-claim cost and breakeven for the batch against single filing",
+        "File as one dispute with one administrative fee",
+        "Mark each claim BATCHED and cross-reference the batch ID"
+      ],
+      "owner_role": "IDR coordinator",
+      "cadence": "Ongoing, with a quarterly batching review per major payer"
+    },
+    {
+      "name": "Outcome handling and monthly performance review",
+      "steps": [
+        "Record the determination amount and win or loss in the log",
+        "Confirm a won award is paid on time and posted correctly",
+        "For losses, compare the brief with the payer's submission and the arbitrator's rationale",
+        "In the first week of each month pull the nine log metrics against last month and year to date",
+        "Investigate if win rate falls below 75% or any initiation window was missed",
+        "Report recovered revenue to practice leadership"
+      ],
+      "owner_role": "IDR coordinator, reporting to practice leadership",
+      "cadence": "Per determination; monthly review in the first week"
+    },
+    {
+      "name": "90-day program launch",
+      "steps": [
+        "Days 1-21: pull 90 days of out-of-network claims, flag spreads above $300, confirm eligibility, send notices where the window is still open, register for the portal, obtain QPAs",
+        "Days 22-60: build the log, start five-day remittance triage, name the coordinator, file the first disputes and the first batch",
+        "Days 61-90: compute win rate and average recovery, analyze losses, hold the first monthly review, brief leadership, set the quarterly batching review, monitor rule changes"
+      ],
+      "owner_role": "Practice leadership with the IDR coordinator",
+      "cadence": "One-time, 90 days"
+    }
+  ],
+  "tools_templates": [
+    {"name": "Eligibility table", "description": "Five eligibility factors (service type, plan type, negotiation completed, initiation window, no minimum amount) with requirement and common disqualifier for each."},
+    {"name": "IDR initiation information table", "description": "Nine data items needed to initiate a dispute and where to find each in practice records, the EOB or the dispute log."},
+    {"name": "Baseball-arbitration strategy table", "description": "Four pairings of a recommended offer tactic with the matching common mistake."},
+    {"name": "Timelines and fees table", "description": "Nine rows giving each process stage, its business-day deadline, and the administrative and arbitrator fee rules."},
+    {"name": "Litigation do / do-not list", "description": "Four bullets on how to treat the QPA litigation in current submissions."},
+    {"name": "Statutory factor table", "description": "Six rows: what each factor covers and how to document and argue it."},
+    {"name": "Acuity narrative sentence frame", "description": "One fill-in sentence for describing clinical complexity in lay terms tied to the service code."},
+    {"name": "Offer calculation worked example", "description": "Five-step walk from Medicare allowable to contracted-rate benchmark, QPA spread, factors and a framed offer, using a hypothetical knee-replacement claim."},
+    {"name": "Five-section submission outline", "description": "Offer summary, benchmark support, statutory factors, QPA analysis, supporting documents, with length guidance."},
+    {"name": "IDR ROI worksheet (lines A-I)", "description": "Blank calculator for probability-weighted recovery less administrative fee, weighted arbitrator fee and staff time."},
+    {"name": "Minimum viable dispute bands", "description": "Rule of thumb by expected recovery: under $200 do not file singly, $200-$300 borderline, over $300 file, over $5,000 priority."},
+    {"name": "Batching criteria table", "description": "Six conditions a batch must meet (payer, code, provider, service category, negotiation completed, size cap)."},
+    {"name": "Batching cost comparison table", "description": "Per-claim fee, arbitrator-fee and staff-cost estimates for one claim, five claims and twenty claims, with breakeven recovery."},
+    {"name": "Specialty patterns table", "description": "Eight specialties with relative dispute volume, typical award multiple of QPA and strongest factors."},
+    {"name": "Dispute log field list", "description": "Ten recommended columns for the tracking log."},
+    {"name": "Dispute log status codes", "description": "Ten status values from PEND-NEG through WON, LOST, SETTLED, BATCHED and INELIGIBLE."},
+    {"name": "Monthly IDR performance review table", "description": "Nine metrics tracked for this month, last month and year to date against stated targets."},
+    {"name": "90-day implementation plan", "description": "Eighteen checkbox tasks in three phases (days 1-21, 22-60, 61-90)."},
+    {"name": "Pre-filing eligibility and ROI checklist", "description": "Eight checks to complete before sending the open negotiation notice."},
+    {"name": "Open negotiation submission checklist", "description": "Six checks covering paid amount, counteroffer, notice, QPA request, deadline entry and log status."},
+    {"name": "IDR submission checklist", "description": "Nine checks from offer calculation through attachments, timely submission and log update."},
+    {"name": "Outcome review checklist", "description": "Seven checks after a determination: record result, confirm payment, analyze losses, update metrics, consider reopening for error."}
+  ],
+  "metrics": [
+    {"name": "Provider win rate", "definition": "Share of payment determinations in which the practice's offer was selected", "formula": "Disputes won / total determinations", "target": ">= 75% as a minimum floor", "red_flag": "Below 75%: investigate submissions", "source_cited": "Compared with a ~85-88% 'current national average' attributed to CMS reports; no report named"},
+    {"name": "Potentially eligible out-of-network claims identified", "definition": "Monthly count of out-of-network claims flagged as possibly eligible for IDR", "formula": "", "target": "Track (pipeline visibility)", "red_flag": "", "source_cited": "none"},
+    {"name": "Open negotiation notices submitted", "definition": "Notices sent during the month relative to eligible claims", "formula": "", "target": "100% of eligible claims", "red_flag": "", "source_cited": "none"},
+    {"name": "IDR initiations", "definition": "Claims for which IDR was initiated in the month", "formula": "", "target": "All claims with positive ROI", "red_flag": "", "source_cited": "none"},
+    {"name": "Missed IDR initiation windows", "definition": "Claims where the four-business-day initiation window lapsed", "formula": "", "target": "Zero", "red_flag": "Any occurrence (zero tolerance)", "source_cited": "none"},
+    {"name": "Disputes resolved", "definition": "Total disputes resolved in the month", "formula": "", "target": "Track", "red_flag": "", "source_cited": "none"},
+    {"name": "Average recovery per won dispute", "definition": "Mean additional payment obtained on disputes won", "formula": "", "target": "Track; watch for change as QPA methodology shifts", "red_flag": "", "source_cited": "none"},
+    {"name": "Batched disputes filed", "definition": "Count of batch disputes filed in the month", "formula": "", "target": "Maximize", "red_flag": "", "source_cited": "none"},
+    {"name": "Revenue recovered through IDR", "definition": "Dollars recovered through IDR in the month", "formula": "", "target": "Track; report to leadership monthly", "red_flag": "", "source_cited": "none"},
+    {"name": "Net expected value of filing", "definition": "Probability-weighted recovery less expected cost of a single dispute (worksheet line I)", "formula": "(offer - payer's initial payment) x 0.85 - [$15 + ($350 estimated arbitrator fee x 0.20) + staff hours x hourly rate]", "target": "Positive", "red_flag": "Negative: do not file singly; consider batching", "source_cited": "Win rate attributed to CMS; cost inputs are the document's own estimates"},
+    {"name": "Minimum viable dispute threshold", "definition": "Smallest expected recovery at which a single-claim dispute breaks even", "formula": "Expected cost / win rate = ($15 + 20% x $350 + $150) / 80% = $293.75", "target": "File above about $300; $200-$300 borderline; above $5,000 high priority", "red_flag": "Under $200: do not file as a single dispute", "source_cited": "none"},
+    {"name": "QPA-to-benchmark spread", "definition": "Gap between the payer's disclosed QPA and the practice's market-rate benchmark; also QPA as a share of the median contracted rate (example: $944 and about 60%)", "formula": "Benchmark rate - QPA; QPA / benchmark rate", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Payment-to-benchmark spread (pipeline flag)", "definition": "Gap between the payer's initial payment and the practice's benchmark rate (Medicare allowable or comparable contracted rate)", "formula": "Benchmark rate - initial payment", "target": "", "red_flag": "Spread above $300 flags the claim as an IDR candidate", "source_cited": "none"},
+    {"name": "Total cost per claim (full-fee method)", "definition": "Administrative fee plus full arbitrator fee plus staff time, per claim, for single and batched filings", "formula": "(administrative fee + arbitrator fee + staff time) / claims in batch; stated results $515 single, ~$183 batch of 5, ~$69 batch of 20", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Minimum recovery for positive ROI (batch)", "definition": "Per-claim recovery needed to break even under the full-fee method", "formula": "Total cost per claim / 80% win rate; stated results ~$645 single, ~$230 batch of 5, ~$85 batch of 20", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Out-of-network remittance triage time", "definition": "Time from receipt of an out-of-network ERA to eligibility review", "formula": "", "target": "Within five business days of receipt", "red_flag": "", "source_cited": "none"},
+    {"name": "Median prevailing offer as a multiple of QPA (by specialty)", "definition": "External benchmark of what arbitrators select relative to QPA", "formula": "", "target": "Emergency 2-4x; anesthesiology ~2x; radiology 2-3x; orthopedic surgery 3-5x; neurology/neuromuscular over 10x; cardiology 3-6x; behavioral health 1.5-3x; primary care 1.5-2x", "red_flag": "", "source_cited": "'CMS data from 2023 through 2025'; no report named"},
+    {"name": "National provider win rate (external benchmark)", "definition": "Share of payment determinations won by providers nationally", "formula": "", "target": "~80% (2023), ~85% (2024), ~88% (first half 2025)", "red_flag": "", "source_cited": "'CMS Federal IDR process status reports'; no title, date or link"},
+    {"name": "Monthly IDR revenue opportunity", "definition": "Illustrative net monthly value of filing all eligible claims", "formula": "Eligible claims x [(win rate x average recovery) - expected cost per claim]; example 20 x ($1,440 - $235) = $24,100", "target": "", "red_flag": "", "source_cited": "none (labelled hypothetical)"},
+    {"name": "Projected annual IDR revenue at current volume", "definition": "Annualized recovery figure for the leadership report at day 90", "formula": "", "target": "", "red_flag": "", "source_cited": "none"}
+  ],
+  "numeric_claims": [
+    {"claim": "Providers win approximately 85-88% of Federal IDR disputes, and the rate has risen each year since 2023.", "section": "Introduction; repeated in Sections 4, 7, 10 and Closing (ten times in all)", "source_cited": "CMS reports (unnamed, no date or link)"},
+    {"claim": "Providers prevailed in about 80% of payment determinations in 2023, about 85% in 2024 and about 88% in the first half of 2025.", "section": "Introduction", "source_cited": "'CMS Federal IDR process status reports' (no title, date or link)"},
+    {"claim": "CMS reports cover hundreds of thousands of disputes resolved since 2022.", "section": "Introduction", "source_cited": "CMS reports (unnamed)"},
+    {"claim": "The administrative fee is $15 per party for disputes initiated on or after June 11, 2026; it was previously $115.", "section": "Section 3; Section 7; Closing", "source_cited": "none (a 'June 11, 2026 final rule' is mentioned in Section 8 without citation)"},
+    {"claim": "As of 2026 the IDR entity fee is about $200-$840 for single disputes and up to $1,173 for batched disputes; ranges are updated annually and recently rose substantially.", "section": "Section 3; Section 8", "source_cited": "'the Departments' (no document named)"},
+    {"claim": "Open negotiation lasts 30 business days and the notice must be sent within 30 business days of the initial payment.", "section": "Section 3", "source_cited": "none"},
+    {"claim": "IDR must be initiated within four business days after open negotiation closes; missing the window forfeits IDR rights for the claim.", "section": "Section 3", "source_cited": "none"},
+    {"claim": "IDR entity selection is due within 3 business days of initiation, offers within 10 business days of selection, and the determination within 30 business days of selection.", "section": "Section 3", "source_cited": "none"},
+    {"claim": "A Texas federal district court vacated key QPA calculation provisions in TMA III in August 2023; a Fifth Circuit panel then upheld the methodology and en banc review was granted.", "section": "Section 2", "source_cited": "Courts named; no case citation"},
+    {"claim": "The en banc Fifth Circuit decided TMA III on August 11, 2026, against 'ghost rates' and against categorical exclusion of bonus and incentive payments.", "section": "Section 2; repeated in Sections 4, 11 and Closing", "source_cited": "Court named; no citation"},
+    {"claim": "The QPA is the plan's median in-network rate based on 2019 contracted rates indexed for inflation.", "section": "Section 4", "source_cited": "'statute' (no section cited)"},
+    {"claim": "2019 was five years before the NSA took effect.", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Approximately 80-88% of selected IDR offers were above the QPA in 2023, rising to approximately 85% in 2024.", "section": "Section 4", "source_cited": "CMS reports (unnamed)"},
+    {"claim": "There are six statutory factors, and patient acuity and complexity produces the largest dollar movement above the QPA.", "section": "Section 5", "source_cited": "none"},
+    {"claim": "In Q4 2023 the median prevailing offer for neurology and neuromuscular procedures exceeded twelve times the QPA, up from roughly three times in Q1 2023.", "section": "Section 6", "source_cited": "CMS outcome data by specialty (unnamed)"},
+    {"claim": "Example: Medicare allowable for CPT 27447 is $1,847; contracted rates average 128% of Medicare ($2,364); QPA $1,420; offer $2,586 (140% of Medicare).", "section": "Section 6 (labelled hypothetical)", "source_cited": "none"},
+    {"claim": "Example: fewer than 20% of orthopedic surgeons in the market hold a joint-replacement fellowship credential.", "section": "Section 6 (labelled hypothetical)", "source_cited": "none"},
+    {"claim": "Estimated IDR entity fee if you lose is $350 for a single dispute; staff time is $150 for a well-prepared submission.", "section": "Section 7", "source_cited": "none (document's own assumptions)"},
+    {"claim": "Minimum expected recovery for a positive single-claim filing is about $290-$300 (precisely $293.75).", "section": "Section 7", "source_cited": "none (own calculation)"},
+    {"claim": "Under the old $115 fee the playbook previously stated a threshold of $800 to $1,000.", "section": "Section 7 correction note", "source_cited": "none"},
+    {"claim": "Recoveries under $200 should not be filed singly; $200-$300 is borderline; above $300 is clearly positive; above $5,000 is high priority.", "section": "Section 7", "source_cited": "none"},
+    {"claim": "Twenty eligible claims a month at $1,800 average recovery and an 80% win rate is worth about $24,000 a month net ($1,205 per claim).", "section": "Section 7", "source_cited": "none (labelled hypothetical)"},
+    {"claim": "A final rule effective June 11, 2026 adds a 50-line-item batch cap and cross-code-range batching for anesthesiology, radiology, pathology and laboratory services.", "section": "Section 8", "source_cited": "'final rule' (no citation)"},
+    {"claim": "A small number of high-volume filers account for a disproportionate share of all disputes filed.", "section": "Section 8", "source_cited": "CMS data (unnamed)"},
+    {"claim": "Batch cost estimates: arbitrator fee $500 for a batch of 5 and $670 for a batch of 20; staff time $300 and $600.", "section": "Section 8", "source_cited": "none (estimates)"},
+    {"claim": "Total cost per claim is $515 single, about $183 in a batch of 5 and about $69 in a batch of 20; breakeven recovery is about $645, $230 and $85.", "section": "Section 8", "source_cited": "none"},
+    {"claim": "Emergency medicine is the largest IDR category (median prevailing offer typically 2-4x QPA); anesthesiology is second largest (about 2x QPA).", "section": "Section 9", "source_cited": "'CMS data from 2023 through 2025' (unnamed)"},
+    {"claim": "Median prevailing offer versus QPA: radiology 2-3x; orthopedic surgery 3-5x; cardiology 3-6x; behavioral health 1.5-3x; primary care 1.5-2x; neurology/neuromuscular over 10x in 2023.", "section": "Section 9", "source_cited": "'CMS data from 2023 through 2025' (unnamed)"},
+    {"claim": "A provider win rate of at least 75% is the minimum acceptable floor for a practice's own disputes.", "section": "Section 10", "source_cited": "none"},
+    {"claim": "Building an IDR program from zero takes 90 days, and any claim with a spread above $300 should be flagged as a candidate.", "section": "Section 11", "source_cited": "none"}
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Administrative fee is $15 per party per dispute for disputes initiated on or after June 11, 2026 (previously $115); as of 2026 the IDR entity fee ranges about $200-$840 for single disputes and up to $1,173 for batched disputes.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Section 3 (Timelines and Fees); Section 7; Closing",
+      "why": "Every threshold in the ROI section is derived from these fees. If the administrative fee is still $115, or the arbitrator-fee range differs, the stated breakeven of about $294 and the 'file above $300' rule are wrong and a small practice would file money-losing disputes."
+    },
+    {
+      "id": "C2",
+      "claim": "The en banc Fifth Circuit decided TMA III on August 11, 2026, holding that plans may no longer include non-negotiated 'ghost rates' in QPA calculations, nor categorically exclude retrospective adjustments such as bonuses and incentive payments.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 2; repeated in Sections 4, 11 and Closing",
+      "why": "The document tells readers the QPA litigation is settled for providers and should be cited in submissions. If the date, court or holding is wrong, or the ruling is stayed or under further review, briefs built on it lose credibility with the arbitrator."
+    },
+    {
+      "id": "C3",
+      "claim": "A final rule effective for disputes initiated on or after June 11, 2026 caps batches at 50 line items and allows cross-code-range batching for anesthesiology, radiology, pathology and laboratory services; batched claims must share the same NPI.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 8 (Batching Requirements and criteria table)",
+      "why": "Batching is the document's answer for low-dollar claims. A wrong cap, a same-NPI rule narrower than the regulation's NPI-or-tax-ID test, or the omitted service-date window would cause batches to be rejected or legitimate batches never to be assembled."
+    },
+    {
+      "id": "C4",
+      "claim": "According to CMS Federal IDR process status reports, providers prevailed in approximately 80 percent of payment determinations in 2023, approximately 85 percent in 2024 and approximately 88 percent in the first half of 2025.",
+      "kind": "statistic",
+      "stakes": "high",
+      "section": "Introduction; restated as '85-88%' throughout",
+      "why": "The win rate is the multiplier in the ROI worksheet and the document's main sales argument. The denominator (determinations, not disputes filed) and the concentration of wins among a few large filers change what a small practice should expect."
+    },
+    {
+      "id": "C5",
+      "claim": "The Medicare allowable for the CPT code is the most broadly accepted and objectively verifiable benchmark available; start there and frame the IDR offer as a percentage of Medicare, attaching the Medicare fee schedule reference.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 6 (Steps 1-3); Section 12 IDR Submission Checklist",
+      "why": "The No Surprises Act lists public-payer rates (Medicare, Medicaid, TRICARE, VA) and usual-and-customary charges as things the arbitrator must not consider. If that prohibition applies as understood, the document's central offer-building method rests on inadmissible evidence."
+    },
+    {
+      "id": "C6",
+      "claim": "Eligible plans are fully insured group, individual market and FEHB plans; self-funded ERISA plans are also covered unless the plan's home state has a qualifying surprise billing law; a UnitedHealthcare Medicare Advantage claim is a different payer for batching purposes.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 3 (eligibility table); Section 8 (batching criteria); Section 12 pre-filing checklist",
+      "why": "This decides whether the process applies at all. Medicare, Medicare Advantage, Medicaid, TRICARE and VA claims are understood to be outside the Act, which covers nearly all of this practice's revenue, and the ERISA and state-law rule appears to be stated backwards."
+    },
+    {
+      "id": "C7",
+      "claim": "The open negotiation notice must be submitted through the CMS IDR portal at federalidrportal.cms.gov within 30 business days of initial payment; negotiation runs 30 business days; IDR must be initiated within four business days after it closes.",
+      "kind": "deadline",
+      "stakes": "high",
+      "section": "Section 3 (Open Negotiation Period; Timelines and Fees); Section 12",
+      "why": "Missing either window forfeits the dispute. The portal address does not match the CMS portal the analyst knows, and until at least 2025 the notice went directly to the payer; a notice sent the wrong way may not start the clock."
+    },
+    {
+      "id": "C8",
+      "claim": "Emergency services, non-emergency services at in-network facilities, and air ambulance services are covered under the NSA's IDR process.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 3 (eligibility table); Section 12 pre-filing checklist",
+      "why": "The document never defines 'facility' or mentions the notice-and-consent exception. The non-emergency prong is understood to reach hospitals, hospital outpatient departments, critical access hospitals and ambulatory surgical centers only, which would exclude this practice's nursing-facility and assisted-living visits."
+    }
+  ],
+  "domain_map": [
+    {"domain": "rcm-claims-ar", "weight": 0.45, "topics": ["out-of-network underpayment disputes", "open negotiation and arbitration workflow", "dispute log and status codes", "deadline tracking", "batching of disputes", "award posting and outcome review", "pursue-or-write-off economics"]},
+    {"domain": "payers-contracts", "weight": 0.28, "topics": ["out-of-network payment benchmarks", "qualifying payment amount", "comparison with contracted rates", "network-participation evidence", "plan-type and state-versus-federal jurisdiction", "payment-policy and litigation monitoring"]},
+    {"domain": "compliance-risk", "weight": 0.15, "topics": ["No Surprises Act process rules", "statutory deadlines and fees", "payer QPA disclosure duty", "legal disclaimers and human review of AI drafts"]},
+    {"domain": "financial-management", "weight": 0.06, "topics": ["expected-value test for disputes", "recovered-revenue reporting to leadership", "breakeven thresholds"]},
+    {"domain": "technology-data-ai", "weight": 0.03, "topics": ["dispute tracking log in spreadsheet or practice-management system", "federal portal registration"]},
+    {"domain": "people-compensation", "weight": 0.03, "topics": ["named dispute coordinator role", "staff-time costing"]}
+  ],
+  "adopt": [
+    {
+      "idea": "Before pursuing any payment dispute or appeal, run a short expected-value test: recovery if won times a realistic win probability, minus filing fees and labor.",
+      "why": "Gives a consistent pursue, batch or write-off rule and keeps staff or agent effort on disputes that can pay for themselves.",
+      "applies_to_practice": "yes",
+      "note": "Use as a general appeals-triage method for Medicare redeterminations, Medicare Advantage appeals and underpayment disputes, with the practice's own win rates by payer and denial type. The document's fee inputs and 80-85% probabilities do not apply."
+    },
+    {
+      "idea": "Keep a dispute log with a fixed status vocabulary in which every entry carries its next legal deadline, calculated when the entry is made.",
+      "why": "These processes are lost on missed windows more often than on the merits; a computed due date turns a rule into a work queue.",
+      "applies_to_practice": "partly",
+      "note": "The IDR statuses are irrelevant here, but the design fits Medicare appeal levels, Medicare Advantage and Medicaid plan appeal windows and timely-filing limits. Add the fields the document forgets: amount sought, amount awarded, fees paid, evidence sent."
+    },
+    {
+      "idea": "Count missed dispute or appeal deadlines as a zero-tolerance metric and review the count every month.",
+      "why": "A missed window is a pure process failure with a known dollar cost and is fully preventable.",
+      "applies_to_practice": "yes",
+      "note": "Report beside appeal win rate and dollars recovered in the monthly finance pack; with agent-run billing it doubles as an automation control."
+    },
+    {
+      "idea": "Triage every non-contracted or out-of-network remittance within five business days to decide which payment-dispute regime governs and whether the payment is below the payer's own stated basis.",
+      "why": "Each regime has short and different clocks; deciding early is the only way to keep rights alive.",
+      "applies_to_practice": "partly",
+      "note": "Here the answer is rarely the No Surprises Act. For a Medicare Advantage plan the practice is not contracted with, the benchmark is the Original Medicare rate and the route is the plan's non-contract provider payment dispute. For a commercial or federal-employee patient seen in hospital, check the Act and Florida law."
+    },
+    {
+      "idea": "In any final-offer or appeal setting, argue for the more credible number rather than the largest, in a short brief led by encounter-specific facts.",
+      "why": "Reviewers handle many files quickly; a focused, specific argument beats volume.",
+      "applies_to_practice": "partly",
+      "note": "Use the five-page, three-argument discipline as the template standard for appeal letters. Do not carry the document's Medicare-anchored offer logic into any real IDR filing."
+    },
+    {
+      "idea": "Get the payer's own payment benchmark in writing and compare each payment with it; a payment below the payer's stated basis is the simplest dispute to win.",
+      "why": "It converts a judgment argument into an arithmetic one.",
+      "applies_to_practice": "partly",
+      "note": "The analog is automated underpayment detection: compare each paid line with the Medicare fee schedule for the locality, or the contracted or legally required rate, and dispute variances."
+    },
+    {
+      "idea": "Keep an evidence file of every attempt to join a payer's network: applications, correspondence and closed-panel responses.",
+      "why": "Shows that out-of-network status was not a choice; useful in arbitration, rate negotiation and network-adequacy complaints.",
+      "applies_to_practice": "partly",
+      "note": "Relevant to credentialing and contracting with Medicare Advantage and Medicaid managed-care plans; cheap to maintain inside existing credentialing records."
+    },
+    {
+      "idea": "Pool similar low-dollar disputes so fixed filing costs are spread across many claims.",
+      "why": "Fixed fees make single small disputes uneconomic; pooling changes the breakeven.",
+      "applies_to_practice": "no",
+      "note": "Sound economics for emergency, anesthesia, radiology and hospitalist groups with commercial out-of-network volume, but the document's batching rules omit the service-date window and the cooling-off period and must be rebuilt from the regulation before use."
+    },
+    {
+      "idea": "Name one accountable owner for the dispute queue and report dollars recovered, win rate and open deadlines to the practice owner every month.",
+      "why": "Diffuse ownership is how deadlines get missed and recoveries go unmeasured.",
+      "applies_to_practice": "yes",
+      "note": "In an agent-run billing operation the owner is a defined agent role with human sign-off; the physician-owner should see the numbers at the monthly close."
+    },
+    {
+      "idea": "After every lost dispute, compare the submission with the other side's and with the decision rationale, then change the template.",
+      "why": "Turns outcomes into a learning loop instead of a one-off recovery effort.",
+      "applies_to_practice": "yes",
+      "note": "Apply to upheld denials and lost appeals; store the lesson with the payer and denial code so the next appeal starts from it."
+    }
+  ],
+  "practice_relevance": {
+    "score": 1,
+    "why": "Close to zero direct use. The federal process covers commercial group, individual-market and federal-employee plans only; this practice's revenue is Medicare fee-for-service, Medicare Advantage, Florida Medicaid managed care, VA and Tricare, all outside the Act. Even for a commercially insured patient, the non-emergency prong reaches hospital and surgery-center settings, not skilled nursing, nursing-facility or assisted-living visits, which are most of the work. The only plausible live case is an out-of-network inpatient visit at an in-network hospital for a patient whose primary coverage is a commercial, employer (Medicare Secondary Payer) or federal-employee plan, and Florida's own balance-billing statutes may send insured claims to a state process instead. The document itself rates primary care as low volume. The value is indirect: the expected-value test, deadline log and loss-review loop transfer to Medicare and Medicare Advantage appeals, and a corrected version would matter if the owner later advises hospital-based practices with commercial out-of-network volume.",
+    "sections_that_do_not_apply": [
+      "Section 2 (QPA litigation): no commercial out-of-network disputes to argue",
+      "Section 3 (process, deadlines, fees): the practice's payers and most of its sites of service are outside the Act",
+      "Section 4 (QPA): no QPA is issued for Medicare, Medicare Advantage, Medicaid, VA or Tricare claims",
+      "Section 5 (statutory factors)",
+      "Section 6 (submission strategy and offer math)",
+      "Section 7 fee inputs and thresholds (the expected-value method itself transfers)",
+      "Section 8 (batching)",
+      "Section 9 (specialty patterns; primary care is listed as low volume)",
+      "Section 10 status codes and metrics as written (the log design transfers)",
+      "Section 11 (90-day plan) as written",
+      "Section 12 checklists as written"
+    ]
+  },
+  "quality": {
+    "score": 2,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "The offer-building method conflicts with the statute. Section 6 and the Section 12 checklist tell readers to start from the Medicare allowable, express the offer as a percentage of Medicare and attach the Medicare fee schedule. The No Surprises Act (Public Health Service Act section 2799A-1(c)(5)(D); 45 CFR 149.510) bars the arbitrator from considering rates payable by public payers, including Medicare, Medicaid, TRICARE and VA. The regulation also requires the offer to be stated as a dollar amount and a percentage of the QPA, not of Medicare.",
+      "The worked example supports its offer with a FAIR Health 80th-percentile figure. Percentile charge benchmarks are usual-and-customary charge data, which is on the same prohibited list, as are billed charges. The document never says a prohibited list exists.",
+      "Scope is never stated. Medicare fee-for-service, Medicare Advantage, Medicaid, TRICARE, VA and Indian Health Service claims are outside the Act, yet the batching table treats a UnitedHealthcare Medicare Advantage claim as merely a 'different payer' for batching, implying it can be disputed.",
+      "The plan-type rule is garbled in the eligibility table and repeated in the pre-filing checklist: it says self-funded ERISA plans are covered unless the home state has a surprise-billing law. State laws generally displace the federal process for state-regulated insured plans; self-funded plans stay federal unless the plan opts into a state process where a state allows it.",
+      "'In-network facility' is never defined and the notice-and-consent exception is never mentioned. The non-emergency prong covers hospitals, hospital outpatient departments, critical access hospitals and ambulatory surgical centers; the elective knee-replacement example is a service where a valid consent waiver could take the claim out of the Act entirely.",
+      "'Six statutory factors' is a miscount. The statute lists five additional circumstances; the document splits the first into two overlapping rows and leaves out the payer's own market share, the facility's case mix and scope of services, and prior contracted rates between the parties over the previous four plan years, which is among the most useful evidence.",
+      "Batching criteria are wrong or incomplete against the regulation in force through 2025: the test is same NPI or same tax ID (so a group can batch across its clinicians), the services must fall in the same 30-business-day window, and a 90-calendar-day cooling-off period follows each determination. The last two never appear. 'Same plan or plan administrator' is also loose for self-funded plans.",
+      "The win rate is misused. The yearly percentages are broadly in line with published summaries of CMS public use files, but the figure is the share of payment determinations won, not of disputes filed; disputes closed as ineligible, withdrawn or unresolved are excluded, and results are dominated by a few high-volume specialist filers. Using 85% as a small practice's probability on a first filing is unsupported.",
+      "Recovery is overstated in the ROI worksheet. An IDR offer is the total out-of-network rate including patient cost sharing, and the plan pays the award less the cost share. Comparing the offer with the plan's paid amount, as the document insists, inflates expected recovery, most of all on high-deductible plans.",
+      "The document says determinations are being issued and 'honored'. Late and unpaid awards are a widely reported problem, and in 2025 the Fifth Circuit (Guardian Flight v. Health Care Service Corp.) held that providers have no private right of action to enforce an award. The 30-calendar-day payment deadline is never stated.",
+      "Fee mechanics are incomplete: both parties pay the arbitrator's fee up front when offers are submitted and the winner is refunded; the document says only that the winner is 'not responsible'. In a batch the loser is the party with fewer line-item determinations in its favor, and large batches carry add-on fee tiers.",
+      "The portal address 'federalidrportal.cms.gov' does not match the CMS portal the analyst knows (nsa-idr.cms.gov). Under rules in force through 2025 the open negotiation notice went directly to the payer rather than through the portal; the instruction is right only if the claimed 2026 rule changed this.",
+      "'Start the dispute clock from the date the underpayment is identified' is wrong; the 30 business days run from receipt of the initial payment or denial notice, whenever the practice happens to notice it.",
+      "'2019 ... five years before the NSA took effect' is wrong; the Act took effect January 1, 2022, three years later.",
+      "The statement that a payer's failure to disclose the QPA 'is itself a factor the arbitrator can consider' has no basis in the listed statutory considerations; it is a compliance complaint for the regulator.",
+      "'Found by multiple federal courts' overstates the ghost-rate history: one district court found it, a Fifth Circuit panel reversed, and the claimed en banc ruling would be the second.",
+      "Specialty multiples (primary care 1.5-2x, behavioral health 1.5-3x, cardiology 3-6x and others) are unsourced. CMS publishes by service category, not these specialties, so several rows look extrapolated or invented. Radiology rather than anesthesiology has generally ranked second in CMS line-item counts (verify).",
+      "The neurology figure (median above ten to twelve times QPA) is driven largely by intraoperative neuromonitoring billed by a handful of filers; presenting it as proof that sub-specialty credentials reliably earn large awards is spin.",
+      "The hypothetical Medicare allowable of $1,847 for CPT 27447 is far above the real physician fee (roughly $1,100-$1,300 nationally in recent years), so even the illustration is not calibrated to an actual fee schedule.",
+      "Three load-bearing facts post-date mid-2026 and could not be confirmed by the analyst: the $15 fee, the June 11, 2026 final rule and the August 11, 2026 en banc ruling. They are directionally consistent with the November 2023 proposed operations rule (which, as recalled, proposed a 25-item cap rather than 50) and with the pending en banc case, but need primary sources. Calling the QPA question 'settled' ignores possible Supreme Court review and pending agency implementation."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Win probability: the headline is 85-88%; worksheet line D multiplies by 0.85 while line F assumes a 20% chance of losing (together 105%); the breakeven and the $24,000 example use 80%.",
+      "$300 claims: Section 7 says recoveries above $300 are clearly positive and should be filed; Section 8 says a $300 claim is not worth filing as a single dispute. The two 'methods' give breakevens of about $294 and $645 for the same claim.",
+      "Batch table arithmetic: the listed components give $163 per claim for a batch of five ($3 + $100 + $60) and about $64 for twenty ($0.75 + $33.50 + $30). The printed totals of ~$183 and ~$69 reconcile only with the old $115 fee, although the correction note presents them as current.",
+      "The 'full-fee method' divides by an 80% win rate after already assuming the arbitrator fee is paid every time, double-counting the loss case; the note calling both methods internally correct is wrong.",
+      "Section 4 says 80-88% of selected offers exceeded the QPA in 2023, 'rising' to about 85% in 2024; the Introduction gives the 2023 win rate as about 80%.",
+      "Section 2 says the most important number in a dispute is not the QPA; Section 4 opens by calling the QPA the most important number in every dispute.",
+      "Deadlines versus batching cadence: Section 3 requires the negotiation notice within 30 business days of payment, yet Sections 8 and 11 advise accumulating claims for a quarterly batch review and pulling a 90-day retrospective, by which time most claims are time-barred.",
+      "The Closing says the practices that benefit most are not the largest or most sophisticated; Section 8 says large private-equity-backed filers dominate because they built the workflow.",
+      "Section 3 warns against anchoring on billed charges; Section 6 then supports its example offer with a charge-percentile benchmark.",
+      "The Introduction says the only question is whether the dollars justify the $15 fee and staff time; Section 7 shows the arbitrator's fee ($200-$840, up to $1,173 batched) is the larger cost at risk.",
+      "Eligibility table: the plan-type cell ties state-law displacement to self-funded ERISA plans while the adjacent cell says state laws displace the federal process for state-regulated plans.",
+      "The recommended log fields omit items the checklists require to be recorded (offer amount, determination amount, batch ID, arbitrator-selection and offer deadlines, fees paid).",
+      "Section numbering starts at Section 2; there is no Section 1."
+    ],
+    "time_sensitive_or_outdated": [
+      "The $15 administrative fee and the 'June 11, 2026' rule post-date the analyst's reliable reference point. Fee amounts are set by rulemaking and stay in force until changed (the document calls this an annual update), so a change for 2027 could arrive within weeks of this review.",
+      "August 11, 2026 en banc ruling: agency implementation guidance is described as pending and further review is possible.",
+      "The arbitrator fee range ($200-$840; up to $1,173 batched) matches the range in force since January 2024; it needs confirmation for 2026 and 2027, including add-on tiers for large batches.",
+      "The batch-cost table still embeds the superseded $115 fee.",
+      "Win rates stop at mid-2025; the Q4 2023 neurology statistic is three years old.",
+      "Open negotiation mechanics (portal filing versus direct notice to the payer) depend on which rule version applies to the dispute date.",
+      "The document does not say which batching criteria are old and which came from the claimed 2026 rule, so a reader cannot tell what changed for disputes straddling June 2026."
+    ],
+    "ai_generation_signals": [
+      "Two 'Correction note' boxes are left in the published text, referring to 'the document's own formula' and to what the playbook 'previously stated': residue of an automated fact-check pass.",
+      "The footer disclaimer refers to 'AI-generated draft' output.",
+      "The 85-88% line appears ten times and '$15' twenty-one times; slogan-style pull quotes fill whole pages (pages 29, 35 and 66).",
+      "No author, credential, statute or regulation citation, report title or link anywhere; the only pointers are cms.gov, fairhealth.org and the vendor's own site.",
+      "Arithmetic only partly updated: single-claim figures were revised to the $15 fee, batch figures were not.",
+      "Garbled statistic ('80-88 percent ... rising to approximately 85 percent').",
+      "A plausible-looking but unverifiable portal address.",
+      "Rhetorical tics: 'That is not a projection. It is...', 'Not because... Because...', 'The only question left is whether the practice will use it.'",
+      "Specialty table rows with tidy, evenly spaced ranges and no source.",
+      "Layout leaves near-empty pages carrying one or two lines (pages 15, 42, 60, 62).",
+      "Section numbering begins at 2."
+    ],
+    "missing_for_real_use": [
+      "A plain statement of what is out of scope (Medicare, Medicare Advantage, Medicaid, TRICARE, VA, workers' compensation, auto) and how to recognize a No Surprises Act claim on the remittance, such as the dedicated remark codes.",
+      "Definitions of covered facilities and of emergency and post-stabilization services; the notice-and-consent exception and the ancillary services (including hospitalists) for which consent can never be used.",
+      "State-by-state applicability: which states have a qualifying law, which allow self-funded plans to opt in, and where to check (the CMS applicability chart). Nothing on Florida's own balance-billing statutes.",
+      "The prohibited-considerations list and guidance on admissible evidence: prior contracted rates, past awards for the same code and payer, allowed-amount data.",
+      "The requirement to state the offer as a percentage of the QPA, plus the practice-size, specialty and other data fields that must accompany an offer.",
+      "The batching service-date window, the same-tax-ID allowance, single-encounter and bundled-payment rules, the 90-day cooling-off period and how to batch claims that accrue during it.",
+      "Fee logistics: when the administrative fee is due, upfront payment of the arbitrator's fee, refunds, add-on tiers for large batches, and what happens on non-payment.",
+      "What to do after winning: the 30-calendar-day payment deadline, how to pursue unpaid awards (regulator complaint route), limits on court enforcement, posting and patient cost-share handling.",
+      "Patient-side compliance: cost sharing fixed to the recognized amount, no balance billing, refund duties. This is the part of the Act that creates risk for the practice, and it is absent.",
+      "Handling payer eligibility objections and ineligibility findings, which close a large share of disputes; the attestation the initiating party makes and the exposure from bulk-filing ineligible claims.",
+      "Any model text: no open negotiation notice, no sample offer brief, no acuity narrative beyond a one-sentence frame, no spreadsheet for the log or ROI worksheet.",
+      "Realistic timing: determinations often take far longer than 30 business days; there is no cash-flow treatment.",
+      "Make-versus-buy: no discussion of contingency-fee IDR vendors or counsel, although the document targets small billing teams.",
+      "Citations: no statute, regulation, CMS guidance, report title, date or link for any figure.",
+      "Any guidance on whether to be out of network in the first place, or how arbitration outcomes feed contract negotiation."
+    ]
+  }
+}

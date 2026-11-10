@@ -1,0 +1,448 @@
+{
+  "slug": "physician-compensation-negotiation-guide",
+  "title": "Physician Compensation Negotiation Guide (CleanClaimRx Operational Playbook Series; subtitle: Read the Contract. Know the Numbers. Negotiate from Strength.)",
+  "doc_type": "playbook",
+  "pages": 58,
+  "audience": "Cover and preface: employed physicians, physicians evaluating an employment offer, and physicians renegotiating their compensation. A boilerplate disclaimer pasted into the Introduction instead describes the material as workflow content for billing teams.",
+  "summary": "Consumer-style primer for a physician reading an employment offer. It covers base-salary benchmarking against MGMA percentiles, wRVU conversion factors and thresholds, collections-based pay, productivity, quality/access, signing and retention bonuses, malpractice tail and benefit valuation, non-compete and non-solicitation terms, first-year ramp-up cash planning, contract red flags, negotiation framing and a pre-signature checklist. Central method: translate each clause into dollars by projecting pay at 25th, 50th and 75th percentile production, test whether incentives are really attainable by asking for historical payout rates, price the cost of leaving (tail, restrictive covenant, bonus repayment), rank asks by negotiability, and have a healthcare employment attorney review before signing. It supplies no benchmark values, no state-specific law, no citations and nothing from the employer's side. For an owner-employer it is useful mainly in reverse: the questions a prepared hire, or the owner himself after a sale, will ask.",
+  "outline": [
+    {"section": "Before You Read Further (preface)", "gist": "Names the audience, disclaims legal advice, and frames the content as vocabulary, benchmarks and analysis rather than demands."},
+    {"section": "Introduction: The Agreement Is Already Written for Them", "gist": "Employer-drafted agreements protect the employer; negotiating is normal. Promises income modeling skills. Ends with an unrelated billing-team and AI-draft disclaimer."},
+    {"section": "Section 1: Understanding Your Base Compensation", "gist": "Benchmark base against MGMA percentiles, separate base from total pay, secure a guarantee period, and find clauses letting the employer cut the base."},
+    {"section": "Section 2: The wRVU Model - Reading Your Productivity Threshold", "gist": "Explains conversion factor and threshold, compares threshold with median production, projects pay at three production levels, and criticizes cliff bonuses."},
+    {"section": "Section 3: Collections-Based vs. wRVU-Based", "gist": "Collections pay exposes the physician to payer mix and billing performance; wRVU pay insulates; collections favors physicians who control schedule and mix."},
+    {"section": "Section 4: The Bonus Structure", "gist": "Productivity, quality/access, signing and retention bonuses; test attainability with cohort payout history; watch gross-repayment clauses; size bonuses in three scenarios."},
+    {"section": "Section 5: Benefits, Tail Coverage, and the Hidden Economics", "gist": "Claims-made versus occurrence malpractice cover, tail cost and who pays by termination type, and dollar valuation of health, retirement, CME and other benefits."},
+    {"section": "Section 6: The Non-Compete", "gist": "Radius, duration, multi-site zones, state-variable enforceability, litigation cost, carve-outs and buyout to negotiate, and limits on telling patients about departure."},
+    {"section": "Section 7: The First Year", "gist": "Year-one production lags steady state; the guarantee bridges it; compute after-tax, after-loan cash margin; ramp-up length differs by specialty."},
+    {"section": "Section 8: Red Flags in Employment Agreements", "gist": "Seven warning patterns: unilateral modification, high thresholds, vague metrics, undefined non-compete, silent tail terms, overbroad non-solicitation, no dispute process."},
+    {"section": "Section 9: How to Push Back", "gist": "Non-adversarial framing, a table ranking terms by negotiability, conversation before redline, one data-backed ask, attorney review before signing."},
+    {"section": "Section 10: Before You Sign - The Pre-Signature Checklist", "gist": "Twenty-seven confirmations across compensation, benefits and tail, non-compete and departure, term and governance, and final attorney review."},
+    {"section": "Appendix: Glossary and Quick Reference Tables", "gist": "Twelve-term glossary, a blank three-scenario income worksheet, and a six-question non-compete evaluation table."},
+    {"section": "CleanClaimRx - Related Resources", "gist": "Cross-sell page for three sibling playbooks: compensation design, Stark and Anti-Kickback awareness, and practice valuation."}
+  ],
+  "framework_elements": [
+    "Base salary benchmarking against survey percentiles",
+    "Base versus total compensation reconciliation",
+    "Guarantee (ramp-up) period terms",
+    "Base adjustment and reduction triggers",
+    "wRVU conversion factor benchmarking",
+    "Productivity threshold calibration",
+    "Three-scenario income modeling",
+    "Cliff versus continuous incentive design",
+    "Collections-based compensation model",
+    "Payer-mix and billing-performance risk allocation in provider pay",
+    "Collection-rate transparency to providers (net versus gross)",
+    "Bonus attainability testing using historical payout rates",
+    "Quality and access incentive metric definition",
+    "Signing bonus repayment and vesting terms",
+    "Retention bonus schedule",
+    "Malpractice policy form (claims-made versus occurrence)",
+    "Tail coverage responsibility by termination scenario",
+    "Benefits valuation and total-rewards worksheet",
+    "Non-compete radius, duration and site scope",
+    "Non-compete carve-outs and buyout provision",
+    "Patient notification and continuity on provider departure",
+    "Non-solicitation scope",
+    "Control of unilateral compensation-modification clauses",
+    "Compensation calculation audit right and dispute resolution",
+    "Term, renewal, notice and for-cause termination definitions",
+    "New-provider ramp-up and first-year cash planning",
+    "Negotiation prioritization by negotiability and dollar impact",
+    "Healthcare employment attorney review before signature",
+    "Pre-signature checklist and written-commitments rule",
+    "Fair-market-value constraint on compensation"
+  ],
+  "processes": [
+    {
+      "name": "Benchmark the offer's base and total compensation",
+      "steps": [
+        "Obtain current survey percentiles for total compensation and wRVUs for the specialty and region",
+        "Place the base on that distribution and confirm whether bonus potential sits on top of it",
+        "Compare realistic total pay, not base alone, with the benchmark",
+        "Confirm the guarantee period length and request one if absent",
+        "Locate every clause that lets the employer lower the base (productivity shortfall, site volume, FMV determination, discretionary change)"
+      ],
+      "owner_role": "Physician candidate (the document assigns every step to the physician; there is no employer-side owner)",
+      "cadence": "Once per offer or renegotiation, before signing"
+    },
+    {
+      "name": "Three-scenario wRVU income projection",
+      "steps": [
+        "Collect expected annual wRVUs (own prior-year actuals or specialty median), the contract conversion factor and the threshold",
+        "Multiply wRVUs by the conversion factor at 25th, 50th and 75th percentile production",
+        "Take the greater of base and productivity pay in each scenario",
+        "Add conservative, median and strong estimates of quality or access bonus",
+        "Compare each scenario total with the matching survey total-compensation percentile",
+        "Identify whether the incentive is a cliff or a continuous per-wRVU rate"
+      ],
+      "owner_role": "Physician candidate",
+      "cadence": "Once per offer; rerun at renegotiation"
+    },
+    {
+      "name": "Productivity threshold and bonus attainability test",
+      "steps": [
+        "Compare the contract threshold with median wRVU production for the specialty",
+        "Treat a threshold at or under the median as reasonable and one above the 75th percentile as a red flag",
+        "Ask HR or the recruiter how many physicians in the role earned the bonus in each of the last two to three years and what share of eligible pay it was",
+        "Leave out of income planning any bonus most of the cohort misses or that is discretionary",
+        "Require written metric definitions, measurement method, payment timing and dispute process"
+      ],
+      "owner_role": "Physician candidate, with HR or recruiter supplying payout history",
+      "cadence": "Once per offer"
+    },
+    {
+      "name": "Collections-based offer due diligence",
+      "steps": [
+        "Request the practice-wide and panel-specific collection rate",
+        "Request payer mix by commercial, Medicare, Medicaid and self-pay",
+        "Establish who controls panel assignment and scheduling",
+        "Review the three-year billing and collections trend",
+        "Decide whether a collections or wRVU basis fits the control the physician will actually have"
+      ],
+      "owner_role": "Physician candidate; practice supplies the data",
+      "cadence": "Once per offer"
+    },
+    {
+      "name": "Malpractice tail and benefits valuation",
+      "steps": [
+        "Identify whether coverage is claims-made or occurrence",
+        "Map who buys tail under resignation, termination without cause and termination for cause",
+        "Estimate tail cost for the specialty and market and spread it over expected tenure",
+        "Put a dollar value on health, retirement, CME, licensure, disability and loan-repayment benefits",
+        "Add benefit value to cash pay when comparing offers"
+      ],
+      "owner_role": "Physician candidate",
+      "cadence": "Once per offer"
+    },
+    {
+      "name": "Restrictive covenant evaluation",
+      "steps": [
+        "Record radius, duration and whether each practice site creates its own zone",
+        "Draw the restricted area on a map against home and alternative employers",
+        "Obtain a state-specific legal opinion on enforceability",
+        "Request carve-outs: hospital privileges, existing patients, termination without cause, and a pre-agreed buyout sum",
+        "Read the patient-notification and non-solicitation limits that apply on departure"
+      ],
+      "owner_role": "Physician candidate with a healthcare employment attorney",
+      "cadence": "Before signing; revisit before any decision to leave"
+    },
+    {
+      "name": "First-year cash margin calculation",
+      "steps": [
+        "Estimate year-one income from the guarantee or from ramp-up production times the conversion factor",
+        "Subtract federal tax, student-loan payments and fixed living costs",
+        "Treat a negative or thin remainder as grounds to negotiate a higher or longer guarantee",
+        "Confirm three to six months of reserves",
+        "Ask how long the last hire in the role took to reach benchmark production"
+      ],
+      "owner_role": "Physician candidate",
+      "cadence": "Once, before signing"
+    },
+    {
+      "name": "Negotiation conversation and pre-signature sign-off",
+      "steps": [
+        "Rank desired changes by dollar impact and by how negotiable the term usually is",
+        "Ask for a call or meeting rather than opening with a marked-up contract",
+        "Present market data and one specific requested change with rationale",
+        "Ask which terms are fixed by group policy and which are flexible",
+        "Have a healthcare employment attorney licensed in the state review the final document",
+        "Confirm every verbal promise appears in writing and complete the 27-item checklist"
+      ],
+      "owner_role": "Physician candidate; healthcare employment attorney for final review",
+      "cadence": "Once per agreement, before execution"
+    }
+  ],
+  "tools_templates": [
+    {"name": "Base Compensation Quick Reference", "description": "Five-question table (competitiveness, base versus total, guarantee period, adjustment over time, reduction triggers) with what to look for."},
+    {"name": "Three-scenario production table (Section 2)", "description": "Slow, typical and strong year rows showing percentile wRVUs times conversion factor and what each result means."},
+    {"name": "Collections-offer question list", "description": "Four questions on collection rate, payer mix, panel control and three-year billing trend."},
+    {"name": "Signing Bonus Trap callout", "description": "Worked warning about repaying the gross bonus after tax was paid on it; prompts a gross-versus-net and gross-up check."},
+    {"name": "Bonus sizing rule of thumb", "description": "Three-scenario bonus estimate with dollar cut-offs for whether a bonus counts in planning."},
+    {"name": "Tail Coverage Checklist", "description": "Five questions on policy form, who buys tail, variation by reason for leaving, estimated cost and tenure-based benefit."},
+    {"name": "Benefit valuation table", "description": "Seven benefit components (health, retirement, occurrence cover, tail, CME, disability, loan repayment) with a valuation method for each."},
+    {"name": "Non-compete carve-out list", "description": "Four negotiable carve-outs: hospital privileges, existing patients, termination without cause, buyout."},
+    {"name": "First-year financial planning checklist", "description": "Five questions on guaranteed minimum, expected ramp-up income, fixed expenses, reserves and guarantee length."},
+    {"name": "Red-flag catalogue with sample clause wording", "description": "Seven contract patterns to scrutinize, with three short examples of problematic language."},
+    {"name": "Negotiability hierarchy table", "description": "Ten contract terms rated from often negotiable (guarantee length, tail, covenant scope) to usually fixed (core benefits)."},
+    {"name": "Negotiation scripts", "description": "Four short scripted lines: opening frame, data-backed ask for a higher guarantee, policy-versus-flexibility question, and the question to put to the attorney."},
+    {"name": "Pre-Signature Checklist", "description": "Twenty-seven first-person confirmations in five groups (compensation 7, benefits and tail 5, non-compete and departure 5, term and governance 6, final review 4)."},
+    {"name": "Glossary", "description": "Twelve plain-language definitions (wRVU, conversion factor, threshold, claims-made, occurrence, tail, non-compete, non-solicitation, guarantee period, MGMA, FMV, total compensation)."},
+    {"name": "Income Calculation Worksheet", "description": "Blank eight-row, three-column template (benchmark wRVUs, conversion factor, productivity pay, base, greater-of, bonus, total, benchmark comparison); cells say look up or calculate, no formulas or data."},
+    {"name": "Non-Compete Evaluation quick reference", "description": "Six questions (radius, duration, site coverage, enforceability, carve-outs, buyout) each with an action."},
+    {"name": "Not included", "description": "No scoring rubric, tracker, working spreadsheet, sample contract language for the employer side, or 30/60/90-day plan."}
+  ],
+  "metrics": [
+    {"name": "Base salary percentile position", "definition": "Where the guaranteed base falls on the specialty compensation distribution", "formula": "", "target": "50th percentile described as a market offer; above the 75th as a generous floor", "red_flag": "Base at the 25th percentile is called a low offer", "source_cited": "MGMA Physician Compensation and Production Report (named; no values given)"},
+    {"name": "wRVU conversion factor", "definition": "Dollars paid per work RVU generated", "formula": "productivity pay / wRVUs (stated in the contract as dollars per wRVU)", "target": "National range roughly $45 to $65; primary care $58 called high end; surgical $62 called competitive", "red_flag": "Primary care $48 called below market median", "source_cited": "none (reader told to calibrate with current MGMA data)"},
+    {"name": "Productivity-based compensation", "definition": "Pay generated by production under a wRVU model", "formula": "annual wRVUs x conversion factor (example 5,000 x $52 = $260,000)", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Productivity threshold percentile", "definition": "wRVU level at which incentive pay starts, expressed against specialty production percentiles", "formula": "", "target": "At or below the MGMA 50th percentile wRVU figure", "red_flag": "At or above the 75th percentile (Section 2 says above; Section 8 says at or above)", "source_cited": "MGMA (named; no values given)"},
+    {"name": "Implied break-even production", "definition": "Production level at which productivity pay overtakes the base", "formula": "base salary / conversion factor", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Expected compensation by scenario", "definition": "Projected total pay in slow, typical and strong years", "formula": "max(base, wRVUs x conversion factor) + estimated quality or access bonus, at 25th, 50th and 75th percentile wRVUs", "target": "Compare each scenario with the matching MGMA total-compensation percentile", "red_flag": "Advertised total reachable only in the strong-year scenario", "source_cited": "MGMA (named; no values given)"},
+    {"name": "Net collection rate", "definition": "Share of allowed or collectible charges actually collected", "formula": "collections / allowed (collectible) charges", "target": "85% to 95% described as typical of a well-run practice", "red_flag": "", "source_cited": "none"},
+    {"name": "Gross collection rate", "definition": "Collections measured against billed charges before contractual adjustments", "formula": "collections / billed charges", "target": "Commonly 50% to 80%; a low figure alone is said not to prove poor billing", "red_flag": "", "source_cited": "none"},
+    {"name": "Collections-based pay", "definition": "Physician pay as a fixed share of net collections attributed to the physician's encounters", "formula": "contract percentage x net collections (example 45% x $750,000 = $337,500)", "target": "", "red_flag": "Assigned or Medicaid-heavy payer mix; inconsistent billing performance", "source_cited": "none"},
+    {"name": "Procedural collections rate for favoring a collections model", "definition": "Physician-level collections rate at which a collections formula may beat a wRVU formula", "formula": "", "target": "Consistently above 90% (rate type not specified)", "red_flag": "", "source_cited": "none"},
+    {"name": "Bonus cohort payout rate", "definition": "Share of physicians in the same role who actually earned the productivity bonus in each recent year, and the bonus as a share of eligible pay", "formula": "physicians paid the bonus / physicians eligible, per year for the last two to three years", "target": "", "red_flag": "A bonus about 80% of the cohort never earns is not plannable income", "source_cited": "none"},
+    {"name": "Quality and access bonus share", "definition": "Quality and access incentive relative to base pay", "formula": "quality and access bonus / base salary", "target": "Often 5% to 15% of base", "red_flag": "Metrics undefined, not measurable by the physician, or awarded at discretion", "source_cited": "none"},
+    {"name": "Baseline-scenario bonus value", "definition": "Dollar bonus expected at median production and median quality scores", "formula": "", "target": "$25,000 or more deserves weight in planning", "red_flag": "Under $10,000 is not a meaningful component; value only in the strong scenario is upside only", "source_cited": "none"},
+    {"name": "Signing bonus size and repayment window", "definition": "Lump sum at hire with a repayment duty if the physician leaves early", "formula": "", "target": "Typically $10,000 to $50,000; repayment window typically 12 to 36 months", "red_flag": "Repayment of the gross amount after tax was paid, with no gross-up", "source_cited": "none"},
+    {"name": "Tail coverage cost", "definition": "Price of extended reporting coverage after a claims-made policy ends", "formula": "annual premium x 1 to 3; for offer valuation divide by expected tenure", "target": "$8,000 to $20,000 primary care; $30,000 to $100,000 or more for surgery, OB/GYN, emergency medicine", "red_flag": "Contract silent on who pays in any termination scenario", "source_cited": "none"},
+    {"name": "Benefit value", "definition": "Cash-equivalent value of employer-paid benefits", "formula": "premium equivalent or face value per component, summed", "target": "Family health premiums $15,000 to $25,000 a year; CME, licensure, DEA, boards and dues $3,000 to $8,000 a year; packages can differ by $30,000 or more", "red_flag": "", "source_cited": "none"},
+    {"name": "Non-compete radius and duration", "definition": "Distance and time for which post-employment practice is barred", "formula": "", "target": "Common structures 10 to 25 miles and 12 to 24 months", "red_flag": "No defined radius or duration; every site creating its own zone", "source_cited": "none"},
+    {"name": "Guarantee period length", "definition": "Time during which the base is paid regardless of production", "formula": "", "target": "One year typical; 18 or 24 months for long ramp-up specialties", "red_flag": "No guarantee for a new hire in a new market or site", "source_cited": "none"},
+    {"name": "Year-one production ratio", "definition": "First-year wRVUs relative to eventual steady-state wRVUs", "formula": "year-one wRVUs / steady-state wRVUs (examples 2,500 of 4,500; 2,800 of 5,000 = 56%)", "target": "", "red_flag": "", "source_cited": "none"},
+    {"name": "Ramp-up time to steady state", "definition": "Months for a new physician to reach the production the pay model assumes", "formula": "", "target": "Primary care 12 to 18 months; referral-dependent proceduralists 18 to 24 months; hospital-based roles faster", "red_flag": "Practice cannot or will not say how long the last hire took", "source_cited": "none"},
+    {"name": "First-year margin for error", "definition": "Cash left after tax, student loans and fixed living costs in year one", "formula": "year-one income - federal tax - student-loan payments - fixed living expenses", "target": "Positive with cushion; 3 to 6 months of reserves", "red_flag": "Negative or uncomfortably small", "source_cited": "none"}
+  ],
+  "numeric_claims": [
+    {"claim": "National range for physician conversion factors is roughly $45 to $65 per wRVU, with specialty variation", "section": "Section 2", "source_cited": "none"},
+    {"claim": "Primary care conversion factor of $48 is below the market median, $58 is on the high end, a surgical $62 is competitive", "section": "Section 2", "source_cited": "none"},
+    {"claim": "wRVU-based pay is the model in most employed physician settings", "section": "Section 2", "source_cited": "none"},
+    {"claim": "MGMA report is published annually with compensation by specialty at the 25th, 50th, 75th and 90th percentiles", "section": "Section 1", "source_cited": "MGMA Physician Compensation and Production Report (named)"},
+    {"claim": "Base at the 25th percentile is a low offer, 50th is a market offer, above the 75th is a generous guaranteed floor", "section": "Section 1", "source_cited": "MGMA (named; no values)"},
+    {"claim": "A one-year guarantee period is typical; some offers run 18 or 24 months", "section": "Section 1", "source_cited": "none"},
+    {"claim": "A physician who would produce 4,500 wRVUs in year two may produce 2,500 in year one", "section": "Section 1", "source_cited": "none (illustration)"},
+    {"claim": "A threshold above the 75th percentile means the majority of physicians in similar roles will never earn the bonus", "section": "Section 2 and Section 8", "source_cited": "none"},
+    {"claim": "Well-run practices typically collect 85% to 95% of allowed or collectible charges (net collection rate)", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Gross collection rate is commonly in the 50% to 80% range", "section": "Section 3", "source_cited": "none"},
+    {"claim": "At 45% of net collections, $750,000 collected pays $337,500 and $500,000 pays $225,000", "section": "Section 3", "source_cited": "none (illustration; arithmetic correct)"},
+    {"claim": "Seeing 20 patients a day corresponds to about 4,800 wRVUs a year", "section": "Section 3", "source_cited": "none (illustration)"},
+    {"claim": "Collections models can beat wRVU models for procedural physicians whose collections rate is consistently above 90%", "section": "Section 3", "source_cited": "none"},
+    {"claim": "Quality and access bonuses are often 5% to 15% of base compensation", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Signing bonuses are typically $10,000 to $50,000 for employed physicians", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Signing bonus repayment obligations typically run 12 to 36 months", "section": "Section 4", "source_cited": "none"},
+    {"claim": "A $30,000 signing bonus nets about $21,000 after tax, yet the $30,000 gross may be owed back on leaving in month 18", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Retention bonuses are often paid at 12, 24 or 36 months", "section": "Section 4", "source_cited": "none"},
+    {"claim": "A baseline-scenario bonus under $10,000 is not meaningful for planning; $25,000 or more deserves weight", "section": "Section 4", "source_cited": "none"},
+    {"claim": "Benefit terms can make identical-salary packages differ by $30,000 or more", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Tail coverage can cost one to three times the annual malpractice premium", "section": "Section 5 and Appendix", "source_cited": "none"},
+    {"claim": "Tail for surgery, OB/GYN and emergency medicine can be $30,000 to $100,000 or more", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Tail for a primary care physician might be $8,000 to $20,000", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Family health insurance premiums for a physician can run $15,000 to $25,000 a year", "section": "Section 5", "source_cited": "none"},
+    {"claim": "CME, licensure, DEA, board fees and dues often total $3,000 to $8,000 a year", "section": "Section 5", "source_cited": "none"},
+    {"claim": "Non-competes commonly use a 10 to 25 mile radius and a 12 to 24 month restriction", "section": "Section 6", "source_cited": "none"},
+    {"claim": "A physician headed for 5,000 wRVUs may produce 2,800 in year one and earn 56% of steady-state income without a guarantee", "section": "Section 7", "source_cited": "none (illustration; arithmetic correct)"},
+    {"claim": "Primary care physicians in panel-building models may take 12 to 18 months to reach steady state", "section": "Section 7", "source_cited": "none"},
+    {"claim": "Referral-dependent proceduralists may face 18 to 24 month ramp-up in new markets", "section": "Section 7", "source_cited": "none"},
+    {"claim": "Three to six months of reserves are advised to bridge the first-year income gap", "section": "Section 7", "source_cited": "none"}
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "National range for physician conversion factors is roughly $45 to $65 per wRVU; a primary care conversion factor of $48 is below the market median, $58 is on the high end, and a surgical $62 is competitive.",
+      "kind": "benchmark",
+      "stakes": "high",
+      "section": "Section 2",
+      "why": "Anchors any wRVU rate the practice offers a hire and any judgment of a post-sale employment offer. The range is unsourced and looks several years stale; using it could underprice an offer or misjudge one. Check against current MGMA, AMGA and SullivanCotter pay-per-wRVU medians, including nurse practitioner figures the guide never gives."
+    },
+    {
+      "id": "C2",
+      "claim": "FMV (Fair Market Value): the value in arm's-length transactions consistent with general market value - the standard used by Stark Law to evaluate physician compensation; MGMA benchmarks are used as the primary FMV reference.",
+      "kind": "regulatory",
+      "stakes": "high",
+      "section": "Appendix glossary; Section 1",
+      "why": "Medical-director stipends and any pay involving referral sources must be defensible as fair market value. Treating one survey as the FMV reference, or FMV as the only test, misreads 42 CFR 411.351 and CMS's refusal to adopt survey or percentile safe harbors, and ignores commercial reasonableness and the volume-or-value test."
+    },
+    {
+      "id": "C3",
+      "claim": "The MGMA Physician Compensation and Production Report, published annually, shows compensation at the 25th, 50th, 75th and 90th percentiles; the MGMA benchmark figures represent total compensation - base salary plus all incentives and bonuses.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 1",
+      "why": "If MGMA total compensation excludes employer-paid benefits while the guide's own glossary includes them, every benchmark comparison built on the guide is skewed. Also confirm the product's current name, cost of access and percentile set, since the look-it-up instruction assumes free availability."
+    },
+    {
+      "id": "C4",
+      "claim": "Some states - California is the most notable example - largely do not enforce physician non-competes on public policy grounds. Other states enforce them strictly. Many states evaluate non-competes on a reasonableness standard.",
+      "kind": "legal",
+      "stakes": "high",
+      "section": "Section 6",
+      "why": "Florida enforces restrictive covenants under s. 542.335 with statutory presumptions and has a physician-specific rule in s. 542.336; the guide gives no state detail and omits the federal rule's rise and fall and the 2023-2025 state laws restricting physician non-competes. The owner needs the real rule to bind hires and to price his own post-sale covenant."
+    },
+    {
+      "id": "C5",
+      "claim": "Courts in many states will interpret ambiguous non-compete terms against the employer who drafted them, but reaching that resolution requires litigation.",
+      "kind": "legal",
+      "stakes": "medium",
+      "section": "Section 8",
+      "why": "Florida s. 542.335(1)(h) appears to bar courts from construing a restrictive covenant narrowly or against its drafter, the opposite of this advice. Relying on the guide would overstate a restricted clinician's leverage in Florida and understate an employer's."
+    },
+    {
+      "id": "C6",
+      "claim": "Tail coverage can cost one to three times your annual malpractice premium. For high-risk specialties that can be $30,000 to $100,000 or more. For a primary care physician, it might be $8,000 to $20,000.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 5",
+      "why": "Tail is a five-figure exit cost for the owner at sale or wind-down and for any departing clinician. The multiple and the primary-care dollar range are unsourced, and Florida premiums differ from national norms. Check carrier rate filings or broker quotes for family medicine and nurse practitioner cover in the practice's county."
+    },
+    {
+      "id": "C7",
+      "claim": "Some agreements treat the signing bonus as taxable income at receipt but require repayment of the gross amount; you could pay taxes on $30,000, net $21,000, and then owe $30,000 back if you leave in month 18.",
+      "kind": "tax",
+      "stakes": "medium",
+      "section": "Section 4",
+      "why": "An employer drafting a repayment clause must run payroll correctly. The guide omits how prior-year repayments work: gross repayment is the normal rule, the employer corrects FICA on Form 941-X, and the employee recovers income tax through the claim-of-right rule (IRC 1341). The stated loss may be overstated or misdescribed."
+    },
+    {
+      "id": "C8",
+      "claim": "The practice collects typically 85% to 95% of allowed/collectible charges (the net collection rate) in a well-run practice; measured against billed charges (gross collection rate), the figure is commonly in the 50% to 80% range.",
+      "kind": "benchmark",
+      "stakes": "medium",
+      "section": "Section 3",
+      "why": "Collections are the practice's core function. Calling 85% a well-run net collection rate conflicts with the usual 95%-plus target and would normalize large leakage on roughly $1 million of revenue. Listed because the number is unusual and probably conflicts with other titles in the same library."
+    }
+  ],
+  "domain_map": [
+    {"domain": "people-compensation", "weight": 0.55, "topics": ["provider compensation models (wRVU, collections, salary-plus)", "conversion factor and threshold setting", "productivity, quality, signing and retention bonuses", "guarantee periods", "benefits valuation", "employment agreement terms", "negotiation"]},
+    {"domain": "compliance-risk", "weight": 0.12, "topics": ["malpractice policy form and tail coverage", "fair market value under Stark (glossary only)", "restrictive covenant enforceability", "patient notification on departure"]},
+    {"domain": "clinical-operations", "weight": 0.08, "topics": ["wRVU productivity benchmarking", "new-provider ramp-up", "capacity assumptions behind pay models"]},
+    {"domain": "growth-market", "weight": 0.08, "topics": ["recruiting offers and competitiveness", "first-year guarantee cost of a new hire", "candidate due-diligence questions"]},
+    {"domain": "strategy-governance", "weight": 0.07, "topics": ["key contracts: term, renewal, notice, termination", "modification rights", "dispute resolution and audit rights"]},
+    {"domain": "lifecycle-value", "weight": 0.05, "topics": ["post-sale employment agreement for a selling owner", "non-compete and tail at exit", "key-person retention terms"]},
+    {"domain": "financial-management", "weight": 0.05, "topics": ["provider cost modeling at three volume scenarios", "net versus gross collection rate", "total cost of benefits"]}
+  ],
+  "adopt": [
+    {
+      "idea": "Run the guide backwards as an employer-side offer checklist: before any offer goes out, have a written answer for every question it trains candidates to ask (threshold versus median production, historical bonus payout, tail by termination scenario, modification rights, calculation audit and dispute process).",
+      "why": "Informed candidates and their attorneys ask exactly these questions; unanswered ones stall recruiting or turn into disputes later.",
+      "applies_to_practice": "yes",
+      "note": "Use for the current nurse practitioner agreement and any growth hire. Add NP-specific items the guide lacks: collaboration terms, split/shared and incident-to credit, payment at 85% of the physician fee schedule."
+    },
+    {
+      "idea": "Model every provider pay plan at low, expected and high production before adopting it, showing both provider pay and practice margin.",
+      "why": "Shows whether advertised earnings are realistic and what the plan costs the practice when volume moves.",
+      "applies_to_practice": "yes",
+      "note": "Use the practice's own AdvancedMD wRVU history by provider for the three scenarios instead of national percentiles, which describe differences between physicians, not one clinician's good and bad years."
+    },
+    {
+      "idea": "Pay incentives as a continuous or tiered per-wRVU rate rather than a single cliff bonus.",
+      "why": "A cliff pays nothing at 98% of target and kills the incentive once the target is hit or out of reach.",
+      "applies_to_practice": "yes",
+      "note": "Relevant when adding a productivity component to nurse practitioner pay."
+    },
+    {
+      "idea": "Choose the pay basis by who controls the risk: tie employed clinicians to wRVUs when the practice controls payer mix, assignment and billing; keep collections-based formulas for people who control those levers.",
+      "why": "Keeps payer-mix and billing-performance risk with the party able to manage it and avoids disputes over collections the clinician cannot see.",
+      "applies_to_practice": "yes",
+      "note": "Billing is in-house and payers are almost all government, so wRVU or encounter credit suits an employed NP; owner income stays a residual of collections. State in the contract which CMS fee-schedule year supplies the wRVU values."
+    },
+    {
+      "idea": "Write every quality or access incentive with an explicit metric definition, a data source the clinician can see, measurement period, payment date, and a calculation-audit and dispute step.",
+      "why": "Discretionary or opaque bonuses do not motivate and are a common source of pay disputes.",
+      "applies_to_practice": "yes",
+      "note": "Candidate metrics here: note-completion and charge-lag timeliness, annual wellness visit and advance care planning completion, chronic care management enrollment and monthly time capture."
+    },
+    {
+      "idea": "Track, and be ready to disclose, the share of clinicians who actually earned each incentive in prior years.",
+      "why": "An incentive few people earn is a recruiting liability and a sign the threshold is mis-set.",
+      "applies_to_practice": "partly",
+      "note": "Only two clinicians today; becomes useful when scaling and as a diagnostic in an advisory service for larger groups."
+    },
+    {
+      "idea": "Build a tail-coverage matrix: policy form, who pays tail under resignation, termination without cause and termination for cause, a current tail quote, and any tenure-based vesting.",
+      "why": "Silence in the contract pushes the cost onto the clinician, and tail is a predictable five-figure exit cost.",
+      "applies_to_practice": "yes",
+      "note": "Apply to the NP agreement and to the owner's own policy ahead of a sale or wind-down. Ask the broker about prior-acts (nose) coverage and free tail on death, disability or retirement, which the guide omits."
+    },
+    {
+      "idea": "Budget a ramp-up period for each new clinician and match any guarantee length to the realistic time to target production.",
+      "why": "First-year production shortfalls are predictable and are a cash cost to whichever side carries the guarantee.",
+      "applies_to_practice": "partly",
+      "note": "Facility census work ramps faster than an office panel; the real gating items here are payer enrollment and facility credentialing, which the guide never mentions."
+    },
+    {
+      "idea": "Treat restrictive covenants as a priced term: define radius from named sites, duration, carve-outs and a buyout amount at signing, and get state-specific counsel.",
+      "why": "Vague covenants invite litigation; a pre-agreed buyout turns an injunction fight into a known number.",
+      "applies_to_practice": "yes",
+      "note": "Florida law (ss. 542.335 and 542.336) should drive drafting; the same analysis applies to the covenant the owner would sign when selling the practice."
+    },
+    {
+      "idea": "Issue a total-rewards statement putting a dollar value on malpractice, tail accrual, health, retirement, CME, licensure and other benefits for each clinician.",
+      "why": "Makes the full cost of each clinician visible for recruiting, retention and for normalizing provider cost in a valuation.",
+      "applies_to_practice": "yes",
+      "note": "Feeds service-line profitability and sale-readiness work. Value employer retirement dollars and vesting directly rather than using the guide's match shortcut."
+    }
+  ],
+  "practice_relevance": {
+    "score": 2,
+    "why": "Written for the employee across the table from the employer; the owner is the employer and has no offer to evaluate. Value is indirect: a mirror-image checklist for the nurse practitioner's agreement and future hires, a primer on the employment agreement the owner would be handed after selling to a health system or investor-backed group, and raw material for an advisory product. Nothing on nurse practitioner pay, split/shared or incident-to credit, facility-based rounding productivity, medical-director stipend valuation, independent-contractor arrangements or Florida law.",
+    "sections_that_do_not_apply": [
+      "Section 1 and Section 2 benchmarking of the reader's own pay against physician survey percentiles (owner pay is a distribution and tax question, not a negotiated offer)",
+      "Section 3 as written for an employee choosing between pay bases (the practice sets the model and has almost no commercial payer mix)",
+      "Section 4 access bonuses (panel openness, appointment availability) and patient-satisfaction survey metrics (no office panel or front desk)",
+      "Section 4 signing and retention bonus advice from the recipient's side",
+      "Section 7 student-loan and household cash-flow planning",
+      "Section 7 office panel-building ramp-up timelines (facility census work ramps differently)",
+      "Section 9 scripts for dealing with recruiters and medical directors",
+      "Hospital-system framing throughout (uniform system pay models, HR, recruiters)"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "Net collection rate of 85% to 95% is presented as typical of a well-run practice; the conventional target is 95% or better, so the stated floor would normalize roughly ten points of avoidable leakage. The 50% to 80% gross-rate range is arbitrary because gross rate depends on how high charges are set.",
+      "Conversion-factor range of $45 to $65 and the claim that $58 is high-end for primary care have no source and read like pre-2022 figures; recent survey medians for family and internal medicine pay per wRVU are, by analyst recollection, in the high $50s to low $60s (verify). No nurse practitioner rates at all.",
+      "FMV glossary entry tracks the Stark regulatory wording but calls MGMA the primary FMV reference. CMS has declined to treat any survey or percentile as a safe harbor, and FMV is one of three tests alongside the volume-or-value rule and commercial reasonableness.",
+      "The statement that courts often read ambiguous non-competes against the drafting employer is wrong for Florida: s. 542.335(1)(h) forbids construing a covenant narrowly or against the drafter, and (1)(g) bars weighing hardship to the restricted person (verify text).",
+      "Non-compete section names only California, whose ban is general rather than physician-specific, and gives no state rules. It is silent on state laws enacted 2023 to 2025 that ban or limit physician non-competes (for example Indiana, Minnesota, Pennsylvania, Maryland, Colorado, Texas; verify) and on the FTC rule issued in 2024, set aside, then abandoned in 2025.",
+      "Signing-bonus trap treats gross-versus-net repayment as only a drafting choice and omits the tax mechanics: prior-year repayments are normally gross, the employer corrects FICA, and the employee recovers income tax through IRC 1341 claim-of-right relief.",
+      "Glossary defines total compensation as including employer-paid benefits, while MGMA's total-compensation measure excludes benefit costs, so the instructed benchmark comparison can be apples to oranges.",
+      "Income worksheet uses max(base, wRVU x conversion factor), which fits only a greater-of model. It cannot represent a stated threshold, tiered rates, a cliff, a cap, or a draw with reconciliation, and it stands in national cross-sectional percentiles for one physician's good and bad years.",
+      "Says every employed physician has malpractice cover while employed and calls tail a separate policy. Florida allows physicians to meet financial-responsibility rules without insurance, tail is normally an extended-reporting endorsement, and prior-acts (nose) coverage is never mentioned.",
+      "Claims unilateral compensation-modification language is not standard; annual plan-amendment and FMV-adjustment clauses are common in health-system agreements, so the advice overstates negotiating room.",
+      "Family health premium range of $15,000 to $25,000 trails current employer-survey averages (KFF 2025 family average about $27,000; verify).",
+      "Primary-care tail estimate of $8,000 to $20,000 is unsourced and may understate Florida pricing.",
+      "Benefit table values retirement as match percentage times the employee's contribution and ignores vesting schedules and the taxability of employer loan repayment and employer-paid disability benefits."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Section 1 quick-reference table says to compare the base with the MGMA 50th percentile and calls a 50th-percentile base a market offer; the next subsection says MGMA figures are total compensation and base alone must not be compared.",
+      "Threshold standard shifts: Section 2 calls at or below the 50th percentile reasonable and above the 75th a red flag (nothing on the band between); Section 8's heading says at or above the 75th; Section 10 requires confirming at or below the 50th.",
+      "Section 2 table labels 25th-percentile wRVUs times conversion factor as the income floor in a hard year, while the text and the worksheet say the guaranteed base is the floor.",
+      "Section 2 assumes the threshold equals base divided by conversion factor, yet also tells the reader to find a stated contractual threshold and gives a cliff example whose threshold is independent of that ratio.",
+      "Glossary's total compensation includes benefit value; Section 1 and the worksheet treat the benchmark as cash base plus incentives.",
+      "Preface says the frameworks are not scripts; Section 9 supplies scripted wording.",
+      "Bonus-history lookback is two or three years in Section 4 and three years in Sections 8 and 10.",
+      "Tail cost floor is $8,000 in one paragraph and $10,000 in the next.",
+      "Embedded disclaimer says the material is for billing teams; cover and preface say it is for physicians."
+    ],
+    "time_sensitive_or_outdated": [
+      "No reference to federal non-compete developments (FTC rule issued April 2024, set aside August 2024, appeal dropped September 2025, FTC warning letters to healthcare employers) or to state laws restricting physician non-competes passed 2023 to 2025.",
+      "No discussion of CMS work-RVU changes (2021 office-visit revaluation, G2211, the CY2026 efficiency adjustment of minus 2.5% on most non-time-based services) or of which fee-schedule year a contract uses to count wRVUs.",
+      "Conversion-factor ranges appear stale against 2024 to 2026 survey data.",
+      "Family health premium range is below current averages.",
+      "MGMA product is cited under a legacy title; the current paid data set is MGMA DataDive Provider Compensation (verify name), so the advice to search for it will not produce percentile tables.",
+      "Student-loan section ignores PSLF and the 2025 federal loan-program changes that took effect in July 2026.",
+      "Every dollar range is undated, so none can be aged or indexed."
+    ],
+    "ai_generation_signals": [
+      "No author, credential, date, edition or citation anywhere; MGMA is invoked repeatedly but not one benchmark value is given.",
+      "Introduction ends with a boilerplate disclaimer written for billing teams that mentions HIPAA and review of AI-generated drafts, unrelated to this guide's subject.",
+      "Billing-brand tagline about getting claims paid sits on a contract guide aimed at a different audience than the rest of the library.",
+      "Formulaic section pattern (thesis paragraph, 'this section' signpost, boxed RED FLAG or TRAP callout) and stock rhetorical moves such as 'not X, it is Y'.",
+      "Same points restated three or four times across sections (75th-percentile threshold, bonus payout history, tail by termination scenario, guarantee period).",
+      "Round illustrative numbers with tidy arithmetic; no real cases, no clauses from actual agreements, no state examples.",
+      "Page padding: about 160 words per page, with pages holding only a table row, one or two checklist items, or a short paragraph (pages 10, 19, 44, 48, 50, 56).",
+      "Worksheet cells read 'Look up' and 'Calculate' instead of providing a working calculator.",
+      "Closing cross-sell page for three sibling playbooks."
+    ],
+    "missing_for_real_use": [
+      "Any actual benchmark values, or a list of data sources and their cost (MGMA, AMGA, SullivanCotter, AMN/Merritt Hawkins, Doximity, Medscape)",
+      "State-by-state restrictive-covenant law (Florida in particular) and the federal position",
+      "Which CMS fee-schedule year defines wRVUs, modifier adjustments, and credit for split/shared, incident-to, telehealth, care-management and non-billable work",
+      "Nurse practitioner and physician assistant compensation; supervision or collaboration stipends",
+      "Call pay, medical-director and administrative stipends, value-based or shared-savings distributions, panel or capitation models",
+      "Draw-against-productivity reconciliation, negative balances, compensation caps, clinical FTE proration",
+      "Bonus timing and forfeiture at termination; accounts-receivable run-out after departure under collections formulas",
+      "Partnership track, buy-in and buy-out terms, ancillary income sharing in private-practice offers",
+      "Hospital recruitment-assistance income guarantees structured as forgivable loans, and their tax effect",
+      "PSLF, tax treatment of loan repayment, W-2 versus independent-contractor arrangements",
+      "Malpractice detail: limits, consent-to-settle, prior-acts alternative, free tail on death, disability or retirement, Florida financial-responsibility options",
+      "Outside-income, moonlighting and intellectual-property clauses; indemnification; assignment and change of control; typical without-cause notice periods",
+      "Employer-side guidance, sample contract language or redlines, a worked end-to-end example, a real spreadsheet",
+      "Stark and Anti-Kickback limits on compensation design beyond a one-line glossary entry (deferred to a separately sold playbook)"
+    ]
+  }
+}

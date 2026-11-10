@@ -1,0 +1,871 @@
+{
+  "slug": "value-based-care-revenue-cycle-implications-playbook",
+  "title": "Value-Based Care Revenue Cycle Implications Playbook (CleanClaimRx Operational Playbook Series)",
+  "doc_type": "playbook",
+  "pages": 40,
+  "audience": "Independent practices in Medicare Advantage risk contracts, MSSP ACOs, PCMH programs or MIPS reporting; written to billing and revenue cycle teams, practice administrators and owners. Examples run from a solo practice to a 40-clinician group, with office-based primary care as the main target.",
+  "summary": "Argues that value-based payments are a second revenue stream that a fee-for-service billing operation never sees, and that the revenue cycle team should own it. Surveys MIPS, MSSP ACOs, ACO REACH, Medicare Advantage risk contracts and PCMH, then explains MIPS scoring and its two-year payment lag, the end of the 5% APM bonus, ACO benchmarks and attribution, HCC risk adjustment under the V28 model, PCMH per-member fees and quality-measure documentation. Central method: inventory which programs apply, measure current standing (MIPS score, chronic-condition recapture, wellness-visit completion, ACO quality), close the largest gaps, then run a monthly value-based report with separate financial-statement lines. Includes a self-assessment, a 90-day plan, a deadline calendar and two checklists. Rules are keyed to calendar year 2026. Dollar examples are uncited and in places contradict each other, and several MIPS details are outdated or wrong.",
+  "outline": [
+    {
+      "section": "Front-matter notice",
+      "gist": "States rules reflect the 2026 physician fee schedule final rule and fully phased-in V28; examples are illustrative; not legal or coding advice."
+    },
+    {
+      "section": "Introduction: The Two Revenue Streams",
+      "gist": "Clean claims do not protect MIPS scores, risk scores or ACO quality; sizes the stakes with MIPS, risk-adjustment and shared-savings examples."
+    },
+    {
+      "section": "Section 1: The Value-Based Care Landscape",
+      "gist": "Compares MIPS, MSSP, ACO REACH, Medicare Advantage risk and PCMH by risk, payment mechanism and eligibility; three questions to ask before joining."
+    },
+    {
+      "section": "Section 2: MIPS and APM Payment Adjustments",
+      "gist": "Two-year lag, 75-point threshold, budget-neutral bonuses, category weights, small-practice reweighting, MVPs, and qualifying-participant status after the 5% bonus ended."
+    },
+    {
+      "section": "Section 3: ACO Shared Savings",
+      "gist": "Benchmarks, claims-based assignment, APP Plus measures, BASIC versus ENHANCED tracks, prepaid savings, and why the ACO's own distribution formula matters."
+    },
+    {
+      "section": "Section 4: HCC Coding and Risk Adjustment",
+      "gist": "Risk scores drive capitation; V24-to-V28 changes; documentation-support standard; yearly recapture via wellness visits; dollar example; audit and False Claims Act exposure."
+    },
+    {
+      "section": "Section 5: PCMH Qualification and Quality Bonus Revenue",
+      "gist": "NCQA's six concept areas, per-member monthly fees of roughly $2 to $15, layered quality bonuses, and tracking these payments separately."
+    },
+    {
+      "section": "Section 6: Quality Measure Documentation",
+      "gist": "Claims-based versus EHR-extracted measures, structured data entry, and the wellness visit as the one encounter feeding several programs."
+    },
+    {
+      "section": "Section 7: The Data Infrastructure Value-Based Contracts Require",
+      "gist": "Three data sources (claims, EHR, payer feeds), CCLF files, template configuration, monthly reporting, QPP portal checks, diagnosing the need before buying tools."
+    },
+    {
+      "section": "Section 8: Avoiding Common Value-Based Payment Errors",
+      "gist": "Lists typical omission and commission errors for MIPS, HCC capture, ACO attribution and PCMH; the common fix offered is in-year monitoring."
+    },
+    {
+      "section": "Section 9: The Hybrid Revenue Cycle",
+      "gist": "Monthly value-based report, ownership roles, separate financial-statement lines, clinician engagement, HCC audit, contract reading, absolute versus relative benchmarks, specialty notes."
+    },
+    {
+      "section": "Section 10: Your Value-Based Revenue Opportunity Assessment",
+      "gist": "Yes/no self-assessment for MIPS, HCC, ACO and PCMH; rule-of-thumb gap estimate; asserts opportunity equals 5% to 15% of Medicare revenue."
+    },
+    {
+      "section": "90-Day Value-Based Revenue Cycle Implementation Plan",
+      "gist": "Month 1 measure, month 2 close gaps, month 3 build recurring reporting; then quarterly reviews, semi-annual audit sample and an annual deadline calendar."
+    },
+    {
+      "section": "Quick-Reference Checklist 1: MIPS Compliance",
+      "gist": "Checkboxes for eligibility and setup, quality, promoting interoperability, improvement activities and year-end submission and review."
+    },
+    {
+      "section": "Quick-Reference Checklist 2: HCC Coding Quality",
+      "gist": "Checkboxes for per-patient annual capture, documentation support, V28 code checks, population tracking and audit readiness; several items duplicated."
+    },
+    {
+      "section": "Closing: The Revenue Cycle That Sees Both Streams",
+      "gist": "Rhetorical recap: value-based leakage is silent, so build measurement; cross-sells other catalog titles; no new content."
+    },
+    {
+      "section": "Important Notes on This Playbook (back-matter disclaimer)",
+      "gist": "Says benchmark figures are commonly cited ranges and vendor-observed patterns are experience, not studies; confirm rules before acting."
+    }
+  ],
+  "framework_elements": [
+    "Value-based program inventory by clinician and tax ID (MIPS, ACO, Medicare Advantage risk, PCMH)",
+    "Participation decision screen (data capability, documentation discipline, capacity for a second revenue stream)",
+    "MIPS eligibility and special-status verification (low-volume threshold, small practice, QP and Partial QP)",
+    "MIPS reporting-pathway choice and registration (traditional MIPS, MVP, APP)",
+    "MIPS category weighting check (standard versus small-practice reweighting)",
+    "Quality measure selection against benchmarks",
+    "Quality data completeness tracking (75% minimum)",
+    "Claims-based quality code capture at billing",
+    "Structured EHR data entry for electronic quality measures",
+    "Promoting Interoperability compliance and hardship exception",
+    "Improvement activity attestation with evidence",
+    "Annual QPP submission, final-score review and dispute",
+    "MIPS payment-adjustment forecasting (two-year lag)",
+    "ACO attribution protection through timely, correctly identified primary-care claims",
+    "Voluntary alignment communication to patients",
+    "ACO risk-track and shared-loss exposure awareness",
+    "ACO and risk-contract agreement review (minimum savings rate, sharing rate, distribution formula)",
+    "Absolute versus relative benchmark identification per contract",
+    "Annual chronic-condition (HCC) recapture cycle",
+    "Diagnosis specificity standards under the V28 risk model",
+    "Documentation-support (MEAT) check for each coded chronic condition",
+    "Two-way retrospective chart review (add and delete)",
+    "HCC documentation audit as an extension of the coding audit",
+    "Risk-adjustment audit (RADV) readiness",
+    "Annual Wellness Visit completion workflow and outreach",
+    "PCMH recognition maintenance and per-member payment tracking",
+    "Payer and ACO data intake (CCLF files, RAF reports, quality dashboards)",
+    "Monthly value-based revenue report and deadline calendar",
+    "Separate financial-statement lines for value-based revenue",
+    "Value-based ownership role and clinician engagement and education"
+  ],
+  "processes": [
+    {
+      "name": "Monthly value-based revenue report",
+      "steps": [
+        "Estimate the current MIPS composite score and compare it with 75 points",
+        "Calculate the share of Medicare Advantage patients with all chronic conditions recaptured this year",
+        "Calculate Annual Wellness Visit completion for eligible Medicare patients",
+        "Pull ACO quality standing on APP Plus measures from the ACO",
+        "List submission, exception, registration and payer reporting deadlines falling within 90 days",
+        "Review with the owner and assign gap-closing actions"
+      ],
+      "owner_role": "Practice administrator or office manager in small practices; dedicated value-based coordinator in larger ones",
+      "cadence": "Monthly"
+    },
+    {
+      "name": "Annual MIPS cycle",
+      "steps": [
+        "Verify each clinician's eligibility and special statuses on the QPP site, and re-verify mid-year",
+        "Choose the reporting pathway and register if using an MVP",
+        "Confirm category weights (small-practice reweighting if 15 or fewer clinicians)",
+        "Select six quality measures, including an outcome or high-priority measure, where the practice can beat benchmark",
+        "Track data completeness of at least 75% per measure during the year",
+        "Document improvement activities the practice actually performs",
+        "Meet Promoting Interoperability requirements or file the hardship exception by December 31",
+        "Submit data by March 31 of the following year",
+        "Review the final score and dispute errors",
+        "Run next year's measure selection in the fourth quarter using new benchmarks"
+      ],
+      "owner_role": "Staff member designated as responsible for MIPS (not specified further)",
+      "cadence": "Annual, with a monthly portal login and quarterly checklist review"
+    },
+    {
+      "name": "Annual HCC recapture cycle",
+      "steps": [
+        "Obtain current risk-score reports from each contracted Medicare Advantage plan",
+        "Screen the panel for chronic conditions not yet documented this calendar year",
+        "Schedule a wellness visit or other qualifying visit for those patients",
+        "Have the clinician address each active condition and document current clinical support",
+        "Code to the most specific diagnosis and confirm it appears on a claim",
+        "Re-screen in the fourth quarter and close remaining gaps before December 31"
+      ],
+      "owner_role": "Billing and coding staff together with the treating clinician",
+      "cadence": "Continuous; quarterly checklist; fourth-quarter sweep"
+    },
+    {
+      "name": "Two-way HCC documentation audit",
+      "steps": [
+        "Sample encounters carrying chronic-condition diagnoses",
+        "Test each coded condition for current-visit documentation support and V28 specificity",
+        "Flag unsupported diagnoses for removal and missed conditions for capture",
+        "Quantify compliance risk and revenue opportunity separately",
+        "Feed findings into clinician education and template changes",
+        "Have a qualified coding professional perform or oversee the review"
+      ],
+      "owner_role": "Coding auditor or qualified coding professional",
+      "cadence": "Semi-annual sample; annual population-level review"
+    },
+    {
+      "name": "Annual Wellness Visit completion workflow",
+      "steps": [
+        "Identify Medicare patients eligible for a wellness visit this year",
+        "Run outreach to those who have not had one",
+        "Schedule in person or by video",
+        "Use the visit to review the full problem list and quality-measure items",
+        "Bill correctly and confirm the claim",
+        "Track the completion rate monthly"
+      ],
+      "owner_role": "Not specified (scheduling and outreach staff implied)",
+      "cadence": "Monthly tracking; outreach launched in month 2 of the plan"
+    },
+    {
+      "name": "ACO attribution and agreement review",
+      "steps": [
+        "Confirm which risk track the ACO occupies and the practice's shared-loss exposure",
+        "Read the participation agreement for minimum savings rate, sharing rate and distribution formula",
+        "Confirm primary-care claims go out promptly under the identifiers registered with the ACO",
+        "Tell patients about voluntary alignment",
+        "Request the practice's own subset of the ACO's CCLF claims data",
+        "Compare ACO quality reports with thresholds"
+      ],
+      "owner_role": "Revenue cycle leadership",
+      "cadence": "At joining or renewal and annually; claim checks ongoing"
+    },
+    {
+      "name": "Value-based revenue opportunity assessment (Section 10)",
+      "steps": [
+        "Work through the MIPS, HCC, ACO and PCMH yes/no questions with each program's owner",
+        "Estimate the HCC gap with the per-0.1-RAF rule of thumb",
+        "Combine the programs into a total opportunity figure",
+        "Tie the result to existing fee-for-service KPIs"
+      ],
+      "owner_role": "Practice leadership with the staff responsible for each program",
+      "cadence": "Annual"
+    },
+    {
+      "name": "90-day implementation plan",
+      "steps": [
+        "Month 1: pull MIPS trajectory, eligibility, measure rates, plan risk-score reports, recapture screen, ACO quality report and wellness-visit rate",
+        "Month 2: launch wellness-visit outreach, build the recapture workflow, fix weak MIPS measures, confirm the hardship deadline, submit delayed primary-care claims",
+        "Month 3: start the monthly report, extend the coding audit to HCC, confirm EHR structured fields, finish the assessment",
+        "Afterwards: quarterly program reviews, semi-annual HCC audit sample, annual full assessment"
+      ],
+      "owner_role": "Not specified",
+      "cadence": "One-time over 90 days, then recurring"
+    }
+  ],
+  "tools_templates": [
+    {
+      "name": "Value-based model comparison table (Section 1)",
+      "description": "Four-row table of MIPS, MSSP ACO, Medicare Advantage risk and PCMH by risk level, revenue mechanism and who qualifies."
+    },
+    {
+      "name": "Three pre-signing questions (Section 1)",
+      "description": "Screening questions on data capability, documentation discipline and capacity to ask before joining a program."
+    },
+    {
+      "name": "MIPS category weight table (Section 2)",
+      "description": "Weights and one-line scoring notes for the four categories, with the small-practice variant described in text."
+    },
+    {
+      "name": "MIPS swing worked examples (Introduction, Sections 2 and 9)",
+      "description": "Arithmetic illustrations of the penalty-to-bonus dollar range at several Part B volumes; no worksheet supplied."
+    },
+    {
+      "name": "MSSP risk-track table (Section 3)",
+      "description": "Three-row summary of BASIC A/B, BASIC C/D/E and ENHANCED."
+    },
+    {
+      "name": "V24 versus V28 comparison table (Section 4)",
+      "description": "Five-row table of category counts, code counts, score impact, documentation standard and enforcement context."
+    },
+    {
+      "name": "RAF capitation worked example (Section 4)",
+      "description": "Single-patient and panel-level illustration of how risk-score gaps turn into capitation dollars."
+    },
+    {
+      "name": "Value-based error catalog (Section 8)",
+      "description": "Bulleted list of typical MIPS, HCC, ACO attribution and PCMH mistakes."
+    },
+    {
+      "name": "Monthly VBC Revenue Report outline (Section 9)",
+      "description": "Five headings for a monthly report; no layout, data definitions or sample."
+    },
+    {
+      "name": "Value-Based Revenue Opportunity Assessment (Section 10)",
+      "description": "Sixteen yes/no questions across MIPS, HCC, ACO and PCMH; no scoring method."
+    },
+    {
+      "name": "HCC gap rule of thumb (Section 10)",
+      "description": "Planning estimate of $400 to $800 per patient per year for each 0.1 of missed RAF."
+    },
+    {
+      "name": "Tool-purchase diagnostic (Section 7)",
+      "description": "Three-way test (data capture, workflow, reporting) to apply before buying analytics software."
+    },
+    {
+      "name": "90-Day Implementation Plan",
+      "description": "Three monthly task lists (measure, close gaps, build the system) plus a paragraph on the recurring cycle."
+    },
+    {
+      "name": "Annual Reporting Deadline Calendar",
+      "description": "Six-row table: January 1 start, March 1 HIPAA breach log, March 31 QPP submission, monthly CCLF, fourth-quarter measure selection, December 31 year-end items."
+    },
+    {
+      "name": "Quick-Reference Checklist 1: MIPS Compliance",
+      "description": "24 checkboxes in five groups, from eligibility and setup through year-end review."
+    },
+    {
+      "name": "Quick-Reference Checklist 2: HCC Coding Quality",
+      "description": "21 checkboxes in five groups; the V28 group appears twice with overlapping items."
+    }
+  ],
+  "metrics": [
+    {
+      "name": "MIPS final score (estimated trajectory)",
+      "definition": "Composite 0-100 score across Quality, Cost, Promoting Interoperability and Improvement Activities, estimated during the year and compared with the performance threshold",
+      "formula": "Weighted sum of category scores: 30% Quality, 30% Cost, 25% Promoting Interoperability, 15% Improvement Activities (small practice with interoperability reweighted: 40/30/0/30)",
+      "target": "At least 75 points (neutral adjustment)",
+      "red_flag": "Below 75 (sliding-scale penalty); 18.75 or lower draws the full -9%",
+      "source_cited": "CMS and the CY2026 Physician Fee Schedule final rule, named generally with no citation"
+    },
+    {
+      "name": "MIPS quality data completeness",
+      "definition": "Share of a measure's eligible encounters for which data are captured and reported",
+      "formula": "Reported eligible encounters / all eligible encounters for the measure",
+      "target": "75% or more for every selected measure",
+      "red_flag": "Below 75% (heavy scoring loss regardless of clinical performance)",
+      "source_cited": "none"
+    },
+    {
+      "name": "MIPS payment adjustment",
+      "definition": "Percentage change applied to Medicare Part B payments two years after the performance year",
+      "formula": "Adjustment percentage x Part B payments in the payment year",
+      "target": "0% or better; realistic bonus put at about 1% to 2.3%",
+      "red_flag": "Any negative adjustment, up to -9%",
+      "source_cited": "none"
+    },
+    {
+      "name": "Quality measure performance versus benchmark",
+      "definition": "Each selected measure's performance rate compared with the CMS benchmark for its reporting mechanism",
+      "formula": "",
+      "target": "Above the benchmark average for each selected measure",
+      "red_flag": "Measures chosen only because they are already documented",
+      "source_cited": "none"
+    },
+    {
+      "name": "HCC capture (recapture) rate",
+      "definition": "Share of the Medicare Advantage panel whose active chronic conditions have all been documented and coded again in the current year (defined once as with current-year documentation support, once as coded on a claim at least once)",
+      "formula": "Patients with all active chronic conditions recaptured this year / Medicare Advantage patients with chronic conditions",
+      "target": "",
+      "red_flag": "Example only: a clinician running 40% below the practice's own benchmark",
+      "source_cited": "none"
+    },
+    {
+      "name": "Average RAF score for the Medicare Advantage panel",
+      "definition": "Mean risk adjustment factor of the practice's Medicare Advantage patients, taken from plan-supplied reports and tracked quarterly",
+      "formula": "",
+      "target": "Compare with a 'specialty benchmark' (no value given)",
+      "red_flag": "Example only: average understated by 0.15 per patient",
+      "source_cited": "none"
+    },
+    {
+      "name": "HCC revenue gap estimate",
+      "definition": "Annual dollars forgone because risk scores understate patient complexity",
+      "formula": "(RAF gap per patient / 0.1) x $400 to $800 x number of Medicare Advantage patients",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none (labelled a planning estimate)"
+    },
+    {
+      "name": "Annual Wellness Visit completion rate",
+      "definition": "Share of eligible Medicare patients who completed a wellness visit in the current year, tracked monthly",
+      "formula": "Completed wellness visits / eligible Medicare patients",
+      "target": "",
+      "red_flag": "Example treats 60% completion as a gap",
+      "source_cited": "none"
+    },
+    {
+      "name": "ACO quality performance versus threshold",
+      "definition": "Standing on the ACO's APP Plus quality measures relative to benchmark",
+      "formula": "",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Net collection rate including value-based payments",
+      "definition": "The vendor's net collection rate KPI recalculated with value-based distributions added",
+      "formula": "Add value-based distributions to both numerator and denominator of net collection rate",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none (cross-reference to the vendor's 'KPI Prescription 08')"
+    },
+    {
+      "name": "Value-based revenue opportunity as a share of Medicare revenue",
+      "definition": "Estimated value-based dollars available relative to combined Medicare and Medicare Advantage revenue",
+      "formula": "5% to 15% x combined Medicare and Medicare Advantage revenue",
+      "target": "",
+      "red_flag": "",
+      "source_cited": "none (described as vendor-observed)"
+    },
+    {
+      "name": "PMPM care-management revenue",
+      "definition": "Per-member-per-month fee revenue from payers that reward PCMH recognition",
+      "formula": "Attributed members x PMPM rate x 12",
+      "target": "",
+      "red_flag": "Buried in 'other income' instead of a dedicated line",
+      "source_cited": "none"
+    },
+    {
+      "name": "Clean claim rate",
+      "definition": "",
+      "formula": "",
+      "target": "97% (used only as an illustration of fee-for-service excellence)",
+      "red_flag": "",
+      "source_cited": "none"
+    },
+    {
+      "name": "Days in accounts receivable",
+      "definition": "",
+      "formula": "",
+      "target": "35 days (used only as an illustration)",
+      "red_flag": "",
+      "source_cited": "none"
+    }
+  ],
+  "numeric_claims": [
+    {
+      "claim": "A practice with a 97% clean claim rate can still forgo 5% to 15% of total Medicare and Medicare Advantage revenue",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "MIPS adjustments run from a -9% penalty to a budget-neutral scaled bonus and apply two years after the performance year",
+      "section": "Introduction; Section 2",
+      "source_cited": "none (statute implied)"
+    },
+    {
+      "claim": "Maximum positive MIPS adjustment was +1.05% for the 2026 payment year (called the lowest ever), +2.15% for 2025, +8.25% for 2024 and +2.34% for 2023",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS projects for the 2028 payment year a median positive adjustment near 1.30% and a median negative adjustment near -1.88%",
+      "section": "Section 2",
+      "source_cited": "CMS projection (document not identified)"
+    },
+    {
+      "claim": "Performance threshold is 75 points, held through the 2028 performance year; the full -9% applies at 18.75 points or lower",
+      "section": "Section 2",
+      "source_cited": "CMS (no citation)"
+    },
+    {
+      "claim": "Category weights are Quality 30%, Cost 30%, Promoting Interoperability 25%, Improvement Activities 15%",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Practices with fewer than 16 clinicians are reweighted to Quality 40%, Cost 30%, Improvement Activities 30%, Promoting Interoperability 0%",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Data completeness must reach at least 75% for each quality measure",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS finalized 27 MVPs for 2026, six of them new (diagnostic radiology, interventional radiology, neuropsychology, pathology, podiatry, vascular surgery)",
+      "section": "Section 2",
+      "source_cited": "CMS (no citation)"
+    },
+    {
+      "claim": "APM incentive payment was 5% through the 2024 payment year, 3.5% for 2025, 1.88% for 2026, and nothing afterwards",
+      "section": "Section 2",
+      "source_cited": "none (MACRA and Congress named)"
+    },
+    {
+      "claim": "From 2026 qualifying participants get a 0.75% annual conversion-factor update versus 0.25% for others; the 2026 factors are $33.5675 and $33.4009, up 3.77% and 3.26% from $32.3465",
+      "section": "Section 2",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Forty clinicians at $200,000 each ($8,000,000 of Part B) face a MIPS swing of about $804,000 to $907,200; a solo practice at $150,000 risks $13,500",
+      "section": "Introduction",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "$500,000 of Part B billing implies a $50,250 to $56,700 swing; $2,000,000 implies $201,000 to $226,800; an $800,000 surgical practice $80,400 to $90,720",
+      "section": "Section 2; Section 9",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "MSSP has 476 ACOs, more than 650,000 providers and 11.2 million beneficiaries",
+      "section": "Section 1",
+      "source_cited": "'most recent CMS reporting' (undated)"
+    },
+    {
+      "claim": "ACO REACH High Needs minimum beneficiary threshold rose from 1,000 to 1,250 for the 2026 performance year",
+      "section": "Section 1",
+      "source_cited": "none"
+    },
+    {
+      "claim": "New MSSP agreements starting January 1, 2027 allow at most five years in an upside-only track",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "ACOs report under the APP Plus measure set from performance year 2025; the health equity adjustment was removed from 2026 quality scoring",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "CMS introduced a prepaid shared savings option starting with performance year 2025",
+      "section": "Section 3",
+      "source_cited": "none"
+    },
+    {
+      "claim": "V24 had 86 HCC categories and 9,797 mapped diagnosis codes; V28 has 115 categories and 7,770 codes (net -2,027)",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "V28 lowers average risk scores by 3.12% relative to V24",
+      "section": "Section 4",
+      "source_cited": "none"
+    },
+    {
+      "claim": "RADV audits resumed under a January 27, 2026 HPMS memo covering payment years 2018 to 2024",
+      "section": "Section 4",
+      "source_cited": "HPMS memo named by date only"
+    },
+    {
+      "claim": "The Department of Justice announced a $117.7 million False Claims Act settlement with Aetna/CVS Health in March 2026 over an add-only chart review program",
+      "section": "Section 4",
+      "source_cited": "Department of Justice (no link or case reference)"
+    },
+    {
+      "claim": "With 400 Medicare Advantage patients at a $900 base rate, RAF 1.20 pays about $1,080 a month versus $810 at 0.90 ($3,240 a year); a 0.15 average gap costs $65,000 to $130,000 a year",
+      "section": "Section 4",
+      "source_cited": "none (illustrative)"
+    },
+    {
+      "claim": "A practice with 500 Medicare Advantage patients whose RAF is understated by 0.15 forgoes $75,000 to $125,000 a year",
+      "section": "Introduction",
+      "source_cited": "none"
+    },
+    {
+      "claim": "The vendor has observed annual risk-adjustment gaps of roughly $50,000 to $200,000 in independent practices with modest Medicare Advantage panels",
+      "section": "Section 4",
+      "source_cited": "vendor observation, no data"
+    },
+    {
+      "claim": "Each 0.1 of missed RAF is worth about $400 to $800 per patient per year",
+      "section": "Section 10",
+      "source_cited": "none (planning estimate)"
+    },
+    {
+      "claim": "PCMH care-management fees run about $2 to $15 per member per month; 800 patients at $5 yields $48,000 a year",
+      "section": "Section 5",
+      "source_cited": "none"
+    },
+    {
+      "claim": "An Annual Wellness Visit yields about $180 in fee-for-service revenue; 300 visits (60% of 500 eligible) yield about $54,000",
+      "section": "Section 6",
+      "source_cited": "none"
+    },
+    {
+      "claim": "A physician 40% below benchmark on diabetic nephropathy capture can represent a $35,000 annual capitation difference",
+      "section": "Section 9",
+      "source_cited": "none"
+    },
+    {
+      "claim": "Value-based opportunity is typically 5% to 15% of Medicare plus Medicare Advantage revenue; $1,500,000 of such revenue implies $75,000 to $225,000",
+      "section": "Section 10",
+      "source_cited": "vendor observation, no data"
+    }
+  ],
+  "checkable_claims": [
+    {
+      "id": "C1",
+      "claim": "Small practices - fewer than 16 clinicians in the practice's MIPS-eligible group - receive automatic reweighting ... Promoting Interoperability drops to 0%, ... Quality rises to 40% and Improvement Activities to 30%, keeping Cost at 30%.",
+      "kind": "program_rule",
+      "stakes": "high",
+      "section": "Section 2: MIPS and APM Payment Adjustments",
+      "why": "Sets how a two-clinician practice's score is built (quality 40%, activities 30%). If the conditions are misstated (for example, submitting interoperability data cancels the reweighting), category planning and the final score are wrong."
+    },
+    {
+      "id": "C2",
+      "claim": "CMS has finalized 75 points as the MIPS performance threshold and will maintain it through the 2028 performance year ... Below 75, the payment adjustment scales down linearly, reaching the full -9% cap at scores of 18.75 points or lower.",
+      "kind": "penalty",
+      "stakes": "high",
+      "section": "Section 2: MIPS and APM Payment Adjustments",
+      "why": "Defines the penalty line and the full 9% cut. A wrong threshold or scale misprices the practice's largest value-based downside, on the order of $50,000 a year at its Medicare volume."
+    },
+    {
+      "id": "C3",
+      "claim": "there is no lump-sum APM bonus for the 2025 performance year or later under current law ... For CY2026, this produced a final conversion factor of $33.5675 for QPs ... versus $33.4009 for non-QPs",
+      "kind": "payment_rate",
+      "stakes": "medium",
+      "section": "Section 2: MIPS and APM Payment Adjustments (APM Exception box)",
+      "why": "Bonus status and the conversion-factor differential drive the value of joining an Advanced APM and anchor Medicare revenue budgeting; the 'current law' statement may have been overtaken by 2026 legislation."
+    },
+    {
+      "id": "C4",
+      "claim": "MVP registration must be completed before the performance year begins - a practice cannot retroactively elect an MVP pathway partway through the year.",
+      "kind": "deadline",
+      "stakes": "medium",
+      "section": "Section 2: MIPS Value Pathways; repeated in Checklist 1",
+      "why": "If registration actually runs during the performance year, as I believe, a practice following this would wrongly think an MVP is closed to it or would miss the real window."
+    },
+    {
+      "id": "C5",
+      "claim": "Improvement Activities 15% - Attestation-based; at least one high-weighted or two medium-weighted activities the practice is actually performing.",
+      "kind": "program_rule",
+      "stakes": "medium",
+      "section": "Section 2: The Four Performance Categories; repeated in Checklist 1",
+      "why": "Improvement activities are 30% of a reweighted small practice's score. I believe activity weighting was abolished from 2025; attesting to the wrong number or type of activities risks the category or wastes effort."
+    },
+    {
+      "id": "C6",
+      "claim": "Maximum positive adjustment actually paid: +1.05% for the 2026 payment year (the lowest in the program's history); 2025 payment year +2.15%; 2023 payment year +2.34%; and an anomalous spike to +8.25% for the 2024 payment year.",
+      "kind": "statistic",
+      "stakes": "medium",
+      "section": "Section 2: The Performance Threshold",
+      "why": "These figures carry the document's whole MIPS economic argument and every 'realistic swing' example; if invented or misremembered, the upside sizing is unreliable."
+    },
+    {
+      "id": "C7",
+      "claim": "A practice still coding to V24-era habits - documenting 'chronic kidney disease' without a stage, or 'diabetes' without a documented complication - is systematically under-capturing RAF for its MA panel",
+      "kind": "code_rule",
+      "stakes": "medium",
+      "section": "Section 4: The V28 Transition",
+      "why": "This is the document's core coding advice. I believe V28 pays the same for diabetes with or without complications, so training built on it chases documentation that changes nothing and invites upcoding pressure."
+    },
+    {
+      "id": "C8",
+      "claim": "CMS resumed Risk Adjustment Data Validation (RADV) audit activity under a January 27, 2026 HPMS memo, covering payment years 2018 through 2024 ... unsupported diagnoses are recouped, sometimes with extrapolated penalties across the broader patient population.",
+      "kind": "regulatory",
+      "stakes": "medium",
+      "section": "Section 4: RADV Audit Resumption",
+      "why": "Describes the audit exposure behind all the compliance advice. The memo date is unverified and I recall a court vacating the extrapolation rule in 2025; wrong facts here misstate legal risk."
+    }
+  ],
+  "domain_map": [
+    {
+      "domain": "quality-value",
+      "weight": 0.43,
+      "topics": [
+        "MIPS scoring and payment adjustments",
+        "MVPs and QP status",
+        "ACO shared savings and attribution",
+        "risk adjustment accuracy",
+        "quality measure capture",
+        "PCMH bonuses",
+        "wellness-visit gap closure"
+      ]
+    },
+    {
+      "domain": "rcm-charge-coding",
+      "weight": 0.12,
+      "topics": [
+        "diagnosis specificity",
+        "chronic-condition recapture",
+        "documentation support for coded conditions",
+        "claims-based quality codes",
+        "coding audit extended to HCC"
+      ]
+    },
+    {
+      "domain": "compliance-risk",
+      "weight": 0.12,
+      "topics": [
+        "two-way chart review",
+        "False Claims Act exposure in risk adjustment",
+        "RADV readiness",
+        "unsupported diagnosis removal",
+        "qualified coder oversight"
+      ]
+    },
+    {
+      "domain": "payers-contracts",
+      "weight": 0.1,
+      "topics": [
+        "Medicare Advantage risk contracts",
+        "ACO participation agreements",
+        "distribution formulas",
+        "absolute versus relative benchmarks",
+        "annual payment-policy changes"
+      ]
+    },
+    {
+      "domain": "technology-data-ai",
+      "weight": 0.08,
+      "topics": [
+        "claims, EHR and payer data sources",
+        "CCLF files",
+        "EHR template configuration",
+        "QPP portal",
+        "diagnose before buying analytics tools"
+      ]
+    },
+    {
+      "domain": "financial-management",
+      "weight": 0.06,
+      "topics": [
+        "separate revenue lines for value-based payments",
+        "per-member payment tracking",
+        "two-year MIPS lag in forecasts",
+        "prepaid shared savings cash flow"
+      ]
+    },
+    {
+      "domain": "clinical-operations",
+      "weight": 0.04,
+      "topics": [
+        "wellness-visit workflow and outreach",
+        "structured documentation at point of care",
+        "telehealth for quality-critical visits"
+      ]
+    },
+    {
+      "domain": "people-compensation",
+      "weight": 0.02,
+      "topics": [
+        "value-based coordinator role",
+        "administrator ownership",
+        "clinician engagement and education"
+      ]
+    },
+    {
+      "domain": "rcm-claims-ar",
+      "weight": 0.02,
+      "topics": [
+        "timely primary-care claims for attribution",
+        "denial data as a documentation-gap signal"
+      ]
+    },
+    {
+      "domain": "strategy-governance",
+      "weight": 0.01,
+      "topics": [
+        "participation decision",
+        "quarterly and annual operating rhythm"
+      ]
+    }
+  ],
+  "adopt": [
+    {
+      "idea": "Run MIPS as a penalty-avoidance program: size the exposure as up to 9% of Medicare Part B payments two years out, aim for at least the performance threshold, and budget any bonus at 1% to 2%.",
+      "why": "The downside is several times the realistic upside, so effort belongs on securing threshold points, not on chasing a top score.",
+      "applies_to_practice": "yes",
+      "note": "With roughly 55% Medicare fee-for-service on $1.0-1.1 million, a full penalty would be on the order of $50,000 a year. Confirm eligibility, small-practice status and reporting options on the QPP site first."
+    },
+    {
+      "idea": "Add a monthly value-based scorecard beside the fee-for-service dashboard: estimated MIPS score, wellness-visit completion, chronic-condition recapture, payer or ACO quality standing, and deadlines due within 90 days.",
+      "why": "These revenues fail silently (no denial, no aging bucket), and by year-end the reporting windows have closed.",
+      "applies_to_practice": "yes",
+      "note": "Fits an AI-agent billing operation well. The document supplies only five headings, so the layout, data sources and a mid-year MIPS score estimator have to be built."
+    },
+    {
+      "idea": "Give non-claim and adjustment revenue its own lines in the books: MIPS adjustments, shared savings, capitation or per-member fees, payer quality bonuses.",
+      "why": "Lumped into 'other income', no one can tell which program earns its keep; a CFO needs program-level visibility.",
+      "applies_to_practice": "yes",
+      "note": "Extend to medical-director stipends and any Medicare Advantage incentive payments. MIPS adjustments arrive inside claim payments, so posting rules must tag them from remittance codes; the document does not explain how."
+    },
+    {
+      "idea": "Reassess every chronic condition at least once a year, anchored on the wellness or comprehensive visit, document current clinical support, and code to the most specific diagnosis.",
+      "why": "Risk scores are rebuilt each year from that year's encounters; conditions not addressed and coded drop out.",
+      "applies_to_practice": "partly",
+      "note": "The practice appears to be paid fee-for-service by its Medicare Advantage plans, so the capitation math does not reach it directly. Value comes through plan incentive programs, any future ACO or institutional special-needs-plan arrangement, and accurate records. Never code for payment alone."
+    },
+    {
+      "idea": "Make chart review two-way: every review looks for unsupported diagnoses to remove as well as missed ones to add, with a qualified coder overseeing.",
+      "why": "One-way, add-only reviews are the pattern federal enforcers have pursued under the False Claims Act.",
+      "applies_to_practice": "yes",
+      "note": "Write it into AI-agent governance as a hard rule: any agent that proposes diagnoses must also flag unsupported ones, with human sign-off."
+    },
+    {
+      "idea": "Fold diagnosis-support review into the existing coding audit: sample encounters, test each coded chronic condition for documentation support and specificity, and report compliance risk and missed capture separately.",
+      "why": "One audit program yields both outputs and avoids a separate initiative.",
+      "applies_to_practice": "yes",
+      "note": "The document suggests a semi-annual sample but gives no sample size or scoring rubric."
+    },
+    {
+      "idea": "Before joining or renewing any ACO, risk or incentive contract, read the agreement itself for attribution rules, minimum savings rate, sharing rate, downside exposure, distribution formula, and whether benchmarks are absolute or relative.",
+      "why": "The distribution formula, not practice performance alone, decides what is paid; relative benchmarks can cut payment even while performance improves.",
+      "applies_to_practice": "yes",
+      "note": "Directly useful for evaluating ACO offers and Medicare Advantage amendments, and a ready due-diligence checklist for a consulting service."
+    },
+    {
+      "idea": "Protect attribution with billing hygiene: bill primary-care services promptly under the correct participating tax ID and clinician, and tell patients about voluntary alignment.",
+      "why": "Attribution is driven by claims; billing gaps can assign a patient the practice treats to someone else.",
+      "applies_to_practice": "partly",
+      "note": "A facility-based practice needs the program-specific rules on which visit codes and places of service count toward assignment; the document does not cover them."
+    },
+    {
+      "idea": "Before buying any analytics or reporting product, decide whether the problem is missing data, a workflow that does not act on data, or lack of visibility.",
+      "why": "A dashboard cannot fix information that was never captured in usable form.",
+      "applies_to_practice": "yes",
+      "note": "A sound general rule for the practice's own technology spending and for advising other practices."
+    },
+    {
+      "idea": "Calendar the value-based year: verify eligibility and special statuses at least twice a year, choose measures in the fourth quarter against new benchmarks, and track submission and exception deadlines.",
+      "why": "Eligibility and benchmarks change annually, and missed windows cannot be reopened.",
+      "applies_to_practice": "yes",
+      "note": "Check every date against the QPP site; the document's statement on MVP registration timing looks wrong."
+    }
+  ],
+  "practice_relevance": {
+    "score": 3,
+    "why": "MIPS almost certainly applies to a two-clinician practice with about 55% Medicare fee-for-service, and the penalty exposure is material, so Section 2 and the MIPS checklist matter. But the small-practice specifics this practice would actually use (claims-based quality codes, small-practice bonus and scoring floors, hospital-based or facility-based special statuses, geriatric measure choices) are thin or wrong. The Medicare Advantage capitation and PCMH material assumes an office-based primary-care panel under delegated risk; this practice is facility-based and, as far as the context shows, paid fee-for-service by its plans. Nothing addresses nursing-facility attribution, institutional special needs plans, the institutional risk model, Medicaid managed care, dual-eligibles, VA or Tricare. Its value is as a conceptual map, for the CFO view (separate revenue lines, contract reading, two-year MIPS lag), and as a module outline for a consulting service.",
+    "sections_that_do_not_apply": [
+      "Section 5: PCMH Qualification and Quality Bonus Revenue (no office-based panel or PCMH recognition)",
+      "Section 4 capitation worked examples (assume delegated risk or percent-of-premium contracts)",
+      "Section 3 shared-savings mechanics (apply only if the practice joins an ACO)",
+      "ACO REACH discussion in Section 1",
+      "Six new specialty MVPs in Section 2",
+      "Section 9 notes for surgical, behavioral health and rural practices",
+      "40-clinician worked example in the Introduction"
+    ]
+  },
+  "quality": {
+    "score": 3,
+    "specificity": 3,
+    "accuracy_concerns": [
+      "MVP registration: the document says it must be completed before the performance year starts. As I understand QPP rules, registration opens around April 1 and closes around November 30 of the performance year itself. The error appears twice (Section 2 and Checklist 1).",
+      "Improvement activities: 'one high-weighted or two medium-weighted' reflects rules that ended after 2024. Weighting was removed for 2025 onward (two activities, or one for small, rural or non-patient-facing practices and MVP reporters).",
+      "Quality scoring: says topped-out or high-priority measures can earn an extra bonus point. Those bonuses ended after the 2021 performance year, and topped-out measures are generally capped at 7 points, the opposite of a bonus.",
+      "The claim that eCQMs get 'flat benchmarks' for their first two years does not match MIPS scoring as I know it; it looks like a conflation of new-measure scoring floors with the flat benchmarks used for certain measures in the ACO pathway.",
+      "Claims-based quality reporting is described as derived from codes already on the claim. In MIPS, Part B claims reporting requires adding quality data codes to each eligible claim and is open only to small practices; neither point is stated.",
+      "MSSP participation and assignment are described at the NPI level ('NPI not registered with the ACO'). MSSP works at the tax-ID level; the real failure mode is billing under a non-participant TIN. Voluntary alignment is a beneficiary option program-wide, not something 'some ACOs use'.",
+      "Prepaid shared savings is dated to performance year 2025; as I recall the option was finalized in the 2025 rule with first payments from January 1, 2026.",
+      "QP status is said to bring 'use of the simplified APM Performance Pathway'. That pathway is a MIPS reporting option for APM participants who are not exempt, so the sentence is confused.",
+      "Medicare Advantage risk adjustment is presented as a same-year effect. The model is prospective: diagnoses from one calendar year set payment for the next. The cash-timing point a revenue-cycle guide should teach is missing.",
+      "The V28 example uses V24 logic. Under V28, diabetes with and without complications carries the same weight, so 'diabetes without a documented complication' is not an under-capture of the diabetes category (kidney-disease staging does matter). The $35,000 'diabetic nephropathy' example inherits the flaw.",
+      "MEAT is presented as the standard CMS audits apply. It is an industry convention (usually Monitor, Evaluate, Assess, Treat), not a CMS-defined rule; auditors apply coding guidelines and medical-record requirements.",
+      "RADV: the 'January 27, 2026 HPMS memo' is unverified, and extrapolation is described as live with no mention that a federal district court vacated the 2023 RADV rule in September 2025 (as I recall). RADV audits target plans; practices feel them through record requests and contract terms.",
+      "'2024 expansion of definitive drug testing into HCC mapping' is not a real policy as far as I know; drug-testing laboratory codes have nothing to do with diagnosis-based risk categories. Treat as fabricated.",
+      "The statement that remission-status mental health diagnoses lost HCC credit is overgeneralized; it holds for major depression in remission but not across all psychiatric conditions.",
+      "Capitation dollars are presented as practice revenue. Most independent practices paid fee-for-service by Medicare Advantage plans receive none of the plan's risk-adjusted premium unless a risk or incentive contract says so; the document never draws this line.",
+      "A wellness visit is valued at about $180. National Medicare rates for the far more common subsequent wellness visit are well below that unless add-on services are assumed; verify against the local fee schedule.",
+      "Says a neutral MIPS adjustment 'costs nothing' beyond timely, complete reporting. Reaching 75 points takes measured performance; many small and solo practices have been penalized despite reporting.",
+      "Recalculating net collection rate with value-based payments in numerator and denominator is methodologically unsound: it blends non-claim revenue into a claim-level diagnostic and inflates it.",
+      "Maximum positive adjustment for the 2024 payment year is given as 8.25% (CMS reported 8.26% as I recall); the 1.05% figure for 2026 and the 'CMS projection' medians carry no source.",
+      "'No lump-sum APM bonus under current law' may be wrong as of the September 2026 generation date; I recall the February 2026 appropriations law restoring a reduced bonus for the 2026 performance year. Verify.",
+      "The Closing's claim that better HCC capture raises next year's benchmark and earnings ignores MSSP caps on risk-score growth and Medicare Advantage normalization and coding-intensity adjustments.",
+      "The ACO REACH High Needs threshold change (1,000 to 1,250) is unverified."
+    ],
+    "generic_filler": "medium",
+    "internal_contradictions": [
+      "Risk-adjustment dollar conversions disagree by roughly four to ten times: Introduction (500 patients, 0.15 gap = $75,000-$125,000); Section 4 (400 patients, 0.15 gap, $900 base = $65,000-$130,000, although its own arithmetic gives about $648,000); Section 10 ($400-$800 per 0.1 RAF per patient, which is $240,000-$480,000 for 400 patients).",
+      "Section 2 says the top bonus ran far below 9% in every recent payment year, then lists 8.25% for the 2024 payment year in the same sentence; the 'realistic range' used in every worked example silently drops that year.",
+      "Says small practices get automatic Promoting Interoperability reweighting, yet the plan and checklist tell the practice to file a hardship exception and to submit the e-prescribing measure, without warning that submitting data cancels the automatic reweighting.",
+      "Timing of risk-score effects: Section 4 implies a same-year payment impact; the Closing says improved capture pays off next year.",
+      "HCC capture rate is defined two ways: documented with current-year support (Section 9) versus merely coded on a claim once in the year (Checklist 2).",
+      "Cross-references overpromise: Section 3 says Section 9 covers how to read the ACO agreement, and Section 2 points to Section 7 for real-time MIPS monitoring; each gets one short paragraph and no method.",
+      "Front matter calls the worked-example dollars illustrative, while the body presents the same ranges as what the vendor 'has observed' in practices."
+    ],
+    "time_sensitive_or_outdated": [
+      "All MIPS and fee-schedule content is keyed to the 2026 rule. The 2027 Physician Fee Schedule final rule is normally published around the start of November 2026 and supersedes thresholds, weights, measure lists and conversion factors for 2027 planning; not reflected.",
+      "Improvement-activity weighting (ended after 2024) and quality bonus points (ended after 2021) are stale rules presented as current.",
+      "MSSP size figures (476 ACOs, 11.2 million beneficiaries) match CMS's January 2025 release; 2026 participation figures were available well before September 2026.",
+      "ACO REACH is described as a live alternative with no mention that 2026 is its final performance year or of the successor model CMS announced for 2027 (verify).",
+      "'No APM bonus under current law' and the unstated QP thresholds depend on legislation that changed in early 2026 (verify).",
+      "RADV status is moving (2023 rule vacated in 2025, appeals and CMS audit plans in flux); any statement about years covered or extrapolation needs a current check.",
+      "No mention of the 2027 Medicare Advantage payment policy published in April 2026, which as I recall limits risk-score credit for diagnoses sourced only from chart reviews not linked to an encounter; directly relevant to the retrospective-review advice (verify).",
+      "Telehealth wellness-visit advice depends on Medicare telehealth flexibilities that carry statutory end dates; the document gives none.",
+      "'2015 Edition Cures Update' is superseded certification terminology.",
+      "The maximum-adjustment history stops at the 2026 payment year; results for the 2027 payment year (2025 performance) were likely available by late summer 2026."
+    ],
+    "ai_generation_signals": [
+      "Leftover editing artifacts: a boxed heading that begins 'CORRECTED:' and a bullet promising mechanics 'corrected against' historical outcomes, traces of a revision pass rather than finished copy.",
+      "Self-referential phrasing ('described in this playbook as...', 'repeatedly described throughout this playbook').",
+      "First-hand experience claims ('CCRx has observed', 'in CCRx's experience') from a vendor with no named author, credential or data.",
+      "A HIPAA breach-log deadline dropped into the value-based deadline calendar, apparently carried over from another title.",
+      "A fabricated-sounding rule (definitive drug testing 'into HCC mapping') and a contentless aside on Stark Law for behavioral health.",
+      "Checklist 2 repeats the same V28 code-list and add-and-remove items in two separate blocks.",
+      "Slogan repetition ('Same discipline. Different revenue stream.'), the wellness visit declared the top-leverage encounter three times, and a two-page closing with no new content.",
+      "Cross-sell references to other catalog titles in place of substance (Coding Audit Playbook, KPI Prescription 08, Annual Assessment Guide Domain 8, Telehealth playbook).",
+      "Tidy round-number worked examples and precise-looking statistics with no citations anywhere in 40 pages.",
+      "Awkward machine phrasing ('a performance threshold that resets confusion every reporting cycle')."
+    ],
+    "missing_for_real_use": [
+      "Low-volume threshold values and the opt-in option are never stated, so a reader cannot tell whether MIPS applies.",
+      "No measure IDs, quality data codes or collection-type guidance; nothing on small-practice specifics (claims reporting, quality bonus points, scoring floors) or on hospital-based and facility-based special statuses.",
+      "No mid-year MIPS score estimator or worksheet, although in-year monitoring is the stated fix for every error.",
+      "No layout, data dictionary or sample for the monthly report; no template behind any checklist item.",
+      "No explanation of how MIPS adjustments appear on remittances (adjustment and remark codes) or how to post them to a separate line.",
+      "No targeted-review (score dispute) window or steps.",
+      "No account of how a practice is actually paid for risk-adjustment work: percent-of-premium, gainshare, per-gap or per-assessment incentives, plan Stars and HEDIS bonus programs; no contract-term checklist.",
+      "No risk-adjustment mechanics a coder needs: acceptable provider and visit types, face-to-face rule, audio-only exclusion, model segments (community, institutional, dual status), payment-year timing and submission deadlines.",
+      "No compliance guardrails beyond add-and-delete: no high-risk diagnosis list (history-of versus active cancer, acute stroke or heart attack coded in follow-up care), no clinician query process, no overpayment-refund duty, no policy on diagnoses arising only from wellness visits or health risk assessments.",
+      "Nothing for facility-based care: nursing-facility and assisted-living attribution rules, institutional special needs plans, long-term-institutional risk scores, high-needs ACO models.",
+      "Nothing on Medicaid managed care value-based programs, dual-eligibles, VA, Tricare or commercial programs.",
+      "No link to care-management billing (chronic care management, transitional care, advanced primary care management, advance care planning), the fee-for-service codes most tied to value-based performance.",
+      "No cost side: registry or vendor fees, staff hours, clinician time; no return-on-investment test per program.",
+      "No ACO selection due diligence (track record, fees, data access, exclusivity, exit terms).",
+      "No citations, links or rule references for any number; no author or reviewer credential."
+    ]
+  }
+}
