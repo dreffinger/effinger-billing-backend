@@ -106,7 +106,10 @@ MSGOF = {}                 # one feed message (see msg_key) -> {(building name, 
 #   - the visit was billed and its $0.00 line was left off        -> new lines carry $0.01 (CMS allows either); a new pilot of QUALITY_PILOT;
 #     the patients whose $0.00 line never went out get the code again with their next visit (their dead lines are listed for voiding);
 #   - AdvancedMD refuses the visit with the line, or stores the visit without it -> $0.01 next run; the same at $0.01 -> the code is OFF
-#     until William says to start again (run once with QUALITY_CODE=reset; QUALITY_CODE=off keeps it off for one run).
+#     until William says to start again (run once with QUALITY_CODE=reset; QUALITY_CODE=off keeps it off for one run);
+#   - somebody took the pilot's lines off their visits (void) and none was billed -> OFF the same way: the import never starts a new pilot
+#     over a person's correction. A whole visit that was voided is no outcome either way; its patient is simply due again.
+# Once a line has been seen billed nothing is read back any more: a patient whose coded visit is voided LATER is not coded again that year.
 # Every state is read from the import registers (each run writes "quality_gate"), so a fresh machine knows where things stand.
 QUALITY_CODE = "1123F"; QUALITY_PCODE = "pcode65441"       # AdvancedMD's own id for 1123F (lookupproccode 11/10/2026)
 QUALITY_SAME = {"1123F", "1124F"}                          # either one on the chart in the same year = already reported
@@ -120,7 +123,7 @@ QUALITY_VISITS = set("99304 99305 99306 99307 99308 99309 99310 99341 99342 9934
 # this run's state (main() fills it from the registers). done: (chart, year) already coded; dead: (chart, code, DOS) of $0.00 lines that never
 # went out on a claim; wait: earlier pilot lines whose outcome is still open - no new line this run
 def _quality_fresh(): return {"fee": "0.00", "confirmed": False, "off": "", "wait": False, "added": 0, "done": set(), "dead": set(), "dead_rows": [],
-                              "pending": [], "pending_since": "", "proof": None, "notes": [], "zero_not_billed": False, "reset": False, "twice": 0}
+                              "pending": [], "pending_since": "", "void_lines": [], "proof": None, "notes": [], "zero_not_billed": False, "reset": False, "twice": 0}
 QUALITY = _quality_fresh()
 def _mdy_day(s):
     try: return datetime.datetime.strptime((s or "")[:10], "%m/%d/%Y").date()
@@ -305,12 +308,14 @@ def quality_state(regs, look, reset=False):
     (QUALITY_CODE=reset, William's word) starts the pilot again: refusals and open lines of earlier runs no longer count - but a line that
     exists still counts for 'once per patient per year'. Nothing here can stop the import: the caller turns any error into 'no line this run'."""
     q = _quality_fresh(); fee = "0.00"; off = ""; notes = []; rows = []; allrows = []; confirmed_at = set(); znb_seen = False
+    void_ids = set()                                      # quality lines an earlier run found void: neither open nor reported, never read again
     def _gate(reg): g = reg.get("quality_gate") if isinstance(reg, dict) else None; return g if isinstance(g, dict) else {}
     for name, reg in sorted(regs, key=lambda x: str(x[0])):
         try:
             g = _gate(reg)
             if g.get("reset"): fee = "0.00"; off = ""; rows = []; confirmed_at = set(); znb_seen = False      # the pilot was started again in that run
             if g.get("zero_not_billed"): fee = "0.01"; znb_seen = True
+            if isinstance(g.get("void_lines"), list): void_ids.update(x for x in g["void_lines"] if isinstance(x, str))
             if g.get("confirmed") and g.get("fee") in ("0.00", "0.01"): confirmed_at.add(g["fee"])
             for r in (reg.get("created") if isinstance(reg.get("created"), list) else []):
                 if not isinstance(r, dict): continue
@@ -324,35 +329,44 @@ def quality_state(regs, look, reset=False):
                 elif qc and qid: rows.append((name, r)); allrows.append((name, r))
         except Exception: continue
     if reset: fee = "0.00"; off = ""; rows = []; confirmed_at = set(); znb_seen = False; notes.append("the pilot was started again in this run (QUALITY_CODE=reset)")
-    confirmed = fee in confirmed_at; proof = None; znb = False; wait = False
+    rows = [x for x in rows if x[1].get("quality_charge") not in void_ids]; allrows = [x for x in allrows if x[1].get("quality_charge") not in void_ids]
+    confirmed = fee in confirmed_at; proof = None; znb = False; wait = False; gone = set()
     pending = [(n, r) for n, r in rows if str(r.get("quality_fee") or "0.00") == fee]
     if not confirmed and not off and pending:
         if not look: wait = True; notes.append("dry run: %d earlier quality line(s) were not looked up - a live run reads them" % len(pending))
         else:
-            unknown = max(0, len(pending) - QUALITY_LOOKS)
+            unknown = max(0, len(pending) - QUALITY_LOOKS); removed = 0
             for name, r in pending[:QUALITY_LOOKS]:
-                try: ql = _bills(r.get("quality_charge"), QUALITY_PCODE); first = _bills((r.get("charges") or [None])[0])
+                try:      # the visit's own charge = the first recorded charge that is not the quality line
+                    ql = _bills(r.get("quality_charge"), QUALITY_PCODE); first = _bills(next((c for c in (r.get("charges") or []) if c != r.get("quality_charge")), None))
                 except Exception as e:
                     unknown += 1; notes.append("could not read the earlier quality line of visit %s (%s)" % (r.get("visit"), type(e).__name__)); continue
                 if ql:
                     confirmed = True; proof = {"register": _os.path.basename(str(name)), "visit": r.get("visit"), "charge": r.get("quality_charge"), "billed": ql[0], "fee": fee}; break
-                if ql is None: notes.append("the quality line of visit %s is no longer on the chart (void or changed)" % r.get("visit")); continue
+                if ql is None:                            # the line is void (or no longer that procedure): this patient has no reported code
+                    gone.add(id(r)); void_ids.add(r.get("quality_charge"))
+                    if first is None: notes.append("visit %s is no longer on the chart (void), its quality line with it" % r.get("visit"))
+                    else: removed += 1; notes.append("the quality line of visit %s was taken off the visit (void) while the visit itself is still there" % r.get("visit"))
+                    continue
                 if first:                                 # the visit went out on a claim, its quality line did not
                     if fee == "0.00": znb = True; notes.append("visit %s was billed %s without its $0.00 quality line - new lines carry $0.01" % (r.get("visit"), first[0]))
                     else: off = "AdvancedMD billed visit %s (%s) without its one-cent quality line too - a person has to look" % (r.get("visit"), first[0])
                     break
                 unknown += 1                              # not billed yet: the answer is still out
-            if not confirmed and not znb and not off and unknown: wait = True
+            if not confirmed and not znb and not off:
+                if unknown: wait = True
+                elif removed:      # somebody took the pilot's lines off their visits: no new pilot until a person says so
+                    off = "%d earlier quality line(s) were taken off their visits and none was seen billed - a person says whether to try again (QUALITY_CODE=reset)" % removed
     if znb: fee = "0.01"; znb_seen = True; pending = []
     for name, r in allrows:                               # once per patient per year - from the registers too, whatever the chart history shows
         try:
             d = str(r.get("quality_dos") or r.get("dos") or ""); pid = r.get("pid")
-            if not isinstance(pid, str) or len(d) < 4: continue
+            if not isinstance(pid, str) or len(d) < 4 or id(r) in gone: continue      # a line found void does not count as reported
             if znb_seen and fee == "0.01" and str(r.get("quality_fee") or "0.00") == "0.00":
                 q["dead"].add((pid, QUALITY_CODE, d)); q["dead_rows"].append([pid, r.get("visit"), r.get("quality_charge")])
             else: q["done"].add((pid, d[-4:]))
         except Exception: continue
-    q.update(fee=fee, confirmed=confirmed, off=off, wait=wait, proof=proof, notes=notes, zero_not_billed=znb_seen and fee == "0.01", reset=bool(reset),
+    q.update(fee=fee, confirmed=confirmed, off=off, wait=wait, proof=proof, notes=notes, zero_not_billed=znb_seen and fee == "0.01", reset=bool(reset), void_lines=sorted(void_ids),
              pending=[r.get("visit") for _, r in pending] if (wait or (pending and not confirmed)) else [],
              pending_since=_os.path.basename(str(pending[0][0])) if (pending and not confirmed) else "")
     QUALITY.clear(); QUALITY.update(q)
@@ -710,7 +724,7 @@ def main():
     # 10/29 05:49Z lesson: a live batch whose every line was already in AMD created nothing and so wrote NO import register (verify,
     # inspector, report and the recon then had nothing to read). The register is now always written at the end of a live run, skips included.
     reg["quality_gate"] = {"code": QUALITY_CODE, "fee": QUALITY["fee"], "confirmed": bool(QUALITY["confirmed"]), "proof": QUALITY.get("proof"), "zero_not_billed": bool(QUALITY.get("zero_not_billed")),
-                           "off": QUALITY["off"], "wait": bool(QUALITY.get("wait")), "pending": list(QUALITY.get("pending") or []), "pending_since": QUALITY.get("pending_since") or "", "dead_zero_lines": list(QUALITY.get("dead_rows") or []),
+                           "off": QUALITY["off"], "wait": bool(QUALITY.get("wait")), "pending": list(QUALITY.get("pending") or []), "pending_since": QUALITY.get("pending_since") or "", "dead_zero_lines": list(QUALITY.get("dead_rows") or []), "void_lines": list(QUALITY.get("void_lines") or []),
                            "reset": bool(QUALITY.get("reset")), "pilot_cap": None if QUALITY["confirmed"] else QUALITY_PILOT, "notes": list(QUALITY.get("notes") or [])}
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
     _qn = stats["dry quality"] if dry else stats["quality code 1123F added (advance care plan)"]

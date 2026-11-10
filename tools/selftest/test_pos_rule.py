@@ -514,7 +514,7 @@ out, reg = live(QB); qrows = qrows_of(reg)
 check("live run 1: three visits carry the line; each row keeps the line's charge number last in its charge list and its codes unchanged", len(qrows) == 3 and all(r["cpts"] == ["99309"] and len(r["charges"]) == 2
       and r["quality_charge"] == r["charges"][-1] and r["fees"] == ["1.00"] for r in qrows) and len(reg["created"]) == 5 and "QUALITY 1123F: on x3 visit(s), line amount $0.00, pilot: at most 3 visit(s) until one is seen billed" in out, (reg["created"], out[-300:]))
 check("live run 1: the register records where the quality code stands (pilot, $0.00, nothing known yet)", reg["quality_gate"] == {"code": "1123F", "fee": "0.00", "confirmed": False, "proof": None, "zero_not_billed": False,
-      "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "reset": False, "pilot_cap": 3, "notes": []}, reg.get("quality_gate"))
+      "off": "", "wait": False, "pending": [], "pending_since": "", "dead_zero_lines": [], "void_lines": [], "reset": False, "pilot_cap": 3, "notes": []}, reg.get("quality_gate"))
 out, regp = live(visits("20261103", (4,)), proccode=True); rp_ = qrows_of(regp)
 check("the line's charge number is taken from AdvancedMD's answer by its procedure when the answer names it; the fee list stays one amount per message code", len(rp_) == 1 and rp_[0]["quality_charge"] == rp_[0]["charges"][-1] and rp_[0]["fees"] == ["1.00"] and "charge lines': 1" in out, (regp["created"], out[-200:]))
 RUN1 = reg; keep(RUN1, "20261111T0100Z"); PIL = [num(r["quality_charge"]) for r in qrows]; FIRST = [num(r["charges"][0]) for r in qrows]
@@ -559,8 +559,19 @@ check("a visit is billed without its ONE-CENT line too: the code is switched off
       and "OFF - AdvancedMD billed visit" in out, (regz4["quality_gate"], out[-300:]))
 BILLS.clear(); BILLS[PIL[0]] = {"void": "1"}; BILLS[PIL[1]] = {"void": "1"}; BILLS[PIL[2]] = {"void": "1"}; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
 out, regv = live(visits("20261109", (4,)))
-check("the first lines are no longer on the chart (void): nothing is waited for, nothing is proven - the pilot carries on", regv["quality_gate"]["wait"] is False and regv["quality_gate"]["confirmed"] is False and len(qrows_of(regv)) == 1
-      and sum("no longer on the chart" in n for n in regv["quality_gate"]["notes"]) == 3, regv["quality_gate"])
+check("somebody took the pilot's lines off their visits (void) and none was billed: NO new pilot - the code is off until a person says to try again", qrows_of(regv) == [] and len(regv["created"]) == 1 and regv["quality_gate"]["wait"] is False
+      and "3 earlier quality line(s) were taken off their visits" in regv["quality_gate"]["off"] and sum("taken off the visit" in n for n in regv["quality_gate"]["notes"]) == 3
+      and sorted(regv["quality_gate"]["void_lines"]) == sorted(r["quality_charge"] for r in qrows), regv["quality_gate"])
+keep(regv, "20261112T0100Z"); out, regv2 = live(visits("20261110", (1, 4)), env="reset")
+check("... after QUALITY_CODE=reset the pilot starts again, and a patient whose line was taken off is due again", {r["pid"] for r in qrows_of(regv2)} == {"pat401", "pat404"} and regv2["quality_gate"]["off"] == "" and regv2["quality_gate"]["reset"] is True, (regv2["quality_gate"], [r["pid"] for r in qrows_of(regv2)]))
+BILLS.clear(); [BILLS.__setitem__(c, {"void": "1"}) for c in PIL + FIRST]; clear_regs(); keep(RUN1, "20261111T0100Z"); charts0()
+out, regw = live(visits("20261109", (1, 2, 3, 4)))
+check("the pilot's whole visits were voided: no outcome either way - the pilot carries on with three visits, and those patients are due again", len(qrows_of(regw)) == 3 and regw["quality_gate"]["off"] == "" and regw["quality_gate"]["wait"] is False
+      and regw["quality_gate"]["confirmed"] is False and sum("no longer on the chart (void)" in n for n in regw["quality_gate"]["notes"]) == 3 and {r["pid"] for r in qrows_of(regw)} <= {"pat401", "pat402", "pat403", "pat404"}, regw["quality_gate"])
+swap = json.loads(json.dumps(RUN1)); [r.update(charges=[r["quality_charge"], r["charges"][0]]) for r in swap["created"] if r.get("quality_charge")]
+BILLS.clear(); BILLS[FIRST[0]] = ["11/11/2026"]; clear_regs(); keep(swap, "20261111T0100Z"); charts0()
+out, regx = live(visits("20261109", (4,)))
+check("the visit's own charge is found whatever the order of the recorded charge numbers (a visit billed without its $0.00 line is still seen)", regx["quality_gate"]["zero_not_billed"] is True and regx["quality_gate"]["fee"] == "0.01", regx["quality_gate"])
 BILLS.clear()
 many = {"created": [dict(qrows[0], pid="pat5%02d" % i, visit="vst9%02d" % i, quality_charge="charge99%02d1" % i, charges=["charge99%02d0" % i, "charge99%02d1" % i]) for i in range(8)], "skipped": [], "failed": []}
 clear_regs(); keep(many, "20261111T0100Z"); out, regm = live(visits("20261109", (4,)))

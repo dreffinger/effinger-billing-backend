@@ -105,7 +105,9 @@ those lines was billed to insurance - the import reads that itself (two reads pe
 the line. If AdvancedMD bills a visit and leaves the $0.00 line off, the import switches to one cent, starts a new pilot of 3 and lists the
 dead $0.00 lines for voiding (voiding them is ordinary charge clean-up; it is not urgent and never part of this step). If AdvancedMD refuses
 a visit that carries the line, the import enters the same visit without it (`QUALITY CODE NOT ACCEPTED`) - unless the chart then shows part
-of that visit, in which case nothing is sent again and the visit is named at the top of the report for entry by hand.
+of that visit, in which case nothing is sent again and the visit is named at the top of the report for entry by hand. If somebody voids
+the pilot's quality lines (for example to free a held visit) and none was billed, the import switches the code OFF and says so; it stays
+off until William says to try again.
 NEVER: add, move or remove a quality line by hand; hold a visit for it; bypass, rework or resend anything because of it. On a Medicare
 remittance, reason 246 with remark N620 on a 1123F line means Medicare counted the code: no work, no appeal, and a one-cent charge on that
 line is contractual. If the Claim Inspector holds a visit and its message names 1123F or a zero or one-cent charge, copy the pattern number
