@@ -718,13 +718,15 @@
     "The buyer values the target on earnings after a market wage for clinicians, not on revenue.",
     "Diligence covers coding patterns, receivables, payer contracts, enrollment and compliance history.",
     "The deal is structured so the buyer does not inherit past billing liabilities.",
-    "A plan exists for keeping the seller's patients, staff and referral sources."
+    "A plan exists for keeping the seller's patients, staff and referral sources.",
+    "The price is fair market value for the practice itself, with nothing added for referrals the seller may send afterward."
    ],
    "failure_modes": [
     "Paying for revenue that leaves with the selling physician.",
-    "Inheriting an overpayment liability because the deal was a stock purchase with no protection.",
-    "Enrollment under the new owner is not in place at closing, and billing stops.",
-    "The purchase is financed with debt the combined practice cannot carry."
+    "Buying the seller's company (a stock purchase) with no protection, and inheriting its billing history. Medicare overpayments must be returned if identified within six years of receipt (42 CFR 401.305).",
+    "Enrollment under the new owner is not filed by closing, so claims wait. Medicare pays from the filing date of an approved application, but some plans pay nothing before approval.",
+    "The purchase is financed with debt the combined practice cannot carry.",
+    "Paying above fair market value to a seller who will keep referring patients, which can be treated as paying for referrals under the kickback statute."
    ],
    "key_questions": [
     "How much of the target's revenue depends on the seller personally?",
@@ -742,35 +744,52 @@
     },
     {
      "action": "Run billing and compliance diligence",
-     "detail": "Code distribution against national data, aged receivables, payer mix, audits, refunds and enrollment files.",
+     "detail": "Code distribution against national Medicare data, aged receivables, payer mix, audits, refunds and enrollment files. Privacy rules allow record review for a practice sale as due diligence (45 CFR 164.501), limited to what is needed.",
      "cadence": "per event",
      "effort": "high",
      "impact": "high"
     },
     {
      "action": "Prefer an asset purchase with protections",
-     "detail": "Escrow or holdback for billing liabilities, and the seller's commitment to stay through a transition.",
+     "detail": "Buy the assets, not the company. Hold part of the price in escrow against billing liabilities, and get the seller's commitment to stay through a transition.",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     },
     {
-     "action": "File enrollment changes before closing",
-     "detail": "Medicare billing privileges cannot be sold. A new owner or tax identity needs its own enrollment.",
+     "action": "File Medicare and plan enrollment for the new ownership on time",
+     "detail": "A Medicare billing number cannot be sold or lent (42 CFR 424.550). Report an ownership change within 30 days. A new tax ID needs a new application, filed no more than 60 days ahead. Ask each plan about contract assignment.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Test the financing before signing",
+     "detail": "Normalized earnings must cover yearly loan payments with room to spare. Lenders using Small Business Administration guarantees require coverage of at least 1.15 and normally 10% of the cost from the buyer (SOP 50 10 8.1).",
      "cadence": "per event",
      "effort": "medium",
      "impact": "high"
     }
    ],
-   "applies_when": "Practices with the management capacity and cash to absorb another. Not advisable while the buyer's own billing or leadership depends on one person.",
+   "applies_when": "Practices with the management capacity and cash to absorb another, and not while the buyer's own billing or leadership depends on one person. When the target is facility-based, its value rests on facility relationships and residents' choice of physician, neither of which the seller owns or can transfer.",
    "sources": [
     "scope-2025",
     "iconic-multiples",
+    "pya-checklist-2010",
+    "cms-puf",
     "cfr-424-550",
-    "pya-checklist",
-    "cfr-401-305"
+    "cfr-424-516",
+    "cfr-424-520",
+    "cfr-424-526",
+    "cfr-401-305",
+    "cfr-1001-952",
+    "cfr-164-501",
+    "cfr-164-502",
+    "sba-sop-50-10",
+    "mgma-stat-cred-2021",
+    "fl-456-057"
    ],
-   "evidence_note": "Price evidence comes from broker and research summaries of small transactions. Enrollment and overpayment rules are federal regulation. Diligence lists are professional practice.",
+   "evidence_note": "Price evidence comes from broker and research summaries of small transactions, not audited data. Enrollment, overpayment and privacy rules are federal regulation. In Florida, a physician who retires or leaves must notify patients and the board where records are held (section 456.057).",
    "metrics": [
     {
      "slug": "gm-acquisition-payback",
@@ -781,12 +800,25 @@
      "direction": "lower",
      "cadence": "annual",
      "benchmark_typical": "3 to 6 years for small primary care practices",
-     "benchmark_note": "Equivalent to the earnings multiple paid. Reported sales of small primary care practices run 3 to 6 times earnings (Scope Research, 2025). A payback longer than that needs a strategic reason.",
+     "benchmark_note": "Equivalent to the earnings multiple paid. Scope Research (2025) reports 3 to 6 times yearly earnings for small primary care practices, underlying deals not shown. Marketplace sales of medical practices, 2021 to 2025, had a median of 2.05 times earnings before owner's pay (Iconic).",
      "confidence": "medium",
      "data_hint": "The purchase agreement and the acquired practice's results after closing.",
      "sources": [
-      "scope-2025"
-     ]
+      "scope-2025",
+      "iconic-multiples"
+     ],
+     "vendor_claim": "Primary care practices sell for about 3 to 5 times yearly earnings before interest, taxes and depreciation, and independent practices generally for 2 to 6 times.",
+     "vendor_verdict": "Partly supported. Scope Research reports 3 to 6 times for small primary care practices. The library cites no source and never deducts a market wage for the owner."
+    }
+   ],
+   "vendor_refs": [
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Seven-area billing diligence list, pre-close timeline and day-one checklist. Treats the 30 to 90 day Medicare enrollment gap as lost revenue, though payment can run from the application filing date."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Lists value drivers and earnings multiples by practice type. Multiples have no source, and earnings are never reduced by a market wage for the owner, which overstates the price."
     }
    ]
   }

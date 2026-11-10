@@ -922,7 +922,7 @@
    "failure_modes": [
     "One trusted employee opens mail, posts payments, makes deposits and reconciles the account.",
     "Write-offs and adjustments are used to hide diverted payments.",
-    "A fictitious vendor or employee is paid for years.",
+    "A fictitious vendor or employee is paid for years, or patient refunds go to an employee's own card.",
     "Automated processes post and adjust with no human review."
    ],
    "key_questions": [
@@ -959,14 +959,30 @@
      "cadence": "monthly",
      "effort": "low",
      "impact": "high"
+    },
+    {
+     "action": "Run an unannounced spot check each quarter",
+     "detail": "Trace a sample of deposits, refunds, write-offs and vendor payments back to source documents. Tell staff that checks happen, but not when.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
     }
    ],
-   "applies_when": "Every practice. The smaller the staff, the harder it is to separate duties and the more the owner's own monthly review matters. The same logic applies to vendors and to automated billing.",
+   "applies_when": "Every practice. The smaller the staff, the harder it is to separate duties and the more the owner's own monthly review matters. The same logic applies to vendors and to automated billing. Practices with no front desk handle little cash, so the exposure moves to adjustments, refunds, vendor payments and payroll.",
+   "vendor_refs": [
+    {
+     "item": "kpi-07-write-off-rate-by-reason",
+     "note": "Adds a write-off approval log and a 30-account audit of approvals. Sees unapproved write-offs as lost revenue and posting errors, never as cover for theft. Dollar tiers are unsourced."
+    }
+   ],
    "sources": [
     "amednews-embezzlement-2011",
+    "mgma-embezzlement-2026",
+    "acfe-rttn-2026",
+    "aafp-vital-signs",
     "sba-finances"
    ],
-   "evidence_note": "An MGMA survey reported in 2011 found that nearly 83% of 688 practice managers had worked in a practice that suffered embezzlement. Control design is standard accounting practice.",
+   "evidence_note": "Nearly 83% of 688 practice managers in a 2010 Medical Group Management Association survey had seen employee theft at a practice. The Association of Certified Fraud Examiners' 2026 study of 2,402 cases blamed missing controls for a third and absent management review for 18%.",
    "metrics": [
     {
      "slug": "fm-adjustments-reviewed",
@@ -976,9 +992,11 @@
      "unit": "percent",
      "direction": "higher",
      "cadence": "monthly",
-     "benchmark_note": "No reliable public benchmark was found. Compare with your own trend. The target from first principles is 100%.",
+     "benchmark_note": "No public benchmark was found. The target from first principles is 100%: every write-off, refund or manual adjustment above the limit carries the sign-off of someone who did not post it.",
      "confidence": "none",
-     "data_hint": "The billing system's adjustment report for the month."
+     "data_hint": "The billing system's adjustment report for the month.",
+     "vendor_claim": "No write-off above the dollar limit without documented approval: supervisor sign-off above $100 to $250, billing manager sign-off above $500 to $1,000.",
+     "vendor_verdict": "Partly supported: approval limits are standard control practice. The dollar tiers have no source and assume a billing office with supervisors."
     }
    ]
   }
