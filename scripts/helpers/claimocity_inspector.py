@@ -19,6 +19,12 @@
 #   ({visit, pid, charge, fee, why, void_ok, released, at}); the import reads it (one refusal when the visit then went through). A void that
 #   fails = nothing else is tried, the visit is held with its line ("quality": true). A visit still listed after the line is gone is held
 #   for its own reason, as before. Held rows say "quality": true when the visit still carries the line, "names_line": true when the words name it.
+# THE OPTION CODE M0004 (William 11/10/2026: "use it"; it rides once per clinician with the 1123F line, after proof): the same for its no-charge
+#   line - an edit that names M0004 / pcode692183 is never bypassed, and the step takes BOTH no-charge lines off when the edits name neither or
+#   both, only the one that is named when they name one (claimocity_import.names_lines: words about a zero amount name the line whose code is not
+#   named). Each line is known by its OWN procedure in its own detail (1123F pcode65441, M0004 pcode692183, at most one cent) - never a visit's own
+#   charge, also when the import recorded the two the other way round. One "quality_removed" entry PER line, with its "code"; held rows say
+#   "mvp": true while the visit still carries the M0004 line and "names_mvp": true when the words name it.
 # Only visits this import created are touched (registers/feed_import_1028.json). Writes registers/feed_inspector_1028.json.
 import os as _os
 STAMP = _os.environ.get("FEED_STAMP", "1028")            # batch stamp: every feed_*_<STAMP>.* file and register belongs to one ingest run
@@ -34,6 +40,7 @@ ADVISORY = ("68065080", "35790", "7011", "3429", "33799", "35777", "4426", "4310
 HOSP = {"99221", "99222", "99223", "99231", "99232", "99233", "99238", "99239"}
 OUT = {"fixed": [], "bypassed": [], "held": [], "laterality": [], "quality_removed": []}
 QUALITY_CODE = "1123F"; QUALITY_PCODE = "pcode65441"                  # the import's quality line (claimocity_import.py QUALITY_CODE / QUALITY_PCODE)
+MVP_CODE = "M0004"; MVP_PCODE = "pcode692183"                         # the import's option-code line (claimocity_import.py MVP_CODE / MVP_PCODE)
 QUALITY_PROVEN = isinstance(REG.get("quality_gate"), dict) and REG["quality_gate"].get("confirmed") is True      # what the import of this batch wrote: before proof ANY hold takes the line off
 def names_line(words, charge=""):
     """The import's own test (claimocity_import.names_line): the words of an edit name the quality line when they name its code, AdvancedMD's
@@ -42,31 +49,60 @@ def names_line(words, charge=""):
     if QUALITY_CODE.lower() in low or QUALITY_PCODE in low: return True
     if n and re.search(r"(?<!\d)%s(?!\d)" % n, w): return True
     return bool(re.search(r"zero|\$0", low)) and bool(re.search(r"charge|amount", low))
-def split_errors(errors, qline):
-    """(advisories this step bypasses, the rest). On a visit that carries the quality line an edit whose words name the line is never bypassed."""
-    adv = [e for e in errors if (pattern(e) in ADVISORY or pattern(e) == "11256") and not (qline and names_line(e["text"], qline))]
+def names_lines(words, qcharge="", mcharge=""):
+    """The import's own test (claimocity_import.names_lines), for a visit that carries the 1123F line AND the M0004 line: (the words name the 1123F
+    line, the words name the M0004 line). A line is named by its code, AdvancedMD's id for it or its own charge number; words about a zero amount
+    name the line whose code is not named - both lines when neither is named by its code."""
+    w = str(words or ""); low = w.lower()
+    def named(code, pcode, charge):
+        n = re.sub(r"\D", "", str(charge or ""))
+        return code.lower() in low or pcode in low or bool(n and re.search(r"(?<!\d)%s(?!\d)" % n, w))
+    q = named(QUALITY_CODE, QUALITY_PCODE, qcharge); m = named(MVP_CODE, MVP_PCODE, mcharge)
+    zero = bool(re.search(r"zero|\$0", low)) and bool(re.search(r"charge|amount", low))
+    return (q or (zero and not m)), (m or (zero and not q))
+def split_errors(errors, qline, mline=""):
+    """(advisories this step bypasses, the rest). On a visit that carries the quality line an edit whose words name the line is never bypassed - nor,
+    on a visit that carries the M0004 line, an edit whose words name that line."""
+    named = (lambda t: any(names_lines(t, qline, mline))) if mline else (lambda t: bool(qline) and names_line(t, qline))
+    adv = [e for e in errors if (pattern(e) in ADVISORY or pattern(e) == "11256") and not named(e["text"])]
     return adv, [e for e in errors if e not in adv]
-def quality_live(c):
-    """Is the visit's quality line still there? ONE read of the line's own charge detail before anything is voided -> ('live', charge digits) when
-    it is live, shows procedure pcode65441 and carries at most one cent (never a visit's own charge); ('gone', why) when it is void already;
-    ('unsure', why) when that cannot be shown - then nothing is voided."""
-    qc = re.sub(r"\D", "", str(c.get("quality_charge") or ""))
-    if not qc: return "gone", "no quality charge is recorded"
+def line_live(c, code, charge):
+    """Is that no-charge line of the visit still there? ONE read of the line's own charge detail before anything is voided -> ('live', charge digits)
+    when it is live, shows the line's own procedure (1123F: pcode65441, M0004: pcode692183) and carries at most one cent (never a visit's own charge);
+    ('gone', why) when it is void already; ('unsure', why) when that cannot be shown - then nothing is voided."""
+    pc = MVP_PCODE if code == MVP_CODE else QUALITY_PCODE; qc = re.sub(r"\D", "", str(charge or ""))
+    if not qc: return "gone", "no %s charge is recorded" % ("M0004" if code == MVP_CODE else "quality")
     try:
         for ch in ET.fromstring(resave.detail(qc)).iter("charge"):
             if re.sub(r"\D", "", ch.get("id") or "") != qc: continue
-            if ch.get("void") == "1": return "gone", "the quality line is void already"
-            if ch.get("proccode") != QUALITY_PCODE: return "unsure", "charge %s shows procedure %s, not %s - not voided" % (qc, ch.get("proccode") or "none", QUALITY_PCODE)
+            if ch.get("void") == "1": return "gone", "the %s line is void already" % ("M0004" if code == MVP_CODE else "quality")
+            if ch.get("proccode") != pc: return "unsure", "charge %s shows procedure %s, not %s - not voided" % (qc, ch.get("proccode") or "none", pc)
             try: small = float(ch.get("fee") or "0") <= 0.01
             except Exception: small = False
             if not small: return "unsure", "charge %s carries %s, more than one cent - not voided" % (qc, ch.get("fee"))
             return "live", qc
         return "unsure", "charge %s is not in AdvancedMD's answer - not voided" % qc
     except Exception as e: return "unsure", "charge %s could not be read (%s) - not voided" % (qc, type(e).__name__)
-def held(vid, c, why, quality=False, names=False):
+def quality_live(c):
+    """Is the visit's quality line still there? (line_live for the 1123F line: its own procedure pcode65441, at most one cent)"""
+    return line_live(c, QUALITY_CODE, c.get("quality_charge"))
+def no_charge_lines(c):
+    """[(code, recorded charge)] of the visit's no-charge lines, known by their OWN procedure: when the import recorded the 1123F line and the M0004
+    line the other way round (its answer named no procedures), the detail of each recorded charge says which is which. One read of each."""
+    rec = [x for x in (c.get("quality_charge") if c.get("quality_codes") else "", c.get("mvp_charge") if c.get("mvp_codes") else "") if x]
+    if len(rec) < 2: return ([(QUALITY_CODE, rec[0])] if c.get("quality_codes") and c.get("quality_charge") else [(MVP_CODE, rec[0])]) if rec else []
+    pcs = {}
+    for x in rec:
+        try: pcs[x] = next((ch.get("proccode") for ch in ET.fromstring(resave.detail(re.sub(r"\D", "", x))).iter("charge") if re.sub(r"\D", "", ch.get("id") or "") == re.sub(r"\D", "", x)), None)
+        except Exception: pcs[x] = None
+    if pcs.get(rec[0]) == MVP_PCODE and pcs.get(rec[1]) == QUALITY_PCODE: return [(QUALITY_CODE, rec[1]), (MVP_CODE, rec[0])]
+    return [(QUALITY_CODE, rec[0]), (MVP_CODE, rec[1])]
+def held(vid, c, why, quality=False, names=False, mvp=False, mnames=False):
     row = {"visit": vid, "pid": c["pid"], "why": why}
     if quality: row["quality"] = True          # the visit still carries the quality line
     if names: row["names_line"] = True         # the words name the line
+    if mvp: row["mvp"] = True                  # the visit still carries the M0004 line
+    if mnames: row["names_mvp"] = True         # the words name the M0004 line
     OUT["held"].append(row)
 def list_batch():
     r = amd.post(amd.msg("getclaiminspectorcharges", "chargeentry", {"batchid": "1", "nocookie": "1"}), timeout=180)
@@ -126,32 +162,58 @@ def advisories(vid, c, adv):
     if not adv: return []
     ok = bypass(vid, [e["id"] for e in adv]); OUT["bypassed"].append({"visit": vid, "patterns": sorted({pattern(e) for e in adv})})
     return ["bypassed %d advisories%s" % (len(adv), "" if ok else " FAILED")]
-def take_line_off(vid, c, own, words, named):
-    """William 11/10/2026: the routine takes the no-charge quality line off a held visit by itself. ONE void of that charge (only after its own
-    detail shows it live, pcode65441, at most one cent), a re-save of the visit on its OWN first charge so AdvancedMD inspects it again, the
-    batch listed again; then the visit is released or held for its own reason. One "quality_removed" entry records it. -> a note."""
-    st, qc = quality_live(c)
-    if st == "gone": held(vid, c, words, names=named); return "HELD: %s (its quality line is not live any more)" % words[:60]
-    entry = {"visit": vid, "pid": c["pid"], "charge": c.get("quality_charge"), "fee": c.get("quality_fee"), "why": words[:140], "void_ok": False, "released": False, "at": datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat()}
-    OUT["quality_removed"].append(entry)      # recorded at once: even if a later call raises, the import knows what was tried
-    if st == "unsure": entry["note"] = qc; held(vid, c, words, quality=True, names=named); return "HELD with its quality line: %s" % qc
-    ok, msg = void_tx.void_charge(c["pid"], qc)
-    if not ok: entry["note"] = "the void failed: %s" % re.sub(r"\s+", " ", str(msg))[:120]; held(vid, c, words, quality=True, names=named); return "HELD with its quality line: the void failed"
-    entry["void_ok"] = True
+def take_line_off(vid, c, own, words, named, which=None, mnamed=False):
+    """William 11/10/2026: the routine takes the no-charge line(s) off a held visit by itself. which = [(code, charge)] of the lines to take off (the
+    1123F line when not given; with the M0004 line: both, or only the one the edits name). Each line's own detail is read first, and NOTHING is
+    voided unless every line to take off shows itself live with its own procedure and at most one cent. Then ONE void per line (void_tx.void_charge,
+    in order; the first that fails ends it - nothing else is tried), a re-save of the visit on its OWN first charge so AdvancedMD inspects it again,
+    the batch listed again; then the visit is released or held for its own reason. One "quality_removed" entry per line records it. -> a note."""
+    which = [(k, x) for k, x in (which or [(QUALITY_CODE, c.get("quality_charge"))]) if x]; one = [k for k, _ in which] == [QUALITY_CODE] and not (c.get("mvp_codes") and c.get("mvp_charge"))
+    carries = {QUALITY_CODE: bool(c.get("quality_codes") and c.get("quality_charge")), MVP_CODE: bool(c.get("mvp_codes") and c.get("mvp_charge"))}; gone = set()
+    def hold(w, n1, n2): held(vid, c, w, quality=carries[QUALITY_CODE] and QUALITY_CODE not in gone, names=n1, mvp=carries[MVP_CODE] and MVP_CODE not in gone, mnames=n2)
+    live = {}
+    for k, x in which:
+        live[k] = line_live(c, k, x)
+        if live[k][0] == "gone": gone.add(k)
+    todo = [(k, x) for k, x in which if k not in gone]
+    if not todo: hold(words, named, mnamed); return "HELD: %s (its %s not live any more)" % (words[:60], "quality line is" if one else "no-charge lines are")
+    at = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None).isoformat(); entries = []
+    for k, x in todo:
+        entry = {"visit": vid, "pid": c["pid"], "charge": x, "code": k, "fee": c.get("mvp_fee" if k == MVP_CODE else "quality_fee"), "why": words[:140], "void_ok": False, "released": False, "at": at}
+        OUT["quality_removed"].append(entry); entries.append((k, entry))      # recorded at once: even if a later call raises, the import knows what was tried
+    bad = [(k, live[k][1]) for k, _ in todo if live[k][0] == "unsure"]
+    if bad:
+        for k, entry in entries: entry["note"] = live[k][1] if live[k][0] == "unsure" else "not tried: another no-charge line of the visit could not be shown live"
+        hold(words, named, mnamed); return "HELD with its quality line: %s" % bad[0][1] if one else "HELD with its no-charge lines: %s" % bad[0][1]
+    for k, entry in entries:
+        ok, msg = void_tx.void_charge(c["pid"], live[k][1])
+        if not ok:
+            entry["note"] = "the void failed: %s" % re.sub(r"\s+", " ", str(msg))[:120]
+            for k2, e2 in entries:
+                if e2 is not entry and not e2["void_ok"]: e2["note"] = "not tried: the void of the %s line failed" % k
+            hold(words, named, mnamed); return "HELD with its quality line: the void failed" if one else "HELD with its %s line: the void failed" % k
+        entry["void_ok"] = True; gone.add(k)
     ok2, r = resave_visit(own); time.sleep(1.0)
-    if not ok2: entry["note"] = "the re-save after the void failed: %s" % r[:100]
+    if not ok2:
+        for _k, entry in entries: entry["note"] = "the re-save after the void failed: %s" % r[:100]
     again = list_batch().get(vid)
-    adv, data = split_errors(again["errors"], "") if again else ([], [])
-    notes = advisories(vid, c, adv); entry["released"] = not data
-    if data: held(vid, c, "; ".join(e["text"][:80] for e in data), names=any(names_line(e["text"], c.get("quality_charge")) for e in data))
-    return "quality line %s taken off (void), visit re-saved: %s%s" % (c.get("quality_charge"), "released" if not data else "still held for its own reason", ("; " + "; ".join(notes)) if notes else "")
+    rq = c.get("quality_charge") if carries[QUALITY_CODE] and QUALITY_CODE not in gone else ""; rm = c.get("mvp_charge") if carries[MVP_CODE] and MVP_CODE not in gone else ""
+    adv, data = split_errors(again["errors"], rq, rm) if again else ([], [])
+    notes = advisories(vid, c, adv)
+    for _k, entry in entries: entry["released"] = not data
+    if data:
+        if one: held(vid, c, "; ".join(e["text"][:80] for e in data), names=any(names_line(e["text"], c.get("quality_charge")) for e in data))
+        else: hold("; ".join(e["text"][:80] for e in data), bool(rq) and any(names_lines(e["text"], rq, rm)[0] for e in data), bool(rm) and any(names_lines(e["text"], rq, rm)[1] for e in data))
+    if one: return "quality line %s taken off (void), visit re-saved: %s%s" % (c.get("quality_charge"), "released" if not data else "still held for its own reason", ("; " + "; ".join(notes)) if notes else "")
+    return "no-charge line(s) %s taken off (void), visit re-saved: %s%s" % (", ".join("%s %s" % (k, x) for k, x in todo), "released" if not data else "still held for its own reason", ("; " + "; ".join(notes)) if notes else "")
 def main():
     amd.login_cached()
     batch = list_batch(); print("inspector: %d of my visits flagged" % len(batch))
     for vid, info in batch.items():
         c = MINE[vid]; pats = {pattern(e) for e in info["errors"]}
         qline = c.get("quality_charge") if (c.get("quality_codes") and c.get("quality_charge")) else ""      # the visit carries the no-charge quality line
-        cid = re.sub(r"\D", "", next((x for x in c["charges"] if x != qline), c["charges"][0]))              # the visit's own first charge (never the quality line)
+        mline = c.get("mvp_charge") if (c.get("mvp_codes") and c.get("mvp_charge")) else ""                # ... and the no-charge M0004 line (once per clinician, after proof)
+        cid = re.sub(r"\D", "", next((x for x in c["charges"] if x not in (qline, mline)), c["charges"][0]))   # the visit's own first charge (never a no-charge line)
         note = []
         try:
             # 1. hospitalization date
@@ -164,7 +226,7 @@ def main():
                 elif not any(x in HOSP for x in c["cpts"]):
                     note.append("non-hospital CPT at a hospital facility - see location fix")
                 else:
-                    held(vid, c, "no admission anchor (no PV1 admit, no 99223 within 45 days)", quality=bool(qline)); print("HOLD", vid, "no admit anchor"); continue
+                    held(vid, c, "no admission anchor (no PV1 admit, no 99223 within 45 days)", quality=bool(qline), mvp=bool(mline)); print("HOLD", vid, "no admit anchor"); continue
             # 2. location: SNF codes sent by HCA -> HCA REHAB unit
             fac = pos = None
             # 11/10/2026 (William's place-of-service rule): CCM at the hospital location is a wrong building, never an HCA REHAB stay -
@@ -195,16 +257,27 @@ def main():
             time.sleep(1.0)
             again = list_batch().get(vid)
             if again:
-                adv, data = split_errors(again["errors"], qline)
+                if mline:      # the visit carries the M0004 line too: the lines known by their own procedure (the import may have recorded them the other way round)
+                    _nl = dict(no_charge_lines(c)); qline = _nl.get(QUALITY_CODE, ""); mline = _nl.get(MVP_CODE, "")
+                    c = dict(c, quality_charge=qline, mvp_charge=mline)
+                adv, data = split_errors(again["errors"], qline, mline)
                 note.extend(advisories(vid, c, adv))
-                if data:
+                if data and mline:      # 11.6: both no-charge lines come off when the edits name neither or both, only the named one when they name one
+                    words = "; ".join(e["text"][:80] for e in data)
+                    nq = bool(qline) and any(names_lines(e["text"], qline, mline)[0] for e in data); nm = any(names_lines(e["text"], qline, mline)[1] for e in data)
+                    if not QUALITY_PROVEN or nq or nm:
+                        which = [(k, x) for k, x in ((QUALITY_CODE, qline), (MVP_CODE, mline)) if x and (nq == nm or (k == QUALITY_CODE) == nq)]
+                        note.append(take_line_off(vid, c, cid, words, nq, which, nm))
+                    else: held(vid, c, words, quality=bool(qline), mvp=True); note.append("HELD: " + "; ".join(pattern(e) for e in data))
+                elif data:
                     words = "; ".join(e["text"][:80] for e in data); named = bool(qline) and any(names_line(e["text"], qline) for e in data)
                     if qline and (not QUALITY_PROVEN or named): note.append(take_line_off(vid, c, cid, words, named))      # William 11/10/2026: the routine takes the line off by itself
                     else: held(vid, c, words, quality=bool(qline), names=named); note.append("HELD: " + "; ".join(pattern(e) for e in data))
             OUT["fixed"].append({"visit": vid, "pid": c["pid"], "patterns": sorted(pats), "note": note})
             print("DONE", vid, sorted(pats), "|", "; ".join(note)[:200])
         except Exception as e:
-            held(vid, c, "error %s" % str(e)[:160], quality=bool(qline) and not any(x.get("visit") == vid and x.get("void_ok") for x in OUT["quality_removed"])); print("ERR", vid, str(e)[:160])
+            _off = lambda k: any(x.get("visit") == vid and x.get("void_ok") and (x.get("code") or QUALITY_CODE) == k for x in OUT["quality_removed"])      # a line already taken off in this step
+            held(vid, c, "error %s" % str(e)[:160], quality=bool(qline) and not _off(QUALITY_CODE), mvp=bool(mline) and not _off(MVP_CODE)); print("ERR", vid, str(e)[:160])
         json.dump(OUT, open(("registers/feed_inspector_%s.json" % STAMP), "w"), indent=1)
     left = list_batch(); print("inspector after: %d of my visits still listed" % len(left), collections.Counter(pattern(e) for v in left.values() for e in v["errors"]))
 if __name__ == "__main__": main()

@@ -114,8 +114,9 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              # the driver carries the guard for the same version line; the retry and inspector helpers each a sentence only their current version has
              "claimocity_ingest.py": 'POS_RULE_VERSION = "2026-11-10.6"', "claimocity_retry_dx.py": 'POS_RULE_VERSION = "2026-11-10.6"',
              # 11/10/2026 (quality code 1123F, version 2): the inspector step and the insurance check take the no-charge line off a held visit by
-             # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has
-             "claimocity_inspector.py": "THIS STEP TAKES THE LINE OFF BY ITSELF", "claimocity_verify.py": "echo is sent ONCE more without that line",
+             # themselves (William's decision) - a copy from before that must not come back over them; the marker is a sentence only that version has.
+             # Since the option code M0004 (the same day, step 3 of the change) the sentence is one only the version that knows the M0004 line has
+             "claimocity_inspector.py": "the step takes BOTH no-charge lines off", "claimocity_verify.py": "sent once more without BOTH lines",
              # the denial table exists twice (boards/ and here); the workspace copy the bootstrap lays out first is this one - an older
              # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
              "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',

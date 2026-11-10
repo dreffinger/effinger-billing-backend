@@ -34,6 +34,7 @@ L("# Claimocity backlog import - digest %s UTC (chat session, William 10/28 02:2
 L("")
 L("## Import")
 _qlines = sum(1 for x in reg["created"] if isinstance(x.get("quality_codes"), list) and x.get("quality_codes") and x.get("quality_charge"))    # no-charge quality lines are not charge lines
+_qlines += sum(1 for x in reg["created"] if isinstance(x.get("mvp_codes"), list) and x.get("mvp_codes") and x.get("mvp_charge"))           # ... nor are the option code's (M0004) no-charge lines
 _failed = [x for x in (reg.get("failed") or []) if isinstance(x, dict)]                      # 11/10/2026 (operations review N3): failed visits are counted and named, never "0 faults"
 _finfo = lambda x: x.get("info") if isinstance(x.get("info"), dict) else {}
 L("- %d visits / %d charge lines created, $%s at the fee schedule; %d encounters skipped as already in AMD; %s." % (len(reg["created"]), sum(len(x["charges"]) for x in reg["created"]) - _qlines, format(fees, ",.2f"), len(reg["skipped"]),
@@ -128,6 +129,7 @@ try:
     _insp_rows = insp.get("held") if isinstance(insp, dict) and isinstance(insp.get("held"), list) else []
     _rem = [e for e in (insp.get("quality_removed") if isinstance(insp, dict) and isinstance(insp.get("quality_removed"), list) else []) if isinstance(e, dict)]
     _rem += [e for v in ver.values() if isinstance(v, dict) for e in (v.get("quality_removed") if isinstance(v.get("quality_removed"), list) else []) if isinstance(e, dict)]
+    _rem = [e for e in _rem if str(e.get("code") or "").upper() != "M0004"]      # an entry for the option code's M0004 line is said in its own block below
     _gone = {_num(e.get("visit")) for e in _rem if e.get("void_ok") is True}
     _legacy = not (isinstance(insp, dict) and "quality_removed" in insp)                           # an inspector step older than 11/10/2026 writes no such key and marks no row
     _qvis = {_num(x.get("visit")): x for x in _qa if _num(x.get("visit"))}
@@ -210,6 +212,64 @@ try:
         for _n in [n_ for n_ in _notes if not n_.startswith("NOTHING TO RESTART") and "started again in this run" not in n_][:5]: L("  - %s" % _n[:220])
 except Exception as _e:                                    # never stops the digest
     L("- Quality code 1123F: this line could not be built (%s) - read quality_gate in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
+# the option code M0004 (William 11/10/2026, about M0004: "use it"; rules.md): its own no-charge line, once per clinician per year, on a visit that carries the
+# 1123F line once that line is proven. Its ledger is the import register's "mvp_gate". Everything that needs William is ONE line "  - TOP OF THE REPORT - ",
+# said in the run where it began (the previous import register's mvp_gate tells); from December 1 a clinician without an M0004 line is at the top every run.
+try:
+    _mg = reg.get("mvp_gate") if isinstance(reg.get("mvp_gate"), dict) else {}
+    _qg2 = reg.get("quality_gate") if isinstance(reg.get("quality_gate"), dict) else {}
+    _mpg = {}
+    try:
+        _mold = sorted(f for f in os.listdir("registers") if f.startswith("feed_import_") and f.endswith(".json") and not f.endswith("_decisions.json") and f < "feed_import_%s.json" % STAMP)
+        _mpr = json.load(open(os.path.join("registers", _mold[-1]))) if _mold else {}
+        _mpg = _mpr.get("mvp_gate") if isinstance(_mpr, dict) and isinstance(_mpr.get("mvp_gate"), dict) else {}
+    except Exception: _mpg = {}
+    _mnum = lambda x: re.sub(r"\D", "", str(x or ""))
+    _mlst = lambda k: [v for v in _mg.get(k)] if isinstance(_mg.get(k), list) else []
+    _ma = [x for x in reg["created"] if isinstance(x, dict) and isinstance(x.get("mvp_codes"), list) and x.get("mvp_codes") and x.get("mvp_charge")]      # entered with the M0004 line
+    _mr = [x for x in reg["created"] if isinstance(x, dict) and x.get("mvp_refused")]                                                                   # refused with it, entered with the 1123F line only
+    _mns = [x for x in reg["created"] if isinstance(x, dict) and x.get("mvp_not_stored")]                                                               # stored without it
+    _mrem = [e for e in (insp.get("quality_removed") if isinstance(insp, dict) and isinstance(insp.get("quality_removed"), list) else []) if isinstance(e, dict) and str(e.get("code") or "").upper() == "M0004"]
+    _mrem += [e for v in ver.values() if isinstance(v, dict) for e in (v.get("quality_removed") if isinstance(v.get("quality_removed"), list) else []) if isinstance(e, dict) and str(e.get("code") or "").upper() == "M0004"]
+    _mcl = {k: v for k, v in (_mg.get("clinicians").items() if isinstance(_mg.get("clinicians"), dict) else ()) if isinstance(v, dict)}
+    _moff = str(_mg.get("off") or ""); _mlast = str(_mg.get("off_until_reset") or ""); _mnotes = [str(n) for n in _mlst("notes")]
+    _mans = {k: v for k, v in (_mg.get("answer").items() if isinstance(_mg.get("answer"), dict) else ()) if isinstance(v, dict)}
+    _mlo = [str(c) for c in _mlst("left_off_lines")]; _mlate = [r_ for r_ in _mlst("late_rows") if isinstance(r_, list) and len(r_) >= 5]
+    _WHO = {"prof13": "prof13 (the physician)", "prof15": "prof15 (the nurse practitioner)"}
+    _st = lambda p_: str((_mcl.get(p_) or {}).get("state") or "not yet")
+    _dec = bool(re.match(r"^\d{8}T", _st8)) and _st8[4:6] == "12"      # a batch of December: the registration year ends on the 31st
+    if _mg and (_ma or _mr or _mns or _mrem or _mlast or _moff or _mnotes or _mlo or _mlate or _qg2.get("confirmed") is True or any(_st(p_) != "not yet" for p_ in _mcl)):
+        L("- Option code M0004 (Quality Care for Patients with Neurological Conditions - the option the group and both clinicians are registered for; William 11/10/2026: \"use it\"; a line that pays nothing, once per clinician, on a claim that carries 1123F): on %d visit(s) in this batch; %s; %s." % (
+            len(_ma), "; ".join("%s: %s" % (_WHO.get(p_, p_), _st(p_)) for p_ in sorted(_mcl)) or "no clinician known yet",
+            "OFF until William restarts it (one run with MVP_CODE=reset, once the cause is fixed)" if _mlast else ("no M0004 line in this run (%s)" % _moff[:120]) if _moff else
+            "it rides with the next eligible visit of a clinician who has none" if _qg2.get("confirmed") is True else "it rides only once the quality code is proven"))
+        T2 = lambda s_: L("  - TOP OF THE REPORT - " + s_)
+        if _ma: L("  - M0004 carried by: %s" % "; ".join("%s %s %s (%s)" % (x.get("pid"), x.get("visit"), x.get("mvp_charge"), x.get("mvp_prof") or "?") for x in _ma[:10]))
+        if _mlast and _mlast != str(_mpg.get("off_until_reset") or ""): T2("the option code M0004 is OFF until William restarts it: %s. The 1123F line goes on as before. To start M0004 again (once the cause is fixed): one run with MVP_CODE=reset in front of the import's command." % _mlast[:220])
+        elif _mlast: L("  - the option code M0004 is still OFF (since an earlier run): %s - to start it again: one run with MVP_CODE=reset." % _mlast[:200])
+        elif _moff.startswith("this run: switched off (MVP_CODE=off)"): L("  - M0004 switched off for this run by William's MVP_CODE=off - no M0004 line was added.")
+        elif "MVP_CODE=" in _moff: T2("the option code M0004 is off in this run: %s" % _moff[:220])
+        if any(n_.startswith("NOTHING TO RESTART") for n_ in _mnotes): T2(next(n_ for n_ in _mnotes if n_.startswith("NOTHING TO RESTART"))[:220])
+        if _mg.get("reset") is True: L("  - the option code M0004 was started again in this run (MVP_CODE=reset).")
+        if _mr: T2("AdvancedMD refused %d visit(s) that carried M0004; each was entered with the 1123F line only: %s - M0004 is OFF until William restarts it (no second try)." % (len(_mr), "; ".join("%s %s (%s)" % (x.get("pid"), x.get("visit"), str(x.get("mvp_refused"))[:80]) for x in _mr[:5])))
+        if _mns: T2("AdvancedMD stored %d visit(s) WITHOUT the M0004 line that was sent with it (the visit itself is entered): %s - M0004 is OFF until William restarts it." % (len(_mns), "; ".join("%s %s" % (x.get("pid"), x.get("visit")) for x in _mns[:5])))
+        for e in _mrem:      # William 11/10/2026: the routine takes a no-charge line off a held visit by itself (11.6)
+            _wv = "vst%s" % _mnum(e.get("visit"))
+            if e.get("void_ok") is not True: T2("the routine could not take the M0004 line off held visit %s (%s: %s) - the visit is held WITH that line; William looks. The next run switches M0004 off until he restarts it." % (_wv, e.get("pid"), str(e.get("note") or e.get("why") or "")[:120]))
+            elif e.get("released") is True: T2("the routine took the M0004 line %s off held visit %s (%s; the hold: %s) and the visit went through without it: M0004 is OFF until William restarts it (no second try); this does not count against the 1123F line." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
+            else: T2("the routine took the M0004 line %s off held visit %s (%s), but the visit is still held for its own reason (%s) - its clinician may get M0004 again; the visit's own hold is listed under Claim Inspector pass." % (e.get("charge"), _wv, e.get("pid"), str(e.get("why") or "")[:100]))
+        _billed = [p_ for p_ in sorted(_mcl) if _st(p_) == "billed"]
+        if _billed: L("  - Medicare's answer for M0004: %s (a posted Medicare payment line on the M0004 line shows the code reached Medicare on the claim; whether the measure is met shows only in the feedback on the Medicare quality-program site)." % "; ".join(
+            ("Medicare's remittance shows the M0004 line for %s (visit %s, $%s on %s)" % (p_, (_mans[p_].get("visit") or "?"), _mans[p_].get("amount") or "?", _mans[p_].get("date") or "?")) if p_ in _mans else ("not yet for %s (its line billed %s)" % (p_, (_mcl.get(p_) or {}).get("billed") or "?")) for p_ in _billed))
+        if _mlo: L("  - %d M0004 line(s) were read as left off their claims (each visit went out without it, still so three days later; such a line is read again for 30 days): %s - listed for William; no routine voids them. That clinician gets M0004 once more; a second left-off line switches M0004 off until William restarts it." % (len(_mlo), ", ".join(_mlo[:6])))
+        for r_ in _mlate: L("  - an M0004 line read as left off on %s was billed later: %s counts as done for %s%s." % (r_[4], r_[0], r_[6] if len(r_) > 6 else "the year", ("; %s carries two billed M0004 lines (the later one on %s); nothing to do" % (r_[0], r_[5])) if len(r_) > 5 and r_[5] else ""))
+        if _dec:
+            for p_ in sorted(_mcl):
+                if _st(p_) not in ("billed", "waiting"): T2("%s has no M0004 line billed or waiting for %s - the year ends December 31 (M0004 must be on at least one of that clinician's Medicare claims that carries 1123F)%s." % (
+                    _WHO.get(p_, p_), (_mcl.get(p_) or {}).get("year") or "the year", (": M0004 is OFF until William restarts it - " + _mlast[:120]) if _mlast else ""))
+        for _n in [n_ for n_ in _mnotes if not n_.startswith("NOTHING TO RESTART") and "started again in this run" not in n_][:5]: L("  - %s" % _n[:220])
+except Exception as _e:                                    # never stops the digest
+    L("- Option code M0004: this line could not be built (%s) - read mvp_gate in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
 L("- New charts: %d (%s), Claimocity id kept as additionalmrn." % (len(newc["created"]), ", ".join(c["chart"] for c in newc["created"])))
 L("")
 L("## Cascade insurance check (AMD 271 per plan + deceased guard + Stedi discovery when nothing active)")

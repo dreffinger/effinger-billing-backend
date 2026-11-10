@@ -18,7 +18,8 @@
 # Quality code (William 11/10/2026, STANDING - practices/ehpa/rules.md): the advance-care-plan code 1123F goes on as a no-charge line, once
 #   per patient per year, with the next nursing-facility, home or assisted-living visit of every patient 65 or older whose first plan is
 #   Medicare Part B and whose last insurance check showed Medicare first (hospital visits are not coded in this version). A pilot first;
-#   any doubt means no line; the visit itself always goes in. See QUALITY_* below.
+#   any doubt means no line; the visit itself always goes in. See QUALITY_* below. Once that pilot is proven, the option code M0004 rides
+#   with the 1123F line once per clinician per year (William 11/10/2026: "use it"). See MVP_* below.
 # Never touches: insurance plans (the cascade/precheck step verifies them afterwards), existing visits, patients without a chart.
 # Usage: python3 feed_import_1028.py --dry | --one <feed pid> | --all [--limit N]
 import os as _os
@@ -174,6 +175,38 @@ QUALITY_N620 = "registers/quality_n620_seen.json"            # a second way to l
 # the measure's eligible visit codes (2026 specification); CCM, advance care planning and discharge codes are not among them
 QUALITY_VISITS = set("99304 99305 99306 99307 99308 99309 99310 99341 99342 99344 99345 99347 99348 99349 99350 99221 99222 99223 99231 99232 99233 "
                      "99234 99235 99236 99202 99203 99204 99205 99212 99213 99214 99215".split())
+# ---- OPTION CODE M0004: QUALITY CARE FOR PATIENTS WITH NEUROLOGICAL CONDITIONS (William 11/10/2026, STANDING - practices/ehpa/rules.md) ----------
+# M0004 is in AdvancedMD's procedure list (procedure id pcode692183, "QUAL CARE NEUROLOGIC CND MVP", read 11/10/2026 10:24Z - docs/captured_calls.md)
+# and William said "use it": the group and both clinicians are registered for this option (an MVP) for 2026. CMS (the MVP implementation guide and the
+# 2026 claims quick start): a practice that reports an option by claims puts the option's code on AT LEAST ONE Medicare Part B claim that also carries
+# a quality code, on its own no-charge line. Whether one claim covers both clinicians is not known, so each clinician gets ONE such line a year.
+# It pays nothing and never holds or delays a charge.
+# WHEN IT RIDES (mvp_due): only on a visit that carries the 1123F line in the same call - right after it, with the same date, place of service, amount
+#   and ONE diagnosis, no modifier - only once the 1123F pilot is proven, only for a date of service in MVP_YEARS, only when the visit's clinician is
+#   known from its OWN feed message (not the per-patient fallback, not the physician profile an unknown id falls back to), never on a hospital or
+#   emergency-department line (QUALITY_POS_SKIP), and only when that clinician - the profile the visit is ENTERED under - has no M0004 line this year
+#   that is billed or not decided yet.
+# ITS OWN SMALL LEDGER (mvp_state; the register's "mvp_gate"), built like the 1123F ledger from the same registers: an M0004 line is read in
+#   AdvancedMD (its own charge detail, _line) until it is decided. BILLED = that clinician is done for the year. VOID = it may ride again. LEFT
+#   OFF (its visit billed, the line not, and still so QUALITY_LEFT_OFF_DAYS days after the visit's billed date) = that clinician gets it once more;
+#   the line is read again until QUALITY_LEFT_OFF_REREAD days after that date (billed after all = done). Open / unknown = no second line for that
+#   clinician. The line is known by its code text: the charge detail must name pcode692183 as M0004.
+# OFF UNTIL WILLIAM RESTARTS IT (the gate's "off_until_reset" - the specification's mvp_off_until_reset; only MVP_CODE=reset ends it, a restart of
+#   1123F does not): AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only; AdvancedMD stored a visit without its M0004
+#   line; M0004 left off MVP_LEFT_OFF_MAX claims since the last restart; the routine took the M0004 line off a held visit that then went through, or
+#   could not take it off; a hold whose words name M0004 while the line could not be taken off; the insurance check could not set such a visit's
+#   order; AdvancedMD stores pcode692183 as another code; a visit that carried M0004 was refused and the chart did not show it free of the visit.
+# REFUSALS: a visit with 1123F + M0004 that AdvancedMD refuses goes in again with the 1123F line only (that form is proven) once a fresh read of the
+#   chart shows nothing of it stored; refused that way too, it goes in plain and the refusal counts against 1123F (REFUSALS above), M0004 is not
+#   blamed. MEDICARE'S ANSWER: a billed M0004 line is read for a live Medicare Part B payment line, per clinician (the report shows it).
+# SWITCHES: QUALITY_CODE=off / stop stop M0004 too (it never rides without the 1123F line); MVP_CODE=off = no M0004 line in this run; MVP_CODE=reset =
+#   M0004 starts again after it was switched off until restarted (honoured only then); any other MVP_CODE value = no M0004 line in this run, and the
+#   log says which value was not understood.
+MVP_CODE = "M0004"; MVP_PCODE = "pcode692183"                # AdvancedMD's own id for M0004 (lookupproccode 11/10/2026 10:24Z, name "QUAL CARE NEUROLOGIC CND MVP" - docs/captured_calls.md)
+MVP_YEARS = {"2026"}                                          # the year the group and both clinicians are registered for the option; another year gets no M0004 line until William renews it
+MVP_ON = True                                                 # William 11/10/2026, about M0004: "use it"
+MVP_LEFT_OFF_MAX = 2                                          # M0004 lines read as left off since the last restart that switch M0004 off (left off once: that clinician gets it once more)
+MVP_LOOKS = 6                                                 # M0004 reads per run for their outcome (a line and, where needed, its visit's own charge or the visit's other charges); as many again for Medicare's answer
 # this run's state (main() fills it: quality_state from the import registers, quality_files from the other registers). done: (chart, year)
 # coded or refused, and ("feed:<feed patient id>", year) for a feed patient who carries a line under any chart; dead: (chart, code, DOS) of
 # lines read as left off the claim; wait: a line of the round is not decided yet; budget: the lines this run may add (None = no cap);
@@ -186,6 +219,12 @@ def _quality_fresh(): return {"fee": "0.00", "confirmed": False, "off": "", "off
                               "left_off_seen": {}, "left_off_on": {}, "late_billed": {}, "late_rows": [], "billed_on": {}, "code_text_lines": [], "wrong_code_text": "", "proof_wait": None,
                               "medicare_answer": None, "medicare_wait": None, "skipped_hospital": 0, "unread": [], "unread_prev": []}
 QUALITY = _quality_fresh()
+# the option code M0004's state for this run (mvp_state fills it from the registers): done / wait = (clinician profile, year) with an M0004 line that
+# is billed / not decided yet - neither gets another line; added = the clinicians whose visit got the line in this run; the rest is its ledger
+def _mvp_fresh(): return {"off": "", "off_until_reset": "", "reset": False, "reset_after": None, "loud": "", "done": set(), "wait": set(), "added": [], "notes": [], "lines": 0,
+                          "billed_lines": [], "void_lines": [], "left_off_lines": [], "billed_on": {}, "left_off_on": {}, "left_off_seen": {}, "late_billed": {}, "late_rows": [],
+                          "swaps": {}, "wrong_code_text": "", "answer": {}, "answer_wait": {}, "clinicians": {}}
+MVP = _mvp_fresh()
 def _any_day(s):
     """The calendar day of a date as AdvancedMD writes it (MM/DD/YYYY, with or without a time after it; YYYY-MM-DD), or None."""
     s = str(s or "").strip(); m = re.match(r"(\d{1,2})/(\d{1,2})/(\d{4})", s)
@@ -225,6 +264,32 @@ def names_line(words, charge=""):
     if QUALITY_CODE.lower() in low or QUALITY_PCODE in low: return True
     if n and re.search(r"(?<!\d)%s(?!\d)" % n, w): return True
     return bool(re.search(r"zero|\$0", low)) and bool(re.search(r"charge|amount", low))
+def names_lines(words, qcharge="", mcharge=""):
+    """For a visit that carries the 1123F line AND the M0004 line: (the words name the 1123F line, the words name the M0004 line). A line is named by
+    its code, AdvancedMD's id for it or its own charge number; words about a zero amount ("zero" or "$0" with "charge" or "amount") name the line whose
+    code is not named - both lines when neither is named by its code. The inspector step and the insurance check use the same test (11/10/2026)."""
+    w = str(words or ""); low = w.lower()
+    def named(code, pcode, charge):
+        n = re.sub(r"\D", "", str(charge or ""))
+        return code.lower() in low or pcode in low or bool(n and re.search(r"(?<!\d)%s(?!\d)" % n, w))
+    q = named(QUALITY_CODE, QUALITY_PCODE, qcharge); m = named(MVP_CODE, MVP_PCODE, mcharge)
+    zero = bool(re.search(r"zero|\$0", low)) and bool(re.search(r"charge|amount", low))
+    return (q or (zero and not m)), (m or (zero and not q))
+def mvp_due(own_ok, prof, year, pos):
+    """True when the option code M0004 rides with the 1123F line of a visit (build() asks only when that line rides): M0004 is on and not switched
+    off, the quality code is not off and its pilot is proven, the year of the date of service is in MVP_YEARS, the visit's clinician is known from its
+    OWN feed message (own_ok), the place of service is not a hospital or emergency-department one, and that clinician (prof - the profile the visit is
+    entered under) has no M0004 line this year that is billed or not decided yet - an M0004 line added earlier in this run counts as not decided."""
+    if not MVP_ON or MVP.get("off") or QUALITY.get("off") or QUALITY.get("confirmed") is not True: return False
+    if own_ok is not True or not isinstance(prof, str) or not prof or str(year) not in MVP_YEARS or str(pos) in QUALITY_POS_SKIP: return False
+    return (prof, str(year)) not in MVP["done"] and (prof, str(year)) not in MVP["wait"]
+def mvp_undo(info):
+    """A visit built with the M0004 line did not keep it (not created, refused, stored without it): that clinician's mark for the year is freed."""
+    try:
+        if info.get("mvp_codes") and info.get("mvp_prof"):
+            MVP["wait"].discard((info["mvp_prof"], str(info.get("mvp_dos") or "")[-4:]))
+            if info["mvp_prof"] in MVP["added"]: MVP["added"].remove(info["mvp_prof"])
+    except Exception: pass
 def quality_due(msg, ctx, lines, lpos=None, why=None):
     """Index of the visit line the advance-care-plan code rides with, or None. The FIRST visit line of the message for which EVERYTHING is
     shown (every visit line is looked at, not only the first):
@@ -459,6 +524,22 @@ def quality_in_answer(ans, n_codes, fee):
     f = money(fee); same = [i for i, c in enumerate(ans) if c[2] != "" and money(c[2]) == f]
     if f is not None and len(same) == 1: return same[0]
     return len(ans) - 1 if (len(ans) > n_codes and not any(c[1] for c in ans)) else None
+def lines_in_answer(ans, n_codes, fee):
+    """For a visit sent with the 1123F line AND the M0004 line: (index of the 1123F charge, index of the M0004 charge) in AdvancedMD's answer, None
+    where the answer does not hold one. By their procedure ids when the answer names procedures; else the TWO charges whose amount is the lines' amount
+    (no visit code has such a fee), the first of them the 1123F line - the order sent; ONE charge at that amount = one of the two was not stored and
+    which one is not known: None, None; else, when the answer names no procedure at all and lists two charges more than the message has codes, the
+    LAST two in the order sent. A line found by amount or place may be the other one: the first read of the M0004 line in a later run checks its
+    procedure and corrects that (mvp_state). Anything else: None, None (not shown stored)."""
+    if any(c[1] for c in ans):
+        return next((i for i, c in enumerate(ans) if c[1] == QUALITY_PCODE), None), next((i for i, c in enumerate(ans) if c[1] == MVP_PCODE), None)
+    def money(x):
+        try: return round(float(x), 2)
+        except Exception: return None
+    f = money(fee); same = [i for i, c in enumerate(ans) if c[2] != "" and money(c[2]) == f]
+    if f is not None and len(same) == 2: return same[0], same[1]
+    if not same and len(ans) == n_codes + 2: return len(ans) - 2, len(ans) - 1
+    return None, None
 def chart_lines_now(pid):
     """(code, DOS) of every live charge on the chart right now - one read of the chart's history, the same lines chart_ctx calls live."""
     out = set()
@@ -555,6 +636,7 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
             lines.append({"reg": base(name), "chart": pid, "visit": r.get("visit") if isinstance(r.get("visit"), str) else "", "charge": qid, "fee": f, "dos": d,
                           "own": next((c for c in ch if isinstance(c, str) and c != qid), ""),      # the visit's own charge = the first recorded charge that is not the quality line
                           "feed": r.get("feed_id") if isinstance(r.get("feed_id"), str) else "",    # the feed's own patient id: once per patient also by it (13.6)
+                          "mvp": r.get("mvp_charge") if (r.get("mvp_codes") and isinstance(r.get("mvp_charge"), str)) else "",      # the same visit's M0004 line (the option code's own ledger reads it)
                           "pilot": gconf != f})                                                       # entered while the code was not proven at that amount: read until it is decided
             if f == S["fee"]: S["count"] = 0                                                          # a stored line clears the count of refusals in a row
     def removal(regname, e):
@@ -562,8 +644,10 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
         by itself, so that a reporting line never holds a visit). Void and final - the routine's doing, not a person's. released (the visit
         went through without it: the line was the cause) = ONE refusal, and that patient gets no second try this year; not released (held
         anyway) = nothing counts, the place in the round is free and the patient is due again. A void that failed = the visit is held WITH
-        its line: OFF until William restarts it."""
-        L = next((L for L in reversed(lines) if num(L["charge"]) == num(e.get("charge"))), None)
+        its line: OFF until William restarts it. An entry for the visit's M0004 line (code M0004) is the option code's own business (mvp_state);
+        an entry whose charge the row recorded as its M0004 line is this row's 1123F line (the answer named no procedures, and the two were swapped)."""
+        if str(e.get("code") or "").strip().upper() == MVP_CODE: return
+        L = next((L for L in reversed(lines) if num(L["charge"]) == num(e.get("charge"))), None) or next((L for L in reversed(lines) if L.get("mvp") and num(L["mvp"]) == num(e.get("charge"))), None)
         if L is None: notes.append("%s names quality charge %s, which no import register row carries - passed over" % (regname, e.get("charge"))); return
         L["removed"] = dict(e, register=regname)
         if e.get("void_ok") is not True:
@@ -643,7 +727,7 @@ def quality_state(regs, look, reset=False, stop=False, files=None, day=None):
         for regname, why, marked in (held.get(num(L["visit"])) or ()) if num(L["visit"]) else ():
             L["held"] = True
             if L.get("removed"): continue
-            if not S["off"] and (not proven or marked or names_line(why, L["charge"])):      # before proof ANY hold; after proof only a hold whose words name the line
+            if not S["off"] and (not proven or marked or (names_lines(why, L["charge"], L["mvp"])[0] if L.get("mvp") else names_line(why, L["charge"]))):      # before proof ANY hold; after proof only a hold whose words name the line (beside an M0004 line: words that name only M0004 are M0004's business)
                 S["off"] = "the Claim Inspector holds visit %s, which carries the quality line (%s: \"%s\") - William looks" % (L["visit"], regname, why[:140])
         for regname, words in (chold.get(num(L["visit"])) or ()) if num(L["visit"]) else ():
             L["held"] = True                # any insurance-check HOLD: this visit can never be the proof
@@ -806,6 +890,188 @@ def quality_log(n, dry):
              ("no cap (a quality line was seen billed)" if (Q.get("n620") or Q.get("medicare_answer")) else "at most %d a run (a quality line was seen billed; Medicare has not yet shown a 1123F line on a remittance)" % QUALITY_DAILY) if Q["confirmed"] else
              "pilot: waiting for the outcome of %d earlier line(s) - none added" % len(Q.get("pending") or []) if Q.get("wait") else "pilot: at most %d visit(s) until one is seen billed" % QUALITY_PILOT)
     return "QUALITY 1123F: %s x%d visit(s), line amount $%s, %s%s%s" % ("would be on" if dry else "on", n, Q["fee"], words, ("; OFF - " + Q["off"]) if Q["off"] else "", ("; " + Q["loud"]) if Q.get("loud") else "")
+def mvp_state(regs, look, reset=False, files=None, day=None):
+    """Fill MVP - the option code M0004's own small ledger, per clinician - from the same import registers quality_state read (this stamp's own
+    register too), oldest first: each register's "mvp_gate" first, then its rows. files = what quality_files read (held visits, insurance-check
+    holds, the lines the inspector step or the insurance check took off). look=False (a dry run) reads nothing in AdvancedMD. reset = MVP_CODE=reset.
+    day = the calendar day of this run. See the OPTION CODE comment above for every state. Nothing here can stop the import: the caller turns any
+    error into 'no M0004 line this run'."""
+    day = day or run_day(); today = _fmt_day(day); files = files if isinstance(files, dict) else {}
+    m = _mvp_fresh(); notes = []; S = {"off": "", "wrong": "", "answer": {}}
+    _d = lambda k: files.get(k) if isinstance(files.get(k), dict) else {}
+    held = _d("held"); chold = _d("check_holds"); rem = {k: list(v) for k, v in _d("removed").items() if isinstance(v, list)}
+    billed = set(); void = set(); left = set(); billed_on = {}; lon = {}; lseen = {}; late = {}; late_rows = []; swaps = {}; lines = []; era = [0]
+    base = lambda name: _os.path.basename(str(name)); num = lambda x: re.sub(r"\D", "", str(x or ""))
+    cof = lambda M: swaps.get(M["charge"], M["charge"])           # the M0004 line's charge number, a swap corrected (8.5)
+    def restart(): S.update(off="", wrong=""); era[0] = len(lines)      # MVP_CODE=reset: what switched M0004 off no longer counts; a line that exists still counts for its clinician's year
+    def created_row(name, r):
+        pid = r.get("pid") if isinstance(r.get("pid"), str) else ""; vis = r.get("visit") if isinstance(r.get("visit"), str) else ""; who = "chart %s, visit %s, %s" % (pid or "?", vis or "?", base(name))
+        if r.get("mvp_refused"): S["off"] = S["off"] or "AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only - no second try (%s)" % who
+        if r.get("mvp_not_stored"): S["off"] = S["off"] or "AdvancedMD stored a visit without its M0004 line - William looks (%s)" % who
+        mc = r.get("mvp_codes") if isinstance(r.get("mvp_codes"), list) else []; mid = r.get("mvp_charge") if isinstance(r.get("mvp_charge"), str) else ""
+        if mc and mid:
+            lines.append({"reg": base(name), "chart": pid, "visit": vis, "charge": mid, "prof": r.get("mvp_prof") if isinstance(r.get("mvp_prof"), str) else "",
+                          "dos": str(r.get("mvp_dos") or r.get("quality_dos") or r.get("dos") or ""), "q": r.get("quality_charge") if isinstance(r.get("quality_charge"), str) else "",
+                          "charges": [c for c in (r.get("charges") if isinstance(r.get("charges"), list) else []) if isinstance(c, str)]})
+    def failed_row(name, r):          # a visit that carried M0004 was refused and nobody knows what AdvancedMD kept (unless the 1123F-only form was refused too: then M0004 is not blamed)
+        info = r.get("info") if isinstance(r.get("info"), dict) else {}
+        if info.get("mvp_tried") and not info.get("mvp_form_refused") and (r.get("stored") or r.get("quality_unknown")):
+            S["off"] = S["off"] or "AdvancedMD answered a visit that carried M0004 with a fault or an error and nobody knows what it kept of it - William looks (chart %s, visit %s, %s)" % (r.get("pid") if isinstance(r.get("pid"), str) else "?", r.get("empty_visit") or "?", base(name))
+    def removal(regname, e):
+        """An M0004 line the inspector step or the insurance check TOOK OFF a held visit (11.6): void and final. released (the visit went through
+        without it) = M0004 is OFF until William restarts it - no second try; it does not count against 1123F (the 1123F line's own entry does, when
+        it was taken off with it). Not released = the line is just void: its clinician may get it again. A void that failed = OFF until restarted."""
+        c_ = num(e.get("charge"))
+        M = next((M for M in reversed(lines) if num(cof(M)) == c_), None)
+        if M is None:      # the row recorded it as its 1123F line (the two were swapped): it is this row's M0004 line
+            M = next((M for M in reversed(lines) if M["q"] and num(M["q"]) == c_), None)
+            if M is not None: swaps[M["charge"]] = M["q"]
+        if M is None: notes.append("%s names M0004 charge %s, which no import register row carries - passed over" % (regname, e.get("charge"))); return
+        M["removed"] = dict(e, register=regname)
+        if e.get("void_ok") is not True:
+            S["off"] = S["off"] or "the Claim Inspector holds visit %s and the routine could not take its M0004 line off (%s: \"%s\") - William looks" % (M["visit"], regname, str(e.get("why") or "")[:140]); return
+        void.add(cof(M))
+        if e.get("released") is True: S["off"] = S["off"] or "the routine took the M0004 line off held visit %s and the visit went through without it - no second try (%s: \"%s\")" % (M["visit"], regname, str(e.get("why") or "")[:140])
+    def rows(fn, name, rs):          # row by row: an odd row is passed over, the rows after it are still read
+        for r in rs:
+            try:
+                if isinstance(r, dict): fn(name, r)
+            except Exception: continue
+    is_mvp = lambda e: isinstance(e, dict) and str(e.get("code") or "").strip().upper() == MVP_CODE
+    for name, reg in sorted(regs, key=lambda x: str(x[0])):
+        try:
+            if not isinstance(reg, dict): continue
+            g = reg.get("mvp_gate") if isinstance(reg.get("mvp_gate"), dict) else {}
+            cr = reg.get("created") if isinstance(reg.get("created"), list) else []; fl = reg.get("failed") if isinstance(reg.get("failed"), list) else []
+            cut = [0, 0]
+            if g.get("reset") is True:      # M0004 was started again in that run; rows an earlier start under the same stamp had written stay before the restart
+                ra = g.get("reset_after")
+                if isinstance(ra, list) and len(ra) == 2 and all(isinstance(x, int) and not isinstance(x, bool) and x >= 0 for x in ra): cut = ra
+                rows(created_row, name, cr[:cut[0]]); rows(failed_row, name, fl[:cut[1]]); restart()
+            if isinstance(g.get("off_until_reset"), str) and g["off_until_reset"].strip(): S["off"] = g["off_until_reset"].strip()
+            for k, s in (("billed_lines", billed), ("void_lines", void), ("left_off_lines", left)):      # what earlier runs read as final is never read for its outcome again
+                s.update(x for x in (g.get(k) if isinstance(g.get(k), list) else []) if isinstance(x, str))
+            for k, d_ in (("billed_on", billed_on), ("left_off_seen", lseen), ("left_off_on", lon), ("late_billed", late), ("swaps", swaps)):
+                if isinstance(g.get(k), dict): d_.update((a, b) for a, b in g[k].items() if isinstance(a, str) and isinstance(b, (str, dict)))
+            if isinstance(g.get("wrong_code_text"), str) and g["wrong_code_text"]: S["wrong"] = g["wrong_code_text"]
+            for p_, a_ in (g.get("answer").items() if isinstance(g.get("answer"), dict) else ()):      # the first answer found for a clinician stays
+                if isinstance(p_, str) and isinstance(a_, dict) and a_.get("charge"): S["answer"].setdefault(p_, dict(a_))
+            rows(created_row, name, cr[cut[0]:]); rows(failed_row, name, fl[cut[1]:])
+            for regname, e in [x for x in rem.pop(re.sub(r"^feed_import_|\.json$", "", base(name)), []) if is_mvp(x[1])]:      # the M0004 lines that batch's inspector step / insurance check took off
+                try: removal(regname, e)
+                except Exception: continue
+        except Exception: continue
+    for st in sorted(rem):      # removals of a batch whose import register is not here: still void, after everything else
+        for regname, e in [x for x in rem[st] if is_mvp(x[1])]:
+            try: removal(regname, e)
+            except Exception: continue
+    if reset:
+        if S["off"]: restart(); m["reset"] = True; notes.append("the option code M0004 was started again in this run (MVP_CODE=reset)")
+        else: m["loud"] = "NOTHING TO RESTART - MVP_CODE=reset was ignored (M0004 is not switched off; take the switch out of the routine)"; notes.append(m["loud"])
+    # HELD VISITS that carry the M0004 line (entered since the last restart) and whose line could NOT be taken off (no removal recorded): a Claim
+    # Inspector hold whose words name M0004, or an insurance check that could not set the visit's order -> OFF until William restarts it
+    for M in lines[era[0]:]:
+        if M.get("removed") or not num(M["visit"]): continue
+        for regname, why, _marked in held.get(num(M["visit"])) or ():
+            if not S["off"] and names_lines(why, M["q"], cof(M))[1]:
+                S["off"] = "the Claim Inspector holds visit %s, which carries the M0004 line, for words that name it (%s: \"%s\") - William looks" % (M["visit"], regname, str(why)[:140])
+        for regname, words in chold.get(num(M["visit"])) or ():
+            for why in words:
+                named = set(re.findall(r"vst\d+", why))
+                if not S["off"] and re.search(r"insorder not applied|resave FAULT|detail read mismatch", why) and (not named or M["visit"] in named):
+                    S["off"] = "the insurance check could not set the order of visit %s, which carries the M0004 line (%s: \"%s\") - William looks" % (M["visit"], regname, why[:140])
+    final = lambda M: "billed" if cof(M) in billed else "left" if cof(M) in left else "void" if cof(M) in void else ""
+    looks = [MVP_LOOKS]
+    def own_of(M): return next((c for c in M["charges"] if c not in (M["q"], cof(M))), "")      # the visit's own first charge (the row lists the visit's own charges first)
+    def read(M):
+        """One read of an M0004 line and, where the outcome needs it, of its visit's own first charge - or of the visit's other recorded charges when
+        the charge recorded for the line shows another procedure (the answer named no procedures: 8.5)."""
+        looks[0] -= 1; M["seen"] = True; sn = {}
+        st, what = _line(cof(M), MVP_PCODE, MVP_CODE, sn)
+        if st == "unknown" and not sn.get("wrong") and what and what[0].startswith("AdvancedMD shows another procedure for it") and M["charge"] not in swaps:
+            for c in [M["q"]] + [x for x in M["charges"] if x not in (M["q"], M["charge"])]:
+                if not c or looks[0] <= 0: continue
+                looks[0] -= 1; sn2 = {}; st2, what2 = _line(c, MVP_PCODE, MVP_CODE, sn2)
+                if sn2.get("wrong"): sn, st, what = sn2, st2, what2; break
+                if st2 in ("billed", "open", "void"):
+                    swaps[M["charge"]] = c; notes.append("the M0004 line of visit %s is %s, not %s as its register row says (the answer named no procedures) - corrected" % (M["visit"], c, M["charge"])); st, what = st2, what2; break
+        if sn.get("wrong"):      # AdvancedMD's id for the line is not M0004: nothing is built on it
+            S["wrong"] = sn["wrong"]; S["off"] = S["off"] or "AdvancedMD stores procedure id %s as %s, not %s - William looks" % (MVP_PCODE, sn["wrong"], MVP_CODE); return
+        c_ = cof(M); who = M["prof"] or "its clinician"
+        if st == "billed": billed.add(c_); billed_on[c_] = what[0]; return
+        if st == "void": void.add(c_); notes.append("the M0004 line of visit %s is void - %s may get it again" % (M["visit"], who)); return
+        if st == "unknown": notes.append("the M0004 line of visit %s (%s) is not decided: %s - no second M0004 line for %s; William looks if this stays" % (M["visit"], c_, what[0], who)); return
+        o = own_of(M); own, owhat = _line(o) if o else ("none", [])
+        if own == "billed":      # LEFT OFF needs time (13.1): the newest billed date of the visit's own charge, else the day this import first saw it billed
+            bday = max([d_ for d_ in map(_any_day, owhat) if d_] or [None])
+            if bday is None: lseen.setdefault(c_, today); bday = _mdy_day(lseen[c_]) or day
+            if (day - bday).days >= QUALITY_LEFT_OFF_DAYS:
+                left.add(c_); lon[c_] = {"on": today, "billed": _fmt_day(bday)}
+                notes.append("visit %s was billed %s without its M0004 line, and the line is still not billed %d days later - left off the claim; %s gets it once more" % (M["visit"], _fmt_day(bday), (day - bday).days, who))
+            else: notes.append("visit %s was billed %s; its M0004 line is not billed yet - not decided before %s" % (M["visit"], _fmt_day(bday), _fmt_day(bday + datetime.timedelta(days=QUALITY_LEFT_OFF_DAYS))))
+        elif own == "void": notes.append("the own charge of visit %s is void while its M0004 line is still live - not decided; William looks" % M["visit"])
+    for M in lines:      # every M0004 line not decided yet, oldest first (whatever the restarts: whether a clinician is done for the year does not depend on them)
+        if not look or looks[0] <= 0: break
+        if final(M) or M.get("seen"): continue
+        read(M)
+    for M in lines:      # a line read as LEFT OFF is read again until QUALITY_LEFT_OFF_REREAD days after its visit was billed (13.1b): billed after all = its clinician is done
+        if not look or looks[0] <= 0: break
+        c_ = cof(M); w = lon.get(c_) if isinstance(lon.get(c_), dict) else {}; b = _mdy_day(str(w.get("billed") or ""))
+        if final(M) != "left" or M.get("seen") or b is None or (day - b).days > QUALITY_LEFT_OFF_REREAD: continue
+        looks[0] -= 1; M["seen"] = True; sn = {}; st, what = _line(c_, MVP_PCODE, MVP_CODE, sn)
+        if sn.get("wrong"): S["wrong"] = sn["wrong"]; S["off"] = S["off"] or "AdvancedMD stores procedure id %s as %s, not %s - William looks" % (MVP_PCODE, sn["wrong"], MVP_CODE); continue
+        if st == "billed":
+            left.discard(c_); billed.add(c_); billed_on[c_] = what[0]; late[c_] = today
+            again = [N["visit"] for N in lines if N is not M and N["prof"] == M["prof"] and N["dos"][-4:] == M["dos"][-4:] and final(N) not in ("void", "left")]
+            late_rows.append([M["prof"], M["chart"], M["visit"], c_, str(w.get("on") or ""), again[0] if again else "", M["dos"][-4:]])
+            notes.append("the M0004 line of visit %s, read as left off its claim on %s, was billed later (%s): %s counts as done" % (M["visit"], w.get("on") or "?", what[0], M["prof"] or "its clinician"))
+        elif st == "void": left.discard(c_); void.add(c_); notes.append("the M0004 line of visit %s, read as left off its claim, is void now" % M["visit"])
+    lo = [M for M in lines[era[0]:] if final(M) == "left"]
+    if len(lo) >= MVP_LEFT_OFF_MAX and not S["off"]:
+        S["off"] = "AdvancedMD left the M0004 line off %d claims since the option code was last started (visits %s) - William looks" % (len(lo), ", ".join(M["visit"] for M in lo[:4]))
+    alooks = [MVP_LOOKS]      # MEDICARE'S ANSWER for M0004, per clinician (11.6): a live Medicare Part B payment line posted on a billed M0004 line
+    for M in sorted([M for M in lines if final(M) == "billed"], key=lambda M: (_any_day(billed_on.get(cof(M))) or datetime.date.min, cof(M))):
+        if not look or alooks[0] <= 0: break
+        if not M["prof"] or M["prof"] in S["answer"]: continue
+        alooks[0] -= 1
+        try: pays = _payments(cof(M))
+        except Exception as e: notes.append("Medicare's answer: the payment lines of the M0004 line of visit %s could not be read (%s)" % (M["visit"], type(e).__name__)); continue
+        hit = next((p for p in pays if str(p.get("void") or "0") != "1" and re.sub(r"\D", "", str(p.get("carrierfid") or "")) == re.sub(r"\D", "", MEDICARE_B)), None)
+        if hit:
+            S["answer"][M["prof"]] = {"charge": cof(M), "visit": M["visit"], "date": str(hit.get("date") or ""), "amount": str(hit.get("amount") or ""), "register": M["reg"]}
+            notes.append("Medicare's remittance shows the M0004 line for %s on visit %s: a Medicare payment line of $%s posted %s" % (M["prof"], M["visit"], S["answer"][M["prof"]]["amount"], S["answer"][M["prof"]]["date"]))
+    for M in lines:      # once per clinician per year: billed = done, not decided = no second line; left off or void = that clinician is due again
+        if not M["prof"] or len(M["dos"]) < 4: continue
+        if final(M) == "billed": m["done"].add((M["prof"], M["dos"][-4:]))
+        elif not final(M): m["wait"].add((M["prof"], M["dos"][-4:]))
+    yr = max(MVP_YEARS); cl = {}
+    for p_ in sorted(set(PROFILE.values())):      # for the report: each clinician's M0004 line of the year it is registered for
+        mine = [M for M in lines if M["prof"] == p_ and M["dos"][-4:] == yr]; b_ = [M for M in mine if final(M) == "billed"]; w_ = [M for M in mine if not final(M)]; l_ = [M for M in mine if final(M) == "left"]
+        top = (b_ or w_ or l_ or [None])[0]
+        cl[p_] = {"state": "billed" if b_ else "waiting" if w_ else "left off" if l_ else "not yet", "year": yr, "visit": top["visit"] if top else "", "charge": cof(top) if top else "",
+                  "billed": billed_on.get(cof(top), "") if b_ else "", "since": top["reg"] if top else ""}
+    aw = {p_: {"visit": v_["visit"], "billed": v_["billed"], "days": (day - _any_day(v_["billed"])).days if _any_day(v_["billed"]) else None} for p_, v_ in cl.items() if v_["state"] == "billed" and p_ not in S["answer"]}
+    m.update(off=S["off"], off_until_reset=S["off"], billed_lines=sorted(billed), void_lines=sorted(void), left_off_lines=sorted(left), billed_on={k: v for k, v in billed_on.items() if k in billed},
+             left_off_on={k: v for k, v in lon.items() if k in left}, left_off_seen={k: v for k, v in lseen.items() if k not in billed and k not in void and k not in left}, late_billed=dict(late),
+             late_rows=late_rows, swaps=dict(swaps), wrong_code_text=S["wrong"], answer=dict(S["answer"]), answer_wait=aw, clinicians=cl, notes=notes[:20], lines=len(lines))
+    MVP.clear(); MVP.update(m)
+def mvp_gate():
+    """What a run writes into its register as "mvp_gate": the option code M0004's own ledger, for the next run and for the digest. off = why no M0004
+    line is added in THIS run; off_until_reset = the sentence of an OFF that only MVP_CODE=reset ends (the specification's mvp_off_until_reset);
+    clinicians = per clinician (the profile its visits are entered under), for the year it is registered for: billed / waiting / left off / not yet;
+    added = the clinicians whose visit got the M0004 line in this run; answer = Medicare's own answer per clinician (answer_wait while none)."""
+    M = MVP; cl = {k: dict(v) for k, v in (M.get("clinicians") or {}).items()}      # main() marks a clinician whose visit got the line in this run as waiting
+    return {"code": MVP_CODE, "on": bool(MVP_ON), "off": M.get("off") or "", "off_until_reset": M.get("off_until_reset") or "", "reset": bool(M.get("reset")), "reset_after": M.get("reset_after") if M.get("reset") else None,
+            "added": list(M.get("added") or []), "clinicians": cl, "billed_lines": list(M.get("billed_lines") or []), "void_lines": list(M.get("void_lines") or []),
+            "left_off_lines": list(M.get("left_off_lines") or []), "billed_on": dict(M.get("billed_on") or {}), "left_off_on": dict(M.get("left_off_on") or {}), "left_off_seen": dict(M.get("left_off_seen") or {}),
+            "late_billed": dict(M.get("late_billed") or {}), "late_rows": list(M.get("late_rows") or []), "swaps": dict(M.get("swaps") or {}), "wrong_code_text": M.get("wrong_code_text") or "",
+            "answer": dict(M.get("answer") or {}), "answer_wait": dict(M.get("answer_wait") or {}), "notes": list(M.get("notes") or [])}
+def mvp_log(n, dry):
+    """The ONE line a run prints about the option code M0004, right after the QUALITY 1123F line (the runbook reads it by its start)."""
+    M = MVP; cl = M.get("clinicians") or {}; added = set(M.get("added") or [])
+    who = ", ".join("%s %s" % (p_, "waiting (added now)" if p_ in added and (cl.get(p_) or {}).get("state") != "billed" else (cl.get(p_) or {}).get("state") or "not yet") for p_ in sorted(set(PROFILE.values())))
+    words = "off until William restarts it (one run with MVP_CODE=reset)" if M.get("off_until_reset") else "once per clinician, only with the 1123F line once that is proven"
+    return "QUALITY M0004: %s x%d visit(s), %s; %s%s%s" % ("would be on" if dry else "on", n, who, words, ("; OFF - " + M["off"]) if M.get("off") else "", ("; " + M["loud"]) if M.get("loud") else "")
 def msg_building(msg):
     """The building name of a message for the visit history: its own, else the patient's when the batch shows only one, else ''."""
     try:
@@ -972,6 +1238,11 @@ def build(msg, ctx):
                     'units="1" netfee="0" fee="%s" allowed="%s" patportion="0.00" insportion="%s" patbalance="0.00" insbalance="%s" finclasscode="MC" lineitemnote="">'
                     '<diagcodelist>%s</diagcodelist></charge>') % (ctx["resp"], d, d, dcodes[0], d, QUALITY_PCODE, cpos, QUALITY["fee"], QUALITY["fee"], QUALITY["fee"], QUALITY["fee"],
                     '<diagcode id="%s"/>' % re.sub(r"\D", "", dcodes[0]))
+    mchg = ""
+    if qchg:      # the option code M0004 rides with the 1123F line, once per clinician per year, once that line is proven (mvp_due): the SAME line with M0004's id - same date, place of service, amount, ONE diagnosis, no modifier
+        try: _mok = mvp_due(own is not None and npi in PROFILE, prof, re.sub(r"\D", "", str(lines[qi].get("dos") or ""))[:4], lpos[qi])
+        except Exception: _mok = False
+        if _mok: mchg = qchg.replace('proccode="%s"' % QUALITY_PCODE, 'proccode="%s"' % MVP_PCODE, 1)
     ext = ""
     if any(c in HOSP for c in cpts) and admit:
         ext = '<extins hospitalizationfrom="%s"/>' % mdy(admit[:8])
@@ -985,21 +1256,24 @@ def build(msg, ctx):
                        {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
                         "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, vis)
     plain = _body(chg)                                     # the visit exactly as before the quality code existed
-    body = _body(chg + qchg) if qchg else plain            # the quality line is LAST in the list
+    body = _body(chg + qchg + mchg) if qchg else plain     # the quality line is LAST in the list - or second to last, followed by the M0004 line
     if qchg:      # once per patient per year: by the chart and by the feed's own patient id
         _qyr = re.sub(r"\D", "", str(lines[qi].get("dos") or ""))[:4]; QUALITY["added"] += 1; QUALITY["done"].add((ctx.get("pid"), _qyr))
         if _feed_mark(fid): QUALITY["done"].add((_feed_mark(fid), _qyr))
+        if mchg: MVP["wait"].add((prof, _qyr)); MVP["added"].append(prof)      # once per clinician per year: no second M0004 line for this clinician until this one is decided
     appt = ('<appt id="" patient="%s" episode="%s" date="%s" profile="%s" facility="%s" refplan="%s" insorder="%s" onhcfa="%s" '
             'acceptassign="1" forcepaper="0" isappt="0" note="" billingnote="" referenceid=""/>') % (ctx["pid"], ctx["episode"], dos, prof, fac, ctx["refplan"], ctx["insorder"], onh)
     create = amd.msg("addvisit", "chargeentry", {"patientid": ctx["pid"], "episodeid": ctx["episode"], "approval": "1", "inspectorenabled": "1",
                      "getfinancials": "-1", "customclaimfieldsavailable": "1", "nocookie": "1"}, appt)
     # "pos" stays ONE value for the registers that read it (recon, monitor, the practice database): the first line's; pos_lines has every line
     # dos_lines: every line's own date (a message can carry two); msg_own: False = building / clinician came from the per-patient fallback
-    # quality_codes: the reporting code that rides with this visit (never in cpts: the register dedupe keys on the message's own codes)
+    # quality_codes: the reporting code that rides with this visit (never in cpts: the register dedupe keys on the message's own codes); mvp_codes: the
+    # option code with it, mvp_prof the clinician profile its once-a-year mark belongs to (the profile the visit is entered under)
     return (create, body, plain), {"dos": dos, "dos_lines": [mdy(c["dos"][:8]) for c in lines], "cpts": cpts, "fac": fac, "pos": lpos[0], "pos_feed": pos, "pos_lines": lpos,
                             "pos_why": lwhy, "pos_kind": lkind, "pos_err": pos_err, "prof": prof, "prof_default": npi not in PROFILE, "msg_own": bool(own), "admit": admit, "missing_dx": sorted(missing_dx),
                             **({"quality_codes": [QUALITY_CODE], "quality_fee": QUALITY["fee"], "quality_dos": mdy(lines[qi]["dos"][:8]), "quality_pos": lpos[qi]} if qchg else
-                               {"quality_skipped": "hospital"} if "hospital" in _qwhy else {})}
+                               {"quality_skipped": "hospital"} if "hospital" in _qwhy else {}),
+                            **({"mvp_codes": [MVP_CODE], "mvp_fee": QUALITY["fee"], "mvp_dos": mdy(lines[qi]["dos"][:8]), "mvp_pos": lpos[qi], "mvp_prof": prof} if mchg else {})}
 def main():
     a = sys.argv[1:]; dry = "--dry" in a; one = a[a.index("--one") + 1] if "--one" in a else None
     limit = int(a[a.index("--limit") + 1]) if "--limit" in a else 10 ** 9
@@ -1060,6 +1334,7 @@ def main():
     # this run, and the report says so at the top from the second run in a row. A register whose stamp names no date counts as this year's.
     # The visits themselves are imported as always (the visit dedupe above passes such a file over, as it always did).
     _unread = [x for x in _unread if (lambda m: not m or m.group(1) == run_day().strftime("%Y"))(re.match(r"feed_import_(\d{4})-?\d{2}-?\d{2}T", _os.path.basename(x)))]
+    _qf = {}; _qbad = ["the registers folder (it could not be read)"]      # until quality_files has read it (the option code M0004 reads the same)
     try:
         _qf = quality_files(STAMP); _qbad = list(_qf.get("problems") or []) + ["%s (not readable)" % x for x in _unread]
         quality_state(prior_regs, look=not dry and not _qbad, reset=(_qenv == "reset"), stop=(_qenv == "stop"), files=_qf)
@@ -1074,6 +1349,18 @@ def main():
     _g0 = reg.get("quality_gate") if isinstance(reg.get("quality_gate"), dict) else {}      # the gate an earlier start under this same stamp wrote: its restart is kept when this run writes the gate again
     if QUALITY.get("reset"): QUALITY["reset_after"] = [len(reg["created"]), len(reg["failed"])]      # rows already in this stamp's register were written BEFORE the restart
     elif _g0.get("reset") is True: QUALITY["reset"] = True; QUALITY["reset_after"] = _g0.get("reset_after")
+    # the option code M0004: its own ledger from the same registers, then its switches (MVP_CODE: off / reset; QUALITY_CODE=off / stop stop it too, since it
+    # never rides without the 1123F line). Any doubt = no M0004 line in this run; the visits and the 1123F line are never touched by it.
+    _menv = (__import__("os").environ.get("MVP_CODE") or "").strip().lower()
+    try: mvp_state(prior_regs, look=not dry and not _qbad, reset=(_menv == "reset"), files=_qf)
+    except Exception as e: MVP.clear(); MVP.update(_mvp_fresh()); MVP["off"] = "this run: the state of the option code M0004 could not be read (%s)" % type(e).__name__
+    if _unread or _qbad: MVP["off"] = MVP["off"] or "this run: %s cannot be read - the state of the option code M0004 is not known" % "; ".join(sorted(set(_qbad + ["%s (not readable)" % x for x in _unread])))[:200]
+    if _menv == "off": MVP["off"] = MVP["off"] or "this run: switched off (MVP_CODE=off)"
+    elif _menv not in ("", "reset"): MVP["off"] = MVP["off"] or "this run: MVP_CODE=%s is not a value the import knows (off, reset) - no M0004 line added" % repr(_menv[:20])
+    if QUALITY["off"]: MVP["off"] = MVP["off"] or "this run: the quality code is off (M0004 rides only with the 1123F line)"
+    _mg0 = reg.get("mvp_gate") if isinstance(reg.get("mvp_gate"), dict) else {}      # an earlier start under this same stamp: its M0004 restart is kept
+    if MVP.get("reset"): MVP["reset_after"] = [len(reg["created"]), len(reg["failed"])]
+    elif _mg0.get("reset") is True: MVP["reset"] = True; MVP["reset_after"] = _mg0.get("reset_after")
     n = 0; stats = collections.Counter()
     if BATCH_NF_ERR[0]: stats["POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31"] += 1
     for msg in PARSED:
@@ -1101,14 +1388,14 @@ def main():
             if info.get("prof_default"): print("POS CHECK clinician not known", pid, info["dos"], info["cpts"], "the feed message names no clinician id the profile table has - entered under the physician profile; for William")
             if not info.get("fac"): print("POS CHECK no facility", pid, info["dos"], info["cpts"], "the message's building is not in the facility table - entered without a facility at the feed's place of service; for William")
             if dry:
-                print("DRY", pid, info); stats["dry"] += 1; stats["dry quality"] += 1 if info.get("quality_codes") else 0; count_pos(info, stats)
+                print("DRY", pid, info); stats["dry"] += 1; stats["dry quality"] += 1 if info.get("quality_codes") else 0; stats["dry mvp"] += 1 if info.get("mvp_codes") else 0; count_pos(info, stats)
                 if info.get("quality_skipped") == "hospital": stats["quality code not added: hospital visit (hospital visits are not coded in this version)"] += 1
                 continue
             create, body, plain = body
             r0 = amd.post(create, timeout=120)
             vm = re.search(r'<visit id="(vst\d+)"', r0)
             if not vm:
-                quality_undo(info, pid, fid)
+                quality_undo(info, pid, fid); mvp_undo(info)
                 stats["FAULT create"] += 1; reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "err": "addvisit: " + re.sub(r"\s+", " ", r0[:500])})
                 print("FAULT addvisit", pid, info["dos"], re.sub(r"\s+", " ", r0[:200])); json.dump(reg, open(REG, "w"), indent=1); continue
             try: r = amd.post(body.replace("%VISIT%", vm.group(1)), timeout=180)
@@ -1116,17 +1403,54 @@ def main():
                 if not info.get("quality_codes"): raise
                 # The call that carried the quality line ended in an error (a time-out). Nobody knows whether AdvancedMD kept the visit and the line. So nothing
                 # is sent again, no further line is tried in this run, and the code is OFF until William has looked at that visit and restarts it.
+                if info.get("mvp_codes"):      # it carried the M0004 line too: M0004 is OFF until William restarts it as well (the failed row says so to the next run)
+                    info["mvp_codes"] = []; info["mvp_tried"] = info.get("mvp_fee") or "0.00"; MVP["off"] = MVP["off"] or "this run: a call that carried M0004 ended in an error"
+                    MVP["off_until_reset"] = MVP.get("off_until_reset") or "a call that carried M0004 ended in an error; nobody knows what AdvancedMD kept of that visit - William looks (chart %s, visit %s, %s)" % (pid, vm.group(1), __import__("os").path.basename(REG))
                 _fee0 = info.get("quality_fee"); _yr = str(info.get("quality_dos") or info["dos"])[-4:]; info["quality_codes"] = []; info["quality_tried"] = _fee0
                 QUALITY["refused"].add((pid, _yr)); QUALITY["done"].add((pid, _yr)); QUALITY["off"] = QUALITY["off"] or "this run: a call that carried the code ended in an error (%s)" % type(e).__name__
                 QUALITY["off_until_reset"] = QUALITY.get("off_until_reset") or "a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart %s, visit %s, %s)" % (pid, vm.group(1), __import__("os").path.basename(REG))
                 stats["error"] += 1; stats["QUALITY CODE: a call that carried the line ended in an error - William looks at that visit"] += 1
                 reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": vm.group(1), "quality_unknown": _fee0, "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
                 json.dump(reg, open(REG, "w"), indent=1); continue
+            if ("Fault" in r or 'success="0"' in r) and info.get("mvp_codes"):
+                # A visit that carried 1123F AND M0004 was refused (8.4). The visit always goes in: once a fresh read of the chart (three tries) shows nothing
+                # of it stored, the SAME visit goes in with the 1123F line only - that form is proven. Accepted: M0004 was the cause - OFF until William
+                # restarts it (MVP_CODE=reset), no second try. Refused too: M0004 is not blamed - the block below reads the chart again and enters the
+                # visit without the line, and the refusal counts against 1123F. The chart shows part of the visit, or cannot be read: nothing is tried
+                # here, the block below leaves that visit for William as it always did, and M0004 is OFF until restarted.
+                _mwhy = re.sub(r"\s+", " ", r[:200]); _vid = vm.group(1); _wreg = __import__("os").path.basename(REG)
+                _mmine = set(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))) | {(QUALITY_CODE, info.get("quality_dos")), (MVP_CODE, info.get("mvp_dos"))}
+                mvp_undo(info); info["mvp_codes"] = []; info["mvp_tried"] = info.get("mvp_fee") or "0.00"
+                for _try in (1, 2, 3):
+                    try: _ms = sorted(chart_lines_now(pid) & _mmine); break
+                    except Exception as e:
+                        _ms = ["chart not read: %s" % type(e).__name__]
+                        if _try < 3: time.sleep(1.0)
+                if _ms:
+                    MVP["off"] = MVP["off"] or "this run: a visit with M0004 was refused and the chart could not be shown free of it"
+                    MVP["off_until_reset"] = MVP.get("off_until_reset") or "AdvancedMD refused a visit that carried M0004 and the chart did not show it free of that visit - William looks (chart %s, visit %s, %s)" % (pid, _vid, _wreg)
+                    stats["OPTION CODE M0004: a visit that carried it was refused and the chart shows part of it or could not be read"] += 1
+                else:
+                    try: r = amd.post(re.sub(r'<charge id=""(?:(?!</charge>).)*proccode="%s"(?:(?!</charge>).)*</charge>' % MVP_PCODE, "", body).replace("%VISIT%", _vid), timeout=180)      # the same request with the M0004 line taken out
+                    except Exception as e:      # the 1123F-only form ended in an error (a time-out): as for any call that carried the 1123F line - nothing is sent again, OFF until William has looked
+                        _fee0 = info.get("quality_fee"); _yr = str(info.get("quality_dos") or info["dos"])[-4:]; info["quality_codes"] = []; info["quality_tried"] = _fee0
+                        QUALITY["refused"].add((pid, _yr)); QUALITY["done"].add((pid, _yr)); QUALITY["off"] = QUALITY["off"] or "this run: a call that carried the code ended in an error (%s)" % type(e).__name__
+                        QUALITY["off_until_reset"] = QUALITY.get("off_until_reset") or "a call that carried the quality line ended in an error; nobody knows whether AdvancedMD kept that visit - William looks (chart %s, visit %s, %s)" % (pid, _vid, _wreg)
+                        MVP["off"] = MVP["off"] or "this run: a visit with M0004 was refused"
+                        MVP["off_until_reset"] = MVP.get("off_until_reset") or "AdvancedMD refused a visit that carried M0004, and the same visit sent with the 1123F line only ended in an error - William looks (chart %s, visit %s, %s)" % (pid, _vid, _wreg)
+                        stats["error"] += 1; stats["QUALITY CODE: a call that carried the line ended in an error - William looks at that visit"] += 1
+                        reg["failed"].append({"feed_id": fid, "pid": pid, "info": info, "lines": seen_lines(msg), "empty_visit": _vid, "quality_unknown": _fee0, "err": str(e)[:400]}); print("ERR", pid, str(e)[:200])
+                        json.dump(reg, open(REG, "w"), indent=1); continue
+                    if "Fault" in r or 'success="0"' in r: info["mvp_form_refused"] = True      # refused with the 1123F line only as well: M0004 is not the cause (the block below)
+                    else:
+                        info["mvp_refused"] = _mwhy; MVP["off"] = MVP["off"] or "this run: AdvancedMD refused a visit that carried M0004"
+                        MVP["off_until_reset"] = MVP.get("off_until_reset") or "AdvancedMD refused a visit that carried M0004 and took it with the 1123F line only - no second try (chart %s, visit %s, %s)" % (pid, _vid, _wreg)
+                        stats["OPTION CODE M0004 NOT ACCEPTED by AdvancedMD - the visit was entered with the 1123F line only"] += 1; print("OPTION CODE M0004 REFUSED", pid, info["dos"], _mwhy[:160])
             if ("Fault" in r or 'success="0"' in r) and info.get("quality_codes"):
                 # A visit that carried the quality line was refused. A reporting code never holds a charge: the SAME visit goes in without the
                 # line - but only when a fresh read of the chart shows that nothing of this visit was stored (a second send would double it).
                 # The chart is read up to three times: one failed read must not leave a visit un-entered.
-                _why = re.sub(r"\s+", " ", r[:200]); _fee0 = info.get("quality_fee"); _mine = set(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))) | {(QUALITY_CODE, info.get("quality_dos"))}
+                _why = re.sub(r"\s+", " ", r[:200]); _fee0 = info.get("quality_fee"); _mine = set(zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"]))) | {(QUALITY_CODE, info.get("quality_dos"))} | ({(MVP_CODE, info.get("mvp_dos"))} if info.get("mvp_tried") else set())
                 _yr = str(info.get("quality_dos") or info["dos"])[-4:]
                 quality_undo(info, pid, fid); info["quality_codes"] = []; info["quality_tried"] = _fee0
                 for _try in (1, 2, 3):
@@ -1163,19 +1487,24 @@ def main():
                 fees = re.findall(r'<charge [^>]* fee="([^"]*)"', r)
                 # what AdvancedMD stored: its answer echoes the charges - compare their place of service with what was sent (any order).
                 # pos_stored None = the answer did not carry it for every line (then nothing is claimed either way)
-                _qidx = None; _ans = []
+                _qidx = None; _midx = None; _ans = []
                 try:
                     if info.get("quality_codes"):      # find the quality charge first: the comparison below is about the visit's OWN lines
-                        _ans = answer_charges(r); _qidx = quality_in_answer(_ans, len(info["cpts"]), info.get("quality_fee"))
-                        _own = [c for i, c in enumerate(_ans) if i != _qidx]; _st = [c[3] for c in _own if c[3]]
+                        _ans = answer_charges(r)
+                        if info.get("mvp_codes"): _qidx, _midx = lines_in_answer(_ans, len(info["cpts"]), info.get("quality_fee"))      # 8.5: the 1123F line AND the M0004 line
+                        else: _qidx = quality_in_answer(_ans, len(info["cpts"]), info.get("quality_fee"))
+                        _own = [c for i, c in enumerate(_ans) if i != _qidx and i != _midx]; _st = [c[3] for c in _own if c[3]]
                         if len(_st) != len(_own): _st = []
                         if _qidx is not None and _ans[_qidx][3]: info["quality_pos_stored"] = _ans[_qidx][3]
+                        if _midx is not None and _ans[_midx][3]: info["mvp_pos_stored"] = _ans[_midx][3]
                     else:
                         _st = re.findall(r'<charge id="charge\d+"[^>]*?\bpos="(\d+)"', r)
                     info["pos_stored"] = _st if len(_st) == len(info["pos_lines"]) else None
-                    if (info["pos_stored"] is not None and sorted(_st) != sorted(info["pos_lines"])) or (info.get("quality_pos_stored") and info.get("quality_pos") and info["quality_pos_stored"] != info["quality_pos"]):
+                    if (info["pos_stored"] is not None and sorted(_st) != sorted(info["pos_lines"])) or (info.get("quality_pos_stored") and info.get("quality_pos") and info["quality_pos_stored"] != info["quality_pos"]) \
+                            or (info.get("mvp_pos_stored") and info.get("mvp_pos") and info["mvp_pos_stored"] != info["mvp_pos"]):
                         stats["ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE (stored differs from sent)"] += 1
-                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", info["pos_lines"], "stored", _st, ("quality line sent %s stored %s" % (info.get("quality_pos"), info.get("quality_pos_stored"))) if info.get("quality_pos_stored") else "")
+                        print("POS NOT KEPT", pid, info["dos"], info["cpts"], "sent", info["pos_lines"], "stored", _st, (("quality line sent %s stored %s" % (info.get("quality_pos"), info.get("quality_pos_stored"))) if info.get("quality_pos_stored") else "")
+                              + ((" M0004 line sent %s stored %s" % (info.get("mvp_pos"), info.get("mvp_pos_stored"))) if info.get("mvp_pos_stored") else ""))
                 except Exception: info["pos_stored"] = None
                 if info["admit"] and any(c in HOSP for c in info["cpts"]):
                     # the extins child is ignored on create - write the admission date with the proven updextrainsinfo shape
@@ -1185,7 +1514,23 @@ def main():
                                    'autoaccident="0" otheraccident="0" pregnant="0" outsidelab="0"/>') % (cpt, mdy(info["admit"][:8]))
                             re_ = amd.post(amd.msg("updextrainsinfo", "chargeentry", {"visitid": vm.group(1), "nocookie": "1"}, ext), timeout=120)
                             info["admit_written"] = "Fault" not in re_ and 'hospitalizationfrom="%s"' % mdy(info["admit"][:8]) in re_
-                if info.get("quality_codes"):
+                if info.get("quality_codes") and info.get("mvp_codes"):      # 8.5: the 1123F line and the M0004 line; "charges" = the visit's own charges in the answer's order, THEN the 1123F charge, THEN the M0004 charge
+                    _qc = _ans[_qidx][0] if _qidx is not None else ""; _mc = _ans[_midx][0] if _midx is not None else ""; info["quality_charge"] = _qc; info["mvp_charge"] = _mc
+                    if not _qc:      # the 1123F line was not shown stored: as for a visit stored without its quality line
+                        quality_undo(info, pid, fid); info["quality_not_stored"] = info.get("quality_fee") or "0.00"; info["quality_codes"] = []
+                        stats["QUALITY CODE: AdvancedMD stored the visit WITHOUT the line"] += 1
+                        QUALITY["off"] = QUALITY["off"] or "this run: AdvancedMD stored a visit without its quality line"
+                    if not _mc:      # the M0004 line was not shown stored: OFF until William restarts it (no second try)
+                        mvp_undo(info); info["mvp_not_stored"] = info.get("mvp_fee") or "0.00"; info["mvp_codes"] = []; stats["OPTION CODE M0004: AdvancedMD stored the visit WITHOUT the M0004 line"] += 1
+                        MVP["off"] = MVP["off"] or "this run: AdvancedMD stored a visit without its M0004 line"
+                        MVP["off_until_reset"] = MVP.get("off_until_reset") or "AdvancedMD stored a visit without its M0004 line - William looks (chart %s, visit %s, %s)" % (pid, vid.group(1) if vid else "?", __import__("os").path.basename(REG))
+                    elif not _qc:    # the M0004 line stands on a claim without the 1123F line: OFF until William has looked
+                        MVP["off"] = MVP["off"] or "this run: AdvancedMD stored the M0004 line of a visit without its 1123F line"
+                        MVP["off_until_reset"] = MVP.get("off_until_reset") or "AdvancedMD stored the M0004 line of a visit without its 1123F line - William looks (chart %s, visit %s, %s)" % (pid, vid.group(1) if vid else "?", __import__("os").path.basename(REG))
+                    _nc = [x for x in (_qc, _mc) if x]
+                    if len(fees) == len(cids): fees = [f_ for c_, f_ in zip(cids, fees) if c_ not in _nc]
+                    cids = [c for c in cids if c not in _nc] + _nc
+                elif info.get("quality_codes"):
                     info["quality_charge"] = _ans[_qidx][0] if _qidx is not None else ""      # by procedure, else by amount, else the last of an unnamed list
                     if not info["quality_charge"]:      # the visit was stored, the line was not: the next run reads this like a refusal
                         quality_undo(info, pid, fid); info["quality_not_stored"] = info.get("quality_fee") or "0.00"; info["quality_codes"] = []
@@ -1201,9 +1546,12 @@ def main():
                 for cpt, _d in zip(info["cpts"], info.get("dos_lines") or [info["dos"]] * len(info["cpts"])): ctx["live"].add((cpt, _d))   # each line under its OWN date
                 if info.get("quality_codes") and info.get("quality_charge"):
                     ctx["live"].add((QUALITY_CODE, info.get("quality_dos") or info["dos"])); stats["quality code 1123F added (advance care plan)"] += 1
+                if info.get("mvp_codes") and info.get("mvp_charge"):      # that clinician's M0004 line of the year: waiting for its outcome
+                    ctx["live"].add((MVP_CODE, info.get("mvp_dos") or info["dos"])); stats["option code M0004 added"] += 1
+                    MVP.setdefault("clinicians", {}).setdefault(info.get("mvp_prof") or "?", {}).update(state="waiting", year=str(info.get("mvp_dos") or "")[-4:], visit=vid.group(1) if vid else "", charge=info["mvp_charge"], billed="", since=__import__("os").path.basename(REG))
                 if info.get("quality_skipped") == "hospital":      # met every other condition: counted for the report (hospital visits are not coded in this version)
                     QUALITY["skipped_hospital"] = int(QUALITY.get("skipped_hospital") or 0) + 1; stats["quality code not added: hospital visit (hospital visits are not coded in this version)"] += 1
-                stats["created"] += 1; stats["charge lines"] += len(cids) - (1 if info.get("quality_charge") else 0); count_pos(info, stats)
+                stats["created"] += 1; stats["charge lines"] += len(cids) - (1 if info.get("quality_charge") else 0) - (1 if info.get("mvp_charge") else 0); count_pos(info, stats)
                 print("OK", pid, info["dos"], info["cpts"], vid.group(1) if vid else "?", cids, fees)
             json.dump(reg, open(REG, "w"), indent=1)
             time.sleep(0.6)
@@ -1218,9 +1566,16 @@ def main():
         reg["quality_gate"] = quality_gate(REG, 0 if dry else _qn); json.dumps(reg["quality_gate"])
     except Exception as e:
         reg["quality_gate"] = {"code": QUALITY_CODE, "off": "this run: the state of the quality code could not be written (%s)" % type(e).__name__, "reset": bool(QUALITY.get("reset")), "notes": []}
+    _mn = stats["dry mvp"] if dry else stats["option code M0004 added"]
+    try:      # the option code M0004's own gate, the same way (a failure never loses the register: the next run finds every M0004 line again in the rows)
+        reg["mvp_gate"] = mvp_gate(); json.dumps(reg["mvp_gate"])
+    except Exception as e:
+        reg["mvp_gate"] = {"code": MVP_CODE, "off": "this run: the state of the option code M0004 could not be written (%s)" % type(e).__name__, "reset": bool(MVP.get("reset")), "notes": []}
     if not dry: json.dump(reg, open(REG, "w"), indent=1)
     try: print(quality_log(_qn, dry))
     except Exception as e: print("QUALITY 1123F: this line could not be built (%s) - read quality_gate in the import register" % type(e).__name__)
+    try: print(mvp_log(_mn, dry))
+    except Exception as e: print("QUALITY M0004: this line could not be built (%s) - read mvp_gate in the import register" % type(e).__name__)
     _pk = lambda w: sum(v for k, v in stats.items() if k.startswith(w))
     if _pk("ADVANCEDMD DID NOT KEEP") or _pk("feed message not matched") or _pk("clinician id of the feed message") or _pk("visit entered with NO facility"):
         # one SHORT line, like the next one (89 characters with one-digit counts)
