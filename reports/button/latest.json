@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-10T0920Z",
+ "stamp": "2026-11-10T1119Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 6 checks $27797.54 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42789842571",
- "started": "2026-11-10T09:20:22Z",
- "ended": "2026-11-10T09:26:37Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42806457439",
+ "started": "2026-11-10T11:19:22Z",
+ "ended": "2026-11-10T11:28:41Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 6,
+    "unposted": 27797.54
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 27797.54,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 344048.63,
-   "visits": 2701,
-   "charts": 490,
+   "total": 282803.57,
+   "visits": 2491,
+   "charts": 462,
    "over_365": {
     "n": 542,
     "dollars": 25096.53
@@ -65,7 +65,7 @@
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-10 09:26 UTC"
+   "asof": "2026-11-10 11:28 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T09:20:22Z",
-   "ended": "2026-11-10T09:20:23Z"
+   "started": "2026-11-10T11:19:22Z",
+   "ended": "2026-11-10T11:19:22Z"
   },
   {
    "name": "columns",
@@ -129,31 +129,82 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:20:23Z",
-   "ended": "2026-11-10T09:22:24Z"
+   "started": "2026-11-10T11:19:22Z",
+   "ended": "2026-11-10T11:21:06Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "6 checks / $27797.54 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 3,
+    "checks the Post button posted or was offered": 3,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 3,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 12
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 27797.54,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 27797.54
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053468,
+     "payer": "HUMANA",
+     "checknumber": "NO-PAY-202611070005002",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053469,
+     "payer": "HUMANA",
+     "checknumber": "206080107261109",
+     "amount": 0.0,
+     "unposted": 260.6,
+     "stage": "before"
+    },
+    {
+     "check": 1053470,
+     "payer": "HUMANA",
+     "checknumber": "205964545261109",
+     "amount": 0.0,
+     "unposted": 650.13,
+     "stage": "before"
+    },
+    {
+     "check": 1053471,
+     "payer": "HUMANA",
+     "checknumber": "NO-PAY-202611070005003",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053472,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "350188688",
+     "amount": 0.0,
+     "unposted": 0.0,
+     "stage": "before"
+    },
+    {
+     "check": 1053473,
+     "payer": "FLORIDA MEDICARE",
+     "checknumber": "820153479",
+     "amount": 0.0,
+     "unposted": 26886.81,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-10T09:22:24Z",
-   "ended": "2026-11-10T09:22:26Z"
+   "started": "2026-11-10T11:21:06Z",
+   "ended": "2026-11-10T11:25:16Z"
   },
   {
    "name": "packages",
@@ -164,29 +215,29 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T09:22:26Z",
-   "ended": "2026-11-10T09:22:26Z"
+   "started": "2026-11-10T11:25:16Z",
+   "ended": "2026-11-10T11:25:16Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2701 visits on 490 charts, $344048.63 open; 542 over a year ($25096.53)",
+   "summary": "2491 visits on 462 charts, $282803.57 open; 542 over a year ($25096.53)",
    "counts": {
-    "visits": 2701,
-    "charts": 490,
+    "visits": 2491,
+    "charts": 462,
     "over 365 days": 542
    },
    "dollars": {
-    "open insurance balance": 344048.63,
+    "open insurance balance": 282803.57,
     "over 365 days": 25096.53
    },
    "lines": [
     {
      "carrier": "FLO02",
      "name": "FLORIDA MEDICARE",
-     "visits": 1486,
-     "dollars": 190824.3,
+     "visits": 1284,
+     "dollars": 130936.24,
      "oldest_days": 1091
     },
     {
@@ -220,8 +271,8 @@
     {
      "carrier": "HUM01",
      "name": "HUMANA",
-     "visits": 66,
-     "dollars": 11132.13,
+     "visits": 58,
+     "dollars": 9775.13,
      "oldest_days": 664
     },
     {
@@ -268,30 +319,30 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:22:26Z",
-   "ended": "2026-11-10T09:22:28Z"
+   "started": "2026-11-10T11:25:16Z",
+   "ended": "2026-11-10T11:25:17Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7823 denied visits on 853 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4511, RESUBMITTED 198, OPEN 138",
+   "summary": "7823 denied visits on 848 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4513, RESUBMITTED 196, OPEN 138",
    "counts": {
-    "charts read": 853,
+    "charts read": 848,
     "denial lines": 13298,
     "visits": 7823,
     "actionable": 74,
     "inside 12 months": 71,
     "status WRITTEN-OFF": 2976,
-    "status RESOLVED": 4511,
-    "status RESUBMITTED": 198,
+    "status RESOLVED": 4513,
+    "status RESUBMITTED": 196,
     "status OPEN": 138
    },
    "dollars": {
     "actionable": 13463.0,
     "inside 12 months": 12944.0,
-    "resubmitted": 34120.37,
-    "resolved since": 682036.33
+    "resubmitted": 33724.37,
+    "resolved since": 682432.33
    },
    "lines": [
     {
@@ -356,8 +407,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T09:22:28Z",
-   "ended": "2026-11-10T09:26:37Z"
+   "started": "2026-11-10T11:25:17Z",
+   "ended": "2026-11-10T11:28:41Z"
   }
  ],
  "packages": [],
