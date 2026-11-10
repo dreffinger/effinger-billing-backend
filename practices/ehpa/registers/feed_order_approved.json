@@ -1,0 +1,1451 @@
+{
+ "what": "Owner-approved actions for the 84 feed visits released but never billed (empty insurance-order list), found November 10, 2026.",
+ "approved_by": "William (owner), in chat, November 10, 2026 about 15:15 UTC: \"yes to all your recommendations\"",
+ "recommendations": [
+  "Q1: the 71 visits whose payer only the look-up found - send only after an eligibility check dated to each service date shows the plan active",
+  "Q2: the two-plan chart (4 visits) - the plan a check dated to the service date shows active decides",
+  "Q3: the 13 visits whose plan came from the feed's insurance block, a face sheet or by hand - send",
+  "Q4: the nurse practitioner's visits entered under the physician - move them to her before sending; the two initial nursing-facility visits stay under the physician (William: \"i saw those patients\")",
+  "Q5: standing word - a routine may save a never-billed feed visit again once its first plan lands, after clinician, admission-date and insurance-order read-backs, never on a billed visit"
+ ],
+ "rules": "Nothing here overrides a check: a visit is saved only when every check of feed_order_sweep.py passes; a billed or paid visit is never saved; 'william' visits are never touched.",
+ "counts": {
+  "order_by_dated_check": {
+   "visits": 2,
+   "fee": 704.0
+  },
+  "order_by_dated_check+clinician": {
+   "visits": 2,
+   "fee": 282.0
+  },
+  "send": {
+   "visits": 9,
+   "fee": 2201.0
+  },
+  "send+clinician": {
+   "visits": 4,
+   "fee": 564.0
+  },
+  "send_if_active_on_dos": {
+   "visits": 63,
+   "fee": 13877.0
+  },
+  "send_if_active_on_dos+clinician": {
+   "visits": 4,
+   "fee": 1174.0
+  }
+ },
+ "visits": {
+  "vst19458775": {
+   "chart": "pat17472729",
+   "dos": "2026-10-12",
+   "codes": "99344",
+   "fee": 300.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459088": {
+   "chart": "pat17472729",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459187": {
+   "chart": "pat17478199",
+   "dos": "2026-10-14",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459193": {
+   "chart": "pat17478199",
+   "dos": "2026-10-15",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459196": {
+   "chart": "pat17478199",
+   "dos": "2026-10-16",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459201": {
+   "chart": "pat17478199",
+   "dos": "2026-10-17",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459199": {
+   "chart": "pat17478199",
+   "dos": "2026-10-18",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459190": {
+   "chart": "pat17478202",
+   "dos": "2026-10-12",
+   "codes": "99344",
+   "fee": 300.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459224": {
+   "chart": "pat17478202",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459195": {
+   "chart": "pat17478204",
+   "dos": "2026-10-15",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CIG09",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459203": {
+   "chart": "pat17478206",
+   "dos": "2026-10-19",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459205": {
+   "chart": "pat17478206",
+   "dos": "2026-10-20",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459216": {
+   "chart": "pat17478206",
+   "dos": "2026-10-21",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459236": {
+   "chart": "pat17478206",
+   "dos": "2026-10-22",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459204": {
+   "chart": "pat17478207",
+   "dos": "2026-10-19",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459207": {
+   "chart": "pat17478207",
+   "dos": "2026-10-20",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459218": {
+   "chart": "pat17478207",
+   "dos": "2026-10-21",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459214": {
+   "chart": "pat17478209",
+   "dos": "2026-10-15",
+   "codes": "99306+99497",
+   "fee": 389.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "2"
+    },
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "order_by_dated_check",
+   "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)",
+   "order_candidates": [
+    "1",
+    "2"
+   ],
+   "clinician_note": "initial nursing-facility visit the feed names the nurse practitioner on: William, November 10, 2026 about 15:18 UTC, \"i saw those patients\" - it stays under the physician (prof13); no clinician change"
+  },
+  "vst19459210": {
+   "chart": "pat17478209",
+   "dos": "2026-10-19",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "2"
+    },
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "order_by_dated_check",
+   "order_candidates": [
+    "1",
+    "2"
+   ],
+   "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459232": {
+   "chart": "pat17478209",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "2"
+    },
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "order_by_dated_check",
+   "order_candidates": [
+    "1",
+    "2"
+   ],
+   "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)"
+  },
+  "vst19459257": {
+   "chart": "pat17478209",
+   "dos": "2026-10-22",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "2"
+    },
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "order_by_dated_check",
+   "order_candidates": [
+    "1",
+    "2"
+   ],
+   "why": "two plans in force; the plan a check dated to the service date shows active decides (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459212": {
+   "chart": "pat17478210",
+   "dos": "2026-10-21",
+   "codes": "99344+99497",
+   "fee": 433.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459240": {
+   "chart": "pat17478210",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459213": {
+   "chart": "pat17478211",
+   "dos": "2026-10-19",
+   "codes": "99306+99497",
+   "fee": 389.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
+   "order": "1",
+   "clinician_note": "initial nursing-facility visit the feed names the nurse practitioner on: William, November 10, 2026 about 15:18 UTC, \"i saw those patients\" - it stays under the physician (prof13); no clinician change"
+  },
+  "vst19459231": {
+   "chart": "pat17478211",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459259": {
+   "chart": "pat17478211",
+   "dos": "2026-10-22",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459223": {
+   "chart": "pat17478217",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459225": {
+   "chart": "pat17478218",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459226": {
+   "chart": "pat17478219",
+   "dos": "2026-10-22",
+   "codes": "99487",
+   "fee": 206.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459227": {
+   "chart": "pat17478220",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459229": {
+   "chart": "pat17478222",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459239": {
+   "chart": "pat17478224",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459250": {
+   "chart": "pat17478226",
+   "dos": "2026-10-23",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459245": {
+   "chart": "pat17478226",
+   "dos": "2026-10-24",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459255": {
+   "chart": "pat17478227",
+   "dos": "2026-10-23",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459254": {
+   "chart": "pat17478227",
+   "dos": "2026-10-24",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459579": {
+   "chart": "pat17478258",
+   "dos": "2026-10-26",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459546": {
+   "chart": "pat17478258",
+   "dos": "2026-10-27",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459580": {
+   "chart": "pat17478259",
+   "dos": "2026-10-26",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459558": {
+   "chart": "pat17478259",
+   "dos": "2026-10-27",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459636": {
+   "chart": "pat17478260",
+   "dos": "2026-10-27",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459589": {
+   "chart": "pat17478260",
+   "dos": "2026-10-28",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261031T0312Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459830": {
+   "chart": "pat17478261",
+   "dos": "2026-10-27",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261102T1904ZR",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459829": {
+   "chart": "pat17478261",
+   "dos": "2026-10-28",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261102T1904ZR",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459834": {
+   "chart": "pat17478261",
+   "dos": "2026-10-29",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261102T1904ZR",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459833": {
+   "chart": "pat17478261",
+   "dos": "2026-10-30",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261102T1904ZR",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459832": {
+   "chart": "pat17478261",
+   "dos": "2026-10-31",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261102T1904ZR",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459755": {
+   "chart": "pat17478262",
+   "dos": "2026-10-30",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459709": {
+   "chart": "pat17478262",
+   "dos": "2026-10-31",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459754": {
+   "chart": "pat17478263",
+   "dos": "2026-10-30",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459710": {
+   "chart": "pat17478263",
+   "dos": "2026-10-31",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459716": {
+   "chart": "pat17478264",
+   "dos": "2026-10-30",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459724": {
+   "chart": "pat17478264",
+   "dos": "2026-10-31",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261101T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460033": {
+   "chart": "pat17478292",
+   "dos": "2026-11-02",
+   "codes": "99306+99497",
+   "fee": 389.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261104T1240Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460207": {
+   "chart": "pat17478316",
+   "dos": "2026-11-03",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460212": {
+   "chart": "pat17478316",
+   "dos": "2026-11-04",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460208": {
+   "chart": "pat17478317",
+   "dos": "2026-11-03",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460224": {
+   "chart": "pat17478317",
+   "dos": "2026-11-04",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460209": {
+   "chart": "pat17478318",
+   "dos": "2026-11-03",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CIG09",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460222": {
+   "chart": "pat17478318",
+   "dos": "2026-11-04",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CIG09",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460350": {
+   "chart": "pat17478332",
+   "dos": "2026-11-03",
+   "codes": "99344+99497",
+   "fee": 433.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261106T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460537": {
+   "chart": "pat17478347",
+   "dos": "2026-11-06",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "HUM01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460542": {
+   "chart": "pat17478347",
+   "dos": "2026-11-07",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "HUM01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460538": {
+   "chart": "pat17478348",
+   "dos": "2026-11-06",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460544": {
+   "chart": "pat17478348",
+   "dos": "2026-11-07",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UNI20",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460540": {
+   "chart": "pat17478350",
+   "dos": "2026-11-06",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460545": {
+   "chart": "pat17478350",
+   "dos": "2026-11-07",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "SUN01",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460194": {
+   "chart": "pat46439",
+   "dos": "2026-11-03",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460226": {
+   "chart": "pat46439",
+   "dos": "2026-11-04",
+   "codes": "99233",
+   "fee": 160.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19459208": {
+   "chart": "pat17478208",
+   "dos": "2026-10-12",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send",
+   "order": "1",
+   "evidence": "feed insurance block (plan added 10/29)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459211": {
+   "chart": "pat17478208",
+   "dos": "2026-10-15",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send",
+   "order": "1",
+   "evidence": "feed insurance block (plan added 10/29)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459209": {
+   "chart": "pat17478208",
+   "dos": "2026-10-19",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send",
+   "order": "1",
+   "evidence": "feed insurance block (plan added 10/29)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19459230": {
+   "chart": "pat17478208",
+   "dos": "2026-10-22",
+   "codes": "99487+99489",
+   "fee": 315.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send",
+   "order": "1",
+   "evidence": "feed insurance block (plan added 10/29)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19459256": {
+   "chart": "pat17478208",
+   "dos": "2026-10-22",
+   "codes": "99309",
+   "fee": 141.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "1028",
+   "decision": "send",
+   "order": "1",
+   "evidence": "feed insurance block (plan added 10/29)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)",
+   "clinician": "prof15",
+   "clinician_why": "the feed names the nurse practitioner; move the visit to her before it is sent (William 11/10)"
+  },
+  "vst19460175": {
+   "chart": "pat17478273",
+   "dos": "2026-11-02",
+   "codes": "99306+99497",
+   "fee": 389.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "FLO02",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "Medicare MBI + facesheet of 11/02, added 11/05 by feed_holds (visit resave SKIPP",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460210": {
+   "chart": "pat17478319",
+   "dos": "2026-11-03",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "face sheet (plan added by hand 11/09-11/10)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460213": {
+   "chart": "pat17478319",
+   "dos": "2026-11-04",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "face sheet (plan added by hand 11/09-11/10)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460327": {
+   "chart": "pat17478319",
+   "dos": "2026-11-05",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261106T1239Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "face sheet (plan added by hand 11/09-11/10)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460403": {
+   "chart": "pat17478319",
+   "dos": "2026-11-06",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "CAP07",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261107T1239Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "face sheet (plan added by hand 11/09-11/10)",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460211": {
+   "chart": "pat17478320",
+   "dos": "2026-11-04",
+   "codes": "99344+99497",
+   "fee": 433.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UHCMA",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261105T1241Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "added 11/05 by feed_holds (visit resave SKIPPED 'already 1')",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460349": {
+   "chart": "pat17478331",
+   "dos": "2026-11-04",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261106T1239Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "BlueOptions plan added 11/07-11/08 (Florida Blue 271 ACTIVE); the 11/06 visits w",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460342": {
+   "chart": "pat17478331",
+   "dos": "2026-11-05",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "BCBS",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261106T1239Z",
+   "decision": "send",
+   "order": "1",
+   "evidence": "BlueOptions plan added 11/07-11/08 (Florida Blue 271 ACTIVE); the 11/06 visits w",
+   "why": "plan from the feed's insurance block, a face sheet or by hand: send (William 11/10)"
+  },
+  "vst19460539": {
+   "chart": "pat17478349",
+   "dos": "2026-11-06",
+   "codes": "99223",
+   "fee": 310.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UMR",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  },
+  "vst19460546": {
+   "chart": "pat17478349",
+   "dos": "2026-11-07",
+   "codes": "99232",
+   "fee": 111.0,
+   "plans_in_force_today": [
+    {
+     "carrier": "UMR",
+     "seq": "1"
+    }
+   ],
+   "batch": "20261109T1239Z",
+   "decision": "send_if_active_on_dos",
+   "order": "1",
+   "why": "payer found only by the look-up: send only after a check dated to the service date shows it active (William 11/10)"
+  }
+ },
+ "answers": [
+  "November 10, 2026 about 15:15 UTC: \"yes to all your recommendations\"",
+  "November 10, 2026 about 15:18 UTC, on the two initial visits: \"i saw those patients\""
+ ]
+}
