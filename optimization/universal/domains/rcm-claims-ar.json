@@ -63,7 +63,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Every practice that bills insurance. Practices with no front desk, such as hospital, nursing facility and home-visit practices, build claims from census and rounding lists, so their holds usually wait on a missing note or a coverage change and are best reviewed by facility.",
+   "applies_when": "Every practice that bills insurance. With no front desk, as in hospital, nursing facility and home-visit work, claims come from census and rounding lists, and holds usually wait on a missing note or coverage change.",
    "vendor_refs": [
     {
      "item": "kpi-02-clean-claim-rate",
@@ -175,7 +175,7 @@
    "key_questions": [
     "How many rejected claims are waiting for correction right now, and how old is the oldest?",
     "What share of claims was rejected before adjudication last month?",
-    "What are the top three rejection reasons, and who owns the fix for each?",
+    "Does each of our top three rejection reasons have a named owner for its fix, yes or no?",
     "Are clearinghouse rejections and payer rejections both reviewed every business day, yes or no?"
    ],
    "actions": [
@@ -208,7 +208,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices that send electronic claims. Facility-based practices see more wrong-payer and identifier rejections, because coverage comes from a facility face sheet and can change during a stay, so they should recheck coverage at each admission and at the start of each month.",
+   "applies_when": "All practices that send electronic claims. Facility-based practices see more wrong-payer and identifier rejections, because coverage is taken from a facility face sheet and can change during a stay.",
    "vendor_refs": [
     {
      "item": "kpi-02-clean-claim-rate",
@@ -294,9 +294,9 @@
    "key_questions": [
     "What share of remittance lines posts automatically with no manual touch?",
     "How many remittances, and how many dollars, are received but not yet posted today?",
-    "Which payers still pay by paper check or virtual credit card?",
+    "How many payers still pay by paper check or virtual credit card?",
     "Are zero-payment remittances posted on the same schedule as paid ones, yes or no?",
-    "Who can change the posting rules, and who reviews those changes?"
+    "Is every change to the posting rules reviewed by a second person, yes or no?"
    ],
    "actions": [
     {
@@ -335,7 +335,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Where most patients have Medicare, most lines post automatically and the risk moves to crossover and zero-payment remittances, and in a one-person billing office the owner or an outside bookkeeper should sample posted remittances each month.",
+   "applies_when": "All practices, though where most patients have Medicare most lines post automatically and the risk moves to crossover and zero-payment remittances. In a one-person billing office, the owner or an outside bookkeeper should sample posted remittances each month.",
    "vendor_refs": [
     {
      "item": "rcm-technology-buyers-playbook",
@@ -356,7 +356,6 @@
    ],
    "sources": [
     "cfr-162-925",
-    "cfr-162-1602",
     "cms-vcc-eft-2022",
     "cfr-424-510",
     "cms-cpm-ch22",
@@ -364,7 +363,6 @@
     "caqh-2024",
     "cms-cpm-ch1",
     "cfr-447-45",
-    "cfr-422-520",
     "fl-627-6131",
     "uhc-admin-guide-2026"
    ],
@@ -415,8 +413,7 @@
      "sources": [
       "cms-cpm-ch1",
       "cfr-447-45",
-      "fl-627-6131",
-      "cfr-422-520"
+      "fl-627-6131"
      ],
      "data_hint": "Payer acceptance date from the acknowledgment report and payment date from the remittance.",
      "vendor_claim": "Commercial payers usually owe payment within 30 days on electronic claims. Another document says 30 to 45 days.",
@@ -442,7 +439,7 @@
     "Collections in the billing system and in the accounting books differ at month end and nobody can say why. Financial statements and collection rates cannot be trusted."
    ],
    "key_questions": [
-    "Did posted payments equal bank deposits last month, with every difference explained?",
+    "Did posted payments equal bank deposits last month, with every difference explained, yes or no?",
     "How many deposits are unmatched to a remittance today, and how many remittances are unmatched to a deposit?",
     "Does the person who reconciles the bank account also post payments or adjustments, yes or no?",
     "Does our bank report the trace number on each electronic health care payment, yes or no?",
@@ -485,7 +482,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Those with many Medicare Advantage and commercial plans see more virtual cards and split payments than those paid mostly by Medicare bank transfer, and a practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
+   "applies_when": "All practices, most of all those with many Medicare Advantage and commercial plans, which bring more virtual cards and split payments. A practice with no office should send paper mail to a monitored address or lockbox, not to a facility or a home.",
    "vendor_refs": [
     {
      "item": "new-practice-launch-playbook",
@@ -548,7 +545,7 @@
     },
     {
      "action": "Set a follow-up trigger for each payer",
-     "detail": "Use the payer's rule or contract. Medicare pays clean electronic claims between day 14 and day 30. In Florida, insurers and health maintenance organizations must pay, deny or contest within 20 days. Start follow-up just past the due date.",
+     "detail": "Use the payer's rule or contract. Medicare pays clean electronic claims between day 14 and day 30. Medicare Advantage timing comes from the contract (42 CFR 422.520). In Florida, insurers must pay, deny or contest within 20 days.",
      "cadence": "annual",
      "effort": "low",
      "impact": "medium"
@@ -575,7 +572,7 @@
      "impact": "high"
     }
    ],
-   "applies_when": "Any practice with insurance receivables. Medicare fee-for-service pays quickly, so a Medicare-heavy or facility-based practice should run well under general targets, and its old balances usually point to a wrong payer, a hospice election or a secondary payer problem.",
+   "applies_when": "Any practice with insurance receivables. A Medicare-heavy or facility-based practice should run well under general targets, and its old balances usually point to a wrong payer, a hospice election or a secondary payer.",
    "vendor_refs": [
     {
      "item": "kpi-03-days-in-ar",
@@ -605,9 +602,9 @@
     "pwc-hfma-2021",
     "caqh-2024",
     "cms-cpm-ch1",
+    "cfr-422-520",
     "cfr-447-45",
-    "fl-627-6131",
-    "fl-641-3155"
+    "fl-627-6131"
    ],
    "evidence_note": "Targets for days in receivables and aging are conventions from the American Academy of Family Physicians (AAFP) and a 2012 AAPC article. Measured values, from the Medical Group Management Association (MGMA) and a small billing-company survey, are worse. Payer payment deadlines are regulation.",
    "metrics": [
@@ -711,7 +708,7 @@
    ],
    "key_questions": [
     "What share of claims was denied on first adjudication last quarter, for each major payer?",
-    "What are the top five denial causes by dollars, and who owns each one?",
+    "Does each of our top five denial causes by dollars have a named owner, yes or no?",
     "How many denials are open today, and how many are within 30 days of a deadline?",
     "How many dollars of denials did we write off last quarter?",
     "Did last quarter's fixes reduce the denials they targeted, yes or no?"
@@ -753,7 +750,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Payer mix sets the baseline, since Medicare Advantage plans deny far more claims than practices see on average, and facility-based practices should add causes for hospice election, plan switches, skilled-stay status and visit-frequency edits and send feedback to clinicians and whoever keeps the census.",
+   "applies_when": "All practices, with a baseline set by payer mix, since Medicare Advantage plans deny far more claims than the practice average. Facility-based practices should add causes for hospice election, plan switches, skilled-stay status and visit-frequency edits, and send feedback to clinicians and whoever keeps the census.",
    "vendor_refs": [
     {
      "item": "denial-management-playbook",
@@ -777,10 +774,8 @@
     "aafp-finances",
     "aapc-kpi-2012",
     "mgma-stat-ar-2026",
-    "mgma-ops-2023",
     "cms-ffs-appeals-data-2025",
     "vabson-2025",
-    "premier-2025",
     "kodiak-2026",
     "pwc-hfma-2021",
     "x12-carc",
@@ -873,7 +868,7 @@
     },
     {
      "action": "Use reopening for clerical errors on Medicare claims",
-     "detail": "For a wrong modifier, date or code, or a claim wrongly denied as a duplicate, ask the Medicare contractor for a clerical error reopening. A party may ask within one year for any reason (42 CFR 405.980).",
+     "detail": "For a wrong modifier, date or code, or a claim wrongly denied as a duplicate, ask the Medicare contractor for a clerical error reopening, often by telephone. A party may ask within one year for any reason (42 CFR 405.980).",
      "cadence": "per event",
      "effort": "low",
      "impact": "high"
@@ -900,7 +895,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. In Florida, unresolved disputes with state-regulated insurers, health maintenance organizations and Medicaid plans can go to the state claim dispute program (section 408.7057), which excludes Medicare appeals, and hospital-based specialties with out-of-network commercial claims also have the federal dispute process in 45 CFR 149.510.",
+   "applies_when": "All practices, including hospital-based specialties with out-of-network commercial claims, which also have the federal dispute process in 45 CFR 149.510. In Florida, unresolved disputes with state-regulated insurers, health maintenance organizations and Medicaid plans can go to the state claim dispute program (section 408.7057), which excludes Medicare appeals.",
    "vendor_refs": [
     {
      "item": "denial-management-playbook",
@@ -924,24 +919,18 @@
     "cfr-405-962",
     "cfr-405-966",
     "cfr-405-980",
-    "cfr-405-926",
     "cfr-405-1006",
-    "cfr-405-379",
     "cms-mln-appeals",
     "cms-cpm-ch34",
     "cms-ffs-appeals-data-2025",
     "cms-ma-appeals-guidance",
     "cfr-422-562",
-    "cfr-422-520",
     "cfr-422-101",
     "cfr-422-138",
     "cfr-422-402",
     "fl-408-7057",
-    "fl-627-6131",
-    "uhc-admin-guide-2026",
     "cfr-45-149-510",
     "kff-ma-pa",
-    "kff-aca-2026",
     "vabson-2025",
     "kodiak-2026"
    ],
@@ -981,8 +970,7 @@
      "confidence": "none",
      "sources": [
       "cms-ffs-appeals-data-2025",
-      "kff-ma-pa",
-      "kff-aca-2026"
+      "kff-ma-pa"
      ],
      "data_hint": "Denial log: denials flagged appealable, with the date an appeal or reopening was filed."
     },
@@ -1007,7 +995,7 @@
    "good_looks_like": [
     "The current fee schedule for each major payer is loaded in the billing system, by code, modifier, place of service and clinician type.",
     "The allowed amount on each payment line is compared with the expected allowed amount. Lines that differ by more than a small tolerance go to a work list.",
-    "Known reductions are expected, not flagged: the 2% Medicare sequestration cut, multiple procedure reductions, and the 85% rate for nurse practitioners and physician assistants.",
+    "Known reductions are expected, not flagged: the 2% Medicare sequestration cut (reason code 253), multiple procedure reductions, and the 85% rate for nurse practitioners and physician assistants.",
     "Recurring shortfalls are grouped by payer and code and disputed together, inside each payer's deadline for payment disputes.",
     "Interest owed under law or contract is checked on old claims that were finally paid late."
    ],
@@ -1062,7 +1050,7 @@
      "impact": "low"
     }
    ],
-   "applies_when": "Any practice paid under fee schedules. Medicare fee-for-service pays by a public schedule, so shortfalls there usually trace to place of service, modifiers or clinician type, while commercial and Medicare Advantage rates need the contract in hand and small practices can sample by hand.",
+   "applies_when": "Any practice paid under fee schedules, and small ones can sample by hand. Medicare shortfalls usually trace to place of service, modifiers or clinician type, while commercial and Medicare Advantage rates need the contract in hand.",
    "vendor_refs": [
     {
      "item": "payer-contract-intelligence-playbook",
@@ -1092,7 +1080,7 @@
     "cms-cpm-ch1",
     "trizetto-2026"
    ],
-   "evidence_note": "Expected Medicare amounts follow public rules: the fee schedule, the 2% sequestration reduction, multiple procedure rules and 42 CFR 414.56. Dispute deadlines come from contract and state law. The only frequency figure found is one vendor's claims data.",
+   "evidence_note": "Expected Medicare amounts follow public rules: the fee schedule, the 2% sequestration cut, multiple surgery rules (Claims Processing Manual, chapter 12, section 40.6) and 42 CFR 414.56. Dispute deadlines come from contract and state law. Frequency data come from one vendor.",
    "metrics": [
     {
      "slug": "ar-underpayment-rate",
@@ -1127,7 +1115,7 @@
    "failure_modes": [
     "Staff send a secondary claim for a claim Medicare already forwarded. The second insurer denies it as a duplicate and the account stalls.",
     "Medicare did not forward the claim because the supplemental insurer's details were wrong. Nobody reads the remark code and the balance ages unbilled.",
-    "A dual-eligible patient gets a statement for coinsurance. Federal law bars billing a Qualified Medicare Beneficiary for it, even when Medicaid pays nothing.",
+    "A dual-eligible patient gets a statement for coinsurance. Federal law bars billing a Qualified Medicare Beneficiary for it, even when Medicaid pays nothing. This holds in Medicare Advantage too.",
     "Another insurer was primary and Medicare was billed first. Medicare denies or later takes its payment back, and the primary payer's filing limit has passed.",
     "The secondary filing limit runs out while staff wait. In Florida, a secondary claim is due within 90 days of the primary insurer's final decision."
    ],
@@ -1196,7 +1184,6 @@
     "cms-qmb",
     "cms-mln-msp",
     "cfr-411-24",
-    "cfr-447-45",
     "cfr-447-15",
     "cfr-422-504",
     "fl-409-908",
@@ -1223,7 +1210,7 @@
   {
    "slug": "ar-patient-billing",
    "name": "Patient statements and collections",
-   "summary": "Billing patients for what they owe after insurance: a prompt, clear statement, easy ways to pay, a written policy for small balances and hardship, and care not to bill people the law says may not be billed.",
+   "summary": "Billing patients for what they owe after insurance. It takes a prompt, clear statement, easy ways to pay, a written policy for small balances and hardship, and care not to bill people the law says may not be billed.",
    "good_looks_like": [
     "The first statement goes out within days of the insurer's payment posting. It shows the service, what insurance paid, what is owed and how to pay.",
     "A written policy sets the statement cycle, payment plans, the small-balance threshold, hardship review and agency referral. It is applied the same way to everyone.",
@@ -1282,7 +1269,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "Practices whose patients owe deductibles, coinsurance or self-pay fees. Facility-based practices have no checkout, so statements carry everything and often go to a family member or representative, and where most patients have Medigap or Medicaid behind Medicare the true patient balances are small.",
+   "applies_when": "Practices whose patients owe deductibles, coinsurance or self-pay fees. Facility-based practices have no checkout, so statements carry everything, often go to a family member or representative, and are small where Medigap or Medicaid sits behind Medicare.",
    "vendor_refs": [
     {
      "item": "patient-collections-playbook",
@@ -1318,9 +1305,7 @@
     "hbma-2024",
     "kodiak-2025",
     "kodiak-2026",
-    "mgma-stat-ar-2026",
     "hfma-map-keys",
-    "mgma-glossary",
     "pwc-hfma-2021",
     "x12-rarc"
    ],
@@ -1417,7 +1402,7 @@
     },
     {
      "action": "Answer insurer refund demands in writing and on time",
-     "detail": "Check each demand against the claim before paying. In Florida, an insurer must send the demand within 12 months of paying a physician, and the practice has 40 days to pay, deny or contest it (section 627.6131).",
+     "detail": "Check each demand against the claim. A timely appeal of a Medicare demand stops recoupment, which can otherwise start on day 41 (42 CFR 405.379). In Florida, insurers must demand within 12 months of paying a physician (section 627.6131).",
      "cadence": "per event",
      "effort": "low",
      "impact": "medium"
@@ -1430,7 +1415,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Credits are most common where patients prepay estimates or where two payers are involved, such as Medicare plus a supplement or Medicaid, so practices that collect nothing at the time of service have fewer patient credits but still receive duplicate insurer payments.",
+   "applies_when": "All practices, most of all where patients prepay estimates or two payers are involved, such as Medicare plus a supplement or Medicaid. Practices that collect nothing at the time of service have fewer patient credits but still receive duplicate insurer payments.",
    "vendor_refs": [
     {
      "item": "practice-valuation-playbook",
@@ -1448,6 +1433,7 @@
    "sources": [
     "cfr-401-305",
     "usc-42-1320a-7k",
+    "cfr-405-379",
     "fl-627-6131",
     "fl-456-0625",
     "fl-717-102",
@@ -1494,7 +1480,7 @@
     "A late-filed Medicare claim is billed in full to the patient. The Claims Processing Manual (chapter 1, section 70.4) allows only the deductible and coinsurance that would have applied."
    ],
    "key_questions": [
-    "What was our net collection rate for the last 12 months, and how is it calculated?",
+    "What was our net collection rate for the last 12 months?",
     "How many dollars did we write off for late filing last year?",
     "What share of net revenue went to avoidable write-offs last quarter?",
     "Does every write-off above our dollar limit have a second person's approval, yes or no?",
@@ -1537,7 +1523,7 @@
      "impact": "medium"
     }
    ],
-   "applies_when": "All practices. Facility-based practices face more late-found coverage changes, because patients move between Medicare, Medicare Advantage, hospice and Medicaid during a stay, so they should age wrong-payer claims weekly and post unpaid crossover coinsurance for dual-eligible patients as a contractual adjustment.",
+   "applies_when": "All practices, most of all facility-based ones, whose patients move between Medicare, Medicare Advantage, hospice and Medicaid during a stay. They should age wrong-payer claims weekly and post unpaid crossover coinsurance for dual-eligible patients as a contractual adjustment.",
    "vendor_refs": [
     {
      "item": "kpi-07-write-off-rate-by-reason",
