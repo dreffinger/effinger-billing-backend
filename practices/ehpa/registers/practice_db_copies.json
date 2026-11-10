@@ -11,7 +11,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "billing_button-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -22,12 +22,12 @@
 "credentialing_board": {
 "collections": {
 "cred": {
-"bytes": 146903,
+"bytes": 147127,
 "count": 42,
-"doc": "credentialing_board-cred-20261107T0859Z",
+"doc": "credentialing_board-cred-20261110T0839Z",
 "parts": 1,
-"sha": "3e46d48bac244205f207821f15c9dd29364381ecabfb50bf096719b24994e3d8",
-"stamp": "20261107T0859Z"
+"sha": "b340513fe6b02f76f478f06f8267927dcef372c5b9348d759ad80688c86f4967",
+"stamp": "20261110T0839Z"
 },
 "meta": {
 "bytes": 335,
@@ -38,10 +38,10 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
-"doc": "credentialing_board-20261107T0859Z",
-"stamp": "20261107T0859Z"
+"doc": "credentialing_board-20261110T0839Z",
+"stamp": "20261110T0839Z"
 },
 "title": "Credentialing Board",
 "url": "https://claude.ai/artifact/CmAo5e3hAouWyFEqwbdo4M"
@@ -73,7 +73,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "ehpa_home-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -92,26 +92,26 @@
 "stamp": "20261102T0440Z"
 },
 "items": {
-"bytes": 1881526,
-"count": 493,
-"doc": "insurance_refresh_board-items-20261109T0838Z",
+"bytes": 1916094,
+"count": 503,
+"doc": "insurance_refresh_board-items-20261110T0839Z",
 "parts": 11,
-"sha": "7873a3f78e52082ca53f8dc4098c475337232116eee6d2acbcca257ee2c375df",
-"stamp": "20261109T0838Z"
+"sha": "3d18125cfe53c011956f72ca2ef451717c76bf1ade55ce1ee98827ebc910a744",
+"stamp": "20261110T0839Z"
 },
 "meta": {
 "bytes": 29740,
 "count": 1,
-"doc": "insurance_refresh_board-meta-20261109T0838Z",
+"doc": "insurance_refresh_board-meta-20261110T0839Z",
 "parts": 1,
-"sha": "e6fa1bd96539775d58808a12cd2503d17c32a4bd2203fad5999f16e6be0219f8",
-"stamp": "20261109T0838Z"
+"sha": "e7452e9a7c8b30ebb55de45dbf4eb7844c6a9c97667d0fcd65d646329301ae93",
+"stamp": "20261110T0839Z"
 }
 },
-"last_checked": "2026-11-09T08:39:12Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
-"doc": "insurance_refresh_board-20261109T0838Z",
-"stamp": "20261109T0838Z"
+"doc": "insurance_refresh_board-20261110T0839Z",
+"stamp": "20261110T0839Z"
 },
 "title": "Insurance Refresh Board",
 "url": "https://claude.ai/artifact/NXKjnsha2dTyGHsiB4k6zg"
@@ -127,7 +127,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-09T08:39:12Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "mandatory_approvals-20261102T0440Z",
 "stamp": "20261102T0440Z"
@@ -140,16 +140,16 @@
 "embedded": {
 "bytes": 9295,
 "count": 1,
-"doc": "money_ledger-embedded-20261109T0838Z",
+"doc": "money_ledger-embedded-20261110T0839Z",
 "parts": 1,
-"sha": "4d2e189097e710f546393a7c411066dcaf716ec3b778684e3fc438c75d327eb2",
-"stamp": "20261109T0838Z"
+"sha": "a88ce8ca86a9b47d6d78eab96dc89efad4ad6762b2117ad25c85001efa5d775a",
+"stamp": "20261110T0839Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
-"doc": "money_ledger-20261109T0838Z",
-"stamp": "20261109T0838Z"
+"doc": "money_ledger-20261110T0839Z",
+"stamp": "20261110T0839Z"
 },
 "title": "Effinger Money Ledger",
 "url": "https://claude.ai/artifact/6aYHyrozpmiCCf6GbM95EN"
@@ -165,7 +165,7 @@
 "stamp": "20261107T0859Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "outstanding_claims-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -192,7 +192,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "treasury_payments-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -227,7 +227,7 @@
 "stamp": "20261102T0440Z"
 }
 },
-"last_checked": "2026-11-09T08:39:13Z",
+"last_checked": "2026-11-10T08:40:06Z",
 "last_index": {
 "doc": "working_denials-20261107T0859Z",
 "stamp": "20261107T0859Z"
@@ -571,6 +571,56 @@
 "index": "money_ledger-20261109T0838Z",
 "slug": "money_ledger",
 "stamp": "20261109T0838Z"
+},
+{
+"at": "2026-11-10T08:40:06Z",
+"coll": "items",
+"docs": [
+"insurance_refresh_board-items-20261110T0839Z",
+"insurance_refresh_board-items-20261110T0839Z.p2",
+"insurance_refresh_board-items-20261110T0839Z.p3",
+"insurance_refresh_board-items-20261110T0839Z.p4",
+"insurance_refresh_board-items-20261110T0839Z.p5",
+"insurance_refresh_board-items-20261110T0839Z.p6",
+"insurance_refresh_board-items-20261110T0839Z.p7",
+"insurance_refresh_board-items-20261110T0839Z.p8",
+"insurance_refresh_board-items-20261110T0839Z.p9",
+"insurance_refresh_board-items-20261110T0839Z.p10",
+"insurance_refresh_board-items-20261110T0839Z.p11"
+],
+"index": "insurance_refresh_board-20261110T0839Z",
+"slug": "insurance_refresh_board",
+"stamp": "20261110T0839Z"
+},
+{
+"at": "2026-11-10T08:40:06Z",
+"coll": "meta",
+"docs": [
+"insurance_refresh_board-meta-20261110T0839Z"
+],
+"index": "insurance_refresh_board-20261110T0839Z",
+"slug": "insurance_refresh_board",
+"stamp": "20261110T0839Z"
+},
+{
+"at": "2026-11-10T08:40:06Z",
+"coll": "cred",
+"docs": [
+"credentialing_board-cred-20261110T0839Z"
+],
+"index": "credentialing_board-20261110T0839Z",
+"slug": "credentialing_board",
+"stamp": "20261110T0839Z"
+},
+{
+"at": "2026-11-10T08:40:06Z",
+"coll": "embedded",
+"docs": [
+"money_ledger-embedded-20261110T0839Z"
+],
+"index": "money_ledger-20261110T0839Z",
+"slug": "money_ledger",
+"stamp": "20261110T0839Z"
 }
 ],
 "runs": {
@@ -973,6 +1023,116 @@
 "embedded": 1
 },
 "index": "money_ledger-20261109T0838Z",
+"unchanged": []
+},
+"outstanding_claims": {
+"changed": [],
+"counts": {
+"embedded": 3
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"treasury_payments": {
+"changed": [],
+"counts": {
+"embedded": 1,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta"
+]
+},
+"working_denials": {
+"changed": [],
+"counts": {
+"commands": 5,
+"embedded": 5,
+"meta": 1
+},
+"index": null,
+"unchanged": [
+"commands",
+"embedded",
+"meta"
+]
+}
+},
+"20261110T0839Z": {
+"billing_button": {
+"changed": [],
+"counts": {
+"embedded": 1
+},
+"index": null,
+"unchanged": [
+"embedded"
+]
+},
+"credentialing_board": {
+"changed": [
+"cred"
+],
+"counts": {
+"cred": 42,
+"meta": 1
+},
+"index": "credentialing_board-20261110T0839Z",
+"unchanged": [
+"meta"
+]
+},
+"ehpa_home": {
+"changed": [],
+"counts": {
+"embedded": 2,
+"meta": 1,
+"questions": 20
+},
+"index": null,
+"unchanged": [
+"embedded",
+"meta",
+"questions"
+]
+},
+"insurance_refresh_board": {
+"changed": [
+"items",
+"meta"
+],
+"counts": {
+"drops": 6,
+"items": 503,
+"meta": 1
+},
+"index": "insurance_refresh_board-20261110T0839Z",
+"unchanged": [
+"drops"
+]
+},
+"mandatory_approvals": {
+"changed": [],
+"counts": {
+"approvals": 97
+},
+"index": null,
+"unchanged": [
+"approvals"
+]
+},
+"money_ledger": {
+"changed": [
+"embedded"
+],
+"counts": {
+"embedded": 1
+},
+"index": "money_ledger-20261110T0839Z",
 "unchanged": []
 },
 "outstanding_claims": {
