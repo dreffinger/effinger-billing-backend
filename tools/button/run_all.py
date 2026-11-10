@@ -9,7 +9,8 @@
 #   named chart, a hand-post the fallback could not make) is counted and listed under "waiting" for a chat session or William.
 # Steps (--steps): columns (Claims Center scan -> inspector advisory bypasses -> Unbilled repairs -> ERA-linked reason-code
 #   re-posts -> duplicate / crossover exclusion completions -> rescan), era (835 inbox upload -> list -> Post button ->
-#   era_clear -> list), cascade (void-on-arrival rules -> Stedi pre-claim check), sweep (UNI20/BCBS pre-5/1/2026 277 pass),
+#   era_clear -> list), cascade (void-on-arrival rules; since 11/10/2026 the Stedi pre-claim check runs only in the nightly insurance
+#   cascade routine, not here), sweep (UNI20/BCBS pre-5/1/2026 277 pass),
 #   packages (approved Mandatory Approvals cards: dry first, then live, then recorded done), cred (NPPES / revalidation / LEIE),
 #   money (payments scan when the universe file is present, ledger rebuild). "all" = every step except sweep and money unless named.
 # Modes: --mode dry reads everything and writes nothing in AdvancedMD (every helper gets its dry form); --mode live writes.
@@ -739,32 +740,12 @@ class Run:
                     self.warn(s, "void_rules rc %s: %s" % (rc, self.tail(text, 3)))
             else:
                 s["counts"]["void rules"] = "void_rules.json not in this workspace (Drive 'workspace mirror') - skipped"
-        if not self.stedi:
-            self.warn(s, "no Stedi key - precheck skipped")
-        elif self.exists("precheck.py"):
-            rc, text, log = self.helper("precheck.py", ["--days", "3", "--max", "120"], timeout=2400)
-            today = datetime.date.today().strftime("%Y%m%d")
-            p = os.path.join(self.ws, "precheck_%s.json" % today)
-            flags = {}
-            if os.path.exists(p):
-                try:
-                    j = json.load(open(p))
-                    rows = j if isinstance(j, list) else (j.get("rows") or j.get("flags") or j.get("results") or [])
-                    for r in rows:
-                        if not isinstance(r, dict):
-                            continue
-                        f = str(r.get("flag") or r.get("verdict") or r.get("status") or "")[:40]
-                        if not f or f.upper().startswith(("ACTIVE", "OK")):
-                            continue
-                        flags.setdefault(f, []).append("pat%s" % r.get("patientid", r.get("pid", "?")))
-                except ValueError:
-                    pass
-            s["counts"]["precheck flagged charts"] = sum(len(v) for v in flags.values())
-            for f, pids in flags.items():
-                s["lines"].append({"flag": f, "charts": len(pids), "ids": " ".join(sorted(set(pids))[:20])})
-                self.waiting.append("precheck '%s' on %d chart(s) - the chart fix is a chat-session step (cascade rule)" % (f, len(set(pids))))
-            if rc != 0:
-                self.warn(s, "precheck rc %s: %s" % (rc, self.tail(text, 3)))
+        # 11/10/2026 (look-ups part A): the pre-claim check (precheck.py) is no longer started here. The nightly insurance cascade routine
+        # runs it once a night (nightly/live/cascade.txt STEP 1) and acts on its flags; this second start kept its own memory on the engine's
+        # machines, bought the same Stedi answers again, and nothing read its result (it looked for fields the helper does not write).
+        note = "the pre-claim check is not started here - the nightly insurance cascade routine runs it once a night"
+        self.say("cascade: " + note)
+        s["counts"]["pre-claim check"] = note
         s["summary"] = "; ".join("%s: %s" % kv for kv in s["counts"].items()) or "nothing to do"
         s["ended"] = iso()
 

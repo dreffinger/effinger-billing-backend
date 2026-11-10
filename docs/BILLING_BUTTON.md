@@ -63,7 +63,7 @@ https://claude.ai/artifact/DecNZkNsoQ4V2c1gwLLqiq
 |---|---|
 | `columns` | `columns_scan.py` before -> `insp_bypass_advisories.py` (plan only) -> `unbilled_repair.py` (no `--live`) -> `payreasons.py --list` (`--unbilled --live` when live) -> `excl_dup_complete.py` / `excl_crossover_complete.py` per claim run that has rows -> `columns_scan.py` after |
 | `era` | `era_list.py` before -> `era_post.py --all-unposted` (`--dry`) -> per posted check `era_co45_relink.py <check> --meta` (audit; `--live` where it finds lines) -> `era_fallback_0913b.py --checks --stamp` (`--dry`, then live) -> `era_clear.py` (`--dry`) -> `wo_reversal_post.py` when era_clear wrote reversal rows (`--dry`, then live, then `era_clear.py` again) -> `era_list.py` after; every check still carrying money becomes a waiting line (11/7/2026) |
-| `cascade` | `void_rules.py` (`--dry`; skipped without `void_rules.json`) -> `precheck.py --days 3 --max 120` (skipped without a Stedi key) |
+| `cascade` | `void_rules.py` (`--dry`; skipped without `void_rules.json`); since 11/10/2026 the pre-claim check `precheck.py` is not started here - the nightly insurance cascade routine runs it once a night |
 | `sweep` | `claim_status_sweep.py --min-age N --max 60 --carriers UNI20,BCBS` + `sweep_register.py` (Stedi; only when named) |
 | `packages` | every `approved` item in `practices/ehpa/registers/approvals_pending.json` (or `--packages` ids): the package script dry, then live, then `status done` + `answer` in the register |
 | `cred` | `cred_check.py` (NPPES, revalidation reminders, LEIE) |
