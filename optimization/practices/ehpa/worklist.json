@@ -4,43 +4,43 @@
   "project_slug": "ccm-footing",
   "ord": 1,
   "title": "Hold the November care-management batch",
-  "detail": "Do not send the month-end 99487 and 99489 claims until the 30-chart sample has been read.",
+  "detail": "Do not send the month-end 99487 and 99489 claims. Release a claim only when that patient's consent, care plan and logged minutes are on file.",
   "owner": "claude",
   "due": "2026-11-12"
  },
  {
-  "id": "ehpa-ccm-footing-02",
-  "project_slug": "ccm-footing",
-  "ord": 2,
-  "title": "Pull 30 random patient-months and read the records",
-  "detail": "For each: consent and its date, care plan, time log by person and day, the physician's decision making.",
-  "owner": "william",
-  "due": "2026-11-21"
- },
- {
-  "id": "ehpa-ccm-footing-03",
-  "project_slug": "ccm-footing",
-  "ord": 3,
-  "title": "Add up logged minutes against staff hours",
-  "detail": "One month of minutes billed compared with the hours each staff member worked.",
-  "owner": "william",
-  "due": "2026-11-21"
- },
- {
   "id": "ehpa-ccm-footing-04",
   "project_slug": "ccm-footing",
-  "ord": 4,
+  "ord": 2,
   "title": "Engage a healthcare attorney",
   "detail": "Share this risk review. Ask the attorney to direct the audit and the look-back so they are privileged.",
   "owner": "william",
   "due": "2026-11-17"
  },
  {
+  "id": "ehpa-ccm-footing-02",
+  "project_slug": "ccm-footing",
+  "ord": 3,
+  "title": "Attorney-directed look at 30 random patient-months",
+  "detail": "For each: consent and its date, care plan, time log by person and day, the physician's decision making.",
+  "owner": "attorney",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-ccm-footing-03",
+  "project_slug": "ccm-footing",
+  "ord": 4,
+  "title": "Add up logged minutes against staff hours",
+  "detail": "One month of minutes billed compared with the hours each staff member and the physician worked.",
+  "owner": "attorney",
+  "due": "2026-11-21"
+ },
+ {
   "id": "ehpa-ccm-footing-05",
   "project_slug": "ccm-footing",
   "ord": 5,
   "title": "Decide the code going forward",
-  "detail": "Complex (60 minutes and moderate or high complexity), standard (20 minutes) or none, per patient, from the log.",
+  "detail": "Per patient, from the records: complex care management (60 logged minutes and moderate or high complexity), standard care management (20 logged minutes), advanced primary care management (G0557, or G0558 for Qualified Medicare Beneficiaries), or none. Advanced primary care management is a monthly code with no minute count. It has its own conditions, including consent, round-the-clock access and quality reporting, and the same clinician cannot bill it in the same month as chronic or transitional care management. Have the attorney or auditor confirm the conditions before the first claim.",
   "owner": "william",
   "due": "2026-11-28"
  },
@@ -93,7 +93,7 @@
   "id": "ehpa-coding-audit-04",
   "project_slug": "coding-audit",
   "ord": 11,
-  "title": "Review the report with both clinicians",
+  "title": "Review the report with the attorney, then with both clinicians as the attorney advises",
   "detail": "Agree what changes in how levels are chosen and documented.",
   "owner": "william",
   "due": "2027-01-10"
@@ -148,7 +148,7 @@
   "project_slug": "census-status",
   "ord": 17,
   "title": "Correct 2026 nursing facility visits for long-term residents billed as skilled stays",
-  "detail": "Medicare paid these 12% to 15% less under code 31 in 2026. Corrected claims must be filed within one year of each date of service, so start with January 2026. Have the attorney confirm the approach first.",
+  "detail": "Medicare paid these 12% to 15% less under code 31 in 2026. Correct each one by a reopening request to First Coast, changing the place of service. The limit is one year from the date the claim was first paid (four years for good cause), so start with the oldest 2026 claims. Do not net money recovered this way against any refund owed on other claims. Have the attorney confirm the approach first.",
   "owner": "claude",
   "due": "2026-12-31"
  },
@@ -283,7 +283,7 @@
   "project_slug": "enrollment-fix",
   "ord": 32,
   "title": "Build one expiry calendar for both clinicians",
-  "detail": "Licenses, registrations, board certification, privileges and every payer enrollment.",
+  "detail": "Licenses, registrations, board certification, privileges, every payer enrollment, and the nurse practitioner's protocol (or autonomous practice registration) with its date.",
   "owner": "claude",
   "due": "2026-12-19"
  },
@@ -381,7 +381,7 @@
   "id": "ehpa-compliance-program-02",
   "project_slug": "compliance-program",
   "ord": 43,
-  "title": "Collect both medical director agreements and twelve months of time logs",
+  "title": "Collect every medical director agreement from the past six years, with fair-market-value support and time logs",
   "detail": "For the attorney's review.",
   "owner": "william",
   "due": "2026-12-19"
@@ -391,7 +391,7 @@
   "project_slug": "compliance-program",
   "ord": 44,
   "title": "Do a security risk analysis",
-  "detail": "List every system and vendor that touches patient data and whether each has signed a business associate agreement.",
+  "detail": "Assess the risks to all electronic patient information the practice holds: where it is stored and sent, who and what can reach it (including the software agents and their keys), what could go wrong, how likely and how serious it is, and what will be done about each risk. Include the vendor list, each business associate agreement and where each vendor stores data. Have someone other than the billing agent review and sign it.",
   "owner": "claude",
   "due": "2027-01-31"
  },
@@ -418,7 +418,7 @@
   "project_slug": "compliance-program",
   "ord": 47,
   "title": "Add a required-visit due date for every nursing facility resident",
-  "detail": "Every 30 days for the first 90 days, then every 60 days.",
+  "detail": "Every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. Record who must make each visit: in a Medicare Part A skilled stay the physician makes the first visit and at least every other required visit. For other residents Florida's rule allows another licensed professional. Ask the attorney whether that covers the first visit.",
   "owner": "claude",
   "due": "2027-01-15"
  },
@@ -427,7 +427,7 @@
   "project_slug": "automation-controls",
   "ord": 48,
   "title": "Turn off open sign-up on this application",
-  "detail": "Only approved addresses can read data today, but accounts should not be creatable by strangers.",
+  "detail": "A check added on November 10, 2026 refuses any account whose address has not been confirmed. Before that, an account needed only an approved address. Read the access log for sign-ins nobody recognizes, confirm that the approved address's account belongs to its owner, and write down what was found. Then turn off open sign-up. The access log was read on November 10, 2026: 31 requests, all on November 7, all from the one confirmed account, and none refused. Only one account exists.",
   "owner": "william",
   "due": "2026-11-14"
  },
@@ -436,9 +436,9 @@
   "project_slug": "automation-controls",
   "ord": 49,
   "title": "Replace the database access key that was pasted into a chat",
-  "detail": "Revoke it in the database console and issue a new one.",
+  "detail": "Revoke it in the database console today and issue a new one. Then read the database's connection and query logs for the days the key was exposed, and write down what was found and what was done. If the logs show access nobody can explain, tell the attorney, because the breach notification rules may apply.",
   "owner": "william",
-  "due": "2026-11-14"
+  "due": "2026-11-10"
  },
  {
   "id": "ehpa-automation-controls-03",
@@ -480,10 +480,10 @@
   "id": "ehpa-quality-mips-03",
   "project_slug": "quality-mips",
   "ord": 54,
-  "title": "Choose how to report for 2026 or apply for an exception",
-  "detail": "Small practices have simpler options.",
+  "title": "Choose how to report for 2026",
+  "detail": "Decide by early December. Quality for 2026 can still be reported after the year ends, for example through a qualified registry, if the notes hold the data. An improvement activity counts only if it ran 90 days in a row within 2026. The exception application is only for events outside the practice's control and closes December 31, 2026. Submission is due March 31, 2027.",
   "owner": "william",
-  "due": "2027-01-31"
+  "due": "2026-12-05"
  },
  {
   "id": "ehpa-service-lines-01",
@@ -715,7 +715,7 @@
   "project_slug": "automation-controls",
   "ord": 80,
   "title": "Make every write-off carry a reason code, and keep patient balances out of the automatic rule",
-  "detail": "Routine waiver of what patients owe is unlawful. The automatic rule should touch insurance balances only.",
+  "detail": "Routine waiver of Medicare copayments and deductibles is unlawful, and billing a Qualified Medicare Beneficiary for them is forbidden. The automatic rule should touch insurance balances only. A patient balance is written off only with a reason: Qualified Medicare Beneficiary, documented hardship, or unpaid after documented attempts to collect.",
   "owner": "claude",
   "due": "2026-12-05"
  },
@@ -732,8 +732,8 @@
   "id": "ehpa-ccm-footing-08",
   "project_slug": "ccm-footing",
   "ord": 82,
-  "title": "Block care-management claims for patients who died, were discharged or elected hospice in the month",
-  "detail": "The monthly batch must check status on the last day of the month before a claim is built.",
+  "title": "Check each patient's status before a care-management claim is built",
+  "detail": "If the patient died, left the practice's care or elected hospice during the month, bill only when the full time was logged before that day. Never use a date of service after the date of death.",
   "owner": "claude",
   "due": "2026-12-05"
  },

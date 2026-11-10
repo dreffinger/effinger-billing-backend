@@ -51,9 +51,9 @@
    "lead": "Patterns in the practice's own billing data that an auditor's software would also see, set beside the rule each one touches. **A pattern is a reason to look at charts. It is not a finding that anything was billed wrongly.**",
    "how_to_use": [
     "Read the findings in order. Critical and high come first.",
-    "Do the review described before changing how anything is billed, and involve a healthcare attorney first so the review is privileged.",
+    "Engage a healthcare attorney first, so that the reviews of past claims are directed by counsel. Do not wait for those reviews to stop what is already in doubt: hold the monthly care-management batch, and set place of service on new claims from each facility's census. Do not move visit levels up or down to match national averages. The note for that day decides the level.",
     "The billing database holds claims, not clinical notes. Every finding here still has to be tested against the charts.",
-    "When a review is finished, record the result and the date on the work list."
+    "When a review that the attorney directs is finished, its result goes to the attorney, not into this application. On the work list record only that the step is complete, and the date. For the other reviews, record the result and the date on the work list."
    ],
    "foot": "Management information and education, not legal or coding advice. If a chart review shows Medicare was overpaid, federal law requires reporting and returning the money within 60 days of identifying it, with up to 180 days allowed for a timely good-faith investigation."
   }

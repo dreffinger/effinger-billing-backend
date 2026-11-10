@@ -18,11 +18,12 @@
    "The attorney has given written advice on past claims"
   ],
   "steps": [
-   "Hold November's batch until the sample is read",
-   "Sample 30 patient-months",
-   "Decide which code the records support",
+   "Hold November's batch",
+   "Engage the attorney",
+   "Attorney-directed look at 30 patient-months",
+   "Decide which code each patient's records support",
    "Build the time log and consent fields",
-   "Attorney-directed look-back if needed"
+   "Review of past claims as the attorney directs"
   ]
  },
  {
@@ -44,11 +45,12 @@
    "A quarterly audit on the calendar"
   ],
   "steps": [
-   "Attorney engages the auditor",
-   "Random sample of 10 notes per code family per clinician",
-   "Review results with both clinicians",
-   "Education session",
-   "Quarterly follow-up audits"
+   "Attorney engages the auditor and sets in advance the error rate that will trigger a larger sample",
+   "Auditor draws a documented random sample of 10 notes per code family per clinician",
+   "Auditor reports to the attorney",
+   "If errors are found: handle those claims on the attorney's advice and size the rest from every affected claim or a statistically valid random sample",
+   "Attorney decides what is shared with the clinicians for education",
+   "Quarterly follow-up audits as routine compliance work"
   ]
  },
  {
@@ -67,7 +69,7 @@
   "success_measures": [
    "Each facility sends a weekly census with skilled-stay status and payer",
    "Place of service 31 or 32 is set from that census on every nursing facility claim",
-   "Hospice patients carry the hospice modifier"
+   "For each hospice patient the system flags the hospice election, and the clinician records two facts for the visit: whether he or she is the attending clinician the patient named, and whether the visit relates to the terminal illness. The claim then carries the matching modifier (GV for a related visit by the named attending clinician, GW for an unrelated visit), or the visit is billed to the hospice"
   ],
   "steps": [
    "Ask each facility for the census",
@@ -267,7 +269,7 @@
   "target_date": "2027-01-31",
   "success_measures": [
    "Status known for both clinicians",
-   "A reporting or exception plan for the 2026 performance year"
+   "A reporting plan for the 2026 performance year, decided by early December 2026"
   ],
   "steps": [
    "Look up status",
@@ -415,7 +417,7 @@
   "target_date": "2027-09-30",
   "success_measures": [
    "Twelve months of monthly statements",
-   "Contracts, audit reports and credentialing in one folder",
+   "Contracts, routine audit summaries cleared by the attorney and credentialing in one folder",
    "A refreshed valuation"
   ],
   "steps": [

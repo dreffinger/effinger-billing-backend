@@ -314,7 +314,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and care management about a third less, so the practice has been underpaid on its long-term residents.",
+  "assessment": "Every nursing facility visit is billed with the code for a Medicare Part A skilled stay. Long-term residents should carry the nursing facility code instead. In 2026 Medicare paid visits 12% to 15% less under the skilled-stay code, and complex care management about 44% less, so the practice has been underpaid on its long-term residents.",
   "evidence": [
    "Place of service 32 was never used",
    "Care management paid $63 at the facility rate on 32 lines and $112 at the non-facility rate on 12 lines"
@@ -342,7 +342,7 @@
    "18 duplicate and 6 frequency denials among recent zero-paid lines",
    "31 hospice denials in the register"
   ],
-  "next_step": "Add scrubber rules for one care-management claim per patient per month and for the hospice modifiers."
+  "next_step": "Add scrubber rules for one care-management claim per patient per month, and hold a hospice patient's claim until the clinician chooses the modifier."
  },
  {
   "category_slug": "cc-diagnosis-coding",
@@ -360,7 +360,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "Complex chronic care management is billed for 257 patients a month, usually with the add-on code. Each claim says the practice's own staff spent at least 60 minutes on that patient that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 staff hours a month.",
+  "assessment": "Complex chronic care management is billed for 257 patients a month, usually with the add-on code. Each claim says the practice's staff, or the physician himself, spent at least 60 minutes on that patient's care management that month and that the physician made decisions of moderate or high complexity. Together the claims assert about 364 hours a month.",
   "evidence": [
    "257 patients billed the complex code in October 2026, 213 with the add-on",
    "42% of lines paid since June 2026",
@@ -634,10 +634,10 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "No outside audit is on record, while the codes this practice bills most have the highest error rates CMS measures.",
+  "assessment": "No outside audit is on record. The practice's most-billed visit code (99233) had a 22.7% improper-payment rate in Medicare's 2025 review, and the code it bills for every nursing facility admission (99306) had 25.5%.",
   "evidence": [
    "Medicare's 2025 review found errors in 12.7% of nursing facility visit claims, 25.5% for the top initial code, and 13.8% of subsequent hospital visits",
-   "The Inspector General reported in July 2026 that 42 of 60 sampled nursing home visits failed review"
+   "The Inspector General reported in July 2026 that 42 of 60 sampled patient-months of nursing home visits paid by another contractor failed review, 24 of them for medical necessity"
   ],
   "next_step": "Baseline audit now, then 10 charts per clinician each quarter."
  },
@@ -648,10 +648,9 @@
   "priority": 1,
   "assessment": "The practice is a statistical outlier in seven code families, and the comparison uses public data that any auditor, plan or buyer can pull.",
   "evidence": [
-   "Seven code families above the national top-level share by 20 points or more",
+   "Six code families above the national share of the highest code by 20 points or more, and a seventh (subsequent nursing facility visits) 95.6% at the second-highest code against 48.8% nationally",
    "As billed, the physician's work units run near three times the family medicine median",
-   "Care management is on the Florida Medicare contractor's active review list",
-   "Care management is on the Florida Medicare contractor's active review list"
+   "The Florida Medicare contractor lists care management (99490, 99491) and hospital visits (99221 to 99223, 99231 to 99233) as active targeted reviews"
   ],
   "next_step": "Review the outlier table every quarter and keep the audit results that explain it."
  },
@@ -660,7 +659,7 @@
   "applicability": "core",
   "status": "red",
   "priority": 1,
-  "assessment": "No review is open, yet four patterns could each point to money that must be returned if charts do not support the claims. The law starts a clock when a practice should have known.",
+  "assessment": "No review is open, yet three patterns could each point to money that must be returned if charts do not support the claims: complex care management, visit levels and advance care planning. The 60-day clock starts when a practice knows of an overpayment or recklessly disregards the signs of one.",
   "evidence": [
    "60 days to report and return once identified, with up to 180 days to investigate in good faith",
    "Six-year lookback"
@@ -676,7 +675,7 @@
   "evidence": [
    "Two medical director stipends in 2026"
   ],
-  "next_step": "Collect both agreements and twelve months of time logs for the attorney to read."
+  "next_step": "Collect every medical director agreement from the past six years, with time logs, for the attorney to read."
  },
  {
   "category_slug": "cr-hipaa",
@@ -694,7 +693,7 @@
   "applicability": "core",
   "status": "amber",
   "priority": 2,
-  "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement, hospital reappointment items and the nurse practitioner's national provider record.",
+  "assessment": "Monthly exclusion screening runs. Several renewals are open or due: the Medicaid provider agreement, hospital reappointment items and the nurse practitioner's national provider record. Not yet confirmed: that the nurse practitioner's written protocol with the physician is current and kept at each facility where she sees patients, as Florida requires unless she is registered for autonomous practice. Medicare pays for her visits only if she works with a physician as state law requires.",
   "evidence": [
    "Medicaid renewal due December 1, 2026",
    "Nurse practitioner's national provider record carries the wrong specialty code"
@@ -706,7 +705,7 @@
   "applicability": "core",
   "status": "unknown",
   "priority": 1,
-  "assessment": "Care management requires each patient's consent, recorded before the first claim. Whether that record exists for the 257 patients billed in October has not been checked.",
+  "assessment": "Care management requires each patient's consent, recorded before care management starts. Whether that record exists for the 257 patients billed in October has not been checked.",
   "next_step": "Check consent in the first 30 charts sampled, then all of them."
  },
  {
@@ -724,7 +723,7 @@
   "priority": 2,
   "assessment": "Nursing facilities are cited when required physician visits are late or done by the wrong clinician. The practice does not track each resident's schedule against the admission date.",
   "evidence": [
-   "Required: a visit every 30 days for the first 90 days, then every 60 days"
+   "Required: a visit every 30 days for the first 90 days, then every 60 days, each with 10 days of grace. In a Part A skilled stay the physician must make the first visit and at least every other one"
   ],
   "next_step": "Add a required-visit due date to each resident on the census."
  },

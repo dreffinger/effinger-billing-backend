@@ -4013,5 +4013,95 @@
   "url": "https://www.govinfo.gov/content/pkg/USCODE-2023-title26/html/USCODE-2023-title26-subtitleA-chap1-subchapS-partIII-sec1374.htm",
   "kind": "primary",
   "note": "A corporate-level tax on built-in gains an S corporation recognizes during the recognition period. Subsection (d)(7): that period is the 5 years beginning with the first day of the first tax year as an S corporation. Subsection (c)(1): the tax does not apply to a corporation that has always been an S corporation."
+ },
+ {
+  "slug": "fl-rule-59a-4-1075",
+  "title": "Florida Administrative Code 59A-4.1075: Medical Director (minimum standards for nursing homes)",
+  "publisher": "Florida Department of State (Agency for Health Care Administration rule)",
+  "year": "2026",
+  "url": "https://www.flrules.org/gateway/ruleNo.asp?id=59A-4.1075",
+  "kind": "primary",
+  "note": "Effective May 5, 2026. From January 1, 2026 a nursing home's medical director must hold a medical director certification or be working toward one; a director appointed before that date has until December 31, 2028. The director must visit the facility at least once a month and document each visit, meet at least quarterly with the facility's risk management and quality committee, keep a principal office within 60 miles, and serve no more than 10 nursing homes."
+ },
+ {
+  "slug": "fl-rule-59a-4-107",
+  "title": "Florida Administrative Code 59A-4.107: Physician Services (minimum standards for nursing homes)",
+  "publisher": "Florida Department of State (Agency for Health Care Administration rule)",
+  "year": "2026",
+  "url": "https://www.flrules.org/gateway/ruleNo.asp?id=59A-4.107",
+  "kind": "primary",
+  "note": "Effective May 5, 2026. Paragraph (6): each resident must be seen by a physician or another licensed health professional at least once every 30 days for the first 90 days after admission and at least once every 60 days after that. A visit is timely if it is made within 10 days of the date it was required. Paragraph (7): a physician may designate another health care professional to carry out the physician's part of resident care after the required visit."
+ },
+ {
+  "slug": "cfr-405-928",
+  "title": "42 CFR 405.928: Effect of the initial determination",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-405.928",
+  "kind": "primary",
+  "note": "Paragraph (b): a Medicare contractor's first decision on a claim is binding on all parties unless a redetermination (the first level of appeal) is completed or the decision is revised through a reopening under section 405.980. Text from the copy the reviewers saved through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-438-602",
+  "title": "42 CFR 438.602: State responsibilities (Medicaid managed care program integrity)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-438.602",
+  "kind": "primary",
+  "note": "Paragraph (b): the State must screen, enroll and periodically revalidate every network provider of a Medicaid managed care plan. A plan may sign a network agreement while enrollment is pending, for up to 120 days, but must end it at once when the State says the provider cannot be enrolled or when the 120 days pass without enrollment. Text from the copy the reviewers saved through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-414-1320",
+  "title": "42 CFR 414.1320: MIPS performance period (Merit-based Incentive Payment System)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.1320",
+  "kind": "primary",
+  "note": "Paragraph (e): quality and cost are measured over the full calendar year, January 1 through December 31, two years before the payment year. Improvement activities need at least 90 days in a row within that calendar year. Text from the copy the reviewers saved through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-414-1325",
+  "title": "42 CFR 414.1325: Data submission requirements (Merit-based Incentive Payment System)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.1325",
+  "kind": "primary",
+  "note": "Paragraph (e): data are due by March 31 after the performance period closes, or a later date CMS sets. Quality reported on Medicare Part B claims must be on claims with dates of service inside the performance period. Paragraph (b)(1): claims reporting of quality is for small practices only. Text from the copy the reviewers saved through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "cfr-414-1380",
+  "title": "42 CFR 414.1380: Scoring (Merit-based Incentive Payment System)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.1380",
+  "kind": "primary",
+  "note": "Paragraph (c)(2): beginning with the 2024 payment year the electronic-records category (Promoting Interoperability) is reweighted for a clinician in a small practice. Paragraph (e): a clinician who furnishes 75% or more of covered professional services in inpatient hospital, on-campus outpatient hospital or emergency room settings is facility-based and is scored on the hospital's results for quality and cost. An individual clinician scored that way has no data to submit. Text from the copy the reviewers saved through the eCFR API on November 10, 2026."
+ },
+ {
+  "slug": "fcso-spot-guide-6",
+  "title": "The SPOT User Guide: Section 6 - Appeals",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/user-guides/spot-user-guide-section-6",
+  "kind": "primary",
+  "note": "How to ask the Florida Medicare contractor to reopen a paid claim through its online portal. A reopening may be requested for any reason within one year of receipt of the initial determination, and in writing with good cause up to four years. On a Part B claim line the dates of service, place of service, procedure code and modifiers can be edited. Page dated September 30, 2026."
+ },
+ {
+  "slug": "fl-90-507",
+  "title": "Florida Statutes 90.507: Waiver of privilege by voluntary disclosure",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0000-0099/0090/Sections/0090.507.html",
+  "kind": "primary",
+  "note": "Florida Evidence Code. A person who holds a privilege, such as the lawyer-client privilege in section 90.502, waives it by voluntarily disclosing, or consenting to the disclosure of, any significant part of the confidential matter or communication. Federal privilege law would govern a federal case."
+ },
+ {
+  "slug": "usc-42-1395nn",
+  "title": "42 U.S.C. 1395nn: Limitation on certain physician referrals (physician self-referral law)",
+  "publisher": "U.S. Code",
+  "year": "2024",
+  "url": "https://www.govinfo.gov/link/uscode/42/1395nn?type=usc&year=mostrecent&link-type=html",
+  "kind": "primary",
+  "note": "Subsection (g): Medicare may not pay for a designated health service furnished on a prohibited referral, and amounts collected for it must be refunded. A person who bills for a service that he knows or should know is barred faces a civil money penalty of up to $15,000 for each service."
  }
 ]

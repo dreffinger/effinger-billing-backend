@@ -7,9 +7,9 @@
   "title": "Hold complex care-management billing until records support each claim",
   "why": "257 patients a month are billed a code that asserts 60 minutes of staff time each. Nothing has tested whether the consent, care plans and time logs exist. It is the largest single exposure in the practice.",
   "what": [
-   "Hold the November batch and read 30 patient-months",
-   "Bill only from a time log, at the code the minutes support",
-   "Have the attorney direct the look-back"
+   "Hold the November batch and engage the attorney",
+   "Attorney-directed look at 30 patient-months",
+   "Bill only from a time log, at the code the minutes support"
   ],
   "impact_basis": "Protects up to about $160,000 a year of billing and limits repayment of past claims.",
   "effort": "medium",
@@ -24,7 +24,7 @@
   "kind": "risk",
   "category_slug": "cr-coding-audits",
   "title": "Commission an independent audit of visit levels",
-  "why": "Seven code families sit far above national patterns, and the codes involved have the highest error rates Medicare measures. The practice has never tested its own notes.",
+  "why": "Seven code families sit far above national patterns, and the practice's most-billed visit code (99233) had a 22.7% improper-payment rate in Medicare's 2025 review, and the code it bills for every nursing facility admission (99306) had 25.5%. No chart audit is on record.",
   "what": [
    "Attorney engages a certified auditor",
    "10 random notes per code family per clinician",
@@ -68,7 +68,7 @@
   "what": [
    "Weekly census from each facility",
    "Place of service set from it",
-   "Hospice modifiers applied automatically"
+   "Hospice status flagged automatically; the clinician chooses the modifier"
   ],
   "impact_basis": "2026 visits to long-term residents repaid at the correct rate (about $10,000 to $25,000), care management paid at the right rate, and fewer wrong-payer denials.",
   "effort": "medium",
@@ -85,13 +85,13 @@
   "kind": "risk",
   "category_slug": "pc-credentialing",
   "title": "File the Medicaid renewal now and clear the enrollment list",
-  "why": "The physician's Medicaid provider agreement is due December 1. Without it, secondary payments on dual-eligible patients stop.",
+  "why": "The physician's Medicaid provider agreement is due December 1. Without it, Medicaid and its managed care plans can stop paying the physician and can deny services he orders for Medicaid patients.",
   "what": [
    "File and confirm the renewal",
    "Fix the nurse practitioner's revalidation and national record",
    "Enroll with Railroad Medicare"
   ],
-  "impact_basis": "Secondary payments kept and credentialing denials avoided.",
+  "impact_basis": "Medicaid and Medicaid-plan payments kept and credentialing denials avoided.",
   "effort": "medium",
   "horizon": "this month",
   "owner": "william",
@@ -127,11 +127,11 @@
   "kind": "risk",
   "category_slug": "cr-overpayments",
   "title": "Bring in a healthcare attorney before the reviews begin",
-  "why": "Once a review shows an overpayment, a 60-day clock starts. Reviews directed by an attorney are privileged and their timing is documented.",
+  "why": "Once a review shows an overpayment, a 60-day clock starts. A review directed by an attorney can be privileged if its results stay with the attorney, and its timing is documented.",
   "what": [
    "Engage the attorney",
    "Have the attorney hire the auditor",
-   "Record the date each review starts"
+   "Record the date each review starts and the date any overpayment is identified"
   ],
   "impact_basis": "Keeps a billing problem a refund and not a penalty.",
   "effort": "low",
@@ -209,7 +209,7 @@
   "what": [
    "Look up status",
    "Read past feedback",
-   "Report or seek an exception for 2026"
+   "Decide how to report for 2026 by early December"
   ],
   "impact_basis": "Penalty avoided, if either clinician is required to report.",
   "effort": "low",
