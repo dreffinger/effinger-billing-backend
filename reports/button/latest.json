@@ -1,13 +1,13 @@
 {
  "schema": "button-run/1",
- "stamp": "2026-11-10T1319Z",
+ "stamp": "2026-11-10T1518Z",
  "mode": "live",
  "status": "ok",
- "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 0 checks $0.00 -> 0 checks $0.00",
+ "headline": "Columns 0/2/0/2 -> 0/2/0/2; ERA 1 checks $294.33 -> 0 checks $0.00",
  "note": "scheduled-columns",
- "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42823379259",
- "started": "2026-11-10T13:19:04Z",
- "ended": "2026-11-10T13:24:29Z",
+ "run_url": "https://github.com/dreffinger/effinger-billing-backend/actions/runs/42843005445",
+ "started": "2026-11-10T15:18:53Z",
+ "ended": "2026-11-10T15:26:23Z",
  "summary": {
   "columns": {
    "before": {
@@ -25,8 +25,8 @@
   },
   "era": {
    "before": {
-    "checks": 0,
-    "unposted": 0
+    "checks": 1,
+    "unposted": 294.33
    },
    "after": {
     "checks": 0,
@@ -34,7 +34,7 @@
    }
   },
   "posted": {
-   "pay": 0.0,
+   "pay": 294.33,
    "woins": 0.0,
    "wocaid2nd": 0.0,
    "wolate": 0.0
@@ -53,9 +53,9 @@
    "skipped": 0
   },
   "outstanding": {
-   "total": 282803.57,
-   "visits": 2491,
-   "charts": 462,
+   "total": 282329.57,
+   "visits": 2487,
+   "charts": 460,
    "over_365": {
     "n": 542,
     "dollars": 25096.53
@@ -65,7 +65,7 @@
    "visits": 7823,
    "actionable": 74,
    "actionable_amt": 13463.0,
-   "asof": "2026-11-10 13:24 UTC"
+   "asof": "2026-11-10 15:26 UTC"
   }
  },
  "steps": [
@@ -82,8 +82,8 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T13:19:04Z",
-   "ended": "2026-11-10T13:19:04Z"
+   "started": "2026-11-10T15:18:53Z",
+   "ended": "2026-11-10T15:18:54Z"
   },
   {
    "name": "columns",
@@ -129,31 +129,42 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T13:19:04Z",
-   "ended": "2026-11-10T13:20:49Z"
+   "started": "2026-11-10T15:18:54Z",
+   "ended": "2026-11-10T15:21:07Z"
   },
   {
    "name": "era",
    "title": "ERA posting",
    "status": "ok",
-   "summary": "0 checks / $0.00 -> 0 checks / $0.00",
+   "summary": "1 checks / $294.33 -> 0 checks / $0.00",
    "counts": {
-    "era_post lines": 0,
-    "checks the Post button posted or was offered": 0,
+    "era_post lines": 1,
+    "checks the Post button posted or was offered": 1,
+    "co45 lines corrected": 0,
+    "co45 lines for review": 0,
     "fallback posted": 0,
-    "checks dismissed": 0,
+    "checks dismissed": 1,
     "checks held": 0,
-    "denial lines recorded": 0
+    "denial lines recorded": 2
    },
    "dollars": {
-    "unposted before": 0,
+    "unposted before": 294.33,
     "unposted after": 0,
-    "posted this run": 0.0
+    "posted this run": 294.33
    },
-   "lines": [],
+   "lines": [
+    {
+     "check": 1053478,
+     "payer": "CAPITAL HEALTH PLAN",
+     "checknumber": "4129696",
+     "amount": 0.0,
+     "unposted": 294.33,
+     "stage": "before"
+    }
+   ],
    "errors": [],
-   "started": "2026-11-10T13:20:49Z",
-   "ended": "2026-11-10T13:20:51Z"
+   "started": "2026-11-10T15:21:07Z",
+   "ended": "2026-11-10T15:21:20Z"
   },
   {
    "name": "packages",
@@ -164,21 +175,21 @@
    "dollars": {},
    "lines": [],
    "errors": [],
-   "started": "2026-11-10T13:20:51Z",
-   "ended": "2026-11-10T13:20:51Z"
+   "started": "2026-11-10T15:21:20Z",
+   "ended": "2026-11-10T15:21:20Z"
   },
   {
    "name": "outstanding",
    "title": "Outstanding claims summary",
    "status": "ok",
-   "summary": "2491 visits on 462 charts, $282803.57 open; 542 over a year ($25096.53)",
+   "summary": "2487 visits on 460 charts, $282329.57 open; 542 over a year ($25096.53)",
    "counts": {
-    "visits": 2491,
-    "charts": 462,
+    "visits": 2487,
+    "charts": 460,
     "over 365 days": 542
    },
    "dollars": {
-    "open insurance balance": 282803.57,
+    "open insurance balance": 282329.57,
     "over 365 days": 25096.53
    },
    "lines": [
@@ -239,13 +250,6 @@
      "oldest_days": 50
     },
     {
-     "carrier": "CAP07",
-     "name": "CAPITAL HEALTH PLAN",
-     "visits": 23,
-     "dollars": 4603.0,
-     "oldest_days": 360
-    },
-    {
      "carrier": "MCAD",
      "name": "FLORIDA MEDICAID",
      "visits": 32,
@@ -260,6 +264,13 @@
      "oldest_days": 176
     },
     {
+     "carrier": "CAP07",
+     "name": "CAPITAL HEALTH PLAN",
+     "visits": 19,
+     "dollars": 4129.0,
+     "oldest_days": 360
+    },
+    {
      "carrier": "RET01",
      "name": "RETIRED RAILROAD MEDICARE",
      "visits": 15,
@@ -268,22 +279,22 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T13:20:51Z",
-   "ended": "2026-11-10T13:20:52Z"
+   "started": "2026-11-10T15:21:20Z",
+   "ended": "2026-11-10T15:21:22Z"
   },
   {
    "name": "denials",
    "title": "Working Denials refresh",
    "status": "ok",
-   "summary": "7823 denied visits on 848 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); RESOLVED 4513, WRITTEN-OFF 2976, RESUBMITTED 196, OPEN 138",
+   "summary": "7823 denied visits on 846 charts; 74 actionable $13463.00 (71 inside 12 months $12944.00); WRITTEN-OFF 2976, RESOLVED 4513, RESUBMITTED 196, OPEN 138",
    "counts": {
-    "charts read": 848,
+    "charts read": 846,
     "denial lines": 13290,
     "visits": 7823,
     "actionable": 74,
     "inside 12 months": 71,
-    "status RESOLVED": 4513,
     "status WRITTEN-OFF": 2976,
+    "status RESOLVED": 4513,
     "status RESUBMITTED": 196,
     "status OPEN": 138
    },
@@ -356,8 +367,8 @@
     }
    ],
    "errors": [],
-   "started": "2026-11-10T13:20:52Z",
-   "ended": "2026-11-10T13:24:29Z"
+   "started": "2026-11-10T15:21:22Z",
+   "ended": "2026-11-10T15:26:23Z"
   }
  ],
  "packages": [],

@@ -1,18 +1,18 @@
 {
  "schema": "outstanding-claims/1",
- "at": "2026-11-10T13:20:52Z",
+ "at": "2026-11-10T15:21:22Z",
  "as_of": "2026-11-10",
- "total": 282803.57,
- "visits": 2491,
- "charts": 462,
+ "total": 282329.57,
+ "visits": 2487,
+ "charts": 460,
  "over_365": {
   "n": 542,
   "dollars": 25096.53
  },
  "by_bucket": {
   "0-30": {
-   "n": 576,
-   "dollars": 103771.04
+   "n": 572,
+   "dollars": 103297.04
   },
   "31-60": {
    "n": 276,
@@ -157,21 +157,6 @@
    "oldest_days": 50
   },
   {
-   "carrier": "CAP07",
-   "name": "CAPITAL HEALTH PLAN",
-   "n": 23,
-   "dollars": 4603.0,
-   "buckets": {
-    "0-30": 2295.0,
-    "31-60": 315.0,
-    "61-90": 738.0,
-    "91-180": 519.0,
-    "181-365": 736.0,
-    "over 365": 0.0
-   },
-   "oldest_days": 360
-  },
-  {
    "carrier": "MCAD",
    "name": "FLORIDA MEDICAID",
    "n": 32,
@@ -200,6 +185,21 @@
     "over 365": 0.0
    },
    "oldest_days": 176
+  },
+  {
+   "carrier": "CAP07",
+   "name": "CAPITAL HEALTH PLAN",
+   "n": 19,
+   "dollars": 4129.0,
+   "buckets": {
+    "0-30": 1821.0,
+    "31-60": 315.0,
+    "61-90": 738.0,
+    "91-180": 519.0,
+    "181-365": 736.0,
+    "over 365": 0.0
+   },
+   "oldest_days": 360
   },
   {
    "carrier": "RET01",
@@ -745,8 +745,8 @@
   },
   {
    "month": "2026-11",
-   "n": 205,
-   "dollars": 36503.0
+   "n": 201,
+   "dollars": 36029.0
   }
  ],
  "oldest": [
@@ -19771,14 +19771,6 @@
    "dos": "2026-11-01"
   },
   {
-   "visitid": 19460163,
-   "patientid": 17472922,
-   "carriercode": "CAP07",
-   "insbalance": 111.0,
-   "days": 9,
-   "dos": "2026-11-01"
-  },
-  {
    "visitid": 19460168,
    "patientid": 17478264,
    "carriercode": "FLO02",
@@ -19951,14 +19943,6 @@
    "patientid": 47979,
    "carriercode": "UHCMA",
    "insbalance": 160.0,
-   "days": 8,
-   "dos": "2026-11-02"
-  },
-  {
-   "visitid": 19460031,
-   "patientid": 12181827,
-   "carriercode": "CAP07",
-   "insbalance": 141.0,
    "days": 8,
    "dos": "2026-11-02"
   },
@@ -20279,14 +20263,6 @@
    "patientid": 17472228,
    "carriercode": "UNI20",
    "insbalance": 160.0,
-   "days": 7,
-   "dos": "2026-11-03"
-  },
-  {
-   "visitid": 19460196,
-   "patientid": 17472922,
-   "carriercode": "CAP07",
-   "insbalance": 111.0,
    "days": 7,
    "dos": "2026-11-03"
   },
@@ -20671,14 +20647,6 @@
    "patientid": 17472741,
    "carriercode": "UNI20",
    "insbalance": 141.0,
-   "days": 6,
-   "dos": "2026-11-04"
-  },
-  {
-   "visitid": 19460218,
-   "patientid": 17472922,
-   "carriercode": "CAP07",
-   "insbalance": 111.0,
    "days": 6,
    "dos": "2026-11-04"
   },
