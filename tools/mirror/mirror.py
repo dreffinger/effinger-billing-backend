@@ -5,7 +5,7 @@
 #                  -> merged, PHI-gated -> docs/captured_calls.md
 #   2. helpers   - every *.py / carriers.json / facilities.json in the workspace that is newer than
 #                  the repo copy -> PHI-gated -> scripts/helpers/  (so a fresh container can restore);
-#                  a stale Drive-overlaid copy of the seven protected helpers never overwrites the repo's
+#                  a stale Drive-overlaid copy of a protected helper (the PROTECTED table below) never overwrites the repo's
 #   2b. tree gate - phi_gate.py tree . before `git add -A`: registers / run artifacts scrubbed in place,
 #                  digests / needs lists / run reports kept out (Drive only)  (10/6/2026)
 #   3. postman   - docs/api_vocabulary.json -> docs/postman_effinger_amd.json (generated)
@@ -121,7 +121,9 @@ PROTECTED = {"amd.py": "_REBILLED", "resave.py": "def set_insorder", "freq1_visi
              # workspace copy without the reporting-line rule (1123F / 1124F / M0004 always INFO, 11/10/2026) or Medicare's reason-58 rule must not come back over it
              "working_denials.py": 'REPORTING_CODES = {"1123F", "1124F", "M0004"}',
              # the AR ageing page: a reporting line never makes a visit read as denied (11/10/2026)
-             "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")'}
+             "aging_refresh.py": 'INFO_REASONS = ("45", "253", "23", "94", "1", "2", "3", "246")',
+             # the one function the ingest and the retry share to make the feed helpers the repository's on every run (11/10/2026, reviewers C2 / W1)
+             "claimocity_helpers_current.py": "compared byte for byte with the clone's copy"}
 def sync_helpers():
     dst_dir = os.path.join(ROOT, "scripts", "helpers")
     os.makedirs(dst_dir, exist_ok=True)
@@ -201,9 +203,16 @@ def commit_and_push(message):
 
 UNION = ["docs/captured_calls.md merge=union", "docs/captured_calls_additions_*.md merge=union", "practices/ehpa/rules.md merge=union",
          "needs_facesheet_list.md merge=union", "docs/SHARED_LESSONS.md merge=union", "practices/ehpa/registers/rebill_log.jsonl merge=union"]
+# 11/10/2026 (second ops-and-text review): rules.md merges by union - EXCEPT that a bullet rewritten in place (the place-of-service rule, the clinician
+# and building of a feed visit, the quality code 1123F with M0004, the initial nursing-facility visit) REPLACES its old copy instead of coming back
+# beside it; both sides rewriting the same bullet stops as a conflict. tools/mirror/rules_merge.py does it; this registers it as git's merge driver
+# for rules.md (repo-local config and .git/info/attributes, never committed). Its line goes after the union line: the later line wins.
+RULES_DRIVER = os.path.join(ROOT, "tools", "mirror", "rules_merge.py")
+RULES_ATTR = "practices/ehpa/rules.md merge=ehpa-rules"
 def union_rules():
     """Append-only text files merge by union (both sides kept) when origin/main moved under us - the same list
-    tools/mirror/apply_bundle.py uses; written to .git/info/attributes (repo-local, never committed). Idempotent."""
+    tools/mirror/apply_bundle.py uses; written to .git/info/attributes (repo-local, never committed). Idempotent.
+    rules.md gets the ehpa-rules driver on top (a rewritten bullet replaces its old copy) whenever tools/mirror/rules_merge.py is there."""
     d = sh("git rev-parse --git-dir").stdout.strip()
     if not os.path.isabs(d):
         d = os.path.join(ROOT, d)
@@ -212,6 +221,13 @@ def union_rules():
     add = [r for r in UNION if r not in have]
     if add:
         open(f, "a").write(("" if not have or have.endswith("\n") else "\n") + "\n".join(add) + "\n")
+    if os.path.exists(RULES_DRIVER):
+        import shlex
+        sh("git config merge.ehpa-rules.name %s" % shlex.quote("rules.md: union, a rewritten bullet replaces its old copy"))
+        sh("git config merge.ehpa-rules.driver %s" % shlex.quote("%s %s %%O %%A %%B" % (shlex.quote(sys.executable), shlex.quote(RULES_DRIVER))))
+        have = open(f).read().splitlines()
+        if [l for l in have if l.startswith("practices/ehpa/rules.md ")][-1:] != [RULES_ATTR]:      # the driver's line must be the LAST one for rules.md
+            open(f, "w").write("\n".join(l for l in have if l != RULES_ATTR) + "\n" + RULES_ATTR + "\n")
 
 def push_via_proxy():
     """11/2/2026 (William: "make it permanent where I don't have to manually push anything"): a Claude Code cloud session with

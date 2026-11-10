@@ -137,11 +137,12 @@ def main():
         key = (r["pid"], r["visitid"])
         rec = byv.get(key)
         rank = DISPO_ORDER.index(dispo) if dispo in DISPO_ORDER else len(DISPO_ORDER)
+        if norm(code) == "58" and dispo == "REVIEW": rank = -1      # Medicare's place-of-service answer always leads its visit (rules.md 11/10/2026 part 7; challenge review 11/10/2026): never hidden behind a rebill class on the same visit
         if rec is None or rank < rec["_rank"]:
             byv[key] = {"_rank": rank, "patient": r["patient"], "pid": r["pid"], "visitid": r["visitid"],
                 "carrier": r["carrier"], "dos": r["dos"], "cpt": r["cpt"], "billed": r.get("billed"),
                 "dispo": dispo, "action": action, "carc": norm(code), "reason": r.get("reason"),
-                "check": r.get("check"), "amt": abs(r.get("amt") or 0), "codes": set(), "rarc": set(),
+                "check": r.get("check"), "amt": abs(r.get("amt") or 0), "codes": (rec["codes"] if rec else set()), "rarc": (rec["rarc"] if rec else set()),      # a more actionable line keeps the codes already seen on the visit
                 "age": age_days(r["dos"]), "timely": (age_days(r["dos"]) or 9999) <= 365}
         byv[key]["codes"].add("%s/%s" % (r.get("group"), code))
         for x in (r.get("rarc") or []): byv[key]["rarc"].add(x)

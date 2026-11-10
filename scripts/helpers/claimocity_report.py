@@ -54,7 +54,7 @@ def _names(key, lead):
 try:
     for x in reg["created"]:
         _c = x.get("cpts") or []
-        if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x))
+        if x.get("msg_own") is False: _ps["notown"] += 1; _who["notown"].append(_tag(x) + ((" (%s)" % str(x["msg_fallback"])[:120]) if x.get("msg_fallback") else ""))      # msg_fallback: where each value its copies did not agree on came from
         if x.get("prof_default") is True: _ps["profdef"] += 1; _who["profdef"].append(_tag(x))
         if "pos_lines" in x and not x.get("fac") and not any(c in _NFV or c in _CCM for c in _c): _ps["nofacother"] += 1; _who["nofacother"].append(_tag(x))      # CCM / nursing lines are named in the block below
         if x.get("pos_stored") is not None and x.get("pos_lines"):
@@ -83,30 +83,37 @@ try:
     if any(_ps[k] for k in _ps if k not in ("readback", "notown", "profdef", "nofacother")):
         L("- Place of service in the nursing buildings (11/10/2026 rule): CCM lines entered as 32: %d%s; nursing visits 32 (monthly): %d; nursing visits 31: %d%s%s%s%s%s." % (
             _ps["ccm32"],
-            (" (and %d kept at 31 because the chart shows weekly visits, an admission or a new stay that month - not held: they go out at 31 with the next claim run unless William changes them first)" % _ps["ccm31"]) if _ps["ccm31"] else "",
+            (" (and %d kept at 31 by the back end's exception for that month - see pos_why - not held: they go out at 31 with the next claim run unless William changes them first)" % _ps["ccm31"]) if _ps["ccm31"] else "",
             _ps["nf32"], _ps["nf31"],
             (" (%d of them kept at 31 because the chart shows neither pattern - see pos_why)" % _ps["nfleft"]) if _ps["nfleft"] else "",
             (" (%d of them because the previous nursing visit was in another building)" % _ps["nfmoved"]) if _ps["nfmoved"] else "",
             ("; POS RULE NOT APPLIED on %d visit(s) - entered at the feed's place of service, see pos_err in the import register and rules.md 11/10/2026" % _ps["err"]) if _ps["err"] else "",
             ("; %d CCM / nursing-visit line(s) came from a building the facility table does not know - entered at 31 with no facility" % _ps["nofac"]) if _ps["nofac"] else "",
             ("; PLACE OF SERVICE RULE DID NOT RUN on %d visit(s) in the nursing buildings - the import helper in this workspace is an old copy (rules.md 11/10/2026)" % _ps["norule"]) if _ps["norule"] else ""))
-        _names("err", "TOP OF THE REPORT - rule not applied, check by hand before the claim run")
+        _names("err", "TOP OF THE REPORT - rule not applied, for William before the claim run; a routine changes nothing on these visits")
         _names("norule", "TOP OF THE REPORT - rule did not run (old helper)")
         _names("nofac", "TOP OF THE REPORT - building the facility table does not know")
         _names("ccm31", "for William, not held - CCM kept at 31 (pos_kind ccm-skilled-month)")
         _names("nfleft", "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between)")
         if _ps["notkept"]:
             L("  - TOP OF THE REPORT - ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on %d of %d visit(s) read back:" % (_ps["notkept"], _ps["readback"])); _names("notkept", "sent / stored")
-        elif _ps["readback"]: L("  - AdvancedMD's own answer shows the place of service as sent on all %d visit(s) it echoed." % _ps["readback"])
-        elif _ps["ccm32"] or _ps["nf32"]: L("  - AdvancedMD's answer did not echo the place of service: read ONE 32 line back by hand (runbook, 'first batch that enters a 32 line').")
+        elif _ps["readback"]: L("  - AdvancedMD's own answer shows the place of service as sent on all %d visit(s) it echoed.%s" % (_ps["readback"], " The run still reads ONE 32 line back from the chart (runbook, 'EVERY RUN THAT ENTERS A 32 LINE')." if (_ps["ccm32"] or _ps["nf32"]) else ""))
+        elif _ps["ccm32"] or _ps["nf32"]: L("  - AdvancedMD's answer did not echo the place of service: the run reads ONE 32 line back from the chart (runbook, 'EVERY RUN THAT ENTERS A 32 LINE').")
     if _ps["notown"]:
-        L("- Clinician and building: %d visit(s) could not be matched to their own feed message, so the patient's last-read building and clinician were used - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["notown"]); _names("notown", "charts")
+        L("- Clinician and building: %d visit(s) could not be matched to their own feed message - for what its copies do not agree on, the patient's last-read building or clinician and the admission date of the message's own last copy were used (each chart says which) - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["notown"]); _names("notown", "charts")
     if _ps["profdef"]:
         L("- Clinician: %d visit(s) whose feed message names no clinician id the profile table has were entered under the physician profile - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["profdef"]); _names("profdef", "charts")
     if _ps["nofacother"]:
         L("- Building: %d hospital / home / other visit(s) came from a building the facility table does not know and were entered with no facility at the feed's place of service - TOP OF THE REPORT, for William (a routine changes nothing on these visits):" % _ps["nofacother"]); _names("nofacother", "charts")
 except Exception as _e:                                    # a register edited by hand must never stop the digest
     L("- Place of service in the nursing buildings (11/10/2026 rule): this line could not be built (%s) - read pos_lines / pos_err in the import register." % (type(_e).__name__ + ": " + str(_e))[:120])
+# initial nursing-facility visits (William 11/10/2026, rules.md): every one goes in under the physician whatever clinician the feed names - one plain line, not for the top
+try:
+    _ini = [x for x in reg["created"] if isinstance(x, dict) and x.get("prof_feed")]
+    if _ini: L("- Initial visits entered under the physician although the feed named another clinician: %d (%s). William 11/10/2026: every initial nursing-facility visit is his." % (
+        len(_ini), ", ".join("%s %s" % (x.get("pid") or "?", x.get("visit") or "?") for x in _ini[:30]) + (" +%d more" % (len(_ini) - 30) if len(_ini) > 30 else "")))
+except Exception as _e:
+    L("- Initial visits under the physician: this line could not be built (%s) - read prof_feed in the import register." % type(_e).__name__)
 # quality code (William 11/10/2026, rules.md): the advance-care-plan code 1123F that rides, at no charge, with Medicare visits of patients 65 and older.
 # Everything that needs William is ONE line that starts "  - TOP OF THE REPORT - ", said in the run where it began; a state that only still
 # stands (the code still OFF, a fact already reported) is a plain line - the previous import register's gate tells the two apart.

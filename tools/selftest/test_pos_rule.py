@@ -47,6 +47,8 @@ def check(name, cond, extra=""):
 tmp = tempfile.mkdtemp(prefix="posrule_"); os.makedirs(os.path.join(tmp, "hl7")); os.makedirs(os.path.join(tmp, "registers"))
 os.chdir(tmp)
 os.environ.update(FEED_STAMP="SELFTEST", FEED_HL7_DIR=os.path.join(tmp, "hl7"), FEED_DX_CACHE=os.path.join(tmp, "dx.json"))
+# the import's date-of-death guard reads DECEASED_CACHE first: this test names its OWN empty cache, so a cache the calling shell exports never decides a visit here (11/10/2026)
+DECEASED_OWN = os.path.join(tmp, "deceased_cache_selftest.json"); open(DECEASED_OWN, "w").write("{}"); os.environ["DECEASED_CACHE"] = DECEASED_OWN
 NPI = "1225327380"                                                     # the practice's own rendering NPI, already in the helper's PROFILE table
 BUILDING = {"n1": "BRYNWOOD OPERATIONS LLC", "n2": "Aspire of Tallahassee", "n3": "Oakes Southwood", "a1": "Azalea Gardens ALF",
             "h1": "HCA Florida Capital Hospital", "u1": "A Building The Table Does Not Know"}
@@ -145,12 +147,12 @@ def _detail(cid):
     if isinstance(b, dict): return '<r><visit episode="eps9" refplan=""/><charge id="charge%s" %s>%s</charge>%s</r>' % (cid, " ".join('%s="%s"' % kv for kv in dict({"proccode": pc} if pc else {}, **b).items()), pays, plist)
     return '<r><visit episode="eps9" refplan=""/><charge id="charge%s"%s><insbilllist>%s</insbilllist>%s</charge>%s</r>' % (cid, ' proccode="%s"' % pc if pc else "", "".join('<insbill billeddate="%s"/>' % d for d in b), pays, plist)
 resave.detail = _detail
-CHART = {}                                                             # chart number -> [(cpt, 'MM/DD/YYYY')] the stand-in history returns
+CHART = {}                                                             # chart number -> [(cpt, 'MM/DD/YYYY'[, facility name])] the stand-in history returns
 txh = types.ModuleType("txh")
 def _fetch(num):
     root = ET.Element("r")
-    for i, (cpt, dos) in enumerate(CHART.get(str(num), [])):
-        ET.SubElement(root, "charge", {"id": "charge%d" % (i + 1), "proccode": cpt, "dos": dos, "void": "0", "fee": "1.00"})
+    for i, row in enumerate(CHART.get(str(num), [])):
+        ET.SubElement(root, "charge", dict({"id": "charge%d" % (i + 1), "proccode": row[0], "dos": row[1], "void": "0", "fee": "1.00"}, **({"facname": row[2]} if len(row) > 2 else {})))
     return root
 txh.fetch = _fetch
 sys.modules.update({"amd": amd, "resave": resave, "txh": txh})
@@ -316,8 +318,9 @@ check("build: hospital message of a patient who also has nursing messages: hospi
 check("build: that patient's nursing messages: the nursing building, 31 (admission, then weekly), each under its own clinician, no admission date carried over", i_a["fac"] == "fac32" and i_f["fac"] == "fac32" and [q for _, q in pp_a + pp_f] == ["31", "31"] and (i_a["prof"], i_f["prof"]) == ("prof13", "prof15")
       and i_a["admit"] == "" and "hospitalizationfrom" not in b_a and i_a["pos_err"] == i_f["pos_err"] == "" and i_f["pos_kind"] == ["skilled"], (i_a, i_f))
 b6, i6, pp6 = built("m6", [("99232", "20261020")])
-check("build: a visit sent twice with a corrected admission date keeps its own building and clinician (the copies agree on both); the date the copies do not agree on is not guessed from them, and the visit is named for a check",
-      i6["fac"] == "fac29" and [q for _, q in pp6] == ["21"] and i6["prof"] == "prof13" and i6["pos_err"] == "" and i6["msg_own"] is False and ci.msg_agreed(msg("m6", [("99232", "20261020")])) == (B["h1"], NPI, None), i6)
+check("build: a visit sent twice with a corrected admission date keeps its own building and clinician (the copies agree on both); the date the copies do not agree on comes from the message's own LAST copy (review W2), and the visit is named for a check",
+      i6["fac"] == "fac29" and [q for _, q in pp6] == ["21"] and i6["prof"] == "prof13" and i6["pos_err"] == "" and i6["msg_own"] is False and ci.msg_agreed(msg("m6", [("99232", "20261020")])) == (B["h1"], NPI, None)
+      and i6["admit"] == "20261019" and 'hospitalizationfrom="10/19/2026"' in b6 and i6.get("msg_fallback") == "admission date: this message's own last copy", i6)
 check("build: (the per-patient value alone would have put that hospital visit in the nursing building under the nurse practitioner)", ci.FACOF["m6"] == B["n2"] and ci.NPIOF["m6"] == NP_NPI)
 check("msg_agreed: a message the raw files do not hold has no agreed value; a message sent once has all three", ci.msg_agreed(msg("m6", [("99232", "20261021")])) == (None, None, None) and ci.msg_agreed(msg("m2", [("99232", "20261020")])) == (B["h1"], NPI, "20261018"))
 b7, i7, pp7 = built("m7", [("99309", "20261104")])
@@ -392,8 +395,11 @@ out, dry = run_dry(); ci.PARSED.pop(); del ci.MATCH[NAME("six").upper().strip() 
 check("main --dry: when the batch visit list cannot be built it is emptied, said and counted - and the run goes on", "batch visit list not built" in out and "POS RULE: batch visit list not built - nursing-building lines kept at the feed's 31" in out and ci.BATCH_NF == {} and "DONE" in out, out[-400:])
 check("main --dry: ... and then NO nursing-building line is 32: each is kept at the feed's 31 and reported", all(d["pos_lines"] == ["31"] * len(d["cpts"]) and d["pos_err"] for k in ("pat101", "pat102", "pat103") for d in dry.get(k, [])) and "not applied x4" in out and dry.get("pat104", [{}])[0].get("pos_lines") == ["13"], dry)
 ci.BATCH_NF_ERR[0] = ""
-_regp = os.path.join(tmp, "registers", "feed_import_SELFTEST.json")       # the broken match row above made the run write a 'failed' row whose chart is a list
-check("an odd row left in a register by a failed message (its chart not a chart number) is there for the next check", os.path.exists(_regp) and isinstance(json.load(open(_regp))["failed"][0]["pid"], list))
+_regp = os.path.join(tmp, "registers", "feed_import_SELFTEST.json")
+check("main --dry: the broken match row is a failed message - and a dry run that meets one writes NO register (11/10/2026, challenge review: that register made the live run of the same stamp skip whole patients)",
+      "ERR ['not', 'a', 'chart']" in out and not os.path.exists(_regp), (os.path.exists(_regp), out[-300:]))
+json.dump({"created": [], "skipped": [], "failed": [{"feed_id": "n3", "pid": ["not", "a", "chart"], "lines": [], "err": "odd"}]}, open(_regp, "w"))      # the odd row a failed message used to leave (its chart not a chart number), written here
+check("an odd row in a register (its chart not a chart number) is there for the next check", os.path.exists(_regp) and isinstance(json.load(open(_regp))["failed"][0]["pid"], list))
 out, dry = run_dry()
 check("main --dry: an odd row in an earlier register never switches the rule off for the next run", "batch visit list not built" not in out and dry.get("pat101", [{}])[0].get("pos_lines") == ["32", "32"] and "not applied x0" in out, out[-300:])
 os.remove(_regp)
@@ -453,6 +459,169 @@ out, reg = run_live(M1, none=True)
 check("live run: an answer without the place of service claims nothing either way", all(r["pos_stored"] is None for r in reg["created"]) and "POS NOT KEPT" not in out, reg["created"])
 out, reg = run_live([P_("m5", "m5", [("99498", "20270121"), ("99309", "20270120")]), P_("m5", "m5", [("99306", "20270121")])])
 check("live run: a message with two dates is remembered line by line - the admission visit of the later date is still entered", len(reg["created"]) == 2 and reg["created"][0]["dos_lines"] == ["01/21/2027", "01/20/2027"] and reg["created"][1]["cpts"] == ["99306"] and reg["skipped"] == [], (reg["created"], reg["skipped"]))
+# ---- 4b2. round 6, step 4 (11/10/2026): what round 5's confirmation reviewers still found, and William's initial-visit rule ------------------------
+# Each check is built from the finding's own exact input (feed patient, buildings, clinicians, dates, file order). The raw feed files are read when the
+# helper loads, so a FRESH copy of the import helper is loaded for each input, over its own folder of raw files, with the same stand-in modules.
+import builtins as _bi
+_S4N = [0]
+def s4_fresh(files, default_encoding=None):
+    """A fresh copy of the import helper over its own raw feed files {name: text} (written as UTF-8). default_encoding: every open() of the helper
+    that names no encoding reads with this one - a machine whose default is not UTF-8."""
+    d_ = tempfile.mkdtemp(prefix="posrule_s4_", dir=tmp)
+    for n_, t_ in files.items(): open(os.path.join(d_, n_), "w", encoding="utf-8").write(t_)
+    _old = os.environ["FEED_HL7_DIR"]; os.environ["FEED_HL7_DIR"] = d_; _S4N[0] += 1
+    try:
+        sp_ = importlib.util.spec_from_file_location("claimocity_import_s4_%d" % _S4N[0], HELPER); m_ = importlib.util.module_from_spec(sp_)
+        if default_encoding: m_.open = lambda f, mode="r", *a, **k: _bi.open(f, mode, *a, **(dict(k, encoding=default_encoding) if "b" not in mode and not k.get("encoding") else k))
+        sp_.loader.exec_module(m_)
+    finally: os.environ["FEED_HL7_DIR"] = _old
+    if not (m_.amd is amd and m_.resave is resave and m_.txh is txh): raise RuntimeError("the fresh copy did not load the stand-in modules")
+    m_.run_day = ci.run_day
+    return m_
+S4_REG = os.path.join(tmp, "registers", "feed_import_SELFTEST.json")
+def s4_run(m_, parsed, match, argv=("--all",), keep=False):
+    """main() of a fresh copy over parsed messages (live against the stand-in AdvancedMD, or --dry) -> (what it printed, its register or None)."""
+    m_.PARSED[:] = parsed; m_.MATCH.clear(); m_.MATCH.update({NAME(k_).upper().strip() + "|" + DOBK: {"resolved": v_} for k_, v_ in match.items()})
+    POSTS.clear(); buf_ = io.StringIO(); _argv = sys.argv[:]; sys.argv = ["claimocity_import.py"] + list(argv); m_._ctx.clear(); m_.BATCH_NF.clear(); m_.BATCH_NF_ERR[0] = ""; _sl = m_.time.sleep; m_.time.sleep = lambda s: None
+    try:
+        with contextlib.redirect_stdout(buf_): m_.main()
+    finally: m_.time.sleep = _sl; sys.argv = _argv
+    reg_ = json.load(open(S4_REG)) if os.path.exists(S4_REG) else None
+    if reg_ is not None and not keep: os.remove(S4_REG)
+    return buf_.getvalue(), reg_
+def s4_rows(reg_, pid_): return sorted([r_ for r_ in (reg_ or {}).get("created", []) if r_.get("pid") == pid_], key=lambda r_: r_["dos"][6:] + r_["dos"][:5])
+def s4_brief(rows_): return [(r_["dos"], r_["cpts"], r_["pos_lines"], r_["pos_kind"], r_.get("fac"), str(r_.get("pos_err"))[:24]) for r_ in rows_]
+WO = "Westminster Oaks-Bertrand Health Center"; BRY_AMD = "BRYNWOOD OPERATIONS LLC BRYNWOOD OPERATIONS LLC"
+check("4b2 setup: no import register is left over from the sections before (each input below starts clean)", not any(f_.startswith("feed_import_") for f_ in os.listdir(os.path.join(tmp, "registers"))), os.listdir(os.path.join(tmp, "registers")))
+# C1 (round-5 code review, should-fix; challenge review confirmed): a visit day the feed itself sends from two buildings must read as a move
+s4c1 = s4_fresh({"20260905.hl7": hl7("t1", WO, "", [("99309", "20260905")], NPI) + hl7("t1", B["n1"], "", [("99309", "20260905")], NP_NPI)
+                 + hl7("t1", WO, "", [("99308", "20261008")], NPI) + hl7("t1", WO, "", [("99487", "20261031")], NPI)})
+CHART["801"] = [("99309", "08/03/2026", BRY_AMD)]
+S4_C1A = [P_("t1", "t1", [("99309", "20260905")]), P_("t1", "t1", [("99309", "20260905")]), P_("t1", "t1", [("99308", "20261008")]), P_("t1", "t1", [("99487", "20261031")])]
+s4o, s4r = s4_run(s4c1, S4_C1A, {"t1": "pat801"}); s4x = s4_rows(s4r, "pat801")
+check("C1 (exact input): the 09/05 visit the feed sent from Westminster AND from Brynwood is entered once, at the feed's 31 and reported; the next visit (10/08, 33 days later) and the October CCM stay at 31 - that day reads as a move, as a day the chart and the feed name under two buildings does (1478f14: 32 monthly / 32 CCM, named nowhere)",
+      [x_["dos"] for x_ in s4x] == ["09/05/2026", "10/08/2026", "10/31/2026"] and "2 buildings" in s4x[0]["pos_err"] and s4x[0]["pos_lines"] == ["31"]
+      and s4x[1]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["moved"] and s4x[2]["pos_lines"] == ["31"] and s4x[2]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+check("C1: the visit's created row keeps every building its copies named (tie_lines), so a later batch still sees that day under two buildings; one-building visits carry none",
+      s4x and s4x[0].get("tie_lines") == [["99309", "09/05/2026", B["n1"]], ["99309", "09/05/2026", WO]] and "tie_lines" not in s4x[1] and "tie_lines" not in s4x[2], s4x[0].get("tie_lines"))
+check("C1: a message sent from two buildings that is NOT entered (a code the table lacks, a diagnosis AdvancedMD does not know) keeps its visit lines once per building in the register, so a later batch reads that day the same way",
+      s4c1.seen_lines(P_("t1", "t1", [("99309", "20260905")])) == [["99309", "09/05/2026", B["n1"]], ["99309", "09/05/2026", WO]] and s4c1.seen_lines(P_("t1", "t1", [("99308", "20261008")])) == [["99308", "10/08/2026", WO]])
+check("C1: the batch list carries that day once per building (msg_buildings), and a message sent from one building keeps exactly its own",
+      s4c1.msg_buildings(P_("t1", "t1", [("99309", "20260905")])) == [B["n1"], WO] and s4c1.msg_buildings(P_("t1", "t1", [("99308", "20261008")])) == [WO], s4c1.BATCH_NF.get("pat801"))
+# C1b: the review's second input - only the last hunk (the visit's OWN day named under two buildings) keeps the month's CCM at 31
+s4c1b = s4_fresh({"20261002.hl7": hl7("t2", B["n2"], "", [("99309", "20261002")], NP_NPI) + hl7("t2", WO, "", [("99309", "20261002")], NPI) + hl7("t2", B["n2"], "", [("99487", "20261031")], NPI)})
+CHART["802"] = [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE")]
+s4o, s4r = s4_run(s4c1b, [P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99309", "20261002")]), P_("t2", "t2", [("99487", "20261031")])], {"t2": "pat802"}); s4x = s4_rows(s4r, "pat802")
+check("C1b (exact input): the October CCM of a resident whose 10/02 visit the feed sent from Aspire AND Westminster stays at 31 (1478f14: 32)", [x_["dos"] for x_ in s4x] == ["10/02/2026", "10/31/2026"] and s4x[1]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+check("C1b: the CCM-month check reads a visit whose OWN day is named under two buildings as a move even with no building for the CCM itself (the review's last hunk)",
+      ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE"), ("99309", "10/02/2026", B["n2"]), ("99309", "10/02/2026", WO)])[2] == ["ccm-skilled-month"]
+      and ci.nf_visit_kind("99309", "10/02/2026", [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE"), ("99309", "10/02/2026", B["n2"]), ("99309", "10/02/2026", WO)])[0] == "moved"
+      and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/03/2026", "ASPIRE AT TALLAHASSEE"), ("99309", "10/02/2026", B["n2"])])[2] == ["ccm"])
+# the challenge reviewer's limit of the review's fix (tie_then_next_batch): yesterday's batch entered the two-building visit; today's brings the next visit and the CCM
+s4t = s4_fresh({"20260905.hl7": hl7("t3", B["n1"], "", [("99309", "20260905")], NP_NPI) + hl7("t3", WO, "", [("99309", "20260905")], NPI)})
+CHART["803"] = [("99309", "08/03/2026", BRY_AMD)]
+s4o, s4r = s4_run(s4t, [P_("t3", "t3", [("99309", "20260905")]), P_("t3", "t3", [("99309", "20260905")])], {"t3": "pat803"}, keep=True)
+s4y = os.path.join(tmp, "registers", "feed_import_20261108T1200Z.json"); os.rename(S4_REG, s4y)                                   # yesterday's register
+CHART["803"].append(("99309", "09/05/2026", "WESTMINSTER BERTRAND HEALTH CENTER"))                                                  # ... and the visit as it now stands on the chart
+s4t2 = s4_fresh({"20261031.hl7": hl7("t3", WO, "", [("99308", "20261008")], NPI) + hl7("t3", WO, "", [("99487", "20261031")], NPI)})
+s4o, s4r = s4_run(s4t2, [P_("t3", "t3", [("99308", "20261008")]), P_("t3", "t3", [("99487", "20261031")])], {"t3": "pat803"}); s4x = s4_rows(s4r, "pat803")
+check("C1 (challenge review, tie_then_next_batch): yesterday's batch entered the visit the feed sent from two buildings; in today's batch the next visit and the month's CCM still read that day as named under two buildings - 31 / 31 (without the register's tie_lines the chart's one building made them 32 / 32)",
+      [x_["dos"] for x_ in s4x] == ["10/08/2026", "10/31/2026"] and s4x[0]["pos_kind"] == ["moved"] and s4x[0]["pos_lines"] == ["31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+os.remove(s4y)
+# W2 (round-5 ops-and-words review; the cross-check of 1478f14, input c): a disagreeing admission date comes from the LAST raw copy of that message
+def s4_admit(files, fid, lines):
+    m_ = s4_fresh(files); o_, i_ = m_.build(msg(fid, lines), ctx())
+    return (i_ or {}).get("admit"), (o_[1] if o_ else ""), i_
+s4h1 = hl7("x1", B["h1"], "20261030", [("99232", "20261102")], NPI); s4h2 = hl7("x1", B["h1"], "20261101", [("99232", "20261102")], NP_NPI); s4n = hl7("x1", B["n1"], "20260923", [("99309", "20261103")], NP_NPI)
+s4a1 = s4_admit({"a.hl7": s4h1 + s4h2 + s4n}, "x1", [("99232", "20261102")]); s4a2 = s4_admit({"a.hl7": s4n + s4h1 + s4h2}, "x1", [("99232", "20261102")])
+check("W2 (cross-check of 1478f14, exact input c): a hospital 99232 of 11/02 sent by the physician (admitted 10/30) and again by the nurse practitioner (admitted 11/01), then a nursing 99309 of 11/03 (admitted 09/23) - the hospital visit takes 11/01, its own last copy's date, in BOTH read orders (1478f14: 09/23, or 11/01 only when the nursing message was read first)",
+      s4a1[0] == s4a2[0] == "20261101" and 'hospitalizationfrom="11/01/2026"' in s4a1[1] and 'hospitalizationfrom="11/01/2026"' in s4a2[1] and s4a1[2]["fac"] == s4a2[2]["fac"] == "fac29"
+      and s4a1[2].get("msg_fallback") == s4a2[2].get("msg_fallback") == "clinician: the patient's last-read message; admission date: this message's own last copy", (s4a1[0], s4a2[0], s4a1[2].get("msg_fallback")))
+s4w = s4_admit({"a.hl7": hl7("tw1", B["h1"], "20261028", [("99232", "20261030")], NPI) + hl7("tw1", B["h1"], "20261027", [("99232", "20261030")], NPI) + hl7("tw1", B["n1"], "20250114", [("99309", "20261105")], NP_NPI)}, "tw1", [("99232", "20261030")])
+s4w0 = s4_admit({"a.hl7": hl7("tw1", B["h1"], "20261028", [("99232", "20261030")], NPI) + hl7("tw1", B["n1"], "20250114", [("99309", "20261105")], NP_NPI)}, "tw1", [("99232", "20261030")])
+check("W2 (ops-and-words review, exact input): HCA 99232 of 10/30 sent with admission 10/28, then with 10/27, then a Brynwood message admitted 01/14/2025 - the visit takes 10/27/2026 (the corrected copy), never the nursing building's 01/14/2025; the one-copy control keeps 10/28",
+      s4w[0] == "20261027" and 'hospitalizationfrom="10/27/2026"' in s4w[1] and s4w0[0] == "20261028" and s4w[2]["fac"] == "fac29" and s4w[2]["prof"] == "prof13", (s4w[0], s4w0[0]))
+s4v = [s4_admit({"a.hl7": hl7("p5", B["h1"], "20261018", [("99232", "20261020")], NPI) + hl7("p5", B["h1"], "20261019", [("99232", "20261020")], NPI) + t_}, "p5", [("99232", "20261020")])[0]
+       for t_ in (hl7("p5", B["n1"], "20261001", [("99309", "20261102")], NP_NPI), hl7("p5", B["a1"], "20250104", [("99344", "20261102")], NP_NPI), hl7("p5", B["h1"], "20261105", [("99223", "20261105")], NPI),
+                  "MSH|^~\\&|feed|" + B["n1"] + "|x|x|20261102||DFT^P03|1|P|2.3\r" + pv1(NP_NPI, "20261001") + "\rPID|1||p5\r" + ft1("99309", "20261102") + "\r")]
+check("W2 / C5 (code review's input and its variants): the twice-sent hospital visit keeps 10/19/2026, its own last copy's date, whatever message of the patient is read last (a nursing building, an ALF admitted 01/04/2025, a later hospital stay, a message with PV1 before PID)", s4v == ["20261019"] * 4, s4v)
+# a hospital follow-up message with no admission date of its own (integration second reviewer, M3): decided - nothing is taken from another message
+s4f = []
+for s4ord in (0, 1):
+    _f2 = [hl7("s2", B["h1"], "", [("99232", "20261020")], NPI), hl7("s2", B["h1"], "20261018", [("99223", "20261018")], NPI)]
+    m_ = s4_fresh({"a.hl7": "".join(_f2 if s4ord == 0 else _f2[::-1])})
+    s4f.append((m_.build(msg("s2", [("99232", "20261020")]), ctx())[1]["admit"], m_.build(msg("s2", [("99223", "20261018")]), ctx())[1]["admit"]))
+check("second reviewers (integration M3, exact input, both orders): a hospital follow-up message with no admission date of its own is sent without one - never a date from another message of the patient (W2) - and the 99223 keeps its own; the feed inspector step anchors the follow-up on that 99223 (45 days) or holds it for William",
+      s4f == [("", "20261018"), ("", "20261018")] and "anchor_99223" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_inspector.py")).read(), s4f)
+# the cross-check of 1478f14, item a: the raw files are read as UTF-8, as feed_parse_dft_1028.py reads them
+s4e = s4_fresh({"e.hl7": hl7("zé9", B["n1"], "", [("99309", "20261102")], NP_NPI)}, default_encoding="latin-1")
+check("cross-check (a): on a machine whose default encoding is not UTF-8, a feed patient id with a non-ASCII letter still finds its own message - building and clinician (the parser reads the same file as UTF-8)",
+      s4e.msg_own(msg("zé9", [("99309", "20261102")])) == (B["n1"], NP_NPI, "") and "zé9" in s4e.FACOF and 'encoding="utf-8"' in open(HELPER).read() and 'encoding="utf-8"' in open(os.path.join(ROOT, "scripts", "helpers", "feed_parse_dft_1028.py")).read(), sorted(s4e.FACOF))
+check("cross-check (b): this self-test names its OWN empty deceased cache - whatever the calling shell exports, the import's date-of-death guard reads this file here", os.environ.get("DECEASED_CACHE") == DECEASED_OWN and DECEASED_OWN.startswith(tmp) and json.load(open(DECEASED_OWN)) == {})
+# the second reviewers' two-building patients whose CCM went in at 32 with nothing named (logic M1, message-identity X2)
+s4l = s4_fresh({"a.hl7": hl7("q1", B["n1"], "", [("99309", "20261003")], NP_NPI) + hl7("q1", B["n2"], "", [("99487", "20261031"), ("99489", "20261031")], NPI)})
+CHART["811"] = [("99309", "09/05/2026", BRY_AMD)]
+s4o, s4r = s4_run(s4l, [P_("q1", "q1", [("99309", "20261003")]), P_("q1", "q1", [("99487", "20261031"), ("99489", "20261031")])], {"q1": "pat811"}); s4x = s4_rows(s4r, "pat811")
+check("second reviewers (logic M1, exact input): the CCM from Aspire of a resident whose nursing visits are at Brynwood that month stays at the feed's 31 and is listed for William (was 32 / 32 with nothing named); the Brynwood visit itself is still the monthly 32",
+      [x_["cpts"] for x_ in s4x] == [["99309"], ["99487", "99489"]] and s4x[0]["pos_lines"] == ["32"] and s4x[1]["pos_lines"] == ["31", "31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2, s4_brief(s4x))
+s4l2 = s4_fresh({"a.hl7": hl7("q2", B["n2"], "", [("99487", "20261031")], NPI)})
+CHART["812"] = [("99309", "09/05/2026", BRY_AMD), ("99309", "10/03/2026", BRY_AMD)]
+s4o, s4r = s4_run(s4l2, [P_("q2", "q2", [("99487", "20261031")])], {"q2": "pat812"}); s4x = s4_rows(s4r, "pat812")
+check("second reviewers (logic M1, variant X2): both Brynwood visits already on the chart and only the Aspire CCM in the batch - 31, listed for William", s4x and s4x[0]["pos_lines"] == ["31"] and s4x[0]["pos_kind"] == ["ccm-skilled-month"], s4_brief(s4x))
+s4m = s4_fresh({"a.hl7": hl7("m7x", B["n1"], "", [("99309", "20261005")], NP_NPI) + hl7("m7x", B["n2"], "", [("99487", "20261031"), ("99489", "20261031")], NPI)
+                + hl7("m8x", B["a1"], "", [("99344", "20261010")], NP_NPI) + hl7("m8x", B["n2"], "", [("99487", "20261031")], NPI)})
+CHART["813"] = [("99309", "09/05/2026", BRY_AMD)]; CHART["814"] = []
+s4o, s4r = s4_run(s4m, [P_("m7x", "m7x", [("99309", "20261005")]), P_("m7x", "m7x", [("99487", "20261031"), ("99489", "20261031")]), P_("m8x", "m8x", [("99344", "20261010")]), P_("m8x", "m8x", [("99487", "20261031")])],
+                  {"m7x": "pat813", "m8x": "pat814"})
+s4x = s4_rows(s4r, "pat813"); s4z = s4_rows(s4r, "pat814")
+check("second reviewers (message-identity X2, exact input): M7 - Brynwood visit 10/05, then the physician's Aspire CCM of 10/31: 31 / 31 for William (was 32 / 32); M8 - an assisted-living visit, then an Aspire CCM: 31 (already so since round 5's F2)",
+      s4x[1]["pos_lines"] == ["31", "31"] and s4x[1]["pos_kind"] == ["ccm-skilled-month"] * 2 and s4x[0]["pos_lines"] == ["32"] and s4z[1]["pos_lines"] == ["31"] and s4z[1]["pos_kind"] == ["ccm-skilled-month"], (s4_brief(s4x), s4_brief(s4z)))
+_ccm2 = [("99309", "09/05/2026", BRY_AMD), ("99309", "10/03/2026", BRY_AMD)]
+check("CCM in another building: the pure rule - a CCM entered at Aspire reads the residents' Brynwood visits as another building (31); entered at Brynwood itself it stays the long-term 32; a visit with no building name changes nothing",
+      ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac32")[0] == ["31"] and ci.pos_lines([("99487", "10/31/2026")], "31", True, _ccm2, "fac34")[0] == ["32"]
+      and ci.pos_lines([("99487", "10/31/2026")], "31", True, [("99309", "09/05/2026"), ("99309", "10/03/2026")], "fac32")[0] == ["32"] and ci.seen_at_skilled_frequency("10/31/2026", _ccm2, "fac34") is False)
+# a dry run writes nothing (challenge review, gap 2, exact shape): a dry run that meets a fault no longer makes the live run of the same stamp drop a visit
+s4g = s4_fresh({"a.hl7": hl7("pa", B["n1"], "", [("99309", "20261005")], NP_NPI) + hl7("pa", B["n1"], "", [("99309", "20261104")], NP_NPI) + hl7("pb", B["n2"], "", [("99309", "20261103")], NP_NPI)})
+CHART["711"] = [("99309", "10/05/2026", BRY_AMD)]; CHART["712"] = []
+S4_GAP2 = [P_("pa", "pa", [("99309", "20261005")]), P_("pa", "pa", [("99309", "20261104")]), P_("pb", "pb", [("99309", "20261103")])]
+s4o, s4r = s4_run(s4g, S4_GAP2, {"pa": "pat711", "pb": ["not", "a", "chart"]}, argv=("--dry",))
+check("challenge review (gap 2): a dry run that meets a failed message (and skips a visit already in AdvancedMD) writes NO register", s4r is None and "ERR" in s4o and "skip: all lines already in AMD" in s4o, s4o[-300:])
+s4o, s4r = s4_run(s4g, S4_GAP2, {"pa": "pat711", "pb": "pat712"})
+check("challenge review (gap 2): ... so the live run of the SAME stamp still enters pa's new visit of 11/04 (and pb's) - before, the dry run's register made it count pa as done", [(x_["pid"], x_["dos"]) for x_ in s4r["created"]] == [("pat711", "11/04/2026"), ("pat712", "11/03/2026")], s4r["created"])
+s4dc = os.path.join(tmp, "deceased_s4.json"); json.dump({"712": {"dod": "2026-11-" + "01"}}, open(s4dc, "w")); os.environ["DECEASED_CACHE"] = s4dc
+try: s4o, s4r = s4_run(s4g, S4_GAP2[2:], {"pb": "pat712"}, argv=("--dry",))
+finally: os.environ["DECEASED_CACHE"] = DECEASED_OWN
+check("challenge review (gap 2): the dry run's other write - a visit dated after the cached date of death is skipped - writes no register either", s4r is None and "DOS after date of death - not entered" in s4o, s4o[-300:])
+# section 12 (William 11/10/2026): an initial nursing-facility visit 99306 is always entered under the physician, every line of it
+s4i = s4_fresh({"a.hl7": hl7("i1", B["n2"], "", [("99306", "20261102")], NP_NPI) + hl7("i2", B["n2"], "", [("99306", "20261103"), ("99497", "20261103")], NP_NPI)
+                + hl7("i3", B["n2"], "", [("99309", "20261104")], NP_NPI) + hl7("i4", B["n2"], "", [("99497", "20261105")], NP_NPI)
+                + hl7("i5", B["n2"], "", [("99306", "20261106")], NPI) + hl7("i6", B["n2"], "", [("99306", "20261107")], "")})
+s4b = {k_: s4i.build(msg(k_, l_), ctx()) for k_, l_ in (("i1", [("99306", "20261102")]), ("i2", [("99306", "20261103"), ("99497", "20261103")]), ("i3", [("99309", "20261104")]),
+                                                       ("i4", [("99497", "20261105")]), ("i5", [("99306", "20261106")]), ("i6", [("99306", "20261107")]))}
+check("12.1: the nurse practitioner's 99306 goes in under the physician (prof13); the register keeps what the message named (prof_feed prof15) and why",
+      s4b["i1"][1]["prof"] == "prof13" and s4b["i1"][1].get("prof_feed") == "prof15" and s4b["i1"][1].get("prof_why") == "initial nursing-facility visit: always the physician (William 11/10/2026)"
+      and 'profile="prof13"' in s4b["i1"][0][0] and 'profile="prof13"' in s4b["i1"][0][1] and "prof15" not in s4b["i1"][0][0] + s4b["i1"][0][1], s4b["i1"][1])
+check("12.1: with its 99497 the WHOLE visit goes in under the physician - one visit, every line, the advance-care-planning line included", s4b["i2"][1]["prof"] == "prof13" and s4b["i2"][1].get("prof_feed") == "prof15" and s4b["i2"][1]["cpts"] == ["99306", "99497"]
+      and s4b["i2"][0][1].count("<charge ") == 2 and 'profile="prof15"' not in s4b["i2"][0][1], s4b["i2"][1])
+check("12.1 / 12.4: the nurse practitioner's 99309 and a lone 99497 keep her profile; the physician's own 99306 is unchanged and carries no prof_feed",
+      (s4b["i3"][1]["prof"], s4b["i4"][1]["prof"], s4b["i5"][1]["prof"]) == ("prof15", "prof15", "prof13") and not any("prof_feed" in s4b[k_][1] or "prof_why" in s4b[k_][1] for k_ in ("i3", "i4", "i5")))
+check("12.4: a 99306 whose message names no readable clinician goes in under the physician and is NOT counted as 'clinician not known' (the rule decided it)",
+      s4b["i6"][1]["prof"] == "prof13" and s4b["i6"][1]["prof_default"] is False and "prof_feed" not in s4b["i6"][1] and str(s4b["i6"][1].get("prof_why")).startswith("initial nursing-facility visit"), s4b["i6"][1])
+s4i.INITIAL_NF = set(); s4nr = {k_: s4i.build(msg(k_, l_), ctx()) for k_, l_ in (("i1", [("99306", "20261102")]), ("i2", [("99306", "20261103"), ("99497", "20261103")]), ("i6", [("99306", "20261107")]))}; s4i.INITIAL_NF = {"99304", "99305", "99306"}
+check("12.4: everything else in the request is byte-identical - with the rule switched off the same visits differ only in the profile (the visit's create call and its charge call)",
+      all(s4nr[k_][0][j_].replace('profile="prof15"', 'profile="prof13"') == s4b[k_][0][j_] for k_ in ("i1", "i2") for j_ in (0, 1, 2)) and all(s4nr["i6"][0][j_] == s4b["i6"][0][j_] for j_ in (0, 1, 2))
+      and s4nr["i1"][1]["prof"] == "prof15" and s4nr["i6"][1]["prof_default"] is True)
+_qd, _md = s4i.quality_due, s4i.mvp_due; s4i.quality_due = lambda *a, **k: 0; s4seen = []; s4i.mvp_due = lambda own_ok, prof, year, pos: s4seen.append((own_ok, prof)) or True
+s4q = s4i.build(msg("i1", [("99306", "20261102")]), ctx()); s4i.quality_due, s4i.mvp_due = _qd, _md
+check("12.3: the option code M0004's once-per-clinician ledger is asked for the profile the visit is ENTERED under (prof13), not the one the feed named", s4seen == [(True, "prof13")] and s4q[1].get("mvp_prof") == "prof13", (s4seen, s4q[1].get("mvp_prof")))
+CHART.update({"821": [], "822": [], "823": [], "824": [], "825": [], "826": []})
+s4o, s4r = s4_run(s4i, [P_(k_, k_, [(c_, d_.replace("/", "")[4:] + d_.replace("/", "")[:4]) for c_, d_ in l_]) for k_, l_ in (("i1", [("99306", "11/02/2026")]), ("i2", [("99306", "11/03/2026"), ("99497", "11/03/2026")]), ("i3", [("99309", "11/04/2026")]),
+                    ("i4", [("99497", "11/05/2026")]), ("i5", [("99306", "11/06/2026")]), ("i6", [("99306", "11/07/2026")]))], {"i1": "pat821", "i2": "pat822", "i3": "pat823", "i4": "pat824", "i5": "pat825", "i6": "pat826"})
+check("12.2: one log line per changed visit ('INITIAL VISIT under the physician <chart> <date> - the feed named <profile>'), a counter in DONE, nothing for the others; the addvisit calls carry prof13",
+      "INITIAL VISIT under the physician pat821 11/02/2026 - the feed named prof15" in s4o and "INITIAL VISIT under the physician pat822 11/03/2026 - the feed named prof15" in s4o and s4o.count("INITIAL VISIT under the physician") == 2
+      and "'initial nursing-facility visit entered under the physician although the feed named another clinician (William 11/10/2026)': 2" in s4o and "clinician id of the feed message is not one of the practice's two" not in s4o
+      and sorted(r_["pid"] for r_ in s4r["created"] if r_.get("prof_feed")) == ["pat821", "pat822"] and {r_["pid"]: r_["prof"] for r_ in s4r["created"]} == {"pat821": "prof13", "pat822": "prof13", "pat823": "prof15", "pat824": "prof15", "pat825": "prof13", "pat826": "prof13"}, s4o[-700:])
+check("4b2 teardown: nothing of these inputs is left in the registers folder", not any(f_.startswith("feed_import_") for f_ in os.listdir(os.path.join(tmp, "registers"))), os.listdir(os.path.join(tmp, "registers")))
 # ---- 4c. the advance-care-plan quality code 1123F (William 11/10/2026: "yes for all ... once per patient ... every patient 65 and older") ----
 # 4c.1 who gets the line (quality_due through build()): every condition must be shown
 REGDIR = os.path.join(tmp, "registers")
@@ -1649,9 +1818,10 @@ check("both copies of the denial table read reason 246 (a reporting code) as inf
 check("both copies of the denial table carry Medicare's reason-58 rule, word for word", all(' "58":  ("REVIEW"' in w for w in _wd) and [l for l in _wd[0].split("\n") if l.startswith(' "58":')] == [l for l in _wd[1].split("\n") if l.startswith(' "58":')])
 check("runbook: a 32 line is read back from the chart itself every run, the retry's own digest is read like the ingest's, and the top of the report is defined",
       "EVERY RUN THAT ENTERS A 32 LINE" in step and "not a second\nlook at the chart" in step and "feed_digest_<stamp>R.md" in step and "'The TOP of the report' =" in step and "'NOT LISTED' = done" in step)
-check("runbook: the feed step copies the helpers and checks the version line before the ingest", step.index("cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
-check("ingest: the guard replaces an old import helper with the repository's before step 5", ingest.index("POS_RULE = ") < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")') and "claimocity_inspector.py" in ingest[ingest.index("POS_RULE = "):ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')])
-check("ingest: when only some helpers could be replaced the result line names the ones that are still older copies; the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in ingest and "pos_warn" in ingest[ingest.index("FEED HELPERS NOT ALL CURRENT") - 200:ingest.index("FEED HELPERS NOT ALL CURRENT")]
+check("runbook: the feed step copies the helpers and checks the version line before the ingest", "cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py /home/claude/unbilled/" in step and step.index("cp -p claimocity_import.py claimocity_report.py claimocity_inspector.py claimocity_verify.py claimocity_ingest.py claimocity_retry_dx.py claimocity_helpers_current.py feed_parse_dft_1028.py /home/claude/unbilled/") < step.index("must print 1") < step.index("python3 claimocity_ingest.py --hl7-dir inbox/claimocity --stamp <run stamp> --live` (a dry run drops --live)"))
+check("ingest (C2): the feed helpers are made the repository's copies on EVERY run - right after the stamp line, before the 'nothing new' exit and long before step 5 - by the one function it shares with the retry", "_hl, pos_warn = _helpers_current()" in ingest and ingest.index("print(\"stamp %s | %d new file(s)") < ingest.index("_hl, pos_warn = _helpers_current()") < ingest.index('print("nothing new - done")') < ingest.index('cmd = [sys.executable, os.path.join(HERE, "claimocity_import.py")')
+      and "_m.make_current(HERE, REPO_HELPERS, POS_RULE)" in ingest and "_has_rule(" not in ingest)
+check("ingest: when some helpers could not be made current the result line names them (the words are the shared function's); the runbook says where that line goes", "FEED HELPERS NOT ALL CURRENT" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_helpers_current.py")).read() and '+ pos_warn))' in ingest
       and "FEED HELPERS NOT ALL CURRENT" in step and "the feed files are not on hand and could not be fetched' also goes under Holds" in step)
 retry = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_retry_dx.py")).read()
 check("retry: every batch's feed files go into one folder, and a batch without files waits (never entered without a building)", "never entered without a building" in retry and 'env["FEED_HL7_DIR"] = os.path.abspath(hdir)' in retry)
@@ -1674,12 +1844,12 @@ r, line = digest(rows)
 check("digest: the report still runs with the new register fields", r.returncode == 0, r.stderr[-300:])
 check("digest: one line - CCM 32 x2, visits 32 x1, visits 31 x2, nothing else", "CCM lines entered as 32: 2;" in line and "nursing visits 32 (monthly): 1;" in line and line.rstrip().endswith("nursing visits 31: 2."), line)
 r, line = digest(rows + [reg_row(["99487", "99489"], "fac32", "31", ["31", "31"], ["ccm-skilled-month"] * 2), reg_row(["99309"], "fac32", "31", ["31"], ["extra"])])
-check("digest: CCM lines and visits left at 31 are counted and explained", "CCM lines entered as 32: 2 (and 2 kept at 31 because the chart shows weekly visits, an admission or a new stay that month" in line and "nursing visits 31: 3 (1 of them kept at 31 because the chart shows neither pattern" in line, line)
+check("digest: CCM lines and visits left at 31 are counted and explained", "CCM lines entered as 32: 2 (and 2 kept at 31 by the back end's exception for that month - see pos_why - not held" in line and "nursing visits 31: 3 (1 of them kept at 31 because the chart shows neither pattern" in line, line)
 check("digest: ... it says they go out at 31 unless William acts, and names the charts", "not held: they go out at 31 with the next claim run unless William changes them first" in line and "for William, not held - CCM kept at 31 (pos_kind ccm-skilled-month): pat9 11/02/2026 99487+99489" in r.stdout
       and "for William, not held - visits kept at 31, neither pattern shown (pos_kind extra / between): pat9 11/02/2026 99309" in r.stdout, r.stdout[-900:])
 r, line = digest(rows + [reg_row(["99487"], "fac34", "31", ["31"], err="boom"), reg_row(["99487", "99309"], "", "31", ["31", "31"])])
 check("digest: a visit the rule could not be applied to, and lines from an unknown building, are named", "POS RULE NOT APPLIED on 1 visit(s) - entered at the feed's place of service" in line and "2 CCM / nursing-visit line(s) came from a building the facility table does not know" in line, line)
-check("digest: ... with their chart numbers for the top of the report", "TOP OF THE REPORT - rule not applied, check by hand before the claim run: pat9 11/02/2026 99487 (boom)" in r.stdout and "TOP OF THE REPORT - building the facility table does not know: pat9 11/02/2026 99487+99309" in r.stdout, r.stdout[-900:])
+check("digest: ... with their chart numbers for the top of the report", "TOP OF THE REPORT - rule not applied, for William before the claim run; a routine changes nothing on these visits: pat9 11/02/2026 99487 (boom)" in r.stdout and "TOP OF THE REPORT - building the facility table does not know: pat9 11/02/2026 99487+99309" in r.stdout, r.stdout[-900:])
 r, line = digest(rows + [dict(reg_row(["99309"], "fac32", "31", ["31"], ["moved"]))])
 check("digest: visits kept at 31 because the previous visit was in another building are counted apart", "nursing visits 31: 3 (1 of them because the previous nursing visit was in another building)" in line, line)
 r, line = digest([dict(x, pos_stored=list(x["pos_lines"])) for x in rows])
@@ -1687,7 +1857,7 @@ check("digest: says when AdvancedMD's own answer shows the place of service as s
 r, line = digest([dict(rows[0], pos_stored=["31", "31"])] + rows[1:])
 check("digest: says loudly when AdvancedMD stored another place of service", "TOP OF THE REPORT - ADVANCEDMD DID NOT KEEP THE PLACE OF SERVICE on 1 of 1 visit(s) read back:" in r.stdout and "sent ['32', '32'] stored ['31', '31']" in r.stdout, r.stdout[-600:])
 r, line = digest(rows)
-check("digest: asks for one read-back by hand when the answer did not echo the place of service", "read ONE 32 line back by hand" in r.stdout, r.stdout[-600:])
+check("digest (W5 d): when the answer did not echo the place of service it says the run reads ONE 32 line back from the chart, citing the runbook paragraph by its name", "the run reads ONE 32 line back from the chart (runbook, 'EVERY RUN THAT ENTERS A 32 LINE')" in r.stdout and "first batch that enters" not in r.stdout, r.stdout[-600:])
 r, line = digest(rows + [dict(reg_row(["99232"], "fac29", "21", ["21"]), msg_own=False)])
 check("digest: a visit that could not be matched to its own feed message is named for a check of clinician and building", "Clinician and building: 1 visit(s) could not be matched to their own feed message" in r.stdout and "charts: pat9 11/02/2026 99232" in r.stdout, r.stdout[-600:])
 r, line = digest([dict(rows[4], msg_own=False), rows[5]], stamp="1028")
@@ -1933,7 +2103,7 @@ check("runbook (S6): the step the routines follow (f) names the quality line and
 _cc = open(os.path.join(ROOT, "docs", "captured_calls.md")).read(); _sl = open(os.path.join(ROOT, "docs", "SHARED_LESSONS.md")).read().rstrip("\n").split("\n")
 check("captured calls (13.4c, section 7): the look-up answers - 1123F = pcode65441 'ACP DISCUSS/DSCN MKR DOCD', 1124F not in the list, M0004 = pcode692183 'QUAL CARE NEUROLOGIC CND MVP' (place of service 11, type of service 01)",
       'procedure id `pcode65441`, name "ACP DISCUSS/DSCN MKR DOCD"' in _cc and "1124F is NOT in the practice's procedure list" in _cc and 'procedure id `pcode692183`, name "QUAL CARE NEUROLOGIC CND MVP", units 1.0, default place of service 11, type of service 01' in _cc and "read 11/10/2026 09:43Z" in _cc)
-check("lessons: one new dated line records the owner's decision on held visits and the rule version", _sl[-1].startswith("- 2026-11-10T1435Z | chat (quality code 1123F, version 2, step 2) | RULE |") and "just deal with it" in _sl[-1] and "2026-11-10.6" in _sl[-1])
+check("lessons: one dated line records the owner's decision on held visits and the rule version (since step 4 a later line follows it: William's initial-visit rule)", sum(1 for l_ in _sl if l_.startswith("- 2026-11-10T1435Z | chat (quality code 1123F, version 2, step 2) | RULE |") and "just deal with it" in l_ and "2026-11-10.6" in l_) == 1)
 # the insurance-check step: a void quality line never holds the visit (its function is run here with stand-ins; the rest of that helper is not loaded)
 _vsrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _vsrc = _vsrc[_vsrc.index("def fast_set_insorder(v, order, removed=None):"):_vsrc.index("def main():")]
 class _RS:
@@ -2312,6 +2482,208 @@ check("runbook (section 8): the M0004 paragraph with the owner's words, the swit
 check("captured calls (section 7, 13.4): M0004 = pcode692183 is the id the feed import uses for its M0004 line, and what is read for that line", "the feed import uses this id for its no-charge M0004 line" in _cc and '`<proccode id="pcode692183" code="M0004"/>`' in _cc and ci.MVP_PCODE == "pcode692183")
 check("mirror.py (8.6, 11.6): the inspector's and the insurance check's markers are sentences only the version that knows the M0004 line has", '"claimocity_inspector.py": "the step takes BOTH no-charge lines off"' in mir and '"claimocity_verify.py": "sent once more without BOTH lines"' in mir
       and "sent once more without BOTH lines" in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read())
+
+# ---- 6c. round 6, step 4 (11/10/2026): the feed helpers on every run (C2, W1), the rulebook's merge, reason 58 on the board, the words ---------------
+# C2 / W1: the one function the ingest and the retry share (claimocity_helpers_current.make_current) - pure: files in two folders, nothing else
+HC_PATH = os.path.join(ROOT, "scripts", "helpers", "claimocity_helpers_current.py"); _hcsrc = open(HC_PATH).read()
+check("C2 / W1: the shared helper loads no module that talks to AdvancedMD (os and shutil only)", loads(_hcsrc) == {"os", "shutil"}, loads(_hcsrc))
+_hsp = importlib.util.spec_from_file_location("claimocity_helpers_current_t", HC_PATH); HC = importlib.util.module_from_spec(_hsp); _hsp.loader.exec_module(HC)
+HC_FILES = {f_: "# %s - the repository's copy\n" % f_ for f_ in HC.FEED_HELPERS}; HC_FILES["claimocity_helpers_current.py"] = _hcsrc
+for f_ in HC.RULE_HELPERS: HC_FILES[f_] += ver + "\n"
+for f_, m_ in HC.VERSION_LINES.items(): HC_FILES[f_] += m_ + "\n"
+HC_OLD = "# an old copy without this rule's version line\n"
+def hc_dirs(ws_over=None, repo_drop=(), no_repo=False):
+    """(workspace, clone) folders: the clone holds every feed helper; the workspace the same, except ws_over {name: text, or None = missing}."""
+    w_ = tempfile.mkdtemp(prefix="posrule_hcw_", dir=tmp); r_ = tempfile.mkdtemp(prefix="posrule_hcr_", dir=tmp)
+    for f_, t_ in HC_FILES.items():
+        if not no_repo and f_ not in repo_drop: open(os.path.join(r_, f_), "w").write(t_)
+        t2 = (ws_over or {}).get(f_, t_)
+        if t2 is not None: open(os.path.join(w_, f_), "w").write(t2)
+    return w_, (os.path.join(r_, "nowhere") if no_repo else r_)
+_same = lambda w_, f_: open(os.path.join(w_, f_)).read() == HC_FILES[f_]
+_w, _r = hc_dirs({"claimocity_import.py": HC_OLD}); _l, _wn = HC.make_current(_w, _r, ver)
+check("W1 (exact input, helper state): every current helper but an OLD claimocity_import.py in the workspace, the current one in the clone - replaced from the clone before anything runs, said on the console, and nothing to warn about",
+      _same(_w, "claimocity_import.py") and _wn == "" and _l == ["FEED HELPERS: claimocity_import.py differed from the repository copy - replaced by it before anything ran"], (_l, _wn))
+_w, _r = hc_dirs({"claimocity_report.py": "# report helper of 2075dba\n", "claimocity_inspector.py": "# inspector helper of 2075dba\n"}); _l, _wn = HC.make_current(_w, _r, ver)
+check("C2 (exact input G6): a CURRENT import helper with the older report and inspector helpers and a complete clone - both are replaced from the clone on this run (not only when the import helper is old), no warning",
+      _same(_w, "claimocity_report.py") and _same(_w, "claimocity_inspector.py") and _wn == "" and "claimocity_report.py, claimocity_inspector.py differed" in _l[0], (_l, _wn))
+_w, _r = hc_dirs({"claimocity_report.py": "# report helper of 519062b\n", "claimocity_inspector.py": "# inspector helper of 519062b\n"}, no_repo=True); _l, _wn = HC.make_current(_w, _r, ver)
+check("C2 (exact input G7): the same without a clone - nothing can be replaced, and the RESULT warning names both helpers by their missing version lines (the import helper is current: no place-of-service warning)",
+      _wn == " | FEED HELPERS NOT ALL CURRENT: claimocity_report.py, claimocity_inspector.py have no version line of this rule and no repository copy was found - this run's digest, insurance check or inspector step may be an older version", _wn)
+_w, _r = hc_dirs({"claimocity_import.py": HC_OLD, "claimocity_inspector.py": "# inspector helper of 2075dba\n"}, repo_drop=("claimocity_inspector.py",))
+_l1, _w1 = HC.make_current(_w, _r, ver); _l2, _w2 = HC.make_current(_w, _r, ver)
+check("C2 (exact input G3 / G4): a clone without claimocity_inspector.py - run 1 replaces the old import helper and names the older inspector; the NEXT run names it again (before, the next run said nothing)",
+      _same(_w, "claimocity_import.py") and "FEED HELPERS NOT ALL CURRENT: claimocity_inspector.py has no version line of this rule - " in _w1 and _w2 == _w1 and "PLACE OF SERVICE RULE NOT CURRENT" not in _w2, (_w1, _w2))
+open(os.path.join(_r, "claimocity_inspector.py"), "w").write(HC_FILES["claimocity_inspector.py"]); _l3, _w3 = HC.make_current(_w, _r, ver)
+check("C2: ... and once the clone holds it, that run replaces it and the warning is gone", _same(_w, "claimocity_inspector.py") and _w3 == "" and "claimocity_inspector.py differed" in _l3[0], (_l3, _w3))
+_w, _r = hc_dirs({"claimocity_import.py": None}, no_repo=True); _l, _wn = HC.make_current(_w, _r, ver)
+check("W5 (h): no import helper here and no clone - the warning says 'missing, an old copy or an earlier version' and who checks what (for William; a routine changes nothing)",
+      _wn.startswith(" | PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is missing, an old copy or an earlier version of the rule and no repository copy was found - for William to check: the place of service") and "a routine changes nothing" in _wn, _wn)
+_w, _r = hc_dirs({}); open(os.path.join(_r, "claimocity_import.py"), "w").write("# the clone of an EARLIER rule\n"); open(os.path.join(_r, "claimocity_report.py"), "w").write("# an earlier report\n")
+_l, _wn = HC.make_current(_w, _r, ver)
+check("a clone of an EARLIER rule (its import helper lacks this version line) never replaces newer workspace copies; they carry their version lines, so nothing is said", _same(_w, "claimocity_report.py") and _same(_w, "claimocity_import.py") and (_l, _wn) == ([], ""), (_l, _wn))
+_w, _r = hc_dirs({"claimocity_import.py": HC_OLD, "claimocity_verify.py": "# older\n"}); _c2 = HC.shutil.copy2
+HC.shutil.copy2 = lambda a_, b_: (_ for _ in ()).throw(OSError("read-only")) if a_.endswith("claimocity_import.py") else _c2(a_, b_)
+try: _l, _wn = HC.make_current(_w, _r, ver)
+finally: HC.shutil.copy2 = _c2
+check("a helper that cannot be copied is named: the import helper as PLACE OF SERVICE RULE NOT CURRENT ... could not be replaced (OSError); the others that could be copied are replaced",
+      "PLACE OF SERVICE RULE NOT CURRENT: claimocity_import.py here is missing, an old copy or an earlier version of the rule and could not be replaced (OSError)" in _wn and _same(_w, "claimocity_verify.py") and "FEED HELPERS NOT ALL CURRENT" not in _wn, (_l, _wn))
+_pm = {f_: (m_.group(1) or m_.group(2)) for f_ in HC.VERSION_LINES for m_ in [re.search(r'"%s":\s*(?:"([^"]+)"|\'([^\']+)\')' % re.escape(f_), mir)] if m_}
+check("the shared helper's version lines are mirror.py's PROTECTED markers, word for word (so they cannot drift apart), and the drivers pass their own POS_RULE line",
+      _pm == HC.VERSION_LINES and HC.RULE_HELPERS == ("claimocity_import.py", "claimocity_ingest.py", "claimocity_retry_dx.py") and set(HC.FEED_HELPERS) == {"claimocity_import.py", "claimocity_report.py", "claimocity_inspector.py", "claimocity_verify.py", "claimocity_ingest.py", "claimocity_retry_dx.py", "feed_parse_dft_1028.py", "claimocity_helpers_current.py"}, (_pm, HC.VERSION_LINES))
+# the two drivers themselves, run INSIDE this process over a sandbox workspace and clone: their WS and REPO_HELPERS lines are pointed there, and every
+# program they would start (parse, dx, import, verify, inspector, report, recon) is answered by a stand-in that starts nothing
+def driver_run(name, w_, r_, argv, on_step):
+    src = open(os.path.join(ROOT, "scripts", "helpers", name)).read()
+    src = src.replace('WS = "/home/claude/unbilled"', "WS = %r" % w_, 1).replace('REPO_HELPERS = "/home/claude/effinger-billing-backend/scripts/helpers"', "REPO_HELPERS = %r" % r_, 1)
+    _live = [ln_ for ln_ in src.split("\n") if ("/home/claude/unbilled" in ln_ or "/home/claude/effinger-billing-backend" in ln_) and not ln_.lstrip().startswith("#")]
+    if _live: raise RuntimeError("the sandbox copy still names a live folder outside a comment - not run: %r" % _live[:2])
+    calls_ = []; sub_ = types.ModuleType("subprocess"); sub_.STDOUT = -2; sub_.PIPE = -1
+    def _run(cmd, **k):
+        calls_.append([os.path.basename(str(x_)) for x_ in cmd]); txt_ = on_step(cmd) or "DONE {}"
+        if hasattr(k.get("stdout"), "write"): k["stdout"].write(txt_ + "\n")
+        return types.SimpleNamespace(returncode=0, stdout=txt_ if k.get("capture_output") else "", stderr="")
+    sub_.run = _run
+    old_sub = sys.modules.get("subprocess"); old_cwd = os.getcwd(); old_argv = sys.argv[:]; old_env = dict(os.environ); out_ = io.StringIO(); err_ = ""
+    try:
+        for k_ in ("FEED_STAMP", "FEED_HL7_DIR", "FEED_DX_CACHE", "FEED_CHART_PREFIX", "QUALITY_CODE", "MVP_CODE"): os.environ.pop(k_, None)      # a routine's environment, not this test's
+        sys.modules["subprocess"] = sub_; sys.argv = [os.path.join(w_, name)] + list(argv)
+        with contextlib.redirect_stdout(out_):
+            try: exec(compile(src, os.path.join(w_, name), "exec"), {"__name__": "__main__", "__file__": os.path.join(w_, name)})
+            except SystemExit: pass
+            except Exception as e: err_ = "%s: %s" % (type(e).__name__, e)
+    finally: sys.modules["subprocess"] = old_sub; os.chdir(old_cwd); sys.argv = old_argv; os.environ.clear(); os.environ.update(old_env)
+    return out_.getvalue(), calls_, err_
+# W1's exact input: workspace = current helpers except an old claimocity_import.py, clone = current; two earlier batches whose visits waited on code M5117
+_w, _r = hc_dirs({"claimocity_import.py": HC_OLD}); os.makedirs(os.path.join(_w, "registers")); _seen_import = []
+for _st, _rows in (("20261101T1240Z", [("X2", "99232", "20261031", B["h1"], "20261030", NPI)]), ("20261103T1244Z", [("X2", "99309", "20261102", B["n1"], "", NP_NPI), ("X4", "99487", "20261031", B["n1"], "", NPI)])):
+    json.dump({"created": [], "failed": [], "skipped": [{"feed_id": f_, "pid": "pat9102" if f_ == "X2" else "pat9104", "why": "no usable dx for %s" % c_} for f_, c_, *_x in _rows]}, open(os.path.join(_w, "registers", "feed_import_%s.json" % _st), "w"))
+    json.dump([{"pid": f_, "name": NAME(f_), "dob": DOBK, "file": "a", "FT1": [{"cpt": c_, "dos": d_, "dx": "M5117", "units": "1"}]} for f_, c_, d_, *_x in _rows], open(os.path.join(_w, "feed_parsed_%s.json" % _st), "w"))
+    os.makedirs(os.path.join(_w, "hl7", _st)); open(os.path.join(_w, "hl7", _st, "a.hl7"), "w").write("".join(hl7(f_, b_, a_, [(c_, d_)], n_) for f_, c_, d_, b_, a_, n_ in _rows))
+json.dump({"M5117": "dcode77"}, open(os.path.join(_w, "dx_cache_feed.json"), "w")); json.dump({"X2": "pat9102", "X4": "pat9104"}, open(os.path.join(_w, "registers", "claimocity_patient_map.json"), "w"))
+_o, _calls, _e = driver_run("claimocity_retry_dx.py", _w, _r, ("--live", "--no-stedi", "--stamp", "2026-11-10T1400Z"),
+                           lambda cmd: _seen_import.append(open(os.path.join(_w, "claimocity_import.py")).read()) if str(cmd[1]).endswith("claimocity_import.py") else None)
+check("W1 (exact input, the retry driver itself): with the clone beside it, the retry replaces the old import helper BEFORE its import step starts it - the import step ran the clone's copy - and its RESULT line carries no warning",
+      _e == "" and _seen_import == [HC_FILES["claimocity_import.py"]] and "RESULT retry 20261110T1400ZR" in _o and "NOT CURRENT" not in _o and [c_[1] for c_ in _calls] == ["claimocity_dx.py", "claimocity_import.py", "claimocity_verify.py", "claimocity_inspector.py", "claimocity_report.py", "claimocity_recon.py"], (_e, _o[-500:], _calls))
+_w2, _r2 = hc_dirs({"claimocity_import.py": HC_OLD}, no_repo=True); shutil_ = __import__("shutil")
+for _it in ("registers", "hl7", "feed_parsed_20261101T1240Z.json", "feed_parsed_20261103T1244Z.json", "dx_cache_feed.json"):
+    (shutil_.copytree if os.path.isdir(os.path.join(_w, _it)) else shutil_.copy)(os.path.join(_w, _it), os.path.join(_w2, _it))
+for _f in os.listdir(os.path.join(_w2, "registers")):
+    if "R.json" in _f or not _f.startswith(("feed_import_20261101", "feed_import_20261103", "claimocity_patient_map")): os.remove(os.path.join(_w2, "registers", _f))
+_o, _calls, _e = driver_run("claimocity_retry_dx.py", _w2, _r2, ("--live", "--no-stedi", "--stamp", "2026-11-10T1400Z"), lambda cmd: None)
+check("W1: without a clone the retry still enters the visits (never a hold) and its RESULT line ends with the place-of-service warning, naming who checks what",
+      _e == "" and "claimocity_import.py" in [c_[1] for c_ in _calls] and next((l_ for l_ in _o.splitlines() if l_.startswith("RESULT retry")), "").endswith("for William to check: the place of service of every nursing-building line this run entered, and the clinician and building of every visit whose patient has another message in the batch (a routine changes nothing on these visits)"), _o[-400:])
+# C2's exact input for the ingest driver: current import helper, report and inspector of 2075dba, complete clone; a batch of invented messages
+_w, _r = hc_dirs({"claimocity_report.py": "# report helper of 2075dba\n", "claimocity_inspector.py": "# inspector helper of 2075dba\n"})
+os.makedirs(os.path.join(_w, "inbox", "claimocity")); open(os.path.join(_w, "inbox", "claimocity", "20261110a.hl7"), "w").write(hl7("FD4", WO, "", [("99308", "20261105")], NP_NPI) + hl7("FD4", B["h1"], "", [("99308", "20261105")], NPI) + hl7("FG7", "ZZ Other Hospital", "20261028", [("99232", "20261030")], NPI))
+os.makedirs(os.path.join(_w, "registers")); json.dump({"FD4": "pat704", "FG7": "pat707"}, open(os.path.join(_w, "registers", "claimocity_patient_map.json"), "w")); _at = {}
+def _ingest_step(cmd):
+    b_ = os.path.basename(str(cmd[2] if str(cmd[1]) == "-I" else cmd[1]))
+    if b_ == "feed_parse_dft_1028.py": json.dump([{"pid": p_, "name": NAME(p_), "dob": DOBK, "file": "20261110", "FT1": [{"cpt": c_, "dos": d_, "dx": "I10", "units": "1"}]} for p_, c_, d_ in (("FD4", "99308", "20261105"), ("FD4", "99308", "20261105"), ("FG7", "99232", "20261030"))], open(os.path.join(_w, str(cmd[-1])), "w"))
+    if b_ in ("claimocity_report.py", "claimocity_inspector.py", "claimocity_import.py"): _at[b_] = open(os.path.join(_w, b_)).read()
+_o, _calls, _e = driver_run("claimocity_ingest.py", _w, _r, ("--hl7-dir", "inbox/claimocity", "--stamp", "2026-11-10T1239Z", "--live", "--skip-verify"), _ingest_step)
+check("C2 (exact input, the ingest driver itself): a current import helper with the older report and inspector helpers and a complete clone - both are replaced before the parse step, so the inspector and report steps run the clone's copies; the RESULT line carries no warning",
+      _e == "" and _at.get("claimocity_inspector.py") == HC_FILES["claimocity_inspector.py"] and _at.get("claimocity_report.py") == HC_FILES["claimocity_report.py"] and _at.get("claimocity_import.py") == HC_FILES["claimocity_import.py"]
+      and "RESULT stamp 20261110T1239Z: files 1, messages 3" in _o and "NOT ALL CURRENT" not in _o and _o.index("FEED HELPERS: claimocity_report.py, claimocity_inspector.py differed") < _o.index("[parse]"), (_e, _o[-600:]))
+_w, _r = hc_dirs({"claimocity_report.py": "# older\n"}); os.makedirs(os.path.join(_w, "inbox", "claimocity")); os.makedirs(os.path.join(_w, "registers"))
+_o, _calls, _e = driver_run("claimocity_ingest.py", _w, _r, ("--hl7-dir", "inbox/claimocity", "--stamp", "2026-11-10T1500Z"), lambda cmd: None)
+check("C2 / second ops review: on a quiet day (nothing new) the ingest still makes the helpers current before it stops - so the retry of the same routine runs current ones", _e == "" and "nothing new - done" in _o and _same(_w, "claimocity_report.py") and _calls == [], (_e, _o[-300:]))
+for _drv in ("claimocity_ingest.py", "claimocity_retry_dx.py"):
+    _ds = open(os.path.join(ROOT, "scripts", "helpers", _drv)).read()
+    check("%s: the version line stays in the driver (mirror.py's marker), the shared function comes from the copy here or the clone's, and the RESULT line ends with what it could not make current" % _drv,
+          ver in _ds and "_m.make_current(HERE, REPO_HELPERS, POS_RULE)" in _ds and '"claimocity_helpers_current.py"), os.path.join(REPO_HELPERS, "claimocity_helpers_current.py"))' in _ds and "+ pos_warn)" in _ds)
+check("mirror.py protects the shared helper with a sentence only its current version has", '"claimocity_helpers_current.py": "compared byte for byte with the clone\'s copy"' in mir and "compared byte for byte with the clone's copy" in _hcsrc)
+# the rulebook's merge (second ops-and-text reviewer): a bullet rewritten in place REPLACES its old copy instead of coming back beside it
+_rmp = os.path.join(ROOT, "tools", "mirror", "rules_merge.py"); _rms = open(_rmp).read()
+check("the rulebook's merge driver loads nothing that talks to AdvancedMD (sys and subprocess, for git's own union merge)", loads(_rms) == {"sys", "subprocess"}, loads(_rms))
+_rsp = importlib.util.spec_from_file_location("rules_merge_t", _rmp); RMG = importlib.util.module_from_spec(_rsp); _rsp.loader.exec_module(RMG)
+_HEAD = "- (11/10/2026, William in chat, STANDING for the charge feed and every billing task) PLACE OF SERVICE IN THE NURSING BUILDINGS (Brynwood, Aspire, Centre Pointe, Westminster Oaks-Bertrand, Oakes Southwood). "
+_OLD = _HEAD + "(7) ... a returned line is resubmitted at 31; boards/working_denials.py classes reason 58 as FIX."
+_NEW = _HEAD + "(7) ... never resent unchanged; both copies of the denial table class reason 58 as REVIEW."
+_INV = "- (11/10/2026, INVENTED for this test) A NEW RULE APPENDED BY ANOTHER SESSION."
+_base = "# ehpa rules\n\n- (9/7/2026) an older rule.\n" + _OLD + "\n"
+_union = "# ehpa rules\n\n- (9/7/2026) an older rule.\n" + _OLD + "\n" + _INV + "\n" + _NEW + "\n"      # what git's union merge gives (the reviewer's run; build4/out/merge_e2e.json with real git)
+_t, _tw = RMG.one_bullet(_union, _base)
+check("second reviewers (ops-and-text, exact input): a branch appended one invented rule while this change rewrote the LAST bullet in place - after the union merge ONE place-of-service bullet stands, the new one, and the appended rule is kept",
+      _t.count("PLACE OF SERVICE IN THE NURSING BUILDINGS") == 1 and _NEW in _t and _OLD not in _t and _INV in _t and _tw == [], _t)
+_t2, _tw2 = RMG.one_bullet("# ehpa rules\n" + _NEW + "\n" + _NEW.replace("REVIEW.", "REVIEW (another session's words).") + "\n", _base)
+check("... two DIFFERENT rewrites of the same bullet are never guessed: both stay and the rule is reported (the driver then exits 1 - git stops the merge for a person); the same words twice are one",
+      _tw2 == ["PLACE OF SERVICE IN THE NURSING BUILDINGS (Brynwood"] and _t2.count("PLACE OF SERVICE") == 2 and RMG.one_bullet(_NEW + "\n" + _NEW + "\n", _base) == (_NEW + "\n", []))
+check("... a merge in which nobody rewrote a bullet is left exactly as git's union made it", RMG.one_bullet(_base + _INV + "\n", _base) == (_base + _INV + "\n", []))
+_rules = open(os.path.join(ROOT, "practices", "ehpa", "rules.md")).read()
+check("... the driver knows the four rewritten rules (place of service, clinician and building, the quality code with M0004, the initial nursing-facility visit), and each heading stands exactly once in the rulebook",
+      len(RMG.REPLACED) == 4 and all(sum(1 for ln_ in _rules.split("\n") if RMG.bullet_of(ln_) == k_) == 1 for k_ in RMG.REPLACED), [(k_, sum(1 for ln_ in _rules.split("\n") if RMG.bullet_of(ln_) == k_)) for k_ in RMG.REPLACED])
+_msp = importlib.util.spec_from_file_location("mirror_t", os.path.join(ROOT, "tools", "mirror", "mirror.py")); MIRT = importlib.util.module_from_spec(_msp); _msp.loader.exec_module(MIRT)
+_gd = tempfile.mkdtemp(prefix="posrule_gitdir_", dir=tmp); _gcmds = []
+MIRT.sh = lambda cmd, check=True, **kw: (_gcmds.append(cmd), types.SimpleNamespace(stdout=_gd + "\n", stderr="", returncode=0))[1]      # git answers with this folder; nothing is started
+MIRT.union_rules(); _att1 = open(os.path.join(_gd, "info", "attributes")).read(); MIRT.union_rules(); _att2 = open(os.path.join(_gd, "info", "attributes")).read()
+check("mirror.py registers the driver: the union lines stay, the driver's line is the LAST line for rules.md (the later line wins), git's config names rules_merge.py with %O %A %B, and a second call changes nothing",
+      [l_ for l_ in _att1.splitlines() if l_.startswith("practices/ehpa/rules.md ")] == ["practices/ehpa/rules.md merge=union", "practices/ehpa/rules.md merge=ehpa-rules"] and _att1 == _att2
+      and any("merge.ehpa-rules.driver" in c_ and "rules_merge.py %O %A %B" in c_ for c_ in _gcmds) and "docs/SHARED_LESSONS.md merge=union" in _att1, (_att1, _gcmds[-2:]))
+_asp = importlib.util.spec_from_file_location("apply_bundle_t", os.path.join(ROOT, "tools", "mirror", "apply_bundle.py")); ABT = importlib.util.module_from_spec(_asp); _asp.loader.exec_module(ABT)
+_gd2 = tempfile.mkdtemp(prefix="posrule_gitdir_", dir=tmp); _acmds = []
+ABT.sh = lambda *a, **k: (_acmds.append(list(a)), (0, _gd2 if a[1:3] == ("rev-parse", "--git-dir") else ROOT if a[1:3] == ("rev-parse", "--show-toplevel") else ""))[1]
+ABT.union_rules(); _att3 = open(os.path.join(_gd2, "info", "attributes")).read()
+check("apply_bundle.py (the routine's GitHub inbox) registers the same driver from the clone's own tools/mirror", _att3.splitlines()[-1] == "practices/ehpa/rules.md merge=ehpa-rules" and any(c_[1:3] == ["config", "merge.ehpa-rules.driver"] and c_[3].endswith("rules_merge.py %O %A %B") for c_ in _acmds), (_att3, _acmds[-2:]))
+# reason 58 leads the visit on the Working Denials board (the challenge reviewer's exact input), both copies of the table
+_DROWS = [{"pid": p_, "visitid": v_, "patient": "ZZTEST " + v_, "carrier": "MEDICARE", "dos": d_, "cpt": c_, "billed": a_, "carc": k_, "group": "CO", "reason": "", "check": "c1", "amt": a_, "rarc": r_}
+          for p_, v_, d_, c_, a_, k_, r_ in (("9001", "v1", "2026-11-02", "99309", 141, "CO58", []), ("9002", "v2", "2026-10-31", "99487", 206, "CO58", []), ("9002", "v2", "2026-10-31", "99489", 109, "CO16", ["M77"]),
+                                             ("9003", "v3", "2026-11-02", "99309", 60, "CO45", []), ("9003", "v3", "2026-11-02", "99309", 81, "CO58", []), ("9004", "v4", "2026-11-02", "99309", 141, "CO4", []), ("9004", "v4", "2026-11-02", "99497", 133, "CO58", []),
+                                             ("9005", "v5", "2026-11-02", "1123F", 0, "CO58", []), ("9005", "v5", "2026-11-02", "99309", 141, "CO16", []))]
+for _wdp in (os.path.join(ROOT, "boards", "working_denials.py"), os.path.join(ROOT, "scripts", "helpers", "working_denials.py")):
+    _dd = tempfile.mkdtemp(prefix="posrule_den_", dir=tmp); json.dump(_DROWS, open(os.path.join(_dd, "denials_20261110.json"), "w"))
+    _wsp = importlib.util.spec_from_file_location("wd_t_%d" % len(_dd), _wdp); _wdm = importlib.util.module_from_spec(_wsp); _wsp.loader.exec_module(_wdm)
+    _oc = os.getcwd(); _oa = sys.argv[:]; os.chdir(_dd); sys.argv = ["working_denials.py"]
+    try:
+        with contextlib.redirect_stdout(io.StringIO()): _dout = _wdm.main()
+    finally: os.chdir(_oc); sys.argv = _oa
+    _got = {v_["visitid"]: (v_["dispo"], v_["carc"], v_["codes"]) for v_ in _dout["visits"]}
+    check("challenge review (exact input, %s): reason 58 leads its visit whatever else the visit carries - v2 (58 then a FIX-class 16), v4 (a FIX-class 4 then 58), v3 (45 then 58) all read REVIEW / 58 with every code kept; 58 on a reporting line (1123F) does not lead (v5 stays FIX / 16)" % os.path.relpath(_wdp, ROOT),
+          _got["v1"][:2] == _got["v2"][:2] == _got["v3"][:2] == _got["v4"][:2] == ("REVIEW", "58") and _got["v2"][2] == ["CO/CO16", "CO/CO58"] and _got["v4"][2] == ["CO/CO4", "CO/CO58"] and _got["v3"][2] == ["CO/CO45", "CO/CO58"]
+          and _got["v5"][:2] == ("FIX", "16") and _got["v5"][2] == ["CO/CO16", "CO/CO58"], _got)
+_drf = [open(os.path.join(ROOT, d_, "denials_refresh.py")).read() for d_ in (os.path.join("scripts", "helpers"), os.path.join("tools", "button"))]
+check("the Refresh-from-AMD step (both copies, identical) rolls visits up the same way: a REVIEW-class 58 leads, and a more actionable line keeps the codes already seen", _drf[0] == _drf[1]
+      and 'if norm(r["carc"]) == "58" and dispo == "REVIEW": rank = -1' in _drf[0] and '"codes": (rec["codes"] if rec else set()), "rarc": (rec["rarc"] if rec else set())' in _drf[0])
+# the digest's words (C5 / C8 a, W3, W5 d) and its section-12 line
+r, line = digest(rows + [dict(reg_row(["99232"], "fac29", "21", ["21"]), msg_own=False, msg_fallback="admission date: this message's own last copy", visit="vst8"),
+                         dict(reg_row(["99306", "99497"], "fac32", "31", ["31", "31"], ["initial", "with-visit"]), prof="prof13", prof_feed="prof15", prof_why="initial nursing-facility visit: always the physician (William 11/10/2026)", visit="vst9", pid="pat21")])
+check("digest (C5 / C8 a): a visit not matched to one copy of its message says, per chart, where the values its copies did not agree on came from - the admission date of its own last copy",
+      "for what its copies do not agree on, the patient's last-read building or clinician and the admission date of the message's own last copy were used (each chart says which)" in r.stdout and "pat9 11/02/2026 99232 (admission date: this message's own last copy)" in r.stdout, r.stdout[-900:])
+check("digest (12.2): one plain line - initial visits entered under the physician although the feed named another clinician, with chart and visit, and William's words; not a top-of-report line",
+      "- Initial visits entered under the physician although the feed named another clinician: 1 (pat21 vst9). William 11/10/2026: every initial nursing-facility visit is his." in r.stdout and "TOP OF THE REPORT - Initial" not in r.stdout, r.stdout[-900:])
+r, line = digest([dict(x_, pos_stored=list(x_["pos_lines"])) for x_ in rows])
+check("digest (W5 d): even when AdvancedMD's answer echoed the place of service as sent, a run that entered a 32 line still reads ONE back from the chart (the runbook paragraph by its name)",
+      "AdvancedMD's own answer shows the place of service as sent on all 6 visit(s) it echoed. The run still reads ONE 32 line back from the chart (runbook, 'EVERY RUN THAT ENTERS A 32 LINE')." in r.stdout, r.stdout[-600:])
+# the audit tool does not list William's initial-visit rule as a visit entered under the wrong clinician
+json.dump({"created": [{"visit": "vst11", "pid": "pat11", "prof": "prof13", "prof_feed": "prof15", "prof_why": "initial nursing-facility visit: always the physician (William 11/10/2026)", "fac": "fac32", "cpts": ["99306"], "dos": "11/11/2026", "charges": ["charge11"]}]},
+          open(os.path.join(aud, "feed_import_20261111T0000Z.json"), "w"))
+json.dump({"stamp": "20261111T0000Z", "rows": [{"v": "vst11", "p": "pat11", "d": "2026-11-11", "c": ["99306"], "prov": "Pamela G. (ARNP)"}]}, open(os.path.join(aud, "feed_recon_20261111T0000Z.json"), "w"))
+r = subprocess.run([sys.executable, "-B", os.path.join(ROOT, "tools", "feed", "feed_clinician_audit.py"), "--registers", aud], capture_output=True, text=True)
+check("audit tool (12.3): an initial nursing-facility visit entered under the physician by William's rule is counted apart and not listed as entered under the wrong clinician; the earlier visit still is",
+      r.returncode == 0 and "entered under a different clinician: 1" in r.stdout and "entered under the physician by William's initial-visit rule (11/10/2026, register field prof_why - not a fault, not listed): 1" in r.stdout and "vst11" not in r.stdout, r.stdout[-500:])
+# the words: rulebook, runbook, lessons
+_step = open(os.path.join(ROOT, "nightly", "claimocity_feed_step.md")).read().replace("\n", " "); _less = open(os.path.join(ROOT, "docs", "SHARED_LESSONS.md")).read()
+check("W3: the three places that said 'check ... by hand' say it is for William and a routine changes nothing on the visit (the import's pos_err, the digest's line, rulebook part 3)",
+      "check by hand" not in open(os.path.join(ROOT, "scripts", "helpers", "claimocity_report.py")).read() and "by hand" not in _rules.split("POS RULE NOT APPLIED, ")[1][:60]
+      and "facility, clinician and place of service are for William; a routine changes nothing on this visit" in open(HELPER).read() and "POS RULE NOT APPLIED, for William; a routine changes nothing on this visit." in _rules)
+check("C9: rulebook part 6 and the runbook name the visit the import flagged that the Claim Inspector holds at the hospital location beside the CCM one - William says what happens to it",
+      "and a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location (Pattern 4531" in _rules and "a CCM visit or a visit the import flagged (POS RULE NOT APPLIED) that the Claim Inspector holds at the hospital location" in _step and "nor for a visit the import flagged as POS RULE NOT APPLIED" in _step)
+check("W6 (1): the bypass loop has an upper bound - at most three passes, then stop and report - in the rulebook, the runbook and the lessons line",
+      "at most three passes in all - still listed after the third, stop" in _rules and "at most three passes in all (it clears ONE" in _step and "still listed after the third pass: stop" in _step and "at most three passes; still listed after the third: stop" in _less)
+check("W5 / W6: the comma of part 6, the lessons line's exception (part 4), what msg_own false means, what N counts, the second one-liner, every '32' of the read-back, and the CCM exception as part 1 words it",
+      "pos_stored in the register), visits that" in _rules and "a wrong building the Claim Inspector flags on a charge that has not gone out yet is still corrected as before - rules.md part 4" in _less
+      and "false means the message could not be matched to exactly one raw copy: for whatever its copies do not agree on" in _rules and "(N = the number of charts this run names at the top of the report" in _step
+      and "print(' '.join(p for p,n in sorted(c.items()) if n>1))" in _step and "every entry '32' (a CCM visit: ['32', '32'])" in _step and "for any reason except a gap of 15 to 20 days (weekly or more" in _step
+      and "the feed inspector step works only on the visits of its own batch, so it corrects none of these older visits" in _rules)
+check("C1 / W2 / CCM words: a day the feed sent from two buildings counts as another building (also later), the admission date of the message's own last copy, the CCM of a resident whose visits are in another building - rulebook and runbook",
+      "and so does a day the feed itself sent from two buildings" in _rules and "and so does a day the feed itself sent from two buildings - in that batch and in later ones" in _step and "the admission date from the message's OWN last copy - never from another message of the patient" in _rules
+      and "when the resident's nursing visits are known to be in ANOTHER building than the CCM's own" in _rules and "known to be in another building than the CCM's own" in _step)
+check("12.4: the rulebook carries the initial-visit rule in William's words with its date, the runbook its one paragraph, the lessons one line; the merge, the copy line and both denial tables are said",
+      "INITIAL NURSING-FACILITY VISIT UNDER THE PHYSICIAN AND THE GROUP: \"initial visits billed by the nurse practitioner. this is a mistake, all the initial 99306 claims are done by me in the snf and should be under effinger npi and the group npi\"" in _rules
+      and "going forward the 99306 should always be billed under effinger npi and group npi as i am the one who is doing the initial hps 99306 and 99497" in _rules and "A 99497 that comes WITHOUT a 99306 keeps the clinician of its own message" in _rules
+      and "An initial nursing-facility visit (99306, with its 99497) is entered under the physician's profile whatever clinician the feed names" in _step and "2026-11-10T1700Z | chat (William's orders 11/10) | RULE | William 11/10/2026: \"going forward the 99306" in _less
+      and "a bullet rewritten in place REPLACES its old copy instead of coming back beside it (tools/mirror/rules_merge.py" in _rules and "claimocity_helpers_current.py, the one function both call" in _rules
+      and "Both copies of the denial table (boards/working_denials.py and scripts/helpers/working_denials.py) class reason 58 as REVIEW" in _rules and "'FEED HELPERS NOT ALL CURRENT' or 'FEED HELPERS NOT CHECKED'" in _step)
 
 # ---- 7. the nights: the reviewers' own multi-night inputs, and three behaviours of a stand-in AdvancedMD over ten nights -------------------------
 # (tools/selftest/test_quality_nights.py is the whole simulation; run alone it goes through every behaviour, longer)

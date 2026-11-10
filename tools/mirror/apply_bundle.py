@@ -21,6 +21,15 @@ def union_rules():
     have = open(f).read() if os.path.exists(f) else ""
     add = [r for r in UNION if r not in have]
     if add: open(f, "a").write(("" if not have or have.endswith("\n") else "\n") + "\n".join(add) + "\n")
+    # 11/10/2026 (second ops-and-text review): rules.md by union, except that a bullet rewritten in place replaces its old copy - the same driver
+    # mirror.py registers (tools/mirror/rules_merge.py of this clone; without it, union as before). Its attribute line must be the last for rules.md.
+    drv = os.path.join(sh("git", "rev-parse", "--show-toplevel")[1], "tools", "mirror", "rules_merge.py"); attr = "practices/ehpa/rules.md merge=ehpa-rules"
+    if os.path.exists(drv):
+        import shlex
+        sh("git", "config", "merge.ehpa-rules.name", "rules.md: union, a rewritten bullet replaces its old copy")
+        sh("git", "config", "merge.ehpa-rules.driver", "%s %s %%O %%A %%B" % (shlex.quote(sys.executable), shlex.quote(drv)))
+        have = open(f).read().splitlines()
+        if [l for l in have if l.startswith("practices/ehpa/rules.md ")][-1:] != [attr]: open(f, "w").write("\n".join(l for l in have if l != attr) + "\n" + attr + "\n")
 def resolve_generated():
     """A conflicted pull is finished here only when every conflicted file is one this script knows how to rebuild:
     docs/api_vocabulary.json (union of calls by id, the longer description wins) and docs/postman_effinger_amd.json
