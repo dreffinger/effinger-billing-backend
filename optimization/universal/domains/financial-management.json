@@ -674,7 +674,7 @@
   {
    "slug": "fm-overhead-costs",
    "name": "Overhead and cost control",
-   "summary": "What it costs to run the practice apart from clinician pay: staff, rent, billing, technology, supplies, insurance. Costs have risen faster than payment rates for more than a decade, so the gap between revenue and cost has to be defended line by line.",
+   "summary": "What it costs to run the practice apart from clinician pay: staff, rent, billing, technology, supplies, insurance. Operating costs have risen faster than revenue for more than a decade, so the gap between the two has to be defended line by line.",
    "good_looks_like": [
     "Costs are reported by category as a share of revenue, monthly and against the prior year.",
     "The three largest categories are reviewed in detail each year.",
@@ -724,13 +724,28 @@
     }
    ],
    "applies_when": "Every practice. Published ratios describe office-based practices with a front desk and clinical support. Practices with no office or with automated billing should expect much lower ratios and judge themselves by trend.",
+   "vendor_refs": [
+    {
+     "item": "kpi-10-cost-to-collect",
+     "note": "Lists what to count as billing cost and reads it beside net collection rate. Its 4% to 6% target has no source, and its staffing model ignores automated billing."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Gives an expense table by category as a share of revenue. The ranges were widened by the vendor to add up, and its staff range sits below measured survey medians."
+    }
+   ],
    "sources": [
     "mgma-stat-margin",
     "mgma-app-2026",
+    "aafp-overhead-2010",
+    "pp-overhead-2026",
     "aafp-vital-signs",
-    "hfma-map-keys"
+    "mgma-glossary",
+    "hfma-map-keys",
+    "pp-outsourcing-2010",
+    "tseng-2018"
    ],
-   "evidence_note": "MGMA reports operating cost per physician rose 71.6% from 2011 to 2024 against 39.5% inflation. A current published median for total cost as a share of revenue was not found.",
+   "evidence_note": "The Medical Group Management Association (MGMA) reports that median operating cost per physician in physician-owned multispecialty groups rose 71.6% from 2011 to 2024, against 39.5% inflation. Its overhead figure for family medicine was 59.74% of revenue in 2008 data. No current median is public.",
    "metrics": [
     {
      "slug": "fm-overhead-ratio",
@@ -740,14 +755,18 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "monthly",
-     "benchmark_typical": "roughly 60%",
-     "benchmark_note": "No current MGMA median is public. About 60% is attributed to MGMA in trade press (2026), and the AAFP gave 60% to 70% of collections for family medicine (2009). Treat as a rough guide.",
-     "confidence": "low",
+     "benchmark_typical": "about 60% of revenue",
+     "benchmark_note": "MGMA put family medicine overhead at 59.74% of revenue (2008 data, via the American Academy of Family Physicians, AAFP). Its 2025 medians for single-specialty practices without advanced practice clinicians imply about 60%. Trade press still quotes roughly 60% (2026). Office practices only.",
+     "confidence": "medium",
      "sources": [
-      "aafp-vital-signs",
-      "mgma-stat-margin"
+      "aafp-overhead-2010",
+      "mgma-app-2026",
+      "pp-overhead-2026",
+      "mgma-glossary"
      ],
-     "data_hint": "The income statement."
+     "data_hint": "The income statement.",
+     "vendor_claim": "Operating cost of 75% to 85% of net revenue for a solo practice, falling to 68% to 78% for groups of six or more.",
+     "vendor_verdict": "Unverifiable: no source, and it never says whether clinician pay is included, so it cannot be compared with MGMA's overhead figure of about 60%."
     },
     {
      "slug": "fm-staff-cost-ratio",
@@ -757,13 +776,18 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_typical": "30% to 34% in primary care",
-     "benchmark_note": "MGMA, 2025 data, office-based primary care at the median. State whether advanced practice clinicians are included. They are not in MGMA's figure.",
+     "benchmark_typical": "30% to 34% of revenue",
+     "benchmark_note": "MGMA medians, 2025 data: roughly 30% to 34% of revenue across primary care, single-specialty and surgical practices. Its 2008 family medicine figure was about 32%. An AAFP worksheet (2009) gave 20% to 25% of collections. Advanced practice clinicians are not counted.",
      "confidence": "medium",
      "sources": [
-      "mgma-app-2026"
+      "mgma-app-2026",
+      "aafp-overhead-2010",
+      "aafp-vital-signs",
+      "mgma-glossary"
      ],
-     "data_hint": "Payroll and the income statement."
+     "data_hint": "Payroll and the income statement.",
+     "vendor_claim": "Staff payroll and benefits of 22% to 28% of net revenue, with over 32% a red flag.",
+     "vendor_verdict": "Contradicted: MGMA medians were roughly 30% to 34% of revenue in 2025 data, so the vendor's red flag would mark an ordinary practice."
     },
     {
      "slug": "fm-cost-to-collect",
@@ -773,12 +797,16 @@
      "unit": "percent",
      "direction": "lower",
      "cadence": "quarterly",
-     "benchmark_note": "HFMA defines the measure and publishes no target. No reliable small-practice benchmark was found. Always read it beside the net collection rate, since cheap billing that collects less is no saving.",
-     "confidence": "low",
+     "benchmark_note": "The Healthcare Financial Management Association defines the measure and publishes no target. Billing companies charged primary care 8% to 10% of collections (Physicians Practice, 2010), and an academic system's billing cost was 14.5% of primary care revenue (JAMA, 2018). Read it beside net collection rate.",
+     "confidence": "none",
      "sources": [
-      "hfma-map-keys"
+      "hfma-map-keys",
+      "pp-outsourcing-2010",
+      "tseng-2018"
      ],
-     "data_hint": "Billing-related lines of the income statement over collections."
+     "data_hint": "Billing-related lines of the income statement over collections.",
+     "vendor_claim": "Cost to collect of 4% to 6% of collections is best practice, 8% to 10% calls for action, and above 10% is a structural problem.",
+     "vendor_verdict": "Unverifiable: no source. Billing companies alone charged primary care 8% to 10% of collections in 2010, so 4% to 6% all-in looks optimistic for a small practice."
     }
    ]
   },
