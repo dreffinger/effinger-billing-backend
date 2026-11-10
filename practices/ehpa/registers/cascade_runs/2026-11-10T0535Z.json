@@ -1,0 +1,23 @@
+{
+ "_recorded": "2026-11-10T05:55:33Z",
+ "at": "2026-11-10T05:35:00Z",
+ "changed": 1,
+ "checked": 16,
+ "commit": "8250bcf",
+ "date": "2026-11-10",
+ "dollars": 160,
+ "done": "1 hospital visit re-pointed from Medicare to the chart's BCBS Medicare Advantage plan and re-sent as an original claim (160 dollars, chart 17473090)",
+ "era_posted": 0.0,
+ "finished": "2026-11-10T05:55:33Z",
+ "flagged": 1,
+ "kind": "nightly cascade",
+ "lookups": 1,
+ "note": "16 visit-and-plan pairs checked (1 new Stedi lookup), 1 flagged; ERA Center 0 checks before and after; claim-status sweep skipped (Tuesday); void rule 1 open, no match",
+ "routine": "trig_01XVrVN9dpSdvAbB1ZrsAzFU",
+ "schema": "practice-cascade-run/1",
+ "session": "",
+ "source": "practices/ehpa/registers/cascade_runs/2026-11-10T0535Z.json",
+ "stamp": "2026-11-10T0535Z",
+ "stedi_cost": 0.3,
+ "writeoffs": 0.0
+}
