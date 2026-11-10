@@ -14,8 +14,27 @@ that are already in `docs/captured_calls.md`, and they write to the practice dat
 | 3. Chart facts: insurance plans (payer, dates, order), sex, birth year (1936 and earlier stored as 1936), state, deceased and inactive flags, ageing buckets | `getdemographic` | `chartfacts` | chart | `amd_pull2.py demog` |
 
 Typed tables: `amd_history.sql` creates schema `amd` (views `amd.v_*` read the documents live; the materialized views `amd.charts`,
-`amd.charges`, `amd.payments`, `amd.payment_reasons`, `amd.writeoffs` are indexed copies), `amd_refresh.sql` refreshes them after a
-load, `amd_analysis.sql` adds `amd.facility_settings`, `amd.charge_outcomes` and `amd.paid_lines_monthly`.
+`amd.charges`, `amd.payments`, `amd.payment_reasons`, `amd.writeoffs` and `amd.unapplied_payments` are indexed copies),
+`amd_history2.sql` adds the chart-facts and charge-detail views, `amd_refresh.sql` / `amd_refresh2.sql` refresh them after a load,
+`amd_analysis.sql` adds `amd.facility_settings`, `amd.charge_outcomes` and `amd.paid_lines_monthly`.
+
+### Corrections of November 10, 2026 (`migrations/migrate_1110.sql`, applied to the practice database at 13:33 UTC)
+An independent check of the pull found the copy exact but four definitions wrong or missing. They were corrected without dropping
+anything, reviewed, rehearsed on the preview database and proved on the full data before they were applied:
+- `amd.charges.paid` was AdvancedMD's fee minus balance, that is payments PLUS write-offs ($10,042,860.47 on live lines against
+  $3,757,541.84 really paid). The column is now called `settled`. Money paid comes from `amd.payments` (not void) only.
+- Adjustment codes whose code part starts with a letter (B9, B7, A1 ...) were split wrongly into group and code (1,415 rows). The group
+  is now the first two characters and the code the rest.
+- Empty charts carried AdvancedMD's placeholder date 1900-01-01 (5,534 charts); it is now no date.
+- Unapplied payments (310 lines, $9,266.19 with money) are now `amd.unapplied_payments`; with them every chart ties to AdvancedMD's
+  own totals.
+- `amd.chart_facts` no longer has ZIP or city columns; `facility_settings` counts only the five nursing buildings as nursing facility.
+- Payment and write-off dates are the day of ENTRY in AdvancedMD, not the day money arrived: read money by year of service.
+The old objects are kept, renamed `..._before_1110` (16 of them). They are removed only on the owner's word, in this order:
+`paid_lines_monthly_before_1110`, `charge_outcomes_before_1110`, `facility_settings_before_1110`, then the four materialized views
+`..._before_1110` (their indexes go with them), then the four views `v_..._before_1110`. Do not run `migrate_1110.sql` again once any
+of them has been removed. `migrations/verify_1110.sql` (31 read-only checks) and `migrations/postcheck_1110.sql` (14) re-check it.
+Never run an OLDER copy of the definition files against the database: it would quietly put the old definitions back.
 
 ## Rules these scripts keep
 - ONE AdvancedMD login per session, made with `amd.login_cached()` before a pull. The pull scripts never log in: when the session dies
@@ -39,8 +58,8 @@ that folder; they are chart-level billing data and are never committed.
 1. `python3 amd_pull.py enumerate` - lists every chart id (ids only).
 2. `python3 amd_pull.py pull` - layer 1; resumable; `python3 verify_local.py` checks it (item counts, fee = payments + write-offs +
    balance on every live charge, allow-list only).
-3. `python3 load_buckets.py prod --watch` - loads finished folders; then `neon_exec.py prod --file amd_history.sql`, `--file
-   amd_refresh.sql`, `--file amd_analysis.sql`.
+3. `python3 load_buckets.py prod --watch` - loads finished folders; then `neon_exec.py prod --file amd_refresh.sql` (a NEW database:
+   first `--file amd_history.sql`, `--file amd_history2.sql`, `--file amd_analysis.sql`).
 4. `python3 amd_pull2.py demog` and `python3 amd_pull2.py detail` - layers 3 and 2; `python3 load_layer.py prod chartfacts --watch`
    and `load_layer.py prod chargedetail --watch`.
 

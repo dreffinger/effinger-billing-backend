@@ -1,18 +1,19 @@
 -- AdvancedMD history, layers 2 and 3 (11/10/2026): chart facts (getdemographic) and charge detail (getchargedetaildataicd10).
 -- Reads raw.documents (source amd_history, collections chartfacts / chargedetail). No name, full birth date, address, phone, member id or note is in those documents.
+-- Since the privacy review of 11/10/2026 the documents also carry no ZIP code, no city and no marital status, and a birth year of 1936 or earlier is
+-- stored as 1936. The chart facts are still patient-level data: pseudonymous, not anonymous.
 -- Every date and number is cast only when it has the expected shape, so one odd value never breaks a view.
 
 create or replace view amd.v_chart_facts as
--- one row per chart: non-identifying facts only (sex, birth YEAR, ZIP5, flags)
+-- one row per chart: patient-level facts (sex, birth YEAR with 1936 standing for 1936 or earlier, state, flags). No ZIP code, no city, no marital status:
+-- the pulled documents no longer carry them and the columns zip5 and city were taken out on 11/10/2026.
 select d.doc_id as chart_id,
        (d.body->>'_written')::timestamptz as pulled_at,
        nullif(d.body->'patient'->>'sex', '') as sex,
        case when d.body->'patient'->>'birth_year' ~ '^(19|20)\d{2}$' then (d.body->'patient'->>'birth_year')::int end as birth_year,
        (d.body->'patient'->>'deceased_flag') = '1' as deceased,
        nullif(d.body->'patient'->>'inactive', '') as inactive,
-       nullif(d.body->'patient'->>'zip', '') as zip5,
        nullif(d.body->'patient'->>'state', '') as state,
-       nullif(d.body->'patient'->>'city', '') as city,
        nullif(d.body->'patient'->>'profile', '') as profile,
        nullif(d.body->'patient'->>'finclasscode', '') as financial_class,
        nullif(d.body->'patient'->>'insorder', '') as insurance_order,
@@ -112,3 +113,9 @@ create index if not exists amd_charge_details_charge_idx on amd.charge_details (
 create index if not exists amd_charge_details_dos_idx on amd.charge_details (dos);
 create index if not exists amd_charge_details_cpt_idx on amd.charge_details (cpt, place_of_service);
 create index if not exists amd_charge_bills_charge_idx on amd.charge_bills (charge_id);
+comment on materialized view amd.chart_facts is 'One row per chart: patient-level facts from AdvancedMD (sex, birth year, state, flags, number of plans). No name, no full birth date, no ZIP code, no city, no marital status. This is pseudonymous patient data, not anonymous data. Filled from amd.v_chart_facts, refreshed after each load.';
+comment on view amd.v_chart_facts is 'Live view behind amd.chart_facts: the same columns, read from the documents at query time. Column notes are on amd.chart_facts.';
+comment on column amd.chart_facts.birth_year is 'Year of birth. 1936 stands for 1936 or earlier: an age of 90 or more is not shown.';
+comment on column amd.chart_facts.state is 'State of the patient''s address. The ZIP code and the city are not stored.';
+comment on column amd.chart_facts.deceased is 'True where AdvancedMD carries a deceased mark. Few charts carry one: false does not prove the patient is alive.';
+comment on column amd.chart_facts.inactive is 'AdvancedMD''s inactive value. AdvancedMD sent none on any chart in the 11/10/2026 pull: empty on every row.';
