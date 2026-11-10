@@ -1230,7 +1230,7 @@
    "failure_modes": [
     "A required visit is more than 10 days late, or is done by a nurse practitioner when the rule requires the physician. That is a deficiency for the facility.",
     "A nurse practitioner employed by the facility does required visits in a nursing facility. The state option covers only practitioners who are not facility employees.",
-    "A required visit is done by video. Medicare's claims manual says federally required nursing facility visits may not be furnished by telehealth.",
+    "A required visit is done by video. These visits must be in person: the pandemic waiver that allowed telehealth ended in 2022, and Medicare's claims manual still bars it.",
     "Stable residents are seen by habit. Medicare does not pay for visits made for facility or administrative purposes. A 2026 regional federal audit found 24 of 60 sampled visits unnecessary.",
     "Hospital records are finished late. Federal rules require a history and physical within 24 hours of admission and completed records within 30 days of discharge."
    ],
@@ -1304,7 +1304,8 @@
     "cfr-482-24",
     "oig-nf-icpg-2024",
     "oig-nh-audit-2026",
-    "fl-429-26"
+    "fl-429-26",
+    "cms-qso-22-15"
    ],
    "evidence_note": "The visit schedule, delegation limits, drug review and certification timing are federal regulation (42 CFR parts 424, 482 and 483) and the Medicare claims manual, chapter 12. State choices on nurse practitioner visits vary and must be checked state by state.",
    "metrics": [
