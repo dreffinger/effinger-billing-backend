@@ -2,7 +2,9 @@
 # Decides: Nothing. Asks Stedi questions: payer eligibility, MBI lookup, insurance discovery, payer search, enrollment status.
 #   11/10/2026 (look-ups part A, William 11/10: "get a better deal on all the look ups"): it also decides HOW one Medicare answer is
 #   asked - medicare() sends a PLAIN Medicare check (payer id CMS, the ordinary eligibility price) with the Medicare number already on
-#   the chart, and buys the Medicare-number look-up only when the chart has no number of that shape or Medicare does not know it.
+#   the chart, and buys the Medicare-number look-up when the chart has no number of that shape, when Medicare does not know it, or when
+#   Medicare refuses the plain check for another reason (41, 61, an answer with no Part A or Part B). After Medicare refuses OUR provider
+#   number (41, 43, 50, 51 or 97 - it holds for every chart), the rest of that run sends no plain check and goes straight to the look-up.
 # Rules it uses: Uses secrets/stedi_live.key when present; otherwise sends NO Authorization header and the ehpa cloud environment's API credential (agent proxy) attaches the key. Provider is always Effinger Health PA 1629515325. MBI lookups need a date of service to get the right Advantage plan for that date.
 #   11/10/2026: every paid call (every POST) leaves ONE line in the usage log ($STEDI_USAGE_LOG, default patient_db/stedi_usage.log -
 #   time, who asked, kind of call, payer id, chart id, first error code or ok, first-tier list price from stedi_prices.py); the two free
@@ -144,21 +146,29 @@ def mbi(first, last, dob, state=None, dos=None, ssn=None, pid=None):
 #   2. the plain answer is used when it carries no error and shows Part A or Part B or a date of death -> how = "plain";
 #   3. Medicare says the number or the name is not found (72, 73, 75, 76, 58) -> a generation suffix (JR, SR, II, III, IV) comes off the
 #      last name and the plain check goes ONCE more; still not found -> ONE look-up (the SSN only when the caller passed one - it is never
-#      fetched for this) -> how = "lookup after plain"; the look-up's answer is the result. Any other refusal of the plain check (41 the
-#      provider is not cleared, 61, an answer with no Part A or Part B) also goes to the look-up, as every caller did before, and says so in
-#      NOTES. A plain 'not found' is never the result and never means 'no Medicare record';
+#      fetched for this) -> how = "lookup after plain"; the look-up's answer is the result. The look-up always goes with the chart's OWN
+#      last name, suffix and all, as every caller sent it before (Medicare matches the last name WITH its suffix, rules.md 10/4) - the
+#      suffix comes off for the one extra plain check only. Any other refusal of the plain check (41 the provider is not cleared, 61, an
+#      answer with no Part A or Part B) also goes to the look-up, as every caller did before, and says so in NOTES. A refusal about OUR
+#      provider number (PROVIDER_REFUSED: 41, 43, 50, 51, 97) holds for every chart, so after the first one the rest of the run (this
+#      process) sends no plain check - every later chart goes straight to the look-up, and NOTES says so once. A plain 'not found' is
+#      never the result and never means 'no Medicare record';
 #   4. no usable number on the chart -> the look-up, as before -> how = "lookup";
 #   5. the vendor or Medicare is down (42, 79, 80, a time-out, an HTTP error) -> no second call of another kind -> how = "failed", and the
 #      caller treats it exactly as a failed look-up before;
 #   6. always the group provider block and the caller's date of service; the date-of-death hook runs on every answer when pid= is given;
 #   7. in a plain answer the member number is only the echo of the number sent: only an answer from a look-up can show that the chart's
-#      number differs from Medicare's (LOOKUP_KINDS);
+#      number differs from Medicare's (LOOKUP_KINDS) - also a chart number that is not of the Medicare shape (an old-style number): the
+#      store keeps only the yes / no, never a number;
 #   8. with pid= and max_age_days= the answer store (medicare_store.py) is read first, with the caller's own age rule; every real answer is
 #      written to it, a failed call only as 'asked and failed today' so no other helper buys the same failing chart again that day.
 MEDICARE_NOT_FOUND = {"72", "73", "75", "76", "58"}      # the number or the name is not found
 MEDICARE_DOWN = {"42", "79", "80"}                        # the vendor or Medicare cannot answer now
 LOOKUP_KINDS = ("lookup", "lookup after plain")           # answers that came from a look-up: the only ones whose member number is Medicare's own
 NOTES = []                                                 # report lines: a plain check Medicare refused for another reason than 'not found'
+PROVIDER_REFUSED = {"41", "43", "50", "51", "97"}          # refusals about OUR provider number, not the patient: they hold for every chart
+_PLAIN_OFF = []                                            # set at the first such refusal: no more plain checks in this run (this process)
+_OFF_WORDS = "; that refusal is about our provider number, so the rest of this run sends no plain check - every other chart goes straight to the look-up"
 _LT = "ACDEFGHJKMNPQRTUVWXY"
 _NUMBER = re.compile("[1-9][{0}][{0}0-9][0-9][{0}][{0}0-9][0-9][{0}][{0}][0-9][0-9]".format(_LT))
 _SUFFIX = re.compile(r"^(.*?[^\s,.])[\s,.]+(?:JR|SR|II|III|IV)\.?$", re.I)
@@ -213,7 +223,8 @@ def _plain_raw(first, last, dob, number, dos):
     return _post(API + "/change/medicalnetwork/eligibility/v3", {"tradingPartnerServiceId": "CMS", "provider": PROV,
         "subscriber": {"firstName": first, "lastName": last, "dateOfBirth": dob, "memberId": number}, "encounter": enc})
 def _ask_medicare(first, last, dob, number, dos, state, ssn, pid):
-    how = "lookup"
+    how = "lookup"; chart_last = last                    # the look-up always goes with the chart's own last name (suffix and all)
+    if _PLAIN_OFF: number = None                         # Medicare refused our provider number earlier in this run: no plain check
     if number:
         how = "lookup after plain"
         for n in (1, 2):
@@ -225,8 +236,12 @@ def _ask_medicare(first, last, dob, number, dos, state, ssn, pid):
             if c & MEDICARE_DOWN: return j, "failed"
             if n == 1 and c & MEDICARE_NOT_FOUND and _SUFFIX.match(str(last or "").strip()):
                 last = _SUFFIX.match(str(last).strip()).group(1); continue          # the suffix off, the plain check ONCE more
-            if not c & MEDICARE_NOT_FOUND: _note(pid, "Medicare refused the plain check (%s) - the look-up was bought instead" % (", ".join(sorted(c)) or "no Part A or Part B in the answer"))
+            off = bool(c & PROVIDER_REFUSED) and not _PLAIN_OFF
+            if off: _PLAIN_OFF.append(sorted(c & PROVIDER_REFUSED)[0])
+            if not c & MEDICARE_NOT_FOUND: _note(pid, "Medicare refused the plain check (%s) - the look-up was bought instead" % (", ".join(sorted(c)) or "no Part A or Part B in the answer") + (_OFF_WORDS if off else ""))
+            elif off: _note(pid, "Medicare refused the plain check (%s: not found, and a refusal of our provider number) - the look-up is bought" % ", ".join(sorted(c)) + _OFF_WORDS)
             break
+    last = chart_last                                    # the suffix came off for the ONE extra plain check only (rules.md 10/4)
     try: j = _mbi_raw(first, last, dob, state, dos, ssn)
     except Exception as e: return {"errors": [], "failed": _err_word(e)}, "failed"
     _dod_hook(pid, j)
@@ -246,6 +261,7 @@ def medicare(first, last, dob, member_id=None, dos=None, state="FL", ssn=None, p
             ans["stored"] = {k: hit.get(k) for k in ("asked", "dos", "how", "who")}
             return ans, hit.get("how")
     with _asking(pid, who): j, how = _ask_medicare(first, last, dob, number, dos, state, ssn, pid)
+    number = number or re.sub(r"[\s-]+", "", str(member_id or "")).upper() or None   # an old-style chart number still 'differs' from Medicare's (only yes / no is stored)
     if store:
         kind = how if _real(j, how) else "failed"
         try: store.put(pid, medicare_facts(j, kind, number), kind, who, dos)

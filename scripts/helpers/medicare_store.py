@@ -12,7 +12,8 @@
 # Keeps per answer: the day asked, the date of service asked about, how it was got, who asked, active or not, Part A and Part B dates,
 #   an Advantage or other plan named in the answer (name, payer id, dates), hospice, a date of death, the error codes, and whether a
 #   look-up showed the chart's number to differ from Medicare's. NEVER keeps the Medicare number, a name, a birth date, an address or the
-#   raw answer; anything shaped like a Medicare number is blanked before a write.
+#   raw answer; anything shaped like a Medicare number is blanked before a write. A list keeps at most 20 items; the plan lines (U, R)
+#   are put first, so the cut falls on the other lines before an Advantage plan.
 # Never touches: AdvancedMD, the vendor, the guard's own cache (deceased_cache.json).
 import os, re, json, datetime, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -84,6 +85,9 @@ def put(pid, summary, how, who, dos):
             entry = {"asked": day, "dos": d8, "how": str(how), "who": str(who or "")[:60]}
             for k in ANSWER_KEYS: entry[k] = s.get(k)
             entry["other"] = [{k: o.get(k) for k in PLAN_KEYS} for o in (s.get("other") or []) if isinstance(o, dict)]
+            # 11/10/2026 (review fix): the plan lines (codes U and R: an Advantage or other plan) first, then the facility lines (X: hospice,
+            # a skilled nursing stay), so the 20-line cut of _clean drops the other lines before an Advantage plan the pre-claim words read
+            entry["other"].sort(key=lambda o: 0 if o.get("code") in ("U", "R") else 1 if o.get("code") == "X" else 2)
             month = (d8 or day.replace("-", ""))[:6]
             keep = [a for a in rec.get("answers") or [] if isinstance(a, dict) and not (a.get("asked") == day and ((_d8(a.get("dos")) or day.replace("-", ""))[:6] == month))]
             rec["answers"] = keep + [_clean(entry)]

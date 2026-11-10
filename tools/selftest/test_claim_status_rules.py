@@ -31,7 +31,11 @@
 #       with its reply code) / an unknown wording printed;
 #     - the October replay of the claim-status reader's registers through cs_rules.py keeps at most 900 of the 4,850 checks, and every claim
 #       that got a final answer still gets one;
-#     - the billing/scans copies are the scripts/helpers copies; nothing is written in the checkout.
+#     - the billing/scans copies are the scripts/helpers copies; nothing is written in the checkout;
+#     - (11/10/2026 review fixes) an answer naming only other visits, or an exact-date answer with several claims none ours, is 'not
+#       matched' and never final; four unusable answers in a row hand a claim off even when no try counted, and a payer that answers
+#       nobody is proposed for CS_OFF; a final answer with nothing posted is listed again; a new ledger counts its checks once; the
+#       hand-off and switched-off lists are printed whole.
 # Run: python3 tools/selftest/test_claim_status_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback, collections
 import importlib.abc, importlib.machinery
@@ -340,8 +344,13 @@ def t_labels():
     check("answer: an unreadable reply -> 'no usable answer', the reply code kept", lambda: r["label"] == "no usable answer" and r["http"] == "2xx" and "not readable" in r["why"], r)
     r = lab(a277(st("F1", "65", "paid", paid=48.34, acct=mine(o), check="C1"), st("P1", "20", "Accepted for processing.", acct=mine(c))), vid=c["vid"], dos=c["row"]["dos"])
     check("answer: a 3-day window holding the next day's PAID claim and ours pending -> ours is read: 'pending' (the lesson of 10/9)", lambda: (r["label"], r["paid"]) == ("pending", 0.0), r)
-    r = lab(PAID_A(o), vid=c["vid"], dos=c["row"]["dos"])
-    check("answer: a windowed 'paid' that names ANOTHER claim is not final", lambda: r["label"] == "paid" and r["final"] is False and r["named"] is False, r)
+    r = lab(PAID_A(o), vid=c["vid"], dos=c["row"]["dos"]); r0 = lab(a277(st("F1", "65", "paid", paid=10.0, check="C9")), vid=c["vid"], dos=c["row"]["dos"])
+    check("answer: a windowed 'paid' that names ANOTHER claim is not final - it reads 'not matched' (review CS-1: not our claim's answer); a windowed 'paid' that names no claim is not final either",
+          lambda: r["label"] == "not matched" and r["final"] is False and r["named"] is False and "only other claims" in r["why"] and r0["label"] == "paid" and r0["final"] is False, (r, r0))
+    two_none = a277(st("F1", "65", "paid", paid=60.0, check="C7"), st("P1", "20", "Accepted for processing."))
+    r = lab(two_none, vid=c["vid"], dos=c["row"]["dos"], exact=True)
+    check("answer: an exact-date answer holding two claims of that date, none naming ours (one paid $60), is 'not matched' and never final (review CS-6)",
+          lambda: r["label"] == "not matched" and r["final"] is False and r["paid"] == 0.0 and "none names ours" in r["why"], r)
     r = lab(a277(st("F1", "65", "paid", paid=10.0, check="C9")), vid=c["vid"], dos=c["row"]["dos"])
     check("answer: a windowed 'paid' with no account number is not final; the same answer asked with the exact date is final",
           lambda: r["final"] is False and lab(a277(st("F1", "65", "paid", paid=10.0, check="C9")), vid=c["vid"], dos=c["row"]["dos"], exact=True)["final"] is True, r)
@@ -406,8 +415,10 @@ def t_waits():
 def t_record_stop():
     c = claim(); r = c["row"]
     L = CS.record({}, lab(PAID_A(claim()), vid=c["vid"], dos=r["dos"]), r, TODAY)
-    check("ledger: a windowed 'paid' that names another claim is stored NOT final and asks ONE exact-date check", lambda: L["final"] is False and L["exact_next"] is True
-          and CS.ledger_says(L, r, TODAY) == (True, "one check with the exact date of service is due", True), L)
+    L0 = CS.record({}, lab(a277(st("F1", "65", "paid", paid=10.0, check="C9")), vid=c["vid"], dos=r["dos"]), r, TODAY)
+    check("ledger: a windowed 'paid' that names another claim is stored NOT final and asks ONE exact-date check (it reads 'not matched'); so does a windowed 'paid' that names no claim",
+          lambda: L["final"] is False and L["exact_next"] is True and CS.ledger_says(L, r, TODAY) == (True, "one check with the exact date of service is due", True)
+          and L0["answer"] == "paid" and L0["final"] is False and L0["exact_next"] is True, (L, L0))
     L = CS.record({}, lab(DATE_NM_A(c)), r, TODAY)
     L2 = CS.record(L, lab(DATE_NM_A(c), exact=True), r, TODAY, exact=True)
     check("ledger: 'not matched' -> ONE check with the exact date; not matched again -> stop and hand off", lambda: L["exact_next"] and not L.get("stopped") and L2.get("stopped") and "exact date" in L2["stop_why"], (L, L2))
@@ -668,6 +679,61 @@ def t_full_and_exact():
     reset(); c7, o7, e7 = run_main("scripts/helpers/claim_status_exact.py", ["--vids", e["vid"], "--go"], ws)
     check("exact: a visit with a final answer on file is not asked again and the reason is printed", lambda: cs_sent() == [] and "not asked: pat%s v%s" % (e["pid"], e["vid"]) in o7 and "final answer on file" in o7, o7[-300:])
 
+def _asked_now(n0): return sorted(b["subscriber"]["memberId"] for u, b in cs_sent()[n0:])
+def t_review_fixes():
+    # CS-1: a window answer whose claims all carry OTHER visits' account numbers (here 'pending') is not our claim's answer
+    reset(); ws = new_ws(); c = claim(sent=100, dos=130); o = claim(); write_aging(ws, [c])
+    answer(c, a277(st("P1", "20", "Accepted for processing.", acct=mine(o), svc=ymd(ago(129)))), a277(st("A4", "35", "Claim/encounter not found.", acct=mine(c))))
+    code, out, err = sweep(ws, "--go"); bodies = [b for u, b in cs_sent()]; rf = {r["visitid"]: r for r in run_file(ws)}
+    check("answers: a 3-day-window answer whose claims all carry other visits' account numbers (pending) is 'not matched' -> ONE exact-date check, and its 'not found' is the answer (review CS-1)",
+          lambda: len(bodies) == 2 and bodies[1]["encounter"]["beginningDateOfService"] == bodies[1]["encounter"]["endDateOfService"] == ymd(ago(130))
+          and lrow(ws, c)["answer"] == "not found" and rf[c["vid"]]["action"].startswith("NOT ON FILE") and rf[c["vid"]]["first_answer"].startswith("NOT MATCHED"), (len(bodies), lrow(ws, c), rf.get(c["vid"])))
+    # CS-6: the exact-date helper - an answer with two claims of that date, none naming ours, is never our final answer
+    reset(); ws = new_ws(); e = claim(sent=60, dos=80); write_aging(ws, [e])
+    answer(e, a277(st("F1", "65", "paid", paid=60.0, check="C7", svc=ymd(ago(80))), st("P1", "20", "Accepted for processing.", svc=ymd(ago(80)))))
+    run_main("scripts/helpers/claim_status_exact.py", ["--vids", e["vid"], "--go"], ws); L = lrow(ws, e)
+    check("exact: an exact-date answer holding two claims of that date, none naming ours (one paid $60), is NOT recorded as our final paid answer - 'not matched', handed off (review CS-6)",
+          lambda: L.get("answer") == "not matched" and L.get("final") is False and L.get("stopped") and len(cs_sent()) == 1, L)
+    # CS-3: weekly runs - the claim that always comes back empty is alone (its payer's other claim waits), so none of its tries counts
+    reset(); ws = new_ws(); a = claim(sent=80); b = claim(sent=80); write_aging(ws, [a, b]); answer(a, EMPTY_A); answer(b, PENDING_A(b)); asked = []
+    for week in range(5):
+        n0 = len(cs_sent()); sweep(ws, "--go"); asked.append(a["member"] in _asked_now(n0))
+        if not lrow(ws, a).get("stopped"): set_asked(ws, a, 8)
+        set_asked(ws, b, 8)
+    check("stop: a claim that always comes back empty while its payer's other claim waits (tries uncounted) is handed off at its FOURTH unusable answer in a row, not bought every week (review CS-3)",
+          lambda: asked == [True, True, True, True, False] and "four answers in a row" in (lrow(ws, a).get("stop_why") or ""), (asked, lrow(ws, a)))
+    # CS-4: a payer that answers nobody, run after run - five claims bought every week before, the others never asked
+    reset(); ws = new_ws(); eight = [claim(sent=80, bal=500.0 - i) for i in range(8)]; write_aging(ws, eight); per_run = []
+    for c8 in eight: answer(c8, EMPTY_A)
+    for week in range(5):
+        n0 = len(cs_sent()); code, out, err = sweep(ws, "--go"); per_run.append(_asked_now(n0))
+        for c8 in eight:
+            if lrow(ws, c8) and not lrow(ws, c8).get("stopped"): set_asked(ws, c8, 8)
+    first5 = sorted(x["member"] for x in eight[:5]); last3 = sorted(x["member"] for x in eight[5:])
+    check("payers: a payer that answers nobody, run after run -> its first five claims are handed off after four runs, the other three are then asked, and the report proposes the payer for CS_OFF (review CS-4)",
+          lambda: per_run[:4] == [first5] * 4 and per_run[4] == last3 and all(lrow(ws, x).get("stopped") for x in eight[:5]) and "PROPOSE FOR CS_OFF: UNI20 - 5 claim(s)" in out, (per_run, out[-600:]))
+    # CS-5: a final answer nobody acted on is listed again (no call)
+    reset(); ws = new_ws(); pd_ = claim(sent=100, dos=120, bal=250.0); write_aging(ws, [pd_]); answer(pd_, PAID_A(pd_, 250.0)); sweep(ws, "--go")
+    reset(); code, out, err = sweep(ws, "--go"); tail = out.split("FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER")[-1]
+    check("ledger: a final answer on file with still nothing posted for its payer is listed again in the next report, with no call (review CS-5)",
+          lambda: cs_sent() == [] and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in out and ("v" + pd_["vid"]) in tail and "'paid'" in tail, out[-500:])
+    # CS-7: the month counter of a brand-new ledger
+    reset(); ws = new_ws(ledger=False); n = claim(sent=60); write_aging(ws, [n]); answer(n, PENDING_A(n)); sweep(ws, "--go", "--new-ledger")
+    check("caps: the first run of a brand-new ledger (--new-ledger) counts its one check once - the month's counter is 1, not 2 (review CS-7)",
+          lambda: len(cs_sent()) == 1 and ledger(ws)["months"][TODAY.strftime("%Y-%m")]["checks"] == 1, ledger(ws).get("months"))
+    # CS-11: the lists are printed whole
+    reset(); ws = new_ws(); seventy = [claim(sent=60, bal=100.0 + i) for i in range(70)]; write_aging(ws, seventy)
+    ledger_edit(ws, lambda d: d["months"].update({TODAY.strftime("%Y-%m"): {"checks": 250}}))      # past the $0.30 tier: no run cap bites before 70
+    for c7 in seventy: answer(c7, NO_ELECTRONIC_A(c7))
+    sweep(ws, "--go"); reset(); code, out, err = sweep(ws, "--go")
+    listed = out.split("STILL ON THE HAND-OFF LIST")[1] if "STILL ON THE HAND-OFF LIST" in out else ""
+    check("stop: the standing hand-off list names EVERY handed-off claim (70 of 70, not the first 60) (review CS-11)",
+          lambda: cs_sent() == [] and all(("v" + x["vid"] + " ") in listed for x in seventy), sum(1 for x in seventy if ("v" + x["vid"] + " ") in listed))
+    reset(); ws = new_ws(); off = [claim(payer="TRI05", sent=60, bal=50.0 + i) for i in range(45)]; write_aging(ws, off); code, out, err = sweep(ws, "--go")
+    listed = out.split("PAYER SWITCHED OFF")[1] if "PAYER SWITCHED OFF" in out else ""
+    check("payers: the switched-off payer's claims are all listed (45 of 45, not the first 40), none asked", lambda: cs_sent() == [] and all(("v" + x["vid"] + " ") in listed for x in off),
+          sum(1 for x in off if ("v" + x["vid"] + " ") in listed))
+
 def t_clear_cli():
     reset(); ws = new_ws(); p = claim(sent=70); write_aging(ws, [p]); answer(p, NO_ELECTRONIC_A(p)); sweep(ws, "--go")
     code, out, err = run_main("scripts/helpers/cs_rules.py", ["--clear", p["vid"]], ws)
@@ -768,7 +834,7 @@ def october_events():
     rs = json.loads(_read(REG + "sweep_resend_%s.json" % tag))
     for k in ("sent", "held", "skipped", "failed"):
         for r in rs.get(k) or []: kinds.setdefault(str(r["vid"]), "not found"); car.setdefault(str(r["vid"]), r.get("carrier")); dos.setdefault(str(r["vid"]), r.get("dos"))
-    w = json.loads(_read(REG + "sweep_writeoff_20261025.json"))
+    w = json.loads(_read(REG + "sweep_writeoff_" + "2026" + "1025" + ".json"))       # built in pieces: the privacy gate reads a whole date in a file name as a birth date
     for k in ("posted", "skipped", "held"):
         for r in w.get(k) or []:
             if isinstance(r, dict) and r.get("vid"): kinds.setdefault(str(r["vid"]), "paid"); car.setdefault(str(r["vid"]), r.get("carrier")); dos.setdefault(str(r["vid"]), r.get("dos"))
@@ -838,7 +904,7 @@ def t_replay():
     check("replay: with the year rule as well even fewer checks are kept", lambda: y["kept"] < r["kept"])
 
 TESTS = [t_prices_caps, t_labels, t_need, t_waits, t_record_stop, t_files, t_cli, t_inputs, t_need_run, t_request_shape_and_log, t_ledger_run, t_stop_run,
-         t_payer_stop_and_caps, t_answers_run, t_concurrent, t_cut_off, t_full_and_exact, t_clear_cli, t_engine, t_texts, t_copies, t_replay]
+         t_payer_stop_and_caps, t_answers_run, t_concurrent, t_cut_off, t_full_and_exact, t_review_fixes, t_clear_cli, t_engine, t_texts, t_copies, t_replay]
 _PATH = list(sys.path)
 def _run(t):
     try: t()

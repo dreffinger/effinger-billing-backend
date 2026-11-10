@@ -4,7 +4,8 @@
 #   command, option, file and quoted word in it must be true of the code. This test reads the live texts, the look-up skill
 #   (skills/billing-insurance-lookup-stedi/SKILL.md), the registry row for vendor eligibility (docs/captured_calls.md), the Billing Button
 #   page texts and the engine's documentation, and the code they point at - AS TEXT. No helper is started or imported; only the two pure
-#   tables (stedi_prices.py, cs_rules.py - no link to AdvancedMD or the vendor) are loaded from their files. No network. It proves:
+#   tables (stedi_prices.py, cs_rules.py - no link to AdvancedMD or the vendor) and the privacy gate's text transform (phi_gate.py) are
+#   loaded from their files. No network. It proves:
 #     - every helper a live text starts is in the repository, where the workspace builders copy it from;
 #     - every option a live text or the skill passes to a helper is read by that helper; every `python3 stedi.py <word>` and every
 #       stedi.<function> a text names exists in the vendor client;
@@ -15,7 +16,10 @@
 #       suffixes, the report line of a refused plain check and the prices the texts state are the code's;
 #     - the usage log is where the texts say, the nightly routine never restores patient_db/ (so its log is the night's), the state bundle
 #       carries it for the Billing Button;
-#     - the Billing Button page, the desktop app and the engine's documentation no longer say the engine's sweep buys checks.
+#     - the Billing Button page, the desktop app and the engine's documentation no longer say the engine's sweep buys checks;
+#     - (11/10/2026 review fixes) no text says the look-up is bought 'only when' the chart lacks a number; the provider-number refusals,
+#       the aging_refresh.py timeout, the exact-date sentence, the new hand-off reason and report lines, the STEP 6 ledger copy, rule (f)
+#       of the Button and the price table's limits are stated as the code has them.
 # Run: python3 tools/selftest/test_lookup_texts.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, re, json, glob, types, datetime
 import importlib.abc, importlib.machinery
@@ -266,7 +270,60 @@ def t_skill_and_docs():
     check("docs: the engine's documentation says the sweep step starts nothing and no longer promises Stedi steps it does not run",
           lambda: "nothing is started" in row and "--min-age" not in row and "the Stedi steps (precheck, sweep) are skipped" not in doc, row)
 
-for t in (t_commands, t_precheck, t_claim_status, t_usage_and_prices, t_skill_and_docs):
+# ==== 6. the review fixes of 11/10/2026: the sentences the three reviews found untrue, and the words of the new rules ================
+def _header(src):
+    """A helper's PLAIN ENGLISH header: the comment lines at the top, up to the first line that is not a comment."""
+    out = []
+    for l in src.splitlines():
+        if not l.startswith("#"): break
+        out.append(l.lstrip("# "))
+    return " ".join(out)
+def t_review_texts():
+    G = {n: _header(_read(n)) for n in ("scripts/helpers/stedi.py", "scripts/helpers/deceased_guard.py", "scripts/helpers/precheck.py")}
+    reg = next((l for l in _read("docs/captured_calls.md").splitlines() if l.startswith("| Stedi eligibility |")), "")
+    guard_par = next((l for l in SKILL.splitlines() if l.startswith("DECEASED GUARD")), "")
+    places = dict(G, **{"cascade.txt STEP 1": STEP1, "SKILL.md deceased guard": guard_par, "captured_calls.md row": reg})
+    bad = [n for n, t in places.items() if re.search(r"look-?up[^.;]{0,60}only when the chart has no", t, re.I) or not re.search(r"refuses the plain check for another reason", t)]
+    check("review texts: no text says the look-up is bought 'only when' the chart has no number or Medicare does not know it - each names a refused plain check too (ops S2)", lambda: bad == [], bad)
+    m = re.search(r'PROVIDER_REFUSED = \{([^}]*)\}', SRC["stedi.py"]); off = set(m.group(1).replace('"', "").replace(" ", "").split(",")) if m else set()
+    def codes_after(t):
+        m = re.search(r"our own provider number \(([\d, or]+)\)", t); return set(re.findall(r"\d+", m.group(1))) if m else set()
+    check("review texts: the provider-number refusals the texts name (41, 43, 50, 51, 97) are the client's PROVIDER_REFUSED, and they say the rest of the run sends no plain check (guard S5)",
+          lambda: off == {"41", "43", "50", "51", "97"} and codes_after(STEP1) == codes_after(SKILL) == codes_after(reg) == off and "the rest of that run sends no plain check" in STEP1
+          and "the rest of that run sends no plain check" in SKILL and "the rest of that run sends no plain check" in reg and "_PLAIN_OFF" in SRC["stedi.py"], (off, codes_after(STEP1), codes_after(SKILL), codes_after(reg)))
+    check("review texts: STEP 2 runs aging_refresh.py as ONE Bash call with the longest timeout - cut off at the 2-minute default it writes no ageing file and the sweep asks nothing (ops B1, claim-status CS-2)",
+          lambda: "`python3 aging_refresh.py --out aging_latest.json --threads 4` as ONE Bash call with the longest timeout (10 minutes" in STEP2 and "run it once more the same way before the sweep" in STEP2)
+    check("review texts: the exact-date sentence is true of cs_rules.label (a paid, denied or $0 window answer not naming the claim, an answer naming only other visits, a 'not matched' answer) - in STEP 2 and the sweep's header (claim-status CS-1)",
+          lambda: "a 3-day-window answer that does not name our claim, and a 'not matched' answer, get ONE check" not in STEP2
+          and "a paid, denied or $0 answer from the 3-day window that does not name our claim, an answer whose claims all carry other visits' account numbers, and a 'not matched' answer get ONE check with the exact date" in STEP2
+          and "an answer whose claims all carry other visits' account numbers" in _header(SRC["claim_status_sweep.py"]) and "the answer names only other claims" in SRC["cs_rules.py"])
+    lits = " | ".join(re.findall(r'"([^"\n]*)"', SRC["claim_status_sweep.py"]))
+    check("review texts: STEP 2 names the fourth hand-off reason, the 'PROPOSE FOR CS_OFF' line and the 'FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER' lines - all printed by the helper, with cs_rules.STOP_AFTER_ANY = 4 (claim-status CS-3, CS-4, CS-5)",
+          lambda: CS.STOP_AFTER_ANY == 4 and "four unusable answers in a row when the payer answered no other claim on those nights" in STEP2 and "PROPOSE FOR CS_OFF" in STEP2 and "PROPOSE FOR CS_OFF" in lits
+          and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in STEP2 and "FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER" in lits and "four answers in a row with no usable content" in SRC["cs_rules.py"])
+    STEP6 = STEP(CAS, "STEP 6 - ", "\nREPORT:")
+    check("review texts: STEP 6 copies the Sunday ledger back where the mirror is done, and a person's clear is made in the repository's ledger (ops N8)",
+          lambda: "(on Sundays registers/claim_status_ledger.json over practices/ehpa/registers/claim_status_ledger.json" in STEP6
+          and "`python3 cs_rules.py --clear <visit id> --ledger /home/claude/effinger-billing-backend/practices/ehpa/registers/claim_status_ledger.json`" in STEP2 and 'ap.add_argument("--ledger"' in SRC["cs_rules.py"])
+    f = rule(BB6, "f")
+    check("review texts: Billing Button rule (f) says the plain check is made only when the chart has a number of the Medicare shape, and the Button page no longer says the flags are listed for a chat session (ops N6)",
+          lambda: "with the chart's Medicare number when it has one of the Medicare shape" in f and "listed for a chat session" not in _read("tools/button/billing_button_page.html"), f[:200])
+    check("review texts: the price table and STEP 4 say what the table does not price (the coordination-of-benefits check, the payer pass-through fee) (ops N1)",
+          lambda: "coordination-of-benefits" in _header(SRC["stedi_prices.py"]) and "pass-through fee" in _header(SRC["stedi_prices.py"]) and "pass-through fee" in STEP4
+          and "made through stedi.py" in _header(SRC["stedi_prices.py"]))
+    s3 = next((l for l in SKILL.splitlines() if l.startswith("3. ")), "")
+    check("review texts: the skill says the look-up goes with the chart's own last name (suffix and all), and that a shared answer serves the guard only when asked on or after the claim's date of service (guard B1, S1)",
+          lambda: "sent with the chart's own last name, suffix and all" in s3 and "asked on or after the claim's date of service" in guard_par and "chart_last" in SRC["stedi.py"])
+    row = next((l for l in _read("docs/captured_calls.md").splitlines() if l.startswith("| Unpaid list / visits by last-billed carrier")), "")
+    check("review texts: the registry's unpaid-list row no longer names the claim-status sweep as a user - it reads tonight's aging_latest.json (claim-status CS-13 d)",
+          lambda: "`build_money.py` (`claim_status_sweep.py` read it until 11/10/2026" in row and "massrebillsearch" not in SRC["claim_status_sweep.py"], row[:200])
+    GATE = load("tools/mirror/phi_gate.py", "phi_gate_under_test")                  # the gate's text transform only: pure, no file, no network
+    tests = ("tools/selftest/test_lookup_rules.py", "tools/selftest/test_claim_status_rules.py")
+    moved = [n for n in tests if GATE.redact(_read(n), {}, code=True) != _read(n)]
+    check("review texts: the privacy gate's tree rules (what mirror.py runs on changed files) leave the two rule self-tests unchanged - their invented literals are built gate-safe (ops N3)",
+          lambda: moved == [], moved)
+
+for t in (t_commands, t_precheck, t_claim_status, t_usage_and_prices, t_skill_and_docs, t_review_texts):
     try: t()
     except Exception as e:
         import traceback

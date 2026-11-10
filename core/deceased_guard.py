@@ -9,9 +9,14 @@
 #          death blocks.
 #   11/10/2026 (look-ups part A): (3) is asked through the Stedi client, stedi.medicare(): a PLAIN Medicare check with the member number
 #          of the chart's Medicare Part B plan (car6085: an open one first, else the one that ended last), and the look-up by name + DOB
-#          + FL only when the chart has no usable number or Medicare does not know it. The answer is shared with the pre-claim check
-#          through medicare_store.py: an answer any helper got in the last 30 days is used (and its own date counts for the 30 days),
-#          and a chart whose call failed today is not bought again today (it stays 'unverified', exactly as before). A care-management
+#          + FL when the chart has no usable number, when Medicare does not know it, or when Medicare refuses the plain check for another
+#          reason (41, 61, an answer with no Part A or Part B; after a refusal of OUR provider number the rest of the run skips the plain
+#          check). The answer is shared with the pre-claim check through medicare_store.py: an answer any helper got in the last 30 days
+#          is used (and its own date counts for the 30 days) - but only when it was asked on or after the claim's date of service (or
+#          today, for a date still to come): an answer asked BEFORE that date cannot know of a death since, so Medicare is asked again
+#          (one plain check; the same holds for the cache's own entry) - and a chart whose call failed today is not bought again today
+#          (it stays 'unverified', exactly as before). A date of death a Medicare answer carried during this very check (a plain answer
+#          with error 61 and the date, then a look-up that failed) blocks this claim at once. A care-management
 #          chart with no Medicare plan keeps the look-up by name, counted as 'guard, no Medicare plan on the chart'. The cache is
 #          written one chart at a time into the ONE file it is configured with (DECEASED_CACHE, else the default below), read again just
 #          before the write and replaced in one step, so nothing another helper learned meanwhile is lost. No own request, no key file.
@@ -75,6 +80,11 @@ def _medicare_member(t, dos_iso):
         mm = re.match(r"(\d\d)/(\d\d)/(\d{4})", p.get("enddate") or ""); return f"{mm.group(3)}-{mm.group(1)}-{mm.group(2)}" if mm else ""
     still = [p for p in med if not end(p) or end(p) >= dos_iso]
     return ((still or sorted(med, key=end, reverse=True))[0].get("subscribernum") or "").strip()
+def _asked_before(j, dos_iso):
+    """11/10/2026 (review fix): True for an answer read back from the store that was asked BEFORE the claim's date of service (or before
+    today, for a date of service still to come) - it cannot know of a death since then, so the guard asks Medicare again."""
+    asked = str(((j or {}).get("stored") or {}).get("asked") or "") if isinstance(j, dict) else ""
+    return bool(asked) and asked < min(str(dos_iso or ""), datetime.date.today().isoformat())
 def stedi_lookup(pid, dos_iso):
     """Medicare record for pid as of dos -> (dod or None, ok)."""
     import amd, stedi
@@ -86,10 +96,13 @@ def stedi_lookup(pid, dos_iso):
     mm = re.match(r"(\d\d)/(\d\d)/(\d{4})", a.get("dob", "")); dob8 = f"{mm.group(3)}{mm.group(1)}{mm.group(2)}" if mm else ""
     # 11/10/2026: ONE Medicare answer through the client (it holds the key and the provider block, counts the call, shares the answer)
     number = _medicare_member(t, dos_iso)
+    ask = dict(member_id=number or None, dos=dos_iso.replace("-", ""), state="FL", pid=pid,
+               who="guard" if number is not None else "guard, no Medicare plan on the chart")
     try:
         if hasattr(stedi, "medicare"):
-            j, how = stedi.medicare(first, last.strip(), dob8, member_id=number or None, dos=dos_iso.replace("-", ""), state="FL", pid=pid,
-                                    who="guard" if number is not None else "guard, no Medicare plan on the chart", max_age_days=MAX_AGE_DAYS)
+            j, how = stedi.medicare(first, last.strip(), dob8, **ask, max_age_days=MAX_AGE_DAYS)
+            if how != "failed" and _asked_before(j, dos_iso):          # a shared answer asked BEFORE this date of service: asked again, fresh
+                j, how = stedi.medicare(first, last.strip(), dob8, **ask)
         else:                       # an older client in this workspace: the look-up as before, through the client
             j, how = stedi.mbi(first, last.strip(), dob8, "FL", dos_iso.replace("-", ""), pid=pid), "lookup"
         errs = [str(e).split(" ")[0] for e in stedi.med_summ(j)["errors"]]
@@ -107,9 +120,15 @@ def check(pid, dos, carrier=None, proc=None, allow_lookup=True):
     if rec and rec.get("dod") and not re.match(r"\d{4}-\d{2}-\d{2}$", str(rec.get("dod"))):
         rec = dict(rec); rec["dod"] = None; rec["checked"] = "2000-01-01"; c[pid] = rec
     stale = rec is None or (datetime.date.today() - datetime.date.fromisoformat(rec.get("checked", "2000-01-01"))).days > MAX_AGE_DAYS
+    # 11/10/2026 (review fix): an entry checked BEFORE this claim's date of service cannot know of a death since - asked again (one plain check)
+    stale = stale or str(rec.get("checked") or "") < min(dos, datetime.date.today().isoformat())
     needs = (carrier in MEDICARE) or ((proc or "") in CCM)
     if allow_lookup and needs and stale and not (rec and rec.get("dod")):
         dod, ok = stedi_lookup(pid, dos)
+        if not ok and not dod:              # 11/10/2026 (review fix): a date of death the hook wrote during THIS check (a plain answer with 61) counts now
+            try: seen = (_load().get(pid) or {}).get("dod")
+            except Exception: seen = None
+            if seen and re.match(r"\d{4}-\d{2}-\d{2}$", str(seen)): dod = seen
         if ok or dod:
             rec = {"dod": dod, "checked": _ASKED.pop(pid, None) or datetime.date.today().isoformat(), "src": "stedi-medicare-271" if dod else "stedi: no death on record"}
             c[pid] = rec; _put(pid, rec)

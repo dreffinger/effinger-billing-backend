@@ -4,9 +4,11 @@
 #   (registers/claim_status_ledger.json) - and how each answer is read. It records the payer's answer; it never acts on it.
 # Rules it uses: cs_rules.py - due by need (nothing posted for the payer, last sent 45+ days ago / 60 for a secondary balance, under a
 #   year old, a working route, and the ledger says neither wait nor stop); the waits; two unusable or three 'pending' answers in a row =
-#   stop and hand off; payers whose claim status does not work are never sent; 150 checks or $25 a run, 400 checks or $100 a month; a
-#   final answer only when it names this claim or was asked with the exact date (a 3-day-window answer that does not name the claim, or a
-#   'not matched' answer, gets ONE check with the exact date). A live run needs the word --go: without it the helper prints what it WOULD
+#   stop and hand off (four unusable answers in a row whether or not the payer answered another claim those nights); payers whose claim
+#   status does not work are never sent; 150 checks or $25 a run, 400 checks or $100 a month; a final answer only when it names this
+#   claim or was asked with the exact date (a paid, denied or $0 answer from the 3-day window that does not name the claim, an answer
+#   whose claims all carry other visits' account numbers, and a 'not matched' answer get ONE check with the exact date; an exact-date
+#   answer holding several claims, none of them ours, is 'not matched' and handed off). A live run needs the word --go: without it the helper prints what it WOULD
 #   ask and makes no call of any kind (10/6 and 10/17/2026: a probe for the usage text started the old helper and bought up to 100
 #   checks). --help prints and exits; an unknown word is an error and nothing is asked. A missing or stale ageing file, or a missing or
 #   unreadable ledger, ends the run with an error and no call - never a fall-back to the largest balances. Every check goes through the
@@ -16,6 +18,10 @@
 # Never touches: AMD writes, balances, claims. Writes claimstatus_<date>.json (chart and visit ids, no names), the ledger, an unusable raw
 #   reply under patient_db/claimstatus_raw/ (never in git), and prints the run report: what was asked and answered, the hand-off list
 #   with age and dollars, the insurance-check list, payers left out, wordings the rules do not know, the caps, and the claims silent 60+ days.
+#   11/10/2026 (review fixes): the hand-off list and the switched-off payers' claims are printed whole; a claim with a final answer on
+#   file and still nothing posted for its payer is listed in every report ('FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER',
+#   no call); a payer whose claims are on the hand-off list because it answered nothing on four runs in a row is named in every report
+#   while they stay there ('PROPOSE FOR CS_OFF' - a person switches it off in cs_rules.py; the helper never does).
 #   11/10/2026 (step 3): claimstatus_<date>.json is written again after EVERY claim, like the ledger - a run cut off half way (the Bash
 #   tool's time limit) keeps every answer it got where the runbook reads them, instead of answers that sit in the ledger only.
 # ---
@@ -102,12 +108,17 @@ def run(o, prog, vids=None, force_exact=False, keep_every_raw=False, after_claim
       caps.run_cap, cs_rules.CAPS["run dollars"], cs_rules.CAPS["month checks"], cs_rules.CAPS["month dollars"]))
     if pl["payer_off"]:
         p("  PAYER SWITCHED OFF - their claim status does not work; ask by portal or phone (%d):" % len(pl["payer_off"]))
-        for d in pl["payer_off"][:40]: p("    " + _who_line(d["row"], today) + " - " + d["why"].split(" - ")[0])
+        for d in pl["payer_off"]: p("    " + _who_line(d["row"], today) + " - " + d["why"].split(" - ")[0])
     for d in pl["not_due"]: p("  not asked: " + _who_line(d["row"], today) + " - " + d["why"])
     for v in sorted(set(re.sub(r"\D", "", str(v)) for v in (vids or [])) - pl["found"]): p("  not asked: v%s - not on tonight's ageing file" % v)
     if pl["handed_off"]:
         p("  STILL ON THE HAND-OFF LIST - ask the payer by portal or phone (%d):" % len(pl["handed_off"]))
-        for d in pl["handed_off"][:60]: p("    " + _who_line(d["row"], today) + " - handed off %s: %s" % (d["ledger"].get("stopped"), d["ledger"].get("stop_why")))
+        for d in pl["handed_off"]: p("    " + _who_line(d["row"], today) + " - handed off %s: %s" % (d["ledger"].get("stopped"), d["ledger"].get("stop_why")))
+        mute = collections.Counter(str(d["row"].get("payer") or "").strip() for d in pl["handed_off"] if str(d["ledger"].get("stop_why") or "").startswith("four answers in a row"))
+        for payer, n in sorted(mute.items()): p("  PROPOSE FOR CS_OFF: %s - %d claim(s) handed off because the payer answered nothing on four runs in a row; switch it off in cs_rules.py CS_OFF (with the date and the reason) unless vendor support fixes it" % (payer, n))
+    if pl.get("final_open"):
+        p("  FINAL ANSWER ON FILE BUT NOTHING POSTED FOR ITS PAYER - post the remit or work the denial (%d):" % len(pl["final_open"]))
+        for d in pl["final_open"]: p("    " + _who_line(d["row"], today) + " - '%s' asked %s (%s)" % (d["ledger"].get("answer"), d["ledger"].get("asked"), d["ledger"].get("why")))
     if not o.go:
         sim = cs_rules.Caps(caps.before, o.max); fit = 0
         while fit < len(due) and sim.next_ok()[0]: sim.count(); fit += 1

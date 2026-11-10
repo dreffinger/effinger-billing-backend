@@ -16,10 +16,14 @@
 #     file that is missing or older than one day ends the run with an error and no call - never a fall-back to the largest balances.
 #   - WAITS, STOP AND HAND OFF, PAYERS THAT DO NOT WORK, CAPS: the tables below. Two answers in a row with no usable content, or three
 #     'pending' answers in a row, end the asking: the claim goes on the hand-off list ("ask the payer by portal or phone") until it is
-#     sent again or a person clears its row (python3 cs_rules.py --clear <visit id>).
+#     sent again or a person clears its row (python3 cs_rules.py --clear <visit id>). An empty answer counts toward the two only when
+#     another claim of the same payer answered that night; four answers in a row with no usable content end the asking either way
+#     (11/10/2026 review fix: a claim that always comes back empty, or a payer that answers nobody, is no longer bought every week).
+#     A claim with a final answer on file and still nothing posted for its payer is listed again in every report (no call is made).
 #   - READING THE ANSWER: paid / finalized at $0 / denied / pending / not found (may be resent, as before) / no electronic answer (the
-#     payer cannot give the status electronically: stop and hand off) / not matched (date of service, member id, too many matches: ONE
-#     more check with the exact date; not matched again = stop and hand off) / not eligible on that date (a coverage problem: the
+#     payer cannot give the status electronically: stop and hand off) / not matched (date of service, member id, too many matches - and,
+#     11/10/2026 review fix, an answer whose claims all carry OTHER visits' account numbers, or an exact-date answer holding several claims
+#     none of which names ours: ONE more check with the exact date; not matched again = stop and hand off) / not eligible on that date (a coverage problem: the
 #     insurance check, never a resend) / no usable answer. A wording the table does not know is 'no usable answer' and is printed.
 # Never touches: AdvancedMD, the vendor, the network. It reads the ageing file, reads and writes the ledger (one file, written in one
 #   step: a temporary file renamed into place), and keeps an unusable raw reply under patient_db/ (never in git). What is DONE with an
@@ -47,6 +51,7 @@ NEED_DAYS = {"primary": 45, "secondary": 60}   # days since the claim was last s
 # carrier; a SECONDARY balance is timely from the primary's remit, never the date of service). No payer has a different limit on file.
 FILING_LIMIT_DAYS = {"default": 365, "secondary": 365}
 STOP_AFTER = {"no usable answer": 2, "pending": 3}   # answers in a row that end the asking (spec 9.4)
+STOP_AFTER_ANY = 4                     # unusable answers in a row that end the asking even when the payer answered no other claim (review fix)
 PAYER_RUN_STOP = 5                     # unusable answers in a row from one payer end that payer for the rest of the run (spec 9.5)
 CAPS = {"run checks": 150, "run dollars": 25.00, "month checks": 400, "month dollars": 100.00}   # spec 9.6, priced with stedi_prices.py
 HISTORY = 8                            # answers kept per ledger row (day, label)
@@ -172,7 +177,9 @@ def label(answer, http=None, error=None, vid=None, dos=None, exact=False, icn=No
     """Read ONE claim-status answer for one claim -> dict: label, why, status (category/code), http, exact, named, final, lines, payments,
     paid, errors, unknown (wordings the rules do not know). final = a final label AND (the answer names this claim OR it was asked with
     the exact date). When the answer holds several claims (a 3-day window), only the claims that name ours are read; with none named, the
-    claims on the date of service, else all."""
+    claims on the date of service, else all. 11/10/2026 (review fix): with none named, an answer whose claims ALL carry other visits'
+    account numbers, or an exact-date answer holding several claims, is not our claim's answer -> 'not matched' (one exact-date check,
+    then the hand-off list); it is never recorded as our final answer."""
     res = {"label": UNUSABLE, "why": "", "status": "", "http": http, "exact": bool(exact), "named": False, "final": False, "lines": [], "payments": [], "paid": 0.0, "errors": [], "unknown": []}
     if error is not None:
         res["why"] = "the call failed (%s)" % str(error)[:60]; return res
@@ -188,6 +195,11 @@ def label(answer, http=None, error=None, vid=None, dos=None, exact=False, icn=No
         res["why"] = "the payer or the vendor answered with an error" if res["errors"] else "empty reply (no status, no error)"
         return res
     named = [c for c in claims if names_claim(c, vid, icn)]
+    foreign = [c for c in claims if c.get("acct") and not names_claim(c, vid, icn)]
+    if not named and (len(foreign) == len(claims) or (exact and len(claims) > 1)):        # not our claim's answer (review fix)
+        res.update(label=NOT_MATCHED, why="the answer names only other claims" if len(foreign) == len(claims) else "several claims on the date of service, none names ours",
+                   status="", named=False, lines=[l for c in claims for l in c["lines"]], accts=sorted({c["acct"] for c in claims if c["acct"]}))
+        return res
     pick = named or (claims if exact else ([c for c in claims if _same_day(c, dos)] or claims))
     lines = [l for c in pick for l in c["lines"]]
     lab, why = label_lines(lines)
@@ -309,7 +321,9 @@ def finish_run(rows, answers, today):
     """At the end of a run: the in-a-row counters and the stops (spec 9.4). rows: ledger key -> row (changed in place); answers:
     [(key, payer, label)] in the order asked. A 'no usable answer' counts as a try only when ANOTHER claim of the same payer gave a usable
     answer in this run (a night when a payer or the vendor is down uses up nobody's tries); a 'pending' answer always counts - the payer
-    answered for this very claim. -> the keys handed off tonight."""
+    answered for this very claim. 11/10/2026 (review fix): four unusable answers in a row end the asking whether they counted or not - in
+    weekly runs the payer's other claims sit in their waits, so the claim that always comes back empty was otherwise bought every week
+    until it was a year old. -> the keys handed off tonight."""
     good = collections.defaultdict(set)
     for k, payer, lab in answers:
         if lab != UNUSABLE: good[payer].add(k)
@@ -317,6 +331,7 @@ def finish_run(rows, answers, today):
     for k, payer, lab in answers:
         L = rows.get(k)
         if L is None: continue
+        L["nousable_row"] = int(L.get("nousable_row") or 0) + 1 if lab == UNUSABLE else 0     # unusable answers in a row, counted or not
         if lab == UNUSABLE:
             if good[payer] - {k}: L["unusable_row"] = int(L.get("unusable_row") or 0) + 1; L["pending_row"] = 0
             else: L["uncounted"] = int(L.get("uncounted") or 0) + 1
@@ -324,6 +339,7 @@ def finish_run(rows, answers, today):
         else: L["pending_row"] = 0; L["unusable_row"] = 0
         if not L.get("stopped"):
             if int(L.get("unusable_row") or 0) >= STOP_AFTER[UNUSABLE]: stop(L, today, "two answers in a row with no usable content"); out.append(k)
+            elif int(L.get("nousable_row") or 0) >= STOP_AFTER_ANY: stop(L, today, "four answers in a row with no usable content (its payer answered no other claim on those nights)"); out.append(k)
             elif int(L.get("pending_row") or 0) >= STOP_AFTER[PENDING]: stop(L, today, "three 'pending' answers in a row"); out.append(k)
         elif L.get("stopped") == today.isoformat() and k not in out: out.append(k)
     return out
@@ -398,6 +414,7 @@ class Ledger:
             with open(self.path) as fh: cur = json.load(fh)
             if not isinstance(cur, dict) or not isinstance(cur.get("rows"), dict): cur = None
         except Exception: cur = None
+        if cur is None: self.saved = collections.Counter(self.delta)    # (review fix) the copy in memory already counts this run's checks: none added twice
         cur = cur or json.loads(json.dumps(self.data))
         cur.setdefault("rows", {}); cur.setdefault("months", {}); cur["about"] = ABOUT; cur["schema"] = "claim-status-ledger/1"
         for k, v in self.changed.items(): cur["rows"][k] = v
@@ -449,7 +466,8 @@ def aging_rows(path, now=None):
 def plan(rows, ledger_rows, today, car2stedi, carriers=None, vids=None):
     """Tonight's claims BY NEED -> dict: due (in asking order: the filing limit soonest, then the longest silence, then the balance), waits
     (why -> count), payer_off (due by need but the payer's claim status does not work: portal or phone), handed_off (claims still on the
-    hand-off list), silent60 (count), skipped (rows lacking a field), outside (rows the --carriers / visit filter left out)."""
+    hand-off list), final_open (a final answer on file and still nothing posted for its payer - when there is one), silent60 (count),
+    skipped (rows lacking a field), outside (rows the --carriers / visit filter left out)."""
     out = {"due": [], "waits": collections.Counter(), "payer_off": [], "handed_off": [], "silent60": 0, "skipped": 0, "outside": 0, "rows": 0, "not_due": [], "found": set()}
     seen = set(); carriers = set(carriers or []) or None; vids = set(re.sub(r"\D", "", str(v)) for v in (vids or [])) or None
     for r in rows:
@@ -467,6 +485,8 @@ def plan(rows, ledger_rows, today, car2stedi, carriers=None, vids=None):
         if vids: out["not_due"].append(dict(d, key=k, row=r))
         if d["stage"] == "route" and str(r.get("payer") or "").strip() in CS_OFF: out["payer_off"].append(dict(d, key=k, row=r))
         if d["stage"] == "ledger" and L.get("stopped") and not _posted_now(r): out["handed_off"].append(dict(d, key=k, row=r, ledger=L))
+        # 11/10/2026 (review fix): a final answer on file, nothing posted for its payer yet and not sent again - listed in every report (no call)
+        if d["stage"] == "ledger" and L.get("final") and not L.get("stopped") and str(d["why"]).startswith("final answer"): out.setdefault("final_open", []).append(dict(d, key=k, row=r, ledger=L))
     far = datetime.date(9999, 1, 1)
     out["due"].sort(key=lambda d: (filing_limit(d["row"]) or far, -((today - (_date(d["row"].get("sent")) or today)).days), -_money(d["row"].get("bal"))))
     return out

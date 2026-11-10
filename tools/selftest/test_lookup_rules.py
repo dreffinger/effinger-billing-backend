@@ -25,7 +25,11 @@
 #       evening start is gone, so the nightly routine is the one scheduled start;
 #     - one usage-log line per paid call (none for the free GET calls) with who / kind / payer / chart / code / first-tier price, and a log
 #       that cannot be written never stops a call; the price table gives October's four statement amounts; the reader prices a month;
-#     - the core/ copies are the scripts/helpers copies; nothing is written in the checkout.
+#     - the core/ copies are the scripts/helpers copies; nothing is written in the checkout;
+#     - (11/10/2026 review fixes) the look-up goes with the chart's own last name, suffix and all; after a refusal of our provider number
+#       the run sends no more plain checks; an answer asked before the claim's date of service is asked again by the guard; a date of
+#       death a plain answer carried during the check blocks that claim; the pre-claim check never caches a failed call; an old-style
+#       chart number still 'differs'; the store keeps the Advantage plan line; a temporary file of an atomic write is git-ignored.
 # Run: python3 tools/selftest/test_lookup_rules.py   (exit 1 on any failure; the last line says how many checks ran and how many failed)
 import os, sys, io, re, json, types, glob, time, shutil, atexit, argparse, datetime, tempfile, contextlib, subprocess, traceback
 import importlib.abc, importlib.machinery
@@ -158,7 +162,7 @@ OTHER = {}                      # other payers: member number -> "active" / "ina
 UNPAID = []                     # the unpaid list precheck reads
 def _vendor(url, body):
     if "insurance-discovery" in url:
-        return Resp(200, {"coveragesFound": 1, "items": [{"payer": {"name": "TEST MEDICAID"}, "payerId": "77027", "subscriber": {"memberId": "D" + "7" * 7},
+        return Resp(200, {"coveragesFound": 1, "items": [{"payer": dict(name="TEST MEDICAID"), "payerId": "77027", "subscriber": {"memberId": "D" + "7" * 7},
                           "planDateInformation": {"plan": ymd(datetime.date(TODAY.year, 1, 1))}, "benefitsInformation": [{"code": "1", "name": "Active Coverage", "planCoverage": "TEST MMA"}], "confidence": "HIGH"}]})
     if "claimstatus" in url: return Resp(200, {"claims": [], "errors": []})
     payer = body.get("tradingPartnerServiceId"); sub = body.get("subscriber") or {}
@@ -200,7 +204,7 @@ CHARTS = {}                     # the stand-in AdvancedMD: one chart record per 
 LOGINS = []
 def chart(pid, p=None, plans=(), deceased="", last=None):
     """plans: (carrier, end date MM/DD/YYYY or '', member number) per plan; p: the person the chart is about (None = a made-up one)."""
-    p = p or {"first": "NOPLAN", "last": "ZZNOPLAN", "dob8": ymd(datetime.date(1940, 1, 2))}
+    p = p or dict(first="NOPLAN", last="ZZNOPLAN", dob8=ymd(datetime.date(1940, 1, 2)))     # dict(): the privacy gate reads a quoted capital word after "last": as a name
     CHARTS[str(pid)] = {"name": nm(last or p["last"], p["first"]), "dob": p["dob8"][4:6] + "/" + p["dob8"][6:] + "/" + p["dob8"][:4], "deceased": deceased, "plans": list(plans)}
     return str(pid)
 def _chart_xml(pid):
@@ -276,6 +280,7 @@ def reset():
         if os.path.isdir(p): shutil.rmtree(p)
         elif os.path.exists(p): os.remove(p)
     ST.WHO = "test_lookup_rules.py"
+    if hasattr(ST, "_PLAIN_OFF"): del ST._PLAIN_OFF[:]           # a refusal of our provider number holds for one run (one process) - each case is a new run
     if DG is not None: del DG.LOG[:]; DG._ASKED.clear()
 def kinds(): return [b.get("tradingPartnerServiceId") or ("discovery" if "discovery" in u else "?") for u, b in SENT]
 def ask(*a, **k):
@@ -424,8 +429,16 @@ def t_suffix():
     check("client: no suffix (or letters that only look like one, with no space or comma before them) -> no second plain check, straight to the look-up",
           lambda: k1 == kinds() == ["CMS", "MBILUNOSSN"] and how == how2 == "lookup after plain", (k1, kinds()))
     reset(); p = newp(); j, how, err = askp(p, number=WRONG[1], last=p["last"] + " JR", dos=ymd(ago(1)))
-    check("client: suffix and still not found -> exactly two plain checks and ONE look-up (by the name without the suffix), whose answer is the result",
-          lambda: kinds() == ["CMS", "CMS", "MBILUNOSSN"] and SENT[2][1]["subscriber"]["lastName"] == p["last"] and how == "lookup after plain" and j["subscriber"]["memberId"] == p["number"], kinds())
+    check("client: suffix and still not found -> exactly two plain checks and ONE look-up, sent with the chart's OWN last name (suffix and all, as every caller sent it before)",
+          lambda: kinds() == ["CMS", "CMS", "MBILUNOSSN"] and SENT[1][1]["subscriber"]["lastName"] == p["last"] and SENT[2][1]["subscriber"]["lastName"] == p["last"] + " JR"
+          and how == "lookup after plain", (kinds(), [b["subscriber"]["lastName"] for _, b in SENT]))
+    # review B1: Medicare matches the last name WITH its suffix (rules.md 10/4). A chart named 'X JR' with an outdated number: the plain check
+    # and its retry without the suffix both miss; the look-up must go with 'X JR' - stripped, it missed a death the old look-up found.
+    reset(); pj = newp(death=ago(9)); pj["last"] = pj["last"] + " JR"; pid = cid()
+    j, how, err = askp(pj, number=WRONG[1], dos=ymd(ago(3)), pid=pid)
+    check("client: Medicare holds the name WITH its suffix and the chart's number is outdated -> the look-up by the chart's own name finds the record (Medicare's own number, the date of death)",
+          lambda: kinds() == ["CMS", "CMS", "MBILUNOSSN"] and how == "lookup after plain" and not j.get("errors") and j["subscriber"]["memberId"] == pj["number"]
+          and ST.med_summ(j)["death"] == pj["death8"] and (store_chart(pid).get("answers") or [{}])[0].get("number_differs") is True, (kinds(), how, j.get("errors")))
 
 def t_no_number():
     res = []
@@ -477,6 +490,19 @@ def t_other_refusal():
     check("client: any other refusal of the plain check (41 provider not cleared, 61, an answer with no Part A or Part B) -> the look-up, as before, and ONE report line saying so",
           lambda: all(r[1] == ["CMS", "MBILUNOSSN"] and r[2] == "lookup after plain" and len(r[3]) == 1 and "look-up was bought" in r[3][0] and r[3][0] in r[4] for r in res)
           and "41" in res[0][3][0] and "61" in res[1][3][0] and "no Part A or Part B" in res[2][3][0], res)
+    # review S5: a refusal of OUR provider number (41, 43, 50, 51, 97) holds for every chart - after the first one the run sends no plain check
+    res = []
+    for code in ("41", "97", "43"):
+        reset(); five = [newp() for _ in range(5)]
+        for q in five: OVERRIDE[("CMS", q["number"])] = ("answer", err_answer(code, {"memberId": q["number"]}))
+        hows = [askp(q, dos=ymd(ago(1)), pid=cid())[1] for q in five]
+        res.append((code, kinds(), hows, list(ST.NOTES)))
+    check("client: Medicare refuses OUR provider number (41 / 97 / 43) -> ONE plain check in the run, then every chart goes straight to the look-up (1 plain + 5 look-ups, not 5 + 5); one report line says so",
+          lambda: all(r[1] == ["CMS"] + ["MBILUNOSSN"] * 5 and r[2] == ["lookup after plain"] + ["lookup"] * 4 and len(r[3]) == 1 and "no plain check" in r[3][0]
+                      and "Medicare refused the plain check (%s) - the look-up was bought instead" % r[0] in r[3][0] for r in res), res)
+    reset(); p = newp(); q = newp(); OVERRIDE[("CMS", p["number"])] = ("answer", err_answer("61", {"memberId": p["number"]}))
+    askp(p, dos=ymd(ago(1)), pid=cid()); j, how, err = askp(q, dos=ymd(ago(1)), pid=cid())
+    check("client: a refusal about the patient (61) does not switch the plain check off for the next chart", lambda: kinds() == ["CMS", "MBILUNOSSN", "CMS"] and how == "plain", kinds())
 
 def t_ssn():
     ssn = "".join(str((i * 7 + 3) % 10) for i in range(9))
@@ -583,6 +609,10 @@ def t_store():
             "core/patient_db/medicare_answers.json", "core/patient_db/stedi_usage.log"]
     ign = [subprocess.run(["git", "-C", ROOT, "check-ignore", "-q", r], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode for r in rels]
     check("store: git ignores patient_db/ - the store and the usage log can never be committed", lambda: ign == [0] * len(rels), dict(zip(rels, ign)))
+    tmps = ["practices/ehpa/registers/.deceased_cache.abc123.tmp", "practices/ehpa/registers/.claim_status_ledger.abc123.tmp", "scripts/helpers/registers/.claim_status_ledger.abc123.tmp"]
+    ign = [subprocess.run(["git", "-C", ROOT, "check-ignore", "-q", r], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode for r in tmps]
+    check("store: the temporary file an interrupted atomic write leaves (guard cache, claim-status ledger) is git-ignored even inside a tracked folder (ops N2)",
+          lambda: ign == [0] * len(tmps), dict(zip(tmps, ign)))
     pid = cid(); dos = ymd(ago(1)); facts = {"active": True, "partA": "A", "partB": "B", "other": [], "hospice": False, "death": None, "errors": [], "number_differs": None}
     MS.put(pid, facts, "plain", "first", dos); MS.put(pid, dict(facts, partB="B2"), "plain", "second", dos)
     MS.put(pid, facts, "plain", "other month", ymd(next_month(TODAY)))
@@ -613,6 +643,11 @@ def t_store():
     MS.put(pid, dict(facts, errors=["72 not found " + p["number"]], other=[{"code": "U", "entity": [["TEST", p["number"]]], "plan": "x"}], name=p["last"], dob=p["dob8"], mbi=p["number"]), "lookup", "x", dos)
     t = text_of(STORE)
     check("store: no Medicare number, name or birth date in the file - not kept, and anything shaped like a number is blanked", lambda: t and not any(x in t for x in (p["number"], p["last"], p["dob8"])), t[:400])
+    reset(); pid = cid(); many = [{"code": "X", "type": "MA", "typeName": "x", "plan": "x", "dates": {}, "entity": [["TEST FACILITY", "F%02d" % i]]} for i in range(21)]
+    plan_line = {"code": "U", "type": "HM", "typeName": "x", "plan": "TEST ADVANTAGE PLAN", "dates": {}, "entity": [["TEST ADVANTAGE", "H" + str(4521)]]}
+    MS.put(pid, dict(facts, other=many + [plan_line]), "plain", "x", dos); got = MS.get(pid, 0, dos) or {}
+    check("store: more than 20 other-payer lines - the Advantage plan line is still kept (plan lines first, the 20-line cut falls on the others; review S4)",
+          lambda: len(got.get("other") or []) == 20 and got["other"][0]["code"] == "U" and got["other"][0]["entity"][0][0] == "TEST ADVANTAGE", [o.get("code") for o in got.get("other") or []])
     reset(); pid = cid(); MS.put(pid, facts, "plain", "x", dos); good = text_of(STORE); real_dump = MS.json.dump
     def boom(*a, **k): raise OSError("disk full (stand-in)")
     MS.json.dump = boom
@@ -709,14 +744,43 @@ def t_guard_shared():
     reset(); q = newp(); pid = chart(cid(), q, plans=[("car6085", "", q["number"])])
     askp(q, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)     # a machine where the store came along but the guard's cache did not
     store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(20)))); del SENT[:]
-    r = guard_check(pid, iso(dos))
-    check("guard: an answer another helper got 20 days ago is used, and the guard's 30 days count from THAT day (cache 'checked' = the day Medicare was asked)",
+    r = guard_check(pid, iso(ago(25)))                                                          # a claim dated BEFORE that answer was asked (review S1)
+    check("guard: an answer another helper got 20 days ago is used, and the guard's 30 days count from THAT day (cache 'checked' = the day Medicare was asked) - for a claim dated on or before that day",
           lambda: SENT == [] and r == (False, "") and cache_json()[pid]["checked"] == iso(ago(20)), cache_json())
     reset(); q = newp(); pid = chart(cid(), q, plans=[("car6085", "", q["number"])])
     askp(q, dos=ymd(dos), pid=pid, who="pre-claim check", max_age_days=0); os.remove(DCACHE)
     store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(31)))); del SENT[:]
-    guard_check(pid, iso(dos))
-    check("guard: an answer 31 days old is not used by the guard - it asks again", lambda: kinds() == ["CMS"] and cache_json()[pid]["checked"] == iso(TODAY))
+    guard_check(pid, iso(ago(33)))                                                              # a claim dated before that answer: only the 30 days decide
+    check("guard: an answer 31 days old is not used by the guard - it asks again (a claim dated before that answer, so only the 30 days decide)",
+          lambda: kinds() == ["CMS"] and cache_json()[pid]["checked"] == iso(TODAY))
+
+def t_guard_review():
+    # review S1: an answer (shared, or the guard's own cache entry) asked BEFORE the claim's date of service cannot know of a death since
+    res = []
+    for where in ("the guard's own cache entry", "a shared answer in the store (the guard's cache lost)"):
+        reset(); q = newp(); pid = chart(cid(), q, plans=[("car6085", "", q["number"])])
+        askp(q, dos=ymd(ago(5)), pid=pid, who="pre-claim check", max_age_days=0)             # alive when asked: a plain answer, and the hook's cache entry
+        if where.startswith("the guard's"):
+            c = cache_json(); c[pid]["checked"] = iso(ago(20)); os.remove(STORE)
+            with open(DCACHE, "w") as fh: json.dump(c, fh)
+        else:
+            store_edit(lambda d: d["charts"][pid]["answers"][0].update(asked=iso(ago(20)))); os.remove(DCACHE)
+        q["death8"] = ymd(ago(10)); del SENT[:]                                               # the patient died after that answer was asked
+        r = guard_check(pid, iso(ago(5))); res.append((where, r, kinds()))
+    check("guard: an answer asked BEFORE the claim's date of service (20 days ago, the claim 5 days ago) is not taken as 'no death' - ONE plain check asks again and a death since then blocks the claim (review S1)",
+          lambda: all(r[2] == ["CMS"] and r[1][0] is True and "after date of death %s" % iso(ago(10)) in r[1][1] for r in res), res)
+    reset(); q = newp(); pid = chart(cid(), q, plans=[("car6085", "", q["number"])]); later = iso(TODAY + datetime.timedelta(days=3))
+    r1 = guard_check(pid, later); r2 = guard_check(pid, later)
+    check("guard: a claim dated after today is asked about once - today's answer is the newest there can be, so a second check the same day buys nothing",
+          lambda: kinds() == ["CMS"] and r1 == r2 == (False, "") and cache_json()[pid]["checked"] == iso(TODAY), kinds())
+    # review N1: a plain answer with error 61 carries the date of death; the look-up after it times out - the date already known blocks THIS claim
+    reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", p["number"])])
+    OVERRIDE[("CMS", p["number"])] = ("answer", {"errors": [{"code": "61", "description": DESC["61"]}], "subscriber": {"memberId": p["number"]}, "benefitsInformation": [],
+                                                  "planDateInformation": {"dateOfDeath": ymd(ago(10))}})
+    OVERRIDE[("MBILUNOSSN", p["last"])] = ("timeout",)
+    r = guard_check(pid, iso(ago(5)))
+    check("guard: a plain answer with error 61 and a date of death, then a look-up that times out -> THIS claim is blocked by that date, not logged UNVERIFIED (review N1)",
+          lambda: kinds() == ["CMS", "MBILUNOSSN"] and r[0] is True and "after date of death %s" % iso(ago(10)) in r[1] and DG.LOG == [], (kinds(), r, DG.LOG))
 
 def t_guard_number():
     reset(); p = newp(); pid = chart(cid(), p, plans=[("car6085", mdy(ago(400)), WRONG[0]), ("car6085", "", spaced(p["number"])), ("car6404", "", "M" + "5" * 9)])
@@ -882,6 +946,22 @@ def t_precheck_store():
     reset(); ws = new_ws(); p = newp(); pid = chart(cid(), p, plans=[("car6085", "", spaced(p["number"]))]); unpaid(pid, "FLO02", dos)
     guard_check(pid, iso(dos)); del SENT[:]; precheck(ws)
     check("pre-claim: a shared plain answer never raises MBI MISMATCH (the chart's number with dashes is not 'different')", lambda: SENT == [] and rows(ws)[pid]["result"] == "OK straight Medicare", rows(ws)[pid])
+    # review S3: a chart number NOT of the Medicare shape (an old-style number) - the guard's look-up answer is shared; it must still say 'differs'
+    reset(); ws = new_ws(); p = newp(); old_style = "".join(str(i) for i in range(1, 10)) + "A"
+    pid = chart(cid(), p, plans=[("car6085", "", old_style)]); unpaid(pid, "FLO02", dos)
+    guard_check(pid, iso(dos)); n1 = kinds(); del SENT[:]; precheck(ws)
+    check("pre-claim: a shared look-up answer on a chart number NOT of the Medicare shape still says the numbers differ -> ONE look-up -> 'MBI MISMATCH chart ... vs CMS ...' (review S3)",
+          lambda: n1 == ["MBILUNOSSN"] and kinds() == ["MBILUNOSSN"] and rows(ws)[pid]["result"] == "MBI MISMATCH chart %s vs CMS %s" % (old_style, p["number"])
+          and (store_chart(pid).get("answers") or [{}])[0].get("number_differs") is True, (n1, kinds(), rows(ws)[pid].get("result")))
+    # review S2: another helper's failed call earlier the same day (42) gives the same words, but is never kept for the month
+    reset(); ws = new_ws(); p = newp(advantage=("TEST ADVANTAGE", "H" + str(4521))); pid = chart(cid(), p, plans=[("car6085", "", p["number"])]); unpaid(pid, "FLO02", dos)
+    OVERRIDE[("CMS", p["number"])] = ("answer", err_answer("42", {"memberId": p["number"]}))
+    guard_check(pid, iso(dos)); OVERRIDE.clear(); del SENT[:]
+    precheck(ws); r1 = rows(ws)[pid]; n1 = len(SENT); cache1 = json.loads(text_of(os.path.join(ws, "precheck_cache.json")) or "{}")
+    store_edit(lambda d: d["charts"][pid]["failed"].update(day=iso(ago(1)))); precheck(ws); r2 = rows(ws)[pid]
+    check("pre-claim: another helper's failed Medicare call earlier the same day (42) prints the same words but is NOT kept in its cache for the month - the next night asks and finds the Advantage plan (review S2)",
+          lambda: n1 == 0 and r1["result"] == "not found on Medicare: 42 " + DESC["42"] and not any(k.startswith(pid + "|") for k in cache1)
+          and kinds() == ["CMS"] and r2["result"].startswith("ADVANTAGE PLAN on DOS: TEST ADVANTAGE") and not r2.get("cached"), (n1, r1.get("result"), sorted(cache1), kinds(), r2.get("result")))
 
 def t_ten_charts():
     reset(); dos = ago(1); C = []
@@ -936,7 +1016,7 @@ def t_copies():
 
 TESTS = [t_prices, t_usage_reader, t_shape, t_plain_good, t_not_found, t_wrong_number, t_suffix, t_no_number, t_down, t_other_refusal, t_ssn, t_med_summ,
          t_usage_log, t_cli, t_store]
-GUARD_TESTS = [t_guard_death, t_guard_not_found_failed, t_guard_shared, t_guard_number, t_guard_flag_cache, t_guard_old_client, t_guard_charge,
+GUARD_TESTS = [t_guard_death, t_guard_not_found_failed, t_guard_shared, t_guard_review, t_guard_number, t_guard_flag_cache, t_guard_old_client, t_guard_charge,
                t_precheck_args, t_precheck_words, t_precheck_store, t_ten_charts]
 LAST = [t_engine, t_texts, t_copies]
 _PATH = list(sys.path)

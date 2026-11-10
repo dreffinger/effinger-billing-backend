@@ -2,9 +2,12 @@
 # Decides: For every recent unpaid visit, whether the plan it is billed to was really active on that date of service (Stedi), and proposes the right payer when it was not.
 # Rules it uses: Medicare visits use ONE Medicare answer (also shows Advantage plan / hospice / death); everything else uses the payer's own eligibility. One check per patient+payer+month is cached so nights are cheap. Only reports - never changes a chart or a claim.
 #   11/10/2026 (look-ups part A): the Medicare answer is asked through stedi.medicare() - a PLAIN Medicare check with the number of the
-#   chart's OPEN Medicare plan, the MBI lookup only when the chart has no usable number or Medicare does not know it - and is shared with
-#   the deceased-patient guard through medicare_store.py for the visit's calendar month (an answer read back from the store is not a new
-#   lookup). The result words are the same as before; 'MBI MISMATCH' is raised only on an answer that came from a lookup (in a plain
+#   chart's OPEN Medicare plan, the MBI lookup when the chart has no usable number, when Medicare does not know it, or when Medicare
+#   refuses the plain check for another reason (41, 61, an answer with no Part A or Part B; after a refusal of OUR provider number the
+#   rest of the run skips the plain check) - and is shared with the deceased-patient guard through medicare_store.py for the visit's
+#   calendar month (an answer read back from the store is not a new lookup). A Medicare call that failed - this run's own, or another
+#   helper's earlier the same day - is never kept in precheck_cache.json for the month: the next night asks again. The result words are
+#   the same as before; 'MBI MISMATCH' is raised only on an answer that came from a lookup (in a plain
 #   answer the number is only the echo of what was sent), and the Medicare number is not written into precheck_cache.json or
 #   precheck_<date>.json when the answer was a plain one. A real argument reader: --help prints and exits; an unknown option is an error
 #   and nothing is asked (11/5: a probe started it with a word it did not know and it bought 40 lookups over its 14-day default window).
@@ -107,7 +110,8 @@ def main():
                         act = [i for i in d["items"] if (i["status"] or "").startswith("Active")]
                         rec["discovery"] = [(i["payer"], i["member"], i["plan"], i["dates"]) for i in act][:4] or "nothing active found"
                     except Exception as e: rec["discovery"] = "discovery error %s" % str(e)[:80]
-            cache[key] = {k: rec[k] for k in rec if k in ("result", "mbi", "death", "partA", "partB", "discovery")}
+            if not (payer == "MEDICARE" and how == "failed"):          # a failed Medicare call (own, or another helper's today) is not kept for the month
+                cache[key] = {k: rec[k] for k in rec if k in ("result", "mbi", "death", "partA", "partB", "discovery")}
         except Exception as e:
             rec["result"] = "ERROR " + str(e)[:120]
         out.append(rec); time.sleep(0.3)
