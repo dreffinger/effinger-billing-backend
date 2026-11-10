@@ -605,9 +605,9 @@
    "failure_modes": [
     "The owner is the only bank signer and system administrator. A sudden illness stops payroll and claim submission at the next cycle.",
     "No covering physician is arranged. A nursing facility must ensure another physician supervises care when the attending is unavailable (42 CFR 483.30(a)), so it will find one itself.",
-    "A substitute physician bills under the absent owner's number for too long. Medicare allows it for no more than 60 continuous days (Claims Processing Manual, chapter 1, section 30.2.11).",
+    "A substitute physician bills under the absent owner's number too long. Medicare allows no more than 60 continuous days (Claims Processing Manual, chapter 1, sections 30.2.10 and 30.2.11).",
     "A nurse practitioner is expected to carry the practice alone. Required physician visits in nursing facilities (42 CFR 483.30) and state supervision rules may not allow it.",
-    "A sole owner dies with no plan. In Florida only licensed professionals may hold shares of a professional association (sections 621.09 and 621.11), so heirs cannot take over as owners."
+    "A sole owner dies unprepared. Later visits cannot be billed under the owner's Medicare number (42 CFR 424.540), and Florida professional association shares cannot pass to unlicensed heirs (section 621.11)."
    ],
    "key_questions": [
     "If the owner were unreachable tomorrow, is there a named person who could approve payroll and pay bills, and does the bank know?",
@@ -626,14 +626,14 @@
     },
     {
      "action": "Add a second signer and a second administrator",
-     "detail": "Add a trusted second signer at the bank and payroll service and a second administrator on each critical system. Name a Medicare delegated official who can sign enrollment updates (42 CFR 424.502).",
+     "detail": "Add a trusted second signer at the bank and payroll service and a second administrator on each critical system. Name a Medicare delegated official (an owner or a manager on payroll) to sign enrollment updates (42 CFR 424.502).",
      "cadence": "once",
      "effort": "low",
      "impact": "high"
     },
     {
      "action": "Arrange physician coverage in writing",
-     "detail": "Agree coverage for each site. When absent, the regular physician may bill a substitute physician's visits with modifier Q5 or Q6 for up to 60 continuous days, keeping a record of each service.",
+     "detail": "Agree coverage for each site. Medicare lets the regular physician bill a substitute's visits with modifier Q5 or Q6 for up to 60 continuous days, with a record of each service. After that the substitute bills under their own enrollment.",
      "cadence": "annual",
      "effort": "medium",
      "impact": "high"
@@ -657,7 +657,7 @@
    "vendor_refs": [
     {
      "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
-     "note": "For a planned exit it advises a billing operations manual and a credential inventory. Nothing on sudden absence, and several of its regulatory statements are wrong."
+     "note": "Advises a billing operations manual and a credential inventory for a planned exit. Its crisis section covers only closing fast, not keeping the practice running. Several regulatory statements are wrong."
     },
     {
      "item": "practice-valuation-playbook",
@@ -672,6 +672,7 @@
     "cms-cpm-ch1",
     "cfr-483-30",
     "cfr-424-502",
+    "cfr-424-540",
     "cfr-164-308",
     "hhs-hipaa-security-nprm-2025",
     "mgma-stat-succession-2026",
@@ -692,7 +693,7 @@
      "direction": "lower",
      "cadence": "annual",
      "benchmark_best": "6 months or less",
-     "benchmark_typical": "not measured. 33% of groups have any succession plan",
+     "benchmark_typical": "not measured. 33% of groups have a leadership succession plan",
      "benchmark_red": "over 12 months, or never tested",
      "benchmark_note": "The Medical Group Management Association (October 2026) suggests a tabletop exercise twice a year. A 2025 federal proposal, not final, would require contingency plan tests every 12 months. Both concern system outages. Only 19% of 238 leaders polled felt very confident of quick recovery.",
      "confidence": "low",
