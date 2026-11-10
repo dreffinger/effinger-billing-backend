@@ -10,7 +10,8 @@
 # Steps (--steps): columns (Claims Center scan -> inspector advisory bypasses -> Unbilled repairs -> ERA-linked reason-code
 #   re-posts -> duplicate / crossover exclusion completions -> rescan), era (835 inbox upload -> list -> Post button ->
 #   era_clear -> list), cascade (void-on-arrival rules; since 11/10/2026 the Stedi pre-claim check runs only in the nightly insurance
-#   cascade routine, not here), sweep (UNI20/BCBS pre-5/1/2026 277 pass),
+#   cascade routine, not here), sweep (since 11/10/2026 nothing is started: the nightly insurance cascade routine asks claim status by
+#   need on Sundays - nightly/live/cascade.txt STEP 2),
 #   packages (approved Mandatory Approvals cards: dry first, then live, then recorded done), cred (NPPES / revalidation / LEIE),
 #   money (payments scan when the universe file is present, ledger rebuild). "all" = every step except sweep and money unless named.
 # Modes: --mode dry reads everything and writes nothing in AdvancedMD (every helper gets its dry form); --mode live writes.
@@ -751,39 +752,17 @@ class Run:
 
     # ------------------------------------------------------------------ sweep
     def sweep(self):
+        # 11/10/2026 (look-ups part A, step 2): the engine no longer starts any claim-status sweep. This step only ever ran the backlog
+        # sweep of UNI20/BCBS claims dated before 5/1/2026, which William retired on 11/2/2026 (rules.md); none of the engine's scheduled
+        # profiles holds it; and it passed --skip-answered, which the helper never read (on 11/2 it re-asked 60 claims answered 12 hours
+        # earlier). Claim status is now asked BY NEED, once a week, by the nightly insurance cascade routine (nightly/live/cascade.txt
+        # STEP 2: claim_status_sweep.py --go, with the shared ledger and the caps); a second scheduled start would ask from a second copy of
+        # the ledger. A press that names this step gets this one line.
         s = self.step("sweep")
-        if not self.stedi:
-            self.warn(s, "no Stedi key - sweep skipped")
-            s["status"] = "skipped"
-            s["ended"] = iso()
-            return
-        minage = (datetime.date.today() - datetime.date(2026, 5, 1)).days
-        # 10/19/2026: the earlier passes' registers feed --skip-answered (answered visits are not asked again) and give the pass number
-        # (the 10/19 0510Z lesson: the literal "button" raised ValueError in sweep_register.py and the answered pool was re-asked).
-        prev = sorted(glob.glob(os.path.join(self.ws, "registers", "uni20_bcbs_pre0501_sweep_*.json")))
-        npass = str(len(prev) + 1)
-        args = ["--min-age", str(minage), "--max", "60", "--carriers", "UNI20,BCBS"]
-        if prev:
-            args += ["--skip-answered", ",".join(prev)]
-        rc, text, log = self.helper("claim_status_sweep.py", args, timeout=2400)
-        today = datetime.date.today().strftime("%Y%m%d")
-        p = os.path.join(self.ws, "claimstatus_%s.json" % today)
-        if os.path.exists(p):
-            try:
-                rows = json.load(open(p))
-                acts = {}
-                for r in rows if isinstance(rows, list) else []:
-                    acts.setdefault(str(r.get("action", "?"))[:40], []).append("v%s" % r.get("visitid"))
-                for a_, vids in acts.items():
-                    s["counts"][a_] = len(vids)
-                    s["lines"].append({"action": a_, "visits": len(vids), "ids": " ".join(vids[:25])})
-                if self.exists("sweep_register.py"):
-                    self.helper("sweep_register.py", [p, self.stamp, npass])
-            except ValueError:
-                self.warn(s, "claimstatus file unreadable")
-        if rc != 0:
-            self.warn(s, "claim_status_sweep rc %s: %s" % (rc, self.tail(text, 3)))
-        s["summary"] = "; ".join("%s: %s" % kv for kv in s["counts"].items()) or "no answers"
+        note = "no claim-status sweep is started here - the nightly insurance cascade routine asks claim status by need on Sundays"
+        self.say("sweep: " + note)
+        s["counts"]["claim-status sweep"] = note
+        s["summary"] = note
         s["ended"] = iso()
 
     # ------------------------------------------------------------------ approval packages
