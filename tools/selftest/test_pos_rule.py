@@ -451,6 +451,19 @@ check("live run: five visits created, each under its own clinician, in its own b
 check("live run: the profile sent to AdvancedMD is the message's own", sum(1 for b in POSTS if 'action="addvisit"' in b and 'profile="prof15"' in b) == 2 and sum(1 for b in POSTS if 'action="addvisit"' in b and 'profile="prof13"' in b) == 3, [b[:160] for b in POSTS if "addvisit" in b])
 check("live run: what AdvancedMD stored is read back and matches what was sent", all(r["pos_stored"] == r["pos_lines"] for r in reg["created"]) and "POS NOT KEPT" not in out and "POS CHECK" not in out, out[-400:])
 check("live run: the refused message leaves its visit line in the register for later batches", [r.get("lines") for r in reg["skipped"]] == [[["99310", "11/02/2026", B["n2"]]]], reg["skipped"])
+# 11/10/2026 (round 7, section 7): every row records the chart's own order and its open plans when the visit was entered; a visit entered with no
+# open plan (AdvancedMD then builds it no insurance-order list) is counted and printed "NO PLAN AT ENTRY". The create shape (insorder "1") stays.
+check("live run (round 7): every row records chart_insorder and open_plans_at_entry - a chart with no plan: 0 open plans, each visit printed and counted 'NO PLAN AT ENTRY'",
+      all(r_.get("chart_insorder") == "1" and r_.get("open_plans_at_entry") == 0 and r_.get("open_plan_seqs_at_entry") == [] for r_ in reg["created"]) and out.count("NO PLAN AT ENTRY pat") == 5 and "'NO PLAN AT ENTRY': 5" in out
+      and sum(1 for b in POSTS if 'action="addvisit"' in b and 'insorder="1"' in b) == 5, (out[-500:], [(r_.get("chart_insorder"), r_.get("open_plans_at_entry")) for r_ in reg["created"]]))
+_dm0 = dict(DEMOG); DEMOG.update(order="2", plans=OTHER + MEDICARE.replace('enddate=""', 'enddate="10/01/2026"')); out, reg = run_live(M1); DEMOG.clear(); DEMOG.update(_dm0)
+check("live run (round 7): a chart with one open plan (and one ended) - open_plans_at_entry 1, its sequence and the chart's order recorded, nothing printed",
+      len(reg["created"]) == 2 and all(r_.get("open_plans_at_entry") == 1 and r_.get("open_plan_seqs_at_entry") == ["2"] and r_.get("chart_insorder") == "2" for r_ in reg["created"]) and "NO PLAN AT ENTRY" not in out, reg["created"])
+_pp0 = amd.post; amd.post = lambda body, timeout=0: "<r><Fault>chart not read</Fault></r>" if "getdemographic" in body else _pp0(body, timeout)
+try: out, reg = run_live(M1)
+finally: amd.post = _pp0
+check("live run (round 7): a chart whose plans could not be read records None (unknown - never 0) and is not printed as NO PLAN AT ENTRY",
+      len(reg["created"]) == 2 and all(r_.get("open_plans_at_entry") is None and r_.get("chart_insorder") is None for r_ in reg["created"]) and "NO PLAN AT ENTRY" not in out, reg["created"])
 out, reg = run_live(M1, flip=True)
 last3 = out.strip().splitlines()[-3:]
 check("live run: AdvancedMD storing 31 where 32 was sent is said per visit, counted, and shown in a short line within the last three", out.count("POS NOT KEPT") == 2 and any(l.startswith("POS CHECK: stored another POS x2; not own message x0; clinician unknown x0; no facility x0") and len(l) <= 110 for l in last3)
@@ -2105,11 +2118,16 @@ check("captured calls (13.4c, section 7): the look-up answers - 1123F = pcode654
       'procedure id `pcode65441`, name "ACP DISCUSS/DSCN MKR DOCD"' in _cc and "1124F is NOT in the practice's procedure list" in _cc and 'procedure id `pcode692183`, name "QUAL CARE NEUROLOGIC CND MVP", units 1.0, default place of service 11, type of service 01' in _cc and "read 11/10/2026 09:43Z" in _cc)
 check("lessons: one dated line records the owner's decision on held visits and the rule version (since step 4 a later line follows it: William's initial-visit rule)", sum(1 for l_ in _sl if l_.startswith("- 2026-11-10T1435Z | chat (quality code 1123F, version 2, step 2) | RULE |") and "just deal with it" in l_ and "2026-11-10.6" in l_) == 1)
 # the insurance-check step: a void quality line never holds the visit (its function is run here with stand-ins; the rest of that helper is not loaded)
-_vsrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _vsrc = _vsrc[_vsrc.index("def fast_set_insorder(v, order, removed=None):"):_vsrc.index("def main():")]
+_vsrc = open(os.path.join(ROOT, "scripts", "helpers", "claimocity_verify.py")).read(); _vsrc = _vsrc[_vsrc.index("def fast_set_insorder(v, order, removed=None, info=None):"):_vsrc.index("def main():")]
+# 11/10/2026 (round 7): AdvancedMD builds a visit's insurance-order LIST from its order - the stand-ins show it, and give every live charge (visit_charges)
+_LIST = lambda o_: "<insuranceorderlist>%s</insuranceorderlist>" % "".join('<insuranceorder sequence="%s" ordinal="%d"/>' % (s_, i_) for i_, s_ in enumerate(x_ for x_ in o_.split(",") if x_))
 class _RS:
     CHG_FIELDS = ["fee", "pos"]; state = {"order": "1,2", "void": set(), "sent": []}
     @staticmethod
-    def detail(cid): return '<r><patient id="pat1"/><visit id="vst1" episode="e1" insorder="%s"/><charge id="charge%s" fee="1.00" pos="32" void="%s"/></r>' % (_RS.state["order"], cid, "1" if str(cid) in _RS.state["void"] else "0")
+    def detail(cid): return '<r><patient id="pat1"/><visit id="vst1" episode="e1" insorder="%s">%s</visit><charge id="charge%s" fee="1.00" pos="32" void="%s"/></r>' % (_RS.state["order"], _LIST(_RS.state["order"]), cid, "1" if str(cid) in _RS.state["void"] else "0")
+    @staticmethod
+    def visit_charges(cid):
+        r_ = ET.fromstring(_RS.detail(cid)); return r_.find(".//visit"), r_.find(".//patient"), [ET.fromstring(_RS.detail(c_)).find(".//charge") for c_ in ("10", "11") if c_ not in _RS.state["void"]]
 class _AM:
     @staticmethod
     def msg(action, cls, attrs=None, children=""): return children
@@ -2131,7 +2149,10 @@ VQ = {"order": "1,2", "void": set(), "sent": [], "fault": None, "proc": {"10": (
 class _RS2:
     CHG_FIELDS = ["fee", "pos", "proccode"]
     @staticmethod
-    def detail(cid): pc, fee = VQ["proc"].get(str(cid), ("pcodeX", "1.00")); return '<r><patient id="pat1"/><visit id="vst1" episode="e1" insorder="%s"/><charge id="charge%s" fee="%s" pos="32" proccode="%s" void="%s"/></r>' % (VQ["order"], cid, fee, pc, "1" if str(cid) in VQ["void"] else "0")
+    def detail(cid): pc, fee = VQ["proc"].get(str(cid), ("pcodeX", "1.00")); return '<r><patient id="pat1"/><visit id="vst1" episode="e1" insorder="%s">%s</visit><charge id="charge%s" fee="%s" pos="32" proccode="%s" void="%s"/></r>' % (VQ["order"], _LIST(VQ["order"]), cid, fee, pc, "1" if str(cid) in VQ["void"] else "0")
+    @staticmethod
+    def visit_charges(cid):
+        r_ = ET.fromstring(_RS2.detail(cid)); return r_.find(".//visit"), r_.find(".//patient"), [ET.fromstring(_RS2.detail(c_)).find(".//charge") for c_ in sorted(VQ["proc"]) if c_ not in VQ["void"]]
 class _AM2:
     @staticmethod
     def msg(action, cls, attrs=None, children=""): return children
@@ -2207,7 +2228,7 @@ def run_inside(path, standins, cwd, env=None, argv=()):
 # the whole insurance-check step, run INSIDE this process with stand-ins: what it writes in its register for a visit that carries the line
 vfd = tempfile.mkdtemp(prefix="posrule_vf_"); os.makedirs(os.path.join(vfd, "registers")); json.dump({"car6085": ["FLO02", "FLORIDA MEDICARE"]}, open(os.path.join(vfd, "carriers_rich.json"), "w"))
 json.dump([{"pid": "f1", "name": "x", "dob": "", "IN1": []}], open(os.path.join(vfd, "feed_parsed_T2.json"), "w"))
-VF_STAND = {"amd": {"login_cached": lambda *a: None, "msg": _AM2.msg, "post": _AM2.post}, "resave": {"detail": _RS2.detail, "CHG_FIELDS": _RS2.CHG_FIELDS},
+VF_STAND = {"amd": {"login_cached": lambda *a: None, "msg": _AM2.msg, "post": _AM2.post}, "resave": {"detail": _RS2.detail, "CHG_FIELDS": _RS2.CHG_FIELDS, "visit_charges": _RS2.visit_charges},
             "elig_amd": {"plans": lambda num: ({"insorder": "2", "deceased": ""}, [{"id": "ins1", "carrier": "car6085", "sequence": "1", "enddate": ""}]), "run_plan": lambda num, p: {"status": "ACTIVE", "other_payers": []}, "one_line": lambda s: "ACTIVE"},
             "deceased_guard": {"check": lambda *a, **k: (False, ""), "record": lambda *a, **k: None, "_iso": lambda x: x}, "stedi": {}, "add_ins": {}, "ins_update": {}}
 def vf_run(row, fault):
@@ -2223,7 +2244,9 @@ _vr, _vo, _ve = vf_run(_qrow, "always")
 check("insurance check step (section 7): refused with and without the line - HOLD, and the hold says 'insorder not applied' with the quality line named (the words the import switches the code off on)",
       _ve == "" and _vr and _vr["decision"] == "HOLD" and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: resave FAULT") for h_ in _vr["hold"]) and not _vr.get("quality_removed"), (_ve, _vr))
 _vr, _vo, _ve = vf_run(dict(_qrow, quality_codes=None, quality_charge=None), "always")
-check("insurance check step: a visit without the line - the hold words are exactly as before", _ve == "" and _vr and _vr["hold"] == ["insorder not applied on vst1"], (_ve, _vr))
+check("insurance check step: a visit without the line whose echo is refused - held in words that say what its list shows (round 7, 4.4: it still bills to its old order 2), under order_differs, and the hold says it is a label in this report only (4.6)",
+      _ve == "" and _vr and len(_vr["hold"]) == 1 and _vr["hold"][0].startswith("vst1 still bills to its old insurance order 2 (resave FAULT") and _vr["hold"][0].endswith("HELD in this report only - AdvancedMD will still bill this visit to its insurance order at the next claim run unless someone stops it")
+      and _vr.get("order_differs") == ["vst1"] and not _vr.get("no_order_list"), (_ve, _vr))
 VF_STAND["amd"]["post"] = lambda body, timeout=0: (_ for _ in ()).throw(TimeoutError("read timed out")); _vr, _vo, _ve = vf_run(_qrow, None); VF_STAND["amd"]["post"] = _AM2.post
 check("insurance check step: an echo that raises on a visit with the line - the hold still says 'insorder not applied' with the line named", _ve == "" and _vr and any(h_.startswith("insorder not applied on vst1 (the visit carries the quality line charge11: error") for h_ in _vr["hold"]), (_ve, _vr))
 # 11.1: the Claim Inspector step takes the quality line off a held visit by itself (run INSIDE this process with stand-ins)
