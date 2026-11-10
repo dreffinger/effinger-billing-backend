@@ -1,0 +1,3 @@
+{"about": "Claim-status ledger (look-ups part A, 11/10/2026): one row per claim and payer - the last answer, the day asked, the tries since the claim was last sent, the day it was last sent, final or not, a hand-off - and the checks bought per calendar month. Written by the claim-status helpers through cs_rules.py; claim, visit and chart numbers only.", "months": {}, "schema": "claim-status-ledger/1", "updated": "2026-11-10T16:16:02Z",
+ "rows": {
+ }}

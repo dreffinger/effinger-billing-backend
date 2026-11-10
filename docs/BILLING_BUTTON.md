@@ -63,8 +63,8 @@ https://claude.ai/artifact/DecNZkNsoQ4V2c1gwLLqiq
 |---|---|
 | `columns` | `columns_scan.py` before -> `insp_bypass_advisories.py` (plan only) -> `unbilled_repair.py` (no `--live`) -> `payreasons.py --list` (`--unbilled --live` when live) -> `excl_dup_complete.py` / `excl_crossover_complete.py` per claim run that has rows -> `columns_scan.py` after |
 | `era` | `era_list.py` before -> `era_post.py --all-unposted` (`--dry`) -> per posted check `era_co45_relink.py <check> --meta` (audit; `--live` where it finds lines) -> `era_fallback_0913b.py --checks --stamp` (`--dry`, then live) -> `era_clear.py` (`--dry`) -> `wo_reversal_post.py` when era_clear wrote reversal rows (`--dry`, then live, then `era_clear.py` again) -> `era_list.py` after; every check still carrying money becomes a waiting line (11/7/2026) |
-| `cascade` | `void_rules.py` (`--dry`; skipped without `void_rules.json`) -> `precheck.py --days 3 --max 120` (skipped without a Stedi key) |
-| `sweep` | `claim_status_sweep.py --min-age N --max 60 --carriers UNI20,BCBS` + `sweep_register.py` (Stedi; only when named) |
+| `cascade` | `void_rules.py` (`--dry`; skipped without `void_rules.json`); since 11/10/2026 the pre-claim check `precheck.py` is not started here - the nightly insurance cascade routine runs it once a night |
+| `sweep` | since 11/10/2026 nothing is started and nothing is bought: the nightly insurance cascade routine asks claim status by need on Sundays (`claim_status_sweep.py --go`, nightly/live/cascade.txt STEP 2); a press that names this step gets one line in the report |
 | `packages` | every `approved` item in `practices/ehpa/registers/approvals_pending.json` (or `--packages` ids): the package script dry, then live, then `status done` + `answer` in the register |
 | `cred` | `cred_check.py` (NPPES, revalidation reminders, LEIE) |
 | `money` | `pay_scan.py` when `patient_universe_*.json` exists, then `build_money.py` (only when named) |
@@ -89,7 +89,7 @@ Settings -> Secrets and variables -> Actions.
 | Name | Kind | Value |
 |---|---|---|
 | `AMD_PSW` | secret, **required** | the POI0712 password. Never typed anywhere else. |
-| `STEDI_API_KEY` | secret, optional | the Authorization header value Stedi shows. Without it the Stedi steps (precheck, sweep) are skipped. Each lookup costs money; the pre-check cache is kept between runs. |
+| `STEDI_API_KEY` | secret, optional | the Authorization header value Stedi shows. Since 11/10/2026 no engine step starts a Stedi check of its own (the pre-claim check and claim status run in the nightly insurance cascade routine); the deceased-patient guard behind a rebill uses the key when it must ask Medicare. Each Stedi call costs money. |
 | `BUTTON_SCHEDULE_MODE` | variable | `dry` (default when unset) or `live`. Applies to scheduled runs only; the button always sends its own mode. |
 | `BUTTON_SCHEDULE_ENABLED` | variable | `false` switches the schedules off; anything else leaves them on. |
 
