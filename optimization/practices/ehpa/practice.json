@@ -1,0 +1,22 @@
+{
+ "code": "ehpa",
+ "name": "Effinger Health PA",
+ "specialty": "Geriatrics and primary care",
+ "setting": "Facility-based: hospital, nursing facilities and assisted living",
+ "profile": {
+  "trade_name": "North Florida Senior Care",
+  "location": "Tallahassee, Florida",
+  "entity": "Florida professional association taxed as an S corporation",
+  "clinicians": "One physician-owner (family medicine) and one nurse practitioner",
+  "sites": "One hospital, five nursing facilities and seven assisted living facilities in the latest charge feed",
+  "payers": "Medicare fee-for-service is 55.5% of charges; the rest is Medicare Advantage, Florida Medicaid plans, Veterans Affairs and Tricare",
+  "systems": "AdvancedMD, Claimocity, Stedi, QuickBooks, a HIPAA-enabled Neon database, and software agents that run billing every 2 to 6 hours",
+  "revenue_ttm": 1058153,
+  "as_of": "2026-11-10",
+  "data_sources": [
+   "Accountant's cash-basis financial statements, 2023 to September 30, 2026 (unaudited)",
+   "The practice database: receivables, remittances, denials, charge feed, treasury and credentialing, as of November 9, 2026",
+   "CMS public Medicare data by clinician, 2019 to 2024"
+  ]
+ }
+}

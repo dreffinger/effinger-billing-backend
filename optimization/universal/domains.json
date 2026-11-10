@@ -1,0 +1,177 @@
+[
+ {
+  "slug": "strategy-governance",
+  "ord": 1,
+  "name": "Strategy, ownership and governance",
+  "summary": "Who owns the practice, how decisions get made, where it is going, and the management rhythm that keeps it on course.",
+  "why_it_matters": "A practice with no written direction is run by whatever is urgent. Buyers, lenders and partners all read governance as a sign of whether results can be repeated without the founder.",
+  "owner_role": "Owner",
+  "frameworks": [
+   "MGMA Body of Knowledge: Organizational Governance; Strategy and Business Development",
+   "Baldrige: Leadership, Strategy",
+   "OIG compliance element 2 (leadership and oversight)"
+  ]
+ },
+ {
+  "slug": "financial-management",
+  "ord": 2,
+  "name": "Financial management: the CFO function",
+  "summary": "Books, statements, budget, cash, debt, tax and cost structure: knowing whether the practice is profitable, solvent and liquid, and why.",
+  "why_it_matters": "Collections can rise while cash runs short, because owner draws, debt service and aging receivables do not show in profit. The owner is the CFO whether or not anyone holds the title.",
+  "owner_role": "Owner, with the accountant",
+  "frameworks": [
+   "MGMA Body of Knowledge: Financial Management",
+   "HFMA MAP Keys: Financial Management group",
+   "SBA and FDIC small-business finance",
+   "AAPC CPPM: Medical office accounting"
+  ]
+ },
+ {
+  "slug": "rcm-front-end",
+  "ord": 3,
+  "name": "Revenue cycle: before the claim",
+  "summary": "Capturing who was seen and who pays for it: census or schedule, registration, eligibility, authorization and the patient's share.",
+  "why_it_matters": "Most denials are decided before the visit ends. Coverage that was wrong on the day of service cannot be fixed by the billing office afterward, only discovered.",
+  "owner_role": "Front office or intake lead; in facility practice, whoever owns the census",
+  "frameworks": [
+   "HFMA MAP Keys: Patient Access",
+   "HFMA Patient Financial Communications Best Practices",
+   "NCQA PCMH: Patient-Centered Access"
+  ]
+ },
+ {
+  "slug": "rcm-charge-coding",
+  "ord": 4,
+  "name": "Revenue cycle: charges, coding and documentation",
+  "summary": "Turning care that was delivered into complete, accurate, supportable charges: capture, code level, documentation, modifiers, place of service and the fee schedule.",
+  "why_it_matters": "This is where revenue and audit risk are created at the same moment. Under-coding gives money away; over-coding borrows it from a future audit.",
+  "owner_role": "Clinicians and the coding lead",
+  "frameworks": [
+   "HFMA MAP Keys: Pre-Billing",
+   "AAPC CPMA and CPC domains",
+   "AHIMA CCS-P: coding and compliance",
+   "CMS documentation guidelines"
+  ]
+ },
+ {
+  "slug": "rcm-claims-ar",
+  "ord": 5,
+  "name": "Revenue cycle: claims, payment and receivables",
+  "summary": "Getting claims out clean, posting what comes back, working what is unpaid, and learning from every denial.",
+  "why_it_matters": "A claim is not revenue until it is paid correctly and posted. Receivables lose value every week they age, and each payer's appeal clock runs whether or not anyone is watching.",
+  "owner_role": "Billing lead",
+  "frameworks": [
+   "HFMA MAP Keys: Claims, Account Resolution",
+   "AAPC CPB domains",
+   "MGMA: Revenue Cycle Management"
+  ]
+ },
+ {
+  "slug": "payers-contracts",
+  "ord": 6,
+  "name": "Payers, contracts and reimbursement",
+  "summary": "Who pays the practice, under what terms and rules, and whether the clinicians are enrolled to be paid at all.",
+  "why_it_matters": "Contracts and payment rules set the ceiling on everything the revenue cycle can collect. A missed revalidation or an unread fee schedule change costs more than most denials.",
+  "owner_role": "Owner, with the credentialing and billing leads",
+  "frameworks": [
+   "AAPC CPPM: Physician reimbursement",
+   "AMA payor contracting toolkits",
+   "AAFP: Practice and payment models"
+  ]
+ },
+ {
+  "slug": "compliance-risk",
+  "ord": 7,
+  "name": "Compliance and risk",
+  "summary": "The program, audits and controls that keep billing lawful and the practice insured, plus the specific rules that carry the heaviest penalties.",
+  "why_it_matters": "Government payers recover overpayments for six years and multiply them when the practice knew or should have known. A working compliance program is also the practice's best defense and a line item in every buyer's diligence.",
+  "owner_role": "Owner as compliance contact, with healthcare counsel",
+  "frameworks": [
+   "OIG General Compliance Program Guidance (seven elements)",
+   "MGMA Body of Knowledge: Risk and Compliance Management",
+   "AAPC CPCO domains",
+   "HIPAA Privacy and Security Rules"
+  ]
+ },
+ {
+  "slug": "clinical-operations",
+  "ord": 8,
+  "name": "Clinical operations and care delivery",
+  "summary": "How clinician time is spent: capacity, census or panel, the care team, care-management programs, rounding flow, coverage, transitions and the experience of patients, families and facilities.",
+  "why_it_matters": "Clinician time is the scarcest asset in the practice. Operations decide how much of it reaches patients and how much is lost to travel, rework and tasks someone else could do.",
+  "owner_role": "Owner and lead clinician",
+  "frameworks": [
+   "MGMA Body of Knowledge: Operations Management; Patient Experience",
+   "NCQA PCMH: Team-Based Care; Care Management and Support; Care Coordination",
+   "IHI Quintuple Aim: experience of care; workforce well-being"
+  ]
+ },
+ {
+  "slug": "quality-value",
+  "ord": 9,
+  "name": "Quality and value-based performance",
+  "summary": "Measuring and improving outcomes, documenting how sick the patients are, closing care gaps, and getting paid for results as well as visits.",
+  "why_it_matters": "Medicare adjusts payment on quality and cost, and Medicare Advantage pays plans on documented risk and Star measures. A practice that can show results has contracts to negotiate; one that cannot has only volume.",
+  "owner_role": "Lead clinician",
+  "frameworks": [
+   "Medicare MIPS performance categories",
+   "NCQA PCMH: Performance Measurement and Quality Improvement",
+   "IHI Quintuple Aim: population health; equity",
+   "MGMA: Quality Management"
+  ]
+ },
+ {
+  "slug": "people-compensation",
+  "ord": 10,
+  "name": "People: staffing, compensation and culture",
+  "summary": "Roles, hiring, pay, accountability, training and retention for clinicians and staff, and the choice between doing work in-house and buying it.",
+  "why_it_matters": "Payroll is the largest controllable cost and turnover is the most expensive hidden one. In a small practice one departure can stop a whole function.",
+  "owner_role": "Owner or practice manager",
+  "frameworks": [
+   "MGMA Body of Knowledge: Human Resource Management",
+   "Baldrige: Workforce",
+   "IHI Quadruple Aim",
+   "AMA STEPS Forward: burnout, leadership and culture"
+  ]
+ },
+ {
+  "slug": "technology-data-ai",
+  "ord": 11,
+  "name": "Technology, data and automation",
+  "summary": "The systems the practice runs on, how data moves between them, what gets measured, what gets automated, and how all of it is secured.",
+  "why_it_matters": "Every other domain depends on data that is complete, timely and trusted. Automation multiplies whatever process it is given, good or bad, so governance matters more as more work is automated.",
+  "owner_role": "Owner or operations lead",
+  "frameworks": [
+   "MGMA: Health Information Management",
+   "AAPC CPPM: EMR, health information exchange, modern health IT",
+   "MIPS Promoting Interoperability",
+   "HIPAA Security Rule"
+  ]
+ },
+ {
+  "slug": "growth-market",
+  "ord": 12,
+  "name": "Growth and market development",
+  "summary": "Where more revenue can come from: demand, new service lines, relationships, new sites, more clinicians, reputation, partnerships and acquisitions.",
+  "why_it_matters": "Growth that outruns capacity, credentialing or cash creates new problems. Growth that follows a plan raises both income and what the practice is worth.",
+  "owner_role": "Owner",
+  "frameworks": [
+   "MGMA: Strategy and Business Development",
+   "AAPC CPPM: Marketing and business relationships",
+   "AMA: Growing your practice"
+  ]
+ },
+ {
+  "slug": "lifecycle-value",
+  "ord": 13,
+  "name": "Practice lifecycle and enterprise value",
+  "summary": "What the practice is worth and why, how to make that value transferable, and the events in a practice's life: starting, buying, selling, integrating and closing.",
+  "why_it_matters": "Most owners learn how buyers think during the sale, which is too late to change the answer. Every dollar of sustainable, transferable earnings is worth several dollars of price.",
+  "owner_role": "Owner, with the accountant and transaction counsel",
+  "frameworks": [
+   "AMA private practice resources: getting started, growing, navigating challenges",
+   "FDIC and SBA: selling your business and succession planning",
+   "Valuation practice: income, market and asset approaches"
+  ]
+ }
+]

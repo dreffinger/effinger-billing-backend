@@ -1,0 +1,740 @@
+[
+ {
+  "id": "ehpa-ccm-footing-01",
+  "project_slug": "ccm-footing",
+  "ord": 1,
+  "title": "Hold the November care-management batch",
+  "detail": "Do not send the month-end 99487 and 99489 claims until the 30-chart sample has been read.",
+  "owner": "claude",
+  "due": "2026-11-12"
+ },
+ {
+  "id": "ehpa-ccm-footing-02",
+  "project_slug": "ccm-footing",
+  "ord": 2,
+  "title": "Pull 30 random patient-months and read the records",
+  "detail": "For each: consent and its date, care plan, time log by person and day, the physician's decision making.",
+  "owner": "william",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-ccm-footing-03",
+  "project_slug": "ccm-footing",
+  "ord": 3,
+  "title": "Add up logged minutes against staff hours",
+  "detail": "One month of minutes billed compared with the hours each staff member worked.",
+  "owner": "william",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-ccm-footing-04",
+  "project_slug": "ccm-footing",
+  "ord": 4,
+  "title": "Engage a healthcare attorney",
+  "detail": "Share this risk review. Ask the attorney to direct the audit and the look-back so they are privileged.",
+  "owner": "william",
+  "due": "2026-11-17"
+ },
+ {
+  "id": "ehpa-ccm-footing-05",
+  "project_slug": "ccm-footing",
+  "ord": 5,
+  "title": "Decide the code going forward",
+  "detail": "Complex (60 minutes and moderate or high complexity), standard (20 minutes) or none, per patient, from the log.",
+  "owner": "william",
+  "due": "2026-11-28"
+ },
+ {
+  "id": "ehpa-ccm-footing-06",
+  "project_slug": "ccm-footing",
+  "ord": 6,
+  "title": "Make consent and minutes required before a claim is built",
+  "detail": "The billing routine refuses to create a care-management claim without both.",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-ccm-footing-07",
+  "project_slug": "ccm-footing",
+  "ord": 7,
+  "title": "Find out why Medicare rejects some claims as wrong provider type",
+  "detail": "38 complex-code lines since June were denied with reason 170 and remark N95. Ask the Medicare contractor's provider line what triggers it.",
+  "owner": "claude",
+  "due": "2026-11-26"
+ },
+ {
+  "id": "ehpa-coding-audit-01",
+  "project_slug": "coding-audit",
+  "ord": 8,
+  "title": "Have the attorney engage a certified outside auditor",
+  "detail": "Ask for experience with hospital and nursing facility visits and for both over- and under-coding findings.",
+  "owner": "attorney",
+  "due": "2026-11-24"
+ },
+ {
+  "id": "ehpa-coding-audit-02",
+  "project_slug": "coding-audit",
+  "ord": 9,
+  "title": "Draw the random sample",
+  "detail": "10 notes per code family per clinician from the last six months, about 60 to 80 notes.",
+  "owner": "claude",
+  "due": "2026-11-26"
+ },
+ {
+  "id": "ehpa-coding-audit-03",
+  "project_slug": "coding-audit",
+  "ord": 10,
+  "title": "Send the notes securely",
+  "detail": "Clinical notes come from the health record, not from the billing database.",
+  "owner": "william",
+  "due": "2026-12-03"
+ },
+ {
+  "id": "ehpa-coding-audit-04",
+  "project_slug": "coding-audit",
+  "ord": 11,
+  "title": "Review the report with both clinicians",
+  "detail": "Agree what changes in how levels are chosen and documented.",
+  "owner": "william",
+  "due": "2027-01-10"
+ },
+ {
+  "id": "ehpa-coding-audit-05",
+  "project_slug": "coding-audit",
+  "ord": 12,
+  "title": "Schedule the quarterly 10-chart audit",
+  "detail": "Same auditor, both clinicians, results logged.",
+  "owner": "william",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-census-status-01",
+  "project_slug": "census-status",
+  "ord": 13,
+  "title": "Ask each of the five nursing facilities for a weekly census with skilled-stay status and payer",
+  "detail": "The business office produces this already for its own billing.",
+  "owner": "william",
+  "due": "2026-11-19"
+ },
+ {
+  "id": "ehpa-census-status-02",
+  "project_slug": "census-status",
+  "ord": 14,
+  "title": "Store skilled-stay, hospice and plan status by date",
+  "detail": "New fields on the patient record in the database.",
+  "owner": "claude",
+  "due": "2026-11-28"
+ },
+ {
+  "id": "ehpa-census-status-03",
+  "project_slug": "census-status",
+  "ord": 15,
+  "title": "Set place of service 31 or 32 from the census",
+  "detail": "Applies to visits and to care management.",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-census-status-04",
+  "project_slug": "census-status",
+  "ord": 16,
+  "title": "Count how many of the last three months' claims carried the wrong setting",
+  "detail": "Report the number and the payment difference in each direction for the attorney.",
+  "owner": "claude",
+  "due": "2026-12-10"
+ },
+ {
+  "id": "ehpa-coverage-cleanup-01",
+  "project_slug": "coverage-cleanup",
+  "ord": 17,
+  "title": "Clear the 342 coverage cards still in work",
+  "detail": "Electronic check first, portal second, facility business office third.",
+  "owner": "claude",
+  "due": "2026-11-28"
+ },
+ {
+  "id": "ehpa-coverage-cleanup-02",
+  "project_slug": "coverage-cleanup",
+  "ord": 18,
+  "title": "Run eligibility for every active patient on December 1",
+  "detail": "Then on the first of every month. Flag plan changes, hospice and new secondary coverage.",
+  "owner": "claude",
+  "due": "2026-12-01"
+ },
+ {
+  "id": "ehpa-coverage-cleanup-03",
+  "project_slug": "coverage-cleanup",
+  "ord": 19,
+  "title": "Hold any claim with no verified payer and list it daily",
+  "detail": "Replace silent no-payer charges with a short daily list.",
+  "owner": "claude",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-coverage-cleanup-04",
+  "project_slug": "coverage-cleanup",
+  "ord": 20,
+  "title": "Get portal access for the Medicaid long-term care plan with $26,640 open",
+  "detail": "It allows eligibility only through its portal and pays by paper check.",
+  "owner": "william",
+  "due": "2026-11-26"
+ },
+ {
+  "id": "ehpa-ar-recovery-01",
+  "project_slug": "ar-recovery",
+  "ord": 21,
+  "title": "Sort the correct-and-resend list by each payer's filing deadline",
+  "detail": "Medicare 12 months from service. Florida Medicaid plans 180 days. Plans by contract.",
+  "owner": "claude",
+  "due": "2026-11-14"
+ },
+ {
+  "id": "ehpa-ar-recovery-02",
+  "project_slug": "ar-recovery",
+  "ord": 22,
+  "title": "Work the 74 actionable denials worth $13,463",
+  "detail": "From the latest billing run.",
+  "owner": "claude",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-ar-recovery-03",
+  "project_slug": "ar-recovery",
+  "ord": 23,
+  "title": "Dispute hospital-visit denials from Medicare Advantage plans",
+  "detail": "34 visits denied as not payable under a managed care contract. Confirm network status first.",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-ar-recovery-04",
+  "project_slug": "ar-recovery",
+  "ord": 24,
+  "title": "Report receivables by age and payer every Monday",
+  "detail": "One table on the dashboard.",
+  "owner": "claude",
+  "due": "2026-11-17"
+ },
+ {
+  "id": "ehpa-enrollment-fix-01",
+  "project_slug": "enrollment-fix",
+  "ord": 25,
+  "title": "File the physician's Florida Medicaid provider agreement renewal",
+  "detail": "Due December 1, 2026. Confirm receipt in writing.",
+  "owner": "william",
+  "due": "2026-11-20"
+ },
+ {
+  "id": "ehpa-enrollment-fix-02",
+  "project_slug": "enrollment-fix",
+  "ord": 26,
+  "title": "Resubmit the nurse practitioner's Medicaid revalidation",
+  "detail": "It was returned incomplete.",
+  "owner": "william",
+  "due": "2026-11-26"
+ },
+ {
+  "id": "ehpa-enrollment-fix-03",
+  "project_slug": "enrollment-fix",
+  "ord": 27,
+  "title": "Correct the nurse practitioner's national provider record",
+  "detail": "Current address and the right specialty code.",
+  "owner": "pam",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-enrollment-fix-04",
+  "project_slug": "enrollment-fix",
+  "ord": 28,
+  "title": "Enroll with Railroad Medicare",
+  "detail": "A separate contractor from regular Medicare. $3,764 is being written off.",
+  "owner": "claude",
+  "due": "2026-12-12"
+ },
+ {
+  "id": "ehpa-enrollment-fix-05",
+  "project_slug": "enrollment-fix",
+  "ord": 29,
+  "title": "Resolve the terminated commercial plan",
+  "detail": "Confirm in writing whether the physician is participating, and re-apply if not.",
+  "owner": "william",
+  "due": "2026-12-12"
+ },
+ {
+  "id": "ehpa-enrollment-fix-06",
+  "project_slug": "enrollment-fix",
+  "ord": 30,
+  "title": "Finish Veterans Affairs portal registration and the military plan's credentialing of the nurse practitioner",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-enrollment-fix-07",
+  "project_slug": "enrollment-fix",
+  "ord": 31,
+  "title": "Build one expiry calendar for both clinicians",
+  "detail": "Licenses, registrations, board certification, privileges and every payer enrollment.",
+  "owner": "claude",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-treasury-01",
+  "project_slug": "treasury",
+  "ord": 32,
+  "title": "Explain the $12,902 of Medicare deposits with no remittance",
+  "detail": "Find and post the remittances.",
+  "owner": "claude",
+  "due": "2026-12-12"
+ },
+ {
+  "id": "ehpa-treasury-02",
+  "project_slug": "treasury",
+  "ord": 33,
+  "title": "Chase the large plan whose remittances arrived with no money",
+  "detail": "Check the payment method on file. Virtual cards may be expiring unredeemed.",
+  "owner": "claude",
+  "due": "2026-12-12"
+ },
+ {
+  "id": "ehpa-treasury-03",
+  "project_slug": "treasury",
+  "ord": 34,
+  "title": "Complete electronic remittance and deposit enrollment for every payer",
+  "detail": "Including the plan whose enrollment was rejected.",
+  "owner": "claude",
+  "due": "2027-01-10"
+ },
+ {
+  "id": "ehpa-treasury-04",
+  "project_slug": "treasury",
+  "ord": 35,
+  "title": "Have the accountant reconcile the bank account monthly",
+  "detail": "Someone other than the person, or the software, that posts payments.",
+  "owner": "cpa",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-operating-rhythm-01",
+  "project_slug": "operating-rhythm",
+  "ord": 36,
+  "title": "Re-authorize the accounting software connection",
+  "detail": "So monthly results can load into the practice database.",
+  "owner": "william",
+  "due": "2026-11-28"
+ },
+ {
+  "id": "ehpa-operating-rhythm-02",
+  "project_slug": "operating-rhythm",
+  "ord": 37,
+  "title": "Agree a monthly close by the 15th with the accountant",
+  "detail": "Income statement, balance sheet and a cash summary.",
+  "owner": "cpa",
+  "due": "2026-12-15"
+ },
+ {
+  "id": "ehpa-operating-rhythm-03",
+  "project_slug": "operating-rhythm",
+  "ord": 38,
+  "title": "Build the 2027 budget with three scenarios",
+  "detail": "Steady, loss of the largest site, and a second nurse practitioner. Include the 2.31% Medicare cut.",
+  "owner": "william",
+  "due": "2026-12-31"
+ },
+ {
+  "id": "ehpa-operating-rhythm-04",
+  "project_slug": "operating-rhythm",
+  "ord": 39,
+  "title": "Hold the first monthly review",
+  "detail": "Scorecard, work list, cash, and one decision recorded.",
+  "owner": "william",
+  "due": "2027-01-20"
+ },
+ {
+  "id": "ehpa-operating-rhythm-05",
+  "project_slug": "operating-rhythm",
+  "ord": 40,
+  "title": "Pull payments, adjustments and write-offs by month of service",
+  "detail": "From the billing system, to compute the net collection rate.",
+  "owner": "claude",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-compliance-program-01",
+  "project_slug": "compliance-program",
+  "ord": 41,
+  "title": "Write a compliance program of a few pages with the attorney",
+  "detail": "The seven elements from federal guidance, scaled down.",
+  "owner": "attorney",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-compliance-program-02",
+  "project_slug": "compliance-program",
+  "ord": 42,
+  "title": "Collect both medical director agreements and twelve months of time logs",
+  "detail": "For the attorney's review.",
+  "owner": "william",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-compliance-program-03",
+  "project_slug": "compliance-program",
+  "ord": 43,
+  "title": "Do a security risk analysis",
+  "detail": "List every system and vendor that touches patient data and whether each has signed a business associate agreement.",
+  "owner": "claude",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-compliance-program-04",
+  "project_slug": "compliance-program",
+  "ord": 44,
+  "title": "Have the auditor read the billing rulebook's high-risk rules",
+  "detail": "Any rule that changes a code, date, modifier, place of service or balance.",
+  "owner": "william",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-compliance-program-05",
+  "project_slug": "compliance-program",
+  "ord": 45,
+  "title": "Name one person to receive record requests and log deadlines",
+  "detail": "",
+  "owner": "william",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-compliance-program-06",
+  "project_slug": "compliance-program",
+  "ord": 46,
+  "title": "Add a required-visit due date for every nursing facility resident",
+  "detail": "Every 30 days for the first 90 days, then every 60 days.",
+  "owner": "claude",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-automation-controls-01",
+  "project_slug": "automation-controls",
+  "ord": 47,
+  "title": "Turn off open sign-up on this application",
+  "detail": "Only approved addresses can read data today, but accounts should not be creatable by strangers.",
+  "owner": "william",
+  "due": "2026-11-14"
+ },
+ {
+  "id": "ehpa-automation-controls-02",
+  "project_slug": "automation-controls",
+  "ord": 48,
+  "title": "Replace the database access key that was pasted into a chat",
+  "detail": "Revoke it in the database console and issue a new one.",
+  "owner": "william",
+  "due": "2026-11-14"
+ },
+ {
+  "id": "ehpa-automation-controls-03",
+  "project_slug": "automation-controls",
+  "ord": 49,
+  "title": "Require approval for any rule that changes a claim's code, date or place of service",
+  "detail": "",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-automation-controls-04",
+  "project_slug": "automation-controls",
+  "ord": 50,
+  "title": "Sample 25 automated actions each month and record the result",
+  "detail": "The correction rate becomes a scorecard measure.",
+  "owner": "william",
+  "due": "2026-12-31"
+ },
+ {
+  "id": "ehpa-quality-mips-01",
+  "project_slug": "quality-mips",
+  "ord": 51,
+  "title": "Look up both clinicians in the participation status tool",
+  "detail": "Use each clinician's national provider number.",
+  "owner": "claude",
+  "due": "2026-11-21"
+ },
+ {
+  "id": "ehpa-quality-mips-02",
+  "project_slug": "quality-mips",
+  "ord": 52,
+  "title": "Read the latest performance feedback and payment adjustment",
+  "detail": "",
+  "owner": "william",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-quality-mips-03",
+  "project_slug": "quality-mips",
+  "ord": 53,
+  "title": "Choose how to report for 2026 or apply for an exception",
+  "detail": "Small practices have simpler options.",
+  "owner": "william",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-service-lines-01",
+  "project_slug": "service-lines",
+  "ord": 54,
+  "title": "List long-term residents with no wellness visit in the last 12 months",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-01-10"
+ },
+ {
+  "id": "ehpa-service-lines-02",
+  "project_slug": "service-lines",
+  "ord": 55,
+  "title": "Schedule wellness visits, about a dozen a month",
+  "detail": "",
+  "owner": "pam",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-service-lines-03",
+  "project_slug": "service-lines",
+  "ord": 56,
+  "title": "Set up a transitional care routine for discharges to assisted living or home",
+  "detail": "Contact within two business days and a visit within 7 or 14 days.",
+  "owner": "pam",
+  "due": "2027-02-15"
+ },
+ {
+  "id": "ehpa-service-lines-04",
+  "project_slug": "service-lines",
+  "ord": 57,
+  "title": "Add a time statement and the required elements to the advance care planning note",
+  "detail": "At least 16 minutes of discussion is needed to bill it.",
+  "owner": "william",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-service-lines-05",
+  "project_slug": "service-lines",
+  "ord": 58,
+  "title": "Reset the fee schedule each January",
+  "detail": "Every charge above the highest contracted rate.",
+  "owner": "claude",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-payer-contracts-01",
+  "project_slug": "payer-contracts",
+  "ord": 59,
+  "title": "Request the current contract and fee schedule from every plan",
+  "detail": "",
+  "owner": "william",
+  "due": "2026-12-12"
+ },
+ {
+  "id": "ehpa-payer-contracts-02",
+  "project_slug": "payer-contracts",
+  "ord": 60,
+  "title": "Load the 2027 Medicare fee schedule for the practice's locality",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-01-05"
+ },
+ {
+  "id": "ehpa-payer-contracts-03",
+  "project_slug": "payer-contracts",
+  "ord": 61,
+  "title": "Reprice the top 15 codes at 2027 rates by site of service",
+  "detail": "Show the change per code and in total.",
+  "owner": "claude",
+  "due": "2027-01-10"
+ },
+ {
+  "id": "ehpa-payer-contracts-04",
+  "project_slug": "payer-contracts",
+  "ord": 62,
+  "title": "Flag any payment below the expected amount",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-02-15"
+ },
+ {
+  "id": "ehpa-finance-cleanup-01",
+  "project_slug": "finance-cleanup",
+  "ord": 63,
+  "title": "Get two refinance quotes for the $187,206 note",
+  "detail": "Check the note for a prepayment charge first.",
+  "owner": "william",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-finance-cleanup-02",
+  "project_slug": "finance-cleanup",
+  "ord": 64,
+  "title": "Agree a plan to retire the $162,121 owed by the owner",
+  "detail": "Repayment, pay or distribution, and the tax effect of each.",
+  "owner": "cpa",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-finance-cleanup-03",
+  "project_slug": "finance-cleanup",
+  "ord": 65,
+  "title": "Review the owner's salary against market pay",
+  "detail": "Reasonable compensation for an S corporation owner.",
+  "owner": "cpa",
+  "due": "2026-12-19"
+ },
+ {
+  "id": "ehpa-finance-cleanup-04",
+  "project_slug": "finance-cleanup",
+  "ord": 66,
+  "title": "Set a cash floor and start a 13-week cash forecast",
+  "detail": "",
+  "owner": "william",
+  "due": "2027-01-15"
+ },
+ {
+  "id": "ehpa-finance-cleanup-05",
+  "project_slug": "finance-cleanup",
+  "ord": 67,
+  "title": "Ask the broker about cyber and billing-audit defense cover",
+  "detail": "",
+  "owner": "william",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-key-person-01",
+  "project_slug": "key-person",
+  "ord": 68,
+  "title": "Write a two-page emergency plan",
+  "detail": "Who covers patients, who can sign, who has access to bank and systems.",
+  "owner": "william",
+  "due": "2027-02-28"
+ },
+ {
+  "id": "ehpa-key-person-02",
+  "project_slug": "key-person",
+  "ord": 69,
+  "title": "Sign a mutual coverage agreement with another physician",
+  "detail": "",
+  "owner": "william",
+  "due": "2027-03-31"
+ },
+ {
+  "id": "ehpa-key-person-03",
+  "project_slug": "key-person",
+  "ord": 70,
+  "title": "Start a relationship record for each site",
+  "detail": "Decision makers, last contact, what they want, any agreement and its end date.",
+  "owner": "william",
+  "due": "2027-03-15"
+ },
+ {
+  "id": "ehpa-key-person-04",
+  "project_slug": "key-person",
+  "ord": 71,
+  "title": "Review disability, key-person and business overhead insurance",
+  "detail": "",
+  "owner": "william",
+  "due": "2027-04-30"
+ },
+ {
+  "id": "ehpa-growth-clinician-01",
+  "project_slug": "growth-clinician",
+  "ord": 72,
+  "title": "List every nursing and assisted living facility within 40 minutes",
+  "detail": "Beds, current physician coverage and a contact.",
+  "owner": "claude",
+  "due": "2027-03-15"
+ },
+ {
+  "id": "ehpa-growth-clinician-02",
+  "project_slug": "growth-clinician",
+  "ord": 73,
+  "title": "Build the hiring case",
+  "detail": "Six-month ramp, three-month enrollment delay, cost and break-even census.",
+  "owner": "claude",
+  "due": "2027-03-31"
+ },
+ {
+  "id": "ehpa-growth-clinician-03",
+  "project_slug": "growth-clinician",
+  "ord": 74,
+  "title": "Decide, and if yes start enrollment the day the offer is signed",
+  "detail": "",
+  "owner": "william",
+  "due": "2027-04-30"
+ },
+ {
+  "id": "ehpa-sale-readiness-01",
+  "project_slug": "sale-readiness",
+  "ord": 75,
+  "title": "Open a data room folder with the standard sections",
+  "detail": "Financial, contracts, billing reports, compliance, people, systems.",
+  "owner": "claude",
+  "due": "2027-03-15"
+ },
+ {
+  "id": "ehpa-sale-readiness-02",
+  "project_slug": "sale-readiness",
+  "ord": 76,
+  "title": "Separate recurring collections from recovery of old receivables each month",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-sale-readiness-03",
+  "project_slug": "sale-readiness",
+  "ord": 77,
+  "title": "Choose a target year for stepping back",
+  "detail": "Most value-building steps take two to three years.",
+  "owner": "william",
+  "due": "2027-03-31"
+ },
+ {
+  "id": "ehpa-sale-readiness-04",
+  "project_slug": "sale-readiness",
+  "ord": 78,
+  "title": "Refresh the valuation with a full year of clean numbers",
+  "detail": "",
+  "owner": "claude",
+  "due": "2027-09-30"
+ },
+ {
+  "id": "ehpa-automation-controls-05",
+  "project_slug": "automation-controls",
+  "ord": 79,
+  "title": "Make every write-off carry a reason code, and keep patient balances out of the automatic rule",
+  "detail": "Routine waiver of what patients owe is unlawful. The automatic rule should touch insurance balances only.",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-compliance-program-07",
+  "project_slug": "compliance-program",
+  "ord": 80,
+  "title": "Get a written statement of where each vendor stores patient information",
+  "detail": "Florida requires patient information kept offsite or in the cloud to stay in the continental United States, its territories or Canada. Ask every software and AI vendor.",
+  "owner": "william",
+  "due": "2027-01-31"
+ },
+ {
+  "id": "ehpa-ccm-footing-08",
+  "project_slug": "ccm-footing",
+  "ord": 81,
+  "title": "Block care-management claims for patients who died, were discharged or elected hospice in the month",
+  "detail": "The monthly batch must check status on the last day of the month before a claim is built.",
+  "owner": "claude",
+  "due": "2026-12-05"
+ },
+ {
+  "id": "ehpa-coding-audit-06",
+  "project_slug": "coding-audit",
+  "ord": 82,
+  "title": "Ask the auditor to include 10 advance care planning notes and 10 care-management records",
+  "detail": "Both services have high national error rates for missing documentation of time.",
+  "owner": "william",
+  "due": "2026-11-26"
+ }
+]

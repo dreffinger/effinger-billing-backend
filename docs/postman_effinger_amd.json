@@ -1,6 +1,6 @@
 {
  "info": {
-  "name": "Effinger AMD — captured calls (generated 2026-11-09, 70 calls)",
+  "name": "Effinger AMD — captured calls (generated 2026-11-10, 77 calls)",
   "description": "GENERATED from docs/api_vocabulary.json by tools/mirror/postman_build.py — edit the vocabulary, not this file. Fill the collection variables (token, amd_password, stedi_key) locally; they are never stored.",
   "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
  },
@@ -1961,6 +1961,158 @@
      }
     }
    ]
+  },
+  {
+   "id": "d2567d99-2b4c-5f66-b84c-64337f757c20",
+   "name": "Practice optimization app",
+   "item": [
+    {
+     "id": "b1dce3b0-67de-5147-bd99-7d0c09b57065",
+     "name": "GET health",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/health",
+      "description": "Open endpoint. Answers ok when the function is up. No sign-in needed.\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "b149585b-3e22-5a6d-97a8-48b996c573ba",
+     "name": "GET framework and practice summary",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/summary?practice=ehpa",
+      "description": "Counts for the hub page: domains, areas, measures, sources, library items, learning modules, and the practice's headline numbers. Reads schema upo. Aggregates only.\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "68790599-582a-5717-a232-fd2634283b84",
+     "name": "GET universal framework",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/universal",
+      "description": "The whole universal framework in one answer: 13 domains, every area (what good looks like, failure modes, questions, actions, where it applies, sources) and every measure with its benchmark, source and confidence.\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "39a92ef5-0396-5f70-aeba-b8368ba16ca5",
+     "name": "GET purchased library review",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/library",
+      "description": "The purchased vendor library: one row per document with quality, specificity and fit scores, best ideas, red flags, and the claims that were checked against primary sources with their verdicts.\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "2fc858dd-a463-577b-a521-1fa57c43238e",
+     "name": "GET learning modules",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/learn",
+      "description": "The learning modules as sections of content blocks (paragraphs, tables, formulas, callouts, quick questions).\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "e4135057-96e3-5a16-a10b-15977beffcf4",
+     "name": "GET practice application",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/practice/ehpa",
+      "description": "The framework applied to one practice: profile, area assessments, scorecard values, risk findings, recommendations, projects, work list and valuation. Aggregates only: dollars, counts and rates. No patient information.\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven"
+     }
+    },
+    {
+     "id": "69f2cf90-6562-567b-92ba-aa95bf916f59",
+     "name": "POST work-list item status",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{app_token}}"
+       },
+       {
+        "key": "Accept",
+        "value": "application/json"
+       },
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": "{{app_base}}/api/upo/practice/ehpa/worklist/{{worklist_id}}",
+      "description": "The only write in the practice optimization pages. Saves a status (open, doing, waiting, done, dropped) and a note of at most 2,000 characters on one work-list item, stamped with the signed-in address and the time. Ids come from the practice answer (worklist[].id).\n\nHelper: apps/ehpadb/src/upo.ts registerUpo()\nCaptured: 2026-11-10\nStatus: proven",
+      "body": {
+       "mode": "raw",
+       "raw": "{\n \"status\": \"doing\",\n \"note\": \"\"\n}",
+       "options": {
+        "raw": {
+         "language": "json"
+        }
+       }
+      }
+     }
+    }
+   ]
   }
  ],
  "variable": [
@@ -2026,6 +2178,18 @@
   },
   {
    "key": "payerid",
+   "value": ""
+  },
+  {
+   "key": "app_base",
+   "value": "https://app.ehpa.dev"
+  },
+  {
+   "key": "app_token",
+   "value": ""
+  },
+  {
+   "key": "worklist_id",
    "value": ""
   }
  ]

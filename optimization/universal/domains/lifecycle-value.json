@@ -1,0 +1,1205 @@
+{
+ "domain": "lifecycle-value",
+ "categories": [
+  {
+   "slug": "lv-valuation",
+   "name": "Practice valuation",
+   "summary": "What the practice would sell for, and why. Value comes from earnings left after every clinician, including the owner, is paid a market salary. Knowing the number and what moves it guides sale, partner buy-in, estate and investment decisions.",
+   "good_looks_like": [
+    "The owner can state an estimated value range, the method behind it and the date it was prepared.",
+    "The estimate starts from earnings after market-rate pay for owners, and is cross-checked against multiples of owner earnings and of revenue.",
+    "The owner knows which standard applies: fair market value for a hospital or other referral-related buyer, or what one particular buyer is willing to pay.",
+    "A written list names the events that call for a formal appraisal: buy-in, buyout, sale, divorce, estate planning or a bank-financed purchase.",
+    "Value is recalculated every year next to the few drivers that explain why it changed."
+   ],
+   "failure_modes": [
+    "Applying a multiple to the owner's full take-home pay. Buyers subtract a market salary first, so this can overstate value several times over.",
+    "Quoting multiples paid for large investor-backed platforms when the practice has one or two clinicians, then rejecting realistic offers.",
+    "Using a percent-of-revenue rule alone. Two practices with equal revenue can have very different earnings and prices.",
+    "Expecting a hospital to pay for referrals. Federal rules hold it to fair market value, which often means equipment plus an employment contract.",
+    "Relying on an appraisal prepared for the seller. A buyer's bank must obtain its own, and a lower figure reprices or delays the deal."
+   ],
+   "key_questions": [
+    "Do you have a written estimate of practice value dated within the last 12 months?",
+    "What are annual earnings after paying yourself a market salary for your clinical work?",
+    "Is the multiple you used backed by a published source or an appraisal?",
+    "Do you know which standard of value would apply to your most likely buyer?",
+    "Does your buy-sell or partnership agreement state how value is set and when it is updated?"
+   ],
+   "actions": [
+    {
+     "action": "Build a one-page value estimate using three methods",
+     "detail": "Multiply earnings after market-rate owner pay by a sourced multiple. Cross-check with multiples of owner earnings and revenue. Use tangible asset value as the floor. Record assumptions and the date.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Get a formal appraisal before any ownership event",
+     "detail": "Hire a credentialed business appraiser before a buy-in, buyout, sale to a hospital, divorce or estate plan. Ask for the standard of value and the income, market and asset approaches in writing.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Learn the lender's rules before pricing a physician-to-physician sale",
+     "detail": "For Small Business Administration loans (SOP 50 10 8.1, October 2026) the lender needs an independent valuation when the price exceeds $350,000 or the parties are related. Price above it must come from buyer equity.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Record value drivers beside each estimate",
+     "detail": "Each year note earnings after owner pay, three-year growth, the owner's share of collections and payer mix next to the value estimate, so changes can be explained.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every practice with an owner. Larger groups are priced on earnings by investors. Solo, hospital-based and facility-based practices own few tangible assets and do not own their facility relationships, so value rests on transferable earnings and on clinicians who stay.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Explains earnings times a multiple and gives a table of multiples. Its 7 times examples overstate small practices, and it never subtracts a market salary for the owner."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Lists earnings, revenue and asset methods with ranges of 2 to 6 times earnings. No sources, and its 90-day plan multiplies unadjusted earnings."
+    }
+   ],
+   "sources": [
+    "vmg-fundamentals",
+    "vmg-comp-fmv",
+    "coker-2017",
+    "ecg-2023",
+    "scope-2025",
+    "iconic-multiples",
+    "ibba-2026",
+    "cfr-411-351",
+    "cfr-411-357",
+    "sba-sop-50-10",
+    "pya-checklist"
+   ],
+   "evidence_note": "The three approaches are standard appraisal practice. Multiples come from one deal database, marketplace listings quoted secondhand and an all-industry broker survey, so treat them as ranges. Fair market value limits are federal regulation (42 CFR 411.351, 411.357).",
+   "metrics": [
+    {
+     "slug": "lv-enterprise-value",
+     "name": "Estimated enterprise value",
+     "definition": "Estimated price for the practice's operations, before adding cash or subtracting debt. Based on earnings before interest, taxes, depreciation and amortization (EBITDA) after market-rate owner pay.",
+     "formula": "EBITDA after market-rate owner pay x market multiple. Cross-check: earnings before any owner pay x its multiple, and annual revenue x a revenue multiple.",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_best": "5 to 10 times EBITDA, groups with $5 to $50 million revenue",
+     "benchmark_typical": "3 to 6 times EBITDA, or about 2 times owner earnings",
+     "benchmark_red": "Tangible assets only, when no earnings remain after market pay",
+     "benchmark_note": "Scope Research 2025 (primary care deals since 2010): 3 to 6 times EBITDA under $5 million revenue. BizBuySell sold listings 2021 to 2025, quoted by Iconic: median 2.05 times owner earnings, 0.62 times revenue. Other specialties differ.",
+     "confidence": "medium",
+     "sources": [
+      "scope-2025",
+      "iconic-multiples",
+      "ibba-2026",
+      "vmg-comp-fmv"
+     ],
+     "data_hint": "Earnings from the accountant's statements after adjustments. Multiples from a current appraisal or the published sources cited here.",
+     "vendor_claim": "Small or solo primary care sells for 3 to 5 times EBITDA. The library's worked examples use 7 times.",
+     "vendor_verdict": "Partly supported. The range matches Scope Research, but the library skips the market salary deduction and its 7 times examples do not fit small practices."
+    },
+    {
+     "slug": "lv-valuation-age",
+     "name": "Months since the last valuation",
+     "definition": "Time since practice value was last estimated in writing, by an appraiser or by the owner using a documented method.",
+     "formula": "Months between today and the date of the most recent written valuation or documented estimate",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published standard was found. A target from first principles: refresh the estimate every 12 months, and obtain a formal appraisal before a buy-in, buyout, sale, estate plan or financed purchase.",
+     "confidence": "none",
+     "sources": [],
+     "data_hint": "Date on the last appraisal report, or on the owner's own worksheet."
+    }
+   ]
+  },
+  {
+   "slug": "lv-normalized-earnings",
+   "name": "Normalized earnings",
+   "summary": "Reported profit restated to show what a new owner would earn: owners paid a market salary, personal and one-time items removed, and cash-basis books converted to when services were delivered. Buyers price this number, not the tax return.",
+   "good_looks_like": [
+    "A one-page schedule bridges tax-return profit to normalized earnings, with a document behind every adjustment.",
+    "Owner clinical work is charged at a market salary plus payroll tax and benefits, taken from a named survey for the specialty and year.",
+    "One-time revenue, such as relief funds or retroactive payments, is removed as carefully as one-time costs are added back.",
+    "Monthly revenue can be restated from the date cash arrived to the date of service, using billing system data.",
+    "The same schedule is produced every year, so three years can be compared."
+   ],
+   "failure_modes": [
+    "Adding back all owner pay and stopping there. That is seller's discretionary earnings, which takes a much lower multiple than earnings after a market salary.",
+    "Add-backs with no paperwork. Buyers and lenders strike them, and every dollar removed is multiplied in the price.",
+    "Counting growth that has not happened yet, such as a new clinician's future volume, as if it were already earned.",
+    "Cash-basis books hide unpaid bills and receivables, so one strong collection month or a delayed payable distorts the year.",
+    "Stipends counted as recurring earnings without written agreements and time records, so a buyer discounts or excludes them."
+   ],
+   "key_questions": [
+    "What would it cost per year to hire a clinician to do your clinical work, including payroll tax and benefits?",
+    "Is anything left after that cost is subtracted from practice profit?",
+    "How many add-backs do you claim, and does each have a document behind it?",
+    "Did any revenue in the last three years come from one-time sources?",
+    "Can your billing system report payments by date of service for the last 24 months?"
+   ],
+   "actions": [
+    {
+     "action": "Prepare a normalization schedule with your accountant",
+     "detail": "Start from net income. Add interest, taxes, depreciation and owner pay. Add documented personal and one-time costs. Remove one-time revenue. Subtract market pay, payroll tax and benefits for the owners' clinical work.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Choose and record a market pay benchmark",
+     "detail": "Use a named survey median for the specialty and data year, such as the American Medical Group Association survey, and write down the source. Surveys of large groups may not fit a small market.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Keep an add-back file through the year",
+     "detail": "Save the invoice or contract for each personal, one-time or related-party item as it occurs, and tag it in the ledger, so the schedule can be proven later.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Export revenue by date of service every quarter",
+     "detail": "Save charges and payments by service date and by payment date. This is the data a buyer's quality of earnings review uses to convert cash-basis revenue.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Put every stipend and side arrangement in writing",
+     "detail": "Sign medical director and similar agreements at fair market value and keep time logs, so the income counts as recurring and passes compliance review.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices considering a sale, buy-in, loan or valuation. In solo and two-clinician practices the market salary adjustment often removes most of the profit. Facility-based practices should show stipend income separately from visit income.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Says to document every add-back and to separate one-time recoveries from the ongoing rate. Gives no worked normalization and no market salary step."
+    },
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Covers owner pay in a sale. It wrongly treats above-market owner pay as a self-referral law exposure and muddles how normalizing pay changes price."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Defines value from earnings but never normalizes owner pay, so its instructions would overstate what a small practice is worth."
+    }
+   ],
+   "sources": [
+    "vmg-diligence",
+    "vmg-comp-fmv",
+    "coker-2017",
+    "ecg-2023",
+    "amga-2026",
+    "pya-checklist",
+    "hallrender-meddir-2025"
+   ],
+   "evidence_note": "Normalization steps are standard valuation and diligence practice described by VMG Health, Coker and PYA. Market pay figures are survey medians from mostly large groups. No public benchmark exists for normalized earnings of small practices.",
+   "metrics": [
+    {
+     "slug": "lv-normalized-ebitda",
+     "name": "Normalized EBITDA",
+     "definition": "Earnings before interest, taxes, depreciation and amortization (EBITDA), restated with owners paid a market salary and personal or one-time items removed.",
+     "formula": "Net income + interest + taxes + depreciation + owner pay and perquisites + one-time costs - one-time revenue - market pay, payroll tax and benefits for owner clinical work",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No public dollar or margin benchmark for small practices was found. ECG (2023) and Coker (2017) note it is often near zero when owners take all profit as pay. Compare your own three-year trend.",
+     "confidence": "none",
+     "sources": [
+      "ecg-2023",
+      "coker-2017",
+      "vmg-diligence"
+     ],
+     "data_hint": "Accountant's income statement, payroll records, and a compensation survey for the owner's specialty."
+    },
+    {
+     "slug": "lv-addbacks-share",
+     "name": "Add-backs as a share of normalized EBITDA",
+     "definition": "How much of normalized earnings before interest, taxes, depreciation and amortization (EBITDA) rests on claimed adjustments instead of reported results.",
+     "formula": "Total add-backs claimed, excluding the owner pay adjustment / normalized EBITDA",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published threshold was found. VMG Health (2024) says buyers focus on seller-favorable adjustments and forward-looking items. Keep a document behind every add-back and expect unsupported ones to be removed.",
+     "confidence": "none",
+     "sources": [
+      "vmg-diligence"
+     ],
+     "data_hint": "The normalization schedule and its supporting file."
+    }
+   ]
+  },
+  {
+   "slug": "lv-value-drivers",
+   "name": "Value drivers and detractors",
+   "summary": "The features that make a buyer pay more or less for the same earnings: growth, payer mix, concentration in one clinician, facility or referral source, contract terms, compliance record, reporting and staff depth. Most can be improved years before a sale.",
+   "good_looks_like": [
+    "Collections have grown faster than operating cost for three years, so the margin after market-rate owner pay is stable or rising.",
+    "No single clinician, facility, referral source or payer contract supplies a share of revenue that would sink the practice if lost.",
+    "The same monthly reports by clinician, payer, site and service line exist for at least 24 months.",
+    "An independent coding review in the last 12 months found code levels supported, and any overpayments were refunded.",
+    "Key agreements are written, current and assignable where possible, and no manager, biller or vendor holds knowledge that is not written down."
+   ],
+   "failure_modes": [
+    "Flat volume under falling fee schedules. Medicare's 2027 conversion factor drops 2.31%, so standing still means shrinking.",
+    "One facility or referral source supplies most patients under a handshake arrangement that ends when the owner leaves.",
+    "Books good enough only to file taxes. A buyer cannot compare periods and prices the uncertainty.",
+    "A code distribution far from peers with no audit to explain it. Buyers assume repayment risk and cut price or demand escrow.",
+    "Revenue that depends almost entirely on fee-for-service Medicare or Medicaid, which published deal commentary links to lower multiples."
+   ],
+   "key_questions": [
+    "What was your compound annual revenue growth over the last three years?",
+    "What percent of collections comes from your largest facility, referral source or payer contract?",
+    "How many consecutive months of the same monthly report pack can you produce today?",
+    "Has an independent coding audit been done in the last 12 months?",
+    "How many of your key contracts can be assigned to a buyer without the other party's consent?"
+   ],
+   "actions": [
+    {
+     "action": "Measure concentration four ways",
+     "detail": "Each quarter compute the share of collections from the top clinician, facility or site, referral source and payer. Write a plan for any share the practice could not survive losing.",
+     "cadence": "quarterly",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Commission an independent coding review",
+     "detail": "Sample each clinician's main code families yearly. Compare level distribution with Medicare's public data. Report and return identified overpayments within 60 days as 42 CFR 401.305 requires.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Archive a monthly reporting pack",
+     "detail": "Save the same reports each month: collections by clinician, payer and site, receivables aging, denials and visit counts. Aging snapshots are hard to rebuild later.",
+     "cadence": "monthly",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Build a contract register with assignment terms",
+     "detail": "List every payer, facility, vendor, lease and employment agreement with its term, renewal date, termination notice and wording on assignment or change of ownership.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Add durable income the patient base supports",
+     "detail": "Options include a second clinician, a managed-plan contract or care management. Medicare pays chronic care management for eligible residents of nursing facilities and assisted living, with documented consent.",
+     "cadence": "annual",
+     "effort": "high",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "All practices. Office practices focus on payer contracts, panel size and location. Facility-based practices should measure concentration by facility and by medical director agreement, because census and stipends belong to the facility relationship and not to the practice.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Its five deal-damaging findings are a useful list. The 45% single-payer threshold and payer ranking are unsourced and do not fit practices built on Medicare."
+    },
+    {
+     "item": "practice-financial-intelligence-playbook",
+     "note": "Lists value drivers and destroyers. Its claim that a weak revenue cycle cuts the multiple by 0.5 to 1.5 turns has no source."
+    },
+    {
+     "item": "kpi-08-net-collection-rate",
+     "note": "Argues that a higher net collection rate earns a higher multiple. Unsupported. Buyers price earnings and risk, and collection gaps show up there."
+    }
+   ],
+   "sources": [
+    "scope-2025",
+    "pya-checklist",
+    "vmg-diligence",
+    "medecon-selling-2026",
+    "cms-pfs-2027",
+    "mgma-stat-margin",
+    "cfr-401-305",
+    "cms-puf",
+    "cms-ccm-faq",
+    "cms-mln-ccm",
+    "hallrender-meddir-2025"
+   ],
+   "evidence_note": "The list of drivers comes from valuation firms and a published buyer's diligence checklist, which agree with each other. How much each driver moves price is opinion. No published discount or premium percentages were found.",
+   "metrics": [
+    {
+     "slug": "lv-revenue-cagr-3yr",
+     "name": "Three-year revenue growth rate",
+     "definition": "Compound annual growth in collections over the last three full years.",
+     "formula": "(Collections in the latest full year / collections three years earlier) ^ (1/3) - 1",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_red": "Below about 4% a year, the long-run rise in operating cost",
+     "benchmark_note": "Medical Group Management Association, 2025: median operating cost per physician rose 71.6% from 2011 to 2024 in physician-owned multispecialty groups, about 4% a year by our arithmetic. No growth benchmark for small practices was found.",
+     "confidence": "low",
+     "sources": [
+      "mgma-stat-margin",
+      "cms-pfs-2027"
+     ],
+     "data_hint": "Annual collections from the billing system or the income statement, on the same basis each year."
+    },
+    {
+     "slug": "lv-recurring-revenue-share",
+     "name": "Share of revenue that recurs without new referrals",
+     "definition": "Portion of the year's collections that came from patients, residents or contracts already with the practice when the year began.",
+     "formula": "(Collections from patients seen in the prior 12 months or on a facility census when the year began + contracted stipends) / total collections",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No published benchmark was found. PYA's diligence checklist has buyers count active patients over time, and Scope Research ties predictable revenue to higher multiples. Track your own trend, by facility where relevant.",
+     "confidence": "none",
+     "sources": [
+      "pya-checklist",
+      "scope-2025"
+     ],
+     "data_hint": "Billing system collections by patient, joined to first-visit date or to the facility census on the first day of the year."
+    }
+   ]
+  },
+  {
+   "slug": "lv-key-person",
+   "name": "Key-person dependence and transferability",
+   "summary": "How much of the practice's revenue, relationships and know-how would leave with the owner. Goodwill tied to one person cannot be sold at full price. Spreading work, documenting processes and writing down relationships turns personal goodwill into something a buyer can keep.",
+   "good_looks_like": [
+    "Other clinicians generate a meaningful and rising share of collections, and patients or facilities accept them as their regular clinician.",
+    "Every critical business function has a written procedure and a second person or vendor who has actually done it.",
+    "Facility, hospital and referral relationships are held by the practice in written agreements, with more than one clinician known to each partner.",
+    "Passwords, payer portal access, bank authority and vendor contacts are in a shared, secured record, not in the owner's head.",
+    "The owner can take four weeks off without revenue, billing or payroll stopping."
+   ],
+   "failure_modes": [
+    "The owner bills most collections and plans to retire at closing. Buyers pay little for goodwill that walks out the door.",
+    "Only the owner knows how payroll, payer enrollment or the billing system works. An illness stops cash within weeks.",
+    "The owner signed a non-compete with the owner's own practice entity. Advisers warn this can defeat the separate sale of personal goodwill.",
+    "Shifting visits to a nurse practitioner without checking the rules. Some skilled nursing facility visits must be the physician's, and Medicare pays practitioners 85%.",
+    "Relationships rest on friendship with one administrator or referring physician and vanish when either person moves on."
+   ],
+   "key_questions": [
+    "What percent of collections comes from services you personally perform?",
+    "How many critical functions can only you perform today?",
+    "If you were unreachable for 30 days, would claims still go out and payroll still run?",
+    "Are your facility and medical director agreements in the practice's name?",
+    "Do you have a non-compete or employment agreement with your own practice entity?"
+   ],
+   "actions": [
+    {
+     "action": "List critical functions and name a backup for each",
+     "detail": "Cover clinical coverage, charge capture, claim submission, payer enrollment, payroll, banking, vendor renewals and compliance reporting. Write a one-page procedure for each and have the backup perform it once a year.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Report collections by rendering clinician",
+     "detail": "Each quarter compute the owner's share. Move suitable work to other clinicians within scope-of-practice and payer rules, and introduce them to facilities and referral sources.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Put relationships in writing in the practice's name",
+     "detail": "Convert handshake coverage and medical director arrangements into written agreements with the practice entity at fair market value. Check each for assignment terms.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Ask counsel about personal goodwill before any offer",
+     "detail": "Review whether you have a non-compete or employment agreement with your own entity, and how goodwill would be allocated and taxed. Settle this before signing a letter of intent.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Run a planned absence test",
+     "detail": "Take two to four weeks away with the backup plan in force. Record what broke and fix the procedure.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Most acute in solo and two-clinician practices, where the owner is also the manager. In skilled nursing facilities the physician must personally make the initial comprehensive visit and at least every other required visit (42 CFR 483.30), so a nurse practitioner alone cannot carry the revenue.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Treats owner dependence as a discount and offers four staff-dependency questions. Framed around a human billing manager, with no way to measure the owner's revenue share."
+    },
+    {
+     "item": "revenue-cycle-staffing-and-compensation-playbook",
+     "note": "Offers a departure knowledge audit with two to four weeks of overlap for billing staff. A useful pattern, but it ignores the owner as the key person."
+    },
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Its test of what breaks if a person leaves tomorrow is worth applying to every function, not only billing."
+    }
+   ],
+   "sources": [
+    "pya-checklist",
+    "ecg-goodwill-2023",
+    "scope-2025",
+    "cfr-483-30",
+    "cfr-483-70",
+    "cfr-414-56",
+    "cms-puf",
+    "hallrender-meddir-2025"
+   ],
+   "evidence_note": "Buyers' attention to provider concentration is documented in a published diligence checklist. The goodwill tax treatment rests on Tax Court cases as summarized by advisers. No published key-person discount percentage was found.",
+   "metrics": [
+    {
+     "slug": "lv-owner-revenue-share",
+     "name": "Share of collections personally generated by the owner",
+     "definition": "Collections for services the owner personally rendered, as a percent of all practice collections over the last 12 months.",
+     "formula": "Collections on claims with the owner as rendering clinician / total practice collections, trailing 12 months",
+     "unit": "percent",
+     "direction": "lower",
+     "cadence": "quarterly",
+     "benchmark_note": "No published threshold or discount was found. PYA's checklist tells buyers to test whether a few physicians produce a disproportionate share. A solo practice is at 100% by definition. Track the trend.",
+     "confidence": "none",
+     "sources": [
+      "pya-checklist",
+      "cms-puf"
+     ],
+     "data_hint": "Billing system report of payments by rendering clinician. Medicare's public file shows the same split for Medicare claims."
+    },
+    {
+     "slug": "lv-owner-only-functions",
+     "name": "Critical functions only the owner can perform",
+     "definition": "Number of functions the practice cannot run without that have no trained backup and no written procedure.",
+     "formula": "Count of items on the critical function list where the owner is the only person able or authorized to perform them",
+     "unit": "count",
+     "direction": "lower",
+     "cadence": "annual",
+     "benchmark_note": "No published benchmark exists. Target zero for business functions. Clinical work that law reserves for a physician, such as required nursing facility visits under 42 CFR 483.30, should be listed separately.",
+     "confidence": "none",
+     "sources": [
+      "cfr-483-30"
+     ],
+     "data_hint": "The practice's own critical function list, reviewed with the manager and the accountant."
+    }
+   ]
+  },
+  {
+   "slug": "lv-sale-readiness",
+   "name": "Sale readiness and due diligence",
+   "summary": "Being able to hand a buyer clean financial statements, billing data, contracts and compliance records on request. Problems the owner finds and fixes cost far less than problems a buyer finds, which reduce price, add escrow or end the deal.",
+   "good_looks_like": [
+    "Three years of monthly financial statements exist, with receivables and unpaid bills listed even though the books are cash basis.",
+    "A secure folder holds current copies of every diligence item, each with a responsible person and a date last checked.",
+    "Medicare, Medicaid and health plan enrollments match reality for every clinician and location, and license and exclusion checks are on file.",
+    "A compliance log covers at least six years of audits, payer reviews, refunds and corrective actions.",
+    "Patient-identifying detail stays out of the folder unless needed, and what is shared is limited to the minimum necessary."
+   ],
+   "failure_modes": [
+    "A pre-sale audit finds overpayments and the owner only fixes coding going forward. Identified Medicare overpayments must be reported and returned within 60 days.",
+    "Credit balances and unapplied payments sit unresolved for years and surface as a liability in diligence.",
+    "Contracts cannot be found, are unsigned or have expired, so the buyer cannot confirm rates or assignment rights.",
+    "Records are assembled in a rush after a letter of intent, and inconsistencies erode the buyer's trust in every number.",
+    "The owner shares patient lists or charts with a prospect without a confidentiality agreement or any limit on what is disclosed."
+   ],
+   "key_questions": [
+    "What percent of your diligence checklist is current and filed today?",
+    "Can you produce an aged receivables report stated net of contractual adjustments?",
+    "How many years back does your log of audits, refunds and payer reviews go?",
+    "Do you have any credit balances older than 60 days?",
+    "Is every financial arrangement with a facility or referral source in a signed, current agreement?"
+   ],
+   "actions": [
+    {
+     "action": "Adopt a diligence checklist and score it",
+     "detail": "Start from a published buyer's checklist, such as PYA's 43 items in 14 topics. Add enrollment, compliance, billing data and contract assignment items. Mark each one current, stale or missing.",
+     "cadence": "quarterly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Run your own billing and coding diligence first",
+     "detail": "Compare each clinician's code distribution with Medicare public data, sample charts, and review aged receivables and credit balances. Involve health care counsel before the audit starts.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Refund what the review finds",
+     "detail": "Report and return identified Medicare overpayments within 60 days, looking back six years (42 CFR 401.305). Keep proof of each refund in the compliance log.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Restate the last three years on an accrual basis",
+     "detail": "Ask the accountant to list receivables, payables and accrued payroll at each year end, so a buyer's quality of earnings review ties to your numbers.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Control what a prospect can see",
+     "detail": "Sign a confidentiality agreement first. Share summaries without patient identifiers where possible. The federal privacy rule (HIPAA) permits diligence disclosures but limits them to the minimum necessary.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any practice that may be sold, merged, financed or passed to a successor within five years. Facility-based practices add facility agreements, medical director time logs and census records. Their visit codes had 12% to 14% improper payment rates in fiscal 2025, so expect sampling.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Good outline of a seller self-audit and data room contents. Wrongly frames overpayment refunds as optional and puts the audit report in the data room without discussing legal privilege."
+    },
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Its 24-item request list shows what buyers ask for. The three-year compliance lookback is too short against Medicare's six-year overpayment lookback."
+    },
+    {
+     "item": "stark-antikickback-playbook",
+     "note": "Useful inventory of arrangements with referral sources to review before a deal. States the 60-day overpayment rule in its pre-2025 form."
+    }
+   ],
+   "sources": [
+    "pya-checklist",
+    "vmg-diligence",
+    "cfr-401-305",
+    "cms-puf",
+    "cms-cert-2025",
+    "cfr-164-501",
+    "cfr-164-502",
+    "medecon-selling-2026",
+    "foley-pe-2025",
+    "hallrender-meddir-2025"
+   ],
+   "evidence_note": "Diligence content follows a published buyer's checklist and valuation firm guidance. The overpayment and privacy duties are federal regulation. How often deals are repriced for diligence findings is not published.",
+   "metrics": [
+    {
+     "slug": "lv-diligence-readiness",
+     "name": "Standard diligence items ready in a data room",
+     "definition": "Share of the practice's diligence checklist that is current, complete and filed where an authorized person can retrieve it.",
+     "formula": "Checklist items marked current and filed / total items on the practice's diligence checklist",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "quarterly",
+     "benchmark_note": "No published benchmark was found. Target 100% before approaching buyers. PYA's 2021 buyer checklist (43 items) is a starting list, to which enrollment, compliance and billing data items should be added.",
+     "confidence": "none",
+     "sources": [
+      "pya-checklist"
+     ],
+     "data_hint": "The practice's own checklist, kept as a spreadsheet beside the secure folder.",
+     "vendor_claim": "Finish the data room at least four weeks before diligence starts, following a 12-month preparation plan.",
+     "vendor_verdict": "Unverifiable. A sensible convention with no source. The library's checklists omit Medicare enrollment, mandatory refunds and credit balances."
+    }
+   ]
+  },
+  {
+   "slug": "lv-deal-structure",
+   "name": "Buyers and deal structure",
+   "summary": "Who might buy the practice and how the price is paid. Buyer type sets the valuation logic. Structure decides tax, what stays with the seller, how much is paid at closing, and what the owner must do afterward.",
+   "good_looks_like": [
+    "The owner can name the realistic buyer types for this practice and what each pays for: assets, earnings, clinician capacity or patient panels.",
+    "Every offer is compared on cash at closing, contingent payments, post-sale pay, employment term and restrictions, not on headline price.",
+    "An accountant has modeled after-tax proceeds for an asset sale and an equity sale, including how the price would be allocated.",
+    "A written plan covers enrollment filings, payer and facility consents, and who collects receivables, with dates tied to the closing.",
+    "Health care counsel has confirmed the terms meet fair market value and referral rules when the buyer is a hospital or other referral partner."
+   ],
+   "failure_modes": [
+    "Accepting a higher price in exchange for lower pay after the sale without doing the arithmetic. Price and post-sale pay move in opposite directions.",
+    "A price paid to a hospital's seller in installments that vary with volume. The self-referral exception for a practice sale needs the total fixed before the first payment.",
+    "Assuming the Medicare number transfers. Billing privileges cannot be sold, and a new tax ID generally requires a new enrollment.",
+    "Forgetting that receivables of a cash-basis practice are taxed as ordinary income and that the seller usually keeps and must collect them.",
+    "Signing a letter of intent before tax and legal review, which fixes the asset or equity form and the price allocation."
+   ],
+   "key_questions": [
+    "How many buyer types have you identified that have bought a practice like yours?",
+    "For your best offer, what percent of the price is cash at closing?",
+    "How many years must you work after the sale, and at what annual pay?",
+    "What are your estimated net proceeds after debt, fees, tail coverage and tax?",
+    "Has counsel confirmed the non-compete you would sign is enforceable in your state?"
+   ],
+   "actions": [
+    {
+     "action": "Map buyer types and what each one values",
+     "detail": "List hospitals, physician groups, an internal successor, specialty or post-acute groups, and investor-backed platforms. For each note what it pays for and how it usually pays.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    },
+    {
+     "action": "Model after-tax proceeds for each structure",
+     "detail": "With the accountant, allocate the price across the Internal Revenue Service (IRS) Form 8594 asset classes. Goodwill built by the practice is usually capital gain. Receivables for services are ordinary income.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "File enrollment changes on the regulatory clock",
+     "detail": "Report an ownership change to Medicare within 30 days (42 CFR 424.516). A new owner with a new tax ID files a new application, generally no more than 60 days before its effective date.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Negotiate employment and restrictions with the price",
+     "detail": "Settle post-sale pay, term, duties, non-compete and who pays malpractice tail in the letter of intent. In Florida, a seller's non-compete of three years or less is presumed reasonable (section 542.335).",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Have counsel test the referral-law limits",
+     "detail": "A sale to a hospital or other referral partner must be at fair market value, unrelated to referrals and commercially reasonable (42 CFR 411.357(f)). The anti-kickback safe harbor rarely fits a seller who stays.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any owner weighing an offer or planning a sale. Hospital and health system buyers are held to fair market value. Facility-based practices should expect small upfront payments with value delivered through employment or retention terms, since facility relationships are not owned.",
+   "vendor_refs": [
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Introduces working capital targets, escrow and earn-outs. The working capital section is garbled, and it says sellers both keep receivables and deliver them."
+    },
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Lists contract transfer paths. It never separates asset from equity deals for Medicare enrollment and misdefines novation."
+    },
+    {
+     "item": "physician-compensation-negotiation-guide",
+     "note": "Useful questions for the owner's own post-sale employment contract. Its claim that courts read non-competes against the drafter is wrong for Florida."
+    },
+    {
+     "item": "provider-compensation-design-playbook",
+     "note": "Says post-sale employment agreements run three to five years, with no source, and does not explain the trade between price and later pay."
+    }
+   ],
+   "sources": [
+    "medecon-selling-2026",
+    "coker-2017",
+    "vmg-comp-fmv",
+    "ecg-2023",
+    "pya-checklist",
+    "aoa-selling-practice",
+    "foley-pe-2025",
+    "ibba-2026",
+    "irs-8594",
+    "irs-p544",
+    "cfr-411-351",
+    "cfr-411-357",
+    "cfr-1001-952",
+    "cfr-424-550",
+    "cfr-424-516",
+    "cfr-424-526",
+    "fl-542-335",
+    "fl-409-907",
+    "fl-400-9905",
+    "ftc-noncompete-removal-2026",
+    "ecg-goodwill-2023"
+   ],
+   "evidence_note": "Enrollment, referral-law and tax allocation points are regulation or Internal Revenue Service publications. Buyer behavior and typical terms come from advisers and one all-industry survey. Terms of small medical practice sales are not published.",
+   "metrics": [
+    {
+     "slug": "lv-net-proceeds-estimate",
+     "name": "Estimated net proceeds to the owner",
+     "definition": "Cash the owner would keep from a sale after debt, deal costs, malpractice tail coverage and taxes, with contingent payments listed separately.",
+     "formula": "Cash at closing + receivables kept and collected by the seller - debt payoff - advisory and legal fees - tail coverage - estimated taxes. List earn-outs and rollover equity separately.",
+     "unit": "dollars",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_note": "No benchmark exists because proceeds depend on structure, debt and tax position. Recompute yearly and for each offer. The American Osteopathic Association notes the seller usually keeps the receivables.",
+     "confidence": "none",
+     "sources": [
+      "aoa-selling-practice",
+      "irs-p544"
+     ],
+     "data_hint": "The accountant's tax model, loan payoff statements and a written tail coverage quote."
+    },
+    {
+     "slug": "lv-cash-at-close-share",
+     "name": "Share of the price paid in cash at closing",
+     "definition": "Portion of the total stated price the seller receives in cash on the closing date, as opposed to seller notes, earn-outs or equity in the buyer.",
+     "formula": "Cash paid at closing / (cash at closing + seller note + maximum earn-out + rollover equity at stated value)",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "annual",
+     "benchmark_typical": "83% to 92% across deal sizes, all industries",
+     "benchmark_note": "International Business Brokers Association and M&A Source survey, second quarter 2026: sales under $50 million, all industries. Not specific to medical practices. Investor deals can put up to 40% in rollover equity (Foley 2025).",
+     "confidence": "medium",
+     "sources": [
+      "ibba-2026",
+      "foley-pe-2025"
+     ],
+     "data_hint": "The letter of intent or purchase agreement for each offer."
+    }
+   ]
+  },
+  {
+   "slug": "lv-owner-exit-plan",
+   "name": "Owner exit and succession planning",
+   "summary": "A written plan for when and how the owner will stop owning the practice, by choice or by emergency. It names the successor path, the timeline, how a buyout would be funded, and what the owner needs financially afterward.",
+   "good_looks_like": [
+    "A target exit year is written down, and planning started at least three to five years ahead of it.",
+    "The plan compares an internal successor with an outside sale and states what each would require.",
+    "With more than one owner, a signed buy-sell agreement sets the price method and is funded by insurance or a payment schedule.",
+    "An emergency page tells family and staff who can access systems, sign checks, notify patients and facilities, and bill out remaining work.",
+    "The owner knows the income needed after exit and whether sale proceeds plus savings cover it."
+   ],
+   "failure_modes": [
+    "No plan until illness or burnout forces a sale. A rushed seller accepts the first offer or simply closes.",
+    "A solo owner dies or is disabled with no one authorized to run billing or release records, and receivables are lost.",
+    "A buy-sell agreement with a price set years ago and no funding, so remaining partners cannot pay the departing owner.",
+    "Counting on a nurse practitioner to take over a skilled nursing facility practice. Federal rules still require a physician for certain visits.",
+    "The owner's retirement depends on a sale price that market data does not support."
+   ],
+   "key_questions": [
+    "In what year do you plan to stop owning the practice?",
+    "Have you named a successor or buyer type, and do they know it?",
+    "If you could not work starting tomorrow, is someone authorized and instructed to keep cash flowing for 90 days?",
+    "Is your buy-sell agreement signed, funded and repriced within the last 12 months?",
+    "What percent of your planned retirement income depends on selling the practice?"
+   ],
+   "actions": [
+    {
+     "action": "Write a one-page succession plan with a date",
+     "detail": "State the target year, preferred successor path, backup path and the conditions that must be true for the practice to run without you.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Create an emergency continuity file",
+     "detail": "List system access, bank signers, payroll steps, facility contacts and a covering physician. In Florida, the medical board rule expects an executor to have record access, including passwords (rule 64B8-10.001).",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Fund any buyout obligation",
+     "detail": "With co-owners, sign a buy-sell agreement that sets a valuation method and is backed by life and disability insurance or a defined payment schedule. Reprice it yearly.",
+     "cadence": "annual",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Test the internal successor path against the rules",
+     "detail": "Confirm licensure, payer enrollment and scope of practice for the successor. In Florida, a nurse practitioner may practice autonomously only in primary care, after 3,000 supervised hours (section 464.0123).",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "medium"
+    },
+    {
+     "action": "Check malpractice tail terms early",
+     "detail": "Ask the carrier whether the tail premium is waived at retirement, death or disability, and what age and years insured are required. Budget the premium if it is not.",
+     "cadence": "annual",
+     "effort": "low",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Every owner needs the emergency file at any age. The dated plan matters most within ten years of exit and in solo practices. Facility-based practices must also name who would take over as attending physician and as medical director.",
+   "vendor_refs": [
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Good idea of planning backward from a fixed date. Promises a crisis framework but gives no real plan for a solo physician's death or disability."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Urges starting 12 to 24 months before a sale. That is shorter than the three to five years one adviser recommends, and it is silent on successors and funding."
+    }
+   ],
+   "sources": [
+    "medecon-selling-2026",
+    "fl-464-0123",
+    "cfr-483-30",
+    "cfr-483-70",
+    "aaa-ddr-2012",
+    "fl-rule-64b8-10-001",
+    "sba-close-sell"
+   ],
+   "evidence_note": "The three-to-five-year horizon is one adviser's published view. Buy-sell and continuity practices are convention. The nursing facility, licensure and record access rules cited are federal regulation and Florida law.",
+   "metrics": [
+    {
+     "slug": "lv-years-to-exit",
+     "name": "Planned years to the owner's exit",
+     "definition": "Years from today until the owner intends to stop owning the practice, as written in the succession plan.",
+     "formula": "Planned exit year - current year. Record as not set if no written date exists.",
+     "unit": "count",
+     "direction": "info",
+     "cadence": "annual",
+     "benchmark_best": "Written plan started 3 to 5 years before the exit date",
+     "benchmark_red": "Under 3 years to exit with no written plan",
+     "benchmark_note": "Medical Economics, 2026 interview with a transaction adviser: ask what must be true for the practice to thrive if you step away in three to five years. One adviser's view, not data.",
+     "confidence": "low",
+     "sources": [
+      "medecon-selling-2026"
+     ],
+     "data_hint": "The owner's written succession plan."
+    }
+   ]
+  },
+  {
+   "slug": "lv-startup",
+   "name": "Starting or adding a practice",
+   "summary": "Opening a new practice, adding a location or adding a clinician. Revenue starts only after entity, licenses, payer enrollment and systems are in place, so lead times and cash on hand decide whether the first year is survivable.",
+   "good_looks_like": [
+    "A dated checklist runs backward from the first patient day, with payer enrollment started months ahead and tracked per clinician and per payer.",
+    "Medicare applications are filed within the 60 days before the start date, with the participation agreement and the electronic funds transfer form.",
+    "A month-by-month cash forecast for 12 months shows the lowest cash point, and cash plus committed credit covers it with room to spare.",
+    "Billing system, clearinghouse, bank account and charge capture are tested with a real claim before volume arrives.",
+    "For each new clinician, a tracker shows the date each payer made them billable."
+   ],
+   "failure_modes": [
+    "Starting enrollment a month or two before opening. Most commercial plans do not pay for visits before approval, so early work goes unpaid.",
+    "Filing Medicare too early. An application received more than 60 days before its effective date can be returned, with no appeal.",
+    "Seeing Medicare patients long before filing. Billing starts on the filing date, with only a 30-day look-back in limited cases.",
+    "Opening with one or two months of cash. Payroll, software and insurance start on day one and collections lag.",
+    "Enrolling and then not billing Medicare for six months, which allows billing privileges to be deactivated."
+   ],
+   "key_questions": [
+    "How many months of operating cost can you fund at opening from cash and committed credit?",
+    "How many payer applications are filed, and how many are approved?",
+    "Does your forecast show cash flow covering debt payments at least 1.15 times within two years?",
+    "Has a test claim gone through the full path from charge to bank deposit?",
+    "Has counsel confirmed your ownership structure may operate a medical practice in your state?"
+   ],
+   "actions": [
+    {
+     "action": "Settle entity, ownership and tax status with counsel first",
+     "detail": "Every application needs the legal entity and tax ID. States differ on who may own a practice. In Florida, an entity not wholly owned by licensed practitioners generally needs a health care clinic license (section 400.9905).",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Build a backward timeline from the first patient day",
+     "detail": "After the entity come National Provider Identifiers, payer applications, bank and electronic payment setup, systems and test claims. Start health plan credentialing about 120 days ahead. It can take up to 180.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "File Medicare inside the 60-day window",
+     "detail": "Submit online with the participation agreement (Form CMS-460) and the electronic funds transfer form (CMS-588). Medicare's standard is 95% of clean online applications processed in 15 days and all in 50.",
+     "cadence": "once",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Write a 12-month cash forecast and fund the low point",
+     "detail": "List fixed costs, debt payments and minimum owner pay by month. Assume collections start late. Hold three to six months of cost in cash or committed credit. Lenders test debt coverage of 1.15 or more.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Track enrollment per clinician and payer weekly",
+     "detail": "Keep one row per clinician and payer: filed date, status, effective date, first paid claim. Hold claims for services on or after the effective date and release them on approval.",
+     "cadence": "weekly",
+     "effort": "low",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "New practices, new sites and each newly hired clinician. Facility-based practices skip the lease and build-out, and Medicare pays clean claims in 14 to 30 days, so their cash gap comes from enrollment timing, facility credentialing and missed charges.",
+   "vendor_refs": [
+    {
+     "item": "new-practice-launch-playbook",
+     "note": "Sound build sequence and reserve worksheet. Wrong on Medicare: retired reassignment form, a 30-day filing limit and 60 to 90 day processing. Assumes an office with a front desk."
+    }
+   ],
+   "sources": [
+    "ama-new-practice-finance",
+    "amednews-2011",
+    "sba-sop-50-10",
+    "cfr-424-520",
+    "cfr-424-521",
+    "cfr-424-526",
+    "cfr-424-540",
+    "cfr-424-516",
+    "cfr-424-510",
+    "fcso-enroll",
+    "cms-cpm-ch1",
+    "cms-855i-bulletin",
+    "caqh-providers",
+    "cfr-162-410",
+    "fl-400-9905",
+    "fl-409-907",
+    "cfr-414-56"
+   ],
+   "evidence_note": "Medicare enrollment timing is federal regulation plus processing standards published by a Medicare contractor. Cash reserve and lead-time advice comes from lender guidance and expert opinion. No measured data on new-practice cash needs was found.",
+   "metrics": [
+    {
+     "slug": "lv-startup-runway",
+     "name": "Months of operating cost funded at opening",
+     "definition": "Months the new practice or site can pay its bills from cash and committed credit before collections cover costs.",
+     "formula": "(Cash on hand + unused committed credit at opening) / projected monthly operating cost, including debt payments and minimum owner pay",
+     "unit": "count",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_best": "6 months or more",
+     "benchmark_typical": "3 to 6 months",
+     "benchmark_red": "Under 3 months",
+     "benchmark_note": "American Medical News (American Medical Association), 2011: experts advised three to six months of cash or credit for any practice. No practice association standard exists. Slow payer enrollment can require more.",
+     "confidence": "low",
+     "sources": [
+      "amednews-2011",
+      "ama-new-practice-finance"
+     ],
+     "data_hint": "Bank balances, the signed credit line agreement and the 12-month cash forecast.",
+     "vendor_claim": "Fund a reserve of four months of operating expenses before opening, as a planning floor.",
+     "vendor_verdict": "Partly supported. It falls within the three to six months experts advised in 2011, but no data supports four months specifically."
+    },
+    {
+     "slug": "lv-enrollment-ready-share",
+     "name": "Share of expected revenue with active payer enrollment at opening",
+     "definition": "Portion of expected first-year revenue that comes from payers where the clinician is already enrolled and billable on the first patient day.",
+     "formula": "Expected first-year revenue from payers with active enrollment on the opening date / total expected first-year revenue",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "weekly",
+     "benchmark_note": "No published benchmark was found. Aim for every major payer before the first visit. An American Medical Association article (2026) quotes a lender: most commercial plans will not pay for care given before approval.",
+     "confidence": "none",
+     "sources": [
+      "ama-new-practice-finance"
+     ],
+     "data_hint": "The enrollment tracker and the revenue forecast by payer.",
+     "vendor_claim": "All target payers enrolled by the six-month checkup.",
+     "vendor_verdict": "Unverifiable as a benchmark, and late. Visits for patients of unenrolled commercial plans in those months are usually unpaid."
+    }
+   ]
+  },
+  {
+   "slug": "lv-integration",
+   "name": "Integrating an acquired practice",
+   "summary": "Taking over another practice, a retiring physician's panel or a group of facilities without interrupting care or cash. The work is mostly enrollment, contracts, systems and people, and most of it must be finished before the closing date.",
+   "good_looks_like": [
+    "One named person runs the integration plan, with a dated tracker of every payer enrollment, contract and system change.",
+    "On day one every claim carries the correct tax ID and National Provider Identifiers, checked on the first batch before it is sent.",
+    "The purchase agreement states who owns and collects pre-closing receivables and how misdirected payments are returned.",
+    "Old and new billing systems run side by side until claims, payments and denials reconcile.",
+    "Key staff, clinicians, facilities and patients heard about the change directly and before closing, and retention is measured monthly."
+   ],
+   "failure_modes": [
+    "Billing under the seller's Medicare number after an asset purchase. Billing privileges cannot be sold or used by another entity.",
+    "Filing the new Medicare enrollment after closing. Services before the filing date, beyond a limited 30-day look-back, cannot be billed.",
+    "Assuming health plan contracts carry over. Many require consent, and clinicians must be linked to the new tax ID plan by plan.",
+    "Buying receivables at face value. Balances are often recorded at gross charges, and Medicare will not pay a seller's claims to a buyer under an assignment.",
+    "Billing care management under the new practitioner without new patient consent, which Medicare requires when the billing practitioner changes."
+   ],
+   "key_questions": [
+    "Will the acquired practice keep its existing tax ID after closing?",
+    "How many enrollment and contract changes are still pending?",
+    "What were the acquired practice's collections in the 12 months before closing?",
+    "Does the agreement state who collects the seller's old receivables and into which account?",
+    "What percent of acquired revenue remains 12 months after closing?"
+   ],
+   "actions": [
+    {
+     "action": "Choose the enrollment route from the deal structure",
+     "detail": "Equity purchase keeping the tax ID: report the ownership change within 30 days. Asset purchase with a new tax ID: file a new Medicare application, with reassignments on Form CMS-855I, before closing.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "File state Medicaid notices on time",
+     "detail": "Rules vary by state. In Florida, the seller's notice and the buyer's application are due at least 60 days before the change, or both become liable for all overpayments (section 409.907).",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Run a written cutover checklist",
+     "detail": "Cover identifiers on claims, clearinghouse and remittance enrollments, electronic funds transfer, bank accounts, portal access and facility notices. Check the first claim batch by hand before sending.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Monitor against the pre-closing baseline",
+     "detail": "Record 12 months of collections, visits and denials before closing. Compare claim counts, rejections and deposits daily for 30 days, then monthly for a year.",
+     "cadence": "daily",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Renew consents and agreements under the new entity",
+     "detail": "Obtain new chronic care management consent when the billing practitioner changes. Sign facility, medical director and employment agreements in the buyer's name. Refund overpayments within 60 days of identifying them.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "medium"
+    }
+   ],
+   "applies_when": "Any purchase, merger or takeover of a panel, including absorbing a retiring colleague's nursing facility patients. With no front desk, replace patient-payment and authorization steps with facility notices, attending-physician changes and census transfer.",
+   "vendor_refs": [
+    {
+     "item": "practice-acquisition-revenue-cycle-integration-playbook",
+     "note": "Useful day-one checklist and 30, 60, 90 day structure. Wrong on Medicare: treats the gap as lost revenue and advises filing 90 or more days early, risking a returned application."
+    },
+    {
+     "item": "rcm-outsourcing-evaluation-playbook",
+     "note": "Reminds buyers to review inherited billing vendor contracts and to run parallel operations at hand-off. No sources for its figures."
+    },
+    {
+     "item": "practice-valuation-playbook",
+     "note": "Its receivable discount tables by age are unsourced and inconsistent. Value purchased receivables from the seller's own collection history instead."
+    }
+   ],
+   "sources": [
+    "cfr-424-550",
+    "cfr-424-516",
+    "cfr-424-520",
+    "cfr-424-521",
+    "cfr-424-526",
+    "cfr-424-80",
+    "cms-855i-bulletin",
+    "fl-409-907",
+    "cms-ccm-faq",
+    "cfr-401-305",
+    "fcso-enroll",
+    "pya-checklist",
+    "aoa-selling-practice"
+   ],
+   "evidence_note": "Enrollment, assignment, consent and overpayment rules are federal regulation, Medicare guidance and Florida statute. Integration sequencing is convention. No published data on revenue retained after small-practice acquisitions was found.",
+   "metrics": [
+    {
+     "slug": "lv-acquired-revenue-retained",
+     "name": "Acquired revenue retained after 12 months",
+     "definition": "Collections from the acquired practice's patients, facilities and clinicians in the 12 months after closing, compared with the 12 months before.",
+     "formula": "Collections from the acquired book in months 1 to 12 after closing / collections from the same book in the 12 months before closing",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No published benchmark was found. Set the target in the purchase model and compare monthly. Adjust for fee schedule changes and for claims held during enrollment, which are delayed cash and not lost revenue.",
+     "confidence": "none",
+     "sources": [
+      "cfr-424-520"
+     ],
+     "data_hint": "Seller's pre-closing collection reports and the buyer's billing system, tagged by acquired clinician, site or patient list.",
+     "vendor_claim": "Unmanaged transitions lose 15% to 25% of monthly collections for 60 to 90 days. Planned ones lose under 5% and recover within 30 days.",
+     "vendor_verdict": "Unverifiable. No source is given and none was found. Much of a Medicare gap is delayed cash if the application is filed on time."
+    }
+   ]
+  },
+  {
+   "slug": "lv-wind-down",
+   "name": "Closing or winding down a practice",
+   "summary": "Closing a practice, or a site, in an orderly way: notice to patients, facilities and payers, custody of records, malpractice tail coverage, collecting what is still owed, and final tax and license filings. Duties continue for years after the last visit.",
+   "good_looks_like": [
+    "A dated closing calendar starts from the last patient day and works backward through each required notice.",
+    "Patients, facilities, hospitals, payers and the licensing board were notified in the way and time that state rules and contracts require.",
+    "A named custodian holds the records under a written agreement, for the longest period any rule or payer contract requires.",
+    "The billing system, bank account, electronic payments and mailing address stay open until remaining claims and appeals are resolved.",
+    "Tail coverage or a carrier waiver is confirmed in writing before the claims-made policy ends."
+   ],
+   "failure_modes": [
+    "Shutting the billing system on the last day. Unfiled claims, appeals and audit letters are lost along with the money.",
+    "Closing the bank account or ending electronic payment enrollment before the last claims are paid, so remittances bounce and money is stranded.",
+    "Destroying or abandoning records early. Medicare Advantage contracts carry a 10-year audit right, and in Florida failing the board's record rule is grounds for discipline.",
+    "Letting a claims-made malpractice policy lapse without tail coverage, leaving the physician personally exposed to later claims.",
+    "Keeping an overpayment found in the final review because the practice is closing. The 60-day report and return duty still applies."
+   ],
+   "key_questions": [
+    "How many days before the last patient day must each required notice go out?",
+    "Is a records custodian named in a written agreement, and for how many years?",
+    "What is the expected collectible value of receivables on the last day of service?",
+    "Do you have a tail coverage quote or waiver in writing?",
+    "How many contracts require written notice to end, and what is the longest notice period?"
+   ],
+   "actions": [
+    {
+     "action": "Build the closing calendar from the notice rules",
+     "detail": "Check state board rules and every contract. The American Academy of Family Physicians suggests notifying patients, payers and hospitals 60 to 90 days ahead. Medicare Advantage contracts require 60 days' written notice.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Follow the state patient notice rule exactly",
+     "detail": "In Florida, medical doctors publish a newspaper notice weekly for four weeks and send the board a copy within a month. Osteopathic physicians publish a notice and post an office sign 30 days ahead.",
+     "cadence": "per event",
+     "effort": "low",
+     "impact": "high"
+    },
+    {
+     "action": "Set record custody for the longest required period",
+     "detail": "Name a custodian in writing. Florida's board minimum is five years from the last patient contact. Medicare requires seven years for orders and referrals, and Medicare Advantage plans can audit for ten.",
+     "cadence": "once",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Fund and staff a run-out period",
+     "detail": "Keep billing access, the bank account and electronic payments open. File remaining claims within each payer's limit, 12 months for Medicare. Compare cash collected with expected collectible value monthly.",
+     "cadence": "monthly",
+     "effort": "medium",
+     "impact": "high"
+    },
+    {
+     "action": "Close out coverage, registrations and filings",
+     "detail": "Get tail coverage or a waiver in writing. Report the Medicare withdrawal within 90 days of stopping. Notify the Drug Enforcement Administration promptly. File final payroll and income tax returns before dissolving the entity.",
+     "cadence": "per event",
+     "effort": "medium",
+     "impact": "high"
+    }
+   ],
+   "applies_when": "Any practice or site that is closing, and any clinician leaving a payer or facility. Facility-based practices must also arrange a new attending physician for each resident and give each facility time to replace a medical director.",
+   "vendor_refs": [
+    {
+     "item": "practice-closure-and-wind-down-revenue-cycle-playbook",
+     "note": "Good topic list and backward timeline. Wrong on the Medicare withdrawal clock, cites a security rule for record retention, and treats keeping overpayments as an option. Its timelines conflict."
+    }
+   ],
+   "sources": [
+    "aafp-closing-checklist",
+    "fl-456-057",
+    "fl-rule-64b8-10-002",
+    "fl-rule-64b15-15-002",
+    "fl-rule-64b15-15-004",
+    "cfr-424-516",
+    "noridian-withdraw",
+    "fcso-voluntary-termination",
+    "cfr-424-44",
+    "cfr-422-504",
+    "cfr-422-202",
+    "cfr-1301-52",
+    "cfr-162-410",
+    "cfr-164-316",
+    "aaa-ddr-2012",
+    "irs-closing-business",
+    "sba-close-sell",
+    "cfr-401-305",
+    "cfr-424-80",
+    "fl-409-907",
+    "hbma-2024"
+   ],
+   "evidence_note": "Notice, record, enrollment, registration and refund duties are federal regulation and Florida statute and board rules, cited by section. Timing suggestions come from an American Academy of Family Physicians checklist. No data on receivables collected after closure was found.",
+   "metrics": [
+    {
+     "slug": "lv-tail-ar-collected",
+     "name": "Receivables at closing that were collected",
+     "definition": "Cash collected after the last day of service on balances open that day, as a percent of what those balances were expected to pay.",
+     "formula": "Cash collected after closing on balances open at closing / expected net collectible value of those balances, not gross charges",
+     "unit": "percent",
+     "direction": "higher",
+     "cadence": "monthly",
+     "benchmark_note": "No published benchmark was found. Compare with the practice's own net collection rate in its last normal year. Billing companies reported mean net collection of 85% to 93% in 2024 (Healthcare Business Management Association).",
+     "confidence": "none",
+     "sources": [
+      "hbma-2024"
+     ],
+     "data_hint": "Aged receivables report on the last day of service, and monthly payment reports during the run-out.",
+     "vendor_claim": "Practices that close commonly write off 20% to 40% of receivables, described as the vendor's own observation.",
+     "vendor_verdict": "Unverifiable. No data, author or study supports it. Do not use it as a forecast."
+    }
+   ]
+  }
+ ]
+}

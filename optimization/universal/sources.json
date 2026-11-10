@@ -1,0 +1,1257 @@
+[
+ {
+  "slug": "cms-cpm-ch12",
+  "title": "Medicare Claims Processing Manual, Chapter 12: Physicians and Nonphysician Practitioners (Rev. 13753)",
+  "publisher": "CMS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c12.pdf",
+  "note": "Section 30.6.13 covers nursing facility visits: who may perform the initial visit, and place of service 31 versus 32."
+ },
+ {
+  "slug": "cms-cpm-ch1",
+  "title": "Medicare Claims Processing Manual, Chapter 1: General Billing Requirements (Rev. 13725)",
+  "publisher": "CMS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+  "note": "Timely filing (section 70) and the payment floor (section 80.2)."
+ },
+ {
+  "slug": "cms-cpm-ch11",
+  "title": "Medicare Claims Processing Manual, Chapter 11: Processing Hospice Claims",
+  "publisher": "CMS",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c11.pdf",
+  "note": "Attending and non-attending physician billing for hospice patients; GV and GW modifiers."
+ },
+ {
+  "slug": "cfr-483-30",
+  "title": "42 CFR 483.30: Physician services in long-term care facilities",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.30",
+  "note": "Required visit schedule; which visits the physician must make personally; skilled nursing facility versus nursing facility delegation."
+ },
+ {
+  "slug": "cfr-401-305",
+  "title": "42 CFR 401.305: Reporting and returning overpayments",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-401.305",
+  "note": "Report and return within 60 days of identification; knowledge standard and 180-day investigation window since 2025; six-year lookback."
+ },
+ {
+  "slug": "cfr-424-44",
+  "title": "42 CFR 424.44: Time limits for filing Medicare claims",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.44"
+ },
+ {
+  "slug": "cfr-411-357",
+  "title": "42 CFR 411.357: Exceptions to the physician self-referral prohibition",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.357"
+ },
+ {
+  "slug": "cfr-1001-952",
+  "title": "42 CFR 1001.952: Anti-Kickback Statute safe harbors",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-1001.952"
+ },
+ {
+  "slug": "cfr-424-550",
+  "title": "42 CFR 424.550: Sale or transfer of Medicare billing privileges",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.550"
+ },
+ {
+  "slug": "cfr-414-56",
+  "title": "42 CFR 414.56: Payment for nurse practitioner services (85% of the physician fee schedule)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.ecfr.gov/current/title-42/section-414.56"
+ },
+ {
+  "slug": "cms-mln-ccm",
+  "title": "Chronic Care Management Services (MLN909188)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/files/document/chroniccaremanagement.pdf"
+ },
+ {
+  "slug": "cms-ccm-faq",
+  "title": "Frequently Asked Questions About Practitioner Billing for Chronic Care Management Services",
+  "publisher": "CMS",
+  "year": "2022",
+  "kind": "primary",
+  "url": "https://www.cms.gov/files/document/chronic-care-management-faqs.pdf",
+  "note": "Place of service is where the billing practitioner would ordinarily see the patient; care management may be billed for patients in facility settings."
+ },
+ {
+  "slug": "cms-apcm",
+  "title": "Advanced Primary Care Management Services",
+  "publisher": "CMS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/advanced-primary-care-management-services"
+ },
+ {
+  "slug": "cms-pfs-2027",
+  "title": "Calendar Year 2027 Medicare Physician Fee Schedule Final Rule fact sheet",
+  "publisher": "CMS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2027-medicare-physician-fee-schedule-final-rule",
+  "note": "Conversion factor $32.63 (non-qualifying), down 2.31%; indirect practice expense adjusted for visits to patients in a Part A skilled nursing stay."
+ },
+ {
+  "slug": "cms-pfs-2026",
+  "title": "Calendar Year 2026 Medicare Physician Fee Schedule Final Rule (CMS-1832-F) fact sheet",
+  "publisher": "CMS",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/newsroom/fact-sheets/calendar-year-cy-2026-medicare-physician-fee-schedule-final-rule-cms-1832-f",
+  "note": "Two conversion factors ($33.40 and $33.57); efficiency adjustment; lower indirect practice expense for services in facility settings."
+ },
+ {
+  "slug": "cms-puf",
+  "title": "Medicare Physician and Other Practitioners public use files (by provider, by provider and service, by geography and service)",
+  "publisher": "CMS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://data.cms.gov/provider-summary-by-type-of-service/medicare-physician-other-practitioners",
+  "note": "Public claims-level summaries by clinician and code, 2013 to 2024. The data an auditor or buyer sees."
+ },
+ {
+  "slug": "cms-cert-2025",
+  "title": "2025 Medicare Fee-for-Service Supplemental Improper Payment Data",
+  "publisher": "CMS",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/files/document/nov-2025-medicare-ffs-supplemental-improper-payment-data-2025922.pdf",
+  "note": "Improper payment rates by service: nursing home visits 12.7%, subsequent hospital visits 13.8%, initial hospital visits 12.0%."
+ },
+ {
+  "slug": "cms-qmb",
+  "title": "Prohibition on Billing Qualified Medicare Beneficiaries (MLN7936176)",
+  "publisher": "CMS Medicare Learning Network",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/files/document/mln7936176-prohibition-billing-qualified-medicare-beneficiaries.pdf"
+ },
+ {
+  "slug": "cms-star-2026",
+  "title": "Medicare 2026 Part C and D Star Ratings Technical Notes",
+  "publisher": "CMS",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.cms.gov/files/document/2026-star-ratings-technical-notes.pdf"
+ },
+ {
+  "slug": "cms-qpp-2026",
+  "title": "2026 Quality Payment Program Final Rule fact sheet",
+  "publisher": "CMS",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://qpp-cm-prod-content.s3.amazonaws.com/uploads/3506/2026%20Quality%20Payment%20Program%20Final%20Rule%20Fact%20Sheet%20and%20Policy%20Comparison%20Table.pdf"
+ },
+ {
+  "slug": "oig-gcpg",
+  "title": "General Compliance Program Guidance",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2023",
+  "kind": "primary",
+  "url": "https://oig.hhs.gov/documents/compliance-guidance/1135/HHS-OIG-GCPG-2023.pdf",
+  "note": "The seven elements of a compliance program and how a small practice adapts them."
+ },
+ {
+  "slug": "fl-627-6131",
+  "title": "Florida Statutes 627.6131: Payment of claims (insurers)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0627/Sections/0627.6131.html"
+ },
+ {
+  "slug": "fl-641-3155",
+  "title": "Florida Statutes 641.3155: Prompt payment of claims (HMOs)",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0600-0699/0641/Sections/0641.3155.html"
+ },
+ {
+  "slug": "fl-542-335",
+  "title": "Florida Statutes 542.335: Valid restraints of trade or commerce",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/542.335"
+ },
+ {
+  "slug": "fl-409-907",
+  "title": "Florida Statutes 409.907: Medicaid provider agreements",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/409.907"
+ },
+ {
+  "slug": "fl-464-0123",
+  "title": "Florida Statutes 464.0123: Autonomous practice by an advanced practice registered nurse",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/464.0123"
+ },
+ {
+  "slug": "fcso-enroll",
+  "title": "CMS-855 enrollment application processing timeframes",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://medicare.fcso.com/enrollment/cms-855-enrollment-application-processing-timeframes"
+ },
+ {
+  "slug": "irs-8594",
+  "title": "Instructions for Form 8594, Asset Acquisition Statement",
+  "publisher": "IRS",
+  "year": "2026",
+  "kind": "primary",
+  "url": "https://www.irs.gov/instructions/i8594"
+ },
+ {
+  "slug": "floir-medmal-2025",
+  "title": "Medical Malpractice Closed Claim Database and Rate Filing Annual Report",
+  "publisher": "Florida Office of Insurance Regulation",
+  "year": "2025",
+  "kind": "primary",
+  "url": "https://www.floir.gov/docs-sf/default-source/property-and-casualty/medical-malpractice-closed-claim-database-and-rate-filing-annual-report/2025-med-mal-report---final.pdf"
+ },
+ {
+  "slug": "hfma-map-keys",
+  "title": "MAP Keys, 2023 edition",
+  "publisher": "Healthcare Financial Management Association",
+  "year": "2023",
+  "kind": "secondary",
+  "url": "https://www.hfma.org/wp-content/uploads/2023/10/2023-Edition-MAP-Keys.pdf",
+  "note": "Standard definitions for 29 revenue cycle indicators. HFMA defines the metrics but publishes no targets."
+ },
+ {
+  "slug": "mgma-bok",
+  "title": "Body of Knowledge for Medical Practice Management",
+  "publisher": "MGMA",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/body-of-knowledge"
+ },
+ {
+  "slug": "mgma-glossary",
+  "title": "MGMA DataDive Definitions Glossary",
+  "publisher": "MGMA",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/getkaiasset/8dd9987a-755a-4943-a5bc-98a5690ff99e/2505-D33056D-2025%20MGMA%20DataDive%20Definitions%20Glossary-Letter-V3-NM.pdf"
+ },
+ {
+  "slug": "mgma-stat-ar-2026",
+  "title": "Days in A/R holds steady for most practices, but payer pressure persists in 2026 (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/mgma-stat/days-in-a/r-holds-steady-for-most-practices-but-payer-pressure-persists-in-2026"
+ },
+ {
+  "slug": "mgma-ops-2023",
+  "title": "Practice Operations data report (2022 data)",
+  "publisher": "MGMA",
+  "year": "2023",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/getkaiasset/ef6e357a-412b-41de-848f-a1b506b4261b/MGMA-PracticeOperations-DataReport-August2023-FINAL.pdf"
+ },
+ {
+  "slug": "mgma-app-2026",
+  "title": "2026 APP, Staffing and Access Data Report (2025 data)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/getkaiasset/3a1ac1af-eaef-42f5-9d19-1c37d73a67aa/2026-MGMA-APP-Staffing-and-Access-Data-Report.pdf"
+ },
+ {
+  "slug": "mgma-stat-margin",
+  "title": "Does your margin have breathing room? (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://www.mgma.com/mgma-stat/does-your-margin-have-breathing-room-mgma-stat-datadive"
+ },
+ {
+  "slug": "aafp-finances",
+  "title": "Managing practice finances",
+  "publisher": "American Academy of Family Physicians",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.aafp.org/family-physician/practice-and-career/managing-your-practice/practice-finances.html",
+  "note": "Source of the familiar thresholds: days in A/R under 50 (30 to 40 preferred), adjusted collection rate at least 95%, denial rate under 5%. Undated and unsourced."
+ },
+ {
+  "slug": "aafp-vital-signs",
+  "title": "Vital Signs for Assessing Your Practice's Financial Health (FPM)",
+  "publisher": "American Academy of Family Physicians",
+  "year": "2009",
+  "kind": "secondary",
+  "url": "https://www.aafp.org/pubs/fpm/issues/2009/1100/p25.html"
+ },
+ {
+  "slug": "aapc-kpi-2012",
+  "title": "Manage Four Key Revenue Cycle Metrics",
+  "publisher": "AAPC",
+  "year": "2012",
+  "kind": "secondary",
+  "url": "https://www.aapc.com/blog/24475-manage-four-key-revenue-cycle-metrics/",
+  "note": "Names no data source for its thresholds."
+ },
+ {
+  "slug": "hbma-2024",
+  "title": "Data Science Committee survey results (RCM Advisor, Q1 2024)",
+  "publisher": "Healthcare Business Management Association",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://hbma.org/rcmadvisor/quarter-1-2024-volume-29-issue-1/data-science-committee-survey-results",
+  "note": "Observed averages reported by billing companies."
+ },
+ {
+  "slug": "caqh-2024",
+  "title": "2024 CAQH Index (2023 data)",
+  "publisher": "CAQH",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://www.caqh.org/hubfs/Index/2024%20Index%20Report/CAQH_IndexReport_2024_FINAL.pdf"
+ },
+ {
+  "slug": "kff-ma-pa",
+  "title": "Medicare Advantage insurers made nearly 53 million prior authorization determinations in 2024",
+  "publisher": "KFF",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.kff.org/medicare/medicare-advantage-insurers-made-nearly-53-million-prior-authorization-determinations-in-2024/"
+ },
+ {
+  "slug": "experian-2026",
+  "title": "State of Claims 2026",
+  "publisher": "Experian Health",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.experian.com/blogs/healthcare/state-of-claims-2026-why-denials-remain-an-uphill-climb/"
+ },
+ {
+  "slug": "premier-2025",
+  "title": "Claims adjudication costs providers $25.7 billion",
+  "publisher": "Premier",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://premierinc.com/newsroom/blog/claims-adjudication-costs-providers-25-7-billion"
+ },
+ {
+  "slug": "vabson-2025",
+  "title": "Vabson, Hicks, Chernew. Medicare Advantage claim denials. Health Affairs 44(6)",
+  "publisher": "Health Affairs",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://doi.org/10.1377/hlthaff.2024.01485"
+ },
+ {
+  "slug": "amga-2026",
+  "title": "2026 Medical Group Compensation and Productivity Survey charts (2025 data)",
+  "publisher": "AMGA",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.amga.org/getmedia/6b7fc588-0aa3-4d42-a80c-5919fb7cbbbb/2026-comp-survey-charts-doc-final.pdf"
+ },
+ {
+  "slug": "doximity-2026",
+  "title": "Physician Compensation Report 2026",
+  "publisher": "Doximity",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.doximity.com/reports/physician-compensation-report/2026",
+  "note": "Self-reported averages, not medians."
+ },
+ {
+  "slug": "ama-benchmark",
+  "title": "Physician Practice Benchmark Survey",
+  "publisher": "American Medical Association",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://www.ama-assn.org/about/research/physician-practice-benchmark-survey"
+ },
+ {
+  "slug": "ama-burnout-2026",
+  "title": "Physician burnout rates are falling; specialty gaps remain",
+  "publisher": "American Medical Association",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.ama-assn.org/press-center/ama-press-releases/ama-physician-burnout-rates-are-falling-specialty-gaps-remain"
+ },
+ {
+  "slug": "ama-private-practice",
+  "title": "Private practice resources",
+  "publisher": "American Medical Association",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://www.ama-assn.org/practice-management/private-practices/private-practice-resources"
+ },
+ {
+  "slug": "ama-new-practice-finance",
+  "title": "How to put your new physician practice on strong financial footing",
+  "publisher": "American Medical Association",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.ama-assn.org/practice-management/private-practices/how-put-your-new-physician-practice-strong-financial-footing"
+ },
+ {
+  "slug": "ncqa-pcmh",
+  "title": "Patient-Centered Medical Home concepts",
+  "publisher": "NCQA",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.ncqa.org/programs/health-care-providers-practices/patient-centered-medical-home-pcmh/pcmh-concepts/"
+ },
+ {
+  "slug": "ihi-aims",
+  "title": "The Quintuple Aim",
+  "publisher": "Institute for Healthcare Improvement",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.ihi.org/library/topics/quintuple-aim"
+ },
+ {
+  "slug": "baldrige",
+  "title": "Baldrige Criteria commentary (health care)",
+  "publisher": "NIST",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.nist.gov/baldrige/baldrige-criteria-commentary-health-care"
+ },
+ {
+  "slug": "sba-finances",
+  "title": "Manage your finances",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.sba.gov/business-guide/manage-your-business/manage-your-finances"
+ },
+ {
+  "slug": "vmg-fundamentals",
+  "title": "5 Fundamentals for a Physician Practice Valuation",
+  "publisher": "VMG Health",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://vmghealth.com/articles/5-fundamentals-for-a-physician-practice-valuation"
+ },
+ {
+  "slug": "vmg-comp-fmv",
+  "title": "How post-transaction physician compensation structure affects fair market value of physician practices",
+  "publisher": "VMG Health",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://vmghealth.com/insights/blog/how-post-transaction-physician-compensation-structure-affects-fair-market-value-of-physician-practices/"
+ },
+ {
+  "slug": "vmg-diligence",
+  "title": "Five key analyses for healthcare financial due diligence",
+  "publisher": "VMG Health",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://vmghealth.com/insights/blog/five-key-analyses-for-healthcare-financial-due-diligence/"
+ },
+ {
+  "slug": "scope-2025",
+  "title": "Primary care physician practice valuation multiples and M&A trends",
+  "publisher": "Scope Research",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://www.scoperesearch.co/post/primary-care-physician-practice-valuation-multiples-and-m-a-trends-2025",
+  "note": "Small primary care (revenue under $5M): 3x to 6x EBITDA; listings at 1.5x to 3.1x seller's discretionary earnings."
+ },
+ {
+  "slug": "coker-2017",
+  "title": "Where's the value in physician practice valuations?",
+  "publisher": "Coker Group",
+  "year": "2017",
+  "kind": "secondary",
+  "url": "https://www.cokergroup.com/insights/wheres-the-value-in-physician-practice-valuations"
+ },
+ {
+  "slug": "ecg-2023",
+  "title": "Determining the true value of primary care practices",
+  "publisher": "ECG Management Consultants",
+  "year": "2023",
+  "kind": "secondary",
+  "url": "https://www.ecgmc.com/insights/article/2596/determining-the-true-value-of-primary-care-practices"
+ },
+ {
+  "slug": "pya-checklist",
+  "title": "Buyer's-side due diligence checklist: hospital acquisitions of physician practices",
+  "publisher": "PYA",
+  "year": "2021",
+  "kind": "secondary",
+  "url": "https://www.pyapc.com/wp-content/uploads/2021/03/Buyers-Side-Due-Diligence-Checklist-%E2%80%93-Hospital-Acquisitions-of-Physician-Practices.pdf"
+ },
+ {
+  "slug": "ibba-2026",
+  "title": "Market Pulse highlights, Q2 2026",
+  "publisher": "International Business Brokers Association",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.ibba.org/wp-content/uploads/2026/08/mp-highlights-q2-2026.pdf"
+ },
+ {
+  "slug": "iconic-multiples",
+  "title": "Medical practice valuation multiples (quoting BizBuySell sold-listing data 2021 to 2025)",
+  "publisher": "Iconic",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://iconic.co/blog/medical-practice-valuation-multiples/",
+  "note": "Median 2.05x seller's discretionary earnings and 0.62x revenue for sold medical practices. Secondary source."
+ },
+ {
+  "slug": "weaver-goodwill",
+  "title": "Personal goodwill in health care M&A transactions",
+  "publisher": "Weaver",
+  "year": "2024",
+  "kind": "secondary",
+  "url": "https://weaver.com/resources/personal-goodwill-in-health-care-ma-transactions-unlocking-tax-benefits/"
+ },
+ {
+  "slug": "foley-pe-2025",
+  "title": "Physician practice private equity transactions refresher",
+  "publisher": "Foley & Lardner",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://www.foley.com/insights/publications/2025/01/physician-practice-private-equity-transactions-refresher/"
+ },
+ {
+  "slug": "medecon-selling-2026",
+  "title": "Selling a medical practice: planning tips for physicians",
+  "publisher": "Medical Economics",
+  "year": "2026",
+  "kind": "secondary",
+  "url": "https://www.medicaleconomics.com/view/selling-a-medical-practice-planning-tips-for-physicians"
+ },
+ {
+  "slug": "hallrender-meddir-2025",
+  "title": "OIG recommendations on medical director agreements and roles",
+  "publisher": "Hall Render",
+  "year": "2025",
+  "kind": "secondary",
+  "url": "https://hallrender.com/2025/03/04/post-acute-compliance-program-update-oig-recommendations-on-medical-director-agreements-and-roles/"
+ },
+ {
+  "slug": "ccrx-library",
+  "title": "CleanClaimRx library: 25 operational playbooks, 5 compliance playbooks, 13 specialty guides, KPI guides (purchased November 2026)",
+  "publisher": "CleanClaimRx, a Digital Engagement LLC brand",
+  "year": "2026",
+  "kind": "vendor",
+  "url": "https://cleanclaimrx.com/library",
+  "note": "AI-generated (PDF author field: Perplexity Computer). No named author. Used here as a cross-check, never as a source of record."
+ },
+ {
+  "slug": "ccrx-road-to-cash",
+  "title": "Road to Cash (free guide)",
+  "publisher": "CleanClaimRx",
+  "year": "2026",
+  "kind": "vendor",
+  "url": "https://cleanclaimrx.com/tools"
+ },
+ {
+  "slug": "ehpa-financials",
+  "title": "Effinger Health, P.A. financial statements, cash basis, unaudited (2023 to September 30, 2026)",
+  "publisher": "Lanigan & Associates, P.C.",
+  "year": "2026",
+  "kind": "practice"
+ },
+ {
+  "slug": "ehpa-neon",
+  "title": "ehpa Practice Database: receivables, remittances, denials, charge feed, credentialing (aggregates)",
+  "publisher": "Effinger Health PA",
+  "year": "2026",
+  "kind": "practice"
+ },
+ {
+  "slug": "fcso-tpe",
+  "title": "Targeted Probe and Educate, Part B: active review topics",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/medical-review/tpe/part-b",
+  "kind": "primary",
+  "note": "The Florida Medicare contractor's list of services under targeted review. Chronic care management was on it in October 2026."
+ },
+ {
+  "slug": "oig-nh-audit-2026",
+  "title": "Audit A-06-21-04002: Medicare Part B services provided to nursing home residents",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/documents/audit/11798/A-06-21-04002.pdf",
+  "kind": "primary",
+  "note": "42 of 60 sampled evaluation and management services did not meet requirements."
+ },
+ {
+  "slug": "oig-nh-workplan",
+  "title": "Work plan: Medicare Part B services provided to patients residing in nursing homes",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/reports/work-plan/browse-work-plan-projects/medicare-part-b-services-provided-to-patients-residing-in-nursing-homes/",
+  "kind": "primary",
+  "note": "A nationwide audit opened in April 2026."
+ },
+ {
+  "slug": "oig-ccm-exclusion-2026",
+  "title": "Enforcement action: five-year exclusion for chronic care management claims not rendered (Florida)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2026",
+  "url": "https://oig.hhs.gov/fraud/enforcement/dr-nathan-hanflink-and-pain-management-institute-agreed-to-be-excluded-for-5-years-for-allegedly-violating-the-civil-monetary-penalties-law-by-submitting-claims-for-chronic-care-management-services-not-rendered/",
+  "kind": "primary"
+ },
+ {
+  "slug": "oig-ccm-audit-2021",
+  "title": "Medicare continues to make overpayments for chronic care management services",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2021",
+  "url": "https://oig.hhs.gov/reports/all/2021/medicare-continues-to-make-overpayments-for-chronic-care-management-services-costing-the-program-and-its-beneficiaries-millions-of-dollars/",
+  "kind": "primary"
+ },
+ {
+  "slug": "oig-nf-guidance-2024",
+  "title": "Nursing Facility Industry Segment-Specific Compliance Program Guidance",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2024",
+  "url": "https://oig.hhs.gov/documents/compliance/10038/nursing-facility-icpg.pdf",
+  "kind": "primary",
+  "note": "Medical director pay should be fair market value for documented services, with time logs."
+ },
+ {
+  "slug": "doj-vohra-2025",
+  "title": "Wound-care physician group and its owner agree to pay $45 million to settle allegations of overbilling",
+  "publisher": "U.S. Department of Justice",
+  "year": "2025",
+  "url": "https://www.justice.gov/opa/pr/vohra-wound-physicians-and-its-owner-agree-pay-45m-settle-fraud-allegations-overbilling",
+  "kind": "primary",
+  "note": "The government alleged billing software was set up so the higher-paid service was always billed."
+ },
+ {
+  "slug": "usc-31-3729",
+  "title": "31 U.S.C. 3729: False claims",
+  "publisher": "U.S. Code",
+  "year": "2026",
+  "url": "https://www.govinfo.gov/link/uscode/31/3729?type=usc&year=mostrecent&link-type=html",
+  "kind": "primary",
+  "note": "Knowingly includes deliberate ignorance and reckless disregard. No proof of intent to defraud is required."
+ },
+ {
+  "slug": "cfr-28-85-5",
+  "title": "28 CFR 85.5: Civil monetary penalty amounts, including False Claims Act penalties",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-28/section-85.5",
+  "kind": "primary",
+  "note": "Per-claim penalties of $14,308 to $28,619 at the 2025 level, which remains in force for 2026."
+ },
+ {
+  "slug": "cfr-45-102-3",
+  "title": "45 CFR 102.3: HHS civil monetary penalty amounts",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-102.3",
+  "kind": "primary"
+ },
+ {
+  "slug": "cms-pim-ch3",
+  "title": "Medicare Program Integrity Manual, chapter 3: Verifying potential errors and taking corrective actions",
+  "publisher": "CMS",
+  "year": "2025",
+  "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/pim83c03.pdf",
+  "kind": "primary",
+  "note": "The practitioner must review and sign documentation captured by a scribe or by artificial intelligence."
+ },
+ {
+  "slug": "oig-waiver-1994",
+  "title": "Special Fraud Alert: routine waiver of copayments or deductibles under Medicare Part B",
+  "publisher": "HHS Office of Inspector General",
+  "year": "1994",
+  "url": "https://oig.hhs.gov/documents/physicians-resources/980/121994.pdf",
+  "kind": "primary"
+ },
+ {
+  "slug": "fl-409-913",
+  "title": "Florida Statutes 409.913: Oversight of the integrity of the Medicaid program",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0409/Sections/0409.913.html",
+  "kind": "primary",
+  "note": "A provider has an affirmative duty to supervise and is responsible for the preparation and submission of its claims."
+ },
+ {
+  "slug": "fl-408-051",
+  "title": "Florida Statutes 408.051: Florida Electronic Health Records Exchange Act",
+  "publisher": "Florida Legislature",
+  "year": "2026",
+  "url": "https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0400-0499/0408/Sections/0408.051.html",
+  "kind": "primary",
+  "note": "Patient information stored offsite or in the cloud must be physically kept in the continental United States, its territories or Canada."
+ },
+ {
+  "slug": "cfr-411-351",
+  "title": "42 CFR 411.351: Definitions (physician self-referral), including fair market value, general market value and isolated financial transaction",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-411.351",
+  "kind": "primary",
+  "note": "Fair market value is the value in an arm's-length transaction consistent with general market value. An isolated financial transaction paid in installments needs the total fixed before the first payment. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-516",
+  "title": "42 CFR 424.516: Additional provider and supplier requirements for enrolling and maintaining active enrollment status in the Medicare program",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.516",
+  "kind": "primary",
+  "note": "Paragraph (d): physicians and practitioners report a change of ownership, adverse legal action or practice location change within 30 days and all other changes within 90 days. Paragraph (f): keep documentation of orders, certifications and referrals 7 years. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-520",
+  "title": "42 CFR 424.520: Effective date of Medicare billing privileges",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.520",
+  "kind": "primary",
+  "note": "For physicians, practitioners and their organizations the effective date is the later of the filing date of an application later approved or the date services began at a new location. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-521",
+  "title": "42 CFR 424.521: Request for payment by certain provider and supplier types",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.521",
+  "kind": "primary",
+  "note": "Retrospective billing up to 30 days before the effective date if circumstances precluded earlier enrollment, 90 days in a declared disaster. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-526",
+  "title": "42 CFR 424.526: Return of a provider's or supplier's enrollment application",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.526",
+  "kind": "primary",
+  "note": "An application received more than 60 days before the effective date listed may be returned, as may a change-of-ownership application filed more than 90 days before the sale. No appeal rights. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-540",
+  "title": "42 CFR 424.540: Deactivation of Medicare billing privileges",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.540",
+  "kind": "primary",
+  "note": "Billing privileges may be deactivated after 6 consecutive calendar months with no claims, for unreported changes, or on voluntary withdrawal. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-510",
+  "title": "42 CFR 424.510: Requirements for enrolling in the Medicare program",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.510",
+  "kind": "primary",
+  "note": "Enrollees must agree to receive payment by electronic funds transfer and submit Form CMS-588. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-424-80",
+  "title": "42 CFR 424.80: Prohibition of reassignment of claims by suppliers (with 42 CFR 424.73 on billing agents)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.80",
+  "kind": "primary",
+  "note": "Medicare does not pay amounts due a supplier to another person under reassignment or power of attorney, except an employer, a contracting enrolled entity or a billing agent that meets the 424.73(b)(3) conditions. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-483-70",
+  "title": "42 CFR 483.70: Administration (requirements for long-term care facilities)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.70",
+  "kind": "primary",
+  "note": "Paragraph (g): the facility must designate a physician to serve as medical director. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-422-504",
+  "title": "42 CFR 422.504: Contract provisions (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.504",
+  "kind": "primary",
+  "note": "Plans keep records 10 years and must require contracted providers to accept federal audit rights for 10 years from the end of the contract period (paragraphs (d) and (i)(2)). Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-422-202",
+  "title": "42 CFR 422.202: Participation procedures (Medicare Advantage)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-422.202",
+  "kind": "primary",
+  "note": "Paragraph (d)(4): a plan and a contracting provider must give each other at least 60 days' written notice before terminating without cause. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cfr-164-501",
+  "title": "45 CFR 164.501: Definitions (HIPAA Privacy Rule), health care operations",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.501",
+  "kind": "primary",
+  "note": "Health care operations include the sale, transfer or merger of a covered entity with another covered entity and related due diligence. Text read through the eCFR API, version dated 2026-11-05."
+ },
+ {
+  "slug": "cfr-164-502",
+  "title": "45 CFR 164.502: Uses and disclosures of protected health information: general rules",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.502",
+  "kind": "primary",
+  "note": "The ban on selling protected health information does not cover a sale or merger of the practice and related due diligence. The minimum necessary standard applies. Text read through the eCFR API, version dated 2026-11-05."
+ },
+ {
+  "slug": "cfr-164-316",
+  "title": "45 CFR 164.316: Policies and procedures and documentation requirements (HIPAA Security Rule)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.316",
+  "kind": "primary",
+  "note": "Six-year retention applies to security policies and required documentation, not to medical records. Text read through the eCFR API, version dated 2026-11-05."
+ },
+ {
+  "slug": "cfr-162-410",
+  "title": "45 CFR 162.410: Implementation specifications: Health care providers (National Provider Identifier)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-162.410",
+  "kind": "primary",
+  "note": "Providers must report changes in their National Provider Identifier data within 30 days. Text read through the eCFR API, version dated 2026-11-05."
+ },
+ {
+  "slug": "cfr-1301-52",
+  "title": "21 CFR 1301.52: Termination of registration; transfer of registration; distribution upon discontinuance of business",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-21/section-1301.52",
+  "kind": "primary",
+  "note": "A Drug Enforcement Administration registration ends when the registrant dies or discontinues professional practice, and the registrant must notify the agency promptly. Text read through the eCFR API, version dated 2026-11-06."
+ },
+ {
+  "slug": "cms-855i-bulletin",
+  "title": "Consolidated CMS-855I/CMS-855R Enrollment Applications (bulletin)",
+  "publisher": "CMS",
+  "year": "2023",
+  "url": "https://www.cms.gov/files/document/consolidated-cms-8551-bulletin.pdf",
+  "kind": "primary",
+  "note": "Reassignment of benefits is reported on Form CMS-855I. Form CMS-855R was discontinued, and contractors stopped accepting it after November 1, 2023."
+ },
+ {
+  "slug": "fcso-voluntary-termination",
+  "title": "How do I voluntarily terminate or deactivate my Medicare enrollment?",
+  "publisher": "First Coast Service Options",
+  "year": "2026",
+  "url": "https://medicare.fcso.com/enrollment/how-do-i-voluntarily-terminate-or-deactivate-my-medicare-enrollment",
+  "kind": "primary",
+  "note": "Voluntary termination is filed on the applicable CMS-855 application or online. Page dated June 26, 2026."
+ },
+ {
+  "slug": "noridian-withdraw",
+  "title": "Withdraw from Medicare (Jurisdiction F, Part B)",
+  "publisher": "Noridian Healthcare Solutions",
+  "year": "2023",
+  "url": "https://med.noridianmedicare.com/web/jfb/enrollment/withdraw",
+  "kind": "primary",
+  "note": "A Medicare contractor's statement that a retiring practitioner should withdraw, and that withdrawal is a change to be reported within 90 days. Last updated December 26, 2023."
+ },
+ {
+  "slug": "sba-sop-50-10",
+  "title": "SOP 50 10 8.1: Lender and Development Company Loan Programs, with technical policy updates (effective October 1, 2026)",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/document/sop-50-10-lender-development-company-loan-programs",
+  "kind": "primary",
+  "note": "Change-of-ownership loans need a business valuation prepared for the lender by an accredited appraiser. The lender may do its own only when the price is $350,000 or less and the parties are unrelated. Start-ups need 10% equity and projected debt coverage of 1.15 within two years. File read from legacy.sba.gov."
+ },
+ {
+  "slug": "irs-p544",
+  "title": "Publication 544 (2025), Sales and Other Dispositions of Assets",
+  "publisher": "IRS",
+  "year": "2025",
+  "url": "https://www.irs.gov/publications/p544",
+  "kind": "primary",
+  "note": "A business sale is treated as a sale of each asset. Receivables for services rendered are not capital assets. Section 197 intangibles such as goodwill are amortized over 15 years by a buyer."
+ },
+ {
+  "slug": "irs-closing-business",
+  "title": "Closing a business",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/closing-a-business",
+  "kind": "primary",
+  "note": "Final income and employment tax returns, Form 966 for a dissolving corporation, Form 8594 if the business is sold, final wage statements, and cancelling the employer identification number. Reviewed July 21, 2026."
+ },
+ {
+  "slug": "fl-400-9905",
+  "title": "Florida Statutes 400.9905: Definitions (Health Care Clinic Act)",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/400.9905",
+  "kind": "primary",
+  "note": "Subsection (4)(g) exempts from clinic licensure an entity wholly owned by licensed health care practitioners, or by them and close family, when a practitioner-owner supervises the business."
+ },
+ {
+  "slug": "fl-456-057",
+  "title": "Florida Statutes 456.057: Ownership and control of patient records",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/456.057",
+  "kind": "primary",
+  "note": "Subsections (12) and (13): a records owner who terminates practice, retires or relocates must advertise or notify patients in writing and tell the board who holds the records and where."
+ },
+ {
+  "slug": "fl-rule-64b8-10-002",
+  "title": "Florida Administrative Code 64B8-10.002: Medical Records of Physicians Relocating or Terminating Practice; Retention, Disposition, Time Limitations",
+  "publisher": "Florida Department of State (Board of Medicine rule)",
+  "year": "2018",
+  "url": "https://www.flrules.org/gateway/RuleNo.asp?title=&ID=64B8-10.002",
+  "kind": "primary",
+  "note": "Keep records at least five years from the last patient contact. On terminating practice, publish a newspaper notice once a week for four weeks and send a copy to the board within one month. Effective August 28, 2018."
+ },
+ {
+  "slug": "fl-rule-64b8-10-001",
+  "title": "Florida Administrative Code 64B8-10.001: Medical Records of Deceased Physician; Retention, Time Limitations",
+  "publisher": "Florida Department of State (Board of Medicine rule)",
+  "year": "2015",
+  "url": "https://www.flrules.org/gateway/RuleNo.asp?title=&ID=64B8-10.001",
+  "kind": "primary",
+  "note": "The executor keeps records at least two years after the physician's death and publishes notice within one month. Physicians must make sure the executor can access paper and electronic records, including passwords."
+ },
+ {
+  "slug": "fl-rule-64b15-15-002",
+  "title": "Florida Administrative Code 64B15-15.002: Handling of Patient Records Upon Termination of Practice (osteopathic physicians)",
+  "publisher": "Florida Department of State (Board of Osteopathic Medicine rule)",
+  "year": "1995",
+  "url": "https://www.flrules.org/gateway/RuleNo.asp?title=&ID=64B15-15.002",
+  "kind": "primary",
+  "note": "On voluntary termination, publish a newspaper notice, post an office sign 30 days before closing, and provide for record retention at least two years after the practice ends."
+ },
+ {
+  "slug": "fl-rule-64b15-15-004",
+  "title": "Florida Administrative Code 64B15-15.004: Written Records; Minimum Content; Retention (osteopathic physicians)",
+  "publisher": "Florida Department of State (Board of Osteopathic Medicine rule)",
+  "year": "2022",
+  "url": "https://www.flrules.org/gateway/RuleNo.asp?title=&ID=64B15-15.004",
+  "kind": "primary",
+  "note": "Keep each patient's record at least five years from the date last examined or treated."
+ },
+ {
+  "slug": "aafp-closing-checklist",
+  "title": "Closing your practice checklist",
+  "publisher": "American Academy of Family Physicians",
+  "year": "2026",
+  "url": "https://www.aafp.org/assets/image/upload/v1783528069/pdf_closing_your_practice_checklist.pdf",
+  "kind": "secondary",
+  "note": "Notifications and tasks 60 to 90 days before closing: staff, patients, public, boards, payers, hospitals, receivables, tail coverage and record storage."
+ },
+ {
+  "slug": "aaa-ddr-2012",
+  "title": "The Death, Disability, and Retirement Extended Reporting Endorsement (fact sheet)",
+  "publisher": "American Academy of Actuaries",
+  "year": "2012",
+  "url": "https://actuary.org/files/000docs/Quick-Hit-Papers-%20DDR_Feb15_2012.pdf",
+  "kind": "secondary",
+  "note": "Most individual medical liability policies are claims-made. Policies generally waive the tail premium on death, disability or retirement, often with age (for example 55) and tenure (for example five years) conditions for retirement."
+ },
+ {
+  "slug": "amednews-2011",
+  "title": "Tactics for tight times: How to keep your practice afloat",
+  "publisher": "American Medical News (American Medical Association)",
+  "year": "2011",
+  "url": "https://amednews.com/article/20110516/business/305169962/4/",
+  "kind": "secondary",
+  "note": "Experts recommend three to six months of cash in reserve, or a credit line covering three to six months of operating expenses. Expert opinion, not data."
+ },
+ {
+  "slug": "ecg-goodwill-2023",
+  "title": "Unlocking Value: The Role of Personal Goodwill in Physician Practice Deals",
+  "publisher": "ECG Management Consultants",
+  "year": "2023",
+  "url": "https://www.ecgmc.com/insights/article/3016/unlocking-value-the-role-of-personal-goodwill-in-physician-practice-deals",
+  "kind": "secondary",
+  "note": "Personal goodwill can be sold separately from the practice in the right facts. A prior non-compete with the practice entity undermines it. Summarizes Martin Ice Cream, Norwalk and Bross Trucking."
+ },
+ {
+  "slug": "aoa-selling-practice",
+  "title": "Selling a Solo Medical Practice",
+  "publisher": "American Osteopathic Association",
+  "year": "2026",
+  "url": "https://osteopathic.org/practicing-medicine/business-of-medicine/selling-a-practice/",
+  "kind": "secondary",
+  "note": "Receivables are generally not an acquired asset and the selling physician usually keeps them. Undated page, read November 2026."
+ },
+ {
+  "slug": "caqh-providers",
+  "title": "CAQH Provider Data Portal: information for providers",
+  "publisher": "CAQH (now DataSpring)",
+  "year": "2026",
+  "url": "https://www.caqh.org/providers",
+  "kind": "secondary",
+  "note": "The credentialing profile formerly called ProView is now the CAQH Provider Data Portal. Profiles are kept current on a 120-day attestation cycle."
+ },
+ {
+  "slug": "ftc-noncompete-removal-2026",
+  "title": "Removal of the Non-Compete Rule to conform to federal court decisions (91 FR 6507)",
+  "publisher": "Federal Trade Commission, Federal Register",
+  "year": "2026",
+  "url": "https://www.federalregister.gov/documents/2026/02/12/2026-02866/revision-of-the-negative-option-rule-withdrawal-of-the-cars-rule-removal-of-the-non-compete-rule-to",
+  "kind": "primary",
+  "note": "The federal non-compete rule was removed from the Code of Federal Regulations effective February 12, 2026. State law governs. Read through the Federal Register API record."
+ },
+ {
+  "slug": "sba-close-sell",
+  "title": "Close or sell your business (Manage your business guide)",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/business-guide/manage-your-business/close-or-sell-your-business",
+  "kind": "secondary",
+  "note": "General steps: get a valuation before selling, prepare a sales agreement, file dissolution documents and settle final tax obligations when closing."
+ },
+ {
+  "slug": "cfr-424-502",
+  "title": "42 CFR 424.502: Definitions (Medicare enrollment)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-424.502",
+  "kind": "primary",
+  "note": "Authorized official, delegated official (an owner or W-2 managing employee), managing employee, and owner (5 percent or more direct or indirect ownership)."
+ },
+ {
+  "slug": "cfr-483-10",
+  "title": "42 CFR 483.10: Resident rights",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-42/section-483.10",
+  "kind": "primary",
+  "note": "Paragraph (d): the resident has the right to choose his or her attending physician. The facility may seek alternate physician participation if the chosen physician does not meet requirements."
+ },
+ {
+  "slug": "cfr-164-308",
+  "title": "45 CFR 164.308: Administrative safeguards (HIPAA Security Rule)",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-45/section-164.308",
+  "kind": "primary",
+  "note": "Paragraph (a)(7): contingency plan with data backup, disaster recovery and emergency mode operation plans (required) and periodic testing and revision (addressable). Unchanged as of November 6, 2026."
+ },
+ {
+  "slug": "cfr-26-1-1361-1",
+  "title": "26 CFR 1.1361-1: S corporation defined",
+  "publisher": "eCFR",
+  "year": "2026",
+  "url": "https://www.ecfr.gov/current/title-26/section-1.1361-1",
+  "kind": "primary",
+  "note": "Paragraph (l): one class of stock means all outstanding shares confer identical rights to distribution and liquidation proceeds under the governing provisions. Buy-sell agreements are generally disregarded."
+ },
+ {
+  "slug": "hhs-hipaa-security-nprm-2025",
+  "title": "HIPAA Security Rule To Strengthen the Cybersecurity of Electronic Protected Health Information (proposed rule, 90 FR 898)",
+  "publisher": "HHS Office for Civil Rights",
+  "year": "2025",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-06/html/2024-30983.htm",
+  "kind": "primary",
+  "note": "Proposed 45 CFR 164.308(a)(13)(ii)(F): review and test contingency plans at least once every 12 months. A proposal only: not final as of November 2026."
+ },
+ {
+  "slug": "fl-621",
+  "title": "Florida Statutes chapter 621: Professional service corporations and limited liability companies (sections 621.03, 621.09, 621.10, 621.11)",
+  "publisher": "Florida Senate",
+  "year": "2025",
+  "url": "https://www.flsenate.gov/Laws/Statutes/2025/621.09",
+  "kind": "primary",
+  "note": "Shares may be issued or transferred only to licensed professionals or their professional entities. A disqualified owner must sever employment and financial interests forthwith."
+ },
+ {
+  "slug": "fl-sunbiz-annual-report",
+  "title": "File Annual Report",
+  "publisher": "Florida Department of State, Division of Corporations",
+  "year": "2026",
+  "url": "https://dos.fl.gov/sunbiz/manage-business/efile/annual-report/",
+  "kind": "primary",
+  "note": "Annual report due by May 1. An entity that has not filed by the third Friday of September is administratively dissolved."
+ },
+ {
+  "slug": "ca-mbc-cpom",
+  "title": "Practice Information: Corporate Practice of Medicine",
+  "publisher": "Medical Board of California",
+  "year": "2026",
+  "url": "https://www.mbc.ca.gov/Licensing/Physicians-and-Surgeons/Practice-Information/",
+  "kind": "primary",
+  "note": "Lists decisions a licensed physician must retain (including coding and billing procedures and payer contract parameters) and prohibited structures such as a medical practice run as a limited liability company."
+ },
+ {
+  "slug": "ama-corporate-investors-2025",
+  "title": "Issue brief: Corporate Investors",
+  "publisher": "American Medical Association",
+  "year": "2025",
+  "url": "https://www.ama-assn.org/system/files/issue-brief-corporate-investors.pdf",
+  "kind": "secondary",
+  "note": "States that the corporate practice of medicine doctrine varies widely by state and lists governance points for physicians dealing with corporate investors."
+ },
+ {
+  "slug": "irs-s-corp-compensation",
+  "title": "S corporation compensation and medical insurance issues",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/s-corporation-compensation-and-medical-insurance-issues",
+  "kind": "primary",
+  "note": "S corporations must pay reasonable compensation to shareholder-employees before non-wage distributions. The IRS may reclassify distributions as wages."
+ },
+ {
+  "slug": "irs-s-corporations",
+  "title": "S corporations",
+  "publisher": "IRS",
+  "year": "2026",
+  "url": "https://www.irs.gov/businesses/small-businesses-self-employed/s-corporations",
+  "kind": "primary",
+  "note": "Eligibility: domestic corporation, allowable shareholders only, no more than 100 shareholders, one class of stock. Election on Form 2553."
+ },
+ {
+  "slug": "fincen-boi-2026",
+  "title": "Beneficial Ownership Information Reporting",
+  "publisher": "Financial Crimes Enforcement Network",
+  "year": "2026",
+  "url": "https://www.fincen.gov/boi",
+  "kind": "primary",
+  "note": "Final rule issued August 11, 2026 and effective August 14, 2026: US companies are exempt from beneficial ownership reporting."
+ },
+ {
+  "slug": "sba-stay-compliant",
+  "title": "Stay legally compliant",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/business-guide/manage-your-business/stay-legally-compliant",
+  "kind": "secondary",
+  "note": "Corporations should hold annual meetings, record minutes, maintain bylaws and record stock transfers. Most states require an annual report or biennial statement. The address now redirects to the Manage your business guide."
+ },
+ {
+  "slug": "sba-prepare-emergencies",
+  "title": "Prepare for emergencies",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/business-guide/manage-your-business/prepare-emergencies",
+  "kind": "secondary",
+  "note": "Assess risk, create a plan, practice the plan with staff. A continuity plan should identify and document critical business functions. The address now redirects to the Manage your business guide."
+ },
+ {
+  "slug": "sba-business-plan",
+  "title": "Write your business plan",
+  "publisher": "U.S. Small Business Administration",
+  "year": "2026",
+  "url": "https://www.sba.gov/business-guide/plan-your-business/write-your-business-plan",
+  "kind": "secondary",
+  "note": "Traditional and lean plan formats. A lean plan is typically one page and can take as little as an hour. The address now redirects to the Plan your business guide."
+ },
+ {
+  "slug": "oig-nf-icpg-2024",
+  "title": "Industry Segment-Specific Compliance Program Guidance for Skilled Nursing Facilities and Nursing Facilities",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2024",
+  "url": "https://oig.hhs.gov/documents/compliance/10038/nursing-facility-icpg.pdf",
+  "kind": "primary",
+  "note": "Physician arrangements such as medical directorships must reflect a real need, services actually provided, fair market value pay unrelated to referrals, and contemporaneous records such as time logs."
+ },
+ {
+  "slug": "oig-physician-cpg-2000",
+  "title": "OIG Compliance Program for Individual and Small Group Physician Practices (65 FR 59434)",
+  "publisher": "HHS Office of Inspector General",
+  "year": "2000",
+  "url": "https://www.govinfo.gov/content/pkg/FR-2000-10-05/html/00-25500.htm",
+  "kind": "primary",
+  "note": "Physicians remain responsible for claims sent in their name by a billing service. Audits at least once a year: five or more records per federal payer or five to ten per physician. Medicare payments go to an account the provider controls."
+ },
+ {
+  "slug": "nist-ai-rmf",
+  "title": "AI Risk Management Framework: AI RMF Core",
+  "publisher": "National Institute of Standards and Technology",
+  "year": "2023",
+  "url": "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/",
+  "kind": "secondary",
+  "note": "Voluntary framework. Govern function: inventory AI systems, document roles and responsibilities, define human oversight, leadership takes responsibility for AI risk decisions."
+ },
+ {
+  "slug": "aicpa-comp-review-audit",
+  "title": "What is the difference between a compilation, review, and audit?",
+  "publisher": "AICPA and CIMA",
+  "year": "2023",
+  "url": "https://www.aicpa-cima.com/professional-insights/video/what-is-the-difference-among-a-compilation-review-and-audit",
+  "kind": "secondary",
+  "note": "Compilation: no assurance. Review: limited assurance from inquiry and analytical procedures. Audit: the most assurance, with verification and substantiation."
+ },
+ {
+  "slug": "amednews-embezzlement-2011",
+  "title": "Medical office embezzlement risk heightens at beginning of year",
+  "publisher": "American Medical News (American Medical Association)",
+  "year": "2011",
+  "url": "https://amednews.com/article/20110117/business/301179972/5/",
+  "kind": "secondary",
+  "note": "Reports an MGMA survey released November 5, 2010: nearly 83% of 688 practice managers had been affiliated with a practice where employee theft occurred. Describes concealment through write-offs and refunds."
+ },
+ {
+  "slug": "mgma-stat-strategic-plan-2017",
+  "title": "Health leaders report they have 12-month strategic plans (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2017",
+  "url": "https://www.mgma.com/mgma-stats/health-leaders-report-their-organizations-have-a-12-month-strategic-plan",
+  "kind": "secondary",
+  "note": "Poll of October 31, 2017, 1,212 applicable responses: 61% had a 12-month strategic plan, 34% did not, 4% unsure. Open poll, not a random sample."
+ },
+ {
+  "slug": "mgma-stat-strategic-plan-2018",
+  "title": "Strategic plans can help guide medical groups in the short and long term (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2018",
+  "url": "https://www.mgma.com/mgma-stats/strategic-plans-can-help-guide-medical-groups-in-the-short-and-long-term",
+  "kind": "secondary",
+  "note": "58% had a 12-month strategic plan, 37% did not, 5% unsure. Those with plans cite monthly financial statement review and quarterly progress checks."
+ },
+ {
+  "slug": "mgma-stat-succession-2026",
+  "title": "The future of your medical group depends on who's ready when it matters most (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://www.mgma.com/mgma-stat/leadership-succession-whos-ready-when-it-matters-most",
+  "kind": "secondary",
+  "note": "Poll of February 17, 2026, 302 applicable responses: 33% of medical groups have a succession plan for leadership positions, 60% do not, 8% unsure. 36% in July 2024."
+ },
+ {
+  "slug": "mgma-stat-cyber-2026",
+  "title": "Only 19% of practice leaders are very confident they could recover quickly from a cyberattack (MGMA Stat)",
+  "publisher": "MGMA",
+  "year": "2026",
+  "url": "https://www.mgma.com/mgma-stat/only-19-of-practice-leaders-are-very-confident-they-could-recover-quickly-from-a-cyberattack",
+  "kind": "secondary",
+  "note": "Poll of October 6, 2026, 238 applicable responses: 19% very confident, 61% somewhat, 21% not confident. Recommends a tabletop exercise twice a year. Notes 82% had a downtime plan in a July 2021 poll."
+ }
+]

@@ -1,0 +1,456 @@
+{
+ "slug": "code-and-mechanics",
+ "ord": 4,
+ "title": "The code and mechanics behind it",
+ "audience": "The owner who wants to understand, change or resell the system",
+ "summary": "How the pieces fit: the billing standards a claim travels on, the database, the software agents, the framework stored as data, and how a change gets from an idea to this page. Written so you can read the repository with a map in hand.",
+ "minutes": 22,
+ "body": {
+  "sections": [
+   {
+    "heading": "The whole machine on one page",
+    "blocks": [
+     {
+      "type": "lead",
+      "text": "Five layers, each replaceable. Sources feed agents, agents write to one database, an interface reads the database, and everything is mirrored in three places."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Layer",
+       "What it is here",
+       "Its job"
+      ],
+      "rows": [
+       [
+        "Sources",
+        "The billing system, the rounding and charge tool, an eligibility and claim-status service, payer portals, the bank, the accountant's statements, public Medicare data",
+        "Hold the facts"
+       ],
+       [
+        "Agents",
+        "Scheduled software routines that run every 2 to 6 hours under a written rulebook",
+        "Do the work: check coverage, enter charges, send claims, post payments, sort denials, log what they did"
+       ],
+       [
+        "Database",
+        "One Postgres database in a HIPAA-enabled project",
+        "The permanent record that every report reads"
+       ],
+       [
+        "Interface",
+        "A small web service and this application",
+        "Show the numbers to approved people and record their decisions"
+       ],
+       [
+        "Mirror",
+        "A code repository, an interface catalog and a shared drive",
+        "Three copies of code and procedures, so nothing lives in one place"
+       ]
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "key",
+      "title": "The design choice that matters most",
+      "text": "Facts live in the database, rules live in written files, and the screens are generated from both. Nothing important exists only on a screen or only in someone's head. That is what makes the system auditable, and what would let it serve a second practice."
+     }
+    ]
+   },
+   {
+    "heading": "The standards a claim travels on",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Electronic billing in the United States runs on a small set of standard messages. Knowing their names makes every vendor conversation easier."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Message",
+       "Plain name",
+       "What it carries"
+      ],
+      "rows": [
+       [
+        "270 and 271",
+        "Eligibility question and answer",
+        "Is this person covered on this date, by which plan, with what cost sharing"
+       ],
+       [
+        "837P",
+        "Professional claim",
+        "Who, what, when, where, why: the patient, the clinician, each service code, date, place of service and diagnoses"
+       ],
+       [
+        "277CA",
+        "Claim acknowledgment",
+        "Accepted or rejected at the door. A rejected claim was never filed"
+       ],
+       [
+        "276 and 277",
+        "Claim status question and answer",
+        "Where an accepted claim stands"
+       ],
+       [
+        "835",
+        "Remittance advice",
+        "What was paid on each line and, for every dollar not paid, a reason code"
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "Every line on a claim is built from four code sets."
+     },
+     {
+      "type": "kv",
+      "items": [
+       [
+        "Service codes (CPT and HCPCS)",
+        "What was done. 99309 is a subsequent nursing facility visit of moderate complexity. G0439 is a subsequent annual wellness visit."
+       ],
+       [
+        "Diagnosis codes (ICD-10)",
+        "Why it was done. They establish medical necessity."
+       ],
+       [
+        "Place of service",
+        "Where. 21 inpatient hospital, 31 skilled nursing facility for a patient in a Medicare Part A stay, 32 nursing facility otherwise, 13 assisted living. The place changes the payment rate."
+       ],
+       [
+        "Identifiers",
+        "The national provider number of the clinician who performed the service and of the group that bills it, plus a specialty code."
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "The remittance explains itself with a two-letter group and a reason number. The group says who bears the amount: **CO** is a contractual obligation the practice must write off, **PR** is the patient's responsibility, **OA** is other."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Reason on the remittance",
+       "Meaning",
+       "Usual cause upstream"
+      ],
+      "rows": [
+       [
+        "CO-45",
+        "Charge exceeds the fee schedule",
+        "Normal. The contractual adjustment"
+       ],
+       [
+        "PR-1, PR-2",
+        "Deductible, coinsurance",
+        "Normal. Bill the secondary"
+       ],
+       [
+        "CO-253",
+        "Sequestration",
+        "Normal. The 2% federal reduction"
+       ],
+       [
+        "CO-16",
+        "Claim lacks information",
+        "Registration or a missing field"
+       ],
+       [
+        "CO-27",
+        "Coverage ended before the service",
+        "Eligibility not re-checked"
+       ],
+       [
+        "CO-22, OA-23",
+        "Another payer is primary, or already paid",
+        "Payer order wrong"
+       ],
+       [
+        "CO-24",
+        "Covered by a capitated or Medicare Advantage plan",
+        "Plan change missed"
+       ],
+       [
+        "OA-18",
+        "Duplicate",
+        "Sent twice"
+       ],
+       [
+        "CO-29",
+        "Filing deadline passed",
+        "A claim sat unworked"
+       ],
+       [
+        "CO-96",
+        "Not covered",
+        "Service or payer rule"
+       ],
+       [
+        "CO-151",
+        "Frequency not supported",
+        "More than the payer allows in the period"
+       ],
+       [
+        "CO-170",
+        "Not payable to this type of provider",
+        "Enrollment or a payer rule about who may bill the code"
+       ],
+       [
+        "CO-256",
+        "Not payable under a managed care contract",
+        "Plan network or referral rule"
+       ],
+       [
+        "CO-B9",
+        "Patient is in hospice",
+        "Hospice modifier missing or wrong payer"
+       ]
+      ]
+     },
+     {
+      "type": "quiz",
+      "q": "A remittance line shows CO-45 for $40 and PR-2 for $19. What do you do with each?",
+      "choices": [
+       "Appeal both",
+       "Write off the $40 and bill the $19 to the secondary payer or patient",
+       "Write off both"
+      ],
+      "answer": 1,
+      "why": "CO-45 is the contractual adjustment and can never be collected. PR-2 is coinsurance and is owed by someone else, unless the patient is a Qualified Medicare Beneficiary and the secondary pays nothing."
+     }
+    ]
+   },
+   {
+    "heading": "The database",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "The database is organized into groups of tables called schemas. Each has one purpose."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Schema",
+       "Holds"
+      ],
+      "rows": [
+       [
+        "raw",
+        "Files and documents exactly as received"
+       ],
+       [
+        "ops",
+        "Run logs, settings and the record of who opened which page"
+       ],
+       [
+        "ehpa",
+        "The practice's billing facts: receivables, remittance lines, denials, charge feed, treasury, credentialing"
+       ],
+       [
+        "upo",
+        "The framework: domains, areas, measures, sources, the vendor library review, learning modules, and each practice's assessment, plan and valuation"
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "A measure on the scorecard is a short query against those tables. Days in receivables, for example:"
+     },
+     {
+      "type": "code",
+      "text": "select round( sum(balance)\n            / ( (select sum(charge) from charges\n                 where service_date >= current_date - 90) / 90.0 ) ) as days_in_ar\nfrom open_claims;",
+      "caption": "Illustrative. Open balances divided by average daily charges over the last 90 days."
+     },
+     {
+      "type": "p",
+      "text": "And the share of receivables older than 90 days:"
+     },
+     {
+      "type": "code",
+      "text": "select round( 100.0 * sum(balance) filter (where current_date - service_date > 90)\n              / sum(balance), 1 ) as pct_over_90\nfrom open_claims;",
+      "caption": "The filter clause keeps only old balances in the top of the fraction."
+     },
+     {
+      "type": "callout",
+      "tone": "note",
+      "title": "Aggregates only",
+      "text": "The framework tables hold dollars, counts and rates. Patient names, birth dates and member numbers stay in the billing tables behind the sign-in, and a checker refuses to load framework content that looks like it contains them."
+     }
+    ]
+   },
+   {
+    "heading": "The framework as data",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "The universal framework is not a document. It is rows in tables, written first as plain text files in the repository, checked, then loaded. Changing the framework means editing a file, not a web page."
+     },
+     {
+      "type": "code",
+      "text": "upo.domains            13 rows   strategy, finance, revenue cycle, payers, compliance, ...\n  upo.categories      17 rows  one per area: what good looks like, failure modes, questions, actions\n    upo.metrics       27 rows  definition, formula, benchmark, source, confidence\nupo.sources                    every rule and benchmark cites one\nupo.vendor_items, vendor_claims  the purchased library, scored and fact-checked\nupo.practices                  one row per practice\n  upo.practice_categories      applies? standing? evidence, next step\n  upo.practice_metrics         this practice's value for a measure, with date and basis\n  upo.risk_findings, recommendations, projects, worklist_items, valuations",
+      "caption": "The shape of the framework. Indentation shows what belongs to what."
+     },
+     {
+      "type": "p",
+      "text": "Two properties follow. The universal part and the practice part are separate, so the same 17 areas can be applied to any practice by adding rows for it. And every statement carries its source and a confidence label, so a reader can tell a regulation from a convention."
+     },
+     {
+      "type": "steps",
+      "items": [
+       "Edit a seed file, for example the file for one domain or the practice's work list.",
+       "Run the checker. It refuses unknown fields, broken references and anything that looks like patient information.",
+       "Load it into the preview copy of the database and look at the preview site.",
+       "Load it into production."
+      ]
+     },
+     {
+      "type": "code",
+      "text": "python3 optimization/tools/upo_load.py validate\npython3 optimization/tools/upo_load.py load --target preview\npython3 optimization/tools/upo_load.py load --target prod",
+      "caption": "The three commands. Work-list status and notes entered in the application are never overwritten by a load."
+     }
+    ]
+   },
+   {
+    "heading": "The agents",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "An agent here is a scheduled routine that reads, decides by rule, acts, and writes down what it did. One billing run does roughly this:"
+     },
+     {
+      "type": "steps",
+      "items": [
+       "Read the new census and charges from the rounding tool.",
+       "Check each patient's coverage electronically. Flag changes.",
+       "Enter charges into the billing system and run its checks.",
+       "Send claims. Read back acknowledgments and rejections.",
+       "Read remittances, post payments, and classify every unpaid line by reason.",
+       "Apply standing rules: resend what can be fixed, queue what needs a person, write off what the rules allow.",
+       "Write a run record and update the database."
+      ]
+     },
+     {
+      "type": "p",
+      "text": "The rulebook is the important part. It is a written file of standing instructions from the owner, such as never billing care management to Medicaid. A rule is cheap to add and repeats perfectly, which is the strength and the danger."
+     },
+     {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Controls that belong around any billing agent",
+      "text": "A person approves any rule that changes a code, a date, a place of service or a balance. Someone samples the agents' actions against charts every month. An outside coder reads the rulebook once a year. Every action is logged with the rule that caused it. The practice, not the software, is responsible for each claim."
+     }
+    ]
+   },
+   {
+    "heading": "The interface",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "The application is one small web service. It verifies who you are, checks your address against an approved list, records the request, and answers with data."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Address",
+       "Returns"
+      ],
+      "rows": [
+       [
+        "/api/upo/universal",
+        "Domains, areas, measures and sources"
+       ],
+       [
+        "/api/upo/practice/ehpa",
+        "This practice's assessment, scorecard, risks, plan, projects, work list and valuation"
+       ],
+       [
+        "/api/upo/library",
+        "The purchased library with scores and checked claims"
+       ],
+       [
+        "/api/upo/learn",
+        "These modules"
+       ],
+       [
+        "/api/upo/practice/ehpa/worklist/(item)",
+        "The only address that writes: it saves a status and a note with your name and the time"
+       ]
+      ]
+     },
+     {
+      "type": "list",
+      "items": [
+       "Sign-in is handled by a managed service. The application receives a signed token and checks the signature on every request.",
+       "Every request is written to an access log.",
+       "The service runs next to the database, and each copy of the database gets its own copy of the service, so changes are tried on a preview before production."
+      ]
+     }
+    ]
+   },
+   {
+    "heading": "Turning this into something other practices can use",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "The pieces specific to one practice are fewer than they look."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Reusable as is",
+       "Per practice"
+      ],
+      "rows": [
+       [
+        "The 13 domains, 17 areas and their measures",
+        "Which areas apply and where the practice stands"
+       ],
+       [
+        "Sources and benchmark notes",
+        "The practice's own numbers"
+       ],
+       [
+        "The application and its pages",
+        "Connections to that practice's billing system and bank"
+       ],
+       [
+        "The loader, the checker, the mirror",
+        "The rulebook, because rules follow specialty, payers and state"
+       ],
+       [
+        "The valuation method",
+        "The inputs and the conclusion"
+       ]
+      ]
+     },
+     {
+      "type": "steps",
+      "items": [
+       "Connect the data: billing system extracts, bank deposits, financial statements, public Medicare data for each clinician.",
+       "Compute the measures and compare with benchmarks and with national code patterns.",
+       "Judge each area: applies or not, standing, evidence, next step.",
+       "Write the risk review, the plan and the valuation.",
+       "Review everything with a certified coder and, where needed, an attorney before it reaches the owner."
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "risk",
+      "title": "What makes this a regulated activity",
+      "text": "Handling another practice's patient data requires a business associate agreement and security safeguards. Advice about coding and billing carries liability. A service like this should be sold as management information with professional review, not as a guarantee of compliance or revenue."
+     }
+    ]
+   }
+  ],
+  "takeaways": [
+   "Five layers: sources, agents, one database, an interface, and a three-way mirror.",
+   "A claim is a standard message built from service codes, diagnoses, a place of service and identifiers. The remittance tells you why each dollar was not paid.",
+   "The framework is data: 13 domains, 17 areas and 27 measures as rows, each with a source.",
+   "Change content by editing a file, checking it, previewing it and loading it.",
+   "Agents repeat rules perfectly, so the rules need human approval, sampling and an outside read.",
+   "Universal content and practice content are stored separately, which is what would let the same system serve another practice."
+  ]
+ },
+ "artifact_url": "https://claude.ai/artifact/Kmf2uvQAombmfaE8VcbLhw"
+}

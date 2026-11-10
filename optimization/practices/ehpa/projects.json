@@ -1,0 +1,428 @@
+[
+ {
+  "slug": "ccm-footing",
+  "ord": 1,
+  "title": "Put care management on a defensible footing",
+  "objective": "Bill care management only where consent, a care plan and logged time support the code, and settle what to do about past claims.",
+  "category_slug": "cc-time-based-codes",
+  "priority": "now",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Protects a revenue line of up to about $160,000 a year and limits repayment exposure.",
+  "owner": "william",
+  "start_by": "2026-11-11",
+  "target_date": "2026-12-15",
+  "success_measures": [
+   "Every care-management claim sent after December 1 traces to a consent, a care plan and a time log",
+   "Total minutes billed in a month do not exceed staff hours available",
+   "The attorney has given written advice on past claims"
+  ],
+  "steps": [
+   "Hold November's batch until the sample is read",
+   "Sample 30 patient-months",
+   "Decide which code the records support",
+   "Build the time log and consent fields",
+   "Attorney-directed look-back if needed"
+  ]
+ },
+ {
+  "slug": "coding-audit",
+  "ord": 2,
+  "title": "Independent audit of visit levels and documentation",
+  "objective": "Learn whether the notes support the levels billed, for both clinicians, before anyone else asks.",
+  "category_slug": "cr-coding-audits",
+  "priority": "now",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Protects about $600,000 a year of visit revenue. An audit of 60 to 80 notes typically costs a few thousand dollars.",
+  "owner": "william",
+  "start_by": "2026-11-17",
+  "target_date": "2027-01-15",
+  "success_measures": [
+   "A written audit report covering every main code family for both clinicians",
+   "A decision, on advice, about any overpayment",
+   "A quarterly audit on the calendar"
+  ],
+  "steps": [
+   "Attorney engages the auditor",
+   "Random sample of 10 notes per code family per clinician",
+   "Review results with both clinicians",
+   "Education session",
+   "Quarterly follow-up audits"
+  ]
+ },
+ {
+  "slug": "census-status",
+  "ord": 3,
+  "title": "Capture payer status and place of service at the source",
+  "objective": "Know for every resident and every date whether they are in a Medicare Part A skilled stay, on hospice or in a Medicare Advantage plan, and bill accordingly.",
+  "category_slug": "fe-coverage-status",
+  "priority": "now",
+  "impact_low": 15000,
+  "impact_high": 60000,
+  "impact_note": "Correct setting codes, fewer wrong-payer denials, and care management paid at the right rate.",
+  "owner": "claude",
+  "start_by": "2026-11-11",
+  "target_date": "2026-12-10",
+  "success_measures": [
+   "Each facility sends a weekly census with skilled-stay status and payer",
+   "Place of service 31 or 32 is set from that census on every nursing facility claim",
+   "Hospice patients carry the hospice modifier"
+  ],
+  "steps": [
+   "Ask each facility for the census",
+   "Store status with the patient by date",
+   "Set place of service from it",
+   "Measure three months of past claims"
+  ]
+ },
+ {
+  "slug": "coverage-cleanup",
+  "ord": 4,
+  "title": "Finish the coverage refresh and verify monthly",
+  "objective": "No charge without a verified payer, and every active patient re-verified on the first of each month.",
+  "category_slug": "fe-eligibility",
+  "priority": "now",
+  "impact_low": 30000,
+  "impact_high": 70000,
+  "impact_note": "11.2% of charges had no payer when entered. Coverage problems are about 31% of denied visits.",
+  "owner": "claude",
+  "start_by": "2026-11-11",
+  "target_date": "2026-12-05",
+  "success_measures": [
+   "All 493 coverage cards verified or marked self-pay",
+   "Charges with no payer under 2%",
+   "A re-verification run on the first of each month"
+  ],
+  "steps": [
+   "Clear the 342 cards in work",
+   "Monthly re-verification",
+   "Hold claims with no verified payer"
+  ]
+ },
+ {
+  "slug": "ar-recovery",
+  "ord": 5,
+  "title": "Collect the aged receivables before filing windows close",
+  "objective": "Work the $65,431 tagged correct-and-resend and the 74 actionable denials, oldest deadline first.",
+  "category_slug": "ar-followup",
+  "priority": "now",
+  "impact_low": 20000,
+  "impact_high": 35000,
+  "impact_note": "One-time cash, estimated at about 40% of billed charges on the items worked.",
+  "owner": "claude",
+  "start_by": "2026-11-11",
+  "target_date": "2026-12-15",
+  "success_measures": [
+   "Correct-and-resend list at zero",
+   "Receivables older than 90 days under 25%",
+   "No claim lost to a filing deadline in December"
+  ],
+  "steps": [
+   "Sort by filing deadline",
+   "Fix and resend",
+   "Appeal where resending will not work",
+   "Report weekly"
+  ]
+ },
+ {
+  "slug": "enrollment-fix",
+  "ord": 6,
+  "title": "Close the enrollment and credentialing gaps",
+  "objective": "Both clinicians enrolled and current with every payer the patients have, starting with Medicaid.",
+  "category_slug": "pc-credentialing",
+  "priority": "now",
+  "impact_low": 15000,
+  "impact_high": 40000,
+  "impact_note": "Restores secondary payments and stops avoidable denials. 108 denied visits are tagged credentialing.",
+  "owner": "william",
+  "start_by": "2026-11-11",
+  "target_date": "2027-01-31",
+  "success_measures": [
+   "Medicaid renewal filed before December 1 and confirmed",
+   "No open item on the credentialing board older than 60 days",
+   "One expiry calendar with 90-day warnings"
+  ],
+  "steps": [
+   "Medicaid renewal",
+   "Nurse practitioner revalidation and national record",
+   "Railroad Medicare",
+   "Commercial plan status",
+   "Calendar"
+  ]
+ },
+ {
+  "slug": "treasury",
+  "ord": 7,
+  "title": "Match every deposit to a remittance",
+  "objective": "Know that every dollar paid reached the bank and every deposit was posted.",
+  "category_slug": "ar-deposit-reconciliation",
+  "priority": "next",
+  "impact_low": 5000,
+  "impact_high": 20000,
+  "impact_note": "One-time recovery of missing payments, then a standing control.",
+  "owner": "claude",
+  "start_by": "2026-12-01",
+  "target_date": "2027-01-15",
+  "success_measures": [
+   "A weekly match with nothing unexplained older than 10 days",
+   "Electronic remittance and deposit active for every payer that offers it"
+  ],
+  "steps": [
+   "Explain the unmatched Medicare deposits",
+   "Chase remittances with no money",
+   "Finish electronic enrollment",
+   "Weekly match"
+  ]
+ },
+ {
+  "slug": "operating-rhythm",
+  "ord": 8,
+  "title": "Monthly close and monthly owner review",
+  "objective": "Run the practice from one page of numbers once a month.",
+  "category_slug": "sg-operating-rhythm",
+  "priority": "next",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "No direct dollar value. It is how every other project stays done.",
+  "owner": "william",
+  "start_by": "2026-12-01",
+  "target_date": "2027-01-31",
+  "success_measures": [
+   "Books closed by the 15th of each month",
+   "A 45-minute review held and decisions logged, three months running",
+   "A 2027 budget with three scenarios"
+  ],
+  "steps": [
+   "Reconnect accounting software",
+   "Monthly close",
+   "2027 budget",
+   "First review in January"
+  ]
+ },
+ {
+  "slug": "compliance-program",
+  "ord": 9,
+  "title": "A compliance program sized for two clinicians",
+  "objective": "A short written program that the practice actually follows.",
+  "category_slug": "cr-program",
+  "priority": "next",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Changes how any future billing problem is treated.",
+  "owner": "william",
+  "start_by": "2026-12-15",
+  "target_date": "2027-02-28",
+  "success_measures": [
+   "A written program adopted and dated",
+   "Training done and recorded for both clinicians",
+   "Medical director agreements and time logs reviewed by the attorney",
+   "A security risk analysis on file"
+  ],
+  "steps": [
+   "Write the program",
+   "Training",
+   "Review referral arrangements",
+   "Security risk analysis",
+   "Rulebook review"
+  ]
+ },
+ {
+  "slug": "automation-controls",
+  "ord": 10,
+  "title": "Tighten controls on automation and access",
+  "objective": "Keep the speed of agent-run billing while proving it is doing the right thing.",
+  "category_slug": "td-ai-governance",
+  "priority": "next",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Reduces the chance that one wrong rule repeats across hundreds of claims.",
+  "owner": "claude",
+  "start_by": "2026-11-11",
+  "target_date": "2027-01-15",
+  "success_measures": [
+   "Open sign-up turned off",
+   "The shared access key replaced",
+   "A monthly sample of 25 automated actions reviewed and logged"
+  ],
+  "steps": [
+   "Close sign-up",
+   "Rotate keys",
+   "Approval for claim-changing rules",
+   "Monthly sample"
+  ]
+ },
+ {
+  "slug": "quality-mips",
+  "ord": 11,
+  "title": "Find out where the practice stands in Medicare's quality program",
+  "objective": "Avoid a penalty of up to 9% of Medicare payments.",
+  "category_slug": "qv-mips",
+  "priority": "next",
+  "impact_low": 0,
+  "impact_high": 31000,
+  "impact_note": "Penalty avoided, if either clinician is required to report.",
+  "owner": "william",
+  "start_by": "2026-11-17",
+  "target_date": "2027-01-31",
+  "success_measures": [
+   "Status known for both clinicians",
+   "A reporting or exception plan for the 2026 performance year"
+  ],
+  "steps": [
+   "Look up status",
+   "Read past feedback",
+   "Choose a reporting route"
+  ]
+ },
+ {
+  "slug": "service-lines",
+  "ord": 12,
+  "title": "Deliver and bill the services patients already qualify for",
+  "objective": "Add wellness visits, transitional care and properly documented advance care planning.",
+  "category_slug": "gm-service-lines",
+  "priority": "next",
+  "impact_low": 25000,
+  "impact_high": 50000,
+  "impact_note": "About 150 wellness visits a year and a few transitional care services a month.",
+  "owner": "pam",
+  "start_by": "2027-01-05",
+  "target_date": "2027-03-31",
+  "success_measures": [
+   "Wellness visits scheduled for long-term residents",
+   "Transitional care billed for patients discharged to assisted living or home",
+   "A time statement in every advance care planning note"
+  ],
+  "steps": [
+   "List eligible patients",
+   "Schedule wellness visits",
+   "Transitional care routine",
+   "Documentation templates"
+  ]
+ },
+ {
+  "slug": "payer-contracts",
+  "ord": 13,
+  "title": "Know the contracts and the 2027 rates",
+  "objective": "Hold every payer contract and fee schedule and check payments against them.",
+  "category_slug": "pc-contract-inventory",
+  "priority": "next",
+  "impact_low": 10000,
+  "impact_high": 30000,
+  "impact_note": "Underpayments found, denials disputed with the contract in hand, and no surprise from the 2027 Medicare changes.",
+  "owner": "claude",
+  "start_by": "2026-12-01",
+  "target_date": "2027-02-28",
+  "success_measures": [
+   "A contract and fee schedule on file for every plan",
+   "The top 15 codes repriced for 2027 by site of service",
+   "Payments below the expected amount flagged automatically"
+  ],
+  "steps": [
+   "Request contracts",
+   "Load fee schedules",
+   "Reprice for 2027",
+   "Flag underpayments"
+  ]
+ },
+ {
+  "slug": "finance-cleanup",
+  "ord": 14,
+  "title": "Debt, the owner's loan and tax",
+  "objective": "Lower the cost of debt, clear the amount owed by the owner, and set pay on a defensible basis.",
+  "category_slug": "fm-debt-capital",
+  "priority": "next",
+  "impact_low": 6000,
+  "impact_high": 12000,
+  "impact_note": "Interest saved by refinancing. The larger value is a clean balance sheet before any sale.",
+  "owner": "cpa",
+  "start_by": "2026-12-01",
+  "target_date": "2027-02-28",
+  "success_measures": [
+   "A refinancing decision on the 13.99% note",
+   "A written plan for the shareholder loan",
+   "Salary level reviewed",
+   "A cash floor of 90 days agreed"
+  ],
+  "steps": [
+   "Refinance quotes",
+   "Shareholder loan plan",
+   "Salary review",
+   "Cash floor"
+  ]
+ },
+ {
+  "slug": "key-person",
+  "ord": 15,
+  "title": "Reduce dependence on the owner and on a few sites",
+  "objective": "Make the revenue and the know-how survive the owner's absence.",
+  "category_slug": "lv-key-person",
+  "priority": "later",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Protects revenue and is the main lever on sale value.",
+  "owner": "william",
+  "start_by": "2027-02-01",
+  "target_date": "2027-06-30",
+  "success_measures": [
+   "A written emergency plan and a covering physician",
+   "A second clinician introduced at every site",
+   "A record of contacts and agreements for each site"
+  ],
+  "steps": [
+   "Emergency plan",
+   "Coverage agreement",
+   "Site relationship records",
+   "Written facility agreements"
+  ]
+ },
+ {
+  "slug": "growth-clinician",
+  "ord": 16,
+  "title": "Add a second nurse practitioner when the numbers support it",
+  "objective": "Grow revenue and spread the census across more clinicians.",
+  "category_slug": "gm-clinician-growth",
+  "priority": "later",
+  "impact_low": 40000,
+  "impact_high": 110000,
+  "impact_note": "Contribution after cost, once the new clinician is fully busy.",
+  "owner": "william",
+  "start_by": "2027-03-01",
+  "target_date": "2027-06-30",
+  "success_measures": [
+   "A written case with census, ramp and enrollment timing",
+   "A decision made"
+  ],
+  "steps": [
+   "Market list",
+   "Hiring case",
+   "Recruit",
+   "Enroll early"
+  ]
+ },
+ {
+  "slug": "sale-readiness",
+  "ord": 17,
+  "title": "Build the file a buyer would ask for",
+  "objective": "Be able to answer a buyer's first twenty requests from one folder, whether or not the practice is ever sold.",
+  "category_slug": "lv-sale-readiness",
+  "priority": "later",
+  "impact_low": null,
+  "impact_high": null,
+  "impact_note": "Supports the multiple. Each $100,000 of proven earnings is worth about $300,000 of price.",
+  "owner": "william",
+  "start_by": "2027-03-01",
+  "target_date": "2027-09-30",
+  "success_measures": [
+   "Twelve months of monthly statements",
+   "Contracts, audit reports and credentialing in one folder",
+   "A refreshed valuation"
+  ],
+  "steps": [
+   "Data room",
+   "Monthly statements",
+   "Separate one-time collections",
+   "Refresh valuation"
+  ]
+ }
+]

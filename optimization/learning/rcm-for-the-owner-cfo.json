@@ -1,0 +1,487 @@
+{
+ "slug": "rcm-for-the-owner-cfo",
+ "ord": 1,
+ "title": "The revenue cycle for the owner as CFO",
+ "audience": "The physician-owner",
+ "summary": "How a visit becomes cash, the handful of numbers that tell you whether the machine is working, and a 45-minute monthly routine. Uses this practice's own figures.",
+ "minutes": 25,
+ "body": {
+  "sections": [
+   {
+    "heading": "Your job as chief financial officer",
+    "blocks": [
+     {
+      "type": "lead",
+      "text": "You already are the CFO. Nobody else decides how much cash to keep, whether a write-off is acceptable, or whether a billing pattern is safe. The job is smaller than it sounds: answer three questions every month."
+     },
+     {
+      "type": "kv",
+      "items": [
+       [
+        "Is the practice profitable?",
+        "Revenue minus what it costs to run, before and after paying you a market wage."
+       ],
+       [
+        "Is it liquid?",
+        "Enough cash on hand, and receivables turning into cash fast enough, to pay everyone including the lender and you."
+       ],
+       [
+        "Is the revenue defensible?",
+        "Would the claims that produced it survive a review of the charts."
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "Most practice-management material stops at the first two. For a practice that is 55% Medicare fee-for-service, the third decides whether the first two are real."
+     },
+     {
+      "type": "callout",
+      "tone": "key",
+      "title": "The one idea",
+      "text": "Collections can rise while the practice gets weaker. Cash basis books do not show receivables aging, money owed back to payers, or owner draws. Read all three questions together."
+     }
+    ]
+   },
+   {
+    "heading": "Follow one visit to cash",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Every dollar travels the same road. Each step has a typical failure and a number that catches it."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Step",
+       "What happens",
+       "How it fails",
+       "The number that catches it"
+      ],
+      "rows": [
+       [
+        "1. Census",
+        "A patient is seen at a hospital, nursing facility or assisted living facility.",
+        "The visit never becomes a charge.",
+        "Encounters reconciled to charges"
+       ],
+       [
+        "2. Coverage",
+        "The payer is identified: Medicare, a Medicare Advantage plan, Medicaid, hospice, a secondary.",
+        "Wrong or missing payer. The claim goes nowhere or to the wrong place.",
+        "Charges with no payer; coverage denials"
+       ],
+       [
+        "3. Note and code",
+        "The clinician documents the visit and chooses the code and level.",
+        "The note does not support the level, or the setting code is wrong.",
+        "Audit accuracy; level mix against peers"
+       ],
+       [
+        "4. Charge",
+        "The code becomes a charge at the practice's fee.",
+        "Entered late, or the fee is set below what a payer would have paid.",
+        "Charge lag; charge against allowed amount"
+       ],
+       [
+        "5. Claim",
+        "The claim is checked and sent electronically.",
+        "Rejected before the payer ever accepts it.",
+        "Rejection rate; first-pass payment rate"
+       ],
+       [
+        "6. Adjudication",
+        "The payer decides: pay, reduce or deny.",
+        "Denied for a reason that started at step 2 or 3.",
+        "Denial rate by reason and payer"
+       ],
+       [
+        "7. Remittance",
+        "The payer sends an explanation and the money.",
+        "Money and explanation do not match, or nothing is posted.",
+        "Unposted remittances; deposits matched"
+       ],
+       [
+        "8. Secondary",
+        "The remaining 20% goes to a supplemental plan or Medicaid.",
+        "Never billed, or legally uncollectible and left sitting as a balance.",
+        "Receivables by payer class"
+       ],
+       [
+        "9. Books",
+        "Deposits reach the bank and the accounting records.",
+        "Nobody ties the billing system to the bank.",
+        "Monthly bank reconciliation"
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "Medicare sets the tempo. A clean electronic claim cannot be paid before the 14th day after receipt and is due by day 30, and you have 12 months from the date of service to file. In this practice, paid lines arrive a median of **18 days** after the visit, which is as fast as the system allows."
+     },
+     {
+      "type": "quiz",
+      "q": "A claim is denied because the patient joined a Medicare Advantage plan last month. At which step did it fail?",
+      "choices": [
+       "Step 6, adjudication",
+       "Step 2, coverage",
+       "Step 5, claim"
+      ],
+      "answer": 1,
+      "why": "The payer only reported the problem at step 6. It was created at step 2, when coverage was not re-checked for the new month. Fixing denials means fixing the step that caused them."
+     }
+    ]
+   },
+   {
+    "heading": "Charge, allowed, paid: four numbers on every claim",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Confusing these four is the most common reason owners misread their own reports."
+     },
+     {
+      "type": "kv",
+      "items": [
+       [
+        "Charge",
+        "Your list price. It matters only in one way: it must be above what every payer allows, or you cap your own payment."
+       ],
+       [
+        "Allowed amount",
+        "What the payer's fee schedule says the service is worth. For Medicare it is set by a national formula and your locality."
+       ],
+       [
+        "Paid",
+        "What the payer sends. Medicare pays 80% of the allowed amount after the yearly deductible, then takes off 2% under a federal budget rule called sequestration."
+       ],
+       [
+        "Adjustments",
+        "Everything else. The gap between charge and allowed is a contractual adjustment and was never yours. A balance you could have collected and did not is a write-off, and that is lost money."
+       ]
+      ]
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Illustration: one nursing facility follow-up visit",
+       "Amount"
+      ],
+      "rows": [
+       [
+        "Charge",
+        "$135.00"
+       ],
+       [
+        "Medicare allowed amount",
+        "$95.00"
+       ],
+       [
+        "Contractual adjustment (never collectible)",
+        "$40.00"
+       ],
+       [
+        "Medicare pays 80%, less 2% sequestration",
+        "$74.48"
+       ],
+       [
+        "Coinsurance owed by a secondary plan, Medicaid or the patient",
+        "$19.00"
+       ]
+      ],
+      "numeric": [
+       1
+      ],
+      "caption": "Round numbers for illustration. A nurse practitioner billing under her own number is paid 85% of the physician amount."
+     },
+     {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Dual-eligible patients",
+      "text": "About four in ten of this practice's Medicare patients also have Medicaid. Florida Medicaid pays little or nothing on that $19 when Medicare has already paid more than Medicaid's own rate, and the patient may not be billed. That is a contractual adjustment, not bad debt. Post it that way or your receivables will fill with balances nobody can ever collect."
+     }
+    ]
+   },
+   {
+    "heading": "The eight numbers worth watching",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Standard definitions exist for these, published by the Healthcare Financial Management Association, but that body deliberately publishes no targets. The familiar targets come from professional articles with no data behind them. So each number below shows the conventional target, what practices actually achieve where it has been measured, and where this practice stands."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Measure",
+       "Conventional target",
+       "Measured elsewhere",
+       "This practice"
+      ],
+      "rows": [
+       [
+        "Days in receivables",
+        "Under 50, ideally 30 to 40",
+        "Mean 42 (billing companies, 2024)",
+        "About 64"
+       ],
+       [
+        "Receivables older than 90 days",
+        "Under 10% to 15%",
+        "Mean 28.6%",
+        "35.4%"
+       ],
+       [
+        "First-pass payment",
+        "90% or more",
+        "86% to 88%",
+        "70%"
+       ],
+       [
+        "Initial denial rate",
+        "Under 5%",
+        "7% to 8% in practices; 17% for Medicare Advantage",
+        "Up to 30% of lines"
+       ],
+       [
+        "Net collection rate",
+        "95% or more",
+        "85% to 93%",
+        "Not yet measurable"
+       ],
+       [
+        "Charge lag",
+        "Notes in 72 hours, charges in 2 days",
+        "7.75 days (2022)",
+        "3 days"
+       ],
+       [
+        "Cost to collect",
+        "No sound benchmark for small practices",
+        "Outsourced billing 4% to 10% of collections",
+        "6.3%"
+       ],
+       [
+        "Days cash on hand",
+        "Three to six months is common advice",
+        "No published standard",
+        "48 days"
+       ]
+      ]
+     },
+     {
+      "type": "formula",
+      "label": "Days in receivables",
+      "expr": "Open receivables / (charges for the last 3 months / days in those months)",
+      "example": "This practice: $342,620 / ($164,832 / 31) = about 64 days. Use gross charges on both sides or net on both sides, never one of each."
+     },
+     {
+      "type": "formula",
+      "label": "Net collection rate",
+      "expr": "Payments / (charges - contractual adjustments), for a set of service dates",
+      "example": "It answers: of the money we were entitled to, how much did we get. It is only honest if avoidable write-offs are not hidden inside contractual adjustments."
+     },
+     {
+      "type": "formula",
+      "label": "First-pass payment rate",
+      "expr": "Claim lines paid on first submission / claim lines submitted"
+     },
+     {
+      "type": "callout",
+      "tone": "note",
+      "title": "The missing number",
+      "text": "Net collection rate is the best single measure of a billing operation and this practice cannot yet compute it. It needs payments, contractual adjustments and write-offs grouped by month of service from the billing system. Getting that extract is on the work list."
+     }
+    ]
+   },
+   {
+    "heading": "Reading your own statements",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Your accountant prepares cash-basis statements. Cash basis means revenue is counted when money arrives and expenses when they are paid. It is simple and fine for taxes. It hides three things an owner needs: what payers still owe you, what you owe others, and whether this quarter's cash came from this quarter's work."
+     },
+     {
+      "type": "table",
+      "columns": [
+       "Last twelve months to September 30, 2026",
+       "Amount"
+      ],
+      "rows": [
+       [
+        "Net revenue",
+        "$1,058,153"
+       ],
+       [
+        "Operating expenses (staff, nurse practitioner, billing, rent, other)",
+        "$473,096"
+       ],
+       [
+        "Earnings before owner pay, interest and depreciation",
+        "$585,057"
+       ],
+       [
+        "Interest",
+        "$29,799"
+       ],
+       [
+        "Recorded doctor pay (salary, payroll tax, health)",
+        "$217,296"
+       ],
+       [
+        "Net income",
+        "$336,858"
+       ]
+      ],
+      "numeric": [
+       1
+      ]
+     },
+     {
+      "type": "list",
+      "items": [
+       "**Operating expense ratio: 44.7%.** Roughly 60% is typical for primary care. Lean staffing and automated billing explain the gap.",
+       "**The balance sheet shows $94,431 of cash and no receivables**, because cash basis leaves them out. About $90,000 of the $342,620 open is likely to turn into cash.",
+       "**It also shows $162,121 that you owe the corporation.** That is cash you have already taken, recorded as a loan. It needs a plan, with the accountant, before year end.",
+       "**Debt is $212,206, most of it at 13.99%.** Interest was nearly $30,000 for the year."
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "key",
+      "title": "Profit before and after your own wage",
+      "text": "$585,057 is what the practice earns before paying you. A physician doing your clinical work would cost about $369,000 with taxes and benefits. What is left, about $170,000 after removing some one-time collections, is the profit of the business as distinct from the wage for your work. Lenders and buyers look at that second number."
+     },
+     {
+      "type": "quiz",
+      "q": "Revenue is up 20% this year. Which fact would most change how you read that?",
+      "choices": [
+       "Part of it is collection of claims from prior years",
+       "The nurse practitioner saw more patients",
+       "Medicare raised its rates"
+      ],
+      "answer": 0,
+      "why": "Recovering old receivables is real cash but it does not repeat. Before budgeting or valuing the practice, separate one-time recovery from the run-rate."
+     }
+    ]
+   },
+   {
+    "heading": "Payers set the rules you play by",
+    "blocks": [
+     {
+      "type": "table",
+      "columns": [
+       "Payer",
+       "Share of charges",
+       "How it pays",
+       "What to watch"
+      ],
+      "rows": [
+       [
+        "Medicare fee-for-service",
+        "55.5%",
+        "National fee schedule. Pays in 14 to 30 days.",
+        "The yearly rule. The 2027 conversion factor is $32.63, down 2.31%. Audit risk is highest here."
+       ],
+       [
+        "Medicare Advantage plans",
+        "About 22%",
+        "By contract with each plan. Slower.",
+        "Network status, hospital-visit rules, residents switching plans mid-year. Plans deny about 17% of initial claims nationally and more than half of those denials are overturned."
+       ],
+       [
+        "Medicaid and dual-eligible plans",
+        "About 9%",
+        "Low rates. Little or nothing on Medicare coinsurance.",
+        "Keep enrollment current. It is the gate to any secondary payment."
+       ],
+       [
+        "Veterans, military, commercial",
+        "Small",
+        "Each has its own authorization rules.",
+        "Enroll both clinicians or do not see those patients under the unenrolled one."
+       ]
+      ]
+     },
+     {
+      "type": "p",
+      "text": "One consequence: a single practice-wide denial target is meaningless. Set it by payer."
+     }
+    ]
+   },
+   {
+    "heading": "Denials: prevent, do not rework",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "A denial is a message about a step upstream. Reworking it gets one claim paid. Fixing the cause stops the next hundred. In this practice's denial register the leading first reasons are missing information, coverage ended, timely filing, duplicates and another payer being primary. Almost all of them start at registration and coverage, before any coding happens."
+     },
+     {
+      "type": "steps",
+      "items": [
+       "Log every denial with its reason code, payer and the step that caused it.",
+       "Each month, rank causes by dollars, not by count.",
+       "Pick the top cause and change the upstream step: a required field, a monthly coverage check, a scrubber rule.",
+       "Watch that cause for three months. If it comes back, the fix was not a fix."
+      ]
+     },
+     {
+      "type": "callout",
+      "tone": "warn",
+      "title": "Statistics to distrust",
+      "text": "You will read that 65% of denied claims are never reworked and that each costs $25 or $118 to fix. Those figures trace to a single 2014 trade article citing unnamed studies, and to a 2017 vendor estimate for hospitals. Measured data say more than half of denied claims are eventually paid."
+     }
+    ]
+   },
+   {
+    "heading": "Compliance is part of revenue",
+    "blocks": [
+     {
+      "type": "p",
+      "text": "Money that has to be returned was never revenue. Medicare requires a provider to report and return an overpayment within 60 days of identifying it, looks back six years, and since 2025 treats you as having identified it when you knew or should have known. A good-faith investigation started promptly can pause that deadline for up to 180 days."
+     },
+     {
+      "type": "p",
+      "text": "Medicare measures error rates by service. For fiscal 2025 it found errors in 12.7% of nursing facility visit claims and 13.8% of subsequent hospital visits, against 5.3% for ordinary office visits. Those are the codes this practice bills most, and its level mix sits far above national patterns in seven code families. That does not mean the claims are wrong. It means the practice should test them itself, through an attorney, before a contractor does."
+     },
+     {
+      "type": "list",
+      "items": [
+       "An independent audit of 10 notes per code family per clinician is the cheapest insurance the practice can buy.",
+       "Care management billed from a time log, at the code the minutes support.",
+       "Place of service set from each facility's skilled-stay census."
+      ]
+     }
+    ]
+   },
+   {
+    "heading": "The 45-minute monthly routine",
+    "blocks": [
+     {
+      "type": "steps",
+      "items": [
+       "**Cash (5 minutes).** Bank balance, days of cash, anything unusual in deposits. Is the 13-week forecast still above the floor?",
+       "**Statements (10 minutes).** Revenue, expenses and earnings against budget and against the same month last year. One sentence on why each large variance happened.",
+       "**Receivables (10 minutes).** Total, days, share older than 90 days, by payer. What is the plan for the oldest $20,000?",
+       "**Denials and first-pass rate (5 minutes).** Top cause by dollars. What upstream fix was made last month and did it work?",
+       "**Compliance (5 minutes).** Level mix against national, care-management minutes against staff hours, audit findings, expiring enrollments.",
+       "**Work list (10 minutes).** What was finished, what is stuck, and one decision written down."
+      ]
+     },
+     {
+      "type": "p",
+      "text": "The scorecard and work list pages in this application are built for exactly this meeting."
+     }
+    ]
+   }
+  ],
+  "takeaways": [
+   "A visit becomes cash through nine steps, and most denials start in the first three.",
+   "Charge, allowed, paid and adjustments are different numbers. Only avoidable write-offs are lost money.",
+   "Conventional billing targets are conventions. Compare yourself with measured results and with your own trend.",
+   "This practice is fast (3-day charge lag, 18 days to payment) and leaky (30% of lines unpaid first time, 35% of receivables over 90 days).",
+   "Earnings before owner pay are $585,057. Earnings after a market wage are about $170,000. Both numbers matter.",
+   "Revenue that would not survive a chart review is not revenue. Test it yourself first.",
+   "Forty-five minutes a month with the scorecard is the whole CFO job."
+  ]
+ },
+ "artifact_url": "https://claude.ai/artifact/VAEP7Z4wDf16ZZxxrFR311"
+}
